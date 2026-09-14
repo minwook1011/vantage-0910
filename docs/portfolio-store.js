@@ -7,8 +7,8 @@
     transactions: [], buyList: [], watchlist: [], prices: {}, fx: null
   };
   /* 국내 종목은 종목명으로도 입력할 수 있게 하되, 시세 조회에는 거래소 티커를 사용한다. */
-  var KR_TICKERS = { "삼성전자": "005930.KS", "삼성전자우": "005935.KS", "파인텍": "131760.KQ" };
-  var KR_NAMES = { "005930": "삼성전자", "005935": "삼성전자우", "131760": "파인텍" };
+  var KR_TICKERS = { "삼성전자": "005930.KS", "삼성전자우": "005935.KS", "파인텍": "131760.KQ", "파인엠텍": "441270.KQ", "441270": "441270.KQ" };
+  var KR_NAMES = { "005930": "삼성전자", "005935": "삼성전자우", "131760": "파인텍", "441270": "파인엠텍" };
   function id(prefix) { return prefix + "-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function load() {
     try {
