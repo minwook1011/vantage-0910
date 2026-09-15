@@ -91,7 +91,9 @@
   }
   function signIn() {
     if (!auth || !api) return;
-    api.signInWithPopup(auth, new api.GoogleAuthProvider()).catch(function (error) {
+    var provider = new api.GoogleAuthProvider();
+    var method = window.matchMedia && window.matchMedia("(max-width: 820px)").matches ? api.signInWithRedirect : api.signInWithPopup;
+    method(auth, provider).catch(function (error) {
       console.warn("VANTAGE sign-in failed", error);
       window.alert("동기화 로그인에 실패했습니다. 팝업 차단을 해제한 뒤 다시 눌러주세요.");
     });
@@ -115,7 +117,7 @@
     var app = modules[0].initializeApp(CONFIG);
     auth = modules[1].getAuth(app); db = modules[2].getFirestore(app);
     api = {
-      GoogleAuthProvider: modules[1].GoogleAuthProvider, signInWithPopup: modules[1].signInWithPopup, signOut: modules[1].signOut,
+      GoogleAuthProvider: modules[1].GoogleAuthProvider, signInWithPopup: modules[1].signInWithPopup, signInWithRedirect: modules[1].signInWithRedirect, signOut: modules[1].signOut,
       doc: modules[2].doc, getDoc: modules[2].getDoc, setDoc: modules[2].setDoc, onSnapshot: modules[2].onSnapshot,
       serverTimestamp: modules[2].serverTimestamp
     };
