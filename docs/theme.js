@@ -25,6 +25,7 @@
     nav.innerHTML =
       '<div class="nav-inner"><a class="brand route-home" data-route-home href="index.html">VANTAGE<span class="dot">·</span></a>' +
       links + '<button class="gate-logout" type="button" title="이 기기에서 다시 잠그기" aria-label="다시 잠그기">🔒 잠금</button></div><div id="tape"></div>';
+    if (window.VantageCloud && typeof window.VantageCloud.mount === "function") window.VantageCloud.mount(nav.querySelector(".nav-inner"));
     var logout = nav.querySelector(".gate-logout");
     if (logout) logout.addEventListener("click", function () {
       if (typeof window.vantageGateLogout === "function") window.vantageGateLogout();
