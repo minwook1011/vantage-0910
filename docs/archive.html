@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="firebase-sync.js?v=20260915a"></script>
+<script src="gate.js?v=20260909a"></script>
+<meta name="theme-color" content="#070a11">
+<title>리서치 아카이브 — VANTAGE</title>
+<link rel="stylesheet" href="theme.css?v=20260916a">
+<link rel="stylesheet" href="archive.css?v=20260916a">
+</head>
+<body>
+<header id="topnav"></header>
+<main class="container archive-page">
+  <section class="archive-hero">
+    <div>
+      <div class="kicker">RESEARCH ARCHIVE</div>
+      <h1>생각을 흘려보내지 않고,<br><em>작업물로 쌓는다.</em></h1>
+      <p>분석·공부·정리·인터뷰를 하나의 아티팩트 라이브러리에서 다시 꺼내 봅니다.</p>
+    </div>
+    <div class="archive-stats" aria-label="아카이브 통계">
+      <div><b id="archive-count">0</b><span>ARTIFACTS</span></div>
+      <div><b id="archive-category-count">0</b><span>CATEGORIES</span></div>
+      <div><b id="archive-latest">—</b><span>LATEST</span></div>
+    </div>
+  </section>
+
+  <section class="archive-console" aria-label="리서치 검색과 분류">
+    <label class="archive-search"><span>⌕</span><input id="archive-search" type="search" autocomplete="off" placeholder="제목 · 핵심 아이디어 · 태그 검색"></label>
+    <div class="archive-filters" id="archive-filters" role="group" aria-label="분류 필터">
+      <button class="on" type="button" data-category="전체">전체</button>
+      <button type="button" data-category="분석글">분석글</button>
+      <button type="button" data-category="공부글">공부글</button>
+      <button type="button" data-category="정리글">정리글</button>
+      <button type="button" data-category="인터뷰">인터뷰</button>
+    </div>
+  </section>
+
+  <section class="archive-library" aria-labelledby="library-title">
+    <div class="library-head"><div><span>LIBRARY</span><h2 id="library-title">리서치 작업물</h2></div><b id="archive-visible-count">0개</b></div>
+    <div id="archive-list" class="archive-list" aria-live="polite"></div>
+  </section>
+</main>
+<script src="theme.js?v=20260916a"></script>
+<script src="archive.js?v=20260916a"></script>
+</body>
+</html>
