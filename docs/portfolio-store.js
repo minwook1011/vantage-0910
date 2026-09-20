@@ -1,4 +1,4 @@
-/* 개인 포트폴리오 데이터: 이 브라우저의 localStorage에만 저장 */
+/* 개인 포트폴리오 데이터: 이 브라우저의 localStorage에 저장하고, 로그인 시 firebase-sync.js가 기기 간 동기화 */
 (function () {
   "use strict";
   var KEY = "vantage-portfolio-v1";
@@ -93,19 +93,23 @@
     return { price: Number(quote), currency: "KRW", updated: new Date().toISOString() };
   }
   async function refresh(data) {
-    Object.keys(data.prices || {}).forEach(function (key) {
-      var price = Number(data.prices[key] && data.prices[key].price);
-      if (!isFinite(price) || price <= 0) delete data.prices[key];
-    });
-    var symbols = {}, i;
+    var prices = {}, fx = null, symbols = {};
     data.accounts.forEach(function (a) { aggregate(data, a.id).forEach(function (h) { symbols[h.key] = { market: h.market, ticker: h.ticker }; }); });
     data.watchlist.forEach(function (w) { symbols[groupKey(w.market, w.ticker)] = { market: w.market, ticker: tickerFor(w.ticker, w.market) }; });
-    var keys = Object.keys(symbols);
-    await Promise.all(keys.map(async function (key) {
-      try { data.prices[key] = await priceOne(symbols[key].market, symbols[key].ticker); } catch (e) {}
+    await Promise.all(Object.keys(symbols).map(async function (key) {
+      try { prices[key] = await priceOne(symbols[key].market, symbols[key].ticker); } catch (e) {}
     }));
-    try { data.fx = await fxUsdKrw(); } catch (e) {}
-    save(data); return data;
+    try { fx = await fxUsdKrw(); } catch (e) {}
+    /* 시세 조회는 수 초가 걸린다. 그 사이 다른 기기의 기록이 동기화되어 들어왔을 수 있으므로
+       조회 시작 시점의 data를 그대로 저장하지 않고, 최신 저장본에 시세·환율만 덮어쓴다. */
+    var latest = load();
+    Object.keys(latest.prices || {}).forEach(function (key) {
+      var price = Number(latest.prices[key] && latest.prices[key].price);
+      if (!isFinite(price) || price <= 0) delete latest.prices[key];
+    });
+    Object.keys(prices).forEach(function (key) { latest.prices[key] = prices[key]; });
+    if (fx) latest.fx = fx;
+    save(latest); return latest;
   }
   window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey };
 })();
