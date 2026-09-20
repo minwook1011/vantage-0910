@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-19",
+  "updated": "2026-09-21",
   "people": [
     {
       "id": "musk",
@@ -906,6 +906,46 @@
     {
       "week": "2026-W38",
       "statements": [
+        {
+          "person_id": "sam-altman",
+          "date": "2026-09-14",
+          "source": "Bloomberg / Quartz",
+          "link": "https://www.bloomberg.com/news/articles/2026-09-14/openai-s-altman-voices-support-for-pacing-ai-development",
+          "statement": "샘 올트먼 오픈AI CEO는 9월 14일(월) X에 올린 글에서 프런티어 AI 개발의 '속도 조절(pacing)'을 지지한다고 밝혔다. 그는 \"'pacing'은 '중단(stopping)'을 뜻하지 않는다. 진전은 빨랐고 앞으로도 계속될 것\"이라면서도 \"어떤 수준의 미국 내 경쟁 압력도 무모함을 정당화하거나 역량이 정렬과 모니터링을 앞지르게 해서는 안 된다\"고 말했다. 그는 선도 연구소들이 속도를 늦추고 안전 위험을 공동 대응하는 협약을 곧 발표할 수도 있다고 시사했으며, 이는 아모데이의 에세이에 대한 동조다. 앞서 9월 초 올트먼은 직원들에게 위험 이해를 위해 필요하면 기술 진보 속도를 늦출 수 있다고 말한 것으로 전해졌다.",
+          "added": "2026-09-21"
+        },
+        {
+          "person_id": "scott-bessent",
+          "date": "2026-09-19",
+          "source": "CNBC / Reuters",
+          "link": "https://www.cnbc.com/2026/09/20/bessent-chinas-he-to-hold-talks-on-ai-trade-minerals-reuters.html",
+          "statement": "스콧 베센트 미국 재무장관은 9월 19일(금) 하루 종일 이어질 것으로 예상되는 허리펑 중국 부총리와의 회담을 앞두고, 논의가 \"오픈웨이트 모델과 클로즈드웨이트 모델 모두를 다룰 것\"으로 기대한다고 밝혔다. 그는 \"미국은 AI 분야에서 계속 선두를 지키고 있으며, 공유된 위험을 피하고 양국 시스템의 분리(bifurcation)를 피하기 위한 논의에 열려 있다\"고 말했다. 회담은 맨해튼 JP모건체이스 본사에서 제이미슨 그리어 무역대표부 대표도 참석한 가운데 AI·무역·핵심광물을 의제로 열리며, 이번 주 워싱턴에서 열릴 트럼프-시진핑 정상회담의 사전 조율 성격이다.",
+          "added": "2026-09-21"
+        },
+        {
+          "person_id": "sarah-friar",
+          "date": "2026-09-17",
+          "source": "The Next Web / Fortune",
+          "link": "https://thenextweb.com/news/king-charles-ai-summit-existential-dangers-hassabis-friar",
+          "statement": "사라 프라이어 오픈AI CFO는 9월 17일 스코틀랜드 덤프리스 하우스에서 열린 찰스 3세 국왕 주최 AI 회동에서 AI가 사람들에게 이롭게 쓰이도록 하는 일은 \"어느 한 기업이나 정부가 혼자 할 수 없다\"고 말했다. 그는 안전 확보를 위해 기업·정부·국제 협력이 함께 움직여야 한다는 취지를 밝혔다. 이 자리에는 젠슨 황, 데미스 허사비스, 영국 AI 담당 장관 카니슈카 나라얀 등이 참석했으나, 참가자들은 구체적인 공개 약속이나 정책 변경을 내놓지 않았다. 앞서 샘 올트먼은 안전 작업이 우선이라며 2026년 IPO는 부적절하고 상장은 2027년에야 가능하다고 밝힌 바 있다.",
+          "added": "2026-09-21"
+        },
+        {
+          "person_id": "jensen-huang",
+          "date": "2026-09-19",
+          "source": "Daily Signal / CBS News",
+          "link": "https://www.dailysignal.com/2026/09/20/nvidia-huang-doomsday-narratives/",
+          "statement": "젠슨 황 엔비디아 CEO는 9월 19일(금) 방송된 CBS 뉴스 인터뷰에서 \"2030년이 세상의 끝이 되지는 않는다. 그럴 가능성은 0%\"라고 말했다. 그는 \"사람들을 겁주는 것은 불필요하며 무책임하다\"고 비판했고, 최근 앤트로픽을 떠난 연구자가 AI가 10년 안에 인류를 멸망시킬 수 있다고 주장한 것을 겨냥한 것으로 전해졌다. 새 규제 대신 \"기존 법을 먼저 적용하라. 종말론적 서사가 현행법 책임을 면제하는 구실이 되게 하지 말라\"고 했고, \"최대한 빨리 가겠지만 준비되지 않은 제품은 결코 출하하지 않겠다\"고 밝혔다.",
+          "added": "2026-09-21"
+        },
+        {
+          "person_id": "jensen-huang",
+          "date": "2026-09-17",
+          "source": "Fox Business / Fortune",
+          "link": "https://www.foxbusiness.com/fox-news-tech/nvidia-ceo-jensen-huang-ai-chip-sales-growth",
+          "statement": "젠슨 황 엔비디아 CEO는 9월 17일 찰스 3세 국왕이 스코틀랜드 덤프리스 하우스에서 소집한 AI 정상 회동에서 \"올해보다 내년에 두 배 많은 칩을 팔 것으로 기대한다\"고 말했다. 그는 그 배경으로 각국이 자국 내 AI 인프라와 클라우드 데이터센터에 투자하는 흐름을 꼽았다. 안전 문제에 대해서는 \"제품이 안전하지 않다면 보류하고 계속 엔지니어링해야 한다. 최대한 빨리 가되 준비가 안 된 채로 빨리 가진 말라\"며, 업계 전체의 감속이 아니라 개별 기업의 제품 단위 책임을 강조했다. 새 규제 체계보다 의료·교통 등 기존 법률을 AI에 적용하는 방식을 제안했고, 데이터센터 전력 수요는 핵융합·원자력·수력 등 청정에너지 투자를 촉발할 것이라고 주장했다.",
+          "added": "2026-09-21"
+        },
         {
           "person_id": "satya-nadella",
           "date": "2026-09-17",
