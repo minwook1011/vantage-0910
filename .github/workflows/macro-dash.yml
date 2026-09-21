@@ -1,0 +1,62 @@
+name: macro-dashboard
+
+on:
+  schedule:
+    # 미국 지표 발표 직후에 돈다 (GitHub 예약은 UTC 기준, 서머타임·표준시 둘 다 커버)
+    - cron: "45 12 * * 1-5"   # 08:45 EDT — CPI·PPI·고용·PCE·GDP·실업수당(08:30 ET)
+    - cron: "45 13 * * 1-5"   # 08:45 EST
+    - cron: "20 14 * * 1-5"   # 10:20 EDT — JOLTS(10:00 ET)
+    - cron: "20 15 * * 1-5"   # 10:20 EST
+    - cron: "30 19 * * 1-5"   # FOMC 결정(14:00 ET) 이후
+    - cron: "0 22 * * *"      # 매일 한국 07:00 — 지수·국채·일정 갱신
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: macro-dash
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 인증서 번들 (노동부·미시간대 서버가 중간 인증서를 빼고 보냄)
+        run: pip install --quiet certifi
+
+      - name: 매크로 대시보드 데이터 수집
+        run: python fetch_macro_dash.py
+
+      - name: 변경 시 커밋 & 푸시
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/macro_dash.json
+          if git diff --cached --quiet; then
+            echo "변경 없음 — 커밋 생략"
+          else
+            git commit -m "data: 매크로 대시보드 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') 갱신"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+
+      - name: 사이트 미게시 변경 복구
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py

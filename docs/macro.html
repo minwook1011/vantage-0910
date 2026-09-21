@@ -7,10 +7,54 @@
 <script src="gate.js?v=20260909a"></script>
 <title>매크로 및 투자전략 — VANTAGE</title>
 <link rel="stylesheet" href="theme.css?v=20260909b">
+<link rel="stylesheet" href="macro-dash.css?v=20260921a">
 </head>
 <body>
 <header id="topnav"></header>
-<main class="macro-empty" aria-label="매크로 및 투자전략"></main>
+<main class="container mx-page">
+  <div class="kicker">Macro · Strategy</div>
+  <div class="page-head"><h1>매크로 대시보드</h1><span class="upd" id="mx-updated"></span></div>
+  <p class="mx-lede">미국 물가·고용·성장·금리와 한·미 지수를 한 화면에서. 데이터는 발표 직후 자동으로 갱신되고, 모든 시각은 <b>한국시간</b>입니다.</p>
+
+  <section class="mx-next" id="mx-next"></section>
+
+  <section class="mx-sec">
+    <div class="mx-sec-h"><h2>핵심 지표</h2><div class="mx-tabs" id="mx-kpi-tabs"></div></div>
+    <div class="mx-kpis" id="mx-kpis"><div class="spin">로딩 중…</div></div>
+  </section>
+
+  <section class="mx-sec">
+    <div class="mx-sec-h"><h2>경제 캘린더</h2><div class="mx-tabs" id="mx-cal-tabs"></div></div>
+    <div class="mx-cal" id="mx-cal"></div>
+  </section>
+
+  <section class="mx-sec">
+    <div class="mx-sec-h"><h2>차트 탐색기<span class="mx-sub">지수 가격·거래량 위에 매크로 지표를 겹쳐 봅니다</span></h2></div>
+    <div class="mx-explorer">
+      <div class="mx-ctrl">
+        <div class="mx-ctrl-row"><span class="mx-lbl">지수</span><div class="mx-chips" id="mx-idx"></div></div>
+        <div class="mx-ctrl-row"><span class="mx-lbl">겹칠 지표</span><select id="mx-overlay"></select>
+          <span class="mx-lbl">표시</span><div class="toggle" id="mx-mode"></div>
+          <span class="mx-lbl">기간</span><div class="toggle" id="mx-range"></div>
+          <label class="mx-check"><input type="checkbox" id="mx-events" checked> 발표일 표시</label></div>
+      </div>
+      <div class="mx-chart" id="mx-chart"></div>
+      <div class="mx-legend" id="mx-legend"></div>
+    </div>
+  </section>
+
+  <section class="mx-sec">
+    <div class="mx-sec-h"><h2>미국 국채 금리</h2><span class="mx-sub" id="mx-rates-sub"></span></div>
+    <div class="mx-rates">
+      <div class="mx-card"><div class="mx-card-h"><b>수익률 곡선</b><span>지금 vs 1개월 전 vs 1년 전</span></div><div id="mx-curve"></div></div>
+      <div class="mx-card"><div class="mx-card-h"><b>장단기 금리차</b><div class="toggle" id="mx-spread-t"></div></div><div id="mx-spread"></div></div>
+    </div>
+  </section>
+
+  <p class="mx-foot" id="mx-foot"></p>
+</main>
+<div class="mx-modal" id="mx-modal" hidden><div class="mx-modal-box"><button class="mx-close" id="mx-close" aria-label="닫기">×</button><div id="mx-modal-body"></div></div></div>
 <script src="theme.js?v=20260910a"></script>
+<script src="macro-dash.js?v=20260921a"></script>
 </body>
 </html>
