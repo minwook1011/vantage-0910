@@ -21,11 +21,10 @@ model: opus
 | 섹터 대시보드 | `data.json` | 최근 영업일+1 이내 | `etfs` 25개 이상 |
 | 글로벌 메가캡 | `megacap.json`, `financials.json` | 최근 영업일+1 | `stocks` 250개 이상, 각 종목 candles 존재 |
 | Bottom-up | `megacap.json` | 위와 동일 | 동일 |
-| 핵심 테제 | `theses.json` | 14일 이내 | 파싱 가능 |
 | 세상 흐름 | `people.json`, `insights.json`, `events.json` | people/insights 3일, events 14일 | ★아래 인사이트 1:1 규칙 |
 | 실시간 뉴스 | `telegram_news.json`, `news_digest.json` | telegram 영업일+1, digest 2일 | 최신 digest에 `sectors` 존재 |
 | 미국 주요 실적 | `earnings_calendar.json`, `earnings.json` | calendar 영업일+1, earnings 10일 | earnings 항목에 summary 존재 |
-| 매크로 및 투자전략 | `macro.json`, `valuation.json` | 영업일+1 | `macro_monthly`의 **dgs10·cpi 비어있지 않음** |
+| 매크로 및 투자전략 | `macro_dash.json` | 영업일+1 | `indicators`에 **cpi·y10** 존재, `status`에 ✗ 없음 (`fetch_macro_dash.py`로 복구) |
 | 구간별 등락 분석 | `megacap_periods.json` | — | 등록 종목의 **모든 segment에 analysis** 존재 |
 
 **★ 인사이트 1:1 무결성(중요):** `insights.json`의 어떤 인사이트도 `linked_statement_keys` 길이가 2 이상이면 안 된다. 위반 시 → 해당 인사이트는 키 1개만 남기고, 떨어져 나온 발언에는 **관점을 달리한 새 인사이트**를 만들어라.
@@ -48,7 +47,6 @@ model: opus
 - `news_digest.json` 오늘자 없음 → data/macro/valuation/telegram/people을 종합해 **오늘자 digest**를 만든다(마크다운 5섹션 + `stats` + `sectors` 8~10개, 섹터별 `keywords` 포함).
 - **`earnings.json` 분기 실적 자동 반영(중요·매일):** `earnings_calendar.json`의 `calendar`(티커별 dict, `next_earnings_date`·`is_estimate` 보유)를 훑어, **`next_earnings_date`가 이미 지났고(≤오늘) `is_estimate`가 아님에도 `earnings.json`에 아직 요약이 없는 메가캡**을 찾는다. 이런 종목을 발표일 최신순으로 **하루 최대 8곳** 리서치해 추가한다(발표 직후 "바로바로" 반영이 목표). 각 항목은 기존 스키마를 그대로 따른다: `ticker`·`name`(한글)·`quarter`·`report_date`·`summary`(핵심 수치가 담긴 상세 문단: 매출/EPS/YoY·컨센서스 대비 비트/미스·세그먼트·가이던스·주가반응)·`qa`(실적콜 Q&A 3~5개, 마크다운)·`full`(마크다운 장문)·`tags`(배열)·`guidance`(문자열). 수치는 **1차 출처(각 사 IR·보도자료) 또는 신뢰 매체로 확인된 것만**, 창작 금지. **하위 에이전트에 위임하지 말고 직접 리서치·작성하고 반드시 커밋까지 끝낸다.** 추가 후 `updated`를 오늘로 갱신.
 - `events.json` → **산업 행사 신규 발굴은 매주 일요일 밤 `weekly-industry-events` 예약작업이 전담**하므로 여기서 매일 새로 찾을 필요 없다. 다만 **지난 행사의 status를 done으로 갱신**하고, 임박한 거시 일정(FOMC·CPI·고용)이 비어 있으면 그것만 보충한다. 이미 지난 행사가 여전히 upcoming/previewed로 남아 있으면 done으로 정리.
-- `theses.json` 정체 → 핵심 테제의 최신 근거를 갱신.
 - `megacap_periods.json` → 아직 분석 안 된 종목 중 **시총 상위 20개**를 골라 20% 지그재그 구간을 계산하고 각 구간의 상승/하락 이유를 작성해 채운다(하루 20종목 페이스).
 
 **모든 리서치는 출처 URL이 확인된 사실만.** 창작 금지.

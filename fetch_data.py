@@ -22,7 +22,6 @@ except Exception:
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "docs", "data.json")
-THESES = os.path.join(BASE, "docs", "theses.json")
 KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) etf-flow-tracker/1.0"
 BENCHMARK = "ACWI"
@@ -305,30 +304,6 @@ def main():
         "dates": bench["dates"][-126:] if bench else [],
         "etfs": etfs,
     }
-
-    # 5) 테제 티커 시세 (perspective.html 테제 스코어용)
-    thesis_quotes = {}
-    if os.path.exists(THESES):
-        try:
-            th = json.load(open(THESES, encoding="utf-8"))
-            tset = []
-            for w in th.get("weeks", []):
-                for t in w.get("theses", []):
-                    tset += t.get("tickers", []) + t.get("kr", [])
-            seen = []
-            for t in tset:
-                if t not in seen:
-                    seen.append(t)
-            print(f"--- 테제 티커 {len(seen)}종 수집 ---")
-            for t in seen:
-                ch = fetch_chart(t, "6mo")
-                if ch:
-                    thesis_quotes[t] = {"price": ch["c"][-1],
-                                        "r1d": pct(ch["c"][-1], ch["c"][-2]),
-                                        "dates": ch["dates"], "closes": ch["c"]}
-        except Exception as e:
-            print(f"  [theses-skip] {e}")
-    data["thesis_quotes"] = thesis_quotes
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
