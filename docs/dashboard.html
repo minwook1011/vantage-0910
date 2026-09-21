@@ -7,6 +7,27 @@
 <script src="gate.js?v=20260909a"></script>
 <title>글로벌 섹터 ETF 자금 흐름</title>
 <link rel="stylesheet" href="theme.css?v=20260909b">
+<style>
+/* ── 섹터별 1년 흐름 (finviz 스타일 스몰 멀티플) ── */
+.yr-tools { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px; }
+.yr-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:12px; }
+.yr-card { position:relative; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:10px 10px 4px; cursor:pointer; transition:border-color .15s; }
+.yr-card:hover { border-color:rgba(103,136,216,.8); }
+.yr-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; padding:0 2px; }
+.yr-title b { font-size:15px; }
+.yr-title .tk { color:var(--muted); font:11.5px var(--mono); margin-left:6px; }
+.yr-title .sma { display:block; color:#f0a53a; font:700 11px var(--mono); margin-top:2px; }
+.yr-meta { text-align:right; font:11.5px var(--mono); color:var(--muted); white-space:nowrap; }
+.yr-meta .d1 { font-weight:800; font-size:12.5px; }
+.yr-meta .badge { margin-left:4px; }
+.yr-card svg { display:block; width:100%; height:auto; margin-top:4px; }
+.yr-card .ax { font:10px var(--mono); fill:var(--faint); }
+.yr-card .zero { stroke:#5b6479; stroke-dasharray:3 3; }
+.yr-card .grid-l { stroke:rgba(255,255,255,.05); }
+.yr-tip { position:absolute; pointer-events:none; z-index:4; background:rgba(16,20,29,.96); border:1px solid var(--border-strong); border-radius:6px; padding:6px 8px; font:11.5px var(--mono); color:var(--text); white-space:nowrap; opacity:0; transition:opacity .1s; }
+.yr-tip.show { opacity:1; }
+@media (max-width:760px) { .yr-grid { grid-template-columns:1fr; } }
+</style>
 </head>
 <body>
 <header id="topnav"></header>
@@ -35,6 +56,16 @@
   <div class="section">
     <h2>시장 체력<span class="sub">추적 ETF 기준 · 선택 기간</span></h2>
     <div class="breadth-grid" id="breadth"></div>
+  </div>
+
+  <div class="section">
+    <h2>섹터별 1년 흐름<span class="sub">누적 수익률(파랑) · 50일 이동평균(주황) · 거래량(빨강=상승일, 파랑=하락일) · 마우스 올리면 일자별 값 · 클릭 = 상세</span></h2>
+    <div class="yr-tools">
+      <div class="toggle" id="yr-period"></div>
+      <div class="toggle" id="yr-sort"></div>
+      <span id="yr-groups"></span>
+    </div>
+    <div class="yr-grid" id="yr-grid"><div class="spin">로딩 중…</div></div>
   </div>
 
   <div class="section">
@@ -290,6 +321,141 @@ function renderTableRows(rows) {
   });
 }
 
+/* ---------- 섹터별 1년 흐름 (finviz 스타일) ---------- */
+var YEAR = null;   // etf_year.json — {series:{TICKER:{d:[],c:[],v:[]}}}
+var YR_PERIODS = [["1Y","1y"],["YTD","ytd"],["6M","6m"],["3M","3m"]];
+var YR_SORTS = [["수익률순","ret"],["기본순","base"]];
+var yrPeriod = "1y", yrSort = "ret", yrGroup = "미국 섹터";
+
+function yrStart(s, period) {
+  var n = s.c.length;
+  if (period === "1y") return Math.max(0, n - 252);
+  if (period === "6m") return Math.max(0, n - 126);
+  if (period === "3m") return Math.max(0, n - 63);
+  /* YTD: 전년도 마지막 종가를 기준점으로 */
+  var yr = s.d[n - 1].slice(0, 4), start = 0;
+  for (var i = 0; i < n; i++) if (s.d[i].slice(0, 4) < yr) start = i;
+  return start;
+}
+function yrSma(c, w) {
+  var out = [], sum = 0;
+  for (var i = 0; i < c.length; i++) {
+    sum += c[i]; if (i >= w) sum -= c[i - w];
+    out.push(i >= w - 1 ? sum / w : null);
+  }
+  return out;
+}
+function yrNiceStep(span) { var raw = span / 4, p = Math.pow(10, Math.floor(Math.log10(raw || 1))), m = raw / p; return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p; }
+function yrFmtVol(v) { return v >= 1e9 ? (v / 1e9).toFixed(2) + "B" : v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e3 ? (v / 1e3).toFixed(0) + "K" : String(v); }
+
+function yrModel(tk) {
+  var s = YEAR && YEAR.series && YEAR.series[tk];
+  if (!s || s.c.length < 30) return null;
+  var st = yrStart(s, yrPeriod), base = s.c[st], sma = yrSma(s.c, 50);
+  var idx = [];
+  for (var i = st; i < s.c.length; i++) idx.push(i);
+  return {
+    s: s, idx: idx, base: base,
+    cum: idx.map(function (i) { return (s.c[i] / base - 1) * 100; }),
+    smaCum: idx.map(function (i) { return sma[i] == null ? null : (sma[i] / base - 1) * 100; }),
+    smaNow: sma[sma.length - 1]
+  };
+}
+
+function yrChartSVG(m) {
+  var W = 600, H = 232, L = 4, R = 54, T = 8, mainH = 150, gap = 6, volH = 44, axisY = T + mainH + gap + volH + 14;
+  var iw = W - L - R, n = m.idx.length;
+  var vals = m.cum.concat(m.smaCum.filter(function (v) { return v != null; })).concat([0]);
+  var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), pad = (hi - lo) * 0.08 || 1;
+  lo -= pad; hi += pad;
+  var X = function (k) { return L + (n <= 1 ? 0 : k / (n - 1) * iw); };
+  var Y = function (v) { return T + (1 - (v - lo) / (hi - lo)) * mainH; };
+  var step = yrNiceStep(hi - lo), g = "";
+  for (var t = Math.ceil(lo / step) * step; t <= hi; t += step) {
+    var y = Y(t).toFixed(1);
+    g += '<line class="grid-l" x1="' + L + '" x2="' + (L + iw) + '" y1="' + y + '" y2="' + y + '"/>' +
+      '<text class="ax" x="' + (W - R + 6) + '" y="' + (+y + 3.5) + '">' + (t > 0 ? "+" : "") + (Math.abs(step) < 1 ? t.toFixed(1) : Math.round(t)) + "%</text>";
+  }
+  var line = m.cum.map(function (v, k) { return (k ? "L" : "M") + X(k).toFixed(1) + "," + Y(v).toFixed(1); }).join("");
+  var area = line + "L" + X(n - 1).toFixed(1) + "," + Y(Math.max(lo, 0)).toFixed(1) + "L" + X(0).toFixed(1) + "," + Y(Math.max(lo, 0)).toFixed(1) + "Z";
+  var sma = "", started = false;
+  m.smaCum.forEach(function (v, k) { if (v == null) return; sma += (started ? "L" : "M") + X(k).toFixed(1) + "," + Y(v).toFixed(1); started = true; });
+  /* 거래량 막대 */
+  var vols = m.idx.map(function (i) { return m.s.v[i] || 0; }), vmax = Math.max.apply(null, vols) || 1, vTop = T + mainH + gap, bw = Math.max(0.6, iw / n * 0.72), bars = "";
+  m.idx.forEach(function (i, k) {
+    var up = i === 0 ? true : m.s.c[i] >= m.s.c[i - 1], h = vols[k] / vmax * volH;
+    bars += '<rect x="' + (X(k) - bw / 2).toFixed(1) + '" y="' + (vTop + volH - h).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + (up ? "rgba(240,71,90,.55)" : "rgba(61,126,255,.55)") + '"/>';
+  });
+  /* 월 라벨 */
+  var months = "", prevM = "";
+  m.idx.forEach(function (i, k) {
+    var d = m.s.d[i], mo = d.slice(5, 7);
+    if (mo !== prevM && k > 2) months += '<text class="ax" x="' + X(k).toFixed(1) + '" y="' + axisY + '" text-anchor="middle">' + (mo === "01" ? d.slice(0, 4) : (+mo) + "월") + "</text>";
+    prevM = mo;
+  });
+  var last = m.cum[n - 1], ly = Math.min(Math.max(Y(last), T + 8), T + mainH - 4);
+  var col = last >= 0 ? "#f0475a" : "#3d7eff";
+  return '<svg viewBox="0 0 ' + W + " " + H + '">' +
+    '<defs><linearGradient id="yrg-' + m.tk + '" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5b8cff" stop-opacity=".28"/><stop offset="1" stop-color="#5b8cff" stop-opacity="0"/></linearGradient></defs>' +
+    g + '<line class="zero" x1="' + L + '" x2="' + (L + iw) + '" y1="' + Y(0).toFixed(1) + '" y2="' + Y(0).toFixed(1) + '"/>' +
+    '<path d="' + area + '" fill="url(#yrg-' + m.tk + ')"/>' +
+    '<path d="' + sma + '" fill="none" stroke="#f0a53a" stroke-width="1.6" opacity=".9"/>' +
+    '<path d="' + line + '" fill="none" stroke="#6f9bff" stroke-width="1.7"/>' +
+    bars + months +
+    '<rect x="' + (W - R + 2) + '" y="' + (ly - 9) + '" width="' + (R - 4) + '" height="18" rx="3" fill="' + col + '"/>' +
+    '<text x="' + (W - R / 2) + '" y="' + (ly + 4) + '" text-anchor="middle" style="font:800 11px var(--mono);fill:#fff">' + (last >= 0 ? "+" : "") + last.toFixed(2) + "%</text>" +
+    '<line class="yr-cross" x1="0" x2="0" y1="' + T + '" y2="' + (vTop + volH) + '" stroke="#cbd5ea" stroke-width="1" opacity="0"/>' +
+    '<rect class="yr-hit" x="' + L + '" y="' + T + '" width="' + iw + '" height="' + (mainH + gap + volH) + '" fill="transparent"/>' +
+    "</svg>";
+}
+
+function renderYearControls() {
+  $q("#yr-period").innerHTML = YR_PERIODS.map(function (p) { return '<button data-k="' + p[1] + '" class="' + (p[1] === yrPeriod ? "on" : "") + '">' + p[0] + "</button>"; }).join("");
+  $q("#yr-sort").innerHTML = YR_SORTS.map(function (p) { return '<button data-k="' + p[1] + '" class="' + (p[1] === yrSort ? "on" : "") + '">' + p[0] + "</button>"; }).join("");
+  var groups = GROUP_ORDER.filter(function (g) { return g !== "벤치마크" && etfList().some(function (e) { return e.group === g; }); });
+  $q("#yr-groups").innerHTML = groups.map(function (g) { return '<button class="chip ' + (g === yrGroup ? "on" : "") + '" data-g="' + g + '">' + g + "</button>"; }).join(" ");
+  $qa("#yr-period button").forEach(function (b) { b.onclick = function () { yrPeriod = b.dataset.k; renderYearControls(); renderYearGrid(); }; });
+  $qa("#yr-sort button").forEach(function (b) { b.onclick = function () { yrSort = b.dataset.k; renderYearControls(); renderYearGrid(); }; });
+  $qa("#yr-groups .chip").forEach(function (c) { c.onclick = function () { yrGroup = c.dataset.g; renderYearControls(); renderYearGrid(); }; });
+}
+
+function renderYearGrid() {
+  var box = $q("#yr-grid");
+  if (!YEAR) { box.innerHTML = '<div class="empty">1년 차트 데이터(etf_year.json)가 아직 없습니다. 다음 자동 갱신 때 생성됩니다.</div>'; return; }
+  var models = etfList().filter(function (e) { return e.group === yrGroup; }).map(function (e) {
+    var m = yrModel(e.ticker); if (m) { m.tk = e.ticker.replace(/[^A-Za-z0-9]/g, ""); m.e = e; } return m;
+  }).filter(Boolean);
+  if (yrSort === "ret") models.sort(function (a, b) { return b.cum[b.cum.length - 1] - a.cum[a.cum.length - 1]; });
+  box.innerHTML = models.length ? models.map(function (m) {
+    var e = m.e, s = m.s, li = s.c.length - 1, ccy = /\.K[SQ]$/.test(e.ticker) ? "₩" : "$";
+    var inflow = num(e.vol_ratio) > 1.3 && num(e.rel_r1m) > 0;
+    return '<div class="yr-card" data-t="' + e.ticker + '">' +
+      '<div class="yr-head"><div class="yr-title"><b>' + escapeHtml(e.name) + '</b><span class="tk">' + e.ticker + "</span>" +
+      '<span class="sma">SMA 50 · ' + fmtPrice(m.smaNow, ccy) + "</span></div>" +
+      '<div class="yr-meta">' + s.d[li].slice(5).replace("-", "/") + " · 거래량 " + yrFmtVol(s.v[li]) +
+      '<br><span class="d1 ' + pctClass(e.r1d) + '">' + fmtPct(e.r1d) + "</span>" +
+      (inflow ? '<span class="badge inflow">자금유입</span>' : ' <span class="muted">vol ×' + num(e.vol_ratio).toFixed(2) + "</span>") +
+      "</div></div>" + yrChartSVG(m) + '<div class="yr-tip"></div></div>';
+  }).join("") : '<div class="empty">이 그룹의 1년 데이터가 없습니다.</div>';
+  $qa("#yr-grid .yr-card").forEach(function (card) {
+    var tk = card.dataset.t, m = models.filter(function (x) { return x.e.ticker === tk; })[0];
+    card.onclick = function () { openEtfModal(tk); };
+    var svg = card.querySelector("svg"), hit = card.querySelector(".yr-hit"), cross = card.querySelector(".yr-cross"), tip = card.querySelector(".yr-tip");
+    hit.addEventListener("mousemove", function (ev) {
+      var r = svg.getBoundingClientRect(), fx = (ev.clientX - r.left) / r.width * 600;
+      var k = Math.round((fx - 4) / (600 - 58) * (m.idx.length - 1)); k = Math.max(0, Math.min(m.idx.length - 1, k));
+      var i = m.idx[k], x = 4 + k / (m.idx.length - 1) * (600 - 58);
+      cross.setAttribute("x1", x); cross.setAttribute("x2", x); cross.setAttribute("opacity", ".55");
+      var v = m.cum[k], ccy = /\.K[SQ]$/.test(tk) ? "₩" : "$";
+      tip.innerHTML = m.s.d[i] + '<br><span class="' + pctClass(v) + '">' + fmtPct(v) + "</span> · " + fmtPrice(m.s.c[i], ccy) + "<br>거래량 " + yrFmtVol(m.s.v[i]);
+      var cr = card.getBoundingClientRect(), px = ev.clientX - cr.left, py = ev.clientY - cr.top;
+      tip.style.left = (px + 150 > cr.width ? px - 140 : px + 12) + "px"; tip.style.top = Math.max(4, py - 50) + "px";
+      tip.classList.add("show");
+    });
+    hit.addEventListener("mouseleave", function () { cross.setAttribute("opacity", "0"); tip.classList.remove("show"); });
+  });
+}
+
 /* ---------- 상세 모달 ---------- */
 function openEtfModal(tk) {
   var e = DATA.etfs[tk];
@@ -321,10 +487,14 @@ document.addEventListener("favchange", renderFavs);
 Promise.all([
   fetchJSON("data.json"),
   fetchJSON("megacap.json").catch(function () { return null; }),
-  fetchJSON("financials.json").catch(function () { return null; })
+  fetchJSON("financials.json").catch(function () { return null; }),
+  fetchJSON("etf_year.json").catch(function () { return null; })
 ]).then(function (rs) {
   var d = rs[0];
   DATA = d;
+  YEAR = rs[3];
+  renderYearControls();
+  renderYearGrid();
   if (rs[1] && rs[1].stocks) rs[1].stocks.forEach(function (s) { MEGA[s.ticker] = s; });
   FIN = (rs[2] && rs[2].financials) || {};
   $q("#updated").textContent = "기준: " + (d.updated || "-") + " · 벤치마크 " + (d.benchmark || "ACWI");

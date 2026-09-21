@@ -335,5 +335,25 @@ def main():
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
     print(f"=== 완료: {len(etfs)}종 저장 → {OUT} (실패 {len(fails)}: {fails}) ===")
 
+    # 6) 1년 일봉(종가·거래량) — dashboard.html의 섹터별 1년 차트용.
+    #    data.json은 이미 무거워서 별도 파일로 분리하고, 이미 받은 1y 차트를 재사용한다(추가 요청 없음).
+    write_year_file(charts)
+
+
+YEAR_OUT = os.path.join(os.path.dirname(OUT), "etf_year.json")
+
+
+def write_year_file(charts):
+    series = {}
+    for tk, ch in charts.items():
+        n = min(len(ch["c"]), 260)
+        series[tk] = {"d": ch["dates"][-n:], "c": ch["c"][-n:], "v": ch["v"][-n:]}
+    if not series:
+        return
+    with open(YEAR_OUT, "w", encoding="utf-8") as f:
+        json.dump({"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"), "series": series},
+                  f, ensure_ascii=False, separators=(",", ":"))
+    print(f"=== 1년 일봉 {len(series)}종 저장 → {YEAR_OUT} ===")
+
 if __name__ == "__main__":
     main()

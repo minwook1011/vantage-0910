@@ -56,7 +56,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data.json docs/megacap.json docs/financials.json docs/investor_portfolios.json docs/earnings_calendar.json docs/sp500_constituents.json docs/macro.json docs/valuation.json docs/telegram_news.json
+          git add docs/data.json docs/etf_year.json docs/megacap.json docs/financials.json docs/investor_portfolios.json docs/earnings_calendar.json docs/sp500_constituents.json docs/macro.json docs/valuation.json docs/telegram_news.json
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
           else
