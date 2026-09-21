@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-18",
+ "updated": "2026-09-22",
  "count": 503,
  "map": {
   "MMM": {
@@ -270,6 +270,10 @@
    "name": "Block, Inc.",
    "sector": "Financials"
   },
+  "BE": {
+   "name": "Bloom Energy",
+   "sector": "Industrials"
+  },
   "BNY": {
    "name": "BNY Mellon",
    "sector": "Financials"
@@ -305,10 +309,6 @@
   "BF-B": {
    "name": "Brown–Forman",
    "sector": "Consumer Staples"
-  },
-  "BLDR": {
-   "name": "Builders FirstSource",
-   "sector": "Industrials"
   },
   "BG": {
    "name": "Bunge Global",
@@ -718,6 +718,10 @@
    "name": "Evergy",
    "sector": "Utilities"
   },
+  "P": {
+   "name": "Everpure",
+   "sector": "Information Technology"
+  },
   "ES": {
    "name": "Eversource Energy",
    "sector": "Utilities"
@@ -989,6 +993,10 @@
   "ITW": {
    "name": "Illinois Tool Works",
    "sector": "Industrials"
+  },
+  "ILMN": {
+   "name": "Illumina, Inc.",
+   "sector": "Health Care"
   },
   "INCY": {
    "name": "Incyte",
@@ -1269,10 +1277,6 @@
   "MRNA": {
    "name": "Moderna",
    "sector": "Health Care"
-  },
-  "TAP": {
-   "name": "Molson Coors Beverage Company",
-   "sector": "Consumer Staples"
   },
   "MDLZ": {
    "name": "Mondelez International",
@@ -1776,10 +1780,6 @@
   },
   "TKO": {
    "name": "TKO Group Holdings",
-   "sector": "Communication Services"
-  },
-  "TTD": {
-   "name": "Trade Desk (The)",
    "sector": "Communication Services"
   },
   "TSCO": {
