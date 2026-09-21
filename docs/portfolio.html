@@ -38,8 +38,7 @@
     <div class="local-import"><div><b>엑셀에서 매매내역 가져오기</b><span>파일은 이 브라우저에서만 읽고 저장됩니다.</span></div><input type="file" id="portfolio-import-file" accept=".xlsx,.xls" hidden><button class="quiet-btn" type="button" id="portfolio-import-button">첫 시트 가져오기</button></div>
     <form class="transaction-form" id="transaction-form">
       <label>날짜<input type="date" name="date" required></label>
-      <label>시장<select name="market"><option value="US">미국</option><option value="KR">한국</option></select></label>
-      <label>티커<input name="ticker" placeholder="예: NVDA / 005930" autocomplete="off" required></label>
+      <label>티커<input name="ticker" placeholder="예: NVDA / 005930 / 삼성전자" autocomplete="off" required title="6자리 숫자·한글 종목명은 한국, 영문 티커는 미국으로 자동 판단"></label>
       <label>구분<select name="side"><option value="buy">매수</option><option value="sell">매도</option></select></label>
       <label>수량<input name="qty" type="number" min="0.0001" step="any" required></label>
       <label>체결단가<input name="price" type="number" min="0.0001" step="any" required></label>
@@ -57,14 +56,14 @@
     </div>
     <div class="watch-panel">
       <div class="watch-head"><div><div class="kicker">WATCH LIST</div><h2>관심종목</h2></div><span>접속할 때마다 현재가 갱신</span></div>
-      <form class="watch-form" id="watch-form"><select name="market"><option value="US">미국</option><option value="KR">한국</option></select><input name="ticker" placeholder="티커" required><button class="add-btn">추가</button></form>
+      <form class="watch-form" id="watch-form"><input name="ticker" placeholder="티커 (NVDA / 005930)" required><button class="add-btn">추가</button></form>
       <div class="watch-list" id="watch-list"></div>
     </div>
   </section>
 </main>
 <script src="theme.js?v=20260910a"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
-<script src="portfolio-store.js?v=20260920a"></script>
-<script src="portfolio.js?v=20260911a"></script>
+<script src="portfolio-store.js?v=20260921a"></script>
+<script src="portfolio.js?v=20260921a"></script>
 </body>
 </html>

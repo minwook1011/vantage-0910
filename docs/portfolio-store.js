@@ -31,6 +31,13 @@
     if (market === "KR" && !/\.(KS|KQ)$/.test(ticker)) return ticker + ".KS";
     return ticker;
   }
+  /* 시장은 티커 모양으로 판단한다: .KS/.KQ, 6자리 국내 코드(숫자 5자리 + 숫자·영문 1자리), 한글 종목명 → 한국. 나머지 → 미국. */
+  function marketOf(ticker) {
+    var t = String(ticker || "").trim().toUpperCase();
+    /* 국내 코드: 005930 같은 6자리 숫자, 0091A0·00104K 같은 신형(숫자 4자리 + 숫자·영문 2자리) */
+    if (/\.(KS|KQ)$/.test(t) || /^\d{4}[0-9A-Z]{2}$/.test(t) || /[가-힣]/.test(t) || KR_TICKERS[t]) return "KR";
+    return "US";
+  }
   function displayTicker(ticker) { var bare = String(ticker || "").replace(/\.(KS|KQ)$/i, ""); return KR_NAMES[bare] || bare; }
   function groupKey(market, ticker) { return market + ":" + tickerFor(ticker, market); }
   function aggregate(data, accountId) {
@@ -86,11 +93,22 @@
       text = await response.text(); return quoteFromText(text, market);
     }
   }
+  /* 환율은 브라우저에서 바로 읽을 수 있는(CORS 허용) 곳부터 차례로 시도한다.
+     frankfurter는 브라우저 요청을 막아서 예전엔 항상 실패하고 1,350원 고정값이 쓰였다. */
+  var FX_SOURCES = [
+    ["https://open.er-api.com/v6/latest/USD", function (j) { return j && j.rates && j.rates.KRW; }],
+    ["https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json", function (j) { return j && j.usd && j.usd.krw; }],
+    ["https://api.frankfurter.app/latest?from=USD&to=KRW", function (j) { return j && j.rates && j.rates.KRW; }]
+  ];
   async function fxUsdKrw() {
-    var response = await fetch("https://api.frankfurter.app/latest?from=USD&to=KRW", { cache: "no-store" }); if (!response.ok) throw new Error("fx unavailable");
-    var json = await response.json(), quote = json && json.rates && json.rates.KRW;
-    if (!isFinite(Number(quote))) throw new Error("invalid fx");
-    return { price: Number(quote), currency: "KRW", updated: new Date().toISOString() };
+    for (var i = 0; i < FX_SOURCES.length; i++) {
+      try {
+        var response = await fetch(FX_SOURCES[i][0], { cache: "no-store" }); if (!response.ok) continue;
+        var quote = Number(FX_SOURCES[i][1](await response.json()));
+        if (isFinite(quote) && quote > 500 && quote < 3000) return { price: quote, currency: "KRW", updated: new Date().toISOString() };
+      } catch (e) {}
+    }
+    throw new Error("fx unavailable");
   }
   async function refresh(data) {
     var prices = {}, fx = null, symbols = {};
@@ -111,5 +129,5 @@
     if (fx) latest.fx = fx;
     save(latest); return latest;
   }
-  window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey };
+  window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey, marketOf: marketOf };
 })();

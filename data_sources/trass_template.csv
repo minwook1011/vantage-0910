@@ -1,0 +1,5 @@
+item,month,span,usd,kg,source,price,usd_yoy,usd_mom,price_yoy,price_mom
+# item = memory / dram / flash / mcp / dram_module / semi_equip / mlcc / cosmetics / ramen,,,,,,,,,,
+# span = D10(1~10일) / D20(1~20일) / M(월 전체). usd = 달러, kg = 순중량,,,,,,,,,,
+# price~price_mom 은 원출처 표기값(선택). 비워두면 화면이 같은 구간끼리 직접 계산한다,,,,,,,,,,
+dram,2026-09,D20,10643860000,143474,TRASS,,,,,

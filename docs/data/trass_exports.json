@@ -1,0 +1,41 @@
+{
+ "schema": 1,
+ "title": "TRASS 순별 수출 트래커",
+ "source": "TRASS (한국무역통계진흥원) 품목별 잠정 수출",
+ "source_url": "https://www.trass.or.kr",
+ "cadence": "매월 1~10일(11일경), 1~20일(21일경), 월 전체(익월 1일경) 잠정치",
+ "updated_at": "2026-09-21",
+ "spans": {
+  "D10": "1~10일",
+  "D20": "1~20일",
+  "M": "월 전체"
+ },
+ "items": [
+  {"id": "memory", "label": "메모리", "group": "반도체", "hs": "854232", "hs_note": "HS 8542.32 메모리 집적회로 전체"},
+  {"id": "dram", "label": "DRAM", "group": "반도체", "hs": "8542321010", "hs_note": "모노리식 DRAM. HBM·DRAM 모듈 전체 출하가 아님"},
+  {"id": "flash", "label": "Flash 메모리", "group": "반도체", "hs": "8542321030", "hs_note": "플래시 메모리. 순수 NAND 전용으로 단정하지 않음"},
+  {"id": "mcp", "label": "MCP (HBM 포함 추정)", "group": "반도체", "hs": "8542323000", "hs_note": "복합구조칩(MCP). 시장은 HBM이 주로 여기 잡힌다고 보지만 HS 명칭상 HBM 전용은 아님"},
+  {"id": "dram_module", "label": "DRAM 모듈", "group": "반도체", "hs": null, "verify": true, "hs_note": "HS 코드 확인 필요 (컴퓨터 부분품 8473.30 계열 추정)"},
+  {"id": "semi_equip", "label": "반도체 제조용 장비", "group": "반도체 장비", "hs": "8486", "hs_note": "HS 8486 반도체·디스플레이 제조용 기계"},
+  {"id": "mlcc", "label": "MLCC", "group": "전자부품", "hs": "853224", "hs_note": "HS 8532.24 적층 세라믹 콘덴서"},
+  {"id": "cosmetics", "label": "화장품", "group": "소비재", "hs": "3304", "hs_note": "HS 3304 미용·메이크업·기초화장품"},
+  {"id": "ramen", "label": "라면", "group": "소비재", "hs": "190230", "verify": true, "hs_note": "HS 1902.30 계열 추정 — TRASS 품목 코드 확인 필요"}
+ ],
+ "observations": [
+  {"item": "memory", "month": "2026-09", "span": "D20", "usd": 21501080000, "kg": 260724,
+   "reported": {"price": 82467, "usd_yoy": 350.7, "usd_mom": 8.2, "price_yoy": 277.3, "price_mom": -13.9},
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
+  {"item": "dram", "month": "2026-09", "span": "D20", "usd": 10643860000, "kg": 143474,
+   "reported": {"price": 74187, "usd_yoy": 539.0, "usd_mom": 8.5, "price_yoy": 328.6, "price_mom": -19.5},
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
+  {"item": "flash", "month": "2026-09", "span": "D20", "usd": 1531850000, "kg": 18612,
+   "reported": {"price": 82303, "usd_yoy": 345.2, "usd_mom": -12.5, "price_yoy": 544.6, "price_mom": -17.3},
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
+  {"item": "mcp", "month": "2026-09", "span": "D20", "usd": 7815920000, "kg": 76465,
+   "reported": {"price": 102216, "usd_yoy": 234.7, "usd_mom": 14.0, "price_yoy": 239.2, "price_mom": -3.3},
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
+  {"item": "dram_module", "month": "2026-09", "span": "D20", "usd": 8391910000, "kg": 167963,
+   "reported": {"price": 49963, "usd_yoy": 478.5, "usd_mom": 246.5, "price_yoy": 474.0, "price_mom": 59.5},
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null}
+ ]
+}
