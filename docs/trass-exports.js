@@ -28,7 +28,12 @@
     ".tr-card b{font-size:13px}.tr-card .v{font:800 16px var(--mono);margin-top:2px}.tr-card .sub{color:var(--muted);font-size:11px}" +
     ".tr-card svg{display:block;width:100%;height:auto;margin-top:6px}.tr-card .ax{font:9.5px var(--mono);fill:var(--faint)}" +
     ".tr-empty{color:var(--faint);font-size:11.5px;padding:18px 0 8px;text-align:center}" +
-    ".tr-note{margin-top:12px;color:var(--faint);font-size:11.5px;line-height:1.7}.up{color:#ff7a8c}.dn{color:#76a4ff}";
+    ".tr-note{margin-top:12px;color:var(--faint);font-size:11.5px;line-height:1.7}.up{color:#ff7a8c}.dn{color:#76a4ff}" +
+    ".tr-est{margin-top:4px;color:#e88a97;font-size:10.5px}" +
+    ".tr-card{transition:border-color .2s,transform .2s}.tr-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}" +
+    "@keyframes tr-grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}" +
+    ".tr-bar{transform-box:fill-box;transform-origin:bottom;animation:tr-grow .6s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 12ms)}" +
+    "@media (prefers-reduced-motion:reduce){.tr-bar{animation:none}.tr-card:hover{transform:none}}";
   document.head.appendChild(css);
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -79,27 +84,35 @@
     return '<div class="tr-scroll"><table class="tr-tbl"><thead><tr><th class="l">품목</th><th>수출금액</th><th>YoY</th><th>MoM</th><th>수출단가</th><th>YoY</th><th>MoM</th></tr></thead><tbody>' + html + "</tbody></table></div>";
   }
 
-  /* 품목별 월 추이 — 선택한 구간 값만 이어서 그린다. 가장 최근 막대는 빨간색. */
+  /* 품목별 월 추이 — 월 전체(M) 36개월 막대 + 진행 중인 달은 순별 누적 잠정치를 월로 환산한 추정 막대(빗금).
+     환산은 사용자 엑셀과 같은 방식: 1~10일 ×3, 1~20일 ×3/2. 단가($/kg)는 비율이라 환산하지 않는다. */
+  var EST = {D10: 3, D20: 1.5};
   function bars(item) {
-    var list = DATA.observations.filter(function (o) { return o.item === item && o.span === span; }).sort(function (a, b) { return a.month < b.month ? -1 : 1; });
-    var vals = list.map(function (o) { return metric === "usd" ? o.usd : price(o); });
-    if (list.length < 2) return '<div class="tr-empty">' + (list.length ? "관측 1회 — 다음 발표부터 추이가 쌓입니다" : "데이터 대기") + "</div>";
-    var W = 300, H = 120, L = 2, R = 2, T = 6, B = 16, iw = W - L - R, ih = H - T - B, n = list.length;
-    var max = Math.max.apply(null, vals.filter(function (v) { return v != null; })) || 1, bw = iw / n * 0.72, svg = "";
-    list.forEach(function (o, k) {
-      var v = vals[k]; if (v == null) return;
-      var h = v / max * ih, x = L + (k + 0.5) * (iw / n) - bw / 2;
-      svg += '<rect x="' + x.toFixed(1) + '" y="' + (T + ih - h).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + (k === n - 1 ? "#f0475a" : "#8b93a7") + '"><title>' + o.month + " " + (metric === "usd" ? fmtUsd(v) : fmtPrice(v)) + "</title></rect>";
-      if (k === 0 || k === n - 1 || o.month.slice(5) === "01") svg += '<text class="ax" x="' + (x + bw / 2).toFixed(1) + '" y="' + (H - 3) + '" text-anchor="middle">' + o.month.slice(2).replace("-", "/") + "</text>";
+    var list = DATA.observations.filter(function (o) { return o.item === item && o.span === "M"; }).sort(function (a, b) { return a.month < b.month ? -1 : 1; }).slice(-36);
+    var rows = list.map(function (o) { return {month: o.month, v: metric === "usd" ? o.usd : price(o), est: false}; });
+    var lastM = list.length ? list[list.length - 1].month : "";
+    var part = DATA.observations.filter(function (o) { return o.item === item && o.span !== "M" && o.month > lastM; })
+      .sort(function (a, b) { return a.month === b.month ? SPAN_ORDER.indexOf(b.span) - SPAN_ORDER.indexOf(a.span) : (a.month < b.month ? 1 : -1); })[0];
+    if (part) rows.push({month: part.month, v: metric === "usd" ? part.usd * EST[part.span] : price(part), est: true, span: part.span});
+    if (rows.length < 2) return '<div class="tr-empty">' + (rows.length ? "관측 1회 — 월별 확정치가 쌓이면 추이가 그려집니다" : "데이터 대기") + "</div>";
+    var W = 300, H = 120, L = 2, R = 2, T = 6, B = 16, iw = W - L - R, ih = H - T - B, n = rows.length;
+    var max = Math.max.apply(null, rows.map(function (r) { return r.v; }).filter(function (v) { return v != null; })) || 1, bw = iw / n * 0.72, svg = "";
+    svg += '<defs><pattern id="tr-hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="4" height="4" fill="rgba(240,71,90,.25)"/><line x1="0" y1="0" x2="0" y2="4" stroke="#f0475a" stroke-width="2"/></pattern></defs>';
+    rows.forEach(function (r, k) {
+      if (r.v == null) return;
+      var h = r.v / max * ih, x = L + (k + 0.5) * (iw / n) - bw / 2, last = k === n - 1;
+      var tip = r.month + (r.est ? " " + DATA.spans[r.span] + " 잠정" + (metric === "usd" ? " → 월 환산 추정 (×" + (EST[r.span] === 1.5 ? "3/2" : "3") + ")" : "") : "") + " " + (metric === "usd" ? fmtUsd(r.v) : fmtPrice(r.v));
+      svg += '<rect class="tr-bar" style="--i:' + k + '" x="' + x.toFixed(1) + '" y="' + (T + ih - h).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + (r.est ? "url(#tr-hatch)" : last ? "#f0475a" : "#8b93a7") + '"><title>' + tip + "</title></rect>";
+      if (k === 0 || last || r.month.slice(5) === "01") svg += '<text class="ax" x="' + (x + bw / 2).toFixed(1) + '" y="' + (H - 3) + '" text-anchor="' + (k === 0 ? "start" : last ? "end" : "middle") + '">' + r.month.slice(2).replace("-", "/") + "</text>";
     });
-    return '<svg viewBox="0 0 ' + W + " " + H + '">' + svg + "</svg>";
+    return '<svg viewBox="0 0 ' + W + " " + H + '">' + svg + "</svg>" + (part ? '<div class="tr-est">▨ ' + part.month.slice(5) + "월은 " + DATA.spans[part.span] + " 잠정치" + (metric === "usd" ? "를 월로 환산한 추정" : "") + "</div>" : "");
   }
 
   function render() {
     var month = latestMonth(span), label = DATA.spans[span];
     var cards = DATA.items.map(function (it) {
       var o = month && obs(it.id, month, span), v = o ? (metric === "usd" ? o.usd : price(o)) : null;
-      return '<div class="tr-card"><b>' + esc(it.label) + '</b><div class="v">' + (metric === "usd" ? fmtUsd(v) : fmtPrice(v)) + '</div><div class="sub">' + (month ? month + " · " + label : "관측 없음") + "</div>" + bars(it.id) + "</div>";
+      return '<div class="tr-card"><b>' + esc(it.label) + '</b><div class="v">' + (metric === "usd" ? fmtUsd(v) : fmtPrice(v)) + '</div><div class="sub">' + (o ? month + " · " + label : "이 구간 관측 없음 · 아래는 월별 추이") + "</div>" + bars(it.id) + "</div>";
     }).join("");
     host.innerHTML =
       '<div class="tr-wrap"><div class="tr-head"><div><div class="kicker">KOREA EXPORTS · 10-DAY</div><h2>TRASS 순별 수출</h2>' +

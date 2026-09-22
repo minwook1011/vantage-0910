@@ -4,38 +4,5232 @@
  "source": "TRASS (한국무역통계진흥원) 품목별 잠정 수출",
  "source_url": "https://www.trass.or.kr",
  "cadence": "매월 1~10일(11일경), 1~20일(21일경), 월 전체(익월 1일경) 잠정치",
- "updated_at": "2026-09-21",
+ "updated_at": "2026-09-22",
  "spans": {
   "D10": "1~10일",
   "D20": "1~20일",
   "M": "월 전체"
  },
  "items": [
-  {"id": "memory", "label": "메모리", "group": "반도체", "hs": "854232", "hs_note": "HS 8542.32 메모리 집적회로 전체"},
-  {"id": "dram", "label": "DRAM", "group": "반도체", "hs": "8542321010", "hs_note": "모노리식 DRAM. HBM·DRAM 모듈 전체 출하가 아님"},
-  {"id": "flash", "label": "Flash 메모리", "group": "반도체", "hs": "8542321030", "hs_note": "플래시 메모리. 순수 NAND 전용으로 단정하지 않음"},
-  {"id": "mcp", "label": "MCP (HBM 포함 추정)", "group": "반도체", "hs": "8542323000", "hs_note": "복합구조칩(MCP). 시장은 HBM이 주로 여기 잡힌다고 보지만 HS 명칭상 HBM 전용은 아님"},
-  {"id": "dram_module", "label": "DRAM 모듈", "group": "반도체", "hs": null, "verify": true, "hs_note": "HS 코드 확인 필요 (컴퓨터 부분품 8473.30 계열 추정)"},
-  {"id": "semi_equip", "label": "반도체 제조용 장비", "group": "반도체 장비", "hs": "8486", "hs_note": "HS 8486 반도체·디스플레이 제조용 기계"},
-  {"id": "mlcc", "label": "MLCC", "group": "전자부품", "hs": "853224", "hs_note": "HS 8532.24 적층 세라믹 콘덴서"},
-  {"id": "cosmetics", "label": "화장품", "group": "소비재", "hs": "3304", "hs_note": "HS 3304 미용·메이크업·기초화장품"},
-  {"id": "ramen", "label": "라면", "group": "소비재", "hs": "190230", "verify": true, "hs_note": "HS 1902.30 계열 추정 — TRASS 품목 코드 확인 필요"}
+  {
+   "id": "memory",
+   "label": "메모리",
+   "group": "반도체",
+   "hs": "854232",
+   "hs_note": "HS 8542.32 메모리 집적회로 전체"
+  },
+  {
+   "id": "dram",
+   "label": "DRAM",
+   "group": "반도체",
+   "hs": "8542321010",
+   "hs_note": "모노리식 DRAM. HBM·DRAM 모듈 전체 출하가 아님"
+  },
+  {
+   "id": "flash",
+   "label": "Flash 메모리",
+   "group": "반도체",
+   "hs": "8542321030",
+   "hs_note": "플래시 메모리. 순수 NAND 전용으로 단정하지 않음"
+  },
+  {
+   "id": "mcp",
+   "label": "MCP (HBM 포함 추정)",
+   "group": "반도체",
+   "hs": "8542323000",
+   "hs_note": "복합구조칩(MCP). 시장은 HBM이 주로 여기 잡힌다고 보지만 HS 명칭상 HBM 전용은 아님"
+  },
+  {
+   "id": "dram_module",
+   "label": "DRAM 모듈",
+   "group": "반도체",
+   "hs": "8473304060",
+   "verify": false,
+   "hs_note": "HS 8473.30-4060 컴퓨터용 DRAM 모듈"
+  },
+  {
+   "id": "ssd",
+   "label": "SSD",
+   "group": "반도체",
+   "hs": "8523511000",
+   "hs_note": "HS 8523.51-1000 SSD (반도체 저장장치)"
+  },
+  {
+   "id": "mcos",
+   "label": "MCOs",
+   "group": "반도체",
+   "hs": "8542324000",
+   "hs_note": "HS 8542.32-4000 다중부품 집적회로(MCO)"
+  },
+  {
+   "id": "processor",
+   "label": "프로세서·컨트롤러",
+   "group": "반도체",
+   "hs": "8542311000",
+   "hs_note": "HS 8542.31-1000 프로세서·컨트롤러"
+  },
+  {
+   "id": "other_ic",
+   "label": "기타 IC",
+   "group": "반도체",
+   "hs": "8542391000",
+   "hs_note": "HS 8542.39-1000 기타 집적회로"
+  },
+  {
+   "id": "semi_equip",
+   "label": "반도체 제조용 장비",
+   "group": "반도체 장비",
+   "hs": "8486",
+   "hs_note": "HS 8486 반도체·디스플레이 제조용 기계"
+  },
+  {
+   "id": "mlcc",
+   "label": "MLCC",
+   "group": "전자부품",
+   "hs": "853224",
+   "hs_note": "HS 8532.24 적층 세라믹 콘덴서"
+  },
+  {
+   "id": "cosmetics",
+   "label": "화장품",
+   "group": "소비재",
+   "hs": "3304",
+   "hs_note": "HS 3304 미용·메이크업·기초화장품"
+  },
+  {
+   "id": "ramen",
+   "label": "라면",
+   "group": "소비재",
+   "hs": "190230",
+   "verify": true,
+   "hs_note": "HS 1902.30 계열 추정 — TRASS 품목 코드 확인 필요"
+  }
  ],
  "observations": [
-  {"item": "memory", "month": "2026-09", "span": "D20", "usd": 21501080000, "kg": 260724,
-   "reported": {"price": 82467, "usd_yoy": 350.7, "usd_mom": 8.2, "price_yoy": 277.3, "price_mom": -13.9},
-   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
-  {"item": "dram", "month": "2026-09", "span": "D20", "usd": 10643860000, "kg": 143474,
-   "reported": {"price": 74187, "usd_yoy": 539.0, "usd_mom": 8.5, "price_yoy": 328.6, "price_mom": -19.5},
-   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
-  {"item": "flash", "month": "2026-09", "span": "D20", "usd": 1531850000, "kg": 18612,
-   "reported": {"price": 82303, "usd_yoy": 345.2, "usd_mom": -12.5, "price_yoy": 544.6, "price_mom": -17.3},
-   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
-  {"item": "mcp", "month": "2026-09", "span": "D20", "usd": 7815920000, "kg": 76465,
-   "reported": {"price": 102216, "usd_yoy": 234.7, "usd_mom": 14.0, "price_yoy": 239.2, "price_mom": -3.3},
-   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null},
-  {"item": "dram_module", "month": "2026-09", "span": "D20", "usd": 8391910000, "kg": 167963,
-   "reported": {"price": 49963, "usd_yoy": 478.5, "usd_mom": 246.5, "price_yoy": 474.0, "price_mom": 59.5},
-   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)", "first_seen_at": "2026-09-21", "revised_at": null}
+  {
+   "item": "dram",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 2258480961.0,
+   "kg": 147241.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 941337205.0,
+   "kg": 138385.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 522251145.0,
+   "kg": 47860.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 336365127.0,
+   "kg": 7969.21,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 2412848672.0,
+   "kg": 76729.62,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 5540303052.0,
+   "kg": 285828.13,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 894143165.0,
+   "kg": 282139.01,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 2406079934.0,
+   "kg": 547576.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-01",
+   "span": "M",
+   "usd": 1202925924.0,
+   "kg": 275373.88,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 2164415779.0,
+   "kg": 136233.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 1017611203.0,
+   "kg": 150747.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 629182451.0,
+   "kg": 45645.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 399843865.0,
+   "kg": 8645.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 2110498381.0,
+   "kg": 74176.66,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 5312902987.0,
+   "kg": 269684.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 893683807.0,
+   "kg": 273323.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 2269345524.0,
+   "kg": 527816.34,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-02",
+   "span": "M",
+   "usd": 1314045452.0,
+   "kg": 278382.0,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 2462223601.0,
+   "kg": 162127.11,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 1422930724.0,
+   "kg": 202544.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 746116388.0,
+   "kg": 53003.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 510095073.0,
+   "kg": 10361.9,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 3048511405.0,
+   "kg": 106097.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 6778292305.0,
+   "kg": 337368.17,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 1004288546.0,
+   "kg": 291978.86,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 2946140043.0,
+   "kg": 616352.85,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-03",
+   "span": "M",
+   "usd": 1418392203.0,
+   "kg": 320601.88,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 2183887307.0,
+   "kg": 135203.97,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 1051217267.0,
+   "kg": 157991.12,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 742018227.0,
+   "kg": 53440.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 413090386.0,
+   "kg": 9891.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 1978311024.0,
+   "kg": 70421.84,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 5328852016.0,
+   "kg": 274731.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 1115358257.0,
+   "kg": 308418.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 2460736461.0,
+   "kg": 579085.55,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-04",
+   "span": "M",
+   "usd": 1440809886.0,
+   "kg": 267365.41,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 2469963975.0,
+   "kg": 115449.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 1237848844.0,
+   "kg": 178838.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 803340002.0,
+   "kg": 59045.81,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 349646493.0,
+   "kg": 9855.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 2405599871.0,
+   "kg": 87418.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 6038449580.0,
+   "kg": 277637.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 970989936.0,
+   "kg": 276203.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 2456349068.0,
+   "kg": 593859.4,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-05",
+   "span": "M",
+   "usd": 1400035666.0,
+   "kg": 286600.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 2489672563.0,
+   "kg": 146849.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 1386154126.0,
+   "kg": 209625.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 786481424.0,
+   "kg": 47408.27,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 605540609.0,
+   "kg": 19984.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 2505011542.0,
+   "kg": 109486.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 6402474068.0,
+   "kg": 330064.84,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 860005495.0,
+   "kg": 242048.18,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 2849117732.0,
+   "kg": 555234.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-06",
+   "span": "M",
+   "usd": 1340006810.0,
+   "kg": 251644.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 2368371059.0,
+   "kg": 189105.69,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 904628547.0,
+   "kg": 131305.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 738164966.0,
+   "kg": 40257.67,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 318460110.0,
+   "kg": 12045.34,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 1825832115.0,
+   "kg": 76025.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 5270134450.0,
+   "kg": 324169.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 878834748.0,
+   "kg": 257134.3,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 3011856361.0,
+   "kg": 499646.83,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-07",
+   "span": "M",
+   "usd": 869595915.0,
+   "kg": 203145.55,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 2003245387.0,
+   "kg": 132187.04,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 782538238.0,
+   "kg": 125118.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 618529649.0,
+   "kg": 39222.38,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 251063778.0,
+   "kg": 9919.71,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 2075749720.0,
+   "kg": 79369.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 4967317435.0,
+   "kg": 267555.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 831067352.0,
+   "kg": 263314.41,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 2918672378.0,
+   "kg": 523649.81,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-08",
+   "span": "M",
+   "usd": 970073677.0,
+   "kg": 213113.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 1823274576.0,
+   "kg": 131688.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 1285936672.0,
+   "kg": 259549.25,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 673134026.0,
+   "kg": 59330.17,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 357414941.0,
+   "kg": 12774.45,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 2465716831.0,
+   "kg": 110729.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 5337766717.0,
+   "kg": 322075.64,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 880400399.0,
+   "kg": 265864.32,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 2603079215.0,
+   "kg": 526419.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-09",
+   "span": "M",
+   "usd": 1223323199.0,
+   "kg": 292405.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 1565413680.0,
+   "kg": 175212.01,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 503710265.0,
+   "kg": 126309.43,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 566860182.0,
+   "kg": 70272.45,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 171388833.0,
+   "kg": 9344.2,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 1645405495.0,
+   "kg": 70880.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 3963439347.0,
+   "kg": 330863.1,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 864849012.0,
+   "kg": 246907.45,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 2544471129.0,
+   "kg": 489926.9,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-10",
+   "span": "M",
+   "usd": 739903796.0,
+   "kg": 222382.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 1402702132.0,
+   "kg": 163198.01,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 412314741.0,
+   "kg": 132806.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 516904495.0,
+   "kg": 47845.55,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 146627044.0,
+   "kg": 7158.62,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 1347003024.0,
+   "kg": 71101.81,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 3430375722.0,
+   "kg": 294203.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 874059856.0,
+   "kg": 260093.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 2513862603.0,
+   "kg": 479282.62,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-11",
+   "span": "M",
+   "usd": 673079663.0,
+   "kg": 205821.18,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 1419716100.0,
+   "kg": 192470.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 1029499236.0,
+   "kg": 278404.12,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 346621582.0,
+   "kg": 40150.27,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 145042279.0,
+   "kg": 6463.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 1485547274.0,
+   "kg": 83749.43,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 3407359557.0,
+   "kg": 326734.08,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 1050791875.0,
+   "kg": 269796.85,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 2286672424.0,
+   "kg": 481062.06,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2022-12",
+   "span": "M",
+   "usd": 780162280.0,
+   "kg": 252492.72,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 889144043.0,
+   "kg": 117588.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 277157396.0,
+   "kg": 55189.95,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 364211620.0,
+   "kg": 27269.29,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 115347292.0,
+   "kg": 4900.99,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 1111406272.0,
+   "kg": 58142.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 2490437636.0,
+   "kg": 212653.23,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 697234614.0,
+   "kg": 219495.9,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 1702526648.0,
+   "kg": 410226.02,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-01",
+   "span": "M",
+   "usd": 318158371.0,
+   "kg": 126253.74,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 947429033.0,
+   "kg": 113507.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 310170812.0,
+   "kg": 110764.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 492061495.0,
+   "kg": 48478.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 96370375.0,
+   "kg": 4942.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 1063450871.0,
+   "kg": 70071.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 2611222804.0,
+   "kg": 242521.21,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 666041008.0,
+   "kg": 219861.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 1549226559.0,
+   "kg": 413476.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-02",
+   "span": "M",
+   "usd": 367661386.0,
+   "kg": 160545.95,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 1134771349.0,
+   "kg": 132726.13,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 826025867.0,
+   "kg": 222760.99,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 637444105.0,
+   "kg": 91229.62,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 341341774.0,
+   "kg": 15970.92,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 1615478463.0,
+   "kg": 111875.52,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 3742664196.0,
+   "kg": 358565.64,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 929181293.0,
+   "kg": 265539.67,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 2148075509.0,
+   "kg": 476164.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-03",
+   "span": "M",
+   "usd": 535406252.0,
+   "kg": 238303.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 1163518682.0,
+   "kg": 146179.23,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 308858808.0,
+   "kg": 97854.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 352486276.0,
+   "kg": 36787.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 107732410.0,
+   "kg": 10407.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 982903236.0,
+   "kg": 76645.24,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 2620417180.0,
+   "kg": 276221.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 799901621.0,
+   "kg": 252583.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 1853401151.0,
+   "kg": 430601.18,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-04",
+   "span": "M",
+   "usd": 287948210.0,
+   "kg": 158785.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 1193004804.0,
+   "kg": 157646.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 388351218.0,
+   "kg": 94444.76,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 370462980.0,
+   "kg": 38686.56,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 174987389.0,
+   "kg": 9802.41,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 1272453143.0,
+   "kg": 87521.27,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 3024480517.0,
+   "kg": 300407.81,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 763657838.0,
+   "kg": 260847.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 2365724549.0,
+   "kg": 482741.12,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-05",
+   "span": "M",
+   "usd": 527315176.0,
+   "kg": 222561.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 1164243281.0,
+   "kg": 151029.73,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 734085377.0,
+   "kg": 194037.02,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 469237419.0,
+   "kg": 73154.31,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 244514842.0,
+   "kg": 9362.78,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 2142641175.0,
+   "kg": 142956.88,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 4033803890.0,
+   "kg": 383411.67,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 1039350663.0,
+   "kg": 260598.82,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 2097829783.0,
+   "kg": 470831.42,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-06",
+   "span": "M",
+   "usd": 528656546.0,
+   "kg": 233575.11,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 1142171397.0,
+   "kg": 105137.75,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 548370766.0,
+   "kg": 139160.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 355074367.0,
+   "kg": 42872.97,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 110363081.0,
+   "kg": 5424.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 1426628646.0,
+   "kg": 104834.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 3052040144.0,
+   "kg": 266970.67,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 796684954.0,
+   "kg": 245078.58,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 2051656143.0,
+   "kg": 444375.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-07",
+   "span": "M",
+   "usd": 526185368.0,
+   "kg": 230998.34,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 1285823533.0,
+   "kg": 128943.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 520306355.0,
+   "kg": 111030.99,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 563207063.0,
+   "kg": 59198.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 190830686.0,
+   "kg": 9796.4,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 1669928603.0,
+   "kg": 108599.41,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 3727057608.0,
+   "kg": 314907.77,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 803979817.0,
+   "kg": 255816.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 2368045013.0,
+   "kg": 485563.24,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-08",
+   "span": "M",
+   "usd": 355265557.0,
+   "kg": 141136.24,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 1181502470.0,
+   "kg": 132541.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 1163327153.0,
+   "kg": 300707.86,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 711058351.0,
+   "kg": 82317.64,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 280579804.0,
+   "kg": 12375.17,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 2074156047.0,
+   "kg": 130450.85,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 4265429548.0,
+   "kg": 366615.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 1152866266.0,
+   "kg": 278273.11,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 2077093655.0,
+   "kg": 447367.77,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-09",
+   "span": "M",
+   "usd": 460941993.0,
+   "kg": 209860.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 1140724023.0,
+   "kg": 112380.82,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 760516116.0,
+   "kg": 156780.12,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 563432529.0,
+   "kg": 54651.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 182527157.0,
+   "kg": 5370.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 1845428103.0,
+   "kg": 97476.08,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 3750564910.0,
+   "kg": 277327.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 905534790.0,
+   "kg": 259416.34,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 2166855861.0,
+   "kg": 468663.5,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-10",
+   "span": "M",
+   "usd": 420725409.0,
+   "kg": 180613.91,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 1341588637.0,
+   "kg": 129216.18,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 978719590.0,
+   "kg": 175841.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 576927692.0,
+   "kg": 52482.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 305979635.0,
+   "kg": 8646.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 2015128839.0,
+   "kg": 106523.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 4260883659.0,
+   "kg": 303478.7,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 934800478.0,
+   "kg": 283355.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 2141225311.0,
+   "kg": 462058.58,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-11",
+   "span": "M",
+   "usd": 385604386.0,
+   "kg": 150353.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 1452659619.0,
+   "kg": 159939.88,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 1671135166.0,
+   "kg": 259866.25,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 623483753.0,
+   "kg": 68567.29,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 695688157.0,
+   "kg": 15223.25,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 2523530235.0,
+   "kg": 118897.05,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 5314815425.0,
+   "kg": 370974.76,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 1129320324.0,
+   "kg": 269199.24,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 1983439123.0,
+   "kg": 433343.12,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2023-12",
+   "span": "M",
+   "usd": 479584464.0,
+   "kg": 190630.71,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 1407209178.0,
+   "kg": 128871.4,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 735739093.0,
+   "kg": 121292.96,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 857558588.0,
+   "kg": 63395.73,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 289057573.0,
+   "kg": 7942.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 1960348887.0,
+   "kg": 69303.96,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 4537021212.0,
+   "kg": 276428.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 854409588.0,
+   "kg": 248954.06,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 2073342183.0,
+   "kg": 435792.96,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-01",
+   "span": "M",
+   "usd": 499792558.0,
+   "kg": 156965.3,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 1491461901.0,
+   "kg": 116133.59,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 902709199.0,
+   "kg": 155041.12,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 889118556.0,
+   "kg": 56073.86,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 471628640.0,
+   "kg": 9453.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 2308240418.0,
+   "kg": 81352.24,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 5176639915.0,
+   "kg": 270424.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 798481550.0,
+   "kg": 238459.68,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 1954209355.0,
+   "kg": 410873.0,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-02",
+   "span": "M",
+   "usd": 446224658.0,
+   "kg": 135512.74,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 1628992789.0,
+   "kg": 112855.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 1680986516.0,
+   "kg": 244786.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 816995296.0,
+   "kg": 54995.96,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 575275673.0,
+   "kg": 9945.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 2729807054.0,
+   "kg": 86414.42,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 5765592551.0,
+   "kg": 272817.45,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 849959223.0,
+   "kg": 255284.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 2208161924.0,
+   "kg": 442668.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-03",
+   "span": "M",
+   "usd": 692516232.0,
+   "kg": 184685.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 1594783559.0,
+   "kg": 106335.99,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 925062426.0,
+   "kg": 146366.36,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 615382745.0,
+   "kg": 42592.04,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 503475551.0,
+   "kg": 9229.5,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 2158812516.0,
+   "kg": 83460.78,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 4896711483.0,
+   "kg": 253537.22,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 793078171.0,
+   "kg": 245141.24,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 2087793150.0,
+   "kg": 441503.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-04",
+   "span": "M",
+   "usd": 596678066.0,
+   "kg": 161362.38,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 1767125202.0,
+   "kg": 114315.25,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 1146640785.0,
+   "kg": 165204.2,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 685634245.0,
+   "kg": 41898.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 533747084.0,
+   "kg": 9799.07,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 2698676682.0,
+   "kg": 81325.0,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 5714466095.0,
+   "kg": 258461.22,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 829120546.0,
+   "kg": 226268.72,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 2452293917.0,
+   "kg": 459991.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-05",
+   "span": "M",
+   "usd": 846358863.0,
+   "kg": 191652.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 1899278376.0,
+   "kg": 116958.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 1773993686.0,
+   "kg": 231818.72,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 677867380.0,
+   "kg": 45475.17,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 702431602.0,
+   "kg": 16183.57,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 3742313361.0,
+   "kg": 134510.56,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 7055050042.0,
+   "kg": 324633.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 1214171929.0,
+   "kg": 246354.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 2121215634.0,
+   "kg": 441295.52,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-06",
+   "span": "M",
+   "usd": 960263096.0,
+   "kg": 188585.82,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 1986235775.0,
+   "kg": 105435.45,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 998011074.0,
+   "kg": 134465.5,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 536146405.0,
+   "kg": 38350.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 267134494.0,
+   "kg": 7300.02,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 2979864837.0,
+   "kg": 89746.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 5804491763.0,
+   "kg": 253092.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 825731524.0,
+   "kg": 241653.67,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 2284903955.0,
+   "kg": 471861.29,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-07",
+   "span": "M",
+   "usd": 966634078.0,
+   "kg": 156930.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 1839895463.0,
+   "kg": 97961.59,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 1258012385.0,
+   "kg": 188242.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 388012152.0,
+   "kg": 30318.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 426997117.0,
+   "kg": 10536.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 3347263827.0,
+   "kg": 103469.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 6034933835.0,
+   "kg": 250656.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 836777935.0,
+   "kg": 238166.65,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 2299295215.0,
+   "kg": 439313.4,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-08",
+   "span": "M",
+   "usd": 1244497758.0,
+   "kg": 185628.1,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 1888282735.0,
+   "kg": 121384.71,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 1793269384.0,
+   "kg": 243363.96,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 626839396.0,
+   "kg": 40644.65,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 580647345.0,
+   "kg": 10809.48,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 3802575693.0,
+   "kg": 108232.09,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 6926348924.0,
+   "kg": 290954.8,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 1252112353.0,
+   "kg": 242140.65,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 2093786016.0,
+   "kg": 441666.45,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-09",
+   "span": "M",
+   "usd": 1242120502.0,
+   "kg": 200415.96,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 1912033811.0,
+   "kg": 95560.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 1174278281.0,
+   "kg": 164970.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 440424775.0,
+   "kg": 32598.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 360766949.0,
+   "kg": 10206.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 3482828191.0,
+   "kg": 66119.0,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 6220656370.0,
+   "kg": 212502.34,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 914760808.0,
+   "kg": 237678.91,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 2444764226.0,
+   "kg": 435928.1,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-10",
+   "span": "M",
+   "usd": 709254973.0,
+   "kg": 134941.3,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 1825067835.0,
+   "kg": 106942.29,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 1520935229.0,
+   "kg": 204831.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 478932127.0,
+   "kg": 45868.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 530884724.0,
+   "kg": 11137.62,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 3587681336.0,
+   "kg": 83333.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 6443621669.0,
+   "kg": 257841.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 832823994.0,
+   "kg": 227684.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 2236980720.0,
+   "kg": 408694.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-11",
+   "span": "M",
+   "usd": 1146326355.0,
+   "kg": 188176.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 2096464352.0,
+   "kg": 135570.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 2359424790.0,
+   "kg": 285089.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 613005167.0,
+   "kg": 42192.86,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 376023215.0,
+   "kg": 9485.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 4331121742.0,
+   "kg": 88487.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 7444176968.0,
+   "kg": 285758.27,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 1231887524.0,
+   "kg": 248973.78,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 2033830891.0,
+   "kg": 420245.66,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2024-12",
+   "span": "M",
+   "usd": 1251742002.0,
+   "kg": 210514.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 1836333612.0,
+   "kg": 125007.77,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 1414646859.0,
+   "kg": 145614.91,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 307270877.0,
+   "kg": 28241.6,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 362776019.0,
+   "kg": 8690.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 2236388115.0,
+   "kg": 57609.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 4765687489.0,
+   "kg": 229221.27,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 729983525.0,
+   "kg": 214389.92,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 1916199148.0,
+   "kg": 427618.09,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-01",
+   "span": "M",
+   "usd": 638366788.0,
+   "kg": 143821.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 1681458212.0,
+   "kg": 125509.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 1087373066.0,
+   "kg": 135630.8,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 294102633.0,
+   "kg": 46778.74,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 434173870.0,
+   "kg": 10011.77,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 2286774946.0,
+   "kg": 61125.35,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 4725936715.0,
+   "kg": 253709.92,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 695632039.0,
+   "kg": 203571.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 1939893956.0,
+   "kg": 427511.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-02",
+   "span": "M",
+   "usd": 621119815.0,
+   "kg": 132089.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 2106604276.0,
+   "kg": 148325.55,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 2122185260.0,
+   "kg": 252038.1,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 526650290.0,
+   "kg": 65525.09,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 365577601.0,
+   "kg": 9904.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 3664579949.0,
+   "kg": 95717.74,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 6694283585.0,
+   "kg": 333624.74,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 972174592.0,
+   "kg": 229128.5,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 2029606888.0,
+   "kg": 460134.81,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-03",
+   "span": "M",
+   "usd": 1000207071.0,
+   "kg": 197165.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 2103328275.0,
+   "kg": 134011.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 1373420281.0,
+   "kg": 191112.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 430255719.0,
+   "kg": 33012.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 351498295.0,
+   "kg": 11186.92,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 2845754081.0,
+   "kg": 93216.97,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 5761054144.0,
+   "kg": 282830.44,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 846971029.0,
+   "kg": 220524.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 2318851176.0,
+   "kg": 475585.78,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-04",
+   "span": "M",
+   "usd": 469302397.0,
+   "kg": 111845.22,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 2244898642.0,
+   "kg": 160112.18,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 1716991582.0,
+   "kg": 217719.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 561258878.0,
+   "kg": 42166.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 491311783.0,
+   "kg": 13577.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 4006723549.0,
+   "kg": 112226.35,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 7337463885.0,
+   "kg": 341368.06,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 928925785.0,
+   "kg": 227515.32,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 2434188995.0,
+   "kg": 462283.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-05",
+   "span": "M",
+   "usd": 904255057.0,
+   "kg": 184312.07,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 2291729325.0,
+   "kg": 188466.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 2211855912.0,
+   "kg": 264741.48,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 620739271.0,
+   "kg": 55075.85,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 596256523.0,
+   "kg": 14559.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 4687620057.0,
+   "kg": 106922.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 8230251104.0,
+   "kg": 378326.78,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 972470838.0,
+   "kg": 228984.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 2150592907.0,
+   "kg": 445992.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-06",
+   "span": "M",
+   "usd": 1133279021.0,
+   "kg": 218228.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 2387705705.0,
+   "kg": 160312.26,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 1904766498.0,
+   "kg": 234634.48,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 461582176.0,
+   "kg": 38720.55,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 470253436.0,
+   "kg": 11610.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 4194558010.0,
+   "kg": 99662.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 7560770182.0,
+   "kg": 331549.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 832542319.0,
+   "kg": 232792.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 2918544666.0,
+   "kg": 492770.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-07",
+   "span": "M",
+   "usd": 750716543.0,
+   "kg": 182495.23,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 2615929305.0,
+   "kg": 147994.46,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 1987285265.0,
+   "kg": 234326.62,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 645465853.0,
+   "kg": 43916.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 605101167.0,
+   "kg": 13433.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 4603682383.0,
+   "kg": 104349.7,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 8504645011.0,
+   "kg": 325041.36,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 816313191.0,
+   "kg": 224260.21,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 2274224773.0,
+   "kg": 469920.38,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-08",
+   "span": "M",
+   "usd": 1030093289.0,
+   "kg": 233769.88,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 2654060655.0,
+   "kg": 159929.82,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 2445330395.0,
+   "kg": 271240.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 706729598.0,
+   "kg": 54374.07,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 717756278.0,
+   "kg": 15590.28,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 5225405893.0,
+   "kg": 126527.0,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 9337408511.0,
+   "kg": 369664.94,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 1000431930.0,
+   "kg": 271023.61,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 2239434619.0,
+   "kg": 489856.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-09",
+   "span": "M",
+   "usd": 1067841333.0,
+   "kg": 262555.15,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 2855276418.0,
+   "kg": 137893.09,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 2001817924.0,
+   "kg": 202457.83,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 672927526.0,
+   "kg": 37912.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 600286607.0,
+   "kg": 12208.48,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 4717810300.0,
+   "kg": 106390.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 8886177868.0,
+   "kg": 310323.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 816321208.0,
+   "kg": 237065.29,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 2521766438.0,
+   "kg": 473668.85,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-10",
+   "span": "M",
+   "usd": 822571754.0,
+   "kg": 193505.79,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 3604209656.0,
+   "kg": 148522.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 2617601645.0,
+   "kg": 221536.91,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 1101251822.0,
+   "kg": 40810.05,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 747287614.0,
+   "kg": 12580.7,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 4675185540.0,
+   "kg": 92773.49,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 10163661372.0,
+   "kg": 306192.71,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 837177647.0,
+   "kg": 230430.71,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 2114562062.0,
+   "kg": 455846.08,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-11",
+   "span": "M",
+   "usd": 1202490497.0,
+   "kg": 226820.67,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 4156190941.0,
+   "kg": 175191.83,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 3489828491.0,
+   "kg": 257531.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 1275594726.0,
+   "kg": 44989.51,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 985580249.0,
+   "kg": 18248.56,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 6161489903.0,
+   "kg": 104666.88,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 12636751240.0,
+   "kg": 359385.3,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 1185049261.0,
+   "kg": 262071.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 2049718662.0,
+   "kg": 499519.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2025-12",
+   "span": "M",
+   "usd": 1794682331.0,
+   "kg": 264031.29,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 5059378865.0,
+   "kg": 142419.99,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 3607946301.0,
+   "kg": 166495.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 1434956451.0,
+   "kg": 43577.54,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 692648291.0,
+   "kg": 14026.77,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 4883414037.0,
+   "kg": 87596.53,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 12111963002.0,
+   "kg": 302637.59,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 808837370.0,
+   "kg": 267195.93,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 2408512319.0,
+   "kg": 519207.71,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-01",
+   "span": "M",
+   "usd": 1364495486.0,
+   "kg": 205372.35,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 6490777059.0,
+   "kg": 134748.9,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 5206457863.0,
+   "kg": 192453.78,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 1406223535.0,
+   "kg": 37496.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 1131079931.0,
+   "kg": 12935.14,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 6748826215.0,
+   "kg": 92873.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 15810749933.0,
+   "kg": 287910.91,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 660403498.0,
+   "kg": 224699.56,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 2036464559.0,
+   "kg": 452575.52,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-02",
+   "span": "M",
+   "usd": 2416623152.0,
+   "kg": 217465.82,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 8012443877.0,
+   "kg": 145288.41,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 7410386814.0,
+   "kg": 214201.55,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 2544596946.0,
+   "kg": 55480.08,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 1561701322.0,
+   "kg": 24149.64,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 8577241499.0,
+   "kg": 134548.17,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 20759011353.0,
+   "kg": 375392.84,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 888452954.0,
+   "kg": 264724.07,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 2296092417.0,
+   "kg": 508975.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-03",
+   "span": "M",
+   "usd": 3189531184.0,
+   "kg": 252535.75,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 9248046034.0,
+   "kg": 139112.59,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 6143825508.0,
+   "kg": 144994.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 1673744099.0,
+   "kg": 36438.33,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 1688412890.0,
+   "kg": 14801.5,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 8157215096.0,
+   "kg": 112173.68,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 20829752343.0,
+   "kg": 319350.66,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 770254947.0,
+   "kg": 250239.21,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 2332636863.0,
+   "kg": 504234.72,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-04",
+   "span": "M",
+   "usd": 3833102251.0,
+   "kg": 200109.18,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 11428371245.0,
+   "kg": 147350.4,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 7185979307.0,
+   "kg": 157681.76,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 1721738700.0,
+   "kg": 30337.27,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 2130950085.0,
+   "kg": 19827.21,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 9621557514.0,
+   "kg": 114828.19,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 24952044634.0,
+   "kg": 326921.22,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 864105245.0,
+   "kg": 242789.91,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 2355768203.0,
+   "kg": 506089.8,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-05",
+   "span": "M",
+   "usd": 3962002029.0,
+   "kg": 175832.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 11175623231.0,
+   "kg": 149633.11,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 10670485218.0,
+   "kg": 216194.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 2486161310.0,
+   "kg": 40024.9,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 2646120290.0,
+   "kg": 18668.63,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 12681112901.0,
+   "kg": 134718.02,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 29038792066.0,
+   "kg": 363882.87,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 988164947.0,
+   "kg": 265780.99,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 2286800894.0,
+   "kg": 544551.41,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-06",
+   "span": "M",
+   "usd": 5156249189.0,
+   "kg": 242779.98,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 13551552131.0,
+   "kg": 155818.22,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 7674208820.0,
+   "kg": 156465.21,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 1780647499.0,
+   "kg": 28836.0,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 2467755334.0,
+   "kg": 16573.16,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 10085845139.0,
+   "kg": 105713.74,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 28006095742.0,
+   "kg": 325403.11,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 868962281.0,
+   "kg": 262770.52,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 2419782962.0,
+   "kg": 546761.36,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-07",
+   "span": "M",
+   "usd": 4508736475.0,
+   "kg": 178371.48,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 15733149397.0,
+   "kg": 177730.38,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 7836155713.0,
+   "kg": 176036.73,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 2862152422.0,
+   "kg": 28378.95,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcos",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 2220143270.0,
+   "kg": 15770.47,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 12224588941.0,
+   "kg": 123653.39,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 33107223602.0,
+   "kg": 359018.04,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "other_ic",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 889140088.0,
+   "kg": 230975.37,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "processor",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 2647542389.0,
+   "kg": 523011.06,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "ssd",
+   "month": "2026-08",
+   "span": "M",
+   "usd": 5979141845.0,
+   "kg": 237610.89,
+   "source": "TRASS 월간 (사용자 기준 엑셀 메모리_잠정치_합산+비중_20260730.xlsx)",
+   "first_seen_at": "2026-09-22",
+   "revised_at": null
+  },
+  {
+   "item": "dram",
+   "month": "2026-09",
+   "span": "D20",
+   "usd": 10643860000,
+   "kg": 143474,
+   "reported": {
+    "price": 74187,
+    "usd_yoy": 539.0,
+    "usd_mom": 8.5,
+    "price_yoy": 328.6,
+    "price_mom": -19.5
+   },
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)",
+   "first_seen_at": "2026-09-21",
+   "revised_at": null
+  },
+  {
+   "item": "dram_module",
+   "month": "2026-09",
+   "span": "D20",
+   "usd": 8391910000,
+   "kg": 167963,
+   "reported": {
+    "price": 49963,
+    "usd_yoy": 478.5,
+    "usd_mom": 246.5,
+    "price_yoy": 474.0,
+    "price_mom": 59.5
+   },
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)",
+   "first_seen_at": "2026-09-21",
+   "revised_at": null
+  },
+  {
+   "item": "flash",
+   "month": "2026-09",
+   "span": "D20",
+   "usd": 1531850000,
+   "kg": 18612,
+   "reported": {
+    "price": 82303,
+    "usd_yoy": 345.2,
+    "usd_mom": -12.5,
+    "price_yoy": 544.6,
+    "price_mom": -17.3
+   },
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)",
+   "first_seen_at": "2026-09-21",
+   "revised_at": null
+  },
+  {
+   "item": "mcp",
+   "month": "2026-09",
+   "span": "D20",
+   "usd": 7815920000,
+   "kg": 76465,
+   "reported": {
+    "price": 102216,
+    "usd_yoy": 234.7,
+    "usd_mom": 14.0,
+    "price_yoy": 239.2,
+    "price_mom": -3.3
+   },
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)",
+   "first_seen_at": "2026-09-21",
+   "revised_at": null
+  },
+  {
+   "item": "memory",
+   "month": "2026-09",
+   "span": "D20",
+   "usd": 21501080000,
+   "kg": 260724,
+   "reported": {
+    "price": 82467,
+    "usd_yoy": 350.7,
+    "usd_mom": 8.2,
+    "price_yoy": 277.3,
+    "price_mom": -13.9
+   },
+   "source": "TRASS-BF 잠정 (증권사 텔레그램 인용, 2026-09-21)",
+   "first_seen_at": "2026-09-21",
+   "revised_at": null
+  }
  ]
 }

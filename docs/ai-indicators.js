@@ -99,6 +99,7 @@
   }
   function headline(s) {
     var g;
+    if (s.stat) return {value: s.stat.value, delta: s.stat.yoy, dlabel: "YoY · " + s.stat.period, date: s.stat.period};
     if (s.type === "line" || s.type === "bars" || s.type === "stack") {
       g = s.type === "stack" ? totalLine(s) : good(s.points); if (!g.length) return null;
       var tbl = s.table && s.table.rows && s.table.rows[0];
@@ -169,16 +170,19 @@
     var hi = Math.max.apply(null, pts.map(function (p) { return p.value; })) * 1.08, slot = (width - L - R) / n, bw = Math.max(2, Math.min(28, slot * .7));
     var y = function (v) { return T + (hi - v) / hi * (height - T - B); };
     var svg = ['<svg viewBox="0 0 ' + width + " " + height + '" role="img" aria-label="' + esc(o.aria || "") + '">'];
+    // 빗금 = 추정치 (진행 중인 달을 순별 잠정치로 월 환산)
+    svg.push('<defs><pattern id="ai-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="rgba(91,140,255,.18)"/><line x1="0" y1="0" x2="0" y2="5" stroke="' + COLORS[0] + '" stroke-width="2.2"/></pattern></defs>');
     gridY(svg, L, R, T, B, width, height, 0, hi, function (v) { return fmt(v, 0); });
-    var xs = [];
+    var xs = [], lastReal = pts.length - 1;
+    while (lastReal > 0 && pts[lastReal].est) lastReal--;
     pts.forEach(function (p, i) {
       var cx = L + slot * (i + .5); xs.push(cx);
-      svg.push('<rect class="ai-bar" style="--i:' + i + '" x="' + (cx - bw / 2).toFixed(1) + '" y="' + y(p.value).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, height - B - y(p.value)).toFixed(1) + '" fill="' + (i === n - 1 ? COLORS[0] : "#3d4f70") + '"/>');
+      svg.push('<rect class="ai-bar" style="--i:' + i + '" x="' + (cx - bw / 2).toFixed(1) + '" y="' + y(p.value).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, height - B - y(p.value)).toFixed(1) + '" fill="' + (p.est ? "url(#ai-hatch)" : i === lastReal ? COLORS[0] : "#3d4f70") + '"/>');
       if (i === 0 || i === n - 1 || (n > 6 && i % Math.ceil(n / 5) === 0 && n - 1 - i > n / 10)) svg.push('<text x="' + cx.toFixed(1) + '" y="' + (height - 7) + '" text-anchor="' + (i === 0 ? "start" : i === n - 1 ? "end" : "middle") + '">' + dateLabel(ts(p.date)) + "</text>");
     });
     svg.push('<line class="ai-crosshair" x1="0" x2="0" y1="' + T + '" y2="' + (height - B) + '" style="display:none"/><rect class="ai-hit" x="' + L + '" y="' + T + '" width="' + (width - L - R) + '" height="' + (height - T - B) + '"/></svg>');
-    var m = {}; pts.forEach(function (p) { m[p.date] = p.value; });
-    return {svg: svg.join(""), hover: {dates: pts.map(function (p) { return p.date; }), xs: xs, rows: [{label: o.label, color: COLORS[0]}], maps: [m], unit: o.unit, digits: o.digits}};
+    var m = {}, notes = {}; pts.forEach(function (p) { m[p.date] = p.value; if (p.est) notes[p.date] = p.note || "추정"; });
+    return {svg: svg.join(""), hover: {dates: pts.map(function (p) { return p.date; }), xs: xs, rows: [{label: o.label, color: COLORS[0]}], maps: [m], unit: o.unit, digits: o.digits, notes: notes}};
   }
   function stackChart(s, width, height) {
     var ls = (s.lines || []).map(function (l) { return {label: l.label, points: good(l.points)}; });
@@ -219,7 +223,7 @@
       var rect = svg.getBoundingClientRect(), px = (e.clientX - rect.left) * vb.width / rect.width, best = 0;
       for (var i = 1; i < h.xs.length; i++) if (Math.abs(h.xs[i] - px) < Math.abs(h.xs[best] - px)) best = i;
       var d = h.dates[best]; cross.style.display = ""; cross.setAttribute("x1", h.xs[best]); cross.setAttribute("x2", h.xs[best]);
-      tip.innerHTML = "<b>" + esc(d.slice(0, 10)) + "</b>" + h.rows.map(function (r, k) { var v = h.maps[k][d]; return finite(v) ? '<div><span><i style="--c:' + r.color + '"></i>' + esc(r.label) + "</span><span>" + esc((h.fmtY ? h.fmtY(v, r) : fmt(v, h.digits)) + (h.unit && !h.fmtY ? " " + h.unit : "")) + "</span></div>" : ""; }).join("");
+      tip.innerHTML = "<b>" + esc(d.slice(0, 10)) + (h.notes && h.notes[d] ? " · ▨ " + esc(h.notes[d]) : "") + "</b>" + h.rows.map(function (r, k) { var v = h.maps[k][d]; return finite(v) ? '<div><span><i style="--c:' + r.color + '"></i>' + esc(r.label) + "</span><span>" + esc((h.fmtY ? h.fmtY(v, r) : fmt(v, h.digits)) + (h.unit && !h.fmtY ? " " + h.unit : "")) + "</span></div>" : ""; }).join("");
       tip.style.display = ""; var left = h.xs[best] * rect.width / vb.width;
       tip.style.left = Math.max(80, Math.min(rect.width - 80, left)) + "px"; tip.style.top = "4px";
     });
@@ -309,7 +313,7 @@
     var state = s.status === "stale" ? '<span class="ai-flag warn" title="' + esc(s.status_note || "") + '">갱신 실패 · 이전 값</span>' : s.status === "pending" ? '<span class="ai-flag">대기</span>' : "";
     return '<article class="ai-card t-' + esc(s.type) + '" data-card="' + esc(s.id) + '"><header><div><h4>' + esc(s.label) + state + "</h4><p>" + esc(s.source) + " · " + esc(s.cadence) + "</p>" + collected(s) + "</div>" + num + "</header>" +
       '<div class="ai-card-body">' + body + "</div>" +
-      '<footer><p title="' + esc(s.caveat || "") + '">' + esc(s.caveat || "") + "</p>" + '<button type="button" class="ai-more" data-open="' + esc(s.id) + '">' + (ts_ ? "크게 · 겹쳐보기" : "자세히") + " ↗</button></footer></article>";
+      '<footer><p class="ai-desc" title="' + esc(s.caveat || "") + '">' + esc(s.desc || s.caveat || "") + "</p>" + '<button type="button" class="ai-more" data-open="' + esc(s.id) + '">' + (ts_ ? "크게 · 겹쳐보기" : "자세히") + " ↗</button></footer></article>";
   }
   function renderAI() {
     if (!host) return;
@@ -372,7 +376,7 @@
     var ts_ = TS_TYPES[s.type], tickers = ts_ && s.type !== "share" && s.type !== "share_abs" ? overlayTickers(s) : [];
     var pool = []; tickers.concat(s.related || []).forEach(function (t) { if (DATA.companies && DATA.companies[t] && pool.indexOf(t) < 0) pool.push(t); });
     m.innerHTML = '<div class="ai-modal-back" data-close></div><div class="ai-modal-box"><button class="ai-modal-x" type="button" data-close aria-label="닫기">×</button>' +
-      '<div class="ai-detail-head"><div><span class="ai-state">' + esc(METHOD[s.method] || "") + " · " + esc(s.cadence || "") + "</span><h3>" + esc(s.label) + "</h3><p>" + esc(s.source || "") + "</p>" + collected(s) + "</div></div>" +
+      '<div class="ai-detail-head"><div><span class="ai-state">' + esc(METHOD[s.method] || "") + " · " + esc(s.cadence || "") + "</span><h3>" + esc(s.label) + "</h3><p>" + esc(s.source || "") + "</p>" + collected(s) + (s.desc ? '<p class="ai-desc-lg">' + esc(s.desc) + "</p>" : "") + "</div></div>" +
       (ts_ ? '<div class="ai-toolbar"><div class="ai-seg">' + RANGES.map(function (r) { return '<button type="button" data-range="' + r + '" class="' + (r === modalRange ? "on" : "") + '">' + r + "</button>"; }).join("") + "</div>" + (tickers.length ? '<span class="ai-mini-note">지표와 종목을 구간 시작 = 100 으로 맞춘 상대 추이</span>' : "") + "</div>" : "") +
       '<div class="ai-modal-plot" id="ai-modal-plot"></div>' +
       (s.type === "rank" ? rankHTML(s, 20) : s.type === "table" ? tableHTML({columns: s.columns, rows: s.rows}) : s.type === "events" ? eventsHTML(s) : s.type === "stat" ? statHTML(s) : s.type === "capa" ? capaHTML(s) : "") +

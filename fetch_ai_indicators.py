@@ -48,6 +48,7 @@ KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
 OR = "https://openrouter.ai/api/frontend/v1"
 MAX_POINTS = 400
+ACTIVITY_TOP = 30  # 지출·실효 단가 추이에 합산할 상위 모델 수
 
 NOW = datetime.now(KST)
 TODAY = NOW.date().isoformat()
@@ -245,6 +246,7 @@ def c_or_chart(ctx):
     rows = jget(OR + "/rankings/model-rankings-chart")["data"]["data"]
     today = NOW.date()
     done = [r for r in rows if date.fromisoformat(r["x"]) + timedelta(days=7) <= today]  # 진행 중인 주 제외
+    ctx.chart_totals = {r["x"]: sum(r["ys"].values()) for r in done}  # 주간 지출 추정에 재사용
     total = [{"date": r["x"], "value": round(sum(r["ys"].values()) / 1e12, 2)} for r in done]
     ctx.put({"id": "or_tokens_weekly", "group": "demand", "label": "OpenRouter 주간 토큰 총량", "unit": "T 토큰", "type": "line", "kpi": True, "digits": 1,
              "cadence": "주간 (월요일 시작) · 매일 확인", "source": "OpenRouter Rankings", "source_url": "https://openrouter.ai/rankings", "method": "scrape",
@@ -285,14 +287,67 @@ def c_or_week(ctx):
     if tot_tok <= 0:
         raise ValueError("빈 주간 표")
 
-    ctx.put({"id": "or_spend_7d", "group": "demand", "label": "OpenRouter 지출 (최근 7일)", "unit": "$M", "type": "line", "digits": 1,
-             "cadence": "매일 · 최근 7일 합계", "source": "OpenRouter Rankings (total_usage)", "source_url": "https://openrouter.ai/rankings", "method": "scrape",
-             "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(ctx.old_points("or_spend_7d"), [{"date": TODAY, "value": round(tot_usd / 1e6, 2)}]),
-             "caveat": "OpenRouter가 집계한 실제 사용 금액입니다. 오늘부터 매일 쌓이며, 과거 이력은 공개되지 않습니다."})
+    # 지출·실효 단가 추이 — 모델별 일간 활동(최근 30일)으로 복원한다. 매일 30일을 다시 계산해 덮어쓴다.
+    #  · 실효 단가 = 표본 모델의 지출 ÷ 토큰 (비율이라 표본 구성에 덜 민감)
+    #  · 주간 지출 = 그 주 전체 토큰(차트, 정확) × 그 주 실효 단가  — 현재 인기 모델만 합산하면 과거가 과소 집계되기 때문
+    tok_by, usd_by = {}, {}
+    for r in rows:
+        key = (r["model_permaslug"], r.get("variant") or "standard")
+        tok_by[key] = tok_by.get(key, 0) + (r.get("total_prompt_tokens") or 0) + (r.get("total_completion_tokens") or 0)
+        usd_by[key] = usd_by.get(key, 0) + (r.get("total_usage") or 0)
+    pick = [k for k, _ in sorted(tok_by.items(), key=lambda kv: -kv[1])[:ACTIVITY_TOP]]
+    pick += [k for k, _ in sorted(usd_by.items(), key=lambda kv: -kv[1])[:ACTIVITY_TOP] if k not in pick]
+    top_variants = [(k, tok_by[k]) for k in pick]
+    covered = sum(tok_by[k] for k in pick) / max(1, sum(tok_by.values())) * 100
+    covered_usd = sum(usd_by[k] for k in pick) / max(1e-9, sum(usd_by.values())) * 100
+    daily_tok, daily_usd = {}, {}
+    utc_today = datetime.now(timezone.utc).date().isoformat()
+    for (slug, variant), _ in top_variants:
+        try:
+            act = jget(f"{OR}/stats/model-activity?permaslug={urllib.parse.quote(slug, safe='')}&variant={variant}")["data"]["analytics"]
+        except Exception as e:
+            print(f"  [warn] activity {slug}: {e}")
+            continue
+        for a in act:
+            d = a["date"][:10]
+            if d >= utc_today:  # 오늘(UTC)은 집계 중이라 제외
+                continue
+            daily_tok[d] = daily_tok.get(d, 0) + (a.get("total_prompt_tokens") or 0) + (a.get("total_completion_tokens") or 0)
+            daily_usd[d] = daily_usd.get(d, 0) + (a.get("total_usage") or 0)
+        time.sleep(0.25)
+    days = sorted(daily_tok)
+    price_pts = []
+    for i in range(6, len(days)):
+        win = days[i - 6: i + 1]
+        if (date.fromisoformat(win[-1]) - date.fromisoformat(win[0])).days != 6:
+            continue
+        t7, u7 = sum(daily_tok[d] for d in win), sum(daily_usd[d] for d in win)
+        if t7:
+            price_pts.append({"date": win[-1], "value": round(u7 / t7 * 1e6, 4)})
+    # 주간 지출 = 차트의 주간 총 토큰 × 같은 주(월~일) 표본 실효 단가. 7일이 모두 있는 주만.
+    weekly_total = ctx.chart_totals if getattr(ctx, "chart_totals", None) else {
+        r["x"]: sum(r["ys"].values()) for r in jget(OR + "/rankings/model-rankings-chart")["data"]["data"]}
+    spend_pts = []
+    for wk, total in sorted(weekly_total.items()):
+        wd = [(date.fromisoformat(wk) + timedelta(days=k)).isoformat() for k in range(7)]
+        if not all(d in daily_tok for d in wd):
+            continue
+        t, u = sum(daily_tok[d] for d in wd), sum(daily_usd[d] for d in wd)
+        if t:
+            spend_pts.append({"date": wk, "value": round(total * (u / t) / 1e6, 2)})
+    note = (f"표본 = 토큰 상위 {ACTIVITY_TOP} + 지출 상위 {ACTIVITY_TOP}개 모델 ({len(top_variants)}개, 최근 7일 토큰의 {covered:.0f}% · 지출의 {covered_usd:.0f}%).")
+    # 이번에 다시 계산한 기간(최근 30일)과 그 이후의 옛 값은 버린다 — 계산 방식이 섞이지 않게
+    first_price = price_pts[0]["date"] if price_pts else "9999"
+    first_spend = spend_pts[0]["date"] if spend_pts else "9999"
+    old_before = lambda sid, first: [p for p in ctx.old_points(sid) if p["date"] < first]
+    ctx.put({"id": "or_spend_7d", "group": "demand", "label": "OpenRouter 주간 지출 (추정)", "unit": "$M", "type": "bars", "digits": 1,
+             "cadence": "주간 (월요일 시작) · 매일 확인", "source": "OpenRouter 주간 토큰 × 실효 단가", "source_url": "https://openrouter.ai/rankings", "method": "computed",
+             "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(old_before("or_spend_7d", first_spend), spend_pts),
+             "caveat": "그 주 전체 토큰(정확) × 표본 모델의 실효 단가로 추정합니다. " + note + " 모델별 일간 기록이 최근 30일만 공개돼 그 이전 주는 이후 매주 쌓입니다."})
     ctx.put({"id": "or_avg_price", "group": "price", "label": "평균 실효 단가", "unit": "$/M", "type": "line", "kpi": True, "digits": 3,
              "cadence": "매일 · 최근 7일", "source": "OpenRouter (지출 ÷ 토큰)", "source_url": "https://openrouter.ai/rankings", "method": "computed",
-             "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(ctx.old_points("or_avg_price"), [{"date": TODAY, "value": round(tot_usd / tot_tok * 1e6, 4)}]),
-             "caveat": "실제 지출 ÷ 전체 토큰(입력+출력)입니다. 무료·저가 모델 비중이 늘면 모델별 가격 변화가 없어도 내려갑니다."})
+             "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(old_before("or_avg_price", first_price), price_pts),
+             "caveat": note + " 무료·저가 모델 비중이 늘면 모델별 가격 변화가 없어도 내려갑니다."})
 
     # 랩 상위 10
     labs = {}
@@ -451,7 +506,42 @@ MARKET_LINES = [("H100 SXM", "H100 SXM"), ("H200", "H200"), ("B200", "B200"), ("
 LIST_LINES = [("H100 SXM", "H100 SXM"), ("H200 SXM", "H200"), ("B200", "B200"), ("A100 SXM", "A100"), ("MI300X", "MI300X"), ("RTX 5090", "RTX 5090")]
 
 
-@collector("gpu_h100_market", "gpu_market_multi", "gpu_list_multi", "gpu_price_table")
+GD_GPUS = [("Nvidia H100", "H100"), ("Nvidia H200", "H200"), ("Nvidia B200", "B200"), ("Nvidia B300", "B300"),
+           ("Nvidia A100", "A100"), ("AMD MI300X", "MI300X")]
+
+
+@collector("gpu_h100_market", "gpu_cloud_multi", "gpu_h100_spread")
+def c_gpu_history(ctx):
+    """GetDeploying GPU 가격 지수 — 80여 개 클라우드의 GPU별 주간 중앙 온디맨드가 (2025년~)."""
+    h = http("https://getdeploying.com/gpu-price-index").decode("utf-8", "replace")
+    m = re.search(r'<script id="gpu-price-index-chart_data" type="application/json">(.*?)</script>', h, re.S)
+    if not m:
+        raise ValueError("GetDeploying 차트 데이터 블록을 찾지 못함")
+    gd = json.loads(m.group(1))
+    cards = {c["name"]: c for c in gd.get("cards", [])}
+    pts = lambda name: [{"date": p["date"], "value": round(p["value"], 2), "providers": p.get("providers")} for p in (cards.get(name) or {}).get("points", []) if p.get("value")]
+    h100 = pts("Nvidia H100")
+    if not h100:
+        raise ValueError("H100 시계열 없음")
+    src, url = "GetDeploying GPU 가격 지수 (클라우드 80여 곳 중앙값)", "https://getdeploying.com/gpu-price-index"
+    ctx.put({"id": "gpu_h100_market", "group": "gpu", "label": "H100 클라우드 임대가 (중앙값)", "unit": "$/GPU·h", "type": "line", "digits": 2,
+             "cadence": "주간 (월요일 기준) · 매일 확인", "source": src, "source_url": url, "method": "scrape",
+             "related": ["NVDA", "CRWV", "MSFT"], "points": merge_points(ctx.old_points("gpu_h100_market") if (ctx.prev.get("gpu_h100_market") or {}).get("source") == src else [], h100),
+             "caveat": f"온디맨드 공시가격의 중앙값입니다(최근 제공사 {h100[-1].get('providers') or '—'}곳). 장기계약·스팟 할인은 반영되지 않습니다."})
+    ctx.put({"id": "gpu_cloud_multi", "group": "gpu", "label": "GPU별 클라우드 임대가 추이", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
+             "cadence": "주간 · 매일 확인", "source": src, "source_url": url, "method": "scrape", "related": ["NVDA", "AMD", "CRWV"],
+             "lines": merge_lines(ctx.old_lines("gpu_cloud_multi"), [{"label": lab, "points": pts(n)} for n, lab in GD_GPUS if pts(n)]),
+             "caveat": "GPU별 온디맨드 공시가 중앙값입니다. 신형(B200·B300)이 들어오며 구형 가격이 밀리는 속도가 GPU 세대 교체의 속도입니다."})
+    spread = next((s for s in gd.get("providerSpreads", []) if s.get("gpu_name") == "Nvidia H100"), None)
+    if spread:
+        ctx.put({"id": "gpu_h100_spread", "group": "gpu", "label": "H100 하이퍼스케일러 vs 네오클라우드", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
+                 "cadence": "주간 · 매일 확인", "source": src, "source_url": url, "method": "scrape", "related": ["CRWV", "MSFT", "AMZN", "GOOGL"],
+                 "lines": [{"label": "하이퍼스케일러 (AWS·Azure·GCP)", "points": [{"date": p["date"], "value": round(p["hyperscaler"], 2)} for p in spread["points"] if p.get("hyperscaler")]},
+                           {"label": "네오클라우드 (CoreWeave·Lambda 등)", "points": [{"date": p["date"], "value": round(p["neocloud"], 2)} for p in spread["points"] if p.get("neocloud")]}],
+                 "caveat": f"같은 H100을 대형 클라우드와 GPU 전문 클라우드가 얼마에 파는지 비교합니다. 최근 하이퍼스케일러 프리미엄 {spread.get('latest_premium', 0):.0f}%."})
+
+
+@collector("gpu_market_multi")
 def c_gpu(ctx):
     q = json.dumps({"gpu_name": {"in": VAST_GPUS}, "rentable": {"eq": True}, "type": "on-demand", "limit": 2000})
     offers = jget("https://console.vast.ai/api/v0/bundles/?q=" + urllib.parse.quote(q))["offers"]
@@ -466,29 +556,18 @@ def c_gpu(ctx):
     rp = {g["displayName"]: g for g in gql}
 
     pt = lambda v: [{"date": TODAY, "value": v}] if v else []
-    ctx.put({"id": "gpu_h100_market", "group": "gpu", "label": "H100 SXM 시장 임대가", "unit": "$/GPU·h", "type": "line", "kpi": True, "digits": 2,
-             "cadence": "매일", "source": "Vast.ai 온디맨드 호가 중앙값", "source_url": "https://vast.ai/pricing", "method": "api",
-             "related": ["NVDA", "CRWV", "MSFT"], "points": merge_points(ctx.old_points("gpu_h100_market"), pt(vmed.get("H100 SXM"))),
-             "caveat": "마켓플레이스에 지금 올라온 호가의 중앙값입니다. 하이퍼스케일러 장기계약 단가가 아닙니다. 오늘부터 매일 쌓입니다."})
-    ctx.put({"id": "gpu_market_multi", "group": "gpu", "label": "GPU별 시장 임대가 (호가 중앙값)", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
-             "cadence": "매일", "source": "Vast.ai", "source_url": "https://vast.ai/pricing", "method": "api", "related": ["NVDA", "AMD", "CRWV"],
-             "lines": merge_lines(ctx.old_lines("gpu_market_multi"), [{"label": lab, "points": pt(vmed.get(k))} for k, lab in MARKET_LINES]),
-             "caveat": "공급자가 직접 올린 호가라 수급에 가장 빠르게 반응합니다. 매물이 2건 미만인 날은 비웁니다."})
-    ctx.put({"id": "gpu_list_multi", "group": "gpu", "label": "GPU별 정가 (RunPod 보안 클라우드)", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
-             "cadence": "매일", "source": "RunPod", "source_url": "https://www.runpod.io/pricing", "method": "api", "related": ["NVDA", "AMD", "CRWV"],
-             "lines": merge_lines(ctx.old_lines("gpu_list_multi"), [{"label": lab, "points": pt((rp.get(k) or {}).get("securePrice"))} for k, lab in LIST_LINES]),
-             "caveat": "클라우드 사업자가 정한 표시 가격이라 시장 호가보다 늦게 움직입니다. 정가 인하는 공급 과잉 신호로 봅니다."})
     rows = []
     for k, lab in [("H100 SXM", "H100 SXM"), ("H100 NVL", "H100 NVL"), ("H100 PCIE", "H100 PCIe"), ("H200", "H200"), ("B200", "B200"),
                    ("A100 SXM4", "A100 SXM"), ("RTX 5090", "RTX 5090"), ("RTX 4090", "RTX 4090")]:
         rpk = {"H100 PCIE": "H100 PCIe", "H200": "H200 SXM", "A100 SXM4": "A100 SXM"}.get(k, k)
         r = rp.get(rpk) or {}
         rows.append({"gpu": lab, "vast": vmed.get(k), "n": len(vast.get(k, [])), "secure": r.get("securePrice"), "community": r.get("communityPrice")})
-    ctx.put({"id": "gpu_price_table", "group": "gpu", "label": "오늘의 GPU 임대가 비교", "unit": "$/GPU·h", "type": "table",
-             "cadence": "매일", "source": "Vast.ai · RunPod", "source_url": "https://vast.ai/pricing", "method": "api", "related": ["NVDA", "AMD"], "as_of": TODAY,
-             "columns": [{"key": "gpu", "label": "GPU", "align": "l"}, {"key": "vast", "label": "Vast 중앙값"}, {"key": "n", "label": "매물"},
-                         {"key": "secure", "label": "RunPod 보안"}, {"key": "community", "label": "RunPod 커뮤니티"}],
-             "rows": rows, "caveat": "모두 GPU 1장·1시간 기준 달러입니다."})
+    ctx.put({"id": "gpu_market_multi", "group": "gpu", "label": "GPU별 마켓 호가 (Vast · 매일)", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
+             "cadence": "매일", "source": "Vast.ai 온디맨드 호가 중앙값 · RunPod 표시가", "source_url": "https://vast.ai/pricing", "method": "api", "related": ["NVDA", "AMD", "CRWV"],
+             "lines": merge_lines(ctx.old_lines("gpu_market_multi"), [{"label": lab, "points": pt(vmed.get(k))} for k, lab in MARKET_LINES]),
+             "table": {"columns": [{"key": "gpu", "label": "GPU", "align": "l"}, {"key": "vast", "label": "Vast 중앙값"}, {"key": "n", "label": "매물"},
+                                   {"key": "secure", "label": "RunPod 보안"}, {"key": "community", "label": "RunPod 커뮤니티"}], "rows": rows},
+             "caveat": f"개인·소형 공급자가 직접 올린 호가라 수급에 가장 빨리 반응합니다. 과거 이력이 공개되지 않아 {ctx.state.setdefault('vast_since', TODAY)}부터 매일 쌓습니다. 매물 2건 미만인 날은 비웁니다."})
 
 
 # ── 8. TSMC 월매출 · CAPA ─────────────────────────────────────────────
@@ -696,6 +775,7 @@ def c_arr(ctx):
 # ── 11. 메모리 수출 (TRASS, 수출입 탭과 같은 원본) ────────────────────────
 MEM_ITEMS = [("dram", "DRAM 수출"), ("mcp", "MCP 수출 (HBM 포함 추정)"), ("flash", "Flash 수출"), ("dram_module", "DRAM 모듈 수출")]
 SPAN_ORDER = {"M": 3, "D20": 2, "D10": 1}
+SPAN_EST = {"D10": 3, "D20": 1.5}  # 사용자 엑셀과 같은 월 환산 (1~10일 ×3, 1~20일 ×3/2)
 
 
 @collector(*[f"trass_{k}" for k, _ in MEM_ITEMS])
@@ -704,20 +784,28 @@ def c_trass(ctx):
     spans = t.get("spans", {})
     for key, label in MEM_ITEMS:
         obs = [o for o in t["observations"] if o["item"] == key]
-        monthly = [{"date": o["month"] + "-01", "value": round(o["usd"] / 1e8, 1)} for o in obs if o["span"] == "M" and o.get("usd")]
+        by_month = {o["month"]: o for o in obs if o["span"] == "M" and o.get("usd")}
+        monthly = [{"date": m + "-01", "value": round(o["usd"] / 1e8, 1)} for m, o in sorted(by_month.items())]
         latest = max(obs, key=lambda o: (o["month"], SPAN_ORDER.get(o["span"], 0)), default=None)
         stat = None
         if latest and latest.get("usd"):
             rep = latest.get("reported") or {}
+            ly = by_month.get(f"{int(latest['month'][:4]) - 1}{latest['month'][4:]}")
+            yoy = rep.get("usd_yoy")
+            if latest["span"] == "M" and ly:  # 월 전체끼리는 직접 계산
+                yoy = round((latest["usd"] / ly["usd"] - 1) * 100, 1)
             stat = {"value": round(latest["usd"] / 1e8, 1), "period": f"{latest['month']} {spans.get(latest['span'], latest['span'])}",
-                    "yoy": rep.get("usd_yoy"), "mom": rep.get("usd_mom"),
+                    "yoy": yoy, "mom": rep.get("usd_mom"),
                     "price": round(latest["usd"] / latest["kg"]) if latest.get("kg") else rep.get("price"), "price_yoy": rep.get("price_yoy")}
+            if latest["span"] in SPAN_EST:  # 진행 중인 달: 월 환산 추정 막대
+                monthly.append({"date": latest["month"] + "-01", "value": round(latest["usd"] * SPAN_EST[latest["span"]] / 1e8, 1), "est": True,
+                                "note": f"{spans.get(latest['span'])} 잠정 ×{'3/2' if latest['span'] == 'D20' else '3'} 월 환산"})
         item = next((i for i in t["items"] if i["id"] == key), {})
-        ctx.put({"id": f"trass_{key}", "group": "memory", "label": label, "unit": "억$", "type": "stat", "digits": 1,
-                 "cadence": "10일 단위 · 11일·21일·익월 1일경", "source": "관세청 TRASS 잠정 수출", "source_url": "https://www.trass.or.kr",
+        ctx.put({"id": f"trass_{key}", "group": "memory", "label": label, "unit": "억$", "type": "bars", "digits": 1,
+                 "cadence": "10일 단위 · 11일·21일·익월 1일경", "source": "관세청 TRASS (월별: 사용자 기준 엑셀)", "source_url": "https://www.trass.or.kr",
                  "method": "linked", "linked": "trass", "related": ["000660", "005930", "MU"], "points": monthly, "stat": stat,
-                 "status": "ok" if stat else "pending", "status_note": None if stat else "TRASS 관측값 대기",
-                 "caveat": item.get("hs_note", "") + " · 수출입 탭의 TRASS 표와 같은 원본입니다. 같은 구간끼리 비교합니다."})
+                 "status": "ok" if monthly else "pending", "status_note": None if monthly else "TRASS 관측값 대기",
+                 "caveat": item.get("hs_note", "") + " · 빗금 막대는 진행 중인 달의 순별 잠정치를 월로 환산한 추정입니다. 수출입 탭의 TRASS 표와 같은 원본."})
 
 
 # ── 12. 기업 주가 (겹쳐보기 · 기업별 탭) ─────────────────────────────────
@@ -764,13 +852,40 @@ BOARDS = {
     "demand": ["or_tokens_weekly", "or_spend_7d", "or_lab_top10", "or_lab_trend"],
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
-    "gpu": ["gpu_h100_market", "gpu_market_multi", "gpu_list_multi", "gpu_price_table"],
+    "gpu": ["gpu_h100_market", "gpu_cloud_multi", "gpu_h100_spread", "gpu_market_multi"],
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
 }
+# 카드 아래에 붙는 한두 줄 설명 — "이게 무슨 데이터인가"
+DESCS = {
+    "or_tokens_weekly": "전 세계 개발자들이 OpenRouter(여러 AI 모델을 한 API로 쓰는 중개 서비스)로 한 주 동안 처리한 토큰 총량. AI 추론 수요의 온도계.",
+    "or_spend_7d": "그 주에 AI 모델 사용료로 지불된 금액(주간 토큰 × 실효 단가). 토큰보다 지출이 덜 늘면 단가가 빠지고 있다는 뜻.",
+    "or_lab_top10": "최근 7일 토큰을 모델을 만든 회사(랩)별로 합친 점유율. 누가 실제 사용량을 가져가고 있는지.",
+    "or_lab_trend": "상위 5개 랩의 주간 점유율 변화. 신모델 출시·가격 인하 때 점유율이 어떻게 이동하는지 본다.",
+    "or_model_rank": "최근 7일 사용량 상위 모델과 각 모델의 토큰·지출·실효 단가. 어떤 가격대 모델이 수요를 끄는지.",
+    "or_app_rank": "OpenRouter로 모델을 호출하는 앱별 사용량. 코딩 에이전트 등 실제 수요처가 어디인지.",
+    "hf_downloads": "Hugging Face에서 조직별 오픈모델이 최근 30일 내려받아진 횟수. 오픈소스 모델 확산 속도.",
+    "or_new_models": "OpenRouter에 새로 등록된 모델 수(주간). 모델 공급 경쟁의 강도 — 몰리면 대개 가격 인하가 뒤따른다.",
+    "or_avg_price": "토큰 100만 개당 실제로 낸 평균 금액(지출 ÷ 토큰). AI 추론 가격이 얼마나 빨리 싸지는지.",
+    "frontier_price_index": "지능 점수 상위 5개 최고급 모델의 실제 지불 단가 평균. 최첨단 성능의 가격이 내려가는 속도.",
+    "frontier_speed": "같은 최고급 모델들이 초당 뽑아내는 토큰 수. 추론 칩·서빙 최적화가 얼마나 빨라지는지.",
+    "price_cuts": "OpenRouter 등록 모델 중 가격을 내린 사례를 매일 자동 감지해 기록. 가격 경쟁의 신호.",
+    "gpu_h100_market": "H100 GPU 1장을 1시간 빌리는 클라우드 공시가격의 중앙값. AI 연산 자원의 시장 가격.",
+    "gpu_cloud_multi": "GPU 세대별 클라우드 임대 중앙가. 신형이 나오며 구형 가격이 얼마나 빨리 내려가는지.",
+    "gpu_h100_spread": "같은 H100을 AWS·Azure 같은 대형 클라우드와 CoreWeave 같은 GPU 전문 클라우드가 파는 가격 차이.",
+    "gpu_market_multi": "개인·소형 공급자가 GPU를 직접 빌려주는 마켓(Vast)의 호가 중앙값. 수급에 가장 먼저 반응한다.",
+    "trass_dram": "한국에서 해외로 나간 DRAM 칩 수출액(월별). 삼성전자·SK하이닉스 메모리 업황의 가장 빠른 실측치.",
+    "trass_mcp": "여러 칩을 한 패키지로 묶은 MCP 수출액. HBM이 주로 여기로 잡혀 AI 메모리 수요의 대리 지표로 본다.",
+    "trass_flash": "낸드 등 플래시 메모리 수출액. 저장장치(SSD) 수요와 낸드 가격 흐름을 반영.",
+    "trass_dram_module": "DRAM 칩을 기판에 꽂아 만든 서버·PC용 모듈 수출액. 완제품 단계의 메모리 출하.",
+    "tsmc_monthly_rev": "세계 1위 파운드리 TSMC의 월 매출. 엔비디아·AMD 등 AI 칩 생산량의 가장 빠른 공식 지표.",
+    "tsmc_capa": "TSMC의 웨이퍼 생산능력(12인치 환산). 공급이 수요를 따라가는지 본다.",
+    "hyperscaler_capex": "아마존·MS·구글·메타·오라클이 분기마다 쓴 설비투자 합계. AI 데이터센터에 들어가는 돈의 총량.",
+    "ai_lab_arr": "OpenAI·Anthropic 등 AI 랩의 연환산 매출(런레이트) 보도. AI에 들어간 돈이 매출로 돌아오는지.",
+}
 KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_market", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
 COLLECTORS = {"or_models": c_or_models, "or_chart": c_or_chart, "or_week": c_or_week, "or_apps": c_or_apps, "frontier": c_frontier,
-              "hf": c_hf, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "prices": c_prices}
+              "hf": c_hf, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "prices": c_prices}
 
 
 def load(path, default):
@@ -798,6 +913,8 @@ def main():
         ctx.series.setdefault(sid, s)
     for s in ctx.series.values():
         s["kpi"] = s["id"] in KPI_ORDER
+        if s["id"] in DESCS:
+            s["desc"] = DESCS[s["id"]]
     order = [sid for g in GROUPS for sid in BOARDS[g["id"]]]
     series = [ctx.series[sid] for sid in order if sid in ctx.series]
     for s in series:
