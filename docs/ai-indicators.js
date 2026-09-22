@@ -96,7 +96,14 @@
   /* 수집 시각 (노란색) — "수집 2026-09-22 17:46". 실패해 이전 값을 쓰는 카드는 그 값을 받은 시각이 그대로 남는다. */
   function collected(s) {
     var t = String(s && s.updated_at || "").replace("T", " ").slice(0, 16);
-    return t ? '<span class="ai-collected" title="이 카드의 값을 마지막으로 받아온 시각 (KST)">수집 ' + esc(t) + "</span>" : "";
+    var h = headline(s), asof = h && h.date ? String(h.date) : s && s.as_of ? String(s.as_of) : "";
+    if (!asof && s && s.lines) {  // 여러 줄 카드는 가장 최근 관측일을 기준일로 본다
+      var last = "";
+      s.lines.forEach(function (l) { var g = good(l.points); if (g.length && g[g.length - 1].date > last) last = g[g.length - 1].date; });
+      asof = last;
+    }
+    return (t ? '<span class="ai-collected" title="이 카드의 값을 마지막으로 받아온 시각 (KST)">수집 ' + esc(t) + "</span>" : "") +
+      (asof ? '<span class="ai-asof" title="값이 속한 기준일 — 장 마감·정산·공시 시점이라 수집일보다 이릅니다">기준 ' + esc(asof.slice(0, 16)) + "</span>" : "");
   }
   function headline(s) {
     var g;
@@ -333,7 +340,7 @@
     var stale = (DATA.series || []).filter(function (s) { return s.status === "stale"; }).length;
     host.innerHTML =
       '<div class="ai-header"><div><span class="ai-eyebrow">AI INFRA OBSERVATORY</span><h2>토큰에서 GPU까지.</h2><p>수요 → 단가 → 하드웨어 → 메모리 → 캐팩스 순으로, 비슷한 지표끼리 한 판에 묶었습니다.</p></div>' +
-      '<div class="ai-header-tools">' + (isSample ? '<span class="ai-pill ai-sample">SAMPLE · 디자인 미리보기</span>' : '<span class="ai-pill live"><i></i>매일 07:00 자동 수집 · 마지막 <b class="ai-gold">' + esc((DATA.generated_at || "").replace("T", " ").slice(0, 16)) + "</b></span>") +
+      '<div class="ai-header-tools">' + (isSample ? '<span class="ai-pill ai-sample">SAMPLE · 디자인 미리보기</span>' : '<span class="ai-pill live" title="렌탈지수 05:30 · CDS 08:00 · OpenRouter 09:00 · 공시가 화 06:00 · 대만 월매출 10~16일 18:00 · 전체점검 07:00 (KST)"><i></i>소스별 발표 시각에 자동 수집 · 마지막 <b class="ai-gold">' + esc((DATA.generated_at || "").replace("T", " ").slice(0, 16)) + "</b></span>") +
       (stale ? '<span class="ai-pill warn" title="일부 소스 수집 실패 · 이전 값 유지">⚠ ' + stale + "개 이전 값</span>" : "") +
       '<span class="ai-pill ' + (tg.status === "live" ? "live" : "pending") + '"><i></i>텔레그램 ' + (tg.status === "live" ? "연결됨" : "연결 대기") + "</span>" +
       '<button type="button" id="ai-refresh" ' + (loading ? "disabled" : "") + ">" + (loading ? "확인 중…" : "새로고침 ↻") + "</button></div></div>" +
@@ -346,7 +353,7 @@
           '<span class="ai-board-nav"><button type="button" data-step="-1" aria-label="이전 묶음">‹</button><button type="button" data-step="1" aria-label="다음 묶음">›</button></span></div>' +
           '<div class="ai-cards n' + list.length + '">' + list.map(function (s, i) { return cardHTML(s).replace("<article ", '<article style="--d:' + i * 110 + 'ms" '); }).join("") + "</div></section>";
       })() +
-      '<p class="ai-footnote">' + (isSample ? "지금 숫자는 화면 설계용 가상 수치입니다." : "매일 07:00(KST) GitHub Actions가 수집합니다. 소스가 실패한 날은 이전 값을 유지하고 카드에 표시합니다.") + ' <a href="https://github.com/minwook1011/vantage-0910/actions/workflows/ai-indicators.yml" target="_blank" rel="noopener">실행 이력 ↗</a></p>';
+      '<p class="ai-footnote">' + (isSample ? "지금 숫자는 화면 설계용 가상 수치입니다." : "GitHub Actions가 소스마다 발표 시각에 맞춰 수집합니다 — 렌탈지수 05:30 · CDS 08:00 · OpenRouter 09:00 · 클라우드 공시가 화 06:00 · 대만 월매출 10~16일 18:00 · 전체점검 07:00 (KST). 실패한 소스는 이전 값을 유지하고 카드에 표시합니다.") + ' <a href="https://github.com/minwook1011/vantage-0910/actions/workflows/ai-indicators.yml" target="_blank" rel="noopener">실행 이력 ↗</a></p>';
     host.querySelectorAll(".ai-plot").forEach(function (box) {
       var s = seriesById(box.dataset.plot); if (!s) return;
       var p = plot(s, Math.max(260, box.clientWidth), 156);
