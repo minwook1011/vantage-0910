@@ -9,11 +9,19 @@
       ["외국인 수급", "코스피 · 업종별 순매수", ["삼성전자", "SK하이닉스"]],
       ["제조업 가동률", "생산 · 재고 · 출하", ["삼성전자", "현대차"]]
     ] },
+    ai: { label: "AI 인프라", code: "AI", series: [
+      ["토큰 수요", "OpenRouter 토큰량 · 랩별 점유율 · 앱 · AI 트래픽", ["NVIDIA", "Microsoft", "Google"], null, null, "demand"],
+      ["토큰 가격", "실효 단가 · 프론티어 가격 지수 · 인하 이벤트", ["Microsoft", "Google"], null, null, "price"],
+      ["GPU · 컴퓨팅", "H100/B200 임대가 · 중고가 · TSMC · ODM 월매출", ["NVIDIA", "TSMC", "CoreWeave"], null, null, "compute"],
+      ["메모리 · HBM", "현물 · 계약가 · 반도체 수출 · HBM 발표", ["삼성전자", "SK하이닉스", "Micron"], null, null, "memory"],
+      ["캐팩스 · 투자", "하이퍼스케일러 캐팩스 · DC 건설 · 수주잔고 · ARR", ["Microsoft", "Amazon", "Meta"], null, null, "capex"],
+      ["심리 · 주가", "SOX/SPX · AI 바스켓 · 검색 트렌드", ["NVIDIA", "TSMC", "SK하이닉스"], null, null, "sentiment"]
+    ] },
     usa: { label: "미국", code: "USA", series: [
-      ["AI 데이터센터 CAPEX", "하이퍼스케일러 투자 · 가이던스", ["NVIDIA", "Amazon", "Microsoft"]],
-      ["GPU 임대료", "GPU별 일간 임대 지수", ["NVIDIA", "CoreWeave"]],
+      ["AI 데이터센터 CAPEX", "하이퍼스케일러 투자 · 가이던스", ["NVIDIA", "Amazon", "Microsoft"], null, null, "capex"],
+      ["GPU 임대료", "GPU별 일간 임대 지수", ["NVIDIA", "CoreWeave"], null, null, "compute"],
       ["클라우드 사용량", "AWS · Azure · GCP 수요", ["Amazon", "Microsoft"]],
-      ["AI 서비스 이용자", "MAU · 트래픽 · 구독", ["Microsoft", "NVIDIA"]],
+      ["AI 서비스 이용자", "MAU · 트래픽 · 구독", ["Microsoft", "NVIDIA"], null, null, "demand"],
       ["기업 IT 지출", "소프트웨어 · 인프라 지출", ["Microsoft", "Amazon"]]
     ] },
     japan: { label: "일본", code: "JPN", series: [
@@ -31,10 +39,10 @@
       ["글로벌 교역", "운임 · PMI · 수출입", ["삼성전자", "TSMC"]]
     ] },
     industry: { label: "섹터", code: "SEC", series: [
-      ["TSMC 월매출", "월매출 · YoY · 공정 믹스", ["TSMC", "삼성전자", "NVIDIA"]],
+      ["TSMC 월매출", "월매출 · YoY · 공정 믹스", ["TSMC", "삼성전자", "NVIDIA"], null, null, "compute"],
       ["첨단 패키징", "패키징 · 기판 · 테스트", ["TSMC", "삼성전자", "SK하이닉스"]],
-      ["AI 데이터센터", "CAPEX · 서버 출하 · 전력", ["NVIDIA", "Amazon", "Microsoft"]],
-      ["GPU 임대료", "GPU별 일간 임대 지수", ["NVIDIA", "CoreWeave"]],
+      ["AI 데이터센터", "CAPEX · 서버 출하 · 전력", ["NVIDIA", "Amazon", "Microsoft"], null, null, "capex"],
+      ["GPU 임대료", "GPU별 일간 임대 지수", ["NVIDIA", "CoreWeave"], null, null, "compute"],
       ["DRAM · NAND 가격", "현물 · 모듈 · 계약가격 분리", ["삼성전자", "SK하이닉스"], null, "memory"]
     ] }
   };
@@ -61,7 +69,7 @@
     var group = DATA[activeCountry];
     seriesHost.innerHTML = group.series.map(function (item, index) {
       var selected = activeSeries && activeSeries.name === item[0];
-      return '<button class="series-card' + (selected ? ' selected' : '') + '" type="button" style="animation-delay:' + (index * 65) + 'ms" data-index="' + index + '"><span class="country-code">' + group.code + ' · SERIES 0' + (index + 1) + '</span><b>' + item[0] + '</b><p>' + item[1] + '</p><span class="series-state"><i></i>' + (item[3] ? '주가·실적 연결 · 베트남 자료 미확보' : item[4] ? '지표 목록 · 발표 일정 보기' : selected ? '지표 선택됨 · 연결 대기' : '출처 연결 대기') + '</span></button>';
+      return '<button class="series-card' + (selected ? ' selected' : '') + '" type="button" style="animation-delay:' + (index * 65) + 'ms" data-index="' + index + '"><span class="country-code">' + group.code + ' · SERIES 0' + (index + 1) + '</span><b>' + item[0] + '</b><p>' + item[1] + '</p><span class="series-state"><i></i>' + (item[3] ? '주가·실적 연결 · 베트남 자료 미확보' : item[5] ? 'AI 지표 워크스페이스 열기' : item[4] ? '지표 목록 · 발표 일정 보기' : selected ? '지표 선택됨 · 연결 대기' : '출처 연결 대기') + '</span></button>';
     }).join("");
     seriesHost.querySelectorAll("button").forEach(function (button) { button.onclick = function () {
       var item = group.series[Number(button.dataset.index)]; activeSeries = { name: item[0], desc: item[1] };
@@ -69,6 +77,7 @@
       renderSeries(); renderWorkbench();
       if (item[4]) document.dispatchEvent(new CustomEvent("vantage-data-category", {detail:{category:item[4]}}));
       else document.getElementById("memory-workspace").hidden = true;
+      if (item[5]) document.dispatchEvent(new CustomEvent("vantage-ai-focus", {detail:{group:item[5]}}));
       if (item[3]) document.querySelector('.workbench').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
     }; });
   }
