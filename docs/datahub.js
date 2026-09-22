@@ -62,10 +62,12 @@
   function loadFavorites() { try { var saved = JSON.parse(localStorage.getItem(FAVORITE_KEY) || "[]"); return Array.isArray(saved) ? saved.filter(function (name) { return typeof name === "string" && name.trim(); }).slice(0, 30) : []; } catch (e) { return []; } }
   function saveFavorites() { try { localStorage.setItem(FAVORITE_KEY, JSON.stringify(favorites)); } catch (e) {} }
   function renderCountries() {
+    if (!countryHost) return; // 국가·매크로·섹터 카드 섹션은 3분할 탭 개편으로 제거됨
     countryHost.innerHTML = Object.keys(DATA).map(function (key) { return '<button class="country-tab' + (key === activeCountry ? ' on' : '') + '" type="button" data-country="' + key + '">' + DATA[key].label + '</button>'; }).join("");
     countryHost.querySelectorAll("button").forEach(function (button) { button.onclick = function () { activeCountry = button.dataset.country; activeSeries = null; renderCountries(); renderSeries(); renderWorkbench(); }; });
   }
   function renderSeries() {
+    if (!seriesHost) return;
     var group = DATA[activeCountry];
     seriesHost.innerHTML = group.series.map(function (item, index) {
       var selected = activeSeries && activeSeries.name === item[0];

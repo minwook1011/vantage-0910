@@ -170,6 +170,20 @@
     backupImport.onclick = function () { backupFile.click(); };
     backupFile.onchange = function () { importBackup(backupFile.files && backupFile.files[0]); backupFile.value = ""; };
   }
-  async function refresh() { setUpdated("시세 갱신 중…"); try { state = await S.refresh(state); setUpdated("시세 갱신 " + new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"})); } catch(e) { setUpdated("마지막 저장 시세 표시"); } render(); }
+  var refreshing = false;
+  async function refresh() {
+    if (refreshing) return; refreshing = true;
+    var btn = document.getElementById("portfolio-refresh"); if (btn) { btn.disabled = true; btn.textContent = "갱신 중…"; }
+    setUpdated("시세 갱신 중…");
+    try {
+      state = await S.refresh(state);
+      var failed = S.lastFailed || [];
+      setUpdated("시세 갱신 " + new Date().toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"}) + (failed.length ? " · 실패: " + failed.join(", ") + " (티커 확인 필요)" : ""));
+    } catch(e) { setUpdated("마지막 저장 시세 표시"); }
+    refreshing = false; if (btn) { btn.disabled = false; btn.textContent = "시세 새로고침 ↻"; }
+    render();
+  }
+  /* 수동 새로고침: 누르면 야후 파이낸스에서 보유·관심 종목 시세와 환율을 바로 다시 받는다. */
+  var refreshBtn = document.getElementById("portfolio-refresh"); if (refreshBtn) refreshBtn.onclick = refresh;
   wire(); render(); refresh();
 })();

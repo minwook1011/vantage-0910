@@ -11,64 +11,88 @@
 <link rel="stylesheet" href="datahub-search.css?v=20260910b">
 <link rel="stylesheet" href="finemtec.css?v=20260912c">
 <link rel="stylesheet" href="memory-data.css?v=20260912c">
-<link rel="stylesheet" href="ai-indicators.css?v=20260922a">
+<link rel="stylesheet" href="ai-indicators.css?v=20260922b">
 </head>
 <body>
 <header id="topnav"></header>
 <main class="container datahub-page">
   <div class="data-head">
-    <div><div class="kicker">PERSONAL DATA NETWORK</div><h1>데이터 허브</h1><p>국가의 흐름부터 기업의 실적·주가까지, 내 기준으로 연결하는 데이터 작업실.</p></div>
+    <div><div class="kicker">PERSONAL DATA NETWORK</div><h1>데이터 허브</h1><p>AI 인프라, 수출입, 기업별 데이터를 나눠서 봅니다.</p></div>
     <button class="data-add-btn" id="open-onboarding">+ 데이터 연결 설계</button>
   </div>
 
-  <section class="country-section" aria-label="국가별 데이터">
-    <div class="section-caption"><span class="live-dot"></span><b>국가 · 매크로 · 섹터 데이터</b><small>분류를 고르면 관련 지표가 순차적으로 열립니다.</small></div>
-    <div class="country-tabs" id="country-tabs"></div>
-    <div class="series-grid" id="series-grid"></div>
-  </section>
+  <nav class="dh-views" id="dh-views" aria-label="데이터 모음 선택">
+    <button type="button" data-view="ai"><b>AI 관련 데이터 모음</b><small>토큰 · 가격 · GPU · TSMC · 메모리 · 캐팩스</small></button>
+    <button type="button" data-view="trade"><b>수출입 데이터 모음</b><small>TRASS 순별 수출 · 메모리 가격</small></button>
+    <button type="button" data-view="company"><b>기업별 데이터 모음</b><small>지정한 데이터 × 주가</small></button>
+  </nav>
 
-  <section id="ai-workspace" class="ai-workspace" aria-label="AI 인프라 지표"></section>
+  <div class="dh-view" data-view-panel="ai">
+    <section id="ai-workspace" class="ai-workspace" aria-label="AI 관련 데이터 모음"></section>
+  </div>
 
-  <section id="trass-workspace" aria-label="TRASS 순별 수출"></section>
+  <div class="dh-view" data-view-panel="trade" hidden>
+    <section id="trass-workspace" aria-label="TRASS 순별 수출"></section>
+    <section id="memory-workspace" class="md-workspace" aria-label="메모리 가격과 한국 수출 데이터"></section>
+  </div>
 
-  <section id="memory-workspace" class="md-workspace" aria-label="메모리 가격과 한국 수출 데이터" hidden></section>
+  <div class="dh-view" data-view-panel="company" hidden>
+    <section id="company-workspace" class="ai-workspace" aria-label="기업별 데이터 모음"></section>
 
-  <section class="workbench" aria-label="기업 연결 차트">
-    <div class="workbench-head"><div><div class="kicker">COMPANY OVERLAY</div><h2>기업과 데이터, 한 화면에서</h2></div><span id="workbench-status">지표를 선택해 주세요</span></div>
-    <div class="company-picker"><label for="company-search">기업 선택</label><input id="company-search" list="company-options" value="파인엠텍" placeholder="기업명 또는 티커 입력"><datalist id="company-options"></datalist><button type="button" id="company-apply">불러오기</button><span>기업명 · 티커 검색 / 파인엠텍 441270</span></div>
-    <div class="company-favorites"><span>즐겨찾기</span><div id="company-favorite-list"></div></div>
-    <button class="company-favorite-toggle" type="button" id="company-favorite-toggle">☆ 즐겨찾기</button>
-    <section id="finemtec-workspace" class="fm-workspace" aria-label="파인엠텍 주가·실적·납품 비교" hidden></section>
-    <div class="workbench-grid">
-      <article class="chart-shell">
-        <div class="chart-top"><div><b id="chart-company">삼성전자</b><span id="chart-subtitle">연결할 지표를 선택하면 주가와 함께 표시됩니다</span></div><div class="chart-actions"><div class="chart-mode"><button class="on" type="button">시계열</button><button type="button">상관</button></div></div></div>
-        <div class="chart-legend" id="chart-legend"><span class="legend-price"><i></i>주가</span><span class="legend-data"><i></i>연결 데이터</span></div>
-        <div class="empty-chart" id="empty-chart">
-          <svg viewBox="0 0 860 300" aria-hidden="true"><g class="chart-gridlines"><path d="M0 55H860M0 115H860M0 175H860M0 235H860"/><path d="M120 0V300M300 0V300M480 0V300M660 0V300"/></g><path class="ghost-line line-a" d="M0 214 C68 168,114 235,171 180 S274 164,331 146 S430 192,493 119 S590 173,650 96 S765 130,860 52"/><path class="ghost-line line-b" d="M0 240 C65 222,120 202,174 219 S278 122,342 145 S458 84,510 122 S642 105,705 66 S787 94,860 40"/></svg>
-          <div><span class="empty-icon">+</span><b>데이터 연결 대기</b><p>국가별 카드에서 지표를 선택하면<br>이곳에 실제 시계열과 주가가 겹쳐서 표시됩니다.</p></div>
-        </div>
-        <div class="chart-axis"><span>과거</span><span>현재</span></div>
-      </article>
-      <aside class="relation-shell">
-        <div class="relation-head"><b>연관 데이터 맵</b><span>기업 선택 기준</span></div>
-        <div class="relation-core" id="relation-core">삼성전자</div>
-        <div class="relation-links" id="relation-links"></div>
-        <p>이 기업의 주가·실적과 함께 볼 지표를 여기서 추가하거나 뺄 수 있습니다.</p>
-      </aside>
-    </div>
-  </section>
+    <section class="workbench" aria-label="기업 연결 차트">
+      <div class="workbench-head"><div><div class="kicker">COMPANY WORKBENCH</div><h2>파인엠텍 · 납품 비교 워크벤치</h2></div><span id="workbench-status">지표를 선택해 주세요</span></div>
+      <div class="company-picker"><label for="company-search">기업 선택</label><input id="company-search" list="company-options" value="파인엠텍" placeholder="기업명 또는 티커 입력"><datalist id="company-options"></datalist><button type="button" id="company-apply">불러오기</button><span>기업명 · 티커 검색 / 파인엠텍 441270</span></div>
+      <div class="company-favorites"><span>즐겨찾기</span><div id="company-favorite-list"></div></div>
+      <button class="company-favorite-toggle" type="button" id="company-favorite-toggle">☆ 즐겨찾기</button>
+      <section id="finemtec-workspace" class="fm-workspace" aria-label="파인엠텍 주가·실적·납품 비교" hidden></section>
+      <div class="workbench-grid">
+        <article class="chart-shell">
+          <div class="chart-top"><div><b id="chart-company">삼성전자</b><span id="chart-subtitle">연결할 지표를 선택하면 주가와 함께 표시됩니다</span></div><div class="chart-actions"><div class="chart-mode"><button class="on" type="button">시계열</button><button type="button">상관</button></div></div></div>
+          <div class="chart-legend" id="chart-legend"><span class="legend-price"><i></i>주가</span><span class="legend-data"><i></i>연결 데이터</span></div>
+          <div class="empty-chart" id="empty-chart">
+            <svg viewBox="0 0 860 300" aria-hidden="true"><g class="chart-gridlines"><path d="M0 55H860M0 115H860M0 175H860M0 235H860"/><path d="M120 0V300M300 0V300M480 0V300M660 0V300"/></g><path class="ghost-line line-a" d="M0 214 C68 168,114 235,171 180 S274 164,331 146 S430 192,493 119 S590 173,650 96 S765 130,860 52"/><path class="ghost-line line-b" d="M0 240 C65 222,120 202,174 219 S278 122,342 145 S458 84,510 122 S642 105,705 66 S787 94,860 40"/></svg>
+            <div><span class="empty-icon">+</span><b>데이터 연결 대기</b><p>위 "기업별 데이터 모음"에서 기업마다 지정한 데이터를<br>주가와 함께 볼 수 있습니다.</p></div>
+          </div>
+          <div class="chart-axis"><span>과거</span><span>현재</span></div>
+        </article>
+        <aside class="relation-shell">
+          <div class="relation-head"><b>연관 데이터 맵</b><span>기업 선택 기준</span></div>
+          <div class="relation-core" id="relation-core">삼성전자</div>
+          <div class="relation-links" id="relation-links"></div>
+          <p>이 기업의 주가·실적과 함께 볼 지표를 여기서 추가하거나 뺄 수 있습니다.</p>
+        </aside>
+      </div>
+    </section>
+  </div>
 
   <section class="onboarding" id="onboarding" hidden>
     <div><div class="kicker">NEXT INPUT</div><h2>다음 데이터는 이렇게만 알려줘</h2><p>데이터 이름, 분류, 출처 링크만 주면 수집 주기·단위·기업 연결까지 이 허브에 붙일 수 있어.</p></div>
     <div class="input-guide"><span>01 <b>무슨 데이터?</b> 예: TSMC 월매출</span><span>02 <b>어느 분류?</b> 예: 섹터</span><span>03 <b>출처는?</b> 예: 공식 IR 링크</span></div>
   </section>
 </main>
+<script>
+/* 데이터 허브 3분할 탭 — 주소 #ai / #trade / #company 로 기억한다. 숨겨진 패널은 폭이 0이라 열릴 때 다시 그리도록 알린다. */
+(function () {
+  var nav = document.getElementById("dh-views"), VIEWS = ["ai", "trade", "company"];
+  function show(v, push) {
+    if (VIEWS.indexOf(v) < 0) v = "ai";
+    nav.querySelectorAll("[data-view]").forEach(function (b) { var on = b.dataset.view === v; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
+    document.querySelectorAll("[data-view-panel]").forEach(function (p) { p.hidden = p.dataset.viewPanel !== v; });
+    if (push && location.hash !== "#" + v) history.replaceState(null, "", "#" + v);
+    document.dispatchEvent(new CustomEvent("vantage-view", {detail: {view: v}}));
+    window.dispatchEvent(new Event("resize"));
+  }
+  nav.querySelectorAll("[data-view]").forEach(function (b) { b.onclick = function () { show(b.dataset.view, true); window.scrollTo({top: 0, behavior: "auto"}); }; });
+  window.addEventListener("hashchange", function () { show(location.hash.slice(1), false); });
+  show(location.hash.slice(1), false);
+})();
+</script>
 <script src="theme.js?v=20260921a"></script>
 <script src="finemtec-core.js?v=20260912d"></script>
 <script src="finemtec.js?v=20260912e"></script>
 <script src="memory-data.js?v=20260912d"></script>
-<script src="datahub.js?v=20260922a"></script>
+<script src="datahub.js?v=20260922b"></script>
 <script src="trass-exports.js?v=20260921a"></script>
-<script src="ai-indicators.js?v=20260922a"></script>
+<script src="ai-indicators.js?v=20260922b"></script>
 </body>
 </html>

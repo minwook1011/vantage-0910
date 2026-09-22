@@ -7,8 +7,8 @@
     transactions: [], buyList: [], watchlist: [], prices: {}, fx: null
   };
   /* 국내 종목은 종목명으로도 입력할 수 있게 하되, 시세 조회에는 거래소 티커를 사용한다. */
-  var KR_TICKERS = { "삼성전자": "005930.KS", "삼성전자우": "005935.KS", "파인텍": "131760.KQ", "파인엠텍": "441270.KQ", "441270": "441270.KQ" };
-  var KR_NAMES = { "005930": "삼성전자", "005935": "삼성전자우", "131760": "파인텍", "441270": "파인엠텍" };
+  var KR_TICKERS = { "삼성전자": "005930.KS", "삼성전자우": "005935.KS", "파인텍": "131760.KQ", "파인엠텍": "441270.KQ", "441270": "441270.KQ", "티엘비": "356860.KQ", "TLB": "356860.KQ", "356860": "356860.KQ" };
+  var KR_NAMES = { "005930": "삼성전자", "005935": "삼성전자우", "131760": "파인텍", "441270": "파인엠텍", "356860": "티엘비" };
   function id(prefix) { return prefix + "-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function load() {
     try {
@@ -82,8 +82,8 @@
     if (!isFinite(Number(quote)) || Number(quote) <= 0) throw new Error("invalid quote");
     return { price: Number(quote), currency: meta.currency || (market === "KR" ? "KRW" : "USD"), updated: new Date().toISOString(), quoteAt: quoteAt ? new Date(quoteAt * 1000).toISOString() : null };
   }
-  async function priceOne(market, ticker) {
-    var symbol = tickerFor(ticker, market), source = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(symbol) + "?range=1mo&interval=1d", response, text;
+  async function quoteFor(symbol, market) {
+    var source = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(symbol) + "?range=1mo&interval=1d", response, text;
     /* 먼저 Yahoo를 직접 읽고, 브라우저에서 차단될 때만 읽기 전용 중계를 사용한다. 요청에는 티커만 포함된다. */
     try {
       response = await fetch(source, { cache: "no-store" }); if (!response.ok) throw new Error("quote unavailable");
@@ -92,6 +92,17 @@
       response = await fetch("https://r.jina.ai/" + source.replace("&", "%26"), { cache: "no-store" }); if (!response.ok) throw new Error("quote unavailable");
       text = await response.text(); return quoteFromText(text, market);
     }
+  }
+  /* 국내 종목은 코스피(.KS)·코스닥(.KQ)을 둘 다 조회해 더 최근 시세를 쓴다.
+     Yahoo는 잘못된 시장 접미사에도 몇 년 전 가격을 돌려주는 경우가 있다 (예: 티엘비 356860.KS → 2024년 가격). */
+  async function priceOne(market, ticker) {
+    var symbol = tickerFor(ticker, market);
+    if (market !== "KR" || !/^\d{4}[0-9A-Z]{2}\.(KS|KQ)$/.test(symbol)) return quoteFor(symbol, market);
+    var other = symbol.replace(/\.(KS|KQ)$/, function (m) { return m === ".KS" ? ".KQ" : ".KS"; });
+    var got = await Promise.all([symbol, other].map(function (s) { return quoteFor(s, market).catch(function () { return null; }); }));
+    var best = got.filter(Boolean).sort(function (a, b) { return String(b.quoteAt || "").localeCompare(String(a.quoteAt || "")); })[0];
+    if (!best) throw new Error("quote unavailable");
+    return best;
   }
   /* 환율은 브라우저에서 바로 읽을 수 있는(CORS 허용) 곳부터 차례로 시도한다.
      frankfurter는 브라우저 요청을 막아서 예전엔 항상 실패하고 1,350원 고정값이 쓰였다. */
@@ -111,12 +122,13 @@
     throw new Error("fx unavailable");
   }
   async function refresh(data) {
-    var prices = {}, fx = null, symbols = {};
+    var prices = {}, fx = null, symbols = {}, failed = [];
     data.accounts.forEach(function (a) { aggregate(data, a.id).forEach(function (h) { symbols[h.key] = { market: h.market, ticker: h.ticker }; }); });
     data.watchlist.forEach(function (w) { symbols[groupKey(w.market, w.ticker)] = { market: w.market, ticker: tickerFor(w.ticker, w.market) }; });
     await Promise.all(Object.keys(symbols).map(async function (key) {
-      try { prices[key] = await priceOne(symbols[key].market, symbols[key].ticker); } catch (e) {}
+      try { prices[key] = await priceOne(symbols[key].market, symbols[key].ticker); } catch (e) { failed.push(displayTicker(symbols[key].ticker)); }
     }));
+    window.PortfolioStore.lastFailed = failed;
     try { fx = await fxUsdKrw(); } catch (e) {}
     /* 시세 조회는 수 초가 걸린다. 그 사이 다른 기기의 기록이 동기화되어 들어왔을 수 있으므로
        조회 시작 시점의 data를 그대로 저장하지 않고, 최신 저장본에 시세·환율만 덮어쓴다. */
