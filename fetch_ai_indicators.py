@@ -198,7 +198,7 @@ def c_or_models(ctx):
         if w < this_week and w >= this_week - timedelta(weeks=52):
             counts[w] = counts.get(w, 0) + 1
     pts = [{"date": (this_week - timedelta(weeks=k)).isoformat(), "value": counts.get(this_week - timedelta(weeks=k), 0)} for k in range(52, 0, -1)]
-    ctx.put({"id": "or_new_models", "group": "ecosystem", "label": "신규 모델 등록 수 (주간)", "unit": "개", "type": "bars", "digits": 0,
+    ctx.put({"id": "or_new_models", "group": "ecosystem", "label": "신규 모델 등록 수 (주간)", "unit": "개", "type": "line", "digits": 0,
              "cadence": "매일 확인 · 주간 집계", "source": "OpenRouter Models API", "source_url": "https://openrouter.ai/models", "method": "api",
              "related": ["NVDA", "AMD"], "points": pts,
              "caveat": "모델 출시 속도 = 공급 경쟁의 강도. 출시가 몰리는 구간 뒤에는 대개 가격 인하가 따라옵니다. 현재 목록에 남아 있는 모델만 셉니다(종료된 모델 제외)."})
@@ -340,7 +340,7 @@ def c_or_week(ctx):
     first_price = price_pts[0]["date"] if price_pts else "9999"
     first_spend = spend_pts[0]["date"] if spend_pts else "9999"
     old_before = lambda sid, first: [p for p in ctx.old_points(sid) if p["date"] < first]
-    ctx.put({"id": "or_spend_7d", "group": "demand", "label": "OpenRouter 주간 지출 (추정)", "unit": "$M", "type": "bars", "digits": 1,
+    ctx.put({"id": "or_spend_7d", "group": "demand", "label": "OpenRouter 주간 지출 (추정)", "unit": "$M", "type": "line", "digits": 1,
              "cadence": "주간 (월요일 시작) · 매일 확인", "source": "OpenRouter 주간 토큰 × 실효 단가", "source_url": "https://openrouter.ai/rankings", "method": "computed",
              "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(old_before("or_spend_7d", first_spend), spend_pts),
              "caveat": "그 주 전체 토큰(정확) × 표본 모델의 실효 단가로 추정합니다. " + note + " 모델별 일간 기록이 최근 30일만 공개돼 그 이전 주는 이후 매주 쌓입니다."})
@@ -506,11 +506,131 @@ MARKET_LINES = [("H100 SXM", "H100 SXM"), ("H200", "H200"), ("B200", "B200"), ("
 LIST_LINES = [("H100 SXM", "H100 SXM"), ("H200 SXM", "H200"), ("B200", "B200"), ("A100 SXM", "A100"), ("MI300X", "MI300X"), ("RTX 5090", "RTX 5090")]
 
 
+ORNN = "https://data.ornn.com/api/public-index"
+ORNN_GPUS = [("H100 SXM", "H100 SXM"), ("H200", "H200"), ("B200", "B200"), ("A100 SXM4", "A100"), ("RTX 5090", "RTX 5090")]
+
+
+@collector("gpu_h100_index", "gpu_index_multi")
+def c_ornn(ctx):
+    """Ornn 컴퓨트 가격 지수(OCPI) — 실제 체결된 GPU 임대 거래로 매일 정산되는 지수. 공개 구간은 최근 3개월."""
+    today_map = {r["gpu_type"]: r["index_value"] for r in jget(ORNN + "/daily-index/all")["data"]}
+    lines, h100 = [], []
+    for gpu, label in ORNN_GPUS:
+        hist = jget(f"{ORNN}/gpu/{urllib.parse.quote(gpu)}/index-history")["data"]
+        pts = [{"date": r["timestamp"][:10], "value": round(r["index_value"], 2)} for r in hist if r.get("index_value")]
+        if gpu in today_map:
+            pts.append({"date": datetime.fromisoformat(jget(ORNN + "/daily-index/all")["date"].replace("Z", "+00:00")).date().isoformat(),
+                        "value": round(today_map[gpu], 2)})
+        if gpu == "H100 SXM":
+            h100 = pts
+        lines.append({"label": label, "points": pts})
+        time.sleep(0.3)
+    if not h100:
+        raise ValueError("Ornn H100 지수 없음")
+    src, url = "Ornn 컴퓨트 가격 지수 (OCPI · 체결 기준)", "https://data.ornn.com/preview"
+    ctx.put({"id": "gpu_h100_index", "group": "gpu", "label": "H100 렌탈 지수 (일별)", "unit": "$/GPU·h", "type": "line", "kpi": True, "digits": 2,
+             "cadence": "매일 (미국 동부 16:00 정산)", "source": src, "source_url": url, "method": "api", "related": ["NVDA", "CRWV", "MSFT"],
+             "points": merge_points(ctx.old_points("gpu_h100_index"), h100),
+             "caveat": "공시가격이 아니라 실제 체결된 임대 거래로 매일 정산되는 지수입니다. 공개 구간은 최근 3개월이며 이후는 매일 이어 붙습니다."})
+    ctx.put({"id": "gpu_index_multi", "group": "gpu", "label": "GPU별 렌탈 지수 추이", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
+             "cadence": "매일", "source": src, "source_url": url, "method": "api", "related": ["NVDA", "AMD", "CRWV"],
+             "lines": merge_lines(ctx.old_lines("gpu_index_multi"), lines),
+             "caveat": "같은 체결 기준 지수의 GPU별 비교입니다. 신형(B200)이 비싸지는 동안 구형(A100)이 눌리는지 보면 세대 교체 속도를 알 수 있습니다."})
+
+
+# ── ICE Clear Credit 단일물 CDS (5년) ────────────────────────────────
+CDS_NAMES = [("ALPHINC", "Alphabet", ["GOOGL"]), ("AMZN", "Amazon", ["AMZN"]), ("MSFT", "Microsoft", ["MSFT"]),
+             ("METAPL", "Meta", ["META"]), ("NVIDIA", "NVIDIA", ["NVDA"]), ("ORCLE", "Oracle", ["ORCL"]),
+             ("COREWEI", "CoreWeave", ["CRWV"]), ("BROINC", "Broadcom", ["AVGO"]), ("APLINC", "Apple", []),
+             ("IBM", "IBM", []), ("INTC", "Intel", []), ("TESLINC", "Tesla", [])]
+CDS_BIGTECH = ["Alphabet", "Amazon", "Microsoft", "Meta"]
+CDS_AI = ["NVIDIA", "Oracle", "CoreWeave", "Broadcom"]
+RECOVERY = 0.4  # 회수율 가정
+RISK_FREE = 0.04
+
+
+def cds_spread_bp(price, coupon_bp, years):
+    """결제가격(100 기준) → 5년 CDS 스프레드(bp). upfront = (s - c) × 위험연금(risky annuity) 을 이분법으로 푼다."""
+    upfront = (100.0 - float(price)) / 100.0
+    c = coupon_bp / 10000.0
+    def gap(s):
+        h = RISK_FREE + s / (1 - RECOVERY)
+        annuity = (1 - math.exp(-h * years)) / h
+        return (s - c) * annuity - upfront
+    lo, hi = 1e-5, 1.5
+    for _ in range(80):
+        mid = (lo + hi) / 2
+        if gap(mid) > 0:
+            hi = mid
+        else:
+            lo = mid
+    return round((lo + hi) / 2 * 10000, 1)
+
+
+@collector("cds_bigtech", "cds_ai", "cds_table", "cds_gap")
+def c_cds(ctx):
+    rows = jget("https://www.ice.com/api/cds-settlement-prices/icc-single-names")
+    by_ticker = {}
+    for r in rows:
+        parts = str(r.get("instrumentName", "")).split(".")
+        if len(parts) < 6 or parts[1] != "SNRFOR" or parts[2] != "USD":
+            continue
+        ticker, coupon, maturity = parts[0], parts[4], parts[5]
+        try:
+            coupon_bp = float(coupon)
+        except ValueError:
+            continue
+        years = (date.fromisoformat(maturity) - date.fromisoformat(r["clearingDate"])).days / 365.25
+        if not (4.0 <= years <= 6.0):  # 5년물만
+            continue
+        spread = cds_spread_bp(r["eodPrice"], coupon_bp, years)
+        prev = by_ticker.get(ticker)
+        # 같은 이름에 쿠폰 100/500 이 함께 있으면 100bp 계약을 기준으로 삼는다
+        if prev is None or (prev["coupon"] != 100 and coupon_bp == 100):
+            by_ticker[ticker] = {"spread": spread, "coupon": coupon_bp, "date": r["clearingDate"], "name": r["name"]}
+    obs_date = next(iter(by_ticker.values()))["date"] if by_ticker else TODAY
+    line_of = lambda label, pt: {"label": label, "points": [pt] if pt else []}
+    lines, table, spreads = {}, [], {}
+    for ticker, label, related in CDS_NAMES:
+        hit = by_ticker.get(ticker)
+        if not hit:
+            continue
+        spreads[label] = hit["spread"]
+        lines[label] = {"date": obs_date, "value": hit["spread"]}
+    if not spreads:
+        raise ValueError("ICE 결제가격에서 대상 종목을 찾지 못함")
+    prev_cds = ctx.state.get("cds_prev") or {}
+    for ticker, label, related in CDS_NAMES:
+        if label not in spreads:
+            continue
+        p = prev_cds.get(label)
+        table.append({"name": label, "bp": spreads[label], "chg": round(spreads[label] - p, 1) if p else None})
+    ctx.state["cds_prev"] = spreads
+    src, url = "ICE Clear Credit 결제가격 (5년물 · USD)", "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments"
+    common = {"unit": "bp", "type": "share_abs", "digits": 0, "cadence": "매 영업일 (미국 장 마감 후 결제)", "source": src, "source_url": url, "method": "api"}
+    ctx.put(dict(common, id="cds_bigtech", group="credit", label="빅테크 CDS 추이", related=["GOOGL", "AMZN", "MSFT", "META"],
+                 lines=merge_lines(ctx.old_lines("cds_bigtech"), [line_of(l, lines.get(l)) for l in CDS_BIGTECH if l in spreads]),
+                 caveat="CDS는 그 회사 채권의 부도 위험을 사고파는 보험료입니다. 숫자가 오르면 시장이 위험을 더 크게 본다는 뜻. ICE가 과거치를 공개하지 않아 " + obs_date + "부터 매일 쌓습니다."))
+    ctx.put(dict(common, id="cds_ai", group="credit", label="AI 차입 크레딧 CDS", related=["NVDA", "ORCL", "CRWV", "AVGO"],
+                 lines=merge_lines(ctx.old_lines("cds_ai"), [line_of(l, lines.get(l)) for l in CDS_AI if l in spreads]),
+                 caveat="AI 투자를 빚으로 키우는 쪽(오라클·코어위브)과 칩을 파는 쪽(엔비디아·브로드컴)의 신용 위험을 비교합니다."))
+    gap = round(spreads.get("Oracle", 0) - spreads.get("Microsoft", 0), 1) if "Oracle" in spreads and "Microsoft" in spreads else None
+    ctx.put({"id": "cds_gap", "group": "credit", "label": "오라클 − 마이크로소프트 CDS 격차", "unit": "bp", "type": "line", "digits": 0,
+             "cadence": "매 영업일", "source": src, "source_url": url, "method": "computed", "related": ["ORCL", "MSFT"],
+             "points": merge_points(ctx.old_points("cds_gap"), [{"date": obs_date, "value": gap}] if gap is not None else []),
+             "caveat": "둘 다 대형 클라우드지만 오라클은 AI 데이터센터를 빚으로 짓습니다. 격차가 벌어지면 시장이 그 차입을 부담으로 본다는 신호입니다."})
+    ctx.put({"id": "cds_table", "group": "credit", "label": "오늘의 CDS (5년물)", "unit": "bp", "type": "table",
+             "cadence": "매 영업일", "source": src, "source_url": url, "method": "api", "related": ["ORCL", "CRWV", "NVDA"], "as_of": obs_date,
+             "columns": [{"key": "name", "label": "기업", "align": "l"}, {"key": "bp", "label": "CDS (bp)"}, {"key": "chg", "label": "전일 대비"}],
+             "rows": sorted(table, key=lambda r: -r["bp"]),
+             "caveat": f"ICE Clear Credit 결제가격을 스프레드로 환산했습니다(회수율 {RECOVERY:.0%}, 무위험금리 {RISK_FREE:.0%} 가정). 기준일 {obs_date}."})
+
+
 GD_GPUS = [("Nvidia H100", "H100"), ("Nvidia H200", "H200"), ("Nvidia B200", "B200"), ("Nvidia B300", "B300"),
            ("Nvidia A100", "A100"), ("AMD MI300X", "MI300X")]
 
 
-@collector("gpu_h100_market", "gpu_cloud_multi", "gpu_h100_spread")
+@collector("gpu_cloud_multi", "gpu_h100_spread")
 def c_gpu_history(ctx):
     """GetDeploying GPU 가격 지수 — 80여 개 클라우드의 GPU별 주간 중앙 온디맨드가 (2025년~)."""
     h = http("https://getdeploying.com/gpu-price-index").decode("utf-8", "replace")
@@ -524,10 +644,6 @@ def c_gpu_history(ctx):
     if not h100:
         raise ValueError("H100 시계열 없음")
     src, url = "GetDeploying GPU 가격 지수 (클라우드 80여 곳 중앙값)", "https://getdeploying.com/gpu-price-index"
-    ctx.put({"id": "gpu_h100_market", "group": "gpu", "label": "H100 클라우드 임대가 (중앙값)", "unit": "$/GPU·h", "type": "line", "digits": 2,
-             "cadence": "주간 (월요일 기준) · 매일 확인", "source": src, "source_url": url, "method": "scrape",
-             "related": ["NVDA", "CRWV", "MSFT"], "points": merge_points(ctx.old_points("gpu_h100_market") if (ctx.prev.get("gpu_h100_market") or {}).get("source") == src else [], h100),
-             "caveat": f"온디맨드 공시가격의 중앙값입니다(최근 제공사 {h100[-1].get('providers') or '—'}곳). 장기계약·스팟 할인은 반영되지 않습니다."})
     ctx.put({"id": "gpu_cloud_multi", "group": "gpu", "label": "GPU별 클라우드 임대가 추이", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
              "cadence": "주간 · 매일 확인", "source": src, "source_url": url, "method": "scrape", "related": ["NVDA", "AMD", "CRWV"],
              "lines": merge_lines(ctx.old_lines("gpu_cloud_multi"), [{"label": lab, "points": pts(n)} for n, lab in GD_GPUS if pts(n)]),
@@ -541,7 +657,7 @@ def c_gpu_history(ctx):
                  "caveat": f"같은 H100을 대형 클라우드와 GPU 전문 클라우드가 얼마에 파는지 비교합니다. 최근 하이퍼스케일러 프리미엄 {spread.get('latest_premium', 0):.0f}%."})
 
 
-@collector("gpu_market_multi")
+@collector()
 def c_gpu(ctx):
     q = json.dumps({"gpu_name": {"in": VAST_GPUS}, "rentable": {"eq": True}, "type": "on-demand", "limit": 2000})
     offers = jget("https://console.vast.ai/api/v0/bundles/?q=" + urllib.parse.quote(q))["offers"]
@@ -562,12 +678,16 @@ def c_gpu(ctx):
         rpk = {"H100 PCIE": "H100 PCIe", "H200": "H200 SXM", "A100 SXM4": "A100 SXM"}.get(k, k)
         r = rp.get(rpk) or {}
         rows.append({"gpu": lab, "vast": vmed.get(k), "n": len(vast.get(k, [])), "secure": r.get("securePrice"), "community": r.get("communityPrice")})
-    ctx.put({"id": "gpu_market_multi", "group": "gpu", "label": "GPU별 마켓 호가 (Vast · 매일)", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
-             "cadence": "매일", "source": "Vast.ai 온디맨드 호가 중앙값 · RunPod 표시가", "source_url": "https://vast.ai/pricing", "method": "api", "related": ["NVDA", "AMD", "CRWV"],
-             "lines": merge_lines(ctx.old_lines("gpu_market_multi"), [{"label": lab, "points": pt(vmed.get(k))} for k, lab in MARKET_LINES]),
-             "table": {"columns": [{"key": "gpu", "label": "GPU", "align": "l"}, {"key": "vast", "label": "Vast 중앙값"}, {"key": "n", "label": "매물"},
-                                   {"key": "secure", "label": "RunPod 보안"}, {"key": "community", "label": "RunPod 커뮤니티"}], "rows": rows},
-             "caveat": f"개인·소형 공급자가 직접 올린 호가라 수급에 가장 빨리 반응합니다. 과거 이력이 공개되지 않아 {ctx.state.setdefault('vast_since', TODAY)}부터 매일 쌓습니다. 매물 2건 미만인 날은 비웁니다."})
+    # Vast·RunPod 오늘 호가는 공시가 카드(gpu_cloud_multi)의 표로 붙인다
+    table = {"columns": [{"key": "gpu", "label": "GPU", "align": "l"}, {"key": "vast", "label": "Vast 중앙값"}, {"key": "n", "label": "매물"},
+                         {"key": "secure", "label": "RunPod 보안"}, {"key": "community", "label": "RunPod 커뮤니티"}], "rows": rows}
+    target = ctx.series.get("gpu_cloud_multi") or ctx.prev.get("gpu_cloud_multi")
+    if target:
+        target["table"] = table
+        ctx.series["gpu_cloud_multi"] = target
+    ctx.state["gpu_quotes_" + TODAY] = {r["gpu"]: r["vast"] for r in rows if r.get("vast")}
+    for k in [k for k in ctx.state if k.startswith("gpu_quotes_")][:-30]:
+        ctx.state.pop(k, None)
 
 
 # ── 8. TSMC 월매출 · CAPA ─────────────────────────────────────────────
@@ -594,7 +714,7 @@ def c_tsmc_rev(ctx):
         pm = rev.get(f"{y if m > 1 else y - 1}-{(m - 1) or 12:02d}-01")
         table.append({"month": p["date"][:7], "rev": p["value"], "yoy": rnd((p["value"] / ly - 1) * 100, 1) if ly else None,
                       "mom": rnd((p["value"] / pm - 1) * 100, 1) if pm else None})
-    ctx.put({"id": "tsmc_monthly_rev", "group": "tsmc", "label": "TSMC 월매출", "unit": "NT$ 십억", "type": "bars", "kpi": True, "digits": 0,
+    ctx.put({"id": "tsmc_monthly_rev", "group": "tsmc", "label": "TSMC 월매출", "unit": "NT$ 십억", "type": "line", "kpi": True, "digits": 0,
              "cadence": "월간 · 매월 10일경", "source": src, "source_url": "https://investor.tsmc.com/english/monthly-revenue", "method": "api",
              "related": ["TSM", "NVDA", "AMD", "AVGO"], "points": merge_points(ctx.old_points("tsmc_monthly_rev"), pts),
              "table": {"columns": [{"key": "month", "label": "월", "align": "l"}, {"key": "rev", "label": "매출(NT$ 십억)"}, {"key": "yoy", "label": "YoY %"}, {"key": "mom", "label": "MoM %"}], "rows": table},
@@ -801,7 +921,7 @@ def c_trass(ctx):
                 monthly.append({"date": latest["month"] + "-01", "value": round(latest["usd"] * SPAN_EST[latest["span"]] / 1e8, 1), "est": True,
                                 "note": f"{spans.get(latest['span'])} 잠정 ×{'3/2' if latest['span'] == 'D20' else '3'} 월 환산"})
         item = next((i for i in t["items"] if i["id"] == key), {})
-        ctx.put({"id": f"trass_{key}", "group": "memory", "label": label, "unit": "억$", "type": "bars", "digits": 1,
+        ctx.put({"id": f"trass_{key}", "group": "memory", "label": label, "unit": "억$", "type": "line", "digits": 1,
                  "cadence": "10일 단위 · 11일·21일·익월 1일경", "source": "관세청 TRASS (월별: 사용자 기준 엑셀)", "source_url": "https://www.trass.or.kr",
                  "method": "linked", "linked": "trass", "related": ["000660", "005930", "MU"], "points": monthly, "stat": stat,
                  "status": "ok" if monthly else "pending", "status_note": None if monthly else "TRASS 관측값 대기",
@@ -843,7 +963,8 @@ GROUPS = [
     {"id": "demand", "label": "토큰 사용량", "desc": "얼마나 쓰이고, 누가 가져가나"},
     {"id": "ecosystem", "label": "모델 · 앱 생태계", "desc": "어떤 모델·앱이 뜨나"},
     {"id": "price", "label": "토큰 가격 · 속도", "desc": "단가가 얼마나 빠지나"},
-    {"id": "gpu", "label": "GPU 임대가", "desc": "하드웨어 수급"},
+    {"id": "gpu", "label": "GPU 렌탈가", "desc": "하드웨어 수급"},
+    {"id": "credit", "label": "빅테크 CDS", "desc": "AI 투자의 신용 위험"},
     {"id": "memory", "label": "메모리 수출", "desc": "TRASS 잠정치"},
     {"id": "money", "label": "TSMC · 캐팩스 · AI 랩", "desc": "만드는 쪽 · 쓰는 쪽 · 버는 쪽"},
 ]
@@ -852,7 +973,8 @@ BOARDS = {
     "demand": ["or_tokens_weekly", "or_spend_7d", "or_lab_top10", "or_lab_trend"],
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
-    "gpu": ["gpu_h100_market", "gpu_cloud_multi", "gpu_h100_spread", "gpu_market_multi"],
+    "gpu": ["gpu_h100_index", "gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],
+    "credit": ["cds_bigtech", "cds_ai", "cds_gap", "cds_table"],
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
 }
@@ -870,10 +992,15 @@ DESCS = {
     "frontier_price_index": "지능 점수 상위 5개 최고급 모델의 실제 지불 단가 평균. 최첨단 성능의 가격이 내려가는 속도.",
     "frontier_speed": "같은 최고급 모델들이 초당 뽑아내는 토큰 수. 추론 칩·서빙 최적화가 얼마나 빨라지는지.",
     "price_cuts": "OpenRouter 등록 모델 중 가격을 내린 사례를 매일 자동 감지해 기록. 가격 경쟁의 신호.",
-    "gpu_h100_market": "H100 GPU 1장을 1시간 빌리는 클라우드 공시가격의 중앙값. AI 연산 자원의 시장 가격.",
+    "gpu_h100_index": "H100 GPU 1장을 1시간 빌리는 값을 실제 체결 거래로 매일 정산한 지수. AI 연산 자원의 현재 시세.",
+    "gpu_index_multi": "같은 체결 기준 지수를 GPU 세대별로 비교. 신형이 오르는 동안 구형이 눌리는지 본다.",
+    "cds_bigtech": "빅테크 회사채의 부도 위험을 사고파는 보험료(5년물 CDS, bp). 오르면 시장이 그 회사 빚을 더 위험하게 본다는 뜻.",
+    "cds_ai": "AI 투자를 빚으로 키우는 쪽(오라클·코어위브)과 칩을 파는 쪽(엔비디아·브로드컴)의 신용 위험 비교.",
+    "cds_gap": "오라클 CDS에서 마이크로소프트 CDS를 뺀 값. AI 데이터센터 차입에 시장이 매기는 추가 위험 프리미엄.",
+    "cds_table": "추적 중인 빅테크·AI 기업의 오늘 5년물 CDS와 전일 대비 변화.",
     "gpu_cloud_multi": "GPU 세대별 클라우드 임대 중앙가. 신형이 나오며 구형 가격이 얼마나 빨리 내려가는지.",
     "gpu_h100_spread": "같은 H100을 AWS·Azure 같은 대형 클라우드와 CoreWeave 같은 GPU 전문 클라우드가 파는 가격 차이.",
-    "gpu_market_multi": "개인·소형 공급자가 GPU를 직접 빌려주는 마켓(Vast)의 호가 중앙값. 수급에 가장 먼저 반응한다.",
+    "gpu_cloud_multi": "GPU 세대별 클라우드 공시가 중앙값(80여 개 클라우드). 정가는 체결가보다 늦게 움직인다.",
     "trass_dram": "한국에서 해외로 나간 DRAM 칩 수출액(월별). 삼성전자·SK하이닉스 메모리 업황의 가장 빠른 실측치.",
     "trass_mcp": "여러 칩을 한 패키지로 묶은 MCP 수출액. HBM이 주로 여기로 잡혀 AI 메모리 수요의 대리 지표로 본다.",
     "trass_flash": "낸드 등 플래시 메모리 수출액. 저장장치(SSD) 수요와 낸드 가격 흐름을 반영.",
@@ -883,9 +1010,9 @@ DESCS = {
     "hyperscaler_capex": "아마존·MS·구글·메타·오라클이 분기마다 쓴 설비투자 합계. AI 데이터센터에 들어가는 돈의 총량.",
     "ai_lab_arr": "OpenAI·Anthropic 등 AI 랩의 연환산 매출(런레이트) 보도. AI에 들어간 돈이 매출로 돌아오는지.",
 }
-KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_market", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
+KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_index", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
 COLLECTORS = {"or_models": c_or_models, "or_chart": c_or_chart, "or_week": c_or_week, "or_apps": c_or_apps, "frontier": c_frontier,
-              "hf": c_hf, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "prices": c_prices}
+              "hf": c_hf, "ornn": c_ornn, "cds": c_cds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "prices": c_prices}
 
 
 def load(path, default):

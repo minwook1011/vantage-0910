@@ -13,6 +13,7 @@
   var METHOD = {api: "API", scrape: "수집", manual: "수동", computed: "계산", linked: "연결"};
   var RANGES = ["3M", "6M", "1Y", "2Y", "ALL"];
   var TS_TYPES = {line: 1, bars: 1, stack: 1, share: 1, share_abs: 1};
+  var SHORT_UNIT = {"T 토큰": "T", "$M": "M", "$B": "B", "%": "%", "억$": "억", "$/M": "", "$/GPU·h": "", "NT$ 십억": "", "개": "", "tok/s": "", "M회": "M"};
   var STORE = "vantage-ai-indicators-v2";
   var DATA = null, LINKS = null, loading = false, error = "";
   var modal = null, modalRange = "1Y", overlay = {}, company = null, companyRange = "1Y", customLinks = {}, board = "demand";
@@ -143,17 +144,28 @@
     gridY(svg, L, R, T, B, width, height, lo, hi, fy);
     xTicks(svg, first, last, L, R, width, height, B);
     if (o.baseline != null && o.baseline > lo && o.baseline < hi) svg.push('<path class="ai-axis" d="M' + L + " " + y(o.baseline).toFixed(1) + "H" + (width - R) + '" stroke-dasharray="4 4"/>');
-    var ends = [];
+    var ends = [], solo = o.rows.length === 1;
+    var path = function (pts) { return pts.map(function (p, i) { return (i ? "L" : "M") + x(p.date).toFixed(1) + " " + y(p.value).toFixed(1); }).join(" "); };
     o.rows.forEach(function (r) {
       if (!r.points.length) return;
-      var d = r.points.map(function (p, i) { return (i ? "L" : "M") + x(p.date).toFixed(1) + " " + y(p.value).toFixed(1); }).join(" ");
-      if (o.rows.length === 1 && o.area && r.points.length > 1) svg.push('<path class="ai-area" d="' + d + "L" + x(r.points[r.points.length - 1].date).toFixed(1) + " " + (height - B) + "L" + x(r.points[0].date).toFixed(1) + " " + (height - B) + 'Z" fill="' + r.color + '"/>');
+      // 추정치(진행 중인 달 등)는 마지막에 점선으로 잇고 빈 점으로 그린다
+      var pts = r.points, lastReal = pts.length - 1;
+      while (lastReal > 0 && pts[lastReal].est) lastReal--;
+      var solid = pts.slice(0, lastReal + 1), tail = pts.slice(lastReal), d = path(solid);
+      if (solo && o.area && solid.length > 1) svg.push('<path class="ai-area" d="' + d + "L" + x(solid[solid.length - 1].date).toFixed(1) + " " + (height - B) + "L" + x(solid[0].date).toFixed(1) + " " + (height - B) + 'Z" fill="' + r.color + '"/>');
       svg.push('<path class="ai-line' + (r.thick === false ? " thin" : "") + '" pathLength="1" d="' + d + '" stroke="' + r.color + '"/>');
-      var lp = r.points[r.points.length - 1];
-      // 최신 점에서 퍼지는 고리 — 살아 있는 값이라는 표시
-      svg.push('<circle class="ai-ping" cx="' + x(lp.date).toFixed(1) + '" cy="' + y(lp.value).toFixed(1) + '" r="3.5" fill="' + r.color + '"/>');
-      svg.push('<circle class="ai-dot" cx="' + x(lp.date).toFixed(1) + '" cy="' + y(lp.value).toFixed(1) + '" r="' + (r.points.length === 1 ? 4.5 : 3.5) + '" fill="' + r.color + '"/>');
-      ends.push({y: y(lp.value), label: r.short || r.label});
+      if (tail.length > 1) svg.push('<path class="ai-line est" d="' + path(tail) + '" stroke="' + r.color + '" stroke-dasharray="5 4"/>');
+      var lp = pts[pts.length - 1], lx = x(lp.date), ly = y(lp.value);
+      // 최신 점 — 퍼지는 고리 + 강조 테두리 + 값 표시
+      svg.push('<circle class="ai-ping" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="3.5" fill="' + r.color + '"/>');
+      if (solo) svg.push('<circle class="ai-last-ring" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="7.5" fill="none" stroke="' + r.color + '"/>');
+      svg.push('<circle class="ai-dot" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="' + (pts.length === 1 ? 4.5 : 3.5) + '" ' + (lp.est ? 'fill="#111925" stroke-width="2.5" stroke="' + r.color + '"' : 'fill="' + r.color + '"') + "/>");
+      if (solo && o.lastLabel !== false) {
+        var txt = (o.fmtLabel || fy)(lp.value) + (o.unitShort ? o.unitShort : "");
+        var near = lx > width - R - 46, ty = ly - 13 < T + 10 ? ly + 20 : ly - 13;
+        svg.push('<text class="ai-last-label" x="' + (near ? lx - 11 : lx).toFixed(1) + '" y="' + ty.toFixed(1) + '" text-anchor="' + (near ? "end" : "middle") + '" fill="' + r.color + '">' + esc(txt) + "</text>");
+      }
+      ends.push({y: ly, label: r.short || r.label});
     });
     if (o.endLabels && ends.length > 1) {
       ends.sort(function (a, b) { return a.y - b.y; });
@@ -161,8 +173,9 @@
       ends.forEach(function (e) { svg.push('<text class="ai-end-label" x="' + (width - R + 7) + '" y="' + (e.y + 4).toFixed(1) + '">' + esc(e.label.length > 9 ? e.label.slice(0, 8) + "…" : e.label) + "</text>"); });
     }
     svg.push('<line class="ai-crosshair" x1="0" x2="0" y1="' + T + '" y2="' + (height - B) + '" style="display:none"/><rect class="ai-hit" x="' + L + '" y="' + T + '" width="' + (width - L - R) + '" height="' + (height - T - B) + '"/></svg>');
-    var maps = o.rows.map(function (r) { var m = {}; r.points.forEach(function (p) { m[p.date] = p.value; }); return m; });
-    return {svg: svg.join(""), hover: {dates: dl, xs: dl.map(x), rows: o.rows, maps: maps, unit: o.unit, digits: o.digits, fmtY: o.fmtTip}};
+    var maps = o.rows.map(function (r) { var m = {}; r.points.forEach(function (p) { m[p.date] = p.value; }); return m; }), notes = {};
+    o.rows.forEach(function (r) { r.points.forEach(function (p) { if (p.est) notes[p.date] = p.note || "추정"; }); });
+    return {svg: svg.join(""), hover: {dates: dl, xs: dl.map(x), rows: o.rows, maps: maps, unit: o.unit, digits: o.digits, fmtY: o.fmtTip, notes: notes}};
   }
   function barChart(o) {
     var pts = o.points, width = o.width, height = o.height || 200, L = 50, R = 10, T = 12, B = 24, n = pts.length;
@@ -238,17 +251,13 @@
       '</div><p>매일 쌓이는 중 · 첫 관측 ' + esc(d || "—") + " · 과거 이력은 공개되지 않아 오늘부터 누적합니다.</p></div>";
   }
   /* plot(s, width, height, range) → {html, hover, legendRows} */
+  /* 추이를 볼 수 있는 지표는 꺾은선으로 그린다. 여러 기업을 쌓아 보는 캐팩스(stack)만 막대. */
   function plot(s, width, height, range) {
-    if (s.type === "bars") {
-      var bp = clip(s.points, range || "2Y"); if (!bp.length) return {html: empty(s)};
-      var b = barChart({width: width, height: height, points: bp, unit: s.unit, digits: s.digits, label: s.label, aria: s.label});
-      return {html: b.svg, hover: b.hover};
-    }
     if (s.type === "stack") { var st = stackChart(s, width, height); return st ? {html: st.svg, hover: st.hover, legendRows: (s.lines || []).map(function (l, k) { return {label: l.label, color: COLORS[k % COLORS.length], points: good(l.points)}; })} : {html: empty(s)}; }
     var rows = lines(s).map(function (l, k) { return {label: l.label, color: COLORS[k % COLORS.length], thick: true, points: clip(l.points, range || "ALL")}; }).filter(function (r) { return r.points.length; });
     if (!rows.length) return {html: empty(s)};
     if (rows.every(function (r) { return r.points.length < 2; })) return {html: accumulating(s, rows)};
-    var ch = lineChart({width: width, height: height, rows: rows, unit: s.unit, digits: s.digits, aria: s.label, area: rows.length === 1, zero: s.type === "share", compact: true});
+    var ch = lineChart({width: width, height: height, rows: rows, unit: s.unit, digits: s.digits, aria: s.label, area: rows.length === 1, zero: s.type === "share" || s.type === "bars", compact: true, unitShort: SHORT_UNIT[s.unit] || ""});
     return {html: ch.svg, hover: ch.hover, legendRows: rows.length > 1 ? rows : null};
   }
   function empty(s) {
