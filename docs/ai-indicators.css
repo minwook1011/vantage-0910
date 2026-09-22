@@ -2,8 +2,8 @@
    memory-data.css 와 같은 톤을 쓰되, 클래스 접두사는 dh-view / ai- / co- 로 분리한다. */
 
 /* ── 상단 3분할 탭 ───────────────────────────────────── */
-.dh-views { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:4px 0 22px; padding:8px; border:1px solid var(--border); border-radius:14px; background:rgba(11,14,20,.92); backdrop-filter:blur(8px); }
-.dh-views button { display:flex; flex-direction:column; align-items:flex-start; gap:3px; padding:12px 14px; border:1px solid transparent; border-radius:10px; color:#9fb0cb; background:transparent; font:inherit; text-align:left; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s; }
+.dh-views { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin:0 0 14px; padding:6px; border:1px solid var(--border); border-radius:13px; background:rgba(11,14,20,.92); }
+.dh-views button { display:flex; flex-direction:row; align-items:baseline; flex-wrap:wrap; gap:2px 9px; padding:9px 13px; border:1px solid transparent; border-radius:10px; color:#9fb0cb; background:transparent; font:inherit; text-align:left; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s; }
 .dh-views button b { font-size:15px; letter-spacing:-.02em; color:inherit; }
 .dh-views button small { color:#63718a; font-size:11.5px; }
 .dh-views button:hover { background:rgba(40,55,88,.35); color:#dce5f4; }
@@ -14,8 +14,10 @@
 .dh-view-note { margin:-8px 0 16px; color:#7888a3; font-size:12.5px; }
 
 /* ── 워크스페이스 공통 ──────────────────────────────── */
+.datahub-page .data-head { padding:8px 0 14px; }
+.datahub-page .data-head h1 { font-size:26px; }
 .ai-workspace { --ai-line:#29364b; --ai-ink:#dce5f4; --ai-muted:#8f9fb7; --ai-faint:#5f6d85;
-  margin:0 0 40px; padding:26px; border:1px solid var(--ai-line); border-radius:20px; color:var(--ai-ink);
+  margin:0 0 40px; padding:20px 22px; border:1px solid var(--ai-line); border-radius:20px; color:var(--ai-ink);
   background:linear-gradient(135deg,#141d2e,#0d141f 70%); scroll-margin-top:130px; }
 .ai-workspace *,.ai-workspace *::before,.ai-workspace *::after,.ai-modal *,.ai-modal *::before { box-sizing:border-box; }
 .ai-workspace button,.ai-modal button { font:inherit; cursor:pointer; }
@@ -25,8 +27,8 @@
 
 .ai-header { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
 .ai-eyebrow { color:#80a7e6; font-size:10px; letter-spacing:2.1px; }
-.ai-header h2 { margin:8px 0; font-size:26px; letter-spacing:-1px; }
-.ai-header p { margin:0; color:var(--ai-muted); font-size:13.5px; }
+.ai-header h2 { margin:5px 0 4px; font-size:21px; letter-spacing:-.8px; }
+.ai-header p { margin:0; color:var(--ai-muted); font-size:12.5px; }
 .ai-header-tools { display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:7px; flex:0 0 auto; }
 .ai-header-tools > button,.ai-pill { display:inline-flex; align-items:center; gap:6px; padding:8px 11px; border:1px solid #34435b; border-radius:9px; color:#b7c9e6; background:#151f30; font-size:12px; }
 .ai-header-tools > button:disabled { opacity:.5; cursor:not-allowed; }
@@ -42,34 +44,49 @@
 .ai-delta.dn { color:#7aa5ff; background:rgba(61,126,255,.16); }
 
 /* KPI */
-.ai-kpis { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:9px; margin:18px 0 14px; }
-.ai-kpi { position:relative; padding:11px 12px 9px; border:1px solid #28354b; border-radius:11px; background:#0e1622; color:inherit; text-align:left; overflow:hidden; transition:border-color .15s,transform .12s; }
+.ai-kpis { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; margin:14px 0 12px; }
+.ai-kpi { position:relative; padding:9px 11px 7px; border:1px solid #28354b; border-radius:11px; background:#0e1622; color:inherit; text-align:left; overflow:hidden; transition:border-color .15s,transform .12s; }
 .ai-kpi:hover { border-color:#4a6aa0; transform:translateY(-1px); }
 .ai-kpi b { display:block; padding-right:52px; color:#8fa5c8; font:700 10.5px var(--sans); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .ai-kpi .ai-delta { position:absolute; right:10px; top:10px; }
 .ai-kpi strong { display:block; margin-top:5px; font:700 18px var(--mono); letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
 .ai-kpi strong small { margin-left:3px; color:var(--ai-muted); font-size:10.5px; font-weight:500; }
-.ai-kpi svg { display:block; width:100%; height:26px; margin-top:6px; }
+.ai-kpi svg { display:block; width:100%; height:20px; margin-top:4px; }
 
-/* 보드 바로가기 */
-.ai-jump { display:flex; flex-wrap:wrap; gap:6px; padding:10px 0 4px; border-top:1px solid #243149; }
-.ai-jump button { padding:6px 11px; border:1px solid #2c3b53; border-radius:999px; color:#a9bad6; background:transparent; font-size:12px; }
-.ai-jump button:hover { color:#eef3ff; border-color:#5e91ff; background:rgba(66,109,216,.2); }
+/* 묶음 탭 — 한 번에 한 묶음(카드 4개)만 */
+.ai-boardtabs { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:6px; padding-top:10px; border-top:1px solid #243149; scroll-margin-top:100px; }
+.ai-boardtabs button { position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:1px; min-width:0; padding:7px 10px 8px; border:1px solid #243149; border-radius:10px; color:#9fb0cb; background:#0d1522; text-align:left; overflow:hidden; transition:border-color .2s,background-color .2s,color .2s,transform .15s; }
+.ai-boardtabs button::after { content:""; position:absolute; left:0; bottom:0; height:2px; width:100%; background:linear-gradient(90deg,#5b8cff,#22a886); transform:scaleX(0); transform-origin:left; transition:transform .35s cubic-bezier(.2,.8,.2,1); }
+.ai-boardtabs button:hover { color:#dce5f4; border-color:#3d5680; transform:translateY(-1px); }
+.ai-boardtabs button.on { color:#eef3ff; border-color:#4a6fb8; background:linear-gradient(135deg,rgba(66,109,216,.3),rgba(14,22,34,.95)); }
+.ai-boardtabs button.on::after { transform:scaleX(1); }
+.ai-boardtabs em { color:#5f6d85; font:700 10px var(--mono); font-style:normal; }
+.ai-boardtabs button.on em { color:#8fb0e6; }
+.ai-boardtabs b { font-size:13px; letter-spacing:-.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+.ai-boardtabs small { color:#5f6d85; font-size:10.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
 
-/* 보드 · 카드 그리드 (4개면 2×2, 2개면 1×2) */
-.ai-board { margin-top:22px; scroll-margin-top:140px; }
-.ai-board-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; margin-bottom:10px; }
+/* 보드 · 카드 그리드 (2×2) */
+.ai-board { margin-top:12px; }
+.ai-board-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin-bottom:8px; }
 .ai-board-head h3 { margin:0; font-size:17px; letter-spacing:-.03em; }
 .ai-board-head span { color:var(--ai-faint); font-size:12px; }
-.ai-board-head .ai-link { margin-left:auto; font-size:12px; }
-.ai-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.ai-board-head .ai-link { font-size:12px; }
+.ai-board-nav { display:inline-flex; gap:4px; margin-left:auto; }
+.ai-board-nav button { width:30px; height:30px; border:1px solid #33445e; border-radius:8px; color:#b7c9e6; background:#131d2e; font-size:17px !important; line-height:1; transition:border-color .15s,color .15s,transform .12s; }
+.ai-board-nav button:hover { color:#eef3ff; border-color:#5e91ff; transform:translateY(-1px); }
+.ai-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
 .ai-cards.n1 { grid-template-columns:1fr; }
 .ai-cards.n3 > :first-child { grid-column:1 / -1; }
 
-.ai-card { display:flex; flex-direction:column; min-width:0; padding:14px 15px 11px; border:1px solid #28354b; border-radius:13px; background:linear-gradient(160deg,#152033,#0f1726); }
+.ai-card { position:relative; display:flex; flex-direction:column; min-width:0; padding:11px 13px 8px; border:1px solid #28354b; border-radius:13px; background:linear-gradient(160deg,#152033,#0f1726); transition:transform .2s cubic-bezier(.2,.8,.2,1),border-color .2s,box-shadow .2s; }
+.ai-card:hover { transform:translateY(-2px); border-color:#3d5680; box-shadow:0 14px 34px rgba(0,0,0,.38),0 0 0 1px rgba(91,140,255,.08) inset; }
+.ai-card::before { content:""; position:absolute; inset:0 0 auto; height:1px; border-radius:13px 13px 0 0; background:linear-gradient(90deg,transparent,rgba(125,168,255,.55),transparent); opacity:0; transition:opacity .25s; pointer-events:none; }
+.ai-card:hover::before { opacity:1; }
 .ai-card > header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
 .ai-card h4 { margin:0; font-size:14px; letter-spacing:-.02em; line-height:1.4; }
 .ai-card header p { margin:3px 0 0; color:var(--ai-faint); font-size:11px; line-height:1.4; }
+.ai-collected { display:inline-block; margin-top:4px; color:var(--gold); font:700 10.5px var(--mono); font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
+.ai-gold { color:var(--gold); font-weight:700; }
 .ai-flag { display:inline-block; margin-left:7px; padding:1px 7px; border:1px solid #3c4d65; border-radius:999px; color:#a5b6cf; font:600 10px var(--sans); vertical-align:2px; }
 .ai-flag.warn { border-color:#6a5a3a; color:#f1c07a; }
 .ai-card-num { flex:0 0 auto; text-align:right; }
@@ -77,9 +94,9 @@
 .ai-card-num strong small { margin-left:3px; color:var(--ai-muted); font-size:10.5px; font-weight:500; }
 .ai-card-num strong small.lead { margin:0 6px 0 0; color:#c9d6ea; font:600 11px var(--sans); }
 .ai-card-num .dl { display:inline-block; margin-left:4px; color:var(--ai-faint); font:10px var(--sans); font-style:normal; }
-.ai-card-body { flex:1 1 auto; min-height:190px; margin-top:10px; }
-.ai-card > footer { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; margin-top:8px; padding-top:8px; border-top:1px solid #1f2b40; }
-.ai-card > footer p { margin:0; color:#71819c; font-size:11px; line-height:1.55; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.ai-card-body { flex:1 1 auto; min-height:156px; margin-top:6px; }
+.ai-card > footer { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:6px; padding-top:6px; border-top:1px solid #1f2b40; }
+.ai-card > footer p { margin:0; color:#71819c; font-size:11px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
 .ai-more { flex:0 0 auto; padding:5px 9px; border:1px solid #33445e; border-radius:7px; color:#b7c9e6; background:#131d2e; font-size:11px; white-space:nowrap; }
 .ai-more:hover { border-color:#5e91ff; color:#eef3ff; }
 
@@ -124,7 +141,7 @@
 .ai-empty p { max-width:380px; margin:6px 0 0; color:#8fa4bf; font-size:11.5px; line-height:1.8; }
 
 /* 순위 막대 */
-.ai-rank { display:grid; gap:6px; }
+.ai-rank { display:grid; gap:4px; }
 .ai-rank-row { display:grid; grid-template-columns:minmax(0,130px) 1fr auto; align-items:center; gap:10px; font-size:12px; }
 .ai-rank-row > span:first-child { display:flex; align-items:center; gap:6px; min-width:0; color:#c9d6ea; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .ai-rank-row > span:first-child em { flex:0 0 16px; color:#5f6d85; font:10.5px var(--mono); font-style:normal; text-align:right; }
@@ -135,6 +152,11 @@
 .ai-rank-row > span:last-child { color:#dce5f4; font:12px var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
 
 /* 표 */
+.ai-card .ai-table-wrap { max-height:230px; }
+.ai-card .ai-table td { padding:5px 7px; }
+.ai-card .ai-events { max-height:230px; }
+.ai-card .ai-events li { padding:6px 2px; }
+.ai-card .ai-accum,.ai-card .ai-empty { min-height:150px; }
 .ai-table-wrap { max-height:300px; overflow:auto; scrollbar-width:thin; scrollbar-color:#33445e transparent; }
 .ai-table { width:100%; border-collapse:collapse; font-size:12px; }
 .ai-table th { position:sticky; top:0; padding:6px 7px; border-bottom:1px solid #2c3d53; background:#121b2b; color:var(--ai-muted); font-weight:700; text-align:right; white-space:nowrap; }
@@ -222,7 +244,40 @@ body.ai-modal-open { overflow:hidden; }
 .co-add p { flex-basis:100%; margin:0; color:#71819c; font-size:11.5px; line-height:1.6; }
 .co-add code { color:#b4c7e6; }
 
-@media (max-width:1100px) { .ai-kpis { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+/* ── 움직임 ─────────────────────────────────────────────
+   .play 는 묶음을 처음 열거나 바꿀 때 2.2초 동안만 붙는다. --d = 카드 순서 지연, --i = 막대·행 순서. */
+@keyframes ai-rise { from { opacity:0; transform:translateY(16px) scale(.985); } to { opacity:1; transform:none; } }
+@keyframes ai-draw { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } }
+@keyframes ai-grow { from { transform:scaleY(0); } to { transform:scaleY(1); } }
+@keyframes ai-fill { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+@keyframes ai-fade { from { opacity:0; } }
+@keyframes ai-pop { 0% { opacity:0; transform:scale(0); } 70% { transform:scale(1.35); } 100% { opacity:1; transform:scale(1); } }
+@keyframes ai-ping { 0% { opacity:.55; transform:scale(1); } 80%,100% { opacity:0; transform:scale(3.4); } }
+@keyframes ai-blink { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+@keyframes ai-panel { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+@keyframes ai-modal-in { from { opacity:0; transform:translateY(14px) scale(.98); } to { opacity:1; transform:none; } }
+
+.ai-board.play .ai-card { animation:ai-rise .6s cubic-bezier(.2,.8,.2,1) both; animation-delay:var(--d,0ms); }
+.ai-board.play .ai-line { stroke-dasharray:1; animation:ai-draw 1.3s cubic-bezier(.45,0,.2,1) both; animation-delay:calc(var(--d,0ms) + 180ms); }
+.ai-board.play .ai-area { animation:ai-fade .9s ease both; animation-delay:calc(var(--d,0ms) + 700ms); }
+.ai-board.play .ai-dot { transform-box:fill-box; transform-origin:center; animation:ai-pop .45s ease both; animation-delay:calc(var(--d,0ms) + 1.35s); }
+.ai-board.play .ai-bar { transform-box:fill-box; transform-origin:bottom; animation:ai-grow .7s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--d,0ms) + 150ms + min(calc(var(--i,0) * 14ms), 700ms)); }
+.ai-board.play .ai-rank-bar i { transform-origin:left; animation:ai-fill .8s cubic-bezier(.2,.8,.2,1) both; animation-delay:calc(var(--d,0ms) + 150ms + var(--i,0) * 50ms); }
+.ai-board.play .ai-rank-row,.ai-board.play .ai-events li,.ai-board.play .ai-table tbody tr,.ai-board.play .ai-stat-grid > div { animation:ai-fade .5s ease both; animation-delay:calc(var(--d,0ms) + 200ms); }
+.ai-ping { transform-box:fill-box; transform-origin:center; animation:ai-ping 2.6s cubic-bezier(.2,.6,.3,1) infinite; pointer-events:none; }
+.ai-pill.live i,.ai-pill.pending i { animation:ai-blink 2.2s ease-in-out infinite; }
+.dh-view:not([hidden]) { animation:ai-panel .35s cubic-bezier(.2,.8,.2,1) both; }
+.ai-modal-box { animation:ai-modal-in .28s cubic-bezier(.2,.8,.2,1) both; }
+.ai-modal-back { animation:ai-fade .25s ease both; }
+.ai-kpi { transition:border-color .2s,transform .15s,box-shadow .2s; }
+.ai-kpi:hover { box-shadow:0 10px 26px rgba(0,0,0,.35); }
+@media (prefers-reduced-motion:reduce) {
+  .ai-board.play *, .ai-ping, .ai-pill i, .dh-view, .ai-modal-box, .ai-modal-back { animation:none !important; }
+  .ai-ping { display:none; }
+  .ai-card,.ai-card:hover,.ai-boardtabs button { transition:none; transform:none; }
+}
+
+@media (max-width:1100px) { .ai-kpis { grid-template-columns:repeat(3,minmax(0,1fr)); } .ai-boardtabs { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media (max-width:860px) { .ai-cards,.co-grid { grid-template-columns:1fr; } .ai-cards.n3 > :first-child { grid-column:auto; } .ai-workspace { padding:18px; } .ai-header { flex-direction:column; } .ai-header-tools { justify-content:flex-start; } }
 @media (max-width:640px) { .dh-views { gap:4px; padding:5px; } .dh-views button { padding:9px 8px; } .dh-views button b { font-size:13px; } .dh-views button small { display:none; } }
-@media (max-width:520px) { .ai-workspace { padding:14px; border-radius:14px; } .ai-header h2 { font-size:23px; } .ai-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-rank-row { grid-template-columns:minmax(0,100px) 1fr auto; } .ai-modal-box { padding:16px; } .ai-card > header { flex-wrap:wrap; } .ai-card-num { text-align:left; } }
+@media (max-width:520px) { .ai-boardtabs { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-boardtabs small { display:none; } .ai-workspace { padding:14px; border-radius:14px; } .ai-header h2 { font-size:23px; } .ai-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-rank-row { grid-template-columns:minmax(0,100px) 1fr auto; } .ai-modal-box { padding:16px; } .ai-card > header { flex-wrap:wrap; } .ai-card-num { text-align:left; } }

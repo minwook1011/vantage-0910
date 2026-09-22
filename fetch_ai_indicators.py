@@ -756,18 +756,17 @@ GROUPS = [
     {"id": "ecosystem", "label": "모델 · 앱 생태계", "desc": "어떤 모델·앱이 뜨나"},
     {"id": "price", "label": "토큰 가격 · 속도", "desc": "단가가 얼마나 빠지나"},
     {"id": "gpu", "label": "GPU 임대가", "desc": "하드웨어 수급"},
-    {"id": "tsmc", "label": "TSMC", "desc": "월매출 + CAPA"},
     {"id": "memory", "label": "메모리 수출", "desc": "TRASS 잠정치"},
-    {"id": "capex", "label": "캐팩스 · AI 랩 매출", "desc": "돈이 얼마나 들어가고 들어오나"},
+    {"id": "money", "label": "TSMC · 캐팩스 · AI 랩", "desc": "만드는 쪽 · 쓰는 쪽 · 버는 쪽"},
 ]
+# 묶음마다 카드 4개 — 한 화면에 2×2 로 들어가게 맞춘다
 BOARDS = {
     "demand": ["or_tokens_weekly", "or_spend_7d", "or_lab_top10", "or_lab_trend"],
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
     "gpu": ["gpu_h100_market", "gpu_market_multi", "gpu_list_multi", "gpu_price_table"],
-    "tsmc": ["tsmc_monthly_rev", "tsmc_capa"],
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
-    "capex": ["hyperscaler_capex", "ai_lab_arr"],
+    "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
 }
 KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_market", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
 COLLECTORS = {"or_models": c_or_models, "or_chart": c_or_chart, "or_week": c_or_week, "or_apps": c_or_apps, "frontier": c_frontier,

@@ -15,10 +15,10 @@
   var TS_TYPES = {line: 1, bars: 1, stack: 1, share: 1, share_abs: 1};
   var STORE = "vantage-ai-indicators-v2";
   var DATA = null, LINKS = null, loading = false, error = "";
-  var modal = null, modalRange = "1Y", overlay = {}, company = null, companyRange = "1Y", customLinks = {};
+  var modal = null, modalRange = "1Y", overlay = {}, company = null, companyRange = "1Y", customLinks = {}, board = "demand";
 
-  try { var saved = JSON.parse(localStorage.getItem(STORE) || "{}"); overlay = saved.overlay || {}; company = saved.company || null; customLinks = saved.customLinks || {}; companyRange = saved.companyRange || companyRange; } catch (e) {}
-  function persist() { try { localStorage.setItem(STORE, JSON.stringify({overlay: overlay, company: company, customLinks: customLinks, companyRange: companyRange})); } catch (e) {} }
+  try { var saved = JSON.parse(localStorage.getItem(STORE) || "{}"); overlay = saved.overlay || {}; company = saved.company || null; customLinks = saved.customLinks || {}; companyRange = saved.companyRange || companyRange; board = saved.board || board; } catch (e) {}
+  function persist() { try { localStorage.setItem(STORE, JSON.stringify({overlay: overlay, company: company, customLinks: customLinks, companyRange: companyRange, board: board})); } catch (e) {} }
 
   /* ── 유틸 ─────────────────────────────────────────────── */
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]; }); }
@@ -61,6 +61,42 @@
   }
   function seriesById(id) { return DATA && (DATA.series || []).find(function (s) { return s.id === id; }); }
   function tickerLabel(t) { var c = DATA && DATA.companies && DATA.companies[t]; return c ? c.label : t; }
+  /* ── 움직임 ─────────────────────────────────────────────
+     보드가 처음 화면에 들어올 때 한 번만: 카드가 순서대로 떠오르고, 선은 그려지고, 막대는 자라고, 숫자는 0부터 올라간다.
+     이미 본 보드는 다시 그려도(창 크기 변경 등) 재생하지 않는다. 움직임 최소화 설정이면 전부 끈다. */
+  var REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches, seenBoards = {}, kpiCounted = false;
+  function countSpan(v, digits) { return '<span class="ai-count" data-v="' + v + '" data-d="' + (digits == null ? 1 : digits) + '">' + fmt(v, digits) + "</span>"; }
+  function countUp(els) {
+    if (REDUCED) return;
+    Array.prototype.forEach.call(els, function (el) {
+      var target = Number(el.dataset.v), digits = Number(el.dataset.d), t0 = null;
+      if (!finite(target)) return;
+      function step(t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = fmt(target * e, digits);
+        if (k < 1) requestAnimationFrame(step); else el.textContent = fmt(target, digits);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  var replay = false, playTimer = null;
+  function animateBoard() {
+    if (REDUCED || !host.offsetParent) return; // 숨겨진 탭에서는 재생하지 않는다
+    var b = host.querySelector(".ai-board");
+    if (b && (replay || !seenBoards[b.id])) {
+      seenBoards[b.id] = true; replay = false;
+      b.classList.add("play"); countUp(b.querySelectorAll(".ai-count"));
+      clearTimeout(playTimer); playTimer = setTimeout(function () { b.classList.remove("play"); }, 2200);
+    }
+    if (!kpiCounted) { kpiCounted = true; countUp(host.querySelectorAll(".ai-kpi .ai-count")); }
+  }
+
+  /* 수집 시각 (노란색) — "수집 2026-09-22 17:46". 실패해 이전 값을 쓰는 카드는 그 값을 받은 시각이 그대로 남는다. */
+  function collected(s) {
+    var t = String(s && s.updated_at || "").replace("T", " ").slice(0, 16);
+    return t ? '<span class="ai-collected" title="이 카드의 값을 마지막으로 받아온 시각 (KST)">수집 ' + esc(t) + "</span>" : "";
+  }
   function headline(s) {
     var g;
     if (s.type === "line" || s.type === "bars" || s.type === "stack") {
@@ -75,7 +111,7 @@
   }
 
   /* ── SVG 차트 ─────────────────────────────────────────── */
-  function dateLabel(t, span) { var d = new Date(t); return span > 400 * 864e5 || true ? String(d.getUTCFullYear()).slice(2) + "/" + ("0" + (d.getUTCMonth() + 1)).slice(-2) : ""; }
+  function dateLabel(t) { var d = new Date(t); return String(d.getUTCFullYear()).slice(2) + "/" + ("0" + (d.getUTCMonth() + 1)).slice(-2); }
   function gridY(svg, L, R, T, B, width, height, lo, hi, fy) {
     for (var i = 0; i < 4; i++) {
       var yy = T + i / 3 * (height - T - B), val = hi - (hi - lo) * i / 3;
@@ -111,8 +147,10 @@
       if (!r.points.length) return;
       var d = r.points.map(function (p, i) { return (i ? "L" : "M") + x(p.date).toFixed(1) + " " + y(p.value).toFixed(1); }).join(" ");
       if (o.rows.length === 1 && o.area && r.points.length > 1) svg.push('<path class="ai-area" d="' + d + "L" + x(r.points[r.points.length - 1].date).toFixed(1) + " " + (height - B) + "L" + x(r.points[0].date).toFixed(1) + " " + (height - B) + 'Z" fill="' + r.color + '"/>');
-      svg.push('<path class="ai-line' + (r.thick === false ? " thin" : "") + '" d="' + d + '" stroke="' + r.color + '"/>');
+      svg.push('<path class="ai-line' + (r.thick === false ? " thin" : "") + '" pathLength="1" d="' + d + '" stroke="' + r.color + '"/>');
       var lp = r.points[r.points.length - 1];
+      // 최신 점에서 퍼지는 고리 — 살아 있는 값이라는 표시
+      svg.push('<circle class="ai-ping" cx="' + x(lp.date).toFixed(1) + '" cy="' + y(lp.value).toFixed(1) + '" r="3.5" fill="' + r.color + '"/>');
       svg.push('<circle class="ai-dot" cx="' + x(lp.date).toFixed(1) + '" cy="' + y(lp.value).toFixed(1) + '" r="' + (r.points.length === 1 ? 4.5 : 3.5) + '" fill="' + r.color + '"/>');
       ends.push({y: y(lp.value), label: r.short || r.label});
     });
@@ -135,7 +173,7 @@
     var xs = [];
     pts.forEach(function (p, i) {
       var cx = L + slot * (i + .5); xs.push(cx);
-      svg.push('<rect class="ai-bar" x="' + (cx - bw / 2).toFixed(1) + '" y="' + y(p.value).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, height - B - y(p.value)).toFixed(1) + '" fill="' + (i === n - 1 ? COLORS[0] : "#3d4f70") + '"/>');
+      svg.push('<rect class="ai-bar" style="--i:' + i + '" x="' + (cx - bw / 2).toFixed(1) + '" y="' + y(p.value).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, height - B - y(p.value)).toFixed(1) + '" fill="' + (i === n - 1 ? COLORS[0] : "#3d4f70") + '"/>');
       if (i === 0 || i === n - 1 || (n > 6 && i % Math.ceil(n / 5) === 0 && n - 1 - i > n / 10)) svg.push('<text x="' + cx.toFixed(1) + '" y="' + (height - 7) + '" text-anchor="' + (i === 0 ? "start" : i === n - 1 ? "end" : "middle") + '">' + dateLabel(ts(p.date)) + "</text>");
     });
     svg.push('<line class="ai-crosshair" x1="0" x2="0" y1="' + T + '" y2="' + (height - B) + '" style="display:none"/><rect class="ai-hit" x="' + L + '" y="' + T + '" width="' + (width - L - R) + '" height="' + (height - T - B) + '"/></svg>');
@@ -157,7 +195,7 @@
       var cx = L + slot * (i + .5), acc = 0; xs.push(cx);
       maps.forEach(function (m, k) { var v = m[d] || 0; if (v <= 0) return;
         var top = y(acc + v), h = Math.max(0, y(acc) - top - 2); // 2px 표면 간격
-        svg.push('<rect class="ai-bar" x="' + (cx - bw / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + COLORS[k % COLORS.length] + '"/>'); acc += v; });
+        svg.push('<rect class="ai-bar" style="--i:' + i + '" x="' + (cx - bw / 2).toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + COLORS[k % COLORS.length] + '"/>'); acc += v; });
       var dd = new Date(ts(d));
       svg.push('<text x="' + cx.toFixed(1) + '" y="' + (height - 7) + '" text-anchor="middle">' + String(dd.getUTCFullYear()).slice(2) + "Q" + (Math.floor(dd.getUTCMonth() / 3) + 1) + "</text>");
     });
@@ -218,7 +256,7 @@
     var max = Math.max.apply(null, items.map(function (i) { return i.value; }));
     return '<div class="ai-rank">' + items.map(function (i, k) {
       var name = safeURL(i.url) ? '<a href="' + esc(safeURL(i.url)) + '" target="_blank" rel="noopener">' + esc(i.label) + "</a>" : esc(i.label);
-      return '<div class="ai-rank-row' + (i.label === "기타" ? " other" : "") + '"><span><em>' + (k + 1) + "</em>" + name + '</span><div class="ai-rank-bar"><i style="width:' + (i.value / max * 100).toFixed(1) + '%"></i></div><span>' + fmt(i.value, s.digits) + (s.unit === "%" ? "%" : "") +
+      return '<div class="ai-rank-row' + (i.label === "기타" ? " other" : "") + '" style="--i:' + k + '"><span><em>' + (k + 1) + "</em>" + name + '</span><div class="ai-rank-bar"><i style="width:' + (i.value / max * 100).toFixed(1) + '%"></i></div><span>' + fmt(i.value, s.digits) + (s.unit === "%" ? "%" : "") +
         (i.delta != null ? " " + pct(i.delta, s.delta_unit || "%") : "") + "</span></div>"; }).join("") + "</div>";
   }
   function tableHTML(t, limit) {
@@ -260,16 +298,16 @@
   /* ── AI 보드 렌더 ─────────────────────────────────────── */
   function cardHTML(s) {
     var h = headline(s), ts_ = TS_TYPES[s.type];
-    var num = h ? '<div class="ai-card-num"><strong>' + (h.lead ? '<small class="lead">' + esc(h.lead) + "</small>" : "") + fmt(h.value, s.digits) + (s.unit && s.type !== "rank" ? "<small>" + esc(s.unit) + "</small>" : s.unit === "%" ? "<small>%</small>" : "") + "</strong>" + (h.delta != null ? pct(h.delta) + '<em class="dl">' + esc(h.dlabel) + "</em>" : "") + "</div>" : "";
+    var num = h ? '<div class="ai-card-num"><strong>' + (h.lead ? '<small class="lead">' + esc(h.lead) + "</small>" : "") + countSpan(h.value, s.digits) + (s.unit && s.type !== "rank" ? "<small>" + esc(s.unit) + "</small>" : s.unit === "%" ? "<small>%</small>" : "") + "</strong>" + (h.delta != null ? pct(h.delta) + '<em class="dl">' + esc(h.dlabel) + "</em>" : "") + "</div>" : "";
     var body;
-    if (s.type === "rank") body = rankHTML(s, 10);
-    else if (s.type === "table") body = tableHTML({columns: s.columns, rows: s.rows}, 10);
-    else if (s.type === "events") body = eventsHTML(s, 6);
+    if (s.type === "rank") body = rankHTML(s, 8);
+    else if (s.type === "table") body = tableHTML({columns: s.columns, rows: s.rows}, 8);
+    else if (s.type === "events") body = eventsHTML(s, 5);
     else if (s.type === "stat") body = statHTML(s);
     else if (s.type === "capa") body = capaHTML(s);
     else body = '<div class="ai-plot" data-plot="' + esc(s.id) + '"></div>';
     var state = s.status === "stale" ? '<span class="ai-flag warn" title="' + esc(s.status_note || "") + '">갱신 실패 · 이전 값</span>' : s.status === "pending" ? '<span class="ai-flag">대기</span>' : "";
-    return '<article class="ai-card t-' + esc(s.type) + '" data-card="' + esc(s.id) + '"><header><div><h4>' + esc(s.label) + state + "</h4><p>" + esc(s.source) + " · " + esc(s.cadence) + "</p></div>" + num + "</header>" +
+    return '<article class="ai-card t-' + esc(s.type) + '" data-card="' + esc(s.id) + '"><header><div><h4>' + esc(s.label) + state + "</h4><p>" + esc(s.source) + " · " + esc(s.cadence) + "</p>" + collected(s) + "</div>" + num + "</header>" +
       '<div class="ai-card-body">' + body + "</div>" +
       '<footer><p title="' + esc(s.caveat || "") + '">' + esc(s.caveat || "") + "</p>" + '<button type="button" class="ai-more" data-open="' + esc(s.id) + '">' + (ts_ ? "크게 · 겹쳐보기" : "자세히") + " ↗</button></footer></article>";
   }
@@ -277,32 +315,50 @@
     if (!host) return;
     if (!DATA) { host.innerHTML = '<div class="ai-header"><div><span class="ai-eyebrow">AI INFRA OBSERVATORY</span><h2>토큰에서 GPU까지.</h2><p>데이터를 불러오는 중…</p></div></div>'; return; }
     var isSample = !!DATA.sample, tg = DATA.telegram || {}, groups = DATA.groups || [], boards = DATA.boards || {};
+    if (groups.length && !groups.some(function (g) { return g.id === board; })) board = groups[0].id;
     var kpis = (DATA.kpis || []).map(seriesById).filter(Boolean);
     var stale = (DATA.series || []).filter(function (s) { return s.status === "stale"; }).length;
     host.innerHTML =
       '<div class="ai-header"><div><span class="ai-eyebrow">AI INFRA OBSERVATORY</span><h2>토큰에서 GPU까지.</h2><p>수요 → 단가 → 하드웨어 → 메모리 → 캐팩스 순으로, 비슷한 지표끼리 한 판에 묶었습니다.</p></div>' +
-      '<div class="ai-header-tools">' + (isSample ? '<span class="ai-pill ai-sample">SAMPLE · 디자인 미리보기</span>' : '<span class="ai-pill live"><i></i>매일 자동 갱신 · ' + esc((DATA.generated_at || "").replace("T", " ").slice(0, 16)) + "</span>") +
+      '<div class="ai-header-tools">' + (isSample ? '<span class="ai-pill ai-sample">SAMPLE · 디자인 미리보기</span>' : '<span class="ai-pill live"><i></i>매일 07:00 자동 수집 · 마지막 <b class="ai-gold">' + esc((DATA.generated_at || "").replace("T", " ").slice(0, 16)) + "</b></span>") +
       (stale ? '<span class="ai-pill warn" title="일부 소스 수집 실패 · 이전 값 유지">⚠ ' + stale + "개 이전 값</span>" : "") +
       '<span class="ai-pill ' + (tg.status === "live" ? "live" : "pending") + '"><i></i>텔레그램 ' + (tg.status === "live" ? "연결됨" : "연결 대기") + "</span>" +
       '<button type="button" id="ai-refresh" ' + (loading ? "disabled" : "") + ">" + (loading ? "확인 중…" : "새로고침 ↻") + "</button></div></div>" +
       (error ? '<p class="ai-warning" role="status">' + esc(error) + "</p>" : "") +
-      '<div class="ai-kpis">' + kpis.map(function (k) { var h = headline(k); return '<button type="button" class="ai-kpi" data-jump="' + esc(k.group) + '"><b>' + esc(k.label) + "</b>" + (h && h.delta != null ? pct(h.delta) : "") + "<strong>" + (h ? fmt(h.value, k.digits) : "—") + (k.unit ? "<small>" + esc(k.unit) + "</small>" : "") + "</strong>" + sparkline(k.type === "stack" ? totalLine(k) : k.points) + "</button>"; }).join("") + "</div>" +
-      '<nav class="ai-jump" aria-label="보드 바로가기">' + groups.map(function (g) { return '<button type="button" data-jump="' + esc(g.id) + '">' + esc(g.label) + "</button>"; }).join("") + "</nav>" +
-      groups.map(function (g) {
-        var list = (boards[g.id] || []).map(seriesById).filter(Boolean);
-        if (!list.length) return "";
-        return '<section class="ai-board" id="ai-board-' + esc(g.id) + '"><div class="ai-board-head"><h3>' + esc(g.label) + "</h3><span>" + esc(g.desc || "") + "</span>" + (g.id === "memory" ? '<a href="#trade" class="ai-link">수출입 탭에서 전체 표 보기 →</a>' : "") + '</div><div class="ai-cards n' + list.length + '">' + list.map(cardHTML).join("") + "</div></section>";
-      }).join("") +
+      '<div class="ai-kpis">' + kpis.map(function (k) { var h = headline(k); return '<button type="button" class="ai-kpi" data-jump="' + esc(k.group) + '"><b>' + esc(k.label) + "</b>" + (h && h.delta != null ? pct(h.delta) : "") + "<strong>" + (h ? countSpan(h.value, k.digits) : "—") + (k.unit ? "<small>" + esc(k.unit) + "</small>" : "") + "</strong>" + sparkline(k.type === "stack" ? totalLine(k) : k.points) + "</button>"; }).join("") + "</div>" +
+      '<nav class="ai-boardtabs" role="tablist" aria-label="지표 묶음">' + groups.map(function (g, i) { var on = g.id === board; return '<button type="button" role="tab" aria-selected="' + on + '" class="' + (on ? "on" : "") + '" data-board="' + esc(g.id) + '"><em>0' + (i + 1) + "</em><b>" + esc(g.label) + "</b><small>" + esc(g.desc || "") + "</small></button>"; }).join("") + "</nav>" +
+      (function () {
+        var g = groups.find(function (x) { return x.id === board; }) || {}, list = (boards[g.id] || []).map(seriesById).filter(Boolean);
+        return '<section class="ai-board" id="ai-board-' + esc(g.id) + '" role="tabpanel"><div class="ai-board-head"><h3>' + esc(g.label || "") + "</h3><span>" + esc(g.desc || "") + "</span>" + (g.id === "memory" ? '<a href="#trade" class="ai-link">수출입 탭에서 전체 표 보기 →</a>' : "") +
+          '<span class="ai-board-nav"><button type="button" data-step="-1" aria-label="이전 묶음">‹</button><button type="button" data-step="1" aria-label="다음 묶음">›</button></span></div>' +
+          '<div class="ai-cards n' + list.length + '">' + list.map(function (s, i) { return cardHTML(s).replace("<article ", '<article style="--d:' + i * 110 + 'ms" '); }).join("") + "</div></section>";
+      })() +
       '<p class="ai-footnote">' + (isSample ? "지금 숫자는 화면 설계용 가상 수치입니다." : "매일 07:00(KST) GitHub Actions가 수집합니다. 소스가 실패한 날은 이전 값을 유지하고 카드에 표시합니다.") + ' <a href="https://github.com/minwook1011/vantage-0910/actions/workflows/ai-indicators.yml" target="_blank" rel="noopener">실행 이력 ↗</a></p>';
     host.querySelectorAll(".ai-plot").forEach(function (box) {
       var s = seriesById(box.dataset.plot); if (!s) return;
-      var p = plot(s, Math.max(260, box.clientWidth), 190);
+      var p = plot(s, Math.max(260, box.clientWidth), 156);
       box.innerHTML = legend(p.legendRows) + '<div class="ai-plot-svg">' + p.html + "</div>";
       if (p.hover) attachHover(box.querySelector(".ai-plot-svg"), p.hover);
     });
     host.querySelectorAll("[data-open]").forEach(function (b) { b.onclick = function () { openModal(b.dataset.open); }; });
-    host.querySelectorAll("[data-jump]").forEach(function (b) { b.onclick = function () { var el = document.getElementById("ai-board-" + b.dataset.jump); if (el) el.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start"}); }; });
+    host.querySelectorAll("[data-board],[data-jump]").forEach(function (b) { b.onclick = function () { var id = b.dataset.board || b.dataset.jump; if (id === board) fitBoard(); else switchBoard(id); }; });
+    host.querySelectorAll("[data-step]").forEach(function (b) { b.onclick = function () { var ids = groups.map(function (g) { return g.id; }), i = ids.indexOf(board); switchBoard(ids[(i + Number(b.dataset.step) + ids.length) % ids.length]); }; });
     var rf = document.getElementById("ai-refresh"); if (rf) rf.onclick = function () { load(true); };
+    animateBoard();
+  }
+  /* 한 번에 한 묶음(카드 4개)만 보여준다 — 아래로 길게 내리지 않도록. 고른 묶음은 기억한다. */
+  function switchBoard(id) {
+    if (!id || id === board) return;
+    board = id; replay = true; persist(); renderAI();
+    fitBoard();
+  }
+  /* 카드 4개가 화면 아래로 잘리면, 묶음 탭이 상단 메뉴 바로 아래에 오도록 스크롤해 한 화면에 다 보이게 한다 */
+  function fitBoard() {
+    var nav = host.querySelector(".ai-boardtabs"), b = host.querySelector(".ai-board"), top = document.getElementById("topnav");
+    if (!nav || !b) return;
+    var offset = (top ? top.getBoundingClientRect().bottom : 0) + 8, navTop = nav.getBoundingClientRect().top;
+    if (b.getBoundingClientRect().bottom > innerHeight || navTop < offset)
+      window.scrollTo({top: scrollY + navTop - offset, behavior: REDUCED ? "auto" : "smooth"});
   }
 
   /* ── 크게 보기 모달 (기간 · 종목 겹쳐보기) ───────────── */
@@ -316,7 +372,7 @@
     var ts_ = TS_TYPES[s.type], tickers = ts_ && s.type !== "share" && s.type !== "share_abs" ? overlayTickers(s) : [];
     var pool = []; tickers.concat(s.related || []).forEach(function (t) { if (DATA.companies && DATA.companies[t] && pool.indexOf(t) < 0) pool.push(t); });
     m.innerHTML = '<div class="ai-modal-back" data-close></div><div class="ai-modal-box"><button class="ai-modal-x" type="button" data-close aria-label="닫기">×</button>' +
-      '<div class="ai-detail-head"><div><span class="ai-state">' + esc(METHOD[s.method] || "") + " · " + esc(s.cadence || "") + "</span><h3>" + esc(s.label) + "</h3><p>" + esc(s.source || "") + "</p></div></div>" +
+      '<div class="ai-detail-head"><div><span class="ai-state">' + esc(METHOD[s.method] || "") + " · " + esc(s.cadence || "") + "</span><h3>" + esc(s.label) + "</h3><p>" + esc(s.source || "") + "</p>" + collected(s) + "</div></div>" +
       (ts_ ? '<div class="ai-toolbar"><div class="ai-seg">' + RANGES.map(function (r) { return '<button type="button" data-range="' + r + '" class="' + (r === modalRange ? "on" : "") + '">' + r + "</button>"; }).join("") + "</div>" + (tickers.length ? '<span class="ai-mini-note">지표와 종목을 구간 시작 = 100 으로 맞춘 상대 추이</span>' : "") + "</div>" : "") +
       '<div class="ai-modal-plot" id="ai-modal-plot"></div>' +
       (s.type === "rank" ? rankHTML(s, 20) : s.type === "table" ? tableHTML({columns: s.columns, rows: s.rows}) : s.type === "events" ? eventsHTML(s) : s.type === "stat" ? statHTML(s) : s.type === "capa" ? capaHTML(s) : "") +
@@ -376,7 +432,7 @@
       '<div class="co-price"><div class="co-price-head"><div><h3>' + esc(c.label) + " <small>" + esc(company) + '</small></h3><p>일간 종가 · ' + esc(c.currency || "") + " · 야후 파이낸스</p></div>" +
       (last ? "<div class=\"ai-card-num\"><strong>" + fmt(last.value, c.market === "KR" ? 0 : 2) + "</strong>" + pct(first ? (last.value / first.value - 1) * 100 : null) + '<em class="dl">' + esc(companyRange) + " 수익률</em></div>" : "") +
       '</div><div class="ai-plot-svg" id="co-price-plot"></div></div>' +
-      '<div class="co-grid">' + (links.length ? links.map(function (id) { var s = seriesById(id); return '<article class="ai-card co-card"><header><div><h4>' + esc(s.label) + "</h4><p>" + esc(s.source) + " · " + esc(s.cadence) + '</p></div><button type="button" class="co-x" data-unlink="' + esc(id) + '" aria-label="연결 해제">×</button></header>' +
+      '<div class="co-grid">' + (links.length ? links.map(function (id) { var s = seriesById(id); return '<article class="ai-card co-card"><header><div><h4>' + esc(s.label) + "</h4><p>" + esc(s.source) + " · " + esc(s.cadence) + "</p>" + collected(s) + '</div><button type="button" class="co-x" data-unlink="' + esc(id) + '" aria-label="연결 해제">×</button></header>' +
         '<div class="co-pair"><div class="co-mini-label">주가</div><div class="ai-plot-svg" data-cp="' + esc(id) + '"></div><div class="co-mini-label">' + esc(s.label) + (s.unit ? " · " + esc(s.unit) : "") + '</div><div class="ai-plot-svg" data-ci="' + esc(id) + '"></div></div></article>'; }).join("") : '<div class="ai-empty small"><b>아직 연결한 데이터가 없어요</b><p>아래에서 지표를 골라 붙이세요.</p></div>') + "</div>" +
       '<div class="co-add"><label>데이터 연결 <select id="co-add-sel"><option value="">— 지표 선택 —</option>' + (DATA.groups || []).map(function (g) { var opts = options.filter(function (s) { return s.group === g.id; }); return opts.length ? '<optgroup label="' + esc(g.label) + '">' + opts.map(function (s) { return '<option value="' + esc(s.id) + '">' + esc(s.label) + "</option>"; }).join("") + "</optgroup>" : ""; }).join("") + '</select></label><button type="button" id="co-add-btn">연결</button>' +
       '<p>여기서 붙인 연결은 이 브라우저에만 저장됩니다. 고정하거나 새 기업(티커)을 추가하려면 알려주세요 — <code>data/company_links.json</code> 에 넣으면 다음 수집 때 주가까지 받아옵니다.</p></div>';
