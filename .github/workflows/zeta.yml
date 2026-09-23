@@ -32,7 +32,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install -q google-play-scraper
+      - run: pip install -q google-play-scraper trendspy
       - name: 이번 실행에서 받을 소스 정하기
         id: pick
         env:

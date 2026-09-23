@@ -14,9 +14,30 @@
   var GROUP_LABEL = {company_data: "IR", revenue: "매출 순위", download: "다운로드", users: "유저", content: "작품 수", ads: "광고 · 바이럴", web: "웹", search: "검색", company: "회사"};
   // 파인엠텍처럼 펼쳐서 고르는 메뉴 (IR 자료를 불러오면 IR 메뉴가 앞에 붙는다)
   var SELECTORS = [
-    ["app", "앱 지표 추가", "구글플레이 설치 · 국가별 월 신규 리뷰", ["revenue", "download", "users"]]
+    ["app", "앱 지표 추가", "구글플레이 설치 · 국가별 월 신규 리뷰", ["revenue", "download", "users"]],
+    ["search", "검색 지표 추가", "구글 트렌드 · 전 세계 · 한국 · 일본 · 미국", ["search"]]
   ];
-  var ANCHORS = [["co_revenue", "월 매출 (IR)"], ["app_gplay_installs__mom", "구글플레이 월 신규 설치"]];
+  var ANCHORS = [["co_revenue", "월 매출 (IR)"], ["co_rev_q_total", "분기 매출 (IR)"], ["co_rev_q_kr", "한국 분기 매출 (IR)"], ["co_rev_jp", "일본 월 매출 (IR)"],
+    ["co_rev_q_jp", "일본 분기 매출 (IR)"], ["co_mau_us", "미국 MAU (IR · 미국 매출 자료 없음)"], ["app_gplay_installs__mom", "구글플레이 월 신규 설치"]];
+  /* 국가별 보기: 나라를 고르면 그 나라 매출이 기준선이 되고 그 나라 트래픽 지표가 겹쳐진다. 나라마다 고른 지표·기준선은 따로 저장된다. */
+  var COUNTRY_VIEWS = {
+    all: {anchor: "co_revenue", fallback: "app_gplay_installs__mom", sel: ["app_gplay_installs__mom", "co_mau", "search_gtrends_global"]},
+    kr: {anchor: "co_rev_q_kr", fallback: "search_gtrends_kr", sel: ["co_mau_kr", "app_gplay_newreviews_kr", "search_gtrends_kr"]},
+    jp: {anchor: "co_rev_q_jp", fallback: "search_gtrends_jp", sel: ["co_rev_jp", "co_mau_jp", "app_gplay_newreviews_jp", "search_gtrends_jp"]},
+    us: {anchor: "co_mau_us", fallback: "search_gtrends_us", sel: ["app_gplay_newreviews_us", "search_gtrends_us", "co_us_signups"]}
+  };
+  function viewDefaults(c) { var v = COUNTRY_VIEWS[c] || COUNTRY_VIEWS.all; return {anchor: v.anchor, selected: v.sel.slice(), anchorTouched: false}; }
+  function switchCountry(next) {
+    state.views = state.views || {};
+    state.views[state.country] = {anchor: state.anchor, selected: (state.selected || []).slice(), anchorTouched: !!state.anchorTouched};
+    var v = state.views[next] || viewDefaults(next);
+    state.country = next; state.anchor = v.anchor; state.selected = v.selected.slice(); state.anchorTouched = !!v.anchorTouched;
+  }
+  function ensureAnchor() {
+    // 기준선 지표가 없으면(IR 미불러옴 등) 그 나라의 공개 지표로 대신한다 — 저장된 선택은 지우지 않는다
+    if (state.anchor && !byId(state.anchor)) { var v = COUNTRY_VIEWS[state.country] || COUNTRY_VIEWS.all; return byId(v.fallback) ? v.fallback : ""; }
+    return state.anchor;
+  }
   var REMOVED = /^(web_tranco|app_rank_ios_|app_ios_ratings_|app_gplay_ratings$|web_crux_|app_gplay_reviews_|content_store_characters_|ads_youtube_|search_naver_|company_nps_)/;
   var COUNTRY = {kr: "한국", jp: "일본", us: "미국", tw: "대만", vn: "베트남", ph: "필리핀", id: "인도네시아", th: "태국", global: "전 세계"};
   var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]; }); };
@@ -29,7 +50,7 @@
     range: ["1Y", "2Y", "ALL"].indexOf(saved.range) >= 0 ? saved.range : "ALL",
     selected: Array.isArray(saved.selected) ? saved.selected : null,
     mode: saved.mode === "normalized" ? "normalized" : "units",
-    anchor: typeof saved.anchor === "string" ? saved.anchor : "co_revenue", anchorTouched: !!saved.anchorTouched, memos: saved.memos && typeof saved.memos === "object" ? saved.memos : {},
+    anchor: typeof saved.anchor === "string" ? saved.anchor : "co_revenue", anchorTouched: !!saved.anchorTouched, memos: saved.memos && typeof saved.memos === "object" ? saved.memos : {}, views: saved.views && typeof saved.views === "object" ? saved.views : {},
     keys: Array.isArray(saved.keys) ? saved.keys : ["co_revenue", "co_mau", "app_gplay_installs__mom", "app_gplay_newreviews_jp", "app_gplay_newreviews_kr"]
   };
   // 화면에서 뺀 지표는 저장된 선택·키 데이터·기준선에서도 지운다
@@ -41,7 +62,7 @@
   function isRank(s) { return s.kind === "rank" || s.kind === "rank_bucket"; }
   function series() { return ((DATA && DATA.series) || []).concat((PRIV && PRIV.series) || []).filter(function (s) { return !REMOVED.test(s.id) && !(s.method === "private" && good(s.points).length < 2); }); }
   function byId(id) { return series().filter(function (s) { return s.id === id; })[0]; }
-  function anchorSeries() { return state.anchor ? byId(state.anchor) : null; }
+  function anchorSeries() { var a = ensureAnchor(); return a ? byId(a) : null; }
 
   /* 월간 집계: 순위는 월 평균, 누적값은 월말 값, 나머지는 월 평균. 이미 월간인 자료는 그대로. */
   function monthly(s) {
@@ -88,10 +109,10 @@
     return s.country === state.country || s.country === "global" || !s.country;
   }
   function defaultSelection() {
-    return ["app_gplay_newreviews_kr", "app_gplay_newreviews_jp"].filter(byId);
+    return viewDefaults(state.country).selected;
   }
-  function selected() { if (!state.selected) state.selected = defaultSelection(); return state.selected.filter(function (id) { return byId(id) && id !== state.anchor; }); }
-  function colorOf(id) { if (id === state.anchor) return ANCHOR_COLOR; var i = selected().indexOf(id); return i >= 0 ? PALETTE[i % PALETTE.length] : "#51607a"; }
+  function selected() { if (!state.selected) state.selected = defaultSelection(); return state.selected.filter(function (id) { return byId(id) && id !== ensureAnchor(); }); }
+  function colorOf(id) { if (id === ensureAnchor()) return ANCHOR_COLOR; var i = selected().indexOf(id); return i >= 0 ? PALETTE[i % PALETTE.length] : "#51607a"; }
   function sparkline(s, pts, color) {
     var tail = good(pts).slice(-24);
     if (tail.length === 1) return '<span class="zt-muted">수집 ' + collectDays(s) + "일째</span>";
@@ -118,7 +139,7 @@
         var p = JSON.parse(String(reader.result));
         if (p.schema !== "zeta-private-1" || !Array.isArray(p.series)) throw new Error("IR 자료 파일 형식이 아닙니다 (zeta_company.json).");
         localStorage.setItem(PRIV_KEY, JSON.stringify(p));
-        readPriv(); if (!state.anchorTouched) state.anchor = "co_revenue"; store(); render();
+        readPriv(); if (!state.anchorTouched) state.anchor = viewDefaults(state.country).anchor; store(); render();
       } catch (err) { alert(err.name === "QuotaExceededError" ? "브라우저 저장 공간이 부족해요." : err.message); }
     };
     reader.readAsText(file);
@@ -244,7 +265,7 @@
 
   /* 펼침 메뉴 한 줄 (파인엠텍 fm-metric 과 같은 모양) */
   function metricRow(s) {
-    var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], on = selected().indexOf(s.id) >= 0, isAnchor = s.id === state.anchor, unavailable = !g.length;
+    var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], on = selected().indexOf(s.id) >= 0, isAnchor = s.id === ensureAnchor(), unavailable = !g.length;
     var value = unavailable ? (s.status_note || "수집 대기") : fmt(last.value, s);
     return '<div class="fm-metric' + (unavailable ? " unavailable" : "") + '"><label style="display:flex;align-items:center;gap:9px;flex:1;min-width:0;cursor:inherit">' +
       '<input type="checkbox" data-zt-metric="' + esc(s.id) + '"' + (on || isAnchor ? " checked" : "") + (unavailable || isAnchor ? " disabled" : "") + ">" +
@@ -255,7 +276,7 @@
     var list = series().filter(function (s) { return sel[3].indexOf(s.group) >= 0 && visible(s); });
     var count = list.filter(function (s) { return selected().indexOf(s.id) >= 0; }).length;
     var chev = '<svg class="fm-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
-    var onList = list.filter(function (s) { return selected().indexOf(s.id) >= 0 || s.id === state.anchor; });
+    var onList = list.filter(function (s) { return selected().indexOf(s.id) >= 0 || s.id === ensureAnchor(); });
     var rows = (onList.length ? '<div class="cb-group-head">표시 중</div>' + onList.map(metricRow).join("") : "") + sel[3].map(function (g) {
       var items = list.filter(function (s) { return s.group === g && onList.indexOf(s) < 0; });
       return items.length ? '<div class="cb-group-head">' + esc(GROUP_LABEL[g] || g) + "</div>" + items.map(metricRow).join("") : "";
@@ -277,7 +298,7 @@
     var head = '<div class="cb-keys-head"><b>키 데이터</b><span>지표 옆 ☆를 눌러 추가 · ' + list.length + "개" + (hidden ? " · 자료가 없어 숨은 " + hidden + "개" + (!PRIV && state.keys.some(function (id) { return id.indexOf("co_") === 0; }) ? "(동사 자료를 불러오면 표시)" : "") : "") + "</span></div>";
     if (!list.length) return head + '<div class="cb-keys"><div class="cb-keys-empty">키 데이터가 없습니다. 지표 추가 메뉴나 아래 표에서 ☆를 누르세요.</div></div>';
     return head + '<div class="cb-keys">' + list.map(function (s) {
-      var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], isAnchor = s.id === state.anchor, on = isAnchor || selected().indexOf(s.id) >= 0, col = on ? colorOf(s.id) : "#7f93b6";
+      var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], isAnchor = s.id === ensureAnchor(), on = isAnchor || selected().indexOf(s.id) >= 0, col = on ? colorOf(s.id) : "#7f93b6";
       return '<div class="cb-key' + (on ? " on" : "") + '" style="--series-color:' + esc(on ? col : "#51607a") + '">' +
         '<button type="button" class="cb-key-main"' + (isAnchor || !g.length ? " disabled" : ' data-zt-toggle="' + esc(s.id) + '"') + ' aria-pressed="' + on + '" title="' + (isAnchor ? "기준선" : on ? "차트에서 빼기" : "차트에 겹쳐보기") + '">' +
         '<span class="cb-key-label">' + esc(s.label) + "</span>" +
@@ -292,11 +313,11 @@
   /* 차트 아래 '지표 한눈에 보기' 표 */
   function overview() {
     var order = ["company_data", "revenue", "download", "users", "web", "search", "content", "ads", "company"];
-    var isOn = function (s) { return selected().indexOf(s.id) >= 0 || s.id === state.anchor ? 0 : 1; };
+    var isOn = function (s) { return selected().indexOf(s.id) >= 0 || s.id === ensureAnchor() ? 0 : 1; };
     var list = series().filter(visible).sort(function (a, b) { return isOn(a) - isOn(b) || order.indexOf(a.group) - order.indexOf(b.group) || String(a.label).localeCompare(String(b.label), "ko"); });
     if (!list.length) return "";
     var rows = list.map(function (s) {
-      var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], on = selected().indexOf(s.id) >= 0 || s.id === state.anchor, col = on ? colorOf(s.id) : "#7f93b6";
+      var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], on = selected().indexOf(s.id) >= 0 || s.id === ensureAnchor(), col = on ? colorOf(s.id) : "#7f93b6";
       var src = safeURL(s.source_url) ? '<a href="' + esc(safeURL(s.source_url)) + '" target="_blank" rel="noopener" title="' + esc(s.note || "") + '">' + esc(s.source || "출처") + " ↗</a>" : esc(s.source || "");
       return '<tr class="' + (on ? "zt-on" : "") + (g.length ? "" : " zt-wait-row") + '" style="--series-color:' + esc(col) + '">' +
         "<td>" + starBtn(s) + "</td>" +
@@ -309,7 +330,7 @@
         '<td class="zt-spark-cell">' + sparkline(s, pts, col) + "</td>" +
         '<td class="zt-src-cell">' + src + "</td>" +
         '<td class="zt-note-cell"><div class="zt-method">' + esc(s.note || "—") + '</div><input type="text" class="zt-memo" data-zt-memo="' + esc(s.id) + '" value="' + esc((state.memos || {})[s.id] || "") + '" placeholder="✎ 내 메모" maxlength="200" aria-label="' + esc(s.label) + ' 메모"></td>' +
-        "<td>" + (g.length && s.id !== state.anchor ? '<button type="button" class="zt-toggle' + (on ? " on" : "") + '" data-zt-toggle="' + esc(s.id) + '" aria-pressed="' + on + '">' + (on ? "빼기" : "겹쳐보기") + "</button>" : s.id === state.anchor ? '<span class="zt-muted">기준선</span>' : "") + "</td></tr>";
+        "<td>" + (g.length && s.id !== ensureAnchor() ? '<button type="button" class="zt-toggle' + (on ? " on" : "") + '" data-zt-toggle="' + esc(s.id) + '" aria-pressed="' + on + '">' + (on ? "빼기" : "겹쳐보기") + "</button>" : s.id === ensureAnchor() ? '<span class="zt-muted">기준선</span>' : "") + "</td></tr>";
     }).join("");
     return '<div class="fm-history-heading"><b>지표 한눈에 보기</b><span>' + list.length + "개 · " + (state.cadence === "monthly" ? "월간" : "일간") + ' 기준 · 원천 데이터만</span></div><div class="fm-table-wrap"><table class="fm-table zt-table"><thead><tr><th aria-label="키 데이터"></th><th>분류</th><th>지표</th><th>국가</th><th>최신값</th><th>기준일</th><th>직전 대비</th><th>추이</th><th>출처</th><th>비고 · 산출 방법</th><th></th></tr></thead><tbody>' + rows + "</tbody></table></div>";
   }
@@ -333,7 +354,7 @@
           '<div class="fm-segment" aria-label="차트 기간">' + ["1Y", "2Y", "ALL"].map(function (r) { return '<button type="button" data-zt-range="' + r + '" class="' + (state.range === r ? "on" : "") + '">' + (r === "ALL" ? "전체" : r) + "</button>"; }).join("") + "</div>" +
           '<div class="fm-segment" aria-label="국가">' + countries.map(function (c) { return '<button type="button" data-zt-country="' + c[0] + '" class="' + (state.country === c[0] ? "on" : "") + '" aria-pressed="' + (state.country === c[0]) + '">' + c[1] + "</button>"; }).join("") + "</div>" +
           '<div class="fm-segment" aria-label="집계 단위">' + [["monthly", "월간"], ["daily", "일간"]].map(function (c) { return '<button type="button" data-zt-cadence="' + c[0] + '" class="' + (state.cadence === c[0] ? "on" : "") + '">' + c[1] + "</button>"; }).join("") + "</div></div>" +
-          '<div class="zt-tools"><label class="fm-view-options">기준선<select id="zt-anchor">' + ANCHORS.filter(function (a) { return byId(a[0]); }).concat([["", "기준선 없음"]]).map(function (a) { return '<option value="' + a[0] + '"' + (state.anchor === a[0] ? " selected" : "") + ">" + a[1] + "</option>"; }).join("") + '</select></label><label class="fm-view-options">비교 방식<select id="zt-mode"><option value="units"' + (state.mode === "units" ? " selected" : "") + '>실제 단위</option><option value="normalized"' + (state.mode === "normalized" ? " selected" : "") + ">흐름 비교 · 0–100</option></select></label></div></div>" +
+          '<div class="zt-tools"><label class="fm-view-options">기준선<select id="zt-anchor">' + ANCHORS.filter(function (a) { return byId(a[0]); }).concat([["", "기준선 없음"]]).map(function (a) { return '<option value="' + a[0] + '"' + (ensureAnchor() === a[0] ? " selected" : "") + ">" + a[1] + "</option>"; }).join("") + '</select></label><label class="fm-view-options">비교 방식<select id="zt-mode"><option value="units"' + (state.mode === "units" ? " selected" : "") + '>실제 단위</option><option value="normalized"' + (state.mode === "normalized" ? " selected" : "") + ">흐름 비교 · 0–100</option></select></label></div></div>" +
         '<div class="fm-chart" id="zt-chart"></div><div class="fm-legend" id="zt-legend"></div><p class="fm-note" id="zt-axis-note"></p>' +
         '<p class="fm-note">주가 대신 <b>IR 월 매출</b>(IR 자료를 불러오지 않았으면 <b>구글플레이 월 신규 설치</b>)을 기준선(굵은 점선)으로 깔았습니다. 월간 보기에서 한 달 치만 모인 지표는 일간 점으로 그립니다.</p>' +
         keyCards() +
@@ -360,7 +381,7 @@
     // 지표 메뉴는 차트 위에 겹쳐 뜨므로 한 번에 하나만 열고, 바깥 클릭·Esc로 닫는다
     host.querySelectorAll(".zt-selectors .fm-selector").forEach(function (d) { d.ontoggle = function () { if (d.open) host.querySelectorAll(".zt-selectors .fm-selector[open]").forEach(function (o) { if (o !== d) o.open = false; }); }; });
     host.querySelectorAll("[data-zt-key]").forEach(function (b) { b.onclick = function (e) { e.preventDefault(); toggleKey(b.dataset.ztKey); }; });
-    host.querySelectorAll("[data-zt-country]").forEach(function (b) { b.onclick = function () { state.country = b.dataset.ztCountry; store(); render(); }; });
+    host.querySelectorAll("[data-zt-country]").forEach(function (b) { b.onclick = function () { if (b.dataset.ztCountry !== state.country) switchCountry(b.dataset.ztCountry); store(); render(); }; });
     host.querySelectorAll("[data-zt-cadence]").forEach(function (b) { b.onclick = function () { state.cadence = b.dataset.ztCadence; store(); render(); }; });
     host.querySelectorAll("[data-zt-range]").forEach(function (b) { b.onclick = function () { state.range = b.dataset.ztRange; store(); render(); }; });
     document.getElementById("zt-mode").onchange = function (e) { state.mode = e.target.value; store(); drawChart(); };
@@ -438,7 +459,7 @@
   function load() {
     if (loading) return; loading = true;
     fetch("data/zeta.json?v=" + Date.now(), {cache: "no-store"}).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function (d) { if (d.schema_version !== 1) throw new Error("형식 불일치"); DATA = d; error = ""; readPriv(); if (state.anchor && !byId(state.anchor)) state.anchor = byId("app_gplay_installs__mom") ? "app_gplay_installs__mom" : ""; })
+      .then(function (d) { if (d.schema_version !== 1) throw new Error("형식 불일치"); DATA = d; error = ""; readPriv(); })
       .catch(function (e) { error = e.message; })
       .then(function () { loading = false; render(); });
   }

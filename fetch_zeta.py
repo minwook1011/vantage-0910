@@ -191,6 +191,46 @@ def c_gplay(st):
                   [{"date": TODAY, "value": int(first["ratings"])}])
 
 
+# ── 2-1. 구글 트렌드 국가별 월간 검색 관심도 ─────────────────────────────
+# 나라마다 제타를 찾는 표현이 달라, 2023년 검색량이 거의 0(= 제타와 무관한 검색이 섞이지 않음)인 검색어만 골랐다.
+GTRENDS = {
+    "global": ("", "전 세계", ["zeta ai", "제타 ai", "ゼタ ai"]),
+    "kr": ("KR", "한국", ["제타 ai", "제타ai", "zeta ai"]),
+    "jp": ("JP", "일본", ["zeta ai", "ゼタ ai", "zeta アプリ"]),
+    "us": ("US", "미국", ["zeta ai", "zeta app"]),
+}
+
+
+@collector("gtrends")
+def c_gtrends(st):
+    from trendspy import Trends  # requirements: trendspy
+    tr = Trends()
+    for key, (geo, name, kws) in GTRENDS.items():
+        try:
+            df = tr.interest_over_time(kws, geo=geo, timeframe="all")  # 2004년부터 월간
+        except Exception as e:
+            st.error(f"gtrends {key}", e)
+            time.sleep(5)
+            continue
+        df = df[df.index >= "2023-01-01"]
+        total = df[kws].sum(axis=1)
+        top = float(total.max()) or 1.0
+        partial = df["isPartial"] if "isPartial" in df.columns else None
+        pts = []
+        for ts, v in total.items():
+            p = {"date": ts.strftime("%Y-%m-01"), "value": round(float(v) / top * 100, 1)}
+            if partial is not None and bool(partial.loc[ts]):
+                p["partial"] = True
+            pts.append(p)
+        st.upsert(f"search_gtrends_{key}", {"group": "search", "country": "global" if key == "global" else key,
+                  "label": f"구글 검색 관심도 · {name}", "unit": "지수", "kind": "index", "cadence": "월간 · 매일 확인(이번 달은 진행 중)",
+                  "source": "Google Trends", "source_url": "https://trends.google.com/trends/explore?date=all&q=" + urllib.parse.quote(",".join(kws)) + (f"&geo={geo}" if geo else ""),
+                  "note": "[원천] 구글 트렌드 월간 검색 관심도. [산출] 검색어 " + " · ".join(kws) + " 을 한 번에 조회해(같은 척도) 합친 뒤 2023-01 이후 최댓값을 100으로 다시 맞췄다. "
+                          "상대지수라 나라끼리 크기 비교는 안 되고 각 나라 안의 추세만 본다. 구글 사용 비중이 낮은 한국(네이버 중심)은 과소 대표될 수 있다."},
+                  pts, replace=True)
+        time.sleep(4)
+
+
 # ── 3-0. 구글플레이 국가별 월 신규 리뷰 수 (리뷰 작성일 기준, 출시 때부터 복원) ──
 GP_REVIEW_STORES = (("kr", "ko"), ("jp", "ja"), ("us", "en"))
 
