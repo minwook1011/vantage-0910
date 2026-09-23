@@ -40,7 +40,7 @@
   function store() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function good(pts) { return (pts || []).filter(function (p) { return p && C.validDate(p.date) && finite(p.value); }); }
   function isRank(s) { return s.kind === "rank" || s.kind === "rank_bucket"; }
-  function series() { return ((DATA && DATA.series) || []).concat((PRIV && PRIV.series) || []).filter(function (s) { return !REMOVED.test(s.id); }); }
+  function series() { return ((DATA && DATA.series) || []).concat((PRIV && PRIV.series) || []).filter(function (s) { return !REMOVED.test(s.id) && !(s.method === "private" && good(s.points).length < 2); }); }
   function byId(id) { return series().filter(function (s) { return s.id === id; })[0]; }
   function anchorSeries() { return state.anchor ? byId(state.anchor) : null; }
 
@@ -185,7 +185,7 @@
   function privPanel() {
     if (!PRIV) return "";
     return '<section class="zt-co" aria-label="IR"><div class="cb-keys-head"><b>IR · 매출과 사용자</b><span>출처: IR (동사) · ' + esc(PRIV.as_of || "") + ' · <span class="zt-private">비공개 · 이 브라우저와 본인 계정에만 저장</span></span></div>' +
-      '<div class="zt-kpis">' + (PRIV.kpis || []).map(function (k) { return '<div class="fm-kpi"><span>' + esc(k[0]) + "</span><strong>" + esc(k[1]) + "</strong><small>" + esc(k[2] || "") + "</small></div>"; }).join("") + "</div>" +
+      '<div class="zt-kpis">' + [].map(function (k) { return '<div class="fm-kpi"><span>' + esc(k[0]) + "</span><strong>" + esc(k[1]) + "</strong><small>" + esc(k[2] || "") + "</small></div>"; }).join("") + "</div>" +
       '<div class="zt-co-grid"><div class="zt-rev-box"><div class="zt-rev-title">월 매출 · 영업이익률 · 공헌이익률</div><div id="zt-co-rev"></div></div><div class="zt-rev-box"><div class="zt-rev-title">MAU · DAU</div><div id="zt-co-users"></div></div></div>' +
       '<p class="fm-note">점과 숫자는 IR 자료에 적힌 값이고, 점 사이는 선형으로 이었습니다(한 달 넘게 비는 구간과 추정점으로 가는 구간은 점선). 속 빈 점과 * 표시는 사용자가 지정한 최근 추정값입니다. 영업이익률은 자료에 적힌 값 외에는 월 영업이익÷월 매출이고, 초기 적자 구간은 −30%에서 잘라 그렸습니다.</p></section>';
   }
@@ -256,8 +256,9 @@
     var list = series().filter(function (s) { return sel[3].indexOf(s.group) >= 0 && visible(s); });
     var count = list.filter(function (s) { return selected().indexOf(s.id) >= 0; }).length;
     var chev = '<svg class="fm-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
-    var rows = sel[3].map(function (g) {
-      var items = list.filter(function (s) { return s.group === g; });
+    var onList = list.filter(function (s) { return selected().indexOf(s.id) >= 0 || s.id === state.anchor; });
+    var rows = (onList.length ? '<div class="cb-group-head">표시 중</div>' + onList.map(metricRow).join("") : "") + sel[3].map(function (g) {
+      var items = list.filter(function (s) { return s.group === g && onList.indexOf(s) < 0; });
       return items.length ? '<div class="cb-group-head">' + esc(GROUP_LABEL[g] || g) + "</div>" + items.map(metricRow).join("") : "";
     }).join("");
     return '<details class="fm-selector" id="zt-select-' + sel[0] + '"' + (opened.indexOf(sel[0]) >= 0 ? " open" : "") + "><summary><div><b>" + esc(sel[1]) + "</b><small>" + esc(sel[2]) + (count ? " / " + count + "개 표시 중" : "") + "</small></div>" + chev + '</summary><div class="fm-options"><div class="fm-options-head"><span>여러 지표를 함께 고를 수 있어요 · 국가 선택은 차트 위에서</span></div>' + (rows || '<p class="fm-note">이 국가에 해당하는 지표가 없습니다.</p>') + "</div></details>";
@@ -292,7 +293,8 @@
   /* 차트 아래 '지표 한눈에 보기' 표 */
   function overview() {
     var order = ["company_data", "revenue", "download", "users", "web", "search", "content", "ads", "company"];
-    var list = series().filter(visible).sort(function (a, b) { return order.indexOf(a.group) - order.indexOf(b.group) || String(a.label).localeCompare(String(b.label), "ko"); });
+    var isOn = function (s) { return selected().indexOf(s.id) >= 0 || s.id === state.anchor ? 0 : 1; };
+    var list = series().filter(visible).sort(function (a, b) { return isOn(a) - isOn(b) || order.indexOf(a.group) - order.indexOf(b.group) || String(a.label).localeCompare(String(b.label), "ko"); });
     if (!list.length) return "";
     var rows = list.map(function (s) {
       var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], on = selected().indexOf(s.id) >= 0 || s.id === state.anchor, col = on ? colorOf(s.id) : "#7f93b6";
@@ -319,7 +321,7 @@
     var opened = ["co", "app", "web", "etc"].filter(function (k) { var el = document.getElementById("zt-select-" + k); return el && el.open; });
     var an = anchorSeries(), ag = an ? good(an.points) : [], alast = ag[ag.length - 1], aprev = ag[ag.length - 2];
     var countries = [["all", "전체"], ["kr", "한국"], ["jp", "일본"], ["us", "미국"]];
-    var snaps = (DATA.snapshots || []).slice().sort(function (a, b) { return String(b.month).localeCompare(String(a.month)); });
+    var snaps = [].slice().sort(function (a, b) { return String(b.month).localeCompare(String(a.month)); });
     host.innerHTML =
       '<article class="fm-hero">' +
         '<div class="fm-heading"><div><div class="fm-eyebrow">AI 캐릭터 채팅 · 비상장</div><h3>스캐터랩 · 제타<small>' + esc((DATA.company && DATA.company.domain) || "zeta-ai.io") + "</small></h3></div>" +

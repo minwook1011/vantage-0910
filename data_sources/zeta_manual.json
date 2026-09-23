@@ -1,43 +1,7 @@
 {
   "schema_version": 1,
-  "note": "스캐터랩(제타) 수기 데이터. 원칙: 기사·보도·재무 집계 사이트 수치는 넣지 않는다. 리서치 도구(Similarweb·Semrush 등)의 공개 화면에서 직접 옮겨 적은 월간 스냅샷만 snapshots 에 둔다. series·milestones 는 비워 둔다(자동 수집이 원천 데이터를 채운다).",
+  "note": "스캐터랩(제타) 수기 데이터. 원칙: 기사·보도·재무 집계 사이트 수치는 넣지 않는다. 리서치 도구(Similarweb·Semrush 등)의 공개 화면에서 직접 옮겨 적은 월간 스냅샷만 snapshots 에 둔다. series·milestones 는 비워 둔다(자동 수집이 원천 데이터를 채운다). 스냅샷(한 번 옮겨 적은 값)은 추적이 안 되므로 쓰지 않는다(2026-09-23 사용자 지시).",
   "series": [],
-  "snapshots": [
-    {
-      "month": "2026-08",
-      "source": "Similarweb (무료 화면)",
-      "source_url": "https://www.similarweb.com/website/zeta-ai.io/",
-      "metric": "웹 방문수 · 국가 비중",
-      "total": 17128845,
-      "countries": {
-        "kr": "35.4%",
-        "jp": "29.2%",
-        "us": "22.0%"
-      },
-      "note": "전월 대비 +48.7%, 글로벌 순위 2,184위 · 일본 350위. 순방문자(UV) 아님"
-    },
-    {
-      "month": "2026-08",
-      "source": "Semrush (무료 개요)",
-      "source_url": "https://www.semrush.com/website/zeta-ai.io/overview/",
-      "metric": "웹 방문수 · 국가별",
-      "total": 30800000,
-      "countries": {
-        "kr": "1,506만 (48.9%)",
-        "jp": "916만 (29.7%)",
-        "us": "437만 (14.2%)"
-      },
-      "note": "6월 1,998만 → 7월 2,686만. Similarweb 과 약 2배 차이 — 한 소스를 일관되게 볼 것"
-    },
-    {
-      "month": "2026-08",
-      "source": "Similarweb (무료 화면)",
-      "source_url": "https://www.similarweb.com/website/zeta-ai.io/",
-      "metric": "웹 방문자 성별 (전 세계)",
-      "total": null,
-      "countries": {},
-      "note": "남 57.2% · 여 42.8% · 최대 연령층 18–24세. 18세 미만은 모델에서 제외돼 10대 비중이 큰 제타 앱 사용자와는 다를 수 있음. 매월 옮겨 적어 시계열로 쌓음"
-    }
-  ],
+  "snapshots": [],
   "milestones": []
 }
