@@ -14,11 +14,10 @@
   var GROUP_LABEL = {company_data: "IR", revenue: "매출 순위", download: "다운로드", users: "유저", content: "작품 수", ads: "광고 · 바이럴", web: "웹", search: "검색", company: "회사"};
   // 파인엠텍처럼 펼쳐서 고르는 메뉴 (IR 자료를 불러오면 IR 메뉴가 앞에 붙는다)
   var SELECTORS = [
-    ["app", "앱 지표 추가", "구글플레이 설치 · 국가별 월 신규 리뷰", ["revenue", "download", "users"]],
-    ["web", "웹 지표 추가", "트랜코 글로벌 순위", ["web", "search"]]
+    ["app", "앱 지표 추가", "구글플레이 설치 · 국가별 월 신규 리뷰", ["revenue", "download", "users"]]
   ];
   var ANCHORS = [["co_revenue", "월 매출 (IR)"], ["app_gplay_installs__mom", "구글플레이 월 신규 설치"]];
-  var REMOVED = /^(app_rank_ios_|app_ios_ratings_|app_gplay_ratings$|web_crux_|app_gplay_reviews_|content_store_characters_|ads_youtube_|search_naver_|company_nps_)/;
+  var REMOVED = /^(web_tranco|app_rank_ios_|app_ios_ratings_|app_gplay_ratings$|web_crux_|app_gplay_reviews_|content_store_characters_|ads_youtube_|search_naver_|company_nps_)/;
   var COUNTRY = {kr: "한국", jp: "일본", us: "미국", tw: "대만", vn: "베트남", ph: "필리핀", id: "인도네시아", th: "태국", global: "전 세계"};
   var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]; }); };
   var safeURL = function (v) { try { var u = new URL(v); return ["https:", "http:"].indexOf(u.protocol) >= 0 ? u.href : ""; } catch (e) { return ""; } };
@@ -30,7 +29,7 @@
     range: ["1Y", "2Y", "ALL"].indexOf(saved.range) >= 0 ? saved.range : "ALL",
     selected: Array.isArray(saved.selected) ? saved.selected : null,
     mode: saved.mode === "normalized" ? "normalized" : "units",
-    anchor: typeof saved.anchor === "string" ? saved.anchor : "co_revenue", anchorTouched: !!saved.anchorTouched,
+    anchor: typeof saved.anchor === "string" ? saved.anchor : "co_revenue", anchorTouched: !!saved.anchorTouched, memos: saved.memos && typeof saved.memos === "object" ? saved.memos : {},
     keys: Array.isArray(saved.keys) ? saved.keys : ["co_revenue", "co_mau", "app_gplay_installs__mom", "app_gplay_newreviews_jp", "app_gplay_newreviews_kr"]
   };
   // 화면에서 뺀 지표는 저장된 선택·키 데이터·기준선에서도 지운다
@@ -309,9 +308,10 @@
         "<td>" + badge(change(s, pts), s) + "</td>" +
         '<td class="zt-spark-cell">' + sparkline(s, pts, col) + "</td>" +
         '<td class="zt-src-cell">' + src + "</td>" +
+        '<td class="zt-note-cell"><div class="zt-method">' + esc(s.note || "—") + '</div><input type="text" class="zt-memo" data-zt-memo="' + esc(s.id) + '" value="' + esc((state.memos || {})[s.id] || "") + '" placeholder="✎ 내 메모" maxlength="200" aria-label="' + esc(s.label) + ' 메모"></td>' +
         "<td>" + (g.length && s.id !== state.anchor ? '<button type="button" class="zt-toggle' + (on ? " on" : "") + '" data-zt-toggle="' + esc(s.id) + '" aria-pressed="' + on + '">' + (on ? "빼기" : "겹쳐보기") + "</button>" : s.id === state.anchor ? '<span class="zt-muted">기준선</span>' : "") + "</td></tr>";
     }).join("");
-    return '<div class="fm-history-heading"><b>지표 한눈에 보기</b><span>' + list.length + "개 · " + (state.cadence === "monthly" ? "월간" : "일간") + ' 기준 · 원천 데이터만</span></div><div class="fm-table-wrap"><table class="fm-table zt-table"><thead><tr><th aria-label="키 데이터"></th><th>분류</th><th>지표</th><th>국가</th><th>최신값</th><th>기준일</th><th>직전 대비</th><th>추이</th><th>출처</th><th></th></tr></thead><tbody>' + rows + "</tbody></table></div>";
+    return '<div class="fm-history-heading"><b>지표 한눈에 보기</b><span>' + list.length + "개 · " + (state.cadence === "monthly" ? "월간" : "일간") + ' 기준 · 원천 데이터만</span></div><div class="fm-table-wrap"><table class="fm-table zt-table"><thead><tr><th aria-label="키 데이터"></th><th>분류</th><th>지표</th><th>국가</th><th>최신값</th><th>기준일</th><th>직전 대비</th><th>추이</th><th>출처</th><th>비고 · 산출 방법</th><th></th></tr></thead><tbody>' + rows + "</tbody></table></div>";
   }
 
   function render() {
@@ -326,7 +326,7 @@
       '<article class="fm-hero">' +
         '<div class="fm-heading"><div><div class="fm-eyebrow">AI 캐릭터 채팅 · 비상장</div><h3>스캐터랩 · 제타<small>' + esc((DATA.company && DATA.company.domain) || "zeta-ai.io") + "</small></h3></div>" +
           '<div class="fm-quote"><strong>' + (alast ? esc(an.id === "co_revenue" ? alast.value.toLocaleString("ko-KR") + "억 원" : fmt(alast.value, an)) : "수집 대기") + "</strong><span>" + esc(an ? an.label : "기준선 없음") + (alast ? " · " + alast.date.slice(0, 7) : "") + (alast && alast.user_est ? " · 최근 추정" : "") + "</span></div></div>" +
-        '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 구글플레이·트랜코 원천</span>" + (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="zt-refresh">새 데이터 확인 ↻</button><button type="button" id="zt-priv-open" class="zt-priv-btn">' + (PRIV ? "IR 자료 다시 불러오기" : "IR 자료 불러오기") + '</button>' + (PRIV ? '<button type="button" id="zt-priv-clear" class="zt-priv-btn">IR 자료 지우기</button>' : "") + '<input type="file" id="zt-priv-file" accept=".json,application/json" hidden></div>' +
+        '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 구글플레이 원천</span>" + (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="zt-refresh">새 데이터 확인 ↻</button><button type="button" id="zt-priv-open" class="zt-priv-btn">' + (PRIV ? "IR 자료 다시 불러오기" : "IR 자료 불러오기") + '</button>' + (PRIV ? '<button type="button" id="zt-priv-clear" class="zt-priv-btn">IR 자료 지우기</button>' : "") + '<input type="file" id="zt-priv-file" accept=".json,application/json" hidden></div>' +
         privPanel() + installsPanel() +
         '<div class="fm-selectors zt-selectors zt-cols' + SELS.length + '">' + SELS.map(function (s) { return selectorBlock(s, opened); }).join("") + "</div>" +
         '<div class="fm-toolbar"><div class="zt-tools">' +
@@ -365,6 +365,7 @@
     host.querySelectorAll("[data-zt-range]").forEach(function (b) { b.onclick = function () { state.range = b.dataset.ztRange; store(); render(); }; });
     document.getElementById("zt-mode").onchange = function (e) { state.mode = e.target.value; store(); drawChart(); };
     document.getElementById("zt-anchor").onchange = function (e) { state.anchor = e.target.value; state.anchorTouched = true; store(); render(); };
+    host.querySelectorAll("[data-zt-memo]").forEach(function (i) { i.onchange = function () { state.memos = state.memos || {}; var v = i.value.trim(); if (v) state.memos[i.dataset.ztMemo] = v; else delete state.memos[i.dataset.ztMemo]; store(); }; });
     document.getElementById("zt-refresh").onclick = load;
     var fileEl = document.getElementById("zt-priv-file");
     document.getElementById("zt-priv-open").onclick = function () { fileEl.click(); };

@@ -183,7 +183,7 @@ def c_gplay(st):
         time.sleep(1)
     if first and first.get("realInstalls"):
         st.upsert("app_gplay_installs", {**base, "group": "download", "country": "global", "label": "구글플레이 누적 설치 (전 세계)",
-                  "unit": "회", "kind": "cumulative", "note": "페이지에 담긴 정확한 누적 설치 수(국가 구분 없음). 하루 증가분이 안드로이드 신규 설치 추정치."},
+                  "unit": "회", "kind": "cumulative", "note": "[원천] 구글플레이 앱 페이지 HTML에 들어 있는 정확한 누적 설치 수(realInstalls). 화면에는 '500만+'처럼 구간으로만 보인다. 국가 구분 없음. 과거 값은 인터넷 아카이브(웨이백 머신)에 보관된 페이지(2022-11~, 약 40개 시점)에서 읽었고, 2026-09-20 이후는 매일 수집한다."},
                   [{"date": TODAY, "value": int(first["realInstalls"])}])
     if first and first.get("ratings"):
         st.upsert("app_gplay_ratings", {**base, "group": "download", "country": "global", "label": "구글플레이 별점 수 (전 세계)",
@@ -287,7 +287,7 @@ def c_wayback(st):
         st.upsert("app_gplay_installs", {"group": "download", "country": "global", "label": "구글플레이 누적 설치 (전 세계)", "unit": "회", "kind": "cumulative",
                   "cadence": "일간 스냅샷 · 과거는 웨이백 머신 보관본", "source": "Google Play 공개 페이지 · Internet Archive",
                   "source_url": f"https://play.google.com/store/apps/details?id={ANDROID_ID}",
-                  "note": "페이지에 담긴 정확한 누적 설치 수(국가 구분 없음). 과거 값은 웨이백 머신 보관본에서 읽었다."}, pts)
+                  "note": "[원천] 구글플레이 앱 페이지 HTML에 들어 있는 정확한 누적 설치 수(realInstalls). 화면에는 '500만+'처럼 구간으로만 보인다. 국가 구분 없음. 과거 값은 인터넷 아카이브(웨이백 머신)에 보관된 페이지(2022-11~, 약 40개 시점)에서 읽었고, 2026-09-20 이후는 매일 수집한다."}, pts)
     # 앱스토어 국가별 누적 평점 수
     for cc in ("kr", "jp", "us"):
         key = f"appstore_{cc}"
@@ -499,11 +499,24 @@ def month_add(d, n):
     return date(y, m, 1)
 
 
+def clean_cumulative(points):
+    """누적값은 줄 수 없으므로, 뒤 시점 값보다 큰 관측치(보관소가 다른 날짜 보관본을 돌려준 경우 등)는 뺀다."""
+    pts = sorted([p for p in points if isinstance(p.get("value"), (int, float))], key=lambda p: p["date"])
+    keep, floor = [], float("inf")
+    for p in reversed(pts):
+        if p["value"] <= floor:
+            keep.append(p)
+            floor = p["value"]
+    return list(reversed(keep))
+
+
 def derive_flows(st):
     """관측 시점이 불규칙한 누적값을 매월 1일 값으로 선형 보간한 뒤 차이를 월 증가분으로 만든다.
     양쪽 달 경계가 모두 관측 범위 안에 있는 달만 계산한다(밖으로 늘려 추정하지 않음)."""
     for sid in FLOW_FROM:
         s = st.series.get(sid)
+        if s and s.get("kind") == "cumulative":
+            s["points"] = clean_cumulative(s.get("points", []))
         pts = [p for p in (s or {}).get("points", []) if isinstance(p.get("value"), (int, float))]
         if len(pts) < 2:
             continue
@@ -530,9 +543,12 @@ def derive_flows(st):
         if not out:
             continue
         label = FLOW_LABEL.get(sid) or s["label"].replace("누적 ", "") + " · 월 증가 (추정)"
+        base_name = s["label"]
         st.upsert(sid + "__mom", {"group": s.get("group"), "country": s.get("country"), "label": label, "unit": s.get("unit"), "kind": "flow",
                   "cadence": "월간 · 누적값 차분", "source": s.get("source"), "source_url": s.get("source_url"), "derived_from": sid,
-                  "note": "누적값을 매월 1일로 선형 보간해 뺀 값. 관측 간격이 넓은 달(속 빈 점)은 그 구간의 평균 속도라 월별 굴곡이 뭉개진다."},
+                  "note": f"[추정 방법] '{base_name}'(누적값)을 관측한 날짜별로 모은 뒤, 매월 1일 값을 앞뒤 관측치의 날짜 비율로 선형 보간하고 '다음 달 1일 − 이번 달 1일'로 월 증가분을 계산했다. "
+                          "공식 월간 수치가 아니라 누적값 차이로 만든 추정이다. 관측 간격이 75일을 넘는 달(속 빈 점)은 그 긴 구간의 평균 속도라 월별 변동이 평평하게 나온다"
+                          "(예: 2023-06~2024-06은 보관본이 거의 없음). 누적값이 뒤 시점보다 큰 관측치(보관소가 다른 날짜 보관본을 돌려준 경우)는 계산에서 뺐다."},
                   out, replace=True)
 
 

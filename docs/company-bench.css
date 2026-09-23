@@ -102,3 +102,8 @@
 .zt-selectors.zt-cols2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .zt-selectors.zt-cols3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
 @media (max-width:980px) { .zt-selectors.zt-cols2, .zt-selectors.zt-cols3 { grid-template-columns:1fr; } }
+/* 지표 표 — 비고 · 산출 방법 칸 */
+.zt-table td.zt-note-cell { white-space:normal; min-width:260px; max-width:420px; }
+.zt-method { color:#9fb2d0; font-size:11px; line-height:1.55; }
+.zt-memo { width:100%; margin-top:5px; padding:4px 7px; border:1px dashed #3f5270; border-radius:5px; background:transparent; color:#e7d27c; font-size:11px; }
+.zt-memo:focus { border-style:solid; border-color:#7aa5ff; outline:none; background:#141d2d; }
