@@ -67,3 +67,25 @@
 .zt-toggle:hover { background:#24334c; }
 .zt-toggle.on { border-color:color-mix(in srgb, var(--series-color) 60%, transparent); color:var(--series-color); }
 @media (max-width:980px) { .zt-selectors { grid-template-columns:1fr; } }
+/* 동사 자료(비공개) 패널 */
+.zt-co { margin-top:18px; }
+.zt-kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px; margin-bottom:10px; }
+.zt-kpis .fm-kpi strong { font-size:17px; }
+.zt-co-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; }
+.zt-rev-box { padding:12px 12px 6px; border:1px solid var(--fm-line); border-radius:11px; background:#121a28; min-width:0; }
+.zt-rev-title { color:#a9b8d0; font-size:11.5px; margin-bottom:2px; }
+.zt-rev-box svg { display:block; width:100%; }
+.zt-rev-box svg text { font-family:var(--mono); font-size:10px; fill:#788ba9; }
+.zt-pt-label { font-family:var(--mono); font-size:9.5px; font-weight:600; paint-order:stroke; stroke:#101623; stroke-width:3px; }
+.zt-rev-legend { display:flex; flex-wrap:wrap; gap:12px; padding:2px 4px 6px; color:#9aabc5; font-size:10.5px; }
+.zt-rev-legend i { display:inline-block; width:10px; height:3px; margin-right:5px; vertical-align:middle; border-radius:2px; }
+.zt-private { color:#e7d27c; }
+.zt-priv-btn { margin-left:6px; }
+.zt-sel4 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.zt-fin td, .zt-fin th { text-align:right; white-space:nowrap; font-family:var(--mono); }
+.zt-fin td:first-child, .zt-fin th:first-child { text-align:left; font-family:inherit; }
+.zt-fin tr.zt-main td { color:#e4ecf9; font-weight:600; }
+.zt-fin tr.zt-sub td:first-child { padding-left:22px; color:#9fb2d0; }
+.zt-fin .zt-fc { background:rgba(131,170,255,.06); }
+.zt-neg { color:#fa829d; }
+@media (max-width:980px) { .zt-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .zt-co-grid { grid-template-columns:1fr; } .zt-sel4 { grid-template-columns:1fr; } }

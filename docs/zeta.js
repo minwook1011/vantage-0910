@@ -10,14 +10,14 @@
   var KEY = "vantage-zeta-bench-v2";
   var PALETTE = ["#55d6bc", "#c7a2ff", "#ffbd76", "#53c5ee", "#fa829d", "#e7d27c", "#9fd675", "#dda1c7"];
   var ANCHOR_COLOR = "#83aaff";
-  var GROUP_LABEL = {revenue: "매출 순위", download: "다운로드", users: "유저", content: "작품 수", ads: "광고 · 바이럴", web: "웹", search: "검색", company: "회사"};
+  var GROUP_LABEL = {company_data: "동사 자료", revenue: "매출 순위", download: "다운로드", users: "유저", content: "작품 수", ads: "광고 · 바이럴", web: "웹", search: "검색", company: "회사"};
   // 파인엠텍처럼 펼쳐서 고르는 메뉴 3개
   var SELECTORS = [
     ["app", "앱 · 매출 순위 지표 추가", "앱스토어 매출·무료 순위 · 평점 수 · 구글플레이 설치·리뷰", ["revenue", "download", "users"]],
     ["web", "웹 · 검색 지표 추가", "크롬 국가별 순위 · 트랜코 · 네이버 검색", ["web", "search"]],
     ["etc", "콘텐츠 · 광고 · 회사 지표 추가", "스토어 캐릭터 수 · 공식 유튜브 · 국민연금", ["content", "ads", "company"]]
   ];
-  var ANCHORS = [["app_rank_ios_jp_grossing_all", "일본 매출 순위 · 전체"], ["app_rank_ios_jp_grossing_ent", "일본 매출 순위 · 엔터"],
+  var ANCHORS = [["co_revenue", "월 매출 (동사)"], ["app_rank_ios_jp_grossing_all", "일본 매출 순위 · 전체"], ["app_rank_ios_jp_grossing_ent", "일본 매출 순위 · 엔터"],
     ["app_rank_ios_kr_grossing_all", "한국 매출 순위 · 전체"], ["app_rank_ios_kr_grossing_ent", "한국 매출 순위 · 엔터"], ["app_rank_ios_us_grossing_ent", "미국 매출 순위 · 엔터"]];
   var COUNTRY = {kr: "한국", jp: "일본", us: "미국", tw: "대만", vn: "베트남", ph: "필리핀", id: "인도네시아", th: "태국", global: "전 세계"};
   var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]; }); };
@@ -30,13 +30,13 @@
     range: ["1Y", "2Y", "ALL"].indexOf(saved.range) >= 0 ? saved.range : "ALL",
     selected: Array.isArray(saved.selected) ? saved.selected : null,
     mode: saved.mode === "normalized" ? "normalized" : "units",
-    anchor: typeof saved.anchor === "string" ? saved.anchor : "app_rank_ios_jp_grossing_all"
+    anchor: typeof saved.anchor === "string" ? saved.anchor : "co_revenue", anchorTouched: !!saved.anchorTouched
   };
   var DATA = null, active = false, loading = false, error = "", renderId = 0;
   function store() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function good(pts) { return (pts || []).filter(function (p) { return p && C.validDate(p.date) && finite(p.value); }); }
   function isRank(s) { return s.kind === "rank" || s.kind === "rank_bucket"; }
-  function series() { return (DATA && DATA.series) || []; }
+  function series() { return ((DATA && DATA.series) || []).concat((PRIV && PRIV.series) || []); }
   function byId(id) { return series().filter(function (s) { return s.id === id; })[0]; }
   function anchorSeries() { return state.anchor ? byId(state.anchor) : null; }
 
@@ -88,6 +88,100 @@
     return '<span class="cb-chg ' + (ch >= 0 ? "up" : "down") + '" title="' + (isRank(s) ? "순위 개선률(숫자가 줄면 +)" : "직전 관측 대비") + '">' + (ch >= 0 ? "▲" : "▼") + Math.abs(ch).toFixed(1) + "%</span>";
   }
 
+
+  /* ── 동사 자료(비공개) — 공개 저장소에 올리지 않고, 사용자가 파일로 불러오면 이 브라우저(+본인 계정 동기화)에만 저장한다 ── */
+  var PRIV_KEY = "vantage-zeta-private-v1", PRIV = null;
+  function readPriv() {
+    try { var p = JSON.parse(localStorage.getItem(PRIV_KEY) || "null"); PRIV = p && p.schema === "zeta-private-1" && Array.isArray(p.series) ? p : null; } catch (e) { PRIV = null; }
+    return PRIV;
+  }
+  function importPriv(file) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var p = JSON.parse(String(reader.result));
+        if (p.schema !== "zeta-private-1" || !Array.isArray(p.series)) throw new Error("동사 자료 파일 형식이 아닙니다 (zeta_company.json).");
+        localStorage.setItem(PRIV_KEY, JSON.stringify(p));
+        readPriv(); if (!state.anchorTouched) state.anchor = "co_revenue"; store(); render();
+      } catch (err) { alert(err.name === "QuotaExceededError" ? "브라우저 저장 공간이 부족해요." : err.message); }
+    };
+    reader.readAsText(file);
+  }
+  /* 점 = 자료에 있는 값(숫자 표시), 선 = 점끼리 선형 연결. 오른쪽 축은 % 지표용 */
+  function drawLabeled(box, lines, opts) {
+    if (!box) return;
+    lines = lines.filter(function (l) { return l.points.length; });
+    if (!lines.length) { box.innerHTML = '<div class="fm-chart-empty" style="min-height:160px">자료 없음</div>'; return; }
+    var all = [].concat.apply([], lines.map(function (l) { return l.points; }));
+    var t0 = Math.min.apply(null, all.map(function (p) { return C.timestamp(p.date); })) - 15 * 86400000, t1 = Math.max.apply(null, all.map(function (p) { return C.timestamp(p.date); })) + 20 * 86400000;
+    var W = Math.max(box.clientWidth, 280), H = opts.height || 300, L = 52, R = lines.some(function (l) { return l.axis === "right"; }) ? 46 : 14, T = 24, B = 30, pw = W - L - R, ph = H - T - B;
+    var dom = function (side) {
+      var v = [].concat.apply([], lines.filter(function (l) { return (l.axis || "left") === side; }).map(function (l) { return l.points.map(function (p) { return p.value; }); }));
+      if (!v.length) return null;
+      var lo = Math.min(0, Math.min.apply(null, v)), hi = Math.max.apply(null, v);
+      if (side === "right" && opts.rightClip) { lo = Math.max(lo, opts.rightClip[0]); hi = Math.min(Math.max(hi, 0), opts.rightClip[1]); }
+      var pad = (hi - lo) * 0.14 || 1; return [lo - (lo < 0 ? pad * 0.3 : 0), hi + pad];
+    };
+    var dl = dom("left"), dr = dom("right");
+    var xx = function (d) { return L + (C.timestamp(d) - t0) / (t1 - t0) * pw; };
+    var yy = function (v, side) { var d = side === "right" ? dr : dl; v = Math.max(d[0], Math.min(d[1], v)); return T + (d[1] - v) / (d[1] - d[0]) * ph; };
+    var short = function (v, unit) { var a = Math.abs(v); return unit === "%" ? (Math.round(v * 10) / 10) + "%" : a >= 10000 ? (Math.round(v / 1000) / 10) + "만" : a >= 100 ? Math.round(v).toLocaleString("ko-KR") : (Math.round(v * 100) / 100).toString(); };
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(opts.title || "") + '">';
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (f) {
+      var y = T + f * ph;
+      svg += '<path d="M' + L + " " + y + "H" + (L + pw) + '" stroke="#718db3" stroke-opacity=".12"/>';
+      if (dl) svg += '<text x="' + (L - 7) + '" y="' + (y + 4) + '" text-anchor="end">' + short(dl[1] - (dl[1] - dl[0]) * f, opts.leftUnit) + "</text>";
+      if (dr) svg += '<text x="' + (L + pw + 7) + '" y="' + (y + 4) + '" text-anchor="start">' + short(dr[1] - (dr[1] - dr[0]) * f, "%") + "</text>";
+    });
+    if (dl && dl[0] < 0) svg += '<path d="M' + L + " " + yy(0, "left") + "H" + (L + pw) + '" stroke="#9fb2d0" stroke-opacity=".35" stroke-dasharray="3 4"/>';
+    svg += '<text x="' + (L - 7) + '" y="12" text-anchor="end">' + esc(opts.leftUnit || "") + "</text>" + (dr ? '<text x="' + (L + pw + 7) + '" y="12" text-anchor="start">%</text>' : "");
+    var ticks = 6; for (var i = 0; i <= ticks; i++) { var t = t0 + (t1 - t0) * i / ticks; svg += '<text x="' + (L + pw * i / ticks) + '" y="' + (H - 8) + '" text-anchor="' + (i === 0 ? "start" : i === ticks ? "end" : "middle") + '">' + new Date(t).toISOString().slice(2, 7).replace("-", ".") + "</text>"; }
+    lines.forEach(function (l) {
+      var side = l.axis || "left", pts = l.points.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
+      // 실제 자료 사이는 실선, 추정점(사용자 지정)으로 가는 구간·긴 공백은 점선
+      for (var k = 1; k < pts.length; k++) {
+        var a = pts[k - 1], b = pts[k], gap = (C.timestamp(b.date) - C.timestamp(a.date)) / 86400000 > 45 || b.user_est || a.user_est;
+        svg += '<path d="M' + xx(a.date).toFixed(1) + " " + yy(a.value, side).toFixed(1) + "L" + xx(b.date).toFixed(1) + " " + yy(b.value, side).toFixed(1) + '" stroke="' + l.color + '" stroke-width="' + (l.bold ? 2.6 : 1.9) + '"' + (gap ? ' stroke-dasharray="5 4"' : "") + ' fill="none"/>';
+      }
+      pts.forEach(function (p) {
+        var hollow = p.user_est, x0 = xx(p.date), y0 = yy(p.value, side);
+        svg += '<circle cx="' + x0 + '" cy="' + y0 + '" r="' + (l.bold ? 3.6 : 3) + '" fill="' + (hollow ? "#101623" : l.color) + '" stroke="' + (hollow ? l.color : "#101623") + '" stroke-width="' + (hollow ? 1.8 : 1) + '"><title>' + esc(p.date.slice(0, 7) + " " + l.label + " " + short(p.value, l.unit) + (l.unit && l.unit !== "%" ? " " + l.unit : "") + (p.user_est ? " · 최근 추정(사용자 지정)" : p.calc ? " · 영업이익÷매출" : "")) + "</title></circle>";
+        if (!l.noLabels) svg += '<text x="' + x0 + '" y="' + (y0 + (l.labelBelow ? 14 : -7)) + '" text-anchor="middle" class="zt-pt-label" style="fill:' + l.color + '">' + short(p.value, l.unit) + (p.user_est ? "*" : "") + "</text>";
+      });
+    });
+    box.innerHTML = svg + '</svg><div class="zt-rev-legend">' + lines.map(function (l) { return '<span><i style="background:' + l.color + '"></i>' + esc(l.label) + (l.axis === "right" ? " (오른쪽 축)" : "") + "</span>"; }).join("") + "</div>";
+  }
+  function privSeries(id) { return ((PRIV && PRIV.series) || []).filter(function (s) { return s.id === id; })[0]; }
+  function privLine(id, label, color, extra) { var s = privSeries(id); return Object.assign({label: label, color: color, unit: s ? s.unit : "", axis: s && s.axis, points: s ? good(s.points).map(function (p) { return p; }) : []}, extra || {}); }
+  function drawPriv() {
+    if (!PRIV) return;
+    drawLabeled(document.getElementById("zt-co-rev"), [
+      privLine("co_revenue", "월 매출 (억원)", "#83aaff", {bold: true}),
+      privLine("co_opm", "영업이익률", "#ffbd76", {axis: "right", labelBelow: true}),
+      privLine("co_cm", "공헌이익률", "#55d6bc", {axis: "right", noLabels: true})
+    ], {leftUnit: "억원", title: "월 매출과 영업이익률", rightClip: [-30, 80], height: 320});
+    drawLabeled(document.getElementById("zt-co-users"), [
+      privLine("co_mau", "MAU 전체", "#e8eefb", {bold: true}), privLine("co_mau_kr", "MAU 한국", "#83aaff"), privLine("co_mau_jp", "MAU 일본", "#fa829d"),
+      privLine("co_mau_us", "MAU 미국", "#9fd675"), privLine("co_dau", "DAU 전체", "#c7a2ff", {labelBelow: true}), privLine("co_dau_jp", "DAU 일본", "#ffbd76", {labelBelow: true})
+    ], {leftUnit: "명", title: "MAU와 DAU", height: 320});
+  }
+  function privPanel() {
+    if (!PRIV) return "";
+    return '<section class="zt-co" aria-label="동사 자료"><div class="cb-keys-head"><b>동사 자료 · 매출과 사용자</b><span>출처: 동사 · ' + esc(PRIV.as_of || "") + ' · <span class="zt-private">비공개 · 이 브라우저와 본인 계정에만 저장</span></span></div>' +
+      '<div class="zt-kpis">' + (PRIV.kpis || []).map(function (k) { return '<div class="fm-kpi"><span>' + esc(k[0]) + "</span><strong>" + esc(k[1]) + "</strong><small>" + esc(k[2] || "") + "</small></div>"; }).join("") + "</div>" +
+      '<div class="zt-co-grid"><div class="zt-rev-box"><div class="zt-rev-title">월 매출 · 영업이익률 · 공헌이익률</div><div id="zt-co-rev"></div></div><div class="zt-rev-box"><div class="zt-rev-title">MAU · DAU</div><div id="zt-co-users"></div></div></div>' +
+      '<p class="fm-note">점과 숫자는 동사 자료에 적힌 값이고, 점 사이는 선형으로 이었습니다(한 달 넘게 비는 구간과 추정점으로 가는 구간은 점선). 속 빈 점과 * 표시는 사용자가 지정한 최근 추정값입니다. 영업이익률은 자료에 적힌 값 외에는 월 영업이익÷월 매출이고, 초기 적자 구간은 −30%에서 잘라 그렸습니다.</p></section>';
+  }
+  function privTables() {
+    if (!PRIV || !PRIV.tables) return "";
+    var n = function (v, pct) { return v == null ? "—" : typeof v === "number" ? (v < 0 ? '<span class="zt-neg">(' + Math.abs(v).toLocaleString("ko-KR") + ")</span>" : v.toLocaleString("ko-KR")) + (pct && typeof v === "number" ? "" : "") : esc(v); };
+    return ["financials", "plan", "quarterly", "market"].filter(function (k) { return PRIV.tables[k]; }).map(function (k) {
+      var t = PRIV.tables[k];
+      return '<div class="fm-history-heading"><b>' + esc(t.title) + "</b><span>출처: 동사 · 비공개</span></div><div class=\"fm-table-wrap\"><table class=\"fm-table zt-fin\"><thead><tr><th></th>" + t.columns.map(function (c) { return "<th" + (/F$/.test(c) ? ' class="zt-fc"' : "") + ">" + esc(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+        t.rows.map(function (r) { var sub = /^\s/.test(r[0]); return '<tr class="' + (sub ? "zt-sub" : "zt-main") + '"><td>' + esc(String(r[0]).trim()) + "</td>" + r.slice(1).map(function (v, i) { return "<td" + (/F$/.test(t.columns[i]) ? ' class="zt-fc"' : "") + ">" + n(v) + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody></table></div>";
+    }).join("");
+  }
+
   /* 펼침 메뉴 한 줄 (파인엠텍 fm-metric 과 같은 모양) */
   function metricRow(s) {
     var pts = pointsOf(s), g = good(pts), last = g[g.length - 1], on = selected().indexOf(s.id) >= 0, isAnchor = s.id === state.anchor, unavailable = !g.length;
@@ -109,7 +203,7 @@
   }
   /* 차트 아래 '지표 한눈에 보기' 표 */
   function overview() {
-    var order = ["revenue", "download", "users", "web", "search", "content", "ads", "company"];
+    var order = ["company_data", "revenue", "download", "users", "web", "search", "content", "ads", "company"];
     var list = series().filter(visible).sort(function (a, b) { return order.indexOf(a.group) - order.indexOf(b.group) || String(a.label).localeCompare(String(b.label), "ko"); });
     if (!list.length) return "";
     var rows = list.map(function (s) {
@@ -132,16 +226,18 @@
   function render() {
     if (!active) return;
     if (!DATA) { host.innerHTML = '<div class="fm-chart-empty">' + (error ? "<b>제타 데이터를 불러오지 못했어요.</b><p>" + esc(error) + '</p><button class="fm-add" id="zt-retry" type="button">다시 불러오기</button>' : "제타 지표를 불러오는 중입니다.") + "</div>"; var r = document.getElementById("zt-retry"); if (r) r.onclick = load; return; }
-    var opened = ["app", "web", "etc"].filter(function (k) { var el = document.getElementById("zt-select-" + k); return el && el.open; });
+    var SELS = (PRIV ? [["co", "동사 자료 지표 추가", "월 매출 · 영업이익률 · 공헌이익률 · MAU · DAU · ARPMAU · CAC · 미국 주간 지표", ["company_data"]]] : []).concat(SELECTORS);
+    var opened = ["co", "app", "web", "etc"].filter(function (k) { var el = document.getElementById("zt-select-" + k); return el && el.open; });
     var an = anchorSeries(), ag = an ? good(an.points) : [], alast = ag[ag.length - 1], aprev = ag[ag.length - 2];
     var countries = [["all", "전체"], ["kr", "한국"], ["jp", "일본"], ["us", "미국"], ["etc", "기타 국가"]];
     var snaps = (DATA.snapshots || []).slice().sort(function (a, b) { return String(b.month).localeCompare(String(a.month)); });
     host.innerHTML =
       '<article class="fm-hero">' +
         '<div class="fm-heading"><div><div class="fm-eyebrow">AI 캐릭터 채팅 · 비상장</div><h3>스캐터랩 · 제타<small>' + esc((DATA.company && DATA.company.domain) || "zeta-ai.io") + "</small></h3></div>" +
-          '<div class="fm-quote"><strong>' + (alast ? esc(alast.value + "위") : "수집 대기") + "</strong><span>" + esc(an ? an.label.replace("앱스토어 ", "") : "기준선 없음") + (alast && aprev ? " · 전일 " + (aprev.value - alast.value >= 0 ? "▲" : "▼") + Math.abs(aprev.value - alast.value) + "계단" : "") + "</span></div></div>" +
-        '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 애플·구글플레이·크롬·트랜코 원천</span>" + (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="zt-refresh">새 데이터 확인 ↻</button></div>' +
-        '<div class="fm-selectors zt-selectors">' + SELECTORS.map(function (s) { return selectorBlock(s, opened); }).join("") + "</div>" +
+          '<div class="fm-quote"><strong>' + (alast ? esc(an.id === "co_revenue" ? alast.value.toLocaleString("ko-KR") + "억 원" : alast.value + "위") : "수집 대기") + "</strong><span>" + esc(an ? an.label.replace("앱스토어 ", "") : "기준선 없음") + (alast && alast.user_est ? " · 최근 추정" : "") + (alast && aprev && an.id !== "co_revenue" ? " · 전일 " + (aprev.value - alast.value >= 0 ? "▲" : "▼") + Math.abs(aprev.value - alast.value) + "계단" : "") + "</span></div></div>" +
+        '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 애플·구글플레이·크롬·트랜코 원천</span>" + (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="zt-refresh">새 데이터 확인 ↻</button><button type="button" id="zt-priv-open" class="zt-priv-btn">' + (PRIV ? "동사 자료 다시 불러오기" : "동사 자료 불러오기") + '</button>' + (PRIV ? '<button type="button" id="zt-priv-clear" class="zt-priv-btn">동사 자료 지우기</button>' : "") + '<input type="file" id="zt-priv-file" accept=".json,application/json" hidden></div>' +
+        privPanel() +
+        '<div class="fm-selectors zt-selectors' + (PRIV ? ' zt-sel4' : '') + '">' + SELS.map(function (s) { return selectorBlock(s, opened); }).join("") + "</div>" +
         '<div class="fm-toolbar"><div class="zt-tools">' +
           '<div class="fm-segment" aria-label="차트 기간">' + ["1Y", "2Y", "ALL"].map(function (r) { return '<button type="button" data-zt-range="' + r + '" class="' + (state.range === r ? "on" : "") + '">' + (r === "ALL" ? "전체" : r) + "</button>"; }).join("") + "</div>" +
           '<div class="fm-segment" aria-label="국가">' + countries.map(function (c) { return '<button type="button" data-zt-country="' + c[0] + '" class="' + (state.country === c[0] ? "on" : "") + '" aria-pressed="' + (state.country === c[0]) + '">' + c[1] + "</button>"; }).join("") + "</div>" +
@@ -151,10 +247,11 @@
         '<p class="fm-note">주가 대신 <b>애플 앱스토어 매출 순위</b>를 기준선(굵은 점선)으로 깔았습니다. 스캐터랩은 비상장이라 매출액의 공개 원천이 없고, 애플 공식 매출 차트가 가장 공신력 있는 매출 흐름 지표입니다(순위 → 금액 환산은 하지 않음, 100위 밖인 날은 비움). 매출 순위는 수집 시작일부터 매일 쌓입니다. 속 빈 점은 추정·진행 중인 값입니다.</p>' +
       "</article>" +
       overview() +
+      privTables() +
       (snaps.length ? '<div class="fm-history-heading"><b>리서치 도구 월간 스냅샷</b><span>Similarweb · Semrush 공개 화면의 값을 그대로 옮김 (두 도구의 추정 방식이 달라 약 2배 차이)</span></div><div class="fm-table-wrap"><table class="fm-table"><thead><tr><th>월</th><th>출처</th><th>지표</th><th>전체</th><th>한국</th><th>일본</th><th>미국</th><th>메모</th></tr></thead><tbody>' +
         snaps.map(function (r) { var cs = r.countries || {}; return "<tr><td>" + esc(r.month) + "</td><td>" + (safeURL(r.source_url) ? '<a href="' + esc(safeURL(r.source_url)) + '" target="_blank" rel="noopener">' + esc(r.source) + " ↗</a>" : esc(r.source)) + "</td><td>" + esc(r.metric) + "</td><td>" + esc(r.total != null ? Number(r.total).toLocaleString("ko-KR") : "—") + "</td><td>" + esc(cs.kr != null ? cs.kr : "—") + "</td><td>" + esc(cs.jp != null ? cs.jp : "—") + "</td><td>" + esc(cs.us != null ? cs.us : "—") + "</td><td>" + esc(r.note || "") + "</td></tr>"; }).join("") + "</tbody></table></div>" : "") +
       '<p class="fm-sources">수집: GitHub Actions(fetch_zeta.py, 매일 08:30) → data/zeta.json. 기사·보도·재무 집계 사이트 수치는 쓰지 않습니다. 구글플레이 누적 설치와 한국 앱스토어 평점 수의 과거 값은 인터넷 아카이브(웨이백 머신)에 보관된 스토어 페이지에서 읽었습니다. 키가 필요한 소스(네이버 데이터랩 · 유튜브 · 국민연금)는 키를 등록하면 자동으로 켜집니다.</p>';
-    bind(); drawChart();
+    bind(); drawPriv(); drawChart();
     var st = document.getElementById("workbench-status"); if (st) st.textContent = "스캐터랩 · 제타 · 매출 순위 × 트래픽 지표";
   }
   function toggle(id, force) {
@@ -170,8 +267,13 @@
     host.querySelectorAll("[data-zt-cadence]").forEach(function (b) { b.onclick = function () { state.cadence = b.dataset.ztCadence; store(); render(); }; });
     host.querySelectorAll("[data-zt-range]").forEach(function (b) { b.onclick = function () { state.range = b.dataset.ztRange; store(); render(); }; });
     document.getElementById("zt-mode").onchange = function (e) { state.mode = e.target.value; store(); drawChart(); };
-    document.getElementById("zt-anchor").onchange = function (e) { state.anchor = e.target.value; store(); render(); };
+    document.getElementById("zt-anchor").onchange = function (e) { state.anchor = e.target.value; state.anchorTouched = true; store(); render(); };
     document.getElementById("zt-refresh").onclick = load;
+    var fileEl = document.getElementById("zt-priv-file");
+    document.getElementById("zt-priv-open").onclick = function () { fileEl.click(); };
+    fileEl.onchange = function () { if (fileEl.files && fileEl.files[0]) importPriv(fileEl.files[0]); };
+    var clr = document.getElementById("zt-priv-clear");
+    if (clr) clr.onclick = function () { if (!confirm("이 브라우저(과 동기화된 본인 계정)에서 동사 자료를 지울까요?")) return; try { localStorage.removeItem(PRIV_KEY); } catch (e) {} PRIV = null; if (state.anchor.indexOf("co_") === 0) state.anchor = "app_rank_ios_jp_grossing_all"; store(); render(); };
   }
 
   function drawChart() {
@@ -192,7 +294,7 @@
     var keys = list.map(axisKey).filter(function (k, i, a) { return a.indexOf(k) === i; });
     var narrow = box.clientWidth < 600, normalized = state.mode === "normalized" || keys.length > (narrow ? 2 : 3);
     var tv = function (x, v) { return isRank(x.s) ? -Math.log10(v) : v; };
-    var plot = list.map(function (x) { var pts = x.points.map(function (p) { return Object.assign({}, p, {value: tv(x, p.value)}); }); return Object.assign({}, x, {points: normalized ? C.normalize(pts) : pts}); });
+    var plot = list.map(function (x) { var pts = x.points.map(function (p) { return Object.assign({}, p, {orig: p.value, value: tv(x, p.value)}); }); return Object.assign({}, x, {points: normalized ? C.normalize(pts) : pts}); });
     var width = Math.max(box.clientWidth, 280), height = narrow ? 320 : 390, axes = normalized ? ["0–100"] : keys;
     var left = narrow ? 50 : 64, right = normalized ? 14 : Math.max(14, (axes.length - 1) * (narrow ? 58 : 70)), top = 29, bottom = 32, pw = width - left - right, ph = height - top - bottom;
     var scales = {};
@@ -215,8 +317,9 @@
       if (!geo.vertices.length) return;
       svg += '<path class="fm-series-path' + (q.anchor ? " fm-price-path zt-anchor-path" : "") + '" d="' + geo.path + '" fill="none" stroke="' + q.color + '" stroke-width="' + (q.anchor ? 3 : 2) + '"' + (q.anchor ? ' stroke-dasharray="7 5"' : "") + ' stroke-linecap="round" stroke-linejoin="round"/>';
       if (q.points.length <= 60 || q.anchor) geo.vertices.forEach(function (v, vi) {
-        var p = q.points[vi], hollow = p && (p.partial || p.wide || (p.est && q.s.kind !== "flow")), r = q.anchor ? 4 : hollow ? 3.2 : 2.5;
+        var p = q.points[vi], hollow = p && (p.partial || p.wide || p.user_est || (p.est && q.s.kind !== "flow")), r = q.anchor ? 4 : hollow ? 3.2 : 2.5;
         svg += '<circle cx="' + v[0] + '" cy="' + v[1] + '" r="' + r + '" fill="' + (hollow ? "#101623" : q.color) + '" stroke="' + (hollow ? q.color : "#101623") + '" stroke-width="' + (hollow ? 1.6 : 1) + '"/>';
+        if (q.anchor && q.s.id === "co_revenue" && p && finite(p.orig)) svg += '<text x="' + v[0] + '" y="' + (v[1] - 8) + '" text-anchor="middle" class="zt-pt-label" style="fill:' + q.color + '">' + Math.round(p.orig) + (p.user_est ? "*" : "") + "</text>";
       });
     });
     svg += '</g><line id="zt-cross" x1="0" y1="' + top + '" x2="0" y2="' + (height - bottom) + '" stroke="#a2b9db" stroke-opacity=".4" stroke-dasharray="4 4" visibility="hidden"/><rect id="zt-hit" x="' + left + '" y="' + top + '" width="' + pw + '" height="' + ph + '" fill="transparent"/></svg><div class="fm-tooltip" id="zt-tip" hidden></div>';
@@ -236,7 +339,7 @@
   function load() {
     if (loading) return; loading = true;
     fetch("data/zeta.json?v=" + Date.now(), {cache: "no-store"}).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function (d) { if (d.schema_version !== 1) throw new Error("형식 불일치"); DATA = d; error = ""; if (state.anchor && !byId(state.anchor)) state.anchor = ""; })
+      .then(function (d) { if (d.schema_version !== 1) throw new Error("형식 불일치"); DATA = d; error = ""; readPriv(); if (state.anchor && !byId(state.anchor)) state.anchor = byId("app_rank_ios_jp_grossing_all") ? "app_rank_ios_jp_grossing_all" : ""; })
       .catch(function (e) { error = e.message; })
       .then(function () { loading = false; render(); });
   }
@@ -244,5 +347,5 @@
     active = e.detail && e.detail.company === "스캐터랩"; host.hidden = !active;
     if (active) { render(); if (!DATA) load(); }
   });
-  window.addEventListener("resize", function () { cancelAnimationFrame(renderId); renderId = requestAnimationFrame(function () { if (active && DATA) drawChart(); }); });
+  window.addEventListener("resize", function () { cancelAnimationFrame(renderId); renderId = requestAnimationFrame(function () { if (active && DATA) { drawPriv(); drawChart(); } }); });
 })();
