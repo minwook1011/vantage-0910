@@ -6,7 +6,7 @@
     "yahoo_ticker": "441270.KQ",
     "currency": "KRW"
   },
-  "checked_at": "2026-09-23T21:16:07+09:00",
+  "checked_at": "2026-09-24T02:03:47+09:00",
   "price": {
     "points": [
       {
@@ -3876,20 +3876,16 @@
       {
         "date": "2026-09-22",
         "value": 8360.0
-      },
-      {
-        "date": "2026-09-23",
-        "value": 8750.0
       }
     ],
     "source": "Yahoo Finance",
     "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/441270.KQ?range=5y&interval=1d",
-    "fetched_at": "2026-09-23T21:16:07+09:00",
+    "fetched_at": "2026-09-24T02:03:47+09:00",
     "status": "ready",
     "unit": "원",
     "basis": "KRX 일봉 · 당일 장중 값은 변동 가능",
     "is_intraday": false,
-    "as_of": "2026-09-23"
+    "as_of": "2026-09-22"
   },
   "financials": {
     "quarterly": [
@@ -4293,8 +4289,8 @@
       "annual": "ready"
     },
     "fetched_at": {
-      "quarterly": "2026-09-23T21:16:07+09:00",
-      "annual": "2026-09-23T21:16:07+09:00"
+      "quarterly": "2026-09-24T02:03:47+09:00",
+      "annual": "2026-09-24T02:03:47+09:00"
     },
     "annual": [
       {
