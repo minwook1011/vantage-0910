@@ -17,13 +17,13 @@
     ["app", "앱 지표 추가", "구글플레이 설치 · 국가별 월 신규 리뷰", ["revenue", "download", "users"]],
     ["search", "검색 지표 추가", "구글 트렌드 · 전 세계 · 한국 · 일본 · 미국", ["search"]]
   ];
-  var ANCHORS = [["co_revenue", "월 매출 (IR)"], ["co_rev_q_total", "분기 매출 (IR)"], ["co_rev_q_kr", "한국 분기 매출 (IR)"], ["co_rev_jp", "일본 월 매출 (IR)"],
+  var ANCHORS = [["co_revenue", "월 매출 (IR)"], ["co_rev_m_kr", "한국 월 매출 (IR 추정)"], ["co_rev_m_jp", "일본 월 매출 (IR 추정)"], ["co_rev_q_total", "분기 매출 (IR)"], ["co_rev_q_kr", "한국 분기 매출 (IR)"], ["co_rev_jp", "일본 월 매출 (IR)"],
     ["co_rev_q_jp", "일본 분기 매출 (IR)"], ["co_mau_us", "미국 MAU (IR · 미국 매출 자료 없음)"], ["app_gplay_installs__mom", "구글플레이 월 신규 설치"]];
   /* 국가별 보기: 나라를 고르면 그 나라 매출이 기준선이 되고 그 나라 트래픽 지표가 겹쳐진다. 나라마다 고른 지표·기준선은 따로 저장된다. */
   var COUNTRY_VIEWS = {
     all: {anchor: "co_revenue", fallback: "app_gplay_installs__mom", sel: ["app_gplay_installs__mom", "co_mau", "search_gtrends_global"]},
-    kr: {anchor: "co_rev_q_kr", fallback: "search_gtrends_kr", sel: ["co_mau_kr", "app_gplay_newreviews_kr", "search_gtrends_kr"]},
-    jp: {anchor: "co_rev_q_jp", fallback: "search_gtrends_jp", sel: ["co_rev_jp", "co_mau_jp", "app_gplay_newreviews_jp", "search_gtrends_jp"]},
+    kr: {anchor: "co_rev_m_kr", fallback: "search_gtrends_kr", sel: ["co_mau_kr", "app_gplay_newreviews_kr", "search_gtrends_kr"]},
+    jp: {anchor: "co_rev_m_jp", fallback: "search_gtrends_jp", sel: ["co_rev_jp", "co_mau_jp", "app_gplay_newreviews_jp", "search_gtrends_jp"]},
     us: {anchor: "co_mau_us", fallback: "search_gtrends_us", sel: ["app_gplay_newreviews_us", "search_gtrends_us", "co_us_signups"]}
   };
   function viewDefaults(c) { var v = COUNTRY_VIEWS[c] || COUNTRY_VIEWS.all; return {anchor: v.anchor, selected: v.sel.slice(), anchorTouched: false}; }
@@ -31,7 +31,7 @@
     state.views = state.views || {};
     state.views[state.country] = {anchor: state.anchor, selected: (state.selected || []).slice(), anchorTouched: !!state.anchorTouched};
     var v = state.views[next] || viewDefaults(next);
-    state.country = next; state.anchor = v.anchor; state.selected = v.selected.slice(); state.anchorTouched = !!v.anchorTouched;
+    state.country = next; state.anchor = v.anchorTouched ? v.anchor : viewDefaults(next).anchor; state.selected = v.selected.slice(); state.anchorTouched = !!v.anchorTouched;
   }
   function ensureAnchor() {
     // 기준선 지표가 없으면(IR 미불러옴 등) 그 나라의 공개 지표로 대신한다 — 저장된 선택은 지우지 않는다
@@ -56,6 +56,7 @@
   // 화면에서 뺀 지표는 저장된 선택·키 데이터·기준선에서도 지운다
   ["selected", "keys"].forEach(function (k) { if (state[k]) state[k] = state[k].filter(function (id) { return !REMOVED.test(id); }); });
   if (REMOVED.test(state.anchor)) { state.anchor = "co_revenue"; state.anchorTouched = false; }
+  if (!state.anchorTouched) state.anchor = viewDefaults(state.country).anchor;
   var DATA = null, active = false, loading = false, error = "", renderId = 0;
   function store() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function good(pts) { return (pts || []).filter(function (p) { return p && C.validDate(p.date) && finite(p.value); }); }
@@ -130,7 +131,50 @@
   var PRIV_KEY = "vantage-zeta-private-v1", PRIV = null;
   function readPriv() {
     try { var p = JSON.parse(localStorage.getItem(PRIV_KEY) || "null"); PRIV = p && p.schema === "zeta-private-1" && Array.isArray(p.series) ? p : null; } catch (e) { PRIV = null; }
+    if (PRIV) PRIV.series = PRIV.series.filter(function (x) { return !/^co_rev_(m|share)_/.test(x.id); }).concat(countryRevenue(PRIV));
     return PRIV;
+  }
+  /* 국가별 월 매출(추정) = IR 월 매출 × 그 달이 속한 분기의 국가 비중(IR 분기 국가별 매출 ÷ 분기 매출 합계).
+     분기 자료가 끝난 뒤는 IR에 적힌 일본 월 매출의 비중까지 선형으로 잇고, 그 뒤는 마지막 비중을 유지한다. IR에 월 값이 적힌 달은 그 값을 쓴다. */
+  function countryRevenue(p) {
+    var get = function (id) { var x = p.series.filter(function (s) { return s.id === id; })[0]; return x ? good(x.points) : []; };
+    var tot = get("co_revenue"), qt = get("co_rev_q_total");
+    if (!tot.length || !qt.length) return [];
+    var qk = function (d) { return d.slice(0, 4) + "Q" + Math.floor((+d.slice(5, 7) - 1) / 3); };
+    var mi = function (d) { return +d.slice(0, 4) * 12 + (+d.slice(5, 7) - 1); };
+    var totAt = {}; tot.forEach(function (x) { totAt[x.date.slice(0, 7)] = x.value; });
+    var qShare = {kr: {}, jp: {}}, lastQ = "";
+    qt.forEach(function (q) {
+      var k = qk(q.date); if (!q.value) return;
+      if (k > lastQ) lastQ = k;
+      ["kr", "jp"].forEach(function (c) { var v = get("co_rev_q_" + c).filter(function (x) { return qk(x.date) === k; })[0]; if (v) qShare[c][k] = v.value / q.value; });
+    });
+    var lastQEnd = qt.filter(function (q) { return qk(q.date) === lastQ; })[0];
+    if (!lastQEnd) return [];
+    var etc = Math.max(0, 1 - (qShare.kr[lastQ] || 0) - (qShare.jp[lastQ] || 0));
+    var actual = {kr: {}, jp: {}}; get("co_rev_jp").forEach(function (x) { actual.jp[x.date.slice(0, 7)] = x.value; });
+    // 분기 뒤 일본 비중: 마지막 분기 비중 → IR 월 값의 비중을 선형으로
+    var knots = [[mi(lastQEnd.date), qShare.jp[lastQ] || 0]].concat(Object.keys(actual.jp).filter(function (m) { return totAt[m] && mi(m + "-01") > mi(lastQEnd.date); }).sort().map(function (m) { return [mi(m + "-01"), actual.jp[m] / totAt[m]]; }));
+    var jpAfter = function (m) { for (var i = 1; i < knots.length; i++) if (m <= knots[i][0]) return knots[i - 1][1] + (knots[i][1] - knots[i - 1][1]) * (m - knots[i - 1][0]) / (knots[i][0] - knots[i - 1][0]); return knots[knots.length - 1][1]; };
+    var out = [];
+    ["kr", "jp"].forEach(function (c) {
+      var nm = COUNTRY[c], pts = [], sh = [];
+      tot.forEach(function (x) {
+        var m = x.date.slice(0, 7), k = qk(x.date), share = null, act = actual[c][m];
+        if (qShare[c][k] != null) share = qShare[c][k];
+        else if (k > lastQ) { var j = jpAfter(mi(x.date)); share = c === "jp" ? j : Math.max(0, 1 - j - etc); }
+        if (act != null) pts.push({date: x.date, value: act});
+        else if (share != null) pts.push({date: x.date, value: Math.round(x.value * share * 10) / 10, est: true, user_est: x.user_est});
+      });
+      qt.forEach(function (q) { var k = qk(q.date); if (qShare[c][k] != null) sh.push({date: q.date, value: Math.round(qShare[c][k] * 1000) / 10}); });
+      Object.keys(actual[c]).forEach(function (m) { if (totAt[m]) sh.push({date: m + "-01", value: Math.round(actual[c][m] / totAt[m] * 1000) / 10}); });
+      sh.sort(function (a, b) { return a.date.localeCompare(b.date); });
+      out.push({id: "co_rev_m_" + c, label: nm + " 월 매출 (추정)", unit: "억원", kind: "flow", group: "company_data", country: c, cadence: "월간 · IR", source: "IR (동사) · 계산", method: "private", points: pts,
+        note: "[추정 방법] IR 월 매출 × 그 달이 속한 분기의 " + nm + " 비중(IR 분기 " + nm + " 매출 ÷ 분기 매출 합계). 분기 자료가 끝난 뒤는 IR에 적힌 일본 월 매출의 비중까지 선형으로 잇고" + (c === "kr" ? ", 한국 = 1 − 일본 − 기타(마지막 분기 비중)로 계산" : "") + "했습니다. IR에 월 값이 적힌 달은 그 값을 그대로 씁니다."});
+      out.push({id: "co_rev_share_" + c, label: nm + " 매출 비중", unit: "%", kind: "ratio", group: "company_data", country: c, cadence: "분기 · IR", source: "IR (동사) · 계산", method: "private", axis: "right", points: sh,
+        note: "분기: IR 분기 " + nm + " 매출 ÷ 분기 매출 합계. 월: IR에 적힌 " + nm + " 월 매출 ÷ 월 매출."});
+    });
+    return out;
   }
   function importPriv(file) {
     var reader = new FileReader();
@@ -177,13 +221,13 @@
       var side = l.axis || "left", pts = l.points.slice().sort(function (a, b) { return a.date.localeCompare(b.date); });
       // 실제 자료 사이는 실선, 추정점(사용자 지정)으로 가는 구간·긴 공백은 점선
       for (var k = 1; k < pts.length; k++) {
-        var a = pts[k - 1], b = pts[k], gap = (C.timestamp(b.date) - C.timestamp(a.date)) / 86400000 > 45 || b.user_est || a.user_est;
+        var a = pts[k - 1], b = pts[k], gap = (C.timestamp(b.date) - C.timestamp(a.date)) / 86400000 > 45 || b.user_est || a.user_est || b.est || a.est;
         svg += '<path d="M' + xx(a.date).toFixed(1) + " " + yy(a.value, side).toFixed(1) + "L" + xx(b.date).toFixed(1) + " " + yy(b.value, side).toFixed(1) + '" stroke="' + l.color + '" stroke-width="' + (l.bold ? 2.6 : 1.9) + '"' + (gap ? ' stroke-dasharray="5 4"' : "") + ' fill="none"/>';
       }
       pts.forEach(function (p) {
-        var hollow = p.user_est, x0 = xx(p.date), y0 = yy(p.value, side);
+        var hollow = p.user_est || p.est, x0 = xx(p.date), y0 = yy(p.value, side);
         svg += '<circle cx="' + x0 + '" cy="' + y0 + '" r="' + (l.bold ? 3.6 : 3) + '" fill="' + (hollow ? "#101623" : l.color) + '" stroke="' + (hollow ? l.color : "#101623") + '" stroke-width="' + (hollow ? 1.8 : 1) + '"><title>' + esc(p.date.slice(0, 7) + " " + l.label + " " + short(p.value, l.unit) + (l.unit && l.unit !== "%" ? " " + l.unit : "") + (p.user_est ? " · 최근 추정(사용자 지정)" : p.calc ? " · 영업이익÷매출" : "")) + "</title></circle>";
-        if (!l.noLabels) svg += '<text x="' + x0 + '" y="' + (y0 + (l.labelBelow ? 14 : -7)) + '" text-anchor="middle" class="zt-pt-label" style="fill:' + l.color + '">' + short(p.value, l.unit) + (p.user_est ? "*" : "") + "</text>";
+        if (!l.noLabels && !(p.est && !p.user_est)) svg += '<text x="' + x0 + '" y="' + (y0 + (l.labelBelow ? 14 : -7)) + '" text-anchor="middle" class="zt-pt-label" style="fill:' + l.color + '">' + short(p.value, l.unit) + (p.user_est ? "*" : "") + "</text>";
       });
     });
     box.innerHTML = svg + '</svg><div class="zt-rev-legend">' + lines.map(function (l) { return '<span><i style="background:' + l.color + '"></i>' + esc(l.label) + (l.axis === "right" ? " (오른쪽 축)" : "") + "</span>"; }).join("") + "</div>";
@@ -192,12 +236,26 @@
   function privLine(id, label, color, extra) { var s = privSeries(id); return Object.assign({label: label, color: color, unit: s ? s.unit : "", axis: s && s.axis, points: s ? good(s.points).map(function (p) { return p; }) : []}, extra || {}); }
   function drawPriv() {
     if (!PRIV) return;
-    drawLabeled(document.getElementById("zt-co-rev"), [
+    var c = state.country, rev = document.getElementById("zt-co-rev"), users = document.getElementById("zt-co-users");
+    if (c === "kr" || c === "jp") {
+      drawLabeled(rev, [
+        privLine("co_rev_m_" + c, COUNTRY[c] + " 월 매출 (억원)", "#83aaff", {bold: true}),
+        privLine("co_rev_share_" + c, COUNTRY[c] + " 매출 비중", "#ffbd76", {axis: "right", labelBelow: true})
+      ], {leftUnit: "억원", title: COUNTRY[c] + " 월 매출과 비중", rightClip: [0, 100], height: 320});
+      drawLabeled(users, [privLine("co_mau_" + c, "MAU " + COUNTRY[c], "#e8eefb", {bold: true})].concat(c === "jp" ? [privLine("co_dau_jp", "DAU 일본", "#ffbd76", {labelBelow: true})] : []), {leftUnit: "명", title: "MAU와 DAU", height: 320});
+      return;
+    }
+    if (c === "us") {
+      drawLabeled(rev, [privLine("co_us_signups", "주별 신규 가입", "#83aaff", {bold: true}), privLine("co_us_wau", "WAU (주간)", "#55d6bc", {labelBelow: true})], {leftUnit: "명", title: "미국 가입·WAU", height: 320});
+      drawLabeled(users, [privLine("co_mau_us", "MAU 미국", "#e8eefb", {bold: true})], {leftUnit: "명", title: "MAU", height: 320});
+      return;
+    }
+    drawLabeled(rev, [
       privLine("co_revenue", "월 매출 (억원)", "#83aaff", {bold: true}),
       privLine("co_opm", "영업이익률", "#ffbd76", {axis: "right", labelBelow: true}),
       privLine("co_cm", "공헌이익률", "#55d6bc", {axis: "right", noLabels: true})
     ], {leftUnit: "억원", title: "월 매출과 영업이익률", rightClip: [-30, 80], height: 320});
-    drawLabeled(document.getElementById("zt-co-users"), [
+    drawLabeled(users, [
       privLine("co_mau", "MAU 전체", "#e8eefb", {bold: true}), privLine("co_mau_kr", "MAU 한국", "#83aaff"), privLine("co_mau_jp", "MAU 일본", "#fa829d"),
       privLine("co_mau_us", "MAU 미국", "#9fd675"), privLine("co_dau", "DAU 전체", "#c7a2ff", {labelBelow: true}), privLine("co_dau_jp", "DAU 일본", "#ffbd76", {labelBelow: true})
     ], {leftUnit: "명", title: "MAU와 DAU", height: 320});
@@ -206,8 +264,8 @@
     if (!PRIV) return "";
     return '<section class="zt-co" aria-label="IR"><div class="cb-keys-head"><b>IR · 매출과 사용자</b><span>출처: IR (동사) · ' + esc(PRIV.as_of || "") + ' · <span class="zt-private">비공개 · 이 브라우저와 본인 계정에만 저장</span></span></div>' +
       '<div class="zt-kpis">' + [].map(function (k) { return '<div class="fm-kpi"><span>' + esc(k[0]) + "</span><strong>" + esc(k[1]) + "</strong><small>" + esc(k[2] || "") + "</small></div>"; }).join("") + "</div>" +
-      '<div class="zt-co-grid"><div class="zt-rev-box"><div class="zt-rev-title">월 매출 · 영업이익률 · 공헌이익률</div><div id="zt-co-rev"></div></div><div class="zt-rev-box"><div class="zt-rev-title">MAU · DAU</div><div id="zt-co-users"></div></div></div>' +
-      '<p class="fm-note">점과 숫자는 IR 자료에 적힌 값이고, 점 사이는 선형으로 이었습니다(한 달 넘게 비는 구간과 추정점으로 가는 구간은 점선). 속 빈 점과 * 표시는 사용자가 지정한 최근 추정값입니다. 영업이익률은 자료에 적힌 값 외에는 월 영업이익÷월 매출이고, 초기 적자 구간은 −30%에서 잘라 그렸습니다.</p></section>';
+      '<div class="zt-co-grid"><div class="zt-rev-box"><div class="zt-rev-title">' + ({kr: "한국 월 매출 (추정) · 한국 매출 비중", jp: "일본 월 매출 (추정) · 일본 매출 비중", us: "미국 — 매출 자료 없음 · 주별 신규 가입 · WAU"}[state.country] || "월 매출 · 영업이익률 · 공헌이익률") + '</div><div id="zt-co-rev"></div></div><div class="zt-rev-box"><div class="zt-rev-title">' + (state.country === "all" ? "" : COUNTRY[state.country] + " ") + 'MAU · DAU</div><div id="zt-co-users"></div></div></div>' +
+      '<p class="fm-note">점과 숫자는 IR 자료에 적힌 값이고, 점 사이는 선형으로 이었습니다(한 달 넘게 비는 구간과 추정점으로 가는 구간은 점선). 속 빈 점과 * 표시는 사용자가 지정한 최근 추정값입니다. 영업이익률은 자료에 적힌 값 외에는 월 영업이익÷월 매출이고, 초기 적자 구간은 −30%에서 잘라 그렸습니다.' + (state.country === "kr" || state.country === "jp" ? ' 나라별 월 매출은 IR에 나라별 월 값이 거의 없어 <b>월 매출 × 분기 나라 비중</b>으로 추정했습니다(속 빈 점·점선, 숫자 없음). 숫자가 붙은 점만 IR에 적힌 값입니다.' : "") + '</p></section>';
   }
   function privTables() {
     if (!PRIV || !PRIV.tables) return "";
@@ -346,7 +404,7 @@
     host.innerHTML =
       '<article class="fm-hero">' +
         '<div class="fm-heading"><div><div class="fm-eyebrow">AI 캐릭터 채팅 · 비상장</div><h3>스캐터랩 · 제타<small>' + esc((DATA.company && DATA.company.domain) || "zeta-ai.io") + "</small></h3></div>" +
-          '<div class="fm-quote"><strong>' + (alast ? esc(an.id === "co_revenue" ? alast.value.toLocaleString("ko-KR") + "억 원" : fmt(alast.value, an)) : "수집 대기") + "</strong><span>" + esc(an ? an.label : "기준선 없음") + (alast ? " · " + alast.date.slice(0, 7) : "") + (alast && alast.user_est ? " · 최근 추정" : "") + "</span></div></div>" +
+          '<div class="fm-quote"><strong>' + (alast ? esc(an.unit === "억원" ? alast.value.toLocaleString("ko-KR") + "억 원" : fmt(alast.value, an)) : "수집 대기") + "</strong><span>" + esc(an ? an.label : "기준선 없음") + (alast ? " · " + alast.date.slice(0, 7) : "") + (alast && alast.user_est ? " · 최근 추정" : alast && alast.est ? " · 추정" : "") + "</span></div></div>" +
         '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 구글플레이 원천</span>" + (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="zt-refresh">새 데이터 확인 ↻</button><button type="button" id="zt-priv-open" class="zt-priv-btn">' + (PRIV ? "IR 자료 다시 불러오기" : "IR 자료 불러오기") + '</button>' + (PRIV ? '<button type="button" id="zt-priv-clear" class="zt-priv-btn">IR 자료 지우기</button>' : "") + '<input type="file" id="zt-priv-file" accept=".json,application/json" hidden></div>' +
         privPanel() + installsPanel() +
         '<div class="fm-selectors zt-selectors zt-cols' + SELS.length + '">' + SELS.map(function (s) { return selectorBlock(s, opened); }).join("") + "</div>" +
@@ -439,7 +497,7 @@
         var p = q.points[vi], hollow = p && (p.partial || p.wide || p.user_est || (p.est && q.s.kind !== "flow")), r = q.anchor ? 4 : hollow ? 3.2 : 2.5;
         svg += '<circle cx="' + v[0] + '" cy="' + v[1] + '" r="' + r + '" fill="' + (hollow ? "#101623" : q.color) + '" stroke="' + (hollow ? q.color : "#101623") + '" stroke-width="' + (hollow ? 1.6 : 1) + '"/>';
         if (!q.anchor && q.points.length === 1 && p && finite(p.orig)) svg += '<text x="' + v[0] + '" y="' + (v[1] - 9) + '" text-anchor="' + (v[0] > left + pw - 60 ? "end" : "middle") + '" class="zt-pt-label" style="fill:' + q.color + '">' + esc(fmt(p.orig, q.s)) + " · 수집 " + collectDays(q.s) + "일째</text>";
-        if (q.anchor && q.s.id === "co_revenue" && p && finite(p.orig)) svg += '<text x="' + v[0] + '" y="' + (v[1] - 8) + '" text-anchor="' + (v[0] > left + pw - 24 ? "end" : "middle") + '" class="zt-pt-label" style="fill:' + q.color + '">' + Math.round(p.orig) + (p.user_est ? "*" : "") + "</text>";
+        if (q.anchor && q.s.unit === "억원" && p && finite(p.orig) && !(p.est && !p.user_est)) svg += '<text x="' + v[0] + '" y="' + (v[1] - 8) + '" text-anchor="' + (v[0] > left + pw - 24 ? "end" : "middle") + '" class="zt-pt-label" style="fill:' + q.color + '">' + Math.round(p.orig) + (p.user_est ? "*" : "") + "</text>";
       });
     });
     svg += '</g><line id="zt-cross" x1="0" y1="' + top + '" x2="0" y2="' + (height - bottom) + '" stroke="#a2b9db" stroke-opacity=".4" stroke-dasharray="4 4" visibility="hidden"/><rect id="zt-hit" x="' + left + '" y="' + top + '" width="' + pw + '" height="' + ph + '" fill="transparent"/></svg><div class="fm-tooltip" id="zt-tip" hidden></div>';
