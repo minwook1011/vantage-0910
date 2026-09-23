@@ -22,7 +22,8 @@
     {ticker: "000660", name: "SK하이닉스", market: "KR", financials: "000660.KS", fin_unit: "조원", fin_div: 1e6, indicators: ["trass_dram", "trass_mcp", "trass_dram_module", "hyperscaler_capex::합계"]},
     {ticker: "005930", name: "삼성전자", market: "KR", financials: "005930.KS", fin_unit: "조원", fin_div: 1e6, indicators: ["trass_dram", "trass_flash", "trass_mcp", "hyperscaler_capex::합계"]},
     {ticker: "TSM", name: "TSMC", market: "US", financials: "TSM", fin_unit: "NT$ 십억", fin_div: 1000, indicators: ["tsmc_monthly_rev", "hyperscaler_capex::합계", "gpu_h100_index", "or_tokens_weekly"]},
-    {ticker: "441270", name: "파인엠텍", market: "KR", module: "finemtec"}
+    {ticker: "441270", name: "파인엠텍", market: "KR", module: "finemtec"},
+    {ticker: "비상장", name: "스캐터랩 (제타)", market: "PRIVATE", module: "zeta"}
   ];
 
   var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]; }); };
@@ -153,9 +154,10 @@
     var c = company();
     var status = document.getElementById("workbench-status");
     if (status) status.textContent = (c.name || c.label) + " · 주가 × 실적 × 관련 지표";
-    if (c.module === "finemtec") {
+    if (c.module) {
+      // 전용 화면이 있는 기업: finemtec.js(파인엠텍) · zeta.js(스캐터랩)가 이 이벤트를 받아 스스로 그린다
       host.hidden = true; host.innerHTML = "";
-      document.dispatchEvent(new CustomEvent("vantage-company-change", {detail: {company: "파인엠텍"}}));
+      document.dispatchEvent(new CustomEvent("vantage-company-change", {detail: {company: c.module === "zeta" ? "스캐터랩" : "파인엠텍"}}));
       return;
     }
     document.dispatchEvent(new CustomEvent("vantage-company-change", {detail: {company: c.name || c.ticker}}));

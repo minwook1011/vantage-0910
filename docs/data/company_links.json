@@ -14,6 +14,7 @@
     {"ticker": "TSM", "yahoo": "TSM", "label": "TSMC ADR", "name": "TSMC", "market": "US", "desc": "파운드리 · 주가는 미국 ADR(USD)",
      "financials": "TSM", "fin_unit": "NT$ 십억", "fin_div": 1000,
      "indicators": ["tsmc_monthly_rev", "hyperscaler_capex::합계", "gpu_h100_index", "or_tokens_weekly"]},
-    {"ticker": "441270", "label": "파인엠텍", "name": "파인엠텍", "market": "KR", "desc": "폴더블 부품 · 베트남 납품", "module": "finemtec"}
+    {"ticker": "441270", "label": "파인엠텍", "name": "파인엠텍", "market": "KR", "desc": "폴더블 부품 · 베트남 납품", "module": "finemtec"},
+    {"ticker": "비상장", "label": "스캐터랩", "name": "스캐터랩 (제타)", "market": "PRIVATE", "desc": "AI 캐릭터 채팅 · 트래픽 대리 지표", "module": "zeta"}
   ]
 }

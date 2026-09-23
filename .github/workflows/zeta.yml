@@ -1,0 +1,78 @@
+name: zeta-traffic-daily
+
+# 스캐터랩(제타) 트래픽 대리 지표 → docs/data/zeta.json (cron 은 UTC, 괄호는 한국시간)
+#   23:30 UTC (08:30 KST) 매일  앱 순위·평점 수·구글플레이·Tranco·유튜브·네이버
+#   02:00 UTC 10~16일 (11:00 KST)  CrUX 국가별 월간 순위(다음 달 둘째 주 공개) · 국민연금
+# 키가 필요한 소스는 저장소 Settings → Secrets 에 넣으면 켜진다:
+#   YOUTUBE_API_KEY, NAVER_CLIENT_ID, NAVER_CLIENT_SECRET, DATA_GO_KR_KEY
+on:
+  schedule:
+    - cron: "30 23 * * *"
+    - cron: "0 2 10-16 * *"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "수집기만 골라 실행 (비우면 전체). 예: gplay,tranco"
+        required: false
+        default: ""
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: zeta-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q google-play-scraper
+      - name: 이번 실행에서 받을 소스 정하기
+        id: pick
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+          MANUAL: ${{ github.event.inputs.only }}
+        run: |
+          case "$SCHEDULE" in
+            "0 2 10-16 * *") ONLY="crux,nps" ;;
+            "30 23 * * *")   ONLY="" ;;
+            *)               ONLY="" ;;
+          esac
+          if [ -n "$MANUAL" ]; then ONLY="$MANUAL"; fi
+          echo "only=$ONLY" >> "$GITHUB_OUTPUT"
+          echo "이번 실행: ${ONLY:-전체}"
+      - name: 지표 수집
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+        run: |
+          if [ -n "${{ steps.pick.outputs.only }}" ]; then
+            python fetch_zeta.py --only "${{ steps.pick.outputs.only }}"
+          else
+            python fetch_zeta.py
+          fi
+      - name: 변경분 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/zeta.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: 제타 트래픽 갱신 $(TZ=Asia/Seoul date +'%Y-%m-%d %H:%M') KST (${{ steps.pick.outputs.only || '전체' }})"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: Pages 배포 요청
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py

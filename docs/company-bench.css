@@ -43,5 +43,14 @@
 .cb-workspace .fm-selectors { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .cb-workspace .fm-options { max-height:430px; overflow:auto; }
 
+/* 스캐터랩(제타) 트래픽 화면 */
+.zt-controls { display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; margin-top:18px; }
+.zt-section { margin-top:4px; }
+.cb-key.zt-pending { opacity:.72; }
+.cb-key.zt-pending .cb-key-main { cursor:default; }
+.zt-wait { color:#9aabc5; font:500 12px var(--sans); letter-spacing:0; }
+.zt-src { position:absolute; right:9px; bottom:8px; color:#7f9ccc; font-size:10px; text-decoration:none; }
+.zt-src:hover { color:#b9d0ff; text-decoration:underline; }
+
 @media (max-width:980px) { .cb-keys { grid-template-columns:repeat(2,minmax(0,1fr)); } .cb-workspace .fm-selectors { grid-template-columns:1fr; } }
 @media (max-width:520px) { .cb-keys { grid-template-columns:1fr; } .cb-chip { padding:8px 11px; } }
