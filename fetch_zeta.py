@@ -191,6 +191,49 @@ def c_gplay(st):
                   [{"date": TODAY, "value": int(first["ratings"])}])
 
 
+# ── 3-0. 구글플레이 국가별 월 신규 리뷰 수 (리뷰 작성일 기준, 출시 때부터 복원) ──
+GP_REVIEW_STORES = (("kr", "ko"), ("jp", "ja"), ("us", "en"))
+
+
+@collector("gpreviews")
+def c_gpreviews(st):
+    from google_play_scraper import reviews as gp_reviews, Sort
+    box = st.state.setdefault("gp_reviews", {})
+    for cc, lang in GP_REVIEW_STORES:
+        cur = box.setdefault(cc, {"counts": {}, "newest": None})
+        newest_seen, newest_now, tok, pages = cur.get("newest"), cur.get("newest"), None, 0
+        added = {}
+        try:
+            while pages < 600:  # 최초 1회는 전체(수백 쪽), 이후에는 새 리뷰가 있는 앞쪽 몇 쪽만 읽는다
+                batch, tok = gp_reviews(ANDROID_ID, lang=lang, country=cc, sort=Sort.NEWEST, count=200, continuation_token=tok)
+                pages += 1
+                stop = False
+                for r in batch:
+                    at = r["at"].isoformat()
+                    if newest_seen and at <= newest_seen:
+                        stop = True
+                        break
+                    ym = at[:7]
+                    added[ym] = added.get(ym, 0) + 1
+                    if not newest_now or at > newest_now:
+                        newest_now = at
+                if stop or not batch or not tok:
+                    break
+                time.sleep(0.3)
+        except Exception as e:
+            st.error(f"gpreviews {cc}", e)
+            continue  # 중간 실패 시 이번 결과는 버리고 다음 실행에서 다시 읽는다(중복 집계 방지)
+        for ym, n in added.items():
+            cur["counts"][ym] = cur["counts"].get(ym, 0) + n
+        cur["newest"] = newest_now
+        this_month = TODAY[:7]
+        pts = [{"date": ym + "-01", "value": n, **({"partial": True} if ym == this_month else {})} for ym, n in sorted(cur["counts"].items())]
+        st.upsert(f"app_gplay_newreviews_{cc}", {"group": "download", "country": cc, "label": f"구글플레이 월 신규 리뷰 · {COUNTRIES[cc]} 스토어", "unit": "개", "kind": "flow",
+                  "cadence": "월간 · 리뷰 작성일 기준", "source": "Google Play 리뷰 (공개 페이지)", "source_url": f"https://play.google.com/store/apps/details?id={ANDROID_ID}",
+                  "note": "그 달에 새로 달린 글 리뷰 수(해당 언어·국가 스토어). 신규 설치·활성 사용자의 국가별 대리 지표. 한국 사용자가 리뷰를 더 많이 쓰는 경향이 있어 국가 간 절대 비교는 주의."},
+                  pts, replace=True)
+
+
 # ── 3-1. 웨이백 머신 과거 스냅샷으로 누적값 복원 (구글플레이 설치 · 앱스토어 평점 수) ──
 GP_INSTALLS = re.compile(r'\["([\d,.]+\+?)",(\d+),(\d+),"([^"]*)"\]')
 AS_RATINGS = re.compile(r'"aggregateRating"\s*:\s*\{[^}]*?"(?:reviewCount|ratingCount)"\s*:\s*"?(\d+)')
