@@ -1,22 +1,19 @@
 {
   "schema_version": 1,
-  "note": "기업별 데이터 모음 탭 설정. ticker = 화면 표시용 키, yahoo = 야후 파이낸스 심볼(한국은 .KS/.KQ), indicators = ai_indicators.json 의 series id 목록(시계열만). 기업·지표를 추가하려면 이 파일을 고치면 다음 수집 때 주가까지 받아온다.",
+  "note": "기업별 데이터 모음(기업 워크벤치) 설정. ticker = 화면 키, yahoo = 야후 파이낸스 심볼(한국은 .KS/.KQ), name = 화면 표시 이름, financials = docs/financials.json 의 키, fin_unit/fin_div = 실적 표시 단위와 나눌 값, indicators = 기업 아래 '주요 지표'로 보일 지표 id 목록(ai_indicators.json 의 series id. 여러 선이 있는 지표는 '지표id::선이름', 합계는 '지표id::합계'). module 이 있는 기업은 전용 화면(finemtec.js)을 쓰고 주가 수집 대상에서 빠진다. 기업을 추가하면 다음 수집 때 주가까지 받아온다.",
   "companies": [
-    {"ticker": "NVDA", "yahoo": "NVDA", "label": "NVIDIA", "market": "US",
-     "indicators": ["or_tokens_weekly", "gpu_h100_market", "hyperscaler_capex", "tsmc_monthly_rev"]},
-    {"ticker": "TSM", "yahoo": "TSM", "label": "TSMC ADR", "market": "US",
-     "indicators": ["tsmc_monthly_rev", "hyperscaler_capex", "gpu_market_multi"]},
-    {"ticker": "000660", "yahoo": "000660.KS", "label": "SK하이닉스", "market": "KR",
-     "indicators": ["tsmc_monthly_rev", "hyperscaler_capex", "gpu_h100_market"]},
-    {"ticker": "005930", "yahoo": "005930.KS", "label": "삼성전자", "market": "KR",
-     "indicators": ["tsmc_monthly_rev", "hyperscaler_capex"]},
-    {"ticker": "MU", "yahoo": "MU", "label": "Micron", "market": "US",
-     "indicators": ["hyperscaler_capex", "tsmc_monthly_rev"]},
-    {"ticker": "CRWV", "yahoo": "CRWV", "label": "CoreWeave", "market": "US",
-     "indicators": ["gpu_h100_market", "gpu_list_multi", "or_tokens_weekly"]},
-    {"ticker": "MSFT", "yahoo": "MSFT", "label": "Microsoft", "market": "US",
-     "indicators": ["hyperscaler_capex", "or_avg_price", "or_tokens_weekly"]},
-    {"ticker": "GOOGL", "yahoo": "GOOGL", "label": "Alphabet", "market": "US",
-     "indicators": ["hyperscaler_capex", "or_lab_trend", "or_tokens_weekly"]}
+    {"ticker": "NVDA", "yahoo": "NVDA", "label": "NVIDIA", "name": "NVIDIA", "market": "US", "desc": "AI 가속기 · 데이터센터",
+     "financials": "NVDA", "fin_unit": "$B", "fin_div": 1000, "fin_note": "회계연도 1월 말 결산 · 분기 말 월로 표시",
+     "indicators": ["hyperscaler_capex::합계", "tsmc_monthly_rev", "gpu_h100_index", "or_tokens_weekly"]},
+    {"ticker": "000660", "yahoo": "000660.KS", "label": "SK하이닉스", "name": "SK하이닉스", "market": "KR", "desc": "DRAM · HBM · NAND",
+     "financials": "000660.KS", "fin_unit": "조원", "fin_div": 1000000,
+     "indicators": ["trass_dram", "trass_mcp", "trass_dram_module", "hyperscaler_capex::합계"]},
+    {"ticker": "005930", "yahoo": "005930.KS", "label": "삼성전자", "name": "삼성전자", "market": "KR", "desc": "메모리 · 파운드리 · 세트",
+     "financials": "005930.KS", "fin_unit": "조원", "fin_div": 1000000,
+     "indicators": ["trass_dram", "trass_flash", "trass_mcp", "hyperscaler_capex::합계"]},
+    {"ticker": "TSM", "yahoo": "TSM", "label": "TSMC ADR", "name": "TSMC", "market": "US", "desc": "파운드리 · 주가는 미국 ADR(USD)",
+     "financials": "TSM", "fin_unit": "NT$ 십억", "fin_div": 1000,
+     "indicators": ["tsmc_monthly_rev", "hyperscaler_capex::합계", "gpu_h100_index", "or_tokens_weekly"]},
+    {"ticker": "441270", "label": "파인엠텍", "name": "파인엠텍", "market": "KR", "desc": "폴더블 부품 · 베트남 납품", "module": "finemtec"}
   ]
 }

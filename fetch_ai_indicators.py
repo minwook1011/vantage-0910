@@ -942,6 +942,8 @@ def c_prices(ctx):
     comps = {k: {"label": v[0], "yahoo": v[1], "market": v[2]} for k, v in DEFAULT_COMPANIES.items()}
     if os.path.exists(LINKS):
         for c in json.load(open(LINKS, encoding="utf-8")).get("companies", []):
+            if c.get("module"):  # 전용 화면이 자체 주가를 받는 기업(파인엠텍)은 건너뛴다
+                continue
             comps[c["ticker"]] = {"label": c.get("label", c["ticker"]), "yahoo": c.get("yahoo", c["ticker"]), "market": c.get("market", "US")}
     out = {}
     for tk, c in comps.items():

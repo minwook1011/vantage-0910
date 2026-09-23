@@ -23,7 +23,8 @@
   var KEYS = [
     "vantage-portfolio-v1", "vantage_coverage_watch_v1",
     "vantage-datahub-favorite-companies-v1", "vantage-finemtec-workbench-v1",
-    "vantage-finemtec-custom-series-v1", "etf_news_favs_v1", "etf_favs_v1",
+    "vantage-finemtec-custom-series-v1", "vantage-company-bench-v1", "vantage-company-bench-custom-v1",
+    "etf_news_favs_v1", "etf_favs_v1",
     "etf_stmt_favs_v1", "megacapN", "perspKr"
   ];
   /* 동기화 상태(마지막 동기화 값·미전송 여부). 이 키 자체는 동기화하지 않는다. */

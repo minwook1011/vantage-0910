@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="firebase-sync.js?v=20260920a"></script>
+<script src="firebase-sync.js?v=20260923a"></script>
 <script src="gate.js?v=20260909a"></script>
 <title>데이터 허브 — VANTAGE</title>
 <link rel="stylesheet" href="theme.css?v=20260909b">
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="finemtec.css?v=20260912c">
 <link rel="stylesheet" href="memory-data.css?v=20260912c">
 <link rel="stylesheet" href="ai-indicators.css?v=20260923b">
+<link rel="stylesheet" href="company-bench.css?v=20260923a">
 </head>
 <body>
 <header id="topnav"></header>
@@ -24,7 +25,7 @@
   <nav class="dh-views" id="dh-views" aria-label="데이터 모음 선택">
     <button type="button" data-view="ai"><b>AI 관련 데이터 모음</b><small>토큰 · 가격 · GPU · TSMC · 메모리 · 캐팩스</small></button>
     <button type="button" data-view="trade"><b>수출입 데이터 모음</b><small>TRASS 순별 수출 · 메모리 가격</small></button>
-    <button type="button" data-view="company"><b>기업별 데이터 모음</b><small>지정한 데이터 × 주가</small></button>
+    <button type="button" data-view="company"><b>기업별 데이터 모음</b><small>기업 선택 · 주가 × 실적 × 지표</small></button>
   </nav>
 
   <div class="dh-view" data-view-panel="ai">
@@ -37,31 +38,11 @@
   </div>
 
   <div class="dh-view" data-view-panel="company" hidden>
-    <section id="company-workspace" class="ai-workspace" aria-label="기업별 데이터 모음"></section>
-
-    <section class="workbench" aria-label="기업 연결 차트">
-      <div class="workbench-head"><div><div class="kicker">COMPANY WORKBENCH</div><h2>파인엠텍 · 납품 비교 워크벤치</h2></div><span id="workbench-status">지표를 선택해 주세요</span></div>
-      <div class="company-picker"><label for="company-search">기업 선택</label><input id="company-search" list="company-options" value="파인엠텍" placeholder="기업명 또는 티커 입력"><datalist id="company-options"></datalist><button type="button" id="company-apply">불러오기</button><span>기업명 · 티커 검색 / 파인엠텍 441270</span></div>
-      <div class="company-favorites"><span>즐겨찾기</span><div id="company-favorite-list"></div></div>
-      <button class="company-favorite-toggle" type="button" id="company-favorite-toggle">☆ 즐겨찾기</button>
+    <section class="workbench cb-bench" aria-label="기업별 데이터 모음">
+      <div class="workbench-head"><div><div class="kicker">COMPANY WORKBENCH</div><h2>기업별 데이터 모음</h2></div><span id="workbench-status">기업을 선택해 주세요</span></div>
+      <div class="cb-chips" id="cb-chips" role="group" aria-label="기업 선택"></div>
+      <section id="company-bench" class="fm-workspace cb-workspace" aria-label="선택한 기업의 주가·실적·관련 지표 비교"></section>
       <section id="finemtec-workspace" class="fm-workspace" aria-label="파인엠텍 주가·실적·납품 비교" hidden></section>
-      <div class="workbench-grid">
-        <article class="chart-shell">
-          <div class="chart-top"><div><b id="chart-company">삼성전자</b><span id="chart-subtitle">연결할 지표를 선택하면 주가와 함께 표시됩니다</span></div><div class="chart-actions"><div class="chart-mode"><button class="on" type="button">시계열</button><button type="button">상관</button></div></div></div>
-          <div class="chart-legend" id="chart-legend"><span class="legend-price"><i></i>주가</span><span class="legend-data"><i></i>연결 데이터</span></div>
-          <div class="empty-chart" id="empty-chart">
-            <svg viewBox="0 0 860 300" aria-hidden="true"><g class="chart-gridlines"><path d="M0 55H860M0 115H860M0 175H860M0 235H860"/><path d="M120 0V300M300 0V300M480 0V300M660 0V300"/></g><path class="ghost-line line-a" d="M0 214 C68 168,114 235,171 180 S274 164,331 146 S430 192,493 119 S590 173,650 96 S765 130,860 52"/><path class="ghost-line line-b" d="M0 240 C65 222,120 202,174 219 S278 122,342 145 S458 84,510 122 S642 105,705 66 S787 94,860 40"/></svg>
-            <div><span class="empty-icon">+</span><b>데이터 연결 대기</b><p>위 "기업별 데이터 모음"에서 기업마다 지정한 데이터를<br>주가와 함께 볼 수 있습니다.</p></div>
-          </div>
-          <div class="chart-axis"><span>과거</span><span>현재</span></div>
-        </article>
-        <aside class="relation-shell">
-          <div class="relation-head"><b>연관 데이터 맵</b><span>기업 선택 기준</span></div>
-          <div class="relation-core" id="relation-core">삼성전자</div>
-          <div class="relation-links" id="relation-links"></div>
-          <p>이 기업의 주가·실적과 함께 볼 지표를 여기서 추가하거나 뺄 수 있습니다.</p>
-        </aside>
-      </div>
     </section>
   </div>
 
@@ -91,8 +72,9 @@
 <script src="finemtec-core.js?v=20260912d"></script>
 <script src="finemtec.js?v=20260912e"></script>
 <script src="memory-data.js?v=20260912d"></script>
-<script src="datahub.js?v=20260922b"></script>
+<script src="datahub.js?v=20260923a"></script>
 <script src="trass-exports.js?v=20260922a"></script>
 <script src="ai-indicators.js?v=20260923b"></script>
+<script src="company-bench.js?v=20260923a"></script>
 </body>
 </html>
