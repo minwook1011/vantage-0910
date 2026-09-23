@@ -28,6 +28,15 @@
         "us": "437만 (14.2%)"
       },
       "note": "6월 1,998만 → 7월 2,686만. Similarweb 과 약 2배 차이 — 한 소스를 일관되게 볼 것"
+    },
+    {
+      "month": "2026-08",
+      "source": "Similarweb (무료 화면)",
+      "source_url": "https://www.similarweb.com/website/zeta-ai.io/",
+      "metric": "웹 방문자 성별 (전 세계)",
+      "total": null,
+      "countries": {},
+      "note": "남 57.2% · 여 42.8% · 최대 연령층 18–24세. 18세 미만은 모델에서 제외돼 10대 비중이 큰 제타 앱 사용자와는 다를 수 있음. 매월 옮겨 적어 시계열로 쌓음"
     }
   ],
   "milestones": []
