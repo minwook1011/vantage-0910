@@ -1,82 +1,34 @@
 {
   "schema_version": 1,
-  "note": "스캐터랩(제타) 수기 데이터. 자동 수집이 안 되는 공식 발표·보도 인용 수치를 여기 적으면 fetch_zeta.py 가 data/zeta.json 에 합친다. series = 시계열(차트용), snapshots = 유료 도구 공개 화면을 매달 옮겨 적은 값, milestones = 발표·보도 타임라인. 날짜는 해당 수치의 기준월 1일(월간) 또는 발표일.",
-  "series": [
-    {"id": "users_mi_kr", "group": "users", "country": "kr", "label": "한국 MAU (모바일인덱스 · 보도 인용)", "unit": "명", "kind": "count", "cadence": "월간 · 보도 시 추가",
-     "source": "모바일인덱스(아이지에이웍스) 인용 기사", "source_url": "https://news.nate.com/view/20260707n32282",
-     "note": "한국 안드로이드·iOS 패널 추정. 와이즈앱보다 작게 잡히며 회사 공식 수치와 더 가깝다.",
-     "points": [
-       {"date": "2024-04-01", "value": 58069, "url": "https://www.ajunews.com/view/20260910150357246"},
-       {"date": "2026-06-01", "value": 1421995, "url": "https://news.nate.com/view/20260707n32282"},
-       {"date": "2026-08-01", "value": 1586178, "url": "https://www.ajunews.com/view/20260910150357246"}
-     ]},
-    {"id": "users_wiseapp_kr", "group": "users", "country": "kr", "label": "한국 MAU (와이즈앱 · 보도 인용)", "unit": "명", "kind": "count", "cadence": "월간 · 보도 시 추가",
-     "source": "와이즈앱·리테일 AI 앱 순위 보도", "source_url": "https://wowtale.net/2026/08/11/262725/",
-     "note": "회사 발표 글로벌 MAU보다 커서 과대 추정 가능성이 있다. 추세 확인용.",
-     "points": [
-       {"date": "2025-06-01", "value": 3040000, "url": "https://zdnet.co.kr/view/?no=20250715140513"},
-       {"date": "2025-10-01", "value": 3360000, "url": "https://platum.kr/archives/274709"},
-       {"date": "2026-02-01", "value": 4020000, "url": "https://zdnet.co.kr/view/?no=20260310175124"},
-       {"date": "2026-07-01", "value": 4280000, "url": "https://wowtale.net/2026/08/11/262725/"}
-     ]},
-    {"id": "users_official_global", "group": "users", "country": "global", "label": "전체 MAU (회사 발표)", "unit": "명", "kind": "count", "cadence": "비정기 · 발표 시 추가",
-     "source": "스캐터랩 발표·인터뷰", "source_url": "https://www.aitimes.com/news/articleView.html?idxno=212030",
-     "note": "회사가 밝힌 전체(모든 국가) MAU.",
-     "points": [
-       {"date": "2025-06-01", "value": 1100000, "url": "https://zdnet.co.kr/view/?no=20250714141732"},
-       {"date": "2026-01-01", "value": 1500000, "url": "https://www.koreaherald.com/article/10656334"},
-       {"date": "2026-06-01", "value": 3000000, "url": "https://www.aitimes.com/news/articleView.html?idxno=212030"}
-     ]},
-    {"id": "users_signups_global", "group": "users", "country": "global", "label": "누적 가입자 (회사 발표)", "unit": "명", "kind": "cumulative", "cadence": "비정기 · 발표 시 추가",
-     "source": "스캐터랩 발표·보도", "source_url": "https://www.mt.co.kr/future/2026/07/30/2026073010080138438",
-     "note": "발표 시점의 누적 수치.",
-     "points": [
-       {"date": "2024-10-05", "value": 1100000, "url": "https://prtimes.jp/main/html/rd/p/000000003.000137634.html"},
-       {"date": "2025-06-05", "value": 2000000, "url": "https://blog.scatterlab.co.kr/zeta-intro-2506"},
-       {"date": "2025-12-29", "value": 5000000, "url": "https://www.etnews.com/20251229000241"},
-       {"date": "2026-06-14", "value": 6000000, "url": "https://en.sedaily.com/technology/2026/06/14/ai-chat-app-zeta-drives-scatter-lab-to-50-billion-won"},
-       {"date": "2026-06-23", "value": 8000000, "url": "https://www.aitimes.com/news/articleView.html?idxno=212030"},
-       {"date": "2026-07-30", "value": 10000000, "url": "https://www.mt.co.kr/future/2026/07/30/2026073010080138438"}
-     ]},
-    {"id": "users_wau_jp", "group": "users", "country": "jp", "label": "일본 WAU (회사 PR · App Ape 인용)", "unit": "명", "kind": "count", "cadence": "비정기 · 발표 시 추가",
-     "source": "PR TIMES (스캐터랩)", "source_url": "https://prtimes.jp/main/html/rd/p/000000005.000137634.html",
-     "note": "주간 활성 이용자. 골든위크 수치는 연휴 영향.",
-     "points": [
-       {"date": "2026-01-01", "value": 280000, "url": "https://www.brandbrief.co.kr/news/articleView.html?idxno=9947"},
-       {"date": "2026-05-01", "value": 750000, "url": "https://prtimes.jp/main/html/rd/p/000000005.000137634.html"}
-     ]},
-    {"id": "content_characters", "group": "content", "country": "global", "label": "누적 캐릭터 수 (회사 발표)", "unit": "개", "kind": "cumulative", "cadence": "비정기 · 발표 시 추가",
-     "source": "스캐터랩 발표·PR TIMES", "source_url": "https://prtimes.jp/main/html/rd/p/000000005.000137634.html",
-     "note": "사용자가 만든 캐릭터 누적. 발표마다 캐릭터·플롯 기준이 달라 일부 수치는 제외했다(2026-02 '캐릭터·플롯 400만').",
-     "points": [
-       {"date": "2024-05-16", "value": 70000, "url": "https://prtimes.jp/main/html/rd/p/000000002.000137634.html"},
-       {"date": "2024-10-01", "value": 1400000, "url": "https://www.aitimes.com/news/articleView.html?idxno=164421"},
-       {"date": "2026-01-27", "value": 7000000, "url": "https://prtimes.jp/main/html/rd/p/000000004.000137634.html"},
-       {"date": "2026-05-22", "value": 9000000, "url": "https://prtimes.jp/main/html/rd/p/000000005.000137634.html"}
-     ]}
-  ],
+  "note": "스캐터랩(제타) 수기 데이터. 원칙: 기사·보도·재무 집계 사이트 수치는 넣지 않는다. 리서치 도구(Similarweb·Semrush 등)의 공개 화면에서 직접 옮겨 적은 월간 스냅샷만 snapshots 에 둔다. series·milestones 는 비워 둔다(자동 수집이 원천 데이터를 채운다).",
+  "series": [],
   "snapshots": [
-    {"month": "2026-08", "source": "Similarweb (무료 화면)", "source_url": "https://www.similarweb.com/website/zeta-ai.io/", "metric": "웹 방문수 · 국가 비중",
-     "total": 17128845, "countries": {"kr": "35.4%", "jp": "29.2%", "us": "22.0%"}, "note": "전월 대비 +48.7%, 글로벌 순위 2,184위 · 일본 350위. 순방문자(UV) 아님"},
-    {"month": "2026-08", "source": "Semrush (무료 개요)", "source_url": "https://www.semrush.com/website/zeta-ai.io/overview/", "metric": "웹 방문수 · 국가별",
-     "total": 30800000, "countries": {"kr": "1,506만 (48.9%)", "jp": "916만 (29.7%)", "us": "437만 (14.2%)"}, "note": "6월 1,998만 → 7월 2,686만. Similarweb 과 약 2배 차이 — 한 소스를 일관되게 볼 것"}
+    {
+      "month": "2026-08",
+      "source": "Similarweb (무료 화면)",
+      "source_url": "https://www.similarweb.com/website/zeta-ai.io/",
+      "metric": "웹 방문수 · 국가 비중",
+      "total": 17128845,
+      "countries": {
+        "kr": "35.4%",
+        "jp": "29.2%",
+        "us": "22.0%"
+      },
+      "note": "전월 대비 +48.7%, 글로벌 순위 2,184위 · 일본 350위. 순방문자(UV) 아님"
+    },
+    {
+      "month": "2026-08",
+      "source": "Semrush (무료 개요)",
+      "source_url": "https://www.semrush.com/website/zeta-ai.io/overview/",
+      "metric": "웹 방문수 · 국가별",
+      "total": 30800000,
+      "countries": {
+        "kr": "1,506만 (48.9%)",
+        "jp": "916만 (29.7%)",
+        "us": "437만 (14.2%)"
+      },
+      "note": "6월 1,998만 → 7월 2,686만. Similarweb 과 약 2배 차이 — 한 소스를 일관되게 볼 것"
+    }
   ],
-  "milestones": [
-    {"date": "2024-04", "metric": "제타 출시", "value": "한국 MAU 5.8만 (모바일인덱스)", "source": "아주경제", "url": "https://www.ajunews.com/view/20260910150357246"},
-    {"date": "2024-05-16", "metric": "일본 정식 출시", "value": "캐릭터 7만 개 이상", "source": "PR TIMES", "url": "https://prtimes.jp/main/html/rd/p/000000002.000137634.html"},
-    {"date": "2024-10", "metric": "누적 가입 100만 (6개월)", "value": "10·20대 87%, 일 130분, 캐릭터 140만", "source": "AI타임스", "url": "https://www.aitimes.com/news/articleView.html?idxno=164421"},
-    {"date": "2024-11", "metric": "흑자 전환", "value": "출시 7개월", "source": "다수 보도", "url": ""},
-    {"date": "2025-06-05", "metric": "1주년", "value": "가입 200만 · MAU 80만 · 일 2시간 40분(일본 3시간 40분)", "source": "스캐터랩 블로그", "url": "https://blog.scatterlab.co.kr/zeta-intro-2506"},
-    {"date": "2025-07-14", "metric": "2025년 2분기 실적", "value": "매출 52억 · 영업이익 약 9억 · MAU 110만", "source": "ZDNet", "url": "https://zdnet.co.kr/view/?no=20250714141732"},
-    {"date": "2025-12-29", "metric": "가입 500만 육박", "value": "일본 가입 50만+, 미국 진출", "source": "전자신문", "url": "https://www.etnews.com/20251229000241"},
-    {"date": "2026-01-13", "metric": "일본 월매출 첫 10억 돌파", "value": "2025년 12월 11억 원 · 일본 DAU 20만+", "source": "디지털투데이", "url": "https://news.nate.com/view/20260113n28488"},
-    {"date": "2026-01-15", "metric": "MAU 150만", "value": "한국 110만 · 일본 30만+ · 2025년 1~11월 매출 229억", "source": "Korea Herald", "url": "https://www.koreaherald.com/article/10656334"},
-    {"date": "2026-04-08", "metric": "Sensor Tower 1분기", "value": "컴패니언 앱 매출 3위(성장률 1위) · 3월 다운로드 약 40만 · 1위 다운로드 국가 일본", "source": "Digital Today", "url": "https://www.digitaltoday.co.kr/en/view/46285/ai-companion-app-revenue-up-30-percent-zeta-tops-growth-ranking"},
-    {"date": "2026-05-22", "metric": "일본 엔터 앱 사용시간 1위", "value": "2026년 4월 · 일본 누적 200만 · WAU 75만 · 캐릭터 900만", "source": "PR TIMES", "url": "https://prtimes.jp/main/html/rd/p/000000005.000137634.html"},
-    {"date": "2026-06-14", "metric": "시리즈D 500억 (보도에 따라 600억)", "value": "가입 600만+", "source": "서울경제", "url": "https://en.sedaily.com/technology/2026/06/14/ai-chat-app-zeta-drives-scatter-lab-to-50-billion-won"},
-    {"date": "2026-06-23", "metric": "MAU 300만", "value": "누적 800만 · 월 1억 시간 · 2025년 매출 267억 · 영업이익 28억 · 해외 매출 약 60%", "source": "AI타임스", "url": "https://www.aitimes.com/news/articleView.html?idxno=212030"},
-    {"date": "2026-07-30", "metric": "누적 가입 1,000만", "value": "6월부터 일본·미국 사용자가 한국 추월", "source": "머니투데이", "url": "https://www.mt.co.kr/future/2026/07/30/2026073010080138438"},
-    {"date": "2026-08-26", "metric": "해외 비중", "value": "이용자·매출 60% 이상 해외", "source": "조선비즈", "url": "https://news.nate.com/view/20260826n26151"},
-    {"date": "2026-09-22", "metric": "10대 이용자", "value": "8월 10대 92만 (58.3%)", "source": "ZDNet", "url": "https://zdnet.co.kr/view/?no=20260922152926"}
-  ]
+  "milestones": []
 }

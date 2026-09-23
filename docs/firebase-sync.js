@@ -23,7 +23,7 @@
   var KEYS = [
     "vantage-portfolio-v1", "vantage_coverage_watch_v1",
     "vantage-datahub-favorite-companies-v1", "vantage-finemtec-workbench-v1",
-    "vantage-finemtec-custom-series-v1", "vantage-company-bench-v1", "vantage-company-bench-custom-v1", "vantage-zeta-bench-v1",
+    "vantage-finemtec-custom-series-v1", "vantage-company-bench-v1", "vantage-company-bench-custom-v1", "vantage-zeta-bench-v2",
     "etf_news_favs_v1", "etf_favs_v1",
     "etf_stmt_favs_v1", "megacapN", "perspKr"
   ];

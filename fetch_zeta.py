@@ -15,6 +15,7 @@ import gzip
 import io
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -190,6 +191,161 @@ def c_gplay(st):
                   [{"date": TODAY, "value": int(first["ratings"])}])
 
 
+# ── 3-1. 웨이백 머신 과거 스냅샷으로 누적값 복원 (구글플레이 설치 · 앱스토어 평점 수) ──
+GP_INSTALLS = re.compile(r'\["([\d,.]+\+?)",(\d+),(\d+),"([^"]*)"\]')
+AS_RATINGS = re.compile(r'"aggregateRating"\s*:\s*\{[^}]*?"(?:reviewCount|ratingCount)"\s*:\s*"?(\d+)')
+
+
+def wb_get(ts, original):
+    """웨이백 원본(id_) 페이지. gzip 으로 오는 경우가 있어 직접 푼다."""
+    b = http(f"https://web.archive.org/web/{ts}id_/{original}", headers={"Accept-Encoding": "gzip"}, raw=True, timeout=120)
+    if b[:2] == b"\x1f\x8b":
+        b = gzip.decompress(b)
+    return b.decode("utf-8", "replace")
+
+
+def wb_list(url, prefix=False, flt=None):
+    q = {"url": url, "output": "json", "fl": "timestamp,original", "filter": "statuscode:200", "collapse": "timestamp:8"}
+    if prefix:
+        q["matchType"] = "prefix"
+    qs = urllib.parse.urlencode(q) + (("&filter=" + urllib.parse.quote(flt)) if flt else "")
+    rows = jget(f"https://web.archive.org/cdx/search/cdx?{qs}")
+    return [(r[0], r[1]) for r in rows[1:]]
+
+
+@collector("wayback")
+def c_wayback(st):
+    done = st.state.setdefault("wayback_done", {})
+    # 구글플레이 누적 설치(전 세계)
+    seen = set(done.get("play", []))
+    pts = []
+    try:
+        snaps = wb_list(f"play.google.com/store/apps/details?id={ANDROID_ID}", prefix=True)
+    except Exception as e:
+        st.error("wayback play list", e)
+        snaps = []
+    by_day = {}
+    for ts, orig in snaps:
+        by_day.setdefault(ts[:8], (ts, orig))
+    for day, (ts, orig) in sorted(by_day.items()):
+        if day in seen:
+            continue
+        try:
+            m = GP_INSTALLS.search(wb_get(ts, orig))
+        except Exception as e:
+            st.error(f"wayback play {day}", e)
+            continue
+        if m:
+            pts.append({"date": f"{day[:4]}-{day[4:6]}-{day[6:]}", "value": int(m.group(3)), "src": "wayback"})
+        seen.add(day)
+        time.sleep(1.2)
+    done["play"] = sorted(seen)
+    if pts:
+        st.upsert("app_gplay_installs", {"group": "download", "country": "global", "label": "구글플레이 누적 설치 (전 세계)", "unit": "회", "kind": "cumulative",
+                  "cadence": "일간 스냅샷 · 과거는 웨이백 머신 보관본", "source": "Google Play 공개 페이지 · Internet Archive",
+                  "source_url": f"https://play.google.com/store/apps/details?id={ANDROID_ID}",
+                  "note": "페이지에 담긴 정확한 누적 설치 수(국가 구분 없음). 과거 값은 웨이백 머신 보관본에서 읽었다."}, pts)
+    # 앱스토어 국가별 누적 평점 수
+    for cc in ("kr", "jp", "us"):
+        key = f"appstore_{cc}"
+        seen = set(done.get(key, []))
+        pts = []
+        try:
+            snaps = wb_list(f"apps.apple.com/{cc}/app/", prefix=True, flt=f"original:.*{IOS_ID}.*")
+        except Exception as e:
+            st.error(f"wayback appstore {cc} list", e)
+            continue
+        by_day = {}
+        for ts, orig in snaps:
+            by_day.setdefault(ts[:8], (ts, orig))
+        for day, (ts, orig) in sorted(by_day.items()):
+            if day in seen:
+                continue
+            try:
+                m = AS_RATINGS.search(wb_get(ts, orig))
+            except Exception as e:
+                st.error(f"wayback appstore {cc} {day}", e)
+                continue
+            if m:
+                pts.append({"date": f"{day[:4]}-{day[4:6]}-{day[6:]}", "value": int(m.group(1)), "src": "wayback"})
+            seen.add(day)
+            time.sleep(1.2)
+        done[key] = sorted(seen)
+        if pts:
+            st.upsert(f"app_ios_ratings_{cc}", ios_ratings_meta(cc), pts)
+
+
+# ── 3-2. 앱스토어 국가별 누적 평점 수 + 스토어 설명의 캐릭터 수 (애플 공식 조회 API) ──
+IOS_COUNTRIES = ["kr", "jp", "us", "tw", "ph", "vn"]
+
+
+def ios_ratings_meta(cc):
+    return {"group": "download", "country": cc, "label": f"앱스토어 누적 평점 수 · {COUNTRIES.get(cc, cc)}", "unit": "개", "kind": "cumulative",
+            "cadence": "일간 · 과거는 웨이백 머신 보관본", "source": "Apple iTunes Lookup API",
+            "source_url": f"https://itunes.apple.com/lookup?id={IOS_ID}&country={cc}",
+            "note": "국가별 스토어의 누적 평점 수. 늘어나는 속도가 그 나라 iOS 신규 설치의 대리 지표(평점을 남기는 비율은 나라마다 다름)."}
+
+
+def characters_from_text(text):
+    """스토어 설명 문구의 '400만 개 이상' · '300万体以上' · '4 million characters' 같은 표현에서 캐릭터 수를 뽑는다."""
+    for pat, mul in ((r"([\d,.]+)\s*만\s*(?:개|명의)?\s*(?:이상의\s*)?(?:캐릭터|AI)", 10000), (r"([\d,.]+)\s*万\s*(?:体|人|個)", 10000),
+                     (r"([\d,.]+)\s*million\s+(?:characters|stories)", 1000000)):
+        m = re.search(pat, text)
+        if m:
+            return int(float(m.group(1).replace(",", "")) * mul)
+    return None
+
+
+@collector("itunes")
+def c_itunes(st):
+    for cc in IOS_COUNTRIES:
+        try:
+            res = jget(f"https://itunes.apple.com/lookup?id={IOS_ID}&country={cc}").get("results") or []
+        except Exception as e:
+            st.error(f"itunes {cc}", e)
+            continue
+        if not res:
+            continue
+        r = res[0]
+        if r.get("userRatingCount"):
+            st.upsert(f"app_ios_ratings_{cc}", ios_ratings_meta(cc), [{"date": TODAY, "value": int(r["userRatingCount"])}])
+        n = characters_from_text(r.get("description", ""))
+        if n and cc in ("kr", "jp", "us"):
+            st.upsert(f"content_store_characters_{cc}", {"group": "content", "country": cc, "label": f"스토어 설명의 캐릭터 수 · {COUNTRIES[cc]}", "unit": "개", "kind": "cumulative",
+                      "cadence": "일간 확인 · 문구가 바뀔 때만 변함", "source": "App Store 설명 문구 (Apple Lookup API)",
+                      "source_url": f"https://apps.apple.com/{cc}/app/id{IOS_ID}",
+                      "note": "회사가 스토어 설명에 적은 반올림 수치(예: 400만 개 이상). 계단식으로만 움직인다. 제타 서버 자동 수집은 이용약관상 하지 않는다."},
+                      [{"date": TODAY, "value": n}])
+        time.sleep(0.4)
+
+
+# ── 3-3. 앱스토어 국가별 무료·매출 순위 (애플 공개 RSS, 상위 100위) ──────────
+CHARTS = {"free": ("topfreeapplications", "무료", "download"), "grossing": ("topgrossingapplications", "매출", "revenue")}
+GENRES = {"all": ("", "전체"), "ent": ("/genre=6016", "엔터테인먼트")}
+
+
+@collector("applerank")
+def c_applerank(st):
+    for cc in ("kr", "jp", "us"):
+        for ck, (feed, cname, group) in CHARTS.items():
+            for gk, (gpath, gname) in GENRES.items():
+                sid = f"app_rank_ios_{cc}_{ck}_{gk}"
+                try:
+                    d = jget(f"https://itunes.apple.com/{cc}/rss/{feed}/limit=100{gpath}/json")
+                except Exception as e:
+                    st.error(f"applerank {cc} {ck} {gk}", e)
+                    continue
+                entries = (d.get("feed") or {}).get("entry") or []
+                rank = next((i + 1 for i, e in enumerate(entries) if str(((e.get("id") or {}).get("attributes") or {}).get("im:id")) == IOS_ID), None)
+                meta = {"group": group, "country": cc, "label": f"앱스토어 {cname} 순위 · {COUNTRIES[cc]} · {gname}", "unit": "위", "kind": "rank",
+                        "cadence": "일간 · 월간은 월 평균", "source": "Apple iTunes RSS (상위 100위)",
+                        "source_url": f"https://itunes.apple.com/{cc}/rss/{feed}/limit=100{gpath}/json",
+                        "note": ("매출 순위는 그 나라 iOS 매출 규모의 대리 지표. " if ck == "grossing" else "무료 순위는 그 나라 신규 다운로드 속도의 대리 지표. ") +
+                                "100위 밖인 날은 값을 비워 둔다(0이 아님)."}
+                st.upsert(sid, meta, [{"date": TODAY, "value": rank}] if rank else [])
+                time.sleep(0.3)
+
+
 # ── 4. 유튜브 공식 채널 누적 조회수 (광고 조회수 대리 지표, 키 필요) ─────────
 YT_CHANNELS = {"kr": "@zeta_official_KR", "jp": "@zeta_official_JP"}
 
@@ -289,6 +445,54 @@ def c_naver(st):
         time.sleep(0.3)
 
 
+# ── 누적값 → 월 증가분 (추정) ───────────────────────────────────────────
+FLOW_FROM = ["app_gplay_installs", "app_ios_ratings_kr", "app_ios_ratings_jp", "app_ios_ratings_us", "app_gplay_reviews_kr", "app_gplay_reviews_jp",
+             "ads_youtube_views_kr", "ads_youtube_views_jp"]
+FLOW_LABEL = {"app_gplay_installs": "구글플레이 월 신규 설치 (전 세계, 추정)"}
+
+
+def month_add(d, n):
+    y, m = d.year + (d.month - 1 + n) // 12, (d.month - 1 + n) % 12 + 1
+    return date(y, m, 1)
+
+
+def derive_flows(st):
+    """관측 시점이 불규칙한 누적값을 매월 1일 값으로 선형 보간한 뒤 차이를 월 증가분으로 만든다.
+    양쪽 달 경계가 모두 관측 범위 안에 있는 달만 계산한다(밖으로 늘려 추정하지 않음)."""
+    for sid in FLOW_FROM:
+        s = st.series.get(sid)
+        pts = [p for p in (s or {}).get("points", []) if isinstance(p.get("value"), (int, float))]
+        if len(pts) < 2:
+            continue
+        xs = [date.fromisoformat(p["date"]) for p in pts]
+        ys = [p["value"] for p in pts]
+
+        def at(d):
+            if d < xs[0] or d > xs[-1]:
+                return None
+            for i in range(1, len(xs)):
+                if xs[i] >= d:
+                    span = (xs[i] - xs[i - 1]).days or 1
+                    return ys[i - 1] + (ys[i] - ys[i - 1]) * (d - xs[i - 1]).days / span
+            return ys[-1]
+
+        out, m = [], date(xs[0].year, xs[0].month, 1)
+        while month_add(m, 1) <= xs[-1]:
+            a, b = at(m), at(month_add(m, 1))
+            if a is not None and b is not None:
+                # 두 관측 사이 간격이 넓으면(>75일) 그 달 값은 긴 구간 평균이라 '보간'으로 표시
+                gap = max((xs[i] - xs[i - 1]).days for i in range(1, len(xs)) if xs[i - 1] <= month_add(m, 1) and xs[i] >= m)
+                out.append({"date": m.isoformat(), "value": round(b - a), "est": True, "wide": gap > 75})
+            m = month_add(m, 1)
+        if not out:
+            continue
+        label = FLOW_LABEL.get(sid) or s["label"].replace("누적 ", "") + " · 월 증가 (추정)"
+        st.upsert(sid + "__mom", {"group": s.get("group"), "country": s.get("country"), "label": label, "unit": s.get("unit"), "kind": "flow",
+                  "cadence": "월간 · 누적값 차분", "source": s.get("source"), "source_url": s.get("source_url"), "derived_from": sid,
+                  "note": "누적값을 매월 1일로 선형 보간해 뺀 값. 관측 간격이 넓은 달(속 빈 점)은 그 구간의 평균 속도라 월별 굴곡이 뭉개진다."},
+                  out, replace=True)
+
+
 # ── 조립 ─────────────────────────────────────────────────────────────
 def main():
     ap = argparse.ArgumentParser()
@@ -306,11 +510,15 @@ def main():
         except Exception as e:
             st.error(name, e)
     manual = json.load(open(MANUAL, encoding="utf-8")) if os.path.exists(MANUAL) else {}
-    # 수기 시계열(보도 인용)은 파일이 기준 — 매번 통째로 덮어써서 고친 값이 바로 반영되게 한다
+    # 수기 시계열은 파일이 기준 — 파일에서 지운 수기 지표는 결과에서도 지우고, 남은 것은 통째로 덮어쓴다
+    manual_ids = {ms["id"] for ms in manual.get("series", [])}
+    for sid in [k for k, v in st.series.items() if v.get("method") == "manual" and k not in manual_ids]:
+        del st.series[sid]
     for ms in manual.get("series", []):
         meta = {k: v for k, v in ms.items() if k != "points"}
         meta["method"] = "manual"
         st.upsert(ms["id"], meta, ms.get("points", []), replace=True)
+    derive_flows(st)
     out = {
         "schema_version": 1,
         "generated_at": NOW.isoformat(timespec="seconds"),

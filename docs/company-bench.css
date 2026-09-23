@@ -43,14 +43,27 @@
 .cb-workspace .fm-selectors { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .cb-workspace .fm-options { max-height:430px; overflow:auto; }
 
-/* 스캐터랩(제타) 트래픽 화면 */
-.zt-controls { display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; margin-top:18px; }
-.zt-section { margin-top:4px; }
-.cb-key.zt-pending { opacity:.72; }
-.cb-key.zt-pending .cb-key-main { cursor:default; }
-.zt-wait { color:#9aabc5; font:500 12px var(--sans); letter-spacing:0; }
-.zt-src { position:absolute; right:9px; bottom:8px; color:#7f9ccc; font-size:10px; text-decoration:none; }
-.zt-src:hover { color:#b9d0ff; text-decoration:underline; }
 
 @media (max-width:980px) { .cb-keys { grid-template-columns:repeat(2,minmax(0,1fr)); } .cb-workspace .fm-selectors { grid-template-columns:1fr; } }
 @media (max-width:520px) { .cb-keys { grid-template-columns:1fr; } .cb-chip { padding:8px 11px; } }
+
+/* 스캐터랩(제타) — 파인엠텍과 같은 틀 + 지표 한눈에 보기 표 */
+.zt-selectors { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.zt-selectors .fm-options { max-height:440px; overflow:auto; }
+.zt-tools { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+.zt-table td, .zt-table th { white-space:nowrap; }
+.zt-table td.zt-name { white-space:normal; min-width:220px; color:#dce5f3; }
+.zt-table td.zt-name .fm-metric-color { margin-right:7px; vertical-align:middle; }
+.zt-table td.zt-num { font-family:var(--mono); color:#e9f0fc; }
+.zt-table tr.zt-on td { background:rgba(60,86,140,.14); }
+.zt-table tr.zt-on td:first-child { box-shadow:inset 3px 0 0 var(--series-color); }
+.zt-table tr.zt-wait-row td { color:#7f90ab; }
+.zt-tag { padding:2px 7px; border:1px solid #34465f; border-radius:5px; color:#9fb2d0; font-size:10.5px; }
+.zt-spark-cell { width:96px; }
+.zt-spark { display:block; width:90px; height:24px; }
+.zt-src-cell a { color:#8fb0e6; font-size:11px; }
+.zt-muted { color:#7f90ab; font-size:11px; }
+.zt-toggle { padding:4px 9px; border:1px solid var(--fm-line); border-radius:6px; background:#172032; color:#c5d6ef; font-size:11px; cursor:pointer; }
+.zt-toggle:hover { background:#24334c; }
+.zt-toggle.on { border-color:color-mix(in srgb, var(--series-color) 60%, transparent); color:var(--series-color); }
+@media (max-width:980px) { .zt-selectors { grid-template-columns:1fr; } }
