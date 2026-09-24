@@ -237,8 +237,8 @@
   </section>
 </div>
 <div class="modal-back" id="modal-back-holder" style="display:none"></div>
-<script src="theme.js?v=20260921a"></script>
-<script src="stocks-common.js?v=20260912d"></script>
+<script src="theme.js?v=20260924a"></script>
+<script src="stocks-common.js?v=20260924a"></script>
 <script src="chart-patterns.js?v=20260924a"></script>
 <script>
 (function () {
@@ -254,8 +254,10 @@
   function persist() { try { localStorage.setItem("bu-view-v2", JSON.stringify({ period:view.period, sort:view.sort, fin:view.fin, preset:view.preset })); } catch (e) {} }
 
   /* ── 기술 신호 해석 ───────────────────── */
-  function taOf(s) { if (!(s.ticker in TA)) TA[s.ticker] = computeTA(s.candles) || null; return TA[s.ticker]; }
-  function sub(s, key) { var t = taOf(s); if (!t) return null; for (var i = 0; i < t.subs.length; i++) if (t.subs[i].key === key) return t.subs[i]; return null; }
+  function taOf(s) { if (!(s.ticker in TA)) TA[s.ticker] = taFor(s.ticker, s.candles) || null; return TA[s.ticker]; }
+  /* 신호 칩(정배열·MACD·돌파 등)은 기존 8개 지표 계산 결과에서 읽는다 */
+  function legacyOf(s) { var t = taOf(s); return t && t.learned ? t.legacy : t; }
+  function sub(s, key) { var t = legacyOf(s); if (!t) return null; for (var i = 0; i < t.subs.length; i++) if (t.subs[i].key === key) return t.subs[i]; return null; }
   function detail(s, key) { var x = sub(s, key); return x ? String(x.detail || "") : ""; }
   function score(s) { var t = taOf(s); return t ? t.score : null; }
   function signals(s) {
@@ -359,7 +361,7 @@
     var el = $q("#pulse");
     if (!el.children.length) el.innerHTML =
       '<div class="pulse-card"><div class="k">상승 종목 비율 <span id="pl-per"></span></div><div class="v" id="pv-breadth">0%</div><div class="breadth"><i id="pv-bar"></i></div></div>' +
-      '<div class="pulse-card"><div class="k">평균 기술점수</div><div class="v" id="pv-ta">0</div><div class="s">0~100 · 60 이상이면 추세 양호</div></div>' +
+      '<div class="pulse-card"><div class="k">평균 기술점수</div><div class="v" id="pv-ta">0</div><div class="s">학습형 점수는 300종목 중 순위라 평균이 늘 50 근처</div></div>' +
       '<div class="pulse-card"><div class="k">🔥 주도주</div><div class="v" id="pv-lead">0</div><div class="s">수익률+ & 기술점수 65+</div></div>' +
       '<div class="pulse-card"><div class="k">지금 조건에 맞는 종목</div><div class="v" id="pv-hit">0</div><div class="s" id="pv-hit-s"></div></div>';
     var br = base.length ? up / base.length * 100 : 0;
@@ -612,7 +614,7 @@
   });
 
   Promise.all([fetchJSON("megacap.json"), fetchJSON("megacap_profiles.json").catch(function () { return null; }), fetchJSON("financials.json").catch(function () { return null; }),
-    window.PatternRadar ? PatternRadar.load() : Promise.resolve(null)]).then(function (rs) {
+    window.PatternRadar ? PatternRadar.load() : Promise.resolve(null), TA_LEARNED_P]).then(function (rs) {
     DATA = rs[0]; PROFILES = (rs[1] && rs[1].profiles) || {}; FIN = (rs[2] && rs[2].financials) || {};
     BT = window.PatternRadar ? PatternRadar.bt : null; indexBT(); renderBanner();
     ALL = DATA.stocks || []; ALL.forEach(function (s) { BYT[s.ticker] = s; });

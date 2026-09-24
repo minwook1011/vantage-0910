@@ -78,8 +78,8 @@
   </p>
 </div>
 
-<script src="theme.js?v=20260921a"></script>
-<script src="stocks-common.js?v=20260912d"></script>
+<script src="theme.js?v=20260924a"></script>
+<script src="stocks-common.js?v=20260924a"></script>
 <script>
 var DATA = null;
 var PROFILES = {};
@@ -244,7 +244,7 @@ function openStockModal(ticker) {
     price: s.price, priceCcy: ccyOf(s.ticker), r1d: s.r1d,
     chips: chips,
     intro: profile ? profile.biz : "회사 개요가 아직 준비되지 않았습니다 (최근 명단에 새로 편입된 종목일 수 있습니다).",
-    candles: s.candles, news: s.news, financials: FIN[ticker], ta: computeTA(s.candles), tk: s.ticker
+    candles: s.candles, news: s.news, financials: FIN[ticker], ta: taFor(ticker, s.candles), tk: s.ticker
   });
 }
 

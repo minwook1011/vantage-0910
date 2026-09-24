@@ -6,7 +6,7 @@
     ["dashboard.html", "섹터 대시보드"],
     ["megacap.html", "글로벌 메가캡"],
     ["bottomup.html", "Bottom-up 발굴"],
-    ["backtest.html", "기술 백테스트"],
+    ["ta-lab.html", "기술점수 연구소"],
     ["worldflow.html", "세상 흐름 파악"],
     ["news.html", "실시간 뉴스"],
     ["earnings.html", "미국 주요 실적 정리"],

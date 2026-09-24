@@ -656,6 +656,27 @@ function computeTA(candles) {
   var total = wsum ? Math.round(acc / wsum) : 50;
   return { score: total, subs: subs, maStack: { ma5: ma5, ma20: ma20, ma60: ma60, ma120: ma120, px: px } };
 }
+/* ================= 학습형 기술점수 (backtest_ta.py + ta_learn.py가 매일 갱신) =================
+   ta_scores.json: 매일 백테스트로 다시 학습한 공식(버전)으로 매긴 300종목 점수(0~100 = 오늘 300종목 중 순위).
+   파일이 없거나 종목이 없으면 기존 computeTA(사람이 정한 8개 지표 가중합)로 대신한다. */
+var TA_LEARNED = null;
+var TA_LEARNED_P = fetchJSON("ta_scores.json").then(function (d) { TA_LEARNED = d; return d; }).catch(function () { return null; });
+function taFor(tk, candles) {
+  var legacy = computeTA(candles);
+  var L = TA_LEARNED && TA_LEARNED.stocks && TA_LEARNED.stocks[tk];
+  if (!L) return legacy;
+  var feats = TA_LEARNED.features || [], wsum = 0;
+  feats.forEach(function (f) { wsum += Math.abs(f.w); });
+  var subs = feats.map(function (f) {
+    var p = L.p[f.key]; if (p == null) return null;
+    var good = f.w >= 0 ? p : 100 - p;
+    var rankTxt = f.w >= 0 ? "높은 순 상위 " + Math.max(1, 100 - p) + "%" : "낮은 순 상위 " + Math.max(1, p) + "%";
+    return { key: f.key, label: f.label, score: good, weight: Math.round(Math.abs(f.w) / (wsum || 1) * 100),
+      detail: f.desc + " · " + (f.w >= 0 ? "높을수록 좋음" : "낮을수록 좋음") + " · 300종목 중 " + rankTxt };
+  }).filter(Boolean);
+  return { score: L.s, subs: subs, learned: true, ver: TA_LEARNED.ver, date: TA_LEARNED.date,
+    legacy: legacy, legacyScore: L.legacy, maStack: legacy ? legacy.maStack : null };
+}
 /* TA 점수 → 색(빨강=강, 파랑=약; 한국식) */
 function taScoreColor(sc) {
   if (sc >= 75) return "var(--up)";
@@ -677,6 +698,16 @@ function taBreakdownHTML(ta) {
 /* TA 결과를 '어떤 지표가 좋고 어디가 우려인지' 자연어로 요약 */
 function taSummaryText(ta) {
   if (!ta) return "";
+  if (ta.learned) {
+    var st = ta.subs.filter(function (s) { return s.score >= 70; }).map(function (s) { return s.label; });
+    var wk = ta.subs.filter(function (s) { return s.score <= 30; }).map(function (s) { return s.label; });
+    var v = ta.score >= 80 ? "과거에 잘 오른 종목들과 닮은 정도가 매우 높습니다." : ta.score >= 60 ? "평균보다 유리한 편입니다."
+      : ta.score >= 40 ? "중간 정도입니다." : "과거 기준으로 불리한 쪽입니다.";
+    return '<div class="ta-summary"><b>종합 ' + ta.score + "점</b>(오늘 300종목 중 상위 " + Math.max(1, 100 - ta.score) + "%) — " + v +
+      (st.length ? " <b>강점:</b> " + st.join(", ") + "." : "") + (wk.length ? " <b>약점:</b> " + wk.join(", ") + "." : "") +
+      ' <span class="muted small">학습형 v' + ta.ver + "(" + ta.date + " 교체) · 매일 백테스트로 공식을 다시 채점 · 기존 방식(v1) 점수 " + (ta.legacyScore != null ? ta.legacyScore : "–") +
+      '점 · <a href="ta-lab.html">연구소에서 보기</a></span></div>';
+  }
   var sub = {};
   ta.subs.forEach(function (s) { sub[s.key] = s; });
   var strong = ta.subs.filter(function (s) { return s.score >= 72; });
@@ -810,7 +841,7 @@ function statModalBody(cfg) {
 function statTaSectionHTML(ta) {
   if (!ta) return "";
   return '<h4 style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin:18px 0 8px;font-weight:800">기술적 분석 ' +
-    '<span class="muted small" style="text-transform:none;letter-spacing:0;font-weight:400">대중이 많이 보는 순서 · 종합 <b style="color:' + taScoreColor(ta.score) + '">' + ta.score + '점</b>/100</span></h4>' +
+    '<span class="muted small" style="text-transform:none;letter-spacing:0;font-weight:400">' + (ta.learned ? "학습형 v" + ta.ver + " · 가중치 큰 순" : "대중이 많이 보는 순서") + ' · 종합 <b style="color:' + taScoreColor(ta.score) + '">' + ta.score + '점</b>/100</span></h4>' +
     taSummaryText(ta) +
     taBreakdownHTML(ta);
 }
@@ -1264,7 +1295,7 @@ function openMegaStockModal(tk, mega, fin) {
     name: mega.name, sub: tk.replace(/\.[A-Z]+$/, "") + (mega.sector ? " · " + mega.sector : ""),
     price: mega.price, priceCcy: megaCcySym(tk), r1d: megaDayRet(mega),
     chips: chips, candles: mega.candles, news: mega.news, financials: fin,
-    ta: computeTA(mega.candles), tk: tk
+    ta: taFor(tk, mega.candles), tk: tk
   });
 }
 

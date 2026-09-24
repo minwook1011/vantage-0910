@@ -456,11 +456,23 @@ class Detector:
         return found
 
 # ───────────────────────── 전략 토너먼트용 보조 지표 ─────────────────────────
-FEAT_KEYS = ["ma200", "ma50_200", "gap20", "r1w", "r1m", "hi52", "mom12_1"]
+FEAT_KEYS = ["ma200", "ma50_200", "gap20", "r1w", "r1m", "hi52", "mom12_1",
+             "mom6_1", "vol20", "dvol", "contr", "maxret", "updays", "rsi14", "pat_brk", "pat_near"]
 
-def features(h, l, c):
-    C, H = pd.Series(c), pd.Series(h)
+def features(h, l, c, v):
+    C, H, L, V = pd.Series(c), pd.Series(h), pd.Series(l), pd.Series(v, dtype=float)
+    lr = np.log(C).diff()
+    d = C.diff()
+    gain = d.clip(lower=0).rolling(14).sum(); loss = (-d).clip(lower=0).rolling(14).sum()
+    dv = V * C
     return {
+        "mom6_1": (C.shift(21) / C.shift(126) - 1).values,
+        "vol20": lr.rolling(20).std().values,
+        "dvol": (dv.rolling(5).mean() / dv.rolling(60).mean().replace(0, np.nan)).values,
+        "contr": ((H.rolling(20).max() - L.rolling(20).min()) / (H.rolling(60).max() - L.rolling(60).min()).replace(0, np.nan)).values,
+        "maxret": lr.rolling(21).max().values,
+        "updays": (d > 0).astype(float).rolling(20).mean().values,
+        "rsi14": (100 - 100 / (1 + gain / loss.replace(0, np.nan))).fillna(100).values,
         "ma200": (C / C.rolling(200).mean()).values,
         "ma50_200": (C.rolling(50).mean() / C.rolling(200).mean()).values,
         "gap20": (C / C.rolling(20).mean()).values,
@@ -567,19 +579,21 @@ def main():
         sub = ta_series(o, h, l, c, v)
         paths[tk] = (dates, h, l, c)
         fwd = {hz: np.concatenate([c[hz:] / c[:-hz] - 1, np.full(hz, np.nan)]) for hz in HORIZONS}
-        fx = features(h, l, c)
-        for t in range(WARMUP, n):
-            rows.append((tk, dates[t], t, *(float(sub[k][t]) for k in SUB_KEYS), float(sub["score"][t]),
-                         *(float(fx[k][t]) for k in FEAT_KEYS),
-                         *(float(fwd[hz][t]) for hz in HORIZONS)))
+        fx = features(h, l, c, v)
+        pat_brk = np.zeros(n); pat_near = np.zeros(n)
 
         det = Detector(o, h, l, c, v)
         last_near = {}
         for t in range(WARMUP, n):
             for p in det.detect(t):
                 k = p["kind"]
+                bull = PATTERNS[k]["side"] == "bull"
+                if p["state"] == "near" and bull:
+                    pat_near[t] = 1
                 if p["state"] == "breakout":
                     dry, surge = det._vol(t, p["s"])
+                    if bull and (surge or 0) >= 1.3:
+                        pat_brk[t:t + 5] = 1          # 돌파 뒤 5거래일 동안 '최근 거래량 돌파' 상태
                     tgt = p["level"] * (1 + p["height"])
                     hit = None; fail10 = None
                     if t + 60 < n:
@@ -596,6 +610,11 @@ def main():
                         nears.append({"tk": tk, "d": dates[t], "k": k, "brk20": brk20,
                                       **{f"f{hz}": (float(fwd[hz][t]) if np.isfinite(fwd[hz][t]) else None) for hz in HORIZONS}})
                     last_near[k] = t
+        fx["pat_brk"] = pat_brk[:n]; fx["pat_near"] = pat_near
+        for t in range(WARMUP, n):
+            rows.append((tk, dates[t], t, *(float(sub[k][t]) for k in SUB_KEYS), float(sub["score"][t]),
+                         *(float(fx[k][t]) for k in FEAT_KEYS),
+                         *(float(fwd[hz][t]) for hz in HORIZONS)))
         # 오늘(마지막 봉) 기준 상태 + 최근 5봉 안의 돌파
         cur = []
         for t in range(n - 5, n):
@@ -630,6 +649,13 @@ def main():
     split_i = int(len(rebal) * TRAIN_FRAC)
     train_dates, test_dates = set(rebal[:split_i]), set(rebal[split_i:])
     dfr = df[df["d"].isin(set(rebal))].copy()
+
+    # ★ 매일 학습: 기술점수 공식을 백테스트 결과로 다시 잡고(챔피언 vs 도전자), 사이트 점수(ta_scores.json)를 갱신
+    import ta_learn
+    names = {tk: [m.get("name", tk), m.get("sector", "")] for tk, m in meta.items()}
+    learn = ta_learn.run(df.copy(), rebal, datetime.now(KST).strftime("%Y-%m-%d"), names)
+    print(f"  학습형 기술점수: v{learn['ver']} · {learn['decision']} ({learn['reason']}) · 가중치 {learn['weights']}")
+    print(f"  걸어가며 검증: {learn['walk']}")
 
     result = {"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
               "universe": len(charts), "samples": int(len(df)),
