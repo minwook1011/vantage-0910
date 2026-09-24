@@ -29,6 +29,11 @@ jobs:
       - name: 메가캡 시세 갱신
         run: python3 fetch_megacap.py
 
+      - name: 기술점수 백테스트 + 차트 패턴 감지(돌파 임박·돌파)
+        run: |
+          pip install --quiet numpy pandas
+          python3 backtest_ta.py || echo "백테스트 실패 — 기존 데이터 유지"
+
       - name: 메가캡 재무(매출·영업이익) 갱신
         run: python3 fetch_financials.py || echo "재무 갱신 실패 — 기존 데이터 유지"
 
@@ -56,7 +61,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data.json docs/etf_year.json docs/megacap.json docs/financials.json docs/investor_portfolios.json docs/earnings_calendar.json docs/sp500_constituents.json docs/macro.json docs/valuation.json docs/telegram_news.json
+          git add docs/data.json docs/etf_year.json docs/megacap.json docs/ta_backtest.json docs/chart_patterns.json docs/financials.json docs/investor_portfolios.json docs/earnings_calendar.json docs/sp500_constituents.json docs/macro.json docs/valuation.json docs/telegram_news.json
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
           else

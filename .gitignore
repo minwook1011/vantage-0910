@@ -9,3 +9,6 @@ telegram_secret.json
 
 # 비공개 자료(동사 제공 · 투자 검토 자료) — 공개 저장소에 올리지 않는다
 private/
+
+# 백테스트용 5년 일봉 캐시(fetch_megacap.py가 생성)
+data_sources/_cache/

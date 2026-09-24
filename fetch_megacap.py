@@ -24,6 +24,8 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 UNIVERSE = os.path.join(BASE, "docs", "megacap_universe.json")
 OUT = os.path.join(BASE, "docs", "megacap.json")
 PROFILES = os.path.join(BASE, "docs", "megacap_profiles.json")
+# 5년 일봉 원본(압축 전) — backtest_ta.py가 다시 받지 않도록 남겨두는 캐시(깃에는 안 올림)
+DAILY_CACHE = os.path.join(BASE, "data_sources", "_cache", "megacap_daily.json")
 KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) etf-flow-tracker/1.0"
 
@@ -197,6 +199,7 @@ def main():
     stocks_in = uni.get("stocks", [])
 
     out_stocks = []
+    daily_cache = {}
     fail = 0
     for i, s in enumerate(stocks_in, 1):
         tk = s["ticker"]
@@ -214,6 +217,7 @@ def main():
         dv = [c * v for c, v in zip(closes, vols)]
         vr = round((sum(dv[-5:]) / 5) / (sum(dv[-20:]) / 20), 2) if len(dv) >= 20 and sum(dv[-20:]) > 0 else 1.0
         candles = compress_candles(ch)
+        daily_cache[tk] = ch
         out_stocks.append({
             "ticker": tk, "name": s["name"], "sector": s["sector"],
             "rank": len(out_stocks) + 1,
@@ -274,6 +278,12 @@ def main():
     }
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    try:
+        os.makedirs(os.path.dirname(DAILY_CACHE), exist_ok=True)
+        with open(DAILY_CACHE, "w", encoding="utf-8") as f:
+            json.dump({"updated": data["updated"], "charts": daily_cache}, f, separators=(",", ":"))
+    except Exception as e:
+        print(f"  [daily-cache-fail] {e}")
     print(f"=== 완료: {len(out_stocks)}종 저장 (실패 {fail}) ===")
 
 if __name__ == "__main__":

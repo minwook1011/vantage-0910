@@ -143,6 +143,42 @@
   .rk-head { display:none; }
   .rk .fin { border-left:0; padding-left:0; border-top:1px dashed var(--border-strong); padding-top:6px; }
 }
+
+/* ── 차트 패턴 레이더 · 백테스트 배너 ─────────────────────────────── */
+.bt-banner { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; background:linear-gradient(90deg,rgba(91,140,255,.12),rgba(91,140,255,.02)); border:1px solid rgba(91,140,255,.35); border-radius:var(--radius); padding:11px 14px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+.bt-banner b { color:var(--text); }
+.bt-banner .bt-k { font:800 17px var(--mono); color:var(--text); margin-right:4px; }
+.bt-banner a { margin-left:auto; font-weight:700; white-space:nowrap; }
+.pt-tools { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; margin:10px 0 12px; }
+.pt-kinds { display:flex; flex-wrap:wrap; gap:6px; }
+.pt-kind { font:600 11.5px var(--sans); color:var(--muted); background:var(--bg2); border:1px solid var(--border); border-radius:999px; padding:4px 10px; cursor:pointer; }
+.pt-kind.on { color:var(--text); border-color:var(--accent); background:rgba(91,140,255,.14); }
+.pt-kind i { font-style:normal; color:var(--faint); margin-left:4px; font-family:var(--mono); }
+.pt-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:10px; }
+.pt-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:11px 12px 10px; cursor:pointer; transition:border-color .15s, transform .12s; min-width:0; }
+.pt-card:hover { border-color:rgba(103,136,216,.75); transform:translateY(-1px); }
+.pt-card.brk { border-color:rgba(240,71,90,.5); box-shadow:0 0 0 1px rgba(240,71,90,.18) inset; }
+.pt-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
+.pt-top b { font-size:13.5px; }
+.pt-top .sub { color:var(--muted); font-size:11px; margin-top:1px; }
+.pt-badge { flex:0 0 auto; font:800 11px var(--sans); padding:3px 8px; border-radius:5px; white-space:nowrap; }
+.pt-badge.near { color:#f5c451; background:rgba(240,180,41,.12); border:1px solid rgba(240,180,41,.45); }
+.pt-badge.breakout { color:#ff8b98; background:rgba(240,71,90,.13); border:1px solid rgba(240,71,90,.5); }
+.pt-badge.bear { color:#8fb2ff; background:rgba(61,126,255,.12); border:1px solid rgba(61,126,255,.45); }
+.pt-name { margin:7px 0 2px; font-size:12px; font-weight:750; }
+.pt-name span { color:var(--muted); font-weight:500; }
+.pt-chart { margin:4px -2px 2px; }
+.pt-chart svg { display:block; width:100%; height:auto; }
+.pt-rows { display:grid; grid-template-columns:1fr 1fr; gap:3px 12px; font-size:11.5px; margin-top:4px; }
+.pt-rows div { display:flex; justify-content:space-between; gap:6px; color:var(--muted); }
+.pt-rows div b { color:var(--text); font-family:var(--mono); font-weight:700; }
+.pt-bt { margin-top:7px; padding-top:7px; border-top:1px dashed var(--border); font-size:11px; color:var(--faint); line-height:1.5; }
+.pt-bt b { color:var(--muted); }
+.pt-empty { color:var(--muted); font-size:13px; padding:26px; text-align:center; border:1px dashed var(--border); border-radius:var(--radius); }
+.pt-legend { display:flex; flex-wrap:wrap; gap:12px; font-size:11px; color:var(--faint); margin-top:9px; }
+.pt-legend i { display:inline-block; width:14px; height:0; border-top:2px solid; vertical-align:middle; margin-right:4px; }
+.pt-modal-note { font-size:12.5px; color:var(--muted); line-height:1.7; margin-top:10px; }
+.pt-modal-note b { color:var(--text); }
 </style>
 </head>
 <body>
@@ -150,7 +186,7 @@
 <div class="container">
   <div class="kicker">Bottom-up 접근 · 종목 발굴</div>
   <div class="page-head"><h1>Bottom-up 종목 발굴</h1><span class="upd" id="updated"></span></div>
-  <p class="bu-lede">① <b>전략</b>을 고르고 → ② <b>섹터</b>로 좁히고 → ③ <b>지도</b>에서 위치를 보고 → ④ <b>순위</b>에서 종목을 누르면 차트·재무 상세가 열립니다.</p>
+  <p class="bu-lede">① <b>전략</b>을 고르고 → ② <b>섹터</b>로 좁히고 → ③ <b>지도</b>에서 위치를 보고 → ④ <b>차트 패턴</b>에서 돌파 직전·돌파 종목을 확인하고 → ⑤ <b>순위</b>에서 종목을 누르면 차트·재무 상세가 열립니다. <a href="backtest.html">🧪 기술점수·전략 백테스트 보기 ›</a></p>
   <div class="bu-pulse" id="pulse"></div>
 </div>
 
@@ -179,9 +215,18 @@
     <div class="map-wrap" id="map-wrap"><div class="spin">로딩 중…</div></div>
   </section>
 
+  <section class="bu-sec" id="pt-sec">
+    <div class="bu-sec-h"><h2>④ 차트 패턴 레이더</h2><span class="hint" id="pt-hint">컵앤핸들·삼각수렴·깃발·쌍바닥 등 — 저항선 3% 이내 = 돌파 임박</span></div>
+    <div class="bt-banner" id="bt-banner"><span class="muted">백테스트 결과 불러오는 중…</span></div>
+    <div class="pt-tools"><div class="toggle" id="pt-state"></div><div class="pt-kinds" id="pt-kinds"></div></div>
+    <div class="pt-grid" id="pt-grid"><div class="spin">로딩 중…</div></div>
+    <div class="pt-legend"><span><i style="border-color:#f0b429"></i>저항선(돌파 기준)</span><span><i style="border-color:#5b8cff"></i>지지선</span><span><i style="border-color:#34d399;border-top-style:dashed"></i>목표가(패턴 높이만큼)</span><span>원 = 바닥·컵 저점</span></div>
+    <button class="more-btn" id="pt-more" style="display:none"></button>
+  </section>
+
   <section class="bu-sec">
     <div class="bu-sec-h">
-      <h2>④ 순위 <span class="hint" id="list-sub"></span></h2>
+      <h2>⑤ 순위 <span class="hint" id="list-sub"></span></h2>
       <div class="list-tools">
         <div class="bu-opt"><span class="lbl">정렬</span><div class="toggle" id="sort-toggle"></div></div>
         <div class="bu-opt"><span class="lbl">재무</span><div class="toggle" id="fin-toggle"></div></div>
@@ -194,6 +239,7 @@
 <div class="modal-back" id="modal-back-holder" style="display:none"></div>
 <script src="theme.js?v=20260921a"></script>
 <script src="stocks-common.js?v=20260912d"></script>
+<script src="chart-patterns.js?v=20260924a"></script>
 <script>
 (function () {
   "use strict";
@@ -213,7 +259,10 @@
   function detail(s, key) { var x = sub(s, key); return x ? String(x.detail || "") : ""; }
   function score(s) { var t = taOf(s); return t ? t.score : null; }
   function signals(s) {
-    var out = [], ma = detail(s,"ma"), brk = detail(s,"brk"), macd = detail(s,"macd"), ichi = detail(s,"ichi"), rsi = parseFloat(detail(s,"rsi"));
+    var out = [], pp = window.PatternRadar && PatternRadar.primary(s.ticker), bs = btStrats(s.ticker);
+    if (pp) out.push([pp.state === "breakout" ? "g" : "y", (pp.state === "breakout" ? "🚀 " : "👀 ") + PatternRadar.info(pp.kind).name + (pp.state === "breakout" ? " 돌파" : " 임박")]);
+    if (bs.length) out.push(["g", "🧪 " + bs[0].name.replace(/^\S+\s/, "")]);
+    var ma = detail(s,"ma"), brk = detail(s,"brk"), macd = detail(s,"macd"), ichi = detail(s,"ichi"), rsi = parseFloat(detail(s,"rsi"));
     if (/돌파/.test(brk)) out.push(["g","🚀 " + brk.replace(/\(.*?\)/g,"").trim()]);
     if (num(s.from_high) >= -3) out.push(["g","신고가 근접"]);
     if (ma === "완전 정배열") out.push(["g","완전 정배열"]);
@@ -227,6 +276,31 @@
     return out.slice(0, 4);
   }
 
+  /* ── 백테스트 통과 전략(ta_backtest.json) ───────────────────── */
+  var BT = null, BT_TODAY = {};
+  function btStrats(tk) { return BT_TODAY[tk] || []; }
+  function indexBT() {
+    BT_TODAY = {};
+    ((BT && BT.strategies) || []).forEach(function (st) {
+      if (!st.pass) return;
+      (st.today || []).forEach(function (tk) { (BT_TODAY[tk] = BT_TODAY[tk] || []).push(st); });
+    });
+  }
+  function renderBanner() {
+    var el = $q("#bt-banner"); if (!el) return;
+    if (!BT) { el.innerHTML = '<span>🧪 백테스트 결과(ta_backtest.json)가 아직 없습니다 — backtest_ta.py를 실행하세요.</span>'; return; }
+    var hot = (BT.strategies || []).filter(function (x) { return x.id === "hot"; })[0];
+    var win = (BT.strategies || []).filter(function (x) { return x.pass; });
+    var top = BT.top && BT.top[String(BT.best_pct && BT.best_pct["20"])];
+    var t20 = top && top.h20;
+    var p = [];
+    p.push('<span>🧪 <b>백테스트</b> ' + BT.period[0].slice(0, 7) + "~" + BT.period[1].slice(0, 7) + " · " + BT.universe + "종목 · 매주 교체</span>");
+    if (hot) p.push('<span>기존 <b>기술점수 80+</b>: 20일 뒤 시장 대비 <span class="bt-k ' + (hot.x20 >= 0 ? "up" : "dn") + '">' + (hot.x20 >= 0 ? "+" : "") + hot.x20 + "%p</span>(" + hot.pos_years + "% 연도만 이김)</span>");
+    if (win.length) p.push("<span>꾸준히 이긴 전략: " + win.map(function (w) { return "<b>" + escapeHtml(w.name) + "</b> " + (w.x20 >= 0 ? "+" : "") + w.x20 + "%p"; }).join(" · ") + "</span>");
+    p.push('<a href="backtest.html">자세히 ›</a>');
+    el.innerHTML = p.join("");
+  }
+
   /* ── 전략 프리셋 ───────────────────── */
   var PRESETS = [
     { id:"all", t:"전체", d:"조건 없이 모두", why:"범위 안의 모든 종목입니다.", f:function () { return true; } },
@@ -238,6 +312,10 @@
       f:function (s) { return /돌파/.test(detail(s,"brk")) || num(s.from_high) >= -3; } },
     { id:"vol", t:"📈 거래량 급증", d:"돈이 몰리는 중", why:"<b>최근 5일 거래대금이 20일 평균의 1.3배 이상</b>. 뉴스나 수급 변화가 생긴 종목입니다.",
       f:function (s) { return num(s.vol_ratio) >= 1.3; } },
+    { id:"bt", t:"🧪 백테스트 통과", d:"과거에 꾸준히 이긴 규칙", why:"<b>ta_backtest.json</b>에서 학습·검증 구간과 연도별로 <b>꾸준히 시장을 이긴 전략</b>에 오늘 해당하는 종목입니다. 규칙은 매일 다시 채점됩니다.",
+      f:function (s) { return btStrats(s.ticker).length > 0; } },
+    { id:"pat", t:"📐 패턴 돌파·임박", d:"컵앤핸들·삼각수렴 등", why:"<b>상승형 차트 패턴</b>(컵앤핸들·쌍바닥·깃발·삼각수렴·쐐기·박스·추세선)이 <b>저항선 3% 이내</b>로 붙었거나 <b>최근 5일 안에 돌파</b>한 종목입니다.",
+      f:function (s) { return !!(window.PatternRadar && PatternRadar.primary(s.ticker)); } },
     { id:"rebound", t:"🧊 바닥 반등", d:"낙폭 과대 + 반등 시작", why:"<b>52주 고점 대비 -20% 이하</b>로 빠졌지만 <b>최근 1주 상승</b>하고 <b>MACD 골든크로스</b>가 난 종목입니다.",
       f:function (s) { return num(s.from_high) <= -20 && num(s.r1w) > 0 && /골든/.test(detail(s,"macd")); } }
   ];
@@ -502,7 +580,14 @@
   }
   /* 컬럼 이름 줄을 고정할 위치 = 상단 컨트롤 바 높이 (줄바꿈되면 높이가 달라진다) */
   function syncBarHeight() { var bar = $q(".bu-bar"); if (bar) document.documentElement.style.setProperty("--bar-h", bar.offsetHeight + "px"); }
-  function renderAll() { renderControls(); renderPulse(); renderPresets(); renderSectors(); renderMap(); renderList(); syncBarHeight(); }
+  function renderAll() { renderControls(); renderPulse(); renderPresets(); renderSectors(); renderMap(); renderPatterns(); renderList(); syncBarHeight(); }
+  var ptMounted = false;
+  function ptStocks() { return scoped().filter(function (s) { return matchQ(s) && (!view.sector || s.sector === view.sector); }); }
+  function renderPatterns() {
+    if (!window.PatternRadar) return;
+    if (!ptMounted) { ptMounted = true; PatternRadar.mount({ stocks: ptStocks, score: score, open: openStockModal }); }
+    else PatternRadar.render();
+  }
 
   function openStockModal(ticker) {
     var s = BYT[ticker]; if (!s) return;
@@ -513,8 +598,10 @@
       intro:profile ? profile.biz : "회사 개요가 아직 준비되지 않았습니다.", candles:s.candles, news:s.news, financials:FIN[ticker], ta:taOf(s), tk:s.ticker });
   }
 
+  /* backtest.html 등에서 ?q=티커 로 넘어오면 검색어로 채움 */
+  try { var qp = new URLSearchParams(location.search).get("q"); if (qp) { view.q = qp; view.preset = "all"; $q("#q").value = qp; } } catch (e) {}
   var qTimer = null;
-  $q("#q").addEventListener("input", function (e) { clearTimeout(qTimer); qTimer = setTimeout(function () { view.q = e.target.value.trim(); view.shown = PAGE; renderPulse(); renderPresets(); renderSectors(); renderMap(); renderList(); }, 160); });
+  $q("#q").addEventListener("input", function (e) { clearTimeout(qTimer); qTimer = setTimeout(function () { view.q = e.target.value.trim(); view.shown = PAGE; renderPulse(); renderPresets(); renderSectors(); renderMap(); renderPatterns(); renderList(); }, 160); });
   $q("#more").addEventListener("click", function () { view.shown += PAGE; renderList(); });
   var rsTimer = null, lastW = 0;
   window.addEventListener("resize", function () {
@@ -524,8 +611,10 @@
     rsTimer = setTimeout(function () { var w = $q("#map-wrap").clientWidth; if (DATA && Math.abs(w - lastW) > 40) { lastW = w; mapBuilt = false; renderMap(); } }, 200);
   });
 
-  Promise.all([fetchJSON("megacap.json"), fetchJSON("megacap_profiles.json").catch(function () { return null; }), fetchJSON("financials.json").catch(function () { return null; })]).then(function (rs) {
+  Promise.all([fetchJSON("megacap.json"), fetchJSON("megacap_profiles.json").catch(function () { return null; }), fetchJSON("financials.json").catch(function () { return null; }),
+    window.PatternRadar ? PatternRadar.load() : Promise.resolve(null)]).then(function (rs) {
     DATA = rs[0]; PROFILES = (rs[1] && rs[1].profiles) || {}; FIN = (rs[2] && rs[2].financials) || {};
+    BT = window.PatternRadar ? PatternRadar.bt : null; indexBT(); renderBanner();
     ALL = DATA.stocks || []; ALL.forEach(function (s) { BYT[s.ticker] = s; });
     var uni = DATA.universe_updated ? " · 명단 " + DATA.universe_updated.slice(0, 10) + " 기준(주 1회)" : "";
     $q("#updated").textContent = "시세 " + (DATA.updated || "-") + " · " + DATA.count + "종목" + uni;
