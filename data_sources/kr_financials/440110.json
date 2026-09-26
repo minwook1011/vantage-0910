@@ -1,0 +1,101 @@
+{
+  "code": "440110",
+  "name": "파두",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-26",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 320810077,
+      "operating_income": -14821350661,
+      "net_income": -14378339044
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 2331858573,
+      "operating_income": -16228684139,
+      "net_income": -15448298243
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 7092515833,
+      "operating_income": -22184506699,
+      "net_income": -21480915633
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 10094870626,
+      "operating_income": -30544143269,
+      "net_income": -30667463669
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 23983499942,
+      "operating_income": -26090966801,
+      "net_income": -23911853756
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 19218938606,
+      "operating_income": -11985539502,
+      "net_income": -12136494916
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 23679326011,
+      "operating_income": -12564211319,
+      "net_income": -14750903093
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 25644431133,
+      "operating_income": -11426230242,
+      "net_income": -10882512241
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 23876637483,
+      "operating_income": -29494004649,
+      "net_income": -38448265363
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 59538451703,
+      "operating_income": 7685802062,
+      "net_income": 10214783511
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 73173633575,
+      "operating_income": 16224323601,
+      "net_income": -60128630015
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 56401518172,
+      "operating_income": 1507325359,
+      "net_income": -227459980077
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 22470905715,
+      "operating_income": -58569439226,
+      "net_income": -56832521397
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 43502744974,
+      "operating_income": -95048300908,
+      "net_income": -91508531301
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 92419333233,
+      "operating_income": -65469985712,
+      "net_income": -76218175613
+    }
+  ]
+}

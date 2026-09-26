@@ -28,6 +28,9 @@ UNIVERSE = ROOT / "data_sources" / "kr_universe.json"
 HISTORY_DIR = ROOT / "data_sources" / "kr_financials"
 OUT_DIR = ROOT / "docs" / "data" / "kr"
 INDEX = ROOT / "docs" / "data" / "kr_companies.json"
+MIN_LISTED_DAYS = 120
+MIN_CAP = {"KOSPI": 3000, "KOSDAQ": 5000}  # 시장별 시총 하한(억원)
+MARKET_KO = {"KOSPI": "코스피", "KOSDAQ": "코스닥"}
 KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (compatible; VantageFinancialData/1.0)"
 M_API = "https://m.stock.naver.com/api"
@@ -105,24 +108,28 @@ def upjong_names():
         return {}
 
 
-def build_universe(top, min_cap_eok, pages):
+def build_universe(top, min_cap_eok, pages, market="KOSPI"):
     cands = []
     for page in range(1, pages + 1):
-        data = get_json(f"{M_API}/stocks/marketValue/KOSPI?page={page}&pageSize=100")
+        data = get_json(f"{M_API}/stocks/marketValue/{market}?page={page}&pageSize=100")
         for s in data.get("stocks", []):
             code, name = s["itemCode"], s["stockName"]
             # 잡주·중복 제외: 보통주만(우선주 코드 끝자리 ≠ 0), ETF/ETN/리츠/스팩 제외, 시총 하한
-            if s.get("stockEndType") != "stock" or not code.endswith("0") or re.search(r"스팩|리츠|REIT", name):
+            if s.get("stockEndType") != "stock" or not code.endswith("0") or re.search(r"스팩|리츠|REIT|Reg\.S", name):
                 continue
             cap = number(s.get("marketValue"))  # 억원
             if cap is None or cap < min_cap_eok:
                 continue
-            cands.append({"code": code, "name": name, "market": "KOSPI", "mcap_eok": cap})
+            cands.append({"code": code, "name": name, "market": market, "mcap_eok": cap})
 
     def avg_value(c):
         try:
-            rows = fetch_chart(c["code"], 20)
-            c["avg_value_eok"] = round(sum(p * v for _, p, v in rows) / len(rows) / 1e8, 1) if rows else None
+            rows = fetch_chart(c["code"], MIN_LISTED_DAYS)
+            if len(rows) < MIN_LISTED_DAYS:  # 상장 6개월 미만 신규주는 실적 이력이 없고 변동이 커서 제외
+                c["avg_value_eok"] = None
+                return c
+            rows = rows[-20:]
+            c["avg_value_eok"] = round(sum(p * v for _, p, v in rows) / len(rows) / 1e8, 1)
         except Exception:
             c["avg_value_eok"] = None
         return c
@@ -136,11 +143,12 @@ def build_universe(top, min_cap_eok, pages):
 def update_universe(args):
     uni = load_json(UNIVERSE, {"schema_version": 1, "companies": []})
     have = {c["code"]: c for c in uni["companies"]}
-    picked = build_universe(args.top, args.min_cap, args.pages)
+    min_cap = args.min_cap or MIN_CAP[args.market]
+    picked = build_universe(args.top, min_cap, args.pages, args.market)
     sectors = upjong_names()
     now = datetime.now(KST).isoformat(timespec="seconds")
     for rank, c in enumerate(picked, 1):
-        entry = have.get(c["code"]) or {"code": c["code"], "name": c["name"], "market": c["market"], "added_at": now[:10], "added_by": f"코스피 20일 평균 거래대금 상위 {args.top}"}
+        entry = have.get(c["code"]) or {"code": c["code"], "name": c["name"], "market": c["market"], "added_at": now[:10], "added_by": f"{MARKET_KO[args.market]} 20일 평균 거래대금 상위 {args.top}"}
         entry.update({"name": c["name"], "mcap_eok": c["mcap_eok"], "avg_value_eok": c["avg_value_eok"], "value_rank": rank})
         if not entry.get("sector"):
             try:
@@ -152,8 +160,8 @@ def update_universe(args):
                 pass
         have[c["code"]] = entry
     uni.update({"schema_version": 1, "updated_at": now,
-                "criteria": f"코스피 보통주 · 시총 {args.min_cap:,.0f}억원 이상 · 최근 20거래일 평균 거래대금 순위(편입 후 유지)",
-                "companies": sorted(have.values(), key=lambda c: (c.get("value_rank") or 999, c["code"]))})
+                "criteria": f"코스피·코스닥 보통주 · 시총 코스피 3,000억·코스닥 5,000억 이상 · 상장 6개월 이상 · 시장별 최근 20거래일 평균 거래대금 순위(편입 후 유지)",
+                "companies": sorted(have.values(), key=lambda c: (c.get("market") != "KOSPI", c.get("value_rank") or 999, c["code"]))})
     write_if_changed(UNIVERSE, uni, indent=2)
     print(json.dumps({"universe": len(uni["companies"]), "picked": [c["name"] for c in picked]}, ensure_ascii=False))
 
@@ -330,7 +338,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--universe", action="store_true", help="거래대금 상위 기업을 편입 목록에 추가")
     ap.add_argument("--top", type=int, default=30)
-    ap.add_argument("--min-cap", type=float, default=3000, help="시총 하한(억원)")
+    ap.add_argument("--min-cap", type=float, default=None, help="시총 하한(억원, 기본 코스피 3000·코스닥 5000)")
+    ap.add_argument("--market", choices=["KOSPI", "KOSDAQ"], default="KOSPI")
     ap.add_argument("--pages", type=int, default=3, help="시총 상위 몇 페이지(100개씩)에서 고를지")
     ap.add_argument("--price-days", type=int, default=1300)
     ap.add_argument("--codes", nargs="*")

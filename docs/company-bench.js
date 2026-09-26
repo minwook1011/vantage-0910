@@ -41,7 +41,7 @@
     listOpen: saved.listOpen !== false, sort: saved.sort && typeof saved.sort === "object" ? saved.sort : {key: "rank", dir: 1}};
   var customs = read(CUSTOM_KEY, {}); if (!customs || typeof customs !== "object" || Array.isArray(customs)) customs = {};
   var COMPANIES = FALLBACK, AI = null, FINS = {}, FM = null, KRX = null, KR = {}, krLoading = {}, loaded = false, loadError = "", catalog = {}, renderId = 0;
-  var query = "", sector = "";
+  var query = "", sector = "", mkt = "";
 
   function store() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function storeCustoms() { localStorage.setItem(CUSTOM_KEY, JSON.stringify(customs)); }
@@ -198,7 +198,7 @@
   }
   function qOf(c) { return (c.kr && c.kr.q) || {}; }
   var COLS = [
-    {key: "rank", label: "#", get: function (c, i) { return c.kr && c.kr.value_rank ? c.kr.value_rank : 900 + i; }},
+    {key: "rank", label: "#", get: function (c, i) { return c.kr && c.kr.value_rank ? (c.kr.market === "KOSDAQ" ? 500 : 0) + c.kr.value_rank : 900 + i; }},
     {key: "name", label: "기업", get: function (c) { return c.name || c.label; }},
     {key: "close", label: "종가", get: function (c) { if (c.kr && !KR[c.ticker]) return c.kr.close; var p = priceTail(c); return p.length ? p[p.length - 1].value : null; }},
     {key: "d1", label: "1일", get: function (c) { return chgOf(c, 1); }},
@@ -221,7 +221,7 @@
     var q = query.trim().toLowerCase();
     var list = COMPANIES.map(function (c, i) { return {c: c, i: i}; }).filter(function (o) {
       var c = o.c, hay = [c.name, c.label, c.ticker, c.desc, c.kr && c.kr.sector].join(" ").toLowerCase();
-      return (!q || hay.indexOf(q) >= 0) && (!sector || (sector === "★" ? isFav(c.ticker) : c.kr && c.kr.sector === sector));
+      return (!q || hay.indexOf(q) >= 0) && (!mkt || (c.kr && c.kr.market === mkt)) && (!sector || (sector === "★" ? isFav(c.ticker) : c.kr && c.kr.sector === sector));
     });
     var col = COLS.filter(function (k) { return k.key === state.sort.key; })[0] || COLS[0], dir = state.sort.dir === -1 ? -1 : 1;
     list.sort(function (a, b) {
@@ -231,7 +231,7 @@
       return dir * (x - y);
     });
     var open = state.listOpen || !!q;
-    var krCount = COMPANIES.filter(function (c) { return c.kr; }).length;
+    var krCount = COMPANIES.filter(function (c) { return c.kr; }).length, kqCount = COMPANIES.filter(function (c) { return c.kr && c.kr.market === "KOSDAQ"; }).length;
     var head = '<tr><th class="cb-star-col"><span class="sr-only">즐겨찾기</span></th>' + COLS.map(function (k) {
       var on = k.key === col.key;
       return '<th' + (k.key === "name" ? ' class="cb-name-col"' : "") + ' aria-sort="' + (on ? (dir === 1 ? "ascending" : "descending") : "none") + '"><button type="button" data-cb-sort="' + k.key + '" class="' + (on ? "on" : "") + '">' + k.label + (on ? (dir === 1 ? " ↑" : " ↓") : "") + "</button></th>";
@@ -243,7 +243,7 @@
       var none = '<span class="cb-muted">—</span>';
       return '<tr class="' + (on ? "on" : "") + '" data-cb-row="' + esc(c.ticker) + '" tabindex="0">' +
         '<td class="cb-star-col"><button type="button" class="cb-star' + (fav ? " on" : "") + '" data-cb-star="' + esc(c.ticker) + '" aria-pressed="' + fav + '" aria-label="' + esc(c.name) + ' 즐겨찾기" title="' + (fav ? "즐겨찾기 해제" : "즐겨찾기") + '">' + (fav ? "★" : "☆") + "</button></td>" +
-        '<td class="cb-num cb-muted">' + (k.value_rank || "") + "</td>" +
+        '<td class="cb-num cb-muted">' + (k.value_rank ? '<span class="cb-mk">' + (k.market === "KOSDAQ" ? "닥" : "피") + "</span>" + k.value_rank : "") + "</td>" +
         '<td class="cb-name-col"><b>' + esc(c.name || c.label) + "</b><small>" + esc(c.ticker) + " · " + esc(k.sector || c.desc || "") + "</small></td>" +
         '<td class="cb-num">' + (finite(close) ? esc(fmt(close, c.market === "US" ? "USD" : "원")) : none) + "</td>" +
         '<td class="cb-num">' + pctCell(chgOf(c, 1)) + '</td><td class="cb-num">' + pctCell(chgOf(c, 21)) + '</td><td class="cb-num">' + pctCell(chgOf(c, 250)) + "</td>" +
@@ -255,9 +255,10 @@
     }).join("");
     chipHost.innerHTML = favHtml +
       '<div class="cb-finder"><input type="search" id="cb-q" class="cb-q" placeholder="기업명 · 종목코드 · 업종 검색" value="' + esc(query) + '" aria-label="기업 검색">' +
+      '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + ">코스닥</option></select>" +
       '<select id="cb-sector" aria-label="업종"><option value="">전체 업종</option><option value="★"' + (sector === "★" ? " selected" : "") + ">★ 즐겨찾기만</option>" + sectors.map(function (x) { return "<option" + (x === sector ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>" +
       '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button></div>" +
-      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta">' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 한국 " + krCount + "개" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
+      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta">' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
       '<div class="cb-list-wrap"><table class="cb-table"><thead>' + head + "</thead><tbody>" + (body || '<tr><td colspan="13" class="cb-muted" style="padding:16px">검색 결과가 없습니다.</td></tr>') + "</tbody></table></div></div>";
     chipHost.querySelectorAll("[data-cb-company]").forEach(function (b) { b.onclick = function () { pick(b.dataset.cbCompany); }; });
     chipHost.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
@@ -272,6 +273,7 @@
     qi.oninput = function () { var pos = qi.selectionStart; query = qi.value; renderPicker(); var n = document.getElementById("cb-q"); n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) {} };
     qi.onkeydown = function (e) { if (e.key === "Enter") { var first = chipHost.querySelector("[data-cb-row]"); if (first) pick(first.dataset.cbRow, true); } };
     document.getElementById("cb-sector").onchange = function (e) { sector = e.target.value; renderPicker(); };
+    document.getElementById("cb-mkt").onchange = function (e) { mkt = e.target.value; renderPicker(); };
     document.getElementById("cb-list-toggle").onclick = function () { state.listOpen = !open; if (!state.listOpen) query = ""; store(); renderPicker(); };
   }
   function pick(tk, scroll) {

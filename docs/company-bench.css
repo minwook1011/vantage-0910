@@ -168,3 +168,4 @@
   .cb-table td, .cb-table thead th button { padding-left:7px; padding-right:7px; }
   .cb-fav-hero { margin:6px 0 0; display:block; }
 }
+.cb-mk { display:inline-block; margin-right:4px; padding:0 4px; border:1px solid #34465f; border-radius:4px; color:#8fa2c2; font:600 9.5px var(--sans, inherit); vertical-align:1px; }
