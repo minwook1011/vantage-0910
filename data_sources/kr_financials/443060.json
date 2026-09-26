@@ -1,0 +1,71 @@
+{
+ "code": "443060",
+ "name": "HD현대마린솔루션",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2024-06-30",
+   "revenue": 437855158584,
+   "operating_income": 70985869191,
+   "net_income": 56679200309
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": 461261436630,
+   "operating_income": 83383349567,
+   "net_income": 58529167278
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 485597828422,
+   "operating_income": 83006827217,
+   "net_income": 63318186145
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 467721569416,
+   "operating_income": 83009935293,
+   "net_income": 52997053677
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 513176029365,
+   "operating_income": 93596312581,
+   "net_income": 79751730989
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 516205232223,
+   "operating_income": 90528263685,
+   "net_income": 73504317316
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 574608683128,
+   "operating_income": 93393577021,
+   "net_income": 98138711763
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 580413871847,
+   "operating_income": 97625286579,
+   "net_income": 83007010497
+  }
+ ],
+ "annual": [
+  {
+   "date": "2024-12-31",
+   "revenue": 1745458578779,
+   "operating_income": 271729951500,
+   "net_income": 227940276635
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 1982700659426,
+   "operating_income": 350141338776,
+   "net_income": 269571288127
+  }
+ ]
+}

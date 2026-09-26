@@ -159,6 +159,10 @@ def update_universe(args):
             except Exception:
                 pass
         have[c["code"]] = entry
+    picked_codes = {c["code"] for c in picked}
+    for e in have.values():  # 이번 순위 밖으로 밀린 기업은 목록에 남기되 순위만 비운다
+        if e.get("market") == args.market and e["code"] not in picked_codes:
+            e["value_rank"] = None
     uni.update({"schema_version": 1, "updated_at": now,
                 "criteria": f"코스피·코스닥 보통주 · 시총 코스피 3,000억·코스닥 5,000억 이상 · 상장 6개월 이상 · 시장별 최근 20거래일 평균 거래대금 순위(편입 후 유지)",
                 "companies": sorted(have.values(), key=lambda c: (c.get("market") != "KOSPI", c.get("value_rank") or 999, c["code"]))})
@@ -286,6 +290,13 @@ def refresh_company(c, now, price_count):
         except Exception as e:
             errors.append(key + ": " + type(e).__name__)
             recent = []
+        # 단위 검증: 겹치는 기간의 DART 매출이 네이버(억원)와 5배 이상 다르면(외화 표시 등) DART 이력을 쓰지 않는다
+        naver_rev = {r["date"]: r["revenue"] for r in recent if not r.get("est") and r.get("revenue")}
+        pairs = [(h["revenue"], naver_rev[h["date"]]) for h in hist[key] if h.get("revenue") and h["date"] in naver_rev]
+        if pairs and sum(1 for a, b in pairs if not (0.2 < a / b < 5)) > len(pairs) / 2:
+            errors.append(key + ": DART 이력 단위 불일치 · 제외")
+            hist[key] = []
+            prior = [r for r in prior if r.get("source") != "DART 공시"]
         fins[key] = merge(hist[key], recent, prior)
     data["financials"] = fins
     data["refresh_errors"] = errors
@@ -328,7 +339,7 @@ def refresh_all(args):
              "criteria": load_json(UNIVERSE, {}).get("criteria", ""),
              "unit": {"financials": "억원", "price": "원"},
              "companies": sorted((r for r in rows.values() if r["code"] in order), key=lambda r: order[r["code"]])}
-    write_if_changed(INDEX, index, indent=1)
+    write_if_changed(INDEX, index)
     errs = {code: d["refresh_errors"] for code, (c, d, _) in results.items() if d["refresh_errors"]}
     print(json.dumps({"companies": len(results), "changed": sum(1 for *_, ch in results.values() if ch), "errors": errs}, ensure_ascii=False))
     return 1 if len(errs) > len(results) // 2 else 0

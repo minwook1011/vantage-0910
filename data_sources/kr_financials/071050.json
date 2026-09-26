@@ -1,0 +1,101 @@
+{
+ "code": "071050",
+ "name": "한국금융지주",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2023-09-30",
+   "revenue": 5449015834294,
+   "operating_income": 212589164251,
+   "net_income": 212188538961
+  },
+  {
+   "date": "2024-03-31",
+   "revenue": 6681819185476,
+   "operating_income": 381498734815,
+   "net_income": 342869147950
+  },
+  {
+   "date": "2024-06-30",
+   "revenue": 5755454842430,
+   "operating_income": 299472063879,
+   "net_income": 281136209312
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": 6303579292402,
+   "operating_income": 363513333272,
+   "net_income": 314530931493
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 2433280266409,
+   "operating_income": 155239992921,
+   "net_income": 107332353184
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 5363814187996,
+   "operating_income": 529612370103,
+   "net_income": 459329123682
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 7033792000000,
+   "operating_income": 585551000000,
+   "net_income": 540313000000
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 5988214000000,
+   "operating_income": 849091000000,
+   "net_income": 674867000000
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": 381074629897,
+   "net_income": 349842876318
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": null,
+   "operating_income": 1106314000000,
+   "net_income": 916654000000
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": null,
+   "operating_income": 1344172000000,
+   "net_income": 998385000000
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": 22939529241985,
+   "operating_income": null,
+   "net_income": 639808461785
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": 20893370651649,
+   "operating_income": 820404542965,
+   "net_income": 708063414580
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 21174133586717,
+   "operating_income": 1199724124887,
+   "net_income": 1045868641939
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": 2345329000000,
+   "net_income": 2024352000000
+  }
+ ]
+}

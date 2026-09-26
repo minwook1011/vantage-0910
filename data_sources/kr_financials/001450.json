@@ -1,0 +1,101 @@
+{
+ "code": "001450",
+ "name": "현대해상",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2023-09-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 261155504825
+  },
+  {
+   "date": "2024-03-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 373252087946
+  },
+  {
+   "date": "2024-06-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 347744323855
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 212286106577
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": -82749462496
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 203879164075
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 300639835273
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": null,
+   "operating_income": 707682913166,
+   "net_income": 629822288860
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": -114521240225
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": null,
+   "operating_income": 324494379640,
+   "net_income": 236446287868
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": null,
+   "operating_income": 528690916929,
+   "net_income": 418303180455
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 1294975508162
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 574444959462
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 850533055882
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": 1260994493599,
+   "net_income": 1019820047983
+  }
+ ]
+}

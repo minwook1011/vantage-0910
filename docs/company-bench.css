@@ -169,3 +169,4 @@
   .cb-fav-hero { margin:6px 0 0; display:block; }
 }
 .cb-mk { display:inline-block; margin-right:4px; padding:0 4px; border:1px solid #34465f; border-radius:4px; color:#8fa2c2; font:600 9.5px var(--sans, inherit); vertical-align:1px; }
+.cb-table tbody tr[hidden] { display:none; } .cb-list-meta b { color:#c9d5ea; font-weight:600; }

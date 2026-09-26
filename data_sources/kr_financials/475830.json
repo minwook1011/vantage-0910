@@ -1,0 +1,59 @@
+{
+ "code": "475830",
+ "name": "오름테라퓨틱",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2025-03-31",
+   "revenue": 2953532,
+   "operating_income": -9570062962,
+   "net_income": -8601634696
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 4162791,
+   "operating_income": -9995848525,
+   "net_income": -3772314639
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 15889734,
+   "operating_income": -13938750131,
+   "net_income": -13620338742
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 558176,
+   "operating_income": -18254515387,
+   "net_income": -15974883879
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 0,
+   "operating_income": -18076125528,
+   "net_income": -15278008084
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 24105273,
+   "operating_income": -15352897687,
+   "net_income": 63384312384
+  }
+ ],
+ "annual": [
+  {
+   "date": "2024-12-31",
+   "revenue": 20905620577,
+   "operating_income": -8335353372,
+   "net_income": -5740128540
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 23564233,
+   "operating_income": -51759177005,
+   "net_income": -41969171956
+  }
+ ]
+}

@@ -1,0 +1,83 @@
+{
+ "code": "475150",
+ "name": "SK이터닉스",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2024-03-31",
+   "revenue": 4816025371,
+   "operating_income": 417463332,
+   "net_income": -1451246525
+  },
+  {
+   "date": "2024-06-30",
+   "revenue": 13995173106,
+   "operating_income": -2356583927,
+   "net_income": -2696419059
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": 160291505416,
+   "operating_income": 14429005152,
+   "net_income": 6755191011
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 153049033336,
+   "operating_income": 25147515160,
+   "net_income": 19773470158
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 25933149305,
+   "operating_income": 1062016290,
+   "net_income": 979357128
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 65324077464,
+   "operating_income": 9593792372,
+   "net_income": 14298600862
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 46427564049,
+   "operating_income": 1170297105,
+   "net_income": -5052122117
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 247955979082,
+   "operating_income": 41172108560,
+   "net_income": 20495945495
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 27523079701,
+   "operating_income": 4909470482,
+   "net_income": -5112268969
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 240891560118,
+   "operating_income": 4682586131,
+   "net_income": -2892906060
+  }
+ ],
+ "annual": [
+  {
+   "date": "2024-12-31",
+   "revenue": 332151737229,
+   "operating_income": 37637399717,
+   "net_income": 22380995585
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 385640769900,
+   "operating_income": 52998214327,
+   "net_income": 30721781368
+  }
+ ]
+}

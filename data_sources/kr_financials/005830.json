@@ -1,0 +1,101 @@
+{
+ "code": "005830",
+ "name": "DB손해보험",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2023-09-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 363457395845
+  },
+  {
+   "date": "2024-03-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 583443344346
+  },
+  {
+   "date": "2024-06-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 540656686704
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 453866639624
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 194262531147
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 431363891266
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 652305000000
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": null,
+   "operating_income": 441307000000,
+   "net_income": 328107000000
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 378805108734
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": null,
+   "operating_income": 413033000000,
+   "net_income": 239580000000
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": null,
+   "operating_income": 1173878000000,
+   "net_income": 876864000000
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 2039482230002
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 1742379224712
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 1853216681744
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": 2383950000000,
+   "net_income": 1790581000000
+  }
+ ]
+}

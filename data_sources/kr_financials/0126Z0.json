@@ -1,0 +1,29 @@
+{
+ "code": "0126Z0",
+ "name": "삼성에피스홀딩스",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2026-03-31",
+   "revenue": 453893789941,
+   "operating_income": 90548059441,
+   "net_income": 99461585038
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 391892643038,
+   "operating_income": 58737226489,
+   "net_income": 85809008612
+  }
+ ],
+ "annual": [
+  {
+   "date": "2025-12-31",
+   "revenue": 251689950548,
+   "operating_income": -63640615999,
+   "net_income": -31383193877
+  }
+ ]
+}

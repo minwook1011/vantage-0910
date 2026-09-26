@@ -1,0 +1,15 @@
+{"code":"466100","name":"클로봇","source":"DART 공시","statement":"cfs","fetched_at":"2026-09-26",
+ "quarterly":[
+  {"date":"2025-03-31","revenue":4922609033,"operating_income":-3382560996,"net_income":-2964128391},
+  {"date":"2025-06-30","revenue":7849410881,"operating_income":-1877880143,"net_income":-1351247825},
+  {"date":"2025-09-30","revenue":10734313731,"operating_income":810608689,"net_income":1173520990},
+  {"date":"2025-12-31","revenue":17899747783,"operating_income":1269237184,"net_income":null},
+  {"date":"2026-03-31","revenue":8119905649,"operating_income":-2500542443,"net_income":-2206349320},
+  {"date":"2026-06-30","revenue":8859369111,"operating_income":-2839891889,"net_income":-2633137155}
+ ],
+ "annual":[
+  {"date":"2022-12-31","revenue":20950354873,"operating_income":-2191737434,"net_income":-5277967999},
+  {"date":"2023-12-31","revenue":24204059619,"operating_income":-5764984704,"net_income":-22447934383},
+  {"date":"2024-12-31","revenue":33395079055,"operating_income":-7490868842,"net_income":-6729151697},
+  {"date":"2025-12-31","revenue":41406081428,"operating_income":-3180595266,"net_income":null}
+ ]}

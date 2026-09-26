@@ -1,0 +1,21 @@
+{
+  "code": "476060",
+  "name": "온코닉테라퓨틱스",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-26",
+  "quarterly": [
+    {"date": "2025-03-31", "revenue": null, "operating_income": 1578313537, "net_income": 1878327639},
+    {"date": "2025-06-30", "revenue": null, "operating_income": 1112888260, "net_income": -155739772},
+    {"date": "2025-09-30", "revenue": null, "operating_income": 8316598246, "net_income": 9402326172},
+    {"date": "2025-12-31", "revenue": null, "operating_income": 1611300476, "net_income": 4659077428},
+    {"date": "2026-03-31", "revenue": null, "operating_income": 4585894819, "net_income": 6421974405},
+    {"date": "2026-06-30", "revenue": null, "operating_income": 2789195796, "net_income": 3768045438}
+  ],
+  "annual": [
+    {"date": "2022-12-31", "revenue": null, "operating_income": -14837551978, "net_income": -14431902784},
+    {"date": "2023-12-31", "revenue": null, "operating_income": 2230939387, "net_income": 1682463191},
+    {"date": "2024-12-31", "revenue": null, "operating_income": -4797790778, "net_income": -8092612266},
+    {"date": "2025-12-31", "revenue": null, "operating_income": 12619100519, "net_income": 15783991467}
+  ]
+}

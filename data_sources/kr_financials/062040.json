@@ -1,0 +1,77 @@
+{
+ "code": "062040",
+ "name": "산일전기",
+ "source": "DART 공시",
+ "statement": "ofs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2024-09-30",
+   "revenue": 79735745632,
+   "operating_income": 27791299304,
+   "net_income": 22875126277
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 98829448704,
+   "operating_income": 37521340907,
+   "net_income": 31245770446
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 128255019954,
+   "operating_income": 46324336404,
+   "net_income": 37968920694
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 132734594216,
+   "operating_income": 42677299668,
+   "net_income": 36887423132
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 142127158006,
+   "operating_income": 52516592544,
+   "net_income": 43038642183
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 150322981077,
+   "operating_income": 55681144777,
+   "net_income": 45998851186
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 164178798154,
+   "operating_income": 62215147379,
+   "net_income": 54329459022
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": 107674107439,
+   "operating_income": 12183036623,
+   "net_income": 4108350834
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": 214537829766,
+   "operating_income": 46604557786,
+   "net_income": 39051131678
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 333996550771,
+   "operating_income": 109231906505,
+   "net_income": 83676177904
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 501946220880,
+   "operating_income": 179039569523,
+   "net_income": 149140756455
+  }
+ ]
+}

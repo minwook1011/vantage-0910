@@ -1,0 +1,101 @@
+{
+  "code": "032830",
+  "name": "삼성생명",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-26",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 506663000000
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 663292000000
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 788837000000
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 713819000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 94307000000
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 677496000000
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 793580000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 815840000000,
+      "net_income": 760947000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 219492000000
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 1357813000000,
+      "net_income": 1240307000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 622617000000,
+      "net_income": 727366000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 2307597000000
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 2033709000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 2260255000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 2580469000000,
+      "net_income": 2451515000000
+    }
+  ]
+}

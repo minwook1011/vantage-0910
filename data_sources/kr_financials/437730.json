@@ -1,0 +1,77 @@
+{
+ "code": "437730",
+ "name": "삼현",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2024-09-30",
+   "revenue": 24289438770,
+   "operating_income": 1859565540,
+   "net_income": 1959713549
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 24326626824,
+   "operating_income": 1901654758,
+   "net_income": 2536819849
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 26859505067,
+   "operating_income": 1517001678,
+   "net_income": 3234821033
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 22486764011,
+   "operating_income": -1322598179,
+   "net_income": -446234432
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 21368826347,
+   "operating_income": -1290724302,
+   "net_income": 4365318589
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 18763549394,
+   "operating_income": -2494899392,
+   "net_income": -2671391415
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 20996133954,
+   "operating_income": -5388519000,
+   "net_income": -7017751232
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": 68617808568,
+   "operating_income": 2753382474,
+   "net_income": 3322524020
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": 99848743018,
+   "operating_income": 9796377029,
+   "net_income": 9449803386
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 100447699055,
+   "operating_income": 5516949984,
+   "net_income": 8314379320
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 95041722249,
+   "operating_income": 805333955,
+   "net_income": 9690725039
+  }
+ ]
+}

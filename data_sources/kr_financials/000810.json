@@ -1,0 +1,101 @@
+{
+  "code": "000810",
+  "name": "삼성화재해상보험",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-26",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 429524000623
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 701953136631
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 612410989828
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 554558755128
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 207874831396
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 609030625028
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 638378878364
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 664063596558,
+      "net_income": 538495836783
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 234381792080
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 861126626939,
+      "net_income": 635218715258
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 885332758419,
+      "net_income": 738734580357
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 1626701560909
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 1821614343047
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 2076797712983
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 2659143002144,
+      "net_income": 2020287132255
+    }
+  ]
+}

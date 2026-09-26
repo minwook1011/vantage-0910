@@ -1,0 +1,101 @@
+{
+ "code": "016360",
+ "name": "삼성증권",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2023-09-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 151012315908
+  },
+  {
+   "date": "2024-03-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 253143650012
+  },
+  {
+   "date": "2024-06-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 257867883810
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 240313388189
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 147712967853
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 248413515879
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 234644016515
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": null,
+   "operating_income": 401812408978,
+   "net_income": 309174366337
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 214994835415
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": null,
+   "operating_income": 609531743385,
+   "net_income": 450856069096
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": null,
+   "operating_income": 675794814040,
+   "net_income": 488224283447
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 422405108435
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 547405708396
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": null,
+   "operating_income": null,
+   "net_income": 899037889864
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": null,
+   "operating_income": 1375673177021,
+   "net_income": 1007226734146
+  }
+ ]
+}

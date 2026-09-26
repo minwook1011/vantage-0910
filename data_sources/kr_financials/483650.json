@@ -1,0 +1,77 @@
+{
+ "code": "483650",
+ "name": "달바글로벌",
+ "source": "DART 공시",
+ "statement": "cfs",
+ "fetched_at": "2026-09-26",
+ "quarterly": [
+  {
+   "date": "2024-09-30",
+   "revenue": 73672161677,
+   "operating_income": 14044212551,
+   "net_income": 9617110068
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 113759841458,
+   "operating_income": 30051140401,
+   "net_income": 24749213281
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 128372734047,
+   "operating_income": 29230269832,
+   "net_income": 19803061297
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 117340414293,
+   "operating_income": 16652191024,
+   "net_income": 14014411521
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 160262458108,
+   "operating_income": 25535813946,
+   "net_income": 20486848014
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 171242032413,
+   "operating_income": 45090464054,
+   "net_income": 36337195796
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 186860908470,
+   "operating_income": 47240874551,
+   "net_income": 38059528099
+  }
+ ],
+ "annual": [
+  {
+   "date": "2022-12-31",
+   "revenue": 0,
+   "operating_income": 0,
+   "net_income": 0
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": 200802470160,
+   "operating_income": 32445933395,
+   "net_income": 13604748485
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 309062616157,
+   "operating_income": 59844712688,
+   "net_income": 15408977423
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 519735447906,
+   "operating_income": 101469415203,
+   "net_income": 79053534113
+  }
+ ]
+}

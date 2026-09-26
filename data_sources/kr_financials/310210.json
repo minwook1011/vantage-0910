@@ -1,0 +1,31 @@
+{
+  "code": "310210",
+  "name": "보로노이",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-26",
+  "quarterly": [
+    {"date": "2022-06-30", "revenue": 687420239, "operating_income": -5458222449, "net_income": -5980949054},
+    {"date": "2022-09-30", "revenue": 7354374139, "operating_income": 1062535493, "net_income": 1490384565},
+    {"date": "2023-03-31", "revenue": 0, "operating_income": -8526108698, "net_income": -8377787554},
+    {"date": "2023-06-30", "revenue": 0, "operating_income": -6829289766, "net_income": -6713914566},
+    {"date": "2023-09-30", "revenue": 0, "operating_income": -6633855404, "net_income": -6624437329},
+    {"date": "2023-12-31", "revenue": 0, "operating_income": -9346256606, "net_income": -15132150478},
+    {"date": "2024-03-31", "revenue": 0, "operating_income": -7615525436, "net_income": -6569706300},
+    {"date": "2024-06-30", "revenue": 0, "operating_income": -8637806222, "net_income": -7739630031},
+    {"date": "2024-09-30", "revenue": 0, "operating_income": -9493772141, "net_income": -9437166226},
+    {"date": "2024-12-31", "revenue": 0, "operating_income": -10591945891, "net_income": -8866595533},
+    {"date": "2025-03-31", "revenue": 0, "operating_income": -14485101418, "net_income": -14108300854},
+    {"date": "2025-06-30", "revenue": 3350250000, "operating_income": -10161278152, "net_income": -10483122254},
+    {"date": "2025-09-30", "revenue": 4140000000, "operating_income": -13563158292, "net_income": -13804598635},
+    {"date": "2025-12-31", "revenue": 22056000, "operating_income": -16174998114, "net_income": -4310311842},
+    {"date": "2026-03-31", "revenue": 0, "operating_income": -22001677521, "net_income": -22002993079},
+    {"date": "2026-06-30", "revenue": 0, "operating_income": -29297618719, "net_income": -29015219816}
+  ],
+  "annual": [
+    {"date": "2022-12-31", "revenue": 9767826850, "operating_income": -17863480687, "net_income": -19899662518},
+    {"date": "2023-12-31", "revenue": 0, "operating_income": -31335510474, "net_income": -36848289927},
+    {"date": "2024-12-31", "revenue": 0, "operating_income": -36339049690, "net_income": -32613098090},
+    {"date": "2025-12-31", "revenue": 7512306000, "operating_income": -54384535976, "net_income": -42706333585}
+  ]
+}
