@@ -1,0 +1,95 @@
+{
+  "code": "402340",
+  "name": "SK스퀘어",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-26",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 40454000000,
+      "operating_income": -560744000000,
+      "net_income": 447392000000
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 498278000000,
+      "operating_income": 323785000000,
+      "net_income": 333285000000
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 468566000000,
+      "operating_income": 774813000000,
+      "net_income": 728816000000
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 457502000000,
+      "operating_income": 1161984000000,
+      "net_income": 1129172000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 482265000000,
+      "operating_income": 1652001000000,
+      "net_income": 1459242000000
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 402808000000,
+      "operating_income": 1652323000000,
+      "net_income": 1612259000000
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 406594000000,
+      "operating_income": 1401104000000,
+      "net_income": 1447114000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 407889000000,
+      "operating_income": 2645508000000,
+      "net_income": 2482405000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 194230000000,
+      "operating_income": 3098486000000,
+      "net_income": 3276917000000
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 300349000000,
+      "operating_income": 8278295000000,
+      "net_income": 8374748000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 328549000000,
+      "operating_income": 19235428000000,
+      "net_income": 18675023000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2023-12-31",
+      "revenue": 2276508000000,
+      "operating_income": -2339698000000,
+      "net_income": -1314834000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 1906611000000,
+      "operating_income": 3912583000000,
+      "net_income": 3650515000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1411521000000,
+      "operating_income": 8797421000000,
+      "net_income": 8818695000000
+    }
+  ]
+}
