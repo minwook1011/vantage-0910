@@ -1,0 +1,57 @@
+name: us-companies-update
+
+on:
+  schedule:
+    - cron: "30 21 * * 1-5"  # 06:30 KST(화~토) 미국 장 마감 후 주가·실적 갱신
+    - cron: "0 22 * * 0"     # 07:00 KST(월) S&P500 시총 순위로 편입 목록 점검(편입 후 유지)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - fetch_us_companies.py
+      - data_sources/us_universe.json
+      - data_sources/us_financials/**
+      - .github/workflows/us-companies.yml
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: us-companies-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 편입 목록 점검 (월요일)
+        if: github.event.schedule == '0 22 * * 0'
+        run: python fetch_us_companies.py --universe --top 200
+      - name: 해외 기업 주가·실적 갱신
+        run: python fetch_us_companies.py
+      - name: 데이터 저장
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/us docs/data/us_companies.json data_sources/us_financials data_sources/us_universe.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: 해외 기업 주가·실적 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: 사이트 미게시 변경 복구
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py

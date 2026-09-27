@@ -1,0 +1,116 @@
+{
+ "ticker": "ASM",
+ "source": "ASM 분기 실적 보도자료·연차보고서 2025 (수기 백필, EUR)",
+ "unit": "EUR",
+ "note": "순이익은 IFRS(ASMPT 지분 손상·환입 포함). 영업이익은 비움(회사는 조정 기준 공시) — 최근 분기는 Yahoo IFRS 값으로 채워짐",
+ "urls": [
+  "https://www.globenewswire.com/news-release/2026/07/28/3334553/0/en/ASM-reports-second-quarter-2026-results.html",
+  "https://www.asm.com/media/yvxbavwe/20260303-asm-reports-q4-and-full-year-2025-results.pdf"
+ ],
+ "quarterly": [
+  {
+   "date": "2023-03-31",
+   "revenue": 710000000,
+   "operating_income": null,
+   "net_income": 380400000
+  },
+  {
+   "date": "2023-06-30",
+   "revenue": 669100000,
+   "operating_income": null,
+   "net_income": 151200000
+  },
+  {
+   "date": "2023-09-30",
+   "revenue": 622300000,
+   "operating_income": null,
+   "net_income": 129600000
+  },
+  {
+   "date": "2023-12-31",
+   "revenue": 632900000,
+   "operating_income": null,
+   "net_income": 90900000
+  },
+  {
+   "date": "2024-03-31",
+   "revenue": 639000000,
+   "operating_income": null,
+   "net_income": 173100000
+  },
+  {
+   "date": "2024-06-30",
+   "revenue": 706100000,
+   "operating_income": null,
+   "net_income": 159000000
+  },
+  {
+   "date": "2024-09-30",
+   "revenue": 778600000,
+   "operating_income": null,
+   "net_income": 127900000
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 809000000,
+   "operating_income": null,
+   "net_income": 225800000
+  },
+  {
+   "date": "2025-03-31",
+   "revenue": 839200000,
+   "operating_income": null,
+   "net_income": -28900000
+  },
+  {
+   "date": "2025-06-30",
+   "revenue": 835600000,
+   "operating_income": null,
+   "net_income": 202400000
+  },
+  {
+   "date": "2025-09-30",
+   "revenue": 800000000,
+   "operating_income": null,
+   "net_income": 384100000
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 698300000,
+   "operating_income": null,
+   "net_income": 166100000
+  },
+  {
+   "date": "2026-03-31",
+   "revenue": 862500000,
+   "operating_income": null,
+   "net_income": 238500000
+  },
+  {
+   "date": "2026-06-30",
+   "revenue": 1003100000,
+   "operating_income": null,
+   "net_income": 285400000
+  }
+ ],
+ "annual": [
+  {
+   "date": "2023-12-31",
+   "revenue": 2634300000,
+   "operating_income": null,
+   "net_income": 752100000
+  },
+  {
+   "date": "2024-12-31",
+   "revenue": 2932700000,
+   "operating_income": null,
+   "net_income": 685700000
+  },
+  {
+   "date": "2025-12-31",
+   "revenue": 3173200000,
+   "operating_income": null,
+   "net_income": 723700000
+  }
+ ]
+}

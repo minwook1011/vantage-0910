@@ -65,12 +65,24 @@
     return p;
   }
   function good(points) { return (points || []).filter(function (p) { return p && C.validDate(p.date) && finite(p.value); }); }
-  function priceUnit(c) { return c.market === "KR" ? "원" : "USD"; }
+  function isUS(c) { return !!(c && c.hub === "us"); }
+  function curOf(c) { return (c.kr && c.kr.currency) || c.currency || "USD"; }
+  function priceUnit(c) { return c.market === "KR" ? "원" : curOf(c); }
+  // S&P500 GICS 업종 → 한국어(목록 업종 필터용)
+  var GICS = {"Communication Services": "커뮤니케이션", "Consumer Discretionary": "경기소비재", "Consumer Staples": "필수소비재", "Energy": "에너지", "Financials": "금융",
+    "Health Care": "헬스케어", "Industrials": "산업재", "Information Technology": "IT", "Materials": "소재", "Real Estate": "부동산", "Utilities": "유틸리티"};
+  // 해외 기업 금액(원본 백만 단위) → $1.2T · $34.5B · $820M
+  function usMoney(v, cur) {
+    if (!finite(v)) return "—";
+    var s = cur === "EUR" ? "€" : cur === "USD" ? "$" : "", a = Math.abs(v);
+    return a >= 1e6 ? s + (v / 1e6).toFixed(2) + "T" : a >= 1000 ? s + (v / 1000).toFixed(a >= 1e5 ? 0 : 1) + "B" : s + Math.round(v) + "M";
+  }
 
   /* ── 값 표시 ── */
   function fmt(value, unit, digits) {
     if (!finite(value)) return "—";
     if (unit === "USD") return "$" + value.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    if (unit === "EUR") return "€" + value.toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
     if (unit === "원") return Math.round(value).toLocaleString("ko-KR") + "원";
     if (unit === "%") return value.toFixed(digits == null ? 1 : digits) + "%";
     var d = digits != null ? digits : Math.abs(value) >= 100 ? 1 : Math.abs(value) >= 1 ? 2 : 3;
@@ -116,6 +128,12 @@
   // 한국 기업 실적 단위: 분기 매출이 1조원을 넘으면 조원, 아니면 억원(원본은 억원)
   function finUnit(c) {
     var d = krData(c); if (!d) return {unit: c.fin_unit || "", div: Number(c.fin_div) || 1};
+    if (isUS(c)) {
+      // 해외 기업 실적 원본은 백만(현지 통화). 분기 매출이 10억을 넘으면 B, 아니면 M
+      var cur = (d.financials && d.financials.currency) || curOf(c), sym = cur === "EUR" ? "€" : cur === "USD" ? "$" : cur + " ";
+      var bigUS = (d.financials.quarterly || []).some(function (r) { return finite(r.revenue) && Math.abs(r.revenue) >= 1000; });
+      return bigUS ? {unit: sym + "B", div: 1000} : {unit: sym + "M", div: 1};
+    }
     var big = (d.financials.quarterly || []).some(function (r) { return finite(r.revenue) && Math.abs(r.revenue) >= 10000; });
     return big ? {unit: "조원", div: 10000} : {unit: "억원", div: 1};
   }
@@ -205,7 +223,7 @@
   }
   function qOf(c) { return (c.kr && c.kr.q) || {}; }
   var COLS = [
-    {key: "rank", label: "#", get: function (c, i) { return c.kr && c.kr.value_rank ? (c.kr.market === "KOSDAQ" ? 500 : 0) + c.kr.value_rank : 900 + i; }},
+    {key: "rank", label: "#", get: function (c, i) { return c.kr && c.kr.value_rank ? (isUS(c) ? 1000 : c.kr.market === "KOSDAQ" ? 500 : 0) + c.kr.value_rank : 2000 + i; }},
     {key: "name", label: "기업", get: function (c) { return c.name || c.label; }},
     {key: "close", label: "종가", get: function (c) { if (c.kr && !KR[c.ticker]) return c.kr.close; var p = priceTail(c); return p.length ? p[p.length - 1].value : null; }},
     {key: "d1", label: "1일", get: function (c) { return chgOf(c, 1); }},
@@ -229,7 +247,7 @@
   function bindFavs() { chipHost.querySelectorAll("[data-cb-company]").forEach(function (b) { b.onclick = function () { pick(b.dataset.cbCompany); }; }); }
   function renderPicker() {
     var cur = company(), favHtml = favsHtml();
-    var sectors = COMPANIES.map(function (c) { return c.kr ? c.kr.sector : ""; }).filter(function (x, i, a) { return x && a.indexOf(x) === i; }).sort();
+    var sectors = COMPANIES.map(function (c) { return c.kr ? (isUS(c) ? GICS[c.kr.sector] || c.kr.sector : c.kr.sector) : ""; }).filter(function (x, i, a) { return x && a.indexOf(x) === i; }).sort();
     var q = query.trim().toLowerCase();
     var list = COMPANIES.map(function (c, i) { return {c: c, i: i}; });
     var col = COLS.filter(function (k) { return k.key === state.sort.key; })[0] || COLS[0], dir = state.sort.dir === -1 ? -1 : 1;
@@ -241,34 +259,38 @@
       return dir * (x - y);
     });
     var open = state.listOpen || !!q;
-    var krCount = COMPANIES.filter(function (c) { return c.kr; }).length, kqCount = COMPANIES.filter(function (c) { return c.kr && c.kr.market === "KOSDAQ"; }).length;
+    var usCount = COMPANIES.filter(isUS).length;
+    var krCount = COMPANIES.filter(function (c) { return c.kr && !isUS(c); }).length, kqCount = COMPANIES.filter(function (c) { return c.kr && c.kr.market === "KOSDAQ"; }).length;
     var head = '<tr><th class="cb-star-col"><span class="sr-only">즐겨찾기</span></th>' + COLS.map(function (k) {
       var on = k.key === col.key;
       return '<th' + (k.key === "name" ? ' class="cb-name-col"' : "") + ' aria-sort="' + (on ? (dir === 1 ? "ascending" : "descending") : "none") + '"><button type="button" data-cb-sort="' + k.key + '" class="' + (on ? "on" : "") + '">' + k.label + (on ? (dir === 1 ? " ↑" : " ↓") : "") + "</button></th>";
     }).join("") + '<th class="cb-spark-col">6개월</th></tr>';
     var body = list.map(function (o) {
-      var c = o.c, k = c.kr || {}, qd = qOf(c), fav = isFav(c.ticker), on = c.ticker === cur.ticker;
+      var c = o.c, k = c.kr || {}, qd = qOf(c), fav = isFav(c.ticker), on = c.ticker === cur.ticker, us = isUS(c);
       var close = COLS[2].get(c, o.i);
       var spark = c.kr && !KR[c.ticker] ? k.spark : priceTail(c).slice(-120).filter(function (x, i) { return i % 4 === 0; }).map(function (x) { return x.value; });
       var none = '<span class="cb-muted">—</span>';
-      return '<tr class="' + (on ? "on" : "") + '" data-cb-row="' + esc(c.ticker) + '" data-mkt="' + esc(k.market || "") + '" data-sector="' + esc(k.sector || "") + '" data-hay="' + esc([c.name, c.label, c.ticker, c.desc, k.sector].join(" ").toLowerCase()) + '" tabindex="0">' +
+      var money = function (v) { return us ? usMoney(v, k.currency) : eok(v); };
+      var sec = us ? GICS[k.sector] || k.sector : k.sector;
+      var opCell = c.kr ? (finite(qd.operating_income) ? money(qd.operating_income) : k.op_note ? '<span class="cb-tag" title="' + esc(k.op_note) + '">금융업</span>' : none) : none;
+      return '<tr class="' + (on ? "on" : "") + '" data-cb-row="' + esc(c.ticker) + '" data-mkt="' + esc(us ? "US" : k.market || "") + '" data-sector="' + esc(sec || "") + '" data-hay="' + esc([c.name, c.label, c.ticker, c.desc, k.sector, sec].join(" ").toLowerCase()) + '" tabindex="0">' +
         '<td class="cb-star-col"><button type="button" class="cb-star' + (fav ? " on" : "") + '" data-cb-star="' + esc(c.ticker) + '" aria-pressed="' + fav + '" aria-label="' + esc(c.name) + ' 즐겨찾기" title="' + (fav ? "즐겨찾기 해제" : "즐겨찾기") + '">' + (fav ? "★" : "☆") + "</button></td>" +
-        '<td class="cb-num cb-muted">' + (k.value_rank ? '<span class="cb-mk">' + (k.market === "KOSDAQ" ? "닥" : "피") + "</span>" + k.value_rank : "") + "</td>" +
-        '<td class="cb-name-col"><b>' + esc(c.name || c.label) + "</b><small>" + esc(c.ticker) + " · " + esc(k.sector || c.desc || "") + "</small></td>" +
-        '<td class="cb-num">' + (finite(close) ? esc(fmt(close, c.market === "US" ? "USD" : "원")) : none) + "</td>" +
+        '<td class="cb-num cb-muted">' + (k.value_rank ? '<span class="cb-mk">' + (us ? "미" : k.market === "KOSDAQ" ? "닥" : "피") + "</span>" + k.value_rank : us ? '<span class="cb-mk">해외</span>' : "") + "</td>" +
+        '<td class="cb-name-col"><b>' + esc(c.name || c.label) + "</b><small>" + esc(c.ticker) + " · " + esc(sec || c.desc || "") + "</small></td>" +
+        '<td class="cb-num">' + (finite(close) ? esc(fmt(close, c.market === "KR" ? "원" : priceUnit(c))) : none) + "</td>" +
         '<td class="cb-num">' + pctCell(chgOf(c, 1)) + '</td><td class="cb-num">' + pctCell(chgOf(c, 21)) + '</td><td class="cb-num">' + pctCell(chgOf(c, 250)) + "</td>" +
-        '<td class="cb-num">' + (c.kr ? eok(qd.revenue) + '<small class="cb-qd">' + esc(qd.date ? qd.date.slice(2, 7).replace("-", ".") : "") + "</small>" : none) + "</td>" +
-        '<td class="cb-num">' + pctCell(qd.revenue_yoy) + '</td><td class="cb-num">' + (c.kr ? eok(qd.operating_income) : none) + "</td>" +
+        '<td class="cb-num">' + (c.kr ? money(qd.revenue) + '<small class="cb-qd">' + esc(qd.date ? qd.date.slice(2, 7).replace("-", ".") : "") + "</small>" : none) + "</td>" +
+        '<td class="cb-num">' + pctCell(qd.revenue_yoy) + '</td><td class="cb-num">' + opCell + "</td>" +
         '<td class="cb-num">' + (finite(qd.operating_income_yoy) ? pctCell(qd.operating_income_yoy) : qd.op_label ? '<span class="cb-tag">' + esc(qd.op_label) + "</span>" : none) + "</td>" +
         '<td class="cb-num">' + (finite(qd.opm) ? qd.opm.toFixed(1) + "%" : none) + "</td>" +
         '<td class="cb-spark-col">' + miniSpark(spark) + "</td></tr>";
     }).join("");
     chipHost.innerHTML = favHtml +
       '<div class="cb-finder"><input type="search" id="cb-q" class="cb-q" placeholder="기업명 · 종목코드 · 업종 검색" value="' + esc(query) + '" aria-label="기업 검색">' +
-      '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + ">코스닥</option></select>" +
+      '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + '>코스닥</option><option value="US"' + (mkt === "US" ? " selected" : "") + ">미국·해외</option></select>" +
       '<select id="cb-sector" aria-label="업종"><option value="">전체 업종</option><option value="★"' + (sector === "★" ? " selected" : "") + ">★ 즐겨찾기만</option>" + sectors.map(function (x) { return "<option" + (x === sector ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>" +
       '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button></div>" +
-      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
+      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + (usCount ? " · 미국 S&P500 시총 상위 + 해외 " + usCount + "개(금액 $B · 실적 SEC 공시)" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
       '<div class="cb-list-wrap"><table class="cb-table"><thead>' + head + "</thead><tbody>" + body + '<tr id="cb-empty" hidden><td colspan="13" class="cb-muted" style="padding:16px">검색 결과가 없습니다.</td></tr>' + "</tbody></table></div></div>";
     bindFavs();
     chipHost.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
@@ -306,9 +328,10 @@
   }
   function ensureKR(c) {
     if (!c.kr || KR[c.ticker] !== undefined || krLoading[c.ticker]) return;
-    krLoading[c.ticker] = fetch("data/kr/" + encodeURIComponent(c.ticker) + ".json?v=" + Date.now(), {cache: "no-store"})
+    var dir = isUS(c) ? "data/us/" : "data/kr/";
+    krLoading[c.ticker] = fetch(dir + encodeURIComponent(c.ticker) + ".json?v=" + Date.now(), {cache: "no-store"})
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (d) { KR[c.ticker] = d; tailCache = {}; }, function (e) { KR[c.ticker] = null; c.krError = "data/kr/" + c.ticker + ".json 수신 실패 (" + e.message + ")"; })
+      .then(function (d) { KR[c.ticker] = d; tailCache = {}; }, function (e) { KR[c.ticker] = null; c.krError = dir + c.ticker + ".json 수신 실패 (" + e.message + ")"; })
       .then(function () { delete krLoading[c.ticker]; if (company().ticker === c.ticker) renderAll(); });
   }
   function renderAll() {
@@ -384,13 +407,15 @@
     var cmpCount = p.selected.filter(function (id) { return id.indexOf("price:") === 0; }).length;
     var chev = '<svg class="fm-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
     var hasFin = hasFinancials(c), fav = isFav(c.ticker);
-    var finSource = kd ? "DART 공시 · 네이버 금융(FnGuide)" : "Yahoo Finance";
-    var priceSource = kd ? "네이버 금융 일봉" : "Yahoo Finance";
-    var eyebrow = kd ? [kd.sector || (c.kr && c.kr.sector), c.kr && c.kr.mcap_eok ? "시총 " + eok(c.kr.mcap_eok) + "원" : ""].filter(Boolean).join(" · ") : c.desc || "";
+    var us = isUS(c);
+    var finSource = kd ? (us ? (kd.financials && kd.financials.source) || "SEC EDGAR XBRL" : "DART 공시 · 네이버 금융(FnGuide)") : "Yahoo Finance";
+    var priceSource = kd ? (us ? "Yahoo Finance 일봉" : "네이버 금융 일봉") : "Yahoo Finance";
+    var eyebrow = kd ? (us ? [GICS[kd.sector] || kd.sector, c.kr && c.kr.desc, c.kr && c.kr.mcap ? "시총 " + usMoney(c.kr.mcap / 1e6, c.kr.currency) : ""]
+      : [kd.sector || (c.kr && c.kr.sector), c.kr && c.kr.mcap_eok ? "시총 " + eok(c.kr.mcap_eok) + "원" : ""]).filter(Boolean).join(" · ") : c.desc || "";
 
     host.innerHTML =
       '<article class="fm-hero">' +
-        '<div class="fm-heading"><div><div class="fm-eyebrow">' + esc(eyebrow) + '</div><h3>' + esc(c.name || c.label) + "<small>" + esc(c.ticker) + " · " + esc(c.market === "KR" ? (kd && kd.market) || "KRX" : "US") + '</small><button type="button" id="cb-fav-hero" class="cb-fav-hero' + (fav ? " on" : "") + '" aria-pressed="' + fav + '">' + (fav ? "★ 즐겨찾기" : "☆ 즐겨찾기") + "</button></h3></div>" +
+        '<div class="fm-heading"><div><div class="fm-eyebrow">' + esc(eyebrow) + '</div><h3>' + esc(c.name || c.label) + "<small>" + esc(c.ticker) + " · " + esc(c.market === "KR" ? (kd && kd.market) || "KRX" : (kd && kd.market) || "US") + '</small><button type="button" id="cb-fav-hero" class="cb-fav-hero' + (fav ? " on" : "") + '" aria-pressed="' + fav + '">' + (fav ? "★ 즐겨찾기" : "☆ 즐겨찾기") + "</button></h3></div>" +
         '<div class="fm-quote"><strong>' + (last ? esc(fmt(last.value, priceUnit(c))) : "시세 대기") + "</strong><span" + (finite(change) ? ' style="color:' + (change >= 0 ? "#f68a9a" : "#83aaff") + '"' : "") + ">" + (finite(change) ? (change >= 0 ? "+" : "") + change.toFixed(2) + "% · 전 거래일 대비" : "일별 종가") + "</span></div></div>" +
         '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(last ? last.date : "—") + " 종가 · " + esc(priceSource) + '</span><span class="fm-divider"></span><span class="fm-status' + (hasFin ? "" : " pending") + '"><i></i>' + (hasFin ? "실적 " + esc(fr.date ? finLabel(fr.date, p.period) : "—") + " 까지" : "실적 자료 없음") + '</span><button type="button" id="cb-refresh">새 데이터 확인 ↻</button></div>' +
         (kd && !keyIds(c).length ? "" : '<div class="cb-keys-head"><b>주요 지표</b><span>카드를 누르면 주가 차트에 겹쳐 봅니다 · 아래 목록의 ☆ 로 추가·고정</span></div>' +
@@ -526,7 +551,7 @@
     var left = narrow ? 44 : 60, right = normalized ? 14 : Math.max(14, (units.length - 1) * (narrow ? 54 : 66)), top = 29, bottom = 32, pw = width - left - right, ph = height - top - bottom;
     var plot = normalized ? series.map(function (s) { return Object.assign({}, s, {points: C.normalize(s.points)}); }) : series;
     var scales = {};
-    units.forEach(function (u) { scales[u] = normalized ? [-5, 105] : C.domain(plot.filter(function (s) { return s.unit === u; }).reduce(function (a, s) { return a.concat(s.points.map(function (q) { return q.value; })); }, []), u !== "원" && u !== "USD"); });
+    units.forEach(function (u) { scales[u] = normalized ? [-5, 105] : C.domain(plot.filter(function (s) { return s.unit === u; }).reduce(function (a, s) { return a.concat(s.points.map(function (q) { return q.value; })); }, []), u !== "원" && u !== "USD" && u !== "EUR"); });
     var x = function (d) { return left + (C.timestamp(d) - start) / Math.max(end - start, 86400000) * pw; };
     var y = function (v, u) { var d = scales[normalized ? "0–100" : u]; return top + (d[1] - v) / (d[1] - d[0]) * ph; };
     var compact = function (v) { return Math.abs(v) >= 1e6 ? (v / 1e6).toFixed(1) + "M" : Math.abs(v) >= 10000 ? (v / 1e4).toFixed(1) + "만" : Math.abs(v) >= 1000 ? Math.round(v).toLocaleString("ko-KR") : Math.abs(v) >= 10 ? Number(v.toFixed(1)).toString() : Number(v.toFixed(2)).toString(); };
@@ -611,7 +636,8 @@
       get("data/ai_indicators.json"),
       get("financials.json").catch(function () { return null; }),
       get("data/finemtec.json").catch(function () { return null; }),
-      get("data/kr_companies.json").catch(function () { return null; })
+      get("data/kr_companies.json").catch(function () { return null; }),
+      get("data/us_companies.json").catch(function () { return null; })
     ]).then(function (res) {
       if (res[0] && Array.isArray(res[0].companies) && res[0].companies.length) COMPANIES = res[0].companies.map(function (c) { return Object.assign({name: c.name || c.label}, c); });
       KRX = res[4];
@@ -620,6 +646,12 @@
         var ex = COMPANIES.filter(function (c) { return c.ticker === row.code; })[0];
         if (ex) { if (!ex.module) ex.kr = row; return; }
         COMPANIES.push({ticker: row.code, name: row.name, label: row.name, market: "KR", desc: row.sector || "", kr: row, indicators: []});
+      });
+      // 해외 기업(S&P500 시총 상위 + 개별 추가): 한국 기업과 같은 틀, 파일만 data/us/ 에서 읽는다. NVDA 처럼 이미 있는 기업은 관련 지표를 유지한 채 실적·주가 파일만 바꾼다
+      ((res[5] && res[5].companies) || []).forEach(function (row) {
+        var ex = COMPANIES.filter(function (c) { return c.ticker === row.code; })[0];
+        if (ex) { if (!ex.module && !ex.kr) { ex.kr = row; ex.hub = "us"; ex.fin_note = row.op_note || ex.fin_note; } return; }
+        COMPANIES.push({ticker: row.code, name: row.name, label: row.name, market: "US", desc: row.desc || GICS[row.sector] || row.sector || "", kr: row, hub: "us", fin_note: row.op_note || "", indicators: []});
       });
       if (res[1].schema_version !== 1) throw new Error("AI 지표 파일 형식 불일치");
       AI = res[1]; FINS = (res[2] && res[2].financials) || {}; FM = res[3];
