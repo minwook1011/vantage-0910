@@ -33,7 +33,7 @@ jobs:
           python-version: "3.12"
       - name: 편입 목록 점검 (월요일)
         if: github.event.schedule == '0 22 * * 0'
-        run: python fetch_us_companies.py --universe --top 200
+        run: python fetch_us_companies.py --universe --top 400
       - name: 해외 기업 주가·실적 갱신
         run: python fetch_us_companies.py
       - name: 데이터 저장

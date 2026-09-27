@@ -300,7 +300,8 @@ def refresh_company(c, now, force_sec):
             errors.append("SEC: " + type(e).__name__)
     cache = load_json(CACHE_DIR / f"{tk}.json", None)
     is_sec = bool(cache and cache.get("source", "").startswith("SEC"))
-    financial = c.get("sector") == "Financials"
+    # 금융업 판정: GICS 금융이면서 SEC 영업이익 태그를 한 번도 쓰지 않은 기업(은행·보험·운용). V·SPGI·PYPL 처럼 영업이익을 공시하는 곳은 제외
+    financial = c.get("sector") == "Financials" and not any(r.get("operating_income") is not None for r in ((cache or {}).get("quarterly") or []))
     fins = {"unit": currency + " M", "currency": currency}
     yh = {"quarterly": [], "annual": []}
     if need_yahoo(cache, financial):
