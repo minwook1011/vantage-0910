@@ -1,0 +1,120 @@
+{
+  "code": "383800",
+  "name": "LX홀딩스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "note": "지주회사: 2022 분기·2021 이전 도구 미제공",
+  "quarterly": [
+    {
+      "date": "2023-03-31",
+      "revenue": 8551000000,
+      "operating_income": 40507000000,
+      "net_income": 40486000000
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 10878000000,
+      "operating_income": 21569000000,
+      "net_income": 22274000000
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 8637000000,
+      "operating_income": 20177000000,
+      "net_income": 21445000000
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 9847000000,
+      "operating_income": -9077000000,
+      "net_income": -5363000000
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 9176000000,
+      "operating_income": 48624000000,
+      "net_income": 48370000000
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 10646000000,
+      "operating_income": 58660000000,
+      "net_income": 59738000000
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 10999000000,
+      "operating_income": 54832000000,
+      "net_income": 55283000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 9852000000,
+      "operating_income": -6099000000,
+      "net_income": -3112000000
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 10062000000,
+      "operating_income": 71375000000,
+      "net_income": 70469000000
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 10136000000,
+      "operating_income": 42462000000,
+      "net_income": 43628000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 11142000000,
+      "operating_income": 37306000000,
+      "net_income": 37555000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 9953000000,
+      "operating_income": -17745000000,
+      "net_income": -16057000000
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 14382000000,
+      "operating_income": 41600000000,
+      "net_income": 37582000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 17286000000,
+      "operating_income": 60337000000,
+      "net_income": 56551000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 236918000000,
+      "operating_income": 158908000000,
+      "net_income": 170140000000
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 37913000000,
+      "operating_income": 73176000000,
+      "net_income": 78842000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 40673000000,
+      "operating_income": 156017000000,
+      "net_income": 160279000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 41293000000,
+      "operating_income": 133398000000,
+      "net_income": 135595000000
+    }
+  ]
+}

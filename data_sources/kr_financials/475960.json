@@ -1,0 +1,71 @@
+{
+  "code": "475960",
+  "name": "토모큐브",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 652923895,
+      "operating_income": -3011563031,
+      "net_income": -2786029030
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 3142522516,
+      "operating_income": -1126348661,
+      "net_income": -1130214120
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 2522235196,
+      "operating_income": -1829261516,
+      "net_income": -1536941107
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 4989044713,
+      "operating_income": 398294120,
+      "net_income": 643171884
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 2746008772,
+      "operating_income": -1865014595,
+      "net_income": -1355281625
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 4963787181,
+      "operating_income": -586621975,
+      "net_income": -202919240
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 1871023862,
+      "operating_income": -6368726125,
+      "net_income": 29336358287
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 3747265433,
+      "operating_income": -6733121851,
+      "net_income": -23550198484
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 5938649975,
+      "operating_income": -8779777619,
+      "net_income": -8302382992
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 11306726320,
+      "operating_income": -5568879088,
+      "net_income": -4810012373
+    }
+  ]
+}

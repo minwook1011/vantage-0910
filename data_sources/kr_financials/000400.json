@@ -1,0 +1,95 @@
+{
+  "code": "000400",
+  "name": "롯데손해보험",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": 236698662066,
+      "net_income": 181554858852
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": 51147457001,
+      "net_income": 40866631511
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": 32815498616,
+      "net_income": 25387896771
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": 23861306438,
+      "net_income": 18158996145
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": -76762993128,
+      "net_income": -60192121514
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": 13009597777,
+      "net_income": 11279341182
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": 48272000000,
+      "net_income": 36182000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 68025000000,
+      "net_income": 51531000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": -64570597777,
+      "net_income": -47661341182
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": -28456000000,
+      "net_income": -19767000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 3057000000,
+      "net_income": 1313000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": 396291202576,
+      "net_income": 301635926214
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": 31061268927,
+      "net_income": 24221402913
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 64736000000,
+      "net_income": 51331000000
+    }
+  ]
+}

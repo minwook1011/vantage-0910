@@ -1,0 +1,71 @@
+{
+  "code": "306200",
+  "name": "세아제강",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 378861239888,
+      "operating_income": 25581035965,
+      "net_income": 18831576298
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 414879401513,
+      "operating_income": 20927920129,
+      "net_income": 8674346950
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 331742474498,
+      "operating_income": -5186417819,
+      "net_income": -8964586577
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 359313620111,
+      "operating_income": 8278946215,
+      "net_income": 11457825524
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 448577896123,
+      "operating_income": 24108279088,
+      "net_income": 20991503970
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 495160536290,
+      "operating_income": 34934804583,
+      "net_income": 32517667270
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 1801835090460,
+      "operating_income": 215165657893,
+      "net_income": 159294293117
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 1860904969919,
+      "operating_income": 231910194040,
+      "net_income": 188833969221
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 1809432963576,
+      "operating_income": 202908673849,
+      "net_income": 137062259161
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1484796736010,
+      "operating_income": 49601484490,
+      "net_income": 29999162195
+    }
+  ]
+}

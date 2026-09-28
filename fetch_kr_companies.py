@@ -114,8 +114,8 @@ def build_universe(top, min_cap_eok, pages, market="KOSPI"):
         data = get_json(f"{M_API}/stocks/marketValue/{market}?page={page}&pageSize=100")
         for s in data.get("stocks", []):
             code, name = s["itemCode"], s["stockName"]
-            # 잡주·중복 제외: 보통주만(우선주 코드 끝자리 ≠ 0), ETF/ETN/리츠/스팩·인프라펀드(실적 없음) 제외, 시총 하한
-            if s.get("stockEndType") != "stock" or not code.endswith("0") or re.search(r"스팩|리츠|REIT|Reg\.S|맥쿼리인프라", name):
+            # 잡주·중복 제외: 보통주만(우선주 코드 끝자리 ≠ 0), ETF/ETN/리츠/스팩·인프라펀드·부동산펀드(실적 없음) 제외, 시총 하한
+            if s.get("stockEndType") != "stock" or not code.endswith("0") or re.search(r"스팩|리츠|REIT|Reg\.S|맥쿼리인프라|발해인프라|맵스리얼티", name):
                 continue
             cap = number(s.get("marketValue"))  # 억원
             if cap is None or cap < min_cap_eok:

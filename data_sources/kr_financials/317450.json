@@ -1,0 +1,35 @@
+{
+  "code": "317450",
+  "name": "명인제약",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-09-30",
+      "revenue": 72697477352,
+      "operating_income": 21914824974,
+      "net_income": 18548351676
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 72135799962,
+      "operating_income": 25109405212,
+      "net_income": 22730943202
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 76106145635,
+      "operating_income": 27612131114,
+      "net_income": 24322263203
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 287254358952,
+      "operating_income": 92498324556,
+      "net_income": 81435216634
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "code": "217590",
+  "name": "티엠씨",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-09-30",
+      "revenue": 79753766784,
+      "operating_income": 1412844399,
+      "net_income": 1156032339
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 93948704745,
+      "operating_income": 975372382,
+      "net_income": 1836183136
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 106351589332,
+      "operating_income": 1341527853,
+      "net_income": 1772507623
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 340884970260,
+      "operating_income": 6428935433,
+      "net_income": -585324958
+    }
+  ]
+}

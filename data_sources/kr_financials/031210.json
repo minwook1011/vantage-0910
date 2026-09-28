@@ -1,0 +1,53 @@
+{
+  "code": "031210",
+  "name": "서울보증보험",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 19373770655
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 65422814278
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 80946974589,
+      "net_income": 61844412599
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 121769963182
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 93471140831,
+      "net_income": 57492700602
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 87020827395,
+      "net_income": 65997537186
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 375701743924,
+      "net_income": 268410960714
+    }
+  ]
+}

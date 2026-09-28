@@ -1,0 +1,101 @@
+{
+  "code": "460860",
+  "name": "동국제강",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-06-30",
+      "revenue": 430478607727,
+      "operating_income": 51494596139,
+      "net_income": 38978766216
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 1078997293658,
+      "operating_income": 105433897794,
+      "net_income": 59264909022
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 927256594032,
+      "operating_income": 52537903674,
+      "net_income": 29135637210
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 940165881288,
+      "operating_income": 40472505952,
+      "net_income": 23149829447
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 838555735584,
+      "operating_income": 21490574218,
+      "net_income": 9507636777
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 821547572102,
+      "operating_income": -12026906080,
+      "net_income": -26957869168
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 725549382880,
+      "operating_income": 4254946258,
+      "net_income": 2451295925
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 893658443588,
+      "operating_income": 29915366057,
+      "net_income": 9183260824
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 769215002239,
+      "operating_income": 24492220508,
+      "net_income": 10059923483
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 815008512516,
+      "operating_income": 717876875,
+      "net_income": -13462627158
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 857156632943,
+      "operating_income": 21440854243,
+      "net_income": 6209176812
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 995514578458,
+      "operating_income": 45563446844,
+      "net_income": 11645015990
+    }
+  ],
+  "annual": [
+    {
+      "date": "2023-12-31",
+      "revenue": 2632104129307,
+      "operating_income": 235489924847,
+      "net_income": 142170864518
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 3527525783006,
+      "operating_income": 102474077764,
+      "net_income": 34835234266
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 3203431341223,
+      "operating_income": 59380409698,
+      "net_income": 8231853074
+    }
+  ]
+}

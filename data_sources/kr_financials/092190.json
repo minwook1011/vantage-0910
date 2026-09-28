@@ -1,0 +1,210 @@
+{
+  "code": "092190",
+  "name": "서울바이오시스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "note": "2019 분기 도구 미제공",
+  "quarterly": [
+    {
+      "date": "2020-03-31",
+      "revenue": 86901220976,
+      "operating_income": 2684900825,
+      "net_income": 152192044
+    },
+    {
+      "date": "2020-06-30",
+      "revenue": 103234691707,
+      "operating_income": 6055619796,
+      "net_income": 6451235380
+    },
+    {
+      "date": "2020-09-30",
+      "revenue": 120661426397,
+      "operating_income": 9528396649,
+      "net_income": 6423481295
+    },
+    {
+      "date": "2020-12-31",
+      "revenue": 120484853409,
+      "operating_income": 9116007964,
+      "net_income": 6620620788
+    },
+    {
+      "date": "2021-03-31",
+      "revenue": 121769105796,
+      "operating_income": 12649352930,
+      "net_income": 13678414208
+    },
+    {
+      "date": "2021-06-30",
+      "revenue": 131160926761,
+      "operating_income": 11154868941,
+      "net_income": 9095363352
+    },
+    {
+      "date": "2021-09-30",
+      "revenue": 130551136100,
+      "operating_income": 9317976375,
+      "net_income": 9272573900
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": 105195556111,
+      "operating_income": -10852473879,
+      "net_income": -11157875800
+    },
+    {
+      "date": "2022-03-31",
+      "revenue": 95641753072,
+      "operating_income": -15397028293,
+      "net_income": -13294520307
+    },
+    {
+      "date": "2022-06-30",
+      "revenue": 116522278119,
+      "operating_income": -8505283137,
+      "net_income": -12706757015
+    },
+    {
+      "date": "2022-09-30",
+      "revenue": 105325825668,
+      "operating_income": -17058485331,
+      "net_income": -29660652081
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 121301734426,
+      "operating_income": -21157170477,
+      "net_income": -38028368443
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": 111244190406,
+      "operating_income": -19841974471,
+      "net_income": -23530491609
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 120317699588,
+      "operating_income": -14205086545,
+      "net_income": -19775641620
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 127291242398,
+      "operating_income": -19825428338,
+      "net_income": -33311883195
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 145107713892,
+      "operating_income": -19077385890,
+      "net_income": -25077460590
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 147734533757,
+      "operating_income": -3981126077,
+      "net_income": -15973099458
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 188345603274,
+      "operating_income": 6283586334,
+      "net_income": 42128408602
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 184311291190,
+      "operating_income": 5217171941,
+      "net_income": 9520996690
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 178841296783,
+      "operating_income": -4032039975,
+      "net_income": -17585699779
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 167806757438,
+      "operating_income": -13149046642,
+      "net_income": -17335196867
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 188143307953,
+      "operating_income": -916558926,
+      "net_income": -3696007948
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 187519818310,
+      "operating_income": -778704940,
+      "net_income": -4051546843
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 220339263415,
+      "operating_income": 15070142294,
+      "net_income": 11460303416
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 187795508810,
+      "operating_income": 10371187521,
+      "net_income": 10325269716
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 214143532511,
+      "operating_income": 10195901746,
+      "net_income": 8161538062
+    }
+  ],
+  "annual": [
+    {
+      "date": "2019-12-31",
+      "revenue": 350639742787,
+      "operating_income": 10256164443,
+      "net_income": 1454474539
+    },
+    {
+      "date": "2020-12-31",
+      "revenue": 431282192489,
+      "operating_income": 27384925234,
+      "net_income": 19647529507
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": 488676724768,
+      "operating_income": 22269724367,
+      "net_income": 20888475660
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 438791591285,
+      "operating_income": -62117967238,
+      "net_income": -93690297846
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 503960846284,
+      "operating_income": -72949875244,
+      "net_income": -101695477014
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 699232725004,
+      "operating_income": 3487592223,
+      "net_income": 18090606055
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 763809147116,
+      "operating_income": 225831786,
+      "net_income": -13622448242
+    }
+  ]
+}

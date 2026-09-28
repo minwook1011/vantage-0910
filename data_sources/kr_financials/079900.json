@@ -1,0 +1,77 @@
+{
+  "code": "079900",
+  "name": "전진건설로봇",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2024-09-30",
+      "revenue": 43045267795,
+      "operating_income": 9209662788,
+      "net_income": 6558502314
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 48877405548,
+      "operating_income": 8662594660,
+      "net_income": 7748138794
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 51467220935,
+      "operating_income": 9449238673,
+      "net_income": 6056440282
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 44907008845,
+      "operating_income": 4956491820,
+      "net_income": 10129414320
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 45409104665,
+      "operating_income": 5650597454,
+      "net_income": 5312408494
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 46016592737,
+      "operating_income": 4259979540,
+      "net_income": 6529960062
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 47254266109,
+      "operating_income": 9608408667,
+      "net_income": 9528508437
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 141320573291,
+      "operating_income": 27923920818,
+      "net_income": 23329941303
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 158370290546,
+      "operating_income": 32904822481,
+      "net_income": 28947782333
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 169785980240,
+      "operating_income": 31345210502,
+      "net_income": 31404637943
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 190660739993,
+      "operating_income": 28718922607,
+      "net_income": 29246401890
+    }
+  ]
+}

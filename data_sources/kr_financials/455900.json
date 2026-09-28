@@ -1,0 +1,96 @@
+{
+  "code": "455900",
+  "name": "엔젤로보틱스",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "note": "2024 상장: 2022~2023은 연간만 제공",
+  "quarterly": [
+    {
+      "date": "2024-03-31",
+      "revenue": 1031712167,
+      "operating_income": -2290535780,
+      "net_income": -2216920310
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 1385190853,
+      "operating_income": -2624876629,
+      "net_income": -2271316778
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 945489186,
+      "operating_income": -2388269314,
+      "net_income": -2168359201
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 848561718,
+      "operating_income": -3538142885,
+      "net_income": -3349371399
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 1071827569,
+      "operating_income": -2489405183,
+      "net_income": -2431001422
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 1490249387,
+      "operating_income": -2176596654,
+      "net_income": -1973683608
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 805939232,
+      "operating_income": -2840429627,
+      "net_income": -2682603276
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1273295992,
+      "operating_income": -2770055288,
+      "net_income": -2627772962
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 507051232,
+      "operating_income": -2677171883,
+      "net_income": -2525995042
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 788302493,
+      "operating_income": -3485917720,
+      "net_income": -1138909917
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 2184312362,
+      "operating_income": -7101028909,
+      "net_income": -6797309830
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 5146186401,
+      "operating_income": -6496614879,
+      "net_income": -9238951561
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 4210953924,
+      "operating_income": -10841824608,
+      "net_income": -10005967688
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 4641312180,
+      "operating_income": -10276486752,
+      "net_income": -9715061268
+    }
+  ]
+}

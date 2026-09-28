@@ -1,0 +1,102 @@
+{
+  "code": "123890",
+  "name": "한국자산신탁",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "note": "2019~2021 및 2022~2023 일부 분기 도구 미제공",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 57010546588,
+      "operating_income": 29729269388,
+      "net_income": 23415387865
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 63313363555,
+      "operating_income": 29479984088,
+      "net_income": 22293077988
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 54069713022,
+      "operating_income": 11318594481,
+      "net_income": 9197709373
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 52567784357,
+      "operating_income": 2724667799,
+      "net_income": 1399226583
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 56496766727,
+      "operating_income": 8241302436,
+      "net_income": 4533926152
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 51874300296,
+      "operating_income": 17700163503,
+      "net_income": 14171510127
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 52251157758,
+      "operating_income": 8308904149,
+      "net_income": 9616224591
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 46808618718,
+      "operating_income": 13789431435,
+      "net_income": 30813211910
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 53354335416,
+      "operating_income": -5571193205,
+      "net_income": -5219363941
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 68798893447,
+      "operating_income": 10766660993,
+      "net_income": 12182787974
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 78793804653,
+      "operating_income": 31034236637,
+      "net_income": 23352535161
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 232964573062,
+      "operating_income": null,
+      "net_income": 108242016692
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 259071620425,
+      "operating_income": 116706241689,
+      "net_income": 129642234144
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 226447627661,
+      "operating_income": 51764548804,
+      "net_income": 37423940096
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 204288412188,
+      "operating_income": 34227305882,
+      "net_income": 49381582687
+    }
+  ]
+}

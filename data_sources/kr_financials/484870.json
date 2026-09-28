@@ -1,0 +1,71 @@
+{
+  "code": "484870",
+  "name": "엠앤씨솔루션",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 75106017953,
+      "operating_income": 9508318601,
+      "net_income": 7895669094
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 97426631253,
+      "operating_income": 13449223099,
+      "net_income": 10836224960
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 87590766231,
+      "operating_income": 11485417263,
+      "net_income": 9576945090
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 143225319806,
+      "operating_income": 21622025683,
+      "net_income": 17278862633
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 66076383939,
+      "operating_income": 7967176801,
+      "net_income": 6118517225
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 93508776245,
+      "operating_income": 12509247201,
+      "net_income": 9896897459
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 125933211509,
+      "operating_income": 11340921504,
+      "net_income": 12419335635
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 183449862293,
+      "operating_income": 20656059764,
+      "net_income": 14531236179
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 282796626108,
+      "operating_income": 34824919168,
+      "net_income": 26964425031
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 403348735243,
+      "operating_income": 56064984646,
+      "net_income": 45587701777
+    }
+  ]
+}

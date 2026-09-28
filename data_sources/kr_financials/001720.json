@@ -1,0 +1,90 @@
+{
+  "code": "001720",
+  "name": "신영증권",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "note": "3월 결산법인: 도구의 bsns_year/분기 번호를 그대로 달력 분기말 날짜로 매핑함(실제 회계기간과 불일치 가능), 2023 이전 데이터 누락",
+  "quarterly": [
+    {
+      "date": "2023-06-30",
+      "revenue": 647635357731,
+      "operating_income": 35845432266,
+      "net_income": 32733203687
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 632205283308,
+      "operating_income": 34969903153,
+      "net_income": 27327697455
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 861910187242,
+      "operating_income": 59798119713,
+      "net_income": 42584806291
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 562918360361,
+      "operating_income": 37337709633,
+      "net_income": 30118130068
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 647499679982,
+      "operating_income": 17802138718,
+      "net_income": 9887135434
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 691931711604,
+      "operating_income": 55439288729,
+      "net_income": 66797890448
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 901669218521,
+      "operating_income": 75732366964,
+      "net_income": 61055874991
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 458458957592,
+      "operating_income": 36034611208,
+      "net_income": 30166715867
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 705100951053,
+      "operating_income": 37021360854,
+      "net_income": 25635900397
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 401151583002,
+      "operating_income": -12642722018,
+      "net_income": -4580307027
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 1663107292940,
+      "operating_income": 121069203114,
+      "net_income": 94323853839
+    }
+  ],
+  "annual": [
+    {
+      "date": "2024-12-31",
+      "revenue": 2764259939189,
+      "operating_income": 170377256793,
+      "net_income": 149387962241
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 2466380710168,
+      "operating_income": 136145617008,
+      "net_income": 112278184228
+    }
+  ]
+}

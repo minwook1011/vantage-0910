@@ -1,0 +1,59 @@
+{
+  "code": "499790",
+  "name": "GS피앤엘",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 94475877201,
+      "operating_income": 15215734704,
+      "net_income": 8337536756
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 112145167893,
+      "operating_income": 11563712655,
+      "net_income": 6013604380
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 121961937049,
+      "operating_income": 19929295893,
+      "net_income": 12783692210
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 153099606381,
+      "operating_income": 31313880400,
+      "net_income": 2809096622
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 130365731480,
+      "operating_income": 24162422637,
+      "net_income": 14063593524
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 158960998737,
+      "operating_income": 29360307067,
+      "net_income": 19221773187
+    }
+  ],
+  "annual": [
+    {
+      "date": "2024-12-31",
+      "revenue": 38321549330,
+      "operating_income": -38200717,
+      "net_income": -1137050920
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 481682588524,
+      "operating_income": 78022623652,
+      "net_income": 29943929968
+    }
+  ]
+}

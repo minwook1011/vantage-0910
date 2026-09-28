@@ -1,0 +1,53 @@
+{
+  "code": "389470",
+  "name": "인벤티지랩",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 169061063,
+      "operating_income": -5372914796,
+      "net_income": -8160195068
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 865373001,
+      "operating_income": -8053823279,
+      "net_income": -284248333
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 832157213,
+      "operating_income": -7433898012,
+      "net_income": -6526054026
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1072196651,
+      "operating_income": -7520396012,
+      "net_income": -940125679
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 392669497,
+      "operating_income": -8384087663,
+      "net_income": 923290178
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 175764217,
+      "operating_income": -10284860015,
+      "net_income": -4222805976
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 2938787928,
+      "operating_income": -28381032099,
+      "net_income": -15910623106
+    }
+  ]
+}

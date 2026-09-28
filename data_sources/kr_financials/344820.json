@@ -1,0 +1,155 @@
+{
+  "code": "344820",
+  "name": "케이씨씨글라스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2022-03-31",
+      "revenue": 294782197954,
+      "operating_income": 31466788748,
+      "net_income": 24247036643
+    },
+    {
+      "date": "2022-06-30",
+      "revenue": 341180741971,
+      "operating_income": 36783377913,
+      "net_income": 26205455274
+    },
+    {
+      "date": "2022-09-30",
+      "revenue": 379065069149,
+      "operating_income": 26204220594,
+      "net_income": 10957924660
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 428652682765,
+      "operating_income": 24766227498,
+      "net_income": 32565476063
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": 378664359823,
+      "operating_income": 14947691400,
+      "net_income": 15767189233
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 437745985687,
+      "operating_income": 33502680181,
+      "net_income": 27278995031
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 425102615806,
+      "operating_income": 21829915171,
+      "net_income": 11472404104
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 438542685275,
+      "operating_income": 24740028278,
+      "net_income": 27197343649
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 389090725336,
+      "operating_income": 20771801010,
+      "net_income": 9089146546
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 514327030746,
+      "operating_income": 21576836800,
+      "net_income": 12152524954
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 487719399959,
+      "operating_income": 8023065219,
+      "net_income": 23153687348
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 512184299368,
+      "operating_income": 6809009009,
+      "net_income": -7442232882
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 448678014678,
+      "operating_income": -5624770087,
+      "net_income": -11225980605
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 512917153727,
+      "operating_income": -35426443766,
+      "net_income": -35337325566
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 481193255928,
+      "operating_income": -14238898636,
+      "net_income": -15607496061
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 457817767619,
+      "operating_income": -19916974297,
+      "net_income": -21472097066
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 466638031531,
+      "operating_income": -10085254448,
+      "net_income": -7089288796
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 577146098537,
+      "operating_income": 4810796103,
+      "net_income": -11814926194
+    }
+  ],
+  "annual": [
+    {
+      "date": "2020-12-31",
+      "revenue": 708657396421,
+      "operating_income": 35839370802,
+      "net_income": 132349989001
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": 1175659965172,
+      "operating_income": 160451158221,
+      "net_income": 117224619390
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 1443680691839,
+      "operating_income": 119220614753,
+      "net_income": 93975892640
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 1680055646591,
+      "operating_income": 95020315030,
+      "net_income": 81715932017
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 1903321455409,
+      "operating_income": 57180712038,
+      "net_income": 36953125966
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1900606191952,
+      "operating_income": -75207086786,
+      "net_income": -83642899298
+    }
+  ]
+}

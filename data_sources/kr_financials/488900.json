@@ -1,0 +1,29 @@
+{
+  "code": "488900",
+  "name": "비츠로넥스텍",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2026-03-31",
+      "revenue": 7120960555,
+      "operating_income": -3369203137,
+      "net_income": -2963028692
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 6670405539,
+      "operating_income": -3119672676,
+      "net_income": -2436899344
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 36790989927,
+      "operating_income": -7364263584,
+      "net_income": -6596724887
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "code": "0120G0",
+  "name": "삼양바이오팜",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "note": "신규 상장 법인: DART에 2025 연간(단기 사업기간 가능)과 2026 분기만 존재",
+  "quarterly": [
+    {
+      "date": "2026-03-31",
+      "revenue": 31173917568,
+      "operating_income": 1386436905,
+      "net_income": 2566559688
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 35859168673,
+      "operating_income": 746349826,
+      "net_income": 1330448176
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 28594373504,
+      "operating_income": 2691177859,
+      "net_income": 2236509935
+    }
+  ]
+}

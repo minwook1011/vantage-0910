@@ -1,0 +1,96 @@
+{
+  "code": "460930",
+  "name": "현대힘스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "note": "2023 이전 분기 도구 미제공(상장 전), 2022~2023은 연간만",
+  "quarterly": [
+    {
+      "date": "2024-03-31",
+      "revenue": 55102897366,
+      "operating_income": 5920413221,
+      "net_income": 4283706863
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 57615883336,
+      "operating_income": 6863515613,
+      "net_income": 5070890563
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 54087723408,
+      "operating_income": 4144449498,
+      "net_income": 3855594566
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 56357297290,
+      "operating_income": 4620292679,
+      "net_income": 3348282516
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 58357516442,
+      "operating_income": 7239830530,
+      "net_income": 5498261566
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 62312448641,
+      "operating_income": 8258634852,
+      "net_income": 6256185835
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 60592240860,
+      "operating_income": 6788015045,
+      "net_income": 5053233174
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 66941625334,
+      "operating_income": 6477124188,
+      "net_income": 4590577398
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 64610109226,
+      "operating_income": 8529619995,
+      "net_income": 6552134925
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 72768240800,
+      "operating_income": 12183282683,
+      "net_income": 8714265383
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 144752544468,
+      "operating_income": 3756954475,
+      "net_income": 4366217534
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 189188021565,
+      "operating_income": 14463678384,
+      "net_income": 10117377616
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 223163801400,
+      "operating_income": 21548671011,
+      "net_income": 16558474508
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 248203831277,
+      "operating_income": 28763604615,
+      "net_income": 21398257973
+    }
+  ]
+}

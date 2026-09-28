@@ -1,0 +1,162 @@
+{
+  "code": "950210",
+  "name": "프레스티지바이오파마",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "note": "외국법인(6월 결산): 도구 bsns_year/분기 번호를 그대로 달력 분기말로 매핑. 금액이 원 단위보다 1,000배 작아 보임(천원 단위 추정, 원값 유지). revenue null/0 다수",
+  "quarterly": [
+    {
+      "date": "2021-03-31",
+      "revenue": 0,
+      "operating_income": -4586098,
+      "net_income": -8787888
+    },
+    {
+      "date": "2021-06-30",
+      "revenue": 0,
+      "operating_income": -7516620,
+      "net_income": -11872440
+    },
+    {
+      "date": "2021-09-30",
+      "revenue": 0,
+      "operating_income": -8022166,
+      "net_income": -8945403
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": 0,
+      "operating_income": 3940499,
+      "net_income": 23099110
+    },
+    {
+      "date": "2022-03-31",
+      "revenue": 0,
+      "operating_income": -9236819,
+      "net_income": 40081195
+    },
+    {
+      "date": "2022-06-30",
+      "revenue": 0,
+      "operating_income": -12627857,
+      "net_income": -14415715
+    },
+    {
+      "date": "2022-09-30",
+      "revenue": 0,
+      "operating_income": -10976257,
+      "net_income": -72563605
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 0,
+      "operating_income": -15879158,
+      "net_income": -129153343
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": null,
+      "operating_income": -13101595,
+      "net_income": -12992262
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": null,
+      "operating_income": -14394441,
+      "net_income": -8784653
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 0,
+      "operating_income": -14893254,
+      "net_income": -16247538
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": -10232781,
+      "net_income": 35862194
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": -11404559,
+      "net_income": -7940039
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": -15481217,
+      "net_income": -15551142
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": -12683809,
+      "net_income": -10072502
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": -7545648,
+      "net_income": -7784427
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 1665776,
+      "operating_income": -17516506,
+      "net_income": -14604649
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 5437813,
+      "operating_income": -13179988,
+      "net_income": -14161366
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": -10946913,
+      "net_income": 32953738
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": -6381843,
+      "net_income": -1213424
+    }
+  ],
+  "annual": [
+    {
+      "date": "2021-12-31",
+      "revenue": 0,
+      "operating_income": -16184385,
+      "net_income": -6506621
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 0,
+      "operating_income": -48720091,
+      "net_income": -176051468
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": -52622071,
+      "net_income": -2162259
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": -47115233,
+      "net_income": -41348110
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 10215103,
+      "operating_income": -48025250,
+      "net_income": 2974299
+    }
+  ]
+}
