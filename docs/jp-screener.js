@@ -24,6 +24,49 @@ function earnInfo(code){
   return {date:e.date, est:!!e.est, days:d};
 }
 function earnDays(code){ const e=earnInfo(code); return e && e.days>=0 ? e.days : null; }
+/* ===== 발표 끝난 실적: 가이던스 대비·주가 반응 (data/jp/earnings_results.json, fetch_jp_earnings_results.py) ===== */
+let RES = {}, RES_META = null;
+const BASIS_KO = {op:"영업이익", ord:"경상이익", ni:"순이익", rev:"매출"};
+const sgn = v => (v>0?"+":v<0?"−":"") + Math.abs(v).toFixed(1);
+const okuYen = v => v==null ? "—" : (Math.abs(v)>=10000 ? Math.round(v/100).toLocaleString() : (v/100).toLocaleString(undefined,{maximumFractionDigits:1})) + "억엔";
+const tone = v => v==null ? "" : v>0 ? " up" : v<0 ? " dn" : "";
+function resBadges(x){
+  if(!x) return "";
+  const b = [];
+  if(x.beat && x.beat.pct!=null) b.push(`<em class="rb${tone(x.beat.pct)}">가이던스 ${sgn(x.beat.pct)}%</em>`);
+  else if(x.progress && x.progress.diff!=null) b.push(`<em class="rb${tone(x.progress.diff)}">진척 ${sgn(x.progress.diff)}p</em>`);
+  else if(x.progress && x.progress.pct>=0) b.push(`<em class="rb">진척 ${x.progress.pct.toFixed(0)}%</em>`);
+  if(x.revision && !x.revision.kept && x.revision.pct!=null && x.revision.pct!==0) b.push(`<em class="rb${tone(x.revision.pct)}">${x.revision.pct>0?"상향":"하향"} ${sgn(x.revision.pct)}%</em>`);
+  if(x.cons && x.cons.pct!=null) b.push(`<em class="rb${tone(x.cons.pct)}">컨센 ${sgn(x.cons.pct)}%</em>`);
+  const p = x.px||{};
+  b.push(`<em class="rb px${tone(p.d1)}">1D ${p.d1==null?"—":sgn(p.d1)+"%"}</em>`);
+  if(p.d1!=null) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
+  return `<span class="eu-rx">${b.join("")}</span>`;
+}
+function resTip(x){
+  if(!x) return "";
+  const L = [];
+  const per = x.kind==="FY" ? `FY${x.fy} 결산(${x.period})` : `FY${x.fy} ${x.period}`;
+  const tm = x.time ? `${x.time} ${(x.px||{}).timing==="after"?"장 마감 후":(x.px||{}).timing==="pre"?"장 시작 전":"장중"}` : "시각 미상(장 마감 후로 가정)";
+  L.push(`${per} · ${x.date} ${tm} 발표`);
+  if(x.q) L.push(`분기(${x.q.label}) 매출 ${okuYen(x.q.rev)} · 영업 ${okuYen(x.q.op)}${x.q_yoy&&x.q_yoy.op!=null?` (영업 YoY ${sgn(x.q_yoy.op)}%)`:""}`);
+  if(x.beat){
+    const g=x.guide_prev||{}, a=x.fyres||{}, k=x.beat.basis;
+    const src={snapshot:"발표 전 저장한 회사 예상","kabutan-hist":"카부탄 수정 이력","kabutan-article":"직전 카부탄 기사의 통기 계획"}[g.src]||"";
+    L.push(`가이던스 대비: 통기 ${BASIS_KO[k]} ${okuYen(a[k])} vs 직전 회사 예상 ${okuYen(g[k])} → ${sgn(x.beat.pct)}%${src?` (기준: ${src})`:""}`);
+  } else if(x.kind==="FY") L.push("가이던스 대비: 직전 회사 예상 확보 못함");
+  if(x.progress){
+    const p=x.progress;
+    L.push(`진척률(${BASIS_KO[p.basis]}, 통기 회사 예상 대비) ${p.pct.toFixed(1)}%${p.avg!=null?` vs ${p.avg_src} ${p.avg.toFixed(1)}% → ${sgn(p.diff)}%p`:""}`);
+  }
+  if(x.revision) L.push(x.revision.kept ? "통기 가이던스 유지" : `통기 가이던스 ${x.revision.pct>0?"상향":x.revision.pct<0?"하향":"수정"}: ${BASIS_KO[x.revision.basis]||""} ${x.revision.pct==null?"":sgn(x.revision.pct)+"%"}${x.revision.rev_pct!=null?` · 매출 ${sgn(x.revision.rev_pct)}%`:""}`);
+  if(x.next_guide) L.push(`새 회사 예상 FY${x.next_guide.fy}: 매출 ${okuYen(x.next_guide.rev)} · 영업 ${okuYen(x.next_guide.op)}${x.next_guide.op_g!=null?` (영업 ${sgn(x.next_guide.op_g)}%)`:""}`);
+  if(x.cons) L.push(`분기 EPS 컨센서스 ${x.cons.est} → 실제 ${x.cons.eps} (${sgn(x.cons.pct)}%, 야후)`);
+  const p=x.px;
+  if(p) L.push(`주가: ${p.base_d} 종가 ${p.base.toLocaleString()}엔 기준 → ${p.d1_d||"반응일 대기"} ${p.d1==null?"—":sgn(p.d1)+"%"} · 5거래일 ${p.d5==null?"—":sgn(p.d5)+"%"}`);
+  if(x.headline) L.push(`카부탄: ${x.headline}`);
+  return L.join("\n");
+}
 function earnLabel(e, long){
   if(!e) return "—";
   const md = long ? e.date : e.date.slice(5).replace("-","/");
@@ -351,12 +394,16 @@ function earnRows(){
   RAW.forEach(r=>{
     if(state.cat!=="전체" && r[F.CAT]!==state.cat) return;
     if(state.favonly && !FAVS.has(r[F.CODE])) return;
-    const e=earnInfo(r[F.CODE]); if(e) out.push([r,e]);
+    const code=r[F.CODE], e=earnInfo(code), x=RES[code];
+    if(e) out.push([r,e,x&&x.date===e.date?x:null]);
+    // 발표가 끝난 종목: 실적 결과 파일의 발표일로 달력에 올린다(예정일과 같은 날이면 위에서 합쳐짐)
+    if(x && (!e || e.date!==x.date)) out.push([r,{date:x.date,est:false,days:Math.round((Date.parse(x.date)-Date.parse(todayJST()))/864e5)},x]);
   });
   return out.sort((a,b)=>(b[0][F.MCAP]||0)-(a[0][F.MCAP]||0));
 }
-function euCo([r,e]){
-  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}" data-c="${r[F.CODE]}" title="${esc(r[F.NAME])}${e.est?" (예상일)":""}"><b class="mono">${r[F.CODE]}</b><span>${esc(shortName(r[F.NAME]))}</span>${e.est?'<i>예상</i>':''}</button>`;
+function euCo([r,e,x]){
+  const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${esc(shortName(r[F.NAME]))}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x)}</button>`;
 }
 function renderEarnUp(){
   const box=document.getElementById("earnup"); if(!box) return;
@@ -364,28 +411,33 @@ function renderEarnUp(){
   const all = earnRows(), today = todayJST(), td = dowOf(today);
   const thisMon = td===6 ? isoAdd(today,2) : td===0 ? isoAdd(today,1) : mondayOf(today);
   const scope = (state.cat==="전체"?"전체":state.cat) + (state.favonly?" · ★만":"");
-  let h = `<div class="eu-h"><h3>다가오는 실적 발표</h3><span class="sub">${scope} · 발표일 갱신 ${EARN_META.updated||"—"}</span>
+  let h = `<div class="eu-h"><h3>실적 발표 캘린더</h3><span class="sub">${scope} · 발표일 갱신 ${EARN_META.updated||"—"}${RES_META?` · 발표 결과 ${RES_META.updated||"—"}`:""}</span>
     <div class="eu-seg" data-g="mode">${[["week","주간 캘린더"],["list","목록"]].map(([k,l])=>`<button data-mode="${k}" aria-pressed="${earnMode===k}">${l}</button>`).join("")}</div></div>`;
 
   if(earnMode==="week"){
     const byWeek={};
-    all.forEach(x=>{ if(x[1].date>=thisMon){ const w=mondayOf(x[1].date); (byWeek[w]=byWeek[w]||[]).push(x); } });
+    // 지난 주는 발표 결과가 있는 주만(예정일만 있고 결과가 없는 과거 항목은 넣지 않는다)
+    all.forEach(x=>{ if(x[1].date>=thisMon || x[2]){ const w=mondayOf(x[1].date); (byWeek[w]=byWeek[w]||[]).push(x); } });
     const keys=Object.keys(byWeek).sort();
-    const lastW = keys.length ? keys[keys.length-1] : thisMon;
-    if(!earnWeek || earnWeek<thisMon) earnWeek=thisMon;
+    const firstW = keys.length && keys[0]<thisMon ? keys[0] : thisMon;
+    const lastW = keys.length && keys[keys.length-1]>thisMon ? keys[keys.length-1] : thisMon;
+    if(!earnWeek) earnWeek=thisMon;
+    if(earnWeek<firstW) earnWeek=firstW;
     if(earnWeek>lastW) earnWeek=lastW;
-    const weeks=[]; for(let w=thisMon; w<=lastW; w=isoAdd(w,7)) weeks.push(w);
+    const weeks=[]; for(let w=firstW; w<=lastW; w=isoAdd(w,7)) weeks.push(w);
     h += `<div class="eu-weeks" role="tablist" aria-label="주차 선택">${weeks.map(w=>`<button role="tab" data-w="${w}" aria-pressed="${w===earnWeek}"><b>${weekLabel(w)}${w===thisMon?" · 이번 주":""}</b><span>${mdDot(w)}~${mdDot(isoAdd(w,4))} · ${(byWeek[w]||[]).length}개</span></button>`).join("")}</div>`;
-    const prevOk = earnWeek>thisMon, nextOk = earnWeek<lastW;
+    const prevOk = earnWeek>firstW, nextOk = earnWeek<lastW;
     h += `<div class="eu-wnav"><button data-nav="-7" ${prevOk?"":"disabled"} aria-label="이전 주">‹ 이전 주</button><b>${weekLabel(earnWeek)}</b><span class="mono">${mdDot(earnWeek)} – ${mdDot(isoAdd(earnWeek,4))}</span><button data-nav="7" ${nextOk?"":"disabled"} aria-label="다음 주">다음 주 ›</button></div>`;
     h += `<div class="eu-cal">` + [0,1,2,3,4].map(i=>{
-      const d=isoAdd(earnWeek,i), items=all.filter(x=>x[1].date===d), open=earnOpen.has(d);
+      const d=isoAdd(earnWeek,i), open=earnOpen.has(d);
+      // 지난 날짜는 결과가 있는 종목만, 결과 있는 종목을 먼저(시총 순 유지)
+      const items=all.filter(x=>x[1].date===d && (d>=today || x[2])).sort((a,b)=>(b[2]?1:0)-(a[2]?1:0));
       const shown = open ? items : items.slice(0,EU_MAX);
       const cls = (d===today?" today":"") + (d<today?" past":"");
       return `<div class="eu-col${cls}"><div class="eu-colh"><b class="mono">${mdDot(d)}(${WKD[dowOf(d)]})</b><span>${d===today?"오늘 · ":""}${items.length?items.length+"개":""}</span></div>
         <div class="eu-colb">${items.length ? shown.map(euCo).join("") : `<span class="eu-none">예정 없음</span>`}${items.length>EU_MAX?`<button class="eu-more" data-d="${d}">${open?"접기":"+"+(items.length-EU_MAX)+"개 더 보기"}</button>`:""}</div></div>`;
     }).join("") + `</div>`;
-    const wkend = all.filter(x=>x[1].date===isoAdd(earnWeek,5)||x[1].date===isoAdd(earnWeek,6));
+    const wkend = all.filter(x=>(x[1].date===isoAdd(earnWeek,5)||x[1].date===isoAdd(earnWeek,6)) && (x[1].date>=today || x[2]));
     if(wkend.length) h += `<div class="eu-wkend">주말 발표 ${wkend.length}개: ${wkend.map(([r,e])=>`<button class="eu-link" data-c="${r[F.CODE]}">${esc(shortName(r[F.NAME]))} (${mdDot(e.date)})</button>`).join(", ")}</div>`;
   } else {
     const by = {};
@@ -400,6 +452,12 @@ function renderEarnUp(){
     }).join("") + `</div>`;
   }
   h += `<div class="eu-note">야후 파이낸스·카부탄에 공시된 일정 기준. <i class="est-i">예상</i>은 날짜 공시 전이라 작년 같은 분기 발표일 등으로 추정한 날입니다. 시총 순 정렬 · 매주 일요일 자동 갱신.</div>`;
+  if(RES_META) h += `<div class="eu-note eu-legend"><b>발표 끝난 종목</b> ·
+    <em class="rb">가이던스 ±%</em> 결산(통기) 실적 ÷ 발표 직전 회사 예상(영업이익, 없으면 경상이익) ·
+    <em class="rb">진척 ±p</em> 분기 발표: 누계 경상이익의 통기 계획 대비 진척률 − 과거 같은 시점 평균(카부탄 5년 평균) ·
+    <em class="rb">상향/하향</em> 같은 날 통기 가이던스 수정 폭 ·
+    <em class="rb">컨센</em> 분기 EPS 컨센서스 대비(야후, 커버 종목만) ·
+    <em class="rb">1D·5D</em> 발표 직전 종가 대비 반응일·5거래일 종가 등락(장 마감 후 발표면 다음 거래일부터). 붉은색 +, 파란색 −, 값이 없으면 —. 종목에 마우스를 올리면 수치와 기준이 보입니다. 평일 저녁 자동 갱신.</div>`;
   box.innerHTML = h;
   box.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{earnMode=b.dataset.mode; renderEarnUp();});
   box.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{earnWeek=b.dataset.w; renderEarnUp();});
@@ -986,6 +1044,7 @@ function openDetail(code){
       <div class="dtk">TSE : ${code}</div>
       <div class="dnm jp">${esc(r[F.NAME])}</div>
       <div class="chips"><span class="chip k">${r[F.CAT]}</span><span class="chip">${esc(r[F.IND])}</span>${(()=>{const e=earnInfo(code);return e&&e.days>=0?`<span class="chip earnchip">실적발표 ${earnLabel(e)}</span>`:"";})()}</div>
+      ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code])}</div>`:""}
     </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" title="즐겨찾기">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
 
     ${bmHTML(code)}
@@ -1208,3 +1267,7 @@ fetch("data/jp/earnings_dates.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Pr
   const el=document.getElementById("earnasof"); if(el) el.textContent=d.updated||"—";
   renderTable();
 }).catch(()=>{ const el=document.getElementById("earnasof"); if(el) el.textContent="불러오기 실패"; });
+fetch("data/jp/earnings_results.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
+  RES=d.results||{}; RES_META=d;
+  renderTable();
+}).catch(()=>{});

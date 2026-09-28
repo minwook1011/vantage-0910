@@ -406,3 +406,21 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(21,28,4
 .eu-link{font:inherit;background:none;border:0;padding:0;color:var(--accent-ink);cursor:pointer}
 @media(max-width:900px){.eu-cal{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.eu-cal{grid-template-columns:minmax(0,1fr)}.eu-h .eu-seg{margin-left:0}}
+
+/* ---- 발표 끝난 실적: 가이던스 대비·주가 반응 배지 ---- */
+.eu-col.past{opacity:1}
+.eu-col.past .eu-colh{opacity:.6}
+.eu-cal .eu-co{flex-wrap:wrap}
+.eu-rx{display:flex;flex-wrap:wrap;gap:3px;flex-basis:100%;padding-left:0;margin-top:1px}
+.eu-list .eu-co.done{flex-wrap:wrap;max-width:340px;border-radius:8px}
+.rb{font-style:normal;font-family:"IBM Plex Mono",var(--mono,monospace),monospace;font-variant-numeric:tabular-nums;font-size:10px;line-height:1.5;
+  padding:0 5px;border-radius:3px;border:1px solid var(--line);color:var(--ink-mid);background:rgba(255,255,255,.02);white-space:nowrap}
+.rb.up{color:var(--up);border-color:rgba(240,71,90,.45);background:rgba(240,71,90,.08)}
+.rb.dn{color:#6f9dff;border-color:rgba(61,126,255,.45);background:rgba(61,126,255,.08)}
+.rb.px{border-style:dashed}
+.eu-legend{line-height:1.9}
+.eu-legend b{color:var(--ink-mid);font-weight:600}
+.d-res{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:9px;cursor:help}
+.d-res-h{font-size:11px;color:var(--ink-mute)}
+.d-res .eu-rx{flex-basis:auto;margin:0}
+.eu-cal .eu-co .eu-rx,.eu-list .eu-co .eu-rx{flex:0 0 100%;overflow:visible;white-space:normal;font-size:10px}
