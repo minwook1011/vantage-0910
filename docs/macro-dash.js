@@ -447,7 +447,7 @@
   var rs = null;
   window.addEventListener("resize", function () { clearTimeout(rs); rs = setTimeout(function () { if (!D) return; renderExplorer(); renderRates(); if (openRow) renderAcc(openRow); }, 180); });
 
-  fetch("macro_dash.json?t=" + Date.now()).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+  fetch("macro_dash.json", {cache: "no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
     D = d;
     $("#mx-updated").textContent = "UPDATED " + (d.updated || "-");
     var s = d.status || {}, names = { bls: "BLS", bea: "BEA", effr: "뉴욕연준", claims: "노동부", umich: "미시간대", treasury: "재무부", calendar_bls: "BLS 일정", calendar_fomc: "FOMC 일정", calendar_bea: "BEA 일정" };

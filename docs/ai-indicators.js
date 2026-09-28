@@ -120,7 +120,7 @@
   }
 
   /* ── SVG 차트 ─────────────────────────────────────────── */
-  function dateLabel(t) { var d = new Date(t); return String(d.getUTCFullYear()).slice(2) + "/" + ("0" + (d.getUTCMonth() + 1)).slice(-2); }
+  function dateLabel(t, daily) { var d = new Date(t), mm = ("0" + (d.getUTCMonth() + 1)).slice(-2); return daily ? mm + "/" + ("0" + d.getUTCDate()).slice(-2) : String(d.getUTCFullYear()).slice(2) + "/" + mm; }
   function gridY(svg, L, R, T, B, width, height, lo, hi, fy) {
     for (var i = 0; i < 4; i++) {
       var yy = T + i / 3 * (height - T - B), val = hi - (hi - lo) * i / 3;
@@ -128,10 +128,12 @@
     }
   }
   function xTicks(svg, first, last, L, R, width, height, B) {
+    var days = Math.round((last - first) / 864e5), daily = days <= 200;
     var n = Math.min(5, Math.max(2, Math.round((width - L - R) / 120)));
+    if (days >= 1) n = Math.min(n, days);  // 기간이 짧으면 같은 날짜가 반복되지 않게
     for (var i = 0; i <= n; i++) {
       var t = first + (last - first) * i / n, xx = L + (width - L - R) * i / n;
-      svg.push('<text x="' + xx.toFixed(1) + '" y="' + (height - 7) + '" text-anchor="' + (i === 0 ? "start" : i === n ? "end" : "middle") + '">' + dateLabel(t) + "</text>");
+      svg.push('<text x="' + xx.toFixed(1) + '" y="' + (height - 7) + '" text-anchor="' + (i === 0 ? "start" : i === n ? "end" : "middle") + '">' + dateLabel(t, daily) + "</text>");
     }
   }
   function lineChart(o) {
@@ -488,7 +490,7 @@
   function renderAll() { renderAI(); renderCompany(); if (modal) renderModal(); }
   function load(manual) {
     if (loading) return; loading = true; error = ""; if (manual) renderAI();
-    var get = function (p) { return fetch(p + "?v=" + Date.now(), {cache: "no-store"}).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); };
+    var get = function (p) { return window.vantageJSON(p, manual); };
     Promise.all([get("data/ai_indicators.json"), get("data/company_links.json").catch(function () { return {companies: []}; })])
       .then(function (res) { if (res[0].schema_version !== 1 || !Array.isArray(res[0].series)) throw new Error("schema"); DATA = res[0]; LINKS = res[1]; })
       .catch(function (e) { error = "AI 지표 데이터 파일 수신 실패 (" + e.message + "). 기존에 받은 자료가 있으면 유지합니다."; if (!DATA) DATA = {groups: [], series: [], companies: {}}; })

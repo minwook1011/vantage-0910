@@ -127,7 +127,7 @@
     host.querySelectorAll("#tr-metric button").forEach(function (b) { b.onclick = function () { metric = b.dataset.m; render(); }; });
   }
 
-  fetch("data/trass_exports.json?t=" + Date.now()).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+  fetch("data/trass_exports.json", {cache: "no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) { DATA = d; if (!latestMonth(span)) span = SPAN_ORDER.filter(function (s) { return latestMonth(s); })[0] || span; render(); })
     .catch(function (e) { host.innerHTML = '<div class="tr-wrap"><div class="tr-empty">TRASS 데이터를 불러오지 못했습니다 (' + esc(e.message) + ")</div></div>"; });
 })();

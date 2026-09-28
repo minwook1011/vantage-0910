@@ -111,7 +111,7 @@
   async function load(manual) {
     if (loading) return; loading=true; if(manual)render(); errors=[];
     const results = await Promise.allSettled(["memory", "memory_exports"].map(async name => {
-      const res=await fetch("data/"+name+".json?v="+Date.now(),{cache:"no-store"});
+      const res=await fetch("data/"+name+".json",{cache:"no-cache"});
       if(!res.ok)throw new Error(name); const json=await res.json();
       if(json.schema_version!==1 || !Array.isArray(json.series))throw new Error(name);
       return {name,series:json.series};

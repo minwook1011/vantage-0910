@@ -5,6 +5,7 @@ fetch_megacap.py — megacap_universe.json 명단의 시세·모멘텀 갱신 �
 표준 라이브러리만 사용. 매일 실행.
 """
 import json
+import re
 import os
 import sys
 import time
@@ -278,6 +279,7 @@ def main():
     }
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    write_split(data)
     try:
         os.makedirs(os.path.dirname(DAILY_CACHE), exist_ok=True)
         with open(DAILY_CACHE, "w", encoding="utf-8") as f:
@@ -286,5 +288,46 @@ def main():
         print(f"  [daily-cache-fail] {e}")
     print(f"=== 완료: {len(out_stocks)}종 저장 (실패 {fail}) ===")
 
+LITE = os.path.join(BASE, "docs", "megacap_lite.json")
+CANDLE_DIR = os.path.join(BASE, "docs", "megacap_c")
+
+
+def candle_file(ticker):
+    return re.sub(r"[^A-Za-z0-9._-]", "_", ticker) + ".json"
+
+
+def write_split(data):
+    """사이트 속도용 분할본: 목록 화면은 캔들을 뺀 megacap_lite.json(수백 KB)만 받고,
+    캔들은 종목 모달을 열 때 docs/megacap_c/{ticker}.json 에서 따로 받는다. megacap.json(전체)은 파이썬 스크립트용으로 유지."""
+    os.makedirs(CANDLE_DIR, exist_ok=True)
+    keep = set()
+    lite = []
+    for s in data["stocks"]:
+        c = s.get("candles") or []
+        row = {k: v for k, v in s.items() if k != "candles"}
+        if "r1d" not in row and len(c) >= 2 and c[-2].get("c"):
+            row["r1d"] = round((c[-1]["c"] / c[-2]["c"] - 1) * 100, 2)
+        lite.append(row)
+        name = candle_file(s["ticker"])
+        keep.add(name)
+        body = json.dumps({"ticker": s["ticker"], "candles": c}, separators=(",", ":"))
+        path = os.path.join(CANDLE_DIR, name)
+        try:
+            if open(path, encoding="utf-8").read() == body:
+                continue
+        except OSError:
+            pass
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(body)
+    for name in os.listdir(CANDLE_DIR):
+        if name.endswith(".json") and name not in keep:
+            os.remove(os.path.join(CANDLE_DIR, name))
+    with open(LITE, "w", encoding="utf-8") as f:
+        json.dump(dict(data, stocks=lite), f, ensure_ascii=False, separators=(",", ":"))
+
+
 if __name__ == "__main__":
-    main()
+    if "--split-only" in sys.argv:
+        write_split(json.load(open(OUT, encoding="utf-8")))
+    else:
+        main()

@@ -6,7 +6,7 @@
 <script src="firebase-sync.js?v=20260920a"></script>
 <script src="gate.js?v=20260909a"></script>
 <title>실시간 뉴스 — VANTAGE</title>
-<link rel="stylesheet" href="theme.css?v=20260909b">
+<link rel="stylesheet" href="theme.css?v=20260928p">
 <style>
 /* 탭 */
 .news-subtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 18px; }
@@ -69,9 +69,8 @@
 .digest-body .md p { font-size: 14px; line-height: 1.78; margin: 7px 0; }
 .digest-body .md ul { margin: 6px 0 10px; padding-left: 18px; }
 .digest-body .md li { font-size: 14px; line-height: 1.7; margin: 4px 0; }
-/* 중요 강조: 볼드 + 노란 밑줄 */
-.digest-body .md strong, .sector-analysis .md strong { font-weight: 800; color: var(--text);
-  text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+/* 중요 강조: 볼드만 */
+.digest-body .md strong, .sector-analysis .md strong { font-weight: 800; color: var(--text); }
 
 /* 주차별 요약 아카이브 */
 .wk-group { border: 1px solid var(--border); border-radius: 10px; margin-top: 10px; overflow: hidden; }
@@ -105,8 +104,6 @@
 .sector-card.dn .sc-name { color: var(--dn); }
 .sc-stat { font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--muted); }
 .sector-analysis .md p { font-size: 13.5px; line-height: 1.75; margin: 5px 0; color: var(--text); }
-.sector-analysis .md strong { color: var(--text); text-decoration: underline;
-  text-decoration-color: var(--gold); text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .sector-card.big { padding: 18px 20px; }
 .sec-news-title { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase;
   letter-spacing: .04em; margin: 16px 0 10px; padding-top: 12px; border-top: 1px solid var(--border); }
@@ -161,8 +158,8 @@
   </div>
 </div>
 
-<script src="theme.js?v=20260924a"></script>
-<script src="stocks-common.js?v=20260924a"></script>
+<script src="theme.js?v=20260928p"></script>
+<script src="stocks-common.js?v=20260928p"></script>
 <script>
 var NEWS = [], CHANNELS = [], curCh = "all", kw = "";
 var DIGESTS = [], curDigest = 0;

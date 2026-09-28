@@ -6,7 +6,7 @@
 <script src="firebase-sync.js?v=20260920a"></script>
 <script src="gate.js?v=20260909a"></script>
 <title>글로벌 섹터 ETF 자금 흐름</title>
-<link rel="stylesheet" href="theme.css?v=20260909b">
+<link rel="stylesheet" href="theme.css?v=20260928p">
 <style>
 /* ── 섹터별 1년 흐름 (finviz 스타일 스몰 멀티플) ── */
 .yr-tools { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px; }
@@ -118,8 +118,8 @@
   </div>
 </div>
 
-<script src="theme.js?v=20260924a"></script>
-<script src="stocks-common.js?v=20260924a"></script>
+<script src="theme.js?v=20260928p"></script>
+<script src="stocks-common.js?v=20260928p"></script>
 <script>
 var DATA = null;
 var MEGA = {};  // megacap.json — 대표 구성종목 클릭 시 개별 종목 모달용(있으면 사용, 없어도 페이지는 정상 동작)
@@ -486,7 +486,7 @@ document.addEventListener("favchange", renderFavs);
 /* ---------- 초기화 ---------- */
 Promise.all([
   fetchJSON("data.json"),
-  fetchJSON("megacap.json").catch(function () { return null; }),
+  fetchJSON("megacap_lite.json").catch(function () { return null; }),
   fetchJSON("financials.json").catch(function () { return null; }),
   fetchJSON("etf_year.json").catch(function () { return null; })
 ]).then(function (rs) {

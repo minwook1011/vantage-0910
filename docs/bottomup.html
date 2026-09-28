@@ -6,7 +6,7 @@
 <script src="firebase-sync.js?v=20260920a"></script>
 <script src="gate.js?v=20260909a"></script>
 <title>Bottom-up 종목 발굴 — VANTAGE</title>
-<link rel="stylesheet" href="theme.css?v=20260909b">
+<link rel="stylesheet" href="theme.css?v=20260928p">
 <style>
 /* ── 레이아웃 ─────────────────────────────── */
 .bu-lede { color:var(--muted); font-size:13px; line-height:1.7; margin:4px 0 0; }
@@ -237,8 +237,8 @@
   </section>
 </div>
 <div class="modal-back" id="modal-back-holder" style="display:none"></div>
-<script src="theme.js?v=20260924a"></script>
-<script src="stocks-common.js?v=20260924a"></script>
+<script src="theme.js?v=20260928p"></script>
+<script src="stocks-common.js?v=20260928p"></script>
 <script src="chart-patterns.js?v=20260924a"></script>
 <script>
 (function () {
@@ -593,6 +593,7 @@
 
   function openStockModal(ticker) {
     var s = BYT[ticker]; if (!s) return;
+    if (!s.candles) { ensureCandles(s).then(function () { delete TA[ticker]; openStockModal(ticker); }); return; }
     var chips = [{label:"1주",value:fmtPct(s.r1w),cls:pctClass(s.r1w)},{label:"1개월",value:fmtPct(s.r1m),cls:pctClass(s.r1m)},{label:"3개월",value:fmtPct(s.r3m),cls:pctClass(s.r3m)},{label:"YTD",value:fmtPct(s.ytd),cls:pctClass(s.ytd)},{label:"52주고점대비",value:fmtPct(s.from_high,1),cls:pctClass(s.from_high)}];
     if (s.mcap_usd) chips.push({label:"시총",value:fmtMcap(s.mcap_usd),cls:""});
     var profile = PROFILES[ticker];
@@ -613,7 +614,15 @@
     rsTimer = setTimeout(function () { var w = $q("#map-wrap").clientWidth; if (DATA && Math.abs(w - lastW) > 40) { lastW = w; mapBuilt = false; renderMap(); } }, 200);
   });
 
-  Promise.all([fetchJSON("megacap.json"), fetchJSON("megacap_profiles.json").catch(function () { return null; }), fetchJSON("financials.json").catch(function () { return null; }),
+  /* 목록은 캔들 없는 경량본으로 먼저 그리고, 기술 신호·패턴 차트에 필요한 캔들 전체본은 뒤에서 받아 다시 그린다 */
+  function upgradeCandles() {
+    fetchJSON("megacap.json").then(function (full) {
+      (full.stocks || []).forEach(function (f) { var s = BYT[f.ticker]; if (s) s.candles = f.candles; });
+      Object.keys(TA).forEach(function (k) { delete TA[k]; });
+      renderAll();
+    }).catch(function () {});
+  }
+  Promise.all([fetchJSON("megacap_lite.json"), fetchJSON("megacap_profiles.json").catch(function () { return null; }), fetchJSON("financials.json").catch(function () { return null; }),
     window.PatternRadar ? PatternRadar.load() : Promise.resolve(null), TA_LEARNED_P]).then(function (rs) {
     DATA = rs[0]; PROFILES = (rs[1] && rs[1].profiles) || {}; FIN = (rs[2] && rs[2].financials) || {};
     BT = window.PatternRadar ? PatternRadar.bt : null; indexBT(); renderBanner();
@@ -621,6 +630,7 @@
     var uni = DATA.universe_updated ? " · 명단 " + DATA.universe_updated.slice(0, 10) + " 기준(주 1회)" : "";
     $q("#updated").textContent = "시세 " + (DATA.updated || "-") + " · " + DATA.count + "종목" + uni;
     renderAll();
+    upgradeCandles();
   }).catch(function (err) {
     $q("#list").innerHTML = '<div class="empty-note">megacap.json 로드 실패 — fetch_megacap.py를 실행하세요<br><span class="small">' + escapeHtml(err.message) + "</span></div>";
     $q("#map-wrap").innerHTML = "";

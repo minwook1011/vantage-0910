@@ -109,7 +109,7 @@
     document.getElementById("fresh-only").addEventListener("change", renderReports);
   }
   function loadReports() {
-    fetch("coverage-data.json?v=" + Date.now()).then(function (response) {
+    fetch("coverage-data.json", { cache:"no-cache" }).then(function (response) {
       if (!response.ok) throw new Error("coverage data unavailable"); return response.json();
     }).then(function (data) {
       reports = data.items || [];

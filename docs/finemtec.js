@@ -211,7 +211,7 @@
     if(loading)return;loading=true;
     const button=document.getElementById("fm-refresh");if(button){button.disabled=true;button.textContent="확인 중…";}
     try {
-      const response=await fetch("data/finemtec.json?v="+Date.now(),{cache:"no-store"});
+      const response=await fetch("data/finemtec.json",{cache:"no-cache"});
       if(!response.ok)throw new Error("HTTP "+response.status);
       const next=await response.json();
       if(next.schema_version!==1||next.company?.ticker!=="441270")throw new Error("데이터 형식 불일치");

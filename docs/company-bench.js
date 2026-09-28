@@ -259,13 +259,36 @@
       return dir * (x - y);
     });
     var open = state.listOpen || !!q;
+    pickerRows = open ? list : [];  // 접힌 상태에서는 행을 만들지 않는다(800행+ 표가 랙의 주원인)
     var usCount = COMPANIES.filter(isUS).length;
     var krCount = COMPANIES.filter(function (c) { return c.kr && !isUS(c); }).length, kqCount = COMPANIES.filter(function (c) { return c.kr && c.kr.market === "KOSDAQ"; }).length;
     var head = '<tr><th class="cb-star-col"><span class="sr-only">즐겨찾기</span></th>' + COLS.map(function (k) {
       var on = k.key === col.key;
       return '<th' + (k.key === "name" ? ' class="cb-name-col"' : "") + ' aria-sort="' + (on ? (dir === 1 ? "ascending" : "descending") : "none") + '"><button type="button" data-cb-sort="' + k.key + '" class="' + (on ? "on" : "") + '">' + k.label + (on ? (dir === 1 ? " ↑" : " ↓") : "") + "</button></th>";
     }).join("") + '<th class="cb-spark-col">6개월</th></tr>';
-    var body = list.map(function (o) {
+    chipHost.innerHTML = favHtml +
+      '<div class="cb-finder"><input type="search" id="cb-q" class="cb-q" placeholder="기업명 · 종목코드 · 업종 검색" value="' + esc(query) + '" aria-label="기업 검색">' +
+      '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + '>코스닥</option><option value="US"' + (mkt === "US" ? " selected" : "") + ">미국·해외</option></select>" +
+      '<select id="cb-sector" aria-label="업종"><option value="">전체 업종</option><option value="★"' + (sector === "★" ? " selected" : "") + ">★ 즐겨찾기만</option>" + sectors.map(function (x) { return "<option" + (x === sector ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>" +
+      '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button></div>" +
+      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + (usCount ? " · 미국 S&P500 시총 상위 + 해외 " + usCount + "개(금액 $B · 실적 SEC 공시)" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
+      '<div class="cb-list-wrap"><table class="cb-table"><thead>' + head + '</thead><tbody id="cb-tbody"></tbody></table></div></div>';
+    bindFavs();
+    chipHost.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
+    chipHost.querySelectorAll("[data-cb-sort]").forEach(function (b) { b.onclick = function () {
+      var k = b.dataset.cbSort; state.sort = {key: k, dir: state.sort.key === k ? -state.sort.dir : (k === "name" || k === "rank" ? 1 : -1)}; store(); renderPicker();
+    }; });
+    var qi = document.getElementById("cb-q");
+    qi.oninput = function () { query = qi.value; if (query.trim() && !state.listOpen) { state.listOpen = true; renderPicker(); var n = document.getElementById("cb-q"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); return; } applyListFilter(); };
+    qi.onkeydown = function (e) { if (e.key === "Enter") { var first = chipHost.querySelector("[data-cb-row]"); if (first) pick(first.dataset.cbRow, true); } };
+    document.getElementById("cb-sector").onchange = function (e) { sector = e.target.value; pickerLimit = PAGE_ROWS; applyListFilter(); };
+    document.getElementById("cb-mkt").onchange = function (e) { mkt = e.target.value; pickerLimit = PAGE_ROWS; applyListFilter(); };
+    applyListFilter();
+    document.getElementById("cb-list-toggle").onclick = function () { state.listOpen = !open; if (!state.listOpen) query = ""; store(); renderPicker(); };
+  }
+  // 검색·시장·업종 필터는 표 틀은 두고 tbody 만 다시 채운다. 한 번에 PAGE_ROWS 행까지만 그리고 나머지는 "더 보기"
+  var pickerRows = [], pickerLimit = 150, PAGE_ROWS = 150;
+  function rowHtml(o, cur) {
       var c = o.c, k = c.kr || {}, qd = qOf(c), fav = isFav(c.ticker), on = c.ticker === cur.ticker, us = isUS(c);
       var close = COLS[2].get(c, o.i);
       var spark = c.kr && !KR[c.ticker] ? k.spark : priceTail(c).slice(-120).filter(function (x, i) { return i % 4 === 0; }).map(function (x) { return x.value; });
@@ -284,40 +307,27 @@
         '<td class="cb-num">' + (finite(qd.operating_income_yoy) ? pctCell(qd.operating_income_yoy) : qd.op_label ? '<span class="cb-tag">' + esc(qd.op_label) + "</span>" : none) + "</td>" +
         '<td class="cb-num">' + (finite(qd.opm) ? qd.opm.toFixed(1) + "%" : none) + "</td>" +
         '<td class="cb-spark-col">' + miniSpark(spark) + "</td></tr>";
-    }).join("");
-    chipHost.innerHTML = favHtml +
-      '<div class="cb-finder"><input type="search" id="cb-q" class="cb-q" placeholder="기업명 · 종목코드 · 업종 검색" value="' + esc(query) + '" aria-label="기업 검색">' +
-      '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + '>코스닥</option><option value="US"' + (mkt === "US" ? " selected" : "") + ">미국·해외</option></select>" +
-      '<select id="cb-sector" aria-label="업종"><option value="">전체 업종</option><option value="★"' + (sector === "★" ? " selected" : "") + ">★ 즐겨찾기만</option>" + sectors.map(function (x) { return "<option" + (x === sector ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>" +
-      '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button></div>" +
-      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + (usCount ? " · 미국 S&P500 시총 상위 + 해외 " + usCount + "개(금액 $B · 실적 SEC 공시)" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
-      '<div class="cb-list-wrap"><table class="cb-table"><thead>' + head + "</thead><tbody>" + body + '<tr id="cb-empty" hidden><td colspan="13" class="cb-muted" style="padding:16px">검색 결과가 없습니다.</td></tr>' + "</tbody></table></div></div>";
-    bindFavs();
-    chipHost.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
-    chipHost.querySelectorAll("[data-cb-row]").forEach(function (r) {
+  }
+  function applyListFilter() {
+    var tb = document.getElementById("cb-tbody"); if (!tb) return;
+    var q = query.trim().toLowerCase(), cur = company();
+    var hits = pickerRows.filter(function (o) {
+      var c = o.c, k = c.kr || {}, us = isUS(c), sec = us ? GICS[k.sector] || k.sector : k.sector;
+      if (mkt && (us ? "US" : k.market || "") !== mkt) return false;
+      if (sector && (sector === "★" ? !isFav(c.ticker) : (sec || "") !== sector)) return false;
+      return !q || [c.name, c.label, c.ticker, c.desc, k.sector, sec].join(" ").toLowerCase().indexOf(q) >= 0;
+    });
+    var rest = hits.length - pickerLimit;
+    tb.innerHTML = hits.slice(0, pickerLimit).map(function (o) { return rowHtml(o, cur); }).join("") +
+      (hits.length ? "" : '<tr><td colspan="13" class="cb-muted" style="padding:16px">검색 결과가 없습니다.</td></tr>') +
+      (rest > 0 ? '<tr><td colspan="13" style="padding:10px 12px"><button type="button" id="cb-more" class="cb-list-toggle">더 보기 (' + rest + "개 남음) ▾</button></td></tr>" : "");
+    var more = document.getElementById("cb-more"); if (more) more.onclick = function () { pickerLimit += PAGE_ROWS; applyListFilter(); };
+    tb.querySelectorAll("[data-cb-row]").forEach(function (r) {
       r.onclick = function () { pick(r.dataset.cbRow, true); };
       r.onkeydown = function (e) { if (e.key === "Enter" && e.target === r) pick(r.dataset.cbRow, true); };
     });
-    chipHost.querySelectorAll("[data-cb-sort]").forEach(function (b) { b.onclick = function () {
-      var k = b.dataset.cbSort; state.sort = {key: k, dir: state.sort.key === k ? -state.sort.dir : (k === "name" || k === "rank" ? 1 : -1)}; store(); renderPicker();
-    }; });
-    var qi = document.getElementById("cb-q");
-    qi.oninput = function () { query = qi.value; if (query.trim() && !state.listOpen) { state.listOpen = true; renderPicker(); var n = document.getElementById("cb-q"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); return; } applyListFilter(); };
-    qi.onkeydown = function (e) { if (e.key === "Enter") { var first = chipHost.querySelector("[data-cb-row]"); if (first) pick(first.dataset.cbRow, true); } };
-    document.getElementById("cb-sector").onchange = function (e) { sector = e.target.value; applyListFilter(); };
-    document.getElementById("cb-mkt").onchange = function (e) { mkt = e.target.value; applyListFilter(); };
-    applyListFilter();
-    document.getElementById("cb-list-toggle").onclick = function () { state.listOpen = !open; if (!state.listOpen) query = ""; store(); renderPicker(); };
-  }
-  // 검색·시장·업종 필터는 표를 다시 그리지 않고 행을 숨겨서 처리한다(200개+ 에서도 즉시 반응)
-  function applyListFilter() {
-    var q = query.trim().toLowerCase(), shown = 0;
-    chipHost.querySelectorAll("[data-cb-row]").forEach(function (r) {
-      var ok = (!q || r.dataset.hay.indexOf(q) >= 0) && (!mkt || r.dataset.mkt === mkt) && (!sector || (sector === "★" ? isFav(r.dataset.cbRow) : r.dataset.sector === sector));
-      r.hidden = !ok; if (ok) shown++;
-    });
-    var empty = document.getElementById("cb-empty"); if (empty) empty.hidden = shown > 0;
-    var cnt = document.getElementById("cb-count"); if (cnt) cnt.textContent = shown === COMPANIES.length ? "" : shown + "개 표시 · ";
+    tb.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
+    var cnt = document.getElementById("cb-count"); if (cnt) cnt.textContent = hits.length === COMPANIES.length ? "" : hits.length + "개 표시 · ";
   }
   function pick(tk, scroll) {
     state.company = tk; store(); renderAll();
@@ -329,7 +339,7 @@
   function ensureKR(c) {
     if (!c.kr || KR[c.ticker] !== undefined || krLoading[c.ticker]) return;
     var dir = isUS(c) ? "data/us/" : "data/kr/";
-    krLoading[c.ticker] = fetch(dir + encodeURIComponent(c.ticker) + ".json?v=" + Date.now(), {cache: "no-store"})
+    krLoading[c.ticker] = fetch(dir + encodeURIComponent(c.ticker) + ".json", {cache: "no-cache"})
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (d) { KR[c.ticker] = d; tailCache = {}; }, function (e) { KR[c.ticker] = null; c.krError = dir + c.ticker + ".json 수신 실패 (" + e.message + ")"; })
       .then(function () { delete krLoading[c.ticker]; if (company().ticker === c.ticker) renderAll(); });
@@ -629,7 +639,7 @@
 
   /* ── 불러오기 ── */
   function load(manual) {
-    var get = function (p) { return fetch(p + "?v=" + Date.now(), {cache: "no-store"}).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); };
+    var get = function (p) { return window.vantageJSON(p, manual); };
     var btn = document.getElementById("cb-refresh"); if (btn) { btn.disabled = true; btn.textContent = "확인 중…"; }
     Promise.all([
       get("data/company_links.json").catch(function () { return null; }),

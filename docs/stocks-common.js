@@ -1,11 +1,21 @@
 /* 공통 렌더 유틸 — 포맷터 / 스파크라인 / 라인차트 / 캔들차트 / 경량 마크다운 / 모달 */
 
 /* ---------- 데이터 로드 ---------- */
+/* no-cache = 매번 서버에 "바뀌었나?"만 물어보고(ETag), 안 바뀌었으면 브라우저 캐시를 그대로 쓴다.
+   예전 ?v=Date.now() 방식은 매 방문마다 수 MB를 새로 받아 랙의 주원인이었다. 같은 페이지 안의 중복 요청은 한 번으로 합친다. */
 function fetchJSON(path) {
-  return fetch(path + "?v=" + Date.now()).then(function (r) {
+  if (window.vantageJSON) return window.vantageJSON(path);
+  return fetch(path, { cache: "no-cache" }).then(function (r) {
     if (!r.ok) throw new Error(path + " HTTP " + r.status);
     return r.json();
   });
+}
+/* 메가캡 캔들은 종목별 파일(megacap_c/)로 분리 — 모달을 열 때만 받는다 */
+function megaCandleFile(tk) { return "megacap_c/" + String(tk).replace(/[^A-Za-z0-9._-]/g, "_") + ".json"; }
+function ensureCandles(s) {
+  if (!s || s.candles) return Promise.resolve(s);
+  return fetchJSON(megaCandleFile(s.ticker)).then(function (d) { s.candles = d.candles || []; return s; })
+    .catch(function () { s.candles = []; return s; });
 }
 
 /* ---------- 포맷터 ---------- */
@@ -1280,6 +1290,7 @@ function megaDayRet(s) {
 }
 function openMegaStockModal(tk, mega, fin) {
   if (!mega) return;
+  if (!mega.candles) { ensureCandles(mega).then(function () { openMegaStockModal(tk, mega, fin); }); return; }
   var chips = [
     { label: "1주", value: fmtPct(mega.r1w), cls: pctClass(mega.r1w) },
     { label: "1개월", value: fmtPct(mega.r1m), cls: pctClass(mega.r1m) },

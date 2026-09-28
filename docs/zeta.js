@@ -516,7 +516,7 @@
   }
   function load() {
     if (loading) return; loading = true;
-    fetch("data/zeta.json?v=" + Date.now(), {cache: "no-store"}).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    fetch("data/zeta.json", {cache: "no-cache"}).then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
       .then(function (d) { if (d.schema_version !== 1) throw new Error("형식 불일치"); DATA = d; error = ""; readPriv(); })
       .catch(function (e) { error = e.message; })
       .then(function () { loading = false; render(); });

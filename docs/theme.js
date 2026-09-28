@@ -1,4 +1,19 @@
 /* 공통 상단 내비게이션 + 티커 테이프 + 유틸 — 모든 페이지에서 로드 */
+
+/* 공용 JSON 로더: cache "no-cache" 로 매번 서버에 변경 여부만 확인(ETag → 304)하고 안 바뀌었으면 브라우저 캐시를 쓴다.
+   (?v=Date.now() 는 매 방문 수 MB를 새로 받게 해 랙의 주원인이었다.) 한 페이지에서 같은 파일을 여러 모듈이 요청하면 한 번만 받는다.
+   fresh=true(새로고침 버튼)면 공유본을 버리고 다시 확인한다. */
+window.vantageJSON = function (path, fresh) {
+  var m = window.__vjson || (window.__vjson = {});
+  if (fresh || !m[path]) {
+    m[path] = fetch(path, { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(path + " HTTP " + r.status);
+      return r.text();
+    });
+    m[path].catch(function () { if (m[path]) delete m[path]; });
+  }
+  return m[path].then(JSON.parse);
+};
 (function () {
   var PAGES = [
     ["index.html", "시작"],
@@ -41,7 +56,7 @@
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
       .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
-  fetch("data.json?v=" + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+  window.vantageJSON("data.json").catch(function () { return null; }).then(function (d) {
     var tape = document.getElementById("tape");
     if (!tape || !d || !d.etfs) return;
     var items = TAPE_TICKERS.map(function (tk) { return d.etfs[tk]; }).filter(Boolean)
