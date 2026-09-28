@@ -14,6 +14,7 @@
     ["datahub.html", "데이터 허브"],
     ["archive.html", "리서치 아카이브"],
     ["coverage.html", "Coverage"],
+    ["jp-screener.html", "일본 소비재"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";
   var nav = document.getElementById("topnav");

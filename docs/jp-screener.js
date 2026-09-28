@@ -335,32 +335,80 @@ function renderThead(){
   document.getElementById("thead").innerHTML = `<tr>${ths}</tr>`;
   document.querySelectorAll("#thead th[data-k]").forEach(th=>th.onclick=()=>sortBy(th.dataset.k));
 }
-/* 다가오는 실적 발표: 현재 카테고리·즐겨찾기 필터를 따른다 */
-let earnSpan = 14;
+/* 다가오는 실적 발표: 현재 카테고리·즐겨찾기 필터를 따른다. 주간 캘린더(기본) / 목록 */
+let earnMode = "week", earnSpan = 14, earnWeek = null;
+const earnOpen = new Set();
+const WKD = ["일","월","화","수","목","금","토"];
+const EU_MAX = 12;
 function shortName(n){ return n.replace(/,?\s+(Co\.,?\s?Ltd\.?|Company,?\s?Limited|Corporation|Corp\.?|Holdings.*|Inc\.?|Ltd\.?|Limited)$/i,""); }
+const isoAdd = (iso,n) => { const t=new Date(iso+"T00:00:00Z"); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); };
+const dowOf = iso => new Date(iso+"T00:00:00Z").getUTCDay();
+const mondayOf = iso => { const d=dowOf(iso); return isoAdd(iso, d===0?-6:1-d); };
+const mdDot = iso => iso.slice(5).replace("-",".");
+const weekLabel = w => `${+w.slice(5,7)}월 ${Math.ceil(+w.slice(8)/7)}주차`;
+function earnRows(){
+  const out=[];
+  RAW.forEach(r=>{
+    if(state.cat!=="전체" && r[F.CAT]!==state.cat) return;
+    if(state.favonly && !FAVS.has(r[F.CODE])) return;
+    const e=earnInfo(r[F.CODE]); if(e) out.push([r,e]);
+  });
+  return out.sort((a,b)=>(b[0][F.MCAP]||0)-(a[0][F.MCAP]||0));
+}
+function euCo([r,e]){
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}" data-c="${r[F.CODE]}" title="${esc(r[F.NAME])}${e.est?" (예상일)":""}"><b class="mono">${r[F.CODE]}</b><span>${esc(shortName(r[F.NAME]))}</span>${e.est?'<i>예상</i>':''}</button>`;
+}
 function renderEarnUp(){
   const box=document.getElementById("earnup"); if(!box) return;
   if(!EARN_META){ box.innerHTML=""; return; }
-  const rows = RAW.filter(r=>(state.cat==="전체"||r[F.CAT]===state.cat) && (!state.favonly||FAVS.has(r[F.CODE])));
-  const by = {};
-  rows.forEach(r=>{ const e=earnInfo(r[F.CODE]); if(e && e.days>=0 && e.days<=earnSpan) (by[e.date]=by[e.date]||[]).push([r,e]); });
-  const days = Object.keys(by).sort();
-  const wk = ["일","월","화","수","목","금","토"];
+  const all = earnRows(), today = todayJST(), td = dowOf(today);
+  const thisMon = td===6 ? isoAdd(today,2) : td===0 ? isoAdd(today,1) : mondayOf(today);
   const scope = (state.cat==="전체"?"전체":state.cat) + (state.favonly?" · ★만":"");
-  let h = `<div class="eu-h"><h3>다가오는 실적 발표</h3><span class="sub">${scope} · 향후 ${earnSpan}일 · 발표일 갱신 ${EARN_META.updated||"—"}</span>
-    <div class="eu-seg">${[7,14,30].map(n=>`<button data-n="${n}" aria-pressed="${earnSpan===n}">${n}일</button>`).join("")}</div></div>`;
-  if(!days.length) h += `<div class="eu-empty">이 기간에 예정된 발표가 없습니다.</div>`;
-  else h += `<div class="eu-days">` + days.map(d=>{
-    const items = by[d].sort((a,b)=>(b[0][F.MCAP]||0)-(a[0][F.MCAP]||0));
-    const dt = new Date(d+"T00:00:00Z");
-    const dd = items[0][1].days;
-    return `<div class="eu-day"><div class="eu-date"><b class="mono">${d.slice(5).replace("-","/")} (${wk[dt.getUTCDay()]})</b><span>${dd===0?"오늘":"D-"+dd} · ${items.length}개</span></div>
-      <div class="eu-list">${items.map(([r,e])=>`<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}" data-c="${r[F.CODE]}" title="${esc(r[F.NAME])}${e.est?" (예상일)":""}"><b class="mono">${r[F.CODE]}</b>${esc(shortName(r[F.NAME]))}${e.est?'<i>예상</i>':''}</button>`).join("")}</div></div>`;
-  }).join("") + `</div>`;
-  h += `<div class="eu-note">회사가 공시한 일정 기준(야후 파이낸스·카부탄). <i class="est-i">예상</i>은 날짜 공시 전이라 작년 같은 분기 발표일 등으로 추정한 날입니다. 매주 일요일 자동 갱신.</div>`;
+  let h = `<div class="eu-h"><h3>다가오는 실적 발표</h3><span class="sub">${scope} · 발표일 갱신 ${EARN_META.updated||"—"}</span>
+    <div class="eu-seg" data-g="mode">${[["week","주간 캘린더"],["list","목록"]].map(([k,l])=>`<button data-mode="${k}" aria-pressed="${earnMode===k}">${l}</button>`).join("")}</div></div>`;
+
+  if(earnMode==="week"){
+    const byWeek={};
+    all.forEach(x=>{ if(x[1].date>=thisMon){ const w=mondayOf(x[1].date); (byWeek[w]=byWeek[w]||[]).push(x); } });
+    const keys=Object.keys(byWeek).sort();
+    const lastW = keys.length ? keys[keys.length-1] : thisMon;
+    if(!earnWeek || earnWeek<thisMon) earnWeek=thisMon;
+    if(earnWeek>lastW) earnWeek=lastW;
+    const weeks=[]; for(let w=thisMon; w<=lastW; w=isoAdd(w,7)) weeks.push(w);
+    h += `<div class="eu-weeks" role="tablist" aria-label="주차 선택">${weeks.map(w=>`<button role="tab" data-w="${w}" aria-pressed="${w===earnWeek}"><b>${weekLabel(w)}${w===thisMon?" · 이번 주":""}</b><span>${mdDot(w)}~${mdDot(isoAdd(w,4))} · ${(byWeek[w]||[]).length}개</span></button>`).join("")}</div>`;
+    const prevOk = earnWeek>thisMon, nextOk = earnWeek<lastW;
+    h += `<div class="eu-wnav"><button data-nav="-7" ${prevOk?"":"disabled"} aria-label="이전 주">‹ 이전 주</button><b>${weekLabel(earnWeek)}</b><span class="mono">${mdDot(earnWeek)} – ${mdDot(isoAdd(earnWeek,4))}</span><button data-nav="7" ${nextOk?"":"disabled"} aria-label="다음 주">다음 주 ›</button></div>`;
+    h += `<div class="eu-cal">` + [0,1,2,3,4].map(i=>{
+      const d=isoAdd(earnWeek,i), items=all.filter(x=>x[1].date===d), open=earnOpen.has(d);
+      const shown = open ? items : items.slice(0,EU_MAX);
+      const cls = (d===today?" today":"") + (d<today?" past":"");
+      return `<div class="eu-col${cls}"><div class="eu-colh"><b class="mono">${mdDot(d)}(${WKD[dowOf(d)]})</b><span>${d===today?"오늘 · ":""}${items.length?items.length+"개":""}</span></div>
+        <div class="eu-colb">${items.length ? shown.map(euCo).join("") : `<span class="eu-none">예정 없음</span>`}${items.length>EU_MAX?`<button class="eu-more" data-d="${d}">${open?"접기":"+"+(items.length-EU_MAX)+"개 더 보기"}</button>`:""}</div></div>`;
+    }).join("") + `</div>`;
+    const wkend = all.filter(x=>x[1].date===isoAdd(earnWeek,5)||x[1].date===isoAdd(earnWeek,6));
+    if(wkend.length) h += `<div class="eu-wkend">주말 발표 ${wkend.length}개: ${wkend.map(([r,e])=>`<button class="eu-link" data-c="${r[F.CODE]}">${esc(shortName(r[F.NAME]))} (${mdDot(e.date)})</button>`).join(", ")}</div>`;
+  } else {
+    const by = {};
+    all.forEach(([r,e])=>{ if(e.days>=0 && e.days<=earnSpan) (by[e.date]=by[e.date]||[]).push([r,e]); });
+    const days = Object.keys(by).sort();
+    h += `<div class="eu-seg eu-span">${[7,14,30].map(n=>`<button data-n="${n}" aria-pressed="${earnSpan===n}">${n}일</button>`).join("")}</div>`;
+    if(!days.length) h += `<div class="eu-empty">이 기간에 예정된 발표가 없습니다.</div>`;
+    else h += `<div class="eu-days">` + days.map(d=>{
+      const items = by[d], dd = items[0][1].days;
+      return `<div class="eu-day"><div class="eu-date"><b class="mono">${mdDot(d)}(${WKD[dowOf(d)]})</b><span>${dd===0?"오늘":"D-"+dd} · ${items.length}개</span></div>
+        <div class="eu-list">${items.map(euCo).join("")}</div></div>`;
+    }).join("") + `</div>`;
+  }
+  h += `<div class="eu-note">야후 파이낸스·카부탄에 공시된 일정 기준. <i class="est-i">예상</i>은 날짜 공시 전이라 작년 같은 분기 발표일 등으로 추정한 날입니다. 시총 순 정렬 · 매주 일요일 자동 갱신.</div>`;
   box.innerHTML = h;
-  box.querySelectorAll(".eu-seg button").forEach(b=>b.onclick=()=>{earnSpan=+b.dataset.n; renderEarnUp();});
-  box.querySelectorAll(".eu-co").forEach(b=>b.onclick=()=>openDetail(b.dataset.c));
+  box.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{earnMode=b.dataset.mode; renderEarnUp();});
+  box.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{earnWeek=b.dataset.w; renderEarnUp();});
+  box.querySelectorAll("[data-nav]").forEach(b=>b.onclick=()=>{earnWeek=isoAdd(earnWeek,+b.dataset.nav); renderEarnUp();});
+  box.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{earnSpan=+b.dataset.n; renderEarnUp();});
+  box.querySelectorAll(".eu-more").forEach(b=>b.onclick=()=>{const d=b.dataset.d; earnOpen.has(d)?earnOpen.delete(d):earnOpen.add(d); renderEarnUp();});
+  box.querySelectorAll(".eu-co,.eu-link").forEach(b=>b.onclick=()=>openDetail(b.dataset.c));
+  const on = box.querySelector('.eu-weeks [aria-pressed="true"]');
+  if(on){ const wk=box.querySelector(".eu-weeks"); wk.scrollLeft = on.offsetLeft - wk.offsetLeft - 8; }
 }
 function renderTable(){
   renderEarnUp();
@@ -1148,6 +1196,13 @@ document.getElementById("s-ch").textContent=BUNDLE.length;
 document.getElementById("s-m").textContent=(RAW.reduce((a,r)=>a+(r[F.MCAP]||0),0)/10000).toFixed(0);
 document.getElementById("asof").textContent="2026-09-04";
 buildRail(); renderColsel(); renderTable();
+(function stickyOffsets(){
+  const set=()=>{ const nav=document.getElementById("topnav"), rail=document.querySelector(".rail");
+    document.documentElement.style.setProperty("--navh",(nav?nav.offsetHeight:0)+"px");
+    document.documentElement.style.setProperty("--railh",(rail?rail.offsetHeight:0)+"px"); };
+  set(); window.addEventListener("resize",set);
+  if(window.ResizeObserver){ const ro=new ResizeObserver(set); const nav=document.getElementById("topnav"); if(nav) ro.observe(nav); }
+})();
 fetch("data/jp/earnings_dates.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
   EARN=d.dates||{}; EARN_META=d;
   const el=document.getElementById("earnasof"); if(el) el.textContent=d.updated||"—";
