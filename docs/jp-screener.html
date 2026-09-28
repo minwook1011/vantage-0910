@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="firebase-sync.js?v=20260920a"></script>
+<script src="gate.js?v=20260909a"></script>
+<title>일본 소비재 스크리너 — VANTAGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="jp-screener.css?v=20260928a">
+</head>
+<body>
+<header>
+  <div class="hd">
+    <div class="brand">
+      <a class="back" href="index.html">← VANTAGE</a>
+      <div class="eyebrow">Tokyo Stock Exchange · Consumer</div>
+      <h1><span class="kanji jp">消</span>일본 소비재 스크리너</h1>
+      <div class="sub">카테고리별 랭킹 · 주가 차트 · 분기/연 실적 &nbsp;|&nbsp; 주가·실적 <span id="asof" class="mono"></span> · 실적발표일 <span id="earnasof" class="mono">…</span></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="s-n"></b><span>종목</span></div>
+      <div class="stat"><b id="s-ch"></b><span>차트·실적 수록</span></div>
+      <div class="stat"><b id="s-m"></b><span>합산 시총(조엔)</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="rail"><div class="rail-in" id="rail"></div></nav>
+
+<div class="wrap">
+  <div class="ctl">
+    <div class="fld">
+      <label for="sort">정렬 기준</label>
+      <select id="sort">
+        <option value="mc">시가총액</option>
+        <option value="EARN">실적발표 (가까운 순)</option>
+        <option value="rev">매출</option>
+        <option value="REVG">매출성장률 (TTM YoY)</option>
+        <option value="PY">주가수익률 (1년)</option>
+        <option value="PYTD">주가수익률 (YTD)</option>
+        <option value="ROE">ROE</option>
+        <option value="OPM">영업이익률</option>
+        <option value="PER">PER (낮은 순)</option>
+        <option value="SSS">기존점 매출 (외식)</option>
+        <option value="TRAF">기존점 객수 (외식)</option>
+        <option value="SPEND">기존점 객단가 (외식)</option>
+        <option value="ALLS">전점 매출 (외식)</option>
+        <option value="STORE">점포수 (외식)</option>
+        <option value="PSU">점포당 매출 (외식)</option>
+        <option value="FOOD">원가율 (외식, 낮은 순)</option>
+        <option value="FLR">FL비율 (외식, 낮은 순)</option>
+      </select>
+    </div>
+    <div class="fld">
+      <label>최소 시총</label>
+      <div class="seg" id="minmc">
+        <button data-v="0" aria-pressed="true">전체</button>
+        <button data-v="500">500억엔↑</button>
+        <button data-v="1000">1천억엔↑</button>
+        <button data-v="5000">5천억엔↑</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label>차트</label>
+      <div class="seg" id="onlych">
+        <button data-v="0" aria-pressed="true">전체</button>
+        <button data-v="1">일봉·급등분석만</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label>즐겨찾기</label>
+      <div class="seg" id="favflt">
+        <button data-v="0" aria-pressed="true">전체</button>
+        <button data-v="1">★만</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label for="q">검색</label>
+      <input type="search" id="q" placeholder="종목명 · 코드 · 업종">
+    </div>
+    <div class="count"><b id="cnt"></b>개 종목</div>
+  </div>
+
+  <div class="smart">
+    <div class="smart-in">
+      <span class="smart-ic">⌕</span>
+      <input type="text" id="sq" placeholder='조건으로 검색 — 예: 시총 5000억엔 이상, 매출성장 15% 이상, 성장 가속, 거래량 5배 순'>
+      <button id="sqgo">검색</button>
+      <button id="sqclear" hidden>해제</button>
+    </div>
+    <div class="smart-hint" id="sqhint">시총·매출성장·1년수익률·PER·ROE·영업이익률 조건과 <b>성장 가속</b>·<b>거래량 N배</b>를 알아듣습니다. “~순”을 붙이면 그 기준으로 정렬합니다.</div>
+    <div class="smart-chips" id="sqchips"></div>
+  </div>
+
+  <div class="colsel" id="colsel"></div>
+  <div class="mtxnote" id="mtxnote"></div>
+
+  <div id="earnup"></div>
+
+  <div id="foodcmp"></div>
+
+  <div class="tblwrap">
+    <table>
+      <thead id="thead"></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="empty" hidden>조건에 맞는 종목이 없습니다.</div>
+
+  <div class="note">
+    <b>모든 종목을 클릭하면 주가 차트(10년)와 분기·연간 실적이 열립니다.</b>
+    코드 앞의 점이 채워진 종목(카테고리별 시총 상위 + 매출성장 상위, 116개)은 <b>일봉</b>과 거래량 급등 분석까지,
+    나머지는 <b>주봉·월봉</b>으로 수록했습니다.
+    일봉 종목 차트에는 거래량이 평소(직전 60거래일 중앙값)의 5배를 넘으면서 주가도 크게 움직인 구간을 노란 띠로 표시했습니다.
+    이런 구간은 전체 646건인데, 그중 <b>18개 기업 46건</b>은 무슨 일이 있었는지 일본 현지 기사·공시로 직접 조사해 넣었고
+    나머지는 날짜·배수·등락률만 계산해 보여줍니다. 등락 색상은 한국·일본 증시 관행대로 상승 적색 / 하락 청색입니다.
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" tabindex="-1"><div class="pin" id="pin"></div></aside>
+<script src="data/jp/screener-data.js?v=20260904"></script>
+<script src="jp-screener.js?v=20260928a"></script>
+</body>
+</html>

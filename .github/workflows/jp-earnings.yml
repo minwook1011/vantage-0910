@@ -1,0 +1,52 @@
+name: jp-earnings-dates
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # 09:00 KST(일) 일본 소비재 스크리너 실적 발표일 갱신
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - fetch_jp_earnings_dates.py
+      - .github/workflows/jp-earnings.yml
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: jp-earnings-dates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 실적 발표일 수집
+        run: python fetch_jp_earnings_dates.py
+      - name: 데이터 저장
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/jp/earnings_dates.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: 일본 소비재 실적 발표일 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: 사이트 미게시 변경 복구
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py
