@@ -1,0 +1,173 @@
+{
+  "code": "222080",
+  "name": "SFA넥셀",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2019-03-31",
+      "revenue": 576430112,
+      "operating_income": -1678238535,
+      "net_income": -1356317347
+    },
+    {
+      "date": "2021-06-30",
+      "revenue": 70988886969,
+      "operating_income": 11833383916,
+      "net_income": 4353104417
+    },
+    {
+      "date": "2021-09-30",
+      "revenue": 8624744057,
+      "operating_income": -2357631412,
+      "net_income": -2011643945
+    },
+    {
+      "date": "2022-03-31",
+      "revenue": 23230381495,
+      "operating_income": 1535334686,
+      "net_income": 1155233313
+    },
+    {
+      "date": "2022-06-30",
+      "revenue": 32834443463,
+      "operating_income": 7381601046,
+      "net_income": 8634896383
+    },
+    {
+      "date": "2022-09-30",
+      "revenue": 23370510576,
+      "operating_income": -1638480419,
+      "net_income": 327665635
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 79927067118,
+      "operating_income": 533087865,
+      "net_income": 1418405566
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": 25851422214,
+      "operating_income": -2365320065,
+      "net_income": -2047079387
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 27050465700,
+      "operating_income": 4509822226,
+      "net_income": -1706366694
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 35900992280,
+      "operating_income": 6529076706,
+      "net_income": 9041289348
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 221360645046,
+      "operating_income": 30269163970,
+      "net_income": 23335795390
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 94619618151,
+      "operating_income": 18350251278,
+      "net_income": 13221081019
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 134317050538,
+      "operating_income": 24956319175,
+      "net_income": 22026921531
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 149060424837,
+      "operating_income": -8046988129,
+      "net_income": -7795870710
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 130543668989,
+      "operating_income": 24085998076,
+      "net_income": 28725468858
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 107822279418,
+      "operating_income": 17005961173,
+      "net_income": 14665171811
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 129612546705,
+      "operating_income": 1368147222,
+      "net_income": -8721477553
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 87653287405,
+      "operating_income": 7548648551,
+      "net_income": 11885150872
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 82093061056,
+      "operating_income": 7587644374,
+      "net_income": 10902760421
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 53414910431,
+      "operating_income": 2163067299,
+      "net_income": 5906056515
+    }
+  ],
+  "annual": [
+    {
+      "date": "2019-12-31",
+      "revenue": 100552888045,
+      "operating_income": 15394050219,
+      "net_income": 11194388752
+    },
+    {
+      "date": "2020-12-31",
+      "revenue": 118057348066,
+      "operating_income": 13910777480,
+      "net_income": -4410655945
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": 132737951313,
+      "operating_income": 16353054298,
+      "net_income": -24607696621
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 159362402652,
+      "operating_income": 7811543178,
+      "net_income": 11536200897
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 310163525240,
+      "operating_income": 38942742837,
+      "net_income": 28623638657
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 508540762515,
+      "operating_income": 59345580400,
+      "net_income": 56177600698
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 407181174584,
+      "operating_income": 33510401320,
+      "net_income": 28731605551
+    }
+  ]
+}

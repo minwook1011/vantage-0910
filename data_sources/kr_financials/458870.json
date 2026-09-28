@@ -1,0 +1,41 @@
+{
+  "code": "458870",
+  "name": "씨어스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-06-30",
+      "revenue": 7954083649,
+      "operating_income": 1485484198,
+      "net_income": 1499895527
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 15737059302,
+      "operating_income": 6726422650,
+      "net_income": 6726382677
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 32525756271,
+      "operating_income": 13854047603,
+      "net_income": 13724612600
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 28375516327,
+      "operating_income": 12949759745,
+      "net_income": 12939614542
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 48170737719,
+      "operating_income": 16327166470,
+      "net_income": 16045578543
+    }
+  ]
+}

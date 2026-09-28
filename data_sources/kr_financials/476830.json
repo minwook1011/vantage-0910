@@ -1,0 +1,89 @@
+{
+  "code": "476830",
+  "name": "알지노믹스",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2024-03-31",
+      "revenue": 0,
+      "operating_income": -3371805304,
+      "net_income": -4334309752
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": -3419869343,
+      "net_income": -4491621651
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 0,
+      "operating_income": -3445288660,
+      "net_income": -4447178487
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": -2625002005,
+      "net_income": -5577011416
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": -4131093685,
+      "net_income": -5262661576
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": 3055961424,
+      "net_income": -85066907785
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": -8081911126,
+      "net_income": -8149584787
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": -5440318051,
+      "net_income": -5331339297
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": -8057629875,
+      "net_income": -7761437145
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 807823294,
+      "operating_income": -6851726574,
+      "net_income": -6366999347
+    }
+  ],
+  "annual": [
+    {
+      "date": "2023-12-31",
+      "revenue": 143607690,
+      "operating_income": -15522148625,
+      "net_income": -13599580467
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 0,
+      "operating_income": -12861965312,
+      "net_income": -18850121306
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": -14597361438,
+      "net_income": -103810493445
+    }
+  ]
+}

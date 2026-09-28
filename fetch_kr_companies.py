@@ -29,7 +29,7 @@ HISTORY_DIR = ROOT / "data_sources" / "kr_financials"
 OUT_DIR = ROOT / "docs" / "data" / "kr"
 INDEX = ROOT / "docs" / "data" / "kr_companies.json"
 MIN_LISTED_DAYS = 120
-MIN_CAP = {"KOSPI": 3000, "KOSDAQ": 5000}  # 시장별 시총 하한(억원)
+MIN_CAP = {"KOSPI": 3000, "KOSDAQ": 3000}  # 시장별 시총 하한(억원)
 MARKET_KO = {"KOSPI": "코스피", "KOSDAQ": "코스닥"}
 KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (compatible; VantageFinancialData/1.0)"
@@ -114,8 +114,8 @@ def build_universe(top, min_cap_eok, pages, market="KOSPI"):
         data = get_json(f"{M_API}/stocks/marketValue/{market}?page={page}&pageSize=100")
         for s in data.get("stocks", []):
             code, name = s["itemCode"], s["stockName"]
-            # 잡주·중복 제외: 보통주만(우선주 코드 끝자리 ≠ 0), ETF/ETN/리츠/스팩 제외, 시총 하한
-            if s.get("stockEndType") != "stock" or not code.endswith("0") or re.search(r"스팩|리츠|REIT|Reg\.S", name):
+            # 잡주·중복 제외: 보통주만(우선주 코드 끝자리 ≠ 0), ETF/ETN/리츠/스팩·인프라펀드(실적 없음) 제외, 시총 하한
+            if s.get("stockEndType") != "stock" or not code.endswith("0") or re.search(r"스팩|리츠|REIT|Reg\.S|맥쿼리인프라", name):
                 continue
             cap = number(s.get("marketValue"))  # 억원
             if cap is None or cap < min_cap_eok:
@@ -164,7 +164,7 @@ def update_universe(args):
         if e.get("market") == args.market and e["code"] not in picked_codes:
             e["value_rank"] = None
     uni.update({"schema_version": 1, "updated_at": now,
-                "criteria": f"코스피·코스닥 보통주 · 시총 코스피 3,000억·코스닥 5,000억 이상 · 상장 6개월 이상 · 시장별 최근 20거래일 평균 거래대금 순위(편입 후 유지)",
+                "criteria": f"코스피·코스닥 보통주 · 시총 3,000억 이상 · 상장 6개월 이상 · 시장별 최근 20거래일 평균 거래대금 순위(편입 후 유지)",
                 "companies": sorted(have.values(), key=lambda c: (c.get("market") != "KOSPI", c.get("value_rank") or 999, c["code"]))})
     write_if_changed(UNIVERSE, uni, indent=2)
     print(json.dumps({"universe": len(uni["companies"]), "picked": [c["name"] for c in picked]}, ensure_ascii=False))
@@ -349,7 +349,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--universe", action="store_true", help="거래대금 상위 기업을 편입 목록에 추가")
     ap.add_argument("--top", type=int, default=30)
-    ap.add_argument("--min-cap", type=float, default=None, help="시총 하한(억원, 기본 코스피 3000·코스닥 5000)")
+    ap.add_argument("--min-cap", type=float, default=None, help="시총 하한(억원, 기본 3000)")
     ap.add_argument("--market", choices=["KOSPI", "KOSDAQ"], default="KOSPI")
     ap.add_argument("--pages", type=int, default=3, help="시총 상위 몇 페이지(100개씩)에서 고를지")
     ap.add_argument("--price-days", type=int, default=1300)

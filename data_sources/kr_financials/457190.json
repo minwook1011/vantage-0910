@@ -1,0 +1,35 @@
+{
+  "code": "457190",
+  "name": "이수스페셜티케미컬",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-09-30",
+      "revenue": 103986105087,
+      "operating_income": -1460814951,
+      "net_income": -1815121590
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 108571660000,
+      "operating_income": 3480707000,
+      "net_income": 1884047000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 108029149000,
+      "operating_income": 7737005000,
+      "net_income": 3627145000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 411470361000,
+      "operating_income": 1615256000,
+      "net_income": 769523000
+    }
+  ]
+}

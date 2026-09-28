@@ -1,0 +1,125 @@
+{
+  "code": "397030",
+  "name": "에이프릴바이오",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2022-09-30",
+      "revenue": 200000000,
+      "operating_income": -4373106063,
+      "net_income": -3389548743
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": null,
+      "operating_income": -3393902413,
+      "net_income": -2510037469
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 0,
+      "operating_income": -3657627854,
+      "net_income": -2635264602
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": -3685760718,
+      "net_income": -3146640978
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": -2650646246,
+      "net_income": -5837613224
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": -2520441918,
+      "net_income": -2030425581
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": 18169112440,
+      "net_income": 18576431581
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": -2431279324,
+      "net_income": -3118689312
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": 3651693519,
+      "net_income": 6577845599
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": -110181271,
+      "net_income": 593652088
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": -2657269287,
+      "net_income": -3093359482
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": -2499578144,
+      "net_income": -4955772580
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": -1996901506,
+      "net_income": -2272531115
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": -2192730702,
+      "net_income": 200987340
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": -2915112842,
+      "net_income": -1985455621
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": null,
+      "operating_income": -11474306802,
+      "net_income": -8959274574
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": -13387937231,
+      "net_income": -14129556273
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": 16869084717,
+      "net_income": 20005162287
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": -7263930208,
+      "net_income": -9728011089
+    }
+  ]
+}

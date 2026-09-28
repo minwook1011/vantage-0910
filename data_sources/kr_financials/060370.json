@@ -1,0 +1,71 @@
+{
+  "code": "060370",
+  "name": "LS마린솔루션",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 44480427390,
+      "operating_income": 3019344752,
+      "net_income": 2680964173
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 66986959531,
+      "operating_income": 3416376038,
+      "net_income": 1446729881
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 76972868236,
+      "operating_income": 2052839180,
+      "net_income": 3219476951
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 55764819400,
+      "operating_income": -1479258649,
+      "net_income": 1009156489
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 52794324941,
+      "operating_income": 4215203225,
+      "net_income": 6106653037
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 95440343611,
+      "operating_income": 6121569377,
+      "net_income": 6975962359
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 42787326607,
+      "operating_income": -6606262413,
+      "net_income": -12126087000
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 70779250390,
+      "operating_income": 13086945968,
+      "net_income": 11617864038
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 130279123723,
+      "operating_income": 12392667090,
+      "net_income": 13203271844
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 244205074557,
+      "operating_income": 7009301321,
+      "net_income": 8356327494
+    }
+  ]
+}

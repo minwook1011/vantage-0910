@@ -1,0 +1,101 @@
+{
+  "code": "376900",
+  "name": "로킷헬스케어",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 3335507224,
+      "operating_income": -1979277664,
+      "net_income": -1786678913
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 3292055021,
+      "operating_income": -611871531,
+      "net_income": -603732264
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 3612722561,
+      "operating_income": -1058080358,
+      "net_income": -469049587
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 2540993933,
+      "operating_income": -1918114909,
+      "net_income": -1749433970
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 3665466205,
+      "operating_income": -1983954387,
+      "net_income": -4867741944
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 3695333821,
+      "operating_income": -246510364,
+      "net_income": -352303764
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 6012600153,
+      "operating_income": 21533779,
+      "net_income": -979674815
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 6954615621,
+      "operating_income": 77538648,
+      "net_income": -1165916447
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 9584462096,
+      "operating_income": 600322718,
+      "net_income": -306849097
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 8058778590,
+      "operating_income": -2350759967,
+      "net_income": -1876355482
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 8215797437,
+      "operating_income": -13452986165,
+      "net_income": -9342591747
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 9150881513,
+      "operating_income": -13878248399,
+      "net_income": 1857113998
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 12417565750,
+      "operating_income": -7377752929,
+      "net_income": 16626871873
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 13111237720,
+      "operating_income": -5572021185,
+      "net_income": -7689957765
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 26247011691,
+      "operating_income": 452884781,
+      "net_income": -2804744123
+    }
+  ]
+}

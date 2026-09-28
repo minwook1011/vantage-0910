@@ -1,0 +1,41 @@
+{
+  "code": "424870",
+  "name": "이뮨온시아",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-06-30",
+      "revenue": 59444703,
+      "operating_income": -3322891907,
+      "net_income": -3071600435
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 0,
+      "operating_income": -10595753408,
+      "net_income": -10371408222
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 0,
+      "operating_income": -5750756129,
+      "net_income": -5617911188
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 0,
+      "operating_income": -4273817145,
+      "net_income": -3901969397
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 111208740,
+      "operating_income": -28004634036,
+      "net_income": -27363040577
+    }
+  ]
+}

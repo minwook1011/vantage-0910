@@ -1,0 +1,41 @@
+{
+  "code": "281820",
+  "name": "케이씨텍",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-06-30",
+      "revenue": 97529632802,
+      "operating_income": 15557553762,
+      "net_income": 11007621744
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 95963916387,
+      "operating_income": 14868440045,
+      "net_income": 14998593124
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 156114880339,
+      "operating_income": 34810833489,
+      "net_income": 31610488267
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 112688832955,
+      "operating_income": 23521741082,
+      "net_income": 21110597036
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 382856574357,
+      "operating_income": 59965538593,
+      "net_income": 53392149112
+    }
+  ]
+}

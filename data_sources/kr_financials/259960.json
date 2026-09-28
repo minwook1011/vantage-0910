@@ -1,0 +1,173 @@
+{
+  "code": "259960",
+  "name": "크래프톤",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2021-06-30",
+      "revenue": null,
+      "operating_income": 174185493963,
+      "net_income": 141307547927
+    },
+    {
+      "date": "2021-09-30",
+      "revenue": null,
+      "operating_income": 195289389875,
+      "net_income": 178311406878
+    },
+    {
+      "date": "2022-03-31",
+      "revenue": null,
+      "operating_income": 311887050299,
+      "net_income": 245232309718
+    },
+    {
+      "date": "2022-06-30",
+      "revenue": null,
+      "operating_income": 162315621849,
+      "net_income": 193957087861
+    },
+    {
+      "date": "2022-09-30",
+      "revenue": null,
+      "operating_income": 140277708134,
+      "net_income": 226407095635
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": null,
+      "operating_income": 137126189260,
+      "net_income": -165442460997
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": null,
+      "operating_income": 282999224513,
+      "net_income": 267225479018
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": null,
+      "operating_income": 131460412637,
+      "net_income": 128511344002
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 450273957736,
+      "operating_income": 189259011177,
+      "net_income": 211551235997
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": 164326960643,
+      "net_income": -13227744665
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 665908746665,
+      "operating_income": 310500848630,
+      "net_income": 348623711681
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 707023004068,
+      "operating_income": 332109396449,
+      "net_income": 341406130858
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 719274864181,
+      "operating_income": 324420287197,
+      "net_income": 121360898732
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 617567491674,
+      "operating_income": 215457151912,
+      "net_income": 491201912441
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 874184373846,
+      "operating_income": 457276029726,
+      "net_income": 371459825860
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 662048249145,
+      "operating_income": 246063427020,
+      "net_income": 15534820668
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 870623522832,
+      "operating_income": 348608416956,
+      "net_income": 369449615687
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 919697549143,
+      "operating_income": 2433106486,
+      "net_income": -22740618654
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 1371415007891,
+      "operating_income": 561563204569,
+      "net_income": 514095420909
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 1290230602555,
+      "operating_income": 410921666864,
+      "net_income": -29900848684
+    }
+  ],
+  "annual": [
+    {
+      "date": "2019-12-31",
+      "revenue": null,
+      "operating_income": 359296286722,
+      "net_income": 278859373220
+    },
+    {
+      "date": "2020-12-31",
+      "revenue": null,
+      "operating_income": 773870752325,
+      "net_income": 556267188896
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": null,
+      "operating_income": 639639249890,
+      "net_income": 519877622732
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 1854016090527,
+      "operating_income": 751606569542,
+      "net_income": 500154032217
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 1910576180288,
+      "operating_income": 768045608970,
+      "net_income": 594060314352
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 2709774106588,
+      "operating_income": 1182487684188,
+      "net_income": 1302592653712
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 3326553694966,
+      "operating_income": 1054380980188,
+      "net_income": 733703643561
+    }
+  ]
+}

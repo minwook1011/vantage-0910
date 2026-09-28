@@ -1,0 +1,53 @@
+{
+  "code": "448900",
+  "name": "한국피아이엠",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 8635396915,
+      "operating_income": 529943213,
+      "net_income": 304871634
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 8917186352,
+      "operating_income": 116280820,
+      "net_income": -1824250410
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 11199014243,
+      "operating_income": 260937455,
+      "net_income": 472130026
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 8179513009,
+      "operating_income": 548389775,
+      "net_income": 993010766
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 8312694009,
+      "operating_income": -747379845,
+      "net_income": -42943140
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 10502526840,
+      "operating_income": 179762941,
+      "net_income": 760923617
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 36931110519,
+      "operating_income": 1455551263,
+      "net_income": -54237984
+    }
+  ]
+}

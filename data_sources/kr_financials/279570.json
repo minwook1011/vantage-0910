@@ -1,0 +1,95 @@
+{
+  "code": "279570",
+  "name": "케이뱅크",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": 16886000000,
+      "net_income": 13183000000
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": 51521000000,
+      "net_income": 50694000000
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": 35208000000,
+      "net_income": 34738000000
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": 36042000000,
+      "net_income": 36984000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": 10196000000,
+      "net_income": 5637000000
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": 15575000000,
+      "net_income": 16058000000
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": 69799000000,
+      "net_income": 68189000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 20713000000,
+      "net_income": 19183000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 10998000000,
+      "net_income": 9179000000
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 32402000000,
+      "net_income": 33206000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 26970000000,
+      "net_income": 26870000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": 16464000000,
+      "net_income": 12812000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": 132967000000,
+      "net_income": 128053000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 117085000000,
+      "net_income": 112609000000
+    }
+  ]
+}

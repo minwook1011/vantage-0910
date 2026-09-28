@@ -1,0 +1,41 @@
+{
+  "code": "468530",
+  "name": "프로티나",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-06-30",
+      "revenue": 963568300,
+      "operating_income": -2397012578,
+      "net_income": -1957139112
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 582191361,
+      "operating_income": -2948197338,
+      "net_income": -2566210530
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 168557500,
+      "operating_income": -4712013613,
+      "net_income": -3281984247
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 349276450,
+      "operating_income": -3955963406,
+      "net_income": -3111949030
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 2950918349,
+      "operating_income": -11367962763,
+      "net_income": -9011931696
+    }
+  ]
+}

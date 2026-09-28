@@ -1,0 +1,35 @@
+{
+  "code": "125490",
+  "name": "한라캐스트",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-09-30",
+      "revenue": 38035166423,
+      "operating_income": 2080238744,
+      "net_income": 1884214882
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 40545889768,
+      "operating_income": 1497442496,
+      "net_income": 1555978796
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 49036916051,
+      "operating_income": 3256343742,
+      "net_income": 1972104935
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 155882334021,
+      "operating_income": 10292961804,
+      "net_income": 3657713643
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "code": "454910",
+  "name": "두산로보틱스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 12510811883,
+      "operating_income": -6137359265,
+      "net_income": -6456477757
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 10881801774,
+      "operating_income": -6885601862,
+      "net_income": -2846756678
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 14423531367,
+      "operating_income": -7870538654,
+      "net_income": -3705669662
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 10034333350,
+      "operating_income": -9588228365,
+      "net_income": -6881960502
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 11490277346,
+      "operating_income": -16857747365,
+      "net_income": -23126464633
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 5279512001,
+      "operating_income": -12106456584,
+      "net_income": -9417559053
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 4532272039,
+      "operating_income": -15650237991,
+      "net_income": -16566633373
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 10164933789,
+      "operating_income": -15265456197,
+      "net_income": -12857557431
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 13001620525,
+      "operating_income": -16450156818,
+      "net_income": -16653591682
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 15294798751,
+      "operating_income": -12069485926,
+      "net_income": -9165193026
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 17674019166,
+      "operating_income": -14417199907,
+      "net_income": -12792294892
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 44953674400,
+      "operating_income": -13228333085,
+      "net_income": -12548180138
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 53038372299,
+      "operating_income": -19167549522,
+      "net_income": -15873538546
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 46829943837,
+      "operating_income": -41202116246,
+      "net_income": -36560851475
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 32978338354,
+      "operating_income": -59472307590,
+      "net_income": -55495341539
+    }
+  ]
+}

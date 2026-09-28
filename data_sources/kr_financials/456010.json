@@ -1,0 +1,71 @@
+{
+  "code": "456010",
+  "name": "아이씨티케이",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-03-31",
+      "revenue": 414310476,
+      "operating_income": -2608032145,
+      "net_income": -2157807633
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 829882242,
+      "operating_income": -2604483494,
+      "net_income": -4195215443
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 398652988,
+      "operating_income": -2886115448,
+      "net_income": -2509911127
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 2377290920,
+      "operating_income": -765531048,
+      "net_income": 2182941262
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 604800404,
+      "operating_income": -3042245243,
+      "net_income": -1145186202
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 1723536118,
+      "operating_income": -1939948302,
+      "net_income": -12812875012
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 2566873755,
+      "operating_income": -3334554411,
+      "net_income": -10771971652
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 6187514371,
+      "operating_income": -2364614723,
+      "net_income": -9030707393
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 6683572584,
+      "operating_income": -6685587200,
+      "net_income": -5817711595
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 4020136626,
+      "operating_income": -8864162135,
+      "net_income": -6679992941
+    }
+  ]
+}

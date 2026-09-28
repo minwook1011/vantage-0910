@@ -1,0 +1,125 @@
+{
+  "code": "441270",
+  "name": "파인엠텍",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2022-09-30",
+      "revenue": 53783261319,
+      "operating_income": 4612744756,
+      "net_income": 8112559774
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": 51152470602,
+      "operating_income": 1054662941,
+      "net_income": -649549048
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 109634052755,
+      "operating_income": 7653601301,
+      "net_income": -1159039967
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 160163412938,
+      "operating_income": 13006599821,
+      "net_income": 15779076146
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 59079578847,
+      "operating_income": -1380997282,
+      "net_income": -3176138346
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 69547987843,
+      "operating_income": 1117618112,
+      "net_income": 2779701087
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 154769044122,
+      "operating_income": 4525661713,
+      "net_income": 3361545605
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 98838051298,
+      "operating_income": 1007562727,
+      "net_income": -14202196157
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 59013438841,
+      "operating_income": -14561073138,
+      "net_income": -7699610193
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 43576364038,
+      "operating_income": -2944912491,
+      "net_income": -3839246357
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 76510005533,
+      "operating_income": 5287594385,
+      "net_income": -3495221512
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 57543971069,
+      "operating_income": 1540892885,
+      "net_income": 1257288310
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 61490767202,
+      "operating_income": -1948766571,
+      "net_income": -9367386460
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 46069414144,
+      "operating_income": -2202975398,
+      "net_income": 2549322694
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 95213286425,
+      "operating_income": 7330620602,
+      "net_income": -4850414916
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 116372755248,
+      "operating_income": 5442629061,
+      "net_income": -7039642699
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 380029515142,
+      "operating_income": 20333866781,
+      "net_income": 10794348785
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 382168522104,
+      "operating_income": -7910230586,
+      "net_income": -15760559658
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 239121107842,
+      "operating_income": 1934808208,
+      "net_income": -15444566019
+    }
+  ]
+}

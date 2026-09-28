@@ -1,0 +1,173 @@
+{
+  "code": "187660",
+  "name": "페니트리움바이오",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2021-06-30",
+      "revenue": 3584958991,
+      "operating_income": 906329683,
+      "net_income": 883172878
+    },
+    {
+      "date": "2021-09-30",
+      "revenue": 3017240054,
+      "operating_income": -243302437,
+      "net_income": -148671235
+    },
+    {
+      "date": "2022-03-31",
+      "revenue": 3394056816,
+      "operating_income": 186434225,
+      "net_income": 258441473
+    },
+    {
+      "date": "2022-06-30",
+      "revenue": 3955269952,
+      "operating_income": 193134730,
+      "net_income": 665050132
+    },
+    {
+      "date": "2022-09-30",
+      "revenue": 4018325996,
+      "operating_income": 299688568,
+      "net_income": 249755660
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 3513653023,
+      "operating_income": -162736174,
+      "net_income": -29206328
+    },
+    {
+      "date": "2023-03-31",
+      "revenue": 3607096264,
+      "operating_income": -378822709,
+      "net_income": -159467479
+    },
+    {
+      "date": "2023-06-30",
+      "revenue": 4181403858,
+      "operating_income": 132054096,
+      "net_income": 33378445
+    },
+    {
+      "date": "2023-09-30",
+      "revenue": 3255178888,
+      "operating_income": -645385817,
+      "net_income": -527827097
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 2746516689,
+      "operating_income": -1018850404,
+      "net_income": -3146272388
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 2657181536,
+      "operating_income": -1457939250,
+      "net_income": -1098715176
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 2626563311,
+      "operating_income": -10313566315,
+      "net_income": -15917755256
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 2021311164,
+      "operating_income": -2330822635,
+      "net_income": -2760509776
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 2439930665,
+      "operating_income": -1830117961,
+      "net_income": -2446159952
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 2212570846,
+      "operating_income": -2718369968,
+      "net_income": -3656865876
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 2523948387,
+      "operating_income": -1651900516,
+      "net_income": 1814120392
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 2606739200,
+      "operating_income": -1455044506,
+      "net_income": -8460709352
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1929754365,
+      "operating_income": -1550922094,
+      "net_income": -4526276138
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 1692154721,
+      "operating_income": -1836201631,
+      "net_income": -1866657575
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 2115649294,
+      "operating_income": -1858687392,
+      "net_income": -1510311802
+    }
+  ],
+  "annual": [
+    {
+      "date": "2019-12-31",
+      "revenue": 10206091551,
+      "operating_income": 1073608243,
+      "net_income": 865608017
+    },
+    {
+      "date": "2020-12-31",
+      "revenue": 13111662537,
+      "operating_income": 3984161970,
+      "net_income": 3997251582
+    },
+    {
+      "date": "2021-12-31",
+      "revenue": 13972489868,
+      "operating_income": 2412505411,
+      "net_income": 2139448681
+    },
+    {
+      "date": "2022-12-31",
+      "revenue": 14881305787,
+      "operating_income": 516521349,
+      "net_income": 1144040937
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 13790195699,
+      "operating_income": -1911004834,
+      "net_income": -3800188519
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 9744986676,
+      "operating_income": -15932446161,
+      "net_income": -22223140160
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 9273012798,
+      "operating_income": -7376237084,
+      "net_income": -14829730974
+    }
+  ]
+}

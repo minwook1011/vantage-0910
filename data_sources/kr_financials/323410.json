@@ -1,0 +1,101 @@
+{
+  "code": "323410",
+  "name": "카카오뱅크",
+  "source": "DART 공시",
+  "statement": "ofs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 656598000000,
+      "operating_income": 127530000000,
+      "net_income": 95417000000
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 717859000000,
+      "operating_income": 148405000000,
+      "net_income": 111197000000
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 734144000000,
+      "operating_income": 169769000000,
+      "net_income": 120245000000
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 746339000000,
+      "operating_income": 173735000000,
+      "net_income": 124166000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 747279000000,
+      "operating_income": 114971000000,
+      "net_income": 84457000000
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 784562000000,
+      "operating_income": 183039000000,
+      "net_income": 137416000000
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 778033000000,
+      "operating_income": 170127000000,
+      "net_income": 126257000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 764658000000,
+      "operating_income": 151119000000,
+      "net_income": 111400000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 759038000000,
+      "operating_income": 145086000000,
+      "net_income": 105207000000
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 819336000000,
+      "operating_income": 157614000000,
+      "net_income": 187296000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 828980000000,
+      "operating_income": 193977000000,
+      "net_income": 140752000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 1605801000000,
+      "operating_income": null,
+      "net_income": 263091000000
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 2494045000000,
+      "operating_income": 478485000000,
+      "net_income": 354912000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 2945621000000,
+      "operating_income": 606880000000,
+      "net_income": 440065000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 3086291000000,
+      "operating_income": 649371000000,
+      "net_income": 480280000000
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "code": "138930",
+  "name": "BNK금융지주",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 212335989678
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 254635531544
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 248232566094
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 218409801818
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 28698402567
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 171831732721
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 314483253515
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 380399128498,
+      "net_income": 299535094793
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 50307163915
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 283116163478,
+      "net_income": 216692856546
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 235654403728,
+      "net_income": 205690654386
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 833150496073
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 678904864314
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 749976302023
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 902681388425,
+      "net_income": 836157244944
+    }
+  ]
+}

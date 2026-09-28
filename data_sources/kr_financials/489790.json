@@ -1,0 +1,65 @@
+{
+  "code": "489790",
+  "name": "한화비전",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2024-09-30",
+      "revenue": 139525266140,
+      "operating_income": 5424240528,
+      "net_income": -13090956256
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 451805860293,
+      "operating_income": 44297137678,
+      "net_income": -3304428450
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 457161852438,
+      "operating_income": 56267894060,
+      "net_income": -10187994593
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 422742391618,
+      "operating_income": 31157096955,
+      "net_income": -6749631880
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 459211764776,
+      "operating_income": 30545075643,
+      "net_income": 62861808758
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 441377807050,
+      "operating_income": 22093126501,
+      "net_income": -14047858275
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 542288924730,
+      "operating_income": 65578457512,
+      "net_income": 75294760133
+    }
+  ],
+  "annual": [
+    {
+      "date": "2024-12-31",
+      "revenue": 493322362934,
+      "operating_income": -120362075,
+      "net_income": 3210792631
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 1790921869125,
+      "operating_income": 162267204336,
+      "net_income": 42619753835
+    }
+  ]
+}

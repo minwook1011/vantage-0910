@@ -1,0 +1,101 @@
+{
+  "code": "029780",
+  "name": "삼성카드",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": 1021972875207,
+      "operating_income": 186814646784,
+      "net_income": 139456716874
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": 1106001610731,
+      "operating_income": 241189976607,
+      "net_income": 177874757255
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 1089697894423,
+      "operating_income": 248626564105,
+      "net_income": 184900852598
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 883266872078,
+      "operating_income": 223839369699,
+      "net_income": 168700329836
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 1304243311179,
+      "operating_income": 171765526486,
+      "net_income": 133117213248
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 1067407617453,
+      "operating_income": 244917902127,
+      "net_income": 184440330982
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 151199000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 213639000000,
+      "net_income": 161690000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 148593669018
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 210015000000,
+      "net_income": 156284000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 208636000000,
+      "net_income": 154202000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 3794571861592,
+      "operating_income": null,
+      "net_income": 622254073534
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 4004222629932,
+      "operating_income": 810006981367,
+      "net_income": 609438704418
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 4383209688411,
+      "operating_income": 885421436897,
+      "net_income": 664593152937
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 853695000000,
+      "net_income": 645923000000
+    }
+  ]
+}

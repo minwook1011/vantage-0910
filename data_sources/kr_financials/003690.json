@@ -1,0 +1,101 @@
+{
+  "code": "003690",
+  "name": "코리안리",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 32582853193
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 57999569116
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 97128627876
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 102845894584
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 58697656537
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 95191676645
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 106471305782
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 153887005956,
+      "net_income": 80851307003
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 39527199063
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 291247018712,
+      "net_income": 214621970101
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 175045476922,
+      "net_income": 132572450661
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 278461038434
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 283868821363
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 316671748113
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 470938604768,
+      "net_income": 322041488493
+    }
+  ]
+}

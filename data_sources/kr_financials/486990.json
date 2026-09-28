@@ -1,0 +1,35 @@
+{
+  "code": "486990",
+  "name": "노타",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2025-09-30",
+      "revenue": 3029324318,
+      "operating_income": -4286460818,
+      "net_income": -4362935541
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 3584548582,
+      "operating_income": -4197671191,
+      "net_income": -4015414543
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 3823408186,
+      "operating_income": -6191205309,
+      "net_income": -6195547257
+    }
+  ],
+  "annual": [
+    {
+      "date": "2025-12-31",
+      "revenue": 13100933426,
+      "operating_income": -15279286074,
+      "net_income": -16629628581
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "code": "089890",
+  "name": "코세스",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2024-03-31",
+      "revenue": 16951594927,
+      "operating_income": -529452767,
+      "net_income": 1825033919
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": 19262085647,
+      "operating_income": 276306885,
+      "net_income": 894598794
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": 12712959550,
+      "operating_income": -2634079733,
+      "net_income": -4820420417
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 20257598196,
+      "operating_income": -2721576750,
+      "net_income": 1903564119
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": 18819905072,
+      "operating_income": 3947425457,
+      "net_income": 3260666033
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": 17073864677,
+      "operating_income": 6858158688,
+      "net_income": 3048835190
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": 22189206848,
+      "operating_income": 3563047264,
+      "net_income": 4734686567
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 24296186695,
+      "operating_income": 3022883686,
+      "net_income": 2159409766
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": 12629139862,
+      "operating_income": 1457922363,
+      "net_income": 2503159168
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": 18555106001,
+      "operating_income": 5730276924,
+      "net_income": 6214325492
+    }
+  ],
+  "annual": [
+    {
+      "date": "2022-12-31",
+      "revenue": 72931360641,
+      "operating_income": 8546470484,
+      "net_income": 7880853243
+    },
+    {
+      "date": "2023-12-31",
+      "revenue": 95650538591,
+      "operating_income": 8017318466,
+      "net_income": 6964669912
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": 69184238320,
+      "operating_income": -5608802365,
+      "net_income": -197223585
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": 82379163292,
+      "operating_income": 17391515095,
+      "net_income": 13203597556
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "code": "005940",
+  "name": "NH투자증권",
+  "source": "DART 공시",
+  "statement": "cfs",
+  "fetched_at": "2026-09-28",
+  "quarterly": [
+    {
+      "date": "2023-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 100748000000
+    },
+    {
+      "date": "2024-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 225452000000
+    },
+    {
+      "date": "2024-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 197203000000
+    },
+    {
+      "date": "2024-09-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 153980000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 110003000000
+    },
+    {
+      "date": "2025-03-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 208172000000
+    },
+    {
+      "date": "2025-06-30",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 256890000000
+    },
+    {
+      "date": "2025-09-30",
+      "revenue": null,
+      "operating_income": 391345000000,
+      "net_income": 283083000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 283356000000
+    },
+    {
+      "date": "2026-03-31",
+      "revenue": null,
+      "operating_income": 636689000000,
+      "net_income": 475686000000
+    },
+    {
+      "date": "2026-06-30",
+      "revenue": null,
+      "operating_income": 681245000000,
+      "net_income": 489437000000
+    }
+  ],
+  "annual": [
+    {
+      "date": "2023-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 553048000000
+    },
+    {
+      "date": "2024-12-31",
+      "revenue": null,
+      "operating_income": null,
+      "net_income": 686638000000
+    },
+    {
+      "date": "2025-12-31",
+      "revenue": null,
+      "operating_income": 1420580000000,
+      "net_income": 1031501000000
+    }
+  ]
+}
