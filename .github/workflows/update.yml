@@ -56,6 +56,9 @@ jobs:
       - name: S&P500 전 종목 실적 캘린더 확장 갱신(비-메가캡)
         run: python3 fetch_sp500_expand.py || echo "S&P500 확장 갱신 실패 — 기존 데이터 유지"
 
+      - name: 포트폴리오 비교용 지수·환율 일봉(코스피·코스닥·S&P500·나스닥·원달러)
+        run: python3 fetch_bench_hist.py || echo "지수 일봉 갱신 실패 — 기존 데이터 유지"
+
       - name: 공포·탐욕 지수 + 매크로 지표 갱신
         run: python3 fetch_macro.py || echo "매크로 갱신 실패 — 기존 데이터 유지"
 
@@ -71,7 +74,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data.json docs/etf_year.json docs/megacap.json docs/megacap_lite.json docs/megacap_c docs/ta_backtest.json docs/chart_patterns.json docs/ta_model.json docs/ta_scores.json docs/financials.json docs/investor_portfolios.json docs/earnings_calendar.json docs/sp500_constituents.json docs/macro.json docs/valuation.json docs/telegram_news.json
+          git add docs/data.json docs/etf_year.json docs/megacap.json docs/megacap_lite.json docs/megacap_c docs/ta_backtest.json docs/chart_patterns.json docs/ta_model.json docs/ta_scores.json docs/financials.json docs/investor_portfolios.json docs/earnings_calendar.json docs/sp500_constituents.json docs/macro.json docs/valuation.json docs/telegram_news.json docs/data/bench_hist.json
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
           else

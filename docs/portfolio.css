@@ -26,7 +26,8 @@
 .pf-chips button:disabled { opacity:.35; cursor:default; }
 .pf-chips i, .pf-legend i { display:inline-block; width:10px; height:10px; border-radius:2px; }
 .pf-hint { color:var(--faint); font-size:11.5px; margin-left:auto; }
-.pf-cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:12px; }
+.pf-cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin-bottom:12px; }
+.pf-warn .quiet-btn { margin-left:8px; }
 .pf-cards .metric small { display:block; color:var(--faint); font-size:10.5px; margin-top:3px; }
 .pf-chart { position:relative; border:1px solid var(--border); border-radius:11px; background:var(--card); padding:8px 6px 2px; user-select:none; }
 .pf-chart svg { display:block; width:100%; height:auto; }

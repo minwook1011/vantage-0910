@@ -2,8 +2,8 @@
  * PortfolioPerf.trades(el, state, accountId, onChange)  전체 매매내역(월별 묶음·실현손익·필터·삭제)
  * PortfolioPerf.perf(el, state, accountId)              계좌 수익률 vs 지수 그래프 + 기간별 매매 변동
  *
- * 수익률 계산(시간가중수익률, TWR): 매일 보유 수량 × 그날 종가(미국 주식은 그날 환율)로 평가액 V를 만들고,
- * 그날 매수·매도 금액(체결가 × 체결 환율)을 자금 유출입 F로 본다. 일간 수익률 = (V오늘 − F오늘) / V어제 − 1.
+ * 수익률 계산(총자산 기준 시간가중수익률): 주식 평가액(보유 수량 × 그날 종가, 미국은 그날 환율) + 예수금(매매로 역산)을 총자산으로 보고,
+ * 입금·출금만 외부 자금 흐름으로 뺀다(자세한 가정은 compute 위 주석).
  * → 돈을 더 넣거나 뺀 효과는 빼고 '종목 선택과 매매 타이밍'만 남기므로 지수와 바로 비교할 수 있다.
  * 과거 주가·지수·환율은 야후 파이낸스 일봉(브라우저에서 직접, 막히면 읽기 전용 중계). 이 브라우저에 하루 동안 캐시. */
 (function () {
@@ -86,90 +86,172 @@
     });
     return { d: d, c: v };
   }
-  async function fetchHist(sym, from) {
-    var p1 = Math.floor(new Date(from + "T00:00:00Z").getTime() / 1000) - 86400 * 10, p2 = Math.floor(Date.now() / 1000) + 86400;
-    var url = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(sym) + "?period1=" + p1 + "&period2=" + p2 + "&interval=1d";
-    try { var r = await fetch(url, { cache: "no-store" }); if (!r.ok) throw 0; return parseChart(await r.text()); }
-    catch (e) { var r2 = await fetch("https://r.jina.ai/" + url.replace(/&/g, "%26"), { cache: "no-store" }); if (!r2.ok) throw new Error("hist"); return parseChart(await r2.text()); }
+  /* 과거 시세 출처 순서
+     ① 우리 사이트에 있는 일봉(데이터 허브: data/kr/<코드>.json 코스피·코스닥 시총 3,000억+, data/us/<티커>.json S&P500 상위) — 즉시, 제한 없음
+     ② 야후(읽기 전용 중계) — 한 번에 하나씩, 실패하면 2초·5초 쉬고 다시
+     ③ 그래도 없으면 '근사': 매매 체결가와 현재가를 이은 계단식 가격(표시해 줌). 절대 계산에서 빼지 않는다. */
+  async function siteHist(key) {
+    var m = key.split(":")[0], sym = key.split(":")[1], path;
+    if (m === "KR") { var code = sym.replace(/\.(KS|KQ)$/, ""); if (!/^\d{6}$/.test(code)) return null; path = "data/kr/" + code + ".json"; }
+    else path = "data/us/" + sym.replace(/[^A-Z0-9.\-]/g, "") + ".json";
+    try {
+      var r = await fetch(path, { cache: "no-cache" }); if (!r.ok) return null;
+      var j = await r.json(), pts = j && j.price && j.price.points;
+      if (!pts || pts.length < 5) return null;
+      return { d: pts.map(function (p) { return p.date; }), c: pts.map(function (p) { return +p.value; }), src: "site" };
+    } catch (e) { return null; }
   }
-  async function hist(sym, from) {
-    var cache = lsGet(CACHE, {}), c = cache[sym];
-    if (c && c.at === today() && c.from <= from) return c;
-    var h;
-    if (/\.(KS|KQ)$/.test(sym)) {   // 코스피·코스닥 접미사가 틀리면 옛날 가격이 올 수 있어 둘 다 보고 더 최근 것을 쓴다
-      var alt = sym.replace(/\.(KS|KQ)$/, function (m) { return m === ".KS" ? ".KQ" : ".KS"; });
-      var got = await Promise.all([sym, alt].map(function (s) { return fetchHist(s, from).catch(function () { return null; }); }));
-      h = got.filter(function (x) { return x && x.d.length; }).sort(function (a, b) { return String(b.d[b.d.length - 1]).localeCompare(String(a.d[a.d.length - 1])); })[0];
-      if (!h) throw new Error("hist");
-    } else h = await fetchHist(sym, from);
+  var Q = Promise.resolve();   // 중계 요청은 한 줄로 세운다(동시에 몰리면 막힘)
+  function relay(sym, from) {
+    var job = Q.then(async function () {
+      var p1 = Math.floor(new Date(from + "T00:00:00Z").getTime() / 1000) - 86400 * 10, p2 = Math.floor(Date.now() / 1000) + 86400;
+      var url = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(sym) + "?period1=" + p1 + "&period2=" + p2 + "&interval=1d";
+      var waits = [0, 2000, 5000];
+      for (var i = 0; i < waits.length; i++) {
+        if (waits[i]) await new Promise(function (r) { setTimeout(r, waits[i]); });
+        try {
+          var r = await fetch("https://r.jina.ai/" + url.replace(/&/g, "%26"), { cache: "no-store" });
+          if (r.ok) { var h = parseChart(await r.text()); if (h.d.length) { await new Promise(function (ok) { setTimeout(ok, 700); }); return h; } }
+        } catch (e) {}
+      }
+      throw new Error("hist");
+    });
+    Q = job.catch(function () {});
+    return job;
+  }
+  async function stockHist(key, from, force) {
+    var sym = key.split(":")[1], cache = lsGet(CACHE, {}), c = cache[sym];
+    if (!force && c && c.at === today() && c.from <= from) return c;
+    var h = await siteHist(key);
+    if (!h || h.d[0] > from) {
+      var y = null;
+      try {
+        if (/\.(KS|KQ)$/.test(sym)) {   // 접미사가 틀리면 옛날 가격이 오기도 해서 둘 다 보고 더 최근 것
+          var alt = sym.replace(/\.(KS|KQ)$/, function (m) { return m === ".KS" ? ".KQ" : ".KS"; });
+          var a = await relay(sym, from).catch(function () { return null; }), b = await relay(alt, from).catch(function () { return null; });
+          y = [a, b].filter(function (x) { return x && x.d.length; }).sort(function (p, q) { return String(q.d[q.d.length - 1]).localeCompare(String(p.d[p.d.length - 1])); })[0] || null;
+        } else y = await relay(sym, from);
+      } catch (e) { y = null; }
+      if (y) { y.src = "yahoo"; h = y; }
+    }
+    if (!h) throw new Error("hist");
     h.at = today(); h.from = from;
     cache = lsGet(CACHE, {}); cache[sym] = h;
     var keys = Object.keys(cache); if (keys.length > 80) keys.slice(0, keys.length - 80).forEach(function (k) { delete cache[k]; });
     lsSet(CACHE, cache);
     return h;
   }
+  var BH = null;
+  async function benchHist() {
+    if (BH) return BH;
+    try { var r = await fetch("data/bench_hist.json", { cache: "no-cache" }); if (r.ok) BH = (await r.json()).series || {}; } catch (e) {}
+    return BH || {};
+  }
   function ffill(h, dates) {   // 날짜 달력에 맞춰 직전 종가로 채움
     var out = new Array(dates.length), j = 0, last = null;
     for (var i = 0; i < dates.length; i++) { while (j < h.d.length && h.d[j] <= dates[i]) { last = h.c[j]; j++; } out[i] = last; }
     return out;
   }
+  /* 시세를 끝내 못 받은 종목: 체결가(그 날짜)와 현재가(오늘)를 이은 계단식 가격 */
+  function approxHist(key, txs, state) {
+    var pts = {};
+    txs.forEach(function (t) { if (keyOf(t) === key) pts[t.date] = Number(t.price); });
+    var q = state.prices && state.prices[key]; if (q && q.price > 0) pts[today()] = Number(q.price);
+    var d = Object.keys(pts).sort();
+    return { d: d, c: d.map(function (x) { return pts[x]; }), src: "approx" };
+  }
+  /* 오늘 시세(포트폴리오 새로고침으로 받은 값)를 마지막 점으로 붙여 그래프 끝을 현황과 맞춘다 */
+  function withToday(h, key, state) {
+    var q = state.prices && state.prices[key], t = today();
+    if (!h || !q || !(q.price > 0) || !h.d.length || h.d[h.d.length - 1] >= t) return h;
+    return { d: h.d.concat([t]), c: h.c.concat([Number(q.price)]), src: h.src };
+  }
 
-  /* ───────────── 수익률 계산 ───────────── */
-  function compute(state, txs, H, fxH, dates) {
-    var fx = ffill(fxH, dates), px = {}, missing = {};
-    Object.keys(H).forEach(function (k) { px[k] = H[k] ? ffill(H[k], dates) : null; if (!H[k]) missing[k] = true; });
-    var qty = {}, ti = 0, prevV = 0, idx = 1, series = [], flowsBy = [];
+  /* ───────────── 수익률 계산(총자산 기준) ─────────────
+     총자산 = 주식 평가액 + 예수금. 과거 예수금은 모르므로 매매로 거꾸로 만든다:
+     - 매수는 예수금 → 주식, 매도는 주식 → 예수금(계좌 안 이동이라 수익률에 영향 없음)
+     - 예수금이 모자라는 날은 그만큼 '입금'이 있었다고 본다(외부 자금 유입)
+     - 지금 예수금이 매매만으로 계산한 값보다 많으면 그 차이는 처음부터 계좌에 있던 돈으로 본다(현금 비중만큼 수익률이 희석)
+     - 적으면 그만큼 마지막에 '출금'이 있었다고 본다
+     일간 수익률 = (총자산 오늘 − 입출금 오늘) / 총자산 어제 − 1 (시간가중) */
+  function compute(state, acct, txs, H, fxH, dates) {
+    var fxNow = Number(state.fx && state.fx.price) || 1350, fx = ffill(fxH, dates), px = {};
+    Object.keys(H).forEach(function (k) { px[k] = H[k] ? ffill(H[k], dates) : null; });
+    var cashNow = (Number(acct.cashKrw) || 0) + (Number(acct.cashUsd) || 0) * fxNow;
+    var net = 0; txs.forEach(function (t) { net += (t.side === "sell" ? 1 : -1) * amtKrw(t, state); });
+    var c0 = Math.max(0, cashNow - net);
+    var qty = {}, ti = 0, cash = c0, prevT = 0, idx = 1, series = [], deposits = c0, withdrawn = 0;
     for (var i = 0; i < dates.length; i++) {
-      var d = dates[i], F = 0, dayT = [];
+      var d = dates[i], nb = 0, dayT = [], ext = i === 0 ? c0 : 0;
       while (ti < txs.length && txs[ti].date <= d) {
-        var t = txs[ti++], k = keyOf(t);
-        if (missing[k]) continue;
-        var q = Number(t.qty) || 0, a = amtKrw(t, state);
-        if (t.side === "sell") { var s = Math.min(q, qty[k] || 0); qty[k] = (qty[k] || 0) - s; F -= a * (q ? s / q : 0); }
-        else { qty[k] = (qty[k] || 0) + q; F += a; }
+        var t = txs[ti++], k = keyOf(t), q = Number(t.qty) || 0, a = amtKrw(t, state);
+        if (t.side === "sell") { var s = Math.min(q, qty[k] || 0); qty[k] = (qty[k] || 0) - s; var got = a * (q ? s / q : 0); cash += got; nb -= got; }
+        else { qty[k] = (qty[k] || 0) + q; cash -= a; nb += a; }
         dayT.push(t);
       }
-      var V = 0, ok = true;
+      if (cash < 0) { ext += -cash; deposits += -cash; cash = 0; }
+      if (i === dates.length - 1 && cash > cashNow + 1) { ext -= cash - cashNow; withdrawn += cash - cashNow; cash = cashNow; }
+      var V = 0;
       Object.keys(qty).forEach(function (k) {
         if (!(qty[k] > 1e-9)) return;
-        var p = px[k] && px[k][i]; if (p == null) { ok = false; return; }
-        V += qty[k] * p * (k.indexOf("US:") === 0 ? (fx[i] || Number(state.fx && state.fx.price) || 1350) : 1);
+        var p = px[k] && px[k][i]; if (p == null) return;
+        V += qty[k] * p * (k.indexOf("US:") === 0 ? (fx[i] || fxNow) : 1);
       });
-      var r = 0;
-      if (ok) { if (prevV > 0) r = (V - F) / prevV - 1; else if (F > 0) r = V / F - 1; }
+      var T = V + cash, r = 0;
+      if (prevT > 0) r = (T - ext) / prevT - 1; else if (ext > 0) r = T / ext - 1;
       if (!isFinite(r) || Math.abs(r) > 0.6) r = 0;   // 액면분할·데이터 오류 방어
       idx *= 1 + r;
-      series.push({ d: d, idx: idx, v: V, f: F, t: dayT });
-      prevV = V;
+      series.push({ d: d, idx: idx, v: V, cash: cash, tot: T, ext: ext, nb: nb, t: dayT });
+      prevT = T;
     }
-    return { series: series, missing: Object.keys(missing) };
+    return { series: series, principal: deposits - withdrawn, deposits: deposits, withdrawn: withdrawn, c0: c0 };
   }
 
   /* ───────────── 수익률 평가 ───────────── */
-  var P = { el: null, data: null, sel: null, benches: null, range: null };
-  async function perf(el, state, id) {
+  var P = { el: null, data: null, sel: null, benches: null, range: null, run: 0 };
+  async function perf(el, state, id, opt) {
+    opt = opt || {};
     P.el = el;
+    var run = ++P.run, acct = state.accounts.filter(function (a) { return a.id === id; })[0] || {};
     var txs = txsOf(state, id);
     if (!txs.length) { el.innerHTML = '<div class="empty-row">매매 기록이 있어야 수익률을 계산할 수 있습니다.</div>'; return; }
     P.benches = lsGet(BSEL, ["^KS11", "^GSPC"]); P.range = lsGet(RSEL, "전체");
     var from = txs[0].date, keys = {};
-    txs.forEach(function (t) { keys[keyOf(t)] = S.tickerFor(t.ticker, t.market === "KR" ? "KR" : "US"); });
-    el.innerHTML = '<div class="empty-row">과거 주가·지수·환율 불러오는 중… (' + Object.keys(keys).length + "종목)</div>";
-    var H = {}, B = {}, fxH, failed = [];
-    await Promise.all(Object.keys(keys).map(async function (k) { try { H[k] = await hist(keys[k], from); } catch (e) { H[k] = null; failed.push(S.displayTicker(keys[k])); } }));
-    await Promise.all(BENCH.map(async function (b) { try { B[b[0]] = await hist(b[0], from); } catch (e) { B[b[0]] = null; } }));
-    try { fxH = await hist("KRW=X", from); } catch (e) { fxH = { d: [from], c: [Number(state.fx && state.fx.price) || 1350] }; }
-    var set = {};
-    Object.keys(H).forEach(function (k) { if (H[k]) H[k].d.forEach(function (d) { if (d >= from) set[d] = 1; }); });
-    ["^KS11", "^GSPC"].forEach(function (b) { if (B[b]) B[b].d.forEach(function (d) { if (d >= from) set[d] = 1; }); });
-    var dates = Object.keys(set).sort();
-    if (!dates.length || dates[0] > from) dates.unshift(from);
-    var res = compute(state, txs, H, fxH, dates);
-    var bs = {}; BENCH.forEach(function (b) { bs[b[0]] = B[b[0]] ? ffill(B[b[0]], dates) : null; });
-    P.data = { state: state, txs: txs, dates: dates, s: res.series, bs: bs, failed: failed };
-    P.sel = null;
-    draw();
+    txs.forEach(function (t) { keys[keyOf(t)] = 1; });
+    var K = Object.keys(keys), H = {}, status = {};
+    K.forEach(function (k) { H[k] = null; status[k] = "wait"; });
+    if (!P.data) el.innerHTML = '<div class="empty-row">지수·환율 불러오는 중…</div>';
+    var B = await benchHist();
+    if (run !== P.run) return;
+    function rebuild() {
+      if (run !== P.run) return;
+      var HH = {};
+      // 받는 중·실패여도 근사 가격으로 넣는다(빼면 수익률이 틀어짐)
+      K.forEach(function (k) { HH[k] = withToday(H[k] || approxHist(k, txs, state), k, state); });
+      var fxH = B["KRW=X"] || { d: [from], c: [Number(state.fx && state.fx.price) || 1350] };
+      var set = {};
+      K.forEach(function (k) { if (HH[k]) HH[k].d.forEach(function (d) { if (d >= from) set[d] = 1; }); });
+      ["^KS11", "^GSPC"].forEach(function (b) { if (B[b]) B[b].d.forEach(function (d) { if (d >= from) set[d] = 1; }); });
+      var dates = Object.keys(set).sort();
+      if (!dates.length || dates[0] > from) dates.unshift(from);
+      var res = compute(state, acct, txs, HH, fxH, dates);
+      var bs = {}; BENCH.forEach(function (b) { bs[b[0]] = B[b[0]] ? ffill(B[b[0]], dates) : null; });
+      var keep = P.data && P.data.dates && P.sel ? [P.data.dates[P.sel[0]], P.data.dates[P.sel[1]]] : null;
+      P.data = { state: state, acct: acct, txs: txs, dates: dates, s: res.series, bs: bs, res: res, status: status, K: K };
+      P.sel = keep ? [Math.max(0, dates.indexOf(keep[0])), Math.max(0, dates.indexOf(keep[1]))] : null;
+      if (P.sel && (P.sel[1] <= P.sel[0])) P.sel = null;
+      draw();
+    }
+    var pend = K.length, tmr = null;
+    function soon() { clearTimeout(tmr); tmr = setTimeout(rebuild, 350); }
+    await Promise.all(K.map(async function (k) {
+      try { H[k] = await stockHist(k, from, opt.force); status[k] = H[k].src || "ok"; }
+      catch (e) { status[k] = "fail"; }
+      pend--; soon();
+    }));
+    clearTimeout(tmr); rebuild();
   }
+  function reload() { if (P.data) perf(P.el, P.data.state, P.data.acct.id, { force: true }); }
 
   function rangeStart(dates) {
     var r = RANGES.filter(function (x) { return x[0] === P.range; })[0] || RANGES[5], end = dates[dates.length - 1];
@@ -190,13 +272,19 @@
     var sel = P.sel || [a, b];
     var bsel = BENCH.filter(function (x) { return P.benches.indexOf(x[0]) >= 0 && D.bs[x[0]]; });
     var main = bsel[0];
-    var acc = accRet(s, a, b), bm = main ? retBetween(D.bs[main[0]], a, b) : null;
+    var acc = accRet(s, a, b), bm = main ? retBetween(D.bs[main[0]], a, b) : null, R = D.res, last = s[b];
+    var pnl = last.tot - R.principal, pnlPct = R.principal > 0 ? pnl / R.principal * 100 : null;
     var cards = [
-      ["계좌 수익률 (" + P.range + ")", pct(acc), cls(acc), "시간가중(입출금 효과 제외)"],
+      ["총자산 수익률 (" + P.range + ")", pct(acc), cls(acc), "주식+예수금 · 입출금 효과 제외(시간가중)"],
       [main ? main[1] + " 대비 초과" : "벤치마크", bm == null ? "—" : pct(acc - bm), cls(bm == null ? null : acc - bm), main ? main[1] + " " + pct(bm) : ""],
-      ["최대 낙폭(MDD)", pct(mdd(s, a, b)), "neg", dates[a] + " ~ " + dates[b]],
-      ["현재 주식 평가액", krw(s[b].v), "", "과거 종가 기준 계산값"]
+      ["원금 대비 손익 (전체)", krw(pnl) + (pnlPct == null ? "" : " · " + pct(pnlPct)), cls(pnl), "추정 원금 " + krw(R.principal) + (R.withdrawn > 1 ? " (출금 " + krw(R.withdrawn) + " 반영)" : "")],
+      ["현재 총자산", krw(last.tot), "", "주식 " + krw(last.v) + " · 예수금 " + krw(last.cash)],
+      ["최대 낙폭(MDD)", pct(mdd(s, a, b)), "neg", dates[a] + " ~ " + dates[b]]
     ];
+    var st = D.status, loading = D.K.filter(function (k) { return st[k] === "wait"; }), fail = D.K.filter(function (k) { return st[k] === "fail"; });
+    function nm(k) { return S.displayTicker(k.split(":")[1]); }
+    var warn = (loading.length ? "⏳ 시세 받는 중 " + (D.K.length - loading.length) + "/" + D.K.length + " — 끝날 때까지 그래프가 계속 바뀝니다(받는 동안은 체결가·현재가로 근사). " : "") +
+      (fail.length ? "⚠️ 과거 시세를 못 받은 종목(체결가와 현재가를 이은 근사 가격으로 계산): " + esc(fail.map(nm).join(", ")) + " " : "");
     el.innerHTML =
       '<div class="pf-cards">' + cards.map(function (c) { return '<div class="metric"><span>' + c[0] + '</span><b class="' + c[2] + '">' + c[1] + "</b><small>" + esc(c[3]) + "</small></div>"; }).join("") + "</div>" +
       '<div class="pf-bar"><div class="pf-seg" id="pf-range">' + RANGES.map(function (r) { return '<button data-v="' + r[0] + '" class="' + (P.range === r[0] ? "on" : "") + '">' + r[0] + "</button>"; }).join("") + "</div>" +
@@ -204,11 +292,12 @@
       '<span class="pf-hint">그래프를 끌어서 기간 선택 · 월을 누르면 그 달</span></div>' +
       '<div class="pf-chart" id="pf-chart"></div>' +
       '<div class="pf-legend"><span><i style="background:' + ACC + '"></i>내 계좌</span>' + bsel.map(function (x) { return '<span><i style="background:' + x[2] + '"></i>' + x[1] + "</span>"; }).join("") + '<span><b style="color:#f0475a">▲</b> 매수</span><span><b style="color:#3d7eff">▼</b> 매도</span><span class="muted">아래 막대 = 그날 순매수(빨강)·순매도(파랑) 금액</span></div>' +
-      (D.failed.length ? '<div class="pf-warn">시세를 못 받은 종목은 수익률 계산에서 뺐습니다: ' + esc(D.failed.join(", ")) + "</div>" : "") +
+      (warn ? '<div class="pf-warn">' + warn + (loading.length ? "" : '<button class="quiet-btn" id="pf-retry">다시 받기</button>') + "</div>" : "") +
       '<div id="pf-period"></div><div id="pf-months"></div>';
     chart(document.getElementById("pf-chart"), a, b, bsel, sel);
     period(sel[0], sel[1], bsel);
     months(a, b, bsel);
+    var rb = document.getElementById("pf-retry"); if (rb) rb.onclick = reload;
     el.querySelectorAll("#pf-range button").forEach(function (x) { x.onclick = function () { P.range = x.dataset.v; lsSet(RSEL, P.range); P.sel = null; draw(); }; });
     el.querySelectorAll("#pf-bench button").forEach(function (x) { x.onclick = function () {
       var i = P.benches.indexOf(x.dataset.v); if (i >= 0) P.benches.splice(i, 1); else P.benches.push(x.dataset.v);
@@ -242,15 +331,15 @@
     });
     // 매매 표시 + 순매수 막대(아래 띠)
     var base = m.t + ih + 34, maxF = 1;
-    for (var q = a; q <= b; q++) maxF = Math.max(maxF, Math.abs(s[q].f));
+    for (var q = a; q <= b; q++) maxF = Math.max(maxF, Math.abs(s[q].nb));
     g += '<line class="grid" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + (base - 16) + '" y2="' + (base - 16) + '"/>';
     for (var q2 = a; q2 <= b; q2++) {
       var sd = s[q2]; if (!sd.t.length) continue;
       var buys = sd.t.some(function (t) { return t.side !== "sell"; }), sells = sd.t.some(function (t) { return t.side === "sell"; }), px = x(q2), py = y(lines[0].v[q2 - a]);
       if (buys) g += '<path d="M' + (px - 4.5) + "," + (py + 11) + "L" + (px + 4.5) + "," + (py + 11) + "L" + px + "," + (py + 3.5) + 'Z" fill="#f0475a"/>';
       if (sells) g += '<path d="M' + (px - 4.5) + "," + (py - 11) + "L" + (px + 4.5) + "," + (py - 11) + "L" + px + "," + (py - 3.5) + 'Z" fill="#3d7eff"/>';
-      var hgt = Math.max(2, Math.abs(sd.f) / maxF * 30);
-      g += '<rect x="' + (px - 1.5) + '" y="' + (sd.f >= 0 ? base - 16 - hgt / 2 : base - 16) + '" width="3" height="' + (hgt / 2) + '" fill="' + (sd.f >= 0 ? "#f0475a" : "#3d7eff") + '"/>';
+      var hgt = Math.max(2, Math.abs(sd.nb) / maxF * 30);
+      g += '<rect x="' + (px - 1.5) + '" y="' + (sd.nb >= 0 ? base - 16 - hgt / 2 : base - 16) + '" width="3" height="' + (hgt / 2) + '" fill="' + (sd.nb >= 0 ? "#f0475a" : "#3d7eff") + '"/>';
     }
     g += '<text x="' + (m.l - 6) + '" y="' + (base - 12) + '" text-anchor="end">매매</text>';
     g += '<line class="hair" x1="0" x2="0" y1="' + m.t + '" y2="' + (base) + '" stroke="var(--text)" stroke-dasharray="3 3" opacity=".45" style="display:none"/><rect class="hit" x="' + m.l + '" y="' + m.t + '" width="' + iw + '" height="' + (ih + 36) + '" fill="transparent" style="cursor:crosshair"/>';
@@ -269,7 +358,7 @@
     hit.addEventListener("mousemove", function (e) {
       var i = idxAt(e), sd = s[i];
       hair.setAttribute("x1", x(i)); hair.setAttribute("x2", x(i)); hair.style.display = "";
-      var html = "<b>" + dates[i] + "</b><br>" + '<span style="color:' + ACC + '">●</span> 내 계좌 <b>' + pct(lines[0].v[i - a]) + "</b>";
+      var html = "<b>" + dates[i] + "</b><br>" + '<span style="color:' + ACC + '">●</span> 내 계좌 <b>' + pct(lines[0].v[i - a]) + '</b> <span class="muted">총자산 ' + krw(sd.tot) + "</span>";
       bsel.forEach(function (bb, j) { html += "<br>" + '<span style="color:' + bb[2] + '">●</span> ' + bb[1] + " " + pct(lines[j + 1].v[i - a]); });
       if (drag != null && drag !== i) { var i0 = Math.min(drag, i), i1 = Math.max(drag, i); html += '<br><span class="muted">선택 ' + dates[i0] + " ~ " + dates[i1] + " · 계좌 " + pct(accRet(s, i0, i1)) + "</span>"; }
       if (sd.t.length) html += "<br>" + sd.t.map(function (t) { return '<span class="' + (t.side === "sell" ? "sell" : "buy") + '">' + (t.side === "sell" ? "매도" : "매수") + "</span> " + esc(S.displayTicker(t.ticker)) + " " + num(t.qty, 4) + "주"; }).join("<br>");
@@ -335,5 +424,5 @@
   }
 
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (P.data && P.el && P.el.offsetParent) draw(); }, 250); });
-  window.PortfolioPerf = { trades: trades, perf: perf };
+  window.PortfolioPerf = { trades: trades, perf: perf, reload: reload };
 })();
