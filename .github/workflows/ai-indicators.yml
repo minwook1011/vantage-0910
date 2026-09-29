@@ -1,20 +1,11 @@
 name: ai-indicators-daily
 
-# 소스마다 발표 시각이 달라서 예약을 나눠 둔다 (cron 은 UTC, 괄호는 한국시간).
-#   20:30 UTC (05:30 KST)  Ornn 렌탈 지수 — 미국 동부 16:00 정산 직후
-#   23:00 UTC (08:00 KST)  ICE Clear Credit CDS 결제가격 — 미국 장 마감 후 공시 (평일)
-#   00:00 UTC (09:00 KST)  OpenRouter 토큰·단가·모델·앱·가격인하·프론티어 + HF·AI랩 뉴스·주가
-#   21:00 UTC 월 (06:00 KST 화)  GetDeploying 주간 GPU 공시가 (월요일 기준 갱신)
-#   09:00 UTC 10~16일 (18:00 KST)  대만 증권거래소 월매출 (매월 10일경 공시)
-#   22:00 UTC (07:00 KST)  전체 점검 — 캐팩스·TSMC CAPA·TRASS 연결 등 나머지
+# 30분마다 전체 소스를 확인하고, 값이 바뀐 지표가 있을 때만 커밋한다(fetch_ai_indicators.py가 변경 없으면 파일을 안 씀).
+# 예전엔 소스 발표 시각에 맞춘 예약 6개였지만 GitHub가 예약을 3~5시간씩 늦게 돌려(05:30 예약 → 10:30 실행)
+# 한국시간 오후~밤에는 아무것도 수집되지 않았다(2026-09-29 13:48 이후 멈춤). 정각·30분은 몰려서 늦으니 7분·37분에 건다.
 on:
   schedule:
-    - cron: "30 20 * * *"
-    - cron: "0 23 * * 1-5"
-    - cron: "0 0 * * *"
-    - cron: "0 21 * * 1"
-    - cron: "0 9 10-16 * *"
-    - cron: "0 22 * * *"
+    - cron: "7,37 * * * *"
   workflow_dispatch:
     inputs:
       only:
@@ -41,17 +32,9 @@ jobs:
       - name: 이번 실행에서 받을 소스 정하기
         id: pick
         env:
-          SCHEDULE: ${{ github.event.schedule }}
           MANUAL: ${{ github.event.inputs.only }}
         run: |
-          case "$SCHEDULE" in
-            "30 20 * * *")    ONLY="ornn" ;;
-            "0 23 * * 1-5")   ONLY="cds" ;;
-            "0 0 * * *")      ONLY="or_models,or_chart,or_week,or_apps,frontier,hf,arr,prices,gpu" ;;
-            "0 21 * * 1")     ONLY="gpu_hist,gpu" ;;
-            "0 9 10-16 * *")  ONLY="tsmc" ;;
-            *)                ONLY="" ;;
-          esac
+          ONLY=""   # 예약 실행은 항상 전체 확인
           if [ -n "$MANUAL" ]; then ONLY="$MANUAL"; fi
           echo "only=$ONLY" >> "$GITHUB_OUTPUT"
           echo "이번 실행: ${ONLY:-전체}"

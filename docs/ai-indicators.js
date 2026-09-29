@@ -342,7 +342,7 @@
     var stale = (DATA.series || []).filter(function (s) { return s.status === "stale"; }).length;
     host.innerHTML =
       '<div class="ai-header"><div><span class="ai-eyebrow">AI INFRA OBSERVATORY</span><h2>토큰에서 GPU까지.</h2><p>수요 → 단가 → 하드웨어 → 메모리 → 캐팩스 순으로, 비슷한 지표끼리 한 판에 묶었습니다.</p></div>' +
-      '<div class="ai-header-tools">' + (isSample ? '<span class="ai-pill ai-sample">SAMPLE · 디자인 미리보기</span>' : '<span class="ai-pill live" title="렌탈지수 05:30 · CDS 08:00 · OpenRouter 09:00 · 공시가 화 06:00 · 대만 월매출 10~16일 18:00 · 전체점검 07:00 (KST)"><i></i>소스별 발표 시각에 자동 수집 · 마지막 <b class="ai-gold">' + esc((DATA.generated_at || "").replace("T", " ").slice(0, 16)) + "</b></span>") +
+      '<div class="ai-header-tools">' + (isSample ? '<span class="ai-pill ai-sample">SAMPLE · 디자인 미리보기</span>' : '<span class="ai-pill live" title="모든 소스를 30분마다 확인해 값이 바뀐 지표만 갱신합니다. 시각은 마지막으로 값이 바뀐 때(KST)."><i></i>30분마다 자동 확인 · 마지막 변경 <b class="ai-gold">' + esc((DATA.generated_at || "").replace("T", " ").slice(0, 16)) + "</b></span>") +
       (stale ? '<span class="ai-pill warn" title="일부 소스 수집 실패 · 이전 값 유지">⚠ ' + stale + "개 이전 값</span>" : "") +
       '<span class="ai-pill ' + (tg.status === "live" ? "live" : "pending") + '"><i></i>텔레그램 ' + (tg.status === "live" ? "연결됨" : "연결 대기") + "</span>" +
       '<button type="button" id="ai-refresh" ' + (loading ? "disabled" : "") + ">" + (loading ? "확인 중…" : "새로고침 ↻") + "</button></div></div>" +

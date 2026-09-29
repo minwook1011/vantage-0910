@@ -507,7 +507,7 @@ LIST_LINES = [("H100 SXM", "H100 SXM"), ("H200 SXM", "H200"), ("B200", "B200"), 
 
 
 ORNN = "https://data.ornn.com/api/public-index"
-ORNN_GPUS = [("H100 SXM", "H100 SXM"), ("H200", "H200"), ("B200", "B200"), ("A100 SXM4", "A100"), ("RTX 5090", "RTX 5090")]
+ORNN_GPUS = [("H100 SXM", "H100 SXM"), ("H200", "H200"), ("B200", "B200"), ("A100 SXM4", "A100")]
 
 
 @collector("gpu_h100_index", "gpu_index_multi")
@@ -599,13 +599,20 @@ def c_cds(ctx):
         lines[label] = {"date": obs_date, "value": hit["spread"]}
     if not spreads:
         raise ValueError("ICE 결제가격에서 대상 종목을 찾지 못함")
-    prev_cds = ctx.state.get("cds_prev") or {}
+    # 전일 대비는 "기준일이 다른" 직전 결제가격과 비교한다. 같은 기준일로 하루 여러 번 돌면 prev 를 덮어쓰지 않는다.
+    st = ctx.state.get("cds_prev") or {}
+    if "spreads" not in st:  # 예전 형식(이름→값)은 기준일을 몰라 버린다
+        st = {}
+    if st.get("date") == obs_date:
+        prev_cds = st.get("prev") or {}
+    else:
+        prev_cds = st.get("spreads") or {}
     for ticker, label, related in CDS_NAMES:
         if label not in spreads:
             continue
         p = prev_cds.get(label)
         table.append({"name": label, "bp": spreads[label], "chg": round(spreads[label] - p, 1) if p else None})
-    ctx.state["cds_prev"] = spreads
+    ctx.state["cds_prev"] = {"date": obs_date, "spreads": spreads, "prev": prev_cds}
     src, url = "ICE Clear Credit 결제가격 (5년물 · USD)", "https://www.ice.com/cds-settlement-prices/icc/single-name-instruments"
     common = {"unit": "bp", "type": "share_abs", "digits": 0, "cadence": "매 영업일 (미국 장 마감 후 결제)", "source": src, "source_url": url, "method": "api"}
     ctx.put(dict(common, id="cds_bigtech", group="credit", label="빅테크 CDS 추이", related=["GOOGL", "AMZN", "MSFT", "META"],
@@ -1048,9 +1055,28 @@ def main():
     series = [ctx.series[sid] for sid in order if sid in ctx.series]
     for s in series:
         s["group"] = next(g["id"] for g in GROUPS if s["id"] in BOARDS[g["id"]])
+    # 30분마다 돈다 → 값이 그대로인 지표는 updated_at 을 예전 것으로 두고, 파일 전체가 그대로면 쓰지 않는다(커밋 안 생김)
+    # 비교할 때 빼는 '잔물결': GPU 클라우드 실시간 호가표(분 단위로 흔들림)·뉴스 이벤트의 인용 매체 수. 다른 값이 바뀌어 저장될 때 함께 최신으로 올라간다.
+    prev_by = {s.get("id"): s for s in prev.get("series") or []}
+    def _body(s):
+        b = {k: v for k, v in s.items() if k != "updated_at"}
+        if s.get("id") == "gpu_cloud_multi":
+            b.pop("table", None)
+        if isinstance(b.get("events"), list):
+            b["events"] = [{k: v for k, v in e.items() if k != "sources"} if isinstance(e, dict) else e for e in b["events"]]
+        return b
+    for s in series:
+        p = prev_by.get(s["id"])
+        if p and p.get("updated_at") and _body(p) == _body(s):
+            s["updated_at"] = p["updated_at"]
     doc = {"schema_version": 1, "generated_at": NOW.isoformat(timespec="minutes"), "sample": False,
            "groups": GROUPS, "boards": BOARDS, "kpis": KPI_ORDER, "series": series, "companies": ctx.companies,
            "errors": ctx.errors, "telegram": prev.get("telegram") or {"status": "pending", "label": "주간 요약 · 화요일 09:00", "last_sent": None}}
+    def _doc(d):
+        return dict({k: v for k, v in d.items() if k not in ("generated_at", "series")}, series=[_body(s) for s in d.get("series") or []])
+    if prev and _doc(doc) == _doc(prev):
+        print(f"변경 없음 — {OUT} 그대로 둠 (마지막 변경 {prev.get('generated_at')})")
+        return 0
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(doc, f, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
