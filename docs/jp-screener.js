@@ -1150,6 +1150,9 @@ function openDetail(code){
       ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code])}${repLink(RES[code],"d-rep")}</div>`:""}
     </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" title="즐겨찾기">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
 
+    <div class="dtabs" role="tablist"><button data-dt="info" aria-pressed="true">기본 정보</button><button data-dt="earn" aria-pressed="false">실적발표 <small id="dt-earn-n"></small></button></div>
+    <div id="dt-earn" hidden></div>
+    <div id="dt-info">
     ${bmHTML(code)}
 
     ${kpiHTML(code)}
@@ -1166,7 +1169,8 @@ function openDetail(code){
       return `<div class="cell"><span>${c[0]}</span><b class="${cl}">${c[1]}</b></div>`;}).join("")}</div>
 
     <div class="dsec">1차 자료</div>
-    <div class="links">${links.map(l=>`<a class="lk" href="${l[2]}" target="_blank" rel="noopener"><b>${l[0]}</b><span>${l[1]}</span></a>`).join("")}</div>`;
+    <div class="links">${links.map(l=>`<a class="lk" href="${l[2]}" target="_blank" rel="noopener"><b>${l[0]}</b><span>${l[1]}</span></a>`).join("")}</div>
+    </div>`;
 
   document.getElementById("panel").classList.add("on");
   document.getElementById("scrim").classList.add("on");
@@ -1174,6 +1178,37 @@ function openDetail(code){
   document.getElementById("dx").onclick=closeDetail;
   document.getElementById("dfav").onclick=()=>toggleFav(code);
   wireDetail(b);
+  wireDetailTabs(code);
+}
+/* ===== 종목 창: 기본 정보 | 실적발표(발표마다 탭이 쌓임) — 리포트 내용은 jp-report.js 가 그린다 ===== */
+function earnList(code){
+  if(!window.JPReport) return Promise.resolve([]);
+  return JPReport.index().then(ix=>(ix.reports||[]).filter(x=>x.c===code).sort((a,b)=>String(b.d).localeCompare(String(a.d))));
+}
+function wireDetailTabs(code){
+  const box=document.getElementById("dt-earn"), info=document.getElementById("dt-info");
+  let list=null, cur=null;
+  const show=t=>{
+    document.querySelectorAll(".dtabs button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.dt===t));
+    info.hidden = t!=="info"; box.hidden = t!=="earn";
+    if(t==="earn") drawEarn();
+    if(t==="info" && BY[code]) drawChart();
+  };
+  const drawEarn=()=>{
+    if(!list){ box.innerHTML=`<div class="slot">실적발표 목록 불러오는 중…</div>`; earnList(code).then(l=>{ list=l; drawEarn(); }); return; }
+    if(!list.length){ box.innerHTML=`<div class="slot">아직 이 종목의 실적 리포트가 없습니다. 실적 시즌(1·2·4·5·7·8·10·11월)에는 일·화·목 21시에 발표분이 자동으로 쌓이고, 쌓인 발표는 여기서 탭으로 모두 볼 수 있습니다. <a href="https://kabutan.jp/stock/finance?code=${code}" target="_blank" rel="noopener">카부탄 결산 표 ›</a></div>`; return; }
+    if(!cur) cur=list[0].rid;
+    box.innerHTML=`<div class="rtabs">${list.map(x=>`<button data-rid="${esc(x.rid)}" aria-pressed="${x.rid===cur}"><span>${esc(x.d)}</span><b>${esc(x.cq||x.p||"")} 실적발표</b>${x.note?`<i title="요약·분석 있음">요약</i>`:""}</button>`).join("")}</div><div class="jr jr-embed" id="rbody"><div class="slot">리포트 불러오는 중…</div></div>`;
+    box.querySelectorAll(".rtabs button").forEach(b=>b.onclick=()=>{ cur=b.dataset.rid; drawEarn(); });
+    const rid=cur;
+    JPReport.load(rid).then(([R,N])=>{ if(cur!==rid||view.code!==code) return; document.getElementById("rbody").innerHTML=JPReport.html(R,N,true); })
+      .catch(()=>{ const el=document.getElementById("rbody"); if(el) el.innerHTML=`<div class="slot">리포트를 불러오지 못했습니다.</div>`; });
+  };
+  document.querySelectorAll(".dtabs button").forEach(b=>b.onclick=()=>show(b.dataset.dt));
+  earnList(code).then(l=>{ list=l; const n=document.getElementById("dt-earn-n"); if(n&&view.code===code) n.textContent=l.length?l.length+"건":""; });
+  // 머리글의 '실적 리포트 ›' 링크는 새 창 대신 이 탭으로
+  const hr=document.querySelector("#pin .d-rep"); if(hr) hr.onclick=e=>{ e.preventDefault(); show("earn"); };
+  show("info");   // 종목을 열면 늘 기본 정보부터
 }
 function closeDetail(){
   document.getElementById("panel").classList.remove("on");

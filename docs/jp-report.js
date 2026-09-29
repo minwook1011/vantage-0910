@@ -146,12 +146,16 @@
       '<div class="lg"><span><i style="background:#4f7cff"></i>매출(억엔)</span><span><i style="background:#f0a53a"></i>영업이익(억엔)</span><span><i style="background:rgba(79,124,255,.35);border:1px dashed #4f7cff"></i>옅은 막대 = 회사 예상(予)</span></div>';
   }
 
-  /* ── 리포트 1건 ── */
-  function renderReport(R, N) {
+  /* ── 리포트 1건: embed=true 면 일본 스크리너 종목 창 안에 넣는 모양(기업명 머리글 없음) ── */
+  function reportHTML(R, N, embed) {
     var r = R.rec || {}, qs = R.qs || [], cur = qs[qs.length - 1] || {};
-    document.title = (R.name || R.code) + " " + (cur.cq || "") + " 실적 — VANTAGE";
     var tan = (R.docs || []).filter(function (d) { return d.kind === "tanshin"; })[0];
-    var html =
+    var html = embed
+      ? '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + (r.time ? " " + esc(r.time) : "") + "</b></div>" +
+        '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") +
+        (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
+        '<a class="btn" href="jp-report.html?id=' + encodeURIComponent(R.rid) + '" target="_blank" rel="noopener">↗ 리포트 페이지(공유용)</a></div>'
+      :
       '<div class="kicker"><a href="jp-screener.html' + ((R.u || []).indexOf("cons") < 0 ? "?u=major" : "") + '">일본 기업 스크리너</a> · <a href="jp-report.html">실적 리포트</a> · ' + (R.u || []).map(function (u) { return UL[u]; }).join("·") + "</div>" +
       "<h1>" + esc(R.name || R.code) + '<span class="code">' + esc(R.code) + "</span></h1>" +
       '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + (r.time ? " " + esc(r.time) : "") + "</b>" + (R.cat ? " · " + esc(R.cat) : "") + (R.mcap ? " · 시총 " + Math.round(R.mcap).toLocaleString() + "억엔" : "") + "</div>" +
@@ -159,6 +163,11 @@
       (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
       '<a class="btn" href="https://kabutan.jp/stock/finance?code=' + esc(R.code) + '" target="_blank" rel="noopener">📊 카부탄 결산 표</a>' +
       '<button class="btn" id="copy">🔗 링크 복사</button></div>';
+    html += body(R, N, qs, r);
+    return html;
+  }
+  function body(R, N, qs, r) {
+    var html = "";
     // ① 요약
     html += '<section><h2>① 요약 <span class="hint">표 → 핵심 수치 → 요약</span></h2>' + (qs.length ? table(qs) : '<div class="empty">분기 실적 표가 없습니다.</div>') + facts(R) +
       (N && N.summary_md ? '<div class="note card">' + (N.headline ? "<h3>" + esc(N.headline) + "</h3>" : "") + md(N.summary_md) + "</div>"
@@ -175,7 +184,12 @@
         : '<div class="empty">원문 링크를 아직 찾지 못했습니다 — <a href="https://kabutan.jp/stock/news?code=' + esc(R.code) + '&nmode=3" target="_blank" rel="noopener">카부탄 개시 목록</a>에서 확인하세요.</div>') +
       (N && N.sources && N.sources.length ? '<div class="unit">요약·분석 참고: ' + N.sources.map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + "</a>"; }).join(" · ") + "</div>" : "") +
       '<div class="unit">리포트 데이터 갱신 ' + esc(R.updated || "") + (N && N.written ? " · 요약 작성 " + esc(N.written) : "") + " · 투자 권유가 아닌 공시 정리입니다.</div></section>";
-    app.innerHTML = html;
+    return html;
+  }
+  function renderReport(R, N) {
+    var cur = (R.qs || [])[(R.qs || []).length - 1] || {};
+    document.title = (R.name || R.code) + " " + (cur.cq || "") + " 실적 — VANTAGE";
+    app.innerHTML = reportHTML(R, N, false);
     var cp = document.getElementById("copy");
     if (cp) cp.onclick = function () { try { navigator.clipboard.writeText(location.href); cp.textContent = "✓ 복사됨"; } catch (e) { cp.textContent = location.href; } };
   }
@@ -213,6 +227,15 @@
     document.getElementById("more").onclick = function () { st.n += 60; draw(); };
     draw();
   }
+
+  /* 다른 화면에서 쓰는 창구: JPReport.index() → 목록, JPReport.load(rid) → [리포트, 요약(없으면 null)], JPReport.html(R, N, embed) */
+  var IDX = null;
+  window.JPReport = {
+    index: function () { return IDX || (IDX = getJSON(BASE + "index.json").catch(function () { IDX = null; return { reports: [] }; })); },
+    load: function (rid) { return Promise.all([getJSON(BASE + rid + ".json"), getJSON(BASE + "notes/" + rid + ".json").catch(function () { return null; })]); },
+    html: reportHTML
+  };
+  if (!app) return;
 
   var id = new URLSearchParams(location.search).get("id");
   if (id && /^[\w.-]+$/.test(id)) {

@@ -448,3 +448,23 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(21,28,4
 .d-rep{margin-left:4px;font-size:11px}
 @media(max-width:560px){.useg{width:100%}.useg button{flex:1;padding:8px 10px}}
 .fintab thead th.esth.co::before{content:"회사 예상"}
+/* 종목 창: 기본 정보 | 실적발표 */
+.dtabs{display:flex;gap:6px;margin:16px 0 4px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.dtabs button{font:inherit;font-size:13.5px;font-weight:700;padding:8px 16px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--ink-mid);cursor:pointer}
+.dtabs button[aria-pressed="true"]{color:#fff;background:linear-gradient(135deg,rgba(66,109,216,.55),rgba(24,34,57,.9));border-color:#4a6fb8}
+.dtabs button small{font-size:11px;color:var(--ink-mute);margin-left:4px}
+.dtabs button[aria-pressed="true"] small{color:#b9cdf6}
+#dt-earn[hidden],#dt-info[hidden]{display:none!important}
+.rtabs{display:flex;gap:6px;overflow-x:auto;padding:10px 0 12px;scrollbar-width:thin}
+.rtabs button{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-start;gap:1px;font:inherit;padding:7px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink-mid);cursor:pointer;text-align:left}
+.rtabs button span{font:11px var(--mono,monospace);color:var(--ink-mute)}
+.rtabs button b{font-size:13px}
+.rtabs button i{font-style:normal;font-size:10px;font-weight:700;color:#fff;background:#2f7a55;border-radius:4px;padding:0 5px;margin-top:2px}
+.rtabs button[aria-pressed="true"]{border-color:#4a6fb8;background:rgba(66,109,216,.22);color:var(--ink)}
+.jr-embed{max-width:none;padding:0;margin:0}
+.jr-embed section{margin-top:18px}
+.jr-embed .charts{grid-template-columns:1fr}
+/* 스크리너 표 전역 스타일(고정 머리글 등)이 리포트 표에 새지 않게 */
+.jr-embed table.ft thead th{position:static;top:auto;z-index:auto;background:transparent;text-transform:none;letter-spacing:0;font-size:12px;cursor:default}
+.jr-embed table.ft tbody tr{cursor:default}
+.jr-embed table.ft tbody tr:hover{background:none}
