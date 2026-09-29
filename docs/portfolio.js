@@ -64,6 +64,7 @@
     document.querySelectorAll("[data-delete-tx]").forEach(function (b) { b.onclick = function () { if (!confirm("이 매매 기록을 삭제할까요?")) return; state.transactions = state.transactions.filter(function (t) { return t.id !== b.dataset.deleteTx; }); S.save(state); render(); }; });
   }
   function renderLists() {
+    if (!document.getElementById("buy-list")) return;   // 바잉리스트·관심종목 칸은 없앰(기록은 보관)
     var buys = state.buyList.slice().sort(function (a,b) { return String(b.createdAt).localeCompare(String(a.createdAt)); });
     document.getElementById("buy-list").innerHTML = buys.length ? buys.map(function (x) { return '<div class="buy-row"><b class="buy-ticker">' + esc(x.ticker) + '</b><span class="reason">' + esc(x.reason) + '</span><button class="icon-btn" data-delete-buy="' + esc(x.id) + '" aria-label="바잉리스트 삭제">×</button></div>'; }).join("") : '<div class="empty-row">종목과 매수 이유를 추가해 주세요.</div>';
     document.getElementById("watch-list").innerHTML = state.watchlist.length ? state.watchlist.map(function (x) { var quote = state.prices[S.groupKey(x.market, x.ticker)], price = quote && quote.price; return '<div class="watch-row"><div><b class="watch-ticker">' + esc(S.displayTicker(x.ticker)) + '</b><span class="watch-meta"> · ' + (x.market === "US" ? "미국" : "한국") + '</span></div><span class="watch-price">' + local(price, x.market) + '</span><button class="icon-btn" data-delete-watch="' + esc(x.id) + '" aria-label="관심종목 삭제">×</button></div>'; }).join("") : '<div class="empty-row">관심 종목을 추가해 주세요.</div>';
@@ -71,7 +72,26 @@
     document.querySelectorAll("[data-delete-watch]").forEach(function (b) { b.onclick = function () { state.watchlist = state.watchlist.filter(function (x) { return x.id !== b.dataset.deleteWatch; }); S.save(state); renderLists(); }; });
   }
   function renderCash() { var cash = cashInfo(); document.getElementById("cash-krw").value = cash.krw || ""; document.getElementById("cash-usd").value = cash.usd || ""; document.getElementById("cash-usd-krw").textContent = krw(cash.usdKrw); document.getElementById("cash-fx-rate").textContent = "USD/KRW " + num(cash.fx, 2); }
-  function render() { renderTabs(); renderCash(); renderSummary(); renderHoldings(); renderTransactions(); renderLists(); }
+  /* 계좌 안 보기: 현황 / 매매내역 / 수익률 평가 */
+  var view = "status";
+  try { view = localStorage.getItem("vantage-portfolio-view") || "status"; } catch (e) {}
+  var perfKey = null;
+  function removeTx(id) { state.transactions = state.transactions.filter(function (t) { return t.id !== id; }); S.save(state); perfKey = null; render(); }
+  function renderView() {
+    document.querySelectorAll("#view-tabs button").forEach(function (b) { b.classList.toggle("on", b.dataset.view === view); });
+    document.getElementById("view-status").hidden = view !== "status";
+    document.getElementById("view-trades").hidden = view !== "trades";
+    document.getElementById("view-perf").hidden = view !== "perf";
+    if (!window.PortfolioPerf) return;
+    if (view === "trades") PortfolioPerf.trades(document.getElementById("trades-body"), state, activeId, removeTx);
+    if (view === "perf") {
+      /* 과거 시세를 받아 다시 계산하는 건 무겁다 → 계좌나 매매 기록이 바뀌었을 때만 */
+      var key = activeId + "|" + state.transactions.filter(function (t) { return t.accountId === activeId; }).map(function (t) { return t.id + t.qty + t.price + t.date + t.side; }).join(",");
+      if (key !== perfKey) { perfKey = key; PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId); }
+    }
+  }
+  document.querySelectorAll("#view-tabs button").forEach(function (b) { b.onclick = function () { view = b.dataset.view; try { localStorage.setItem("vantage-portfolio-view", view); } catch (e) {} renderView(); }; });
+  function render() { renderTabs(); renderCash(); renderSummary(); renderHoldings(); renderTransactions(); renderLists(); renderView(); }
   function setUpdated(text) { document.getElementById("portfolio-updated").textContent = text; }
   function clean(v) { return String(v == null ? "" : v).trim(); }
   function numberValue(v) { return Number(clean(v).replace(/,/g, "")); }
@@ -160,8 +180,8 @@
     document.getElementById("rename-account").onclick = function () { var a=active(), name=prompt("포트폴리오 이름",a.name); if(!name||!name.trim())return;a.name=name.trim();S.save(state);render(); };
     document.getElementById("delete-account").onclick = function () { if(state.accounts.length<=1){alert("포트폴리오는 하나 이상 남겨야 합니다.");return;}var a=active();if(!confirm(a.name+"과 해당 매매 기록을 삭제할까요?"))return;state.accounts=state.accounts.filter(function(x){return x.id!==a.id;});state.transactions=state.transactions.filter(function(x){return x.accountId!==a.id;});activeId=state.accounts[0].id;S.save(state);render(); };
     document.getElementById("cash-settings").addEventListener("submit", function (e) { e.preventDefault(); var a = active(); a.cashKrw = Math.max(0, Number(document.getElementById("cash-krw").value) || 0); a.cashUsd = Math.max(0, Number(document.getElementById("cash-usd").value) || 0); S.save(state); render(); setUpdated("예수금을 이 브라우저에 저장함"); });
-    document.getElementById("buy-form").addEventListener("submit",function(e){e.preventDefault();var f=new FormData(e.currentTarget),ticker=String(f.get("ticker")||"").trim().toUpperCase(),reason=String(f.get("reason")||"").trim();if(!ticker||!reason)return;state.buyList.push({id:S.id("buy"),ticker:ticker,reason:reason,createdAt:new Date().toISOString()});S.save(state);e.currentTarget.reset();renderLists();});
-    document.getElementById("watch-form").addEventListener("submit",function(e){e.preventDefault();var f=new FormData(e.currentTarget),market=S.marketOf(f.get("ticker")),ticker=S.tickerFor(f.get("ticker"),market);if(!ticker)return;if(state.watchlist.some(function(x){return S.groupKey(x.market,x.ticker)===S.groupKey(market,ticker);})){return;}state.watchlist.push({id:S.id("watch"),market:market,ticker:ticker,createdAt:new Date().toISOString()});S.save(state);e.currentTarget.reset();renderLists();refresh();});
+    if (document.getElementById("buy-form")) document.getElementById("buy-form").addEventListener("submit",function(e){e.preventDefault();var f=new FormData(e.currentTarget),ticker=String(f.get("ticker")||"").trim().toUpperCase(),reason=String(f.get("reason")||"").trim();if(!ticker||!reason)return;state.buyList.push({id:S.id("buy"),ticker:ticker,reason:reason,createdAt:new Date().toISOString()});S.save(state);e.currentTarget.reset();renderLists();});
+    if (document.getElementById("watch-form")) document.getElementById("watch-form").addEventListener("submit",function(e){e.preventDefault();var f=new FormData(e.currentTarget),market=S.marketOf(f.get("ticker")),ticker=S.tickerFor(f.get("ticker"),market);if(!ticker)return;if(state.watchlist.some(function(x){return S.groupKey(x.market,x.ticker)===S.groupKey(market,ticker);})){return;}state.watchlist.push({id:S.id("watch"),market:market,ticker:ticker,createdAt:new Date().toISOString()});S.save(state);e.currentTarget.reset();renderLists();refresh();});
     var importButton = document.getElementById("portfolio-import-button"), importFile = document.getElementById("portfolio-import-file");
     importButton.onclick = function () { importFile.click(); };
     importFile.onchange = function () { importTransactions(importFile.files && importFile.files[0]); importFile.value = ""; };

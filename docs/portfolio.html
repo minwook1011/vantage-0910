@@ -7,7 +7,7 @@
 <script src="gate.js?v=20260909a"></script>
 <title>포트폴리오 관리 — VANTAGE</title>
 <link rel="stylesheet" href="theme.css?v=20260928p">
-<link rel="stylesheet" href="portfolio.css?v=20260910a">
+<link rel="stylesheet" href="portfolio.css?v=20260929a">
 </head>
 <body>
 <header id="topnav"></header>
@@ -25,7 +25,18 @@
       <button class="quiet-btn" type="submit">예수금 저장</button>
     </form>
     <div id="portfolio-summary"></div>
+    <div class="view-tabs" id="view-tabs"><button data-view="status">현황</button><button data-view="trades">매매내역</button><button data-view="perf">수익률 평가</button></div>
   </section>
+
+  <section class="section portfolio-section pf-view" id="view-trades" hidden>
+    <h2>매매내역<span class="sub">월별로 묶음 · 매도는 평균단가 기준 실현손익</span></h2>
+    <div id="trades-body"></div>
+  </section>
+  <section class="section portfolio-section pf-view" id="view-perf" hidden>
+    <h2>수익률 평가<span class="sub">내 계좌 vs 지수 · 기간별 매매 변동</span></h2>
+    <div id="perf-body"></div>
+  </section>
+  <div id="view-status">
 
   <section class="section portfolio-section">
     <h2>보유 종목<span class="sub">매수·매도 기록에서 자동 계산</span></h2>
@@ -47,23 +58,13 @@
     </form>
     <div class="recent-transactions" id="recent-transactions"></div>
   </section>
+  </div>
 
-  <section class="watch-grid">
-    <div class="watch-panel buy-panel">
-      <div class="watch-head"><div><div class="kicker">BUYING LIST</div><h2>바잉리스트</h2></div><span>종목과 매수 이유</span></div>
-      <form class="watch-form buy-form" id="buy-form"><input name="ticker" placeholder="티커" required><input name="reason" placeholder="매수 이유를 적어주세요" required><button class="add-btn">추가</button></form>
-      <div class="buy-list" id="buy-list"></div>
-    </div>
-    <div class="watch-panel">
-      <div class="watch-head"><div><div class="kicker">WATCH LIST</div><h2>관심종목</h2></div><span>접속할 때마다 현재가 갱신</span></div>
-      <form class="watch-form" id="watch-form"><input name="ticker" placeholder="티커 (NVDA / 005930)" required><button class="add-btn">추가</button></form>
-      <div class="watch-list" id="watch-list"></div>
-    </div>
-  </section>
 </main>
 <script src="theme.js?v=20260929u"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
 <script src="portfolio-store.js?v=20260922a"></script>
-<script src="portfolio.js?v=20260922a"></script>
+<script src="portfolio-perf.js?v=20260929a"></script>
+<script src="portfolio.js?v=20260929a"></script>
 </body>
 </html>
