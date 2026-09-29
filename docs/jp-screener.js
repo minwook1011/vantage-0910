@@ -1,6 +1,58 @@
 const F = {CODE:0,NAME:1,CAT:2,IND:3,CLOSE:4,MCAP:5,REVG:6,PY:7,PYTD:8,PER:9,ROE:10,OPM:11,REV:12};
 const CATS = ["리테일·유통","식품·음료","외식","라멘","게임·엔터","미용·헬스케어서비스","패션·명품","생활·홈","화장품·퍼스널케어","여행·레저"];
 const BY = {}; BUNDLE.forEach(b=>BY[b.c]=b);
+
+/* ===== 유니버스: 소비재 / 주요 기업 =====
+   RAW·BUNDLE·CATS는 전역 const 배열 — 유니버스를 바꿀 때 내용만 제자리 교체하고 BY를 다시 만든다.
+   주요 기업 데이터(data/jp/major-data.js: RAW_MAJ·BUNDLE_MAJ·CATS_MAJ)는 처음 고를 때만 불러온다. */
+const MAJ_SRC = "data/jp/major-data.js?v=20260929a";
+const UNI = {
+  con:{label:"소비재", raw:RAW.slice(), bundle:BUNDLE.slice(), cats:CATS.slice(), eyebrow:"Tokyo Stock Exchange · Consumer", kanji:"消", asof:"2026-09-04"},
+  maj:{label:"주요 기업", raw:null, bundle:null, cats:null, eyebrow:"Tokyo Stock Exchange · Top 200 + Nikkei 225", kanji:"主", asof:null},
+};
+let universe = "con", uniLoading = false, _majPromise = null;
+const isMaj = () => universe==="maj";
+const KPI_COLS = ["STORE","PSU","FOOD","FLR"];
+function swapInPlace(dst, src){ dst.length=0; for(const x of src) dst.push(x); }
+function loadMajor(){
+  if(UNI.maj.raw) return Promise.resolve();
+  if(_majPromise) return _majPromise;
+  _majPromise = new Promise((ok,fail)=>{
+    const s=document.createElement("script"); s.src=MAJ_SRC; s.async=true;
+    s.onload=()=>{ try{
+        /* global RAW_MAJ, BUNDLE_MAJ, CATS_MAJ */
+        UNI.maj.raw=RAW_MAJ; UNI.maj.bundle=BUNDLE_MAJ; UNI.maj.cats=CATS_MAJ;
+        let last=0; BUNDLE_MAJ.forEach(b=>{ if(b.dd&&b.dd.length) last=Math.max(last,lastDay(b)); });
+        UNI.maj.asof = last ? dstr(last) : "—";
+        ok();
+      }catch(e){ fail(e); } };
+    s.onerror=()=>fail(new Error("load"));
+    document.head.appendChild(s);
+  }).catch(e=>{ _majPromise=null; throw e; });
+  return _majPromise;
+}
+function applyUniverse(u){
+  const U=UNI[u];
+  universe=u;
+  swapInPlace(RAW,U.raw); swapInPlace(BUNDLE,U.bundle); swapInPlace(CATS,U.cats);
+  for(const k in BY) delete BY[k];
+  BUNDLE.forEach(b=>BY[b.c]=b);
+}
+function saveUniverse(u){
+  try{ localStorage.setItem("jp_screener_universe",u); }catch(e){}
+  try{ const url=new URL(location.href);
+    if(u==="maj") url.searchParams.set("u","major"); else url.searchParams.delete("u");
+    if(/^#(u=)?(major|consumer)$/.test(url.hash)) url.hash="";
+    history.replaceState(null,"",url.pathname+url.search+url.hash);
+  }catch(e){}
+}
+function initialUniverse(){
+  let v=null;
+  try{ v=new URL(location.href).searchParams.get("u"); }catch(e){}
+  if(!v){ const m=location.hash.match(/^#(?:u=)?(major|consumer|maj|con)$/); if(m) v=m[1]; }
+  if(!v){ try{ v=localStorage.getItem("jp_screener_universe"); }catch(e){} }
+  return (v==="major"||v==="maj") ? "maj" : "con";
+}
 let FAVS; try{FAVS=new Set(JSON.parse(localStorage.getItem("jp_screener_favs")||"[]"));}catch(e){FAVS=new Set();}
 function saveFavs(){try{localStorage.setItem("jp_screener_favs",JSON.stringify([...FAVS]));}catch(e){}}
 function toggleFav(code,ev){
@@ -42,6 +94,11 @@ function resBadges(x){
   b.push(`<em class="rb px${tone(p.d1)}">1D ${p.d1==null?"—":sgn(p.d1)+"%"}</em>`);
   if(p.d1!=null) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
   return `<span class="eu-rx">${b.join("")}</span>`;
+}
+// 실적 리포트 페이지(jp-report.html) 링크 — 결과 레코드에 rid가 있을 때만
+function repLink(x, cls){
+  if(!x || x.rid==null || x.rid==="") return "";
+  return `<a class="${cls||"eu-rep"}" href="jp-report.html?id=${encodeURIComponent(x.rid)}" target="_blank" rel="noopener">실적 리포트 ›</a>`;
 }
 function resTip(x){
   if(!x) return "";
@@ -135,8 +192,9 @@ function renderColsel(){
   const el=document.getElementById("colsel"); if(!el) return;
   const finBtn=k=>`<button data-col="${k}" aria-pressed="${!state.matrix && state.cols.includes(k)}">${COLS[k].label}</button>`;
   const mtxBtn=k=>`<button data-mtx="${k}" aria-pressed="${state.matrix===k}">${MTX[k].label}</button>`;
-  el.innerHTML=`<span class="cslabel">표시 지표</span><div class="csgrp">${FIN_ORDER.map(finBtn).join("")}</div>`
-    +`<span class="cslabel" style="margin-left:4px">월별 펼치기</span><div class="csgrp kpi">${MTX_ORDER.map(mtxBtn).join("")}</div>`;
+  const fin = isMaj() ? FIN_ORDER.filter(k=>!KPI_COLS.includes(k)) : FIN_ORDER;
+  el.innerHTML=`<span class="cslabel">표시 지표</span><div class="csgrp">${fin.map(finBtn).join("")}</div>`
+    +(isMaj() ? "" : `<span class="cslabel" style="margin-left:4px">월별 펼치기</span><div class="csgrp kpi">${MTX_ORDER.map(mtxBtn).join("")}</div>`);
   el.querySelectorAll("button[data-col]").forEach(b=>b.onclick=()=>toggleCol(b.dataset.col));
   el.querySelectorAll("button[data-mtx]").forEach(b=>b.onclick=()=>setMatrix(b.dataset.mtx));
   const note=document.getElementById("mtxnote");
@@ -403,7 +461,7 @@ function earnRows(){
 }
 function euCo([r,e,x]){
   const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
-  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${esc(shortName(r[F.NAME]))}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x)}</button>`;
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${esc(shortName(r[F.NAME]))}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x)}</button>${repLink(x)}`;
 }
 function renderEarnUp(){
   const box=document.getElementById("earnup"); if(!box) return;
@@ -469,13 +527,26 @@ function renderEarnUp(){
   if(on){ const wk=box.querySelector(".eu-weeks"); wk.scrollLeft = on.offsetLeft - wk.offsetLeft - 8; }
 }
 function renderTable(){
+  const mb=document.getElementById("tbmore"); if(mb) mb.hidden=true;
+  state.matrix=null;   // 표시 지표 막대(월별 펼치기 포함)를 없앴으므로 월별 매트릭스 보기는 쓰지 않는다
+  if(uniLoading) return;
   renderEarnUp();
   if(state.matrix){ renderMatrix(); return; }
   const rows = current();
   const maxmc = Math.max(...rows.map(r=>r[F.MCAP]||0), 1);
   document.getElementById("cnt").textContent = rows.length;
   document.getElementById("empty").hidden = rows.length>0;
-  document.getElementById("tb").innerHTML = rows.map((r,i)=>{
+  // 한 번에 전부 그리면(700행+) 스크롤이 버벅인다 → 150행씩 그리고, 끝에 닿으면 이어서 붙인다
+  const tb=document.getElementById("tb");
+  tbRows=rows; tbShown=0; tbMax=maxmc; tb.innerHTML="";
+  appendRows(TB_PAGE);
+  renderThead();
+}
+const TB_PAGE=150;
+let tbRows=[], tbShown=0, tbMax=1, tbIO=null;
+function appendRows(n){
+  const rows=tbRows, maxmc=tbMax, from=tbShown, to=Math.min(rows.length, from+n);
+  document.getElementById("tb").insertAdjacentHTML("beforeend", rows.slice(from,to).map((r,j)=>{ const i=from+j;
     const mc=r[F.MCAP]||0, has=!!(BY[r[F.CODE]]&&!BY[r[F.CODE]].iv);
     const dyn = state.cols.map(k=>colCell(r,k)).join("");
     return `<tr data-c="${r[F.CODE]}" tabindex="0">
@@ -485,8 +556,14 @@ function renderTable(){
       <td class="mc">${int(mc)}<i style="width:${(mc/maxmc*46).toFixed(1)}px"></i></td>
       <td>${int(r[F.REV])}</td>${dyn}
     </tr>`;
-  }).join("");
-  renderThead();
+  }).join(""));
+  tbShown=to;
+  let more=document.getElementById("tbmore");
+  if(!more){ more=document.createElement("button"); more.id="tbmore"; more.className="tb-more"; more.onclick=()=>appendRows(TB_PAGE);
+    document.querySelector(".tblwrap").after(more);
+    if(window.IntersectionObserver){ tbIO=new IntersectionObserver(es=>{ if(es[0].isIntersecting && tbShown<tbRows.length) appendRows(TB_PAGE); },{rootMargin:"600px 0px"}); tbIO.observe(more); } }
+  more.hidden = tbShown>=rows.length;
+  more.textContent = `더 보기 (${tbShown} / ${rows.length})`;
 }
 
 /* ================= 외식 비교 ================= */
@@ -504,7 +581,7 @@ function fcmpValue(code, metric){
 function setFcmpMetric(m){ state.fcmpMetric=m; renderFoodCompare(); }
 function renderFoodCompare(){
   const el=document.getElementById("foodcmp");
-  if(!(state.cat==="외식"||state.cat==="라멘")){ el.innerHTML=""; return; }
+  if(isMaj() || !(state.cat==="외식"||state.cat==="라멘")){ el.innerHTML=""; return; }
   const metric = state.fcmpMetric || "기존점매출";
   const isStore = metric==="점포수";
   const cats = new Set(["외식","라멘"]);
@@ -717,6 +794,7 @@ function chartHTML(b){
 /* ================= 사업 구조 ================= */
 function bmHTML(code){
   const bm = BM[code];
+  if(!bm && isMaj()) return "";
   if(!bm) return `<div class="dsec">사업 구조</div>
     <div class="slot">이 종목은 아직 사업 구조를 정리하지 않았습니다. 아래 카부탄·회사 IR 링크에서 확인하세요.</div>`;
   const segs = (bm.seg||[]).slice().sort((a,b)=>(b.p??-1)-(a.p??-1));
@@ -987,7 +1065,7 @@ function finHTML(b){
   const latest = (!isQ && src.lb[off]!=null) ? String(src.lb[off]) : null;
   const est = (!isQ && b.f && latest && /^\d{4}$/.test(latest) && +b.f.y > +latest) ? b.f : null;
   let head=`<tr><th>억엔</th>`;
-  if(est) head+=`<th class="esth">${esc(est.y)}E</th>`;
+  if(est) head+=`<th class="esth${est.co?" co":""}">${esc(est.y)}E</th>`;
   for(let i=0;i<n;i++) head+=`<th>${esc(src.lb[i+off])}</th>`;
   head+=`</tr>`;
   let body="";
@@ -1012,8 +1090,9 @@ function finHTML(b){
   }
   const warn = src.warn ? `<div class="warn">⚠ ${esc(src.warn)}</div>` : "";
   const estNote = est
-    ? `<b>${esc(est.y)}E</b>는 확정 실적이 아니라 애널리스트 <b>${est.n}명</b>의 컨센서스 평균입니다(점선 칸). `
-    : (!isQ && !b.f ? `이 종목은 애널리스트 컨센서스가 없어 예상 칸이 비어 있습니다. ` : "");
+    ? (est.co ? `<b>${esc(est.y)}E</b>는 확정 실적이 아니라 <b>회사 예상(가이던스)</b>입니다(점선 칸, 카부탄 기준). `
+              : `<b>${esc(est.y)}E</b>는 확정 실적이 아니라 애널리스트 <b>${est.n}명</b>의 컨센서스 평균입니다(점선 칸). `)
+    : (!isQ && !b.f ? (isMaj() ? `이 종목은 회사 예상이 없어 예상 칸이 비어 있습니다. ` : `이 종목은 애널리스트 컨센서스가 없어 예상 칸이 비어 있습니다. `) : "");
   return `${warn}<div class="fin"><table class="fintab"><thead>${head}</thead><tbody>${body}</tbody></table></div>
     <div class="slot" style="margin-top:11px;border-style:solid">${estNote}배경색은 <b>YoY 증감률</b>입니다 — 플러스가 클수록 붉게, 마이너스가 클수록 푸르게(±50%에서 최대). 직전 기가 적자면 증감률이 의미를 잃어 <b>—</b>로 둡니다.</div>`;
 }
@@ -1044,7 +1123,7 @@ function openDetail(code){
       <div class="dtk">TSE : ${code}</div>
       <div class="dnm jp">${esc(r[F.NAME])}</div>
       <div class="chips"><span class="chip k">${r[F.CAT]}</span><span class="chip">${esc(r[F.IND])}</span>${(()=>{const e=earnInfo(code);return e&&e.days>=0?`<span class="chip earnchip">실적발표 ${earnLabel(e)}</span>`:"";})()}</div>
-      ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code])}</div>`:""}
+      ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code])}${repLink(RES[code],"d-rep")}</div>`:""}
     </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" title="즐겨찾기">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
 
     ${bmHTML(code)}
@@ -1250,17 +1329,73 @@ document.getElementById("sq").addEventListener("keydown",e=>{ if(e.key==="Enter"
 window.addEventListener("resize",()=>{ if(view.code&&BY[view.code]) drawChart(); });
 matchMedia("(prefers-color-scheme:dark)").addEventListener("change",()=>{ if(view.code&&BY[view.code]) drawChart(); });
 
-document.getElementById("s-n").textContent=RAW.length;
-document.getElementById("s-ch").textContent=BUNDLE.length;
-document.getElementById("s-m").textContent=(RAW.reduce((a,r)=>a+(r[F.MCAP]||0),0)/10000).toFixed(0);
-document.getElementById("asof").textContent="2026-09-04";
-buildRail(); renderColsel(); renderTable();
+/* ---- 유니버스 전환 ---- */
+const NOTE_HTML = {con: document.getElementById("unote") ? document.getElementById("unote").innerHTML : "",
+  maj: `<b>모든 종목을 클릭하면 주가 차트(10년, 주봉·월봉)와 분기·연간 실적이 열립니다.</b>
+    주요 기업은 <b>도쿄증권거래소 시가총액 상위 200개</b>(전 시장)와 <b>닛케이225 구성 종목</b>을 합친 목록이며, 섹터는 東証33業種을 묶어 나눴습니다.
+    매출·영업이익은 카부탄 결산(3개월 실적) 기준 최근 4분기 합(TTM), 매출성장은 그 1년 전 TTM 대비, 연간 표의 <b>E</b> 칸은 회사 예상(가이던스)입니다.
+    PER은 회사 예상 기준, ROE는 최근 확정 연도 값입니다. 은행·보험 등 영업이익을 공시하지 않는 업종은 영업이익 칸에 경상이익을 표시하고 영업이익률은 비워 둡니다.
+    매주 토요일 자동 갱신.`};
+function renderHeader(){
+  const U=UNI[universe];
+  const set=(id,v)=>{ const el=document.getElementById(id); if(el) el.textContent=v; };
+  set("eyebrow", U.eyebrow); set("subkind", isMaj()?"섹터별":"카테고리별"); set("kanji", U.kanji);
+  set("s-n", RAW.length); set("s-ch", BUNDLE.length);
+  set("s-m", (RAW.reduce((a,r)=>a+(r[F.MCAP]||0),0)/10000).toFixed(0));
+  set("asof", U.asof||"—");
+  const note=document.getElementById("unote"); if(note) note.innerHTML=NOTE_HTML[universe];
+  document.querySelectorAll("#useg button[data-u]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.u===universe));
+  const us=(u,t)=>{ const el=document.querySelector(`#useg button[data-u="${u}"] span`); if(el) el.textContent=t; };
+  us("con", `${UNI.con.raw.length} · 카테고리별`);
+  if(UNI.maj.raw) us("maj", `${UNI.maj.raw.length} · 시총 상위 200 + 닛케이225`);
+  // 외식 전용 정렬·일봉 필터는 소비재에서만
+  document.querySelectorAll("#sort option").forEach(o=>{ const kpi=/외식/.test(o.textContent); o.hidden=kpi&&isMaj(); o.disabled=kpi&&isMaj(); });
+  const oc=document.getElementById("onlych"); if(oc&&oc.closest(".fld")) oc.closest(".fld").hidden=isMaj();
+  document.title = `일본 기업 스크리너 · ${U.label} — VANTAGE`;
+}
+function resetForUniverse(){
+  state.cat="전체"; state.matrix=null; state.matrixMon=null; state.onlych=0;
+  if(isMaj()) state.cols=state.cols.filter(k=>!KPI_COLS.includes(k));
+  if(!state.cols.length) state.cols=["EARN","REVG","PY","PYTD","PER","ROE","OPM"];
+  const okSort=["mc","rev","code","name",...Object.keys(COLS).filter(k=>!(isMaj()&&KPI_COLS.includes(k)))];
+  if(!okSort.includes(state.sort)){ state.sort="mc"; state.dir=-1; }
+  const sel=document.getElementById("sort"); if(sel && [...sel.options].some(o=>o.value===state.sort)) sel.value=state.sort;
+  const oc=document.getElementById("onlych");
+  if(oc) oc.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.v==="0"));
+  earnWeek=null; earnOpen.clear();
+}
+function renderAll(){ const ue=document.getElementById("uerr"); if(ue && UNI.maj.raw) ue.remove(); renderHeader(); buildRail(); renderColsel(); renderFoodCompare(); renderSmartChips(); renderTable(); }
+function setUniverse(u, opts){
+  opts=opts||{};
+  if(u===universe && !opts.force) return;
+  closeDetail();
+  if(u==="maj" && !UNI.maj.raw){
+    uniLoading=true;
+    document.querySelectorAll("#useg button[data-u]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.u===u));
+    document.getElementById("tb").innerHTML=`<tr><td class="l" colspan="14" style="padding:28px 12px;color:var(--ink-mute)">주요 기업 데이터를 불러오는 중…</td></tr>`;
+    document.getElementById("empty").hidden=true;
+    document.getElementById("earnup").innerHTML="";
+    loadMajor().then(()=>{ uniLoading=false; applyUniverse("maj"); saveUniverse("maj"); resetForUniverse(); renderAll(); })
+      .catch(()=>{ uniLoading=false;
+        document.querySelectorAll("#useg button[data-u]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.u===universe));
+        renderAll();
+        const g=document.getElementById("useg"); if(g && !document.getElementById("uerr")) g.insertAdjacentHTML("afterend",`<div class="uerr" id="uerr">주요 기업 데이터를 불러오지 못했습니다. 잠시 후 다시 시도하세요.</div>`);
+      });
+    return;
+  }
+  applyUniverse(u); saveUniverse(u); resetForUniverse(); renderAll();
+}
+document.querySelectorAll("#useg button[data-u]").forEach(b=>b.onclick=()=>setUniverse(b.dataset.u));
+if(initialUniverse()==="maj"){ renderHeader(); buildRail(); renderColsel(); setUniverse("maj",{force:true}); }
+else { renderHeader(); buildRail(); renderColsel(); renderTable(); }
 (function stickyOffsets(){
   const set=()=>{ const nav=document.getElementById("topnav"), rail=document.querySelector(".rail");
     document.documentElement.style.setProperty("--navh",(nav?nav.offsetHeight:0)+"px");
     document.documentElement.style.setProperty("--railh",(rail?rail.offsetHeight:0)+"px"); };
-  set(); window.addEventListener("resize",set);
-  if(window.ResizeObserver){ const ro=new ResizeObserver(set); const nav=document.getElementById("topnav"); if(nav) ro.observe(nav); }
+  // theme.js가 이 파일보다 뒤에 로드돼 처음엔 내비가 비어 있다(높이 1px) → 내비가 채워진 뒤에도 다시 잰다
+  set(); window.addEventListener("resize",set); window.addEventListener("load",set); setTimeout(set,0); setTimeout(set,600);
+  if(window.ResizeObserver){ const ro=new ResizeObserver(set); const nav=document.getElementById("topnav"), rail=document.querySelector(".rail"); if(nav) ro.observe(nav); if(rail) ro.observe(rail); }
+  if(window.MutationObserver){ const nav=document.getElementById("topnav"); if(nav) new MutationObserver(set).observe(nav,{childList:true}); }
 })();
 fetch("data/jp/earnings_dates.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
   EARN=d.dates||{}; EARN_META=d;

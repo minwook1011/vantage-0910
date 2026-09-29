@@ -27,7 +27,7 @@ window.vantageJSON = function (path, fresh) {
     ["datahub.html", "데이터 허브"],
     ["archive.html", "리서치 아카이브"],
     ["coverage.html", "Coverage"],
-    ["jp-screener.html", "일본 소비재"],
+    ["jp-screener.html", "일본 기업"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";
   if (here === "ta-lab.html" || here === "backtest.html") here = "bottomup.html";

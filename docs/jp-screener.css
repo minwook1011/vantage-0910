@@ -33,7 +33,7 @@ h1 .kanji{color:var(--accent-ink);margin-right:10px;font-family:"Zen Kaku Gothic
 .stat b{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:20px;font-weight:600;letter-spacing:-.02em}
 .stat span{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);font-weight:600}
 
-.rail{position:sticky;top:var(--navh,92px);z-index:30;background:rgba(11,16,25,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.rail{position:sticky;top:var(--navh,92px);z-index:30;background:#0c111b;border-bottom:1px solid var(--line)}
 .rail-in{max-width:1360px;margin:0 auto;padding:11px 24px;display:flex;gap:7px;overflow-x:auto;scrollbar-width:thin}
 .cat{flex:0 0 auto;background:none;border:1px solid var(--line);color:var(--ink-mid);padding:6px 13px;border-radius:999px;
   font:inherit;font-size:12.5px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:background .13s,border-color .13s,color .13s}
@@ -88,7 +88,11 @@ td.hcell{font-weight:600;color:var(--ink);font-size:11.5px;min-width:46px;text-a
 td.mtna{text-align:center;color:var(--ink-mute);opacity:.4;border-left:1px solid var(--line-soft);font-size:11px}
 .mtxnote{font-size:11.5px;color:var(--ink-mute);line-height:1.5;margin:-4px 0 12px}
 .mtxnote:empty{display:none}
-.tblwrap{overflow-x:auto}
+/* 넓은 화면: 표가 자체 스크롤 상자가 되면 sticky 머리글이 표 안에서 아래로 밀려 내려간다 → 페이지 기준으로 고정 */
+.tblwrap{overflow:visible}
+@media (max-width:1100px){.tblwrap{overflow-x:auto}.tblwrap thead th{top:0}}
+.tb-more{display:block;margin:14px auto 0;padding:8px 18px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--ink-mid);font:inherit;font-size:12.5px;cursor:pointer}
+.tb-more:hover{border-color:var(--accent);color:var(--ink)}
 table{border-collapse:collapse;width:100%;min-width:900px}
 thead th{position:sticky;top:calc(var(--navh,92px) + var(--railh,50px));z-index:20;background:#0f1522;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
   color:var(--ink-mute);font-weight:600;text-align:right;padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
@@ -424,3 +428,23 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(21,28,4
 .d-res-h{font-size:11px;color:var(--ink-mute)}
 .d-res .eu-rx{flex-basis:auto;margin:0}
 .eu-cal .eu-co .eu-rx,.eu-list .eu-co .eu-rx{flex:0 0 100%;overflow:visible;white-space:normal;font-size:10px}
+
+/* ---- 유니버스 전환(소비재 / 주요 기업) ---- */
+.useg{display:inline-flex;gap:0;margin-top:10px;border:1px solid var(--line);border-radius:10px;overflow:hidden;width:max-content;max-width:100%;background:rgba(13,17,26,.6)}
+.useg button{font:inherit;background:none;border:0;border-right:1px solid var(--line);color:var(--ink-mid);padding:8px 16px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left}
+.useg button:last-child{border-right:0}
+.useg button b{font-size:14px;font-weight:600;color:inherit}
+.useg button span{font-size:10.5px;color:var(--ink-mute);font-family:"IBM Plex Mono",var(--mono,monospace),monospace}
+.useg button:hover{background:var(--accent-soft);color:var(--ink)}
+.useg button[aria-pressed="true"]{background:var(--accent);color:#fff}
+.useg button[aria-pressed="true"] span{color:rgba(255,255,255,.78)}
+.fld[hidden]{display:none}
+.uerr{color:var(--up);font-size:12px;margin-top:6px}
+/* 실적 리포트 링크 */
+.eu-rep,.d-rep{font-size:10.5px;color:var(--accent-ink);text-decoration:none;white-space:nowrap}
+.eu-rep:hover,.d-rep:hover{text-decoration:underline;color:var(--ink)}
+.eu-colb .eu-rep{align-self:flex-start;margin:-2px 0 3px 6px}
+.eu-list .eu-rep{align-self:center}
+.d-rep{margin-left:4px;font-size:11px}
+@media(max-width:560px){.useg{width:100%}.useg button{flex:1;padding:8px 10px}}
+.fintab thead th.esth.co::before{content:"회사 예상"}

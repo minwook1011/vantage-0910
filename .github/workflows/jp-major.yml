@@ -1,0 +1,52 @@
+name: jp-major
+
+on:
+  schedule:
+    - cron: "0 0 * * 6"  # 09:00 KST(토) 일본 기업 스크리너「주요 기업」(시총 상위 200 + 닛케이225) 주가·실적 갱신
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - fetch_jp_major.py
+      - .github/workflows/jp-major.yml
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: jp-major
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 주요 기업 주가·실적 수집
+        run: python fetch_jp_major.py
+      - name: 데이터 저장
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/jp/major-data.js
+          if ! git diff --cached --quiet; then
+            git commit -m "data: 일본 주요 기업 주가·실적 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: 사이트 미게시 변경 복구
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py

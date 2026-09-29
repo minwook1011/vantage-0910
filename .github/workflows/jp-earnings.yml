@@ -13,6 +13,7 @@ on:
       - fetch_jp_earnings_dates.py
       - fetch_jp_earnings_results.py
       - .github/workflows/jp-earnings.yml
+      - docs/data/jp/major-data.js     # 주요 기업 명단이 바뀌면 전체 다시 스캔(새 종목 실적·리포트)
 
 permissions:
   contents: write
