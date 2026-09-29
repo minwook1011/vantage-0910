@@ -389,21 +389,29 @@ def pick(d, keys=("rev", "op", "ord", "ni")):
 
 
 # ---------------------------------------------------------------- 실적 리포트용 시계열·원문
-def cal_q(yy, m2):
-    """카부탄 3개월 라벨(26.04-06) → 달력 분기 라벨 2Q26"""
-    return f"{(m2 - 1) // 3 + 1}Q{yy:02d}"
+def _end(q):
+    """3개월 구간의 끝 연·월. 24.12-02(12월~2월)처럼 해를 넘기면 끝은 다음 해"""
+    ey = q["yy"] + (1 if q["m2"] < q["m1"] else 0)
+    return ey, q["m2"]
+
+
+def cal_q(q):
+    """카부탄 3개월 라벨 → 끝나는 달 기준 달력 분기 라벨(26.04-06 → 2Q26, 24.12-02 → 1Q25)"""
+    ey, m2 = _end(q)
+    return f"{(m2 - 1) // 3 + 1}Q{ey % 100:02d}"
 
 
 def qseries(fin, n=8):
     """분기 실적 시계열(오래된 → 최근) + YoY·QoQ·영업이익률. 단위: 백만엔(카부탄 그대로)"""
-    qs = sorted(fin["quarter"], key=lambda q: (q["yy"], q["m2"]))
+    qs = sorted(fin["quarter"], key=_end)
     out = []
     for i, q in enumerate(qs):
-        prev_y = next((x for x in qs if x["yy"] == q["yy"] - 1 and x["m2"] == q["m2"]), None)
+        ey, m2 = _end(q)
+        prev_y = next((x for x in qs if _end(x) == (ey - 1, m2)), None)
         prev_q = qs[i - 1] if i > 0 else None
-        if prev_q and ((q["yy"] * 12 + q["m2"]) - (prev_q["yy"] * 12 + prev_q["m2"])) != 3:
+        if prev_q and (ey * 12 + m2) - (_end(prev_q)[0] * 12 + _end(prev_q)[1]) != 3:
             prev_q = None
-        out.append({"label": q["label"], "cq": cal_q(q["yy"], q["m2"]), "date": q["date"], **pick(q),
+        out.append({"label": q["label"], "cq": cal_q(q), "date": q["date"], **pick(q),
                     "opm": round(q["op"] / q["rev"] * 100, 1) if q.get("op") is not None and q.get("rev") else None,
                     "yoy": {k: pct(q.get(k), prev_y.get(k)) for k in ("rev", "op", "ni")} if prev_y else None,
                     "qoq": {k: pct(q.get(k), prev_q.get(k)) for k in ("rev", "op", "ni")} if prev_q else None})
@@ -441,6 +449,25 @@ def kabu_disclosures(code, date):
     order = {"tanshin": 0, "deck": 1, "en": 2}
     docs.sort(key=lambda x: order[x["kind"]])
     return docs[:6]
+
+
+def releasers(date):
+    """카부탄 '決算' 개시 목록에서 그날 결산단신을 낸 종목 코드(실시간 수집용 — 예상 발표일이 틀려도 놓치지 않는다)"""
+    ymd_ = date.replace("-", "")
+    codes = []
+    for page in range(1, 60):
+        h = get_retry(f"https://kabutan.jp/disclosures/?kubun=kgh&date={ymd_}&page={page}", kabu=True)
+        if not h:
+            break
+        rows = [r for r in re.findall(r"<tr>(.*?)</tr>", h, re.S) if re.search(r"/stock/\?code=\w{4}", r)]
+        if not rows:
+            break
+        for r in rows:
+            if "決算短信" in r:
+                codes.append(re.search(r"/stock/\?code=(\w{4})", r).group(1))
+        if f"page={page + 1}" not in h:
+            break
+    return list(dict.fromkeys(codes))
 
 
 def rid_of(code, rec):
@@ -688,9 +715,13 @@ def main():
     elif full:
         targets = codes
     else:
-        # 증분: 이번 주 안에 발표 예정이던(지나간) 종목
-        targets = [c for c in codes if c in sched and
-                   0 <= (t0 - datetime.strptime(sched[c]["date"], "%Y-%m-%d")).days <= 7]
+        # 증분(실적 시즌 발표 시간대마다): 오늘 결산단신을 실제로 낸 종목 + 이번 주 발표 예정이던 종목 중
+        # 아직 그 발표를 못 잡은 것만. 이미 잡은 발표(레코드 날짜 ≥ 예정일)는 다시 받지 않는다.
+        live = [c for c in releasers(today) if c in set(codes)]
+        print(f"  오늘 결산단신 낸 종목(유니버스 안): {len(live)}")
+        due = [c for c in codes if c in sched and
+               0 <= (t0 - datetime.strptime(sched[c]["date"], "%Y-%m-%d")).days <= 7]
+        targets = [c for c in live + due if not (c in old and old[c].get("date", "") >= (today if c in live else sched.get(c, {}).get("date", "9999")))]
     targets = list(dict.fromkeys(targets))
     print(f"대상 {len(targets)}종목 ({'full' if full else 'codes' if only else 'incremental'})")
 
