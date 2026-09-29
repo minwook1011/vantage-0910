@@ -192,9 +192,13 @@ function renderColsel(){
   const el=document.getElementById("colsel"); if(!el) return;
   const finBtn=k=>`<button data-col="${k}" aria-pressed="${!state.matrix && state.cols.includes(k)}">${COLS[k].label}</button>`;
   const mtxBtn=k=>`<button data-mtx="${k}" aria-pressed="${state.matrix===k}">${MTX[k].label}</button>`;
-  const fin = isMaj() ? FIN_ORDER.filter(k=>!KPI_COLS.includes(k)) : FIN_ORDER;
-  el.innerHTML=`<span class="cslabel">표시 지표</span><div class="csgrp">${fin.map(finBtn).join("")}</div>`
-    +(isMaj() ? "" : `<span class="cslabel" style="margin-left:4px">월별 펼치기</span><div class="csgrp kpi">${MTX_ORDER.map(mtxBtn).join("")}</div>`);
+  // 일반 지표(실적발표~OPM)는 늘 표시 — 켜고 끄는 버튼은 외식 지표와 월별 펼치기만 둔다(소비재 전용)
+  if(isMaj()){ el.innerHTML=""; el.hidden=true; }
+  else {
+    el.hidden=false;
+    el.innerHTML=`<span class="cslabel">외식 지표</span><div class="csgrp">${KPI_COLS.map(finBtn).join("")}</div>`
+      +`<span class="cslabel" style="margin-left:4px">월별 펼치기</span><div class="csgrp kpi">${MTX_ORDER.map(mtxBtn).join("")}</div>`;
+  }
   el.querySelectorAll("button[data-col]").forEach(b=>b.onclick=()=>toggleCol(b.dataset.col));
   el.querySelectorAll("button[data-mtx]").forEach(b=>b.onclick=()=>setMatrix(b.dataset.mtx));
   const note=document.getElementById("mtxnote");
@@ -206,7 +210,7 @@ function setMatrix(key){ state.matrix = state.matrix===key ? null : key; state.m
 function toggleCol(key){
   state.matrix=null; state.matrixMon=null;
   const i=state.cols.indexOf(key);
-  if(i>=0){ if(state.cols.length>1) state.cols.splice(i,1); }
+  if(i>=0) state.cols.splice(i,1);
   else { state.cols.push(key); state.cols.sort((a,b)=>FIN_ORDER.indexOf(a)-FIN_ORDER.indexOf(b)); }
   if(!state.cols.includes(state.sort) && !["mc","rev","code","name"].includes(state.sort)) state.sort="mc";
   renderColsel(); renderTable();
@@ -528,7 +532,6 @@ function renderEarnUp(){
 }
 function renderTable(){
   const mb=document.getElementById("tbmore"); if(mb) mb.hidden=true;
-  state.matrix=null;   // 표시 지표 막대(월별 펼치기 포함)를 없앴으므로 월별 매트릭스 보기는 쓰지 않는다
   if(uniLoading) return;
   renderEarnUp();
   if(state.matrix){ renderMatrix(); return; }
