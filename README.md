@@ -10,7 +10,7 @@ API 키·pip 의존성·빌드 도구 없음. GitHub Pages(`docs/`)로 서빙.
 | `index.html` VANTAGE 시작 화면 | 8개 분석 화면 선택, 진입·되돌아가기 모션, 투자 원칙용 빈 영역 | — |
 | `dashboard.html` 섹터 대시보드 | 기간별 수익률 바차트, 누적 트렌드, 그룹 히트맵(자금유입 배지), 전 종목 테이블, 종목 모달(캔들+구성종목+뉴스) | `data.json` (자동) |
 | `megacap.html` 글로벌 메가캡 | TOP100/300 토글, 13개 섹터 강세 순위(중앙값), 섹터별 종목 카드(선행PER), 종목 모달(캔들+회사개요+재무추이+뉴스) | `megacap.json`·`financials.json` (자동), `megacap_profiles.json` (반자동 — 회사 개요) |
-| `bottomup.html` Bottom-up 발굴 | 섹터 무관 메가캡 전체를 기술점수순(또는 수익률순)으로 정렬. 기술점수 = 이동평균선·거래량·이평선지지·RSI·MACD·볼린저·일목균형표·삼각수렴/돌파를 0~100 가중합(stocks-common.js `computeTA`, 캔들에서 클라이언트 계산 → 자동 갱신) | `megacap.json`·`financials.json` (자동) |
+| `bottomup.html` 기술적 분석 | 탭으로 넘겨 보기: 발굴 지도 · 섹터 온도 · 차트 패턴 레이더 · 순위 · **백테스트**(옛 기술점수 연구소 — `ta-lab.html`은 여기로 이동). 기술점수 = 시장 국면(300종목 동일가중 지수 40거래일 ±3% → 상승·횡보·하락장)별로 따로 학습한 공식. `backtest_ta.py`+`ta_learn.py`가 매일 10년 일봉으로 1D·1W·1M 초과수익을 채점해 공식을 자동 교체 | `megacap.json`·`ta_model.json`·`ta_scores.json` (자동) |
 | `worldflow.html` 세상 흐름 파악 | [주요 일정] 다가오는·최근 종료 행사 + 월별 캘린더(접힘) / [핵심 인물] 키워드 검색·인물 디렉토리·주차별 발언 + 인사이트 리서치(행사·발언에서 파생된 심층 분석) | `events.json`, `people.json`, `insights.json` (반자동) |
 | `earnings.html` 미국 주요 실적 정리 | 최근 발표 실적(매출·EPS 컨센서스 서프라이즈, 접힘) + 예정된 실적 발표 캘린더(섹터 필터) + 섹터별 비트율 + 기업별 재무 열람(5개년/8분기 매출·YoY·영업이익·OPM, 분기는 QoQ) | `financials.json`·`earnings_calendar.json`(자동) + `earnings.json`(수동 큐레이션) + `megacap.json` |
 | `macro.html` 매크로 대시보드 | 경제 캘린더(월 달력·한국시간), 물가·고용·성장·금리·시장 지표 보드(클릭 시 상세 차트), 한·미 지수 겹쳐보기 + 거래량 + 매크로 오버레이, 국채 수익률 곡선·장단기 금리차 | `macro_dash.json` (자동 — `fetch_macro_dash.py`, `data_sources/macro_dash.md`) |

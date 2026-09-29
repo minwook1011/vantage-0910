@@ -241,12 +241,22 @@ def merge_rows(*sources):
 def yahoo_prices(symbol):
     data = json.loads(http(f"https://query1.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(symbol)}?range=5y&interval=1d"))["chart"]["result"][0]
     tz = data.get("meta", {}).get("gmtoffset", 0)
-    pts = []
-    for ts, c in zip(data.get("timestamp") or [], data["indicators"]["quote"][0].get("close") or []):
+    pts, vols = [], {}
+    quote = data["indicators"]["quote"][0]
+    volumes = quote.get("volume") or []
+    for i, (ts, c) in enumerate(zip(data.get("timestamp") or [], quote.get("close") or [])):
         if c is not None and math.isfinite(c) and c > 0:
-            pts.append({"date": datetime.fromtimestamp(ts + tz, timezone.utc).date().isoformat(), "value": round(c, 2)})
+            day = datetime.fromtimestamp(ts + tz, timezone.utc).date().isoformat()
+            pts.append({"date": day, "value": round(c, 2)})
+            v = volumes[i] if i < len(volumes) else None
+            if v:
+                vols[day] = c * v
     dedup = {p["date"]: p for p in pts}
-    return [dedup[d] for d in sorted(dedup)], data.get("meta", {}).get("currency", "USD")
+    days = sorted(dedup)
+    # 최근 20거래일 평균 거래대금(현지 통화, 백만 단위 · 종가×거래량 근사) — 목록의 거래대금 정렬에 쓴다
+    tail = [vols[d] for d in days[-20:] if d in vols]
+    avg_value = round(sum(tail) / len(tail) / 1e6, 1) if tail else None
+    return [dedup[d] for d in days], data.get("meta", {}).get("currency", "USD"), avg_value
 
 
 def refresh_sec(c, force):
@@ -282,10 +292,10 @@ def refresh_company(c, now, force_sec):
     old = load_json(OUT_DIR / f"{tk}.json", {})
     data = {"schema_version": 1, "code": tk, "name": c["name"], "market": c.get("market", "S&P500"), "sector": c.get("sector", ""), "checked_at": now}
     try:
-        pts, cur = yahoo_prices(c.get("yahoo", tk))
+        pts, cur, avg_value = yahoo_prices(c.get("yahoo", tk))
         if len(pts) < 20:
             raise ValueError("주가 관측치 부족")
-        data["price"] = {"source": "Yahoo Finance 일봉", "unit": cur, "as_of": pts[-1]["date"], "points": pts}
+        data["price"] = {"source": "Yahoo Finance 일봉", "unit": cur, "as_of": pts[-1]["date"], "avg_value_m": avg_value, "points": pts}
     except Exception as e:
         errors.append("주가: " + type(e).__name__)
         data["price"] = old.get("price", {"points": []})
@@ -335,7 +345,8 @@ def summary(c, d):
     return {"code": c["ticker"], "name": c["name"], "market": c.get("market", "S&P500"), "sector": c.get("sector", ""), "desc": c.get("desc", ""),
             "currency": d["financials"].get("currency", "USD"), "mcap": c.get("mcap"), "value_rank": c.get("mcap_rank"),
             "close": pts[-1]["value"] if pts else None, "as_of": pts[-1]["date"] if pts else None,
-            "chg_1d": chg(1), "chg_1m": chg(21), "chg_1y": chg(250), "spark": [p["value"] for p in pts[-120::4]],
+            "avg_value_m": (d.get("price") or {}).get("avg_value_m"),
+            "chg_1d": chg(1), "chg_1w": chg(5), "chg_1m": chg(21), "chg_1y": chg(250), "spark": [p["value"] for p in pts[-120::4]],
             "q": {k: last_q.get(k) for k in ("date", "revenue", "operating_income", "opm", "revenue_yoy", "operating_income_yoy", "op_label")},
             "quarters": len(q), "op_note": d["financials"].get("op_note")}
 

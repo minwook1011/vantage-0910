@@ -78,10 +78,10 @@ def compress_candles(ch):
     out += [{"d": dates[i], "o": o[i], "h": h[i], "l": l[i], "c": c[i], "v": v[i]} for i in range(split, n)]
     return out
 
-def fetch_chart(ticker):
-    """야후 차트 API → {'dates','o','h','l','c','v'} (None 봉 제거)"""
+def fetch_chart(ticker, rng="5y"):
+    """야후 차트 API → {'dates','o','h','l','c','v'} (None 봉 제거). rng: 5y(기본)·10y(백테스트용)"""
     url = (f"https://query1.finance.yahoo.com/v8/finance/chart/"
-           f"{urllib.parse.quote(ticker)}?range=5y&interval=1d")
+           f"{urllib.parse.quote(ticker)}?range={rng}&interval=1d")
     raw = http_get(url)
     if not raw:
         return None

@@ -715,8 +715,8 @@ function taSummaryText(ta) {
       : ta.score >= 40 ? "중간 정도입니다." : "과거 기준으로 불리한 쪽입니다.";
     return '<div class="ta-summary"><b>종합 ' + ta.score + "점</b>(오늘 300종목 중 상위 " + Math.max(1, 100 - ta.score) + "%) — " + v +
       (st.length ? " <b>강점:</b> " + st.join(", ") + "." : "") + (wk.length ? " <b>약점:</b> " + wk.join(", ") + "." : "") +
-      ' <span class="muted small">학습형 v' + ta.ver + "(" + ta.date + " 교체) · 매일 백테스트로 공식을 다시 채점 · 기존 방식(v1) 점수 " + (ta.legacyScore != null ? ta.legacyScore : "–") +
-      '점 · <a href="ta-lab.html">연구소에서 보기</a></span></div>';
+      ' <span class="muted small">학습형 v' + ta.ver + (TA_LEARNED && TA_LEARNED.regime_label ? " · 오늘 " + TA_LEARNED.regime_label + " 공식" : "") + "(" + ta.date + " 교체) · 매일 백테스트로 공식을 다시 채점 · 기존 방식(v1) 점수 " + (ta.legacyScore != null ? ta.legacyScore : "–") +
+      '점 · <a href="bottomup.html#backtest">백테스트 보기</a></span></div>';
   }
   var sub = {};
   ta.subs.forEach(function (s) { sub[s.key] = s; });

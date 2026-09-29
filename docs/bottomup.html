@@ -5,13 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="firebase-sync.js?v=20260920a"></script>
 <script src="gate.js?v=20260909a"></script>
-<title>Bottom-up 종목 발굴 — VANTAGE</title>
+<title>기술적 분석 — VANTAGE</title>
 <link rel="stylesheet" href="theme.css?v=20260928p">
+<link rel="stylesheet" href="panes.css?v=20260929a">
+<link rel="stylesheet" href="ta-backtest.css?v=20260929a">
 <style>
 /* ── 레이아웃 ─────────────────────────────── */
 .bu-lede { color:var(--muted); font-size:13px; line-height:1.7; margin:4px 0 0; }
 .bu-lede b { color:var(--text); }
-.bu-bar { position:sticky; top:86px; z-index:45; margin:16px -16px 0; padding:10px 16px; background:rgba(11,14,20,.94); backdrop-filter:blur(13px); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.bu-bar { position:sticky; top:86px; z-index:45; margin:16px 0 0; padding:10px 16px; background:rgba(11,14,20,.94); backdrop-filter:blur(13px); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
 .bu-bar-in { max-width:1280px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; }
 .bu-search { flex:1 1 200px; min-width:160px; max-width:280px; display:flex; align-items:center; gap:7px; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:0 10px; }
 .bu-search:focus-within { border-color:var(--accent); }
@@ -20,6 +22,7 @@
 .bu-opt { display:flex; align-items:center; gap:7px; }
 .bu-opt .lbl { color:var(--muted); font-size:11.5px; white-space:nowrap; }
 .bu-sec { margin-top:22px; }
+body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 .bu-sec-h { display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
 .bu-sec-h h2 { margin:0; font-size:16px; }
 .bu-sec-h .hint { color:var(--muted); font-size:12px; }
@@ -130,7 +133,7 @@
   .rk .sigs, .rk-head .h-sig { display:none; }
 }
 @media (max-width:760px) {
-  .bu-bar { margin-left:-10px; margin-right:-10px; padding-left:10px; padding-right:10px; }
+  .bu-bar { padding-left:10px; padding-right:10px; }
   .bu-search { max-width:none; flex-basis:100%; }
   .bu-pulse { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .pulse-card .v { font-size:20px; }
@@ -183,10 +186,11 @@
 </head>
 <body>
 <header id="topnav"></header>
-<div class="container">
-  <div class="kicker">Bottom-up 접근 · 종목 발굴</div>
-  <div class="page-head"><h1>Bottom-up 종목 발굴</h1><span class="upd" id="updated"></span></div>
-  <p class="bu-lede">① <b>전략</b>을 고르고 → ② <b>섹터</b>로 좁히고 → ③ <b>지도</b>에서 위치를 보고 → ④ <b>차트 패턴</b>에서 돌파 직전·돌파 종목을 확인하고 → ⑤ <b>순위</b>에서 종목을 누르면 차트·재무 상세가 열립니다. <a href="backtest.html">🧪 기술점수·전략 백테스트 보기 ›</a></p>
+<div class="container" style="padding-bottom:0">
+  <div class="kicker">기술적 분석 · 국면별 학습형 점수</div>
+  <div class="page-head"><h1>기술적 분석</h1><span class="upd" id="updated"></span></div>
+  <p class="bu-lede">시장을 <b>상승장·횡보장·하락장</b>으로 나눠, 오늘 국면에서 과거에 실제로 통했던 공식으로 300종목의 <b>기술점수</b>를 매깁니다. 공식은 매일 <b>백테스트</b>로 1D·1W·1M 성적을 채점해 스스로 고칩니다. 위 탭을 눌러(또는 ←/→ 키) 넘겨 보세요.</p>
+  <div class="rg-banner" id="rg-banner"><span class="muted">오늘 시장 국면 불러오는 중…</span></div>
   <div class="bu-pulse" id="pulse"></div>
 </div>
 
@@ -198,25 +202,35 @@
   </div>
 </div>
 
-<div class="container">
-  <section class="bu-sec">
-    <div class="bu-sec-h"><h2>① 어떤 종목을 찾나요?</h2><span class="hint">카드를 누르면 지도·순위가 바로 바뀝니다</span></div>
+<div class="container" style="padding-top:4px">
+ <div data-panes="tech" data-panes-hash data-panes-default="map">
+  <div class="panes-bar">
+    <button class="pane-step" data-pane-step="-1" aria-label="이전 섹션" title="이전 섹션 (←)">‹</button>
+    <div class="pane-tabs" aria-label="섹션 선택">
+      <button class="pane-tab" data-pane="map"><span class="pane-no">01</span><b>발굴 지도</b><small>전략 · 모멘텀×추세</small></button>
+      <button class="pane-tab" data-pane="sectors"><span class="pane-no">02</span><b>섹터 온도</b><small>기간 수익률 중앙값</small></button>
+      <button class="pane-tab" data-pane="pattern"><span class="pane-no">03</span><b>차트 패턴 레이더</b><small>돌파 임박 · 돌파</small></button>
+      <button class="pane-tab" data-pane="list"><span class="pane-no">04</span><b>순위</b><small>종목별 점수 · 신호</small></button>
+      <button class="pane-tab" data-pane="backtest"><span class="pane-no">05</span><b>백테스트</b><small>국면별 공식 · 1D/1W/1M 채점</small></button>
+    </div>
+    <button class="pane-step" data-pane-step="1" aria-label="다음 섹션" title="다음 섹션 (→)">›</button>
+  </div>
+
+  <section class="pane" data-pane="map" hidden>
+    <div class="bu-sec-h"><h2>어떤 종목을 찾나요?</h2><span class="hint">카드를 누르면 아래 지도와 순위 탭이 바로 바뀝니다</span></div>
     <div class="presets" id="presets"></div>
     <div class="preset-why" id="preset-why"></div>
-  </section>
-
-  <section class="bu-sec">
-    <div class="bu-sec-h"><h2>② 섹터 온도</h2><span class="hint" id="sector-hint">기간 수익률 중앙값 · 누르면 해당 섹터만</span></div>
-    <div class="sectors" id="sectors"></div>
-  </section>
-
-  <section class="bu-sec">
-    <div class="bu-sec-h"><h2>③ 모멘텀 × 추세 지도</h2><span class="hint">가로 = 기간 수익률 · 세로 = 기술점수 · 원 크기 = 시가총액</span></div>
+    <div class="bu-sec-h" style="margin-top:18px"><h2>모멘텀 × 추세 지도</h2><span class="hint">가로 = 기간 수익률 · 세로 = 기술점수(오늘 국면 공식) · 원 크기 = 시가총액</span></div>
     <div class="map-wrap" id="map-wrap"><div class="spin">로딩 중…</div></div>
   </section>
 
-  <section class="bu-sec" id="pt-sec">
-    <div class="bu-sec-h"><h2>④ 차트 패턴 레이더</h2><span class="hint" id="pt-hint">컵앤핸들·삼각수렴·깃발·쌍바닥 등 — 저항선 3% 이내 = 돌파 임박</span></div>
+  <section class="pane" data-pane="sectors" hidden>
+    <div class="bu-sec-h"><h2>섹터 온도</h2><span class="hint" id="sector-hint">기간 수익률 중앙값 · 누르면 해당 섹터만</span></div>
+    <div class="sectors" id="sectors"></div>
+  </section>
+
+  <section class="pane" data-pane="pattern" id="pt-sec" hidden>
+    <div class="bu-sec-h"><h2>차트 패턴 레이더</h2><span class="hint" id="pt-hint">컵앤핸들·삼각수렴·깃발·쌍바닥 등 — 저항선 3% 이내 = 돌파 임박</span></div>
     <div class="bt-banner" id="bt-banner"><span class="muted">백테스트 결과 불러오는 중…</span></div>
     <div class="pt-tools"><div class="toggle" id="pt-state"></div><div class="pt-kinds" id="pt-kinds"></div></div>
     <div class="pt-grid" id="pt-grid"><div class="spin">로딩 중…</div></div>
@@ -224,9 +238,9 @@
     <button class="more-btn" id="pt-more" style="display:none"></button>
   </section>
 
-  <section class="bu-sec">
+  <section class="pane" data-pane="list" hidden>
     <div class="bu-sec-h">
-      <h2>⑤ 순위 <span class="hint" id="list-sub"></span></h2>
+      <h2>순위 <span class="hint" id="list-sub"></span></h2>
       <div class="list-tools">
         <div class="bu-opt"><span class="lbl">정렬</span><div class="toggle" id="sort-toggle"></div></div>
         <div class="bu-opt"><span class="lbl">재무</span><div class="toggle" id="fin-toggle"></div></div>
@@ -235,11 +249,16 @@
     <div id="list"><div class="spin">로딩 중…</div></div>
     <button class="more-btn" id="more" style="display:none"></button>
   </section>
+
+  <section class="pane" data-pane="backtest" id="bt-pane" hidden></section>
+ </div>
 </div>
 <div class="modal-back" id="modal-back-holder" style="display:none"></div>
-<script src="theme.js?v=20260928p"></script>
-<script src="stocks-common.js?v=20260928p"></script>
+<script src="theme.js?v=20260929a"></script>
+<script src="stocks-common.js?v=20260929a"></script>
 <script src="chart-patterns.js?v=20260924a"></script>
+<script src="panes.js?v=20260929a"></script>
+<script src="ta-backtest.js?v=20260929a"></script>
 <script>
 (function () {
   "use strict";
@@ -600,6 +619,39 @@
     openStatModal({ name:s.name, sub:bare(s.ticker) + " · " + s.sector + (s.rank ? " · 시총 " + s.rank + "위" : ""), price:s.price, priceCcy:ccyOf(s.ticker), r1d:s.r1d, chips:chips,
       intro:profile ? profile.biz : "회사 개요가 아직 준비되지 않았습니다.", candles:s.candles, news:s.news, financials:FIN[ticker], ta:taOf(s), tk:s.ticker });
   }
+
+  /* ── 탭(패널) 지연 렌더: 보이는 탭만 그리고, 가려진 탭은 '다시 그릴 것'으로 표시만 해 둔다 ── */
+  var PANE_OF = { presets:"map", map:"map", sectors:"sectors", patterns:"pattern", list:"list" }, DIRTY = {};
+  var RENDER = { presets:renderPresets, map:renderMap, sectors:renderSectors, patterns:renderPatterns, list:renderList };
+  function paneEl(id) { return $q('[data-panes="tech"] > .pane[data-pane="' + id + '"]'); }
+  function gate(key) {
+    var fn = RENDER[key];
+    return function () { var el = paneEl(PANE_OF[key]); if (!el || !window.Panes || !Panes.isShown(el)) { DIRTY[key] = true; return; } DIRTY[key] = false; return fn.apply(this, arguments); };
+  }
+  renderPresets = gate("presets"); renderMap = gate("map"); renderSectors = gate("sectors"); renderPatterns = gate("patterns"); renderList = gate("list");
+  document.addEventListener("pane:show", function (e) {
+    if (!e.target.parentNode || e.target.parentNode.getAttribute("data-panes") !== "tech") return;
+    var id = e.detail.id;
+    document.body.classList.toggle("bt-on", id === "backtest");
+    syncBarHeight();
+    if (id === "backtest") { window.TABacktest && TABacktest.mount($q("#bt-pane")); return; }
+    if (!DATA) return;
+    Object.keys(PANE_OF).forEach(function (k) { if (PANE_OF[k] === id && DIRTY[k] !== false) RENDER[k](); DIRTY[k] = PANE_OF[k] === id ? false : DIRTY[k]; });
+    if (id === "map") { var w = $q("#map-wrap").clientWidth; if (Math.abs(w - lastW) > 40) { lastW = w; mapBuilt = false; RENDER.map(); } }
+  });
+
+  /* 오늘 시장 국면 배너 (ta_scores.json) */
+  TA_LEARNED_P.then(function (L) {
+    var el = $q("#rg-banner"); if (!el) return;
+    if (!L || !L.regime) { el.style.display = "none"; return; }
+    var f = L.features || [], up = f.filter(function (x) { return x.w > 0; }).slice(0, 3), dn = f.filter(function (x) { return x.w < 0; }).slice(0, 3);
+    el.innerHTML = '<span class="rg-tag ' + L.regime + '">' + escapeHtml(L.regime_label) + '</span>' +
+      '<span class="muted">300종목 지수 40거래일 <b>' + (L.regime_r > 0 ? "+" : "") + (+L.regime_r).toFixed(1) + "%</b> · " + escapeHtml(L.regime_since || "") + "부터</span>" +
+      '<span class="muted">이 국면 공식 v' + L.ver + " — 가점: <b>" + up.map(function (x) { return escapeHtml(x.label); }).join(", ") + "</b>" + (dn.length ? " · 낮을수록 가점: <b>" + dn.map(function (x) { return escapeHtml(x.label); }).join(", ") + "</b>" : "") + "</span>" +
+      '<a href="#backtest" data-go-bt>백테스트 보기 ›</a>';
+    var a = el.querySelector("[data-go-bt]");
+    if (a) a.onclick = function (ev) { var c = window.Panes && Panes.get('[data-panes="tech"]'); if (c) { ev.preventDefault(); c.show("backtest"); window.scrollTo({ top: 0, behavior: "smooth" }); } };
+  });
 
   /* backtest.html 등에서 ?q=티커 로 넘어오면 검색어로 채움 */
   try { var qp = new URLSearchParams(location.search).get("q"); if (qp) { view.q = qp; view.preset = "all"; $q("#q").value = qp; } } catch (e) {}

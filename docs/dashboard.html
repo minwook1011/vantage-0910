@@ -7,7 +7,25 @@
 <script src="gate.js?v=20260909a"></script>
 <title>글로벌 섹터 ETF 자금 흐름</title>
 <link rel="stylesheet" href="theme.css?v=20260928p">
+<link rel="stylesheet" href="panes.css?v=20260929a">
 <style>
+/* 1년 흐름 차트 범례 */
+.yr-legend { display:flex; flex-wrap:wrap; gap:6px 16px; margin:6px 0 12px; padding:9px 12px; border:1px solid var(--border); border-radius:var(--radius); background:var(--bg2); font-size:12px; color:var(--muted); line-height:1.5; }
+.yr-legend > span { display:inline-flex; align-items:center; gap:6px; min-width:0; }
+.yr-legend b { color:var(--text); font-weight:700; white-space:nowrap; }
+.yr-legend i { flex:0 0 auto; display:inline-block; }
+.yr-legend .lg-line { width:18px; height:3px; border-radius:2px; }
+.yr-legend .lg-dash { width:18px; height:0; border-top:1.5px dashed #5b6479; }
+.yr-legend .lg-bar { width:5px; height:11px; border-radius:1px; margin-right:-3px; }
+.yr-legend .lg-bar + b { margin-left:3px; }
+.yr-legend .lg-tag { width:14px; height:10px; border-radius:2px; background:linear-gradient(90deg,#f0475a 50%,#3d7eff 50%); }
+#trend-chart { overflow-x:auto; }
+@media (max-width:640px) {
+  .yr-legend > span { display:flex; align-items:flex-start; }
+  .yr-legend i { margin-top:6px; }
+  #bar-chart .bar-row > div:first-child { flex-basis:96px !important; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #bar-chart .bar-row > div:last-child { flex-basis:104px !important; }
+}
 /* ── 섹터별 1년 흐름 (finviz 스타일 스몰 멀티플) ── */
 .yr-tools { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:10px; }
 .yr-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:12px; }
@@ -58,43 +76,73 @@
     <div class="breadth-grid" id="breadth"></div>
   </div>
 
-  <div class="section">
-    <h2>섹터별 1년 흐름<span class="sub">누적 수익률(파랑) · 50일 이동평균(주황) · 거래량(빨강=상승일, 파랑=하락일) · 마우스 올리면 일자별 값 · 클릭 = 상세</span></h2>
-    <div class="yr-tools">
-      <div class="toggle" id="yr-period"></div>
-      <div class="toggle" id="yr-sort"></div>
-      <span id="yr-groups"></span>
+  <!-- 아래 5개 섹션은 탭으로 넘겨 본다(panes.js). 각 탭은 처음 열릴 때만 그리고, 1년 차트 데이터도 그 탭을 열 때 받는다. -->
+  <div data-panes="dashboard" data-panes-hash data-panes-default="flow">
+    <div class="panes-bar">
+      <button class="pane-step" data-pane-step="-1" aria-label="이전 섹션" title="이전 섹션 (←)">‹</button>
+      <div class="pane-tabs" aria-label="섹션 선택">
+        <button class="pane-tab" data-pane="flow"><span class="pane-no">01</span><b>섹터별 1년 흐름</b><small>ETF별 1년 차트</small></button>
+        <button class="pane-tab" data-pane="signal"><span class="pane-no">02</span><b>자금 유입 시그널</b><small>상위 ETF · 수익률 막대</small></button>
+        <button class="pane-tab" data-pane="trend"><span class="pane-no">03</span><b>누적 수익률 트렌드</b><small>그룹별 · ACWI 병기</small></button>
+        <button class="pane-tab" data-pane="heatmap"><span class="pane-no">04</span><b>그룹별 히트맵</b><small>기간 수익률 색</small></button>
+        <button class="pane-tab" data-pane="compare"><span class="pane-no">05</span><b>전 섹터 비교</b><small>전 종목 표</small></button>
+      </div>
+      <button class="pane-step" data-pane-step="1" aria-label="다음 섹션" title="다음 섹션 (→)">›</button>
     </div>
-    <div class="yr-grid" id="yr-grid"><div class="spin">로딩 중…</div></div>
-  </div>
+    <div class="pane-hint">탭 클릭 · ‹ › 버튼 · 키보드 ←/→ 로 섹션 이동</div>
 
-  <div class="section">
-    <h2>자금 유입 시그널<span class="sub">선택 기간 수익률이 ACWI를 웃도는 ETF 중 거래대금 비율이 높은 순 (최소 5개)</span></h2>
-    <div class="signal-list" id="signals"></div>
-  </div>
+    <section class="pane" data-pane="flow" hidden>
+      <div class="section">
+        <h2>섹터별 1년 흐름<span class="sub">마우스 올리면 일자별 값 · 카드 클릭 = 상세</span></h2>
+        <div class="yr-legend" aria-label="차트 범례">
+          <span><i class="lg-line" style="background:#6f9bff"></i><b>파란 선</b> 이 ETF 자체의 누적 수익률(기간 첫날 종가 = 0%) — 지수·ACWI 아님</span>
+          <span><i class="lg-line" style="background:#f0a53a"></i><b>노란(주황) 선</b> 50일 이동평균(최근 50거래일 평균 종가)을 같은 기준 %로 환산 — 파란 선이 위면 단기 추세 우위</span>
+          <span><i class="lg-dash"></i><b>점선</b> 0% 기준선(기간 시작 가격)</span>
+          <span><i class="lg-bar" style="background:rgba(240,71,90,.75)"></i><i class="lg-bar" style="background:rgba(61,126,255,.75)"></i><b>아래 막대</b> 일별 거래량 (빨강 = 전일보다 오른 날, 파랑 = 내린 날)</span>
+          <span><i class="lg-tag"></i><b>오른쪽 숫자</b> 기간 누적 수익률 (빨강 = 플러스, 파랑 = 마이너스)</span>
+        </div>
+        <div class="yr-tools">
+          <div class="toggle" id="yr-period"></div>
+          <div class="toggle" id="yr-sort"></div>
+          <span id="yr-groups"></span>
+        </div>
+        <div class="yr-grid" id="yr-grid"><div class="spin">로딩 중…</div></div>
+      </div>
+    </section>
 
-  <div class="section">
-    <span class="muted small">막대 = 수익률, 괄호 = ACWI 대비 초과수익</span>
-    <div class="card" style="margin-top:8px" id="bar-chart"><div class="spin">로딩 중…</div></div>
-  </div>
+    <section class="pane" data-pane="signal" hidden>
+      <div class="section">
+        <h2>자금 유입 시그널<span class="sub">선택 기간 수익률이 ACWI를 웃도는 ETF 중 거래대금 비율이 높은 순 (최소 5개)</span></h2>
+        <div class="signal-list" id="signals"><div class="spin">로딩 중…</div></div>
+      </div>
+      <div class="section">
+        <span class="muted small">막대 = 수익률, 괄호 = ACWI 대비 초과수익</span>
+        <div class="card" style="margin-top:8px" id="bar-chart"><div class="spin">로딩 중…</div></div>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2>누적 수익률 트렌드<span class="sub">그룹별 · ACWI 병기</span></h2>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px">
-      <div class="toggle" id="trend-period"></div>
-      <span id="group-chips"></span>
-    </div>
-    <div class="card" id="trend-chart"></div>
-    <div id="trend-legend" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:10px"></div>
-  </div>
+    <section class="pane" data-pane="trend" hidden>
+      <div class="section">
+        <h2>누적 수익률 트렌드<span class="sub">그룹별 · ACWI 병기</span></h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px">
+          <div class="toggle" id="trend-period"></div>
+          <span id="group-chips"></span>
+        </div>
+        <div class="card" id="trend-chart"><div class="spin">로딩 중…</div></div>
+        <div id="trend-legend" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:10px"></div>
+      </div>
+    </section>
 
-  <div class="section">
-    <h2>그룹별 히트맵<span class="sub">색 = 선택 기간 수익률 · <span class="badge inflow">자금유입</span> = ACWI 초과수익 + 거래대금 확대(vol 5d/20d &gt; 1.3)</span></h2>
-    <div id="heatmap"></div>
-  </div>
+    <section class="pane" data-pane="heatmap" hidden>
+      <div class="section">
+        <h2>그룹별 히트맵<span class="sub">색 = 선택 기간 수익률 · <span class="badge inflow">자금유입</span> = ACWI 초과수익 + 거래대금 확대(vol 5d/20d &gt; 1.3)</span></h2>
+        <div id="heatmap"><div class="spin">로딩 중…</div></div>
+      </div>
+    </section>
 
+    <section class="pane" data-pane="compare" hidden>
   <div class="section">
-    <h2>전 종목 비교<span class="sub">헤더 클릭 시 정렬</span></h2>
+    <h2>전 섹터 비교<span class="sub">추적 ETF 전 종목 · 헤더 클릭 시 정렬</span></h2>
     <div class="tbl-wrap">
       <table class="tbl" id="etf-table">
         <thead><tr>
@@ -116,10 +164,13 @@
       </table>
     </div>
   </div>
+    </section>
+  </div>
 </div>
 
-<script src="theme.js?v=20260928p"></script>
-<script src="stocks-common.js?v=20260928p"></script>
+<script src="theme.js?v=20260929a"></script>
+<script src="stocks-common.js?v=20260929a"></script>
+<script src="panes.js?v=20260929a"></script>
 <script>
 var DATA = null;
 var MEGA = {};  // megacap.json — 대표 구성종목 클릭 시 개별 종목 모달용(있으면 사용, 없어도 페이지는 정상 동작)
@@ -150,13 +201,20 @@ function renderToggles() {
     return '<button data-k="' + p[1] + '" class="' + (p[1] === curPeriod ? "on" : "") + '">' + p[0] + "</button>";
   }).join("");
   $qa("#period-toggle button").forEach(function (b) {
-    b.onclick = function () { curPeriod = b.dataset.k; renderToggles(); renderBreadth(); renderSignals(); renderBars(); renderHeatmap(); };
+    b.onclick = function () {
+      curPeriod = b.dataset.k; renderToggles(); renderBreadth();
+      /* 이미 열어 본 탭만 다시 그린다 — 안 연 탭은 처음 열 때 현재 기간으로 그려진다 */
+      if (BUILT.signal) { renderSignals(); renderBars(); }
+      if (BUILT.heatmap) renderHeatmap();
+    };
   });
+}
+function renderTrendControls() {
   $q("#trend-period").innerHTML = TREND_PERIODS.map(function (p) {
     return '<button data-k="' + p[1] + '" class="' + (p[1] === curTrend ? "on" : "") + '">' + p[0] + "</button>";
   }).join("");
   $qa("#trend-period button").forEach(function (b) {
-    b.onclick = function () { curTrend = b.dataset.k; renderToggles(); renderTrend(); };
+    b.onclick = function () { curTrend = b.dataset.k; renderTrendControls(); renderTrend(); };
   });
   var groups = GROUP_ORDER.filter(function (g) {
     return etfList().some(function (e) { return e.group === g; }) && g !== "벤치마크";
@@ -165,7 +223,7 @@ function renderToggles() {
     return '<button class="chip ' + (g === curGroup ? "on" : "") + '" data-g="' + g + '">' + g + "</button>";
   }).join(" ");
   $qa("#group-chips .chip").forEach(function (c) {
-    c.onclick = function () { curGroup = c.dataset.g; renderToggles(); renderTrend(); };
+    c.onclick = function () { curGroup = c.dataset.g; renderTrendControls(); renderTrend(); };
   });
 }
 
@@ -460,10 +518,25 @@ function renderYearGrid() {
 function openEtfModal(tk) {
   var e = DATA.etfs[tk];
   if (e) openEtfDetailModal(e, tk, function (holdTk) {
-    var m = MEGA[holdTk];
-    if (m) openMegaStockModal(holdTk, m, FIN[holdTk]);
-    else openModal(escapeHtml(holdTk), '<div class="empty">이 종목은 메가캡 TOP300 명단에 없어 상세 정보가 없습니다.</div>');
+    ensureMega().then(function () {
+      var m = MEGA[holdTk];
+      if (m) openMegaStockModal(holdTk, m, FIN[holdTk]);
+      else openModal(escapeHtml(holdTk), '<div class="empty">이 종목은 메가캡 TOP300 명단에 없어 상세 정보가 없습니다.</div>');
+    });
   });
+}
+
+/* megacap_lite.json + financials.json(합쳐 ~0.9MB)은 구성종목 클릭이나 종목 즐겨찾기가 있을 때만 받는다 */
+var MEGA_P = null;
+function ensureMega() {
+  if (!MEGA_P) MEGA_P = Promise.all([
+    fetchJSON("megacap_lite.json").catch(function () { return null; }),
+    fetchJSON("financials.json").catch(function () { return null; })
+  ]).then(function (rs) {
+    if (rs[0] && rs[0].stocks) rs[0].stocks.forEach(function (s) { MEGA[s.ticker] = s; });
+    FIN = (rs[1] && rs[1].financials) || {};
+  });
+  return MEGA_P;
 }
 
 /* ---------- 즐겨찾기 ---------- */
@@ -480,36 +553,54 @@ function favResolve(tk) {
   };
   return null;
 }
-function renderFavs() { renderFavStrip($q("#fav-strip"), favResolve); }
+function renderFavs() {
+  renderFavStrip($q("#fav-strip"), favResolve);
+  /* ETF가 아닌 종목 즐겨찾기가 있으면 그때만 메가캡 데이터를 받아 가격을 채운다 */
+  if (!MEGA_P && DATA && favList().some(function (f) { return !DATA.etfs[f.tk]; })) ensureMega().then(renderFavs);
+}
 document.addEventListener("favchange", renderFavs);
 
+/* ---------- 탭(섹션) 지연 렌더 ---------- */
+/* 각 탭은 처음 보일 때 한 번만 그린다(panes.js의 pane:show). 숨은 상태에서 그리면 폭이 0이 되므로 반드시 보인 뒤에 그린다. */
+var BUILT = {};
+var YEAR_P = null;
+function buildPane(id) {
+  if (!DATA || BUILT[id]) return;
+  BUILT[id] = true;
+  if (id === "flow") {
+    renderYearControls();
+    if (!YEAR_P) YEAR_P = fetchJSON("etf_year.json").catch(function () { return null; });  /* 1년 시계열(~0.2MB)은 이 탭에서만 받는다 */
+    YEAR_P.then(function (y) { YEAR = y; renderYearGrid(); });
+  } else if (id === "signal") {
+    renderSignals(); renderBars();
+  } else if (id === "trend") {
+    renderTrendControls(); renderTrend();
+  } else if (id === "heatmap") {
+    renderHeatmap();
+  } else if (id === "compare") {
+    var rows = etfList();
+    renderTableRows(rows);
+    makeSortable($q("#etf-table"), rows, renderTableRows);
+  }
+}
+document.addEventListener("pane:show", function (ev) {
+  if (ev.target.closest("[data-panes]") === $q("[data-panes='dashboard']")) buildPane(ev.detail.id);
+});
+function buildCurrentPane() {
+  var ctl = window.Panes && Panes.get("[data-panes='dashboard']");
+  if (ctl && ctl.current()) buildPane(ctl.current());
+}
+
 /* ---------- 초기화 ---------- */
-Promise.all([
-  fetchJSON("data.json"),
-  fetchJSON("megacap_lite.json").catch(function () { return null; }),
-  fetchJSON("financials.json").catch(function () { return null; }),
-  fetchJSON("etf_year.json").catch(function () { return null; })
-]).then(function (rs) {
-  var d = rs[0];
+fetchJSON("data.json").then(function (d) {
   DATA = d;
-  YEAR = rs[3];
-  renderYearControls();
-  renderYearGrid();
-  if (rs[1] && rs[1].stocks) rs[1].stocks.forEach(function (s) { MEGA[s.ticker] = s; });
-  FIN = (rs[2] && rs[2].financials) || {};
   $q("#updated").textContent = "기준: " + (d.updated || "-") + " · 벤치마크 " + (d.benchmark || "ACWI");
   renderToggles();
   renderFavs();
   renderBreadth();
-  renderSignals();
-  renderBars();
-  renderTrend();
-  renderHeatmap();
-  var rows = etfList();
-  renderTableRows(rows);
-  makeSortable($q("#etf-table"), rows, renderTableRows);
+  buildCurrentPane();
 }).catch(function (err) {
-  $q("#bar-chart").innerHTML = '<div class="empty">data.json 로드 실패 — fetch_data.py를 먼저 실행하세요<br><span class="small">' +
+  $q("#breadth").innerHTML = '<div class="empty">data.json 로드 실패 — fetch_data.py를 먼저 실행하세요<br><span class="small">' +
     escapeHtml(err.message) + "</span></div>";
 });
 </script>

@@ -170,3 +170,15 @@
 }
 .cb-mk { display:inline-block; margin-right:4px; padding:0 4px; border:1px solid #34465f; border-radius:4px; color:#8fa2c2; font:600 9.5px var(--sans, inherit); vertical-align:1px; }
 .cb-table tbody tr[hidden] { display:none; } .cb-list-meta b { color:#c9d5ea; font-weight:600; }
+
+/* 목록 정렬 버튼(시가총액·거래대금·1W·1M·1Y) + 행마다 정렬 기준 값 배지 */
+.cb-sortseg { align-items:center; flex:0 1 auto; flex-wrap:wrap; }
+.cb-sortseg-label { padding:0 6px 0 5px; color:#6f809c; font:600 10.5px var(--sans, inherit); }
+.cb-sortseg button { cursor:pointer; white-space:nowrap; }
+.cb-sortseg button:hover:not(.on) { color:#dce5f3; background:rgba(60,86,140,.22); }
+.cb-sortseg button:focus-visible { outline:2px solid #91b4ff; outline-offset:1px; }
+.cb-sv { display:inline-block; margin-left:6px; padding:0 5px; border-radius:4px; background:rgba(94,145,255,.13); color:#b9cdf5; font:600 10px var(--mono); font-style:normal; font-variant-numeric:tabular-nums; vertical-align:1px; white-space:nowrap; }
+.cb-sv.up { color:#f68a9a; background:rgba(246,138,154,.12); }
+.cb-sv.down { color:#83aaff; background:rgba(131,170,255,.12); }
+.cb-sv.none { color:#6f809c; background:rgba(111,128,156,.1); }
+@media (max-width:640px) { .cb-sortseg { flex:1 1 100%; } .cb-sortseg button { padding:5px 7px; } }

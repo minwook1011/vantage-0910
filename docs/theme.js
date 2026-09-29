@@ -20,11 +20,9 @@ window.vantageJSON = function (path, fresh) {
     ["portfolio.html", "포트폴리오"],
     ["dashboard.html", "섹터 대시보드"],
     ["megacap.html", "글로벌 메가캡"],
-    ["bottomup.html", "Bottom-up 발굴"],
-    ["ta-lab.html", "기술점수 연구소"],
+    ["bottomup.html", "기술적 분석"],
     ["worldflow.html", "세상 흐름 파악"],
     ["news.html", "실시간 뉴스"],
-    ["earnings.html", "미국 주요 실적 정리"],
     ["macro.html", "매크로 및 투자전략"],
     ["datahub.html", "데이터 허브"],
     ["archive.html", "리서치 아카이브"],
@@ -32,6 +30,7 @@ window.vantageJSON = function (path, fresh) {
     ["jp-screener.html", "일본 소비재"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";
+  if (here === "ta-lab.html" || here === "backtest.html") here = "bottomup.html";
   var nav = document.getElementById("topnav");
   if (nav) {
     var links = PAGES.map(function (p) {

@@ -278,6 +278,9 @@ def refresh_company(c, now, price_count):
             raise ValueError("주가 관측치 부족")
         data["price"] = {"source": "네이버 금융 일봉", "unit": "원", "as_of": rows[-1][0],
                          "points": [{"date": d, "value": p} for d, p, _ in rows]}
+        # 최근 20거래일 평균 거래대금(억원, 종가×거래량 근사) — 목록의 거래대금 정렬에 쓴다
+        tail = [(p, v) for _, p, v in rows[-20:] if v]
+        data["price"]["avg_value_eok"] = round(sum(p * v for p, v in tail) / len(tail) / 1e8, 1) if tail else None
     except Exception as e:
         errors.append("주가: " + type(e).__name__)
         data["price"] = old.get("price", {"points": []})
@@ -311,9 +314,10 @@ def summary(c, d):
     last_q = q[-1] if q else {}
     chg = lambda n: round((pts[-1]["value"] / pts[-1 - n]["value"] - 1) * 100, 2) if len(pts) > n else None
     return {"code": c["code"], "name": c["name"], "market": c.get("market", "KOSPI"), "sector": c.get("sector", ""),
-            "peers": c.get("peers", []), "mcap_eok": c.get("mcap_eok"), "avg_value_eok": c.get("avg_value_eok"), "value_rank": c.get("value_rank"),
+            "peers": c.get("peers", []), "mcap_eok": c.get("mcap_eok"),
+            "avg_value_eok": (d.get("price") or {}).get("avg_value_eok") or c.get("avg_value_eok"), "value_rank": c.get("value_rank"),
             "close": pts[-1]["value"] if pts else None, "as_of": pts[-1]["date"] if pts else None,
-            "chg_1d": chg(1), "chg_1m": chg(21), "chg_1y": chg(250),
+            "chg_1d": chg(1), "chg_1w": chg(5), "chg_1m": chg(21), "chg_1y": chg(250),
             "spark": [p["value"] for p in pts[-120::4]],
             "q": {k: last_q.get(k) for k in ("date", "revenue", "operating_income", "opm", "revenue_yoy", "operating_income_yoy", "op_label")},
             "fy": {k: (a[-1] if a else {}).get(k) for k in ("date", "revenue", "operating_income", "opm", "revenue_yoy")},

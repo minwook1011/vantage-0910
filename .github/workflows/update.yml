@@ -29,7 +29,17 @@ jobs:
       - name: 메가캡 시세 갱신
         run: python3 fetch_megacap.py
 
-      - name: 기술점수 백테스트 + 학습(공식 자동 교체) + 차트 패턴 감지
+      - name: 주차 키(10년 일봉 캐시용)
+        id: wk
+        run: echo "week=$(date +%G-%V)" >> "$GITHUB_OUTPUT"
+
+      - name: 10년 일봉 캐시 복원(주 1회 새로 받음)
+        uses: actions/cache@v4
+        with:
+          path: data_sources/_cache/megacap_daily_long.json
+          key: megacap-long-${{ steps.wk.outputs.week }}
+
+      - name: 기술점수 백테스트 + 국면별 학습(공식 자동 교체) + 차트 패턴 감지
         run: |
           pip install --quiet numpy pandas
           python3 backtest_ta.py || echo "백테스트 실패 — 기존 데이터 유지"

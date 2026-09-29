@@ -72,7 +72,7 @@ table.bt tr.pass td:first-child { box-shadow:inset 3px 0 0 var(--up); }
 <body>
 <div id="topnav"></div>
 <div class="container">
-  <div class="kicker">Bottom-up · 검증</div>
+  <div class="kicker">기술적 분석 · 전략·패턴 백테스트 상세</div>
   <div class="page-head"><h1>기술점수 · 전략 백테스트</h1><span class="upd" id="updated"></span></div>
   <p class="bt-lede" id="lede">불러오는 중…</p>
   <div class="kpis" id="kpis"></div>
@@ -98,7 +98,7 @@ table.bt tr.pass td:first-child { box-shadow:inset 3px 0 0 var(--up); }
   </section>
 
   <section class="bt-sec">
-    <div class="bt-sec-h"><h2>④ 오늘 통과 전략에 해당하는 종목</h2><span class="hint">종목을 누르면 Bottom-up에서 검색</span></div>
+    <div class="bt-sec-h"><h2>④ 오늘 통과 전략에 해당하는 종목</h2><span class="hint">종목을 누르면 기술적 분석에서 검색</span></div>
     <div class="recs" id="recs"></div>
   </section>
 
@@ -127,8 +127,8 @@ table.bt tr.pass td:first-child { box-shadow:inset 3px 0 0 var(--up); }
     <ul class="notes" id="notes"></ul>
   </section>
 </div>
-<script src="theme.js?v=20260928p"></script>
-<script src="stocks-common.js?v=20260928p"></script>
+<script src="theme.js?v=20260929a"></script>
+<script src="stocks-common.js?v=20260929a"></script>
 <script>
 (function () {
   "use strict";
@@ -187,7 +187,7 @@ table.bt tr.pass td:first-child { box-shadow:inset 3px 0 0 var(--up); }
     document.getElementById("updated").textContent = "계산 " + B.updated;
     var hot = stById("hot"), pass = (B.strategies || []).filter(function (s) { return s.pass; });
     document.getElementById("lede").innerHTML =
-      "Bottom-up 페이지의 <b>기술점수</b>(이평선·거래량·RSI·MACD·볼린저·일목·삼각수렴 8개 지표 가중합)를 <b>" + B.period[0] + " ~ " + B.period[1] + "</b> 동안 시총 상위 <b>" + B.universe + "종목</b>의 매일 값으로 다시 계산해, 그 뒤 5·20·60거래일 수익률과 비교했습니다(표본 " + B.samples.toLocaleString() + "개). " +
+      "기술적 분석 페이지의 옛 <b>기술점수</b>(이평선·거래량·RSI·MACD·볼린저·일목·삼각수렴 8개 지표 가중합)를 <b>" + B.period[0] + " ~ " + B.period[1] + "</b> 동안 시총 상위 <b>" + B.universe + "종목</b>의 매일 값으로 다시 계산해, 그 뒤 5·20·60거래일 수익률과 비교했습니다(표본 " + B.samples.toLocaleString() + "개). " +
       "같은 데이터로 여러 매매 규칙을 겨루게 해서 <b>학습 구간과 검증 구간, 연도별로 꾸준히 시장을 이긴 규칙만</b> 추천합니다. 이 계산은 매일 자동으로 다시 돌아갑니다.";
     var t10 = B.top["10"] && B.top["10"].h20, best = pass[0], tp = B.tpsl || {};
     var k = [];
@@ -252,7 +252,7 @@ table.bt tr.pass td:first-child { box-shadow:inset 3px 0 0 var(--up); }
         years.map(function (y) { var v = s.years[y]; return '<td><span class="yr" style="background:' + heatBgV(v, 2.5) + '">' + sg(v) + "</span></td>"; }).join("") +
         '<td><button class="today-btn" data-i="' + i + '">' + (s.today || []).length + "종목</button></td></tr>" +
         '<tr class="tl" data-for="' + i + '" style="display:none"><td colspan="' + (8 + years.length) + '" style="padding:0">' +
-        '<div class="today-list">' + ((s.today || []).map(function (tk) { return '<a href="bottomup.html?q=' + encodeURIComponent(tk) + '">' + escapeHtml(nm(tk)) + "</a>"; }).join("") || '<span class="muted small">오늘 해당 종목 없음</span>') + "</div></td></tr>";
+        '<div class="today-list">' + ((s.today || []).map(function (tk) { return '<a href="bottomup.html?q=' + encodeURIComponent(tk) + '#list">' + escapeHtml(nm(tk)) + "</a>"; }).join("") || '<span class="muted small">오늘 해당 종목 없음</span>') + "</div></td></tr>";
     }).join("");
     document.getElementById("tb-st").innerHTML = "<thead>" + head + "</thead><tbody>" + body + "</tbody>";
     Array.prototype.forEach.call(document.querySelectorAll("#tb-st .today-btn"), function (b) {
@@ -269,7 +269,7 @@ table.bt tr.pass td:first-child { box-shadow:inset 3px 0 0 var(--up); }
     document.getElementById("recs").innerHTML = pass.length ? pass.map(function (s) {
       return '<div class="rec"><h3>' + escapeHtml(s.name) + ' <span class="pill ok">' + sg(s.x20) + "%p</span></h3>" +
         '<div class="sub">' + escapeHtml(s.desc) + "</div>" +
-        '<div class="tks">' + ((s.today || []).slice(0, 40).map(function (tk) { return '<a href="bottomup.html?q=' + encodeURIComponent(tk) + '" title="' + escapeHtml(tk) + '">' + escapeHtml(nm(tk)) + "</a>"; }).join("") || '<span class="muted">오늘 해당 없음</span>') + "</div></div>";
+        '<div class="tks">' + ((s.today || []).slice(0, 40).map(function (tk) { return '<a href="bottomup.html?q=' + encodeURIComponent(tk) + '#list" title="' + escapeHtml(tk) + '">' + escapeHtml(nm(tk)) + "</a>"; }).join("") || '<span class="muted">오늘 해당 없음</span>') + "</div></div>";
     }).join("") : '<div class="answer">통과 전략이 없어 오늘은 추천 종목이 없습니다.</div>';
   }
 

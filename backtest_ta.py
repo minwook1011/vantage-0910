@@ -5,7 +5,7 @@ backtest_ta.py — 기술점수 백테스트 + 차트 패턴 감지 → docs/ta_
 
 1) 기술점수 백테스트
    docs/stocks-common.js 의 computeTA()를 그대로 파이썬으로 옮겨 5년 일봉의 '매일' 점수를 만든 뒤
-   5·20·60거래일 뒤 수익률과 비교한다.
+   1·5·20·60거래일(1D·1W·1M·3M) 뒤 수익률과 비교한다.
    - 점수 구간별 평균 수익률·승률·시장 대비 초과수익
    - 매주 점수 상위 X%만 샀다면? (X = 1·3·5·10·20·30·50%) → 가장 좋은 X
    - 8개 세부 지표별 예측력(IC) → 학습 구간(앞 60%)에서 가중치를 다시 잡고 검증 구간(뒤 40%)에서 확인
@@ -41,7 +41,7 @@ OUT_BT = os.path.join(BASE, "docs", "ta_backtest.json")
 OUT_PT = os.path.join(BASE, "docs", "chart_patterns.json")
 KST = timezone(timedelta(hours=9))
 
-HORIZONS = [5, 20, 60]
+HORIZONS = [1, 5, 20, 60]   # 1D·1W·1M·3M
 WARMUP = 130            # MA120·일목(77봉) 계산이 모두 가능해지는 지점부터 표본으로 쓴다
 REBAL_EVERY = 5         # 상위 X% 포트폴리오는 5거래일(1주)마다 교체
 TOP_PCTS = [1, 3, 5, 10, 20, 30, 50, 100]
@@ -72,6 +72,54 @@ def load_charts():
     json.dump({"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"), "charts": charts},
               open(CACHE, "w", encoding="utf-8"), separators=(",", ":"))
     return charts
+
+LONG_CACHE = os.path.join(BASE, "data_sources", "_cache", "megacap_daily_long.json")
+
+
+def extend_history(charts):
+    """5년 일봉 앞에 10년치 과거를 붙인다. 12개월 지표가 1년 워밍업을 먹어서 5년만으로는
+    2022년 하락장이 학습에서 빠진다 → 하락장·횡보장 공식을 배울 표본을 확보하려는 것.
+    10년치는 주 1회만 새로 받고(느림), 최근 구간은 매일 갱신되는 5년 캐시를 쓴다."""
+    long = {}
+    if os.path.exists(LONG_CACHE) and (time.time() - os.path.getmtime(LONG_CACHE)) / 86400 < 7:
+        try:
+            long = json.load(open(LONG_CACHE, encoding="utf-8"))["charts"]
+        except Exception:
+            long = {}
+    missing = [tk for tk in charts if tk not in long]
+    if len(missing) > 0.2 * len(charts) or not long:
+        print(f"  10년 일봉 다운로드({len(charts)}종목, 주 1회)")
+        sys.path.insert(0, BASE)
+        from fetch_megacap import fetch_chart
+        long = {}
+        for i, tk in enumerate(charts, 1):
+            ch = fetch_chart(tk, "10y")
+            if ch:
+                long[tk] = ch
+            if i % 50 == 0:
+                print(f"    {i}/{len(charts)}")
+        os.makedirs(os.path.dirname(LONG_CACHE), exist_ok=True)
+        json.dump({"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"), "charts": long},
+                  open(LONG_CACHE, "w", encoding="utf-8"), separators=(",", ":"))
+    out, added = {}, 0
+    for tk, ch in charts.items():
+        lg = long.get(tk)
+        if not lg or not ch["dates"]:
+            out[tk] = ch
+            continue
+        first = ch["dates"][0]
+        k = 0
+        while k < len(lg["dates"]) and lg["dates"][k] < first:
+            k += 1
+        # 액면분할 등으로 두 소스의 가격 기준이 다르면 이어붙이지 않는다(겹치는 날 종가 비교)
+        if k < len(lg["dates"]) and lg["dates"][k] == first and abs(lg["c"][k] / ch["c"][0] - 1) > 0.02:
+            out[tk] = ch
+            continue
+        out[tk] = {key: lg[key][:k] + ch[key] for key in ("dates", "o", "h", "l", "c", "v")}
+        added += k
+    print(f"  과거 이어붙임: 평균 {added / max(1, len(charts)):.0f}봉/종목")
+    return out
+
 
 # ───────────────────────── 기술점수 (computeTA 이식) ─────────────────────────
 SUB_KEYS = ["ma", "vol", "sup", "rsi", "macd", "boll", "ichi", "brk"]
@@ -559,7 +607,7 @@ def main():
     t0 = time.time()
     print(f"=== backtest_ta.py 시작 ({datetime.now(KST).strftime('%Y-%m-%d %H:%M KST')}) ===")
     meta = {s["ticker"]: s for s in json.load(open(MEGACAP, encoding="utf-8"))["stocks"]}
-    charts = load_charts()
+    charts = extend_history(load_charts())
 
     rows = []          # 표본(종목·날짜별 점수와 미래 수익률)
     events = []        # 패턴 돌파 사건
@@ -653,9 +701,11 @@ def main():
     # ★ 매일 학습: 기술점수 공식을 백테스트 결과로 다시 잡고(챔피언 vs 도전자), 사이트 점수(ta_scores.json)를 갱신
     import ta_learn
     names = {tk: [m.get("name", tk), m.get("sector", "")] for tk, m in meta.items()}
-    learn = ta_learn.run(df.copy(), rebal, datetime.now(KST).strftime("%Y-%m-%d"), names)
+    regime = ta_learn.market_regime(charts)
+    learn = ta_learn.run(df.copy(), rebal, datetime.now(KST).strftime("%Y-%m-%d"), names, regime)
     print(f"  학습형 기술점수: v{learn['ver']} · {learn['decision']} ({learn['reason']}) · 가중치 {learn['weights']}")
     print(f"  걸어가며 검증: {learn['walk']}")
+    print(f"  오늘 시장 국면: {learn['regime']}")
 
     result = {"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
               "universe": len(charts), "samples": int(len(df)),
