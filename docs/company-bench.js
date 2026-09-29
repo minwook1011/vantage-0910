@@ -42,6 +42,7 @@
   var customs = read(CUSTOM_KEY, {}); if (!customs || typeof customs !== "object" || Array.isArray(customs)) customs = {};
   var COMPANIES = FALLBACK, AI = null, FINS = {}, FM = null, KRX = null, KR = {}, krLoading = {}, loaded = false, loadError = "", catalog = {}, renderId = 0;
   var query = "", sector = "", mkt = "";
+  var condText = typeof saved.cond === "string" ? saved.cond : "", conds = [];
 
   function store() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
   function storeCustoms() { localStorage.setItem(CUSTOM_KEY, JSON.stringify(customs)); }
@@ -270,6 +271,80 @@
     return favHtml;
   }
   function bindFavs() { chipHost.querySelectorAll("[data-cb-company]").forEach(function (b) { b.onclick = function () { pick(b.dataset.cbCompany); }; }); }
+  /* ── 조건 검색: "시총 1조 이상, 매출 성장 10% 이상, 1년 주가 50% 이상, 영업이익률 20% 이상" ──
+     금액은 원화(억·조) 기준. 해외 기업은 원화로 대략 환산해 비교한다($·달러·B·M 단위로 적으면 그대로 환산).
+     기간 없이 '주가 상승률/수익률'이라고 쓰면 1년으로 본다. */
+  var CMETRICS = [
+    {kw: ["시가총액", "시총"], key: "mcap", unit: "money", label: "시총", get: mcapOf},
+    {kw: ["거래대금"], key: "tv", unit: "money", label: "거래대금", get: tvOf},
+    {kw: ["매출 성장률", "매출성장률", "매출 성장", "매출성장", "매출 증가율", "매출 증가", "매출 yoy", "매출yoy"], key: "ryoy", unit: "pct", label: "매출 YoY", get: function (c) { return qOf(c).revenue_yoy; }},
+    {kw: ["영업이익률", "영업 이익률", "opm", "마진"], key: "opm", unit: "pct", label: "영업이익률", get: function (c) { return qOf(c).opm; }},
+    {kw: ["영업이익 성장률", "영업이익 성장", "영업익 성장", "이익 성장", "영업이익 증가", "영업이익 yoy", "영업익 yoy"], key: "oyoy", unit: "pct", label: "영업익 YoY", get: function (c) { return qOf(c).operating_income_yoy; }},
+    {kw: ["1일", "하루", "오늘", "일간"], key: "d1", unit: "pct", label: "1일 주가", get: function (c) { return chgOf(c, 1); }, px: 1},
+    {kw: ["1주일", "1주", "일주일", "주간", "1w"], key: "w1", unit: "pct", label: "1주 주가", get: function (c) { return chgOf(c, 5); }, px: 1},
+    {kw: ["1개월", "한달", "한 달", "1달", "1m"], key: "m1", unit: "pct", label: "1개월 주가", get: function (c) { return chgOf(c, 21); }, px: 1},
+    {kw: ["1년", "연간", "1y", "주가 성장률", "주가성장률", "주가 상승률", "주가상승률", "주가 수익률", "주가 성장", "주가 상승", "수익률", "주가"], key: "y1", unit: "pct", label: "1년 주가", get: function (c) { return chgOf(c, 250); }, px: 1}
+  ];
+  function condOp(seg) {
+    var ge = seg.search(/이상|초과|넘|↑|높/), le = seg.search(/이하|미만|밑|아래|↓|낮/);
+    if (ge < 0 && le < 0) return ">=";
+    if (le < 0) return ">="; if (ge < 0) return "<=";
+    return ge < le ? ">=" : "<=";
+  }
+  function parseCond(text) {
+    var out = [], parts = String(text || "").toLowerCase().split(/[,，;、\n]|그리고|이고|이면서|\s및\s/);
+    parts.forEach(function (part) {
+      var t = " " + part.replace(/\s+/g, " ").trim() + " ";
+      if (t.trim().length < 2) return;
+      var best = null;
+      CMETRICS.forEach(function (m) {
+        m.kw.forEach(function (kw) {
+          var pos = t.indexOf(kw); if (pos < 0) return;
+          if (best && (best.pos < pos || (best.pos === pos && best.len >= kw.length))) return;
+          best = {m: m, pos: pos, len: kw.length};
+        });
+      });
+      if (!best) return;
+      var after = t.slice(best.pos + best.len);
+      var nm = after.match(/(-?\d+(?:[.,]\d+)?)\s*(조원|조|억원|억|만원|만|원|\$|달러|b|bn|m|%|퍼센트|프로)?/);
+      if (!nm) return;
+      var v = parseFloat(nm[1].replace(/,/g, "")), u = nm[2] || "", m = best.m;
+      if (m.unit === "money") {
+        if (/조/.test(u)) v *= 10000; else if (/만/.test(u)) v /= 10000; else if (u === "원") v /= 1e8;
+        else if (/^(b|bn)$/.test(u) || (/\$|달러/.test(u) && /b|bn|십억/.test(after.slice(nm.index + nm[0].length, nm.index + nm[0].length + 4)))) v = v * 1e9 * FX_KRW.USD / 1e8;
+        else if (u === "m") v = v * 1e6 * FX_KRW.USD / 1e8;
+        else if (/\$|달러/.test(u)) v = v * FX_KRW.USD / 1e8;
+      }
+      out.push({key: m.key, label: m.label, unit: m.unit, get: m.get, op: condOp(after.slice(nm.index + nm[0].length, nm.index + nm[0].length + 12)), val: v});
+    });
+    return out;
+  }
+  function condFmt(c) {
+    var v = c.unit === "money" ? (Math.abs(c.val) >= 10000 ? (c.val / 10000).toLocaleString("ko-KR", {maximumFractionDigits: 2}) + "조원" : Math.round(c.val).toLocaleString("ko-KR") + "억원") : c.val + "%";
+    return c.label + " " + v + (c.op === ">=" ? " 이상" : " 이하");
+  }
+  function passCond(c) {
+    for (var i = 0; i < conds.length; i++) {
+      var x = conds[i], v = x.get(c);
+      if (!finite(v)) return false;
+      if (x.op === ">=" ? v < x.val : v > x.val) return false;
+    }
+    return true;
+  }
+  function condBarHtml() {
+    return '<div class="cb-cond"><span class="cb-cond-ic">⌕</span><input type="text" id="cb-cond" value="' + esc(condText) + '" placeholder="조건으로 검색 — 예: 시총 1조 이상, 매출 성장 10% 이상, 1년 주가 50% 이상, 영업이익률 20% 이상" aria-label="조건 검색">' +
+      '<button type="button" id="cb-cond-go">검색</button>' + (conds.length ? '<button type="button" id="cb-cond-clear">해제</button>' : "") + "</div>" +
+      '<div class="cb-cond-chips">' + (conds.length ? conds.map(function (c) { return '<span class="cb-cond-chip">' + esc(condFmt(c)) + "</span>"; }).join("") + '<span class="cb-cond-n" id="cb-cond-n"></span>'
+        : (condText.trim() ? '<span class="cb-muted">조건을 알아듣지 못했어요 — 시총·거래대금·매출 성장·영업이익률·영업이익 성장·주가(1일·1주·1개월·1년) + 숫자 + 이상/이하로 적어 주세요.</span>'
+          : '<span class="cb-muted">알아듣는 말: 시총·거래대금(억·조, 해외는 원화 환산) · 매출 성장·영업이익 성장·영업이익률(최근 분기, %) · 주가 1일·1주·1개월·1년(기간 없으면 1년) + 이상/이하</span>')) + "</div>";
+  }
+  function runCond(text) {
+    condText = text; conds = parseCond(text); state.cond = text; store();
+    if (conds.length) state.listOpen = true;
+    pickerLimit = PAGE_ROWS; renderPicker();
+  }
+  conds = parseCond(condText);
+
   function renderPicker() {
     var cur = company(), favHtml = favsHtml();
     var sectors = COMPANIES.map(function (c) { return c.kr ? (isUS(c) ? GICS[c.kr.sector] || c.kr.sector : c.kr.sector) : ""; }).filter(function (x, i, a) { return x && a.indexOf(x) === i; }).sort();
@@ -284,7 +359,7 @@
       if (!finite(x) && !finite(y)) return a.i - b.i; if (!finite(x)) return 1; if (!finite(y)) return -1;
       return dir * (x - y);
     });
-    var open = state.listOpen || !!q;
+    var open = state.listOpen || !!q || conds.length > 0;
     pickerRows = open ? list : [];  // 접힌 상태에서는 행을 만들지 않는다(800행+ 표가 랙의 주원인)
     var usCount = COMPANIES.filter(isUS).length;
     var krCount = COMPANIES.filter(function (c) { return c.kr && !isUS(c); }).length, kqCount = COMPANIES.filter(function (c) { return c.kr && c.kr.market === "KOSDAQ"; }).length;
@@ -296,7 +371,7 @@
       '<div class="cb-finder"><input type="search" id="cb-q" class="cb-q" placeholder="기업명 · 종목코드 · 업종 검색" value="' + esc(query) + '" aria-label="기업 검색">' +
       '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + '>코스닥</option><option value="US"' + (mkt === "US" ? " selected" : "") + ">미국·해외</option></select>" +
       '<select id="cb-sector" aria-label="업종"><option value="">전체 업종</option><option value="★"' + (sector === "★" ? " selected" : "") + ">★ 즐겨찾기만</option>" + sectors.map(function (x) { return "<option" + (x === sector ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>" +
-      '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button>" + sortSegHtml() + "</div>" +
+      '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button>" + sortSegHtml() + "</div>" + condBarHtml() +
       '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + (usCount ? " · 미국 S&P500 시총 상위 + 해외 " + usCount + "개(금액 $B · 실적 SEC 공시)" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
       '<div class="cb-list-wrap"><table class="cb-table"><thead>' + head + '</thead><tbody id="cb-tbody"></tbody></table></div></div>';
     bindFavs();
@@ -312,6 +387,10 @@
     qi.onkeydown = function (e) { if (e.key === "Enter") { var first = chipHost.querySelector("[data-cb-row]"); if (first) pick(first.dataset.cbRow, true); } };
     document.getElementById("cb-sector").onchange = function (e) { sector = e.target.value; pickerLimit = PAGE_ROWS; applyListFilter(); };
     document.getElementById("cb-mkt").onchange = function (e) { mkt = e.target.value; pickerLimit = PAGE_ROWS; applyListFilter(); };
+    var ci = document.getElementById("cb-cond");
+    ci.onkeydown = function (e) { if (e.key === "Enter") runCond(ci.value); };
+    document.getElementById("cb-cond-go").onclick = function () { runCond(ci.value); };
+    var cc = document.getElementById("cb-cond-clear"); if (cc) cc.onclick = function () { runCond(""); };
     applyListFilter();
     document.getElementById("cb-list-toggle").onclick = function () { state.listOpen = !open; if (!state.listOpen) query = ""; store(); renderPicker(); };
   }
@@ -344,6 +423,7 @@
       var c = o.c, k = c.kr || {}, us = isUS(c), sec = us ? GICS[k.sector] || k.sector : k.sector;
       if (mkt && (us ? "US" : k.market || "") !== mkt) return false;
       if (sector && (sector === "★" ? !isFav(c.ticker) : (sec || "") !== sector)) return false;
+      if (conds.length && !passCond(c)) return false;
       return !q || [c.name, c.label, c.ticker, c.desc, k.sector, sec].join(" ").toLowerCase().indexOf(q) >= 0;
     });
     var rest = hits.length - pickerLimit;
@@ -357,6 +437,7 @@
     });
     tb.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
     var cnt = document.getElementById("cb-count"); if (cnt) cnt.textContent = hits.length === COMPANIES.length ? "" : hits.length + "개 표시 · ";
+    var cn = document.getElementById("cb-cond-n"); if (cn) cn.textContent = "→ " + hits.length + "개 일치";
   }
   function pick(tk, scroll) {
     state.company = tk; store(); renderAll();

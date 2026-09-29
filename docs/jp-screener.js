@@ -317,8 +317,25 @@ const SMETRICS = [
   {kw:["roe","자기자본이익률"], idx:F.ROE, unit:"pct", label:"ROE", fmt:v=>v+"%"},
   {kw:["per","피이알","주가수익비율"], idx:F.PER, unit:"x", label:"PER", fmt:v=>v+"배"},
   {kw:["ytd","연초이후","연초 이후"], idx:F.PYTD, unit:"pct", label:"YTD수익률", fmt:v=>v+"%"},
-  {kw:["1년 수익률","1년수익률","연간 수익률","1년 주가","주가 1년","1년"], idx:F.PY, unit:"pct", label:"1년수익률", fmt:v=>v+"%"},
+  // 기간을 적은 주가 조건(1·3·6개월)은 차트 주가로 계산. 기간 없이 '주가 상승률/수익률'이면 1년으로 본다
+  {kw:["1개월 수익률","1개월 주가","주가 1개월","한달 수익률","한 달 수익률","1달 수익률","1개월"], get:r=>pxRet(r[F.CODE],30), unit:"pct", label:"1개월 주가", fmt:v=>v+"%"},
+  {kw:["3개월 수익률","3개월 주가","주가 3개월","3개월"], get:r=>pxRet(r[F.CODE],91), unit:"pct", label:"3개월 주가", fmt:v=>v+"%"},
+  {kw:["6개월 수익률","6개월 주가","주가 6개월","6개월"], get:r=>pxRet(r[F.CODE],182), unit:"pct", label:"6개월 주가", fmt:v=>v+"%"},
+  {kw:["1년 수익률","1년수익률","연간 수익률","1년 주가","주가 1년","1년","주가 성장률","주가성장률","주가 상승률","주가상승률","주가 수익률","주가수익률","주가 성장","주가 상승","수익률"], idx:F.PY, unit:"pct", label:"1년수익률", fmt:v=>v+"%"},
+  {kw:["매출액","매출 규모","매출"], idx:F.REV, unit:"money", label:"매출(TTM)", fmt:v=>v>=10000?(v/10000)+"조엔":v+"억엔"},
 ];
+/* 차트 주가(일·주·월봉)로 최근 N일 등락률. 코드별로 한 번만 계산 */
+const PXR = {};
+function pxRet(code, days){
+  const key=code+"|"+days; if(key in PXR) return PXR[key];
+  const b=BY[code]; let out=null;
+  if(b && b.px && b.px.length>1){
+    const bars=dailyBars(b), last=bars[bars.length-1], target=last.d-days;
+    let base=null; for(let i=bars.length-1;i>=0;i--){ if(bars[i].d<=target){ base=bars[i]; break; } }
+    if(base && base.c>0 && last.d-base.d<=days+20) out=Math.round((last.c/base.c-1)*1000)/10;
+  }
+  return (PXR[key]=out);
+}
 function opAt(t, from, span){
   const seg = t.slice(from, from+(span||34));
   // 가장 먼저 등장하는 비교어를 채택(범위 안에 둘 다 있으면 앞선 것)
@@ -339,6 +356,9 @@ function parseSmart(text){
     for(const kw of m.kw){
       let pos = t.indexOf(kw);
       if(pos<0) continue;
+      if(m.idx===F.REV && /^\s*(성장|증가|yoy)/.test(t.slice(pos+kw.length))) continue;   // '매출 성장'은 매출 규모가 아님
+      // 기간 없는 말(수익률·주가 상승률…)이 '1개월 수익률'·'ytd 수익률' 안에 들어 있으면 1년 조건으로 잡지 않는다
+      if(m.idx===F.PY && !/^\d/.test(kw) && /(개월|달|주|ytd|연초)\s*$/.test(t.slice(Math.max(0,pos-6),pos))) continue;
       // 지표명 뒤에서 숫자를 찾고, 그 숫자 바로 뒤 8자 안에서만 비교어를 판정(다음 조건의 비교어를 끌어오지 않도록)
       const after = t.slice(pos+kw.length, pos+kw.length+26);
       const num = after.match(/(-?\d+(?:[.,]\d+)?)\s*(조엔|조|억엔|억|%|퍼센트|배)?/);
@@ -346,10 +366,10 @@ function parseSmart(text){
       if(num && op){
         let v = parseFloat(num[1].replace(/,/g,""));
         if(m.unit==="money" && /조/.test(num[2]||"")) v*=10000;
-        cls.push({kind:"metric", idx:m.idx, op, val:v, label:m.label, fmt:m.fmt, per:m.unit==="x"&&op===">="?false:true});
+        cls.push({kind:"metric", idx:m.idx, get:m.get, op, val:v, label:m.label, fmt:m.fmt, per:m.unit==="x"&&op===">="?false:true});
       }
       // 정렬 기준 후보: 텍스트에서 가장 뒤에 나온 지표
-      if(pos>sortPos){ sortKey={type:"metric", idx:m.idx}; sortPos=pos; sortLabel=m.label; }
+      if(pos>sortPos){ sortKey={type:"metric", idx:m.idx, get:m.get}; sortPos=pos; sortLabel=m.label; }
       break;
     }
   }
@@ -379,7 +399,7 @@ function parseSmart(text){
 function passSmart(r, sm){
   for(const c of sm.cls){
     if(c.kind==="metric"){
-      let v=r[c.idx];
+      let v=c.get ? c.get(r) : r[c.idx];
       if(c.idx===F.PER && (v==null||v<=0)) return false;
       if(v==null) return false;
       if(c.op===">=" && !(v>=c.val)) return false;
@@ -397,7 +417,7 @@ function smartScore(r, sm){
   const k=sm.sortKey;
   if(k.type==="accel"){ const a=accel(r[F.CODE]); return a?a.score:-1e9; }
   if(k.type==="vol"){ const s=volspike(r[F.CODE], 1, 120); return s?s.score:-1e9; }
-  let v=r[k.idx];
+  let v=k.get ? k.get(r) : r[k.idx];
   if(k.idx===F.PER && (v==null||v<=0)) return sm.sortDir<0 ? -1e9 : 1e9;
   return v==null ? (sm.sortDir<0?-1e9:1e9) : v;
 }
@@ -1067,27 +1087,28 @@ function finHTML(b){
   // 연간에서만, 그리고 예상 연도가 최신 확정 연도보다 뒤일 때만 컨센서스 칸을 붙인다
   const latest = (!isQ && src.lb[off]!=null) ? String(src.lb[off]) : null;
   const est = (!isQ && b.f && latest && /^\d{4}$/.test(latest) && +b.f.y > +latest) ? b.f : null;
+  // 왼쪽 = 과거, 오른쪽 = 최근(예상 칸은 맨 오른쪽). 데이터 배열은 최근이 앞이라 거꾸로 돈다
   let head=`<tr><th>억엔</th>`;
+  for(let i=n-1;i>=0;i--) head+=`<th>${esc(src.lb[i+off])}</th>`;
   if(est) head+=`<th class="esth${est.co?" co":""}">${esc(est.y)}E</th>`;
-  for(let i=0;i<n;i++) head+=`<th>${esc(src.lb[i+off])}</th>`;
   head+=`</tr>`;
   let body="";
   for(const [label,key] of rows){
     const a=src[key]||[];
     body+=`<tr><th>${label}</th>`;
-    if(est){
-      const ev=est[key], eyoy=gr(ev, a[off]);
-      body+=`<td class="fcell est" style="background:${heat(eyoy)}">
-        <span class="fv">${ev===null||ev===undefined?"—":Math.round(ev).toLocaleString("ko-KR")}</span>
-        <span class="fg"><span>YoY ${gtxt(eyoy)}</span></span></td>`;
-    }
-    for(let i=0;i<n;i++){
+    for(let i=n-1;i>=0;i--){
       const j=i+off, cur=a[j];
       const qoq=gr(cur, a[j+1]);
       const yoy=isQ ? gr(cur, a[j+4]) : gr(cur, a[j+1]);
       body+=`<td class="fcell" style="background:${heat(yoy)}">
         <span class="fv">${cur===null||cur===undefined?"—":Math.round(cur).toLocaleString("ko-KR")}</span>
         <span class="fg">${isQ?`<span>QoQ ${gtxt(qoq)}</span>`:""}<span>YoY ${gtxt(yoy)}</span></span></td>`;
+    }
+    if(est){
+      const ev=est[key], eyoy=gr(ev, a[off]);
+      body+=`<td class="fcell est" style="background:${heat(eyoy)}">
+        <span class="fv">${ev===null||ev===undefined?"—":Math.round(ev).toLocaleString("ko-KR")}</span>
+        <span class="fg"><span>YoY ${gtxt(eyoy)}</span></span></td>`;
     }
     body+=`</tr>`;
   }
