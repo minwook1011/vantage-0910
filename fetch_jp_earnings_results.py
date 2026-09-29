@@ -49,6 +49,9 @@ SCREENER = os.path.join(BASE, "docs", "data", "jp", "screener-data.js")
 DATES = os.path.join(BASE, "docs", "data", "jp", "earnings_dates.json")
 OUT = os.path.join(BASE, "docs", "data", "jp", "earnings_results.json")
 GUIDE = os.path.join(BASE, "docs", "data", "jp", "earnings_guidance.json")
+MAJOR = os.path.join(BASE, "docs", "data", "jp", "major-data.js")
+REPORTS = os.path.join(BASE, "docs", "data", "jp", "reports")          # 실적 리포트(발표 1건 = 파일 1개, 영구 보관)
+NOTES = os.path.join(REPORTS, "notes")                                   # Claude가 쓰는 요약·분석(rid.json)
 JST = timezone(timedelta(hours=9))
 KABU_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-jp-screener/1.0"
 LOOKBACK_DAYS = 70          # 페이지에 남겨 둘 발표 기간
@@ -116,10 +119,24 @@ def clean(s):
     return re.sub(r"\s+", " ", htmlmod.unescape(s)).strip()
 
 
+def load_universe():
+    """소비재(screener-data.js RAW) + 주요 기업(major-data.js RAW_MAJ) → {code: {n, cat, mcap, u:[cons|major]}}"""
+    uni = {}
+    for path, var, tag in ((SCREENER, "RAW", "cons"), (MAJOR, "RAW_MAJ", "major")):
+        if not os.path.exists(path):
+            continue
+        txt = open(path, encoding="utf-8").read()
+        m = re.search(r"const " + var + r" = (\[.*?\]);\n", txt, re.S)
+        if not m:
+            continue
+        for r in json.loads(m.group(1)):
+            e = uni.setdefault(r[0], {"n": r[1], "cat": r[2], "mcap": r[5], "u": []})
+            e["u"].append(tag)
+    return uni
+
+
 def load_codes():
-    txt = open(SCREENER, encoding="utf-8").read()
-    m = re.search(r"const RAW = (\[.*?\]);\n", txt, re.S)
-    return [r[0] for r in json.loads(m.group(1))]
+    return list(load_universe())
 
 
 # ---------------------------------------------------------------- 카부탄 결산 페이지
@@ -371,6 +388,117 @@ def pick(d, keys=("rev", "op", "ord", "ni")):
     return {k: d.get(k) for k in keys}
 
 
+# ---------------------------------------------------------------- 실적 리포트용 시계열·원문
+def cal_q(yy, m2):
+    """카부탄 3개월 라벨(26.04-06) → 달력 분기 라벨 2Q26"""
+    return f"{(m2 - 1) // 3 + 1}Q{yy:02d}"
+
+
+def qseries(fin, n=8):
+    """분기 실적 시계열(오래된 → 최근) + YoY·QoQ·영업이익률. 단위: 백만엔(카부탄 그대로)"""
+    qs = sorted(fin["quarter"], key=lambda q: (q["yy"], q["m2"]))
+    out = []
+    for i, q in enumerate(qs):
+        prev_y = next((x for x in qs if x["yy"] == q["yy"] - 1 and x["m2"] == q["m2"]), None)
+        prev_q = qs[i - 1] if i > 0 else None
+        if prev_q and ((q["yy"] * 12 + q["m2"]) - (prev_q["yy"] * 12 + prev_q["m2"])) != 3:
+            prev_q = None
+        out.append({"label": q["label"], "cq": cal_q(q["yy"], q["m2"]), "date": q["date"], **pick(q),
+                    "opm": round(q["op"] / q["rev"] * 100, 1) if q.get("op") is not None and q.get("rev") else None,
+                    "yoy": {k: pct(q.get(k), prev_y.get(k)) for k in ("rev", "op", "ni")} if prev_y else None,
+                    "qoq": {k: pct(q.get(k), prev_q.get(k)) for k in ("rev", "op", "ni")} if prev_q else None})
+    return out[-n:]
+
+
+def aseries(fin):
+    """연간 실적(실적 + 회사 예상 予)"""
+    return [{"fy": y["fy"], "est": y["est"], **pick(y), "date": y["date"]} for y in fin["year"]]
+
+
+DOC_KINDS = (("tanshin", r"決算短信"), ("deck", r"説明資料|説明会資料|プレゼンテーション|補足資料|Presentation"),
+             ("en", r"Financial Results|Earnings Release|Consolidated Financial"))
+
+
+def kabu_disclosures(code, date):
+    """카부탄 종목별 개시 목록(nmode=3)에서 발표일의 결산단신·설명자료 PDF(원문) 링크"""
+    h = get_retry(f"https://kabutan.jp/stock/news?code={code}&nmode=3", kabu=True)
+    if not h:
+        return None
+    y, m, d = date.split("-")
+    key = f"{y[2:]}/{m}/{d}"
+    docs = []
+    for tr in re.findall(r"<tr>(.*?)</tr>", h, re.S):
+        pm = re.search(r"disclosures/pdf/(\d{8})/(\d+)/", tr)
+        if not pm or key not in tr:
+            continue
+        tm = re.search(r"<a[^>]*disclosures/pdf/[^>]*>(.*?)</a>", tr, re.S)
+        title = clean(tm.group(1)) if tm else clean(re.sub(r"<[^>]+>", " ", tr))
+        kind = next((k for k, pat in DOC_KINDS if re.search(pat, title)), None)
+        if not kind:
+            continue
+        docs.append({"kind": kind, "title": title,
+                     "url": f"https://tdnet-pdf.kabutan.jp/{pm.group(1)}/{pm.group(2)}.pdf"})
+    order = {"tanshin": 0, "deck": 1, "en": 2}
+    docs.sort(key=lambda x: order[x["kind"]])
+    return docs[:6]
+
+
+def rid_of(code, rec):
+    return f"{code}-{(rec.get('fy') or '').replace('.', '')}-{rec.get('period')}"
+
+
+def write_report(code, rec, fin, info):
+    """발표 1건을 docs/data/jp/reports/<rid>.json 으로 보관(요약 표·차트·원문 링크의 재료)"""
+    os.makedirs(REPORTS, exist_ok=True)
+    rid = rid_of(code, rec)
+    path = os.path.join(REPORTS, rid + ".json")
+    old = {}
+    if os.path.exists(path):
+        try:
+            old = json.load(open(path, encoding="utf-8"))
+        except Exception:
+            old = {}
+    docs = old.get("docs") if old.get("date") == rec["date"] and old.get("docs") else None
+    if not docs:
+        docs = kabu_disclosures(code, rec["date"]) or []
+    body = {k: v for k, v in rec.items() if not k.startswith("_") and k != "rid"}
+    out = {"rid": rid, "code": code, "name": (info or {}).get("n"), "cat": (info or {}).get("cat"),
+           "u": (info or {}).get("u", []), "mcap": (info or {}).get("mcap"),
+           "date": rec["date"], "period": rec.get("period"), "fy": rec.get("fy"), "fy_month": fin.get("fy_month"),
+           "unit": "백만엔", "rec": body, "qs": qseries(fin), "ann": aseries(fin), "docs": docs,
+           "created": old.get("created") or datetime.now(JST).strftime("%Y-%m-%d %H:%M"),
+           "updated": datetime.now(JST).strftime("%Y-%m-%d %H:%M")}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
+    return rid
+
+
+def write_index():
+    """reports/index.json — 최신순 목록(리포트 페이지·스크리너가 읽음). notes/<rid>.json 이 있으면 요약 완료."""
+    if not os.path.isdir(REPORTS):
+        return
+    rows = []
+    for fn in os.listdir(REPORTS):
+        if not fn.endswith(".json") or fn == "index.json":
+            continue
+        try:
+            r = json.load(open(os.path.join(REPORTS, fn), encoding="utf-8"))
+        except Exception:
+            continue
+        rec = r.get("rec") or {}
+        last = (r.get("qs") or [{}])[-1]
+        rows.append({"rid": r["rid"], "c": r["code"], "n": r.get("name"), "cat": r.get("cat"), "u": r.get("u", []),
+                     "mc": r.get("mcap"), "d": r["date"], "p": r.get("period"), "fy": r.get("fy"), "cq": last.get("cq"),
+                     "note": os.path.exists(os.path.join(NOTES, r["rid"] + ".json")),
+                     "beat": (rec.get("beat") or {}).get("pct"), "prog": (rec.get("progress") or {}).get("diff"),
+                     "rev_yoy": (last.get("yoy") or {}).get("rev"), "op_yoy": (last.get("yoy") or {}).get("op"),
+                     "d1": (rec.get("px") or {}).get("d1"), "pdf": bool(r.get("docs"))})
+    rows.sort(key=lambda x: (x["d"], x.get("mc") or 0), reverse=True)
+    with open(os.path.join(REPORTS, "index.json"), "w", encoding="utf-8") as f:
+        json.dump({"updated": datetime.now(JST).strftime("%Y-%m-%d %H:%M"), "count": len(rows), "reports": rows},
+                  f, ensure_ascii=False, separators=(",", ":"))
+
+
 def build(code, fin, today, guide_snap, old_rec, now):
     dates = [q["date"] for q in fin["quarter"] if q["date"]] + [y["date"] for y in fin["year"] if y["date"] and not y["est"]]
     dates = [d for d in dates if d <= today]
@@ -533,7 +661,8 @@ def main():
         only = args[args.index("--codes") + 1].split(",")
     now = datetime.now(JST)
     today = now.strftime("%Y-%m-%d")
-    codes = load_codes()
+    uni = load_universe()
+    codes = list(uni)
     old = {}
     if os.path.exists(OUT):
         try:
@@ -588,6 +717,10 @@ def main():
         snapshot_update(snaps, code, fin, today)
         if rec:
             refresh_px(code, rec, now)
+            try:
+                rec["rid"] = write_report(code, rec, fin, uni.get(code))
+            except Exception as e:
+                print(f"  [report] {code} {e}")
             results[code] = rec
             b = rec.get("beat", {}).get("pct")
             p = rec.get("progress", {}).get("diff")
@@ -603,6 +736,19 @@ def main():
         px = rec.get("px") or {}
         if px.get("d5") is None and (t0 - datetime.strptime(rec["date"], "%Y-%m-%d")).days <= 14:
             refresh_px(code, rec, now)
+
+    # 주가 반응만 다시 받은 레코드도 리포트 파일에 반영
+    for code, rec in results.items():
+        rid = rec.get("rid")
+        path = os.path.join(REPORTS, (rid or "_") + ".json")
+        if rid and code not in targets and os.path.exists(path):
+            try:
+                r = json.load(open(path, encoding="utf-8"))
+                r["rec"] = {k: v for k, v in rec.items() if not k.startswith("_") and k != "rid"}
+                json.dump(r, open(path, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+            except Exception:
+                pass
+    write_index()
 
     if targets and fetched < len(targets) * 0.3:
         print("카부탄 수집 실패가 많아 기존 파일을 유지합니다.")

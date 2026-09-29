@@ -34,11 +34,20 @@ JST = timezone(timedelta(hours=9))
 KABU_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-jp-screener/1.0"
 
 
+MAJOR = os.path.join(BASE, "docs", "data", "jp", "major-data.js")
+
+
 def load_codes():
-    txt = open(SCREENER, encoding="utf-8").read()
-    m = re.search(r"const RAW = (\[.*?\]);\n", txt, re.S)
-    rows = json.loads(m.group(1))
-    return [r[0] for r in rows]
+    """소비재(RAW) + 주요 기업(RAW_MAJ, 있으면) 코드 합집합"""
+    codes = []
+    for path, var in ((SCREENER, "RAW"), (MAJOR, "RAW_MAJ")):
+        if not os.path.exists(path):
+            continue
+        txt = open(path, encoding="utf-8").read()
+        m = re.search(r"const " + var + r" = (\[.*?\]);\n", txt, re.S)
+        if m:
+            codes += [r[0] for r in json.loads(m.group(1))]
+    return list(dict.fromkeys(codes))
 
 
 def kabutan(code):

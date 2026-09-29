@@ -2,8 +2,10 @@ name: jp-earnings-dates
 
 on:
   schedule:
-    - cron: "0 0 * * 0"  # 09:00 KST(일) 일본 소비재 스크리너 실적 발표일 갱신 + 발표 결과 전체 스캔
-    - cron: "0 12 * * 1-5"  # 21:00 KST(평일) 그날 발표분 실적·가이던스 대비·주가 반응(증분)
+    - cron: "0 0 * * 0"  # 09:00 KST(일) 연중: 발표일 갱신 + 전 종목 실적 스캔(소비재 + 주요 기업)
+    # 실적 시즌(1·2·4·5·7·8·10·11월)에는 2일 간격 — 일·화·목 21:00 KST에 발표분 실적·원문·리포트 생성
+    # (3월 결산 기업: 1월말~2월 3Q · 4월말~5월 결산 · 7월말~8월 1Q · 10월말~11월 2Q / 2월 결산 소매: 1·4·7·10월 초)
+    - cron: "0 12 * 1,2,4,5,7,8,10,11 0,2,4"
   workflow_dispatch:
   push:
     branches: [main]
@@ -23,7 +25,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,20 +34,19 @@ jobs:
         with:
           python-version: "3.12"
       - name: 실적 발표일 수집
-        if: github.event.schedule != '0 12 * * 1-5'
         run: python fetch_jp_earnings_dates.py
-      - name: 발표 결과·가이던스 대비·주가 반응
+      - name: 발표 결과·가이던스 대비·주가 반응·실적 리포트(원문 링크)
         continue-on-error: true
-        run: python fetch_jp_earnings_results.py ${{ github.event.schedule == '0 12 * * 1-5' && ' ' || '--full' }}
+        run: python fetch_jp_earnings_results.py ${{ github.event.schedule == '0 12 * 1,2,4,5,7,8,10,11 0,2,4' && ' ' || '--full' }}
       - name: 데이터 저장
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/jp/earnings_dates.json docs/data/jp/earnings_results.json docs/data/jp/earnings_guidance.json
+          git add docs/data/jp/earnings_dates.json docs/data/jp/earnings_results.json docs/data/jp/earnings_guidance.json docs/data/jp/reports
           if ! git diff --cached --quiet; then
-            git commit -m "data: 일본 소비재 실적 발표일·발표 결과 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
+            git commit -m "data: 일본 기업 실적 발표일·발표 결과·리포트 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
             for attempt in 1 2 3; do
               git pull --rebase origin main || exit 1
               if git push; then exit 0; fi
