@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-30 20:03 KST",
+ "updated": "2026-09-30 20:36 KST",
  "episodes": [
   {
    "id": "2026-09-28-ca-nancy-zimmerman-people-process-and-fixed-income",
@@ -30,12 +30,20 @@
    "audio": "https://traffic.megaphone.fm/CLS4620503535.mp3",
    "duration": "1:26:13",
    "desc": "My guest today is Noah Shinn. Noah is the founder of Instinct, a personal assistant that you text, call, or email the same way you would a person. It has its own phone and its own computer, and it can do almost anything on your behalf that you would do yourself online. Instinct is about a year old, still invite-only, and growing roughly 10% day over day without any marketing spend. We discuss the surprising ways people are already using Instinct, the trusted network that lets two people's agents coordinate directly, and what Noah has learned about how long it takes users to trust an agent with…",
-   "status": "new",
+   "status": "done",
    "found": "2026-09-30 09:16 KST",
    "image": "https://megaphone.imgix.net/podcasts/72db537c-bb24-11f1-805d-739c8a3d8d83/image/30616f876dbb8b52f0b0d4eb64b4806c.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "title_ko": "Noah Shinn — Instinct 만들기: 개인 에이전트 (493회)",
-   "desc_ko": "Noah Shinn은 사람에게 하듯 문자·전화·이메일로 일을 맡기는 개인 비서 Instinct의 창업자다. Instinct는 자기 전화기와 컴퓨터를 갖고 사용자가 온라인에서 할 일을 거의 다 대신한다. 서비스 1년 차, 아직 초대제인데 마케팅 없이 하루에 약 10%씩 성장하고 있다. 사람들이 Instinct를 쓰는 의외의 방식, 두 사람의 에이전트가 직접 일정을 맞추는 '신뢰 네트워크', 사용자가 에이전트를 믿고 맡기기까지 걸리는 시간에 대해 이야기한다."
+   "desc_ko": "문자·전화·메일로 일을 시키는 개인 AI 비서 Instinct의 창업자 Noah Shinn이 회사를 처음으로 길게 설명한 편이다. 옷장 관리, 구독 해지, 여행 예약 같은 실제 쓰임새와 비서끼리 일정을 맞추는 신뢰 네트워크를 소개한다. 사용자가 카드와 메일함을 맡기기까지 걸리는 시간, 광고 대신 거래 수수료로 버는 사업 모델, 여행·배달 같은 기존 서비스가 어떻게 바뀔지를 이야기한다. 하루 10%씩 크는 무료 제품을 떠받칠 연산 자원을 얼마나 미리 사야 하는지, 보안과 환각을 어떻게 막는지도 다룬다.",
+   "youtube": "https://www.youtube.com/watch?v=Am7IWP8IpEc",
+   "summary": {
+    "title_ko": "Noah Shinn — Instinct 만들기: 개인 에이전트 (493회)",
+    "headline": "하루 10%씩 크는 무료 비서 — 3주 만에 40%가 카드를 맡기고, 거래의 절반은 여행",
+    "image": "https://i.ytimg.com/vi/Am7IWP8IpEc/hqdefault.jpg",
+    "guest": "노아 신(Noah Shinn) — 개인 AI 비서 Instinct 창업자 — Reflexion 논문 공저자, Sierra 초기 직원 출신(23세)",
+    "company": "Instinct (AI 에이전트 · 소비자 비서)"
+   }
   },
   {
    "id": "2026-09-24-mad-who-feeds-the-gpus-inside-ai-s-hidden-30b-layer",
@@ -73,12 +81,20 @@
    "audio": "https://traffic.megaphone.fm/CLS7922860814.mp3",
    "duration": "1:04:24",
    "desc": "Gabe Stengel is the co-founder and CEO of Rogo, the AI platform for finance. He believes the best investors will spend the next several years reinventing their firms around AI, and Rogo is trying to build the infrastructure that allows them to do it. We discuss how Rogo evolved alongside the frontier models, why the last mile and the harness around the models matter so much, what happens when every portfolio manager can deploy thousands of agents against a problem, and how AI could transform the way capital is raised, assets are priced, and deals get done. We also cover which investing skills …",
-   "status": "new",
+   "status": "done",
    "found": "2026-09-30 09:16 KST",
    "image": "https://megaphone.imgix.net/podcasts/ea3567a0-b511-11f1-b31a-f738f618d5f9/image/e0d60dda5b55c63765f86fb73cf76287.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
-   "title_ko": "Gabe Stengel — 투자 초지능 만들기 (492회)",
-   "desc_ko": "Gabe Stengel은 금융용 AI 플랫폼 Rogo의 공동창업자이자 CEO다. 앞으로 몇 년간 최고의 투자자들은 AI를 중심으로 회사를 다시 만들 것이고, Rogo는 그 인프라를 만들려 한다. Rogo가 프런티어 모델과 함께 진화해 온 과정, 모델을 감싸는 '마지막 한 뼘'과 하네스가 왜 중요한지, 모든 포트폴리오 매니저가 에이전트 수천 개를 한 문제에 투입할 수 있게 되면 무슨 일이 생기는지, AI가 자금 조달·자산 가격 결정·딜 방식을 어떻게 바꿀지, 그리고 어떤 투자 역량이 남을지 이야기한다."
+   "title_ko": "Gabe Stengel — 투자 초지능 만들기: Rogo (492회)",
+   "desc_ko": "금융 전용 AI 플랫폼 Rogo의 공동창업자 Gabe Stengel이 AI가 투자은행과 투자회사의 일을 어디까지 넘겨받고 있는지 이야기한다. Rogo가 상장주식 투자자보다 M&A·사모 딜을 하는 사람들을 먼저 공략한 이유, 모델 세대가 바뀔 때마다 제품이 어떻게 달라졌는지를 설명한다. OpenAI·Anthropic 같은 연구소와 겹치지 않게 무엇을 짓는지, 좌석 요금에서 성과 과금으로 가려는 구상, 에이전트끼리 거래하는 자본시장의 그림도 다룬다. 시리즈 A 때 투자자 40곳에 거절당한 경험과 사내 두뇌 'Shrek', 빠른 확장에 따르는 고통도 솔직하게 털어놓는다.",
+   "youtube": "https://www.youtube.com/watch?v=B0illwrqUG0",
+   "summary": {
+    "title_ko": "Gabe Stengel — 투자 초지능 만들기: Rogo (492회)",
+    "headline": "10년 뒤 투자회사 가치의 90%는 사람이 아니라 시스템 — Rogo가 말하는 금융 AI의 다음 단계",
+    "image": "https://i.ytimg.com/vi/B0illwrqUG0/hqdefault.jpg",
+    "guest": "게이브 스텐절(Gabe Stengel) — 금융 전용 AI 플랫폼 Rogo 공동창업자 겸 CEO — Lazard 투자은행 분석가 출신",
+    "company": "Rogo (금융 AI · 투자은행·사모시장용 에이전트 소프트웨어)"
+   }
   },
   {
    "id": "2026-09-21-ca-andr-perold-investing-through-exponential-change",
@@ -91,12 +107,20 @@
    "audio": "https://traffic.libsyn.com/secure/tedseides/CA_-_EP.516_Andre_Perold_-_AUDIO_V1.mp3?dest-id=482814",
    "duration": "48:19",
    "desc": "André Perold is the co-founder and CIO of HighVista Strategies, an alternative asset manager overseeing $14 billion that searches for alpha opportunities in structurally inefficient markets. André has twice been a past guest on the show, starting way back with episode #2 and both conversations are replayed on the feed. This conversation starts with André's assessment of the most exciting and unusual investment environment he has experienced, alongside his thoughts on how to build capabilities and construct portfolios to navigate exponential change. We then turn to the beautifully inefficient m…",
-   "status": "new",
+   "status": "done",
    "found": "2026-09-30 09:16 KST",
    "image": "https://static.libsyn.com/p/assets/c/1/3/c/c13ccbaabfecee5b88c4a68c3ddbc4f2/Andre_Perold_Apple_Cover_Art.jpg",
    "show_image": "https://static.libsyn.com/p/assets/f/b/7/6/fb76e1c8bfb69e8dd959afa2a1bf1c87/CA_Square_logo_light_background_6.26.24.jpg",
-   "title_ko": "André Perold — 기하급수적 변화 속의 투자 (516회)",
-   "desc_ko": "André Perold는 구조적으로 비효율적인 시장에서 알파를 찾는 대체투자 운용사 HighVista Strategies(운용자산 140억 달러)의 공동창업자이자 CIO다. 이 방송의 2회·169회 게스트였다. 그가 겪어 본 가장 흥미롭고 이례적인 투자 환경에 대한 진단, 기하급수적 변화를 헤쳐 나가기 위한 역량 구축과 포트폴리오 구성, 그리고 비효율이 큰 시장들을 이야기한다."
+   "title_ko": "André Perold — 기하급수적 변화 속에서 투자하기 (516회)",
+   "desc_ko": "HighVista Strategies 공동창업자이자 최고투자책임자인 André Perold가 Capital Allocators에 다시 나와, AI·의료·재정적자가 한꺼번에 기하급수로 변하는 지금의 투자 환경을 이야기한다. 그는 AI가 세상을 바꾼다는 전제로 짠 몫과 AI와 무관한 몫을 따로 굴려야 판단이 흐려지지 않는다고 말한다. 이어 HighVista가 멀티에셋 펀드 하나에서 바이오텍, 소형 바이아웃, 컨티뉴에이션 펀드, 벤처, 사모대출로 넓혀 온 과정과 각 시장에서 좁은 분야 전문가와 손잡는 방식을 설명한다. 사모펀드의 분배금 부족, 소프트웨어 대출 우려, 데이터센터 대출, 투자 심사에 쓰는 AI 에이전트도 다룬다.",
+   "youtube": "https://www.youtube.com/watch?v=y1kWhjdJJos",
+   "summary": {
+    "title_ko": "André Perold — 기하급수적 변화 속에서 투자하기 (516회)",
+    "headline": "AI 몫과 AI와 무관한 몫을 따로 짠다 — HighVista의 André Perold가 말하는 '아름답게 비효율적인 시장'",
+    "image": "https://i.ytimg.com/vi/y1kWhjdJJos/hqdefault.jpg",
+    "guest": "안드레 페롤드(André Perold) — HighVista Strategies 공동창업자 겸 최고투자책임자 — Harvard Business School 명예교수, 2026년 6월까지 Vanguard 이사",
+    "company": "HighVista Strategies (대체투자 운용사 · 멀티에셋, 소형 바이아웃, 벤처, 바이오텍, 사모대출)"
+   }
   },
   {
    "id": "2026-09-21-ca-replay-andr-perold-pockets-of-inefficiency-at-hi",
