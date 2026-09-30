@@ -42,6 +42,30 @@
 .jr .note h3 { font-size:15px; margin:16px 0 6px; } .jr .note h4 { font-size:14px; margin:12px 0 4px; }
 .jr .note p { margin:6px 0; } .jr .note ul, .jr .note ol { margin:6px 0; padding-left:20px; }
 .jr .note b, .jr .note strong { color:var(--text); }
+/* 마크다운 표(원문 정리·분석): 좁은 화면에서는 표만 가로로 민다 */
+.jr .mdt { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:8px 0 12px; border:1px solid var(--border); border-radius:9px; }
+.jr .mdt table { border-collapse:collapse; width:100%; font-size:12.5px; line-height:1.5; }
+.jr .mdt th, .jr .mdt td { padding:6px 11px; border-bottom:1px solid var(--border); white-space:nowrap; font-variant-numeric:tabular-nums; text-align:right; }
+.jr .mdt th { color:var(--muted); font-weight:600; font-size:12px; border-bottom:1px solid var(--border-strong); background:rgba(127,127,127,.06); }
+.jr .mdt tr:last-child td { border-bottom:0; }
+.jr .mdt .l { text-align:left; } .jr .mdt .c { text-align:center; } .jr .mdt .r { text-align:right; }
+.jr .mdt td:first-child, .jr .mdt th:first-child { position:sticky; left:0; background:var(--card); }
+.jr .note.deep h4, .jr details.orig .note h4 { font-size:15px; border-top:1px solid var(--border); padding-top:14px; margin:18px 0 6px; }
+.jr .note.deep h4:first-child { border-top:0; padding-top:0; margin-top:2px; }
+/* 원문 정리 (한글) — 접었다 펴는 칸 */
+.jr details.orig { margin-bottom:10px; padding:0; scroll-margin-top:70px; }
+.jr details.orig > summary { cursor:pointer; list-style:none; padding:13px 16px; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; font-size:14.5px; }
+.jr details.orig > summary::-webkit-details-marker { display:none; }
+.jr details.orig > summary::before { content:"▸"; color:var(--muted); }
+.jr details.orig[open] > summary::before { content:"▾"; }
+.jr details.orig > summary::after { content:"펼치기"; margin-left:auto; color:#8fb3ff; font-size:12px; }
+.jr details.orig[open] > summary::after { content:"접기"; }
+.jr details.orig > summary .hint { color:var(--muted); font-size:12px; font-weight:400; }
+.jr details.orig[open] > summary { border-bottom:1px solid var(--border); }
+.jr .orig-top { display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; justify-content:space-between; padding:10px 16px 0; color:var(--muted); font-size:12.5px; line-height:1.6; }
+.jr .orig-top b { color:var(--text); }
+.jr details.orig .note { margin:0; padding:4px 16px 8px; }
+.jr .orig-end { padding:4px 16px 16px; }
 .jr .pending { color:var(--muted); font-size:13px; border:1px dashed var(--border-strong); border-radius:10px; padding:12px 14px; margin-top:12px; line-height:1.7; }
 .jr .charts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
 .jr .charts .card.wide { grid-column:1 / -1; }

@@ -1,6 +1,6 @@
 /* jp-report.js — 일본 실적 리포트
  * jp-report.html            → 최근 발표 목록(소비재 / 주요 기업)
- * jp-report.html?id=<rid>   → 리포트 1건: ① 요약(분기 표 + 핵심 수치 + 요약 글) ② 분석(그래프 + 분석 글) ③ 원문(결산단신 PDF 등)
+ * jp-report.html?id=<rid>   → 리포트 1건: ① 요약(분기 표 + 핵심 수치 + 요약 글) ② 딥리서치 분석(그래프 + 9개 항목 분석 글) ③ 원문(한글 정리 orig_md + 결산단신 PDF 등)
  * 데이터: data/jp/reports/<rid>.json (fetch_jp_earnings_results.py, 자동) + data/jp/reports/notes/<rid>.json (Claude가 쓰는 요약·분석, 선택) */
 (function () {
   "use strict";
@@ -27,16 +27,34 @@
   }
   var UL = { cons: "소비재", major: "주요 기업" };
 
-  /* 가벼운 마크다운(제목·굵게·목록·링크·문단) */
+  /* 가벼운 마크다운(제목·굵게·목록·링크·문단·표) */
+  function origBtn(N) {   // 상단 버튼: 아래 '원문 정리 (한글)'을 펼치고 그 자리로 이동
+    return N && N.orig_md ? '<a class="btn" href="#orig" onclick="var r=this.closest(\'.jr\')||document,d=r.querySelector(\'details.orig\')||document.querySelector(\'details.orig\');if(d){d.open=true;d.scrollIntoView({behavior:\'smooth\',block:\'start\'});}return false;">🇰🇷 원문 정리 <small>한글</small></a>' : "";
+  }
   function md(t) {
     if (!t) return "";
     var out = [], list = null;
     function inl(s) {
       return esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     }
-    function close() { if (list) { out.push("</" + list + ">"); list = null; } }
-    String(t).split(/\n/).forEach(function (ln) {
+    var tb = null;   // 표: | a | b | 줄이 이어지는 동안 모았다가 한 번에 그린다
+    function cells(ln) { return ln.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(function (c) { return c.trim(); }); }
+    function flushT() {
+      if (!tb) return;
+      var rows = tb; tb = null;
+      var sep = rows.length > 1 && /^\s*\|?[\s:|-]+\|?\s*$/.test(rows[1]) && rows[1].indexOf("-") >= 0;
+      var al = sep ? cells(rows[1]).map(function (c) { return /^:-+:$/.test(c) ? "c" : /^:-/.test(c) ? "l" : /-:$/.test(c) ? "r" : ""; }) : [];
+      function tr(ln, tag) {
+        return "<tr>" + cells(ln).map(function (c, i) { var a = al[i] || (i === 0 ? "l" : "r"); return "<" + tag + ' class="' + a + '">' + inl(c) + "</" + tag + ">"; }).join("") + "</tr>";
+      }
+      var h = sep ? "<thead>" + tr(rows[0], "th") + "</thead>" : "";
+      out.push('<div class="mdt"><table>' + h + "<tbody>" + rows.slice(sep ? 2 : 0).map(function (r) { return tr(r, "td"); }).join("") + "</tbody></table></div>");
+    }
+    function close() { flushT(); if (list) { out.push("</" + list + ">"); list = null; } }
+    String(t).split(/\r?\n/).forEach(function (ln) {
       var m;
+      if (/^\s*\|.*\|\s*$/.test(ln)) { if (!tb) { close(); tb = []; } tb.push(ln); return; }
+      flushT();
       if (/^\s*$/.test(ln)) { close(); return; }
       if ((m = ln.match(/^(#{2,4})\s+(.*)/))) { close(); var lv = Math.min(4, m[1].length + 1); out.push("<h" + lv + ">" + inl(m[2]) + "</h" + lv + ">"); return; }
       if ((m = ln.match(/^\s*[-*•]\s+(.*)/))) { if (list !== "ul") { close(); out.push("<ul>"); list = "ul"; } out.push("<li>" + inl(m[1]) + "</li>"); return; }
@@ -214,14 +232,14 @@
     var tan = (R.docs || []).filter(function (d) { return d.kind === "tanshin"; })[0];
     var html = embed
       ? '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + (r.time ? " " + esc(r.time) : "") + "</b></div>" +
-        '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") +
+        '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") + origBtn(N) +
         (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
         '<a class="btn" href="jp-report.html?id=' + encodeURIComponent(R.rid) + '" target="_blank" rel="noopener">↗ 리포트 페이지(공유용)</a></div>'
       :
       '<div class="kicker"><a href="jp-screener.html' + ((R.u || []).indexOf("cons") < 0 ? "?u=major" : "") + '">일본 기업 스크리너</a> · <a href="jp-report.html">실적 리포트</a> · ' + (R.u || []).map(function (u) { return UL[u]; }).join("·") + "</div>" +
       "<h1>" + esc(R.name || R.code) + '<span class="code">' + esc(R.code) + "</span></h1>" +
       '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + (r.time ? " " + esc(r.time) : "") + "</b>" + (R.cat ? " · " + esc(R.cat) : "") + (R.mcap ? " · 시총 " + Math.round(R.mcap).toLocaleString() + "억엔" : "") + "</div>" +
-      '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") +
+      '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") + origBtn(N) +
       (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
       '<a class="btn" href="https://kabutan.jp/stock/finance?code=' + esc(R.code) + '" target="_blank" rel="noopener">📊 카부탄 결산 표</a>' +
       '<button class="btn" id="copy">🔗 링크 복사</button></div>';
@@ -238,18 +256,24 @@
     // ① 요약
     html += '<section><h2>① 요약 <span class="hint">표 → 핵심 수치 → 요약</span></h2>' + (qs.length ? table(qs) : '<div class="empty">분기 실적 표가 없습니다.</div>') + facts(R) +
       (N && N.summary_md ? '<div class="note card">' + (N.headline ? "<h3>" + esc(N.headline) + "</h3>" : "") + md(N.summary_md) + "</div>"
-        : '<div class="pending">📝 요약 글은 아직 없습니다. 실적 시즌에는 일·화·목 밤에 결산단신 원문을 읽고 요약·분석을 붙입니다(시총 큰 순). 위 표와 수치는 발표 직후 자동으로 채워집니다.</div>') + "</section>";
+        : '<div class="pending">📝 요약 글은 아직 없습니다. 실적 시즌에는 발표 당일 결산단신 원문을 읽고 한글 원문 정리와 딥리서치 분석을 붙입니다(주요 기업·시총 큰 순). 위 표와 수치는 발표 직후 자동으로 채워집니다.</div>') + "</section>";
     // ② 분석
-    html += '<section><h2>② 분석 <span class="hint">분기·연간 그래프</span></h2><div class="charts">' +
+    html += '<section><h2>② 딥리서치 분석 <span class="hint">그래프 → 결론 · 핵심 포인트 · 사업별 · 이익률 · 가이던스 · 업계 비교 · 주가 · 리스크 · 체크포인트</span></h2><div class="charts">' +
       '<div class="card chart"><h4>분기 매출 · 영업이익 · 영업이익률</h4>' + barLine(qs) + "</div>" +
       '<div class="card chart"><h4>전년 동기 대비 성장률(YoY)</h4>' + yoyLines(qs) + "</div>" +
       '<div class="card chart wide"><h4>연간 실적과 회사 예상</h4>' + annual(R.ann) + "</div>" +
       '<div class="card chart wide jr-px" data-code="' + esc(R.code) + '"><h4>주가 <span class="hint">최근 2년 일봉 · 세로선 = 실적 발표일</span></h4><div class="empty">주가 불러오는 중…</div></div>' +
       ((R.u || []).indexOf("cons") >= 0 ? '<div class="card chart wide jr-tr" data-code="' + esc(R.code) + '" data-label="' + esc((N && N.trend_label) || "") + '" hidden><h4>구글 트렌드 <span class="hint">일본 검색 관심도 · 최근 5년 주간</span></h4><div class="empty"></div></div>' : "") +
       "</div>" +
-      (N && N.analysis_md ? '<div class="note card">' + md(N.analysis_md) + "</div>" : "") + "</section>";
+      (N && N.analysis_md ? '<div class="note card deep">' + md(N.analysis_md) + "</div>" : "") + "</section>";
     // ③ 원문
-    html += '<section><h2>③ 원문 <span class="hint">TDnet 공시 PDF(카부탄 보관본)</span></h2>' +
+    var tan = (R.docs || []).filter(function (d) { return d.kind === "tanshin"; })[0];
+    var pdfBtn = tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 원문 PDF 열기 <small>일본어</small></a>' : "";
+    html += '<section><h2>③ 원문 <span class="hint">한글 정리 → TDnet 공시 PDF(카부탄 보관본)</span></h2>' +
+      (N && N.orig_md ? '<details class="orig card"><summary><b>원문 정리 (한글)</b><span class="hint">결산단신을 원문 순서대로 — 표지 요약표 · 경영성적 · 세그먼트 · 재정상태 · 통기 예상 · 주석</span></summary>' +
+        '<div class="orig-top"><span>원문을 문장 그대로 옮긴 번역이 아니라 <b>숫자와 표는 전부, 설명 글은 줄여서 다시 쓴 정리</b>입니다. 정확한 문구는 원문에서 확인하세요.</span>' + pdfBtn + "</div>" +
+        '<div class="note">' + md(N.orig_md) + "</div>" +
+        (pdfBtn ? '<div class="orig-end">' + pdfBtn + "</div>" : "") + "</details>" : "") +
       ((R.docs || []).length ? '<div class="docs">' + R.docs.map(function (d) { return '<div class="doc"><span class="tag">' + (KIND[d.kind] || d.kind) + '</span><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(docTitle(d, R)) + "</a></div>"; }).join("") + "</div>"
         : '<div class="empty">원문 링크를 아직 찾지 못했습니다 — <a href="https://kabutan.jp/stock/news?code=' + esc(R.code) + '&nmode=3" target="_blank" rel="noopener">카부탄 개시 목록</a>에서 확인하세요.</div>') +
       (N && N.sources && N.sources.length ? '<div class="unit">요약·분석 참고: ' + N.sources.map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + "</a>"; }).join(" · ") + "</div>" : "") +
