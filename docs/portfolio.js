@@ -180,7 +180,7 @@
         if (!restored) throw new Error("invalid");
         if (!confirm("이 백업으로 현재 컴퓨터의 포트폴리오 기록 전체를 바꿀까요?")) return;
         state = restored; activeId = state.accounts[0].id; S.save(state); render(); setUpdated("백업을 복원함 · 시세를 갱신하는 중"); refresh();
-      } catch (e) { alert("VANTAGE 포트폴리오 백업 파일이 아니거나 파일 형식이 올바르지 않습니다."); }
+      } catch (e) { alert("100억 포트폴리오 백업 파일이 아니거나 파일 형식이 올바르지 않습니다."); }
     };
     reader.readAsText(file);
   }

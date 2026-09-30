@@ -80,7 +80,7 @@
   /* ── 에피소드 ── */
   function renderEp(row, E) {
     var g = (E && E.guest) || {}, c = (E && E.company) || {}, title = titleOf(row, E);
-    document.title = title + " — VANTAGE";
+    document.title = title + " — 100억";
     var yt = (E && E.youtube) || row.youtube;
     var html = '<div class="kicker"><a href="podcasts.html">팟캐스트</a> · ' + esc(showName(row.show)) + "</div>" +
       '<div class="head">' + face((E && E.image) || row.image, row.show, "hface") + '<div class="hbody"><div class="showline">' + badge(row.show) + "<span>" + esc(row.date.replace(/^(\d+)-(\d+)-(\d+)$/, "$1년 $2월 $3일")) + (row.duration ? " · " + dur(row.duration) : "") + "</span></div>" +

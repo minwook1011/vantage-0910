@@ -9,7 +9,7 @@ send_telegram.py — 텔레그램 봇으로 알림 보내기 (표준 라이브�
 3) 저장소 폴더에 telegram_bot.json 만들기 (.gitignore 에 있어 GitHub에 안 올라감):
      {"token": "123456:ABC...", "chat_id": ""}
 4) python send_telegram.py --chat-id   → 대화방 chat_id 가 출력됨 → telegram_bot.json 의 chat_id 에 넣기
-5) python send_telegram.py --test      → "VANTAGE 알림 테스트"가 오면 끝
+5) python send_telegram.py --test      → "100억 알림 테스트"가 오면 끝
    (환경변수 TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID 로 줘도 된다 — 파일보다 우선)
 
 ── 사용 ─────────────────────────────────────────────────────
@@ -163,7 +163,7 @@ def main():
         for k, v in seen.items():
             print(f"chat_id = {k}   ({v})")
     elif a[0] == "--test":
-        send("✅ VANTAGE 알림 테스트 — 설정 완료 " + datetime.now(KST).strftime("%Y-%m-%d %H:%M"))
+        send("✅ 100억 알림 테스트 — 설정 완료 " + datetime.now(KST).strftime("%Y-%m-%d %H:%M"))
         print("보냄")
     elif a[0] == "--text":
         send(" ".join(a[1:]))
