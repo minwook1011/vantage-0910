@@ -1,9 +1,9 @@
 /* podcasts.js — 팟캐스트 요약
  * podcasts.html            → 에피소드 목록(방송별 필터, 게스트 사진)
  * podcasts.html?id=<id>    → 에피소드 1건: 사진 + 제목 / 누구 / 어느 기업 / 무슨 이야기 / 원본 링크
- *                            → 핵심 요약 → 내용 정리 → 투자 관점 → 전문 번역(아티팩트)
+ *                            → 핵심 요약 → 내용 정리 → 투자 관점 → 딥 리서치(외부 자료로 검증·확장) → 출처
  * 데이터: data/podcasts/index.json (fetch_podcasts.py + 한국어 제목·소개) + data/podcasts/ep/<id>.json (회사 PC Claude 작업)
- * 화면 글자는 사람 이름을 빼고 전부 한국어. 전문 번역은 비공개 클로드 아티팩트(artifact_url)로 연결한다. */
+ * 화면 글자는 사람 이름을 빼고 전부 한국어. 대본 전문은 싣지 않는다(요약·분석만). */
 (function () {
   "use strict";
   var app = document.getElementById("app"), BASE = "data/podcasts/";
@@ -69,7 +69,7 @@
     }
     var cnt = {}; eps.forEach(function (e) { cnt[e.show] = (cnt[e.show] || 0) + 1; });
     app.innerHTML = '<div class="kicker">팟캐스트 · 투자·AI 인터뷰 요약</div><h1>팟캐스트</h1>' +
-      '<p class="lede">5개 방송의 새 에피소드를 하루 3번(오전 7시·오후 1시·저녁 8시) 확인해 <b>누가 · 어느 회사 · 무슨 이야기</b>인지부터 정리합니다. 전문 한국어 번역은 아티팩트로 연결되고, 새 요약은 텔레그램으로 링크가 옵니다. · 갱신 ' + esc((IX.updated || "").replace(" KST", "")) + "</p>" +
+      '<p class="lede">5개 방송의 새 에피소드를 하루 3번(오전 7시·오후 1시·저녁 8시) 확인해 <b>누가 · 어느 회사 · 무슨 이야기</b>인지부터 정리하고, 내용 요약 뒤에 외부 자료로 검증한 딥 리서치를 붙입니다. · 갱신 ' + esc((IX.updated || "").replace(" KST", "")) + "</p>" +
       '<div class="chips" id="chips"><button data-v="all">전체 <small>' + eps.length + "</small></button>" +
       Object.keys(SHOWS).map(function (k) { return '<button data-v="' + k + '" title="' + esc(SHOWS[k][2]) + '"><i style="background:' + SHOWS[k][1] + '"></i>' + esc(SHOWS[k][0]) + " <small>" + (cnt[k] || 0) + "</small></button>"; }).join("") + "</div>" +
       '<div id="list"></div>';
@@ -91,18 +91,18 @@
       "<dt>무슨 이야기</dt><dd>" + esc((E && E.topic) || "") + (E && E.topic ? "" : '<span class="dim">요약 후 채워짐</span>') + "</dd></dl>" +
       '<div class="acts">' + (row.link ? '<a class="btn pri" href="' + esc(row.link) + '" target="_blank" rel="noopener">▶️ 원본 에피소드</a>' : "") +
       (yt ? '<a class="btn" href="' + esc(yt) + '" target="_blank" rel="noopener">📺 유튜브로 보기</a>' : "") +
-      (E && E.artifact_url ? '<a class="btn" href="' + esc(E.artifact_url) + '" target="_blank" rel="noopener">📄 전문 번역 · 요약 분석 <small>아티팩트</small></a>' : "") +
+      (E && E.artifact_url ? '<a class="btn" href="' + esc(E.artifact_url) + '" target="_blank" rel="noopener">📄 요약 분석 <small>아티팩트</small></a>' : "") +
       (row.audio ? '<a class="btn" href="' + esc(row.audio) + '" target="_blank" rel="noopener">🎧 오디오 듣기</a>' : "") + "</div></div></div>";
     if (!E) {
-      html += '<div class="pending">📝 아직 요약 전입니다. 회사 PC의 Claude 예약 작업이 하루 3번 새 에피소드를 인터뷰 요약 분석 아티팩트(전문 번역 포함)로 만들고, 텔레그램으로 링크를 보냅니다.</div>' +
+      html += '<div class="pending">📝 아직 요약 전입니다. 예약 작업이 하루 3번 새 에피소드를 확인해 요약과 딥 리서치를 씁니다.</div>' +
         (row.desc_ko ? '<section><h2>방송 소개</h2><div class="note"><p>' + esc(row.desc_ko) + "</p></div></section>" : "");
     } else {
       if (E.tldr && E.tldr.length) html += '<section><h2>핵심 요약</h2><ul class="tldr">' + E.tldr.map(function (x) { return "<li>" + md(x).replace(/^<p>|<\/p>$/g, "") + "</li>"; }).join("") + "</ul></section>";
       if (E.summary_md) html += '<section><h2>내용 정리</h2><div class="note">' + md(E.summary_md) + "</div></section>";
       if (E.insights_md) html += '<section><h2>투자 관점에서</h2><div class="note">' + md(E.insights_md) + "</div></section>";
-      html += '<section><h2>전문 번역</h2><div class="fullcta">' + (E.artifact_url
-        ? '<div><b>인터뷰 전문 한국어 번역</b><span>처음부터 끝까지 대화 전체를 한국어로 옮긴 번역과 요약 분석을 아티팩트로 봅니다.</span></div><a class="btn pri" href="' + esc(E.artifact_url) + '" target="_blank" rel="noopener">📄 전문 번역 열기</a>'
-        : '<div><b>전문 번역 없음</b><span>' + (E.no_transcript ? "대본을 구하지 못해 방송 소개글로만 요약했습니다." : "아티팩트 링크가 아직 없습니다.") + "</span></div>") + "</div></section>";
+      if (E.deep_md) html += '<section><h2>딥 리서치</h2><div class="note">' + md(E.deep_md) + "</div></section>";
+      if (E.sources && E.sources.length) html += '<section><h2>출처</h2><ul class="tldr">' + E.sources.map(function (x) { return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.label || x.url) + "</a></li>"; }).join("") + "</ul></section>";
+      if (E.no_transcript) html += '<div class="pending">대본을 구하지 못해 방송 소개글로만 요약했습니다.</div>';
       html += '<div class="foot">요약 작성 ' + esc(E.written || "") + (E.transcript_source ? " · 대본 출처: " + esc({ page: "에피소드 페이지", youtube: "유튜브 자막", audio: "오디오 받아쓰기", none: "없음" }[E.transcript_source] || E.transcript_source) : "") + "</div>";
     }
     app.innerHTML = html;
