@@ -20,6 +20,11 @@
     var m = fy.split("."); return m[0] + "년 " + (+m[1]) + "월기 " + (p === "FY" || p === "4Q" ? "결산(4Q)" : p);
   }
   var KIND = { tanshin: "결산단신", deck: "설명자료", en: "영문" };
+  // 원문 제목이 일본어면 한국어 이름으로 보여 준다(링크는 그대로)
+  function docTitle(d, R) {
+    if (!/[぀-ヿ一-鿿]/.test(d.title || "")) return d.title;
+    return (KIND[d.kind] || "공시 자료") + " — " + fyLabel(R.fy, R.period) + " (원문 PDF · 일본어)";
+  }
   var UL = { cons: "소비재", major: "주요 기업" };
 
   /* 가벼운 마크다운(제목·굵게·목록·링크·문단) */
@@ -146,6 +151,63 @@
       '<div class="lg"><span><i style="background:#4f7cff"></i>매출(억엔)</span><span><i style="background:#f0a53a"></i>영업이익(억엔)</span><span><i style="background:rgba(79,124,255,.35);border:1px dashed #4f7cff"></i>옅은 막대 = 회사 예상(予)</span></div>';
   }
 
+  /* ── 주가(일봉) · 구글 트렌드: 리포트를 그린 뒤 hydrate(root, R)로 채운다 ── */
+  function dayStr(d) { return new Date(d * 86400000).toISOString().slice(0, 10); }
+  function toDay(s) { return Math.round(Date.parse(s + "T00:00:00Z") / 86400000); }
+  function lineChart(pts, marks, opt) {   // pts: [[에폭일, 값]], marks: [{x, short, label, cur}]
+    var W = 1040, H = opt.h || 240, m = { l: 56, r: 14, t: 20, b: 28 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var x0 = pts[0][0], x1 = pts[pts.length - 1][0];
+    var ys = pts.map(function (p) { return p[1]; }), lo = Math.min.apply(null, ys), hi = Math.max.apply(null, ys);
+    var pad = (hi - lo) * 0.08 || 1;
+    if (opt.zero) { lo = 0; hi = Math.max(hi, 1); } else { lo = Math.max(0, lo - pad); hi += pad; }
+    function X(v) { return m.l + (v - x0) / ((x1 - x0) || 1) * iw; }
+    function Y(v) { return m.t + (hi - v) / ((hi - lo) || 1) * ih; }
+    var st = niceStep(hi - lo, 4), g = "";
+    for (var t = Math.ceil(lo / st) * st; t <= hi + 1e-9; t += st) g += '<line class="grid" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text x="' + (m.l - 5) + '" y="' + (Y(t) + 3) + '" text-anchor="end">' + Math.round(t).toLocaleString() + "</text>";
+    var yr0 = new Date(x0 * 86400000).getUTCFullYear(), yr1 = new Date(x1 * 86400000).getUTCFullYear(), span = x1 - x0;
+    for (var yr = yr0; yr <= yr1; yr++) (span > 1200 ? [0] : [0, 6]).forEach(function (mo) {
+      var d = Date.UTC(yr, mo, 1) / 86400000; if (d < x0 || d > x1) return;
+      g += '<text x="' + X(d) + '" y="' + (H - 8) + '" text-anchor="middle">' + (mo === 0 ? yr : yr + ".07") + "</text>";
+    });
+    (marks || []).forEach(function (k) {
+      if (k.x < x0 || k.x > x1) return;
+      g += '<line x1="' + X(k.x) + '" x2="' + X(k.x) + '" y1="' + m.t + '" y2="' + (H - m.b) + '" stroke="' + (k.cur ? "#f0a53a" : "var(--border-strong)") + '" stroke-dasharray="3 3" stroke-width="' + (k.cur ? 1.6 : 1) + '"><title>' + esc(k.label) + "</title></line>" +
+        '<text x="' + X(k.x) + '" y="' + (m.t - 6) + '" text-anchor="middle"' + (k.cur ? ' style="fill:#f0a53a;font-weight:700"' : "") + ">" + esc(k.short) + "</text>";
+    });
+    var d = pts.map(function (p, i) { return (i ? "L" : "M") + X(p[0]).toFixed(1) + "," + Y(p[1]).toFixed(1); }).join("");
+    g += '<path d="' + d + '" fill="none" stroke="' + opt.color + '" stroke-width="1.8"/>';
+    var lp = pts[pts.length - 1]; g += '<circle cx="' + X(lp[0]) + '" cy="' + Y(lp[1]) + '" r="3" fill="' + opt.color + '"/>';
+    return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(opt.label) + '">' + g + "</svg>";
+  }
+  function markList(R) {
+    return (R.qs || []).filter(function (q) { return q.date; }).map(function (q) {
+      return { x: toDay(q.date), short: q.cq, label: q.cq + " 실적 발표 " + q.date, cur: q.date === R.date };
+    });
+  }
+  function pxAt(b, day) { var v = null; for (var i = 0; i < b.length; i++) { if (b[i][0] <= day) v = b[i][1]; else break; } return v; }
+  function hydrate(root, R) {
+    root = root || document;
+    var pe = root.querySelector(".jr-px");
+    if (pe) getJSON("data/jp/px/" + pe.dataset.code + ".json").then(function (P) {
+      var b = P.b || []; if (b.length < 2) throw 0;
+      var last = b[b.length - 1], y1 = pxAt(b, last[0] - 365), r0 = R && R.date ? pxAt(b, toDay(R.date) - 1) : null;
+      var s = "현재 <b>" + last[1].toLocaleString() + "엔</b> (" + dayStr(last[0]) + ")" +
+        (y1 ? ' · 1년 <span class="' + cls(last[1] / y1 - 1) + '">' + pctS((last[1] / y1 - 1) * 100) + "</span>" : "") +
+        (r0 ? ' · 이번 발표 전날 대비 <span class="' + cls(last[1] / r0 - 1) + '">' + pctS((last[1] / r0 - 1) * 100) + "</span>" : "");
+      pe.querySelector(".empty").outerHTML = '<div class="pxs">' + s + "</div>" + lineChart(b, R ? markList(R) : [], { color: "#4f7cff", label: "최근 2년 주가" }) +
+        '<div class="unit">출처: 야후 파이낸스 일봉 종가(엔) · 평일 장 마감 후 매일 갱신 · 주황 세로선 = 이번 실적 발표</div>';
+    }).catch(function () { var e = pe.querySelector(".empty"); if (e) e.textContent = "주가 데이터가 아직 없습니다(평일 장 마감 후 자동 수집)."; });
+    var te = root.querySelector(".jr-tr");
+    if (te) getJSON("data/jp/trends/" + te.dataset.code + ".json").then(function (T) {
+      var pts = (T.pts || []).map(function (p) { return [toDay(p[0]), p[1]]; });
+      if (pts.length < 2) throw 0;
+      te.hidden = false;
+      te.querySelector(".empty").outerHTML = '<div class="pxs">검색어 <b>' + esc(te.dataset.label || T.kw.join(", ")) + "</b> · 5년 중 가장 많이 검색된 주 = 100</div>" +
+        lineChart(pts, R ? markList(R) : [], { color: "#2fb37a", label: "구글 트렌드", zero: true, h: 200 }) +
+        '<div class="unit">출처: <a href="' + esc(T.url) + '" target="_blank" rel="noopener">구글 트렌드</a>(일본) · 주 1회 갱신 · 마지막 주는 집계 중 · ' + esc(T.asof) + "</div>";
+    }).catch(function () {});
+  }
+
   /* ── 리포트 1건: embed=true 면 일본 스크리너 종목 창 안에 넣는 모양(기업명 머리글 없음) ── */
   function reportHTML(R, N, embed) {
     var r = R.rec || {}, qs = R.qs || [], cur = qs[qs.length - 1] || {};
@@ -168,6 +230,11 @@
   }
   function body(R, N, qs, r) {
     var html = "";
+    if (N && (N.about || (N.issues && N.issues.length))) {
+      html += '<section class="brief card">' +
+        (N.about ? "<h3>뭐 하는 기업인가?</h3>" + md(N.about) : "") +
+        (N.issues && N.issues.length ? "<h3>최근 이슈</h3><ul>" + N.issues.map(function (t) { return "<li>" + md(t).replace(/^<p>|<\/p>$/g, "") + "</li>"; }).join("") + "</ul>" : "") + "</section>";
+    }
     // ① 요약
     html += '<section><h2>① 요약 <span class="hint">표 → 핵심 수치 → 요약</span></h2>' + (qs.length ? table(qs) : '<div class="empty">분기 실적 표가 없습니다.</div>') + facts(R) +
       (N && N.summary_md ? '<div class="note card">' + (N.headline ? "<h3>" + esc(N.headline) + "</h3>" : "") + md(N.summary_md) + "</div>"
@@ -176,11 +243,14 @@
     html += '<section><h2>② 분석 <span class="hint">분기·연간 그래프</span></h2><div class="charts">' +
       '<div class="card chart"><h4>분기 매출 · 영업이익 · 영업이익률</h4>' + barLine(qs) + "</div>" +
       '<div class="card chart"><h4>전년 동기 대비 성장률(YoY)</h4>' + yoyLines(qs) + "</div>" +
-      '<div class="card chart wide"><h4>연간 실적과 회사 예상</h4>' + annual(R.ann) + "</div></div>" +
+      '<div class="card chart wide"><h4>연간 실적과 회사 예상</h4>' + annual(R.ann) + "</div>" +
+      '<div class="card chart wide jr-px" data-code="' + esc(R.code) + '"><h4>주가 <span class="hint">최근 2년 일봉 · 세로선 = 실적 발표일</span></h4><div class="empty">주가 불러오는 중…</div></div>' +
+      ((R.u || []).indexOf("cons") >= 0 ? '<div class="card chart wide jr-tr" data-code="' + esc(R.code) + '" data-label="' + esc((N && N.trend_label) || "") + '" hidden><h4>구글 트렌드 <span class="hint">일본 검색 관심도 · 최근 5년 주간</span></h4><div class="empty"></div></div>' : "") +
+      "</div>" +
       (N && N.analysis_md ? '<div class="note card">' + md(N.analysis_md) + "</div>" : "") + "</section>";
     // ③ 원문
     html += '<section><h2>③ 원문 <span class="hint">TDnet 공시 PDF(카부탄 보관본)</span></h2>' +
-      ((R.docs || []).length ? '<div class="docs">' + R.docs.map(function (d) { return '<div class="doc"><span class="tag">' + (KIND[d.kind] || d.kind) + '</span><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.title) + "</a></div>"; }).join("") + "</div>"
+      ((R.docs || []).length ? '<div class="docs">' + R.docs.map(function (d) { return '<div class="doc"><span class="tag">' + (KIND[d.kind] || d.kind) + '</span><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(docTitle(d, R)) + "</a></div>"; }).join("") + "</div>"
         : '<div class="empty">원문 링크를 아직 찾지 못했습니다 — <a href="https://kabutan.jp/stock/news?code=' + esc(R.code) + '&nmode=3" target="_blank" rel="noopener">카부탄 개시 목록</a>에서 확인하세요.</div>') +
       (N && N.sources && N.sources.length ? '<div class="unit">요약·분석 참고: ' + N.sources.map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + "</a>"; }).join(" · ") + "</div>" : "") +
       '<div class="unit">리포트 데이터 갱신 ' + esc(R.updated || "") + (N && N.written ? " · 요약 작성 " + esc(N.written) : "") + " · 투자 권유가 아닌 공시 정리입니다.</div></section>";
@@ -188,8 +258,9 @@
   }
   function renderReport(R, N) {
     var cur = (R.qs || [])[(R.qs || []).length - 1] || {};
-    document.title = (R.name || R.code) + " " + (cur.cq || "") + " 실적 — VANTAGE";
+    document.title = (R.name || R.code) + " " + (cur.cq || "") + " 실적 — 100억";
     app.innerHTML = reportHTML(R, N, false);
+    hydrate(app, R);
     var cp = document.getElementById("copy");
     if (cp) cp.onclick = function () { try { navigator.clipboard.writeText(location.href); cp.textContent = "✓ 복사됨"; } catch (e) { cp.textContent = location.href; } };
   }
@@ -233,7 +304,8 @@
   window.JPReport = {
     index: function () { return IDX || (IDX = getJSON(BASE + "index.json").catch(function () { IDX = null; return { reports: [] }; })); },
     load: function (rid) { return Promise.all([getJSON(BASE + rid + ".json"), getJSON(BASE + "notes/" + rid + ".json").catch(function () { return null; })]); },
-    html: reportHTML
+    html: reportHTML,
+    hydrate: hydrate
   };
   if (!app) return;
 

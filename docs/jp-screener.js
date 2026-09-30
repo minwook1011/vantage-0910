@@ -24,6 +24,7 @@ function loadMajor(){
         UNI.maj.raw=RAW_MAJ; UNI.maj.bundle=BUNDLE_MAJ; UNI.maj.cats=CATS_MAJ;
         let last=0; BUNDLE_MAJ.forEach(b=>{ if(b.dd&&b.dd.length) last=Math.max(last,lastDay(b)); });
         UNI.maj.asof = last ? dstr(last) : "—";
+        mergeRecent(UNI.maj, "maj");
         ok();
       }catch(e){ fail(e); } };
     s.onerror=()=>fail(new Error("load"));
@@ -1201,7 +1202,7 @@ function wireDetailTabs(code){
     box.innerHTML=`<div class="rtabs">${list.map(x=>`<button data-rid="${esc(x.rid)}" aria-pressed="${x.rid===cur}"><span>${esc(x.d)}</span><b>${esc(x.cq||x.p||"")} 실적발표</b>${x.note?`<i title="요약·분석 있음">요약</i>`:""}</button>`).join("")}</div><div class="jr jr-embed" id="rbody"><div class="slot">리포트 불러오는 중…</div></div>`;
     box.querySelectorAll(".rtabs button").forEach(b=>b.onclick=()=>{ cur=b.dataset.rid; drawEarn(); });
     const rid=cur;
-    JPReport.load(rid).then(([R,N])=>{ if(cur!==rid||view.code!==code) return; document.getElementById("rbody").innerHTML=JPReport.html(R,N,true); })
+    JPReport.load(rid).then(([R,N])=>{ if(cur!==rid||view.code!==code) return; const rb=document.getElementById("rbody"); rb.innerHTML=JPReport.html(R,N,true); if(JPReport.hydrate) JPReport.hydrate(rb,R); })
       .catch(()=>{ const el=document.getElementById("rbody"); if(el) el.innerHTML=`<div class="slot">리포트를 불러오지 못했습니다.</div>`; });
   };
   document.querySelectorAll(".dtabs button").forEach(b=>b.onclick=()=>show(b.dataset.dt));
@@ -1410,7 +1411,7 @@ function renderHeader(){
   // 외식 전용 정렬·일봉 필터는 소비재에서만
   document.querySelectorAll("#sort option").forEach(o=>{ const kpi=/외식/.test(o.textContent); o.hidden=kpi&&isMaj(); o.disabled=kpi&&isMaj(); });
   const oc=document.getElementById("onlych"); if(oc&&oc.closest(".fld")) oc.closest(".fld").hidden=isMaj();
-  document.title = `일본 기업 스크리너 · ${U.label} — VANTAGE`;
+  document.title = `일본 기업 스크리너 · ${U.label} — 100억`;
 }
 function resetForUniverse(){
   state.cat="전체"; state.matrix=null; state.matrixMon=null; state.onlych=0;
@@ -1423,6 +1424,61 @@ function resetForUniverse(){
   if(oc) oc.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.v==="0"));
   earnWeek=null; earnOpen.clear();
 }
+/* ===== 매일 주가 이어 붙이기 (data/jp/px_recent.json · fetch_jp_px.py · 평일 16:40 KST) =====
+   번들(screener-data.js·major-data.js)은 그대로 두고, 번들 마지막 봉 이후 일봉만 받아 뒤에 붙인다.
+   주봉 번들(iv:"w")은 같은 주(월요일 시작)면 마지막 봉을 덮어쓰고, 새 주면 봉을 하나 더한다.
+   붙인 뒤 종가·시총·1년/YTD 수익률을 새 주가로 다시 계산한다. */
+let PXREC = null;
+const wkStart = d => d - ((d + 3) % 7);   // 에폭일 0 = 목요일 → 월요일로 내림
+function retFrom(b, day){
+  const bars=dailyBars(b), last=bars[bars.length-1]; let base=null;
+  for(let i=bars.length-1;i>=0;i--){ if(bars[i].d<=day){ base=bars[i]; break; } }
+  return base && base.c>0 && last.d-base.d<=400 ? Math.round((last.c/base.c-1)*1000)/10 : null;
+}
+function mergeRecent(U, tag){
+  if(!PXREC || !U || !U.bundle) return;
+  const ADJ=(PXREC.adj||{})[tag]||{};
+  const rows={}; (U.raw||[]).forEach(r=>rows[r[F.CODE]]=r);
+  let newest=0;
+  U.bundle.forEach(b=>{
+    if(!b.px || !b.px.length) return;
+    const first = !b._rec, add = first && PXREC.bars[b.c]; b._rec = 1;
+    // 번들에 반영 안 된 주식 분할: 기준일 이전 봉을 비율로 나눈다(야후 원본이 분할 전 가격 그대로인 종목)
+    let adjd = false;
+    if(first && ADJ[b.c]){
+      for(const [sd,f] of ADJ[b.c]){ let d=b.d0; for(let i=0;i<b.px.length;i++){ if(i) d+=b.dd[i]; if(d>=sd) break; b.px[i]=Math.round(b.px[i]/f); b.vo[i]=Math.round(b.vo[i]*f); } }
+      adjd = true;
+    }
+    if((add && add.length) || adjd){
+      const c0 = adjd ? null : b.px[b.px.length-1];
+      for(const [d,px,vo] of (add||[])){
+        const ld = lastDay(b);
+        if(d<=ld) continue;
+        if(b.iv==="w" && wkStart(d)===wkStart(ld)){
+          b.px[b.px.length-1]=px; b.vo[b.vo.length-1]=(b.vo[b.vo.length-1]||0)+(vo||0);
+          if(b.dd.length>1) b.dd[b.dd.length-1]+=d-ld; else b.d0=d;
+        } else { b.px.push(px); b.vo.push(vo||0); b.dd.push(d-ld); }
+      }
+      const r=rows[b.c], c1=b.px[b.px.length-1];
+      if(r && c1!==c0){
+        const close=c1/10;
+        if(r[F.MCAP] && r[F.CLOSE]) r[F.MCAP]=Math.round(r[F.MCAP]*close/r[F.CLOSE]);
+        r[F.CLOSE]= close>=1000 ? Math.round(close) : Math.round(close*10)/10;
+        const ld=lastDay(b), y=new Date(ld*86400000).getUTCFullYear();
+        r[F.PY]=retFrom(b, ld-365);
+        r[F.PYTD]=retFrom(b, Date.UTC(y-1,11,31)/86400000);
+      }
+    }
+    newest=Math.max(newest,lastDay(b));
+  });
+  for(const k in PXR) delete PXR[k];
+  if(newest) U.asof=dstr(newest);
+}
+fetch("data/jp/px_recent.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
+  PXREC=d||{bars:{}}; PXREC.bars=PXREC.bars||{};
+  mergeRecent(UNI.con, "con"); if(UNI.maj.raw) mergeRecent(UNI.maj, "maj");
+  if(!uniLoading){ renderHeader(); renderTable(); }
+}).catch(()=>{});
 function renderAll(){ const ue=document.getElementById("uerr"); if(ue && UNI.maj.raw) ue.remove(); renderHeader(); buildRail(); renderColsel(); renderFoodCompare(); renderSmartChips(); renderTable(); }
 function setUniverse(u, opts){
   opts=opts||{};
