@@ -1,0 +1,49 @@
+/* podcasts.css — 팟캐스트 요약 (podcasts.js) */
+.pc { max-width:1040px; }
+.pc a { color:#8fb3ff; }
+.pc .kicker a { color:inherit; }
+.pc .empty { color:var(--muted); padding:30px 0; }
+.pc h1 { margin:6px 0 4px; font-size:26px; letter-spacing:-.02em; }
+.pc .lede { color:var(--muted); font-size:13px; line-height:1.7; margin:0 0 14px; }
+.pc .chips { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 16px; }
+.pc .chips button { font:inherit; font-size:12.5px; padding:7px 13px; border-radius:999px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; }
+.pc .chips button.on { color:#fff; border-color:#4a6fb8; background:rgba(66,109,216,.35); }
+.pc .chips button small { opacity:.7; margin-left:4px; }
+.pc .day { margin:18px 0 8px; color:var(--faint); font:600 11.5px var(--mono); letter-spacing:.06em; }
+.pc .ep { display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:4px 14px; align-items:start; padding:14px 16px; margin-bottom:8px; background:var(--card); border:1px solid var(--border); border-radius:12px; color:var(--text) !important; text-decoration:none; }
+.pc .ep:hover { border-color:#4a6fb8; }
+.pc .ep.wait { opacity:.72; }
+.pc .show { grid-row:span 3; align-self:start; font:700 10.5px var(--sans); padding:4px 8px; border-radius:6px; color:#fff; white-space:nowrap; }
+.pc .ep b.t { font-size:15px; line-height:1.45; }
+.pc .ep .who { color:var(--muted); font-size:12.5px; }
+.pc .ep .hl { color:#c9d4e8; font-size:13px; line-height:1.6; }
+.pc .ep .st { grid-row:span 3; font-size:11px; color:var(--faint); text-align:right; white-space:nowrap; }
+.pc .pill { display:inline-block; font:700 10.5px var(--sans); padding:2px 7px; border-radius:4px; }
+.pc .pill.ok { color:#fff; background:#2f7a55; } .pc .pill.no { color:var(--muted); border:1px solid var(--border-strong); }
+/* 에피소드 */
+.pc .head { margin:10px 0 18px; padding:18px 20px; border:1px solid var(--border); border-radius:14px; background:linear-gradient(145deg,rgba(25,31,45,.96),rgba(19,24,36,.98)); }
+.pc .head .showline { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:8px; color:var(--muted); font-size:12.5px; }
+.pc .head h1 { font-size:23px; line-height:1.4; }
+.pc .head .orig { color:var(--faint); font-size:13px; margin:2px 0 12px; }
+.pc .meta { display:grid; grid-template-columns:92px minmax(0,1fr); gap:8px 12px; font-size:14px; line-height:1.6; margin:0 0 14px; }
+.pc .meta dt { color:var(--muted); font-size:12.5px; padding-top:2px; }
+.pc .meta dd { margin:0; } .pc .meta dd b { color:var(--text); }
+.pc .acts { display:flex; flex-wrap:wrap; gap:8px; }
+.pc .btn { display:inline-flex; align-items:center; gap:6px; padding:8px 13px; border:1px solid var(--border-strong); border-radius:9px; background:var(--card); color:var(--text) !important; font-size:13px; text-decoration:none; cursor:pointer; }
+.pc .btn.pri { background:linear-gradient(135deg,rgba(66,109,216,.5),rgba(24,34,57,.9)); border-color:#4a6fb8; }
+.pc .btn small { color:var(--muted); }
+.pc section { margin-top:24px; }
+.pc section > h2 { font-size:17px; margin:0 0 10px; }
+.pc .tldr { margin:0; padding:14px 16px 14px 34px; background:var(--card); border:1px solid var(--border); border-left:3px solid #4a6fb8; border-radius:10px; line-height:1.8; font-size:14px; }
+.pc .note { display:block; width:auto; max-width:none; float:none; line-height:1.85; font-size:14px; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 18px; }
+.pc .note h3 { font-size:15.5px; margin:18px 0 6px; } .pc .note h3:first-child { margin-top:4px; }
+.pc .note h4 { font-size:14px; margin:12px 0 4px; }
+.pc .note p { margin:6px 0; } .pc .note ul, .pc .note ol { margin:6px 0; padding-left:20px; }
+.pc .note b { color:var(--text); }
+.pc .note blockquote { margin:8px 0; padding:6px 12px; border-left:3px solid var(--border-strong); color:#c9d4e8; }
+.pc .pending { color:var(--muted); font-size:13px; border:1px dashed var(--border-strong); border-radius:10px; padding:12px 14px; line-height:1.7; }
+.pc .foot { color:var(--faint); font-size:11.5px; margin-top:14px; line-height:1.6; }
+@media (max-width:640px) {
+  .pc .ep { grid-template-columns:minmax(0,1fr); } .pc .show, .pc .ep .st { grid-row:auto; justify-self:start; }
+  .pc .meta { grid-template-columns:1fr; gap:2px; } .pc .meta dd { margin-bottom:8px; }
+}

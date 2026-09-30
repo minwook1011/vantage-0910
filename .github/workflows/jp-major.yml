@@ -1,14 +1,9 @@
 name: jp-major
 
 on:
-  schedule:
-    - cron: "0 0 * * 6"  # 09:00 KST(토) 일본 기업 스크리너「주요 기업」(시총 상위 200 + 닛케이225) 주가·실적 갱신
+  # ⚠️ 2026-09-30: 카부탄이 GitHub 서버의 요청을 막아(요청이 끝없이 실패·시간 초과) 자동 실행을 껐다.
+  #    일본 주요 기업 갱신은 회사 PC의 예약 작업이 돌린다 — OPERATIONS.md 참고. 필요하면 Actions 화면에서 수동 실행만 가능.
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - fetch_jp_major.py
-      - .github/workflows/jp-major.yml
 
 permissions:
   contents: write

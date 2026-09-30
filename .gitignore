@@ -12,3 +12,8 @@ private/
 
 # 백테스트용 5년 일봉 캐시(fetch_megacap.py가 생성)
 data_sources/_cache/
+
+# 텔레그램 봇 토큰(send_telegram.py) — 절대 올리지 않는다
+telegram_bot.json
+# 팟캐스트 대본 임시 파일(podcast_transcript.py) — 저작권 원문이라 올리지 않는다
+data_sources/_podcast_tmp/

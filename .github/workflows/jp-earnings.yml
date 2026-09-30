@@ -1,25 +1,9 @@
 name: jp-earnings-dates
 
 on:
-  schedule:
-    - cron: "0 0 * * 0"  # 09:00 KST(일) 연중: 발표일 갱신 + 전 종목 실적 스캔(소비재 + 주요 기업)
-    # 실적 시즌(1·2·4·5·7·8·10·11월) 평일: 일본 발표 시각에 맞춰 바로 수집(JST=KST)
-    #   11:30·13:00 점심 발표 → 11:45·13:15 / 장 마감 15:00~15:30 발표(대부분) → 15:45·16:20 / 16:00~17:00 발표 → 17:00·19:00
-    #   그날 카부탄 '決算' 개시 목록에서 결산단신을 낸 종목만 골라 받는다(이미 받은 발표는 건너뜀)
-    - cron: "45 2 * 1,2,4,5,7,8,10,11 1-5"
-    - cron: "15 4 * 1,2,4,5,7,8,10,11 1-5"
-    - cron: "45 6 * 1,2,4,5,7,8,10,11 1-5"
-    - cron: "20 7 * 1,2,4,5,7,8,10,11 1-5"
-    - cron: "0 8 * 1,2,4,5,7,8,10,11 1-5"
-    - cron: "0 10 * 1,2,4,5,7,8,10,11 1-5"
+  # ⚠️ 2026-09-30: 카부탄이 GitHub 서버의 요청을 막아(요청이 끝없이 실패·시간 초과) 자동 실행을 껐다.
+  #    일본 실적 수집은 회사 PC의 예약 작업이 돌린다 — OPERATIONS.md 참고. 필요하면 Actions 화면에서 수동 실행만 가능.
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - fetch_jp_earnings_dates.py
-      - fetch_jp_earnings_results.py
-      - .github/workflows/jp-earnings.yml
-      - docs/data/jp/major-data.js     # 주요 기업 명단이 바뀌면 전체 다시 스캔(새 종목 실적·리포트)
 
 permissions:
   contents: write

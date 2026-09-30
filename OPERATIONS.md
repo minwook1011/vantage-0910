@@ -1,13 +1,14 @@
 # VANTAGE 운영 정리 — 매일 돌아가야 하는 작업 전부
 
 사이트: https://minwook1011.github.io/vantage-0910/ · 저장소: github.com/minwook1011/vantage-0910
-작성: 2026-09-29 · 이 파일을 회사 PC의 Claude에 주고 "이대로 예약 작업 만들어줘"라고 하면 된다.
+작성: 2026-09-29 · 갱신 2026-09-30(팟캐스트 추가, 일본 수집을 회사 PC로 이동) · 이 파일을 회사 PC의 Claude에 주고 "이대로 예약 작업 만들어줘"라고 하면 된다.
 
 작업은 두 종류다.
 
 | 종류 | 누가 돌리나 | 회사 PC가 꺼져 있으면? |
 |---|---|---|
 | **A. 데이터 수집** (시세·실적 숫자·지수·매크로 등) | GitHub Actions — 이미 전부 설정됨 | 상관없이 돈다 |
+| **A′. 일본 데이터 수집** (카부탄) | **회사 PC** — 카부탄이 GitHub 서버를 막아서 옮김 | 안 돈다 |
 | **B. 글 쓰기** (시황 요약·인물 발언·인사이트·일본 실적 요약·점검) | **회사 PC의 Claude 예약 작업** — 직접 등록해야 함 | **안 돈다** (9/22 이후 시황 요약이 멈춘 이유) |
 
 ---
@@ -20,14 +21,16 @@
    git pull --rebase --autostash origin main                  # 이미 있으면
    ```
    - 구글 드라이브 동기화 폴더 안에 두지 말 것(동기화가 git 작업 중 파일을 건드려 꼬인다). 예전 폴더 `…\etf-flow-tracker`를 쓰고 있다면 그 폴더에서 `git pull`만 하면 된다.
-2. 파이썬 패키지: `pip install pypdf numpy pandas` (pypdf = 일본 결산단신 PDF 읽기, numpy·pandas = 백테스트 복구용)
+2. 파이썬 패키지: `pip install pypdf numpy pandas yt-dlp` (pypdf = 일본 결산단신 PDF, numpy·pandas = 백테스트 복구, yt-dlp = 팟캐스트 유튜브 자막)
+   - 팟캐스트용 추가(권장): `winget install DenoLand.Deno` · (선택) `pip install faster-whisper`
+   - **텔레그램 봇 설정**: `data_sources/podcast_pipeline.md` A-2 (토큰은 `telegram_bot.json`, GitHub에 안 올라감)
 3. `git push`가 되는지 확인(GitHub 로그인 상태).
 4. 윈도우 **절전 끄기**, Claude 데스크톱 앱 **켜 둔 채 로그인 유지**. 예약 작업은 PC와 앱이 켜져 있을 때만 실행된다.
 5. 저장소의 `.claude/agents/`에 전담 에이전트 4개가 들어 있다(insight-researcher · site-auditor · weekly-brief · segment-analyst). 예약 작업에서 이름으로 불러 쓴다.
 
 ---
 
-## 2. 회사 PC Claude 예약 작업 (B) — 등록할 것 6개
+## 2. 회사 PC Claude 예약 작업 (B) — 등록할 것 8개
 
 모든 작업의 공통 규칙: 시작할 때 `git pull --rebase --autostash origin main`, 끝나면 커밋 → `git pull --rebase` → `git push`. 한국어로 쓰고, 출처가 확인된 사실만, 직접 인용 15단어 미만, 투자 권유 표현 금지.
 
@@ -50,14 +53,16 @@ markdown("## 금일 시황 요약 (날짜)"로 시작하는 5섹션), sectors 8~
 digests는 최근 30개만 남기고, updated를 오늘로. 커밋 메시지: "digest: YYYY-MM-DD 종합+섹터 요약"
 ```
 
-### ③ 일본 실적 요약·분석 — 실적 시즌(1·2·4·5·7·8·10·11월) 평일 12:10 · 13:40 · 16:10 · 17:30 · 19:30
+### ③ 일본 실적 수집 + 요약·분석 — 실적 시즌(1·2·4·5·7·8·10·11월) 평일 11:45 · 13:15 · 15:45 · 16:20 · 17:00 · 19:00
 ```
 vantage-0910 저장소의 data_sources/jp_earnings_notes.md 절차대로,
+먼저 python fetch_jp_earnings_results.py 로 오늘 결산단신을 낸 종목을 수집하고,
 요약이 아직 없는 최근 일본 실적 리포트(오늘 발표분 먼저, 주요 기업 먼저, 시총 큰 순, 최대 30건)의
 결산단신 PDF를 pypdf로 읽고 docs/data/jp/reports/notes/<rid>.json을 써서 커밋·푸시해줘.
+수집된 것도 요약할 것도 없으면 아무것도 하지 말고 끝내.
 ```
 - 예약 작업의 반복 설정에서 월을 고를 수 없으면 "매 평일"로 만들고, 프롬프트 첫 줄에
-  "오늘이 1·2·4·5·7·8·10·11월이 아니거나 요약할 리포트가 없으면 아무것도 하지 말고 끝내." 를 붙인다.
+  "오늘이 1·2·4·5·7·8·10·11월이 아니면 아무것도 하지 말고 끝내." 를 붙인다.
 - 완성 예시: 닌텐도 `7974-202703-1Q`, 시마무라 `8227-202702-2Q`.
 
 ### ④ 일일 점검·복구 — 매일 22:30
@@ -79,6 +84,22 @@ vantage-0910 저장소의 docs/events.json을 갱신해줘: 앞으로 8주 안�
 vantage-0910 저장소에서 weekly-brief 에이전트로 이번 주 주간 브리핑을 docs/weekly_brief.json에 추가하고 커밋·푸시해줘.
 ```
 
+### ⑦ 팟캐스트 — 매일 07:00 · 13:00 · 20:00
+```
+vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐스트 새 에피소드를 처리해줘:
+fetch_podcasts.py로 새 편 찾기 → podcast_transcript.py로 대본 받기 → translate-summary-artifact 스킬로 전체 한국어 번역 아티팩트(비공개) 만들기
+(맨 처음 원본 링크, 그다음 제목/누구/어느 기업(세부섹터)/무슨 이야기) → docs/data/podcasts/ep/<id>.json 요약 쓰기 →
+커밋·푸시 → send_telegram.py --podcast-pending 으로 텔레그램 전송 → 전송 기록 커밋·푸시. 한 번에 최대 3편. 새 편이 없으면 미전송분만 재시도하고 끝내.
+```
+
+### ⑧ 일본 주간 수집 — 토요일 09:00 · 일요일 09:00 (Claude 없이 파이썬만 돌려도 됨)
+```
+[토] vantage-0910 저장소에서 python fetch_jp_major.py 를 돌리고(약 10분) docs/data/jp/major-data.js 를 커밋·푸시해줘.
+[일] vantage-0910 저장소에서 python fetch_jp_earnings_dates.py 와 python fetch_jp_earnings_results.py --full 을 차례로 돌리고(약 1시간)
+     docs/data/jp 아래 바뀐 파일을 커밋·푸시해줘.
+```
+- 토큰을 아끼려면 윈도우 "작업 스케줄러"로 같은 명령 + `git add/commit/push` 를 돌려도 된다.
+
 > 참고: 메가캡 구간별 등락 분석(segment-analyst)은 300/300 완료 상태라 정기 작업이 필요 없다. 월요일 TOP300 명단이 바뀌어 새 종목이 생기면 "segment-analyst로 새 종목 구간 분석 채워줘"라고 한 번 돌리면 된다.
 
 ---
@@ -93,8 +114,7 @@ vantage-0910 저장소에서 weekly-brief 에이전트로 이번 주 주간 브�
 | `universe.yml` | 월 06:00 | 메가캡 TOP300 명단 재산정 |
 | `kr-companies.yml` | 평일 16:40 · 08:10 | 데이터 허브 한국 기업 654개 주가·실적 |
 | `us-companies.yml` | 화~토 06:30 · 월 07:00 | 데이터 허브 미국·해외 401개 주가·실적(월요일 편입 점검) |
-| `jp-earnings.yml` | **일 09:00** 전체 스캔 + 발표일 갱신 / **실적 시즌 평일 11:45·13:15·15:45·16:20·17:00·19:00** | 일본 실적(소비재 735 + 주요 기업 304): 그날 결산단신을 낸 종목만 바로 받아 리포트(표·그래프 재료·원문 PDF 링크) 생성 |
-| `jp-major.yml` | 토 09:00 | 일본 주요 기업 304개(시총 상위 250 ∪ 닛케이225) 주가·실적 → 바뀌면 jp-earnings 전체 스캔 자동 재실행 |
+| ~~`jp-earnings.yml`~~ · ~~`jp-major.yml`~~ | **자동 실행 끔(2026-09-30)** | 카부탄이 GitHub 서버 요청을 막아 실패만 반복 → 회사 PC 예약 작업 ③·⑧로 옮김 |
 | `macro-dash.yml` | 평일 미국 지표 발표 직후 + 매일 07:00 | 매크로 대시보드(CPI·고용·금리·FOMC 등) |
 | `ai-indicators.yml` | 매일 여러 번 | AI 지표(토큰·GPU·메모리·CDS 등) |
 | `memory-prices.yml` / `memory-exports.yml` | 발표 시간대 | 메모리 가격·수출 |
@@ -124,6 +144,10 @@ vantage-0910 저장소에서 weekly-brief 에이전트로 이번 주 주간 브�
 - 실적 리포트(jp-report.html): ① 5개 분기 표(매출·영업이익·순이익 + YoY·QoQ·OPM) + 핵심 수치 + 요약 ② 그래프 3개 + 분석 ③ 결산단신 원문 PDF
 - 텔레그램 발송은 추후(리포트 링크 + notes의 `tg` 필드를 쓰면 된다)
 
+**팟캐스트 (9/30)**
+- 새 메뉴 「팟캐스트」: 5개 방송(Invest Like the Best · Capital Allocators · Business Breakdowns · Dwarkesh · MAD) 새 편을 하루 3번 확인 → 제목/누구/어느 기업/무슨 이야기 → 요약·투자 관점, 전체 번역은 비공개 아티팩트, 텔레그램으로 링크
+- 재방송(REPLAY)은 자동 건너뜀. 절차: `data_sources/podcast_pipeline.md`
+
 **포트폴리오**
 - 계좌 안 탭: 현황 | 매매내역(월별·실현손익) | **수익률 평가**(총자산 기준 시간가중수익률 vs 코스피·코스닥·S&P500·나스닥, 매수▲·매도▼ 표시, 드래그·월 클릭으로 기간별 매매 변동)
 - 바잉리스트·관심종목 칸 삭제(저장 기록은 보관)
@@ -138,4 +162,6 @@ vantage-0910 저장소에서 weekly-brief 에이전트로 이번 주 주간 브�
 | 시황 요약·인물 발언이 며칠째 안 바뀜 | 회사 PC가 켜져 있나, Claude 앱이 켜져 있나, 예약 작업이 꺼지지 않았나, 최근 실행 기록에 오류가 있나 |
 | 숫자(시세·실적)가 안 바뀜 | GitHub Actions 페이지에서 해당 워크플로가 빨간색(실패)인지 |
 | 일본 실적 리포트에 표·그래프는 있는데 요약이 없음 | ③ 예약 작업이 돌았는지(시즌·평일·시각), `data_sources/jp_earnings_notes.md` |
+| 일본 실적 발표가 아예 안 잡힘 | ③(평일)·⑧(일요일 전체 스캔)이 회사 PC에서 돌았는지 — GitHub에서는 더 이상 안 돈다 |
+| 팟캐스트 텔레그램이 안 옴 | `python send_telegram.py --test`, `data_sources/podcast_pipeline.md` C |
 | 사이트에 반영이 안 됨 | 1~2분 기다린 뒤 Ctrl+Shift+R(강력 새로고침) |
