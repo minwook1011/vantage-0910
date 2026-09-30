@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-30 19:50 KST",
+ "updated": "2026-09-30 20:03 KST",
  "episodes": [
   {
    "id": "2026-09-28-ca-nancy-zimmerman-people-process-and-fixed-income",
@@ -48,12 +48,19 @@
    "audio": "https://anchor.fm/s/f2ee4948/podcast/play/126227240/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-8-24%2F432557757-44100-2-5025a1e619c4f.mp3",
    "duration": "01:10:14",
    "desc": "Everyone talks about GPUs. Almost nobody talks about the layer that feeds them. Renen Hallak is the founder & CEO of VAST Data — the $30 billion company powering xAI and some of the world's biggest AI clouds — and he sits in the hidden layer of the AI stack. In this episode, we cover what an AI factory actually is, why every company will eventually own its own AI, the architecture bet behind VAST (DASE, explained simply), KV caches and agent memory, and DataEnclave — VAST's brand-new confidential AI announcement with NVIDIA that lets leading models run on the world's most sensitive data. Plus:…",
-   "status": "new",
+   "status": "done",
    "found": "2026-09-30 09:16 KST",
    "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
    "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
    "title_ko": "GPU에 데이터를 먹이는 건 누구인가? AI의 숨은 300억 달러 계층 — Renen Hallak, VAST Data",
-   "desc_ko": "모두가 GPU를 말하지만 GPU에 데이터를 공급하는 계층은 거의 이야기하지 않는다. Renen Hallak은 xAI와 세계 최대급 AI 클라우드들이 쓰는 기업가치 300억 달러의 VAST Data 창업자이자 CEO다. AI 팩토리란 무엇인지, 왜 모든 기업이 결국 자기 AI를 갖게 되는지, VAST의 아키텍처 베팅(DASE), KV 캐시와 에이전트 메모리, 그리고 엔비디아와 함께 막 발표한 기밀 AI 제품 DataEnclave를 다룬다."
+   "desc_ko": "AI 이야기는 대개 GPU와 모델에 쏠리지만, 이 편은 그 사이에서 GPU에 데이터를 공급하는 소프트웨어 인프라 계층을 다룬다. VAST Data 창업자 Renen Hallak이 AI 팩토리가 무엇인지, 왜 기업들이 결국 자기 모델과 가중치를 직접 갖게 된다고 보는지 설명한다. 회사의 핵심 구조인 DASE를 쉬운 말로 풀고, 추론과 에이전트 시대에 KV 캐시·기억·권한 관리가 왜 데이터 문제인지 짚는다. Nvidia와 함께 내놓은 기밀 컴퓨팅 제품 DataEnclave, 폭증하는 저장 수요, 네오클라우드와 하이퍼스케일러의 경쟁, 가치가 어느 층에 쌓일지도 이야기한다.",
+   "summary": {
+    "title_ko": "GPU에 데이터를 먹이는 건 누구인가? AI의 숨은 300억 달러 계층 — Renen Hallak, VAST Data",
+    "headline": "한 분기 만에 500PB가 2EB 추가로 — GPU 뒤에서 데이터를 대는 VAST Data가 본 AI 저장 수요",
+    "image": null,
+    "guest": "레넨 할락(Renen Hallak) — VAST Data 창업자 겸 CEO — XtremIO 연구개발 책임자 출신",
+    "company": "VAST Data (AI 인프라 · 데이터 플랫폼(스토리지·데이터베이스))"
+   }
   },
   {
    "id": "2026-09-22-ilb-gabe-stengel-building-investing-superintelligenc",
