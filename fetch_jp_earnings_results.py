@@ -50,6 +50,7 @@ DATES = os.path.join(BASE, "docs", "data", "jp", "earnings_dates.json")
 OUT = os.path.join(BASE, "docs", "data", "jp", "earnings_results.json")
 GUIDE = os.path.join(BASE, "docs", "data", "jp", "earnings_guidance.json")
 MAJOR = os.path.join(BASE, "docs", "data", "jp", "major-data.js")
+EXTRA = os.path.join(BASE, "docs", "data", "jp", "consumer-extra.js")   # 소비재 추가 종목(fetch_jp_consumer_extra.py)
 REPORTS = os.path.join(BASE, "docs", "data", "jp", "reports")          # 실적 리포트(발표 1건 = 파일 1개, 영구 보관)
 NOTES = os.path.join(REPORTS, "notes")                                   # Claude가 쓰는 요약·분석(rid.json)
 JST = timezone(timedelta(hours=9))
@@ -120,9 +121,10 @@ def clean(s):
 
 
 def load_universe():
-    """소비재(screener-data.js RAW) + 주요 기업(major-data.js RAW_MAJ) → {code: {n, cat, mcap, u:[cons|major]}}"""
+    """소비재(screener-data.js RAW + consumer-extra.js RAW_EXT) + 주요 기업(major-data.js RAW_MAJ)
+    → {code: {n, cat, mcap, u:[cons|major]}}"""
     uni = {}
-    for path, var, tag in ((SCREENER, "RAW", "cons"), (MAJOR, "RAW_MAJ", "major")):
+    for path, var, tag in ((SCREENER, "RAW", "cons"), (EXTRA, "RAW_EXT", "cons"), (MAJOR, "RAW_MAJ", "major")):
         if not os.path.exists(path):
             continue
         txt = open(path, encoding="utf-8").read()
@@ -131,7 +133,8 @@ def load_universe():
             continue
         for r in json.loads(m.group(1)):
             e = uni.setdefault(r[0], {"n": r[1], "cat": r[2], "mcap": r[5], "u": []})
-            e["u"].append(tag)
+            if tag not in e["u"]:
+                e["u"].append(tag)
     return uni
 
 

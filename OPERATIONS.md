@@ -105,7 +105,7 @@ vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐�
 
 ### ⑧ 일본 주간 수집 — 토요일 09:00 · 일요일 09:00 (Claude 없이 파이썬만 돌려도 됨)
 ```
-[토] vantage-0910 저장소에서 python fetch_jp_major.py 를 돌리고(약 10분) docs/data/jp/major-data.js 를 커밋·푸시해줘.
+[토] vantage-0910 저장소에서 python fetch_jp_major.py(약 10분)와 python fetch_jp_consumer_extra.py(약 6분, 추가 소비재 92종목)를 돌리고 docs/data/jp/major-data.js · docs/data/jp/consumer-extra.js 를 커밋·푸시해줘.
 [일] vantage-0910 저장소에서 python fetch_jp_earnings_dates.py 와 python fetch_jp_earnings_results.py --full 을 차례로 돌리고(약 1시간)
      docs/data/jp 아래 바뀐 파일을 커밋·푸시해줘.
 ```

@@ -87,9 +87,15 @@ def clean_vtt(vtt):
 def from_youtube(row):
     q = f"{SHOW_YT.get(row['show'], row.get('show_name', ''))} {re.sub(r'\[.*?\]|\(EP\.?\s*\d+\)', '', row['title'])}".strip()
     with tempfile.TemporaryDirectory() as d:
-        cmd = [sys.executable, "-m", "yt_dlp", "--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", "en.*,en",
-               "--sub-format", "vtt", "--playlist-items", "1", "--print", "after_move:%(webpage_url)s|%(title)s|%(duration)s",
+        # 자막은 영어 한 종류만 받는다 — "en.*"처럼 여러 종류를 한꺼번에 받으면 유튜브가 429(요청 과다)로 막는다.
+        cmd = [sys.executable, "-m", "yt_dlp", "--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", "en",
+               "--sub-format", "vtt", "--playlist-items", "1", "--no-simulate", "--print", "%(webpage_url)s|%(title)s|%(duration)s",
                "-o", os.path.join(d, "%(id)s.%(ext)s"), f"ytsearch3:{q}"]
+        try:   # 브라우저처럼 요청하면 차단이 훨씬 덜하다(pip install "yt-dlp[default,curl-cffi]")
+            import curl_cffi  # noqa: F401
+            cmd[3:3] = ["--impersonate", "chrome"]
+        except ImportError:
+            pass
         try:
             for attempt in range(3):   # 유튜브가 자막 요청을 잠깐 막으면(429) 쉬었다 다시
                 p = subprocess.run(cmd + ["--sleep-subtitles", "3"], capture_output=True, text=True, encoding="utf-8", timeout=300)

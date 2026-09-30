@@ -35,12 +35,13 @@ KABU_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-jp-screener/1.0"
 
 
 MAJOR = os.path.join(BASE, "docs", "data", "jp", "major-data.js")
+EXTRA = os.path.join(BASE, "docs", "data", "jp", "consumer-extra.js")   # 소비재 추가 종목(fetch_jp_consumer_extra.py)
 
 
 def load_codes():
-    """소비재(RAW) + 주요 기업(RAW_MAJ, 있으면) 코드 합집합"""
+    """소비재(RAW + 추가 종목 RAW_EXT) + 주요 기업(RAW_MAJ, 있으면) 코드 합집합"""
     codes = []
-    for path, var in ((SCREENER, "RAW"), (MAJOR, "RAW_MAJ")):
+    for path, var in ((SCREENER, "RAW"), (EXTRA, "RAW_EXT"), (MAJOR, "RAW_MAJ")):
         if not os.path.exists(path):
             continue
         txt = open(path, encoding="utf-8").read()
@@ -87,6 +88,10 @@ def from_history(hist, today):
 
 def main():
     codes = load_codes()
+    only = None
+    if "--codes" in sys.argv:  # 이 종목만 새로 받고 나머지는 기존 파일 값 유지(소비재 추가 종목을 넣은 직후 등)
+        only = [c.strip().upper() for c in sys.argv[sys.argv.index("--codes") + 1].split(",") if c.strip()]
+        codes = only
     today = datetime.now(JST).strftime("%Y-%m-%d")
     old = {}
     if os.path.exists(OUT):
@@ -99,7 +104,7 @@ def main():
     if not crumb:
         print("야후 크럼 확보 실패 — 카부탄만 사용")
 
-    dates = {}
+    dates = dict(old) if only else {}  # 지난 날짜도 그대로 둔다(실적 수집기가 최근 7일 예정 종목을 찾는 데 쓴다)
     stats = {"yahoo": 0, "kabutan": 0, "yahoo-est": 0, "prev-year": 0, "kept": 0, "none": 0}
     for i, code in enumerate(codes, 1):
         date, est, src = None, None, None
@@ -135,11 +140,19 @@ def main():
 
     found = len(codes) - stats["none"]
     print(f"완료: {found}/{len(codes)} {stats}")
-    if found < len(codes) * 0.3:
+    if only:
+        found = len(dates)
+    elif found < len(codes) * 0.3:
         print("수집 결과가 너무 적어 기존 파일을 유지합니다.")
         return 1
 
-    out = {"updated": today, "generated_at": datetime.now(JST).isoformat(timespec="minutes"),
+    upd = today
+    if only:  # 일부만 받았으면 전체 갱신일은 그대로 둔다
+        try:
+            upd = json.load(open(OUT, encoding="utf-8")).get("updated") or today
+        except Exception:
+            pass
+    out = {"updated": upd, "generated_at": datetime.now(JST).isoformat(timespec="minutes"),
            "count": found, "dates": dict(sorted(dates.items()))}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:

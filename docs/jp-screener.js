@@ -1,5 +1,19 @@
 const F = {CODE:0,NAME:1,CAT:2,IND:3,CLOSE:4,MCAP:5,REVG:6,PY:7,PYTD:8,PER:9,ROE:10,OPM:11,REV:12};
 const CATS = ["리테일·유통","식품·음료","외식","라멘","게임·엔터","미용·헬스케어서비스","패션·명품","생활·홈","화장품·퍼스널케어","여행·레저"];
+/* 소비재 추가 종목(data/jp/consumer-extra.js: RAW_EXT·BUNDLE_EXT — fetch_jp_consumer_extra.py 가 만든다).
+   고정 번들(screener-data.js)에 없는 코드만 뒤에 붙이고 시총 순으로 다시 정렬한다. 파일이 없어도 그대로 동작. */
+(function mergeConsumerExtra(){
+  /* global RAW_EXT, BUNDLE_EXT */
+  if(typeof RAW_EXT==="undefined" || !Array.isArray(RAW_EXT)) return;
+  const have=new Set(RAW.map(r=>r[0])), added=new Set();
+  RAW_EXT.forEach(r=>{ if(r && r[0] && !have.has(r[0]) && CATS.includes(r[2])){ have.add(r[0]); added.add(r[0]); RAW.push(r); } });
+  if(!added.size) return;
+  RAW.sort((a,b)=>(b[5]||0)-(a[5]||0));
+  if(typeof BUNDLE_EXT!=="undefined" && Array.isArray(BUNDLE_EXT)){
+    const hb=new Set(BUNDLE.map(b=>b.c));
+    BUNDLE_EXT.forEach(b=>{ if(b && added.has(b.c) && !hb.has(b.c)){ hb.add(b.c); BUNDLE.push(b); } });
+  }
+})();
 const BY = {}; BUNDLE.forEach(b=>BY[b.c]=b);
 
 /* ===== 유니버스: 소비재 / 주요 기업 =====

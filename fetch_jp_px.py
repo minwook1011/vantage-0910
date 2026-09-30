@@ -30,7 +30,8 @@ from datetime import datetime, timedelta, timezone
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 JP = os.path.join(BASE, "docs", "data", "jp")
-BUNDLES = [(os.path.join(JP, "screener-data.js"), "BUNDLE", "con"), (os.path.join(JP, "major-data.js"), "BUNDLE_MAJ", "maj")]
+BUNDLES = [(os.path.join(JP, "screener-data.js"), "BUNDLE", "con"), (os.path.join(JP, "consumer-extra.js"), "BUNDLE_EXT", "con"),
+           (os.path.join(JP, "major-data.js"), "BUNDLE_MAJ", "maj")]
 REPORTS = os.path.join(JP, "reports")
 PX_DIR = os.path.join(JP, "px")
 TR_DIR = os.path.join(JP, "trends")

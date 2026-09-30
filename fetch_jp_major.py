@@ -163,7 +163,7 @@ def nikkei225():
 def _oku(s):
     """'42兆2,598億円' / '8,123億円' → 억엔"""
     s = K.clean(s)
-    m = re.search(r"(?:([\d,]+)\s*兆)?\s*(?:([\d,]+)\s*億)?", s)
+    m = re.search(r"(?:([\d,]+)\s*兆)?\s*(?:([\d,]+(?:\.\d+)?)\s*億)?", s)  # 100억엔 미만은 '98.5億円' 처럼 소수로 나온다
     if not m or not (m.group(1) or m.group(2)):
         return None
     cho = float(m.group(1).replace(",", "")) if m.group(1) else 0
@@ -326,6 +326,73 @@ def ret_since(bars, day):
     return r1((bars[-1][1] / base - 1) * 100)
 
 
+def build_one(code, jp_hint=None, mcap_hint=None, cat=None, ind=None):
+    """종목 1개 → (RAW 행, BUNDLE 항목 또는 None, 부가정보). cat·ind 를 주면 섹터 자동 분류 대신 그 값을 쓴다
+    (fetch_jp_consumer_extra.py 가 소비재 카테고리를 넣을 때 사용)."""
+    u = {"jp": jp_hint, "mcap_y": mcap_hint}
+    cat_in, ind_in = cat, ind
+    st = kabu_stock(code)
+    fin, roe = kabu_fin(code)
+    wk = yahoo_weekly(code)
+    q, a, f, ttm = build_fin(fin)
+    jp = u["jp"] or st.get("jp") or code
+    en = (wk or {}).get("en")
+    name = en or jp
+    sec_jp = st.get("sector")
+    cat = sector_ko(sec_jp)
+    ind = jp + (f" · {sec_jp}" if (sec_jp and cat in MERGED) else "")
+    mcap = st.get("mcap") or u.get("mcap_y")
+    mcap = round(mcap) if mcap else None
+    bars = (wk or {}).get("bars") or []
+    close = (wk or {}).get("price") or st.get("close") or (bars[-1][1] if bars else None)
+    # 매출·성장·이익률
+    rev = ttm.get("rev")
+    revg = None
+    if rev is not None and ttm.get("rev_prev"):
+        revg = r1((rev / ttm["rev_prev"] - 1) * 100) if ttm["rev_prev"] > 0 else None
+    if a:
+        fy_rev = [v for lb, v in zip(a["lb"], a["rev"]) if lb != "TTM"]
+        if rev is None and fy_rev and fy_rev[0] is not None:
+            rev = fy_rev[0]
+        if revg is None and len(fy_rev) >= 2 and fy_rev[0] is not None and fy_rev[1]:
+            revg = r1((fy_rev[0] / fy_rev[1] - 1) * 100) if fy_rev[1] > 0 else None
+    opm = None
+    if not ttm.get("fin_type") and ttm.get("oi") is not None and ttm.get("rev"):
+        opm = r1(ttm["oi"] / ttm["rev"] * 100)
+    elif not ttm.get("fin_type") and a:
+        fy = [(r_, o_) for lb, r_, o_ in zip(a["lb"], a["rev"], a["oi"]) if lb != "TTM"]
+        if fy and fy[0][0] and fy[0][1] is not None:
+            opm = r1(fy[0][1] / fy[0][0] * 100)
+    py = pytd = None
+    if bars:
+        last = bars[-1][0]
+        py = ret_since(bars, last - 365)
+        y = (datetime(1970, 1, 1) + timedelta(days=last)).year
+        pytd = ret_since(bars, (datetime(y - 1, 12, 31) - datetime(1970, 1, 1)).days)
+    if close is not None:
+        close = round(close) if close >= 1000 else round(close, 1)
+    if cat_in:
+        cat = cat_in
+    if ind_in:
+        ind = ind_in
+    row = [code, name, cat, ind, close, mcap, revg, py, pytd, st.get("per"), roe, opm,
+           round(rev) if rev is not None else None]
+    b = {"c": code, "n": name, "cat": cat, "ind": ind, "mcap": mcap, "iv": "w"}
+    if bars:
+        b["d0"] = bars[0][0]
+        b["dd"] = [0] + [bars[k][0] - bars[k - 1][0] for k in range(1, len(bars))]
+        b["px"] = [round(x[1] * 10) for x in bars]
+        b["vo"] = [round((x[2] or 0) / 100) for x in bars]
+    if q:
+        b["q"] = q
+    if a:
+        b["a"] = a
+    if f:
+        b["f"] = f
+    info = {"jp": jp, "st": st, "bars": len(bars), "q": q, "a": a, "rev": rev, "revg": revg, "roe": roe}
+    return row, (b if (bars or q or a) else None), info
+
+
 def main():
     t0 = time.time()
     top = yahoo_top()
@@ -362,67 +429,17 @@ def main():
     n_px = n_q = n_a = 0
     for i, code in enumerate(codes, 1):
         u = uni[code]
-        st = kabu_stock(code)
-        fin, roe = kabu_fin(code)
-        wk = yahoo_weekly(code)
-        q, a, f, ttm = build_fin(fin)
-        jp = u["jp"] or st.get("jp") or code
-        en = (wk or {}).get("en")
-        name = en or jp
-        sec_jp = st.get("sector")
-        cat = sector_ko(sec_jp)
-        ind = jp + (f" · {sec_jp}" if (sec_jp and cat in MERGED) else "")
-        mcap = st.get("mcap") or u.get("mcap_y")
-        mcap = round(mcap) if mcap else None
-        bars = (wk or {}).get("bars") or []
-        close = (wk or {}).get("price") or st.get("close") or (bars[-1][1] if bars else None)
-        # 매출·성장·이익률
-        rev = ttm.get("rev")
-        revg = None
-        if rev is not None and ttm.get("rev_prev"):
-            revg = r1((rev / ttm["rev_prev"] - 1) * 100) if ttm["rev_prev"] > 0 else None
-        if a:
-            fy_rev = [v for lb, v in zip(a["lb"], a["rev"]) if lb != "TTM"]
-            if rev is None and fy_rev and fy_rev[0] is not None:
-                rev = fy_rev[0]
-            if revg is None and len(fy_rev) >= 2 and fy_rev[0] is not None and fy_rev[1]:
-                revg = r1((fy_rev[0] / fy_rev[1] - 1) * 100) if fy_rev[1] > 0 else None
-        opm = None
-        if not ttm.get("fin_type") and ttm.get("oi") is not None and ttm.get("rev"):
-            opm = r1(ttm["oi"] / ttm["rev"] * 100)
-        elif not ttm.get("fin_type") and a:
-            fy = [(r_, o_) for lb, r_, o_ in zip(a["lb"], a["rev"], a["oi"]) if lb != "TTM"]
-            if fy and fy[0][0] and fy[0][1] is not None:
-                opm = r1(fy[0][1] / fy[0][0] * 100)
-        py = pytd = None
-        if bars:
-            last = bars[-1][0]
-            py = ret_since(bars, last - 365)
-            y = (datetime(1970, 1, 1) + timedelta(days=last)).year
-            pytd = ret_since(bars, (datetime(y - 1, 12, 31) - datetime(1970, 1, 1)).days)
-        if close is not None:
-            close = round(close) if close >= 1000 else round(close, 1)
-        raw.append([code, name, cat, ind, close, mcap, revg, py, pytd, st.get("per"), roe, opm,
-                    round(rev) if rev is not None else None])
-        b = {"c": code, "n": name, "cat": cat, "ind": ind, "mcap": mcap, "iv": "w"}
-        if bars:
-            b["d0"] = bars[0][0]
-            b["dd"] = [0] + [bars[k][0] - bars[k - 1][0] for k in range(1, len(bars))]
-            b["px"] = [round(x[1] * 10) for x in bars]
-            b["vo"] = [round((x[2] or 0) / 100) for x in bars]
-            n_px += 1
-        if q:
-            b["q"] = q
-            n_q += 1
-        if a:
-            b["a"] = a
-            n_a += 1
-        if f:
-            b["f"] = f
-        if bars or q or a:
+        row, b, info = build_one(code, u["jp"], u.get("mcap_y"))
+        raw.append(row)
+        if b:
             bundle.append(b)
+            n_px += 1 if b.get("px") else 0
+            n_q += 1 if b.get("q") else 0
+            n_a += 1 if b.get("a") else 0
+        cat, jp, mcap, st, q, rev, revg, roe = row[2], info["jp"], row[5], info["st"], info["q"], info["rev"], info["revg"], info["roe"]
+        nbars = info["bars"]
         tag = ("T" if u.get("top") else "-") + ("N" if u.get("nk") else "-")
-        print(f"[{i}/{len(codes)}] {code} {tag} {cat} {jp} mcap={mcap} px={len(bars)} q={len(q['lb']) if q else 0}"
+        print(f"[{i}/{len(codes)}] {code} {tag} {cat} {jp} mcap={mcap} px={nbars} q={len(q['lb']) if q else 0}"
               f" rev={rev} revg={revg} per={st.get('per')} roe={roe}")
 
     if only:

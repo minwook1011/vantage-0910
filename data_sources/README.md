@@ -54,3 +54,18 @@
 직접 추가 지표는 브라우저 로컬에 저장하며 자동 수집 자료와 구분한다. 국가 탭과 기존 기업 즐겨찾기는 유지한다.
 
 지표 아래 `이 데이터를 보는 이유 ▾`를 열면 선택 이유·실적과 비교할 논리·해석 한계를 볼 수 있다. 메모리 화면은 선택한 분류(칩/모듈/NAND/계약/수출)에 따라 설명이 바뀐다. 파인엠텍은 베트남 거래를 연결 매출·영업이익·OPM과 비교할 가설과 현재 원본 미연결이라는 상태를 함께 표시한다.
+
+## 일본 스크리너 — 소비재 종목 추가하기
+
+`docs/data/jp/screener-data.js`(소비재 735개)는 생성 스크립트가 없는 고정 번들이라 직접 고치지 않는다. 빠진 소비재·소비재 인접 종목(완구·게임 도매, 캐릭터·IP, 문구, 주택설비, OTC, 학원, 관혼상제 등)은 아래 순서로 넣는다.
+
+1. `data_sources/jp_consumer_extra.json`에 한 줄 추가: `{"code": "7552", "cat": "게임·엔터", "note": "완구·게임 도매"}`
+   - `cat`은 기존 카테고리 중 하나만: 리테일·유통 / 식품·음료 / 외식 / 라멘 / 게임·엔터 / 미용·헬스케어서비스 / 패션·명품 / 생활·홈 / 화장품·퍼스널케어 / 여행·레저. 다른 이름이면 건너뛴다.
+   - `note`는 화면의 업종 칸에 그대로 보이는 짧은 한국어 설명.
+   - 이미 소비재 RAW에 있는 코드는 자동으로 건너뛴다(중복 없음).
+2. `python fetch_jp_consumer_extra.py 7552` — 그 종목만 받아 `docs/data/jp/consumer-extra.js`(`RAW_EXT`·`BUNDLE_EXT`)에 반영. 인자 없이 돌리면 전체 갱신(종목당 약 3초, 주 1회 권장 — 주가는 `fetch_jp_px.py`가 매일 이어 붙인다).
+   - 카부탄에서 종목 페이지가 확인되지 않거나(상장폐지·코드 오류) 주가를 못 받으면 기존 값을 유지하고, 기존 값도 없으면 빼고 끝에 목록으로 알려 준다.
+3. 실적발표 탭에 넣기: `python fetch_jp_earnings_dates.py --codes 7552` (다음 발표일) → `python fetch_jp_earnings_results.py --codes 7552` (최근 발표·리포트 파일 `docs/data/jp/reports/`).
+4. `docs/jp-screener.html`의 `consumer-extra.js?v=` 값을 올려 브라우저 캐시를 끊는다.
+
+화면(`jp-screener.js`)은 `consumer-extra.js`를 소비재 목록 뒤에 합쳐 시총 순으로 다시 정렬한다. `fetch_jp_earnings_results.py`·`fetch_jp_earnings_dates.py`·`fetch_jp_px.py`도 이 파일을 소비재(`cons`) 유니버스로 읽으므로, 이후에는 기존 예약 작업이 그대로 챙긴다. 카부탄은 GitHub 서버를 막으므로 이 PC에서 돌린다.

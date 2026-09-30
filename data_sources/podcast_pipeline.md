@@ -19,7 +19,7 @@
 
 1. 패키지
    ```bash
-   pip install yt-dlp                 # 유튜브 자막
+   pip install -U "yt-dlp[default,curl-cffi]"   # 유튜브 자막(curl-cffi 가 있어야 429 차단을 덜 받는다)
    winget install DenoLand.Deno       # yt-dlp 가 유튜브를 제대로 읽으려면 JS 실행기 필요(권장)
    pip install faster-whisper         # (선택) 유튜브가 막힐 때 오디오를 직접 받아쓰기 — 1시간 분량에 CPU 10~30분
    ```
