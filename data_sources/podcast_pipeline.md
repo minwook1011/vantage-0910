@@ -32,7 +32,9 @@
       ```
    4) `python send_telegram.py --chat-id` → 나온 숫자를 `chat_id`에 넣기
    5) `python send_telegram.py --test` → "✅ VANTAGE 알림 테스트"가 오면 끝
-3. **Claude 스킬**: 회사 PC Claude에 `translate-summary-artifact` 스킬(영상·팟캐스트 번역 요약 아티팩트)이 설치돼 있어야 한다. 이 작업에서는 아래 **B-3의 추가 규칙**을 함께 준다.
+3. **Claude 스킬**: 회사 PC Claude에 **인터뷰 요약 분석 스킬(아티팩트로 만드는 본인 스킬)**이 설치돼 있어야 한다.
+   - 아래 절차의 `<인터뷰 스킬>` 자리에 **회사 PC에 있는 그 스킬 이름을 그대로** 쓴다. (스킬이 없으면 `translate-summary-artifact`로 대신한다.)
+   - 이 작업에서는 스킬 기본 형식에 아래 **B-3의 추가 규칙**을 더한다.
 
 ---
 
@@ -48,7 +50,10 @@ git pull --rebase --autostash origin main
 python fetch_podcasts.py            # 새 편을 docs/data/podcasts/index.json 에 올림
 python fetch_podcasts.py --pending  # 처리할(new) 에피소드 id 목록(JSON)
 ```
-- **한 번에 최대 3편**, 오래된 것부터. 남으면 다음 실행에서.
+- **새로 올라온 편은 바로 한국어 제목·소개를 단다**(요약 전이라도 사이트가 한글로 보이게): `docs/data/podcasts/index.json`의 그 편에
+  `"title_ko"`(예: "Noah Shinn — Instinct 만들기: 개인 에이전트 (493회)" — **사람·회사 이름은 원문 그대로**, 나머지는 한국어, 회차는 "(493회)")와
+  `"desc_ko"`(원문 소개글 `desc`의 한국어 번역, 3~5문장)를 넣는다. 재방송(`status: skip`)도 제목만은 "[재방송] …"으로 단다.
+- **한 번에 최대 3편**(요약·아티팩트), 오래된 것부터. 남으면 다음 실행에서.
 - 새 편이 없으면 **B-5(미전송 재시도)만 하고 끝낸다.**
 
 ### B-2. 대본 받기 (에피소드마다)
@@ -59,8 +64,8 @@ python podcast_transcript.py <id>
 - `ok: false`면 **대본 없이** 방송 소개글(index.json의 `desc`)과 에피소드 페이지로 짧은 요약만 쓰고 `"no_transcript": true` 표시(B-4). 아티팩트는 만들지 않는다.
 - `_podcast_tmp/` 는 원문 대본이라 **절대 커밋하지 않는다**(.gitignore 처리됨). 작업이 끝나면 지워도 된다.
 
-### B-3. 아티팩트 만들기 — `translate-summary-artifact` 스킬
-스킬에 대본 파일과 에피소드 정보(방송명·제목·날짜·링크·유튜브 링크)를 주고 실행한다. **추가 규칙(반드시)**:
+### B-3. 아티팩트 만들기 — `<인터뷰 스킬>` (인터뷰 요약 분석 스킬, 없으면 `translate-summary-artifact`)
+**스킬이 평소 만드는 인터뷰 요약 분석 아티팩트와 똑같은 형식**으로 만든다. 스킬에 대본 파일과 에피소드 정보(방송명·제목·날짜·링크·유튜브 링크·게스트 사진)를 주고 실행한다. **추가 규칙(반드시)**:
 
 1. **맨 처음**: 원본 에피소드 링크(▶️ 원본 듣기 · 📺 유튜브)
 2. 그다음 **머리 블록 4줄**
@@ -68,9 +73,11 @@ python podcast_transcript.py <id>
    - **누구**: 게스트 이름 — 무엇을 하는 사람인지 한 줄 (예: "노아 신 — 개인 AI 비서 Instinct 창업자, 전 ...")
    - **어느 기업**: 회사명 (세부 섹터) — 무엇을 하는 회사인지 한 줄 (예: "Instinct (AI 에이전트·소비자 비서)")
    - **무슨 이야기**: 이 편의 핵심 주제 한 줄
-3. 나머지는 스킬 기존 틀(히어로·목차·요약 박스·챕터별 정리) 그대로
-4. **전체 대본 한국어 번역**을 챕터별(접이식)로 포함 — 요약하지 말고 번역만
-5. 아티팩트는 **비공개(기본값)로 게시**하고 URL을 받는다 → `artifact_url`
+3. 나머지는 스킬 기존 틀(요약·분석 구성) 그대로
+4. **전문 번역 섹션**: 대본 **처음부터 끝까지 전부** 한국어로 번역해 챕터별(접이식)로 넣는다 — 줄이거나 요약하지 말 것. 화자 표시(진행자/게스트 이름) 유지.
+   - 대본이 길면(드와케시 4시간 등) 챕터를 나눠 번역하되 빠뜨리는 구간이 없게 한다. 광고·스폰서 읽기만 생략 가능("(광고 생략)" 표시).
+5. **화면 글자는 사람·회사 이름만 원문, 나머지는 전부 한국어.**
+6. 아티팩트는 **비공개(기본값)로 게시**하고 URL을 받는다 → `artifact_url`
    - 전체 번역은 원문 저작권 때문에 **공개 사이트·GitHub에는 올리지 않는다.** 아티팩트(본인만 열람)에만 둔다.
 
 ### B-4. 사이트용 요약 파일 쓰기 → `docs/data/podcasts/ep/<id>.json`
@@ -88,6 +95,7 @@ python podcast_transcript.py <id>
   "tg": "텔레그램에 들어갈 3~5줄 요약",
   "artifact_url": "https://claude.ai/... (B-3에서 받은 비공개 아티팩트 링크)",
   "youtube": "https://www.youtube.com/watch?v=... (있으면)",
+  "image": "게스트 얼굴 사진 URL (선택 — index.json 의 image 가 방송 로고뿐일 때, 예: MAD 팟캐스트. 유튜브 링크가 있으면 https://i.ytimg.com/vi/<영상ID>/hqdefault.jpg)",
   "transcript_source": "page | youtube | audio | none",
   "no_transcript": false,
   "written": "2026-09-30 07:25 KST"

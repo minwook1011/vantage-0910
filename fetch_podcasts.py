@@ -65,8 +65,22 @@ def ep_id(show, date, title):
     return f"{date}-{show}-{slug or h}"
 
 
+def og_image(url):
+    """에피소드 페이지의 대표 이미지(og:image) — 보통 게스트 사진"""
+    try:
+        t = get(url)
+        t = t.decode("utf-8", "replace") if t else ""
+        m = re.search(r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)', t) or \
+            re.search(r'<meta[^>]+content=["\']([^"\']+)["\'][^>]+property=["\']og:image', t)
+        return html.unescape(m.group(1)) if m else None
+    except Exception:
+        return None
+
+
 def parse_feed(show, xml_bytes, since):
     root = ET.fromstring(xml_bytes)
+    ch = root.find("./channel/itunes:image", NS)
+    ch_img = ch.get("href") if ch is not None else (root.findtext("./channel/image/url") or None)
     out = []
     for it in root.findall("./channel/item"):
         title = clean(it.findtext("title"))
@@ -91,7 +105,21 @@ def parse_feed(show, xml_bytes, since):
             **({"status": "skip", "reason": "재방송(REPLAY)"} if re.search(r"replay|rerun|encore|best of", title, re.I) else {}),
             "found": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
         })
+        # 얼굴 사진: 에피소드별 이미지 → 방송 로고뿐이면 에피소드 페이지 대표 이미지 → 그래도 없으면 방송 로고
+        ii = it.find("itunes:image", NS)
+        img = ii.get("href") if ii is not None else None
+        out[-1]["image"] = img if img and img != ch_img else None
+        out[-1]["show_image"] = ch_img
     return out
+
+
+def fill_images(eps):
+    for e in eps:
+        if not e.get("image") and e.get("link") and "spotify.com" not in e["link"]:
+            e["image"] = og_image(e["link"])
+            time.sleep(0.5)
+        if not e.get("image"):
+            e["image"] = e.get("show_image")
 
 
 def load_index():
@@ -115,7 +143,7 @@ def save_index(ix):
         try:   # 목록 카드용 요약(제목·누구·기업·한 줄)을 에피소드 파일에서 옮겨 온다
             E = json.load(open(path, encoding="utf-8"))
             g, c = E.get("guest") or {}, E.get("company") or {}
-            e["summary"] = {"title_ko": E.get("title_ko"), "headline": E.get("headline"),
+            e["summary"] = {"title_ko": E.get("title_ko"), "headline": E.get("headline"), "image": E.get("image"),
                             "guest": (g.get("name", "") + (" — " + g["role"] if g.get("role") else "")) or None,
                             "company": (c.get("name", "") + (f" ({c['sector']})" if c.get("sector") else "")) or None}
         except Exception as ex:
@@ -148,6 +176,13 @@ def main():
             print(f"{show['name']}: 피드 해석 실패 {e}")
             continue
         fresh = [e for e in eps if e["id"] not in known and (not e["link"] or e["link"] not in known_links)]
+        fill_images(fresh)
+        # 예전에 올린 에피소드에 사진이 없으면 채워 넣는다
+        by_id = {e["id"]: e for e in eps}
+        old_rows = [r for r in ix["episodes"] if r["id"] in by_id and not r.get("image")]
+        fill_images([by_id[r["id"]] for r in old_rows])
+        for r in old_rows:
+            r["image"], r["show_image"] = by_id[r["id"]].get("image"), by_id[r["id"]].get("show_image")
         print(f"{show['name']}: 기간 내 {len(eps)}편 · 새로 발견 {len(fresh)}편")
         for e in fresh:
             print(f"   + {e['date']} {e['title']}")

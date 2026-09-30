@@ -87,10 +87,15 @@ vantage-0910 저장소에서 weekly-brief 에이전트로 이번 주 주간 브�
 ### ⑦ 팟캐스트 — 매일 07:00 · 13:00 · 20:00
 ```
 vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐스트 새 에피소드를 처리해줘:
-fetch_podcasts.py로 새 편 찾기 → podcast_transcript.py로 대본 받기 → translate-summary-artifact 스킬로 전체 한국어 번역 아티팩트(비공개) 만들기
-(맨 처음 원본 링크, 그다음 제목/누구/어느 기업(세부섹터)/무슨 이야기) → docs/data/podcasts/ep/<id>.json 요약 쓰기 →
-커밋·푸시 → send_telegram.py --podcast-pending 으로 텔레그램 전송 → 전송 기록 커밋·푸시. 한 번에 최대 3편. 새 편이 없으면 미전송분만 재시도하고 끝내.
+1) fetch_podcasts.py로 새 편 찾기 → 새 편에는 바로 한국어 제목·소개(title_ko·desc_ko) 달기(사람·회사 이름만 원문)
+2) podcast_transcript.py로 영어 대본 받기
+3) 내 인터뷰 요약 분석 스킬(<회사 PC의 스킬 이름>)로 평소와 같은 형식의 아티팩트를 만들되,
+   맨 처음 원본 링크 → 제목/누구/어느 기업(세부섹터)/무슨 이야기 → 요약·분석 → 대본 전체를 빠짐없이 한국어로 옮긴 "전문 번역" 섹션
+4) docs/data/podcasts/ep/<id>.json 사이트 요약 쓰기 → 커밋·푸시
+5) send_telegram.py --podcast-pending 으로 텔레그램 전송 → 전송 기록 커밋·푸시
+한 번에 최대 3편. 새 편이 없으면 미전송분만 재시도하고 끝내.
 ```
+- `<회사 PC의 스킬 이름>`은 회사 PC Claude에 설치된 인터뷰 요약 분석 스킬 이름으로 바꿔 넣는다.
 
 ### ⑧ 일본 주간 수집 — 토요일 09:00 · 일요일 09:00 (Claude 없이 파이썬만 돌려도 됨)
 ```
