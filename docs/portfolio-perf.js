@@ -1,5 +1,5 @@
 /* portfolio-perf.js — 포트폴리오 › 계좌별 「매매내역」「수익률 평가」
- * PortfolioPerf.trades(el, state, accountId, onChange)  전체 매매내역(월별 묶음·실현손익·필터·삭제)
+ * PortfolioPerf.trades(el, state, accountId, onChange, onEdit)  전체 매매내역(월별 묶음·실현손익·필터·삭제·칸 클릭 수정)
  * PortfolioPerf.perf(el, state, accountId)              계좌 수익률 vs 지수 그래프 + 기간별 매매 변동
  *
  * 수익률 계산(총자산 기준 시간가중수익률): 주식 평가액(보유 수량 × 그날 종가, 미국은 그날 환율) + 예수금(매매로 역산)을 총자산으로 보고,
@@ -45,7 +45,7 @@
 
   /* ───────────── 매매내역 ───────────── */
   var tf = { side: "all", tk: "", };
-  function trades(el, state, id, onChange) {
+  function trades(el, state, id, onChange, onEdit) {
     var rows = withRealized(state, txsOf(state, id));
     var tickers = {}; rows.forEach(function (r) { tickers[keyOf(r.t)] = S.displayTicker(r.t.ticker); });
     if (tf.tk && !tickers[tf.tk]) tf.tk = "";
@@ -65,12 +65,37 @@
           '<div class="pf-tbl"><table><thead><tr><th>날짜</th><th>종목</th><th>구분</th><th>수량</th><th>체결가</th><th>금액(원화)</th><th>실현손익</th><th></th></tr></thead><tbody>' +
           g.map(function (r) {
             var t = r.t, us = t.market === "US";
-            return "<tr><td>" + esc(t.date) + '</td><td class="tk">' + esc(S.displayTicker(t.ticker)) + '<small>' + (us ? "미국" : "한국") + '</small></td><td><span class="' + (t.side === "buy" ? "buy" : "sell") + '">' + (t.side === "buy" ? "매수" : "매도") + "</span></td><td>" + num(t.qty, 4) + "</td><td>" + (us ? "$" + num(t.price, 2) : "₩" + num(t.price)) + (us ? "<small>@" + num(t.fx, 1) + "</small>" : "") + "</td><td>" + krw(r.amt) + '</td><td class="' + cls(r.realized) + '">' + (r.realized == null ? "" : krw(r.realized)) + '</td><td><button class="icon-btn" data-del="' + esc(t.id) + '" aria-label="기록 삭제">×</button></td></tr>';
+            /* 날짜·구분·수량·체결가·환율 칸은 누르면 그 자리에서 고친다 */
+            var ed = function (f, v, html) { return '<span class="pf-ed" tabindex="0" title="눌러서 수정" data-ed="' + f + '" data-id="' + esc(t.id) + '" data-v="' + esc(v) + '">' + html + "</span>"; };
+            return "<tr><td>" + ed("date", t.date, esc(t.date)) + '</td><td class="tk">' + esc(S.displayTicker(t.ticker)) + '<small>' + (us ? "미국" : "한국") + '</small></td><td><span class="pf-ed ' + (t.side === "buy" ? "buy" : "sell") + '" tabindex="0" title="눌러서 매수↔매도 바꾸기" data-ed="side" data-id="' + esc(t.id) + '">' + (t.side === "buy" ? "매수" : "매도") + "</span></td><td>" + ed("qty", t.qty, num(t.qty, 4)) + "</td><td>" + ed("price", t.price, us ? "$" + num(t.price, 2) : "₩" + num(t.price)) + (us ? "<small>" + ed("fx", Number(t.fx) || "", "@" + num(t.fx, 1)) + "</small>" : "") + "</td><td>" + krw(r.amt) + '</td><td class="' + cls(r.realized) + '">' + (r.realized == null ? "" : krw(r.realized)) + '</td><td><button class="icon-btn" data-del="' + esc(t.id) + '" aria-label="기록 삭제">×</button></td></tr>';
           }).join("") + "</tbody></table></div></div>";
       }).join("") : '<div class="empty-row">매매 기록이 없습니다.</div>');
-    el.querySelectorAll("#tr-side button").forEach(function (b) { b.onclick = function () { tf.side = b.dataset.v; trades(el, state, id, onChange); }; });
-    el.querySelector("#tr-tk").onchange = function (e) { tf.tk = e.target.value; trades(el, state, id, onChange); };
+    el.querySelectorAll("#tr-side button").forEach(function (b) { b.onclick = function () { tf.side = b.dataset.v; trades(el, state, id, onChange, onEdit); }; });
+    el.querySelector("#tr-tk").onchange = function (e) { tf.tk = e.target.value; trades(el, state, id, onChange, onEdit); };
     el.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function () { if (!confirm("이 매매 기록을 삭제할까요?")) return; onChange(b.dataset.del); }; });
+    if (!onEdit) return;
+    el.querySelectorAll("[data-ed]").forEach(function (sp) {
+      var f = sp.dataset.ed, open = function () {
+        if (f === "side") { onEdit(sp.dataset.id, "side"); return; }
+        if (sp.querySelector("input")) return;
+        var old = sp.innerHTML, inp = document.createElement("input"), done = false;
+        inp.className = "pf-ed-in"; inp.type = f === "date" ? "date" : "number"; inp.value = sp.dataset.v;
+        if (f !== "date") { inp.step = "any"; inp.min = "0"; }
+        sp.innerHTML = ""; sp.appendChild(inp); inp.focus(); if (inp.select && f !== "date") inp.select();
+        var finish = function (save) {
+          if (done) return; done = true;
+          var v = f === "date" ? inp.value : Number(inp.value);
+          var ok = f === "date" ? /^\d{4}-\d{2}-\d{2}$/.test(v) : isFinite(v) && v > 0;
+          if (save && ok && String(v) !== String(sp.dataset.v)) onEdit(sp.dataset.id, f, v);   /* 저장되면 표 전체를 다시 그린다 */
+          else sp.innerHTML = old;
+        };
+        inp.onkeydown = function (e) { if (e.key === "Enter") finish(true); else if (e.key === "Escape") finish(false); e.stopPropagation(); };
+        inp.onblur = function () { finish(true); };
+        inp.onclick = function (e) { e.stopPropagation(); };
+      };
+      sp.onclick = open;
+      sp.onkeydown = function (e) { if (e.key === "Enter" && e.target === sp) { e.preventDefault(); open(); } };
+    });
   }
 
   /* ───────────── 과거 시세 ───────────── */

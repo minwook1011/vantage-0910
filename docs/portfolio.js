@@ -59,8 +59,11 @@
     }).join("") : '<tr><td colspan="8" class="empty-row">첫 매수 기록을 추가하면 보유 종목이 표시됩니다.</td></tr>';
   }
   function renderTransactions() {
-    var recent = state.transactions.filter(function (t) { return t.accountId === activeId; }).slice().sort(function (a,b) { return String(b.date).localeCompare(String(a.date)) || String(b.createdAt).localeCompare(String(a.createdAt)); }).slice(0,8);
-    document.getElementById("recent-transactions").innerHTML = recent.length ? recent.map(function (t) { return '<div class="tx-row"><span class="date">' + esc(t.date) + '</span><span class="market">' + (t.market === "US" ? "미국" : "한국") + '</span><b>' + esc(S.displayTicker(t.ticker)) + '</b><span class="' + (t.side === "buy" ? "buy" : "sell") + '">' + (t.side === "buy" ? "매수" : "매도") + '</span><span class="tx-price">' + num(t.qty,4) + '주 · ' + local(t.price,t.market) + '</span><button class="icon-btn" data-delete-tx="' + esc(t.id) + '" aria-label="기록 삭제">×</button></div>'; }).join("") : '<div class="empty-row">아직 매매 기록이 없습니다.</div>';
+    var mine = state.transactions.filter(function (t) { return t.accountId === activeId; }), recent = mine.slice().sort(function (a,b) { return String(b.date).localeCompare(String(a.date)) || String(b.createdAt).localeCompare(String(a.createdAt)); }).slice(0,8);
+    /* 여기는 최근 8건만 보여준다. 나머지가 사라진 것처럼 보이지 않게 전체 건수와 매매내역 탭으로 가는 길을 함께 둔다. */
+    var more = mine.length > recent.length ? '<button type="button" class="tx-more" id="tx-more">최근 ' + recent.length + '건만 표시 · 전체 ' + mine.length + '건 보기 →</button>' : '';
+    document.getElementById("recent-transactions").innerHTML = recent.length ? more + recent.map(function (t) { return '<div class="tx-row"><span class="date">' + esc(t.date) + '</span><span class="market">' + (t.market === "US" ? "미국" : "한국") + '</span><b>' + esc(S.displayTicker(t.ticker)) + '</b><span class="' + (t.side === "buy" ? "buy" : "sell") + '">' + (t.side === "buy" ? "매수" : "매도") + '</span><span class="tx-price">' + num(t.qty,4) + '주 · ' + local(t.price,t.market) + '</span><button class="icon-btn" data-delete-tx="' + esc(t.id) + '" aria-label="기록 삭제">×</button></div>'; }).join("") : '<div class="empty-row">아직 매매 기록이 없습니다.</div>';
+    var moreBtn = document.getElementById("tx-more"); if (moreBtn) moreBtn.onclick = function () { view = "trades"; try { localStorage.setItem("vantage-portfolio-view", view); } catch (e) {} renderView(); document.getElementById("view-tabs").scrollIntoView({ block: "start" }); };
     document.querySelectorAll("[data-delete-tx]").forEach(function (b) { b.onclick = function () { if (!confirm("이 매매 기록을 삭제할까요?")) return; state.transactions = state.transactions.filter(function (t) { return t.id !== b.dataset.deleteTx; }); S.save(state); render(); }; });
   }
   function renderLists() {
@@ -77,13 +80,22 @@
   try { view = localStorage.getItem("vantage-portfolio-view") || "status"; } catch (e) {}
   var perfKey = null;
   function removeTx(id) { state.transactions = state.transactions.filter(function (t) { return t.id !== id; }); S.save(state); perfKey = null; render(); }
+  /* 매매내역 표에서 칸을 눌러 고친 값 저장. side는 값 없이 오면 매수↔매도를 뒤집는다. */
+  function editTx(id, field, value) {
+    var t = state.transactions.filter(function (x) { return x.id === id; })[0]; if (!t) return;
+    if (field === "side") t.side = t.side === "sell" ? "buy" : "sell";
+    else if (field === "date") t.date = value;
+    else if (field === "qty" || field === "price" || field === "fx") t[field] = value;
+    else return;
+    S.save(state); perfKey = null; render(); refresh();
+  }
   function renderView() {
     document.querySelectorAll("#view-tabs button").forEach(function (b) { b.classList.toggle("on", b.dataset.view === view); });
     document.getElementById("view-status").hidden = view !== "status";
     document.getElementById("view-trades").hidden = view !== "trades";
     document.getElementById("view-perf").hidden = view !== "perf";
     if (!window.PortfolioPerf) return;
-    if (view === "trades") PortfolioPerf.trades(document.getElementById("trades-body"), state, activeId, removeTx);
+    if (view === "trades") PortfolioPerf.trades(document.getElementById("trades-body"), state, activeId, removeTx, editTx);
     if (view === "perf") {
       /* 과거 시세를 받아 다시 계산하는 건 무겁다 → 계좌나 매매 기록이 바뀌었을 때만 */
       var key = activeId + "|" + state.transactions.filter(function (t) { return t.accountId === activeId; }).map(function (t) { return t.id + t.qty + t.price + t.date + t.side; }).join(",");
