@@ -73,6 +73,126 @@
    "url": "https://en.wikipedia.org/wiki/VAST_Data"
   }
  ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "한 AI 클라우드의 저장 수요, 한 분기 만에 4배",
+   "sub": "PB · 석 달 전 3년 계획 vs 지난주 추가 요청",
+   "type": "bar",
+   "unit": "PB",
+   "labels": [
+    "3년 계획(석 달 전)",
+    "추가 요청(지난주)"
+   ],
+   "series": [
+    {
+     "name": "저장 용량",
+     "values": [
+      500,
+      2000
+     ]
+    }
+   ],
+   "note": "3년 치로 잡았던 500PB의 4배(2EB)를 한 분기 만에 더 달라고 했다 — 파는 쪽(Hallak)의 발언, 고객명·계약 규모는 비공개",
+   "source": "대본(Renen Hallak)"
+  },
+  {
+   "at": "summary",
+   "title": "랙 하나의 전력, 50배",
+   "sub": "kW · 5년 전 데이터센터 vs AI 팩토리",
+   "type": "bar",
+   "unit": "kW",
+   "labels": [
+    "예전 랙",
+    "AI 팩토리 랙"
+   ],
+   "series": [
+    {
+     "name": "랙당 전력",
+     "values": [
+      10,
+      500
+     ]
+    }
+   ],
+   "note": "전력·냉각·네트워크·저장까지 케이크의 모든 층을 새로 지어야 하는 이유",
+   "source": "대본(Renen Hallak)"
+  },
+  {
+   "at": "deep",
+   "title": "VAST Data 기업가치",
+   "sub": "억 달러 · 시리즈 E(2023년 말) → 시리즈 F(2026년 4월)",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "시리즈 E(23말)",
+    "시리즈 F(26.4)"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      91,
+      300
+     ]
+    }
+   ],
+   "note": "2년여 만에 3배 넘게 올랐다. 다만 시리즈 F 10억 달러 중 5억 달러 이상은 구주 매각(Calcalist)",
+   "source": "VAST Data 보도자료(시리즈 F)"
+  },
+  {
+   "at": "deep",
+   "title": "2026년 1분기 기업용 SSD 매출 상위 5개사",
+   "sub": "억 달러 · 2026년 1분기, 시장 전체 184.6억 달러(전 분기 대비 +86.1%)",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Samsung",
+    "SK hynix(Solidigm)",
+    "Micron",
+    "Kioxia",
+    "SanDisk"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      70.5,
+      46.4,
+      30.9,
+      22.2,
+      14.7
+     ]
+    }
+   ],
+   "note": "VAST는 소프트웨어만 판다 — 그 아래 깔리는 저장 매체의 수요는 이 회사들 실적으로 드러난다",
+   "source": "TrendForce"
+  },
+  {
+   "at": "deep",
+   "title": "'성장률+이익률' 지표 비교",
+   "sub": "% · VAST가 내세운 지표, 2026년 4월 기준",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "VAST Data",
+    "Palantir",
+    "Nutanix"
+   ],
+   "series": [
+    {
+     "name": "성장률+이익률",
+     "values": [
+      228,
+      127,
+      48
+     ]
+    }
+   ],
+   "note": "회사가 고른 지표이고 VAST 수치는 감사받은 매출 기반이 아니다",
+   "source": "Blocks & Files"
+  }
+ ],
  "tg": "[MAD] Renen Hallak(VAST Data) — GPU에 데이터를 대는 계층\n· 한 소형 AI 클라우드의 저장 수요가 3년 500PB에서 한 분기 만에 2EB 추가로 상향. 제약은 땅·전력·칩\n· 신제품 DataEnclave: 모델 가중치와 기업 데이터를 서로 가린 채 추론(2027년 1분기 정식 출시 예정)\n· 외부 자료: 1분기 기업용 SSD 매출 184.6억 달러(+86.1%), 계약가 약 80% 상승 — 삼성전자·SK하이닉스·Kioxia로 연결\n· 리스크: 네오클라우드 고객 쏠림, 하이퍼스케일러 자체 스토리지, 매출 지표(CARR 5억 달러 vs 추정 20억 달러) 불일치",
  "transcript_source": "youtube",
  "no_transcript": false,

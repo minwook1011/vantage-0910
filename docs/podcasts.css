@@ -58,3 +58,74 @@
   .pc .head { grid-template-columns:1fr; } .pc .hface { width:110px; height:110px; }
   .pc .meta { grid-template-columns:1fr; gap:2px; } .pc .meta dd { margin-bottom:8px; }
 }
+
+/* ---------- 밝은 화면 (2026-10-01) — 이 페이지만. 상단 메뉴는 공통 다크 그대로 ---------- */
+body.pc-light { background: #f4f6fa; }
+body.pc-light .pc {
+  --bg: #f4f6fa; --bg2: #eceff5; --card: #ffffff; --card-hover: #f5f7fb;
+  --border: #dde2eb; --border-strong: #c5ccda;
+  --text: #141923; --muted: #4a5366; --faint: #6f788c;
+  color: var(--text);
+}
+body.pc-light .pc a { color: #2553c4; }
+body.pc-light .pc .kicker a { color: inherit; }
+body.pc-light .pc .chips button { background: #fff; }
+body.pc-light .pc .chips button.on { color: #fff; background: #2f5fd0; border-color: #2f5fd0; }
+body.pc-light .pc .ep { background: #fff; box-shadow: 0 1px 2px rgba(20,30,50,.06); }
+body.pc-light .pc .ep:hover { border-color: #2f5fd0; box-shadow: 0 4px 14px rgba(20,30,50,.08); }
+body.pc-light .pc .ep.wait .t { color: var(--text); }
+body.pc-light .pc .ep .who { color: #36405a; }
+body.pc-light .pc .face, body.pc-light .pc .hface { background: #e6eaf2; }
+body.pc-light .pc .head { background: radial-gradient(600px 240px at 0% 0%, rgba(47,95,208,.08), transparent 70%), #fff; box-shadow: 0 1px 3px rgba(20,30,50,.06); }
+body.pc-light .pc .hface { box-shadow: 0 6px 18px rgba(20,30,50,.12); }
+body.pc-light .pc .btn { background: #fff; }
+body.pc-light .pc .btn.pri { background: #2f5fd0; border-color: #2f5fd0; color: #fff !important; }
+body.pc-light .pc .btn.pri small { color: #dfe7ff; }
+body.pc-light .pc .tldr { border-left-color: #2f5fd0; }
+/* 본문: 공통 .note 의 명조·옅은 회색 대신 고딕·진한 글자 */
+body.pc-light .pc .note { font-family: var(--sans); color: #1d2330; font-size: 15px; line-height: 1.9; max-width: none; padding: 18px 22px; }
+body.pc-light .pc .note h3 { color: #0f1420; font-size: 16.5px; }
+body.pc-light .pc .note h3 + ul, body.pc-light .pc .note h3 + p { margin-top: 8px; }
+body.pc-light .pc .note li { margin: 5px 0; }
+body.pc-light .pc .note b { color: #0b0f19; font-weight: 700; }
+body.pc-light .pc .note blockquote { color: #36405a; }
+body.pc-light .pc .tldr { font-size: 15px; color: #1d2330; }
+body.pc-light .pc section > h2 { color: #0f1420; }
+body.pc-light .pc .pending { background: #fff; }
+
+
+/* 글자 위계 (2026-10-01): 제목·핵심 요약은 크게, 섹션·챕터 제목을 본문과 구분 */
+body.pc-light .pc h1 { font-size: 32px; font-weight: 800; letter-spacing: -.03em; }
+body.pc-light .pc .head h1 { font-size: 30px; line-height: 1.35; margin-bottom: 16px; }
+body.pc-light .pc .meta { font-size: 16px; grid-template-columns: 110px minmax(0,1fr); gap: 10px 14px; }
+body.pc-light .pc .meta dt { font-size: 14px; font-weight: 700; }
+body.pc-light .pc .head .showline { font-size: 13.5px; }
+body.pc-light .pc .btn { font-size: 14px; padding: 9px 15px; }
+body.pc-light .pc .ep b.t { font-size: 17.5px; }
+body.pc-light .pc .ep .hl { font-size: 14px; }
+body.pc-light .pc section { margin-top: 34px; }
+body.pc-light .pc section > h2 { font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 14px; }
+body.pc-light .pc section.key .tldr { font-size: 18px; line-height: 1.75; font-weight: 500; padding: 20px 22px 20px 42px; background: #f0f4ff; border-color: #cfdaf5; border-left: 4px solid #2f5fd0; }
+body.pc-light .pc section.key .tldr li { margin: 8px 0; }
+body.pc-light .pc section.key .tldr b { color: #0b1a45; }
+body.pc-light .pc .note h3 { font-size: 19px; font-weight: 800; margin-top: 26px; padding-top: 16px; border-top: 1px solid #edf0f5; }
+body.pc-light .pc .note h3:first-child { border-top: 0; padding-top: 0; margin-top: 4px; }
+body.pc-light .pc .note h4 { font-size: 16.5px; font-weight: 700; }
+@media (max-width:640px) {
+  body.pc-light .pc .head h1 { font-size: 24px; } body.pc-light .pc section > h2 { font-size: 21px; }
+  body.pc-light .pc section.key .tldr { font-size: 16.5px; } body.pc-light .pc .meta { font-size: 15px; grid-template-columns: 1fr; }
+}
+/* 그래프 */
+.pc .chart { margin: 14px 0 0; padding: 16px 18px 12px; background: #fff; border: 1px solid var(--border); border-radius: 12px; }
+.pc .chart figcaption b { display: block; font-size: 16px; color: var(--text); }
+.pc .chart figcaption span { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+.pc .chart svg { display: block; width: 100%; height: auto; margin-top: 10px; }
+.pc .chart .cg { stroke: #e7eaf0; } .pc .chart .ca { fill: #6f788c; font: 11px var(--sans); }
+.pc .chart .cl { fill: #1d2330; font: 600 12.5px var(--sans); } .pc .chart .cv { fill: #1d2330; font: 700 11.5px var(--sans); }
+.pc .chart .leg { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.pc .chart .leg i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.pc .chart .cnote { margin-top: 8px; font-size: 12px; color: var(--faint); line-height: 1.6; }
+/* 챕터 제목은 md 의 ### → h4 로 그려진다 */
+body.pc-light .pc .note h4 { font-size: 19px; font-weight: 800; color: #0f1420; margin: 26px 0 8px; padding-top: 16px; border-top: 1px solid #edf0f5; }
+body.pc-light .pc .note h4:first-child { border-top: 0; padding-top: 0; margin-top: 4px; }
+body.pc-light .pc .note h3 { font-size: 20px; }

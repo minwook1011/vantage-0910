@@ -46,6 +46,62 @@
     close();
     return out.join("");
   }
+  /* ── 그래프: ep.charts[] → 인라인 SVG ──
+   * {title, sub, type:"bar"|"hbar"|"line", unit, labels:[..], series:[{name, values:[..]}], note, source, at:"tldr"|"summary"|"insights"|"deep"} */
+  var PAL = ["#2f5fd0", "#e0782c", "#2f9a6a", "#9b59c6", "#c93447", "#5b6475"];
+  function fmt(v) { var a = Math.abs(v); return a >= 100 ? Math.round(v).toLocaleString("ko-KR") : a >= 10 ? (Math.round(v * 10) / 10).toLocaleString("ko-KR") : (Math.round(v * 100) / 100).toLocaleString("ko-KR"); }
+  function chartSvg(c) {
+    var L = c.labels || [], S = (c.series || []).filter(function (s) { return s && s.values; }), W = 640, type = c.type || "bar";
+    if (!L.length || !S.length) return "";
+    var all = []; S.forEach(function (s) { s.values.forEach(function (v) { if (v != null && isFinite(v)) all.push(+v); }); });
+    var hi = Math.max.apply(null, all.concat([0])), lo = Math.min.apply(null, all.concat([0])); if (hi === lo) hi = lo + 1;
+    var g = [], u = c.unit ? " " + c.unit : "";
+    if (type === "hbar") {
+      var rowH = 30, lw = 170, H = L.length * rowH * Math.max(1, S.length) + 10, x0 = lw, x1 = W - 90;
+      var X = function (v) { return x0 + (v - lo) / (hi - lo) * (x1 - x0); };
+      L.forEach(function (lab, i) {
+        S.forEach(function (s, j) {
+          var v = s.values[i]; if (v == null) return;
+          var y = 6 + (i * S.length + j) * rowH, xa = X(Math.min(0, v)), xb = X(Math.max(0, v));
+          if (j === 0) g.push('<text x="' + (lw - 10) + '" y="' + (y + rowH / 2 + 4) + '" text-anchor="end" class="cl">' + esc(lab) + "</text>");
+          g.push('<rect x="' + xa.toFixed(1) + '" y="' + (y + 5) + '" width="' + Math.max(1, xb - xa).toFixed(1) + '" height="' + (rowH - 10) + '" rx="4" fill="' + PAL[j % PAL.length] + '"/>');
+          g.push('<text x="' + (xb + 6).toFixed(1) + '" y="' + (y + rowH / 2 + 4) + '" class="cv">' + fmt(v) + esc(u) + "</text>");
+        });
+      });
+      return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' + esc(c.title) + '">' + g.join("") + "</svg>";
+    }
+    var H2 = 260, l = 50, r = 14, t = 18, b = 46, n = L.length;
+    var Y = function (v) { return t + (hi - v) / (hi - lo) * (H2 - t - b); };
+    for (var k = 0; k <= 4; k++) { var gv = lo + (hi - lo) * k / 4, gy = Y(gv); g.push('<line x1="' + l + '" x2="' + (W - r) + '" y1="' + gy.toFixed(1) + '" y2="' + gy.toFixed(1) + '" class="cg"/><text x="' + (l - 6) + '" y="' + (gy + 4).toFixed(1) + '" text-anchor="end" class="ca">' + fmt(gv) + "</text>"); }
+    var slot = (W - l - r) / n;
+    L.forEach(function (lab, i) { g.push('<text x="' + (l + slot * (i + .5)).toFixed(1) + '" y="' + (H2 - b + 18) + '" text-anchor="middle" class="ca">' + esc(lab) + "</text>"); });
+    if (type === "line") {
+      S.forEach(function (s, j) {
+        var pts = []; s.values.forEach(function (v, i) { if (v != null) pts.push([l + slot * (i + .5), Y(v), v]); });
+        g.push('<polyline fill="none" stroke="' + PAL[j % PAL.length] + '" stroke-width="2.5" points="' + pts.map(function (q) { return q[0].toFixed(1) + "," + q[1].toFixed(1); }).join(" ") + '"/>');
+        pts.forEach(function (q, i) { g.push('<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="3.5" fill="' + PAL[j % PAL.length] + '"/>'); if (S.length === 1 || i === pts.length - 1) g.push('<text x="' + q[0].toFixed(1) + '" y="' + (q[1] - 8).toFixed(1) + '" text-anchor="middle" class="cv">' + fmt(q[2]) + "</text>"); });
+      });
+    } else {
+      var bw = Math.min(46, slot * .7 / S.length);
+      L.forEach(function (lab, i) {
+        S.forEach(function (s, j) {
+          var v = s.values[i]; if (v == null) return;
+          var x = l + slot * (i + .5) - bw * S.length / 2 + bw * j, ya = Y(Math.max(0, v)), yb = Y(Math.min(0, v));
+          g.push('<rect x="' + x.toFixed(1) + '" y="' + ya.toFixed(1) + '" width="' + (bw - 3).toFixed(1) + '" height="' + Math.max(1, yb - ya).toFixed(1) + '" rx="3" fill="' + PAL[j % PAL.length] + '"/>');
+          g.push('<text x="' + (x + (bw - 3) / 2).toFixed(1) + '" y="' + (ya - 5).toFixed(1) + '" text-anchor="middle" class="cv">' + fmt(v) + "</text>");
+        });
+      });
+    }
+    return '<svg viewBox="0 0 ' + W + " " + H2 + '" role="img" aria-label="' + esc(c.title) + '">' + g.join("") + "</svg>";
+  }
+  function charts(E, at) {
+    return (E.charts || []).filter(function (c) { return (c.at || "tldr") === at; }).map(function (c) {
+      var S = c.series || [];
+      return '<figure class="chart"><figcaption><b>' + esc(c.title) + "</b>" + (c.sub ? "<span>" + esc(c.sub) + "</span>" : "") + "</figcaption>" +
+        (S.length > 1 ? '<div class="leg">' + S.map(function (s, j) { return '<span><i style="background:' + PAL[j % PAL.length] + '"></i>' + esc(s.name) + "</span>"; }).join("") + "</div>" : "") +
+        chartSvg(c) + ((c.note || c.source) ? '<p class="cnote">' + (c.note ? esc(c.note) : "") + (c.source ? (c.note ? " · " : "") + "출처: " + esc(c.source) : "") + "</p>" : "") + "</figure>";
+    }).join("");
+  }
   function titleOf(row, E) { return (E && E.title_ko) || row.title_ko || (row.summary && row.summary.title_ko) || row.title; }
 
   /* ── 목록 ── */
@@ -97,10 +153,10 @@
       html += '<div class="pending">📝 아직 요약 전입니다. 예약 작업이 하루 3번 새 에피소드를 확인해 요약과 딥 리서치를 씁니다.</div>' +
         (row.desc_ko ? '<section><h2>방송 소개</h2><div class="note"><p>' + esc(row.desc_ko) + "</p></div></section>" : "");
     } else {
-      if (E.tldr && E.tldr.length) html += '<section><h2>핵심 요약</h2><ul class="tldr">' + E.tldr.map(function (x) { return "<li>" + md(x).replace(/^<p>|<\/p>$/g, "") + "</li>"; }).join("") + "</ul></section>";
-      if (E.summary_md) html += '<section><h2>내용 정리</h2><div class="note">' + md(E.summary_md) + "</div></section>";
-      if (E.insights_md) html += '<section><h2>투자 관점에서</h2><div class="note">' + md(E.insights_md) + "</div></section>";
-      if (E.deep_md) html += '<section><h2>딥 리서치</h2><div class="note">' + md(E.deep_md) + "</div></section>";
+      if (E.tldr && E.tldr.length) html += '<section class="key"><h2>핵심 요약</h2><ul class="tldr">' + E.tldr.map(function (x) { return "<li>" + md(x).replace(/^<p>|<\/p>$/g, "") + "</li>"; }).join("") + "</ul>" + charts(E, "tldr") + "</section>";
+      if (E.summary_md) html += '<section><h2>내용 정리</h2><div class="note">' + md(E.summary_md) + "</div>" + charts(E, "summary") + "</section>";
+      if (E.insights_md) html += '<section><h2>투자 관점에서</h2><div class="note">' + md(E.insights_md) + "</div>" + charts(E, "insights") + "</section>";
+      if (E.deep_md) html += '<section><h2>딥 리서치</h2><div class="note">' + md(E.deep_md) + "</div>" + charts(E, "deep") + "</section>";
       if (E.sources && E.sources.length) html += '<section><h2>출처</h2><ul class="tldr">' + E.sources.map(function (x) { return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.label || x.url) + "</a></li>"; }).join("") + "</ul></section>";
       if (E.no_transcript) html += '<div class="pending">대본을 구하지 못해 방송 소개글로만 요약했습니다.</div>';
       html += '<div class="foot">요약 작성 ' + esc(E.written || "") + (E.transcript_source ? " · 대본 출처: " + esc({ page: "에피소드 페이지", youtube: "유튜브 자막", audio: "오디오 받아쓰기", none: "없음" }[E.transcript_source] || E.transcript_source) : "") + "</div>";

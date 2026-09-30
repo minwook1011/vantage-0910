@@ -73,6 +73,106 @@
    "url": "https://colossus.com/episode/instinct-the-personal-agent/"
   }
  ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Instinct 기업가치, 한 달 만에 4배",
+   "sub": "억 달러 · 2026년 8월 시리즈 B → 9월 28일 시리즈 C",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "시리즈 B(26.8)",
+    "시리즈 C(26.9)"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      25,
+      100
+     ]
+    }
+   ],
+   "note": "초대제·마케팅 0달러·직원 14명 회사에 매겨진 값 — 거래액·사용자 수는 모두 회사 발표",
+   "source": "TechCrunch(2026-09-28)"
+  },
+  {
+   "at": "summary",
+   "title": "Shinn이 비교한 수수료 수준",
+   "sub": "% · 대본에서 든 비교 대상(범위는 하단값)",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "결제망(카드)",
+    "Shopify",
+    "Amazon",
+    "Apple 앱 결제"
+   ],
+   "series": [
+    {
+     "name": "수수료율",
+     "values": [
+      2,
+      2.5,
+      10,
+      30
+     ]
+    }
+   ],
+   "note": "결제망 2~2.5%, Shopify 2.5~3%, Amazon '10% 이상'의 하단값. Instinct는 결제망이 아닌 유통 수수료 구간을 노리며 요율은 미정",
+   "source": "대본(Noah Shinn)"
+  },
+  {
+   "at": "insights",
+   "title": "대본 속 사용·신뢰 지표",
+   "sub": "% · 녹음 시점, 회사 발표",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "거래액 중 여행",
+    "3주 내 카드 등록",
+    "민감정보 공유 후 유지율"
+   ],
+   "series": [
+    {
+     "name": "비율",
+     "values": [
+      50,
+      40,
+      80
+     ]
+    }
+   ],
+   "note": "민감 정보를 한 번 맡기면 잘 떠나지 않는다는 것이 신뢰 지표의 요지 — 외부 검증 없음",
+   "source": "대본(Noah Shinn)"
+  },
+  {
+   "at": "deep",
+   "title": "Muse 우려가 번진 날의 주가 등락",
+   "sub": "% · 2026년 9월 23일 하루",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Expedia",
+    "Airbnb",
+    "Booking",
+    "Meta"
+   ],
+   "series": [
+    {
+     "name": "등락률",
+     "values": [
+      -7,
+      -6,
+      -5,
+      2
+     ]
+    }
+   ],
+   "note": "에이전트가 항공사·호텔에 직접 예약할 수 있다는 우려에 중개사는 빠지고 창구를 쥔 Meta는 올랐다",
+   "source": "24/7 Wall St.(2026-09-23)"
+  }
+ ],
  "tg": "[ILB] Noah Shinn(Instinct) — 앱 없는 개인 에이전트\n· 하루 10~11% 성장(마케팅 0달러), 연 거래액 10억 달러 안팎, 그중 여행 50%\n· 3주 내 카드 등록 40%, 민감 정보 공유 뒤 유지율 80%. 수익은 광고가 아닌 거래 수수료(요율 미정)\n· 최대 고민은 연산 자원: 수요 주간 2배, 증설 몇 달, 급히 사면 3~4배\n· 외부: 시리즈 C 10억 달러·기업가치 100억 달러. 약관·보안 논란, Amazon의 Muse 차단, 여행주 하락이 리스크·맥락",
  "youtube": "https://www.youtube.com/watch?v=Am7IWP8IpEc",
  "image": "https://i.ytimg.com/vi/Am7IWP8IpEc/hqdefault.jpg",

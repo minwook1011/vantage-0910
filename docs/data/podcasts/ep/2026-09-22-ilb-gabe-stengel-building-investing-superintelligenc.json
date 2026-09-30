@@ -73,6 +73,78 @@
    "url": "https://www.moelis.com/team/navid-mahmoodzadegan/"
   }
  ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Rogo 라운드별 투자 유치",
+   "sub": "억 달러 · 2024년 10월 시리즈 A → 2026년 4월 시리즈 D",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "A(24.10)",
+    "B(25.4)",
+    "C(26.1)",
+    "D(26.4)"
+   ],
+   "series": [
+    {
+     "name": "유치 금액",
+     "values": [
+      1.85,
+      5,
+      7.5,
+      16
+     ]
+    }
+   ],
+   "note": "18개월 사이 라운드 규모가 약 9배. 기업가치는 시리즈 C 7.5억 달러 → 시리즈 D 약 20억 달러(보도 기준)",
+   "source": "Contrary Research·Rogo 공식 발표(시리즈 D)"
+  },
+  {
+   "at": "deep",
+   "title": "기업가치 ÷ 연간 반복 매출",
+   "sub": "배 · Rogo(2026년 8월 추정) vs AlphaSense(2026년 6월 라운드)",
+   "type": "hbar",
+   "unit": "배",
+   "labels": [
+    "Rogo",
+    "AlphaSense"
+   ],
+   "series": [
+    {
+     "name": "배수",
+     "values": [
+      38,
+      12.5
+     ]
+    }
+   ],
+   "note": "Rogo 20억 ÷ 0.53억, AlphaSense 75억 ÷ 6억의 단순 계산 — Rogo 매출은 Sacra 추정",
+   "source": "Sacra(Rogo)·QuantLogix(AlphaSense), 단순 계산"
+  },
+  {
+   "at": "deep",
+   "title": "현재 매출 추정치와 Stengel의 매출 구상",
+   "sub": "억 달러 · 2026년 8월 추정 ARR vs 대본의 '매출 50억 달러'",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "현재 추정 ARR",
+    "Stengel 구상"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      0.53,
+      50
+     ]
+    }
+   ],
+   "note": "구상은 현재 추정치의 약 100배 — Stengel 스스로도 확률이 낮은 시나리오처럼 말했다",
+   "source": "Sacra(추정 ARR)·대본(구상)"
+  }
+ ],
  "tg": "[ILB] Gabe Stengel(Rogo) — 투자은행·사모시장용 AI 에이전트\n· 10년 뒤 최고 투자회사 가치의 90%는 소프트웨어·데이터·시스템에 있을 것이라는 주장. 금융권 AI 구매 결정 창은 18개월\n· 연구소와는 직각으로: 감사 추적·데이터룸·내부 시스템 연동. 가격은 좌석 → 성과 과금을 지향\n· 외부 자료: 기업가치 약 20억 달러, 추정 연간 반복 매출 5,300만 달러(약 38배), 사용자 3만 5천 명 이상\n· 리스크: Anthropic·OpenAI의 금융 에이전트 직접 진출, 자체 데이터 부재, 딜 경기 의존. 진행자가 주주·회사가 광고주",
  "youtube": "https://www.youtube.com/watch?v=B0illwrqUG0",
  "image": "https://i.ytimg.com/vi/B0illwrqUG0/hqdefault.jpg",
