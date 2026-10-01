@@ -2,8 +2,10 @@ name: kr-companies-update
 
 on:
   schedule:
-    - cron: "40 7 * * 1-5"   # 16:40 KST 장 마감 후 주가·실적 갱신
-    - cron: "10 23 * * 0-4"  # 08:10 KST 전일 공시·컨센서스 반영
+    # 하루 3번(평일). 정각·30분은 GitHub가 몰려서 몇 시간씩 밀리거나 빠지므로 어중간한 분에 건다.
+    - cron: "17 23 * * 0-4"  # 08:17 KST 장 전 — 전일 공시·컨센서스 반영
+    - cron: "47 3 * * 1-5"   # 12:47 KST 장중 — 주가
+    - cron: "17 7 * * 1-5"   # 16:17 KST 장 마감 후 — 주가·실적
   workflow_dispatch:
   push:
     branches: [main]

@@ -32,7 +32,8 @@
   function md(t) {
     if (!t) return "";
     var out = [], list = null;
-    function inl(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>'); }
+    // __핵심 단어__ → 밑줄(섹션마다 몇 개만), **굵게**, [링크](url)
+    function inl(s) { return esc(s).replace(/__(.+?)__/g, '<u class="kw">$1</u>').replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>'); }
     function close() { if (list) { out.push("</" + list + ">"); list = null; } }
     String(t).split(/\n/).forEach(function (ln) {
       var m;

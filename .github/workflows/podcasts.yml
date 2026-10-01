@@ -1,0 +1,53 @@
+name: podcasts-detect
+
+# 팟캐스트 새 에피소드 감지만 GitHub에서 한다(RSS는 GitHub 서버에서도 잘 열림).
+# 회사 PC가 꺼져 있어도 새 편이 사이트 목록에 바로 뜨게 하려는 것 — 요약·번역·텔레그램은 회사 PC 예약 작업(07·13·20시)이 한다.
+# 회사 PC 작업 10여 분 전에 돌려 겹치지 않게 한다. 정각·30분은 GitHub가 몰려 밀리므로 피한다.
+on:
+  schedule:
+    - cron: "47 21 * * *"   # 06:47 KST
+    - cron: "47 3 * * *"    # 12:47 KST
+    - cron: "47 10 * * *"   # 19:47 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: podcasts-detect
+  cancel-in-progress: false
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 새 에피소드 찾기
+        run: python fetch_podcasts.py
+      - name: 저장
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/podcasts/index.json
+          # 새 편이 없고 갱신 시각만 바뀐 경우는 커밋하지 않는다
+          if git diff --cached -U0 | grep '^[+-] ' | grep -vq '"updated"'; then
+            git commit -m "podcast: 새 에피소드 감지 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: 사이트 미게시 변경 복구
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py

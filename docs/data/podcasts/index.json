@@ -1,6 +1,38 @@
 {
- "updated": "2026-09-30 20:41 KST",
+ "updated": "2026-10-02 08:28 KST",
  "episodes": [
+  {
+   "id": "2026-10-02-dwarkesh-si-sheppard-how-did-a-few-hundred-spanish-soldie",
+   "show": "dwarkesh",
+   "show_name": "Dwarkesh Podcast",
+   "title": "Si Sheppard – How did a few hundred Spanish soldiers topple two empires?",
+   "date": "2026-10-02",
+   "published": "2026-10-02 00:28 KST",
+   "link": "https://www.dwarkesh.com/p/si-sheppard",
+   "audio": "https://api.substack.com/feed/podcast/218345956/4b5f7bc6865a6ab2f2eeea047dff6d8b.mp3",
+   "duration": "1:37:23",
+   "desc": "New episode with military historian Si Sheppard . The conquests of the Aztec and Inca empires might be the most shocking events in human history. Hernan Cortés and some hundreds of Conquistadors landed on a new continent they knew basically nothing about, and within 2 and a half years, conquered the 6 million strong Aztec empire. Then, a decade later, Francisco Pizarro did the same thing to an Incan Empire of some 10 million inhabitants. In both cases, the Conquistadors consistently beat native armies while being literally 100x (or even in some cases 1000x) outnumbered - and in many cases, did…",
+   "status": "new",
+   "found": "2026-10-02 08:28 KST",
+   "image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/c3Vic3RhY2s6cG9zdDoyMTgzNDU5NTY.jpg",
+   "show_image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/show.jpg"
+  },
+  {
+   "id": "2026-10-01-mad-why-ai-agents-cheat-eric-ho-goodfire",
+   "show": "mad",
+   "show_name": "The MAD Podcast",
+   "title": "Why AI Agents Cheat | Eric Ho (Goodfire)",
+   "date": "2026-10-01",
+   "published": "2026-10-01 20:30 KST",
+   "link": "https://podcasters.spotify.com/pod/show/firstmark/episodes/Why-AI-Agents-Cheat--Eric-Ho-Goodfire-e3pm35t",
+   "audio": "https://anchor.fm/s/f2ee4948/podcast/play/126601853/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-1%2F433056255-44100-2-a80cb98b4a574.mp3",
+   "duration": "01:10:27",
+   "desc": "This summer, AI agents broke out of their test sandboxes at every major lab and hacked real companies, and the safety tests didn't see it coming. Eric Ho is the co-founder and CEO of Goodfire, the Anthropic-backed mechanistic interpretability lab whose new paper, \"Models Know When They're Reward Hacking,\" found that top open-source AI models cheat on agent tasks up to 96% of the time, that a clear \"cheating\" signal exists inside the model, and that cheap activation probes can catch it, including hacks that chain-of-thought monitors miss. In this conversation, Eric explains reward hacking in pl…",
+   "status": "new",
+   "found": "2026-10-02 08:28 KST",
+   "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
+   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg"
+  },
   {
    "id": "2026-09-28-ca-nancy-zimmerman-people-process-and-fixed-income",
    "show": "ca",

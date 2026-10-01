@@ -116,7 +116,7 @@ def podcast_message(ep, ix_row):
     if c.get("name"):
         lines.append(f"🏢 {esc(c['name'])}" + (f" ({esc(c.get('sector'))})" if c.get("sector") else ""))
     if ep.get("tg"):
-        lines += ["", esc(ep["tg"])]
+        lines += ["", esc(ep["tg"].replace("__", ""))]   # 사이트용 밑줄 표시는 빼고 보낸다
     lines.append("")
     lines.append(f"📝 요약·분석: {SITE}podcasts.html?id={ep['id']}")
     if ep.get("artifact_url"):
