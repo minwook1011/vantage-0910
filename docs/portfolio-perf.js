@@ -1,6 +1,8 @@
 /* portfolio-perf.js — 포트폴리오 › 계좌별 「매매내역」「수익률 평가」
  * PortfolioPerf.trades(el, state, accountId, onChange, onEdit)  전체 매매내역(월별 묶음·실현손익·필터·삭제·칸 클릭 수정)
  * PortfolioPerf.perf(el, state, accountId)              계좌 수익률 vs 지수 그래프 + 기간별 매매 변동
+ *   └ 총자산 | 국내 | 해외 탭(2026-10-02): 국내 = 한국 종목만(처음 산 날부터 코스피·코스닥과), 해외 = 미국 종목만(달러 기준으로 S&P500·나스닥과, 원화 환산도 표시)
+ *     봉차트(일·주·월) ↔ 선 그래프, 월별 ↔ 일별 표
  *
  * 수익률 계산(총자산 기준 시간가중수익률): 주식 평가액(보유 수량 × 그날 종가, 미국은 그날 환율) + 예수금(매매로 역산)을 총자산으로 보고,
  * 입금·출금만 외부 자금 흐름으로 뺀다(자세한 가정은 compute 위 주석).
@@ -10,7 +12,10 @@
   "use strict";
   var S = window.PortfolioStore;
   var BENCH = [["^KS11", "코스피", "#f0b429"], ["^KQ11", "코스닥", "#9b7bff"], ["^GSPC", "S&P500", "#34d399"], ["^IXIC", "나스닥", "#5bc0eb"]];
-  var CACHE = "vantage-px-hist-v1", BSEL = "vantage-perf-bench", RSEL = "vantage-perf-range";
+  var CACHE = "vantage-px-hist-v1", BSEL = "vantage-perf-bench", RSEL = "vantage-perf-range", VSEL = "vantage-perf-view";
+  var SEGS = [["all", "총자산"], ["KR", "국내"], ["US", "해외"]];
+  var SEG_BENCH = { KR: ["^KS11", "^KQ11"], US: ["^GSPC", "^IXIC"] };
+  var SEG_NAME = { all: "내 계좌", KR: "국내 종목", US: "해외 종목" };
   var RANGES = [["1M", 1], ["3M", 3], ["6M", 6], ["YTD", "ytd"], ["1Y", 12], ["전체", 0]];
   var ACC = "#f0475a";
 
@@ -232,8 +237,40 @@
     return { series: series, principal: deposits - withdrawn, deposits: deposits, withdrawn: withdrawn, c0: c0 };
   }
 
+  /* ───────────── 국내·해외 따로(주식만, 시간가중) ─────────────
+     그 시장 종목만 본다. 하루 수익률 = (오늘 평가액 − 오늘 순매수) / 어제 평가액 − 1.
+     처음 산 날은 (그날 종가 평가액 / 매수액 − 1) — 체결가에서 종가까지의 손익부터 들어간다.
+     해외는 달러 기준(지수와 같은 통화)으로 계산하고, 환율까지 넣은 원화 기준(idxK)도 따로 쌓는다. */
+  function segCompute(state, txs, H, fxH, dates, mkt) {
+    var T = txs.filter(function (t) { return (t.market === "KR" ? "KR" : "US") === mkt; });
+    if (!T.length) return null;
+    var fxNow = Number(state.fx && state.fx.price) || 1350, fx = ffill(fxH, dates), px = {};
+    T.forEach(function (t) { var k = keyOf(t); if (!(k in px)) px[k] = H[k] ? ffill(H[k], dates) : null; });
+    var qty = {}, ti = 0, pv = 0, pvk = 0, idx = 1, idxK = 1, out = [], start = -1, inv = 0, invK = 0;
+    for (var i = 0; i < dates.length; i++) {
+      var d = dates[i], nb = 0, nbK = 0, dayT = [];
+      while (ti < T.length && T[ti].date <= d) {
+        var t = T[ti++], k = keyOf(t), q = Number(t.qty) || 0, a = q * (Number(t.price) || 0), aK = amtKrw(t, state);
+        if (t.side === "sell") { var sq = Math.min(q, qty[k] || 0), fr = q ? sq / q : 0; qty[k] = (qty[k] || 0) - sq; nb -= a * fr; nbK -= aK * fr; }
+        else { qty[k] = (qty[k] || 0) + q; nb += a; nbK += aK; }
+        dayT.push(t);
+      }
+      var V = 0, VK = 0, f = mkt === "US" ? (fx[i] || fxNow) : 1;
+      Object.keys(qty).forEach(function (k) { if (!(qty[k] > 1e-9)) return; var p = px[k] && px[k][i]; if (p == null) return; V += qty[k] * p; VK += qty[k] * p * f; });
+      var r = pv > 0 ? (V - nb) / pv - 1 : nb > 0 ? V / nb - 1 : 0;
+      var rk = pvk > 0 ? (VK - nbK) / pvk - 1 : nbK > 0 ? VK / nbK - 1 : 0;
+      if (!isFinite(r) || Math.abs(r) > 0.6) r = 0;
+      if (!isFinite(rk) || Math.abs(rk) > 0.6) rk = 0;
+      if (start < 0 && nb > 0) start = i;
+      idx *= 1 + r; idxK *= 1 + rk; inv += nb; invK += nbK;
+      out.push({ d: d, idx: idx, idxK: idxK, v: V, vk: VK, tot: VK, cash: 0, nb: nbK, nbL: nb, t: dayT, inv: inv, invK: invK });
+      pv = V; pvk = VK;
+    }
+    return { series: out, start: Math.max(0, start), mkt: mkt };
+  }
+
   /* ───────────── 수익률 평가 ───────────── */
-  var P = { el: null, data: null, sel: null, benches: null, range: null, run: 0 };
+  var P = { el: null, data: null, sel: null, benches: null, range: null, run: 0, seg: "all", view: null };
   async function perf(el, state, id, opt) {
     opt = opt || {};
     P.el = el;
@@ -241,6 +278,7 @@
     var txs = txsOf(state, id);
     if (!txs.length) { el.innerHTML = '<div class="empty-row">매매 기록이 있어야 수익률을 계산할 수 있습니다.</div>'; return; }
     P.benches = lsGet(BSEL, ["^KS11", "^GSPC"]); P.range = lsGet(RSEL, "전체");
+    P.view = lsGet(VSEL, { seg: "all", chart: "candle", tf: "D", tbl: "M" }); P.seg = P.view.seg || "all";
     var from = txs[0].date, keys = {};
     txs.forEach(function (t) { keys[keyOf(t)] = 1; });
     var K = Object.keys(keys), H = {}, status = {};
@@ -262,7 +300,8 @@
       var res = compute(state, acct, txs, HH, fxH, dates);
       var bs = {}; BENCH.forEach(function (b) { bs[b[0]] = B[b[0]] ? ffill(B[b[0]], dates) : null; });
       var keep = P.data && P.data.dates && P.sel ? [P.data.dates[P.sel[0]], P.data.dates[P.sel[1]]] : null;
-      P.data = { state: state, acct: acct, txs: txs, dates: dates, s: res.series, bs: bs, res: res, status: status, K: K };
+      P.data = { state: state, acct: acct, txs: txs, dates: dates, s: res.series, bs: bs, res: res, status: status, K: K,
+                 segs: { KR: segCompute(state, txs, HH, fxH, dates, "KR"), US: segCompute(state, txs, HH, fxH, dates, "US") } };
       P.sel = keep ? [Math.max(0, dates.indexOf(keep[0])), Math.max(0, dates.indexOf(keep[1]))] : null;
       if (P.sel && (P.sel[1] <= P.sel[0])) P.sel = null;
       draw();
@@ -292,14 +331,18 @@
   function mdd(s, a, b) { var pk = -1, m = 0; for (var i = a; i <= b; i++) { pk = Math.max(pk, s[i].idx); m = Math.min(m, s[i].idx / pk - 1); } return m * 100; }
 
   function draw() {
-    var D = P.data, el = P.el, s = D.s, dates = D.dates, n = dates.length;
-    var a = rangeStart(dates), b = n - 1;
+    var D = P.data, el = P.el;
+    var seg = P.seg = (P.seg === "all" || (D.segs[P.seg])) ? P.seg : "all", SG = seg === "all" ? null : D.segs[seg];
+    D.cs = SG ? SG.series : D.s; D.seg = seg;
+    var s = D.cs, dates = D.dates, n = dates.length;
+    var a = Math.max(rangeStart(dates), SG ? SG.start : 0), b = n - 1;
+    if (a >= b) a = Math.max(0, b - 1);
     var sel = P.sel || [a, b];
-    var bsel = BENCH.filter(function (x) { return P.benches.indexOf(x[0]) >= 0 && D.bs[x[0]]; });
+    var bsel = BENCH.filter(function (x) { return (SG ? SEG_BENCH[seg] : P.benches).indexOf(x[0]) >= 0 && D.bs[x[0]]; });
     var main = bsel[0];
     var acc = accRet(s, a, b), bm = main ? retBetween(D.bs[main[0]], a, b) : null, R = D.res, last = s[b];
     var pnl = last.tot - R.principal, pnlPct = R.principal > 0 ? pnl / R.principal * 100 : null;
-    var cards = [
+    var cards = SG ? segCards(SG, s, a, b, acc, main, bm) : [
       ["총자산 수익률 (" + P.range + ")", pct(acc), cls(acc), "주식+예수금 · 입출금 효과 제외(시간가중)"],
       [main ? main[1] + " 대비 초과" : "벤치마크", bm == null ? "—" : pct(acc - bm), cls(bm == null ? null : acc - bm), main ? main[1] + " " + pct(bm) : ""],
       ["원금 대비 손익 (전체)", krw(pnl) + (pnlPct == null ? "" : " · " + pct(pnlPct)), cls(pnl), "추정 원금 " + krw(R.principal) + (R.withdrawn > 1 ? " (출금 " + krw(R.withdrawn) + " 반영)" : "")],
@@ -310,19 +353,29 @@
     function nm(k) { return S.displayTicker(k.split(":")[1]); }
     var warn = (loading.length ? "⏳ 시세 받는 중 " + (D.K.length - loading.length) + "/" + D.K.length + " — 끝날 때까지 그래프가 계속 바뀝니다(받는 동안은 체결가·현재가로 근사). " : "") +
       (fail.length ? "⚠️ 과거 시세를 못 받은 종목(체결가와 현재가를 이은 근사 가격으로 계산): " + esc(fail.map(nm).join(", ")) + " " : "");
+    var V = P.view;
     el.innerHTML =
+      '<div class="pf-bar pf-segbar"><div class="pf-seg" id="pf-segs">' + SEGS.map(function (x) { var ok = x[0] === "all" || D.segs[x[0]]; return '<button data-v="' + x[0] + '" class="' + (seg === x[0] ? "on" : "") + '"' + (ok ? "" : " disabled title=\"이 계좌에는 해당 종목이 없습니다\"") + ">" + x[1] + "</button>"; }).join("") + "</div>" +
+      '<span class="pf-hint">' + (seg === "KR" ? "한국 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 코스피·코스닥과 비교" : seg === "US" ? "미국 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 달러 기준으로 S&P500·나스닥과 비교(원화 환산은 카드에)" : "주식 + 예수금 전체") + "</span>" +
+      '<div class="pf-seg" id="pf-view"><button data-v="candle" class="' + (V.chart !== "line" ? "on" : "") + '">봉차트</button><button data-v="line" class="' + (V.chart === "line" ? "on" : "") + '">선</button></div>' +
+      (V.chart !== "line" ? '<div class="pf-seg" id="pf-tf">' + [["D", "일봉"], ["W", "주봉"], ["M", "월봉"]].map(function (x) { return '<button data-v="' + x[0] + '" class="' + ((V.tf || "D") === x[0] ? "on" : "") + '">' + x[1] + "</button>"; }).join("") + "</div>" : "") + "</div>" +
       '<div class="pf-cards">' + cards.map(function (c) { return '<div class="metric"><span>' + c[0] + '</span><b class="' + c[2] + '">' + c[1] + "</b><small>" + esc(c[3]) + "</small></div>"; }).join("") + "</div>" +
       '<div class="pf-bar"><div class="pf-seg" id="pf-range">' + RANGES.map(function (r) { return '<button data-v="' + r[0] + '" class="' + (P.range === r[0] ? "on" : "") + '">' + r[0] + "</button>"; }).join("") + "</div>" +
-      '<div class="pf-chips" id="pf-bench">' + BENCH.map(function (x) { var on = P.benches.indexOf(x[0]) >= 0; return '<button data-v="' + x[0] + '" class="' + (on ? "on" : "") + '"' + (D.bs[x[0]] ? "" : " disabled") + '><i style="background:' + x[2] + '"></i>' + x[1] + "</button>"; }).join("") + "</div>" +
+      (SG ? "" : '<div class="pf-chips" id="pf-bench">' + BENCH.map(function (x) { var on = P.benches.indexOf(x[0]) >= 0; return '<button data-v="' + x[0] + '" class="' + (on ? "on" : "") + '"' + (D.bs[x[0]] ? "" : " disabled") + '><i style="background:' + x[2] + '"></i>' + x[1] + "</button>"; }).join("") + "</div>") +
       '<span class="pf-hint">그래프를 끌어서 기간 선택 · 월을 누르면 그 달</span></div>' +
       '<div class="pf-chart" id="pf-chart"></div>' +
-      '<div class="pf-legend"><span><i style="background:' + ACC + '"></i>내 계좌</span>' + bsel.map(function (x) { return '<span><i style="background:' + x[2] + '"></i>' + x[1] + "</span>"; }).join("") + '<span><b style="color:#f0475a">▲</b> 매수</span><span><b style="color:#3d7eff">▼</b> 매도</span><span class="muted">아래 막대 = 그날 순매수(빨강)·순매도(파랑) 금액</span></div>' +
+      '<div class="pf-legend">' + (V.chart !== "line" ? '<span><i style="background:#f0475a"></i><i style="background:#3d7eff;margin-left:-3px"></i> ' + SEG_NAME[seg] + " 봉(빨강 상승 · 파랑 하락)</span>" : '<span><i style="background:' + ACC + '"></i>' + SEG_NAME[seg] + "</span>") + bsel.map(function (x) { return '<span><i style="background:' + x[2] + '"></i>' + x[1] + "</span>"; }).join("") + '<span><b style="color:#f0475a">▲</b> 매수</span><span><b style="color:#3d7eff">▼</b> 매도</span><span class="muted">아래 막대 = 그날 순매수(빨강)·순매도(파랑) 금액</span></div>' +
       (warn ? '<div class="pf-warn">' + warn + (loading.length ? "" : '<button class="quiet-btn" id="pf-retry">다시 받기</button>') + "</div>" : "") +
       '<div id="pf-period"></div><div id="pf-months"></div>';
-    chart(document.getElementById("pf-chart"), a, b, bsel, sel);
+    if (V.chart !== "line") candles(document.getElementById("pf-chart"), a, b, bsel, sel, V.tf || "D"); else chart(document.getElementById("pf-chart"), a, b, bsel, sel);
     period(sel[0], sel[1], bsel);
-    months(a, b, bsel);
+    if ((V.tbl || "M") === "D") dailyTbl(a, b, bsel); else months(a, b, bsel);
     var rb = document.getElementById("pf-retry"); if (rb) rb.onclick = reload;
+    function setV(k, v) { P.view[k] = v; lsSet(VSEL, P.view); }
+    el.querySelectorAll("#pf-segs button").forEach(function (x) { x.onclick = function () { if (x.disabled) return; P.seg = x.dataset.v; setV("seg", P.seg); P.sel = null; draw(); }; });
+    el.querySelectorAll("#pf-view button").forEach(function (x) { x.onclick = function () { setV("chart", x.dataset.v); draw(); }; });
+    el.querySelectorAll("#pf-tf button").forEach(function (x) { x.onclick = function () { setV("tf", x.dataset.v); draw(); }; });
+    el.querySelectorAll("[data-tbl]").forEach(function (x) { x.onclick = function () { setV("tbl", x.dataset.tbl); draw(); }; });
     el.querySelectorAll("#pf-range button").forEach(function (x) { x.onclick = function () { P.range = x.dataset.v; lsSet(RSEL, P.range); P.sel = null; draw(); }; });
     el.querySelectorAll("#pf-bench button").forEach(function (x) { x.onclick = function () {
       var i = P.benches.indexOf(x.dataset.v); if (i >= 0) P.benches.splice(i, 1); else P.benches.push(x.dataset.v);
@@ -331,7 +384,7 @@
   }
 
   function chart(box, a, b, bsel, sel) {
-    var D = P.data, s = D.s, dates = D.dates;
+    var D = P.data, s = D.cs, dates = D.dates;
     var W = Math.max(320, box.clientWidth - 2), H = 330, m = { l: 50, r: 14, t: 12, b: 64 }, iw = W - m.l - m.r, ih = H - m.t - m.b - 36;
     var len = b - a;
     function x(i) { return m.l + (len ? (i - a) / len * iw : iw / 2); }
@@ -383,7 +436,7 @@
     hit.addEventListener("mousemove", function (e) {
       var i = idxAt(e), sd = s[i];
       hair.setAttribute("x1", x(i)); hair.setAttribute("x2", x(i)); hair.style.display = "";
-      var html = "<b>" + dates[i] + "</b><br>" + '<span style="color:' + ACC + '">●</span> 내 계좌 <b>' + pct(lines[0].v[i - a]) + '</b> <span class="muted">총자산 ' + krw(sd.tot) + "</span>";
+      var html = "<b>" + dates[i] + "</b><br>" + '<span style="color:' + ACC + '">●</span> ' + SEG_NAME[D.seg] + ' <b>' + pct(lines[0].v[i - a]) + '</b> <span class="muted">총자산 ' + krw(sd.tot) + "</span>";
       bsel.forEach(function (bb, j) { html += "<br>" + '<span style="color:' + bb[2] + '">●</span> ' + bb[1] + " " + pct(lines[j + 1].v[i - a]); });
       if (drag != null && drag !== i) { var i0 = Math.min(drag, i), i1 = Math.max(drag, i); html += '<br><span class="muted">선택 ' + dates[i0] + " ~ " + dates[i1] + " · 계좌 " + pct(accRet(s, i0, i1)) + "</span>"; }
       if (sd.t.length) html += "<br>" + sd.t.map(function (t) { return '<span class="' + (t.side === "sell" ? "sell" : "buy") + '">' + (t.side === "sell" ? "매도" : "매수") + "</span> " + esc(S.displayTicker(t.ticker)) + " " + num(t.qty, 4) + "주"; }).join("<br>");
@@ -393,14 +446,106 @@
     hit.addEventListener("mouseleave", function () { hair.style.display = "none"; tip.style.display = "none"; });
   }
 
+  function tblHead(cur) {
+    return '<div class="pf-th"><h3 class="pf-h3">' + (cur === "D" ? "일별" : "월별") + ' 수익률과 매매</h3><div class="pf-seg"><button data-tbl="M" class="' + (cur === "M" ? "on" : "") + '">월별</button><button data-tbl="D" class="' + (cur === "D" ? "on" : "") + '">일별</button></div></div>';
+  }
+  /* 국내·해외 탭의 카드 */
+  function segCards(SG, s, a, b, acc, main, bm) {
+    var last = s[b], us = SG.mkt === "US", fxNow = Number(P.data.state.fx && P.data.state.fx.price) || 1350;
+    var accK = us ? (s[b].idxK / s[a].idxK - 1) * 100 : null, pnl = last.vk - last.invK;
+    var c = [[(us ? "해외 수익률 · 달러 기준 (" : "국내 수익률 (") + P.range + ")", pct(acc), cls(acc), "주식만 · 매매로 넣고 뺀 돈의 효과 제외(시간가중)"],
+      [main ? main[1] + " 대비 초과" : "지수 대비", bm == null ? "—" : pct(acc - bm), cls(bm == null ? null : acc - bm), main ? main[1] + " " + pct(bm) + " (같은 기간)" : ""]];
+    if (us) c.push(["원화 환산 수익률", pct(accK), cls(accK), "환율 효과 " + pct(accK - acc) + "p"]);
+    c.push(["평가액", krw(last.vk), "", (us ? "$" + num(last.v, 0) + " · " : "") + "넣은 돈(순매수) " + krw(last.invK)],
+      ["원금 대비 손익", krw(pnl) + (last.invK > 0 ? " · " + pct(pnl / last.invK * 100) : ""), cls(pnl), "평가액 − 순매수 합계(원화, 실현손익 포함)"],
+      ["최대 낙폭(MDD)", pct(mdd(s, a, b)), "neg", P.data.dates[a] + " ~ " + P.data.dates[b]]);
+    return c;
+  }
+  /* 봉차트: 내 수익률 지수(시작일 = 0%)를 일·주·월 봉으로. 일봉은 시가 = 전날 종가(종목 시가 자료가 없어 몸통만), 주·월봉은 그 안 일별 종가로 고가·저가.
+     지수는 같은 축에 선(같은 시작일 0%). 아래 띠 = 그 봉 기간 순매수(빨강)·순매도(파랑). */
+  function candles(box, a, b, bsel, sel, tf) {
+    var D = P.data, s = D.cs, dates = D.dates, base = s[a].idx;
+    function key(d) {
+      if (tf === "M") return d.slice(0, 7);
+      if (tf === "W") { var x = new Date(d + "T00:00:00Z"), w = x.getUTCDay(); x.setUTCDate(x.getUTCDate() - ((w + 6) % 7)); return x.toISOString().slice(0, 10); }
+      return d;
+    }
+    var G = [], g = null;
+    for (var i = a + 1; i <= b; i++) {
+      var k = key(dates[i]);
+      if (!g || g.k !== k) { g = { k: k, i0: i - 1, i1: i, hi: -1e9, lo: 1e9, nb: 0, t: [] }; G.push(g); }
+      g.i1 = i; var v = (s[i].idx / base - 1) * 100; g.hi = Math.max(g.hi, v); g.lo = Math.min(g.lo, v); g.nb += s[i].nb; g.t = g.t.concat(s[i].t);
+    }
+    G.forEach(function (x) { x.o = (s[x.i0].idx / base - 1) * 100; x.c = (s[x.i1].idx / base - 1) * 100; x.hi = Math.max(x.hi, x.o); x.lo = Math.min(x.lo, x.o); });
+    if (!G.length) { box.innerHTML = '<div class="empty-row">봉을 그릴 기간이 부족합니다.</div>'; return; }
+    var lines = bsel.map(function (bb) { var arr = D.bs[bb[0]]; return { c: bb[2], n: bb[1], v: G.map(function (x) { return arr[a] && arr[x.i1] ? (arr[x.i1] / arr[a] - 1) * 100 : null; }) }; });
+    var all = [0]; G.forEach(function (x) { all.push(x.hi, x.lo); }); lines.forEach(function (l) { l.v.forEach(function (v) { if (v != null) all.push(v); }); });
+    var W = Math.max(320, box.clientWidth - 2), H = 340, m = { l: 50, r: 14, t: 12, b: 64 }, iw = W - m.l - m.r, ih = H - m.t - m.b - 36;
+    var lo = Math.min.apply(null, all), hi = Math.max.apply(null, all), pad = (hi - lo) * .08 || 1; lo -= pad; hi += pad;
+    var bw = iw / G.length, cw = Math.max(1.5, Math.min(14, bw * .62));
+    function X(j) { return m.l + bw * (j + .5); }
+    function Y(v) { return m.t + (hi - v) / (hi - lo) * ih; }
+    var out = "", step = (function (sp) { var r = sp / 5, p = Math.pow(10, Math.floor(Math.log10(r))), q = r / p; return (q < 1.5 ? 1 : q < 3.5 ? 2 : q < 7.5 ? 5 : 10) * p; })(hi - lo);
+    for (var t = Math.ceil(lo / step) * step; t <= hi; t += step) out += '<line class="grid" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(t) + '" y2="' + Y(t) + '"/><text x="' + (m.l - 6) + '" y="' + (Y(t) + 4) + '" text-anchor="end">' + (t > 0 ? "+" : "") + (Math.abs(step) < 1 ? t.toFixed(1) : Math.round(t)) + "%</text>";
+    out += '<line class="axis" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + Y(0) + '" y2="' + Y(0) + '"/>';
+    var lastLx = -99, prevM = "";
+    G.forEach(function (x, j) { var mo = dates[x.i1].slice(0, 7); if (mo !== prevM) { prevM = mo; if (X(j) - lastLx > 52) { out += '<text x="' + X(j) + '" y="' + (H - 8) + '" text-anchor="middle">' + mo.slice(2).replace("-", ".") + "</text>"; lastLx = X(j); } } });
+    if (sel && (sel[0] !== a || sel[1] !== b)) {
+      var j0 = G.findIndex(function (x) { return x.i1 >= sel[0]; }), j1 = G.length - 1 - G.slice().reverse().findIndex(function (x) { return x.i0 <= sel[1]; });
+      if (j0 >= 0) out += '<rect x="' + (X(j0) - bw / 2) + '" y="' + m.t + '" width="' + Math.max(2, (j1 - j0 + 1) * bw) + '" height="' + (ih + 36) + '" fill="rgba(91,140,255,.13)"/>';
+    }
+    lines.forEach(function (l) { var d = "", pen = false; l.v.forEach(function (v, j) { if (v == null) { pen = false; return; } d += (pen ? "L" : "M") + X(j).toFixed(1) + "," + Y(v).toFixed(1); pen = true; }); out += '<path d="' + d + '" fill="none" stroke="' + l.c + '" stroke-width="1.6" opacity=".9"/>'; });
+    var maxF = 1; G.forEach(function (x) { maxF = Math.max(maxF, Math.abs(x.nb)); });
+    var fb = m.t + ih + 34;
+    out += '<line class="grid" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + (fb - 16) + '" y2="' + (fb - 16) + '"/><text x="' + (m.l - 6) + '" y="' + (fb - 12) + '" text-anchor="end">매매</text>';
+    G.forEach(function (x, j) {
+      var up = x.c >= x.o, col = up ? "#f0475a" : "#3d7eff", yo = Y(x.o), yc = Y(x.c);
+      out += '<line x1="' + X(j) + '" x2="' + X(j) + '" y1="' + Y(x.hi) + '" y2="' + Y(x.lo) + '" stroke="' + col + '" stroke-width="1"/>';
+      out += '<rect x="' + (X(j) - cw / 2) + '" y="' + Math.min(yo, yc) + '" width="' + cw + '" height="' + Math.max(1, Math.abs(yc - yo)) + '" fill="' + col + '"' + (up ? "" : ' fill-opacity=".85"') + "/>";
+      if (x.nb) { var hg = Math.max(2, Math.abs(x.nb) / maxF * 15); out += '<rect x="' + (X(j) - Math.max(1, cw / 3)) + '" y="' + (x.nb >= 0 ? fb - 16 - hg : fb - 16) + '" width="' + Math.max(2, cw * 2 / 3) + '" height="' + hg + '" fill="' + (x.nb >= 0 ? "#f0475a" : "#3d7eff") + '" opacity=".75"/>'; }
+    });
+    out += '<rect class="hit" x="' + m.l + '" y="' + m.t + '" width="' + iw + '" height="' + (ih + 36) + '" fill="transparent" style="cursor:crosshair"/>';
+    box.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '">' + out + '</svg><div class="pf-tip"></div>';
+    var svg = box.querySelector("svg"), hit = box.querySelector(".hit"), tip = box.querySelector(".pf-tip");
+    function jAt(e) { var r = svg.getBoundingClientRect(), px = (e.clientX - r.left) * W / r.width; return Math.max(0, Math.min(G.length - 1, Math.floor((px - m.l) / bw))); }
+    var drag = null;
+    hit.addEventListener("mousedown", function (e) {
+      drag = jAt(e); e.preventDefault();
+      window.addEventListener("mouseup", function up(ev) { window.removeEventListener("mouseup", up); if (drag == null) return; var j = jAt(ev), p0 = Math.min(drag, j), p1 = Math.max(drag, j); drag = null; P.sel = [G[p0].i0, G[p1].i1]; draw(); });
+    });
+    hit.addEventListener("mousemove", function (e) {
+      var j = jAt(e), x = G[j], r = (s[x.i1].idx / s[x.i0].idx - 1) * 100;
+      var html = "<b>" + (tf === "D" ? dates[x.i1] : dates[x.i0 + 1] + " ~ " + dates[x.i1]) + "</b> <span class=\"muted\">" + ({ D: "일봉", W: "주봉", M: "월봉" })[tf] + "</span><br>" +
+        SEG_NAME[D.seg] + ' 이 봉 <b class="' + cls(r) + '">' + pct(r) + "</b> · 누적 " + pct(x.c) + '<br><span class="muted">시 ' + pct(x.o) + " · 고 " + pct(x.hi) + " · 저 " + pct(x.lo) + " · 종 " + pct(x.c) + "</span>";
+      bsel.forEach(function (bb) { var arr = D.bs[bb[0]], rv = arr[x.i0] && arr[x.i1] ? (arr[x.i1] / arr[x.i0] - 1) * 100 : null; html += '<br><span style="color:' + bb[2] + '">●</span> ' + bb[1] + " 이 봉 " + pct(rv); });
+      if (x.t.length) html += "<br>" + x.t.slice(0, 6).map(function (t) { return '<span class="' + (t.side === "sell" ? "sell" : "buy") + '">' + (t.side === "sell" ? "매도" : "매수") + "</span> " + esc(S.displayTicker(t.ticker)) + " " + num(t.qty, 4) + "주"; }).join("<br>") + (x.t.length > 6 ? "<br>…외 " + (x.t.length - 6) + "건" : "");
+      tip.innerHTML = html; tip.style.display = "block";
+      var lx = e.clientX - box.getBoundingClientRect().left + 14; if (lx > box.clientWidth - 230) lx -= 244; tip.style.left = lx + "px"; tip.style.top = "12px";
+    });
+    hit.addEventListener("mouseleave", function () { tip.style.display = "none"; });
+  }
+  /* 일별 표: 그날 내 수익률 vs 지수(최근부터) */
+  function dailyTbl(a, b, bsel) {
+    var D = P.data, s = D.cs, dates = D.dates, box = document.getElementById("pf-months"), rows = [];
+    for (var i = b; i > a && rows.length < 250; i--) rows.push(i);
+    box.innerHTML = tblHead("D") + '<div class="pf-tbl"><table class="pf-mt"><thead><tr><th>날짜</th><th>' + SEG_NAME[D.seg] + "</th>" + bsel.map(function (x) { return "<th>" + x[1] + "</th>"; }).join("") + (bsel[0] ? "<th>초과(" + bsel[0][1] + ")</th>" : "") + "<th>누적</th><th>매매</th></tr></thead><tbody>" +
+      rows.map(function (i) {
+        var r = (s[i].idx / s[i - 1].idx - 1) * 100, bb = bsel.map(function (x) { return retBetween(D.bs[x[0]], i - 1, i); }), cum = (s[i].idx / s[a].idx - 1) * 100;
+        var tx = s[i].t.map(function (t) { return '<span class="' + (t.side === "sell" ? "sell" : "buy") + '">' + esc(S.displayTicker(t.ticker)) + (t.side === "sell" ? " 매도" : " 매수") + "</span>"; }).join(" ");
+        return '<tr data-i0="' + (i - 1) + '" data-i1="' + i + '"><td>' + dates[i] + '</td><td class="' + cls(r) + '"><b>' + pct(r) + "</b></td>" + bb.map(function (v) { return '<td class="' + cls(v) + '">' + pct(v) + "</td>"; }).join("") + (bsel[0] ? '<td class="' + cls(bb[0] == null ? null : r - bb[0]) + '">' + (bb[0] == null ? "—" : pct(r - bb[0])) + "</td>" : "") + '<td class="' + cls(cum) + '">' + pct(cum) + '</td><td class="tops">' + tx + "</td></tr>";
+      }).join("") + "</tbody></table></div>";
+    box.querySelectorAll("tr[data-i0]").forEach(function (tr) { tr.onclick = function () { P.sel = [+tr.dataset.i0, +tr.dataset.i1]; draw(); }; });
+  }
+
   /* 선택 기간의 매매 변동: 수익률 비교 + 종목별 수량 변화 + 매매 목록 */
   function period(i0, i1, bsel) {
-    var D = P.data, s = D.s, dates = D.dates, box = document.getElementById("pf-period");
+    var D = P.data, s = D.cs, dates = D.dates, box = document.getElementById("pf-period");
     var d0 = dates[i0], d1 = dates[i1];
     var first = i0 === 0;   // 전체 기간이면 첫날 매매도 기간 안으로 본다
-    var tx = D.txs.filter(function (t) { return (first ? t.date >= d0 : t.date > d0) && t.date <= d1; });
+    var inSeg = function (t) { return D.seg === "all" || (t.market === "KR" ? "KR" : "US") === D.seg; };
+    var tx = D.txs.filter(function (t) { return inSeg(t) && (first ? t.date >= d0 : t.date > d0) && t.date <= d1; });
     var before = {}, after = {}, names = {};
-    D.txs.forEach(function (t) {
+    D.txs.filter(inSeg).forEach(function (t) {
       var k = keyOf(t), q = (Number(t.qty) || 0) * (t.side === "sell" ? -1 : 1); names[k] = S.displayTicker(t.ticker);
       if (!first && t.date <= d0) before[k] = (before[k] || 0) + q;
       if (t.date <= d1) after[k] = (after[k] || 0) + q;
@@ -431,16 +576,16 @@
 
   /* 월별 표: 계좌 vs 지수 + 그달 매매 */
   function months(a, b, bsel) {
-    var D = P.data, s = D.s, dates = D.dates, rows = [], cur = null;
+    var D = P.data, s = D.cs, dates = D.dates, rows = [], cur = null;
     for (var i = Math.max(1, a); i <= b; i++) {
       var m = dates[i].slice(0, 7);
       if (!cur || cur.m !== m) { cur = { m: m, i0: i - 1, i1: i }; rows.push(cur); } else cur.i1 = i;
     }
     var box = document.getElementById("pf-months");
-    box.innerHTML = '<h3 class="pf-h3">월별 수익률과 매매</h3><div class="pf-tbl"><table class="pf-mt"><thead><tr><th>월</th><th>내 계좌</th>' + bsel.map(function (x) { return "<th>" + x[1] + "</th>"; }).join("") + (bsel[0] ? "<th>초과(" + bsel[0][1] + ")</th>" : "") + "<th>매수</th><th>매도</th><th>주요 매매</th></tr></thead><tbody>" +
+    box.innerHTML = tblHead("M") + '<div class="pf-tbl"><table class="pf-mt"><thead><tr><th>월</th><th>' + SEG_NAME[D.seg] + "</th>" + bsel.map(function (x) { return "<th>" + x[1] + "</th>"; }).join("") + (bsel[0] ? "<th>초과(" + bsel[0][1] + ")</th>" : "") + "<th>매수</th><th>매도</th><th>주요 매매</th></tr></thead><tbody>" +
       rows.slice().reverse().map(function (r) {
         var acc = accRet(s, r.i0, r.i1), bb = bsel.map(function (x) { return retBetween(D.bs[x[0]], r.i0, r.i1); });
-        var tx = D.txs.filter(function (t) { return t.date.slice(0, 7) === r.m; }), tb = 0, ts = 0, by = {};
+        var tx = D.txs.filter(function (t) { return t.date.slice(0, 7) === r.m && (D.seg === "all" || (t.market === "KR" ? "KR" : "US") === D.seg); }), tb = 0, ts = 0, by = {};
         tx.forEach(function (t) { var a = amtKrw(t, D.state), k = S.displayTicker(t.ticker); if (t.side === "sell") { ts += a; by[k] = (by[k] || 0) - a; } else { tb += a; by[k] = (by[k] || 0) + a; } });
         var top = Object.keys(by).sort(function (p, q) { return Math.abs(by[q]) - Math.abs(by[p]); }).slice(0, 3).map(function (k) { return '<span class="' + (by[k] >= 0 ? "buy" : "sell") + '">' + esc(k) + (by[k] >= 0 ? " 매수" : " 매도") + "</span>"; }).join(" ");
         return '<tr data-i0="' + r.i0 + '" data-i1="' + r.i1 + '"' + (P.sel && P.sel[0] === r.i0 && P.sel[1] === r.i1 ? ' class="on"' : "") + "><td>" + r.m + '</td><td class="' + cls(acc) + '"><b>' + pct(acc) + "</b></td>" + bb.map(function (v) { return '<td class="' + cls(v) + '">' + pct(v) + "</td>"; }).join("") + (bsel[0] ? '<td class="' + cls(bb[0] == null ? null : acc - bb[0]) + '">' + (bb[0] == null ? "—" : pct(acc - bb[0])) + "</td>" : "") + "<td>" + (tb ? krw(tb) : "") + "</td><td>" + (ts ? krw(ts) : "") + '</td><td class="tops">' + top + "</td></tr>";
