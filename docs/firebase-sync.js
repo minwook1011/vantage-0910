@@ -25,7 +25,8 @@
     "vantage-datahub-favorite-companies-v1", "vantage-finemtec-workbench-v1",
     "vantage-finemtec-custom-series-v1", "vantage-company-bench-v1", "vantage-company-bench-custom-v1", "vantage-zeta-bench-v2", "vantage-zeta-private-v1",
     "etf_news_favs_v1", "etf_favs_v1",
-    "etf_stmt_favs_v1", "megacapN", "perspKr"
+    "etf_stmt_favs_v1", "megacapN", "perspKr",
+    "vantage-us-earn-watch-v1", "jp_screener_favs"   // 미국 실적 캘린더 관심 기업 · 일본 스크리너 별표(2026-10-02)
   ];
   /* 동기화 상태(마지막 동기화 값·미전송 여부). 이 키 자체는 동기화하지 않는다. */
   var META_KEY = "vantage-sync-meta-v2", BACKUP_KEY = "vantage-sync-backup-v2";

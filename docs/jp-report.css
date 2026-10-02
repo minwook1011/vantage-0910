@@ -114,15 +114,39 @@
   .jr h1 { font-size:21px; }
 }
 
-/* 미국 실적 리포트: 앞으로 2주 발표 예정 캘린더 */
+/* 미국 실적 리포트: 주간 발표 캘린더(일본 스크리너 주간 캘린더와 같은 모양) */
 .jr .cal { margin-top:16px; }
-.jr .cal h3 { margin:0 0 10px; font-size:14.5px; display:flex; flex-wrap:wrap; gap:6px 10px; align-items:baseline; }
-.jr .cal h3 .hint { color:var(--muted); font-size:11.5px; font-weight:400; }
-.jr .cal-days { display:flex; flex-direction:column; gap:8px; }
-.jr .cal-day { display:flex; flex-wrap:wrap; gap:5px; align-items:center; border-top:1px solid var(--border); padding-top:8px; }
-.jr .cal-day:first-child { border-top:0; padding-top:0; }
-.jr .cal-d { width:100px; flex:0 0 100px; color:var(--text); font-size:12.5px; }
-.jr .cal-d small { color:var(--muted); }
-.jr .cal-it { font:600 11.5px var(--mono); padding:2px 7px; border:1px solid var(--border-strong); border-radius:6px; color:var(--text); }
-.jr .cal-it i { font:400 10px var(--sans); color:var(--muted); font-style:normal; margin-left:4px; }
-@media (max-width:760px) { .jr .cal-d { width:100%; flex-basis:100%; } }
+.jr .cw-top { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.jr .cw-top .btn[disabled] { opacity:.35; cursor:default; }
+.jr .cw-t { flex:1; display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.jr .cw-t b { font-size:17px; } .jr .cw-t span { font:500 13px var(--mono); color:var(--muted); }
+.jr .btn.sm { padding:3px 9px; font-size:11.5px; }
+.jr .cw { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+.jr .cd { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px 10px 12px; min-width:0; min-height:180px; }
+.jr .cd.today { border-color:#4f7cff; box-shadow:0 0 0 1px #4f7cff inset; }
+.jr .cd-h { display:flex; justify-content:space-between; align-items:baseline; padding:2px 4px 10px; margin-bottom:6px; border-bottom:1px solid var(--border); }
+.jr .cd-h b { font:600 15px var(--mono); } .jr .cd-h span { color:var(--muted); font-size:11.5px; }
+.jr .cd.today .cd-h b, .jr .cd.today .cd-h span { color:#8fb3ff; }
+.jr .cd-empty { color:var(--faint); font-size:12px; padding:8px 4px; }
+.jr .ce { padding:7px 6px; border-radius:8px; cursor:pointer; border:1px solid transparent; }
+.jr .ce + .ce { margin-top:2px; }
+.jr .ce:hover { background:rgba(255,255,255,.03); border-color:var(--border); }
+.jr .ce.on { background:rgba(240,190,40,.12); border-color:rgba(240,190,40,.55); }
+.jr .ce-h { display:flex; align-items:baseline; gap:6px; flex-wrap:wrap; }
+.jr .ce-st { color:#f0be28; font-size:12px; }
+.jr .ce-h b { font:700 13.5px var(--mono); color:#8fb3ff; }
+.jr .ce.on .ce-h b { color:#f6c945; }
+.jr .ce-n { color:var(--text); font-size:13px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%; }
+.jr .ce-tm { font:400 10.5px var(--sans); font-style:normal; color:var(--muted); border:1px solid var(--border-strong); border-radius:4px; padding:0 5px; }
+.jr .cf { font-size:10px; color:var(--muted); border:1px dashed var(--border-strong); border-radius:4px; padding:0 4px; }
+.jr .cf.warn { color:#f0a53a; border-color:rgba(240,165,58,.6); }
+.jr .ce-b { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+.jr .ce-b .rb { font-style:normal; font:600 11px var(--mono); padding:2px 7px; border-radius:5px; border:1px dashed var(--border-strong); color:var(--muted); }
+.jr .ce-b .rb.big { font-size:12px; border-style:solid; }
+.jr .ce-b .rb.up { color:var(--up); border-color:rgba(240,71,90,.5); background:rgba(240,71,90,.08); }
+.jr .ce-b .rb.dn { color:#6f9dff; border-color:rgba(61,126,255,.5); background:rgba(61,126,255,.08); }
+.jr .ce-rep { display:inline-block; margin-top:5px; font-size:12px; color:var(--text) !important; }
+.jr .cd-more { margin-top:8px; width:100%; background:transparent; border:1px dashed var(--border-strong); color:var(--muted); border-radius:8px; padding:6px; font:inherit; font-size:12px; cursor:pointer; }
+.jr .cw-note { color:var(--muted); font-size:12px; line-height:1.7; margin-top:10px; }
+.jr .cw-note .ywl { color:#f6c945; }
+@media (max-width:900px) { .jr .cw { grid-template-columns:1fr; } .jr .cd { min-height:0; } }

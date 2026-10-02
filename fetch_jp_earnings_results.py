@@ -460,6 +460,28 @@ def kabu_disclosures(code, date):
     return docs[:6]
 
 
+def tdnet_releasers(date):
+    """도쿄증권거래소 TDnet 공식 공시 목록(release.tdnet.info)에서 그날 결산단신을 낸 종목 코드 — 카부탄 목록과 교차 확인용(2026-10-02)"""
+    ymd_ = date.replace("-", "")
+    codes = []
+    for page in range(1, 40):
+        try:
+            h = urllib.request.urlopen(urllib.request.Request(
+                f"https://www.release.tdnet.info/inbs/I_list_{page:03d}_{ymd_}.html", headers={"User-Agent": "Mozilla/5.0"}), timeout=20).read().decode("utf-8", "replace")
+        except Exception:
+            break
+        rows = re.findall(r"<tr>(.*?)</tr>", h, re.S)
+        got = 0
+        for r in rows:
+            m = re.search(r">\s*(\w{4})0\s*<", r)
+            if m and "決算短信" in r:
+                codes.append(m.group(1))
+            got += bool(m)
+        if not got or f"I_list_{page + 1:03d}_{ymd_}" not in h:
+            break
+    return list(dict.fromkeys(codes))
+
+
 def releasers(date):
     """카부탄 '決算' 개시 목록에서 그날 결산단신을 낸 종목 코드(실시간 수집용 — 예상 발표일이 틀려도 놓치지 않는다)"""
     ymd_ = date.replace("-", "")
@@ -729,8 +751,10 @@ def main():
     else:
         # 증분(실적 시즌 발표 시간대마다): 오늘 결산단신을 실제로 낸 종목 + 이번 주 발표 예정이던 종목 중
         # 아직 그 발표를 못 잡은 것만. 이미 잡은 발표(레코드 날짜 ≥ 예정일)는 다시 받지 않는다.
-        live = [c for c in releasers(today) if c in set(codes)]
-        print(f"  오늘 결산단신 낸 종목(유니버스 안): {len(live)}")
+        # 오늘 결산단신을 낸 종목 — 카부탄 개시 목록 + TDnet 공식 목록 교차(어느 한쪽에만 있어도 잡는다)
+        kb, td = releasers(today), tdnet_releasers(today)
+        live = [c for c in dict.fromkeys(kb + td) if c in set(codes)]
+        print(f"  오늘 결산단신 낸 종목(유니버스 안): {len(live)} · 카부탄 {len(kb)} · TDnet {len(td)} · TDnet에만 {len(set(td) - set(kb))} · 카부탄에만 {len(set(kb) - set(td))}")
         due = [c for c in codes if c in sched and
                0 <= (t0 - datetime.strptime(sched[c]["date"], "%Y-%m-%d")).days <= 7]
         targets = [c for c in live + due if not (c in old and old[c].get("date", "") >= (today if c in live else sched.get(c, {}).get("date", "9999")))]

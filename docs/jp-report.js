@@ -321,7 +321,7 @@
     app.innerHTML = (IS_US
       ? '<div class="kicker"><a href="datahub.html">데이터 허브</a> · 실적 리포트</div><h1>미국 실적 리포트</h1>' +
         '<div class="sub">데이터 허브 미국·해외 기업의 실적 발표마다 <b>분기 표 · 핵심 수치 · 그래프 · SEC 보도자료 원문</b>을 한 장에 모읍니다. 발표 예정일은 나스닥 거래소 캘린더(하루 2번 갱신), 실제 발표는 SEC 8-K(실적 공시)로 확인해 바로 만들고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" +
-        '<section class="cal card" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>'
+        '<section class="cal" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>'
       : '<div class="kicker"><a href="jp-screener.html">일본 기업 스크리너</a> · 실적 리포트</div><h1>일본 실적 리포트</h1>' +
         '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 발표 예정일은 도쿄증권거래소(JPX) 공식 목록, 실적 시즌 평일에는 하루 6번 수집하고 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>") +
       '<div class="ctl">' + (IS_US ? "" : '<div class="seg" id="u"><button data-v="all">전체</button><button data-v="cons">소비재</button><button data-v="major">주요 기업</button></div>') +
@@ -343,7 +343,7 @@
       }).join("") : '<div class="empty">조건에 맞는 리포트가 없습니다.</div>';
       document.getElementById("more").hidden = rows.length <= st.n;
     }
-    if (IS_US) drawCal();
+    if (IS_US) drawCal(IX);
     if (document.getElementById("u")) document.getElementById("u").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.u = b.dataset.v; st.n = 60; draw(); } };
     document.getElementById("nt").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.note = b.dataset.v === "1"; st.n = 60; draw(); } };
     var tq; document.getElementById("q").oninput = function (e) { clearTimeout(tq); tq = setTimeout(function () { st.q = e.target.value.trim(); st.n = 60; draw(); }, 150); };
@@ -351,24 +351,84 @@
     draw();
   }
 
-  /* 미국: 앞으로 2주 발표 예정(나스닥 거래소 캘린더) — 날짜별, 장 전/장 마감 후, 시총 큰 순 */
-  function drawCal() {
+  /* 미국: 주간 실적 발표 캘린더(일본 스크리너와 같은 모양) — 월~금 칸, ‹ 이전 주 · 다음 주 ›
+     데이터: data/us/earnings_dates.json(나스닥 거래소 캘린더 + 야후 교차 확인) + 리포트 목록(발표 후 주가·컨센서스)
+     카드를 누르면 관심 기업(노란색)으로 저장 — localStorage "vantage-us-earn-watch-v1"(firebase-sync.js 가 기기 간 동기화)
+     정렬: 관심 기업 → 기술주(정보기술·커뮤니케이션) → 시총 큰 순 */
+  var WKEY = "vantage-us-earn-watch-v1", TECH = { "Information Technology": 1, "Communication Services": 1 };
+  function loadWatch() { try { return JSON.parse(localStorage.getItem(WKEY) || "[]") || []; } catch (e) { return []; } }
+  function saveWatch(a) { try { localStorage.setItem(WKEY, JSON.stringify(a)); } catch (e) {} }
+  function ymd(d) { return d.toISOString().slice(0, 10); }
+  function monday(dstr) { var d = new Date(dstr + "T00:00:00Z"), w = d.getUTCDay(); d.setUTCDate(d.getUTCDate() - ((w + 6) % 7)); return ymd(d); }
+  function addDays(dstr, n) { var d = new Date(dstr + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return ymd(d); }
+  function drawCal(IX) {
     var box = document.getElementById("cal"); if (!box) return;
     getJSON("data/us/earnings_dates.json").then(function (D) {
-      var now = new Date(Date.now() - 4 * 3600e3).toISOString().slice(0, 10), end = new Date(Date.now() + 14 * 864e5).toISOString().slice(0, 10);
-      var by = {};
-      Object.keys(D.dates || {}).forEach(function (t) {
-        var x = (D.dates[t] || {}).next; if (!x || x.date < now || x.date > end) return;
-        (by[x.date] = by[x.date] || []).push({ t: t, n: D.dates[t].name, tm: x.time, fq: x.fq, eps: x.eps_fc });
-      });
-      var days = Object.keys(by).sort();
-      var TM = { pre: "장 전", after: "장 후", na: "" };
-      box.innerHTML = '<h3>앞으로 2주 발표 예정 <span class="hint">나스닥 거래소 캘린더 · 날짜는 미 동부 기준(장 전 = 한국 밤, 장 후 = 한국 새벽) · ' + esc(D.updated || "") + "</span></h3>" +
-        (days.length ? '<div class="cal-days">' + days.map(function (d) {
-          var w = "일월화수목금토".charAt(new Date(d + "T00:00:00Z").getUTCDay());
-          return '<div class="cal-day"><div class="cal-d"><b>' + d.slice(5).replace("-", "/") + "</b> (" + w + ") <small>" + by[d].length + "곳</small></div>" +
-            by[d].map(function (x) { return '<span class="cal-it" title="' + esc((x.n || "") + " · 분기 " + (x.fq || "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "")) + '"><b>' + esc(x.t) + "</b>" + (TM[x.tm] ? "<i>" + TM[x.tm] + "</i>" : "") + "</span>"; }).join("") + "</div>";
-        }).join("") + "</div>" : '<div class="empty">2주 안 발표 예정이 없습니다.</div>');
+      var rep = {}; (IX && IX.reports || []).forEach(function (r) { if (!rep[r.c] || r.d > rep[r.c].d) rep[r.c] = r; });
+      var ev = {};   // 날짜 → [{t, ...}]
+      function put(date, t, x, kind) {
+        if (!date) return;
+        var L = ev[date] = ev[date] || [];
+        if (L.some(function (y) { return y.t === t; })) return;
+        var e = D.dates[t] || {}, r = rep[t] && rep[t].d === date ? rep[t] : null;
+        L.push({ t: t, n: e.name || (r && r.n) || t, tm: (x || {}).time, fq: (x || {}).fq, eps: (x || {}).eps_fc, kind: kind, r: r,
+                 sec: e.sector, mc: e.mcap || (r && r.mc) || 0, chk: e.check, y: e.yahoo, nx: e.next, src: (x || {}).src });
+      }
+      Object.keys(D.dates || {}).forEach(function (t) { var e = D.dates[t]; put((e.last || {}).date, t, e.last, "last"); put((e.next || {}).date, t, e.next, "next"); });
+      (IX && IX.reports || []).forEach(function (r) { put(r.d, r.c, null, "rep"); });
+      var all = Object.keys(ev).sort();
+      var today = new Date(Date.now() - 4 * 3600e3).toISOString().slice(0, 10);   // 미 동부 날짜
+      var minW = all.length ? monday(all[0]) : monday(today), maxW = all.length ? monday(all[all.length - 1]) : monday(today);
+      var st = { w: monday(today), open: {} };
+      try { var sv = sessionStorage.getItem("us-cal-week"); if (sv && sv >= minW && sv <= maxW) st.w = sv; } catch (e) {}
+      var TM = { pre: "장 전", after: "장 후" };
+      function sorter(W) { return function (a, b) { var wa = W.indexOf(a.t) >= 0, wb = W.indexOf(b.t) >= 0; if (wa !== wb) return wa ? -1 : 1; var ta = !!TECH[a.sec], tb = !!TECH[b.sec]; if (ta !== tb) return ta ? -1 : 1; return (b.mc || 0) - (a.mc || 0); }; }
+      function card(x, W) {
+        var on = W.indexOf(x.t) >= 0, r = x.r, b = [];
+        if (r) {
+          b.push(r.d1 == null ? '<em class="rb px">주가 반응 대기</em>' : '<em class="rb px big ' + cls(r.d1) + '">발표 후 ' + pctS(r.d1) + "</em>");
+          if (r.cons != null) b.push('<em class="rb ' + cls(r.cons) + '">컨센 ' + pctS(r.cons) + "</em>");
+        }
+        var flag = "";
+        if (x.chk === "mismatch" && x.kind === "next" && x.y) flag = '<span class="cf warn" title="나스닥 ' + esc(x.nx && x.nx.date) + " · 야후 " + esc(x.y.date) + (x.y.confirmed ? "(확정)" : "(추정)") + ' — 더 이른 날부터 SEC 공시를 확인합니다">날짜 확인</span>';
+        else if (x.src === "yahoo" && x.kind === "next") flag = '<span class="cf" title="나스닥 캘린더에 아직 없음 — 야후 ' + (x.y && x.y.confirmed ? "확정" : "추정") + ' 날짜">' + (x.y && x.y.confirmed ? "야후" : "예상") + "</span>";
+        return '<div class="ce' + (on ? " on" : "") + '" data-t="' + esc(x.t) + '" title="' + esc(x.n + (x.sec ? " · " + x.sec : "") + (x.fq ? " · 분기 " + x.fq : "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "") + " — 눌러서 관심 기업 표시/해제") + '">' +
+          '<div class="ce-h"><span class="ce-st">' + (on ? "★" : "") + '</span><b>' + esc(x.t) + '</b><span class="ce-n">' + esc(x.n) + "</span>" + (TM[x.tm] ? '<i class="ce-tm">' + TM[x.tm] + "</i>" : "") + flag + "</div>" +
+          (b.length ? '<div class="ce-b">' + b.join("") + "</div>" : "") +
+          (r ? '<a class="ce-rep" href="' + M.page + "?id=" + encodeURIComponent(r.rid) + '">실적 리포트 ›</a>' : "") + "</div>";
+      }
+      function draw() {
+        var W = loadWatch(), days = [0, 1, 2, 3, 4].map(function (k) { return addDays(st.w, k); });
+        var mo = +st.w.slice(5, 7), wk = Math.ceil(+st.w.slice(8, 10) / 7);
+        var cols = days.map(function (d) {
+          var L = (ev[d] || []).slice().sort(sorter(W)), lim = st.open[d] ? L.length : 12;
+          var wd = "일월화수목금토".charAt(new Date(d + "T00:00:00Z").getUTCDay());
+          return '<div class="cd' + (d === today ? " today" : "") + '"><div class="cd-h"><b>' + d.slice(5).replace("-", ".") + "(" + wd + ")</b><span>" + (d === today ? "오늘 · " : "") + L.length + "곳</span></div>" +
+            (L.length ? L.slice(0, lim).map(function (x) { return card(x, W); }).join("") : '<div class="cd-empty">발표 없음</div>') +
+            (L.length > lim ? '<button class="cd-more" data-d="' + d + '">+ ' + (L.length - lim) + "곳 더 보기</button>" : "") + "</div>";
+        }).join("");
+        box.innerHTML = '<div class="cw-top"><button class="btn" id="cwPrev"' + (st.w <= minW ? " disabled" : "") + '>‹ 이전 주</button>' +
+          '<div class="cw-t"><b>' + mo + "월 " + wk + "주차</b> <span>" + days[0].slice(5).replace("-", ".") + " – " + days[4].slice(5).replace("-", ".") + "</span>" +
+          (st.w !== monday(today) ? ' <button class="btn sm" id="cwNow">이번 주</button>' : "") + "</div>" +
+          '<button class="btn" id="cwNext"' + (st.w >= maxW ? " disabled" : "") + ">다음 주 ›</button></div>" +
+          '<div class="cw">' + cols + "</div>" +
+          '<div class="cw-note">나스닥 거래소 실적 캘린더 기준(날짜는 미 동부 — 장 전 = 한국 밤, 장 후 = 한국 새벽)을 야후 캘린더와 교차 확인합니다. <span class="cf warn">날짜 확인</span> 두 곳 날짜가 다름(더 이른 날부터 SEC 공시 확인) · <span class="cf">예상</span> 나스닥에 아직 없어 야후 날짜. ' +
+          "실제 발표는 SEC 8-K(실적 공시)로 확인하고, 캘린더에 없던 발표도 SEC 전수 확인으로 잡습니다. 카드를 누르면 <b class=\"ywl\">관심 기업</b>으로 표시·저장되고 맨 위로 올라갑니다(그다음 기술주, 시총 순). · 캘린더 갱신 " + esc(D.updated || "") + "</div>";
+        box.querySelector("#cwPrev").onclick = function () { st.w = addDays(st.w, -7); keep(); draw(); };
+        box.querySelector("#cwNext").onclick = function () { st.w = addDays(st.w, 7); keep(); draw(); };
+        var nb = box.querySelector("#cwNow"); if (nb) nb.onclick = function () { st.w = monday(today); keep(); draw(); };
+        box.querySelectorAll(".cd-more").forEach(function (b) { b.onclick = function () { st.open[b.dataset.d] = 1; draw(); }; });
+        box.querySelectorAll(".ce").forEach(function (c) {
+          c.onclick = function (e) {
+            if (e.target.closest("a")) return;
+            var W2 = loadWatch(), t = c.dataset.t, k = W2.indexOf(t);
+            if (k >= 0) W2.splice(k, 1); else W2.push(t);
+            saveWatch(W2); draw();
+          };
+        });
+      }
+      function keep() { try { sessionStorage.setItem("us-cal-week", st.w); } catch (e) {} }
+      draw();
     }).catch(function () { box.innerHTML = '<div class="empty">발표 예정 캘린더를 불러오지 못했습니다.</div>'; });
   }
 

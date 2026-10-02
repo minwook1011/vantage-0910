@@ -30,6 +30,9 @@ ET = timezone(timedelta(hours=-4))  # 미 동부(서머타임 기준 근사 — 
 TIME = {"time-pre-market": "pre", "time-after-hours": "after", "time-not-supplied": "na"}
 
 
+META = {}  # 티커 → {sector, mcap(억 달러)} — 화면 정렬(관심 → 기술주 → 시총 순)용
+
+
 def universe():
     tk = {}
     p = os.path.join(BASE, "data_sources", "us_universe.json")
@@ -38,6 +41,7 @@ def universe():
             t = (c.get("ticker") or "").upper()
             if t:
                 tk[t.replace(".", "-")] = c.get("name")
+                META[t.replace(".", "-")] = {"sector": c.get("sector"), "mcap": round(c["mcap"] / 1e8) if c.get("mcap") else None}
     p = os.path.join(BASE, "docs", "megacap.json")
     if os.path.exists(p):
         for s in json.load(open(p, encoding="utf-8")).get("stocks", []):
@@ -61,7 +65,7 @@ def day_rows(d):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--days", type=int, default=60)
+    ap.add_argument("--days", type=int, default=120)  # 12월 발표(브로드컴·오라클·코스트코 등)까지 잡으려면 넉 달
     ap.add_argument("--all", action="store_true")
     a = ap.parse_args()
     uni = universe()
@@ -105,11 +109,52 @@ def main():
     for t, e in old.items():  # 이번에 안 보인 종목: 지난 발표(last)만 남긴다
         if t not in dates and e.get("last"):
             dates[t] = {"name": e.get("name"), "last": e["last"]}
+
+    # 교차 확인 — 야후 calendarEvents(docs/earnings_calendar.json, 회사 확정 여부 is_estimate 포함)와 맞대 본다(2026-10-02 사용자 요청)
+    #  · 둘 다 있고 같으면 agree · 다르면 mismatch(감시는 더 이른 날짜로: watch) · 나스닥에 없고 야후만 있으면 그 날짜를 next 로(src: yahoo)
+    try:
+        ycal = json.load(open(os.path.join(BASE, "docs", "earnings_calendar.json"), encoding="utf-8")).get("calendar", {})
+    except Exception:
+        ycal = {}
+    n_agree = n_mis = n_yonly = 0
+    mismatches = []
+    for t in uni:
+        y = ycal.get(t) or {}
+        yd = y.get("next_earnings_date")
+        if not yd or yd < t0:
+            yd = None
+        e = dates.setdefault(t, {"name": uni.get(t)})
+        nx = e.get("next")
+        if nx:
+            nx["src"] = "nasdaq"
+        if yd:
+            e["yahoo"] = {"date": yd, "confirmed": y.get("is_estimate") is False}
+        if nx and yd:
+            if abs((datetime.fromisoformat(nx["date"]) - datetime.fromisoformat(yd)).days) <= 1:
+                e["check"] = "agree"; n_agree += 1
+            else:
+                e["check"] = "mismatch"; n_mis += 1
+                e["watch"] = min(nx["date"], yd)
+                mismatches.append(f"{t}(나스닥 {nx['date']} · 야후 {yd}{' 확정' if e['yahoo']['confirmed'] else ' 추정'})")
+        elif yd and not nx:
+            e["next"] = {"date": yd, "time": "na", "fq": None, "eps_fc": None, "src": "yahoo", "confirmed": e["yahoo"]["confirmed"]}
+            e["check"] = "yahoo-only"; n_yonly += 1
+        elif nx:
+            e["check"] = "nasdaq-only"
+        else:
+            e["check"] = "none"
+        if len(e) == 1:
+            dates.pop(t, None)
+        elif t in META:
+            e.update({k: v for k, v in META[t].items() if v is not None})
     now = datetime.now(KST)
     doc = {"updated": now.strftime("%Y-%m-%d %H:%M KST"), "src": "Nasdaq Earnings Calendar (api.nasdaq.com)",
            "note": "time: pre=미 동부 장 전(한국 밤~새벽), after=장 후(한국 새벽~아침), na=미정. 날짜는 미 동부 기준.",
            "range": [days[0].isoformat(), days[-1].isoformat()], "failed_days": fail,
-           "universe": len(uni), "count": len(dates), "dates": dict(sorted(dates.items()))}
+           "universe": len(uni), "count": len(dates),
+           "crosscheck": {"agree": n_agree, "mismatch": n_mis, "yahoo_only": n_yonly,
+                          "none": sorted(t for t in uni if not (dates.get(t) or {}).get("next")), "mismatches": mismatches},
+           "dates": dict(sorted(dates.items()))}
     # 날짜 정보가 그대로면 파일을 쓰지 않는다(하루 여러 번 돌아도 커밋 안 생김)
     try:
         prev = json.load(open(OUT, encoding="utf-8"))
@@ -121,8 +166,11 @@ def main():
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump(doc, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     n_next = sum(1 for e in dates.values() if e.get("next"))
-    print(f"미국 실적 예정일: 명단 {len(uni)}종목 중 앞으로 {a.days}일 안 발표 {n_next}종목 · 지난 7일 발표 "
+    print(f"미국 실적 예정일: 명단 {len(uni)}종목 중 다음 발표일 있음 {n_next}종목 · 지난 7일 발표 "
           f"{sum(1 for e in dates.values() if e.get('last'))}종목 · 조회 {len(days)}일(실패 {fail})")
+    print(f"교차 확인(나스닥 vs 야후): 일치 {n_agree} · 불일치 {n_mis} · 야후에만 {n_yonly} · 둘 다 없음 {len(doc['crosscheck']['none'])}")
+    if mismatches:
+        print("  불일치:", " / ".join(mismatches[:20]))
     return 0
 
 

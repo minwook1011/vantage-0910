@@ -268,13 +268,39 @@ def main():
         for t, e in dates.items():
             if only and t not in only:
                 continue
-            for k in ("last", "next"):
-                x = e.get(k)
+            cands = [e.get("last"), e.get("next")]
+            if e.get("watch") and (e.get("next") or {}).get("date") != e["watch"]:  # 나스닥·야후 날짜가 다르면 더 이른 날도 감시
+                cands.append(dict(e.get("next") or {}, date=e["watch"]))
+            for x in cands:
                 if not x or x["date"] > today or (t0 - datetime.fromisoformat(x["date"]).date()).days > LOOKBACK:
                     continue
                 if any(r["date"] >= x["date"] for r in have.get(t, [])):
                     continue
                 targets.append((t, x))
+    # 안전망 — 캘린더에 없거나 날짜가 틀려도, 지난 3일 안 SEC 에 실적 8-K(2.02)를 낸 명단 종목은 전부 잡는다(2026-10-02)
+    if not px_only and "--no-scan" not in args:
+        since3 = (t0 - timedelta(days=3)).isoformat()
+        seen = {t for t, _ in targets}
+        n_scan = 0
+        for t in (only or list(uni)):
+            if t in seen or any(r["date"] >= since3 for r in have.get(t, [])):
+                continue
+            cik = cik_of(t)
+            if not cik:
+                continue
+            s = sec_get(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+            n_scan += 1
+            if not s:
+                continue
+            r = s["filings"]["recent"]
+            hit = next((r["filingDate"][i] for i, f in enumerate(r["form"][:40])
+                        if f in ("8-K", "8-K/A") and r["filingDate"][i] >= since3 and "2.02" in (r["items"][i] or "")), None)
+            if hit:
+                e = dates.get(t) or {}
+                nx = e.get("next") or e.get("last") or {}
+                targets.append((t, {"date": hit, "time": nx.get("time", "na"), "fq": nx.get("fq"), "scan": True}))
+                print(f"  [SEC 안전망] {t}: 캘린더와 무관하게 8-K(2.02) {hit} 발견")
+        print(f"  SEC 전수 확인 {n_scan}종목")
     print(f"대상 {len(targets)}종목 (발표 예정일 지난 {LOOKBACK}일 · 리포트 없음){' · 주가만' if px_only else ''}")
 
     cookie, crumb = (None, None) if px_only or not targets else ycrumb()
@@ -288,6 +314,10 @@ def main():
         k8 = find_8k(cik, since)
         if not k8:
             print(f"  {t}: {x['date']} 예정 — 아직 8-K(2.02) 없음")
+            continue
+        if x.get("scan") and not k8.get("release"):
+            # 캘린더 밖에서 잡힌 2.02 인데 보도자료(EX-99)가 없으면 정기 실적이 아닐 수 있다(가이던스 조정·잠정치 등) — 기록만
+            print(f"  {t}: 캘린더 밖 8-K(2.02) {k8['date']} — 보도자료 없음, 정기 실적 아닐 수 있어 리포트 안 만듦 ({k8['index']})")
             continue
         try:
             co = json.load(open(os.path.join(US, f"{t}.json"), encoding="utf-8"))
