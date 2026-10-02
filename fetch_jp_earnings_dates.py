@@ -106,9 +106,16 @@ def main():
 
     dates = dict(old) if only else {}  # 지난 날짜도 그대로 둔다(실적 수집기가 최근 7일 예정 종목을 찾는 데 쓴다)
     stats = {"yahoo": 0, "kabutan": 0, "yahoo-est": 0, "prev-year": 0, "kept": 0, "none": 0}
+    stats["jpx"] = 0
     for i, code in enumerate(codes, 1):
         date, est, src = None, None, None
         yahoo_est = None
+        # JPX 공식 예정일(fetch_jpx_schedule.py)이 오늘 이후로 있으면 그대로 둔다 — 야후·카부탄보다 우선(2026-10-02)
+        prev = old.get(code) or {}
+        if prev.get("src") == "jpx" and prev.get("date", "") >= today:
+            dates[code] = prev
+            stats["jpx"] += 1
+            continue
         if crumb:
             res = yf.fetch_one(code + ".T", cookie, crumb)
             if res and res.get("next_earnings_date") and res["next_earnings_date"] >= today:

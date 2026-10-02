@@ -422,6 +422,8 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(21,28,4
 .rb.up{color:var(--up);border-color:rgba(240,71,90,.45);background:rgba(240,71,90,.08)}
 .rb.dn{color:#6f9dff;border-color:rgba(61,126,255,.45);background:rgba(61,126,255,.08)}
 .rb.px{border-style:dashed}
+.rb.px.big{font-size:11.5px;font-weight:700;border-style:solid;padding:1px 7px}
+.rb small{font-size:9px;opacity:.8;font-weight:400}
 .eu-legend{line-height:1.9}
 .eu-legend b{color:var(--ink-mid);font-weight:600}
 .d-res{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:9px;cursor:help}

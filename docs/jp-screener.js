@@ -100,14 +100,15 @@ const tone = v => v==null ? "" : v>0 ? " up" : v<0 ? " dn" : "";
 function resBadges(x){
   if(!x) return "";
   const b = [];
+  // 주가 반응을 맨 앞에(진척률 칩은 2026-10-02 사용자 요청으로 뺌 — 진척률은 마우스를 올리면 나오는 설명에만 남김)
+  const p = x.px||{};
+  const live = p.d1_live ? ` <small>장중 ${p.d1_at||""}</small>` : "";
+  if(p.d1==null) b.push(`<em class="rb px">주가 반응 ${p.base?"다음 거래일 대기":"—"}</em>`);
+  else b.push(`<em class="rb px big${tone(p.d1)}">발표 후 ${sgn(p.d1)}%${live}</em>`);
+  if(p.d1!=null && !p.d1_live) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
   if(x.beat && x.beat.pct!=null) b.push(`<em class="rb${tone(x.beat.pct)}">가이던스 ${sgn(x.beat.pct)}%</em>`);
-  else if(x.progress && x.progress.diff!=null) b.push(`<em class="rb${tone(x.progress.diff)}">진척 ${sgn(x.progress.diff)}p</em>`);
-  else if(x.progress && x.progress.pct>=0) b.push(`<em class="rb">진척 ${x.progress.pct.toFixed(0)}%</em>`);
   if(x.revision && !x.revision.kept && x.revision.pct!=null && x.revision.pct!==0) b.push(`<em class="rb${tone(x.revision.pct)}">${x.revision.pct>0?"상향":"하향"} ${sgn(x.revision.pct)}%</em>`);
   if(x.cons && x.cons.pct!=null) b.push(`<em class="rb${tone(x.cons.pct)}">컨센 ${sgn(x.cons.pct)}%</em>`);
-  const p = x.px||{};
-  b.push(`<em class="rb px${tone(p.d1)}">1D ${p.d1==null?"—":sgn(p.d1)+"%"}</em>`);
-  if(p.d1!=null) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
   return `<span class="eu-rx">${b.join("")}</span>`;
 }
 // 실적 리포트 페이지(jp-report.html) 링크 — 결과 레코드에 rid가 있을 때만
@@ -548,13 +549,13 @@ function renderEarnUp(){
         <div class="eu-list">${items.map(euCo).join("")}</div></div>`;
     }).join("") + `</div>`;
   }
-  h += `<div class="eu-note">야후 파이낸스·카부탄에 공시된 일정 기준. <i class="est-i">예상</i>은 날짜 공시 전이라 작년 같은 분기 발표일 등으로 추정한 날입니다. 시총 순 정렬 · 매주 일요일 자동 갱신.</div>`;
+  h += `<div class="eu-note">도쿄증권거래소(JPX) 공식 「결산 발표 예정일」 기준(회사가 거래소에 알린 날짜). <i class="est-i">예상</i>은 회사가 아직 날짜를 알리지 않아 작년 같은 분기 발표일 등으로 추정한 날입니다. 시총 순 정렬 · 매일 2번 자동 갱신.</div>`;
   if(RES_META) h += `<div class="eu-note eu-legend"><b>발표 끝난 종목</b> ·
+    <em class="rb px big">발표 후 ±%</em> 발표 직전 종가 대비 주가 반응(장 마감 후 발표면 다음 거래일). 장중이면 현재가로 바로 보여 주고 <small>장중</small>을 붙이며, 마감 뒤 종가로 바뀝니다 ·
     <em class="rb">가이던스 ±%</em> 결산(통기) 실적 ÷ 발표 직전 회사 예상(영업이익, 없으면 경상이익) ·
-    <em class="rb">진척 ±p</em> 분기 발표: 누계 경상이익의 통기 계획 대비 진척률 − 과거 같은 시점 평균(카부탄 5년 평균) ·
     <em class="rb">상향/하향</em> 같은 날 통기 가이던스 수정 폭 ·
     <em class="rb">컨센</em> 분기 EPS 컨센서스 대비(야후, 커버 종목만) ·
-    <em class="rb">1D·5D</em> 발표 직전 종가 대비 반응일·5거래일 종가 등락(장 마감 후 발표면 다음 거래일부터). 붉은색 +, 파란색 −, 값이 없으면 —. 종목에 마우스를 올리면 수치와 기준이 보입니다. 평일 저녁 자동 갱신.</div>`;
+    <em class="rb px">5D</em> 5거래일 뒤 종가 등락. 붉은색 +, 파란색 −, 값이 없으면 —. 종목에 마우스를 올리면 진척률 등 수치와 기준이 보입니다. 주가 반응은 평일 장중 30분마다 갱신.</div>`;
   box.innerHTML = h;
   box.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{earnMode=b.dataset.mode; renderEarnUp();});
   box.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{earnWeek=b.dataset.w; renderEarnUp();});

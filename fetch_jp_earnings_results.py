@@ -365,11 +365,17 @@ def reaction(closes, date, tm, now):
     if not pre:
         return None
     today = now.strftime("%Y-%m-%d")
-    if post and post[-1][0] == today and now.strftime("%H:%M") < "15:45":
-        post = post[:-1]  # 장중 값은 쓰지 않는다
+    live = bool(post) and post[-1][0] == today and now.strftime("%H:%M") < "15:45"
     bd, bc = pre[-1]
     out = {"base_d": bd, "base": bc, "timing": "after" if after else ("pre" if tm < "09:00" else "intraday"),
            "time_known": tm is not None, "d1": None, "d1_d": None, "d5": None, "d5_d": None}
+    # 발표 다음 거래일 장중이면 현재가로 바로 반응을 보여 준다(d1_live, 마감 뒤 실행에서 종가로 바뀐다) — 2026-10-02 사용자 요청
+    if live and len(post) == 1:
+        out["d1_d"], out["d1"] = post[0][0], round((post[0][1] / bc - 1) * 100, 1)
+        out["d1_live"], out["d1_at"] = True, now.strftime("%H:%M")
+        return out
+    if live:
+        post = post[:-1]  # 5D 등 이후 칸은 마감 값만 쓴다
     if len(post) >= 1:
         out["d1_d"], out["d1"] = post[0][0], round((post[0][1] / bc - 1) * 100, 1)
     if len(post) >= 5:
@@ -713,7 +719,10 @@ def main():
             sched = {}
 
     t0 = datetime.strptime(today, "%Y-%m-%d")
-    if only:
+    if "--px-only" in args:
+        # 장중 30분마다: 카부탄은 건너뛰고 최근 발표 종목의 주가 반응만 다시 계산(발표 다음 날 장이 열리면 바로 뜨게)
+        targets = []
+    elif only:
         targets = only
     elif full:
         targets = codes

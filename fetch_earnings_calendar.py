@@ -139,6 +139,15 @@ def main():
         print("[오류] megacap.json 없음 — fetch_megacap.py를 먼저 실행")
         sys.exit(1)
     stocks = json.load(open(UNIVERSE, encoding="utf-8")).get("stocks", [])
+    # 데이터 허브 미국·해외 기업(data_sources/us_universe.json)도 합친다 — 미국 실적 리포트가 이 캘린더로 발표일을 잡는다(2026-10-02)
+    us_path = os.path.join(BASE, "data_sources", "us_universe.json")
+    if os.path.exists(us_path):
+        have = {s["ticker"] for s in stocks}
+        for c in json.load(open(us_path, encoding="utf-8")).get("companies", []):
+            tk = c.get("yahoo") or c.get("ticker")
+            if tk and tk not in have:
+                stocks.append({"ticker": tk, "name": c.get("name")})
+                have.add(tk)
 
     existing = {}
     if os.path.exists(OUT):
