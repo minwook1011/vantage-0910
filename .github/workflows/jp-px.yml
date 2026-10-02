@@ -38,11 +38,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/jp/px_recent.json docs/data/jp/px docs/data/jp/trends
+          # px_splits.json(분할 이력 캐시)도 함께 — 빠뜨리면 남은 변경 때문에 pull --rebase 가 거부돼 실패했다(10/1)
+          git add docs/data/jp/px_recent.json docs/data/jp/px_splits.json docs/data/jp/px docs/data/jp/trends
           if ! git diff --cached --quiet; then
             git commit -m "data: 일본 주가·트렌드 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
             for attempt in 1 2 3; do
-              git pull --rebase origin main || exit 1
+              git pull --rebase --autostash origin main || exit 1
               if git push; then exit 0; fi
             done
             exit 1

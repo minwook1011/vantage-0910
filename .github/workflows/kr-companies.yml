@@ -45,7 +45,7 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "data: 한국 기업 주가·실적 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
             for attempt in 1 2 3; do
-              git pull --rebase origin main || exit 1
+              git pull --rebase --autostash origin main || exit 1
               if git push; then exit 0; fi
             done
             exit 1
