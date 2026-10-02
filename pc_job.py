@@ -16,6 +16,7 @@ import argparse
 import json
 import os
 import subprocess
+import time
 import sys
 from datetime import datetime, timedelta, timezone
 
@@ -36,13 +37,23 @@ def ensure_worktree(name):
     if not os.path.exists(os.path.join(path, ".git")):
         os.makedirs(JOBS, exist_ok=True)
         git(["worktree", "prune"], REPO, check=False)
-        git(["fetch", "-q", "origin", "main"], REPO)
+        fetch(REPO)
         git(["worktree", "add", "--detach", path, "origin/main"], REPO)
     return path
 
 
+def fetch(path):
+    """전용 폴더들은 같은 .git 을 공유한다 — 다른 작업이 같은 순간 fetch 하면 ref 잠금 충돌이 나니 잠깐 쉬고 다시"""
+    for i in range(6):
+        r = git(["fetch", "-q", "origin", "main"], path, check=False)
+        if r.returncode == 0:
+            return
+        time.sleep(3 + i * 4)
+    raise RuntimeError(f"git fetch 실패: {r.stderr.strip()}")
+
+
 def sync(path):
-    git(["fetch", "-q", "origin", "main"], path)
+    fetch(path)
     git(["reset", "-q", "--hard", "origin/main"], path)
     git(["clean", "-qfd", "docs", "data_sources"], path, check=False)
 
@@ -89,7 +100,7 @@ def main():
                 out.update(ok=True, pushed=True)
                 print(json.dumps(out, ensure_ascii=False))
                 return 0
-            git(["fetch", "-q", "origin", "main"], path)
+            fetch(path)
             if git(["rebase", "-q", "origin/main"], path, check=False).returncode != 0:
                 git(["rebase", "--abort"], path, check=False)
                 print("원격과 같은 데이터 파일이 충돌 — 원격 기준으로 다시 돌린다", flush=True)
