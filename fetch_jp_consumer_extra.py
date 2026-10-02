@@ -4,7 +4,7 @@
 fetch_jp_consumer_extra.py — 일본 기업 스크리너「소비재」유니버스 추가 종목
 → docs/data/jp/consumer-extra.js  (RAW_EXT · BUNDLE_EXT, jp-screener.js 가 소비재 RAW·BUNDLE 뒤에 합친다)
 
-screener-data.js(소비재 735개, 고정 번들)에는 생성 스크립트가 없어서 직접 고치지 않는다.
+screener-data.js(소비재 332개 — 2026-10-02 시총 300억엔 미만 정리, 고정 번들)에는 생성 스크립트가 없어서 직접 고치지 않는다.
 빠진 소비재·소비재 인접 종목은 data_sources/jp_consumer_extra.json 에 적고 이 스크립트를 돌린다.
 
   [{"code": "7552", "cat": "게임·엔터", "note": "완구·게임 도매"}, ...]
@@ -39,6 +39,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 LIST = os.path.join(BASE, "data_sources", "jp_consumer_extra.json")
 SCREENER = os.path.join(BASE, "docs", "data", "jp", "screener-data.js")
 OUT = os.path.join(BASE, "docs", "data", "jp", "consumer-extra.js")
+MIN_MCAP = 300  # 억엔 — 이보다 작은 종목은 소비재 명단에 넣지 않는다
 CATS = ["리테일·유통", "식품·음료", "외식", "라멘", "게임·엔터", "미용·헬스케어서비스", "패션·명품", "생활·홈",
         "화장품·퍼스널케어", "여행·레저"]
 
@@ -147,6 +148,13 @@ def main():
     if len(raw) < n_list * 0.7:
         print(f"수집률이 너무 낮음({len(raw)}/{n_list}) — 기존 파일 유지")
         return 1
+    # 시총 300억엔 미만은 소비재 명단에서 뺀다(2026-10-02 사용자 지시 — screener-data.js 도 같은 기준으로 정리함)
+    small = [f"{r[0]}({r[5]})" for r in raw if (r[5] or 0) < MIN_MCAP]
+    keep = {r[0] for r in raw if (r[5] or 0) >= MIN_MCAP}
+    raw = [r for r in raw if r[0] in keep]
+    bundle = [b for b in bundle if b["c"] in keep]
+    if small:
+        print(f"시총 {MIN_MCAP}억엔 미만이라 뺌:", " ".join(small))
     raw.sort(key=lambda r: -(r[5] or 0))
     order = {r[0]: k for k, r in enumerate(raw)}
     bundle.sort(key=lambda b: order.get(b["c"], 9999))
