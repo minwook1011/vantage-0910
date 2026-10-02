@@ -12,7 +12,8 @@
     ca: ["캐피털 얼로케이터스", "#2f62d0", "기관투자자·헤지펀드 매니저 인터뷰"],
     bb: ["비즈니스 브레이크다운스", "#7a4bc9", "한 회사를 한 편에 걸쳐 해부"],
     dwarkesh: ["드와케시 파텔 팟캐스트", "#c93447", "AI·과학·역사 장시간 인터뷰"],
-    mad: ["MAD 팟캐스트", "#2f7a55", "AI·데이터 인프라 창업자 인터뷰"]
+    mad: ["MAD 팟캐스트", "#2f7a55", "AI·데이터 인프라 창업자 인터뷰"],
+    synopsis: ["더 시놉시스", "#c46a1c", "개별 기업 사업 구조 분석·투자자 인터뷰"]
   };
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function getJSON(p) { return fetch(p, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); }
@@ -126,7 +127,7 @@
     }
     var cnt = {}; eps.forEach(function (e) { cnt[e.show] = (cnt[e.show] || 0) + 1; });
     app.innerHTML = '<div class="kicker">팟캐스트 · 투자·AI 인터뷰 요약</div><h1>팟캐스트</h1>' +
-      '<p class="lede">5개 방송의 새 에피소드를 하루 3번(오전 7시·오후 1시·저녁 8시) 확인해 <b>누가 · 어느 회사 · 무슨 이야기</b>인지부터 정리하고, 내용 요약 뒤에 외부 자료로 검증한 딥 리서치를 붙입니다. · 갱신 ' + esc((IX.updated || "").replace(" KST", "")) + "</p>" +
+      '<p class="lede">6개 방송의 새 에피소드를 매시간 확인해 <b>누가 · 어느 회사 · 무슨 이야기</b>인지부터 정리하고, 내용 요약 뒤에 외부 자료로 검증한 딥 리서치를 붙입니다. · 갱신 ' + esc((IX.updated || "").replace(" KST", "")) + "</p>" +
       '<div class="chips" id="chips"><button data-v="all">전체 <small>' + eps.length + "</small></button>" +
       Object.keys(SHOWS).map(function (k) { return '<button data-v="' + k + '" title="' + esc(SHOWS[k][2]) + '"><i style="background:' + SHOWS[k][1] + '"></i>' + esc(SHOWS[k][0]) + " <small>" + (cnt[k] || 0) + "</small></button>"; }).join("") + "</div>" +
       '<div id="list"></div>';

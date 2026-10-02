@@ -16,6 +16,9 @@
      "transcript": "dwarkesh.com/p/... 글 본문(전체 대본 포함)"},
     {"id": "mad", "name": "The MAD Podcast", "name_ko": "MAD 팟캐스트", "host": "Matt Turck (FirstMark)",
      "desc": "AI·데이터 인프라 창업자 인터뷰", "feed": "https://anchor.fm/s/f2ee4948/podcast/rss", "site": "https://www.youtube.com/@DataDrivenNYC",
-     "transcript": "YouTube 영상 자막(yt-dlp 자동 자막) → 없으면 Spotify 설명"}
+     "transcript": "YouTube 영상 자막(yt-dlp 자동 자막) → 없으면 Spotify 설명"},
+    {"id": "synopsis", "name": "The Synopsis", "name_ko": "더 시놉시스", "host": "Drew Cohen (Speedwell Research)",
+     "desc": "개별 기업 사업 구조 분석·투자자 인터뷰", "feed": "https://rss.libsyn.com/shows/481071/destinations/4092573.xml", "site": "https://www.youtube.com/@DrewCohenMoney",
+     "transcript": "YouTube 영상 자막(yt-dlp 자동 자막) → 없으면 오디오 받아쓰기"}
   ]
 }

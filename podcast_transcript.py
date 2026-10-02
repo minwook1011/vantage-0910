@@ -34,7 +34,7 @@ INDEX = os.path.join(BASE, "docs", "data", "podcasts", "index.json")
 TMP = os.path.join(BASE, "data_sources", "_podcast_tmp")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-podcasts/1.0"
 SHOW_YT = {"ilb": "Invest Like the Best", "bb": "Business Breakdowns Colossus", "ca": "Capital Allocators Ted Seides",
-           "dwarkesh": "Dwarkesh Patel", "mad": "MAD Podcast Matt Turck"}
+           "dwarkesh": "Dwarkesh Patel", "mad": "MAD Podcast Matt Turck", "synopsis": "Drew Cohen The Synopsis"}
 
 
 def page_text(url):
