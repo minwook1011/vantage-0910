@@ -17,3 +17,6 @@ data_sources/_cache/
 telegram_bot.json
 # 팟캐스트 대본 임시 파일(podcast_transcript.py) — 저작권 원문이라 올리지 않는다
 data_sources/_podcast_tmp/
+
+# 이 PC의 Claude 권한 설정(예약 작업 자동 허용) — 올리지 않는다
+.claude/settings.local.json

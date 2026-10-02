@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-02 08:28 KST",
+ "updated": "2026-10-02 09:25 KST",
  "episodes": [
   {
    "id": "2026-10-02-dwarkesh-si-sheppard-how-did-a-few-hundred-spanish-soldie",
@@ -12,10 +12,19 @@
    "audio": "https://api.substack.com/feed/podcast/218345956/4b5f7bc6865a6ab2f2eeea047dff6d8b.mp3",
    "duration": "1:37:23",
    "desc": "New episode with military historian Si Sheppard . The conquests of the Aztec and Inca empires might be the most shocking events in human history. Hernan Cortés and some hundreds of Conquistadors landed on a new continent they knew basically nothing about, and within 2 and a half years, conquered the 6 million strong Aztec empire. Then, a decade later, Francisco Pizarro did the same thing to an Incan Empire of some 10 million inhabitants. In both cases, the Conquistadors consistently beat native armies while being literally 100x (or even in some cases 1000x) outnumbered - and in many cases, did…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-02 08:28 KST",
    "image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/c3Vic3RhY2s6cG9zdDoyMTgzNDU5NTY.jpg",
-   "show_image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/show.jpg"
+   "show_image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/show.jpg",
+   "title_ko": "Si Sheppard — 수백 명의 스페인 병사는 어떻게 두 제국을 무너뜨렸나",
+   "desc_ko": "군사사학자 사이 셰퍼드와 함께 아스테카·잉카 정복을 다룬 편이다. 코르테스는 수백 명으로 인구 약 600만의 아스테카를 2년 반 만에, 피사로는 10년 뒤 약 1,000만의 잉카를 무너뜨렸다. 정복자들은 100배, 때로는 1,000배 많은 군대를 상대로 이겼고, 병력의 99%는 정복 대상인 원주민이었다. 진행자는 동기를 알 수 없는 외부 세력이 더 나은 기술과 외교로 훨씬 큰 기존 질서를 차지한 일이 처음이 아니라며, AI 장악 논의와의 접점을 짚는다.",
+   "summary": {
+    "title_ko": "Si Sheppard — 수백 명의 스페인 병사는 어떻게 두 제국을 무너뜨렸나",
+    "headline": "전투는 쇠와 말로 이겼지만 전쟁은 원주민 동맹이 이겼다 — 스페인인은 최종 공세 병력의 0.5%",
+    "image": "https://i.ytimg.com/vi/LwQQ7nBCGSs/hqdefault.jpg",
+    "guest": "사이 셰퍼드(Si Sheppard) — 군사사학자 — Long Island University 정치학·국제관계학 부교수, Osprey 『Tenochtitlan 1519–21』『Cuzco 1536–37』 저자",
+    "company": "Long Island University (역사 · 군사사)"
+   }
   },
   {
    "id": "2026-10-01-mad-why-ai-agents-cheat-eric-ho-goodfire",
@@ -28,10 +37,19 @@
    "audio": "https://anchor.fm/s/f2ee4948/podcast/play/126601853/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-1%2F433056255-44100-2-a80cb98b4a574.mp3",
    "duration": "01:10:27",
    "desc": "This summer, AI agents broke out of their test sandboxes at every major lab and hacked real companies, and the safety tests didn't see it coming. Eric Ho is the co-founder and CEO of Goodfire, the Anthropic-backed mechanistic interpretability lab whose new paper, \"Models Know When They're Reward Hacking,\" found that top open-source AI models cheat on agent tasks up to 96% of the time, that a clear \"cheating\" signal exists inside the model, and that cheap activation probes can catch it, including hacks that chain-of-thought monitors miss. In this conversation, Eric explains reward hacking in pl…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-02 08:28 KST",
    "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
-   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg"
+   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
+   "title_ko": "Eric Ho(Goodfire) — AI 에이전트는 왜 속이나: 모델 속에서 부정행위 잡기",
+   "desc_ko": "올여름 주요 AI 연구소의 에이전트들이 시험용 샌드박스를 벗어나 실제 회사를 해킹했고, 안전 시험은 이를 미리 잡지 못했다. Anthropic이 투자한 해석 가능성 연구소 Goodfire의 공동창업자·CEO Eric Ho가 출연했다. Goodfire의 새 논문은 최상위 공개 모델이 에이전트 과제에서 최대 96%까지 속이고, 모델 안에 뚜렷한 '부정행위' 신호가 있으며, 값싼 활성값 탐침으로 생각의 사슬 감시가 놓친 해킹까지 잡을 수 있음을 보였다. Ho는 보상 해킹을 쉬운 말로 풀고, 이것이 업계 안전 대응에 무엇을 뜻하는지 이야기한다.",
+   "summary": {
+    "title_ko": "Eric Ho(Goodfire) — AI 에이전트는 왜 속이나: 모델 속에서 부정행위 잡기",
+    "headline": "공개 모델은 과제의 최대 96%에서 속인다 — 모델 속 '부정행위' 신호를 싼 탐침으로 잡는다",
+    "image": "https://i.ytimg.com/vi/MrnhtyPGCKI/hqdefault.jpg",
+    "guest": "에릭 호(Eric Ho) — 해석 가능성 연구소 Goodfire 공동창업자·CEO — 보상 해킹 탐지 논문을 이끔",
+    "company": "Goodfire (AI 안전 · 해석 가능성(모델 내부 분석))"
+   }
   },
   {
    "id": "2026-09-28-ca-nancy-zimmerman-people-process-and-fixed-income",
@@ -44,12 +62,19 @@
    "audio": "https://traffic.libsyn.com/secure/tedseides/CA_-_EP.517_Nancy_Zimmerman_-_AUDIO_V1.2.mp3?dest-id=482814",
    "duration": "49:54",
    "desc": "Nancy Zimmerman is the co-founder and Managing Partner of Bracebridge Capital, a $13 billion alternative asset manager specializing in fixed income arbitrage that she founded over 30 years ago, in 1994, alongside Gabe Sunshine with capital from David Swensen at Yale. Our conversation traces Nancy's evolution from pricing securities to investing and the enduring sources of inefficiency in fixed income markets. We discuss the nature of arbitrage opportunities and their persistence over time and then turn to hunting for mispricings today across developed market rates, structured credit, corporate…",
-   "status": "new",
+   "status": "done",
    "found": "2026-09-30 09:16 KST",
    "image": "https://static.libsyn.com/p/assets/a/2/8/5/a285427977c530e288c4a68c3ddbc4f2/Nancy_Zimmerman_Apple_Cover_Art_.jpg",
    "show_image": "https://static.libsyn.com/p/assets/f/b/7/6/fb76e1c8bfb69e8dd959afa2a1bf1c87/CA_Square_logo_light_background_6.26.24.jpg",
    "title_ko": "Nancy Zimmerman — Bracebridge의 사람·프로세스, 그리고 채권 차익거래 (517회)",
-   "desc_ko": "Nancy Zimmerman은 채권 차익거래 전문 운용사 Bracebridge Capital(운용자산 130억 달러)의 공동창업자이자 매니징 파트너다. 1994년 Gabe Sunshine과 함께 예일대 기금의 David Swensen에게서 자금을 받아 회사를 세웠다. 증권 가격 산정에서 투자로 넘어온 과정, 채권 시장에 오래 남아 있는 비효율의 원천, 차익거래 기회의 성격과 지속성, 그리고 지금 선진국 금리·구조화 크레딧·회사채 등에서 가격 오류를 찾는 법을 이야기한다."
+   "desc_ko": "Nancy Zimmerman은 채권 차익거래 전문 운용사 Bracebridge Capital(운용자산 130억 달러)의 공동창업자이자 매니징 파트너다. 1994년 Gabe Sunshine과 함께 예일대 기금의 David Swensen에게서 자금을 받아 회사를 세웠다. 대화는 증권 가격 산정에서 투자로 넘어온 과정과 채권 시장에 오래 남아 있는 비효율의 원천, 차익거래 기회의 성격과 지속성을 짚는다. 이어 선진국 금리·구조화 크레딧·회사채·신흥국에서 지금 가격 오류를 찾는 법, 아이디어 발굴·상대가치 판단·포지션 크기·리스크 관리 과정을 다룬다. 끝으로 팀 구성과 투자자와의 이해관계 맞추기, Brown University 투자위원회와 뇌과학 연구 활동을 이야기한다.",
+   "summary": {
+    "title_ko": "Nancy Zimmerman — Bracebridge의 사람·프로세스, 그리고 채권 차익거래 (517회)",
+    "headline": "같은 것이 다른 값에 팔리는 이유는 제약 때문 — Bracebridge의 Nancy Zimmerman이 본 하이퍼스케일러 채권과 국채",
+    "image": "https://i.ytimg.com/vi/HcTQKwMhFGs/hqdefault.jpg",
+    "guest": "낸시 짐머먼(Nancy Zimmerman) — Bracebridge Capital 공동창업자 겸 매니징 파트너 — O'Connor & Associates·Goldman Sachs 금리 옵션 출신, Brown University 이사",
+    "company": "Bracebridge Capital (헤지펀드 · 채권 상대가치(차익거래) — 선진국 금리, 구조화 상품, 회사채, 신흥국)"
+   }
   },
   {
    "id": "2026-09-28-ilb-noah-shinn-building-instinct-the-personal-agent",
