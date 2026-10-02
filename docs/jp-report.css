@@ -113,3 +113,16 @@
   .jr .row .hide-m { display:none; }
   .jr h1 { font-size:21px; }
 }
+
+/* 미국 실적 리포트: 앞으로 2주 발표 예정 캘린더 */
+.jr .cal { margin-top:16px; }
+.jr .cal h3 { margin:0 0 10px; font-size:14.5px; display:flex; flex-wrap:wrap; gap:6px 10px; align-items:baseline; }
+.jr .cal h3 .hint { color:var(--muted); font-size:11.5px; font-weight:400; }
+.jr .cal-days { display:flex; flex-direction:column; gap:8px; }
+.jr .cal-day { display:flex; flex-wrap:wrap; gap:5px; align-items:center; border-top:1px solid var(--border); padding-top:8px; }
+.jr .cal-day:first-child { border-top:0; padding-top:0; }
+.jr .cal-d { width:100px; flex:0 0 100px; color:var(--text); font-size:12.5px; }
+.jr .cal-d small { color:var(--muted); }
+.jr .cal-it { font:600 11.5px var(--mono); padding:2px 7px; border:1px solid var(--border-strong); border-radius:6px; color:var(--text); }
+.jr .cal-it i { font:400 10px var(--sans); color:var(--muted); font-style:normal; margin-left:4px; }
+@media (max-width:760px) { .jr .cal-d { width:100%; flex-basis:100%; } }

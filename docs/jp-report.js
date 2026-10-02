@@ -5,7 +5,20 @@
 (function () {
   "use strict";
   var app = document.getElementById("app");
-  var BASE = "data/jp/reports/";
+  /* 시장 설정 — us-report.html 은 이 파일보다 먼저 window.EARN_MARKET = "us" 를 둔다(같은 화면 코드로 일본·미국을 그린다) */
+  var MK = {
+    jp: { base: "data/jp/reports/", page: "jp-report.html", u: "억엔", cur: "엔", title: "일본 실적 리포트",
+          px: function (c) { return "data/jp/px/" + c + ".json"; }, pxConv: function (P) { return P.b || []; },
+          pxSrc: "야후 파이낸스 일봉 종가(엔) · 평일 장 마감 후 매일 갱신",
+          tableUnit: "단위: 억엔 · 3개월(분기) 실적 · 분기 라벨은 달력 기준(예: 2Q26 = 2026년 4~6월) · 당기순이익 = 모회사 귀속 · YoY 음→양 전환 등은 계산하지 않음(–) · 출처: 카부탄" },
+    us: { base: "data/us/reports/", page: "us-report.html", u: "억 달러", cur: "달러", title: "미국 실적 리포트",
+          px: function (c) { return "data/us/" + c + ".json"; },
+          pxConv: function (P) { return ((P.price || {}).points || []).slice(-520).map(function (x) { return [Math.round(Date.parse(x.date + "T00:00:00Z") / 864e5), x.value]; }); },
+          pxSrc: "야후 파이낸스 일봉 종가(달러) · 데이터 허브와 같은 값(하루 3번 갱신)",
+          tableUnit: "단위: 억 달러 · 3개월(분기) 실적 · 분기 라벨은 분기가 끝난 달의 달력 분기(예: 3Q26 = 2026년 7~9월 사이에 끝난 분기) · 출처: SEC 공시 재무(XBRL). 막 발표한 분기가 아직 분기 보고서(10-Q) 전이면 야후 분기 손익으로 먼저 채우고(영업이익 빈칸 가능) 요약 글에서 보도자료 원문으로 검증" }
+  };
+  var M = MK[window.EARN_MARKET === "us" ? "us" : "jp"], U = M.u, IS_US = M === MK.us;
+  var BASE = M.base;
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function getJSON(p) { return fetch(p, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); }
   function cls(v) { return v == null ? "" : v > 0 ? "up" : v < 0 ? "dn" : ""; }
@@ -16,10 +29,13 @@
     return a >= 100 ? Math.round(x).toLocaleString() : a >= 10 ? x.toFixed(1) : x.toFixed(2);
   }
   function fyLabel(fy, p) {
+    if (IS_US) { var mm = /^([A-Za-z]{3})\/(\d{4})$/.exec(p || ""); return mm ? mm[2] + "년 " + ("JanFebMarAprMayJunJulAugSepOctNovDec".indexOf(mm[1]) / 3 + 1) + "월에 끝난 분기" : (p || ""); }
     if (!fy) return p || "";
     var m = fy.split("."); return m[0] + "년 " + (+m[1]) + "월기 " + (p === "FY" || p === "4Q" ? "결산(4Q)" : p);
   }
-  var KIND = { tanshin: "결산단신", deck: "설명자료", en: "영문" };
+  var KIND = { tanshin: "결산단신", deck: "설명자료", en: "영문", release: "보도자료", "8k": "SEC 8-K" };
+  function mainDoc(R) { return (R.docs || []).filter(function (d) { return d.kind === "tanshin" || d.kind === "release"; })[0]; }
+  function mainBtn(d, cls) { return d ? '<a class="btn ' + (cls || "pri") + '" href="' + esc(d.url) + '" target="_blank" rel="noopener">' + (d.kind === "release" ? "📄 실적 보도자료 원문 <small>SEC · 영어</small>" : "📄 결산단신 원문 <small>PDF</small>") + "</a>" : ""; }
   // 원문 제목이 일본어면 한국어 이름으로 보여 준다(링크는 그대로)
   function docTitle(d, R) {
     if (!/[぀-ヿ一-鿿]/.test(d.title || "")) return d.title;
@@ -87,7 +103,7 @@
       row("YoY", function (q) { return g(q, "yoy", "ni"); }, "sub") +
       row("QoQ", function (q) { return g(q, "qoq", "ni"); }, "sub");
     return '<div class="tbl"><table class="ft">' + head() + "<tbody>" + body + "</tbody></table></div>" +
-      '<div class="unit">단위: 억엔 · 3개월(분기) 실적 · 분기 라벨은 달력 기준(예: 2Q26 = 2026년 4~6월) · 당기순이익 = 모회사 귀속 · YoY 음→양 전환 등은 계산하지 않음(–) · 출처: 카부탄</div>';
+      '<div class="unit">' + esc(M.tableUnit) + "</div>";
   }
 
   /* ── 핵심 수치 카드 ── */
@@ -97,9 +113,9 @@
     if (r.beat) card("회사 가이던스 대비(" + ({ op: "영업이익", ord: "경상이익", ni: "순이익" }[r.beat.basis] || r.beat.basis) + ")", pctS(r.beat.pct), cls(r.beat.pct), "직전 회사 예상 대비 실제 통기 실적" + (r.beat.rev_pct != null ? " · 매출 " + pctS(r.beat.rev_pct) : ""));
     if (r.progress) card("통기 계획 대비 진척률", r.progress.pct + "%", "", (r.progress.avg != null ? r.progress.avg_src + " " + r.progress.avg + "% → " : "") + (r.progress.diff != null ? '<span class="' + cls(r.progress.diff) + '">' + (r.progress.diff > 0 ? "+" : "") + r.progress.diff + "%p</span>" : "") + (r.progress.basis === "op" ? " (영업이익 기준)" : " (경상이익 기준)"));
     if (r.revision) card("통기 가이던스", r.revision.kept ? "유지" : pctS(r.revision.pct), r.revision.kept ? "" : cls(r.revision.pct), r.revision.kept ? "이번 발표에서 수정 없음" : "이번 발표에서 수정(" + ({ op: "영업", ord: "경상" }[r.revision.basis] || "") + ")" + (r.revision.rev_pct != null ? " · 매출 " + pctS(r.revision.rev_pct) : ""));
-    if (r.next_guide) card("다음 기 회사 예상(영업이익)", pctS(r.next_guide.op_g), cls(r.next_guide.op_g), r.next_guide.fy + " · 매출 " + pctS(r.next_guide.rev_g) + " · 영업 " + oku(r.next_guide.op) + "억엔");
-    if (r.cons && r.cons.pct != null) card("EPS 컨센서스 대비", pctS(r.cons.pct), cls(r.cons.pct), "실제 " + r.cons.eps + " vs 예상 " + r.cons.est + "(야후)");
-    if (r.px) card("주가 반응", pctS(r.px.d1), cls(r.px.d1), "발표 후 첫 거래일 · 5거래일 " + pctS(r.px.d5));
+    if (r.next_guide) card("다음 기 회사 예상(영업이익)", pctS(r.next_guide.op_g), cls(r.next_guide.op_g), r.next_guide.fy + " · 매출 " + pctS(r.next_guide.rev_g) + " · 영업 " + oku(r.next_guide.op) + U);
+    if (r.cons && r.cons.pct != null) card("EPS 컨센서스 대비", pctS(r.cons.pct), cls(r.cons.pct), "실제 " + r.cons.eps + " vs 예상 " + r.cons.est + (IS_US ? " 달러(야후)" : "(야후)"));
+    if (r.px) card("발표 후 주가 반응", r.px.d1 == null ? "대기" : pctS(r.px.d1), cls(r.px.d1), r.px.d1 == null ? "반응일 장이 열리면 바로 표시" : (r.px.d1_live ? "장중 현재가 (" + esc(r.px.d1_at || "") + ")" : "발표 직전 종가 대비 첫 거래일") + " · 5거래일 " + pctS(r.px.d5));
     return f.length ? '<div class="facts">' + f.join("") + "</div>" : "";
   }
 
@@ -119,8 +135,8 @@
     [pl, (pl + ph) / 2, ph].forEach(function (p) { g += '<text x="' + (W - m.r + 5) + '" y="' + (yp(p) + 3) + '">' + Math.round(p) + "%</text>"; });
     qs.forEach(function (q, i) {
       var x = m.l + i * bw, w = bw * .34;
-      if (q.rev != null) g += '<rect x="' + (x + bw * .14) + '" y="' + y(Math.max(0, q.rev / 100)) + '" width="' + w + '" height="' + Math.abs(y(q.rev / 100) - y(0)) + '" fill="#4f7cff" opacity=".85"><title>' + q.cq + " 매출 " + oku(q.rev) + "억엔</title></rect>";
-      if (q.op != null) g += '<rect x="' + (x + bw * .14 + w + 2) + '" y="' + y(Math.max(0, q.op / 100)) + '" width="' + w + '" height="' + Math.abs(y(q.op / 100) - y(0)) + '" fill="' + (q.op >= 0 ? "#f0a53a" : "#3d7eff") + '"><title>' + q.cq + " 영업이익 " + oku(q.op) + "억엔</title></rect>";
+      if (q.rev != null) g += '<rect x="' + (x + bw * .14) + '" y="' + y(Math.max(0, q.rev / 100)) + '" width="' + w + '" height="' + Math.abs(y(q.rev / 100) - y(0)) + '" fill="#4f7cff" opacity=".85"><title>' + q.cq + " 매출 " + oku(q.rev) + U + "</title></rect>";
+      if (q.op != null) g += '<rect x="' + (x + bw * .14 + w + 2) + '" y="' + y(Math.max(0, q.op / 100)) + '" width="' + w + '" height="' + Math.abs(y(q.op / 100) - y(0)) + '" fill="' + (q.op >= 0 ? "#f0a53a" : "#3d7eff") + '"><title>' + q.cq + " 영업이익 " + oku(q.op) + U + "</title></rect>";
       g += '<text x="' + (x + bw / 2) + '" y="' + (H - 18) + '" text-anchor="middle">' + q.cq + "</text>";
     });
     var pts = qs.map(function (q, i) { return q.opm == null ? null : [m.l + i * bw + bw / 2, yp(q.opm)]; });
@@ -129,7 +145,7 @@
     pts.forEach(function (p, i) { if (p) g += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="3" fill="#f0475a"><title>' + qs[i].cq + " OPM " + qs[i].opm + "%</title></circle>"; });
     g += '<line class="axis" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(0) + '" y2="' + y(0) + '"/>';
     return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="분기 매출·영업이익·영업이익률">' + g + "</svg>" +
-      '<div class="lg"><span><i style="background:#4f7cff"></i>매출(억엔)</span><span><i style="background:#f0a53a"></i>영업이익(억엔)</span><span><i class="ln" style="border-color:#f0475a"></i>영업이익률(오른쪽 축)</span></div>';
+      '<div class="lg"><span><i style="background:#4f7cff"></i>매출(' + U + ')</span><span><i style="background:#f0a53a"></i>영업이익(' + U + ')</span><span><i class="ln" style="border-color:#f0475a"></i>영업이익률(오른쪽 축)</span></div>';
   }
   function yoyLines(qs, W) {
     W = W || 520; var H = 230, m = { l: 44, r: 12, t: 14, b: 34 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
@@ -160,13 +176,13 @@
     for (var t = lo; t <= hi + 1e-9; t += st) g += '<line class="grid" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(t) + '" y2="' + y(t) + '"/><text x="' + (m.l - 5) + '" y="' + (y(t) + 3) + '" text-anchor="end">' + Math.round(t).toLocaleString() + "</text>";
     ann.forEach(function (a, i) {
       var x = m.l + i * bw, w = Math.min(46, bw * .32), op = a.est ? ' fill-opacity=".35" stroke-dasharray="3 2"' : "";
-      if (a.rev != null) g += '<rect x="' + (x + bw / 2 - w - 1) + '" y="' + y(Math.max(0, a.rev / 100)) + '" width="' + w + '" height="' + Math.abs(y(a.rev / 100) - y(0)) + '" fill="#4f7cff" stroke="#4f7cff"' + op + "><title>" + a.fy + (a.est ? " 회사 예상" : "") + " 매출 " + oku(a.rev) + "억엔</title></rect>";
-      if (a.op != null) g += '<rect x="' + (x + bw / 2 + 1) + '" y="' + y(Math.max(0, a.op / 100)) + '" width="' + w + '" height="' + Math.abs(y(a.op / 100) - y(0)) + '" fill="#f0a53a" stroke="#f0a53a"' + op + "><title>" + a.fy + (a.est ? " 회사 예상" : "") + " 영업이익 " + oku(a.op) + "억엔</title></rect>";
+      if (a.rev != null) g += '<rect x="' + (x + bw / 2 - w - 1) + '" y="' + y(Math.max(0, a.rev / 100)) + '" width="' + w + '" height="' + Math.abs(y(a.rev / 100) - y(0)) + '" fill="#4f7cff" stroke="#4f7cff"' + op + "><title>" + a.fy + (a.est ? " 회사 예상" : "") + " 매출 " + oku(a.rev) + U + "</title></rect>";
+      if (a.op != null) g += '<rect x="' + (x + bw / 2 + 1) + '" y="' + y(Math.max(0, a.op / 100)) + '" width="' + w + '" height="' + Math.abs(y(a.op / 100) - y(0)) + '" fill="#f0a53a" stroke="#f0a53a"' + op + "><title>" + a.fy + (a.est ? " 회사 예상" : "") + " 영업이익 " + oku(a.op) + U + "</title></rect>";
       g += '<text x="' + (x + bw / 2) + '" y="' + (H - 18) + '" text-anchor="middle">' + a.fy + (a.est ? " 예" : "") + "</text>";
     });
     g += '<line class="axis" x1="' + m.l + '" x2="' + (W - m.r) + '" y1="' + y(0) + '" y2="' + y(0) + '"/>';
     return '<svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="연간 실적과 회사 예상">' + g + "</svg>" +
-      '<div class="lg"><span><i style="background:#4f7cff"></i>매출(억엔)</span><span><i style="background:#f0a53a"></i>영업이익(억엔)</span><span><i style="background:rgba(79,124,255,.35);border:1px dashed #4f7cff"></i>옅은 막대 = 회사 예상(予)</span></div>';
+      '<div class="lg"><span><i style="background:#4f7cff"></i>매출(' + U + ')</span><span><i style="background:#f0a53a"></i>영업이익(' + U + ')</span><span><i style="background:rgba(79,124,255,.35);border:1px dashed #4f7cff"></i>옅은 막대 = 회사 예상(予)</span></div>';
   }
 
   /* ── 주가(일봉) · 구글 트렌드: 리포트를 그린 뒤 hydrate(root, R)로 채운다 ── */
@@ -206,14 +222,14 @@
   function hydrate(root, R) {
     root = root || document;
     var pe = root.querySelector(".jr-px");
-    if (pe) getJSON("data/jp/px/" + pe.dataset.code + ".json").then(function (P) {
-      var b = P.b || []; if (b.length < 2) throw 0;
+    if (pe) getJSON(M.px(pe.dataset.code)).then(function (P) {
+      var b = M.pxConv(P); if (b.length < 2) throw 0;
       var last = b[b.length - 1], y1 = pxAt(b, last[0] - 365), r0 = R && R.date ? pxAt(b, toDay(R.date) - 1) : null;
-      var s = "현재 <b>" + last[1].toLocaleString() + "엔</b> (" + dayStr(last[0]) + ")" +
+      var s = "현재 <b>" + last[1].toLocaleString() + " " + M.cur + "</b> (" + dayStr(last[0]) + ")" +
         (y1 ? ' · 1년 <span class="' + cls(last[1] / y1 - 1) + '">' + pctS((last[1] / y1 - 1) * 100) + "</span>" : "") +
         (r0 ? ' · 이번 발표 전날 대비 <span class="' + cls(last[1] / r0 - 1) + '">' + pctS((last[1] / r0 - 1) * 100) + "</span>" : "");
       pe.querySelector(".empty").outerHTML = '<div class="pxs">' + s + "</div>" + lineChart(b, R ? markList(R) : [], { color: "#4f7cff", label: "최근 2년 주가" }) +
-        '<div class="unit">출처: 야후 파이낸스 일봉 종가(엔) · 평일 장 마감 후 매일 갱신 · 주황 세로선 = 이번 실적 발표</div>';
+        '<div class="unit">출처: ' + esc(M.pxSrc) + " · 주황 세로선 = 이번 실적 발표</div>";
     }).catch(function () { var e = pe.querySelector(".empty"); if (e) e.textContent = "주가 데이터가 아직 없습니다(평일 장 마감 후 자동 수집)."; });
     var te = root.querySelector(".jr-tr");
     if (te) getJSON("data/jp/trends/" + te.dataset.code + ".json").then(function (T) {
@@ -229,19 +245,26 @@
   /* ── 리포트 1건: embed=true 면 일본 스크리너 종목 창 안에 넣는 모양(기업명 머리글 없음) ── */
   function reportHTML(R, N, embed) {
     var r = R.rec || {}, qs = R.qs || [], cur = qs[qs.length - 1] || {};
-    var tan = (R.docs || []).filter(function (d) { return d.kind === "tanshin"; })[0];
+    var tan = mainDoc(R);
+    var ext = IS_US
+      ? '<a class="btn" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + esc(R.code) + '&type=8-K" target="_blank" rel="noopener">🏛 SEC 공시 목록</a>' +
+        '<a class="btn" href="datahub.html#us=' + esc(R.code) + '">📊 데이터 허브</a>'
+      : '<a class="btn" href="https://kabutan.jp/stock/finance?code=' + esc(R.code) + '" target="_blank" rel="noopener">📊 카부탄 결산 표</a>';
+    var kick = IS_US
+      ? '<div class="kicker"><a href="us-report.html">미국 실적 리포트</a> · ' + esc(R.cat || "") + "</div>"
+      : '<div class="kicker"><a href="jp-screener.html' + ((R.u || []).indexOf("cons") < 0 ? "?u=major" : "") + '">일본 기업 스크리너</a> · <a href="jp-report.html">실적 리포트</a> · ' + (R.u || []).map(function (u) { return UL[u]; }).join("·") + "</div>";
+    var tmS = r.time ? " " + esc(IS_US ? ({ pre: "장 전", after: "장 마감 후", na: "" }[r.time] || "") : r.time) : "";
     var html = embed
-      ? '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + (r.time ? " " + esc(r.time) : "") + "</b></div>" +
-        '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") + origBtn(N) +
+      ? '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + tmS + "</b></div>" +
+        '<div class="acts">' + mainBtn(tan) + origBtn(N) +
         (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
-        '<a class="btn" href="jp-report.html?id=' + encodeURIComponent(R.rid) + '" target="_blank" rel="noopener">↗ 리포트 페이지(공유용)</a></div>'
+        '<a class="btn" href="' + M.page + '?id=' + encodeURIComponent(R.rid) + '" target="_blank" rel="noopener">↗ 리포트 페이지(공유용)</a></div>'
       :
-      '<div class="kicker"><a href="jp-screener.html' + ((R.u || []).indexOf("cons") < 0 ? "?u=major" : "") + '">일본 기업 스크리너</a> · <a href="jp-report.html">실적 리포트</a> · ' + (R.u || []).map(function (u) { return UL[u]; }).join("·") + "</div>" +
+      kick +
       "<h1>" + esc(R.name || R.code) + '<span class="code">' + esc(R.code) + "</span></h1>" +
-      '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + (r.time ? " " + esc(r.time) : "") + "</b>" + (R.cat ? " · " + esc(R.cat) : "") + (R.mcap ? " · 시총 " + Math.round(R.mcap).toLocaleString() + "억엔" : "") + "</div>" +
-      '<div class="acts">' + (tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 결산단신 원문 <small>PDF</small></a>' : "") + origBtn(N) +
-      (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
-      '<a class="btn" href="https://kabutan.jp/stock/finance?code=' + esc(R.code) + '" target="_blank" rel="noopener">📊 카부탄 결산 표</a>' +
+      '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + tmS + "</b>" + (R.cat ? " · " + esc(R.cat) : "") + (R.mcap ? " · 시총 " + Math.round(R.mcap).toLocaleString() + U : "") + "</div>" +
+      '<div class="acts">' + mainBtn(tan) + origBtn(N) +
+      (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") + ext +
       '<button class="btn" id="copy">🔗 링크 복사</button></div>';
     html += body(R, N, qs, r);
     return html;
@@ -256,7 +279,7 @@
     // ① 요약
     html += '<section><h2>① 요약 <span class="hint">표 → 핵심 수치 → 요약</span></h2>' + (qs.length ? table(qs) : '<div class="empty">분기 실적 표가 없습니다.</div>') + facts(R) +
       (N && N.summary_md ? '<div class="note card">' + (N.headline ? "<h3>" + esc(N.headline) + "</h3>" : "") + md(N.summary_md) + "</div>"
-        : '<div class="pending">📝 요약 글은 아직 없습니다. 실적 시즌에는 발표 당일 결산단신 원문을 읽고 한글 원문 정리와 딥리서치 분석을 붙입니다(주요 기업·시총 큰 순). 위 표와 수치는 발표 직후 자동으로 채워집니다.</div>') + "</section>";
+        : '<div class="pending">📝 요약 글은 아직 없습니다. ' + (IS_US ? "발표 당일 SEC에 올라온 실적 보도자료 원문을 읽고 한글 원문 정리와 딥리서치 분석을 붙입니다(시총 큰 순)." : "실적 시즌에는 발표 당일 결산단신 원문을 읽고 한글 원문 정리와 딥리서치 분석을 붙입니다(주요 기업·시총 큰 순).") + " 위 표와 수치는 발표 직후 자동으로 채워집니다.</div>") + "</section>";
     // ② 분석
     html += '<section><h2>② 딥리서치 분석 <span class="hint">그래프 → 결론 · 핵심 포인트 · 사업별 · 이익률 · 가이던스 · 업계 비교 · 주가 · 리스크 · 체크포인트</span></h2><div class="charts">' +
       '<div class="card chart"><h4>분기 매출 · 영업이익 · 영업이익률</h4>' + barLine(qs) + "</div>" +
@@ -267,15 +290,15 @@
       "</div>" +
       (N && N.analysis_md ? '<div class="note card deep">' + md(N.analysis_md) + "</div>" : "") + "</section>";
     // ③ 원문
-    var tan = (R.docs || []).filter(function (d) { return d.kind === "tanshin"; })[0];
-    var pdfBtn = tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 원문 PDF 열기 <small>일본어</small></a>' : "";
-    html += '<section><h2>③ 원문 <span class="hint">한글 정리 → TDnet 공시 PDF(카부탄 보관본)</span></h2>' +
-      (N && N.orig_md ? '<details class="orig card"><summary><b>원문 정리 (한글)</b><span class="hint">결산단신을 원문 순서대로 — 표지 요약표 · 경영성적 · 세그먼트 · 재정상태 · 통기 예상 · 주석</span></summary>' +
+    var tan = mainDoc(R);
+    var pdfBtn = tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 원문 열기 <small>' + (IS_US ? "영어" : "일본어") + "</small></a>" : "";
+    html += '<section><h2>③ 원문 <span class="hint">' + (IS_US ? "한글 정리 → SEC 8-K 실적 보도자료(EX-99.1)" : "한글 정리 → TDnet 공시 PDF(카부탄 보관본)") + "</span></h2>" +
+      (N && N.orig_md ? '<details class="orig card"><summary><b>원문 정리 (한글)</b><span class="hint">' + (IS_US ? "보도자료를 원문 순서대로 — 요약 수치 · 경영진 코멘트 · 사업부별 · 가이던스 · 손익·재무상태·현금흐름 표" : "결산단신을 원문 순서대로 — 표지 요약표 · 경영성적 · 세그먼트 · 재정상태 · 통기 예상 · 주석") + "</span></summary>" +
         '<div class="orig-top"><span>원문을 문장 그대로 옮긴 번역이 아니라 <b>숫자와 표는 전부, 설명 글은 줄여서 다시 쓴 정리</b>입니다. 정확한 문구는 원문에서 확인하세요.</span>' + pdfBtn + "</div>" +
         '<div class="note">' + md(N.orig_md) + "</div>" +
         (pdfBtn ? '<div class="orig-end">' + pdfBtn + "</div>" : "") + "</details>" : "") +
       ((R.docs || []).length ? '<div class="docs">' + R.docs.map(function (d) { return '<div class="doc"><span class="tag">' + (KIND[d.kind] || d.kind) + '</span><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(docTitle(d, R)) + "</a></div>"; }).join("") + "</div>"
-        : '<div class="empty">원문 링크를 아직 찾지 못했습니다 — <a href="https://kabutan.jp/stock/news?code=' + esc(R.code) + '&nmode=3" target="_blank" rel="noopener">카부탄 개시 목록</a>에서 확인하세요.</div>') +
+        : '<div class="empty">원문 링크를 아직 찾지 못했습니다 — ' + (IS_US ? '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + esc(R.code) + '&type=8-K" target="_blank" rel="noopener">SEC 8-K 목록</a>' : '<a href="https://kabutan.jp/stock/news?code=' + esc(R.code) + '&nmode=3" target="_blank" rel="noopener">카부탄 개시 목록</a>') + "에서 확인하세요.</div>") +
       (N && N.sources && N.sources.length ? '<div class="unit">요약·분석 참고: ' + N.sources.map(function (s) { return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + "</a>"; }).join(" · ") + "</div>" : "") +
       '<div class="unit">리포트 데이터 갱신 ' + esc(R.updated || "") + (N && N.written ? " · 요약 작성 " + esc(N.written) : "") + " · 투자 권유가 아닌 공시 정리입니다.</div></section>";
     return html;
@@ -290,14 +313,18 @@
   }
 
   /* ── 목록 ── */
-  var LS = "jp-report-list";
+  var LS = IS_US ? "us-report-list" : "jp-report-list";
   function renderList(IX) {
     var st = { u: "all", q: "", note: false, n: 60 };
     try { var sv = JSON.parse(localStorage.getItem(LS) || "null"); if (sv) { st.u = sv.u || "all"; st.note = !!sv.note; } } catch (e) {}
     var qp = new URLSearchParams(location.search); if (qp.get("u")) st.u = qp.get("u");
-    app.innerHTML = '<div class="kicker"><a href="jp-screener.html">일본 기업 스크리너</a> · 실적 리포트</div><h1>일본 실적 리포트</h1>' +
-      '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 실적 시즌(1·2·4·5·7·8·10·11월)에는 일·화·목 21시에 자동 갱신되고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" +
-      '<div class="ctl"><div class="seg" id="u"><button data-v="all">전체</button><button data-v="cons">소비재</button><button data-v="major">주요 기업</button></div>' +
+    app.innerHTML = (IS_US
+      ? '<div class="kicker"><a href="datahub.html">데이터 허브</a> · 실적 리포트</div><h1>미국 실적 리포트</h1>' +
+        '<div class="sub">데이터 허브 미국·해외 기업의 실적 발표마다 <b>분기 표 · 핵심 수치 · 그래프 · SEC 보도자료 원문</b>을 한 장에 모읍니다. 발표 예정일은 나스닥 거래소 캘린더(하루 2번 갱신), 실제 발표는 SEC 8-K(실적 공시)로 확인해 바로 만들고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" +
+        '<section class="cal card" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>'
+      : '<div class="kicker"><a href="jp-screener.html">일본 기업 스크리너</a> · 실적 리포트</div><h1>일본 실적 리포트</h1>' +
+        '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 발표 예정일은 도쿄증권거래소(JPX) 공식 목록, 실적 시즌 평일에는 하루 6번 수집하고 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>") +
+      '<div class="ctl">' + (IS_US ? "" : '<div class="seg" id="u"><button data-v="all">전체</button><button data-v="cons">소비재</button><button data-v="major">주요 기업</button></div>') +
       '<div class="seg" id="nt"><button data-v="0">전부</button><button data-v="1">요약 완료만</button></div>' +
       '<input type="search" id="q" placeholder="기업명 · 코드"><span class="sub" id="cnt"></span></div><div class="list" id="list"></div><button class="btn more" id="more" hidden>더 보기</button>';
     function draw() {
@@ -306,21 +333,43 @@
       document.querySelectorAll("#nt button").forEach(function (b) { b.classList.toggle("on", (b.dataset.v === "1") === st.note); });
       var q = st.q.toLowerCase();
       var rows = (IX.reports || []).filter(function (r) {
-        return (st.u === "all" || (r.u || []).indexOf(st.u) >= 0) && (!st.note || r.note) && (!q || (r.n || "").toLowerCase().indexOf(q) >= 0 || r.c.indexOf(q) >= 0);
+        return (st.u === "all" || (r.u || []).indexOf(st.u) >= 0) && (!st.note || r.note) && (!q || (r.n || "").toLowerCase().indexOf(q) >= 0 || r.c.toLowerCase().indexOf(q) >= 0);
       });
       document.getElementById("cnt").textContent = rows.length + "건";
-      var head = '<div class="row head"><span>발표일</span><span>기업</span><span>분기</span><span class="num hide-m">매출 YoY</span><span class="num">영업 YoY</span><span class="num hide-m">주가 1D</span><span class="st">요약</span></div>';
+      var head = '<div class="row head"><span>발표일</span><span>기업</span><span>분기</span><span class="num hide-m">매출 YoY</span><span class="num">영업 YoY</span><span class="num hide-m">발표 후 주가</span><span class="st">요약</span></div>';
       document.getElementById("list").innerHTML = rows.length ? head + rows.slice(0, st.n).map(function (r) {
-        return '<a class="row" href="jp-report.html?id=' + encodeURIComponent(r.rid) + '"><span class="d">' + r.d.slice(2) + '</span><span class="nm"><b>' + esc(r.n || r.c) + "</b><small>" + esc(r.c) + (r.cat ? " · " + esc(r.cat) : "") + '</small></span><span class="d">' + esc(r.cq || r.p || "") + "</span>" +
+        return '<a class="row" href="' + M.page + '?id=' + encodeURIComponent(r.rid) + '"><span class="d">' + r.d.slice(2) + '</span><span class="nm"><b>' + esc(r.n || r.c) + "</b><small>" + esc(r.c) + (r.cat ? " · " + esc(r.cat) : "") + '</small></span><span class="d">' + esc(r.cq || r.p || "") + "</span>" +
           '<span class="num hide-m ' + cls(r.rev_yoy) + '">' + pctS(r.rev_yoy) + '</span><span class="num ' + cls(r.op_yoy) + '">' + pctS(r.op_yoy) + '</span><span class="num hide-m ' + cls(r.d1) + '">' + pctS(r.d1) + '</span><span class="st">' + (r.note ? '<span class="pill ok">요약</span>' : '<span class="pill no">표·그래프</span>') + "</span></a>";
       }).join("") : '<div class="empty">조건에 맞는 리포트가 없습니다.</div>';
       document.getElementById("more").hidden = rows.length <= st.n;
     }
-    document.getElementById("u").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.u = b.dataset.v; st.n = 60; draw(); } };
+    if (IS_US) drawCal();
+    if (document.getElementById("u")) document.getElementById("u").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.u = b.dataset.v; st.n = 60; draw(); } };
     document.getElementById("nt").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.note = b.dataset.v === "1"; st.n = 60; draw(); } };
     var tq; document.getElementById("q").oninput = function (e) { clearTimeout(tq); tq = setTimeout(function () { st.q = e.target.value.trim(); st.n = 60; draw(); }, 150); };
     document.getElementById("more").onclick = function () { st.n += 60; draw(); };
     draw();
+  }
+
+  /* 미국: 앞으로 2주 발표 예정(나스닥 거래소 캘린더) — 날짜별, 장 전/장 마감 후, 시총 큰 순 */
+  function drawCal() {
+    var box = document.getElementById("cal"); if (!box) return;
+    getJSON("data/us/earnings_dates.json").then(function (D) {
+      var now = new Date(Date.now() - 4 * 3600e3).toISOString().slice(0, 10), end = new Date(Date.now() + 14 * 864e5).toISOString().slice(0, 10);
+      var by = {};
+      Object.keys(D.dates || {}).forEach(function (t) {
+        var x = (D.dates[t] || {}).next; if (!x || x.date < now || x.date > end) return;
+        (by[x.date] = by[x.date] || []).push({ t: t, n: D.dates[t].name, tm: x.time, fq: x.fq, eps: x.eps_fc });
+      });
+      var days = Object.keys(by).sort();
+      var TM = { pre: "장 전", after: "장 후", na: "" };
+      box.innerHTML = '<h3>앞으로 2주 발표 예정 <span class="hint">나스닥 거래소 캘린더 · 날짜는 미 동부 기준(장 전 = 한국 밤, 장 후 = 한국 새벽) · ' + esc(D.updated || "") + "</span></h3>" +
+        (days.length ? '<div class="cal-days">' + days.map(function (d) {
+          var w = "일월화수목금토".charAt(new Date(d + "T00:00:00Z").getUTCDay());
+          return '<div class="cal-day"><div class="cal-d"><b>' + d.slice(5).replace("-", "/") + "</b> (" + w + ") <small>" + by[d].length + "곳</small></div>" +
+            by[d].map(function (x) { return '<span class="cal-it" title="' + esc((x.n || "") + " · 분기 " + (x.fq || "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "")) + '"><b>' + esc(x.t) + "</b>" + (TM[x.tm] ? "<i>" + TM[x.tm] + "</i>" : "") + "</span>"; }).join("") + "</div>";
+        }).join("") + "</div>" : '<div class="empty">2주 안 발표 예정이 없습니다.</div>');
+    }).catch(function () { box.innerHTML = '<div class="empty">발표 예정 캘린더를 불러오지 못했습니다.</div>'; });
   }
 
   /* 다른 화면에서 쓰는 창구: JPReport.index() → 목록, JPReport.load(rid) → [리포트, 요약(없으면 null)], JPReport.html(R, N, embed) */
@@ -337,8 +386,8 @@
   if (id && /^[\w.-]+$/.test(id)) {
     Promise.all([getJSON(BASE + id + ".json"), getJSON(BASE + "notes/" + id + ".json").catch(function () { return null; })])
       .then(function (rs) { renderReport(rs[0], rs[1]); })
-      .catch(function (e) { app.innerHTML = '<div class="empty">리포트를 찾지 못했습니다 (' + esc(id) + '). <a href="jp-report.html">목록으로</a></div>'; });
+      .catch(function (e) { app.innerHTML = '<div class="empty">리포트를 찾지 못했습니다 (' + esc(id) + '). <a href="' + M.page + '">목록으로</a></div>'; });
   } else {
-    getJSON(BASE + "index.json").then(renderList).catch(function () { app.innerHTML = '<div class="empty">아직 리포트가 없습니다 — fetch_jp_earnings_results.py 실행 후 생깁니다.</div>'; });
+    getJSON(BASE + "index.json").then(renderList).catch(function () { app.innerHTML = '<div class="empty">아직 리포트가 없습니다 — ' + (IS_US ? "fetch_us_earnings_results.py" : "fetch_jp_earnings_results.py") + " 실행 후 생깁니다.</div>"; });
   }
 })();
