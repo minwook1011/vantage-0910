@@ -138,6 +138,10 @@ def main():
     items_all.sort(key=lambda it: to_dt(it.get("date", "")), reverse=True)
     items_all = items_all[:keep]
 
+    # 30분마다 돈다 → 새 글이 없으면(목록이 그대로면) 파일을 다시 쓰지 않는다(커밋 안 생김)
+    if [it.get("link") for it in items_all] == [it.get("link") for it in existing]:
+        print(f"새 글 없음 — {OUT_PATH} 그대로 둠")
+        return
     out = {
         "updated": datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=9)))
                    .strftime("%Y-%m-%d %H:%M KST"),
@@ -150,4 +154,9 @@ def main():
 
 
 if __name__ == "__main__":
+    import sys
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
     main()

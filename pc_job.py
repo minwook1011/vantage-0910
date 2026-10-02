@@ -49,7 +49,8 @@ def sync(path):
 
 def run_cmd(cmd, path):
     print(f"$ {' '.join(cmd)}  (폴더 {path})", flush=True)
-    return subprocess.run(cmd, cwd=path).returncode
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")  # 윈도우 콘솔(cp949)에서 '—' 등을 찍다 죽지 않게
+    return subprocess.run(cmd, cwd=path, env=env).returncode
 
 
 def main():
