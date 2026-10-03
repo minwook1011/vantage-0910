@@ -60,25 +60,25 @@
       "position:fixed",
       "inset:0",
       "z-index:2147483647",
-      "background:radial-gradient(1200px 700px at 50% -10%, #16202f 0%, #0b0e14 60%, #070a10 100%)",
+      "background:radial-gradient(1200px 700px at 50% -10%, #ffffff 0%, #eef3fb 60%, #e3eaf5 100%)",
       "display:flex",
       "align-items:center",
       "justify-content:center",
       "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Malgun Gothic',sans-serif",
-      "color:#e8edf5",
+      "color:#172033",
     ].join(";")
   );
 
   ov.innerHTML =
-    '<div style="width:min(92vw,380px);background:#0f1420;border:1px solid #22314a;border-radius:16px;padding:30px 26px 26px;box-shadow:0 24px 60px rgba(0,0,0,.55)">' +
+    '<div style="width:min(92vw,380px);background:#ffffff;border:1px solid #dde4ef;border-radius:16px;padding:30px 26px 26px;box-shadow:0 24px 60px rgba(20,40,80,.12)">' +
       '<div style="font-size:34px;text-align:center;line-height:1">🔒</div>' +
       '<div style="text-align:center;margin-top:12px;font-size:19px;font-weight:700;letter-spacing:-.2px">개인 워크스페이스</div>' +
-      '<div style="text-align:center;margin-top:8px;font-size:13px;color:#93a1b8;line-height:1.55">접근하려면 비밀번호가 필요합니다.</div>' +
+      '<div style="text-align:center;margin-top:8px;font-size:13px;color:#4f5b70;line-height:1.55">접근하려면 비밀번호가 필요합니다.</div>' +
       '<input id="__gate_input" type="password" autocomplete="off" placeholder="비밀번호 입력" ' +
-        'style="width:100%;box-sizing:border-box;margin-top:18px;padding:13px 14px;font-size:15px;color:#e8edf5;background:#0a0f18;border:1px solid #2b3a55;border-radius:10px;outline:none">' +
+        'style="width:100%;box-sizing:border-box;margin-top:18px;padding:13px 14px;font-size:15px;color:#172033;background:#f6f9fe;border:1px solid #c3cddc;border-radius:10px;outline:none">' +
       '<div id="__gate_err" style="height:18px;margin-top:8px;font-size:12.5px;color:#f0475a;text-align:center"></div>' +
       '<button id="__gate_btn" ' +
-        'style="width:100%;margin-top:6px;padding:13px;font-size:15px;font-weight:700;color:#fff;background:#3d7eff;border:0;border-radius:10px;cursor:pointer">입장</button>' +
+        'style="width:100%;margin-top:6px;padding:13px;font-size:15px;font-weight:700;color:#fff;background:#2563eb;border:0;border-radius:10px;cursor:pointer">입장</button>' +
     '</div>';
 
   function mount() {

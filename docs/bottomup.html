@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="firebase-sync.js?v=20261003b"></script>
-<script src="gate.js?v=20260909a"></script>
+<script src="firebase-sync.js?v=20261003L"></script>
+<script src="gate.js?v=20261003L"></script>
 <title>기술적 분석 — 100억</title>
-<link rel="stylesheet" href="theme.css?v=20260928p">
-<link rel="stylesheet" href="panes.css?v=20260929a">
-<link rel="stylesheet" href="ta-backtest.css?v=20260929a">
+<link rel="stylesheet" href="theme.css?v=20261003L">
+<link rel="stylesheet" href="panes.css?v=20261003L">
+<link rel="stylesheet" href="ta-backtest.css?v=20261003L">
 <style>
 /* ── 레이아웃 ─────────────────────────────── */
 .bu-lede { color:var(--muted); font-size:13px; line-height:1.7; margin:4px 0 0; }
 .bu-lede b { color:var(--text); }
-.bu-bar { position:sticky; top:86px; z-index:45; margin:16px 0 0; padding:10px 16px; background:rgba(11,14,20,.94); backdrop-filter:blur(13px); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.bu-bar { position:sticky; top:86px; z-index:45; margin:16px 0 0; padding:10px 16px; background:rgba(243,245,248,0.94); backdrop-filter:blur(13px); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
 .bu-bar-in { max-width:1280px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; }
 .bu-search { flex:1 1 200px; min-width:160px; max-width:280px; display:flex; align-items:center; gap:7px; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:0 10px; }
 .bu-search:focus-within { border-color:var(--accent); }
@@ -70,11 +70,11 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 .map-wrap .axis { stroke:var(--border-strong); stroke-width:1; }
 .map-wrap .zero { stroke:#4a5672; stroke-dasharray:4 4; }
 .map-wrap .tick { font:10.5px var(--mono); fill:var(--faint); }
-.dot { cursor:pointer; transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .3s, r .3s; stroke:rgba(0,0,0,.35); stroke-width:1; }
+.dot { cursor:pointer; transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .3s, r .3s; stroke:rgba(20,40,80,0.12); stroke-width:1; }
 .dot.dim { opacity:.1; pointer-events:none; }
-.dot.hot { stroke:#fff; stroke-width:2.2; }
-.dot-lbl { font:700 10.5px var(--sans); fill:var(--text); pointer-events:none; transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .3s; paint-order:stroke; stroke:rgba(11,14,20,.85); stroke-width:3px; }
-.map-tip { position:absolute; pointer-events:none; z-index:5; background:rgba(16,20,29,.97); border:1px solid var(--border-strong); border-radius:8px; padding:8px 10px; font-size:12px; min-width:170px; box-shadow:0 10px 24px rgba(0,0,0,.4); opacity:0; transform:translateY(4px); transition:opacity .12s, transform .12s; }
+.dot.hot { stroke:#121721; stroke-width:2.2; }
+.dot-lbl { font:700 10.5px var(--sans); fill:var(--text); pointer-events:none; transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .3s; paint-order:stroke; stroke:rgba(243,245,248,0.85); stroke-width:3px; }
+.map-tip { position:absolute; pointer-events:none; z-index:5; background:rgba(240,243,247,0.97); border:1px solid var(--border-strong); border-radius:8px; padding:8px 10px; font-size:12px; min-width:170px; box-shadow:0 10px 24px rgba(0,0,0,0.14); opacity:0; transform:translateY(4px); transition:opacity .12s, transform .12s; }
 .map-tip.show { opacity:1; transform:none; }
 .map-tip b { font-size:13px; }
 .map-tip .row { display:flex; justify-content:space-between; gap:12px; font-family:var(--mono); margin-top:3px; color:var(--muted); }
@@ -106,17 +106,17 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 .ring small { position:absolute; left:0; right:0; bottom:-13px; text-align:center; color:var(--faint); font-size:9.5px; }
 .sigs { display:flex; flex-wrap:wrap; gap:4px; }
 .sig { font-size:11px; font-weight:700; padding:2px 7px; border-radius:4px; white-space:nowrap; border:1px solid; }
-.sig.g { color:#ff8b98; border-color:rgba(240,71,90,.45); background:rgba(240,71,90,.1); }
-.sig.b { color:#8fb2ff; border-color:rgba(61,126,255,.45); background:rgba(61,126,255,.1); }
-.sig.y { color:#f5c451; border-color:rgba(240,180,41,.45); background:rgba(240,180,41,.08); }
+.sig.g { color:#d60018; border-color:rgba(240,71,90,.45); background:rgba(240,71,90,.1); }
+.sig.b { color:#0043d6; border-color:rgba(61,126,255,.45); background:rgba(61,126,255,.1); }
+.sig.y { color:#cb920c; border-color:rgba(240,180,41,.45); background:rgba(240,180,41,.08); }
 .sig.n { color:var(--muted); border-color:var(--border-strong); }
 /* 실적(금색)과 주가(빨강·파랑)는 색 계열과 구획선으로 분리한다 */
 .fin { display:flex; flex-direction:column; gap:3px; border-left:1px dashed var(--border-strong); padding-left:12px; }
 .fin-tag { flex:0 0 auto; color:#f0b429; border:1px solid rgba(240,180,41,.4); background:rgba(240,180,41,.08); border-radius:3px; padding:0 4px; font-size:9.5px; font-weight:800; letter-spacing:.04em; }
-.fin-cap .fin-up { color:#f0b429; } .fin-cap .fin-dn { color:#94a1bd; }
+.fin-cap .fin-up { color:#f0b429; } .fin-cap .fin-dn { color:#424f6b; }
 /* 컬럼 이름 줄은 스크롤해도 상단 컨트롤 바 바로 아래에 고정 */
-.rk-head { display:grid; align-items:end; gap:14px; position:sticky; top:calc(86px + var(--bar-h,58px)); z-index:30; margin:0 -6px; padding:9px 20px 7px; background:rgba(11,14,20,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-strong); box-shadow:0 8px 14px rgba(0,0,0,.28); color:var(--faint); font-size:10.5px; font-weight:700; letter-spacing:.04em; }
-.rk-head .h-price { color:#8e9bb5; } .rk-head .h-fin { color:#b99534; }
+.rk-head { display:grid; align-items:end; gap:14px; position:sticky; top:calc(86px + var(--bar-h,58px)); z-index:30; margin:0 -6px; padding:9px 20px 7px; background:rgba(243,245,248,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border-strong); box-shadow:0 8px 14px rgba(0,0,0,0.1); color:var(--faint); font-size:10.5px; font-weight:700; letter-spacing:.04em; }
+.rk-head .h-price { color:#4a5771; } .rk-head .h-fin { color:#b99534; }
 .fin-bars { display:flex; align-items:flex-end; gap:3px; height:34px; position:relative; }
 .fin-bars .b { flex:1; min-width:6px; border-radius:2px 2px 0 0; transform-origin:bottom; transform:scaleY(0); transition:transform .7s cubic-bezier(.16,1,.3,1); transition-delay:var(--d,0ms); }
 .fin-bars.go .b { transform:scaleY(1); }
@@ -126,7 +126,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 .more-btn { display:block; width:100%; margin-top:10px; background:var(--card); border:1px dashed var(--border-strong); color:var(--muted); border-radius:10px; padding:10px; font-size:12.5px; font-weight:700; cursor:pointer; font-family:inherit; }
 .more-btn:hover { border-color:var(--accent); color:var(--text); }
 .empty-note { padding:30px; text-align:center; color:var(--muted); background:var(--card); border:1px solid var(--border); border-radius:10px; }
-.up { color:#ff7a8c; } .dn { color:#76a4ff; }
+.up { color:#d6001d; } .dn { color:#0048d6; }
 
 @media (max-width:1100px) {
   .rk, .rk-head { grid-template-columns:40px minmax(130px,1.4fr) 96px minmax(110px,1fr) 58px minmax(160px,1.4fr); }
@@ -165,9 +165,9 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 .pt-top b { font-size:13.5px; }
 .pt-top .sub { color:var(--muted); font-size:11px; margin-top:1px; }
 .pt-badge { flex:0 0 auto; font:800 11px var(--sans); padding:3px 8px; border-radius:5px; white-space:nowrap; }
-.pt-badge.near { color:#f5c451; background:rgba(240,180,41,.12); border:1px solid rgba(240,180,41,.45); }
-.pt-badge.breakout { color:#ff8b98; background:rgba(240,71,90,.13); border:1px solid rgba(240,71,90,.5); }
-.pt-badge.bear { color:#8fb2ff; background:rgba(61,126,255,.12); border:1px solid rgba(61,126,255,.45); }
+.pt-badge.near { color:#cb920c; background:rgba(240,180,41,.12); border:1px solid rgba(240,180,41,.45); }
+.pt-badge.breakout { color:#d60018; background:rgba(240,71,90,.13); border:1px solid rgba(240,71,90,.5); }
+.pt-badge.bear { color:#0043d6; background:rgba(61,126,255,.12); border:1px solid rgba(61,126,255,.45); }
 .pt-name { margin:7px 0 2px; font-size:12px; font-weight:750; }
 .pt-name span { color:var(--muted); font-weight:500; }
 .pt-chart { margin:4px -2px 2px; }
@@ -254,11 +254,11 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
  </div>
 </div>
 <div class="modal-back" id="modal-back-holder" style="display:none"></div>
-<script src="theme.js?v=20261002u"></script>
-<script src="stocks-common.js?v=20260929a"></script>
-<script src="chart-patterns.js?v=20260924a"></script>
-<script src="panes.js?v=20260929a"></script>
-<script src="ta-backtest.js?v=20260929a"></script>
+<script src="theme.js?v=20261003L"></script>
+<script src="stocks-common.js?v=20261003L"></script>
+<script src="chart-patterns.js?v=20261003L"></script>
+<script src="panes.js?v=20261003L"></script>
+<script src="ta-backtest.js?v=20261003L"></script>
 <script>
 (function () {
   "use strict";

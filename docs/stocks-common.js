@@ -1058,8 +1058,8 @@ function buildChartPNGBlob() {
     if (!svg) { reject(new Error("no chart")); return; }
     var cs = getComputedStyle(document.documentElement);
     function cv(name, fallback) { var v = cs.getPropertyValue(name).trim(); return v || fallback; }
-    var C = { bg: cv("--bg2", "#10141d"), text: cv("--text", "#e6e9f0"), muted: cv("--muted", "#8b93a7"),
-      up: cv("--up", "#f0475a"), dn: cv("--dn", "#3d7eff"), border: cv("--border", "#232a3a") };
+    var C = { bg: cv("--bg2", "#e9eef7"), text: cv("--text", "#172033"), muted: cv("--muted", "#4f5b70"),
+      up: cv("--up", "#f0475a"), dn: cv("--dn", "#3d7eff"), border: cv("--border", "#dde4ef") };
     var vb = svg.viewBox && svg.viewBox.baseVal;
     var cw = (vb && vb.width) || svg.clientWidth || 820;
     var ch = (vb && vb.height) || svg.clientHeight || 300;

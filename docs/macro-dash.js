@@ -407,7 +407,7 @@
       var d = "", c = y.curve[s[0]].curve; TEN.forEach(function (t, i) { if (c[t] != null) d += (d ? "L" : "M") + X(i).toFixed(1) + "," + Y(c[t]).toFixed(1); });
       if (s[0] === "now") svg += '<path d="' + d + "L" + X(TEN.length - 1) + "," + (T + ih) + "L" + X(0) + "," + (T + ih) + 'Z" fill="url(#mxcur)"/>';
       svg += '<path d="' + d + '" fill="none" stroke="' + s[2] + '" stroke-width="' + (s[0] === "now" ? 2.4 : 1.5) + '" stroke-dasharray="' + s[3] + '"/>';
-      if (s[0] === "now") TEN.forEach(function (t, i) { if (c[t] != null) svg += '<circle cx="' + X(i) + '" cy="' + Y(c[t]) + '" r="3" fill="#0b0e14" stroke="' + s[2] + '" stroke-width="2"><title>' + t + " " + c[t] + "%</title></circle>"; });
+      if (s[0] === "now") TEN.forEach(function (t, i) { if (c[t] != null) svg += '<circle cx="' + X(i) + '" cy="' + Y(c[t]) + '" r="3" fill="#ffffff" stroke="' + s[2] + '" stroke-width="2"><title>' + t + " " + c[t] + "%</title></circle>"; });
     });
     box.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '">' + svg + '</svg><div class="mx-legend">' + sets.map(function (s) { return '<span style="--c:' + s[2] + '"><i></i>' + s[1] + ' <span class="flat">' + y.curve[s[0]].date + "</span></span>"; }).join("") + "</div>";
     $("#mx-spread-t").innerHTML = [["10Y2Y", "10Y−2Y"], ["10Y3M", "10Y−3M"]].map(function (s) { return '<button data-s="' + s[0] + '" class="' + (s[0] === st.spread ? "on" : "") + '">' + s[1] + "</button>"; }).join("");

@@ -602,7 +602,7 @@
     });
     if (line.length > 1) svg += '<path d="' + line.map(function (q, i) { return (i ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1); }).join(" ") + '" fill="none" stroke="#ffbd76" stroke-width="2" stroke-linejoin="round"/>';
     line.forEach(function (q, i) {
-      svg += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="3" fill="' + (q[2].est ? "#101623" : "#ffbd76") + '" stroke="#ffbd76" stroke-width="1.4"><title>OPM ' + q[2].opm.toFixed(1) + "%</title></circle>";
+      svg += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="3" fill="' + (q[2].est ? "#ffffff" : "#ffbd76") + '" stroke="#ffbd76" stroke-width="1.4"><title>OPM ' + q[2].opm.toFixed(1) + "%</title></circle>";
       if (!narrow || i === line.length - 1) svg += '<text class="cb-opm-label" x="' + q[0].toFixed(1) + '" y="' + (q[1] - 8).toFixed(1) + '" text-anchor="middle">' + q[2].opm.toFixed(1) + "</text>";
     });
     svg += "</svg>";
@@ -693,7 +693,7 @@
       svg += '<path class="fm-series-path' + (s.id === "price" ? " fm-price-path" : "") + '"' + (s.id === "price" ? ' pathLength="1"' : "") + ' d="' + geo.path + '" fill="none" stroke="' + s.color + '" stroke-width="' + (s.fin ? 2.6 : s.id === "price" ? 2 : 1.9) + '" stroke-linecap="round" stroke-linejoin="round"/>';
       if (s.id !== "price" && s.points.length <= 120) {
         var gp = s.points.filter(function (q) { return finite(q.value); });
-        gv.forEach(function (v, vi) { var est = gp[vi] && gp[vi].est; svg += '<circle cx="' + v[0] + '" cy="' + v[1] + '" r="' + (est ? 3.2 : 2.5) + '" fill="' + (est ? "#101623" : s.color) + '" stroke="' + (est ? s.color : "#101623") + '" stroke-width="' + (est ? 1.6 : 1) + '"/>'; });
+        gv.forEach(function (v, vi) { var est = gp[vi] && gp[vi].est; svg += '<circle cx="' + v[0] + '" cy="' + v[1] + '" r="' + (est ? 3.2 : 2.5) + '" fill="' + (est ? "#ffffff" : s.color) + '" stroke="' + (est ? s.color : "#ffffff") + '" stroke-width="' + (est ? 1.6 : 1) + '"/>'; });
       }
     });
     svg += '</g><line id="cb-crosshair" x1="0" y1="' + top + '" x2="0" y2="' + (height - bottom) + '" stroke="#a2b9db" stroke-opacity=".4" stroke-dasharray="4 4" visibility="hidden"/><rect id="cb-hit" x="' + left + '" y="' + top + '" width="' + pw + '" height="' + ph + '" fill="transparent" tabindex="0" role="slider" aria-label="차트 날짜 탐색, 좌우 화살표" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"/></svg><div class="fm-tooltip" id="cb-tooltip" hidden></div>';

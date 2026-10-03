@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="firebase-sync.js?v=20261003b"></script>
-<script src="gate.js?v=20260909a"></script>
+<script src="firebase-sync.js?v=20261003L"></script>
+<script src="gate.js?v=20261003L"></script>
 <title>실시간 뉴스 — 100억</title>
-<link rel="stylesheet" href="theme.css?v=20260928p">
+<link rel="stylesheet" href="theme.css?v=20261003L">
 <style>
 /* 탭 */
 .news-subtabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 18px; }
 .news-subtabs button { background: var(--card); border: 1px solid var(--border); color: var(--muted);
   padding: 9px 18px; border-radius: 9px; font-weight: 800; font-size: 14px; cursor: pointer; font-family: inherit; }
-.news-subtabs button.on { color: #fff; background: var(--accent); border-color: var(--accent); }
+.news-subtabs button.on { color: #121721; background: var(--accent); border-color: var(--accent); }
 
 /* 실시간 피드 카드 그리드 */
 .news-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 6px 0 16px; }
@@ -22,14 +22,14 @@
 .ch-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .ch-chip { background: var(--card); border: 1px solid var(--border); color: var(--muted);
   padding: 6px 13px; border-radius: 999px; font-weight: 700; font-size: 12.5px; cursor: pointer; font-family: inherit; }
-.ch-chip.on { color: #fff; border-color: transparent; }
+.ch-chip.on { color: #121721; border-color: transparent; }
 .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(226px, 1fr)); gap: 12px; align-items: start; }
 .tg-card { position: relative; background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--accent);
   border-radius: 10px; padding: 10px 12px 11px; display: flex; flex-direction: column; height: 188px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.18); transition: border-color .12s, transform .12s, box-shadow .12s; }
-.tg-card:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(0,0,0,.3); }
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color .12s, transform .12s, box-shadow .12s; }
+.tg-card:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(0,0,0,0.1); }
 .tg-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 7px; padding-right: 22px; }
-.tg-ch { font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; color: #fff;
+.tg-ch { font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 999px; color: #121721;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
 .tg-time { font-family: var(--mono); font-size: 10.5px; color: var(--faint); white-space: nowrap; }
 .tg-text { position: relative; flex: 1; font-size: 12.5px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; overflow: hidden; }
@@ -49,7 +49,7 @@
 
 /* 시황 요약 */
 .digest-box { border: 1px solid var(--border); border-top: 3px solid var(--gold); border-radius: 12px;
-  background: var(--card); padding: 18px 20px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+  background: var(--card); padding: 18px 20px 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
 .digest-title { font-size: 18px; font-weight: 800; letter-spacing: -.2px; line-height: 1.4; }
 .digest-meta { font-size: 11.5px; color: var(--faint); font-family: var(--mono); margin-top: 3px; }
 .digest-stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 6px; }
@@ -89,7 +89,7 @@
 /* 섹터별 요약 — 카드 자체 클릭 시 관련 뉴스 펼침 */
 .sector-list { display: flex; flex-direction: column; gap: 12px; }
 .sector-card { border: 1px solid var(--border); border-left: 3px solid var(--border-strong); border-radius: 11px;
-  background: var(--card); padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,.18); transition: border-color .12s; }
+  background: var(--card); padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color .12s; }
 .sector-card:hover { border-color: var(--accent); }
 .sc-click { cursor: pointer; }
 .sc-more { margin-top: 11px; font-size: 12px; font-weight: 700; color: var(--accent); }
@@ -158,8 +158,8 @@
   </div>
 </div>
 
-<script src="theme.js?v=20261002u"></script>
-<script src="stocks-common.js?v=20260929a"></script>
+<script src="theme.js?v=20261003L"></script>
+<script src="stocks-common.js?v=20261003L"></script>
 <script>
 var NEWS = [], CHANNELS = [], curCh = "all", kw = "";
 var DIGESTS = [], curDigest = 0;

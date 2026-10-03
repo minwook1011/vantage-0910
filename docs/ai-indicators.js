@@ -7,7 +7,7 @@
   var host = document.getElementById("ai-workspace"), companyHost = document.getElementById("company-workspace");
   if (!host && !companyHost) return;
 
-  // 다크 표면(#111925) 기준 명도·채도·색약 분리 검증을 통과한 고정 순서 팔레트. 순서를 바꾸거나 돌려쓰지 않는다.
+  // 다크 표면(#ffffff) 기준 명도·채도·색약 분리 검증을 통과한 고정 순서 팔레트. 순서를 바꾸거나 돌려쓰지 않는다.
   var COLORS = ["#5b8cff", "#22a886", "#a070e6", "#c9801f", "#dc5573", "#3399c2"];
   var PRICE_COLOR = "#c9d6ea";
   var METHOD = {api: "API", scrape: "수집", manual: "수동", computed: "계산", linked: "연결"};
@@ -168,7 +168,7 @@
       // 최신 점 — 퍼지는 고리 + 강조 테두리 + 값 표시
       svg.push('<circle class="ai-ping" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="3.5" fill="' + r.color + '"/>');
       if (solo) svg.push('<circle class="ai-last-ring" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="7.5" fill="none" stroke="' + r.color + '"/>');
-      svg.push('<circle class="ai-dot" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="' + (pts.length === 1 ? 4.5 : 3.5) + '" ' + (lp.est ? 'fill="#111925" stroke-width="2.5" stroke="' + r.color + '"' : 'fill="' + r.color + '"') + "/>");
+      svg.push('<circle class="ai-dot" cx="' + lx.toFixed(1) + '" cy="' + ly.toFixed(1) + '" r="' + (pts.length === 1 ? 4.5 : 3.5) + '" ' + (lp.est ? 'fill="#ffffff" stroke-width="2.5" stroke="' + r.color + '"' : 'fill="' + r.color + '"') + "/>");
       if (solo && o.lastLabel !== false) {
         var txt = (o.fmtLabel || fy)(lp.value) + (o.unitShort ? o.unitShort : "");
         var near = lx > width - R - 46, ty = ly - 13 < T + 10 ? ly + 20 : ly - 13;

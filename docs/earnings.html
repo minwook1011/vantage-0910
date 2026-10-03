@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="firebase-sync.js?v=20261003b"></script>
-<script src="gate.js?v=20260909a"></script>
+<script src="firebase-sync.js?v=20261003L"></script>
+<script src="gate.js?v=20261003L"></script>
 <title>미국 주요 실적 정리 — 100억</title>
-<link rel="stylesheet" href="theme.css?v=20260928p">
+<link rel="stylesheet" href="theme.css?v=20261003L">
 <style>
-.ern-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.18); transition: border-color .15s ease, box-shadow .15s ease; }
-.ern-card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.28); }
+.ern-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color .15s ease, box-shadow .15s ease; }
+.ern-card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 .ern-grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 .ern-head { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .ern-head .e-nm { font-weight: 800; font-size: 14.5px; }
@@ -25,13 +25,13 @@
 .mono-toggle { display: inline-flex; }
 .tab-row { display: flex; gap: 6px; margin: 10px 0; }
 .tab-row button { background: var(--card); border: 1px solid var(--border); color: var(--muted); border-radius: 8px; padding: 5px 14px; font-weight: 700; font-size: 12.5px; cursor: pointer; font-family: inherit; }
-.tab-row button.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tab-row button.on { background: var(--accent); color: #121721; border-color: var(--accent); }
 .ern-sub-tab { border-top: 1px dashed var(--border); margin-top: 12px; padding-top: 10px; }
 .ern-sub-tab h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin: 0 0 6px; font-weight: 800; }
 .qa-list { font-size: 13px; line-height: 1.7; }
 .cal-lane { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); }
-.cal-cell { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 13px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.18); transition: border-color .15s ease, box-shadow .15s ease; }
-.cal-cell:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.28); }
+.cal-cell { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 13px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color .15s ease, box-shadow .15s ease; }
+.cal-cell:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 .cal-cell .c-d { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 .cal-cell .c-nm { font-weight: 800; font-size: 14.5px; margin-top: 1px; }
 .cal-cell .c-q { font-family: var(--mono); font-size: 11px; color: var(--accent); }
@@ -67,9 +67,9 @@
 .wk-head {
   cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px;
   padding: 11px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 9px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.18); transition: border-color .15s ease, box-shadow .15s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color .15s ease, box-shadow .15s ease;
 }
-.wk-head:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.28); }
+.wk-head:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 .wk-head .wk-title { font-weight: 800; font-size: 14.5px; }
 .wk-head .wk-meta { color: var(--muted); font-size: 12px; margin-top: 3px; }
 .wk-head .wk-chevron { color: var(--muted); font-size: 13px; transition: transform .15s ease; flex: 0 0 auto; }
@@ -136,8 +136,8 @@
 
 <div class="modal-back" id="modal-back-holder" style="display:none"></div>
 
-<script src="theme.js?v=20261002u"></script>
-<script src="stocks-common.js?v=20260929a"></script>
+<script src="theme.js?v=20261003L"></script>
+<script src="stocks-common.js?v=20261003L"></script>
 <script>
 var MEGA = {}, FIN = {}, ERN = [], PROFILES = {}, CAL = {};
 var finMode = {};  // ticker -> 'annual'|'quarterly' (모달 내 토글 상태)

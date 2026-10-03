@@ -226,7 +226,7 @@
       }
       pts.forEach(function (p) {
         var hollow = p.user_est || p.est, x0 = xx(p.date), y0 = yy(p.value, side);
-        svg += '<circle cx="' + x0 + '" cy="' + y0 + '" r="' + (l.bold ? 3.6 : 3) + '" fill="' + (hollow ? "#101623" : l.color) + '" stroke="' + (hollow ? l.color : "#101623") + '" stroke-width="' + (hollow ? 1.8 : 1) + '"><title>' + esc(p.date.slice(0, 7) + " " + l.label + " " + short(p.value, l.unit) + (l.unit && l.unit !== "%" ? " " + l.unit : "") + (p.user_est ? " · 최근 추정(사용자 지정)" : p.calc ? " · 영업이익÷매출" : "")) + "</title></circle>";
+        svg += '<circle cx="' + x0 + '" cy="' + y0 + '" r="' + (l.bold ? 3.6 : 3) + '" fill="' + (hollow ? "#ffffff" : l.color) + '" stroke="' + (hollow ? l.color : "#ffffff") + '" stroke-width="' + (hollow ? 1.8 : 1) + '"><title>' + esc(p.date.slice(0, 7) + " " + l.label + " " + short(p.value, l.unit) + (l.unit && l.unit !== "%" ? " " + l.unit : "") + (p.user_est ? " · 최근 추정(사용자 지정)" : p.calc ? " · 영업이익÷매출" : "")) + "</title></circle>";
         if (!l.noLabels && !(p.est && !p.user_est)) svg += '<text x="' + x0 + '" y="' + (y0 + (l.labelBelow ? 14 : -7)) + '" text-anchor="middle" class="zt-pt-label" style="fill:' + l.color + '">' + short(p.value, l.unit) + (p.user_est ? "*" : "") + "</text>";
       });
     });
@@ -304,7 +304,7 @@
         var a = pts[i - 1], b = pts[i], gap = mi(b.date) - mi(a.date) > 1;
         svg += '<path d="M' + cx(a.date).toFixed(1) + " " + yy(a.value).toFixed(1) + "L" + cx(b.date).toFixed(1) + " " + yy(b.value).toFixed(1) + '" stroke="' + opts.color + '" stroke-width="2"' + (gap ? ' stroke-dasharray="5 4"' : "") + ' fill="none"/>';
       }
-      pts.forEach(function (p) { svg += '<circle cx="' + cx(p.date).toFixed(1) + '" cy="' + yy(p.value).toFixed(1) + '" r="2.6" fill="' + (p.partial ? "#101623" : opts.color) + '" stroke="' + (p.partial ? opts.color : "#101623") + '">' + tip(p) + "</circle>"; });
+      pts.forEach(function (p) { svg += '<circle cx="' + cx(p.date).toFixed(1) + '" cy="' + yy(p.value).toFixed(1) + '" r="2.6" fill="' + (p.partial ? "#ffffff" : opts.color) + '" stroke="' + (p.partial ? opts.color : "#ffffff") + '">' + tip(p) + "</circle>"; });
     }
     var last = pts[pts.length - 1];
     svg += '<text x="' + Math.min(cx(last.date), L + pw - 4) + '" y="' + (yy(Math.max(last.value, 0)) - 7) + '" text-anchor="end" class="zt-pt-label" style="fill:' + opts.color + '">' + shortNum(last.value) + "</text>";
@@ -495,7 +495,7 @@
       svg += '<path class="fm-series-path' + (q.anchor ? " fm-price-path zt-anchor-path" : "") + '" d="' + geo.path + '" fill="none" stroke="' + q.color + '" stroke-width="' + (q.anchor ? 3 : 2) + '"' + (q.anchor ? ' stroke-dasharray="7 5"' : "") + ' stroke-linecap="round" stroke-linejoin="round"/>';
       if (q.points.length <= 60 || q.anchor) geo.vertices.forEach(function (v, vi) {
         var p = q.points[vi], hollow = p && (p.partial || p.wide || p.user_est || (p.est && q.s.kind !== "flow")), r = q.anchor ? 4 : hollow ? 3.2 : 2.5;
-        svg += '<circle cx="' + v[0] + '" cy="' + v[1] + '" r="' + r + '" fill="' + (hollow ? "#101623" : q.color) + '" stroke="' + (hollow ? q.color : "#101623") + '" stroke-width="' + (hollow ? 1.6 : 1) + '"/>';
+        svg += '<circle cx="' + v[0] + '" cy="' + v[1] + '" r="' + r + '" fill="' + (hollow ? "#ffffff" : q.color) + '" stroke="' + (hollow ? q.color : "#ffffff") + '" stroke-width="' + (hollow ? 1.6 : 1) + '"/>';
         if (!q.anchor && q.points.length === 1 && p && finite(p.orig)) svg += '<text x="' + v[0] + '" y="' + (v[1] - 9) + '" text-anchor="' + (v[0] > left + pw - 60 ? "end" : "middle") + '" class="zt-pt-label" style="fill:' + q.color + '">' + esc(fmt(p.orig, q.s)) + " · 수집 " + collectDays(q.s) + "일째</text>";
         if (q.anchor && q.s.unit === "억원" && p && finite(p.orig) && !(p.est && !p.user_est)) svg += '<text x="' + v[0] + '" y="' + (v[1] - 8) + '" text-anchor="' + (v[0] > left + pw - 24 ? "end" : "middle") + '" class="zt-pt-label" style="fill:' + q.color + '">' + Math.round(p.orig) + (p.user_est ? "*" : "") + "</text>";
       });

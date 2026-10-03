@@ -266,8 +266,8 @@
   function injectStyle() {
     if (document.getElementById("cloud-sync-style")) return;
     var st = document.createElement("style"); st.id = "cloud-sync-style";
-    st.textContent = "#topnav .cloud-sync-button.cloud-sync-off{border-color:#7a4a1f;color:#f5b46a;background:#2a1a0d;animation:cloudPulse 2.4s ease-in-out infinite}" +
-      "#topnav .cloud-sync-button.cloud-sync-error{border-color:#7a2530;color:#ff8b98;background:#2a0f14}" +
+    st.textContent = "#topnav .cloud-sync-button.cloud-sync-off{border-color:#e8b97a;color:#9a5b12;background:#fff4e5;animation:cloudPulse 2.4s ease-in-out infinite}" +
+      "#topnav .cloud-sync-button.cloud-sync-error{border-color:#f1a7b0;color:#c62637;background:#fdecee}" +
       "@keyframes cloudPulse{0%,100%{box-shadow:0 0 0 0 rgba(245,180,106,0)}50%{box-shadow:0 0 0 4px rgba(245,180,106,.18)}}";
     (document.head || document.documentElement).appendChild(st);
   }

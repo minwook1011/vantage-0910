@@ -1,18 +1,18 @@
 /* panes.css — 가로 탭 페이저 공용 컴포넌트 (사용법은 panes.js 상단 주석)
    데이터 허브(.dh-views) 톤을 따르되 탭이 많아도 되도록 가로 스크롤 한 줄로 만든다. */
-.panes-bar { display:flex; align-items:stretch; gap:6px; margin:18px 0 14px; padding:6px; border:1px solid var(--border); border-radius:13px; background:rgba(11,14,20,.92); }
+.panes-bar { display:flex; align-items:stretch; gap:6px; margin:18px 0 14px; padding:6px; border:1px solid var(--border); border-radius:13px; background:rgba(243,245,248,0.92); }
 .pane-tabs { flex:1 1 auto; min-width:0; display:flex; gap:6px; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .pane-tabs::-webkit-scrollbar { display:none; }
-.pane-tab { flex:0 0 auto; display:flex; align-items:baseline; gap:2px 8px; padding:9px 13px; border:1px solid transparent; border-radius:10px; color:#9fb0cb; background:transparent; font:inherit; text-align:left; white-space:nowrap; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s; }
+.pane-tab { flex:0 0 auto; display:flex; align-items:baseline; gap:2px 8px; padding:9px 13px; border:1px solid transparent; border-radius:10px; color:#344560; background:transparent; font:inherit; text-align:left; white-space:nowrap; cursor:pointer; transition:background-color .15s,border-color .15s,color .15s; }
 .pane-tab b { font-size:14.5px; letter-spacing:-.02em; color:inherit; }
-.pane-tab small { color:#63718a; font-size:11.5px; }
+.pane-tab small { color:#75839c; font-size:11.5px; }
 .pane-tab .pane-no { color:#5d6b85; font:700 10.5px var(--mono); }
-.pane-tab:hover { background:rgba(40,55,88,.35); color:#dce5f4; }
-.pane-tab.on { color:#eef3ff; border-color:#4a6fb8; background:linear-gradient(135deg,rgba(66,109,216,.38),rgba(24,34,57,.8)); }
-.pane-tab.on small, .pane-tab.on .pane-no { color:#9fbaf0; }
+.pane-tab:hover { background:rgba(230,235,244,0.65); color:#121721; }
+.pane-tab.on { color:#121721; border-color:#4a6fb8; background:linear-gradient(135deg,rgba(66,109,216,.38),rgba(230,236,244,0.8)); }
+.pane-tab.on small, .pane-tab.on .pane-no { color:#1d51b9; }
 .pane-tab:focus-visible, .pane-step:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
-.pane-step { flex:0 0 auto; width:38px; border:1px solid var(--border); border-radius:10px; color:#b9c6de; background:rgba(21,26,38,.9); font:700 16px var(--sans); cursor:pointer; transition:background-color .15s,border-color .15s,opacity .15s; }
-.pane-step:hover:not(:disabled) { border-color:#4a6fb8; background:rgba(66,109,216,.3); color:#eef3ff; }
+.pane-step { flex:0 0 auto; width:38px; border:1px solid var(--border); border-radius:10px; color:#456092; background:rgba(237,240,245,0.9); font:700 16px var(--sans); cursor:pointer; transition:background-color .15s,border-color .15s,opacity .15s; }
+.pane-step:hover:not(:disabled) { border-color:#4a6fb8; background:rgba(66,109,216,.3); color:#121721; }
 .pane-step:disabled { opacity:.3; cursor:default; }
 .pane[hidden] { display:none !important; }
 .pane { min-width:0; }

@@ -166,7 +166,7 @@
       if (s.id === "price" && good.length > 1) svg += `<path d="${path}L${good.at(-1)[0]} ${height-bottom}L${good[0][0]} ${height-bottom}Z" fill="url(#fm-price-fill)"/>`;
       if (!effectiveNormalized && scales[s.unit][0] < 0 && scales[s.unit][1] > 0 && s.id !== "price") svg += `<path d="M${left} ${y(0,s.unit)}H${left+plotWidth}" stroke="${s.color}" stroke-opacity=".13" stroke-dasharray="3 5"/>`;
       svg += `<path data-series="${esc(s.id)}" data-point-count="${good.length}" class="fm-series-path ${s.id==='price'?'fm-price-path':''}" ${s.id==='price'?'pathLength="1"':''} d="${path}" fill="none" stroke="${s.color}" stroke-width="${M[s.id]?.group==='financial'?2.6:s.id==='price'?2:1.9}" stroke-linecap="round" stroke-linejoin="round"/>`;
-      if (s.id !== "price") good.forEach(([xx,yy]) => { svg += `<circle cx="${xx}" cy="${yy}" r="2.5" fill="${s.color}" stroke="#101623" stroke-width="1"/>`; });
+      if (s.id !== "price") good.forEach(([xx,yy]) => { svg += `<circle cx="${xx}" cy="${yy}" r="2.5" fill="${s.color}" stroke="#ffffff" stroke-width="1"/>`; });
     });
     svg += `</g><line id="fm-crosshair" x1="0" y1="${top}" x2="0" y2="${height-bottom}" stroke="#a2b9db" stroke-opacity=".4" stroke-dasharray="4 4" visibility="hidden"/><rect id="fm-hit" x="${left}" y="${top}" width="${plotWidth}" height="${plotHeight}" fill="transparent" tabindex="0" role="slider" aria-label="차트 날짜 탐색, 좌우 화살표" aria-valuemin="0" aria-valuemax="${Math.max(0, pricePoints.length-1)}" aria-valuenow="0"/></svg><div class="fm-tooltip" id="fm-tooltip" hidden></div>`;
     box.innerHTML=svg;
