@@ -37,6 +37,16 @@
   var mountedButtons = [];
 
   function isManaged(key) { return KEYS.indexOf(String(key)) >= 0; }
+  var lastSize = 0;
+  function sizeOf(values) { var n = 0; Object.keys(values || {}).forEach(function (k) { n += k.length + String(values[k] || "").length; }); return n; }
+  function errText() { return lastError ? String(lastError.code || lastError.name || "오류").replace(/^firestore\//, "") : ""; }
+  function errDetail() {
+    var sizes = Object.keys(snapshot()).map(function (k) { return k + " " + Math.round(String(localStorage.getItem(k) || "").length / 1024) + "KB"; }).join(", ");
+    var NL = String.fromCharCode(10);
+    return "동기화 오류" + NL + NL + "코드: " + errText() + NL + "내용: " + String((lastError && lastError.message) || "").slice(0, 300) +
+      NL + NL + "보낼 데이터 약 " + Math.round((lastSize || sizeOf(snapshot())) / 1024) + "KB (한도 약 1,000KB)" + NL + "이 기기 저장 항목: " + sizes +
+      NL + NL + "확인을 누르면 다시 시도합니다. 이 화면을 캡처해 보내 주세요.";
+  }
   function snapshot() {
     var values = {};
     KEYS.forEach(function (key) {
@@ -154,6 +164,7 @@
           merged = mergeValues({}, local, cloud);
           if (Object.keys(local).length && !sameValues(local, cloud)) backup = local;
         }
+        lastSize = sizeOf(merged);
         if (!cloud || !sameValues(merged, cloud)) {
           tx.set(ref, { schema: 1, values: merged, updatedAt: api.serverTimestamp() }, { merge: true });
         }
@@ -240,7 +251,7 @@
         button.title = "이 기기의 기록은 다른 기기에 보이지 않습니다. Google 로그인하면 모든 기기가 같은 기록을 봅니다.";
         if (hasLocal) button.classList.add("cloud-sync-off");
       } else if (state === "error") {
-        button.textContent = "☁ 동기화 오류 · 재시도";
+        button.textContent = "☁ 동기화 오류(" + errText() + ") · 재시도";
         button.title = (lastError && (lastError.code || lastError.message)) + " · 클릭하면 다시 동기화";
         button.classList.add("cloud-sync-error");
       } else if (state === "syncing") {
@@ -268,6 +279,7 @@
     button.addEventListener("click", function (e) {
       if (!currentUser) return signIn();
       if (e.shiftKey) return signOut();
+      if (lastError && button.classList.contains("cloud-sync-error") && !window.confirm(errDetail())) return;
       sync("manual");
     });
     button.addEventListener("pointerdown", function () { pressTimer = window.setTimeout(function () { pressTimer = null; signOut(); }, 900); });
