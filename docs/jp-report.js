@@ -355,9 +355,15 @@
      데이터: data/us/earnings_dates.json(나스닥 거래소 캘린더 + 야후 교차 확인) + 리포트 목록(발표 후 주가·컨센서스)
      카드를 누르면 관심 기업(노란색)으로 저장 — localStorage "vantage-us-earn-watch-v1"(firebase-sync.js 가 기기 간 동기화)
      정렬: 관심 기업 → 기술주(정보기술·커뮤니케이션) → 시총 큰 순 */
-  var WKEY = "vantage-us-earn-watch-v1", TECH = { "Information Technology": 1, "Communication Services": 1 };
-  function loadWatch() { try { return JSON.parse(localStorage.getItem(WKEY) || "[]") || []; } catch (e) { return []; } }
-  function saveWatch(a) { try { localStorage.setItem(WKEY, JSON.stringify(a)); } catch (e) {} }
+  /* 관심 기업은 이미 클라우드 동기화가 허용된 키(데이터 허브 관심 기업)의 us 칸에 둔다 — 새 키는 보안 규칙에 막혀 동기화 오류가 났다 */
+  var WKEY = "vantage-datahub-favorite-companies-v1", TECH = { "Information Technology": 1, "Communication Services": 1 };
+  function loadFav() { try { var v = JSON.parse(localStorage.getItem(WKEY) || "{}"); return v && typeof v === "object" && !Array.isArray(v) ? v : {}; } catch (e) { return {}; } }
+  function loadWatch() {
+    var v = loadFav(), us = Array.isArray(v.us) ? v.us : [];
+    try { var old = JSON.parse(localStorage.getItem("vantage-us-earn-watch-v1") || "[]"); if (Array.isArray(old) && old.length) { us = us.concat(old.filter(function (t) { return us.indexOf(t) < 0; })); localStorage.removeItem("vantage-us-earn-watch-v1"); saveWatch(us); } } catch (e) {}
+    return us;
+  }
+  function saveWatch(a) { try { var v = loadFav(); v.us = a; localStorage.setItem(WKEY, JSON.stringify(v)); } catch (e) {} }
   function ymd(d) { return d.toISOString().slice(0, 10); }
   function monday(dstr) { var d = new Date(dstr + "T00:00:00Z"), w = d.getUTCDay(); d.setUTCDate(d.getUTCDate() - ((w + 6) % 7)); return ymd(d); }
   function addDays(dstr, n) { var d = new Date(dstr + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return ymd(d); }
@@ -413,7 +419,7 @@
           '<button class="btn" id="cwNext"' + (st.w >= maxW ? " disabled" : "") + ">다음 주 ›</button></div>" +
           '<div class="cw">' + cols + "</div>" +
           '<div class="cw-note">나스닥 거래소 실적 캘린더 기준(날짜는 미 동부 — 장 전 = 한국 밤, 장 후 = 한국 새벽)을 야후 캘린더와 교차 확인합니다. <span class="cf warn">날짜 확인</span> 두 곳 날짜가 다름(더 이른 날부터 SEC 공시 확인) · <span class="cf">예상</span> 나스닥에 아직 없어 야후 날짜. ' +
-          "실제 발표는 SEC 8-K(실적 공시)로 확인하고, 캘린더에 없던 발표도 SEC 전수 확인으로 잡습니다. 카드를 누르면 <b class=\"ywl\">관심 기업</b>으로 표시·저장되고 맨 위로 올라갑니다(그다음 기술주, 시총 순). · 캘린더 갱신 " + esc(D.updated || "") + "</div>";
+          "실제 발표는 SEC 8-K(실적 공시)로 확인하고, 캘린더에 없던 발표도 SEC 전수 확인으로 잡습니다. 카드를 누르면 <b class=\"ywl\">관심 기업</b>으로 표시·저장되고(로그인한 기기끼리 동기화) 맨 위로 올라갑니다(그다음 기술주, 시총 순). · 캘린더 갱신 " + esc(D.updated || "") + "</div>";
         box.querySelector("#cwPrev").onclick = function () { st.w = addDays(st.w, -7); keep(); draw(); };
         box.querySelector("#cwNext").onclick = function () { st.w = addDays(st.w, 7); keep(); draw(); };
         var nb = box.querySelector("#cwNow"); if (nb) nb.onclick = function () { st.w = monday(today); keep(); draw(); };
