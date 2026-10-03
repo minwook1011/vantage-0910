@@ -500,6 +500,86 @@ def c_hf(ctx):
              "caveat": "조직별 상위 100개 모델의 최근 30일 다운로드 합계입니다. 미러·CI 다운로드가 섞이며 실제 사용량과 다릅니다. 오늘부터 매일 쌓입니다."})
 
 
+# ── 8. Arena(구 LMArena) 실사용 평가 순위 — 에이전트 · 텍스트 ─────────────────
+def arena_table(path):
+    """arena.ai/leaderboard/<path> 페이지의 표(서버 렌더링 HTML)를 읽어 [{name, lab, cells:[..]}] 로."""
+    h = http("https://arena.ai/leaderboard/" + path, headers={"User-Agent": "Mozilla/5.0"}).decode("utf-8", "replace")
+    tb = re.search(r"<table.*?</table>", h, re.S).group(0)
+    tb = re.sub(r'<svg[^>]*aria-label="Down"', lambda m: "-" + m.group(0), tb)   # 하락 화살표(아이콘)를 음수 부호로
+    txt = lambda x: " ".join(html.unescape(re.sub(r"<[^>]+>", " ", x)).split())
+    heads = [txt(x) for x in re.findall(r"<th.*?</th>", tb, re.S)]
+    rows = []
+    for tr in re.findall(r"<tr.*?</tr>", tb, re.S)[1:]:
+        tds = re.findall(r"<td.*?</td>", tr, re.S)
+        if len(tds) < 4:
+            continue
+        name = re.search(r'title="([^"]+)"', tr)
+        lab = re.search(r">([^<>]+?) · (?:Proprietary|Open|[A-Za-z0-9 .\-]+)</span>", tr)
+        rows.append({"name": html.unescape(name.group(1)) if name else txt(tds[1]), "lab": html.unescape(lab.group(1)).strip() if lab else "",
+                     "cells": dict(zip(heads, [txt(x) for x in tds]))})
+    m = re.search(r"([A-Z][a-z]{2} \d{1,2}, 20\d\d)", h)
+    upd = datetime.strptime(m.group(1), "%b %d, %Y").date().isoformat() if m else TODAY
+    return rows, upd
+
+
+def _num(v):
+    m = re.search(r"-?[\d,]+(?:\.\d+)?", re.sub(r"-\s+", "-", v or ""))
+    return float(m.group(0).replace(",", "")) if m else None
+
+
+def _pm(v):
+    m = re.search(r"±\s*([\d.]+)", v or "")
+    return float(m.group(1)) if m else None
+
+
+@collector("arena_agent_rank", "arena_agent_labs", "arena_agent_cost", "arena_text_rank")
+def c_arena(ctx):
+    rows, upd = arena_table("agent")
+    if len(rows) < 10:
+        raise ValueError(f"에이전트 순위 행이 {len(rows)}개뿐")
+    out = []
+    for i, r in enumerate(rows[:15]):
+        c = r["cells"]
+        out.append({"rank": i + 1, "model": r["name"], "lab": r["lab"], "net": _num(c.get("Net Improvement")), "net_ci": _pm(c.get("Net Improvement")),
+                    "success": _num(c.get("Confirmed Success")), "sessions": _num(c.get("Sessions")), "cost": _num(c.get("Cost/Task (P50)"))})
+    src = {"source": "Arena · Agent Arena", "source_url": "https://arena.ai/leaderboard/agent", "method": "scrape", "as_of": upd}
+    ctx.put(dict(src, id="arena_agent_rank", label="에이전트 실사용 순위 (Agent Arena)", unit="", type="table", cadence="매일 확인",
+                 related=["GOOGL", "MSFT", "AMZN"],
+                 columns=[{"key": "rank", "label": "#"}, {"key": "model", "label": "모델", "align": "l"}, {"key": "lab", "label": "랩", "align": "l"},
+                          {"key": "net", "label": "순개선 %"}, {"key": "net_ci", "label": "±"}, {"key": "success", "label": "확인된 성공 %"},
+                          {"key": "sessions", "label": "세션"}, {"key": "cost", "label": "작업당 $"}],
+                 rows=out,
+                 caveat="실제 코딩 에이전트 세션에서 사용자가 남긴 반응(성공 확인·칭찬/불만 등)을 모아 기준 모델보다 얼마나 나은지(순개선)로 매긴 순위입니다. ±는 오차 범위라 차이가 그보다 작으면 사실상 동률입니다."))
+    best = {}
+    for r in rows:
+        v = _num(r["cells"].get("Net Improvement"))
+        if r["lab"] and v is not None and v > best.get(r["lab"], -1e9):
+            best[r["lab"]] = v
+    hist = ctx.state.setdefault("arena_lab_hist", {})
+    for lab, v in best.items():
+        hist[lab] = merge_points(hist.get(lab), [{"date": upd, "value": round(v, 2)}])
+    top = [k for k, _ in sorted(best.items(), key=lambda kv: -kv[1])[:5]]
+    ctx.put(dict(src, id="arena_agent_labs", label="랩별 최고 모델 순개선 (상위 5)", unit="%", type="share_abs", digits=2, cadence="매일 확인 · 오늘부터 누적",
+                 related=["GOOGL", "MSFT"], lines=[{"label": k, "points": hist[k]} for k in top],
+                 items=[{"label": k, "value": round(best[k], 2)} for k in top],
+                 caveat="랩마다 가장 높은 모델의 순개선 값입니다. 신모델이 나오면 계단처럼 뜁니다."))
+    cost = [r for r in out[:10] if r["cost"] is not None]
+    ctx.put(dict(src, id="arena_agent_cost", label="상위 10개 모델 작업당 비용", unit="$", type="rank", digits=2, cadence="매일 확인",
+                 related=["NVDA"], items=[{"label": f"{r['rank']}위 {r['model']}", "value": r["cost"]} for r in sorted(cost, key=lambda r: r["cost"])],
+                 caveat="에이전트 작업 1건에 든 비용의 중앙값(P50)입니다. 싼 순서. 같은 성능이면 비용이 낮은 모델이 수요를 가져갑니다."))
+    trows, tupd = arena_table("text")
+    items = []
+    for r in trows[:10]:
+        sc = _num(re.sub(r"±.*", "", r["cells"].get("Score", "")))
+        if sc is not None:
+            items.append({"label": r["name"] + (f" · {r['lab']}" if r["lab"] else ""), "value": sc})
+    if len(items) < 5:
+        raise ValueError("텍스트 순위 파싱 실패")
+    ctx.put({"id": "arena_text_rank", "label": "텍스트 대화 순위 (Text Arena, 상위 10)", "unit": "점", "type": "rank", "digits": 0, "cadence": "매일 확인",
+             "source": "Arena · Text Arena", "source_url": "https://arena.ai/leaderboard/text", "method": "scrape", "as_of": tupd, "related": ["GOOGL", "MSFT"],
+             "items": items, "caveat": "사람이 두 모델 답변을 블라인드로 비교해 고른 결과로 매긴 Elo 점수입니다. 'Preliminary'(표본 적음) 모델도 섞여 있습니다."})
+
+
 # ── 7. GPU 임대가 ────────────────────────────────────────────────────
 VAST_GPUS = ["H100 SXM", "H100 NVL", "H100 PCIE", "H200", "H200 NVL", "B200", "A100 SXM4", "A100 PCIE", "RTX 5090", "RTX 4090"]
 MARKET_LINES = [("H100 SXM", "H100 SXM"), ("H200", "H200"), ("B200", "B200"), ("A100 SXM4", "A100"), ("RTX 5090", "RTX 5090")]
@@ -976,6 +1056,7 @@ GROUPS = [
     {"id": "credit", "label": "빅테크 CDS", "desc": "AI 투자의 신용 위험"},
     {"id": "memory", "label": "메모리 수출", "desc": "TRASS 잠정치"},
     {"id": "money", "label": "TSMC · 캐팩스 · AI 랩", "desc": "만드는 쪽 · 쓰는 쪽 · 버는 쪽"},
+    {"id": "bench", "label": "모델 성능 순위", "desc": "Arena 실사용 평가"},
 ]
 # 묶음마다 카드 4개 — 한 화면에 2×2 로 들어가게 맞춘다
 BOARDS = {
@@ -986,9 +1067,14 @@ BOARDS = {
     "credit": ["cds_bigtech", "cds_ai", "cds_gap", "cds_table"],
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
+    "bench": ["arena_agent_rank", "arena_agent_labs", "arena_agent_cost", "arena_text_rank"],
 }
 # 카드 아래에 붙는 한두 줄 설명 — "이게 무슨 데이터인가"
 DESCS = {
+    "arena_agent_rank": "Arena(구 LMArena)의 Agent Arena — 실제 코딩 에이전트 세션 수천 건에서 어떤 모델이 일을 끝까지 해냈는지로 매긴 순위. 벤치마크가 아니라 실사용 평가.",
+    "arena_agent_labs": "Anthropic·OpenAI·Google 등 랩별로 가장 잘하는 모델의 순개선 값을 매일 기록. 에이전트 성능 경쟁에서 누가 앞서는지의 추이.",
+    "arena_agent_cost": "상위 모델들이 에이전트 작업 1건에 쓰는 비용. 성능 대비 가격 — 추론 수요가 어느 모델로 갈지의 단서.",
+    "arena_text_rank": "사람이 블라인드로 두 답변을 비교해 매긴 일반 대화 Elo 순위. 에이전트 순위와 엇갈리는지 같이 본다.",
     "or_tokens_weekly": "전 세계 개발자들이 OpenRouter(여러 AI 모델을 한 API로 쓰는 중개 서비스)로 한 주 동안 처리한 토큰 총량. AI 추론 수요의 온도계.",
     "or_spend_7d": "그 주에 AI 모델 사용료로 지불된 금액(주간 토큰 × 실효 단가). 토큰보다 지출이 덜 늘면 단가가 빠지고 있다는 뜻.",
     "or_lab_top10": "최근 7일 토큰을 모델을 만든 회사(랩)별로 합친 점유율. 누가 실제 사용량을 가져가고 있는지.",
@@ -1021,7 +1107,7 @@ DESCS = {
 }
 KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_index", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
 COLLECTORS = {"or_models": c_or_models, "or_chart": c_or_chart, "or_week": c_or_week, "or_apps": c_or_apps, "frontier": c_frontier,
-              "hf": c_hf, "ornn": c_ornn, "cds": c_cds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "prices": c_prices}
+              "hf": c_hf, "ornn": c_ornn, "cds": c_cds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "arena": c_arena, "prices": c_prices}
 
 
 def load(path, default):
