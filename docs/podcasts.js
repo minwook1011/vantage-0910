@@ -39,6 +39,8 @@
     String(t).split(/\n/).forEach(function (ln) {
       var m;
       if (/^\s*$/.test(ln)) { close(); return; }
+      // [[chart:N]] 줄 → 그 자리에 N번째(1부터) 그래프 — 내용이 나오는 곳에 그래프를 바로 붙인다
+      if ((m = ln.match(/^\s*\[\[chart:(\d+)\]\]\s*$/))) { close(); var c = CUR && (CUR.charts || [])[+m[1] - 1]; if (c) out.push(fig(c)); return; }
       if ((m = ln.match(/^(#{2,4})\s+(.*)/))) { close(); var lv = Math.min(4, m[1].length + 1); out.push("<h" + lv + ">" + inl(m[2]) + "</h" + lv + ">"); return; }
       if ((m = ln.match(/^>\s?(.*)/))) { close(); out.push("<blockquote>" + inl(m[1]) + "</blockquote>"); return; }
       if ((m = ln.match(/^\s*[-*•]\s+(.*)/))) { if (list !== "ul") { close(); out.push("<ul>"); list = "ul"; } out.push("<li>" + inl(m[1]) + "</li>"); return; }
@@ -96,13 +98,23 @@
     }
     return '<svg viewBox="0 0 ' + W + " " + H2 + '" role="img" aria-label="' + esc(c.title) + '">' + g.join("") + "</svg>";
   }
+  var CUR = null;   // 지금 그리는 에피소드 — md() 안의 [[chart:N]] 용
+  function inlined(E) {
+    var t = [E.summary_md, E.insights_md, E.deep_md].join("\n"), set = {}, m, re = /\[\[chart:(\d+)\]\]/g;
+    while ((m = re.exec(t))) set[+m[1] - 1] = 1;
+    return set;
+  }
   function charts(E, at) {
-    return (E.charts || []).filter(function (c) { return (c.at || "tldr") === at; }).map(function (c) {
+    var inl = inlined(E);
+    return (E.charts || []).filter(function (c, i) { return !inl[i] && (c.at || "tldr") === at; }).map(fig).join("");
+  }
+  function fig(c) {
+    {
       var S = c.series || [];
       return '<figure class="chart"><figcaption><b>' + esc(c.title) + "</b>" + (c.sub ? "<span>" + esc(c.sub) + "</span>" : "") + "</figcaption>" +
         (S.length > 1 ? '<div class="leg">' + S.map(function (s, j) { return '<span><i style="background:' + PAL[j % PAL.length] + '"></i>' + esc(s.name) + "</span>"; }).join("") + "</div>" : "") +
         chartSvg(c) + ((c.note || c.source) ? '<p class="cnote">' + (c.note ? esc(c.note) : "") + (c.source ? (c.note ? " · " : "") + "출처: " + esc(c.source) : "") + "</p>" : "") + "</figure>";
-    }).join("");
+    }
   }
   function titleOf(row, E) { return (E && E.title_ko) || row.title_ko || (row.summary && row.summary.title_ko) || row.title; }
 
@@ -155,6 +167,7 @@
       html += '<div class="pending">📝 아직 요약 전입니다. 예약 작업이 하루 3번 새 에피소드를 확인해 요약과 딥 리서치를 씁니다.</div>' +
         (row.desc_ko ? '<section><h2>방송 소개</h2><div class="note"><p>' + esc(row.desc_ko) + "</p></div></section>" : "");
     } else {
+      CUR = E;
       if (E.tldr && E.tldr.length) html += '<section class="key"><h2>핵심 요약</h2><ul class="tldr">' + E.tldr.map(function (x) { return "<li>" + md(x).replace(/^<p>|<\/p>$/g, "") + "</li>"; }).join("") + "</ul>" + charts(E, "tldr") + "</section>";
       if (E.summary_md) html += '<section><h2>내용 정리</h2><div class="note">' + md(E.summary_md) + "</div>" + charts(E, "summary") + "</section>";
       if (E.insights_md) html += '<section><h2>투자 관점에서</h2><div class="note">' + md(E.insights_md) + "</div>" + charts(E, "insights") + "</section>";
