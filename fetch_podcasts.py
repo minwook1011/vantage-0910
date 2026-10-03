@@ -164,6 +164,7 @@ def main():
         return 0
     known = {e["id"] for e in ix["episodes"]}
     known_links = {e.get("link") for e in ix["episodes"] if e.get("link")}
+    known_audio = {e.get("audio") for e in ix["episodes"] if e.get("audio")}
     new = []
     for show in cfg["shows"]:
         raw = get(show["feed"])
@@ -175,7 +176,9 @@ def main():
         except Exception as e:
             print(f"{show['name']}: 피드 해석 실패 {e}")
             continue
-        fresh = [e for e in eps if e["id"] not in known and (not e["link"] or e["link"] not in known_links)]
+        # 방송사가 제목만 바꿔 다시 올려도(링크·id가 바뀜) 같은 오디오 파일이면 같은 편으로 본다
+        fresh = [e for e in eps if e["id"] not in known and (not e["link"] or e["link"] not in known_links)
+                 and (not e.get("audio") or e["audio"] not in known_audio)]
         fill_images(fresh)
         # 예전에 올린 에피소드에 사진이 없으면 채워 넣는다
         by_id = {e["id"]: e for e in eps}
