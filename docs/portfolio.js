@@ -227,4 +227,18 @@
   /* 수동 새로고침: 누르면 야후 파이낸스에서 보유·관심 종목 시세와 환율을 바로 다시 받는다. */
   var refreshBtn = document.getElementById("portfolio-refresh"); if (refreshBtn) refreshBtn.onclick = refresh;
   wire(); render(); refresh();
+  /* 관리 계좌(사진으로 받은 매매기록, 암호화 파일) — 키가 있으면 자동 반영, 없으면 '관리 계좌 불러오기' 버튼 */
+  function applyManaged(d) {
+    if (!window.PortfolioManaged || !PortfolioManaged.merge(state, d)) return;
+    if (!state.accounts.some(function (a) { return a.id === activeId; })) activeId = state.accounts[0].id;
+    S.save(state); perfKey = null; render(); setUpdated("관리 계좌 매매기록 반영 · " + String(d.updated || "").replace("T", " ").slice(0, 16));
+    if (view === "perf" && window.PortfolioPerf) PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId);
+  }
+  if (window.PortfolioManaged) {
+    if (PortfolioManaged.hasKey()) PortfolioManaged.load(applyManaged);
+    else {
+      var acts = document.querySelector(".account-actions");
+      if (acts) { var mb = document.createElement("button"); mb.className = "quiet-btn"; mb.textContent = "🔑 관리 계좌 불러오기"; mb.onclick = function () { PortfolioManaged.unlock(function (d) { mb.remove(); applyManaged(d); }); }; acts.insertBefore(mb, acts.firstChild); }
+    }
+  }
 })();
