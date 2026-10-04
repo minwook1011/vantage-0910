@@ -39,11 +39,25 @@
   function isManaged(key) { return KEYS.indexOf(String(key)) >= 0; }
   var lastSize = 0;
   function sizeOf(values) { var n = 0; Object.keys(values || {}).forEach(function (k) { n += k.length + String(values[k] || "").length; }); return n; }
-  function errText() { return lastError ? String(lastError.code || lastError.name || "오류").replace(/^firestore\//, "") : ""; }
+  /* Firebase 오류 코드 → 한국어 (원래 메시지는 영어) */
+  var ERR_KO = {
+    "permission-denied": ["권한 없음", "클라우드 보안 규칙이 이 계정의 읽기·쓰기를 막고 있습니다. Firebase 콘솔 → Firestore → 규칙에서 로그인한 본인 문서(vantageUsers/본인 uid) 읽기·쓰기를 허용해야 합니다. 로그인 자체는 정상입니다."],
+    "unauthenticated": ["로그인 필요", "로그인이 풀렸습니다. 다시 로그인해 주세요."],
+    "unavailable": ["연결 안 됨", "인터넷 연결이 불안정하거나 서버에 닿지 않습니다. 잠시 후 다시 시도해 주세요."],
+    "deadline-exceeded": ["시간 초과", "서버 응답이 너무 늦습니다. 잠시 후 다시 시도해 주세요."],
+    "resource-exhausted": ["한도 초과", "저장 용량 또는 하루 사용량 한도를 넘었습니다."],
+    "invalid-argument": ["데이터 형식 오류", "보내려는 데이터 형식을 서버가 받지 않습니다. 용량(약 1MB 한도)이나 내용 문제일 수 있습니다."],
+    "failed-precondition": ["처리 조건 불충족", "다른 기기와 동시에 저장하다 충돌했습니다. 다시 시도하면 대부분 해결됩니다."],
+    "aborted": ["충돌로 중단", "다른 기기와 동시에 저장하다 충돌했습니다. 다시 시도해 주세요."],
+    "not-found": ["데이터 없음", "클라우드에 저장된 데이터를 찾지 못했습니다."],
+    "internal": ["서버 내부 오류", "Firebase 서버 쪽 오류입니다. 잠시 후 다시 시도해 주세요."]
+  };
+  function errCode() { return lastError ? String(lastError.code || lastError.name || "").replace(/^(firestore|auth)\//, "") : ""; }
+  function errText() { var c = errCode(); return lastError ? ((ERR_KO[c] || [])[0] || "알 수 없는 오류") : ""; }
   function errDetail() {
     var sizes = Object.keys(snapshot()).map(function (k) { return k + " " + Math.round(String(localStorage.getItem(k) || "").length / 1024) + "KB"; }).join(", ");
-    var NL = String.fromCharCode(10);
-    return "동기화 오류" + NL + NL + "코드: " + errText() + NL + "내용: " + String((lastError && lastError.message) || "").slice(0, 300) +
+    var NL = String.fromCharCode(10), c = errCode();
+    return "동기화 오류" + NL + NL + "원인: " + errText() + NL + "설명: " + ((ERR_KO[c] || [])[1] || "예상하지 못한 오류입니다.") + NL + "(오류 코드 " + (c || "없음") + ")" +
       NL + NL + "보낼 데이터 약 " + Math.round((lastSize || sizeOf(snapshot())) / 1024) + "KB (한도 약 1,000KB)" + NL + "이 기기 저장 항목: " + sizes +
       NL + NL + "확인을 누르면 다시 시도합니다. 이 화면을 캡처해 보내 주세요.";
   }
@@ -252,7 +266,7 @@
         if (hasLocal) button.classList.add("cloud-sync-off");
       } else if (state === "error") {
         button.textContent = "☁ 동기화 오류(" + errText() + ") · 재시도";
-        button.title = (lastError && (lastError.code || lastError.message)) + " · 클릭하면 다시 동기화";
+        button.title = errText() + " · 누르면 자세한 설명과 다시 시도";
         button.classList.add("cloud-sync-error");
       } else if (state === "syncing") {
         button.textContent = "☁ 동기화 중…";
