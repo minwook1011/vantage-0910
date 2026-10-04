@@ -94,6 +94,12 @@
     document.getElementById("view-status").hidden = view !== "status";
     document.getElementById("view-trades").hidden = view !== "trades";
     document.getElementById("view-perf").hidden = view !== "perf";
+    /* 플래너는 계좌와 상관없음 → 계좌 탭·예수금·요약은 숨기고 할 일만 */
+    var pl = view === "planner";
+    document.getElementById("view-planner").hidden = !pl;
+    ["account-tabs", "cash-settings", "portfolio-summary"].forEach(function (id) { var el = document.getElementById(id); if (el) el.hidden = pl; });
+    var acts = document.querySelector(".account-actions"); if (acts) acts.hidden = pl;
+    if (pl && window.PortfolioPlanner) PortfolioPlanner.mount(document.getElementById("planner-body"));
     if (!window.PortfolioPerf) return;
     if (view === "trades") PortfolioPerf.trades(document.getElementById("trades-body"), state, activeId, removeTx, editTx);
     if (view === "perf") {
