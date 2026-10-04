@@ -14,9 +14,9 @@
 
   /* ── 저장 ── */
   function read() { try { return JSON.parse(localStorage.getItem(KEY) || "null") || {}; } catch (e) { return {}; } }
-  function load() { var p = read().planner || {}; return { tasks: Array.isArray(p.tasks) ? p.tasks : [], projects: Array.isArray(p.projects) ? p.projects : [] }; }
+  function load() { var p = read().planner || {}; return { tasks: Array.isArray(p.tasks) ? p.tasks : [], projects: Array.isArray(p.projects) ? p.projects : [], notes: Array.isArray(p.notes) ? p.notes : [] }; }
   function save() { var d = read(); d.planner = P; localStorage.setItem(KEY, JSON.stringify(d)); }
-  function loadUI() { try { return JSON.parse(localStorage.getItem(UI_KEY) || "null") || { view: "today" }; } catch (e) { return { view: "today" }; } }
+  function loadUI() { try { return JSON.parse(localStorage.getItem(UI_KEY) || "null") || { view: "memo" }; } catch (e) { return { view: "memo" }; } }
   function saveUI() { try { localStorage.setItem(UI_KEY, JSON.stringify(ui)); } catch (e) {} }
 
   /* ── 도구 ── */
@@ -116,6 +116,7 @@
     upcoming: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>',
     inbox: '<svg viewBox="0 0 24 24"><path d="M4 13.5 6.3 5.8A1.6 1.6 0 0 1 7.8 4.7h8.4a1.6 1.6 0 0 1 1.5 1.1L20 13.5V18a1.8 1.8 0 0 1-1.8 1.8H5.8A1.8 1.8 0 0 1 4 18z"/><path d="M4 13.5h4.5l1.2 2.2h4.6l1.2-2.2H20"/></svg>',
     calendar: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8.5 13h1M11.5 13h1M14.5 13h1M8.5 16.3h1M11.5 16.3h1"/></svg>',
+    memo: '<svg viewBox="0 0 24 24"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M14.5 3.5V7.5h4M9 11.5h6M9 15h6M9 18.3h3.5"/></svg>',
     log: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.3 12.2 2.6 2.6 4.9-5.4"/></svg>'
   };
   function open(t) { return !t.done; }
@@ -137,6 +138,7 @@
         (red ? '<em class="red">' + red + "</em>" : "") + (n ? "<em>" + n + "</em>" : "") + "</button>";
     }
     return '<aside class="pl-side">' +
+      item("memo", "memo", "메모장", "") +
       item("today", "today", "오늘", c.today - c.overdue || "", c.overdue || "") +
       item("upcoming", "upcoming", "예정", c.upcoming || "") +
       item("inbox", "inbox", "날짜 없음", c.inbox || "") +
@@ -182,7 +184,7 @@
       "</div>" +
       '<div class="pl-e-foot"><div class="pl-quick">' +
       [["오늘", td], ["내일", addDays(td, 1)], ["다음 주", addDays(td, ((8 - new Date().getDay()) % 7) || 7)], ["날짜 없음", ""]].map(function (q) { return '<button type="button" data-act="setdue" data-d="' + q[1] + '"' + ((t.due || "") === q[1] ? ' class="on"' : "") + ">" + q[0] + "</button>"; }).join("") +
-      '</div><div class="pl-pri">' + [1, 2, 3, 4].map(function (k) { return '<button type="button" data-act="pri" data-p="' + k + '" title="우선순위 ' + PRI_NAME[k] + '"' + ((t.pri || 4) === k ? ' class="on"' : "") + ' style="--c:' + PRI[k] + '">' + (k < 4 ? "P" + k : "–") + "</button>"; }).join("") +
+      '</div><div class="pl-pri">' + [1, 2, 3, 4].map(function (k) { return '<button type="button" data-act="pri" data-p="' + k + '" title="우선순위"' + ((t.pri || 4) === k ? ' class="on"' : "") + ' style="--c:' + PRI[k] + '">' + PRI_NAME[k] + "</button>"; }).join("") +
       '</div><button type="button" class="pl-close" data-act="close">닫기</button></div></div>';
   }
   function group(title, list, opt, extra) {
@@ -265,10 +267,35 @@
       tools: done.length ? '<button type="button" class="pl-mini danger" data-act="purge">30일 지난 기록 지우기</button>' : "" };
   }
 
+  /* ── 메모장: 칸으로 끊지 않고 줄글로 쓰는 페이지(날짜별 한 장 + 자유 메모 한 장) ── */
+  function note(id) { return P.notes.filter(function (n) { return n.id === id; })[0]; }
+  function memoId() { return ui.memo === "free" ? "free" : "d:" + (ui.memoDate || today()); }
+  function viewMemo() {
+    var free = ui.memo === "free", d = ui.memoDate || today(), n = note(memoId());
+    var seg = '<div class="pl-seg"><button type="button" data-act="memomode" data-m="day"' + (free ? "" : ' class="on"') + '>날짜별</button><button type="button" data-act="memomode" data-m="free"' + (free ? ' class="on"' : "") + ">자유 메모</button></div>";
+    var nav = free ? "" : '<button type="button" class="pl-mini" data-act="memoday" data-n="-1">‹</button><button type="button" class="pl-mini" data-act="memoday" data-n="0">오늘</button><button type="button" class="pl-mini" data-act="memoday" data-n="1">›</button>';
+    var past = P.notes.filter(function (x) { return /^d:/.test(x.id) && String(x.text || "").trim() && x.id !== memoId(); }).sort(function (a, b) { return b.id.localeCompare(a.id); }).slice(0, 12);
+    var body = '<div class="pl-memo"><textarea class="pl-paper" data-f="memo" spellcheck="false" placeholder="' + (free ? "생각나는 대로 자유롭게 적어 두세요. 자동 저장됩니다." : "오늘 할 일, 생각, 메모를 그냥 줄글로 적으세요. 자동 저장됩니다.") + '">' + esc(n ? n.text : "") + "</textarea>" +
+      '<div class="pl-memo-foot"><span class="pl-saved">' + (n && n.at ? "저장됨 · " + esc(new Date(n.at).toLocaleString("ko-KR", { month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit" })) : "자동 저장") + "</span>" +
+      '<button type="button" class="pl-mini" data-act="line2task" title="커서가 있는 줄을 할 일 목록으로 보냅니다">이 줄 → 할 일로</button></div></div>' +
+      (past.length && !free ? '<div class="pl-past"><h4>지난 메모</h4>' + past.map(function (x) { var dd = x.id.slice(2); return '<button type="button" data-act="memogo" data-d="' + dd + '"><b>' + esc(dateLabel(dd)) + "</b><span>" + esc(String(x.text).trim().split("\n")[0].slice(0, 60)) + "</span></button>"; }).join("") + "</div>" : "");
+    return { title: free ? "자유 메모" : (d === today() ? "오늘 메모" : dateLabel(d)), sub: free ? "날짜 없이 계속 이어 쓰는 메모장" : longDate(d), tools: seg + nav, body: body, noAdd: true };
+  }
+  function grow(ta) { if (!ta.offsetWidth) return; ta.style.height = "auto"; ta.style.height = Math.max(ta.scrollHeight + 4, 460) + "px"; }
+  var memoTimer = null;
+  function saveMemo(ta) {
+    var id = memoId(), n = note(id);
+    if (!n) { n = { id: id, text: "", at: null }; P.notes.push(n); }
+    n.text = ta.value; n.at = new Date().toISOString();
+    clearTimeout(memoTimer);
+    memoTimer = setTimeout(function () { save(); var sv = host.querySelector(".pl-saved"); if (sv) sv.textContent = "저장됨 · 방금"; }, 400);
+  }
+
   function render(keepFocus) {
     if (!host) return;
+    if (memoTimer) { clearTimeout(memoTimer); memoTimer = null; save(); }   /* 메모장에 쓰던 글을 먼저 저장 */
     P = load();
-    var v = ui.view, V = v === "today" ? viewToday() : v === "upcoming" ? viewUpcoming() : v === "inbox" ? viewInbox() : v === "calendar" ? viewCalendar() : v === "log" ? viewLog() :
+    var v = ui.view, V = v === "memo" ? viewMemo() : v === "today" ? viewToday() : v === "upcoming" ? viewUpcoming() : v === "inbox" ? viewInbox() : v === "calendar" ? viewCalendar() : v === "log" ? viewLog() :
       /^proj:/.test(v) ? viewProject(v.slice(5)) : /^day:/.test(v) ? viewDay(v.slice(4)) : viewToday();
     var draft = host.querySelector(".pl-add input"), dv = draft ? draft.value : "";
     host.innerHTML = '<div class="pl">' + sideHTML() + '<div class="pl-main">' +
@@ -276,6 +303,7 @@
       (V.noAdd ? "" : '<form class="pl-add" autocomplete="off"><span class="pl-plus">＋</span><input type="text" placeholder="할 일 추가 — 예: 내일 오후 3시 실적 정리 #리서치 !1" value="' + esc(dv) + '" aria-label="할 일 추가"><button type="submit">추가</button><div class="pl-preview">' + (dv ? chipsFor(parseQuick(dv)) : "") + "</div></form>" +
         '<p class="pl-syntax"><b>오늘·내일·금요일·10/12</b> 날짜 · <b>오후 3시</b> 시간 · <b>#이름</b> 프로젝트 · <b>!1~!3</b> 우선순위 · <b>매일·매주·매월</b> 반복 · 단축키 <kbd>N</kbd></p>') +
       (V.head || "") + '<div class="pl-body">' + V.body + "</div></div></div>";
+    var paper = host.querySelector(".pl-paper"); if (paper) { grow(paper); requestAnimationFrame(function () { grow(paper); }); }
     if (keepFocus === "add") { var inp = host.querySelector(".pl-add input"); if (inp) inp.focus(); }
     if (keepFocus === "sub") { var sa = host.querySelector(".pl-subadd"); if (sa) sa.focus(); }
   }
@@ -285,6 +313,20 @@
       var b = e.target.closest("[data-act]"); if (!b || !host.contains(b)) return;
       var act = b.dataset.act, row = b.closest("[data-id]"), id = row && row.dataset.id, t = id && task(id);
       if (act === "view") { ui.view = b.dataset.v; openId = null; saveUI(); render(); host.scrollIntoView({ block: "nearest" }); return; }
+      if (act === "memomode") { ui.memo = b.dataset.m; saveUI(); return render(); }
+      if (act === "memoday") { var nn0 = +b.dataset.n; ui.memoDate = nn0 ? addDays(ui.memoDate || today(), nn0) : today(); saveUI(); return render(); }
+      if (act === "memogo") { ui.memo = "day"; ui.memoDate = b.dataset.d; saveUI(); render(); host.scrollIntoView({ block: "nearest" }); return; }
+      if (act === "line2task") {
+        var ta = host.querySelector(".pl-paper"); if (!ta) return;
+        var v0 = ta.value, pos = ta.selectionStart || 0, st = v0.lastIndexOf("\n", pos - 1) + 1, en = v0.indexOf("\n", pos); if (en < 0) en = v0.length;
+        var line = v0.slice(st, en).replace(/^\s*([-*•·]|\d+[.)]|\[\s?\])\s*/, "").trim();
+        if (!line) { alert("할 일로 보낼 줄에 커서를 두고 눌러 주세요."); return; }
+        var keep = ui.view; if (ui.memo !== "free" && !parseQuick(line).due) ui.view = "day:" + (ui.memoDate || today());
+        addTask(line); ui.view = keep;
+        ta.value = v0.slice(0, st) + "✓ " + v0.slice(st); saveMemo(ta); save();
+        var sv = host.querySelector(".pl-saved"); if (sv) sv.textContent = "‘" + line.slice(0, 20) + "’ 할 일에 추가됨";
+        render(); return;
+      }
       if (act === "toggle") { toggle(id); if (openId === id) openId = null; return render(); }
       if (act === "open") { openId = openId === id ? null : id; render(); var ti = host.querySelector(".pl-e-title"); if (ti && openId) ti.focus(); return; }
       if (act === "close") { openId = null; return render(); }
@@ -313,6 +355,7 @@
       addTask(v); inp.value = ""; render("add");
     });
     host.addEventListener("input", function (e) {
+      if (e.target.classList.contains("pl-paper")) { grow(e.target); saveMemo(e.target); return; }
       if (e.target.closest(".pl-add")) { var pv = host.querySelector(".pl-preview"); if (pv) pv.innerHTML = e.target.value.trim() ? chipsFor(parseQuick(e.target.value)) : ""; return; }
       var ed = e.target.closest(".pl-edit"); if (!ed) return;
       var t = task(ed.dataset.id), f = e.target.dataset.f; if (!t) return;
@@ -348,6 +391,7 @@
     /* 다른 기기에서 동기화돼 들어오면 다시 그림(입력 중이면 미룸) */
     window.addEventListener("storage", function (e) { if (e.key === KEY && !host.contains(document.activeElement)) render(); });
     window.addEventListener("vantage-sync-applied", function () { if (!host.contains(document.activeElement)) render(); });
+    window.addEventListener("resize", function () { var pp = host.querySelector(".pl-paper"); if (pp) grow(pp); });
     /* 자정이 지나면 '오늘'을 새로 */
     var day = today(); setInterval(function () { if (today() !== day) { day = today(); if (!host.contains(document.activeElement)) render(); } }, 60000);
   }

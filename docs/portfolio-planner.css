@@ -151,3 +151,24 @@
 
 /* 플래너 탭에서는 계좌 탭·예수금·요약을 숨김 */
 .portfolio-overview [hidden] { display:none !important; }
+
+/* 메모장 — 칸으로 끊지 않는 줄 노트 */
+.pl-seg { display:inline-flex; border:1px solid var(--border); border-radius:8px; overflow:hidden; margin-right:6px; }
+.pl-seg button { font:600 12px var(--sans); padding:5px 12px; border:0; background:var(--card); color:var(--muted); cursor:pointer; }
+.pl-seg button.on { background:#e3ebfb; color:var(--accent); }
+.pl-memo { border:1px solid var(--border); border-radius:12px; background:#fffef9; box-shadow:0 1px 2px rgba(20,40,80,.04); }
+.pl-paper { display:block; width:100%; min-height:460px; box-sizing:border-box; border:0; outline:0; resize:none; overflow:hidden; background:transparent;
+  padding:14px 22px 14px 54px; font:400 16px/32px var(--sans); color:var(--text);
+  background-image:linear-gradient(to right, transparent 40px, rgba(224,45,60,.22) 40px, rgba(224,45,60,.22) 41px, transparent 41px),
+    repeating-linear-gradient(to bottom, transparent 0, transparent 31px, #e6ebf3 31px, #e6ebf3 32px);
+  background-position:0 14px; background-attachment:local; }
+.pl-paper::placeholder { color:#b3bccb; }
+.pl-memo-foot { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 12px; border-top:1px solid #eef2f8; }
+.pl-saved { font-size:12px; color:var(--faint); }
+.pl-past { margin-top:18px; }
+.pl-past h4 { margin:0 0 6px; font:700 13px var(--sans); color:var(--muted); }
+.pl-past button { display:flex; gap:12px; width:100%; text-align:left; border:0; border-bottom:1px solid #eef2f8; background:none; padding:9px 4px; cursor:pointer; font:inherit; }
+.pl-past button:hover { background:#f7f9fd; }
+.pl-past b { flex:none; width:88px; font:600 13px var(--sans); color:var(--text); }
+.pl-past span { flex:1; min-width:0; font-size:13px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+@media (max-width:760px) { .pl-paper { padding-left:46px; font-size:15.5px; background-image:linear-gradient(to right, transparent 34px, rgba(224,45,60,.22) 34px, rgba(224,45,60,.22) 35px, transparent 35px), repeating-linear-gradient(to bottom, transparent 0, transparent 31px, #e6ebf3 31px, #e6ebf3 32px); } .pl-seg { margin-bottom:4px; } }
