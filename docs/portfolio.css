@@ -70,3 +70,10 @@
 .pf-seg button:disabled { opacity:.35; cursor:default; }
 .pf-th { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:18px; }
 .pf-th .pf-h3 { margin:0; }
+/* 시작 시드 입력줄 */
+.pf-seedbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:10px 0 4px; padding:8px 12px; border:1px solid var(--border); border-radius:10px; background:var(--card); font-size:13px; color:var(--muted); }
+.pf-seedbar > span { font-weight:700; color:var(--text); }
+.pf-seedbar label { display:inline-flex; align-items:center; gap:5px; }
+.pf-seedbar input { font:inherit; color:var(--text); border:1px solid var(--border); border-radius:7px; padding:5px 8px; background:#fff; }
+.pf-seedbar input[name=seed] { width:90px; text-align:right; }
+.pf-seedbar small { color:var(--faint); font-size:12px; }

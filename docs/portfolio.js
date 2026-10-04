@@ -149,7 +149,12 @@
         }
         if (!imported.length) throw new Error("empty");
         var existing = state.transactions.filter(function (t) { return t.accountId === activeId; }).length;
-        if (existing && !confirm("현재 포트폴리오에 매매 기록 " + imported.length + "건을 추가할까요? 같은 파일을 다시 가져오면 거래가 중복됩니다.")) return;
+        var replace = false;
+        if (existing) {
+          replace = confirm("이 포트폴리오에 매매 기록이 이미 " + existing + "건 있습니다.\n\n[확인] 기존 기록을 지우고 이 파일(" + imported.length + "건)로 모두 바꾸기\n[취소] 바꾸지 않고 뒤에 추가하기(같은 파일이면 중복)");
+          if (!replace && !confirm("기존 기록 뒤에 " + imported.length + "건을 추가할까요?")) return;
+        }
+        if (replace) state.transactions = state.transactions.filter(function (t) { return t.accountId !== activeId; });
         state.transactions = state.transactions.concat(imported); S.save(state); render(); setUpdated("엑셀 " + imported.length + "건을 이 브라우저에 저장함"); refresh();
       } catch (e) { alert("첫 시트에서 날짜·시장·종목명/티커·매수/매도·주식 수·체결단가 열을 찾지 못했습니다."); }
     };
