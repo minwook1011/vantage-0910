@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-02",
+ "updated": "2026-10-04",
  "events": [
   {
    "id": "ces-2026",
@@ -838,18 +838,32 @@
   },
   {
    "id": "samsung-sdc-2026",
-   "name": "삼성 개발자 콘퍼런스 SDC 2026",
+   "name": "삼성 개발자 콘퍼런스 SDC 2026 (개최 미확인)",
    "org": "삼성전자",
    "desc": "삼성전자 연례 개발자 콘퍼런스, 미국 샌프란시스코 모스콘센터",
    "date_start": "2026-10-03",
    "date_end": "2026-10-03",
    "month": "2026-10",
-   "status": "previewed",
+   "status": "done",
    "preview": "※ 공식 일정 미정 — 통상 10~11월 개최되어 예상 시점만 표기했다. 관전 포인트는 One UI 차기 버전과 빅스비·갤럭시 AI를 잇는 온디바이스 AI 플랫폼 전략, 그리고 삼성이 인수한 하만·비브랩스 자산을 어떻게 AI 에이전트로 묶어내는가다. 스마트싱스 기반 홈 AI와 타이젠·매터 연동이 확장되면 삼성전자 MX·VD 부문의 소프트웨어 락인이 강해져 하드웨어 교체주기 방어에 도움이 된다. 개발자 대상 온디바이스 LLM SDK가 공개되면 엑시노스·NPU 활용도가 올라가 시스템LSI 사업부의 존재감이 커진다. 구글·퀄컴과의 XR 헤드셋(무한/Project Moohan) 생태계 진전 상황도 확인 대상으로, 관련 부품(마이크로 OLED·카메라 모듈) 밸류체인에 영향을 준다. 삼성전자 주가 관점에서는 메모리 사이클과 별개로 '소프트웨어·플랫폼 재평가' 재료가 될 수 있는지가 핵심이다.",
-   "summary": "삼성 개발자 콘퍼런스(SDC) 2026은 2026년 10월 3일 미국 샌프란시스코에서 열린다. 삼성전자가 One UI, 타이젠, 스마트싱스, 빅스비·갤럭시 AI 등 자사 소프트웨어 플랫폼의 다음 버전과 개발자 도구를 공개하는 연례 행사다. 기조연설과 함께 모바일·가전·헬스·XR 분야 기술 세션이 병행된다.",
+   "summary": "예상 시점(10월 3일)이 지났지만 삼성전자의 SDC 2026 공식 개최 발표나 발표 내용은 확인되지 않았다. 공식 SDC 페이지에는 여전히 SDC24(2024년 10월 3일, 새너제이)가 마지막 행사로 올라 있고, 삼성은 2025년에도 미국 SDC를 열지 않았다. 대신 9월 30일 서울 서초사옥에서 '삼성 AI 포럼 2026'을 열어 에이전틱 AI를 주제로 논의했다.",
    "full": "",
    "added": "2026-08-26",
-   "updated": "2026-08-30"
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "Samsung Developers — SDC",
+     "url": "https://developer.samsung.com/sdc"
+    },
+    {
+     "label": "뉴데일리 — 삼성전자, 올해 개발자 콘퍼런스 안 연다(2025-09-29)",
+     "url": "https://biz.newdaily.co.kr/site/data/html/2025/09/29/2025092900263.html"
+    },
+    {
+     "label": "Korea Times — Samsung hosts forum focused on agentic AI",
+     "url": "https://www.koreatimes.co.kr/amp/business/companies/20260930/samsung-hosts-forum-focused-on-agentic-ai"
+    }
+   ]
   },
   {
    "id": "marvell-investor-day-2026",
@@ -2518,6 +2532,238 @@
     {
      "label": "BLS — CPI Home",
      "url": "https://www.bls.gov/cpi/"
+    }
+   ]
+  },
+  {
+   "id": "jms-bizweek-2026",
+   "name": "재팬 모빌리티쇼 비즈위크 2026",
+   "org": "일본자동차공업회(JAMA)",
+   "desc": "자동차·모빌리티 B2B 전시, 지바 마쿠하리 메세 (CEATEC 2026과 동시 개최)",
+   "date_start": "2026-10-13",
+   "date_end": "2026-10-16",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "옛 도쿄 모터쇼를 잇는 재팬 모빌리티쇼의 비즈니스 중심 행사로, 2026년은 10월 13~16일 마쿠하리 메세에서 CEATEC 2026과 함께 열린다. 완성차·스타트업·대학·연구기관이 참가해 산업 간 협업을 모색하는 자리다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "Japan Mobility Show 공식",
+     "url": "https://www.japan-mobility-show.com/en/"
+    }
+   ]
+  },
+  {
+   "id": "bok-mpc-2026-10",
+   "name": "한국은행 10월 금융통화위원회 (기준금리 결정)",
+   "org": "한국은행",
+   "desc": "통화정책방향 결정회의, 10월 22일",
+   "date_start": "2026-10-22",
+   "date_end": "2026-10-22",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "한국은행 금융통화위원회가 기준금리를 결정하는 통화정책방향 결정회의다. 2026년 연간 일정에 따라 10월 22일 열린다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "뉴시스 — 한은, 2026년 금통위 일정 발표",
+     "url": "https://www.newsis.com/view/NISX20251030_0003383692"
+    }
+   ]
+  },
+  {
+   "id": "ecb-2026-10",
+   "name": "ECB 10월 통화정책회의",
+   "org": "유럽중앙은행(ECB)",
+   "desc": "정책금리 결정 10월 29일 14:15(CET), 기자회견 14:45",
+   "date_start": "2026-10-28",
+   "date_end": "2026-10-29",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "유럽중앙은행 정책위원회의 통화정책회의로 10월 28~29일 열리며, 29일 결정 발표 뒤 기자회견이 이어진다. 신규 경제전망은 나오지 않는 회의다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "ECB — Meetings of the Governing Council",
+     "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+    }
+   ]
+  },
+  {
+   "id": "boj-2026-10",
+   "name": "일본은행 10월 금융정책결정회의",
+   "org": "일본은행(BOJ)",
+   "desc": "10월 29~30일, 경제·물가 전망 보고서 동시 공개",
+   "date_start": "2026-10-29",
+   "date_end": "2026-10-30",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "일본은행 정책위원회의 금융정책결정회의로 10월 29~30일 열리고 둘째 날 결정이 발표된다. 분기 '경제·물가 정세 전망(전망 보고서)'이 함께 나오는 회의다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "Bank of Japan — Release Schedule",
+     "url": "https://www.boj.or.jp/en/about/calendar/index.htm"
+    }
+   ]
+  },
+  {
+   "id": "us-midterms-2026",
+   "name": "미국 중간선거 2026",
+   "org": "미국 연방·주 선거",
+   "desc": "11월 3일, 하원 435석 전체와 상원 35석 선출",
+   "date_start": "2026-11-03",
+   "date_end": "2026-11-03",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "2026년 미국 중간선거는 11월 3일(화) 치러지며 하원 435석 전체와 상원 35석(특별선거 2석 포함)이 걸려 있다. 의회 구성에 따라 하반기 재정·통상·산업 정책 입법 환경이 달라진다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "Bipartisan Policy Center — The 2026 Midterms: Key Dates",
+     "url": "https://bipartisanpolicy.org/article/the-2026-midterms-key-dates-and-events/"
+    }
+   ]
+  },
+  {
+   "id": "us-jobs-2026-10",
+   "name": "미국 10월 고용보고서 (Employment Situation)",
+   "org": "미국 노동통계국(BLS)",
+   "desc": "10월 고용보고서 발표. 11월 6일 오전 8시 30분(ET).",
+   "date_start": "2026-11-06",
+   "date_end": "2026-11-06",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "미국 노동통계국이 발표하는 10월 고용보고서로, 비농업 고용·실업률·임금 상승률이 공개된다. 2026년 11월 6일 오전 8시 30분(ET, 한국시간 22시 30분) 발표 예정이다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "BLS — Schedule of Releases for the Employment Situation",
+     "url": "https://www.bls.gov/schedule/news_release/empsit.htm"
+    }
+   ]
+  },
+  {
+   "id": "cop31-2026",
+   "name": "COP31 유엔기후변화협약 당사국총회 (안탈리아)",
+   "org": "유엔기후변화협약(UNFCCC)·튀르키예",
+   "desc": "11월 9~20일 튀르키예 안탈리아 엑스포센터, 정상회의 11~12일",
+   "date_start": "2026-11-09",
+   "date_end": "2026-11-20",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "제31차 유엔기후변화협약 당사국총회로 11월 9~20일 튀르키예 안탈리아에서 열리며, 세계 정상회의는 11~12일이다. 각국 감축 목표와 기후 재원, 에너지 전환 관련 합의가 논의된다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "COP31 Türkiye 공식",
+     "url": "https://cop31.tr/"
+    },
+    {
+     "label": "Cambridge CISL — COP31, Antalya, 9-20 November 2026",
+     "url": "https://www.cisl.cam.ac.uk/cop-climate-change-conference/cop31-antalya-turkiye-9-20-november-2026"
+    }
+   ]
+  },
+  {
+   "id": "us-cpi-2026-10",
+   "name": "미국 10월 소비자물가지수(CPI)",
+   "org": "미국 노동통계국(BLS)",
+   "desc": "10월 CPI 발표. 11월 10일 오전 8시 30분(ET).",
+   "date_start": "2026-11-10",
+   "date_end": "2026-11-10",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "미국 노동통계국이 발표하는 10월 소비자물가지수로, 2026년 11월 10일 오전 8시 30분(ET, 한국시간 22시 30분) 공개된다. 헤드라인·근원 CPI와 주거비·에너지 등 세부 항목이 나온다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "BLS — Schedule of Releases for the Consumer Price Index",
+     "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+    }
+   ]
+  },
+  {
+   "id": "apec-shenzhen-2026",
+   "name": "APEC 정상회의 2026 (중국 선전)",
+   "org": "아시아태평양경제협력체(APEC)·중국",
+   "desc": "정상회의 11월 18~19일, CEO 서밋 17~18일, 광둥성 선전",
+   "date_start": "2026-11-17",
+   "date_end": "2026-11-19",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "중국이 세 번째로 의장국을 맡은 APEC 정상회의로 11월 18~19일 선전에서 열리고, 부대 행사인 APEC CEO 서밋은 17~18일이다. 아태 지역 통상·공급망·디지털 경제 의제와 정상 간 양자 회담이 관심사다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "CGTN — 2026 APEC meeting to be held Nov. 18-19 in Shenzhen",
+     "url": "https://news.cgtn.com/news/2025-12-13/2026-APEC-meeting-to-be-held-Nov-18-19-in-Shenzhen-China-1J43L2Fb2w0/index.html"
+    },
+    {
+     "label": "선전시 정부 — APEC CEO Summit 2026, Nov. 17-18",
+     "url": "https://www.sz.gov.cn/en_szgov/news/infocus/APEC2026/News/content/post_12977146.html"
+    }
+   ]
+  },
+  {
+   "id": "gstar-2026",
+   "name": "지스타 2026",
+   "org": "한국게임산업협회",
+   "desc": "국제 게임 전시회, 부산 벡스코 (11월 19~22일)",
+   "date_start": "2026-11-19",
+   "date_end": "2026-11-22",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "국내 최대 게임 전시회로 11월 19~22일 부산 벡스코에서 열린다(B2B는 19~21일). 개막 전날 18일 온라인 쇼케이스 '지스타 프리미어'가 방송되며, 웹젠·코에이·세가·넷이즈 등이 참가한다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "ZDNet Korea — 지스타 2026 윤곽 공개",
+     "url": "https://zdnet.co.kr/view/?no=20260929140339"
+    },
+    {
+     "label": "디일렉 — 지스타 2026, 전시장 배치 공개",
+     "url": "https://www.thelec.kr/news/articleView.html?idxno=62939"
+    }
+   ]
+  },
+  {
+   "id": "bok-mpc-2026-11",
+   "name": "한국은행 11월 금융통화위원회 (기준금리 결정)",
+   "org": "한국은행",
+   "desc": "통화정책방향 결정회의, 11월 26일",
+   "date_start": "2026-11-26",
+   "date_end": "2026-11-26",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "한국은행 금융통화위원회가 기준금리를 결정하는 통화정책방향 결정회의다. 2026년 연간 일정에 따라 11월 26일 열린다.",
+   "full": "",
+   "added": "2026-10-04",
+   "updated": "2026-10-04",
+   "sources": [
+    {
+     "label": "뉴시스 — 한은, 2026년 금통위 일정 발표",
+     "url": "https://www.newsis.com/view/NISX20251030_0003383692"
     }
    ]
   }
