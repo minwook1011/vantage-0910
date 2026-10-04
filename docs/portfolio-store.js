@@ -23,15 +23,7 @@
       };
     } catch (e) { return JSON.parse(JSON.stringify(DEFAULT)); }
   }
-  /* planner 칸은 플래너(portfolio-planner.js)가 따로 관리 → 포트폴리오 저장 때는 저장소에 있는 최신 planner 를 그대로 붙인다 */
-  function save(data) {
-    var out = {}, cur = null;
-    try { cur = JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) {}
-    Object.keys(data).forEach(function (k) { if (k !== "planner") out[k] = data[k]; });
-    if (cur && cur.planner) out.planner = cur.planner;
-    localStorage.setItem(KEY, JSON.stringify(out));
-    return data;
-  }
+  function save(data) { localStorage.setItem(KEY, JSON.stringify(data)); return data; }
   function tickerFor(ticker, market) {
     ticker = String(ticker || "").trim().toUpperCase();
     var bare = ticker.replace(/\.(KS|KQ)$/i, "");

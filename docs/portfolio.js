@@ -78,6 +78,7 @@
   /* 계좌 안 보기: 현황 / 매매내역 / 수익률 평가 */
   var view = "status";
   try { view = localStorage.getItem("vantage-portfolio-view") || "status"; } catch (e) {}
+  if (["status", "trades", "perf"].indexOf(view) < 0) view = "status";
   var perfKey = null;
   function removeTx(id) { state.transactions = state.transactions.filter(function (t) { return t.id !== id; }); S.save(state); perfKey = null; render(); }
   /* 매매내역 표에서 칸을 눌러 고친 값 저장. side는 값 없이 오면 매수↔매도를 뒤집는다. */
@@ -94,12 +95,6 @@
     document.getElementById("view-status").hidden = view !== "status";
     document.getElementById("view-trades").hidden = view !== "trades";
     document.getElementById("view-perf").hidden = view !== "perf";
-    /* 플래너는 계좌와 상관없음 → 계좌 탭·예수금·요약은 숨기고 할 일만 */
-    var pl = view === "planner";
-    document.getElementById("view-planner").hidden = !pl;
-    ["account-tabs", "cash-settings", "portfolio-summary"].forEach(function (id) { var el = document.getElementById(id); if (el) el.hidden = pl; });
-    var acts = document.querySelector(".account-actions"); if (acts) acts.hidden = pl;
-    if (pl && window.PortfolioPlanner) PortfolioPlanner.mount(document.getElementById("planner-body"));
     if (!window.PortfolioPerf) return;
     if (view === "trades") PortfolioPerf.trades(document.getElementById("trades-body"), state, activeId, removeTx, editTx);
     if (view === "perf") {

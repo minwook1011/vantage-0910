@@ -8,7 +8,6 @@
 <title>포트폴리오 관리 — 100억</title>
 <link rel="stylesheet" href="theme.css?v=20261004B">
 <link rel="stylesheet" href="portfolio.css?v=20261004A">
-<link rel="stylesheet" href="portfolio-planner.css?v=20261004C">
 </head>
 <body>
 <header id="topnav"></header>
@@ -26,15 +25,12 @@
       <button class="quiet-btn" type="submit">예수금 저장</button>
     </form>
     <div id="portfolio-summary"></div>
-    <div class="view-tabs" id="view-tabs"><button data-view="status">현황</button><button data-view="trades">매매내역</button><button data-view="perf">수익률 평가</button><button data-view="planner">플래너</button></div>
+    <div class="view-tabs" id="view-tabs"><button data-view="status">현황</button><button data-view="trades">매매내역</button><button data-view="perf">수익률 평가</button></div>
   </section>
 
   <section class="section portfolio-section pf-view" id="view-trades" hidden>
     <h2>매매내역<span class="sub">월별로 묶음 · 매도는 평균단가 기준 실현손익</span></h2>
     <div id="trades-body"></div>
-  </section>
-  <section class="section portfolio-section pf-view" id="view-planner" hidden>
-    <div id="planner-body"></div>
   </section>
   <section class="section portfolio-section pf-view" id="view-perf" hidden>
     <h2>수익률 평가<span class="sub">내 계좌 vs 지수 · 기간별 매매 변동</span></h2>
@@ -67,9 +63,8 @@
 </main>
 <script src="theme.js?v=20261003L"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
-<script src="portfolio-store.js?v=20261004A"></script>
+<script src="portfolio-store.js?v=20261004E"></script>
 <script src="portfolio-perf.js?v=20261003L"></script>
-<script src="portfolio-planner.js?v=20261004D"></script>
-<script src="portfolio.js?v=20261004A"></script>
+<script src="portfolio.js?v=20261004E"></script>
 </body>
 </html>
