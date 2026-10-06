@@ -117,6 +117,47 @@
     return (checked ? '<span>수집 확인 ' + esc(checked) + '</span>' : "") +
       (status && /^fail/.test(status) ? '<span class="mx-watch-stale">최근 수집 실패 · ' + (hasValue ? "이전 관측값 유지" : "관측값 없음") + '</span>' : "");
   }
+
+  /* ── CNN 공포·탐욕: CNN 화면처럼 반원 계기판 + 비교 원 + 1년 구간 그래프 ── */
+  var FG_ZONES = [[0, 25, "극도 공포", "#c8452f"], [25, 45, "공포", "#e8893b"], [45, 55, "중립", "#a9b2c0"], [55, 75, "탐욕", "#6db36f"], [75, 100, "극도 탐욕", "#2e8b57"]];
+  function fgZone(v) { for (var i = 0; i < FG_ZONES.length; i++) if (v < FG_ZONES[i][1] || i === FG_ZONES.length - 1) return FG_ZONES[i]; }
+  function cnnGauge(v, label) {
+    var cx = 150, cy = 150, R = 118, r = 78, g = "";
+    function pt(val, rad) { var a = Math.PI * (1 - val / 100); return [cx + rad * Math.cos(a), cy - rad * Math.sin(a)]; }
+    FG_ZONES.forEach(function (z) {
+      var a0 = pt(z[0] + 0.6, R), a1 = pt(z[1] - 0.6, R), b1 = pt(z[1] - 0.6, r), b0 = pt(z[0] + 0.6, r), on = v >= z[0] && (v < z[1] || z[1] === 100);
+      g += '<path d="M' + a0 + " A" + R + "," + R + " 0 0 1 " + a1 + " L" + b1 + " A" + r + "," + r + " 0 0 0 " + b0 + ' Z" fill="' + z[3] + '" opacity="' + (on ? 1 : 0.28) + '"/>';
+      var m = pt((z[0] + z[1]) / 2, R + 16);
+      g += '<text x="' + m[0].toFixed(1) + '" y="' + m[1].toFixed(1) + '" text-anchor="middle" class="fg-zl"' + (on ? ' style="font-weight:800;fill:' + z[3] + '"' : "") + ">" + z[2] + "</text>";
+    });
+    [0, 25, 50, 75, 100].forEach(function (t) { var q = pt(t, r - 10); g += '<text x="' + q[0].toFixed(1) + '" y="' + (q[1] + 4).toFixed(1) + '" text-anchor="middle" class="fg-tk">' + t + "</text>"; });
+    var n = pt(Math.max(0, Math.min(100, v)), R - 6);
+    g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + n[0].toFixed(1) + '" y2="' + n[1].toFixed(1) + '" stroke="#172033" stroke-width="4" stroke-linecap="round"/><circle cx="' + cx + '" cy="' + cy + '" r="9" fill="#172033"/>';
+    g += '<text x="' + cx + '" y="' + (cy + 40) + '" text-anchor="middle" class="fg-val">' + Math.round(v) + "</text>";
+    return '<div class="fg-gauge"><svg viewBox="0 0 300 200" role="img" aria-label="공포·탐욕 ' + Math.round(v) + " " + esc(label) + '">' + g + "</svg></div>";
+  }
+  function cnnRings(G) {
+    return '<div class="fg-rings">' + [["전일 종가", G.previous_close], ["1주 전", G.previous_1_week], ["1달 전", G.previous_1_month], ["1년 전", G.previous_1_year]].map(function (x) {
+      if (!hasNumber(x[1])) return "";
+      var z = fgZone(x[1]);
+      return '<div class="fg-ring"><span class="fg-ring-l">' + x[0] + '<b>' + z[2] + '</b></span><i style="border-color:' + z[3] + ";color:" + z[3] + '">' + Math.round(x[1]) + "</i></div>";
+    }).join("") + "</div>";
+  }
+  function cnnTimeline(hist) {
+    var pts = (hist || []).slice(-260);
+    if (pts.length < 2) return "";
+    var W = 640, H = 220, l = 34, rr = 10, t = 10, b = 26, iw = W - l - rr, ih = H - t - b, g = "";
+    function X(i) { return l + i / (pts.length - 1) * iw; }
+    function Y(v) { return t + (100 - v) / 100 * ih; }
+    FG_ZONES.forEach(function (z) { g += '<rect x="' + l + '" y="' + Y(z[1]).toFixed(1) + '" width="' + iw + '" height="' + (Y(z[0]) - Y(z[1])).toFixed(1) + '" fill="' + z[3] + '" opacity="0.13"/>'; });
+    [0, 25, 50, 75, 100].forEach(function (v) { g += '<line x1="' + l + '" x2="' + (W - rr) + '" y1="' + Y(v) + '" y2="' + Y(v) + '" stroke="#dde4ef" stroke-width="1"/><text x="' + (l - 6) + '" y="' + (Y(v) + 4) + '" text-anchor="end" class="fg-ax">' + v + "</text>"; });
+    var pm = "";
+    pts.forEach(function (p, i) { var m = p[0].slice(0, 7); if (m !== pm && p[0].slice(8) <= "07") { pm = m; g += '<text x="' + X(i).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="middle" class="fg-ax">' + m.slice(2).replace("-", ".") + "</text>"; } });
+    g += '<path d="' + pts.map(function (p, i) { return (i ? "L" : "M") + X(i).toFixed(1) + "," + Y(p[1]).toFixed(1); }).join("") + '" fill="none" stroke="#172033" stroke-width="1.8"/>';
+    var last = pts[pts.length - 1], lz = fgZone(last[1]);
+    g += '<circle cx="' + X(pts.length - 1).toFixed(1) + '" cy="' + Y(last[1]).toFixed(1) + '" r="4.5" fill="' + lz[3] + '" stroke="#fff" stroke-width="1.5"/>';
+    return '<div class="fg-tl"><div class="fg-tl-h">최근 1년 흐름 <span>색 띠 = 극도 공포 · 공포 · 중립 · 탐욕 · 극도 탐욕</span></div><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="공포·탐욕 지수 1년 추이">' + g + "</svg></div>";
+  }
   function renderWatch() {
     var daily = F && F.daily || {}, fgPts = watchPoints(daily.dates, daily.fear_greed);
     var fg = fgPts.length ? { value:fgPts[fgPts.length - 1].value, date:fgPts[fgPts.length - 1].date, prev:fgPts.length > 1 ? fgPts[fgPts.length - 2].value : null } : F && hasNumber(F.latest_fear_greed) ? { value:F.latest_fear_greed } : null;
@@ -133,7 +174,8 @@
     if (!oil && oilMarket) oil = { dates:oilMarket.d, values:oilMarket.c, source:"Yahoo Finance" };
     var wti = watchLatest(oil), ratePts = indicators.y10 ? watchPoints(indicators.y10.dates, indicators.y10.values) : [], oilPts = oil ? watchPoints(oil.dates, oil.values) : [];
     var fgHtml = '<article class="mx-watch-card" style="--watch-color:' + fgColor + '">' + watchHead("01", "SENTIMENT", "Fear &amp; Greed Index", cnn ? "CNN 공식" : "자체 산출 프록시") + '<p class="mx-watch-caption">공포·탐욕 지수</p>' +
-      (fg ? '<div class="mx-watch-value">' + fmt(fg.value, 1) + '<small>/ 100</small><span class="mx-watch-state">' + fgState + '</span></div>' + watchChange(fg, 1, 1, "p") +
+      (cnn ? cnnGauge(fg.value, fgState) + '<p class="fg-now">지금 <b style="color:' + fgZone(fg.value)[3] + '">' + fgState + '</b> · 전일 종가 대비 ' + sign(fg.value - G.previous_close, 1) + '</p>' + cnnRings(G) + cnnTimeline(G.history) :
+       fg ? '<div class="mx-watch-value">' + fmt(fg.value, 1) + '<small>/ 100</small><span class="mx-watch-state">' + fgState + '</span></div>' + watchChange(fg, 1, 1, "p") +
         '<div class="mx-watch-gauge" aria-hidden="true"><i style="left:' + Math.max(0, Math.min(100, fg.value)) + '%"></i></div><div class="mx-watch-scale"><span>0 공포</span><span>50 중립</span><span>100 탐욕</span></div>' + (cnn ? '<div class="mx-watch-pair"><span>1주 전 <b>' + fmt(G.previous_1_week, 0) + '</b></span><span>1달 전 <b>' + fmt(G.previous_1_month, 0) + '</b></span><span>1년 전 <b>' + fmt(G.previous_1_year, 0) + '</b></span></div>' : "") + watchChart(fgPts, cnn ? "CNN 공포·탐욕 지수" : "공포·탐욕 프록시", fgColor, 1, "p") :
         '<p class="mx-watch-empty">' + (fearReady ? "공포·탐욕 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
       (cnn ? '<div class="mx-watch-meta"><span>CNN 갱신 ' + esc(G.updated_kst) + ' (한국 시각)</span><span>확인 ' + esc(G.checked_kst || "") + '</span><span>출처 · <a href="' + esc(G.source_url) + '" target="_blank" rel="noopener">CNN</a> · 매일 22시·새벽 3시·6시 확인</span></div>' +
