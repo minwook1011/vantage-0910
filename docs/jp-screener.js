@@ -79,7 +79,7 @@ function toggleFav(code,ev){
 }
 
 let state = {cat:"전체", sort:"mc", dir:-1, minmc:0, q:"", qrom:null, onlych:0, favonly:0, smart:null, fcmpMetric:"기존점매출",
-  cols:["EARN","REVG","PY","PYTD","PER","ROE","OPM"], matrix:null, matrixMon:null};
+  cols:["REVG","PY","PYTD","PER","ROE","OPM","EARN"], matrix:null, matrixMon:null};
 
 /* ===== 표시 지표(컬럼) 정의 ===== */
 /* ===== 실적 발표일 (data/jp/earnings_dates.json, 매주 일요일 자동 갱신) ===== */
@@ -159,7 +159,7 @@ const COLS = {
   FOOD:{label:"원가율",   kpi:"__food",  kind:"f1"},
   FLR: {label:"FL비율",   kpi:"__fl",    kind:"f1"},
 };
-const FIN_ORDER = ["EARN","REVG","PY","PYTD","PER","ROE","OPM","STORE","PSU","FOOD","FLR"];
+const FIN_ORDER = ["REVG","PY","PYTD","PER","ROE","OPM","STORE","PSU","FOOD","FLR","EARN"];   // 실적발표는 맨 오른쪽
 // 월별 히트맵 매트릭스로 펼칠 지표(기업 × 12개월)
 const MTX = { SSS:{label:"기존점매출", metric:"기존점 매출"}, TRAF:{label:"객수", metric:"기존점 객수"},
   SPEND:{label:"객단가", metric:"기존점 객단가"}, ALLS:{label:"전점매출", metric:"전점 매출"} };
@@ -493,6 +493,9 @@ let earnMode = "week", earnSpan = 14, earnWeek = null;
 const earnOpen = new Set();
 const WKD = ["일","월","화","수","목","금","토"];
 const EU_MAX = 12;
+/* 캘린더 이름: 영문 약칭 + (한글 이름) — 한글은 names-ko.js 의 첫 단어 */
+function koFirst(code){ const k=(typeof KO_NAMES!=="undefined"&&KO_NAMES[code])||""; const w=k.split(/\s+/)[0]||""; return /[가-힣]/.test(w)?w:""; }
+function calName(r){ const ko=koFirst(r[F.CODE]); return esc(shortName(r[F.NAME]))+(ko?` <small class="eu-ko">(${esc(ko)})</small>`:""); }
 function shortName(n){ return n.replace(/,?\s+(Co\.,?\s?Ltd\.?|Company,?\s?Limited|Corporation|Corp\.?|Holdings.*|Inc\.?|Ltd\.?|Limited)$/i,""); }
 const isoAdd = (iso,n) => { const t=new Date(iso+"T00:00:00Z"); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); };
 const dowOf = iso => new Date(iso+"T00:00:00Z").getUTCDay();
@@ -513,7 +516,7 @@ function earnRows(){
 }
 function euCo([r,e,x]){
   const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
-  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${esc(shortName(r[F.NAME]))}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x)}</button>${repLink(x)}`;
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x)}</button>${repLink(x)}`;
 }
 function renderEarnUp(){
   const box=document.getElementById("earnup"); if(!box) return;
@@ -548,7 +551,7 @@ function renderEarnUp(){
         <div class="eu-colb">${items.length ? shown.map(euCo).join("") : `<span class="eu-none">예정 없음</span>`}${items.length>EU_MAX?`<button class="eu-more" data-d="${d}">${open?"접기":"+"+(items.length-EU_MAX)+"개 더 보기"}</button>`:""}</div></div>`;
     }).join("") + `</div>`;
     const wkend = all.filter(x=>(x[1].date===isoAdd(earnWeek,5)||x[1].date===isoAdd(earnWeek,6)) && (x[1].date>=today || x[2]));
-    if(wkend.length) h += `<div class="eu-wkend">주말 발표 ${wkend.length}개: ${wkend.map(([r,e])=>`<button class="eu-link" data-c="${r[F.CODE]}">${esc(shortName(r[F.NAME]))} (${mdDot(e.date)})</button>`).join(", ")}</div>`;
+    if(wkend.length) h += `<div class="eu-wkend">주말 발표 ${wkend.length}개: ${wkend.map(([r,e])=>`<button class="eu-link" data-c="${r[F.CODE]}">${calName(r)} ${mdDot(e.date)}</button>`).join(", ")}</div>`;
   } else {
     const by = {};
     all.forEach(([r,e])=>{ if(e.days>=0 && e.days<=earnSpan) (by[e.date]=by[e.date]||[]).push([r,e]); });
@@ -1443,7 +1446,8 @@ function renderHeader(){
 function resetForUniverse(){
   state.cat="전체"; state.matrix=null; state.matrixMon=null; state.onlych=0;
   if(isMaj()) state.cols=state.cols.filter(k=>!KPI_COLS.includes(k));
-  if(!state.cols.length) state.cols=["EARN","REVG","PY","PYTD","PER","ROE","OPM"];
+  if(!state.cols.length) state.cols=["REVG","PY","PYTD","PER","ROE","OPM","EARN"];
+  state.cols.sort((a,b)=>FIN_ORDER.indexOf(a)-FIN_ORDER.indexOf(b));
   const okSort=["mc","rev","code","name",...Object.keys(COLS).filter(k=>!(isMaj()&&KPI_COLS.includes(k)))];
   if(!okSort.includes(state.sort)){ state.sort="mc"; state.dir=-1; }
   const sel=document.getElementById("sort"); if(sel && [...sel.options].some(o=>o.value===state.sort)) sel.value=state.sort;

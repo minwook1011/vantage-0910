@@ -470,3 +470,4 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .jr-embed table.ft thead th{position:static;top:auto;z-index:auto;background:transparent;text-transform:none;letter-spacing:0;font-size:12px;cursor:default}
 .jr-embed table.ft tbody tr{cursor:default}
 .jr-embed table.ft tbody tr:hover{background:none}
+.eu-ko{color:var(--ink-mute);font-size:10.5px;font-weight:500}
