@@ -97,14 +97,23 @@ const BASIS_KO = {op:"영업이익", ord:"경상이익", ni:"순이익", rev:"�
 const sgn = v => (v>0?"+":v<0?"−":"") + Math.abs(v).toFixed(1);
 const okuYen = v => v==null ? "—" : (Math.abs(v)>=10000 ? Math.round(v/100).toLocaleString() : (v/100).toLocaleString(undefined,{maximumFractionDigits:1})) + "억엔";
 const tone = v => v==null ? "" : v>0 ? " up" : v<0 ? " dn" : "";
-function resBadges(x){
-  if(!x) return "";
+/* 발표 10분 후 주가(data/jp/earnings_pts.json, jp_pts_watch.py — 장후 발표는 PTS, 장중은 1분봉). 2026-10-06 사용자: 다음 거래일 말고 10분 뒤 주가로 */
+let PTS = {};
+function ptsOf(code, date){ const p=PTS[code]; return p && p.pct10!=null && (!date || p.date===date) ? p : null; }
+function ptsChip(p){
+  const now = p.now_pct!=null && p.now_at && p.now_at!==p.at10 ? ` <small>지금 ${sgn(p.now_pct)}% ${p.now_at}</small>` : "";
+  return `<em class="rb px big${tone(p.pct10)}" title="발표 ${p.t} → ${p.at10} ${p.src==="PTS"?"장외거래(PTS) 가격":"장중 가격"} · 기준 ${p.base_src||""} ${p.base}">발표 10분 후 ${sgn(p.pct10)}% <small>${p.src} ${p.at10}</small>${now}</em>`;
+}
+function resBadges(x, code){
+  const pq = code ? ptsOf(code, x && x.date) : null;
+  if(!x) return pq ? `<span class="eu-rx">${ptsChip(pq)}</span>` : "";
   const b = [];
   // 주가 반응을 맨 앞에(진척률 칩은 2026-10-02 사용자 요청으로 뺌 — 진척률은 마우스를 올리면 나오는 설명에만 남김)
   const p = x.px||{};
   const live = p.d1_live ? ` <small>장중 ${p.d1_at||""}</small>` : "";
-  if(p.d1==null) b.push(`<em class="rb px">주가 반응 ${p.base?"다음 거래일 대기":"—"}</em>`);
-  else b.push(`<em class="rb px big${tone(p.d1)}">발표 후 ${sgn(p.d1)}%${live}</em>`);
+  if(pq) b.push(ptsChip(pq));
+  if(p.d1==null){ if(!pq) b.push(`<em class="rb px">주가 반응 ${p.base?"10분 후 가격 수집 중":"—"}</em>`); }
+  else b.push(`<em class="rb px${pq?"":" big"}${tone(p.d1)}">${pq?(p.timing==="after"?"다음 거래일":"그날 종가"):"발표 후"} ${sgn(p.d1)}%${live}</em>`);
   if(p.d1!=null && !p.d1_live) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
   if(x.beat && x.beat.pct!=null) b.push(`<em class="rb${tone(x.beat.pct)}">가이던스 ${sgn(x.beat.pct)}%</em>`);
   if(x.revision && !x.revision.kept && x.revision.pct!=null && x.revision.pct!==0) b.push(`<em class="rb${tone(x.revision.pct)}">${x.revision.pct>0?"상향":"하향"} ${sgn(x.revision.pct)}%</em>`);
@@ -516,7 +525,7 @@ function earnRows(){
 }
 function euCo([r,e,x]){
   const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
-  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x)}</button>${repLink(x)}`;
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x, r[F.CODE])}</button>${repLink(x)}`;
 }
 function renderEarnUp(){
   const box=document.getElementById("earnup"); if(!box) return;
@@ -1178,7 +1187,7 @@ function openDetail(code){
       <div class="dtk">TSE : ${code}</div>
       <div class="dnm jp">${esc(r[F.NAME])}</div>
       <div class="chips"><span class="chip k">${r[F.CAT]}</span><span class="chip">${esc(r[F.IND])}</span>${(()=>{const e=earnInfo(code);return e&&e.days>=0?`<span class="chip earnchip">실적발표 ${earnLabel(e)}</span>`:"";})()}</div>
-      ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code])}${repLink(RES[code],"d-rep")}</div>`:""}
+      ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code], code)}${repLink(RES[code],"d-rep")}</div>`:""}
     </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" title="즐겨찾기">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
 
     <div class="dtabs" role="tablist"><button data-dt="info" aria-pressed="true">기본 정보</button><button data-dt="earn" aria-pressed="false">실적발표 <small id="dt-earn-n"></small></button></div>
@@ -1548,6 +1557,7 @@ fetch("data/jp/earnings_dates.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Pr
   const el=document.getElementById("earnasof"); if(el) el.textContent=d.updated||"—";
   renderTable();
 }).catch(()=>{ const el=document.getElementById("earnasof"); if(el) el.textContent="불러오기 실패"; });
+fetch("data/jp/earnings_pts.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{ PTS=d.items||{}; renderTable(); }).catch(()=>{});
 fetch("data/jp/earnings_results.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
   RES=d.results||{}; RES_META=d;
   renderTable();
