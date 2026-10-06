@@ -1,7 +1,7 @@
 /* 매크로 터미널 — docs/macro_dash.json (fetch_macro_dash.py가 발표 직후 자동 갱신) */
 (function () {
   "use strict";
-  var D = null, F = null, G = null, fearReady = false, dashReady = false;   // G = CNN 공식 공포·탐욕(data/fear_greed.json)
+  var D = null, F = null, G = null, O = null, fearReady = false, dashReady = false;   // G = CNN 공식 공포·탐욕(data/fear_greed.json)
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -158,6 +158,19 @@
     g += '<circle cx="' + X(pts.length - 1).toFixed(1) + '" cy="' + Y(last[1]).toFixed(1) + '" r="4.5" fill="' + lz[3] + '" stroke="#fff" stroke-width="1.5"/>';
     return '<div class="fg-tl"><div class="fg-tl-h">최근 1년 흐름 <span>색 띠 = 극도 공포 · 공포 · 중립 · 탐욕 · 극도 탐욕</span></div><svg viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="공포·탐욕 지수 1년 추이">' + g + "</svg></div>";
   }
+
+  /* 카드 안 작은 줄: 이름 · 값 · 변화 · 90일 작은 그래프 (국채 10·2·30년, 유가 3종) */
+  function miniRow(label, pts, digits, pre, post, color, mult, chgUnit) {
+    if (!pts || !pts.length) return '<div class="mx-mini"><div class="mx-mini-h"><b>' + label + '</b><span class="mx-mini-v">–</span></div></div>';
+    var last = pts[pts.length - 1], prev = pts.length > 1 ? pts[pts.length - 2] : null, d = prev ? (last.value - prev.value) * mult : null;
+    var tail = pts.slice(-90), vals = tail.map(function (p) { return p.value; }), lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), rg = hi - lo || 1;
+    var W = 260, H = 46, path = tail.map(function (p, i) { return (i ? "L" : "M") + (tail.length > 1 ? i / (tail.length - 1) * W : 0).toFixed(1) + "," + (4 + (hi - p.value) / rg * (H - 8)).toFixed(1); }).join("");
+    var first = tail[0], chg90 = first ? (last.value - first.value) * mult : null;
+    return '<div class="mx-mini"><div class="mx-mini-h"><b>' + label + '</b><span class="mx-mini-v">' + pre + fmt(last.value, digits) + post + '</span>' +
+      (d == null ? "" : '<span class="mx-mini-d ' + (d > 0 ? "up" : d < 0 ? "dn" : "") + '">' + sign(d, mult === 100 ? 0 : digits) + chgUnit + "</span>") + "</div>" +
+      '<svg class="mx-mini-c" viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none"><path d="' + path + "L" + W + "," + H + "L0," + H + 'Z" fill="' + color + '" opacity=".08"/><path d="' + path + '" fill="none" stroke="' + color + '" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>' +
+      '<div class="mx-mini-f"><span>' + esc(first.date) + '</span><span>90일 ' + sign(chg90, mult === 100 ? 0 : digits) + chgUnit + '</span><span>' + esc(last.date) + "</span></div></div>";
+  }
   function renderWatch() {
     var daily = F && F.daily || {}, fgPts = watchPoints(daily.dates, daily.fear_greed);
     var fg = fgPts.length ? { value:fgPts[fgPts.length - 1].value, date:fgPts[fgPts.length - 1].date, prev:fgPts.length > 1 ? fgPts[fgPts.length - 2].value : null } : F && hasNumber(F.latest_fear_greed) ? { value:F.latest_fear_greed } : null;
@@ -182,16 +195,19 @@
         '<details class="mx-watch-method"><summary>세부 지표 7개 보기</summary><p>' + (G.components || []).map(function (c) { return esc(c.name) + " <b>" + fmt(c.score, 0) + "</b> " + esc(c.rating || ""); }).join("<br>") + '</p><p>' :
       '<div class="mx-watch-meta"><span>' + (fg && fg.date ? "관측 " + esc(fg.date) : "관측일 확인 불가") + '</span>' + (F && F.updated ? '<span>자료 갱신 ' + esc(F.updated) + '</span>' : "") + '<span>시장 데이터 5개를 합성한 프록시 · CNN 공식 지수와 다름</span></div>' +
       '<details class="mx-watch-method"><summary>산출 기준 보기</summary><p>' + esc(F && F.methodology || "S&P 500 모멘텀·변동성·주가 강도·회사채 수요·안전자산 수요를 합성합니다.") + '</p><p>') + '표시 구간: 25 미만 극도 공포 · 45 미만 공포 · 55 이하 중립 · 75 이하 탐욕 · 75 초과 극도 탐욕.</p></details></article>';
-    var rateHtml = '<article class="mx-watch-card" style="--watch-color:#416dc1">' + watchHead("02", "TREASURIES", "미국 국채 금리", "미국 10년물") +
-      (y10 ? '<div class="mx-watch-value">' + fmt(y10.value, 2) + '<small>%</small></div>' + watchChange(y10, 100, 0, "bp") +
-        '<div class="mx-watch-pair"><span>2년물 <b>' + (y2 ? fmt(y2.value, 2) + "%" : "–") + '</b></span><span>10년−2년 <b>' + (y2 && y2.date === y10.date ? sign(y10.value - y2.value, 2) + "%p" : "–") + '</b></span></div>' + watchChart(ratePts, "미국 10년물 금리", "#416dc1", 2, "%") :
+    var y30 = watchLatest(indicators.y30), ptsOf = function (k) { return indicators[k] ? watchPoints(indicators[k].dates, indicators[k].values) : []; };
+    var rateHtml = '<article class="mx-watch-card" style="--watch-color:#416dc1">' + watchHead("02", "TREASURIES", "미국 국채 금리", "10년·2년·30년") +
+      (y10 ? miniRow("10년물", ptsOf("y10"), 2, "", "%", "#416dc1", 100, "bp") + miniRow("2년물", ptsOf("y2"), 2, "", "%", "#6a5acd", 100, "bp") + miniRow("30년물", ptsOf("y30"), 2, "", "%", "#2b8a8a", 100, "bp") +
+        '<div class="mx-watch-pair"><span>10년−2년 <b>' + (y2 && y2.date === y10.date ? sign(y10.value - y2.value, 2) + "%p" : "–") + '</b></span><span>30년−10년 <b>' + (y30 && y30.date === y10.date ? sign(y30.value - y10.value, 2) + "%p" : "–") + '</b></span></div>' :
         '<p class="mx-watch-empty">' + (dashReady ? "국채 금리 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
-      '<div class="mx-watch-meta"><span>' + (y10 && y10.date ? "10년물 관측 " + esc(y10.date) : "관측일 확인 불가") + (y2 && y2.date && (!y10 || y2.date !== y10.date) ? " · 2년물 " + esc(y2.date) : "") + '</span>' + watchCheckMeta("treasury", !!y10) + '<span>출처 · ' + esc(indicators.y10 && indicators.y10.source || "미 재무부") + '</span></div><a class="mx-watch-link" href="#mx-rates-section">수익률 곡선과 장단기 금리차 보기 ↓</a></article>';
-    var oilHtml = '<article class="mx-watch-card" style="--watch-color:#a77a2b">' + watchHead("03", "ENERGY", "WTI 원유 선물", "USD / 배럴") +
-      (wti ? '<div class="mx-watch-value">$' + fmt(wti.value, 2) + '<small>/ 배럴</small></div>' + watchChange(wti, 1, 2, " USD") +
-        '<div class="mx-watch-pair"><span>WTI 선물 · CL=F</span></div>' + watchChart(oilPts, "WTI 원유 선물", "#a77a2b", 2, " USD") :
-        '<p class="mx-watch-empty">' + (dashReady ? "WTI 선물 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
-      '<div class="mx-watch-meta"><span>' + (wti && wti.date ? "관측 " + esc(wti.date) : "관측일 확인 불가") + '</span>' + watchCheckMeta("wti", !!wti) + '<span>출처 · ' + esc(oil && oil.source || "Yahoo Finance") + ' · WTI 선물 가격</span></div>' +
+      '<div class="mx-watch-meta"><span>' + (y10 && y10.date ? "관측 " + esc(y10.date) : "관측일 확인 불가") + '</span>' + watchCheckMeta("treasury", !!y10) + '<span>출처 · ' + esc(indicators.y10 && indicators.y10.source || "미 재무부") + '</span></div><a class="mx-watch-link" href="#mx-rates-section">수익률 곡선과 장단기 금리차 보기 ↓</a></article>';
+    var o3 = O && O.series, o3p = function (k) { return (o3 && o3[k] || []).map(function (p) { return { date:p[0], value:p[1] }; }); };
+    var oilHtml = '<article class="mx-watch-card" style="--watch-color:#a77a2b">' + watchHead("03", "ENERGY", "국제 유가", "USD / 배럴") +
+      (o3 ? miniRow("두바이 <small>현물</small>", o3p("dubai"), 2, "$", "", "#a77a2b", 1, "") + miniRow("브렌트 <small>선물</small>", o3p("brent"), 2, "$", "", "#c0563a", 1, "") + miniRow("WTI <small>선물</small>", o3p("wti"), 2, "$", "", "#5b6b85", 1, "") +
+        '<div class="mx-watch-pair"><span>두바이−WTI <b>' + (o3p("dubai").length && o3p("wti").length ? sign(o3p("dubai").slice(-1)[0].value - o3p("wti").slice(-1)[0].value, 2) + "$" : "–") + '</b></span><span>브렌트−WTI <b>' + (o3p("brent").length && o3p("wti").length ? sign(o3p("brent").slice(-1)[0].value - o3p("wti").slice(-1)[0].value, 2) + "$" : "–") + '</b></span></div>' +
+        '<div class="mx-watch-meta"><span>관측 ' + esc((o3.wti || []).slice(-1)[0] ? o3.wti.slice(-1)[0][0] : "") + '</span><span>확인 ' + esc(O.updated_kst || "") + '</span><span>출처 · <a href="' + esc(O.source_url) + '" target="_blank" rel="noopener">오피넷(한국석유공사)</a> · 화~토 아침 전날 가격 공개</span></div>' :
+       wti ? miniRow("WTI <small>선물</small>", oilPts, 2, "$", "", "#a77a2b", 1, "") + '<div class="mx-watch-meta"><span>관측 ' + esc(wti.date || "") + '</span><span>출처 · ' + esc(oil && oil.source || "Yahoo Finance") + '</span></div>' :
+        '<p class="mx-watch-empty">' + (dashReady ? "유가 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
       (indicators.wti && wti ? '<button type="button" class="mx-watch-link" data-watch-ind="wti">원유 가격 추이 자세히 보기 ↓</button>' : "") + '</article>';
     $("#mx-watch").innerHTML = fgHtml + rateHtml + oilHtml;
     $$("[data-watch-ind]").forEach(function (button) { button.onclick = function () { focusRow(button.dataset.watchInd); }; });
@@ -582,6 +598,7 @@
     }).join(" · ") + "<br>실업수당 청구는 비계절조정 주별 합계의 4주 평균. CPI·PPI·PCE·시급은 전년 동월 대비(%). 차트의 발표일 표시는 캘린더에 있는 최근·예정 일정만 그립니다.";
     renderAll();
   }).catch(function (e) { dashReady = true; renderWatch(); $("#mx-boards").innerHTML = '<div class="mx-panel">macro_dash.json을 불러오지 못했습니다 (' + esc(e.message) + ")</div>"; });
+  fetch("data/oil3.json", {cache:"no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) { O = d; renderWatch(); }).catch(function () {});
   fetch("data/fear_greed.json", {cache:"no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
     G = d; renderWatch();
   }).catch(function () {});
