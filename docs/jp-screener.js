@@ -290,10 +290,22 @@ function ko2rom(s){
   return o;
 }
 function hasKo(s){for(const c of s){const p=c.codePointAt(0);if(p>=0xAC00&&p<=0xD7A3)return true;}return false;}
+/* 로마자 표기 흔들림 맞추기: KOURAKUEN·KORAKUEN·고라쿠엔(gorakuen) → 같은 열쇠 */
+function nzRom(s){ return String(s).toLowerCase().replace(/[^a-z0-9]/g,"").replace(/ou|oo/g,"o").replace(/uu/g,"u").replace(/ei/g,"e").replace(/g/g,"k").replace(/d/g,"t").replace(/b/g,"p").replace(/j/g,"ch").replace(/(.)\1/g,"$1"); }
+/* 회사 설명(BM)에 '코라쿠엔(幸楽苑)'처럼 적힌 한글 이름을 검색어로 */
+const _KO_ALIAS={};
+function koAlias(code){
+  if(code in _KO_ALIAS) return _KO_ALIAS[code];
+  const b=(typeof BM!=="undefined"&&BM[code])||{}, src=[b.sum||""].concat((b.seg||[]).map(x=>x.d||"")).join(" ");
+  const out=[]; const re=/([가-힣][가-힣A-Za-z0-9·&]*)\s*\(([^)]*[぀-ヿ一-鿿][^)]*)\)/g; let m;
+  while((m=re.exec(src))) out.push(m[1]+" "+m[2]);
+  return _KO_ALIAS[code]=out.join(" ").toLowerCase();
+}
 function searchMatch(r, q, qrom){
-  const txt=(r[F.NAME]+" "+r[F.CODE]+" "+r[F.IND]+" "+r[F.CAT]).toLowerCase();
+  const txt=(r[F.NAME]+" "+r[F.CODE]+" "+r[F.IND]+" "+r[F.CAT]+" "+koAlias(r[F.CODE])).toLowerCase();
   if(txt.includes(q)) return true;
   if(qrom && txt.includes(qrom)) return true;
+  const nq=nzRom(qrom||q); if(nq.length>=4 && nzRom(r[F.NAME]).includes(nq)) return true;
   const toks=q.split(/\s+/).filter(t=>t.length>0);
   if(toks.length>1) return toks.every(t=>{
     if(txt.includes(t)) return true;
