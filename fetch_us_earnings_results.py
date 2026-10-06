@@ -14,6 +14,7 @@
     python fetch_us_earnings_results.py --px-only  # 주가 반응만(장중 30분마다)
     python fetch_us_earnings_results.py --codes NKE,FDX
 """
+import html
 import json
 import os
 import re
@@ -95,6 +96,23 @@ def find_8k(cik, since):
                 break
     best["release"] = ex
     return best
+
+
+def is_results(url):
+    """8-K 2.02 보도자료가 '분기·연간 실적 발표'인지 — 생산·인도량, 운영 현황, 가이던스 조정만 낸 공시는 거른다(2026-10-06:
+    테슬라 인도량·애브비 가이던스 조정·프리포트 생산량이 실적으로 올라갔던 문제). 판단 못 하면 True(놓치지 않게)."""
+    h = sec_get(url, as_json=False) if url else None
+    if not h:
+        return True
+    txt = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", h))).lower()[:6000]
+    res = re.search(r"(financial|quarter|quarterly|fiscal|annual|full[- ]year|q[1-4])[- ](\d{4} )?(financial )?(results|earnings)|results (for|of) (its |the )?(first|second|third|fourth|fiscal|quarter)|(reports|announces|posts|delivers) .{0,60}(results|earnings per share|revenue)", txt)
+    non = re.search(r"production and deliveries|vehicle deliveries|deliveries of|operational update|operating update|production update|updates .{0,60}guidance|guidance update|acquired ipr&d", txt)
+    head = txt[:500]   # 보도자료 제목 부분 — 여기서 생산·인도량·운영 현황·가이던스 조정이면 실적 아님
+    if re.search(r"production, deliveries|production and deliveries|deliveries (&|and) deployments|operational update|operating update|production update|updates .{0,60}guidance|guidance update", head):
+        return False
+    if non and not res:
+        return False
+    return bool(res) or not non
 
 
 def yahoo_json(url):
@@ -318,6 +336,9 @@ def main():
         if x.get("scan") and not k8.get("release"):
             # 캘린더 밖에서 잡힌 2.02 인데 보도자료(EX-99)가 없으면 정기 실적이 아닐 수 있다(가이던스 조정·잠정치 등) — 기록만
             print(f"  {t}: 캘린더 밖 8-K(2.02) {k8['date']} — 보도자료 없음, 정기 실적 아닐 수 있어 리포트 안 만듦 ({k8['index']})")
+            continue
+        if k8.get("release") and not is_results(k8["release"]):
+            print(f"  {t}: 8-K(2.02) {k8['date']} 는 실적이 아님(생산·인도량·운영 현황·가이던스 조정 등) — 리포트 안 만듦 ({k8['release']})")
             continue
         try:
             co = json.load(open(os.path.join(US, f"{t}.json"), encoding="utf-8"))
