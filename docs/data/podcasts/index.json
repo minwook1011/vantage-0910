@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-06 17:23 KST",
+ "updated": "2026-10-06 18:55 KST",
  "episodes": [
   {
    "id": "2026-10-06-ilb-andrew-huberman-the-frontier-of-neurotechnology",
@@ -12,13 +12,20 @@
    "audio": "https://traffic.megaphone.fm/CLS1239827470.mp3",
    "duration": "1:12:28",
    "desc": "Andrew Huberman is a neuroscientist and professor at Stanford, the host of the Huberman Lab podcast, and the author of Protocols. Most of our conversation is about where neuroscience goes next. For decades the field has focused on reading from the brain, and Andrew believes the next era is about writing to it with precise control over specific brain states. He explains why he thinks the leading AI companies are really building toward this, and why understanding our waking brain states is the problem he most wants to see solved. Please enjoy my conversation with Andrew Huberman. For the full sh…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-06 17:23 KST",
    "image": "https://megaphone.imgix.net/podcasts/641962f4-bdcf-11f1-899d-0759b6038cac/image/3bb5360f936fff82e741ce59efaea134.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "title_ko": "Andrew Huberman — 신경기술의 최전선: 뇌를 읽는 시대에서 쓰는 시대로 (494회)",
    "desc_ko": "Andrew Huberman은 Stanford 신경과학 교수이자 팟캐스트 Huberman Lab 진행자, 책 Protocols의 저자다. 대화는 대부분 신경과학이 다음에 어디로 가는지에 관한 것이다. 지난 수십 년 동안 이 분야는 뇌에서 신호를 '읽어 내는' 데 집중했지만, 그는 이제 특정 뇌 상태를 정밀하게 조절하는, 즉 뇌에 '써 넣는' 시대가 온다고 본다. 선두 AI 기업들이 사실상 이 방향으로 가고 있다고 보는 이유와, 깨어 있을 때의 뇌 상태를 이해하는 것이 그가 가장 풀리기를 바라는 문제인 까닭도 설명한다.",
-   "tx_fail": 1
+   "tx_fail": 1,
+   "summary": {
+    "title_ko": "Andrew Huberman — 신경기술의 최전선: 뇌를 읽는 시대에서 쓰는 시대로 (494회)",
+    "headline": "Huberman: 신경과학의 다음 시대는 뇌에 '쓰기' — 초음파가 유력하고, AI 선두 기업들도 결국 그쪽으로 간다",
+    "image": null,
+    "guest": "Andrew Huberman — Stanford 의대 신경생물학·안과학 교수, 팟캐스트 Huberman Lab 진행자, 책 Protocols 저자",
+    "company": "Huberman Lab (신경과학 · 뇌-컴퓨터 접속 · 신경조절)"
+   }
   },
   {
    "id": "2026-10-05-ca-building-the-total-portfolio-at-ontario-teachers",
