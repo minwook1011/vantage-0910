@@ -1,7 +1,7 @@
 /* 매크로 터미널 — docs/macro_dash.json (fetch_macro_dash.py가 발표 직후 자동 갱신) */
 (function () {
   "use strict";
-  var D = null, F = null, fearReady = false, dashReady = false;
+  var D = null, F = null, G = null, fearReady = false, dashReady = false;   // G = CNN 공식 공포·탐욕(data/fear_greed.json)
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -121,18 +121,25 @@
     var daily = F && F.daily || {}, fgPts = watchPoints(daily.dates, daily.fear_greed);
     var fg = fgPts.length ? { value:fgPts[fgPts.length - 1].value, date:fgPts[fgPts.length - 1].date, prev:fgPts.length > 1 ? fgPts[fgPts.length - 2].value : null } : F && hasNumber(F.latest_fear_greed) ? { value:F.latest_fear_greed } : null;
     if (fg && F.latest_fear_greed_date) fg.date = F.latest_fear_greed_date;
+    var cnn = !!(G && hasNumber(G.score));
+    if (cnn) {   // CNN 공식 값이 있으면 그것을 쓴다(자체 프록시는 받기 실패 때만)
+      fgPts = (G.history || []).map(function (p) { return { date:p[0], value:p[1] }; });
+      fg = { value:G.score, date:G.updated_kst, prev:G.previous_close };
+    }
     var fgState = !fg ? "" : fg.value < 25 ? "극도 공포" : fg.value < 45 ? "공포" : fg.value <= 55 ? "중립" : fg.value <= 75 ? "탐욕" : "극도 탐욕";
     var fgColor = !fg || fg.value < 45 ? "#3571c8" : fg.value <= 55 ? "#68758b" : "#bb7522";
     var indicators = D && D.indicators || {}, y10 = watchLatest(indicators.y10), y2 = watchLatest(indicators.y2);
     var oil = indicators.wti, oilMarket = D && D.markets && D.markets["CL=F"];
     if (!oil && oilMarket) oil = { dates:oilMarket.d, values:oilMarket.c, source:"Yahoo Finance" };
     var wti = watchLatest(oil), ratePts = indicators.y10 ? watchPoints(indicators.y10.dates, indicators.y10.values) : [], oilPts = oil ? watchPoints(oil.dates, oil.values) : [];
-    var fgHtml = '<article class="mx-watch-card" style="--watch-color:' + fgColor + '">' + watchHead("01", "SENTIMENT", "Fear &amp; Greed Index", "자체 산출 프록시") + '<p class="mx-watch-caption">공포·탐욕 지수</p>' +
+    var fgHtml = '<article class="mx-watch-card" style="--watch-color:' + fgColor + '">' + watchHead("01", "SENTIMENT", "Fear &amp; Greed Index", cnn ? "CNN 공식" : "자체 산출 프록시") + '<p class="mx-watch-caption">공포·탐욕 지수</p>' +
       (fg ? '<div class="mx-watch-value">' + fmt(fg.value, 1) + '<small>/ 100</small><span class="mx-watch-state">' + fgState + '</span></div>' + watchChange(fg, 1, 1, "p") +
-        '<div class="mx-watch-gauge" aria-hidden="true"><i style="left:' + Math.max(0, Math.min(100, fg.value)) + '%"></i></div><div class="mx-watch-scale"><span>0 공포</span><span>50 중립</span><span>100 탐욕</span></div>' + watchChart(fgPts, "공포·탐욕 프록시", fgColor, 1, "p") :
+        '<div class="mx-watch-gauge" aria-hidden="true"><i style="left:' + Math.max(0, Math.min(100, fg.value)) + '%"></i></div><div class="mx-watch-scale"><span>0 공포</span><span>50 중립</span><span>100 탐욕</span></div>' + (cnn ? '<div class="mx-watch-pair"><span>1주 전 <b>' + fmt(G.previous_1_week, 0) + '</b></span><span>1달 전 <b>' + fmt(G.previous_1_month, 0) + '</b></span><span>1년 전 <b>' + fmt(G.previous_1_year, 0) + '</b></span></div>' : "") + watchChart(fgPts, cnn ? "CNN 공포·탐욕 지수" : "공포·탐욕 프록시", fgColor, 1, "p") :
         '<p class="mx-watch-empty">' + (fearReady ? "공포·탐욕 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
+      (cnn ? '<div class="mx-watch-meta"><span>CNN 갱신 ' + esc(G.updated_kst) + ' (한국 시각)</span><span>확인 ' + esc(G.checked_kst || "") + '</span><span>출처 · <a href="' + esc(G.source_url) + '" target="_blank" rel="noopener">CNN</a> · 미국 장중 수시로 바뀌고 마감 뒤 확정 → 30분마다 확인해 바뀌면 반영</span></div>' +
+        '<details class="mx-watch-method"><summary>세부 지표 7개 보기</summary><p>' + (G.components || []).map(function (c) { return esc(c.name) + " <b>" + fmt(c.score, 0) + "</b> " + esc(c.rating || ""); }).join("<br>") + '</p><p>' :
       '<div class="mx-watch-meta"><span>' + (fg && fg.date ? "관측 " + esc(fg.date) : "관측일 확인 불가") + '</span>' + (F && F.updated ? '<span>자료 갱신 ' + esc(F.updated) + '</span>' : "") + '<span>시장 데이터 5개를 합성한 프록시 · CNN 공식 지수와 다름</span></div>' +
-      '<details class="mx-watch-method"><summary>산출 기준 보기</summary><p>' + esc(F && F.methodology || "S&P 500 모멘텀·변동성·주가 강도·회사채 수요·안전자산 수요를 합성합니다.") + '</p><p>표시 구간: 25 미만 극도 공포 · 45 미만 공포 · 55 이하 중립 · 75 이하 탐욕 · 75 초과 극도 탐욕.</p></details></article>';
+      '<details class="mx-watch-method"><summary>산출 기준 보기</summary><p>' + esc(F && F.methodology || "S&P 500 모멘텀·변동성·주가 강도·회사채 수요·안전자산 수요를 합성합니다.") + '</p><p>') + '표시 구간: 25 미만 극도 공포 · 45 미만 공포 · 55 이하 중립 · 75 이하 탐욕 · 75 초과 극도 탐욕.</p></details></article>';
     var rateHtml = '<article class="mx-watch-card" style="--watch-color:#416dc1">' + watchHead("02", "TREASURIES", "미국 국채 금리", "미국 10년물") +
       (y10 ? '<div class="mx-watch-value">' + fmt(y10.value, 2) + '<small>%</small></div>' + watchChange(y10, 100, 0, "bp") +
         '<div class="mx-watch-pair"><span>2년물 <b>' + (y2 ? fmt(y2.value, 2) + "%" : "–") + '</b></span><span>10년−2년 <b>' + (y2 && y2.date === y10.date ? sign(y10.value - y2.value, 2) + "%p" : "–") + '</b></span></div>' + watchChart(ratePts, "미국 10년물 금리", "#416dc1", 2, "%") :
@@ -533,6 +540,9 @@
     }).join(" · ") + "<br>실업수당 청구는 비계절조정 주별 합계의 4주 평균. CPI·PPI·PCE·시급은 전년 동월 대비(%). 차트의 발표일 표시는 캘린더에 있는 최근·예정 일정만 그립니다.";
     renderAll();
   }).catch(function (e) { dashReady = true; renderWatch(); $("#mx-boards").innerHTML = '<div class="mx-panel">macro_dash.json을 불러오지 못했습니다 (' + esc(e.message) + ")</div>"; });
+  fetch("data/fear_greed.json", {cache:"no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+    G = d; renderWatch();
+  }).catch(function () {});
   fetch("macro.json", {cache:"no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
     F = d; fearReady = true; renderWatch();
   }).catch(function () { fearReady = true; renderWatch(); });
