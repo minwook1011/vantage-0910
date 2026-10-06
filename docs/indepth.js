@@ -3,7 +3,8 @@
   "use strict";
 
   var page = document.body.dataset.indepthPage;
-  var palette = ["#569bd4", "#ffcc00", "#f47b20", "#83b59b", "#b49cce"];
+  var palette = ["#2563eb", "#0f766e", "#c2410c", "#64748b", "#7c3aed"];
+  var chartColors = { "#569bd4":"#2563eb", "#ffcc00":"#0f766e", "#f47b20":"#c2410c", "#83b59b":"#64748b", "#b49cce":"#7c3aed" };
   var kindNames = { actual: "실적", estimate: "자체 추정", guidance: "회사 가이던스", external: "외부 추정", proforma: "공시 인수 가정" };
   var chartSerial = 0;
   var toastTimer;
@@ -19,7 +20,7 @@
   function finite(value) { return typeof value === "number" && Number.isFinite(value); }
   function format(value) { return finite(value) ? value.toLocaleString("ko-KR", { maximumFractionDigits: 3 }) : "미확인"; }
   function kind(value) { return Object.prototype.hasOwnProperty.call(kindNames, value) ? value : "actual"; }
-  function color(value, fallback) { return /^#[0-9a-f]{6}$/i.test(value || "") ? value : fallback; }
+  function color(value, fallback) { return /^#[0-9a-f]{6}$/i.test(value || "") ? (chartColors[value.toLowerCase()] || value) : fallback; }
   function sourceURL(value) {
     try { var parsed = new URL(value); return /^https?:$/.test(parsed.protocol) ? parsed.href : null; } catch (_) { return null; }
   }
@@ -150,7 +151,7 @@
     svg.replaceChildren(); svg.setAttribute("viewBox", "0 0 " + width + " " + height);
     svg.appendChild(svgNode("title", {}, data.title || "데이터 차트"));
     svg.appendChild(svgNode("desc", {}, "단위: " + (data.unit || "미기재") + ". 실적은 채움 또는 실선, 추정·가이던스·인수 가정은 빗금 또는 점선으로 표시합니다. 아래 데이터 표에서 모든 값을 확인할 수 있습니다."));
-    if (!values.length || !labels.length) { svg.appendChild(svgNode("text", { x: width / 2, y: 100, "text-anchor": "middle", fill: "#a7b5c0", "font-size": 12 }, "표시할 확인 수치가 없습니다.")); return; }
+    if (!values.length || !labels.length) { svg.appendChild(svgNode("text", { x: width / 2, y: 100, "text-anchor": "middle", fill: "#4f5b70", "font-size": 12 }, "표시할 확인 수치가 없습니다.")); return; }
     var minimum = Math.min.apply(null, [0].concat(values)), maximum = Math.max.apply(null, [0].concat(values));
     if (minimum === maximum) maximum = minimum + 1;
     var span = maximum - minimum;
@@ -175,18 +176,18 @@
     for (var tick = 0; tick <= Math.round((maximum - minimum) / tickStep); tick++) {
       var tickValue = minimum + tickStep * tick;
       var tickY = y(tickValue);
-      svg.appendChild(svgNode("line", { x1: margin.left, x2: width - margin.right, y1: tickY, y2: tickY, stroke: "#7f91a0", "stroke-opacity": .18, "stroke-dasharray": "3 4" }));
+      svg.appendChild(svgNode("line", { x1: margin.left, x2: width - margin.right, y1: tickY, y2: tickY, stroke: "#64748b", "stroke-opacity": .18, "stroke-dasharray": "3 4" }));
       var axisValue = Math.abs(tickValue) >= 1000 ? tickValue.toLocaleString("ko-KR", { maximumFractionDigits: 0 }) : tickValue.toLocaleString("ko-KR", { maximumFractionDigits: 2 });
-      svg.appendChild(svgNode("text", { x: margin.left - 9, y: tickY + 4, "text-anchor": "end", fill: "#81919e", "font-size": mobile ? 11 : 12 }, axisValue));
+      svg.appendChild(svgNode("text", { x: margin.left - 9, y: tickY + 4, "text-anchor": "end", fill: "#4f5b70", "font-size": mobile ? 11 : 12 }, axisValue));
     }
-    svg.appendChild(svgNode("line", { x1: margin.left, x2: width - margin.right, y1: y(0), y2: y(0), stroke: "#81919e", "stroke-opacity": .35 }));
+    svg.appendChild(svgNode("line", { x1: margin.left, x2: width - margin.right, y1: y(0), y2: y(0), stroke: "#4f5b70", "stroke-opacity": .35 }));
     var band = plotW / labels.length;
     var maxTickLabels = mobile ? 4 : 8, step = Math.max(1, Math.ceil(labels.length / maxTickLabels));
     labels.forEach(function (label, i) {
       if (i % step !== 0 && i !== labels.length - 1) return;
       if (i === labels.length - 1 && i > 0 && (i - 1) % step === 0 && step > 1) return;
       var labelText = String(label), maxChars = Math.max(8, Math.min(mobile ? 12 : 18, Math.floor((band * step - 12) / 6)));
-      var text = svgNode("text", { x: margin.left + band * (i + .5), y: margin.top + plotH + 21, "text-anchor": "middle", fill: "#a7b5c0", "font-size": mobile ? 11 : 12 });
+      var text = svgNode("text", { x: margin.left + band * (i + .5), y: margin.top + plotH + 21, "text-anchor": "middle", fill: "#4f5b70", "font-size": mobile ? 11 : 12 });
       var chunks = [];
       while (labelText.length > maxChars && chunks.length < 2) { var at = labelText.lastIndexOf(" ", maxChars); if (at < 3) at = maxChars; chunks.push(labelText.slice(0, at)); labelText = labelText.slice(at).trim(); }
       if (labelText) chunks.push(labelText.length > maxChars ? labelText.slice(0, maxChars - 1) + "…" : labelText);
@@ -209,7 +210,7 @@
             if (estimated || pointKind(data, s, i - 1) !== "actual") line.setAttribute("stroke-dasharray", "5 4");
             svg.appendChild(line);
           }
-          point = svgNode("circle", { cx: center, cy: y(value), r: 3.7, fill: estimated ? "#161f27" : paint, stroke: paint, "stroke-width": 1.7 });
+          point = svgNode("circle", { cx: center, cy: y(value), r: 3.7, fill: estimated ? "#ffffff" : paint, stroke: paint, "stroke-width": 1.7 });
           x = center;
         } else {
           point = svgNode("rect", { x: x - barWidth * .42, y: Math.min(y(value), y(0)), width: Math.max(1, barWidth * .84), height: Math.max(1, Math.abs(y(value) - y(0))), fill: estimated ? "url(#ir-hatch-" + serial + "-" + seriesIndex + ")" : paint, stroke: estimated ? paint : "none", "stroke-width": 1, rx: 1 });
@@ -242,7 +243,7 @@
     });
     types.forEach(function (status) {
       var entry = el("span", "ir-legend-item");
-      var swatch = el("i", "ir-legend-swatch" + (status !== "actual" ? " is-estimate" : "")); swatch.setAttribute("aria-hidden", "true"); swatch.style.setProperty("--swatch", "#a7b5c0"); entry.appendChild(swatch);
+      var swatch = el("i", "ir-legend-swatch" + (status !== "actual" ? " is-estimate" : "")); swatch.setAttribute("aria-hidden", "true"); swatch.style.setProperty("--swatch", "#4f5b70"); entry.appendChild(swatch);
       entry.appendChild(document.createTextNode(kindNames[status] + (data.type === "line" ? (status === "actual" ? " · 실선" : " · 점선") : (status === "actual" ? " · 채움" : " · 빗금")))); legend.appendChild(entry);
     });
     box.appendChild(legend);
@@ -336,10 +337,10 @@
   function setupTOC() {
     var links = Array.from(document.querySelectorAll(".ir-toc a"));
     var disclosure = document.querySelector(".ir-toc-disclosure"); var mobile = window.matchMedia("(max-width: 800px)");
-    function setDisclosure() { disclosure.open = !mobile.matches; }
+    function setDisclosure() { disclosure.open = false; }
     setDisclosure();
     if (mobile.addEventListener) mobile.addEventListener("change", setDisclosure);
-    links.forEach(function (link) { link.addEventListener("click", function () { if (mobile.matches) disclosure.open = false; }); });
+    links.forEach(function (link) { link.addEventListener("click", function () { disclosure.open = false; }); });
     if (window.IntersectionObserver) {
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) { if (entry.isIntersecting) links.forEach(function (link) { var active = link.getAttribute("href") === "#" + entry.target.id; link.classList.toggle("is-active", active); if (active) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current"); }); });
