@@ -39,12 +39,13 @@
   function withRealized(state, txs) {
     var pos = {};
     return txs.map(function (t) {
-      var k = keyOf(t), p = pos[k] || (pos[k] = { qty: 0, cost: 0 }), q = Number(t.qty) || 0, a = amtKrw(t, state), r = null;
+      var k = keyOf(t), p = pos[k] || (pos[k] = { qty: 0, cost: 0 }), q = Number(t.qty) || 0, a = amtKrw(t, state), r = null, short = 0;
       if (t.side === "sell") {
         var sold = Math.min(q, p.qty), avg = p.qty ? p.cost / p.qty : 0;
+        if (q > p.qty + 1e-9) short = q - p.qty;   // 가진 것보다 많이 판 기록 — 앞쪽 매수가 빠졌다는 뜻
         r = sold * (a / (q || 1)) - sold * avg; p.qty -= sold; p.cost -= sold * avg;
       } else { p.qty += q; p.cost += a; }
-      return { t: t, amt: a, realized: r };
+      return { t: t, amt: a, realized: r, left: Math.max(0, p.qty), short: short };
     });
   }
 
@@ -67,12 +68,12 @@
         var g = months[m], mb = 0, ms = 0, mr = 0;
         g.forEach(function (r) { if (r.t.side === "sell") { ms += r.amt; mr += r.realized || 0; } else mb += r.amt; });
         return '<div class="pf-month"><div class="pf-mh"><b>' + m.replace("-", "년 ") + '월</b><span>매수 ' + krw(mb) + " · 매도 " + krw(ms) + (ms ? ' · 실현 <b class="' + cls(mr) + '">' + krw(mr) + "</b>" : "") + " · 순매수 " + krw(mb - ms) + "</span></div>" +
-          '<div class="pf-tbl"><table><thead><tr><th>날짜</th><th>종목</th><th>구분</th><th>수량</th><th>체결가</th><th>금액(원화)</th><th>실현손익</th><th></th></tr></thead><tbody>' +
+          '<div class="pf-tbl"><table><thead><tr><th>날짜</th><th>종목</th><th>구분</th><th>수량</th><th>잔여</th><th>체결가</th><th>금액(원화)</th><th>실현손익</th><th></th></tr></thead><tbody>' +
           g.map(function (r) {
             var t = r.t, us = t.market === "US";
             /* 날짜·구분·수량·체결가·환율 칸은 누르면 그 자리에서 고친다 */
             var ed = function (f, v, html) { return '<span class="pf-ed" tabindex="0" title="눌러서 수정" data-ed="' + f + '" data-id="' + esc(t.id) + '" data-v="' + esc(v) + '">' + html + "</span>"; };
-            return "<tr><td>" + ed("date", t.date, esc(t.date)) + '</td><td class="tk">' + esc(S.displayTicker(t.ticker)) + '<small>' + (us ? "미국" : "한국") + '</small></td><td><span class="pf-ed ' + (t.side === "buy" ? "buy" : "sell") + '" tabindex="0" title="눌러서 매수↔매도 바꾸기" data-ed="side" data-id="' + esc(t.id) + '">' + (t.side === "buy" ? "매수" : "매도") + "</span></td><td>" + ed("qty", t.qty, num(t.qty, 4)) + "</td><td>" + ed("price", t.price, us ? "$" + num(t.price, 2) : "₩" + num(t.price)) + (us ? "<small>" + ed("fx", Number(t.fx) || "", "@" + num(t.fx, 1)) + "</small>" : "") + "</td><td>" + krw(r.amt) + '</td><td class="' + cls(r.realized) + '">' + (r.realized == null ? "" : krw(r.realized)) + '</td><td><button class="icon-btn" data-del="' + esc(t.id) + '" aria-label="기록 삭제">×</button></td></tr>';
+            return "<tr><td>" + ed("date", t.date, esc(t.date)) + '</td><td class="tk">' + esc(S.displayTicker(t.ticker)) + '<small>' + (us ? "미국" : "한국") + '</small></td><td><span class="pf-ed ' + (t.side === "buy" ? "buy" : "sell") + '" tabindex="0" title="눌러서 매수↔매도 바꾸기" data-ed="side" data-id="' + esc(t.id) + '">' + (t.side === "buy" ? "매수" : "매도") + "</span></td><td>" + ed("qty", t.qty, num(t.qty, 4)) + '</td><td class="pf-left' + (r.short ? " short" : "") + '"' + (r.short ? ' title="이 매도 전 보유가 ' + num(t.qty - r.short, 4) + '주뿐 — 앞쪽 매수 기록이 ' + num(r.short, 4) + '주 빠졌습니다"' : "") + ">" + num(r.left, 4) + "주" + (r.short ? "<small>" + num(r.short, 4) + "주 부족</small>" : "") + "</td><td>" + ed("price", t.price, us ? "$" + num(t.price, 2) : "₩" + num(t.price)) + (us ? "<small>" + ed("fx", Number(t.fx) || "", "@" + num(t.fx, 1)) + "</small>" : "") + "</td><td>" + krw(r.amt) + '</td><td class="' + cls(r.realized) + '">' + (r.realized == null ? "" : krw(r.realized)) + '</td><td><button class="icon-btn" data-del="' + esc(t.id) + '" aria-label="기록 삭제">×</button></td></tr>';
           }).join("") + "</tbody></table></div></div>";
       }).join("") : '<div class="empty-row">매매 기록이 없습니다.</div>');
     el.querySelectorAll("#tr-side button").forEach(function (b) { b.onclick = function () { tf.side = b.dataset.v; trades(el, state, id, onChange, onEdit); }; });
