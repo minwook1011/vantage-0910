@@ -48,7 +48,7 @@ function setup({ patterns = {}, loader = s => Promise.resolve(s) } = {}) {
     primary: ticker => patterns[ticker] || null,
     info: () => ({ name: '삼각수렴' }),
     ensureCandles: loader,
-    miniSVG: () => '<svg role="img" aria-label="실제 패턴 차트"></svg>'
+    miniSVG: (_s, _p, width, height, detailed) => `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="실제 패턴 차트" data-detailed="${detailed}"></svg>`
   };
   const sandbox = { window: { PatternRadar: radar, IntersectionObserver: Observer }, PatternRadar: radar,
     IntersectionObserver: Observer, document: { createElement: () => new Element() }, escapeHtml, _dailyTail: cs => cs };
@@ -96,7 +96,7 @@ async function main() {
   const live = setup({ loader: s => { requests++; return requests === 1 ? Promise.reject(new Error('offline')) : Promise.resolve({ ...s, candles: candleSeries() }); } });
   const root = new Element();
   const hostile = { ticker: 'T"<&', name: '<img src=x onerror=alert(1)>', sector: '<script>bad</script>', r1m: null, vol_ratio: null };
-  live.board.render(root, [hostile], { open: ticker => calls.push(ticker), signals: () => [['" onclick="bad', '<b>signal</b>']] });
+  live.board.render(root, [hostile], { open: ticker => calls.push(ticker), signals: () => [['" onclick="bad', '<b>signal</b>'], ['g', '신호 2'], ['y', '신호 3']] });
   const card = root.children[0];
   assert.equal(requests, 0, 'render must not fetch cards outside the viewport');
   assert.ok(live.observers[0].options.rootMargin.includes('250px'));
@@ -104,10 +104,16 @@ async function main() {
   assert.ok(card.innerHTML.includes('&lt;script&gt;'));
   assert.ok(card.innerHTML.includes('&lt;b&gt;signal&lt;/b&gt;'));
   assert.ok(!card.innerHTML.includes('class="sb-badge " onclick'));
+  assert.equal((card.innerHTML.match(/class="sb-badge /g) || []).length, 2, 'compact cards show at most two key signals');
+  assert.match(card.innerHTML, /title="[^\"]*신호 3/, 'remaining signal detail is retained in the tooltip');
   assert.ok(!card.innerHTML.includes('+0.0%'), 'a missing return must not display as a zero return');
   card.querySelector('.sb-open').click();
   card.querySelector('.sb-open-detail').click();
   assert.deepEqual(calls, [hostile.ticker, hostile.ticker], 'both keyboard-operable buttons open the correct stock');
+  card.listeners.get('click')({ target: { closest: () => null } });
+  assert.equal(calls.length, 3, 'clicking the card background opens the same stock');
+  card.listeners.get('click')({ target: { closest: () => card.querySelector('.sb-retry') } });
+  assert.equal(calls.length, 3, 'bubbled button/retry clicks must not open the stock a second time');
   live.observers[0].enter(card);
   await flush();
   const chart = card.querySelector('.sb-chart');
@@ -118,12 +124,14 @@ async function main() {
   await flush();
   assert.equal(requests, 2);
   assert.match(chart.innerHTML, /<svg/, 'retry must recover into an actual candle chart');
+  assert.match(chart.innerHTML, /viewBox="0 0 260 130"/, 'generic candles use compact chart geometry');
   assert.match(chart.innerHTML, /2026-09-30/);
   assert.ok(!chart.innerHTML.includes('NaN'));
   assert.ok(!chart.innerHTML.includes('Infinity'));
   assert.match(card.querySelector('.sb-summary').innerHTML, /직전 20일 고가 133/, 'reference high excludes the latest candle high of 134');
   assert.match(card.querySelector('.sb-chart-note').innerHTML, /거래량 일부 미제공/);
-  assert.match(card.querySelector('.sb-date').textContent, /일봉 2026-09-30 기준/);
+  assert.equal(card.querySelector('.sb-date').textContent, '2026-09-30 · 일봉');
+  assert.match(card.querySelector('.sb-date').attributes['aria-label'], /일봉 2026-09-30 기준/);
 
   let resolvePending;
   const stale = setup({ loader: s => new Promise(resolve => { resolvePending = () => resolve({ ...s, candles: candleSeries() }); }) });
@@ -149,8 +157,10 @@ async function main() {
   dated.observers[0].enter(datedRoot.children[0]);
   await flush();
   const datedCard = datedRoot.children[0];
-  assert.match(datedCard.querySelector('.sb-date').textContent, /패턴 판정 2026-09-29 · 돌파 발생 2026-09-25 · 일봉 2026-09-30 기준/);
-  assert.match(datedCard.querySelector('.sb-chart-note').innerHTML, /기준일이 다릅니다/);
+  assert.equal(datedCard.querySelector('.sb-date').textContent, '2026-09-30 · 일봉');
+  assert.match(datedCard.querySelector('.sb-date').attributes.title, /패턴 판정 2026-09-29 · 돌파 발생 2026-09-25 · 일봉 2026-09-30 기준/);
+  assert.match(datedCard.querySelector('.sb-chart').innerHTML, /viewBox="0 0 260 130"[^>]*data-detailed="false"/, 'patterns use the compact candle renderer');
+  assert.match(datedCard.querySelector('.sb-chart-note').innerHTML, /기준일 다름/);
   assert.match(datedCard.querySelector('.sb-summary').innerHTML, /기준선 아래로 되밀림/);
   console.log('Signal board: missing values, deterministic ranking, breakout precedence, escaping, lazy load, retry, stale responses, candle reference high and independent dates passed.');
 }

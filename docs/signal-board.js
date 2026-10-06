@@ -89,12 +89,13 @@
       + esc(label) + '</span><strong class="sb-value ' + (cls || "") + '">' + esc(value) + '</strong></div>';
   }
   function summary(s, p, opts, cs) {
-    var parts = [], sub = [], close = cs && cs.length ? cs[cs.length - 1].c : null;
+    var parts = [], sub = [], short = "", close = cs && cs.length ? cs[cs.length - 1].c : null;
     if (p) {
       var name = PatternRadar.info(p.kind).name;
       parts.push(name + (p.state === "breakout" ? " 돌파 신호" : " 돌파 임박"));
       if (finite(p.level)) parts.push("돌파 기준 " + price(p.level));
       if (finite(p.dist)) parts.push("신호 종가 기준선 대비 " + pct(p.dist));
+      short = (finite(p.level) ? "기준 " + price(p.level) : name) + (finite(p.dist) ? " · " + pct(p.dist) : "");
       if (p.state === "breakout") {
         if (finite(p.age)) sub.push("판정 기준 " + p.age + "거래일 전 돌파");
         if (finite(p.dist) && p.dist < 0) sub.push("이후 기준선 아래로 되밀림");
@@ -105,15 +106,18 @@
       if (finite(high)) {
         parts.push("직전 20일 고가 " + price(high));
         sub.push("고가 대비 " + pct(gap) + (close > high ? " · 종가 돌파" : ""));
-      } else sub.push("직전 20일 고가를 계산할 일봉이 부족합니다");
+        short = "종가 " + price(close) + " · 고가 " + pct(gap);
+      } else { sub.push("직전 20일 고가를 계산할 일봉이 부족합니다"); short = "종가 " + price(close) + " · 고가 확인 대기"; }
     } else {
       var brk = detailOf(s, "brk", opts), ma = detailOf(s, "ma", opts);
       parts.push(brk && brk !== "-" ? brk : ma && ma !== "-" ? ma : "가격·거래량 흐름 확인");
       sub.push("일봉을 불러오면 종가와 직전 20일 고가를 표시합니다");
+      short = parts[0];
     }
     if (finite(s.vol_ratio)) sub.push("거래대금 5일/20일 " + s.vol_ratio.toFixed(2) + "배");
     if (finite(s.from_high)) sub.push("52주 종가 고점 대비 " + pct(s.from_high));
-    return '<p>' + esc(parts.join(" · ")) + '</p><p class="sb-summary-sub">' + esc(sub.join(" · ")) + '</p>';
+    var full = parts.concat(sub).join(" · ");
+    return '<p title="' + esc(full) + '" aria-label="' + esc(full) + '">' + esc(short) + '</p>';
   }
   function dateText(p, cs) {
     var out = [];
@@ -125,23 +129,11 @@
     out.push(cs && cs.length ? "일봉 " + cs[cs.length - 1].d + " 기준" : "일봉 대기");
     return out.join(" · ");
   }
-  function legend(p) {
-    if (p) {
-      var roles = (p.lines || []).map(function (line) { return line.role; }), labels = [];
-      if (roles.indexOf("res") >= 0) labels.push('<span><i class="sb-dot sb-res"></i>패턴 저항선</span>');
-      if (roles.indexOf("sup") >= 0) labels.push('<span><i class="sb-dot sb-sup"></i>패턴 지지선</span>');
-      if (roles.indexOf("pole") >= 0) labels.push('<span><i class="sb-dot sb-res"></i>깃대</span>');
-      labels.push('<span>하단 거래량</span>');
-      return labels.join("");
-    }
-    return '<span><i class="sb-dot sb-ma"></i>20일 이동평균</span><span><i class="sb-dot sb-res"></i>직전 20일 고가</span><span>하단 거래량</span>';
-  }
-
   /* Actual OHLC bars, MA20 and the latest session's previous-20-session high.
      Missing volume leaves a gap instead of implying a zero-volume session. */
   function baselineSVG(s, cs) {
     var shown = cs.slice(-70), offset = cs.length - shown.length, n = shown.length;
-    var W = 640, H = 238, L = 55, R = 12, T = 12, PH = 151, VH = 40, VY = 172;
+    var W = 260, H = 130, L = 4, R = 4, T = 5, PH = 88, VH = 23, VY = 98;
     var high = previousHigh(cs), ma = shown.map(function (_, i) { return averageClose(cs, offset + i, 20); });
     var hi = Math.max.apply(null, shown.map(function (c) { return c.h; }));
     var lo = Math.min.apply(null, shown.map(function (c) { return c.l; }));
@@ -154,9 +146,9 @@
     function y(v) { return T + (hi - v) / span * PH; }
     function f(v) { return v.toFixed(2); }
     var out = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(s.name || s.ticker) + ' 최근 일봉, 20일 이동평균, 직전 20일 고가와 거래량"><title>' + esc(s.ticker) + " · " + esc(shown[0].d) + " ~ " + esc(shown[n - 1].d) + '</title>';
-    for (var g = 0; g < 4; g++) {
-      var v = lo + span * g / 3, yy = y(v);
-      out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + f(yy) + '" y2="' + f(yy) + '" stroke="var(--border)" opacity=".7"/><text x="' + (L - 7) + '" y="' + f(yy + 4) + '" text-anchor="end" fill="var(--muted)" font-size="10">' + esc(price(v)) + '</text>';
+    for (var g = 1; g < 3; g++) {
+      var yy = y(lo + span * g / 3);
+      out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + f(yy) + '" y2="' + f(yy) + '" stroke="var(--border)" opacity=".5"/>';
     }
     shown.forEach(function (c, i) {
       var color = c.c >= c.o ? "var(--up)" : "var(--dn)", xx = x(i), top = y(Math.max(c.c, c.o)), bottom = y(Math.min(c.c, c.o));
@@ -169,11 +161,8 @@
     });
     var points = [];
     ma.forEach(function (v, i) { if (finite(v)) points.push(f(x(i)) + "," + f(y(v))); });
-    if (points.length) out += '<polyline points="' + points.join(" ") + '" fill="none" stroke="#818cf8" stroke-width="1.8"/>';
-    if (finite(high)) out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + f(y(high)) + '" y2="' + f(y(high)) + '" stroke="#f0b429" stroke-width="1.5" stroke-dasharray="5 4"/>';
-    [0, Math.floor((n - 1) / 2), n - 1].forEach(function (i) {
-      out += '<text x="' + f(x(i)) + '" y="231" text-anchor="' + (i === 0 ? "start" : i === n - 1 ? "end" : "middle") + '" fill="var(--muted)" font-size="10">' + esc(shown[i].d) + '</text>';
-    });
+    if (points.length) out += '<polyline points="' + points.join(" ") + '" fill="none" stroke="#818cf8" stroke-width="1.2"/>';
+    if (finite(high)) out += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + f(y(high)) + '" y2="' + f(y(high)) + '" stroke="#f0b429" stroke-width="1.2" stroke-dasharray="3 3"/>';
     return out + '</svg>';
   }
 
@@ -191,17 +180,21 @@
       article.className = "sb-card" + (p ? " sb-" + p.state : "");
       article.dataset.ticker = s.ticker;
       article.style.setProperty("--sb-i", Math.min(index, 8));
-      var badges = opts.signals ? opts.signals(s) : [];
-      article.innerHTML = '<div class="sb-top"><div class="sb-identity"><button type="button" class="sb-open" aria-label="' + esc((s.name || s.ticker) + " 상세 차트 열기") + '">' + esc(s.name || s.ticker) + '</button><span class="sb-meta">' + esc(s.ticker) + ' · ' + esc(s.sector || "섹터 미분류") + '</span></div><div class="sb-badges">'
-        + (badges.length ? badges.map(function (b) { return '<span class="sb-badge ' + (/^[gybn]$/.test(b[0]) ? b[0] : "n") + '">' + esc(b[1]) + '</span>'; }).join("") : '<span class="sb-badge n">추세 관찰</span>')
-        + '</div></div><div class="sb-body"><div class="sb-chart-wrap"><div class="sb-chart" aria-busy="true"><div class="sb-state"><span class="sb-loader" aria-hidden="true"></span>일봉 차트 대기 중</div></div><div class="sb-chart-note"><div class="sb-legend">' + legend(p) + '</div></div></div><div class="sb-info"><div class="sb-summary">' + summary(s, p, opts, null) + '</div><div class="sb-metrics">'
-        + metric((periods[period] || period) + " 수익률", pct(s[period]), tone(s[period]))
-        + metric("모멘텀 · 가중 수익률", pct(mom), tone(mom), "1주 수익률×20% + 1개월×30% + 3개월×50% · 세 기간 데이터가 모두 있을 때 계산")
+      var badges = opts.signals ? opts.signals(s) : [], allSignals = badges.map(function (b) { return b[1]; }).join(" · ");
+      article.innerHTML = '<div class="sb-top"><div class="sb-identity"><button type="button" class="sb-open" title="' + esc(s.name || s.ticker) + '" aria-label="' + esc((s.name || s.ticker) + " 상세 차트 열기") + '">' + esc(s.name || s.ticker) + '</button><span class="sb-meta" title="' + esc(s.ticker + " · " + (s.sector || "섹터 미분류")) + '">' + esc(s.ticker) + ' · ' + esc(s.sector || "섹터 미분류") + '</span></div><div class="sb-badges" title="' + esc(allSignals) + '">'
+        + (badges.length ? badges.slice(0, 2).map(function (b) { return '<span class="sb-badge ' + (/^[gybn]$/.test(b[0]) ? b[0] : "n") + '">' + esc(b[1]) + '</span>'; }).join("") : '<span class="sb-badge n">추세 관찰</span>')
+        + '</div></div><div class="sb-body"><div class="sb-chart-wrap"><div class="sb-chart" aria-busy="true"><div class="sb-state"><span class="sb-loader" aria-hidden="true"></span>일봉 대기</div></div><div class="sb-chart-note"></div></div><div class="sb-info"><div class="sb-summary">' + summary(s, p, opts, null) + '</div><div class="sb-metrics">'
+        + metric(periods[period] || period, pct(s[period]), tone(s[period]), (periods[period] || period) + " 수익률")
+        + metric("모멘텀", pct(mom), tone(mom), "1주 수익률×20% + 1개월×30% + 3개월×50% · 세 기간 데이터가 모두 있을 때 계산")
         + metric("기술점수", finite(sc) ? Math.round(sc) + "점" : "—", "", "기존 기술 분석 모델의 점수")
-        + metric("거래대금 5일/20일", finite(s.vol_ratio) ? s.vol_ratio.toFixed(2) + "배" : "—", finite(s.vol_ratio) && s.vol_ratio >= 1.3 ? "up" : "", "최근 5일 일평균 거래대금 ÷ 최근 20일 일평균 거래대금")
-        + '</div></div></div><div class="sb-footer"><span class="sb-date">' + esc(dateText(p, null)) + '</span><button type="button" class="sb-open-detail">상세 차트 <span aria-hidden="true">↗</span></button></div>';
+        + metric("거래대금", finite(s.vol_ratio) ? s.vol_ratio.toFixed(2) + "배" : "—", finite(s.vol_ratio) && s.vol_ratio >= 1.3 ? "up" : "", "최근 5일 일평균 거래대금 ÷ 최근 20일 일평균 거래대금")
+        + '</div></div></div><div class="sb-footer"><span class="sb-date" title="' + esc(dateText(p, null)) + '" aria-label="' + esc(dateText(p, null)) + '">일봉 대기</span><button type="button" class="sb-open-detail" aria-label="' + esc((s.name || s.ticker) + " 상세 차트 열기") + '">상세 <span aria-hidden="true">↗</span></button></div>';
       article.querySelectorAll(".sb-open, .sb-open-detail").forEach(function (button) {
         button.addEventListener("click", function () { if (opts.open) opts.open(s.ticker); });
+      });
+      article.addEventListener("click", function (event) {
+        if (event.defaultPrevented || (event.target.closest && event.target.closest("button, a, input, select, textarea, [role='button']"))) return;
+        if (opts.open) opts.open(s.ticker);
       });
       function current() { return renders.get(root) === state && root.contains(article) && root.isConnected; }
       var loading = false;
@@ -210,7 +203,7 @@
         loading = true;
         var chart = article.querySelector(".sb-chart");
         chart.setAttribute("aria-busy", "true");
-        chart.innerHTML = '<div class="sb-state" role="status"><span class="sb-loader" aria-hidden="true"></span>일봉 차트 불러오는 중</div>';
+        chart.innerHTML = '<div class="sb-state" role="status"><span class="sb-loader" aria-hidden="true"></span>일봉 불러오는 중</div>';
         Promise.resolve().then(function () {
           if (!window.PatternRadar || !PatternRadar.ensureCandles) throw new Error("캔들 로더를 사용할 수 없습니다");
           return PatternRadar.ensureCandles(s, current);
@@ -219,20 +212,26 @@
           var cs = candleData(loaded || s);
           if (cs.length < 2) throw new Error("일봉 데이터가 부족합니다");
           var chartStock = Object.assign({}, s, { candles: cs });
-          chart.innerHTML = p && cs.length >= 20 ? PatternRadar.miniSVG(chartStock, p, 640, 238, true) : baselineSVG(s, cs);
+          chart.innerHTML = p && cs.length >= 20 ? PatternRadar.miniSVG(chartStock, p, 260, 130, false) : baselineSVG(s, cs);
           chart.setAttribute("aria-busy", "false");
           article.querySelector(".sb-summary").innerHTML = summary(s, p, opts, cs);
-          article.querySelector(".sb-date").textContent = dateText(p, cs);
+          var date = article.querySelector(".sb-date"), fullDate = dateText(p, cs);
+          date.textContent = cs[cs.length - 1].d + " · 일봉";
+          date.setAttribute("title", fullDate);
+          date.setAttribute("aria-label", fullDate);
           var note = article.querySelector(".sb-chart-note");
-          note.innerHTML = '<div class="sb-legend">' + legend(p && cs.length >= 20 ? p : null) + '</div>';
-          if (p && patternAsOf(p) && patternAsOf(p) !== cs[cs.length - 1].d) note.insertAdjacentHTML("beforeend", '<span class="sb-date-warning">패턴과 일봉의 기준일이 다릅니다</span>');
-          if (cs.some(function (c) { return !finite(c.v); })) note.insertAdjacentHTML("beforeend", '<span class="sb-date-warning">거래량 일부 미제공</span>');
+          note.innerHTML = "";
+          if (p && patternAsOf(p) && patternAsOf(p) !== cs[cs.length - 1].d) note.insertAdjacentHTML("beforeend", '<span class="sb-date-warning" title="' + esc(fullDate) + '">기준일 다름</span>');
+          if (cs.some(function (c) { return !finite(c.v); })) note.insertAdjacentHTML("beforeend", '<span class="sb-date-warning" title="거래량 일부 미제공">거래량 누락</span>');
           article.classList.add("sb-loaded");
         }).catch(function () {
           if (!current()) return;
           chart.setAttribute("aria-busy", "false");
-          chart.innerHTML = '<div class="sb-state sb-error" role="status"><span>일봉 차트를 불러오지 못했습니다</span><button type="button" class="sb-retry">다시 불러오기</button></div>';
-          article.querySelector(".sb-date").textContent = dateText(p, null).replace("일봉 대기", "일봉 확인 필요");
+          chart.innerHTML = '<div class="sb-state sb-error" role="status"><span>일봉 로드 실패</span><button type="button" class="sb-retry">다시 불러오기</button></div>';
+          var date = article.querySelector(".sb-date"), fullDate = dateText(p, null).replace("일봉 대기", "일봉 확인 필요");
+          date.textContent = "일봉 미확인";
+          date.setAttribute("title", fullDate);
+          date.setAttribute("aria-label", fullDate);
           chart.querySelector(".sb-retry").addEventListener("click", load);
         }).then(function () { loading = false; });
       }

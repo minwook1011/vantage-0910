@@ -183,7 +183,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 .pt-modal-note { font-size:12.5px; color:var(--muted); line-height:1.7; margin-top:10px; }
 .pt-modal-note b { color:var(--text); }
 </style>
-<link rel="stylesheet" href="signal-board.css?v=20261006A">
+<link rel="stylesheet" href="signal-board.css?v=20261007B">
 </head>
 <body>
 <header id="topnav"></header>
@@ -208,7 +208,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
   <div class="panes-bar">
     <button class="pane-step" data-pane-step="-1" aria-label="이전 섹션" title="이전 섹션 (←)">‹</button>
     <div class="pane-tabs" aria-label="섹션 선택">
-      <button class="pane-tab" data-pane="map"><span class="pane-no">01</span><b>신호별 종목</b><small>미니 차트 · 상황 확인</small></button>
+      <button class="pane-tab" data-pane="map"><span class="pane-no">01</span><b>발굴 지도</b><small>모멘텀 × 추세 · 요약 차트</small></button>
       <button class="pane-tab" data-pane="sectors"><span class="pane-no">02</span><b>섹터 온도</b><small>기간 수익률 중앙값</small></button>
       <button class="pane-tab" data-pane="pattern"><span class="pane-no">03</span><b>차트 패턴 레이더</b><small>돌파 임박 · 돌파</small></button>
       <button class="pane-tab" data-pane="list"><span class="pane-no">04</span><b>순위</b><small>종목별 점수 · 신호</small></button>
@@ -221,6 +221,10 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     <div class="bu-sec-h"><h2>어떤 종목을 찾나요?</h2><span class="hint">신호를 선택하면 아래에서 종목별 차트를 바로 볼 수 있습니다</span></div>
     <div class="presets" id="presets"></div>
     <div class="preset-why" id="preset-why"></div>
+    <section class="sb-map" aria-labelledby="map-heading">
+      <div class="bu-sec-h"><h2 id="map-heading">모멘텀 × 추세 지도</h2><span class="hint">가로 = 기간 수익률 · 세로 = 기술점수 · 원 크기 = 시가총액</span></div>
+      <div class="map-wrap" id="map-wrap"><div class="spin">로딩 중…</div></div>
+    </section>
     <section class="sb-section" aria-labelledby="sb-heading">
       <div class="sb-toolbar">
         <div><div class="sb-eyebrow">SIGNAL EXPLORER</div><h2 id="sb-heading">전체 종목 <span id="sb-count" aria-live="polite"></span></h2></div>
@@ -229,14 +233,10 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
       <div class="sb-controls"><span class="sb-sort-label">정렬</span><div class="toggle" id="sb-sort" aria-label="종목 정렬"></div></div>
       <p class="sb-sort-note" id="sb-sort-note"></p>
       <p class="sb-filter-note" id="sb-filter-note"></p>
+      <div class="sb-board-legend"><span>차트를 누르면 상세 보기 ↗</span><span><i class="sb-dot sb-res"></i>저항·직전 고가</span><span><i class="sb-dot sb-sup"></i>패턴 지지선</span><span><i class="sb-dot sb-target"></i>패턴 목표</span><span><i class="sb-dot sb-ma"></i>20일선</span><span>하단 막대 = 거래량</span></div>
       <div class="sb-list" id="signal-board"><div class="spin">종목 불러오는 중…</div></div>
       <button type="button" class="more-btn" id="sb-more" hidden></button>
     </section>
-    <details class="sb-map" id="map-details">
-      <summary>모멘텀 × 추세 지도 <span>종목 분포 펼쳐 보기</span></summary>
-      <p class="sb-sort-note">가로 = 기간 수익률 · 세로 = 기술점수 · 원 크기 = 시가총액</p>
-      <div class="map-wrap" id="map-wrap"><div class="spin">로딩 중…</div></div>
-    </details>
   </section>
 
   <section class="pane" data-pane="sectors" hidden>
@@ -272,7 +272,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
 <script src="theme.js?v=20261003L"></script>
 <script src="stocks-common.js?v=20261003L"></script>
 <script src="chart-patterns.js?v=20261006A"></script>
-<script src="signal-board.js?v=20261006A"></script>
+<script src="signal-board.js?v=20261007B"></script>
 <script src="panes.js?v=20261003L"></script>
 <script src="ta-backtest.js?v=20261003L"></script>
 <script>
@@ -282,7 +282,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
   var PERIODS = [["1W","r1w"],["1M","r1m"],["3M","r3m"],["YTD","ytd"]];
   var SORTS = [["수익률","ret"],["모멘텀","momentum"],["돌파 신호","breakout"],["거래대금↑","vol"],["기술점수","ta"],["고점근접","high"]];
   var FINS = [["매출·연간","rev|annual"],["매출·분기","rev|quarterly"],["영업익·연간","op|annual"],["영업익·분기","op|quarterly"]];
-  var UNIVERSES = [100, 300], PAGE = 25, CARD_PAGE = 12;
+  var UNIVERSES = [100, 300], PAGE = 25, CARD_PAGE = 20;
   var view = { period:"r1m", sort:"ret", fin:"rev|annual", preset:"all", sector:null, q:"", n:300, shown:PAGE, cards:CARD_PAGE };
   try { var sv = JSON.parse(localStorage.getItem("bu-view-v2") || "null"); if (sv) ["period","sort","fin","preset"].forEach(function (k) { if (sv[k]) view[k] = sv[k]; }); } catch (e) {}
   try { var savedN = parseInt(localStorage.getItem("megacapN"), 10); if (UNIVERSES.indexOf(savedN) >= 0) view.n = savedN; } catch (e) {}
@@ -366,6 +366,33 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     var p = presetOf(view.preset);
     return scoped().filter(function (s) { return p.f(s) && matchQ(s) && (ignoreSector || !view.sector || s.sector === view.sector); });
   }
+  function filterDescription(count) {
+    return "TOP " + view.n + " · " + presetOf(view.preset).t + " · " + (view.sector || "전체 섹터") +
+      (view.q ? " · 검색: “" + view.q + "”" : "") + " · " + count + "종목";
+  }
+  function resetFilters() {
+    clearTimeout(qTimer);
+    view.preset = "all"; view.q = ""; view.sector = null; view.shown = PAGE; view.cards = CARD_PAGE;
+    $q("#q").value = "";
+    try { var url = new URL(location.href); if (url.searchParams.has("q")) { url.searchParams.delete("q"); history.replaceState(null, "", url.pathname + url.search + url.hash); } } catch (e) {}
+    persist(); renderAll();
+  }
+  function renderFilterStatus(target, count) {
+    var id = target === "sectors" ? "sector-filter-status" : "list-filter-status", status = $q("#" + id);
+    if (!status) {
+      status = document.createElement("div"); status.id = id; status.className = "bu-filter-status";
+      status.style.cssText = "display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 12px";
+      status.innerHTML = '<span class="bu-filter-description muted small" aria-live="polite"></span><button type="button" class="sb-reset bu-filter-reset">조건 초기화</button>';
+      $q("#" + target).before(status);
+      status.querySelector("button").onclick = resetFilters;
+    }
+    status.querySelector(".bu-filter-description").textContent = filterDescription(count);
+    status.querySelector("button").hidden = view.preset === "all" && !view.q && !view.sector;
+  }
+  function emptyFiltered(kind) {
+    return '<div class="empty-note">선택한 조건에 맞는 ' + kind + (kind === "종목" ? "이" : "가") + ' 없습니다.<br><span class="small">' +
+      escapeHtml(filterDescription(0)) + '</span><br>검색어나 신호 조건을 바꾸거나 위의 조건 초기화를 눌러 다시 볼 수 있습니다.</div>';
+  }
   function sorted(list) {
     return SignalBoard.sort(list, { sort:view.sort, period:view.period, score:score, detail:detail });
   }
@@ -429,7 +456,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     filtered(true).forEach(function (s) { (groups[s.sector] = groups[s.sector] || []).push(s); });
     var rows = Object.keys(groups).map(function (k) { return { k:k, n:groups[k].length, m:median(groups[k].map(function (s) { return num(s[view.period]); })) }; })
       .sort(function (a, b) { return b.m - a.m; });
-    if (view.sector && !groups[view.sector]) view.sector = null;
+    renderFilterStatus("sectors", filtered().length);
     var maxAbs = Math.max.apply(null, rows.map(function (r) { return Math.abs(r.m); }).concat([1]));
     var box = $q("#sectors");
     box.classList.toggle("has-on", !!view.sector);
@@ -437,7 +464,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
       return '<button class="sec-tile' + (view.sector === r.k ? " on" : "") + '" data-s="' + escapeHtml(r.k) + '" style="--heat:' + heat(r.m, maxAbs) + '">' +
         (i === 0 && r.m > 0 ? '<span class="crown">👑</span>' : "") +
         '<div class="n">' + escapeHtml(r.k) + '</div><div class="r ' + pc(r.m) + '">' + fmtPct(r.m) + '</div><div class="c">' + r.n + "종목</div></button>";
-    }).join("") : '<div class="empty-note">조건에 맞는 섹터가 없습니다</div>';
+    }).join("") : emptyFiltered("섹터");
     setTimeout(function () { $qa("#sectors .sec-tile").forEach(function (el, i) {
       var r = rows[i]; if (r) el.style.setProperty("--w", Math.max(4, Math.abs(r.m) / maxAbs * 100) + "%");
     }); }, 30);
@@ -461,7 +488,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     M = W < 640 ? { l:34, r:10, t:18, b:30 } : { l:46, r:18, t:18, b:34 }; lastW = wrap.clientWidth;
     wrap.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" id="map" role="img" aria-label="수익률과 기술점수 산점도"><g id="m-bg"></g><g id="m-axis"></g><g id="m-dots"></g><g id="m-lbl"></g></svg>' +
       '<div class="map-tip" id="tip"></div>' +
-      '<div class="map-legend"><span><i style="background:#f0475a"></i>상승</span><span><i style="background:#3d7eff"></i>하락</span><span>진할수록 기술점수 높음 · 이름 표시 = 조건 상위 8종목</span></div>';
+      '<div class="map-legend"><span><i style="background:#f0475a"></i>상승</span><span><i style="background:#3d7eff"></i>하락</span><span>진할수록 기술점수 높음 · 이름 표시 = 조건 상위 종목</span></div>';
     var dots = "";
     scoped().forEach(function (s) { dots += '<circle class="dot" data-t="' + s.ticker + '" r="4" cx="0" cy="0"></circle>'; });
     $q("#m-dots").innerHTML = dots;
@@ -533,8 +560,17 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
       c.classList.toggle("dim", !hits[s.ticker]);
     });
     $q("#m-lbl").innerHTML = hitList.slice(0, 8).filter(function (s) { return score(s) != null; }).map(function (s) {
-      return '<text class="dot-lbl" style="transform:translate(' + (SX(num(s[view.period])) + 8).toFixed(1) + "px," + (SY(score(s)) - 8).toFixed(1) + 'px)">' + escapeHtml(s.name.length > 10 ? s.name.slice(0, 10) + "…" : s.name) + "</text>";
+      return '<text class="dot-lbl" x="' + (SX(num(s[view.period])) + 8).toFixed(1) + '" y="' + Math.max(M.t + 12, SY(score(s)) - 8).toFixed(1) + '">' + escapeHtml(s.name.length > 10 ? s.name.slice(0, 10) + "…" : s.name) + "</text>";
     }).join("");
+    var placed = [];
+    $qa("#m-lbl .dot-lbl").forEach(function (label) {
+      var box = label.getBBox();
+      if (box.x + box.width > W - M.r - 4) label.setAttribute("x", Math.max(M.l + 4, W - M.r - box.width - 8));
+      box = label.getBBox();
+      var overlaps = placed.some(function (prev) { return box.x < prev.x + prev.width + 4 && box.x + box.width + 4 > prev.x && box.y < prev.y + prev.height + 3 && box.y + box.height + 3 > prev.y; });
+      if (overlaps) label.style.display = "none";
+      else placed.push(box);
+    });
   }
   function niceStep(span) { var raw = span / 7, p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p; return (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p; }
 
@@ -590,12 +626,13 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
   }
   function renderList() {
     var list = sorted(filtered()), shown = list.slice(0, view.shown);
+    renderFilterStatus("list", list.length);
     var maxRet = Math.max.apply(null, shown.map(function (s) { return Math.abs(num(s[view.period])); }).concat([1]));
     var sortLabel = SORTS.filter(function (x) { return x[1] === view.sort; })[0][0];
     $q("#list-sub").textContent = "· " + list.length + "종목 · " + (view.sort === "ret" ? periodLabel() + " " : "") + sortLabel + " 순";
     var head = '<div class="rk-head"><span>#</span><span>종목 · 섹터 · 시총</span><span class="h-price">60일 주가</span><span class="h-price">' + periodLabel() + ' 수익률</span><span>기술점수</span><span class="h-sig">신호</span><span class="h-fin">실적 · ' + FINS.filter(function (x) { return x[1] === view.fin; })[0][0] + "</span></div>";
     $q("#list").innerHTML = shown.length ? head + '<div class="rank-list">' + shown.map(function (s, i) { return row(s, i, maxRet); }).join("") + "</div>"
-      : '<div class="empty-note">조건에 맞는 종목이 없습니다. 전략이나 섹터를 바꿔보세요.</div>';
+      : emptyFiltered("종목");
     var more = $q("#more");
     more.style.display = list.length > view.shown ? "" : "none";
     more.textContent = "더 보기 (" + Math.min(PAGE, list.length - view.shown) + "종목 · 남은 " + (list.length - view.shown) + ")";
@@ -610,6 +647,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     var els = $qa("#list .rk:not(.seen)");
     function go(el) {
       el.classList.add("seen");
+      el.style.opacity = "1"; el.style.transform = "none";
       var bar = el.querySelector(".rk-ret .bar i"); if (bar) { var w = +bar.dataset.w; bar.style.width = w + "%"; bar.style.left = bar.dataset.neg === "1" ? (50 - w) + "%" : "50%"; }
       var v = el.querySelector(".ring .val"); if (v) v.style.strokeDashoffset = v.dataset.off;
       var fb = el.querySelector(".fin-bars"); if (fb) fb.classList.add("go");
@@ -628,7 +666,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     $q("#sb-sort-note").textContent = ({ ret:periodLabel() + " 수익률 높은 순 · 상단에서 기간을 바꿀 수 있습니다.", momentum:"모멘텀 = 1주 수익률 × 20% + 1개월 × 30% + 3개월 × 50% · 가중 수익률이 높은 순", breakout:"패턴 돌파 → 20일 고점 돌파 → 패턴 돌파 임박 → 52주 고점 근접 순 · 같은 신호는 최근 발생·기준선 근접 우선", vol:"최근 5일 평균 거래대금 ÷ 최근 20일 평균 거래대금이 높은 순 · 1.3배 이상은 급증 신호", ta:"오늘 시장 국면에 맞춰 학습한 기술점수가 높은 순", high:"52주 고점과의 거리가 가까운 순" })[view.sort];
     $q("#fin-toggle").innerHTML = toggleHTML(FINS, view.fin, "f");
     $qa("#period-toggle button").forEach(function (b) { b.onclick = function () { view.period = b.dataset.k; view.cards = CARD_PAGE; persist(); renderAll(); }; });
-    $qa("#universe-toggle button").forEach(function (b) { b.onclick = function () { view.n = +b.dataset.n; try { localStorage.setItem("megacapN", view.n); } catch (e) {} view.shown = PAGE; view.cards = CARD_PAGE; renderAll(); }; });
+    $qa("#universe-toggle button").forEach(function (b) { b.onclick = function () { view.n = +b.dataset.n; try { localStorage.setItem("megacapN", view.n); } catch (e) {} view.shown = PAGE; view.cards = CARD_PAGE; mapBuilt = false; renderAll(); }; });
     $qa("#sort-toggle button, #sb-sort button").forEach(function (b) {
       b.setAttribute("aria-pressed", b.dataset.s === view.sort ? "true" : "false");
       b.onclick = function () { view.sort = b.dataset.s; view.shown = PAGE; view.cards = CARD_PAGE; persist(); renderControls(); renderSignalBoard(); renderMap(); renderList(); };
@@ -637,7 +675,11 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
   }
   /* 컬럼 이름 줄을 고정할 위치 = 상단 컨트롤 바 높이 (줄바꿈되면 높이가 달라진다) */
   function syncBarHeight() { var bar = $q(".bu-bar"); if (bar) document.documentElement.style.setProperty("--bar-h", bar.offsetHeight + "px"); }
-  function renderAll() { renderControls(); renderPulse(); renderPresets(); renderSectors(); renderSignalBoard(); renderMap(); renderPatterns(); renderList(); syncBarHeight(); }
+  function renderAll() {
+    if (!PRESETS.some(function (p) { return p.id === view.preset; })) view.preset = "all";
+    if (view.sector && !filtered(true).some(function (s) { return s.sector === view.sector; })) view.sector = null;
+    renderControls(); renderPulse(); renderPresets(); renderSectors(); renderSignalBoard(); renderMap(); renderPatterns(); renderList(); syncBarHeight();
+  }
   var ptMounted = false;
   function ptStocks() { return scoped().filter(function (s) { return matchQ(s) && (!view.sector || s.sector === view.sector); }); }
   function renderPatterns() {
@@ -699,8 +741,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     var firstNew = $q("#signal-board").children[previous];
     if (firstNew) { var target = firstNew.querySelector("button"); if (target) target.focus({ preventScroll:true }); firstNew.scrollIntoView({ block:"center", behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }
   });
-  $q("#sb-reset").addEventListener("click", function () { view.preset = "all"; view.q = ""; view.sector = null; view.shown = PAGE; view.cards = CARD_PAGE; $q("#q").value = ""; persist(); renderAll(); });
-  $q("#map-details").addEventListener("toggle", function () { if (this.open && DATA) { mapBuilt = false; renderMap(); } });
+  $q("#sb-reset").addEventListener("click", resetFilters);
   var rsTimer = null, lastW = 0;
   window.addEventListener("resize", function () {
     if ($q("#tip")) $q("#tip").classList.remove("show");
@@ -710,6 +751,16 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
   });
 
   /* 목록은 캔들 없는 경량본으로 먼저 그리고, 기술 신호·패턴 차트에 필요한 캔들 전체본은 뒤에서 받아 다시 그린다 */
+  ["sectors", "list"].forEach(function (id) {
+    $q("#" + id).innerHTML = '<div class="spin" role="status">종목 정보를 불러오는 중…</div>';
+  });
+  function showLoadError() {
+    ["sectors", "list", "signal-board", "map-wrap", "pt-grid"].forEach(function (id) {
+      var box = $q("#" + id); if (!box) return;
+      box.innerHTML = '<div class="empty-note" role="status">종목 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.<br><button type="button" class="sb-reset bu-load-retry" style="margin-top:12px">다시 불러오기</button></div>';
+      box.querySelector("button").onclick = function () { location.reload(); };
+    });
+  }
   function upgradeCandles() {
     fetchJSON("megacap.json").then(function (full) {
       (full.stocks || []).forEach(function (f) { var s = BYT[f.ticker]; if (s && f.candles && f.candles.length) s.candles = f.candles; });
@@ -726,11 +777,7 @@ body.bt-on .bu-bar, body.bt-on .bu-pulse { display:none; }
     $q("#updated").textContent = "시세 " + (DATA.updated || "-") + " · " + DATA.count + "종목" + uni;
     renderAll();
     upgradeCandles();
-  }).catch(function (err) {
-    $q("#list").innerHTML = '<div class="empty-note">megacap.json 로드 실패 — fetch_megacap.py를 실행하세요<br><span class="small">' + escapeHtml(err.message) + "</span></div>";
-    $q("#map-wrap").innerHTML = "";
-    $q("#signal-board").innerHTML = '<div class="empty-note">종목 데이터를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</div>';
-  });
+  }).catch(showLoadError);
 })();
 </script>
 </body>
