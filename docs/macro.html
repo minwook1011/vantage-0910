@@ -7,7 +7,7 @@
 <script src="gate.js?v=20261003L"></script>
 <title>매크로 및 투자전략 — 100억</title>
 <link rel="stylesheet" href="theme.css?v=20261004B">
-<link rel="stylesheet" href="macro-dash.css?v=20261003L">
+<link rel="stylesheet" href="macro-dash.css?v=20261006A">
 </head>
 <body>
 <header id="topnav"></header>
@@ -16,10 +16,25 @@
     <div>
       <div class="mx-eyebrow"><span class="mx-live"></span>MACRO TERMINAL</div>
       <h1>매크로 대시보드</h1>
-      <p>미국 물가·고용·성장·금리와 한·미 지수. 발표 직후 자동 갱신 · 모든 시각 <b>한국시간</b></p>
+      <p>공포·탐욕, 국채 금리, 유가부터 확인하고 경제지표를 이어 봅니다. 발표 일정은 <b>한국시간</b></p>
     </div>
     <div class="mx-stamp" id="mx-updated"></div>
   </header>
+
+  <section class="mx-watch" id="mx-watch" aria-label="공포·탐욕 지수, 국채 금리, 유가">
+    <div class="mx-watch-card"><h2>Fear &amp; Greed Index</h2><p class="mx-watch-caption">공포·탐욕 지수</p><p class="mx-watch-empty">데이터를 불러오는 중…</p></div>
+    <div class="mx-watch-card"><h2>미국 국채 금리</h2><p class="mx-watch-empty">데이터를 불러오는 중…</p></div>
+    <div class="mx-watch-card"><h2>WTI 원유 선물</h2><p class="mx-watch-empty">데이터를 불러오는 중…</p></div>
+  </section>
+
+  <section class="mx-block" id="mx-rates-section" aria-label="미국 국채 금리">
+    <div class="mx-block-h"><div><span class="mx-k">US TREASURIES</span><h2>미국 국채 금리</h2></div><span class="mx-hint" id="mx-rates-sub"></span></div>
+    <div class="mx-ytiles" id="mx-ytiles"></div>
+    <div class="mx-rates">
+      <div class="mx-panel"><div class="mx-panel-h"><b>수익률 곡선</b><span>지금 · 1개월 전 · 1년 전</span></div><div id="mx-curve"></div></div>
+      <div class="mx-panel"><div class="mx-panel-h"><b>장단기 금리차</b><div class="mx-seg" id="mx-spread-t"></div></div><div id="mx-spread"></div></div>
+    </div>
+  </section>
 
   <section class="mx-regime" id="mx-regime" aria-label="매크로 국면"></section>
 
@@ -57,18 +72,9 @@
     </div>
   </section>
 
-  <section class="mx-block" aria-label="미국 국채 금리">
-    <div class="mx-block-h"><div><span class="mx-k">US TREASURIES</span><h2>미국 국채 금리</h2></div><span class="mx-hint" id="mx-rates-sub"></span></div>
-    <div class="mx-ytiles" id="mx-ytiles"></div>
-    <div class="mx-rates">
-      <div class="mx-panel"><div class="mx-panel-h"><b>수익률 곡선</b><span>지금 · 1개월 전 · 1년 전</span></div><div id="mx-curve"></div></div>
-      <div class="mx-panel"><div class="mx-panel-h"><b>장단기 금리차</b><div class="mx-seg" id="mx-spread-t"></div></div><div id="mx-spread"></div></div>
-    </div>
-  </section>
-
   <p class="mx-foot" id="mx-foot"></p>
 </main>
 <script src="theme.js?v=20261003L"></script>
-<script src="macro-dash.js?v=20261003L"></script>
+<script src="macro-dash.js?v=20261006A"></script>
 </body>
 </html>

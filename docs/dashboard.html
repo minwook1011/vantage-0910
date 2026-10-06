@@ -20,7 +20,37 @@
 .yr-legend .lg-bar + b { margin-left:3px; }
 .yr-legend .lg-tag { width:14px; height:10px; border-radius:2px; background:linear-gradient(90deg,#f0475a 50%,#3d7eff 50%); }
 #trend-chart { overflow-x:auto; }
+/* 두 화면: 흐름은 한 페이지에서 이어 읽고, 비교는 전체 표로 확인한다. */
+.dashboard-panes > .panes-bar .pane-tab { flex:1 1 0; justify-content:center; padding:12px 16px; }
+.dashboard-panes > .panes-bar .pane-tabs { overflow:visible; }
+.flow-jumps { position:sticky; top:60px; z-index:12; display:flex; align-items:center; flex-wrap:wrap; gap:4px 18px; margin:0 0 18px; padding:10px 14px; border:1px solid var(--border); border-radius:10px; background:rgba(243,246,251,.96); backdrop-filter:blur(10px); box-shadow:0 5px 16px rgba(23,32,51,.04); }
+.flow-jumps > span { color:var(--faint); font-size:11px; }
+.flow-jumps a { color:var(--muted); font-size:12px; font-weight:650; padding:2px 0; border-bottom:2px solid transparent; transition:color .18s,border-color .18s; }
+.flow-jumps a:hover, .flow-jumps a:focus-visible { color:var(--accent); border-bottom-color:var(--accent); text-decoration:none; }
+.flow-section { scroll-margin-top:142px; }
+.flow-guide { margin:0 0 12px; color:var(--muted); font-size:12px; }
+.flow-guide summary { width:fit-content; padding:4px 0; cursor:pointer; }
+.flow-guide .yr-legend { margin-top:8px; }
+.flow-signal-grid { display:grid; grid-template-columns:minmax(260px,.8fr) minmax(0,1.6fr); gap:16px; align-items:start; }
+.flow-signal-grid .signal-list { grid-template-columns:1fr; }
+.flow-rankings { min-width:0; }
+.flow-rankings > p { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 12px; margin-bottom:8px; color:var(--muted); font-size:12px; }
+.flow-rankings > p b { color:var(--text); }
+.flow-rankings #bar-chart { max-height:414px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:var(--border-strong) transparent; }
+.dashboard-panes .yr-card { transition:border-color .18s,transform .18s,box-shadow .18s; }
+.dashboard-panes .yr-card:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(37,99,235,.08); }
+@media (max-width:900px) {
+  .flow-signal-grid { grid-template-columns:1fr; }
+  .flow-signal-grid .signal-list { grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+}
 @media (max-width:640px) {
+  .dashboard-panes > .panes-bar .pane-tab { gap:6px; padding:10px 8px; }
+  .flow-jumps { top:56px; gap:3px 13px; padding:8px 10px; }
+  .flow-jumps > span { display:none; }
+  .flow-jumps a { font-size:11px; }
+  .flow-section > h2 { flex-wrap:wrap; }
+  .flow-section > h2 .sub { flex-basis:100%; margin-left:0; }
+  .flow-rankings #bar-chart { max-height:340px; }
   .yr-legend > span { display:flex; align-items:flex-start; }
   .yr-legend i { margin-top:6px; }
   #bar-chart .bar-row > div:first-child { flex-basis:96px !important; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -45,6 +75,10 @@
 .yr-tip { position:absolute; pointer-events:none; z-index:4; background:rgba(240,243,247,0.96); border:1px solid var(--border-strong); border-radius:6px; padding:6px 8px; font:11.5px var(--mono); color:var(--text); white-space:nowrap; opacity:0; transition:opacity .1s; }
 .yr-tip.show { opacity:1; }
 @media (max-width:760px) { .yr-grid { grid-template-columns:1fr; } }
+@media (prefers-reduced-motion:reduce) {
+  .dashboard-panes .yr-card, .flow-jumps a { transition:none; }
+  .dashboard-panes .yr-card:hover { transform:none; }
+}
 </style>
 </head>
 <body>
@@ -63,7 +97,7 @@
 
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px">
     <div class="toggle" id="period-toggle"></div>
-    <span class="muted small">기간 선택 = 아래 전체 섹션에 적용</span>
+    <span class="muted small">시장 체력 · 자금 유입 · 히트맵 기간 / 차트 기간은 각 차트에서 선택</span>
   </div>
 
   <div class="section" id="fav-section">
@@ -76,24 +110,28 @@
     <div class="breadth-grid" id="breadth"></div>
   </div>
 
-  <!-- 아래 5개 섹션은 탭으로 넘겨 본다(panes.js). 각 탭은 처음 열릴 때만 그리고, 1년 차트 데이터도 그 탭을 열 때 받는다. -->
-  <div data-panes="dashboard" data-panes-hash data-panes-default="flow">
+  <!-- 흐름의 네 시각화는 한 화면에 이어지고, 전 종목 비교만 별도 탭으로 연다. -->
+  <div class="dashboard-panes" data-panes="dashboard" data-panes-hash data-panes-default="flow">
     <div class="panes-bar">
-      <button class="pane-step" data-pane-step="-1" aria-label="이전 섹션" title="이전 섹션 (←)">‹</button>
-      <div class="pane-tabs" aria-label="섹션 선택">
-        <button class="pane-tab" data-pane="flow"><span class="pane-no">01</span><b>섹터별 1년 흐름</b><small>ETF별 1년 차트</small></button>
-        <button class="pane-tab" data-pane="signal"><span class="pane-no">02</span><b>자금 유입 시그널</b><small>상위 ETF · 수익률 막대</small></button>
-        <button class="pane-tab" data-pane="trend"><span class="pane-no">03</span><b>누적 수익률 트렌드</b><small>그룹별 · ACWI 병기</small></button>
-        <button class="pane-tab" data-pane="heatmap"><span class="pane-no">04</span><b>그룹별 히트맵</b><small>기간 수익률 색</small></button>
-        <button class="pane-tab" data-pane="compare"><span class="pane-no">05</span><b>전 섹터 비교</b><small>전 종목 표</small></button>
+      <div class="pane-tabs" aria-label="화면 선택">
+        <button class="pane-tab" data-pane="flow"><span class="pane-no">01</span><b>섹터 흐름</b><small>차트 · 자금 유입 · 추세 · 히트맵</small></button>
+        <button class="pane-tab" data-pane="compare"><span class="pane-no">02</span><b>전 섹터 비교</b><small>전체 ETF · 정렬 가능한 표</small></button>
       </div>
-      <button class="pane-step" data-pane-step="1" aria-label="다음 섹션" title="다음 섹션 (→)">›</button>
     </div>
-    <div class="pane-hint">탭 클릭 · ‹ › 버튼 · 키보드 ←/→ 로 섹션 이동</div>
+    <div class="pane-hint">차트부터 히트맵까지 아래로 이어서 확인 · 탭 클릭 또는 키보드 ←/→ 로 화면 전환</div>
 
     <section class="pane" data-pane="flow" hidden>
-      <div class="section">
+      <nav class="flow-jumps" aria-label="섹터 흐름 바로 이동">
+        <span>바로 이동</span>
+        <a href="#flow-year">1년 차트</a>
+        <a href="#flow-signals">자금 유입</a>
+        <a href="#flow-trend">누적 추세</a>
+        <a href="#flow-heatmap">히트맵</a>
+      </nav>
+      <div class="section flow-section" id="flow-year">
         <h2>섹터별 1년 흐름<span class="sub">마우스 올리면 일자별 값 · 카드 클릭 = 상세</span></h2>
+        <details class="flow-guide">
+          <summary>차트 읽는 법 · 수익률 / 50일 이동평균 / 거래량</summary>
         <div class="yr-legend" aria-label="차트 범례">
           <span><i class="lg-line" style="background:#6f9bff"></i><b>파란 선</b> 이 ETF 자체의 누적 수익률(기간 첫날 종가 = 0%) — 지수·ACWI 아님</span>
           <span><i class="lg-line" style="background:#f0a53a"></i><b>노란(주황) 선</b> 50일 이동평균(최근 50거래일 평균 종가)을 같은 기준 %로 환산 — 파란 선이 위면 단기 추세 우위</span>
@@ -101,6 +139,7 @@
           <span><i class="lg-bar" style="background:rgba(240,71,90,.75)"></i><i class="lg-bar" style="background:rgba(61,126,255,.75)"></i><b>아래 막대</b> 일별 거래량 (빨강 = 전일보다 오른 날, 파랑 = 내린 날)</span>
           <span><i class="lg-tag"></i><b>오른쪽 숫자</b> 기간 누적 수익률 (빨강 = 플러스, 파랑 = 마이너스)</span>
         </div>
+        </details>
         <div class="yr-tools">
           <div class="toggle" id="yr-period"></div>
           <div class="toggle" id="yr-sort"></div>
@@ -108,21 +147,19 @@
         </div>
         <div class="yr-grid" id="yr-grid"><div class="spin">로딩 중…</div></div>
       </div>
-    </section>
 
-    <section class="pane" data-pane="signal" hidden>
-      <div class="section">
+      <div class="section flow-section" id="flow-signals">
         <h2>자금 유입 시그널<span class="sub">선택 기간 수익률이 ACWI를 웃도는 ETF 중 거래대금 비율이 높은 순 (최소 5개)</span></h2>
-        <div class="signal-list" id="signals"><div class="spin">로딩 중…</div></div>
+        <div class="flow-signal-grid">
+          <div class="signal-list" id="signals"><div class="spin">로딩 중…</div></div>
+          <div class="flow-rankings">
+            <p><b>전체 ETF 수익률 순위</b><span>막대 = 수익률 · 괄호 = ACWI 대비 · 아래로 스크롤</span></p>
+            <div class="card" id="bar-chart" role="region" tabindex="0" aria-label="전체 ETF 수익률 순위, 스크롤 가능"><div class="spin">로딩 중…</div></div>
+          </div>
+        </div>
       </div>
-      <div class="section">
-        <span class="muted small">막대 = 수익률, 괄호 = ACWI 대비 초과수익</span>
-        <div class="card" style="margin-top:8px" id="bar-chart"><div class="spin">로딩 중…</div></div>
-      </div>
-    </section>
 
-    <section class="pane" data-pane="trend" hidden>
-      <div class="section">
+      <div class="section flow-section" id="flow-trend">
         <h2>누적 수익률 트렌드<span class="sub">그룹별 · ACWI 병기</span></h2>
         <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px">
           <div class="toggle" id="trend-period"></div>
@@ -131,10 +168,8 @@
         <div class="card" id="trend-chart"><div class="spin">로딩 중…</div></div>
         <div id="trend-legend" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:10px"></div>
       </div>
-    </section>
 
-    <section class="pane" data-pane="heatmap" hidden>
-      <div class="section">
+      <div class="section flow-section" id="flow-heatmap">
         <h2>그룹별 히트맵<span class="sub">색 = 선택 기간 수익률 · <span class="badge inflow">자금유입</span> = ACWI 초과수익 + 거래대금 확대(vol 5d/20d &gt; 1.3)</span></h2>
         <div id="heatmap"><div class="spin">로딩 중…</div></div>
       </div>
@@ -182,6 +217,35 @@ var curTrend = "3m";
 var curGroup = "미국 섹터";
 var GROUP_ORDER = ["미국 섹터","테마","지역","채권·원자재","한국","벤치마크"];
 
+/* 이전 5개 탭의 저장 상태와 링크를 통합 화면으로 연결한다. */
+var FLOW_TARGETS = { signal:"flow-signals", trend:"flow-trend", heatmap:"flow-heatmap", "flow-year":"flow-year", "flow-signals":"flow-signals", "flow-trend":"flow-trend", "flow-heatmap":"flow-heatmap" };
+var flowPendingJump = null;
+function migrateDashboardPane() {
+  var hash = location.hash.slice(1), target = FLOW_TARGETS[hash];
+  if (target) {
+    flowPendingJump = target;
+    try { history.replaceState(null, "", "#flow"); } catch (e) {}
+    var root = document.querySelector("[data-panes='dashboard']");
+    if (root && root.panes) { root.panes.show("flow"); finishFlowJump(); }
+  }
+  try {
+    if (["signal", "trend", "heatmap"].indexOf(localStorage.getItem("panes:dashboard")) >= 0) localStorage.setItem("panes:dashboard", "flow");
+  } catch (e) {}
+}
+function finishFlowJump() {
+  if (!flowPendingJump || !DATA || !YEAR_P) return;
+  YEAR_P.then(function () {
+    var target = document.getElementById(flowPendingJump);
+    var pane = document.querySelector(".dashboard-panes .pane[data-pane='flow']");
+    flowPendingJump = null;
+    if (target && pane && !pane.hidden) requestAnimationFrame(function () {
+      target.scrollIntoView({ behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start" });
+    });
+  });
+}
+migrateDashboardPane();
+window.addEventListener("hashchange", migrateDashboardPane);
+
 function etfList() {
   if (!DATA) return [];
   return Object.keys(DATA.etfs).map(function (k) { return DATA.etfs[k]; });
@@ -203,9 +267,8 @@ function renderToggles() {
   $qa("#period-toggle button").forEach(function (b) {
     b.onclick = function () {
       curPeriod = b.dataset.k; renderToggles(); renderBreadth();
-      /* 이미 열어 본 탭만 다시 그린다 — 안 연 탭은 처음 열 때 현재 기간으로 그려진다 */
-      if (BUILT.signal) { renderSignals(); renderBars(); }
-      if (BUILT.heatmap) renderHeatmap();
+      /* 통합 화면이 이미 열렸다면 함께 있는 시그널·순위·히트맵을 갱신한다. */
+      if (BUILT.flow) { renderSignals(); renderBars(); renderHeatmap(); }
     };
   });
 }
@@ -560,8 +623,8 @@ function renderFavs() {
 }
 document.addEventListener("favchange", renderFavs);
 
-/* ---------- 탭(섹션) 지연 렌더 ---------- */
-/* 각 탭은 처음 보일 때 한 번만 그린다(panes.js의 pane:show). 숨은 상태에서 그리면 폭이 0이 되므로 반드시 보인 뒤에 그린다. */
+/* ---------- 두 화면 지연 렌더 ---------- */
+/* flow의 네 섹션은 한 번에 보인다. 비교 표는 처음 열릴 때만 그린다. */
 var BUILT = {};
 var YEAR_P = null;
 function buildPane(id) {
@@ -571,12 +634,10 @@ function buildPane(id) {
     renderYearControls();
     if (!YEAR_P) YEAR_P = fetchJSON("etf_year.json").catch(function () { return null; });  /* 1년 시계열(~0.2MB)은 이 탭에서만 받는다 */
     YEAR_P.then(function (y) { YEAR = y; renderYearGrid(); });
-  } else if (id === "signal") {
     renderSignals(); renderBars();
-  } else if (id === "trend") {
     renderTrendControls(); renderTrend();
-  } else if (id === "heatmap") {
     renderHeatmap();
+    finishFlowJump();
   } else if (id === "compare") {
     var rows = etfList();
     renderTableRows(rows);

@@ -8,14 +8,20 @@
   기준금리     뉴욕연준 EFFR API
   실업수당    미 노동부(DOL) ar539 주간 청구 — 주별 합계, 비계절조정
   소비자심리   미시간대 tbmics.csv
-  지수·환율   Yahoo 차트 (S&P500·나스닥·코스피·코스닥·VIX·달러인덱스·원달러)
+  지수·환율·원유 Yahoo 차트 (S&P500·나스닥·코스피·코스닥·VIX·달러인덱스·원달러·WTI)
   발표 일정    연준 FOMC 일정, BEA 일정 페이지, BLS 일정(자동 요청 차단 시
               data_sources/macro_calendar_seed.json), 실업수당은 매주 목요일
 
 FRED는 이 환경과 GitHub Actions 모두에서 응답이 끊겨 쓰지 않는다.
+--watch-only는 국채와 WTI만 확인하며 기존 경제지표·달력은 그대로 보존한다.
 """
-import csv, io, json, os, re, ssl, sys, time, urllib.request
+import argparse, csv, io, json, os, re, ssl, sys, time, urllib.request
 from datetime import date, datetime, timedelta, timezone
+
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except (AttributeError, OSError):
+    pass
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "docs", "macro_dash.json")
@@ -199,7 +205,8 @@ def fetch_umich():
 
 
 MARKETS = [("^GSPC", "S&P 500", "10y"), ("^IXIC", "나스닥", "10y"), ("^KS11", "코스피", "10y"), ("^KQ11", "코스닥", "10y"),
-           ("^VIX", "VIX", "10y"), ("DX-Y.NYB", "달러인덱스", "10y"), ("KRW=X", "원/달러", "10y")]
+           ("^VIX", "VIX", "10y"), ("DX-Y.NYB", "달러인덱스", "10y"), ("KRW=X", "원/달러", "10y"),
+           ("CL=F", "WTI 원유 선물", "10y")]
 
 
 def fetch_yahoo(tk, rng):
@@ -360,22 +367,122 @@ def load_prev():
         return {}
 
 
-def main():
+def make_indicator(key, label, group, unit, freq, source, dates, vals, note=None, level=None, digits=2):
+    cut = f"{TODAY.year - 10}"
+    pairs = [(d, v) for d, v in zip(dates, vals) if d >= cut]
+    d2, v2 = [p[0] for p in pairs], [p[1] for p in pairs]
+    block = {"key": key, "label": label, "group": group, "unit": unit, "freq": freq, "source": source,
+             "dates": d2, "values": v2, "latest": latest_block(d2, v2), "note": note, "digits": digits}
+    if level:
+        block["level"] = level
+    return block
+
+
+def merge_watch_yields(previous, fresh_rows):
+    """이미 압축한 과거 시계열을 재압축하지 않고 최신 일별 관측치만 병합한다."""
+    previous = previous or {}
+    cols = ("3M", "2Y", "5Y", "10Y", "30Y")
+    rows = {}
+    for i, d in enumerate(previous.get("dates", [])):
+        rows[d] = {c: previous[c][i] for c in cols if i < len(previous.get(c, [])) and previous[c][i] is not None}
+    for snap in previous.get("curve", {}).values():
+        if snap and snap.get("date"):
+            rows.setdefault(snap["date"], {}).update(snap.get("curve", {}))
+    for d, values in fresh_rows.items():
+        if values:
+            rows.setdefault(d, {}).update(values)
+    dates = sorted(rows)
+    if not dates:
+        raise ValueError("No Treasury observations")
+    result = dict(previous, dates=dates)
+    for col in cols:
+        result[col] = [rows[d].get(col) for d in dates]
+    for key, a, b in (("10Y2Y", "10Y", "2Y"), ("10Y3M", "10Y", "3M")):
+        result[key] = [None if x is None or y is None else round(x - y, 2) for x, y in zip(result[a], result[b])]
+
+    def snap(target):
+        eligible = [d for d in dates if d <= target]
+        return {"date": eligible[-1], "curve": rows[eligible[-1]]} if eligible else None
+
+    last = date.fromisoformat(dates[-1])
+    result["curve"] = {"now": snap(dates[-1]), "m1": snap((last - timedelta(days=30)).isoformat()),
+                       "y1": snap((last - timedelta(days=365)).isoformat())}
+    if not result.get("thinned") and len(dates) > RECENT:
+        idx = thin_idx(len(dates))
+        for col in ("dates", *cols, "10Y2Y", "10Y3M"):
+            result[col] = [result[col][i] for i in idx]
+        result["thinned"] = True
+    return result
+
+
+def refresh_watch(previous):
+    """짧은 재확인 경로. BLS·BEA·FRED·캘린더 요청 없이 실패한 자료는 보존한다."""
+    data = dict(previous)
+    ind, markets = dict(previous.get("indicators", {})), dict(previous.get("markets", {}))
+    status, watch_status = dict(previous.get("status", {})), {}
+    checked = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+    try:
+        dates, fresh_rows = fetch_treasury(years=1 if previous.get("yields") else 2)
+        if not dates or not any(fresh_rows.values()):
+            raise ValueError("No new Treasury response")
+        yields = merge_watch_yields(previous.get("yields"), fresh_rows)
+        data["yields"] = yields
+        for key, label, col in (("y10", "미국 10년물", "10Y"), ("y2", "미국 2년물", "2Y"),
+                                ("y3m", "미국 3개월물", "3M"), ("y30", "미국 30년물", "30Y"),
+                                ("s10y2y", "장단기 금리차 (10Y−2Y)", "10Y2Y"), ("s10y3m", "장단기 금리차 (10Y−3M)", "10Y3M")):
+            block = make_indicator(key, label, "rates", "%p" if key.startswith("s") else "%", "D", "미 재무부",
+                                   yields["dates"], yields[col],
+                                   note="마이너스면 장단기 역전 — 과거 경기침체 선행 신호" if key.startswith("s") else None)
+            if yields.get("thinned"):
+                block["thinned"] = True
+            if block["latest"]:
+                ind[key] = block
+        watch_status["treasury"] = "ok"
+    except Exception as error:
+        watch_status["treasury"] = f"fail: {error}"
+        log(f"  [국채 보존] {error}")
+    try:
+        market = fetch_yahoo("CL=F", "10y")
+        if len(market.get("c", [])) < 2:
+            raise ValueError("No WTI observations")
+        old_dates = markets.get("CL=F", {}).get("d", [])
+        if old_dates and market["d"][-1] < old_dates[-1]:
+            raise ValueError("WTI response is older than saved data")
+        market.update(name="WTI 원유 선물", source="Yahoo Finance", unit="USD/bbl")
+        ind["wti"] = make_indicator("wti", "WTI 원유 선물", "markets", "USD/bbl", "D", "Yahoo Finance",
+                                     market["d"], market["c"], note="CL=F 연속 선물 일별 가격. 현물유가와 다를 수 있습니다.")
+        if len(ind["wti"]["dates"]) > RECENT:
+            ind["wti"]["dates"], ind["wti"]["values"] = thin_series(ind["wti"]["dates"], ind["wti"]["values"])
+            ind["wti"]["thinned"] = True
+        markets["CL=F"] = dict(thin_market(market), thinned=True) if len(market["d"]) > RECENT else market
+        watch_status["wti"] = "ok"
+    except Exception as error:
+        watch_status["wti"] = f"fail: {error}"
+        log(f"  [WTI 보존] {error}")
+    status.update(watch_status)
+    data.update(indicators=ind, markets=markets, status=status, watch_status=watch_status, watch_checked=checked)
+    success = any(v == "ok" for v in watch_status.values())
+    if success:
+        data["updated"] = checked
+    with open(OUT + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    os.replace(OUT + ".tmp", OUT)
+    log("관측값 확인 결과: " + json.dumps(watch_status, ensure_ascii=False))
+    return 0 if success else 1
+
+
+def main(watch_only=False):
     log(f"=== fetch_macro_dash.py ({datetime.now(KST):%Y-%m-%d %H:%M KST}) ===")
     prev = load_prev()
+    if watch_only:
+        return refresh_watch(prev)
     ind = dict(prev.get("indicators", {}))
     status = {}
 
     def put(key, label, group, unit, freq, source, dates, vals, note=None, level=None, digits=2):
         if not dates:
             return
-        cut = f"{TODAY.year - 10}"
-        pairs = [(d, v) for d, v in zip(dates, vals) if d >= cut]
-        d2, v2 = [p[0] for p in pairs], [p[1] for p in pairs]
-        ind[key] = {"key": key, "label": label, "group": group, "unit": unit, "freq": freq, "source": source,
-                    "dates": d2, "values": v2, "latest": latest_block(d2, v2), "note": note, "digits": digits}
-        if level:
-            ind[key]["level"] = level
+        ind[key] = make_indicator(key, label, group, unit, freq, source, dates, vals, note, level, digits)
 
     # 1) BLS
     try:
@@ -474,18 +581,31 @@ def main():
 
     # 7) 지수·환율
     markets = dict(prev.get("markets", {}))
+    fresh_markets = set()
     for tk, name, rng in MARKETS:
         try:
             m = fetch_yahoo(tk, rng)
             if len(m["c"]) > 100:
                 m["name"] = name
                 markets[tk] = m
+                fresh_markets.add(tk)
+                if tk == "CL=F":
+                    status["wti"] = "ok"
+            elif tk == "CL=F":
+                status["wti"] = "fail: insufficient observations"
             time.sleep(0.5)
         except Exception as e:
             log(f"  [skip] {tk}: {e}")
+            if tk == "CL=F":
+                status["wti"] = f"fail: {e}"
     for tk, key, lab in (("^VIX", "vix", "VIX 변동성"), ("DX-Y.NYB", "dxy", "달러인덱스"), ("KRW=X", "usdkrw", "원/달러 환율")):
         if tk in markets:
             put(key, lab, "markets", "pt" if key != "usdkrw" else "원", "D", "Yahoo", markets[tk]["d"], markets[tk]["c"], digits=2)
+    if "CL=F" in fresh_markets or ("CL=F" in markets and "wti" not in ind):
+        put("wti", "WTI 원유 선물", "markets", "USD/bbl", "D", "Yahoo Finance", markets["CL=F"]["d"], markets["CL=F"]["c"],
+            note="CL=F 연속 선물 일별 가격. 현물유가와 다를 수 있습니다.")
+        if markets["CL=F"].get("thinned"):
+            ind["wti"]["thinned"] = True
 
     # 8) 발표 일정
     events = []
@@ -535,4 +655,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--watch-only", action="store_true", help="국채·WTI만 확인하고 경제지표·캘린더는 보존")
+    sys.exit(main(watch_only=parser.parse_args().watch_only))

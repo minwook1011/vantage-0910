@@ -20,7 +20,108 @@
   var STATES = [["near", "👀 돌파 임박"], ["breakout", "🚀 돌파"], ["bear", "⚠️ 하락형"], ["all", "전체"]];
   var view = { state: "near", kinds: null, shown: 24 };
   try { var sv = JSON.parse(localStorage.getItem("pt-view-v1") || "null"); if (sv && sv.state) view.state = sv.state; } catch (e) {}
-  var ctx = null;
+  var ctx = null, renderVersion = 0, chartObserver = null;
+  var candleCache = Object.create(null), candleRequests = Object.create(null), candleFailures = Object.create(null);
+  var candleQueue = [], candleActive = 0;
+
+  function hasCandles(s) { return !!(s && Array.isArray(s.candles) && _dailyTail(s.candles).length >= 20); }
+  function newestCandles(a, b) {
+    if (!a || !a.length) return b;
+    if (!b || !b.length) return a;
+    var ad = a[a.length - 1].d, bd = b[b.length - 1].d;
+    return ad > bd || (ad === bd && a.length >= b.length) ? a : b;
+  }
+  function pumpCandles() {
+    while (candleActive < 4 && candleQueue.length) {
+      var job = candleQueue.shift();
+      if (!job.wanted.some(function (wanted) { return !wanted || wanted(); })) {
+        delete candleRequests[job.key];
+        job.reject(new Error("Chart is no longer visible"));
+        continue;
+      }
+      candleActive++;
+      (function (work) {
+        var s = work.stock, path = megaCandleFile(work.key);
+        Promise.resolve().then(function () {
+          if (hasCandles(s)) return { candles: s.candles };
+          return candleFailures[work.key] && window.vantageJSON ? window.vantageJSON(path, true) : fetchJSON(path);
+        }).then(function (data) {
+          var incoming = data && data.candles;
+          var next = newestCandles(hasCandles(s) ? s.candles : null, incoming);
+          if (!hasCandles({ candles: next })) throw new Error("Daily candles are unavailable");
+          s.candles = candleCache[work.key] = next;
+          delete candleFailures[work.key];
+          return next;
+        }).then(function (candles) {
+          delete candleRequests[work.key];
+          candleActive--;
+          work.resolve(candles);
+          pumpCandles();
+        }, function (error) {
+          delete candleRequests[work.key];
+          candleActive--;
+          candleFailures[work.key] = true;
+          work.reject(error);
+          pumpCandles();
+        });
+      })(job);
+    }
+  }
+  /* 패턴/신호 카드가 함께 쓰는 로더. 실패를 []로 저장하지 않아 재시도가 가능하다. */
+  function loadCandles(s, stillRelevant) {
+    if (!s || !s.ticker) return Promise.reject(new Error("Missing ticker"));
+    var key = s.ticker;
+    if (hasCandles(s)) {
+      s.candles = candleCache[key] = newestCandles(s.candles, candleCache[key]);
+      return Promise.resolve(s);
+    }
+    if (candleCache[key]) { s.candles = candleCache[key]; return Promise.resolve(s); }
+    var job = candleRequests[key];
+    if (!job) {
+      job = { key: key, stock: s, wanted: [] };
+      job.promise = new Promise(function (resolve, reject) { job.resolve = resolve; job.reject = reject; });
+      candleRequests[key] = job;
+      candleQueue.push(job);
+    }
+    job.wanted.push(stillRelevant);
+    var result = job.promise.then(function (candles) {
+      s.candles = newestCandles(hasCandles(s) ? s.candles : null, candles);
+      return s;
+    });
+    pumpCandles();
+    return result;
+  }
+
+  function chartDate(s, p) {
+    var candles = s.candles || [], last = candles.length ? candles[candles.length - 1].d : null;
+    var analyzed = p.date || "";
+    (p.lines || []).forEach(function (line) {
+      (line.p || []).forEach(function (point) { if (point[0] > analyzed) analyzed = point[0]; });
+    });
+    var text = "신호 " + (p.date || "날짜 없음") + " · 캔들 " + (last || "미확인");
+    if (PT.data && PT.data.updated) text += " · 분석 갱신 " + PT.data.updated;
+    if (last && analyzed && last < analyzed) text += " · 분석 기준일 캔들 미반영";
+    else if (last && analyzed && last > analyzed) text += " · 이후 캔들은 패턴 재판정 전입니다";
+    return '<div class="pt-date muted small" style="margin:5px 0;font-size:11px">' + escapeHtml(text) + "</div>";
+  }
+  function loadingChart(big) {
+    return '<div class="muted small" role="status" style="min-height:' + (big ? 240 : 120) + 'px;display:grid;place-items:center">일봉·거래량 불러오는 중…</div>';
+  }
+  function fillChart(el, it, big, current) {
+    if (!current()) return;
+    el.setAttribute("aria-busy", "true");
+    el.innerHTML = loadingChart(big);
+    loadCandles(it.s, current).then(function () {
+      if (!current()) return;
+      el.setAttribute("aria-busy", "false");
+      el.innerHTML = miniSVG(it.s, it.p, big ? 820 : 300, big ? 340 : 120, big) + chartDate(it.s, it.p);
+    }, function () {
+      if (!current()) return;
+      el.setAttribute("aria-busy", "false");
+      el.innerHTML = '<div class="muted small" style="min-height:120px;display:grid;place-items:center">일봉을 불러오지 못했습니다.<button type="button" class="more-btn pt-retry" style="margin:4px">차트 다시 불러오기</button></div>' + chartDate(it.s, it.p);
+      el.querySelector(".pt-retry").onclick = function (event) { event.stopPropagation(); fillChart(el, it, big, current); };
+    });
+  }
 
   function info(k) { return (PT.data && PT.data.patterns && PT.data.patterns[k]) || { name: k, side: "bull", emoji: "" }; }
   function isBull(p) { return info(p.kind).side === "bull"; }
@@ -95,8 +196,10 @@
       var t = y(Math.max(c.o, c.c)), b = y(Math.min(c.o, c.c));
       out += '<line x1="' + x(i).toFixed(1) + '" x2="' + x(i).toFixed(1) + '" y1="' + y(c.h).toFixed(1) + '" y2="' + y(c.l).toFixed(1) + '" stroke="' + col + '" stroke-width="1" opacity=".85"/>' +
         '<rect x="' + (x(i) - bw / 2).toFixed(1) + '" y="' + t.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(1, b - t).toFixed(1) + '" fill="' + col + '"' + (big ? "><title>" + c.d + " 종 " + c.c + "</title></rect>" : "/>");
-      var vh = (c.v || 0) / maxV * volH;
-      out += '<rect x="' + (x(i) - bw / 2).toFixed(1) + '" y="' + (vy0 + volH - vh).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(.5, vh).toFixed(1) + '" fill="' + col + '" opacity=".35"/>';
+      if (typeof c.v === "number" && isFinite(c.v) && c.v > 0) {
+        var vh = c.v / maxV * volH;
+        out += '<rect x="' + (x(i) - bw / 2).toFixed(1) + '" y="' + (vy0 + volH - vh).toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(.5, vh).toFixed(1) + '" fill="' + col + '" opacity=".35"/>';
+      }
       if (big && i % Math.ceil(n / 7) === 0) out += '<text x="' + x(i).toFixed(1) + '" y="' + (H - 6) + '" fill="var(--muted)" font-size="10" text-anchor="middle">' + c.d.slice(2) + "</text>";
     });
     var COL = { res: "#f0b429", sup: "#5b8cff", pole: "rgba(240,180,41,.55)" };
@@ -129,7 +232,7 @@
 
   function stateBadge(p) {
     if (!isBull(p)) return '<span class="pt-badge bear">⚠️ 하락형</span>';
-    if (p.state === "breakout") return '<span class="pt-badge breakout">🚀 돌파' + (p.age ? " · " + p.age + "일 전" : " · 오늘") + "</span>";
+    if (p.state === "breakout") return '<span class="pt-badge breakout" title="신호 ' + escapeHtml(p.date || "날짜 없음") + '">🚀 돌파</span>';
     return '<span class="pt-badge near">👀 저항선 ' + pctTxt(p.dist) + "</span>";
   }
   function btLine(p) {
@@ -164,11 +267,11 @@
   }
   function card(it, i) {
     var s = it.s, p = it.p, inf = info(p.kind), sc = ctx.score(s);
-    return '<div class="pt-card' + (p.state === "breakout" && isBull(p) ? " brk" : "") + '" data-i="' + i + '">' +
-      '<div class="pt-top"><div><b>' + escapeHtml(s.name) + '</b><div class="sub">' + escapeHtml(s.ticker.replace(/\.[A-Z]+$/, "")) + " · " + escapeHtml(s.sector) + (sc != null ? " · 기술점수 " + sc : "") + "</div></div>" + stateBadge(p) + "</div>" +
+    return '<div class="pt-card' + (p.state === "breakout" && isBull(p) ? " brk" : "") + '" role="group" aria-label="' + escapeHtml(s.name + " " + inf.name) + '" data-i="' + i + '">' +
+      '<div class="pt-top"><div><button type="button" class="pt-open" style="border:0;background:none;color:inherit;font:inherit;padding:0;text-align:left;cursor:pointer" aria-label="' + escapeHtml(s.name + " " + inf.name + " 차트 상세 열기") + '"><b>' + escapeHtml(s.name) + '</b></button><div class="sub">' + escapeHtml(s.ticker.replace(/\.[A-Z]+$/, "")) + " · " + escapeHtml(s.sector) + (sc != null ? " · 기술점수 " + sc : "") + "</div></div>" + stateBadge(p) + "</div>" +
       '<div class="pt-name">' + inf.emoji + " " + escapeHtml(inf.name) + ' <span>· ' + p.start.slice(2) + " 부터</span></div>" +
-      '<div class="pt-chart">' + miniSVG(s, p, 300, 120, false) + "</div>" +
-      '<div class="pt-rows"><div>돌파 기준가<b>' + fmtP(p.level) + '</b></div><div>현재가 대비<b class="' + (p.dist >= 0 ? "up" : "") + '">' + pctTxt(p.dist) + "</b></div>" +
+      '<div class="pt-chart">' + (hasCandles(s) ? miniSVG(s, p, 300, 120, false) + chartDate(s, p) : loadingChart(false)) + "</div>" +
+      '<div class="pt-rows"><div>돌파 기준가<b>' + fmtP(p.level) + '</b></div><div>기준가 대비<b class="' + (p.dist >= 0 ? "up" : "") + '">' + pctTxt(p.dist) + "</b></div>" +
       "<div>목표가<b>" + (isBull(p) ? pctTxt(p.height, 0) : "–") + "</b></div><div>" + (p.state === "breakout" ? "돌파 거래량" : "거래량 수축") + "<b>" + volTxt(p) + "</b></div></div>" +
       btLine(p) + "</div>";
   }
@@ -176,6 +279,9 @@
   function render() {
     if (!ctx) return;
     var grid = document.getElementById("pt-grid");
+    if (!grid) return;
+    var version = ++renderVersion;
+    if (chartObserver) { chartObserver.disconnect(); chartObserver = null; }
     if (!PT.data) { grid.innerHTML = '<div class="pt-empty">chart_patterns.json이 아직 없습니다 — backtest_ta.py를 실행하세요.</div>'; return; }
     var base = ctx.stocks(), cnt = { near: 0, breakout: 0, bear: 0, all: 0 }, kc = {};
     base.forEach(function (s) {
@@ -213,8 +319,24 @@
         view.shown = 24; render();
       };
     });
+    if (window.IntersectionObserver) {
+      chartObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting || version !== renderVersion) return;
+          chartObserver.unobserve(entry.target);
+          var el = entry.target, it = shown[+el.dataset.i], chart = el.querySelector(".pt-chart");
+          fillChart(chart, it, false, function () { return version === renderVersion && chart.isConnected; });
+        });
+      }, { rootMargin: "240px" });
+    }
     Array.prototype.forEach.call(grid.querySelectorAll(".pt-card"), function (el) {
       el.onclick = function () { openPattern(shown[+el.dataset.i]); };
+      if (hasCandles(shown[+el.dataset.i].s)) return;
+      if (chartObserver) chartObserver.observe(el);
+      else {
+        var chart = el.querySelector(".pt-chart");
+        fillChart(chart, shown[+el.dataset.i], false, function () { return version === renderVersion && chart.isConnected; });
+      }
     });
   }
 
@@ -222,7 +344,7 @@
     var s = it.s, p = it.p, inf = info(p.kind), st = (PT.data.stats || {})[p.kind] || {};
     var f = st.f20 || {}, nv = st.near || {}, vf = st.vol_f20 || {};
     var rows = '<div class="pt-rows" style="grid-template-columns:repeat(4,1fr);margin-top:10px">' +
-      "<div>돌파 기준가<b>" + fmtP(p.level) + "</b></div><div>현재가 대비<b>" + pctTxt(p.dist) + "</b></div>" +
+      "<div>돌파 기준가<b>" + fmtP(p.level) + "</b></div><div>기준가 대비<b>" + pctTxt(p.dist) + "</b></div>" +
       "<div>목표가<b>" + (isBull(p) ? fmtP(p.target) + " (" + pctTxt(p.height, 0) + ")" : "–") + "</b></div><div>" + (p.state === "breakout" ? "돌파 거래량" : "거래량 수축") + "<b>" + volTxt(p) + "</b></div></div>";
     var bt = [];
     if (f.n) bt.push("이 패턴이 과거 5년 300종목에서 <b>" + f.n + "번</b> 돌파 → 20일 뒤 평균 <b>" + pctTxt(f.mean) + "</b>, 중앙값 " + pctTxt(f.median) + ", 오른 비율 <b>" + f.win + "%</b>");
@@ -230,12 +352,14 @@
     if (st.target_hit != null) bt.push("60일 안에 목표가 도달 <b>" + st.target_hit + "%</b> · 10일 안에 돌파선 −3% 아래로 되밀림(실패) " + st.fail10 + "%");
     if (nv.n) bt.push("'돌파 임박' 신호 " + nv.n + "번 중 20일 안에 실제로 뚫은 비율 <b>" + nv.brk20 + "%</b>");
     var body = '<div class="pt-name" style="margin-top:0">' + stateBadge(p) + " &nbsp;" + inf.emoji + " " + escapeHtml(inf.name) + " <span>· " + p.start + " ~</span></div>" +
-      '<div class="pt-chart" style="margin-top:8px">' + miniSVG(s, p, 820, 340, true) + "</div>" + rows +
+      '<div id="pt-detail-chart" class="pt-chart" style="margin-top:8px">' + loadingChart(true) + "</div>" + rows +
       '<div class="pt-modal-note">📐 ' + (DESC[p.kind] || "") + "</div>" +
       (bt.length ? '<div class="pt-modal-note">🧪 ' + bt.join("<br>🧪 ") + "</div>" : "") +
       '<div class="pt-modal-note" style="font-size:11.5px;color:var(--faint)">자동 판정입니다. 고점·저점은 좌우 5봉이 지나야 확정되므로 최근 며칠의 움직임은 선에 반영이 늦을 수 있습니다.</div>' +
       '<div style="margin-top:12px"><button class="more-btn" id="pt-open-stock" style="display:inline-block;margin:0">종목 상세(재무·뉴스) 열기 →</button></div>';
     openModal(escapeHtml(s.name) + ' <span class="muted small">' + escapeHtml(s.ticker) + "</span>", body);
+    var chart = document.getElementById("pt-detail-chart");
+    fillChart(chart, it, true, function () { return chart.isConnected && document.getElementById("pt-detail-chart") === chart; });
     var btn = document.getElementById("pt-open-stock");
     if (btn) btn.onclick = function () { closeModal(); ctx.open(s.ticker); };
   }
@@ -248,7 +372,7 @@
   }
 
   window.PatternRadar = {
-    load: load, render: render, patternsOf: patternsOf, primary: primary, info: info, miniSVG: miniSVG,
+    load: load, render: render, patternsOf: patternsOf, primary: primary, info: info, miniSVG: miniSVG, ensureCandles: loadCandles,
     mount: function (c) { ctx = c; render(); },
     get data() { return PT.data; }, get bt() { return PT.bt; }
   };

@@ -18,6 +18,40 @@
 .mx-top p { margin: 0; color: var(--muted); font-size: 13px; } .mx-top p b { color: var(--text); }
 .mx-stamp { color: var(--muted); font: 600 12px var(--mono); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: var(--panel); }
 
+/* 진입 화면: 심리 → 금리 → 유가 */
+.mx-watch { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:22px; }
+.mx-watch-card { --watch-color:#2563eb; position:relative; min-width:0; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:18px; padding:18px 20px 16px; background:linear-gradient(135deg,color-mix(in srgb,var(--watch-color) 7%,white),white 70%); box-shadow:0 8px 26px rgba(23,32,51,.04); transition:transform .2s,border-color .2s,box-shadow .2s; }
+.mx-watch-card:hover { transform:translateY(-2px); border-color:color-mix(in srgb,var(--watch-color) 40%,transparent); box-shadow:0 12px 28px rgba(23,32,51,.07); }
+.mx-watch-top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+.mx-watch-k { color:var(--watch-color); font:700 10px var(--mono); letter-spacing:.1em; }
+.mx-watch-badge { border-radius:999px; padding:2px 8px; background:color-mix(in srgb,var(--watch-color) 9%,white); color:var(--watch-color); font-size:10px; font-weight:700; }
+.mx-watch-card h2 { margin:0; font-size:19px; letter-spacing:-.03em; }
+.mx-watch-caption { margin:3px 0 0; color:var(--muted); font-size:11px; }
+.mx-watch-value { display:flex; align-items:baseline; flex-wrap:wrap; gap:8px; margin-top:9px; font:800 35px var(--mono); letter-spacing:-.035em; line-height:1.25; }
+.mx-watch-value small { color:var(--muted); font:600 12px var(--sans); letter-spacing:0; }
+.mx-watch-state { margin-left:auto; color:var(--watch-color); font:700 13px var(--sans); letter-spacing:0; }
+.mx-watch-change { min-height:24px; margin-top:7px; font-size:11.5px; color:var(--muted); }
+.mx-watch-change b { font-family:var(--mono); }
+.mx-watch-pair { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:6px; color:var(--muted); font-size:12px; }
+.mx-watch-pair b { color:var(--text); font-family:var(--mono); }
+.mx-watch-gauge { position:relative; height:7px; border-radius:9px; margin:14px 0 8px; background:linear-gradient(90deg,#4780da 0%,#8eacd2 25%,#d2d7cd 50%,#e6b95c 75%,#e98642 100%); }
+.mx-watch-gauge i { position:absolute; top:-4px; width:4px; height:15px; border:1px solid white; border-radius:4px; background:var(--text); transform:translateX(-50%); }
+.mx-watch-scale { display:flex; justify-content:space-between; color:var(--faint); font-size:10px; }
+.mx-watch-chart { margin-top:auto; padding-top:14px; }
+.mx-watch-chart svg { display:block; width:100%; height:66px; overflow:visible; }
+.mx-watch-chart polyline { stroke-dasharray:750; stroke-dashoffset:750; animation:mxDraw .9s ease forwards; }
+.mx-watch-chart figcaption { display:flex; justify-content:space-between; gap:8px; margin-top:5px; color:var(--faint); font:10px var(--mono); }
+.mx-watch-meta { margin-top:11px; padding-top:9px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; line-height:1.65; }
+.mx-watch-meta span { display:block; }
+.mx-watch-meta .mx-watch-stale { color:#9a651a; }
+.mx-watch-method { margin-top:5px; color:var(--muted); font-size:10.5px; }
+.mx-watch-method summary { width:fit-content; cursor:pointer; color:var(--watch-color); }
+.mx-watch-method p { margin-top:6px; line-height:1.65; }
+.mx-watch-link { align-self:flex-start; margin-top:6px; padding:0; border:0; color:var(--watch-color); background:none; font:700 11px var(--sans); cursor:pointer; }
+.mx-watch-link:hover { text-decoration:underline; }
+.mx-watch-empty { padding:24px 0; color:var(--muted); font-size:12px; }
+#mx-rates-section { scroll-margin-top:90px; }
+
 /* 국면 리본 */
 .mx-regime { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
 .mx-reg { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 12px; background: var(--panel); cursor: pointer; transition: transform .18s, border-color .18s; }
@@ -194,6 +228,9 @@
   .mx-drow { grid-template-columns: 4px 72px minmax(0,1fr) minmax(0,1fr); } .mx-drow svg, .mx-drow .act { display: none; }
 }
 @media (max-width: 700px) {
+  .mx-watch { grid-template-columns:1fr; gap:10px; }
+  .mx-watch-card { padding:16px 18px; }
+  .mx-watch-chart svg { height:60px; }
   .mx-regime { grid-template-columns: 1fr 1fr; }
   .mx-boards { grid-template-columns: 1fr; }
   .mx-row { grid-template-columns: minmax(0,1fr) 80px 72px 40px; } .mx-row svg { display: none; }
@@ -204,4 +241,10 @@
   .mx-ytiles { grid-template-columns: repeat(2, minmax(0,1fr)); }
   .mx-stats { grid-template-columns: 1fr 1fr; }
   .mx-drow { grid-template-columns: 4px 60px minmax(0,1fr); } .mx-drow .vals { grid-column: 3; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .mx-page *, .mx-page *::before, .mx-page *::after { animation:none !important; transition:none !important; }
+  .mx-watch-chart polyline, .mx-row svg polyline { stroke-dashoffset:0; }
+  .mx-drow { opacity:1; transform:none; }
+  .mx-watch-card:hover, .mx-reg:hover, .mx-tile:hover, .mx-day:hover { transform:none; }
 }

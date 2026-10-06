@@ -11,7 +11,9 @@ fetch_macro.py — 매크로 지표 + 자체 산출 공포·탐욕 프록시 지
 무료로 구할 수 있는 데이터만으로 이 프로젝트가 자체 산출한 프록시 지수다(원본과 다를 수 있음).
 5개 하위지표(모멘텀·변동성·정크본드 수요·안전자산 수요·주가 강도)를 전체 기간 백분위로
 정규화해 평균한다 — 전체 표본 기준 정규화이므로 과거 특정 시점 실시간 값과는 다를 수 있음.
+--market-only는 Yahoo 시장자료와 프록시만 갱신하고 기존 macro_monthly는 보존한다.
 """
+import argparse
 import json
 import os
 import sys
@@ -318,8 +320,13 @@ def weekly_downsample(dates, *series_list):
     out_series = [[s[idx_by_week[w]] for w in weeks] for s in series_list]
     return out_dates, out_series
 
-def main():
+def main(market_only=False):
     print(f"=== fetch_macro.py 시작 ({datetime.now(KST).strftime('%Y-%m-%d %H:%M KST')}) ===")
+    try:
+        with open(OUT, encoding="utf-8") as f:
+            previous = json.load(f)
+    except (OSError, ValueError):
+        previous = {}
 
     print("야후 시장 데이터 수집 중...")
     spx_raw = fetch_yahoo("^GSPC", "30y")
@@ -332,6 +339,16 @@ def main():
     if len(spx_raw) < 100:
         print("[오류] S&P500 데이터 확보 실패 — 종료")
         sys.exit(1)
+    if market_only:
+        required = {"spx": spx_raw, "ixic": ixic_raw, "vix": vix_raw, "hyg": hyg_raw, "lqd": lqd_raw, "tlt": tlt_raw}
+        missing = [name for name, rows in required.items() if len(rows) < 100]
+        observed = previous.get("market_observed", {})
+        stale = [name for name, rows in required.items() if rows and (
+            rows[-1][0] < spx_raw[-1][0] or rows[-1][0] < (observed.get(name) or ""))]
+        old_dates = previous.get("daily", {}).get("dates", [])
+        if missing or stale or (old_dates and spx_raw[-1][0] < old_dates[-1]):
+            print("[오류] 시장자료 부족 또는 이전 시점의 응답 — 기존 macro.json 보존: " + ", ".join(sorted(set(missing + stale))))
+            return 1
 
     # 공통 캘린더: SPX 거래일 기준으로 정렬, 나머지는 전일 값으로 forward-fill
     dates = [d for d, _ in spx_raw]
@@ -358,27 +375,29 @@ def main():
     lqd = ffill_series(lqd_map)
     tlt = ffill_series(tlt_map)
 
-    print("매크로 지표 수집 중 (10년물=Treasury, CPI/실업률/고용=BLS, 나머지=FRED)...")
-    fred_out = {}
+    fred_out = dict(previous.get("macro_monthly", {})) if market_only else {}
+    if market_only:
+        print("시장자료 전용 확인 — 경제지표·FRED·BLS 요청 생략, macro_monthly 보존")
+    else:
+        print("매크로 지표 수집 중 (10년물=Treasury, CPI/실업률/고용=BLS, 나머지=FRED)...")
+        # 안정 소스: 10년물(Treasury), CPI·실업률·비농업고용(BLS) — 무키, FRED 대체
+        try:
+            fred_out["dgs10"] = fetch_treasury_10y()
+            print(f"  dgs10(Treasury): {len(fred_out['dgs10'])}개")
+        except Exception as e:
+            fred_out["dgs10"] = []
+            print(f"  dgs10 실패: {e}")
+        bls = fetch_bls_series({"cpi": "CUUR0000SA0", "unrate": "LNS14000000", "payems": "CES0000000001"})
+        for k in ("cpi", "unrate", "payems"):
+            fred_out[k] = bls.get(k, [])
+            print(f"  {k}(BLS): {len(fred_out[k])}개")
 
-    # 안정 소스: 10년물(Treasury), CPI·실업률·비농업고용(BLS) — 무키, FRED 대체
-    try:
-        fred_out["dgs10"] = fetch_treasury_10y()
-        print(f"  dgs10(Treasury): {len(fred_out['dgs10'])}개")
-    except Exception as e:
-        fred_out["dgs10"] = []
-        print(f"  dgs10 실패: {e}")
-    bls = fetch_bls_series({"cpi": "CUUR0000SA0", "unrate": "LNS14000000", "payems": "CES0000000001"})
-    for k in ("cpi", "unrate", "payems"):
-        fred_out[k] = bls.get(k, [])
-        print(f"  {k}(BLS): {len(fred_out[k])}개")
-
-    # 나머지는 FRED(가능할 때만; 실패 시 빈 값 유지)
-    fred_series = {"ppi": "PPIACO", "pce": "PCEPI", "fedfunds": "FEDFUNDS", "icsa": "ICSA", "m2": "M2SL", "umcsent": "UMCSENT"}
-    for key, sid in fred_series.items():
-        rows = fetch_fred(sid)
-        fred_out[key] = [{"date": d, "value": v} for d, v in rows]
-        print(f"  {key}({sid}): {len(rows)}개 관측치")
+        # 나머지는 FRED(가능할 때만; 실패 시 빈 값 유지)
+        fred_series = {"ppi": "PPIACO", "pce": "PCEPI", "fedfunds": "FEDFUNDS", "icsa": "ICSA", "m2": "M2SL", "umcsent": "UMCSENT"}
+        for key, sid in fred_series.items():
+            rows = fetch_fred(sid)
+            fred_out[key] = [{"date": d, "value": v} for d, v in rows]
+            print(f"  {key}({sid}): {len(rows)}개 관측치")
 
     print("공포·탐욕 프록시 지수 산출 중...")
     fg = build_fear_greed(dates, spx, vix, hyg, lqd, tlt)
@@ -420,6 +439,7 @@ def main():
         latest_components[key] = next((v for v in reversed(fg[key]) if v is not None), None)
 
     data = {
+        **(previous if market_only else {}),
         "updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
         "methodology": ("자체 산출 공포·탐욕 프록시 지수 — CNN 공포탐욕지수의 데이터를 그대로 쓴 것이 아니라, "
                         "무료로 구할 수 있는 시장데이터(S&P500 모멘텀·VIX 변동성·정크본드 대비 투자등급채 수요·"
@@ -427,15 +447,22 @@ def main():
                         "정규화해 평균한 것. 전체 표본 기준 정규화라 과거 특정 시점에 실시간으로 관측했을 값과는 "
                         "다를 수 있음. 정크본드/안전자산 지표는 해당 ETF 상장 이후(2002~2007년)부터 반영됨."),
         "latest_fear_greed": latest_fg,
+        "latest_fear_greed_date": next((d for d, v in reversed(list(zip(dates, fg["composite"]))) if v is not None), None),
+        "market_observed": {"spx": spx_raw[-1][0] if spx_raw else None, "ixic": ixic_raw[-1][0] if ixic_raw else None,
+                            "vix": vix_raw[-1][0] if vix_raw else None, "hyg": hyg_raw[-1][0] if hyg_raw else None,
+                            "lqd": lqd_raw[-1][0] if lqd_raw else None, "tlt": tlt_raw[-1][0] if tlt_raw else None},
         "latest_components": latest_components,
         "daily": daily,
         "weekly": weekly,
         "macro_monthly": fred_out,
         "drawdown_episodes": {"spx": spx_episodes, "ixic": ixic_episodes},
     }
-    with open(OUT, "w", encoding="utf-8") as f:
+    with open(OUT + ".tmp", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
+    os.replace(OUT + ".tmp", OUT)
     print(f"=== 완료: {len(dates)}거래일 처리 → {OUT} ===")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--market-only", action="store_true", help="Yahoo 시장자료·공포탐욕 프록시만 갱신, macro_monthly 보존")
+    sys.exit(main(market_only=parser.parse_args().market_only))

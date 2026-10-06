@@ -1,7 +1,7 @@
 /* 매크로 터미널 — docs/macro_dash.json (fetch_macro_dash.py가 발표 직후 자동 갱신) */
 (function () {
   "use strict";
-  var D = null;
+  var D = null, F = null, fearReady = false, dashReady = false;
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
@@ -13,10 +13,10 @@
   var EV_OF = { cpi: "cpi", core_cpi: "cpi", ppi: "ppi", core_ppi: "ppi", pce: "pce", core_pce: "pce", nfp: "nfp", unrate: "nfp", ahe: "nfp",
     lfpr: "nfp", jolts: "jolts", gdp: "gdp", claims: "claims", effr: "fomc", y2: "fomc", y3m: "fomc" };
   var BOARDS = [["inflation", ["cpi", "core_cpi", "pce", "core_pce", "ppi", "core_ppi"]], ["labor", ["nfp", "unrate", "claims", "ahe", "jolts", "lfpr"]],
-    ["rates", ["effr", "y3m", "y2", "y10", "y30", "s10y2y", "s10y3m"]], ["growth", ["gdp", "umich"]], ["markets", ["vix", "dxy", "usdkrw"]]];
+    ["rates", ["effr", "y3m", "y2", "y10", "y30", "s10y2y", "s10y3m"]], ["growth", ["gdp", "umich"]], ["markets", ["vix", "dxy", "usdkrw", "wti"]]];
   var IDX = [["^GSPC", "S&P 500", "#6f9bff"], ["^IXIC", "나스닥", "#b48cff"], ["^KS11", "코스피", "#ff7a8c"], ["^KQ11", "코스닥", "#3ecf9a"],
     ["^VIX", "VIX", "#ff5ca8"], ["DX-Y.NYB", "달러인덱스", "#9aa5bd"], ["KRW=X", "원/달러", "#ff9f5a"]];
-  var OVERLAYS = ["none", "y10", "y2", "s10y2y", "effr", "cpi", "core_cpi", "pce", "core_pce", "unrate", "nfp", "claims", "ahe", "umich", "vix", "dxy", "usdkrw"];
+  var OVERLAYS = ["none", "y10", "y2", "s10y2y", "effr", "cpi", "core_cpi", "pce", "core_pce", "unrate", "nfp", "claims", "ahe", "umich", "vix", "dxy", "usdkrw", "wti"];
   var RANGES = [["3M", 92], ["6M", 183], ["1Y", 365], ["3Y", 1096], ["5Y", 1827], ["10Y", 3653]];
   var OV_COLOR = "#f0b429";
   var st = { idx: ["^GSPC", "^IXIC", "^KS11", "^KQ11"], mode: "pct", range: "1Y", overlay: "y10", events: true, spread: "10Y2Y" };
@@ -66,10 +66,86 @@
     return '<svg viewBox="0 0 ' + w + " " + h + '" preserveAspectRatio="none" style="--d:' + (delay || 0) + 'ms"><polyline fill="none" stroke="' + col + '" stroke-width="1.6" stroke-linejoin="round" points="' + pts.join(" ") + '"/></svg>';
   }
   function countUp(el, to, dg, suffix) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = fmt(to, dg) + (suffix || ""); return; }
     var t0 = performance.now(), dur = 900;
     setTimeout(function () { el.textContent = fmt(to, dg) + (suffix || ""); }, dur + 80);
     if (document.hidden) { el.textContent = fmt(to, dg) + (suffix || ""); return; }
     (function f(t) { var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(to * e, dg) + (suffix || ""); if (k < 1) requestAnimationFrame(f); })(t0);
+  }
+
+  /* ───────── 첫 화면: 공포·탐욕 / 국채 금리 / WTI ───────── */
+  function hasNumber(v) { return typeof v === "number" && isFinite(v); }
+  function watchPoints(dates, values) {
+    var out = [];
+    (dates || []).forEach(function (date, i) {
+      if (hasNumber((values || [])[i]) && isFinite(toT(date))) out.push({ date:date, value:values[i] });
+    });
+    return out;
+  }
+  function watchLatest(indicator) {
+    if (!indicator) return null;
+    if (indicator.latest && hasNumber(indicator.latest.value)) return indicator.latest;
+    var pts = watchPoints(indicator.dates, indicator.values), last = pts[pts.length - 1];
+    if (!last) return null;
+    return { date:last.date, value:last.value, prev:pts.length > 1 ? pts[pts.length - 2].value : null };
+  }
+  function watchChart(points, label, color, digits, unit) {
+    var pts = points.slice(-60);
+    if (pts.length < 2) return '<div class="mx-watch-chart"><p class="mx-watch-empty">추세 데이터가 부족합니다.</p></div>';
+    var vals = pts.map(function (p) { return p.value; }), lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), range = hi - lo || 1;
+    var firstT = toT(pts[0].date), spanT = toT(pts[pts.length - 1].date) - firstT || 1;
+    var coords = pts.map(function (p) { return [3 + (toT(p.date) - firstT) / spanT * 334, 60 - (p.value - lo) / range * 52]; });
+    var line = coords.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" ");
+    var labelText = label + " · " + pts[0].date + " ~ " + pts[pts.length - 1].date;
+    return '<figure class="mx-watch-chart"><svg viewBox="0 0 340 66" role="img" aria-label="' + esc(labelText) + '">' +
+      '<title>' + esc(labelText) + '</title><line x1="3" x2="337" y1="64" y2="64" stroke="currentColor" opacity=".09"/>' +
+      '<polygon points="3,64 ' + line + ' 337,64" fill="' + color + '" opacity=".07"/>' +
+      '<polyline points="' + line + '" fill="none" stroke="' + color + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      coords.map(function (p, i) { return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="4" fill="transparent"><title>' + pts[i].date + " · " + fmt(pts[i].value, digits) + esc(unit) + "</title></circle>"; }).join("") +
+      '</svg><figcaption><span>' + esc(pts[0].date) + '</span><span>최근 ' + pts.length + '개 관측</span><span>' + esc(pts[pts.length - 1].date) + '</span></figcaption></figure>';
+  }
+  function watchChange(point, scale, digits, unit) {
+    if (!point || !hasNumber(point.prev)) return '<div class="mx-watch-change">직전 관측값 없음</div>';
+    var change = (point.value - point.prev) * scale;
+    return '<div class="mx-watch-change">직전 관측 대비 <b class="' + cls(change) + '">' + sign(change, digits) + esc(unit) + '</b></div>';
+  }
+  function watchHead(number, english, title, badge) {
+    return '<div class="mx-watch-top"><span class="mx-watch-k">' + number + " · " + english + '</span><span class="mx-watch-badge">' + badge + '</span></div><h2>' + title + '</h2>';
+  }
+  function watchCheckMeta(key, hasValue) {
+    var checked = D && (D.watch_checked || D.updated), status = D && D.watch_status && D.watch_status[key];
+    return (checked ? '<span>수집 확인 ' + esc(checked) + '</span>' : "") +
+      (status && /^fail/.test(status) ? '<span class="mx-watch-stale">최근 수집 실패 · ' + (hasValue ? "이전 관측값 유지" : "관측값 없음") + '</span>' : "");
+  }
+  function renderWatch() {
+    var daily = F && F.daily || {}, fgPts = watchPoints(daily.dates, daily.fear_greed);
+    var fg = fgPts.length ? { value:fgPts[fgPts.length - 1].value, date:fgPts[fgPts.length - 1].date, prev:fgPts.length > 1 ? fgPts[fgPts.length - 2].value : null } : F && hasNumber(F.latest_fear_greed) ? { value:F.latest_fear_greed } : null;
+    if (fg && F.latest_fear_greed_date) fg.date = F.latest_fear_greed_date;
+    var fgState = !fg ? "" : fg.value < 25 ? "극도 공포" : fg.value < 45 ? "공포" : fg.value <= 55 ? "중립" : fg.value <= 75 ? "탐욕" : "극도 탐욕";
+    var fgColor = !fg || fg.value < 45 ? "#3571c8" : fg.value <= 55 ? "#68758b" : "#bb7522";
+    var indicators = D && D.indicators || {}, y10 = watchLatest(indicators.y10), y2 = watchLatest(indicators.y2);
+    var oil = indicators.wti, oilMarket = D && D.markets && D.markets["CL=F"];
+    if (!oil && oilMarket) oil = { dates:oilMarket.d, values:oilMarket.c, source:"Yahoo Finance" };
+    var wti = watchLatest(oil), ratePts = indicators.y10 ? watchPoints(indicators.y10.dates, indicators.y10.values) : [], oilPts = oil ? watchPoints(oil.dates, oil.values) : [];
+    var fgHtml = '<article class="mx-watch-card" style="--watch-color:' + fgColor + '">' + watchHead("01", "SENTIMENT", "Fear &amp; Greed Index", "자체 산출 프록시") + '<p class="mx-watch-caption">공포·탐욕 지수</p>' +
+      (fg ? '<div class="mx-watch-value">' + fmt(fg.value, 1) + '<small>/ 100</small><span class="mx-watch-state">' + fgState + '</span></div>' + watchChange(fg, 1, 1, "p") +
+        '<div class="mx-watch-gauge" aria-hidden="true"><i style="left:' + Math.max(0, Math.min(100, fg.value)) + '%"></i></div><div class="mx-watch-scale"><span>0 공포</span><span>50 중립</span><span>100 탐욕</span></div>' + watchChart(fgPts, "공포·탐욕 프록시", fgColor, 1, "p") :
+        '<p class="mx-watch-empty">' + (fearReady ? "공포·탐욕 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
+      '<div class="mx-watch-meta"><span>' + (fg && fg.date ? "관측 " + esc(fg.date) : "관측일 확인 불가") + '</span>' + (F && F.updated ? '<span>자료 갱신 ' + esc(F.updated) + '</span>' : "") + '<span>시장 데이터 5개를 합성한 프록시 · CNN 공식 지수와 다름</span></div>' +
+      '<details class="mx-watch-method"><summary>산출 기준 보기</summary><p>' + esc(F && F.methodology || "S&P 500 모멘텀·변동성·주가 강도·회사채 수요·안전자산 수요를 합성합니다.") + '</p><p>표시 구간: 25 미만 극도 공포 · 45 미만 공포 · 55 이하 중립 · 75 이하 탐욕 · 75 초과 극도 탐욕.</p></details></article>';
+    var rateHtml = '<article class="mx-watch-card" style="--watch-color:#416dc1">' + watchHead("02", "TREASURIES", "미국 국채 금리", "미국 10년물") +
+      (y10 ? '<div class="mx-watch-value">' + fmt(y10.value, 2) + '<small>%</small></div>' + watchChange(y10, 100, 0, "bp") +
+        '<div class="mx-watch-pair"><span>2년물 <b>' + (y2 ? fmt(y2.value, 2) + "%" : "–") + '</b></span><span>10년−2년 <b>' + (y2 && y2.date === y10.date ? sign(y10.value - y2.value, 2) + "%p" : "–") + '</b></span></div>' + watchChart(ratePts, "미국 10년물 금리", "#416dc1", 2, "%") :
+        '<p class="mx-watch-empty">' + (dashReady ? "국채 금리 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
+      '<div class="mx-watch-meta"><span>' + (y10 && y10.date ? "10년물 관측 " + esc(y10.date) : "관측일 확인 불가") + (y2 && y2.date && (!y10 || y2.date !== y10.date) ? " · 2년물 " + esc(y2.date) : "") + '</span>' + watchCheckMeta("treasury", !!y10) + '<span>출처 · ' + esc(indicators.y10 && indicators.y10.source || "미 재무부") + '</span></div><a class="mx-watch-link" href="#mx-rates-section">수익률 곡선과 장단기 금리차 보기 ↓</a></article>';
+    var oilHtml = '<article class="mx-watch-card" style="--watch-color:#a77a2b">' + watchHead("03", "ENERGY", "WTI 원유 선물", "USD / 배럴") +
+      (wti ? '<div class="mx-watch-value">$' + fmt(wti.value, 2) + '<small>/ 배럴</small></div>' + watchChange(wti, 1, 2, " USD") +
+        '<div class="mx-watch-pair"><span>WTI 선물 · CL=F</span></div>' + watchChart(oilPts, "WTI 원유 선물", "#a77a2b", 2, " USD") :
+        '<p class="mx-watch-empty">' + (dashReady ? "WTI 선물 데이터를 불러오지 못했습니다." : "데이터를 불러오는 중…") + '</p>') +
+      '<div class="mx-watch-meta"><span>' + (wti && wti.date ? "관측 " + esc(wti.date) : "관측일 확인 불가") + '</span>' + watchCheckMeta("wti", !!wti) + '<span>출처 · ' + esc(oil && oil.source || "Yahoo Finance") + ' · WTI 선물 가격</span></div>' +
+      (indicators.wti && wti ? '<button type="button" class="mx-watch-link" data-watch-ind="wti">원유 가격 추이 자세히 보기 ↓</button>' : "") + '</article>';
+    $("#mx-watch").innerHTML = fgHtml + rateHtml + oilHtml;
+    $$("[data-watch-ind]").forEach(function (button) { button.onclick = function () { focusRow(button.dataset.watchInd); }; });
   }
 
   /* ───────── 1. 국면 리본 ───────── */
@@ -242,9 +318,10 @@
     requestAnimationFrame(function () { acc.classList.add("open"); });
   }
   function focusRow(k) {
-    if (!$('.mx-row[data-k="' + k + '"]')) { if (OVERLAYS.indexOf(k) >= 0) { st.overlay = k; persist(); renderExplorerTools(); renderExplorer(); $(".mx-explorer").scrollIntoView({ behavior: "smooth", block: "center" }); } return; }
+    var scrollBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+    if (!$('.mx-row[data-k="' + k + '"]')) { if (OVERLAYS.indexOf(k) >= 0) { st.overlay = k; persist(); renderExplorerTools(); renderExplorer(); $(".mx-explorer").scrollIntoView({ behavior: scrollBehavior, block: "center" }); } return; }
     toggleRow(k, true);
-    setTimeout(function () { $('.mx-row[data-k="' + k + '"]').scrollIntoView({ behavior: "smooth", block: "center" }); }, 60);
+    setTimeout(function () { $('.mx-row[data-k="' + k + '"]').scrollIntoView({ behavior: scrollBehavior, block: "center" }); }, 60);
   }
   function renderAcc(k) {
     var i = ind(k), box = $("#acc-" + k), range = accRange[k] || (i.freq === "D" ? "2Y" : "10Y");
@@ -438,7 +515,7 @@
     if (cal.sel) cal.month = cal.sel.slice(0, 7);
   }
   function renderAll() {
-    regime(); initCalendarState(); renderCalendar(); renderDrawer(); renderSide(); renderBoards(); renderTiles(); renderExplorerTools(); renderExplorer(); renderRates();
+    renderWatch(); regime(); initCalendarState(); renderCalendar(); renderDrawer(); renderSide(); renderBoards(); renderTiles(); renderExplorerTools(); renderExplorer(); renderRates();
     $("#mx-cat-legend").innerHTML = ["inflation", "labor", "growth", "rates"].map(function (c) { return '<span style="--c:' + CAT[c][1] + '"><i></i>' + CAT[c][0] + "</span>"; }).join("");
   }
   $("#mx-prev").onclick = function () { cal.month = shiftMonth(cal.month, -1); renderCalendar(); };
@@ -448,12 +525,15 @@
   window.addEventListener("resize", function () { clearTimeout(rs); rs = setTimeout(function () { if (!D) return; renderExplorer(); renderRates(); if (openRow) renderAcc(openRow); }, 180); });
 
   fetch("macro_dash.json", {cache: "no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
-    D = d;
+    D = d; dashReady = true;
     $("#mx-updated").textContent = "UPDATED " + (d.updated || "-");
     var s = d.status || {}, names = { bls: "BLS", bea: "BEA", effr: "뉴욕연준", claims: "노동부", umich: "미시간대", treasury: "재무부", calendar_bls: "BLS 일정", calendar_fomc: "FOMC 일정", calendar_bea: "BEA 일정" };
     $("#mx-foot").innerHTML = "출처 상태 · " + Object.keys(names).filter(function (k) { return s[k]; }).map(function (k) {
       var ok = s[k] === "ok" || s[k] === "seed" || s[k] === "bls.gov"; return '<span class="' + (ok ? "" : "up") + '">' + names[k] + (s[k] === "seed" ? "(공식 일정표)" : ok ? " ✓" : " ✗") + "</span>";
     }).join(" · ") + "<br>실업수당 청구는 비계절조정 주별 합계의 4주 평균. CPI·PPI·PCE·시급은 전년 동월 대비(%). 차트의 발표일 표시는 캘린더에 있는 최근·예정 일정만 그립니다.";
     renderAll();
-  }).catch(function (e) { $("#mx-boards").innerHTML = '<div class="mx-panel">macro_dash.json을 불러오지 못했습니다 (' + esc(e.message) + ")</div>"; });
+  }).catch(function (e) { dashReady = true; renderWatch(); $("#mx-boards").innerHTML = '<div class="mx-panel">macro_dash.json을 불러오지 못했습니다 (' + esc(e.message) + ")</div>"; });
+  fetch("macro.json", {cache:"no-cache"}).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+    F = d; fearReady = true; renderWatch();
+  }).catch(function () { fearReady = true; renderWatch(); });
 })();
