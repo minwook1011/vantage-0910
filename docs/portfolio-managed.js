@@ -36,10 +36,10 @@
   window.PortfolioManaged = {
     hasKey: function () { return !!getKey(); },
     /* 키가 있으면 파일을 받아 풀어서 cb(data, updated) */
-    load: async function (cb) {
+    load: async function (cb, fail) {
       var k = getKey(); if (!k) return;
       try { var d = await decrypt(await fetchFile(), k); cb(d); }
-      catch (e) { console.warn("관리 계좌 불러오기 실패", e); }
+      catch (e) { console.warn("관리 계좌 불러오기 실패", e); if (fail) fail(e); }
     },
     /* 키 입력 → 맞으면 저장하고 cb(data) */
     unlock: async function (cb) {

@@ -228,17 +228,22 @@
   var refreshBtn = document.getElementById("portfolio-refresh"); if (refreshBtn) refreshBtn.onclick = refresh;
   wire(); render(); refresh();
   /* 관리 계좌(사진으로 받은 매매기록, 암호화 파일) — 키가 있으면 자동 반영, 없으면 '관리 계좌 불러오기' 버튼 */
-  function applyManaged(d) {
-    if (!window.PortfolioManaged || !PortfolioManaged.merge(state, d)) return;
+  function managedBadge(text, btn) {
+    var acts = document.querySelector(".account-actions"); if (!acts) return;
+    var el = document.getElementById("pf-managed"); if (!el) { el = document.createElement("span"); el.id = "pf-managed"; el.className = "pf-managed"; acts.insertBefore(el, acts.firstChild); }
+    el.innerHTML = ""; el.appendChild(document.createTextNode(text));
+    if (btn) { var b = document.createElement("button"); b.className = "quiet-btn"; b.textContent = "🔑 관리 계좌 불러오기"; b.onclick = function () { PortfolioManaged.unlock(function (d) { applyManaged(d, true); }); }; el.appendChild(b); }
+  }
+  function applyManaged(d, jump) {
+    var ids = (d.accounts || []).map(function (a) { return a.id; }), names = (d.accounts || []).map(function (a) { return a.name; }).join("·");
+    var changed = window.PortfolioManaged && PortfolioManaged.merge(state, d);
+    if (jump && ids[0]) activeId = ids[0];
     if (!state.accounts.some(function (a) { return a.id === activeId; })) activeId = state.accounts[0].id;
-    S.save(state); perfKey = null; render(); setUpdated("관리 계좌 매매기록 반영 · " + String(d.updated || "").replace("T", " ").slice(0, 16));
-    if (view === "perf" && window.PortfolioPerf) PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId);
+    if (changed || jump) { S.save(state); perfKey = null; render(); if (view === "perf" && window.PortfolioPerf) PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId); }
+    managedBadge("🔑 " + names + " 계좌 · " + String(d.updated || "").replace("T", " ").slice(5, 16).replace("-", "/") + " 기록까지 반영(" + (d.transactions || []).length + "건)");
   }
   if (window.PortfolioManaged) {
-    if (PortfolioManaged.hasKey()) PortfolioManaged.load(applyManaged);
-    else {
-      var acts = document.querySelector(".account-actions");
-      if (acts) { var mb = document.createElement("button"); mb.className = "quiet-btn"; mb.textContent = "🔑 관리 계좌 불러오기"; mb.onclick = function () { PortfolioManaged.unlock(function (d) { mb.remove(); applyManaged(d); }); }; acts.insertBefore(mb, acts.firstChild); }
-    }
+    if (PortfolioManaged.hasKey()) { managedBadge("🔑 관리 계좌 확인 중…"); PortfolioManaged.load(function (d) { applyManaged(d); }, function () { managedBadge("⚠️ 관리 계좌를 못 불러옴 — ", true); }); }
+    else managedBadge("", true);
   }
 })();
