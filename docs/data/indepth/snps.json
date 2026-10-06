@@ -1,0 +1,1115 @@
+{
+  "schemaVersion": 1,
+  "id": "snps",
+  "company": "시놉시스",
+  "ticker": "SNPS",
+  "market": "NASDAQ",
+  "asOf": "2026-10-07",
+  "latestQuarter": "FY2026 Q3 · 2026-07-31 종료",
+  "title": "시놉시스 — 설계는 더 복잡해진다. 다음은 그 가치를 얼마나 수익으로 바꾸는가",
+  "subtitle": "Ansys·AI·IP가 넓힌 기회와 인수 효과·일회성 이익·희석을 함께 보는 인뎁스 요약",
+  "original": {
+    "vault": "리서치",
+    "path": "기업분석 인뎁스/시놉시스_SNPS_2026-10-07_인뎁스.md"
+  },
+  "metrics": [
+    {
+      "label": "Q3 매출 · 확정 실적",
+      "value": "$2.477B",
+      "note": "보고 성장 +42.4% · 인수 편입기간 차이 포함",
+      "kind": "actual",
+      "sources": [
+        {
+          "label": "8/26 Q3 실적",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+        }
+      ]
+    },
+    {
+      "label": "Q3 GAAP 영업이익률",
+      "value": "14.4%",
+      "note": "조정 영업이익률은 41.6% · 상각·주식보상 차이",
+      "kind": "actual",
+      "sources": [
+        {
+          "label": "GAAP 조정표",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+        }
+      ]
+    },
+    {
+      "label": "FY27 매출 · 회사 전망",
+      "value": "$11.15B",
+      "note": "범위 $11.10–11.20B의 중간값 · 실적 아님",
+      "kind": "guidance",
+      "sources": [
+        {
+          "label": "9/30 Investor Day",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        }
+      ]
+    },
+    {
+      "label": "기준 주가 · 미국 종가",
+      "value": "$505.17",
+      "note": "2026-10-06 정규장 · 9/29 대비 +21.7%",
+      "kind": "actual",
+      "sources": [
+        {
+          "label": "S&P Global 제공 일별 시세",
+          "url": "https://stockanalysis.com/stocks/snps/history/"
+        }
+      ]
+    }
+  ],
+  "takeaways": [
+    "사업의 중심: 반도체 설계자동화(EDA)·설계 지식재산(IP)에 Ansys의 물리 시뮬레이션을 연결한다. 설계 한 건에서 해결하는 문제와 판매할 도구가 늘어난다.",
+    "성장의 질: Q3 +42.4%는 유기성장이 아니다. 전년에도 Ansys를 보유했다고 가정한 공시 매출과 비교하면 약 +8.1%이며, 이 수치도 완전한 동일 범위 성장률은 아니다.",
+    "수익화의 증거: Multiphysics Fusion 첫 제품군은 출시됐고 Amazon의 $1B 이상 다년 IP 계약은 체결됐다. GPT-Synopsys의 광범위한 출시·매출 기여는 아직 검증할 항목이다.",
+    "가장 강한 반론: 도구 사용과 매출이 늘어도 통합비용·주식보상·희석 때문에 기존 주주의 주당 현금 증가가 뒤처질 수 있다.",
+    "앞으로 볼 것: IP 누적 성장과 마진, FY27 가이던스 달성, 실제 로열티·교차판매, 순희석. 목표주가나 매매 판정은 제시하지 않는다."
+  ],
+  "sections": [
+    {
+      "id": "industry",
+      "navTitle": "산업",
+      "eyebrow": "산업",
+      "title": "칩 안의 회로부터 패키지의 열까지, 검증해야 할 문제가 늘어난다",
+      "summary": [
+        "새 공정에서는 더 작은 회로를 만드는 것만으로 충분하지 않다. 데이터가 오가는 속도, 전력 공급, 열과 패키지를 동시에 맞춰야 한다.",
+        "설계 실패를 제조 전에 줄이는 도구의 가치는 커진다. 다만 AI 칩 판매량이 EDA 매출에 그대로 비례하는 구조는 아니다."
+      ],
+      "originalHeading": "1. 설계 복잡도가 엔지니어링 지출을 늘리는 산업",
+      "tables": [
+        {
+          "caption": "복잡성 → 필요한 도구 → 매출 연결",
+          "columns": [
+            "변화",
+            "기술 문제",
+            "확인할 수익 연결"
+          ],
+          "rows": [
+            [
+              "N2 등 미세 공정",
+              "공정 규칙·타이밍·전력 제약",
+              "공정 인증, 새 설계 착수, 도구 갱신"
+            ],
+            [
+              "HBM·고속 연결",
+              "메모리 대역폭·신호 품질",
+              "새 IP 라이선스·재사용·계약별 로열티"
+            ],
+            [
+              "칩렛·3D 패키지",
+              "다이·패키지 사이 전자기·열",
+              "여러 해석 도구의 동시 채택"
+            ],
+            [
+              "설계 에이전트",
+              "도구 실행 자동화와 결과 검증",
+              "구독·사용량 과금으로 가치 회수"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "TSMC N2",
+          "url": "https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm"
+        },
+        {
+          "label": "Synopsys HBM IP",
+          "url": "https://www.synopsys.com/designware-ip/interface-ip/hbm.html"
+        },
+        {
+          "label": "Investor Day",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "navTitle": "사업 구조",
+      "eyebrow": "사업 구조",
+      "title": "매출의 81%는 Design Automation — 그 안에 Ansys가 들어 있다",
+      "summary": [
+        "공시 부문은 Design Automation과 Design IP 두 개다. Ansys를 별도 사업부처럼 한 번 더 더하면 매출을 중복 계산한다.",
+        "EDA는 설계·검증 도구, IP는 재사용할 회로, Ansys는 전자기·열·구조·유체를 해석한다. 각각 계약과 매출 인식 시점이 다르다."
+      ],
+      "originalHeading": "2. EDA·IP·Ansys가 결합한 사업 구조",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Q3 FY26 공시 부문 매출",
+          "unit": "$백만",
+          "labels": [
+            "Design Automation",
+            "Design IP"
+          ],
+          "series": [
+            {
+              "name": "매출",
+              "values": [
+                2002.971,
+                473.851
+              ],
+              "kind": "actual",
+              "color": "#569bd4"
+            }
+          ],
+          "note": "Design Automation 80.9%, Design IP 19.1%. 전자는 Ansys를 포함하며 순수 EDA 매출이 아니다.",
+          "sources": [
+            {
+              "label": "10-Q 부문 정보",
+              "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+            }
+          ],
+          "period": "2026-10-07 기준"
+        }
+      ],
+      "tables": [
+        {
+          "caption": "제품군별로 돈을 버는 방식",
+          "columns": [
+            "영역",
+            "대표 제품",
+            "고객이 사는 것"
+          ],
+          "rows": [
+            [
+              "구현·최종 검증",
+              "Fusion Compiler · PrimeTime · StarRC",
+              "제조 가능한 설계와 타이밍·전력 검증"
+            ],
+            [
+              "기능 검증",
+              "VCS · Verdi · ZeBu · HAPS",
+              "오류 탐색, 디버깅, 대형 설계 검증"
+            ],
+            [
+              "IP",
+              "HBM · PCIe/CXL · SerDes · UCIe",
+              "이미 검증된 회로와 새 표준 대응"
+            ],
+            [
+              "Ansys",
+              "HFSS · RedHawk-SC · Mechanical · Fluent",
+              "전자기·전력·열·구조·유체 해석"
+            ],
+            [
+              "매각 범위",
+              "Processor IP · OSG · PowerArtist",
+              "현재 연결 성장 동력에 다시 더하지 않음"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Synopsys 제품 목록",
+          "url": "https://www.synopsys.com/products.html"
+        },
+        {
+          "label": "Ansys 제품",
+          "url": "https://ansys.synopsys.com/products"
+        },
+        {
+          "label": "소유 범위·매출 인식",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "navTitle": "실적",
+      "eyebrow": "실적",
+      "title": "매출 +42.4%에서 인수 편입 효과를 걷어내야 회복의 강도가 보인다",
+      "summary": [
+        "Ansys 인수는 2025년 7월 17일 완료됐다. 전년 Q3에는 일부 기간만 포함돼 올해 분기와 단순 비교하면 성장률이 크게 보인다.",
+        "공시의 Ansys $622.2M은 현재 분기 총매출이 아니라 전년 대비 증가분이다. 인수 가정 비교와 보고 성장률을 함께 본다."
+      ],
+      "originalHeading": "3.2. Q3의 42.4%를 분해하면 회복의 강도가 달라 보인다",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "인수 전후 비교의 분모가 달라진다",
+          "unit": "$백만",
+          "labels": [
+            "FY25 Q3 보고",
+            "FY25 Q3 인수 가정",
+            "FY26 Q3 실적"
+          ],
+          "series": [
+            {
+              "name": "비교 기준별 매출",
+              "values": [
+                1739.737,
+                2290.354,
+                2476.822
+              ],
+              "kind": "actual",
+              "color": "#569bd4"
+            }
+          ],
+          "note": "FY26 Q3 ÷ FY25 Q3 보고 − 1 = 42.4%. 인수 가정(pro forma) 분모를 쓰면 8.1%. 두 번째 막대는 별도 공시한 과거 인수 가정 비교치이며 실측 연결매출·순수 유기성장이 아니다.",
+          "sources": [
+            {
+              "label": "10-Q 인수 주석·손익계산서",
+              "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+            }
+          ],
+          "period": "2026-10-07 기준",
+          "pointKinds": [
+            "actual",
+            "proforma",
+            "actual"
+          ]
+        },
+        {
+          "type": "bar",
+          "title": "회사의 규모 변화와 향후 매출 목표",
+          "unit": "$십억",
+          "labels": [
+            "FY23",
+            "FY24",
+            "FY25",
+            "FY26 G",
+            "FY27 G"
+          ],
+          "series": [
+            {
+              "name": "계속사업 매출",
+              "values": [
+                5.318,
+                6.127,
+                7.054,
+                9.715,
+                11.15
+              ],
+              "kind": "actual",
+              "color": "#569bd4"
+            }
+          ],
+          "note": "FY25는 Ansys 일부 기간 포함. FY26·FY27은 회사 가이던스 중간값(G). 연결 범위·회계연도 길이 차이가 있으므로 이 기울기를 유기성장 가속으로 읽지 않는다.",
+          "sources": [
+            {
+              "label": "FY24 계속사업 비교",
+              "url": "https://investor.synopsys.com/news/news-details/2024/Synopsys-Posts-Financial-Results-for-Fourth-Quarter-and-Fiscal-Year-2024/default.aspx"
+            },
+            {
+              "label": "FY25 연간",
+              "url": "https://investor.synopsys.com/news/news-details/2025/Synopsys-Posts-Financial-Results-for-Fourth-Quarter-and-Fiscal-Year-2025/default.aspx"
+            },
+            {
+              "label": "FY26 전망",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+            },
+            {
+              "label": "FY27 전망",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+            }
+          ],
+          "period": "2026-10-07 기준",
+          "pointKinds": [
+            "actual",
+            "actual",
+            "actual",
+            "guidance",
+            "guidance"
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "title": "분기 IP 회복",
+          "text": "Q3 IP 매출 +10.8%는 개선 증거다.",
+          "tone": "blue"
+        },
+        {
+          "title": "누적 회복은 미완료",
+          "text": "9개월 IP 매출 −0.7%, 조정 부문이익 −16.8%. 한 분기로 정상화를 확정하기 어렵다.",
+          "tone": "orange"
+        }
+      ],
+      "sources": [
+        {
+          "label": "10-Q",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        }
+      ]
+    },
+    {
+      "id": "earnings",
+      "navTitle": "이익의 질",
+      "eyebrow": "이익의 질",
+      "title": "GAAP 순익에는 매각이익, 조정이익에는 제외된 주식보상이 있다",
+      "summary": [
+        "Q3 순이익이 늘어난 이유를 전부 본업 개선으로 설명할 수 없다. Processor IP 매각의 세전이익 $425.4M이 포함됐다.",
+        "반대로 조정이익은 인수 상각뿐 아니라 반복되는 주식보상도 제외한다. 하나를 진짜 이익으로 고르기보다 두 숫자의 차이를 읽어야 한다."
+      ],
+      "originalHeading": "3.3. GAAP 순이익은 영업 회복만으로 증가하지 않았다",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Q3 FY26 영업이익률의 두 기준",
+          "unit": "%",
+          "labels": [
+            "GAAP",
+            "non-GAAP"
+          ],
+          "series": [
+            {
+              "name": "영업이익률",
+              "values": [
+                14.4,
+                41.6
+              ],
+              "kind": "actual",
+              "color": "#ffcc00"
+            }
+          ],
+          "note": "27.2%p 차이: 인수 무형자산 상각16.2, 주식보상9.4, 구조조정0.1, 인수·매각 관련0.9, 이연보상0.6%p. 매각이익은 영업외이익에 포함된다.",
+          "sources": [
+            {
+              "label": "Q3 GAAP→non-GAAP 조정표",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+            }
+          ],
+          "period": "2026-10-07 기준"
+        }
+      ],
+      "tables": [
+        {
+          "caption": "영업이익에서 주주 순이익까지",
+          "columns": [
+            "Q3 FY26 항목",
+            "$백만",
+            "읽는 법"
+          ],
+          "rows": [
+            [
+              "영업이익",
+              "357.5",
+              "본업 손익"
+            ],
+            [
+              "이자비용",
+              "−133.2",
+              "인수 후 자본 비용"
+            ],
+            [
+              "기타수익",
+              "+459.7",
+              "사업매각 이익425.4 포함"
+            ],
+            [
+              "세전이익",
+              "683.9",
+              "일회성 이익이 함께 들어 있음"
+            ],
+            [
+              "지배주주 순이익",
+              "545.8",
+              "GAAP EPS $2.84"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "10-Q Notes 7·18",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "navTitle": "기술 원리",
+      "eyebrow": "기술 원리",
+      "title": "AI가 도구를 실행해도, 결과의 정답을 판단하는 검증 엔진은 필요하다",
+      "summary": [
+        "RTL은 칩이 어떤 일을 할지 적은 설계다. 이를 회로로 바꾸고, 실제 위치와 배선을 정한 다음, 속도·전력·물리 규칙을 만족하는지 확인한다.",
+        "새로운 통합의 가치는 앞 단계 변경이 뒤 단계의 열·전력 조건을 깨뜨리는 반복을 줄이는 데 있다. AI의 시간 절약이 매출로 이어지는지는 과금 구조와 고객 채택이 결정한다."
+      ],
+      "originalHeading": "4. RTL에서 멀티피직스 사인오프까지의 기술",
+      "tables": [
+        {
+          "caption": "설계가 제조 파일이 되기까지 — 개념도",
+          "columns": [
+            "단계",
+            "무엇을 검증하나",
+            "도구·기술의 역할"
+          ],
+          "rows": [
+            [
+              "① 기능 정의·RTL",
+              "의도한 계산과 제어",
+              "시뮬레이션·형식검증으로 논리 오류 탐색"
+            ],
+            [
+              "② 합성",
+              "코드를 실제 회로로 변환",
+              "성능·전력·면적(PPA) 절충"
+            ],
+            [
+              "③ 배치·배선",
+              "셀 위치·연결·혼잡",
+              "제조 가능한 물리 설계 구현"
+            ],
+            [
+              "④ 사인오프",
+              "타이밍·전력·공정 규칙",
+              "제조 전 최종 승인에 필요한 검증"
+            ],
+            [
+              "⑤ 패키지·멀티피직스",
+              "열·전자기·기계 조건",
+              "Ansys와 설계 흐름을 연결해 재작업 감소"
+            ],
+            [
+              "AI 에이전트",
+              "실행→결과 해석→수정→재검증",
+              "기존 엔진을 호출하며 사람의 승인·재현성 유지"
+            ]
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "title": "상용화 근거",
+          "text": "6/17 첫 Multiphysics Fusion 제품군 제공. 제품 존재와 교차판매 성과는 별도 질문이다.",
+          "tone": "blue"
+        },
+        {
+          "title": "아직 검증할 것",
+          "text": "GPT-Synopsys 광범위 출시, 오류율, 유료 사용량, 반복 매출 기여는 미확인이다.",
+          "tone": "orange"
+        }
+      ],
+      "sources": [
+        {
+          "label": "제품 카탈로그",
+          "url": "https://www.synopsys.com/products.html"
+        },
+        {
+          "label": "6/17 첫 통합 제품군",
+          "url": "https://news.synopsys.com/2026-06-17-Synopsys-Announces-Availability-of-the-First-Wave-of-Multiphysics-Fusion-Solutions"
+        },
+        {
+          "label": "9/30 공동 개발 발표",
+          "url": "https://investor.synopsys.com/news/news-details/2026/OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design/default.aspx"
+        }
+      ]
+    },
+    {
+      "id": "main-idea",
+      "navTitle": "투자 논리",
+      "eyebrow": "투자 논리",
+      "title": "설계 한 건에서 더 많은 가치를 팔고, 그 몫이 주당 현금으로 남아야 한다",
+      "summary": [
+        "SNPS의 기회는 인수로 회사가 커졌다는 사실을 넘어선다. 설계·검증·물리해석·IP를 함께 제공해 고객의 재작업 비용을 줄일 수 있는지가 핵심이다.",
+        "그러나 제품 사용 증가와 주주 수익 증가는 다르다. 통합 비용과 고객 할인, 맞춤 IP 개발비, 주식보상을 지불한 뒤 무엇이 남는지 확인해야 한다."
+      ],
+      "originalHeading": "5. Main Idea — 성장률보다 설계당 수익을 보라",
+      "cards": [
+        {
+          "title": "논리의 출발점",
+          "text": "미세화·HBM·칩렛이 설계당 검증 부담을 늘린다.",
+          "tone": "blue"
+        },
+        {
+          "title": "회사가 해야 할 일",
+          "text": "통합 제품의 채택과 과금을 늘리면서 개발·판매 비용을 관리한다.",
+          "tone": "gold"
+        },
+        {
+          "title": "투자자가 확인할 것",
+          "text": "동일 범위 성장, IP 마진, 현금 전환, 순희석을 함께 추적한다.",
+          "tone": "orange"
+        }
+      ],
+      "sources": [
+        {
+          "label": "전략·장기 목표",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        },
+        {
+          "label": "실적·현금·주식 수",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        }
+      ]
+    },
+    {
+      "id": "thesis-one",
+      "navTitle": "투자포인트 ①",
+      "eyebrow": "투자포인트 ①",
+      "title": "설계 복잡성이 높아질수록, 검증 실패를 줄이는 도구의 가치가 커진다",
+      "summary": [
+        "공정과 연결 표준이 바뀌면 고객은 IP와 검증 흐름을 다시 검토한다. 누적된 공정 인증·고객 스크립트·검증 경험은 전환 비용을 만든다.",
+        "경쟁사도 같은 기회를 노린다. NVIDIA와 협력한다는 사실만으로 독점적 우위를 주장할 수 없고, 실제 고객 설계에서 성능과 경제성을 입증해야 한다."
+      ],
+      "originalHeading": "6. 투자포인트 ① 설계 복잡성과 검증 비용의 구조적 증가",
+      "tables": [
+        {
+          "caption": "주장과 반증 조건",
+          "columns": [
+            "주장",
+            "확인 증거",
+            "약해지는 조건"
+          ],
+          "rows": [
+            [
+              "설계 복잡성이 지출을 늘린다",
+              "새 공정·HBM·칩렛 도구와 IP 채택",
+              "프로젝트 취소·내재화·번들 할인으로 지출 감소"
+            ],
+            [
+              "검증 경험이 전환을 어렵게 한다",
+              "공정 인증과 기존 설계 흐름의 누적",
+              "경쟁 제품이 시간·정확도·총비용을 더 잘 충족"
+            ],
+            [
+              "AI가 사용량을 늘린다",
+              "자동화 제품과 사용량 과금의 확대",
+              "좌석·계산시간 절감이 추가 과금을 상쇄"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "TSMC N2",
+          "url": "https://www.tsmc.com/english/dedicatedFoundry/technology/logic/l_2nm"
+        },
+        {
+          "label": "HBM IP",
+          "url": "https://www.synopsys.com/designware-ip/interface-ip/hbm.html"
+        },
+        {
+          "label": "Cadence·NVIDIA",
+          "url": "https://www.cadence.com/en_US/home/company/newsroom/press-releases/pr/2026/cadence-and-nvidia-unveil-accelerated-engineering-solutions.html"
+        },
+        {
+          "label": "Siemens Fuse",
+          "url": "https://news.siemens.com/en-gb/siemens-fuse-eda-ai-agent/"
+        }
+      ]
+    },
+    {
+      "id": "thesis-two",
+      "navTitle": "투자포인트 ②",
+      "eyebrow": "투자포인트 ②",
+      "title": "Ansys 통합과 Amazon 계약은 출발했다. 반복 수익의 크기는 아직 열린 질문이다",
+      "summary": [
+        "통합 제품 출시는 연구 구상에서 판매 가능한 제품으로 진전됐다는 증거다. Amazon 계약도 AOIP의 상업적 고객을 확보한 변화다.",
+        "Amazon의 $1B 이상 계약은 여러 해에 걸친 IP 계약이다. 이를 한 해 매출로 더하거나 FY27 가이던스에 전액 추가하면 과대계상할 수 있다."
+      ],
+      "originalHeading": "7. 투자포인트 ② Ansys 통합과 IP 회복의 수익화",
+      "tables": [
+        {
+          "caption": "발표를 실적으로 바꾸는 단계",
+          "columns": [
+            "사건",
+            "현재 확인한 단계",
+            "다음 확인 지표"
+          ],
+          "rows": [
+            [
+              "Multiphysics Fusion",
+              "2026-06-17 첫 제품군 제공",
+              "공동 채택·사용량·교차판매 기여"
+            ],
+            [
+              "Amazon AOIP",
+              "2026-09-30 $1B 이상 다년 IP 계약",
+              "설계 인도·양산·계약별 로열티 인식"
+            ],
+            [
+              "GPT-Synopsys",
+              "2026-09-30 공동 개발·상업화 계약",
+              "광범위 출시·유료 고객·반복 매출"
+            ],
+            [
+              "IP 회복",
+              "Q3 성장 +10.8%",
+              "누적 성장·부문 마진의 지속 개선"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "통합 제품 제공",
+          "url": "https://news.synopsys.com/2026-06-17-Synopsys-Announces-Availability-of-the-First-Wave-of-Multiphysics-Fusion-Solutions"
+        },
+        {
+          "label": "Amazon 다년 계약",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-and-Amazon-Announce-Strategic-Multi-year-IP-Agreement-for-Custom-Silicon-Collaboration-Also-Extends-to-Cloud-and-AI-Powered-Engineering/default.aspx"
+        },
+        {
+          "label": "OpenAI 공동 개발",
+          "url": "https://investor.synopsys.com/news/news-details/2026/OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design/default.aspx"
+        },
+        {
+          "label": "IP 부문 실적",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        }
+      ]
+    },
+    {
+      "id": "outlook",
+      "navTitle": "전망과 현금",
+      "eyebrow": "전망과 현금",
+      "title": "FY27 매출 +14.8%, 조정 EPS +26.6% 목표 — 현금 성장률은 다르다",
+      "summary": [
+        "다음 회계연도 회사 전망 중간값은 매출 $11.15B, 조정 EPS $19.08이다. 이는 달성된 결과가 아니라 9월 30일 제시한 목표다.",
+        "설비투자가 늘어나므로 영업현금 증가가 모두 잉여현금 증가로 이어지지는 않는다. 본문은 회사 전망과 자체 매출 시나리오를 분리한다."
+      ],
+      "originalHeading": "9. 가이던스에 기반한 러프 매출 시나리오",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "회사 현금흐름 전망 — FY26 대비 FY27",
+          "unit": "$십억",
+          "labels": [
+            "FY26 G",
+            "FY27 G"
+          ],
+          "series": [
+            {
+              "name": "영업현금흐름",
+              "values": [
+                2.8,
+                3.6
+              ],
+              "kind": "guidance",
+              "color": "#569bd4"
+            },
+            {
+              "name": "설비투자",
+              "values": [
+                0.225,
+                0.5
+              ],
+              "kind": "guidance",
+              "color": "#f47b20"
+            },
+            {
+              "name": "잉여현금흐름",
+              "values": [
+                2.6,
+                3.1
+              ],
+              "kind": "guidance",
+              "color": "#ffcc00"
+            }
+          ],
+          "note": "회사 정의 FCF = OCF − 설비투자. 각 가이던스의 반올림 때문에 FY26 2.8−0.225와 표시 FCF2.6은 정확히 같지 않다. 모두 전망이며 달러 단위는 십억.",
+          "sources": [
+            {
+              "label": "FY26 가이던스",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+            },
+            {
+              "label": "FY27 가이던스",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+            }
+          ],
+          "period": "2026-10-07 기준"
+        },
+        {
+          "type": "bar",
+          "title": "FY27 러프 매출 시나리오 — 정본의 자체 가정",
+          "unit": "$십억",
+          "labels": [
+            "보수 · +6.7%",
+            "기준 · +14.8%",
+            "낙관 · +19.1%"
+          ],
+          "series": [
+            {
+              "name": "자체 매출 추정",
+              "values": [
+                10.364,
+                11.149,
+                11.574
+              ],
+              "kind": "estimate",
+              "color": "#ffcc00"
+            }
+          ],
+          "note": "FY26 대용 기반(기존 EDA 등4.935B·Ansys2.980B·IP1.800B)에 각각 성장 가정(6/7/8%, 15/10/22%, 19/14/28%)을 적용했다. 기준은 회사 전체 가이던스에 맞춘 설명용 보정이며 독립 예측·외부 컨센서스가 아니다. Amazon 계약액을 추가 합산하지 않았다.",
+          "sources": [
+            {
+              "label": "출발점: FY26 전망",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+            },
+            {
+              "label": "기준점: FY27 회사 전망",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+            }
+          ],
+          "period": "2026-10-07 기준"
+        }
+      ],
+      "tables": [
+        {
+          "caption": "회사 전망과 장기 목표",
+          "columns": [
+            "지표",
+            "FY26 전망",
+            "FY27 전망"
+          ],
+          "rows": [
+            [
+              "매출 범위",
+              "$9.690–9.740B",
+              "$11.10–11.20B"
+            ],
+            [
+              "조정 EPS",
+              "$15.04–15.10",
+              "$19.04–19.12"
+            ],
+            [
+              "GAAP 영업이익률 중간값",
+              "10.4%",
+              "20.7%"
+            ],
+            [
+              "조정 영업이익률 중간값",
+              "41.5%",
+              "44.0%"
+            ],
+            [
+              "희석주식수 전망",
+              "192–194M",
+              "190–192M"
+            ]
+          ]
+        }
+      ],
+      "note": "FY30 조정 영업이익률 약50%, FY26E–FY30E 매출 CAGR 약15%는 장기 경영 목표다. 외부 컨센서스와 자체 추정으로 표시하지 않는다.",
+      "sources": [
+        {
+          "label": "8/26 전망",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+        },
+        {
+          "label": "9/30 전망·장기 목표",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        }
+      ]
+    },
+    {
+      "id": "capital",
+      "navTitle": "희석과 환원",
+      "eyebrow": "희석과 환원",
+      "title": "순이익이 37% 늘어도 주당 이익은 15% 증가에 그쳤다",
+      "summary": [
+        "Q3 조정 순이익 증가율과 EPS 증가율의 차이는 희석주식 수 증가가 설명한다. 기업 규모가 커지는 것과 기존 주주 한 주의 몫이 커지는 것은 다르다.",
+        "10월 5일 회사는 $1B의 가속 자사주 매입(ASR) 계약을 발표했다. 단순한 의향에서 계약으로 진전됐지만 최종 매입주식 수와 순희석은 아직 확정되지 않았다."
+      ],
+      "originalHeading": "10.2. GAAP 조정과 순희석을 연결하는 표",
+      "charts": [
+        {
+          "type": "bar",
+          "title": "Q3 전년 대비 성장 — 분모도 커졌다",
+          "unit": "%",
+          "labels": [
+            "조정 순이익",
+            "희석주식 수",
+            "조정 EPS"
+          ],
+          "series": [
+            {
+              "name": "전년 대비",
+              "values": [
+                37.09,
+                18.95,
+                15.34
+              ],
+              "kind": "actual",
+              "color": "#ffcc00"
+            }
+          ],
+          "note": "순이익 $548.908M→$752.493M, 희석 가중평균 주식 수161.682M→192.319M, 조정 EPS $3.39→$3.91. 인수·자본조달 등으로 분모가 변했다.",
+          "sources": [
+            {
+              "label": "10-Q 손익·주식 수",
+              "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+            },
+            {
+              "label": "조정이익",
+              "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+            }
+          ],
+          "period": "2026-10-07 기준"
+        }
+      ],
+      "cards": [
+        {
+          "title": "계약 체결",
+          "text": "JPMorgan와 총 $1B ASR. 초기 약173.5만 주 수령 예정.",
+          "tone": "blue"
+        },
+        {
+          "title": "최종 완료는 아님",
+          "text": "잔여 정산은 2027-01-05 이전 예정. 실제 최종 수량은 계약기간 거래량가중평균가격 등에 달려 있다.",
+          "tone": "orange"
+        },
+        {
+          "title": "주식보상의 비용",
+          "text": "FY27 SBC 중간값 약$970M. 비현금 비용이어도 반복되는 경제적 보상이며 실제 순발행과 함께 본다.",
+          "tone": "gold"
+        }
+      ],
+      "sources": [
+        {
+          "label": "10/5 ASR 계약",
+          "url": "https://news.synopsys.com/2026-10-05-Synopsys-Initiates-1-Billion-Accelerated-Share-Repurchase-Agreement"
+        },
+        {
+          "label": "FY27 주식보상 전망",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        }
+      ]
+    },
+    {
+      "id": "valuation",
+      "navTitle": "밸류에이션",
+      "eyebrow": "밸류에이션",
+      "title": "조정 EPS 배수만 보지 말고, 현금 전환과 인수 자본까지 함께 본다",
+      "summary": [
+        "평가의 출발점으로 FY27 조정 EPS를 사용할 수 있지만 상각·주식보상·일회성 이익의 성격을 따로 확인해야 한다. 본문은 평가 방법을 설명하며 목표주가는 산출하지 않는다.",
+        "회사가 말하는 FCF는 이자지급 후 영업현금에서 설비투자를 뺀 값이다. 이를 그대로 기업현금흐름처럼 할인하거나 주식보상과 희석을 두 번 차감하면 계산이 왜곡된다."
+      ],
+      "originalHeading": "10.3. 권장 평가 방식과 피해야 할 이중계산",
+      "tables": [
+        {
+          "caption": "권장 방법과 반드시 맞출 기준",
+          "columns": [
+            "방법",
+            "유용한 점",
+            "주의할 점"
+          ],
+          "rows": [
+            [
+              "정상화 현금흐름 DCF",
+              "성장·마진·재투자·자본비용을 연결",
+              "FCFF/FCFE와 이자·부채 처리를 일관되게"
+            ],
+            [
+              "조정 EPS 배수",
+              "통합 후 주당 성과의 비교",
+              "GAAP·SBC·순희석·현금 전환을 함께 확인"
+            ],
+            [
+              "사업별 가치 합산",
+              "EDA·IP·시뮬레이션의 경제성 차이",
+              "Ansys와 Design Automation 이중 계산 금지"
+            ],
+            [
+              "매출배수·P/B 보조",
+              "비교의 출발점",
+              "사업 혼합·인수 무형자산을 무시하지 않기"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "재무·주식·인수자산",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        },
+        {
+          "label": "EPS·현금·조정항목",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        }
+      ]
+    },
+    {
+      "id": "price",
+      "navTitle": "주가 반응",
+      "eyebrow": "주가 반응",
+      "title": "Investor Day 이후 기대가 빠르게 가격에 들어왔다",
+      "summary": [
+        "9월 29일에서 10월 6일까지 종가는 약21.7% 올랐다. 발표 전과 후의 가격을 같은 기대 수준으로 볼 수 없다.",
+        "차트는 확인한 6거래일만 보여준다. 발표와 상승이 시간상 겹치지만 상승 전부를 단일 뉴스의 효과로 단정하지 않는다."
+      ],
+      "originalHeading": "3.5. 전략 발표의 경제적 의미와 주가 반응을 분리한다",
+      "charts": [
+        {
+          "type": "line",
+          "title": "미국 정규장 종가 — 9/30 Investor Day 전후",
+          "unit": "달러/주",
+          "labels": [
+            "09-29",
+            "09-30",
+            "10-01",
+            "10-02",
+            "10-05",
+            "10-06"
+          ],
+          "series": [
+            {
+              "name": "SNPS 종가",
+              "values": [
+                415.09,
+                434.94,
+                490.54,
+                489.9,
+                488.47,
+                505.17
+              ],
+              "kind": "actual",
+              "color": "#ffcc00"
+            }
+          ],
+          "note": "2026년 미국 거래일 기준. 주말을 제외한 실제 거래일만 표시했으며 수익률·인과관계 모형이 아니다.",
+          "sources": [
+            {
+              "label": "StockAnalysis · S&P Global",
+              "url": "https://stockanalysis.com/stocks/snps/history/"
+            }
+          ],
+          "period": "2026-09-29 ~ 2026-10-06"
+        }
+      ]
+    },
+    {
+      "id": "risks",
+      "navTitle": "반론과 무효화",
+      "eyebrow": "반론과 무효화",
+      "title": "기술 수요가 강해도 주주에게 남는 몫은 작을 수 있다",
+      "summary": [
+        "가장 검증하기 좋은 반론은 AI 수혜의 부재보다 수익 회수율의 저하다. 고객이 절약한 비용 중 공급자가 얼마나 가져오는지는 별도 문제다.",
+        "따라서 계약액·성능 발표보다 실제 마진, 현금, 희석과 다음 기간 매출을 본다. 정책과 경쟁도 기술 추세와 반대 방향으로 움직일 수 있다."
+      ],
+      "originalHeading": "8. 성장 논리를 깨뜨릴 다섯 가지 리스크",
+      "tables": [
+        {
+          "caption": "논리를 낮춰야 할 신호",
+          "columns": [
+            "리스크",
+            "관찰 지표",
+            "판정이 약해지는 신호"
+          ],
+          "rows": [
+            [
+              "Ansys 통합",
+              "공동 제품 채택·교차판매·통합비용",
+              "출시만 늘고 유료 채택·현금 개선이 지연"
+            ],
+            [
+              "IP 경제성",
+              "누적 성장·부문 마진·개발비",
+              "매출 반등에도 누적 마진 회복이 정체"
+            ],
+            [
+              "AI 가치 회수",
+              "구독·사용량·할인·개발비",
+              "생산성 향상이 고객 비용절감에만 귀속"
+            ],
+            [
+              "수출규제·고객 예산",
+              "거래 가능 범위·설계 프로젝트",
+              "가이던스의 정책 전제 변화·프로젝트 취소"
+            ],
+            [
+              "희석·자본구조",
+              "순주식 수·SBC·이자·주당 FCF",
+              "조정 EPS 개선과 달리 주당 현금 회복이 부진"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "10-Q 위험요인",
+          "url": "https://www.sec.gov/Archives/edgar/data/883241/000088324126000025/snps-20260731.htm"
+        },
+        {
+          "label": "전망의 전제",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Details-Growth-Strategy-and-Long-term-Financial-Model-at-2026-Investor-Day/"
+        },
+        {
+          "label": "경쟁사 제품·협력",
+          "url": "https://www.cadence.com/en_US/home/company/newsroom/press-releases/pr/2026/cadence-and-nvidia-unveil-accelerated-engineering-solutions.html"
+        }
+      ]
+    },
+    {
+      "id": "checks",
+      "navTitle": "다음 확인",
+      "eyebrow": "다음 확인",
+      "title": "출시·계약·전망을 각각 실적으로 확인한다",
+      "summary": [
+        "확정된 것과 아직 확인하지 못한 것을 구분하면 다음 리서치의 질문이 선명해진다. 새로운 발표를 그대로 실적에 더하지 않는다.",
+        "아래 항목의 일정이 확정되지 않은 경우 날짜를 만들어 넣지 않았다. 긴 설명·계산·남은 질문은 정본에서 확인할 수 있다."
+      ],
+      "originalHeading": "12. 검증 노트와 남은 질문",
+      "tables": [
+        {
+          "caption": "관찰 일정과 미확인 사항",
+          "columns": [
+            "시점",
+            "확인할 것",
+            "현재 상태"
+          ],
+          "rows": [
+            [
+              "FY26 Q4 실적 발표 시",
+              "IP 누적 성장, 연간 매출·현금 목표 달성",
+              "정확한 발표일은 이 요약에서 확정하지 않음"
+            ],
+            [
+              "FY27 분기별",
+              "매출·44% 조정마진·현금흐름 목표의 실행",
+              "회사 전망"
+            ],
+            [
+              "2027-01-05 이전 예정",
+              "ASR 잔여 정산·최종 매입주식 수",
+              "계약 체결, 최종 수량 미확정"
+            ],
+            [
+              "추가 공시 시",
+              "Amazon 인식 일정·로열티·가이던스 포함 범위",
+              "상세 배분 미공개"
+            ],
+            [
+              "제품 출시·고객 채택 시",
+              "GPT-Synopsys 과금·사용량·매출 기여",
+              "공동 개발·상업화 계약"
+            ],
+            [
+              "후속 리서치",
+              "제품별 수익성·최신 외부 컨센서스·유료 리포트 원문",
+              "확보되지 않은 수치를 대신 만들지 않음"
+            ]
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "최근 실적·전망",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-Posts-Financial-Results-for-Third-Quarter-Fiscal-Year-2026/"
+        },
+        {
+          "label": "ASR 일정",
+          "url": "https://news.synopsys.com/2026-10-05-Synopsys-Initiates-1-Billion-Accelerated-Share-Repurchase-Agreement"
+        },
+        {
+          "label": "Amazon 계약",
+          "url": "https://investor.synopsys.com/news/news-details/2026/Synopsys-and-Amazon-Announce-Strategic-Multi-year-IP-Agreement-for-Custom-Silicon-Collaboration-Also-Extends-to-Cloud-and-AI-Powered-Engineering/default.aspx"
+        },
+        {
+          "label": "OpenAI 협업",
+          "url": "https://investor.synopsys.com/news/news-details/2026/OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design/default.aspx"
+        }
+      ]
+    }
+  ],
+  "canonicalSha256": "98794e0f09966208e40e8f7f7f410da09d3682e21e22105d1cfc1a0596ae86cd"
+}

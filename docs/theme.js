@@ -28,12 +28,14 @@ window.vantageJSON = function (path, fresh) {
     ["datahub.html", "데이터 허브"],
     ["archive.html", "리서치 아카이브"],
     ["coverage.html", "Coverage"],
+    ["research-summary.html", "리서치 요약"],
     ["jp-screener.html", "일본 기업"],
     ["us-report.html", "미국 실적"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";
   if (here === "ta-lab.html" || here === "backtest.html") here = "bottomup.html";
   if (here === "jp-report.html") here = "jp-screener.html";
+  if (here === "research-report.html") here = "research-summary.html";
   var nav = document.getElementById("topnav");
   if (nav) {
     var links = PAGES.map(function (p) {
