@@ -1,6 +1,6 @@
 """CNN 공포·탐욕 지수(Fear & Greed Index) 공식 값 — CNN 사이트가 쓰는 데이터 주소에서 받는다(2026-10-07 사용자 요청).
 
-CNN 은 미국 장중 몇 분마다 값을 바꾸고 장 마감 뒤 그날 값을 확정한다. 30분마다 확인해(vantage-fast-collect)
+예약 작업 vantage-fear-greed 가 매일 22:00·03:00·06:00(사용자 지정) 확인해
 CNN 쪽 갱신 시각(timestamp)이 바뀌었을 때만 docs/data/fear_greed.json 을 다시 쓴다 → 바뀔 때마다 사이트에 반영.
 출력: score·rating(한국어)·timestamp(CNN 갱신 시각)·전일/1주/1달/1년 전 값·최근 1년 일별 값·7개 세부 지표.
 """
