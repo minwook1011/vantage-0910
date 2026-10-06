@@ -76,6 +76,14 @@ def merge_company(entry, recs):
             nm = series_of(col)
             if nm and nm not in picked:   # 같은 계열 열이 여럿이면 앞 열(대개 합계)
                 picked[nm] = ci
+        if "기존점 매출" not in picked and "전점 매출" not in picked:
+            # 백화점·철도·여행 등 점포 매출 형식이 아닌 회사: 회사 전체 매출·거래액 전년比 열을 '전점 매출'로
+            amt = ("売上", "販売額", "取扱額", "取扱高", "興行収入", "運賃収入")
+            tot = ("全社", "合計", "計", "全店", "企業計", "連結", "単体")
+            cand = [ci for ci, col in enumerate(cols) if "전년比" in col and any(a in col for a in amt) and "前々年" not in col]
+            best = [ci for ci in cand if any(t in cols[ci].split(" ")[0] for t in tot)]
+            if best or cand:
+                picked["전점 매출"] = (best or cand)[0]
         for row in rec["rows"]:
             m = row[0]
             for nm, ci in picked.items():
