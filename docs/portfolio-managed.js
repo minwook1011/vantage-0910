@@ -3,7 +3,14 @@
    원본·키는 저장소 private/ (공개 안 됨) — pf_managed.py 참고. */
 (function () {
   "use strict";
-  var URL = "data/pf/managed.enc.json", KEY = "vantage-pf-mkey";
+  var URL = "data/pf/managed.enc.json", KEY = "vantage-pf-mkey", OVR = "vantage-pf-overrides";
+  /* 화면에서 고친 관리 거래: {거래id: {side, qty, price, date, fx} 또는 {del:true}} — 파일 값보다 우선 */
+  function ovGet() { try { return JSON.parse(localStorage.getItem(OVR) || "{}") || {}; } catch (e) { return {}; } }
+  function ovSet(o) { try { localStorage.setItem(OVR, JSON.stringify(o)); } catch (e) {} }
+  function applyOv(list) {
+    var o = ovGet();
+    return list.filter(function (t) { return !(o[t.id] && o[t.id].del); }).map(function (t) { return o[t.id] ? Object.assign({}, t, o[t.id]) : t; });
+  }
   function b64(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
   function getKey() { try { return localStorage.getItem(KEY) || ""; } catch (e) { return ""; } }
   async function decrypt(file, phrase) {
@@ -19,6 +26,7 @@
   }
   /* 상태에 반영: 관리 계좌는 맨 앞, 매매기록은 파일 것으로 교체. 바뀐 게 있으면 true */
   function merge(state, data) {
+    data = Object.assign({}, data, { transactions: applyOv(data.transactions || []) });
     var before = JSON.stringify([state.accounts, state.transactions.length]), changed = false;
     (data.accounts || []).slice().reverse().forEach(function (a0) {
       /* 덧붙이기(mode:"append", 사장님 본인 계좌): 기존 기록은 그대로 두고 파일의 거래만 id 기준으로 추가·수정.
@@ -75,6 +83,12 @@
         cb(d);
       } catch (e) { alert("키가 맞지 않거나 파일을 받지 못했습니다."); }
     },
-    merge: merge
+    merge: merge,
+    isManaged: function (t) { return /^(mj|me)-/.test(String(t && t.id || "")); },
+    override: function (t, del) {
+      var o = ovGet();
+      o[t.id] = del ? { del: true } : { side: t.side, qty: t.qty, price: t.price, date: t.date, fx: t.fx };
+      ovSet(o);
+    }
   };
 })();

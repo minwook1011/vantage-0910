@@ -80,7 +80,9 @@
   try { view = localStorage.getItem("vantage-portfolio-view") || "status"; } catch (e) {}
   if (["status", "trades", "perf"].indexOf(view) < 0) view = "status";
   var perfKey = null;
-  function removeTx(id) { state.transactions = state.transactions.filter(function (t) { return t.id !== id; }); S.save(state); perfKey = null; render(); }
+  /* Claude 가 넣은 거래(관리 기록)를 화면에서 고치면, 다음에 파일을 다시 받아도 되돌아가지 않게 이 기기에 '고친 값'으로 남긴다 */
+  function noteManagedEdit(t, del) { if (window.PortfolioManaged && PortfolioManaged.isManaged(t)) PortfolioManaged.override(t, del); }
+  function removeTx(id) { var t0 = state.transactions.filter(function (t) { return t.id === id; })[0]; if (t0) noteManagedEdit(t0, true); state.transactions = state.transactions.filter(function (t) { return t.id !== id; }); S.save(state); perfKey = null; render(); }
   /* 매매내역 표에서 칸을 눌러 고친 값 저장. side는 값 없이 오면 매수↔매도를 뒤집는다. */
   function editTx(id, field, value) {
     var t = state.transactions.filter(function (x) { return x.id === id; })[0]; if (!t) return;
@@ -88,6 +90,7 @@
     else if (field === "date") t.date = value;
     else if (field === "qty" || field === "price" || field === "fx") t[field] = value;
     else return;
+    noteManagedEdit(t, false);
     S.save(state); perfKey = null; render(); refresh();
   }
   function renderView() {
