@@ -302,7 +302,7 @@ function koAlias(code){
   return _KO_ALIAS[code]=out.join(" ").toLowerCase();
 }
 function searchMatch(r, q, qrom){
-  const txt=(r[F.NAME]+" "+r[F.CODE]+" "+r[F.IND]+" "+r[F.CAT]+" "+koAlias(r[F.CODE])).toLowerCase();
+  const txt=(r[F.NAME]+" "+r[F.CODE]+" "+r[F.IND]+" "+r[F.CAT]+" "+((typeof KO_NAMES!=="undefined"&&KO_NAMES[r[F.CODE]])||"")+" "+koAlias(r[F.CODE])).toLowerCase();
   if(txt.includes(q)) return true;
   if(qrom && txt.includes(qrom)) return true;
   const nq=nzRom(qrom||q); if(nq.length>=4 && nzRom(r[F.NAME]).includes(nq)) return true;
