@@ -50,12 +50,14 @@
   }
 
   /* ───────────── 매매내역 ───────────── */
-  var tf = { side: "all", tk: "", };
+  var tf = { side: "all", tk: "", q: "" };
   function trades(el, state, id, onChange, onEdit) {
     var rows = withRealized(state, txsOf(state, id));
     var tickers = {}; rows.forEach(function (r) { tickers[keyOf(r.t)] = S.displayTicker(r.t.ticker); });
     if (tf.tk && !tickers[tf.tk]) tf.tk = "";
-    var list = rows.filter(function (r) { return (tf.side === "all" || r.t.side === tf.side) && (!tf.tk || keyOf(r.t) === tf.tk); }).reverse();
+    var qq = String(tf.q || "").trim().toLowerCase();
+    function hit(t) { if (!qq) return true; var nm = (S.displayTicker(t.ticker) + " " + t.ticker).toLowerCase(); return qq.split(/\s+/).some(function (w) { return w && nm.indexOf(w) >= 0; }); }
+    var list = rows.filter(function (r) { return (tf.side === "all" || r.t.side === tf.side) && (!tf.tk || keyOf(r.t) === tf.tk) && hit(r.t); }).reverse();
     var buy = 0, sell = 0, real = 0;
     list.forEach(function (r) { if (r.t.side === "sell") { sell += r.amt; real += r.realized || 0; } else buy += r.amt; });
     var months = {}, order = [];
@@ -63,6 +65,7 @@
     el.innerHTML =
       '<div class="pf-bar"><div class="pf-seg" id="tr-side">' + [["all", "전체"], ["buy", "매수"], ["sell", "매도"]].map(function (x) { return '<button data-v="' + x[0] + '" class="' + (tf.side === x[0] ? "on" : "") + '">' + x[1] + "</button>"; }).join("") + "</div>" +
       '<select id="tr-tk"><option value="">전체 종목</option>' + Object.keys(tickers).sort(function (a, b) { return tickers[a].localeCompare(tickers[b]); }).map(function (k) { return '<option value="' + esc(k) + '"' + (k === tf.tk ? " selected" : "") + ">" + esc(tickers[k]) + "</option>"; }).join("") + "</select>" +
+      '<input id="tr-q" class="pf-trq" type="search" placeholder="종목 검색 (예: 티엘비, NBIS)" value="' + esc(tf.q || "") + '">' +
       '<span class="pf-sum">' + list.length + "건 · 매수 " + krw(buy) + " · 매도 " + krw(sell) + ' · 실현손익 <b class="' + cls(real) + '">' + krw(real) + "</b></span></div>" +
       (list.length ? order.map(function (m) {
         var g = months[m], mb = 0, ms = 0, mr = 0;
@@ -78,6 +81,9 @@
       }).join("") : '<div class="empty-row">매매 기록이 없습니다.</div>');
     el.querySelectorAll("#tr-side button").forEach(function (b) { b.onclick = function () { tf.side = b.dataset.v; trades(el, state, id, onChange, onEdit); }; });
     el.querySelector("#tr-tk").onchange = function (e) { tf.tk = e.target.value; trades(el, state, id, onChange, onEdit); };
+    var qi = el.querySelector("#tr-q");
+    qi.addEventListener("compositionend", function () { qi.oninput({}); });
+    qi.oninput = function (e) { if (e && e.isComposing) return; var pos = qi.selectionStart; tf.q = qi.value; trades(el, state, id, onChange, onEdit); var n = el.querySelector("#tr-q"); n.focus(); try { n.setSelectionRange(pos, pos); } catch (e) {} };
     el.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function () { if (!confirm("이 매매 기록을 삭제할까요?")) return; onChange(b.dataset.del); }; });
     if (!onEdit) return;
     el.querySelectorAll("[data-ed]").forEach(function (sp) {

@@ -81,3 +81,4 @@
 .pf-view .pf-left { color:var(--muted); white-space:nowrap; }
 .pf-view .pf-left.short { color:var(--up); font-weight:700; }
 .pf-view .pf-left small { display:block; font-size:11px; }
+.pf-view .pf-trq { font:inherit; font-size:13px; padding:7px 10px; border:1px solid var(--border); border-radius:8px; background:#fff; color:var(--text); min-width:180px; }
