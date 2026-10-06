@@ -20,7 +20,16 @@
   /* 상태에 반영: 관리 계좌는 맨 앞, 매매기록은 파일 것으로 교체. 바뀐 게 있으면 true */
   function merge(state, data) {
     var before = JSON.stringify([state.accounts, state.transactions.length]), changed = false;
-    (data.accounts || []).slice().reverse().forEach(function (a) {
+    (data.accounts || []).slice().reverse().forEach(function (a0) {
+      /* 사용자가 직접 만든 같은 사람 계좌(예: '제현형님 계좌')가 있으면 그 계좌에 넣는다 — 이름에 match(예: '제현')가 들어간 계좌 */
+      var a = Object.assign({}, a0), key = a.match || String(a.name || "").replace(/형님|계좌|\s/g, "");
+      var own = state.accounts.filter(function (x) { return x.id !== a.id && key && String(x.name || "").indexOf(key) >= 0; })[0];
+      if (own) {
+        a.id = own.id; a.name = own.name;
+        state.accounts = state.accounts.filter(function (x) { return x.id !== a0.id; });   // 예전에 따로 만들어진 관리 계좌는 정리
+        state.transactions = state.transactions.filter(function (t) { return t.accountId !== a0.id; });
+        data = Object.assign({}, data, { transactions: (data.transactions || []).map(function (t) { return t.accountId === a0.id ? Object.assign({}, t, { accountId: own.id }) : t; }) });
+      }
       var i = state.accounts.findIndex(function (x) { return x.id === a.id; }), cur = i >= 0 ? state.accounts[i] : null;
       var next = Object.assign({}, cur || {}, a);
       if (cur) { if (cur.cashKrw) next.cashKrw = cur.cashKrw; if (cur.cashUsd) next.cashUsd = cur.cashUsd; state.accounts.splice(i, 1); }   // 예수금은 화면에서 적은 값 유지

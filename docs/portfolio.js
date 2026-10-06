@@ -237,13 +237,13 @@
   function applyManaged(d, jump) {
     var ids = (d.accounts || []).map(function (a) { return a.id; }), names = (d.accounts || []).map(function (a) { return a.name; }).join("·");
     var changed = window.PortfolioManaged && PortfolioManaged.merge(state, d);
-    if (jump && ids[0]) activeId = ids[0];
+    if (jump) { var mg = state.accounts.filter(function (a) { return a.managed; })[0]; if (mg) activeId = mg.id; }
     if (!state.accounts.some(function (a) { return a.id === activeId; })) activeId = state.accounts[0].id;
     if (changed || jump) { S.save(state); perfKey = null; render(); if (view === "perf" && window.PortfolioPerf) PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId); }
     managedBadge("🔑 " + names + " 계좌 · " + String(d.updated || "").replace("T", " ").slice(5, 16).replace("-", "/") + " 기록까지 반영(" + (d.transactions || []).length + "건)");
   }
   if (window.PortfolioManaged) {
     if (PortfolioManaged.hasKey()) { managedBadge("🔑 관리 계좌 확인 중…"); PortfolioManaged.load(function (d) { applyManaged(d); }, function () { managedBadge("⚠️ 관리 계좌를 못 불러옴 — ", true); }); }
-    else managedBadge("", true);
+    else managedBadge(state.accounts.some(function (a) { return /제현/.test(a.name || ""); }) ? "제현형님 계좌의 최신 매매기록(Claude 입력)이 있습니다 → " : "", true);
   }
 })();
