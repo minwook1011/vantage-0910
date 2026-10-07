@@ -48,6 +48,25 @@ def universe():
             t = (s.get("ticker") or "").upper()
             if t and "." not in t and t.isascii():
                 tk.setdefault(t, s.get("name"))
+    # S&P500 전 종목(2026-10-08 사용자: "S&P500 모든 기업이 들어가 있는 것 같지 않다") — docs/sp500_constituents.json
+    p = os.path.join(BASE, "docs", "sp500_constituents.json")
+    if os.path.exists(p):
+        for t, c in (json.load(open(p, encoding="utf-8")).get("map") or {}).items():
+            t = t.upper().replace(".", "-")
+            tk.setdefault(t, c.get("name"))
+            META.setdefault(t, {"sector": c.get("sector"), "mcap": None})
+    # AI 관련 기업(2026-10-08 사용자: "미국 캘린더에 현재 AI 관련 기업 전부") — data_sources/us_ai_watch.json
+    p = os.path.join(BASE, "data_sources", "us_ai_watch.json")
+    if os.path.exists(p):
+        for c in json.load(open(p, encoding="utf-8")).get("companies", []):
+            t = (c.get("ticker") or "").upper().replace(".", "-")
+            if not t:
+                continue
+            tk.setdefault(t, c.get("name"))
+            m = META.setdefault(t, {"sector": None, "mcap": None})
+            m["ai"] = c.get("group")
+            if not m.get("sector"):   # 화면 정렬에서 기술주로 묶이게
+                m["sector"] = "Information Technology"
     return tk
 
 
