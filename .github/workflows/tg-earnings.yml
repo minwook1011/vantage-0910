@@ -1,0 +1,100 @@
+name: telegram-earnings
+
+# 실적 채널 봇(tg_earnings.py · tg_shots.py) — 사이트 화면을 찍어 사진으로 보낸다. PC 가 꺼져 있어도 돈다.
+# 비밀값: TELEGRAM_EARN_CHAT_ID(채널) · TELEGRAM_EARN_BOT_TOKEN(새 봇이면, 아니면 TELEGRAM_BOT_TOKEN) · FIREBASE_SA(즐겨찾기 읽기, 선택)
+on:
+  push:                       # 실적 결과·주가 반응·요약이 올라오면 바로 확인
+    branches: [main]
+    paths: ["docs/data/jp/earnings_results.json", "docs/data/jp/earnings_pts.json", "docs/data/jp/reports/**", "docs/data/us/reports/**"]
+  schedule:
+    - cron: "0 20 * * 5"      # 토 05:00 KST  다음 주 실적 일정(주간)
+    - cron: "30 22 * * 0-4"   # 평일 07:30 KST 오늘 실적 발표(매일)
+    - cron: "15,45 * * * *"   # 발표 후 알림 놓친 것 보충
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "alerts | weekly | daily"
+        default: alerts
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tg-earnings          # 겹쳐 돌면 같은 알림이 두 번 갈 수 있어 한 줄로 세운다
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 무엇을 보낼지
+        id: m
+        run: |
+          M="${{ github.event.inputs.mode }}"
+          case "${{ github.event.schedule }}" in
+            "0 20 * * 5") M=weekly ;;
+            "30 22 * * 0-4") M=daily ;;
+          esac
+          echo "mode=${M:-alerts}" >> "$GITHUB_OUTPUT"
+
+      - name: 보낼 게 있나(알림만 — 없으면 화면 도구 설치 생략)
+        id: p
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SA }}
+        run: |
+          pip install -q requests google-auth
+          if [ "${{ steps.m.outputs.mode }}" = "alerts" ] && [ -n "${{ secrets.TELEGRAM_EARN_CHAT_ID }}" ]; then python tg_earnings.py --pending; else echo "pending=1" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/cache@v4
+        if: steps.p.outputs.pending != '0'
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-chromium-v1
+
+      - name: 화면 찍기 도구 설치
+        if: steps.p.outputs.pending != '0'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk >/dev/null
+          pip install -q playwright pillow requests google-auth
+          python -m playwright install --with-deps chromium >/dev/null
+
+      - name: 보내기
+        if: steps.p.outputs.pending != '0'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_EARN_BOT_TOKEN: ${{ secrets.TELEGRAM_EARN_BOT_TOKEN }}
+          TELEGRAM_EARN_CHAT_ID: ${{ secrets.TELEGRAM_EARN_CHAT_ID }}
+          FIREBASE_SA: ${{ secrets.FIREBASE_SA }}
+        run: |
+          if [ -z "$TELEGRAM_EARN_CHAT_ID" ]; then echo "실적 채널 비밀값 없음 — 건너뜀"; exit 0; fi
+          case "${{ steps.m.outputs.mode }}" in
+            weekly) python tg_earnings.py --weekly ;;
+            daily)  python tg_earnings.py --daily ;;
+            *)      python tg_earnings.py ;;
+          esac
+
+      - name: 보낸 기록 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -f data_sources/tg_earn_state.json ]; then git add data_sources/tg_earn_state.json; fi
+          if git diff --cached --quiet; then
+            echo "보낸 것 없음 — 커밋 생략"
+          else
+            git commit -m "tg: 실적 채널 기록 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M')"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
