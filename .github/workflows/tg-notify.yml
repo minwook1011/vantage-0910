@@ -34,6 +34,18 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 봇·채널 연결 확인(비밀값이 없거나 틀리면 여기서 실패로 표시)
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python -c "
+          import os, send_telegram as t
+          me = t.api('getMe', {})
+          ch = t.api('getChat', {'chat_id': os.environ['TELEGRAM_CHAT_ID']})
+          print('연결됨:', me['username'], '→', ch.get('title'))
+          "
+
       - name: 보낼 게 있는지
         id: due
         run: echo "due=$(python tg_notify.py --due | tail -1)" >> "$GITHUB_OUTPUT"
