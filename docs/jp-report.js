@@ -1,6 +1,6 @@
 /* jp-report.js — 일본 실적 리포트
  * jp-report.html            → 최근 발표 목록(소비재 / 주요 기업)
- * jp-report.html?id=<rid>   → 리포트 1건: ① 요약(분기 표 + 핵심 수치 + 요약 글) ② 딥리서치 분석(그래프 + 9개 항목 분석 글) ③ 원문(한글 정리 orig_md + 결산단신 PDF 등)
+ * jp-report.html?id=<rid>   → 리포트 1건: ① 요약(분기 표 + 핵심 수치 + 요약 글) ② 딥리서치 분석(그래프 + 9개 항목 분석 글) ③ 질의응답(qa) ④ 원문(한글 정리 orig_md + 결산단신 PDF 등)
  * 데이터: data/jp/reports/<rid>.json (fetch_jp_earnings_results.py, 자동) + data/jp/reports/notes/<rid>.json (Claude가 쓰는 요약·분석, 선택) */
 (function () {
   "use strict";
@@ -290,10 +290,22 @@
       ((R.u || []).indexOf("cons") >= 0 ? '<div class="card chart wide jr-tr" data-code="' + esc(R.code) + '" data-label="' + esc((N && N.trend_label) || "") + '" hidden><h4>구글 트렌드 <span class="hint">일본 검색 관심도 · 최근 5년 주간</span></h4><div class="empty"></div></div>' : "") +
       "</div>" +
       (N && N.analysis_md ? '<div class="note card deep">' + md(N.analysis_md) + "</div>" : "") + "</section>";
-    // ③ 원문
+    // ③ 질의응답 — 실적 설명회·컨퍼런스콜·회사가 올린 질의응답 요지를 우리말로 줄여 정리(N.qa). 2026-10-07 사용자 요청
+    var QA = N && N.qa;
+    html += '<section data-sec="qa"><h2>③ 질의응답 <span class="hint">' + (IS_US ? "실적 컨퍼런스콜 질의응답" : "결산 설명회·회사 공개 질의응답 요지") + " — 문답을 우리말로 줄여 정리</span></h2>" +
+      (QA && QA.items && QA.items.length
+        ? '<div class="note card qa"><div class="qa-src">' + esc(QA.src || "") + (QA.date ? " · " + esc(QA.date) : "") + (QA.url ? ' · <a href="' + esc(QA.url) + '" target="_blank" rel="noopener">원문 ↗</a>' : "") + "</div>" +
+          QA.items.map(function (x, i) {
+            return '<div class="qa-item">' + (x.topic ? '<div class="qa-topic">' + esc(x.topic) + "</div>" : "") +
+              '<div class="qa-q"><span>문 ' + (i + 1) + "</span><div>" + md(x.q) + "</div></div>" +
+              '<div class="qa-a"><span>답</span><div>' + md(x.a) + "</div></div></div>";
+          }).join("") + (QA.note ? '<div class="unit">' + esc(QA.note) + "</div>" : "") + "</div>"
+        : '<div class="empty">' + esc((QA && QA.note) || (IS_US ? "컨퍼런스콜 질의응답을 아직 정리하지 못했습니다. 정리되는 대로 붙습니다." : "회사가 공개한 질의응답이 아직 없습니다. 일본 기업은 설명회 뒤 1~3주 안에 요지를 올리거나, 1·3분기에는 설명회를 열지 않는 곳이 많습니다. 올라오면 자동으로 붙습니다.")) + "</div>") +
+      "</section>";
+    // ④ 원문
     var tan = mainDoc(R);
     var pdfBtn = tan ? '<a class="btn pri" href="' + esc(tan.url) + '" target="_blank" rel="noopener">📄 원문 열기 <small>' + (IS_US ? "영어" : "일본어") + "</small></a>" : "";
-    html += '<section data-sec="orig"><h2>③ 원문 <span class="hint">' + (IS_US ? "한글 정리 → SEC 8-K 실적 보도자료(EX-99.1)" : "한글 정리 → TDnet 공시 PDF(카부탄 보관본)") + "</span></h2>" +
+    html += '<section data-sec="orig"><h2>④ 원문 <span class="hint">' + (IS_US ? "한글 정리 → SEC 8-K 실적 보도자료(EX-99.1)" : "한글 정리 → TDnet 공시 PDF(카부탄 보관본)") + "</span></h2>" +
       (N && N.orig_md ? '<details class="orig card"><summary><b>원문 정리 (한글)</b><span class="hint">' + (IS_US ? "보도자료를 원문 순서대로 — 요약 수치 · 경영진 코멘트 · 사업부별 · 가이던스 · 손익·재무상태·현금흐름 표" : "결산단신을 원문 순서대로 — 표지 요약표 · 경영성적 · 세그먼트 · 재정상태 · 통기 예상 · 주석") + "</span></summary>" +
         '<div class="orig-top"><span>원문을 문장 그대로 옮긴 번역이 아니라 <b>숫자와 표는 전부, 설명 글은 줄여서 다시 쓴 정리</b>입니다. 정확한 문구는 원문에서 확인하세요.</span>' + pdfBtn + "</div>" +
         '<div class="note">' + md(N.orig_md) + "</div>" +
@@ -311,7 +323,7 @@
     hydrate(app, R);
     var cp = document.getElementById("copy");
     if (cp) cp.onclick = function () { try { navigator.clipboard.writeText(location.href); cp.textContent = "✓ 복사됨"; } catch (e) { cp.textContent = location.href; } };
-    // 텔레그램 링크 바로가기: ?id=…#sum(요약) · #ana(분석) · #orig(원문 정리 펼침)
+    // 텔레그램 링크 바로가기: ?id=…#sum(요약) · #ana(분석) · #qa(질의응답) · #orig(원문 정리 펼침)
     var sec = location.hash.slice(1), el = sec && app.querySelector('section[data-sec="' + sec + '"]');
     if (el) {
       var d = sec === "orig" && el.querySelector("details.orig");
