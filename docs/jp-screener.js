@@ -124,7 +124,7 @@ function toggleFav(code,ev){
   const pop=document.createElement("div"); pop.id="favpop"; pop.className="favpop";
   const draw=()=>{
     pop.innerHTML=`<div class="fp-h"><b>즐겨찾기 그룹</b><span class="mono">${code}</span><button class="fp-x" aria-label="닫기">×</button></div>
-      <div class="fp-list">${GROUPS.map(x=>`<label class="fp-row"><input type="checkbox" data-g="${x.id}" ${x.c.includes(code)?"checked":""}><input type="color" class="fp-col" data-col="${x.id}" value="${grpCol(x)}" title="그룹 색"><span style="color:${grpCol(x)}">★</span><span>${esc(x.n)}</span><small>${x.c.length}</small>${x.id!=="base"?`<button class="fp-del" data-del="${x.id}" title="그룹 삭제">삭제</button>`:""}</label>`).join("")}</div>
+      <div class="fp-list">${GROUPS.map(x=>`<label class="fp-row"><input type="checkbox" data-g="${x.id}" ${x.c.includes(code)?"checked":""}><input type="color" class="fp-col" data-col="${x.id}" value="${grpCol(x)}" title="그룹 색"><span style="color:${grpCol(x)}">★</span><span>${esc(x.n)}</span><small>${x.c.length}</small><button class="fp-del" data-ren="${x.id}" title="그룹 이름 바꾸기">이름</button>${x.id!=="base"?`<button class="fp-del" data-del="${x.id}" title="그룹 삭제">삭제</button>`:""}</label>`).join("")}</div>
       <div class="fp-new"><input type="text" placeholder="새 그룹 이름" maxlength="20"><button>+ 그룹 추가</button></div>
       <div class="fp-foot">체크한 그룹에 들어갑니다 · 모두 끄면 즐겨찾기에서 빠집니다</div>`;
     pop.querySelector(".fp-x").onclick=closeFavPop;
@@ -135,6 +135,10 @@ function toggleFav(code,ev){
     });
     pop.querySelectorAll("input[data-col]").forEach(ci=>{ ci.onclick=e=>e.stopPropagation(); ci.onchange=()=>{
       const g=GROUPS.find(x=>x.id===ci.dataset.col); if(!g) return; g.col=ci.value; favChanged(code); draw(); }; });
+    pop.querySelectorAll("[data-ren]").forEach(b=>b.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+      const g=GROUPS.find(x=>x.id===b.dataset.ren); if(!g) return;
+      const n=(prompt("그룹 이름",g.n)||"").trim().slice(0,20); if(!n||n===g.n) return;
+      g.n=n; favChanged(code); draw(); });
     pop.querySelectorAll("[data-del]").forEach(b=>b.onclick=e=>{ e.preventDefault();
       const g=GROUPS.find(x=>x.id===b.dataset.del); if(!g) return;
       if(!confirm(`"${g.n}" 그룹을 지울까요? (종목 ${g.c.length}개가 이 그룹에서 빠집니다)`)) return;

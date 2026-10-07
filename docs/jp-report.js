@@ -413,7 +413,7 @@
       var G = loadGroups();
       pop.innerHTML = '<div class="fp-h"><b>관심 기업 그룹</b><span class="mono">' + esc(t) + '</span><button class="fp-x" aria-label="닫기">×</button></div>' +
         '<div class="fp-list">' + G.map(function (x, i) {
-          return '<label class="fp-row"><input type="checkbox" data-g="' + esc(x.id) + '"' + (x.c.indexOf(t) >= 0 ? " checked" : "") + '><input type="color" class="fp-col" data-col="' + esc(x.id) + '" value="' + gCol(x, i) + '" title="그룹 색"><span style="color:' + gCol(x, i) + '">★</span><span>' + esc(x.n) + "</span><small>" + x.c.length + "</small>" +
+          return '<label class="fp-row"><input type="checkbox" data-g="' + esc(x.id) + '"' + (x.c.indexOf(t) >= 0 ? " checked" : "") + '><input type="color" class="fp-col" data-col="' + esc(x.id) + '" value="' + gCol(x, i) + '" title="그룹 색"><span style="color:' + gCol(x, i) + '">★</span><span>' + esc(x.n) + "</span><small>" + x.c.length + "</small>" + '<button class="fp-del" data-ren="' + esc(x.id) + '">이름</button>' +
             (x.id !== "base" ? '<button class="fp-del" data-del="' + esc(x.id) + '">삭제</button>' : "") + "</label>";
         }).join("") + "</div>" +
         '<div class="fp-new"><input type="text" placeholder="새 그룹 이름" maxlength="20"><button>+ 그룹 추가</button></div>' +
@@ -426,6 +426,10 @@
       pop.querySelectorAll("input[data-col]").forEach(function (ci) { ci.onclick = function (e) { e.stopPropagation(); }; ci.onchange = function () {
         var G2 = loadGroups(), g = G2.filter(function (x) { return x.id === ci.dataset.col; })[0]; if (!g) return;
         g.col = ci.value; saveGroups(G2); onChange(); draw(); }; });
+      pop.querySelectorAll("[data-ren]").forEach(function (b) { b.onclick = function (e) { e.preventDefault(); e.stopPropagation();
+        var G2 = loadGroups(), g = G2.filter(function (x) { return x.id === b.dataset.ren; })[0]; if (!g) return;
+        var n = (prompt("그룹 이름", g.n) || "").trim().slice(0, 20); if (!n || n === g.n) return;
+        g.n = n; saveGroups(G2); onChange(); draw(); }; });
       pop.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function (e) { e.preventDefault();
         var G2 = loadGroups(), g = G2.filter(function (x) { return x.id === b.dataset.del; })[0]; if (!g) return;
         if (!confirm('"' + g.n + '" 그룹을 지울까요? (기업 ' + g.c.length + "개가 이 그룹에서 빠집니다)")) return;

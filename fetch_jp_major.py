@@ -448,9 +448,23 @@ def main():
         print(f"[{i}/{len(codes)}] {code} {tag} {cat} {jp} mcap={mcap} px={nbars} q={len(q['lb']) if q else 0}"
               f" rev={rev} revg={revg} per={st.get('per')} roe={roe}")
 
-    if only:
+    if only and "--merge" not in sys.argv:
         print("--codes 모드: 파일을 쓰지 않음")
         return 0
+    if only:
+        # --merge: 받은 종목만 기존 파일에 끼워 넣는다('추가할 종목' 요청을 토요일까지 기다리지 않고 바로 반영 — 2026-10-07)
+        if not raw:
+            print("받은 종목이 없음 — 기존 파일 유지")
+            return 1
+        txt = open(OUT, encoding="utf-8").read()
+        old_raw = json.loads(re.search(r"const RAW_MAJ = (\[.*?\]);\n", txt, re.S).group(1))
+        m = re.search(r"const BUNDLE_MAJ = \[\n(.*?)\n\];\n", txt, re.S)
+        old_bun = [json.loads(l.rstrip(",")) for l in m.group(1).split("\n") if l.strip()] if m else []
+        got = {r[0] for r in raw}
+        raw = [r for r in old_raw if r[0] not in got] + raw
+        bundle = [b for b in old_bun if b["c"] not in got] + bundle
+        n_px, n_a = len(raw), len(raw)
+        codes = [r[0] for r in raw]
     if n_px < len(codes) * 0.7 or n_a < len(codes) * 0.6:
         print(f"수집률이 너무 낮음(주가 {n_px}, 실적 {n_a}/{len(codes)}) — 기존 파일 유지")
         return 1
