@@ -145,6 +145,8 @@ def main():
         print("받은 종목이 없음 — 기존 파일 유지")
         return 1
     n_list = len(todo) - len(bad_cat)
+    if only is not None:   # 일부만 받을 때는 기존 파일에 있던 종목 + 이번 종목만 기준(시총 미달로 빠진 종목은 세지 않음)
+        n_list = sum(1 for x in todo if x["code"] in old_raw or x["code"] in only)
     if len(raw) < n_list * 0.7:
         print(f"수집률이 너무 낮음({len(raw)}/{n_list}) — 기존 파일 유지")
         return 1
