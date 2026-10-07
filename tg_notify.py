@@ -86,6 +86,15 @@ def us_dst(d):
     return nth_sunday(d.year, 3, 2) <= d < nth_sunday(d.year, 11, 1)
 
 
+def stamp(t):
+    """'2026-10-07T05:49+09:00' · '2026-10-07 08:11 KST' → '10/07(수) 05:49'"""
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})", str(t or ""))
+    if not m:
+        return ""
+    y, mo, d, hh, mi = m.groups()
+    return f"{mo}/{d}({DOW[date(int(y), int(mo), int(d)).weekday()]}) {hh}:{mi}"
+
+
 def chg(a, b):
     return (b / a - 1) * 100 if a else 0.0
 
@@ -138,7 +147,7 @@ def gpu():
             p = l["points"]
             pc = chg(p[-2]["value"], p[-1]["value"]) if len(p) > 1 else 0
             rows.append(f"{arrow(pc)} {esc(l['label'])} <b>${p[-1]['value']:.2f}</b> ({pc:+.1f}%)")
-        cap = (f"🖥 <b>GPU 렌탈 지수</b> · {d.strftime('%m/%d')} 정산\n" + "\n".join(rows) +
+        cap = (f"🖥 <b>GPU 렌탈 지수</b> · {d.strftime('%m/%d')} 정산 · {stamp(s.get('updated_at'))} 갱신\n" + "\n".join(rows) +
                "\n<i>1시간 임대 체결가 · 전일 대비</i>")
         return [img], cap
     return (f"gpu:{last}", gate, build)
@@ -176,7 +185,8 @@ def openrouter():
                              [(x["date"], x["value"]) for x in sp], digits=1, unit="M"))
             w2 = chg(sp[-2]["value"], sp[-1]["value"])
             rows.append(f"{arrow(w2)} 주간 지출 <b>${sp[-1]['value']:,.1f}M</b> (전주 대비 {w2:+.1f}%)")
-        cap = (f"🤖 <b>OpenRouter 지표</b> · {last[5:].replace('-', '/')}\n" + "\n".join(rows) +
+        cap = (f"🤖 <b>OpenRouter 지표</b> · {last[5:].replace('-', '/')} 기준 · "
+               f"{stamp((S.get('or_avg_price') or {}).get('updated_at'))} 갱신\n" + "\n".join(rows) +
                "\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외) · 주간 값은 매주 월요일 갱신</i>")
         return imgs, cap
     return (f"or:{last}", gate, build)
@@ -220,7 +230,7 @@ def digest():
 
     def build():
         md = re.sub(r"^## 금일 시황 요약[^\n]*\n", "", g.get("markdown") or "").strip()
-        txt = (f"📰 <b>오늘 시황 요약</b> · {NOW.strftime('%m/%d')}({DOW[NOW.weekday()]})\n<b>{esc(g.get('title'))}</b>\n\n"
+        txt = (f"📰 <b>오늘 시황 요약</b> · {stamp(g.get('generated')) or NOW.strftime('%m/%d')} 작성\n<b>{esc(g.get('title'))}</b>\n\n"
                + md_to_html(md))
         return None, txt
     return (f"digest:{g['date']}", NOW, build)
@@ -245,7 +255,7 @@ def macro():
                               prev=[("전일", fg.get("previous_close")), ("1주 전", fg.get("previous_1_week")),
                                     ("1달 전", fg.get("previous_1_month")), ("1년 전", fg.get("previous_1_year"))],
                               sub=f"CNN Fear & Greed · {fg.get('updated_kst', '')}"))
-            rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')})")
+            rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')} · CNN {stamp(fg.get('updated_kst'))[-5:]})")
         ys = [(lab, pts(k)) for lab, k in (("2년", "y2"), ("10년", "y10"), ("30년", "y30"))]
         if all(p for _, p in ys):
             imgs.append(line("yields", "미국 국채금리", f"2년 · 10년 · 30년물 · % · 최근 1년 · {ys[1][1][-1][0]} 기준", ys, digits=2, unit="%"))
@@ -255,7 +265,8 @@ def macro():
         if w:
             imgs.append(line("wti", "WTI 원유 선물", f"달러/배럴 · 최근 1년 · {w[-1][0]} 기준", [("WTI", w)], digits=2, fill=True))
             rows.append(f"🛢 WTI <b>${w[-1][1]:.2f}</b>" + (f" ({chg(w[-2][1], w[-1][1]):+.1f}%)" if len(w) > 1 else ""))
-        cap = f"📊 <b>매크로 요약</b> · {today.strftime('%m/%d')}({DOW[today.weekday()]})\n" + "\n".join(rows)
+        upd = stamp((load("docs/macro_dash.json") or {}).get("updated")) or f"{today.strftime('%m/%d')}({DOW[today.weekday()]})"
+        cap = f"📊 <b>매크로 요약</b> · {upd} 갱신\n" + "\n".join(rows)
         return imgs, cap
 
     def build_krw():
@@ -265,7 +276,9 @@ def macro():
             return None, None
         img = line("usdkrw", "원/달러 환율", f"원 · 최근 1년 · {p[-1][0]} 기준", [("원/달러", p)], digits=1, fill=True)
         c = chg(p[-2][1], p[-1][1]) if len(p) > 1 else 0
-        return [img], f"💱 <b>원/달러 환율</b> {p[-1][1]:,.1f}원 ({c:+.2f}%)"
+        upd = stamp((load("docs/macro_dash.json") or {}).get("updated"))
+        return [img], (f"💱 <b>원/달러 환율</b> {p[-1][1]:,.1f}원 ({c:+.2f}%)\n"
+                       f"<i>{p[-1][0][5:].replace('-', '/')} 기준 · {upd} 갱신</i>")
 
     gate = at(today, 8, 20)
     return [(f"macro:{today}", gate, build), (f"usdkrw:{today}", gate, build_krw)]
