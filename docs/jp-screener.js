@@ -89,7 +89,10 @@ function loadGroups(){
 const FAV_PAL=["#e0901f","#d64545","#2f7de1","#1f9d6b","#8e5bd6","#d6559b","#16a3b5","#6b7a8f"];
 function grpCol(g,i){ return g.col || FAV_PAL[(i==null?GROUPS.indexOf(g):i)%FAV_PAL.length]; }
 function favCol(code){ for(let i=0;i<GROUPS.length;i++) if(GROUPS[i].c.includes(code)) return grpCol(GROUPS[i],i); return ""; }
-function favSty(code){ const c=favCol(code); return c?` style="--fc:${c}"`:""; }
+// 여러 그룹에 겹치면 별을 그 그룹 색들의 그라데이션으로(2026-10-07 사용자)
+function favCols(code){ const o=[]; GROUPS.forEach((g,i)=>{ if(g.c.includes(code)) o.push(grpCol(g,i)); }); return o; }
+function favGrad(code){ const c=favCols(code); return !c.length?"":c.length===1?`linear-gradient(${c[0]},${c[0]})`:`linear-gradient(135deg,${c.join(",")})`; }
+function favSty(code){ const c=favCol(code); return c?` style="--fc:${c};--fg:${favGrad(code)}"`:""; }
 function saveGroups(g){ try{ const v=favRoot(); v.jp={g:g}; localStorage.setItem(FKEY,JSON.stringify(v)); }catch(e){} }
 let GROUPS=loadGroups(), FAVS=new Set();
 function rebuildFavs(){ FAVS=new Set(); GROUPS.forEach(x=>x.c.forEach(c=>FAVS.add(c))); }
@@ -116,7 +119,7 @@ function favPopOut(e){ const p=document.getElementById("favpop"); if(p && !p.con
 function favChanged(code){
   saveFavs(); renderFavFilter(); renderTable();
   const fb=document.getElementById("dfav");
-  if(fb && fb.dataset.c===code){ fb.classList.toggle("on",FAVS.has(code)); fb.textContent=FAVS.has(code)?"★":"☆"; fb.style.setProperty("--fc",favCol(code)||""); }
+  if(fb && fb.dataset.c===code){ fb.classList.toggle("on",FAVS.has(code)); fb.textContent=FAVS.has(code)?"★":"☆"; fb.style.setProperty("--fc",favCol(code)||""); fb.style.setProperty("--fg",favGrad(code)||""); }
 }
 function toggleFav(code,ev){
   if(ev){ev.stopPropagation();ev.preventDefault();}

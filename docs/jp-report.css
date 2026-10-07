@@ -204,3 +204,4 @@
 .addreq .ar-st.failed{background:rgba(200,60,50,.12);color:#b03a30}
 .addreq .ar-st.wait{background:rgba(79,124,255,.12);color:#2b52ab}
 .addreq .ar-tip{font-size:11px;color:var(--muted)}
+.cal .ce.on .ce-st{background:var(--fg);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}

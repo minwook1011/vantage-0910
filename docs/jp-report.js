@@ -404,6 +404,7 @@
   }
   function gCol(g, i) { return g.col || PAL[i % PAL.length]; }
   function tCol(G, t) { for (var i = 0; i < G.length; i++) if (G[i].c.indexOf(t) >= 0) return gCol(G[i], i); return ""; }
+  function tGrad(G, t) { var c = []; G.forEach(function (g, i) { if (g.c.indexOf(t) >= 0) c.push(gCol(g, i)); }); return !c.length ? "" : c.length === 1 ? "linear-gradient(" + c[0] + "," + c[0] + ")" : "linear-gradient(135deg," + c.join(",") + ")"; }
   function closePop() { var p = document.getElementById("favpop"); if (p) p.remove(); document.removeEventListener("mousedown", popOut, true); }
   function popOut(e) { var p = document.getElementById("favpop"); if (p && !p.contains(e.target)) closePop(); }
   function favPop(t, anchor, onChange) {
@@ -507,7 +508,7 @@
         if (x.chk === "mismatch" && x.kind === "next" && x.y) flag = '<span class="cf warn" title="나스닥 ' + esc(x.nx && x.nx.date) + " · 야후 " + esc(x.y.date) + (x.y.confirmed ? "(확정)" : "(추정)") + ' — 더 이른 날부터 SEC 공시를 확인합니다">날짜 확인</span>';
         else if (x.src === "yahoo" && x.kind === "next") flag = '<span class="cf" title="나스닥 캘린더에 아직 없음 — 야후 ' + (x.y && x.y.confirmed ? "확정" : "추정") + ' 날짜">' + (x.y && x.y.confirmed ? "야후" : "예상") + "</span>";
         var fc = on ? tCol(GR, x.t) : "";
-        return '<div class="ce' + (on ? " on" : "") + '"' + (fc ? ' style="--fc:' + fc + '"' : "") + ' data-t="' + esc(x.t) + '" title="' + esc(x.n + (x.sec ? " · " + x.sec : "") + (x.fq ? " · 분기 " + x.fq : "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "") + " — 눌러서 관심 기업 그룹 고르기") + '">' +
+        return '<div class="ce' + (on ? " on" : "") + '"' + (fc ? ' style="--fc:' + fc + ";--fg:" + tGrad(GR, x.t) + '"' : "") + ' data-t="' + esc(x.t) + '" title="' + esc(x.n + (x.sec ? " · " + x.sec : "") + (x.fq ? " · 분기 " + x.fq : "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "") + " — 눌러서 관심 기업 그룹 고르기") + '">' +
           '<div class="ce-h"><span class="ce-st">' + (on ? "★" : "") + '</span><b>' + esc(x.t) + '</b><span class="ce-n">' + esc(x.n) + "</span>" + (TM[x.tm] ? '<i class="ce-tm">' + TM[x.tm] + "</i>" : "") + flag + "</div>" +
           (b.length ? '<div class="ce-b">' + b.join("") + "</div>" : "") +
           (r ? '<a class="ce-rep" href="' + M.page + "?id=" + encodeURIComponent(r.rid) + '">실적 리포트 ›</a>' : "") + "</div>";

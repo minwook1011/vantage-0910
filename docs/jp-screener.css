@@ -531,3 +531,5 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 @media (max-width:900px){.addreq{max-width:none;margin-left:0}}
 .favpop .fp-col{width:18px;height:18px;padding:0;border:0;background:none;cursor:pointer;flex:0 0 auto}
 #favflt .fgb::before{content:"★";color:var(--fc);margin-right:3px}
+/* 겹친 그룹 = 그라데이션 별 */
+.star.on,.favbtn.on,.eu-cal .eu-co.fav b::before{background:var(--fg);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
