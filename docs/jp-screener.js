@@ -1133,6 +1133,11 @@ function periodOf(lb, fym, isQ){
   const y=+lb; let s=fym+1, sy=y-1; if(s>12){ s-=12; sy++; }
   return `${yy(sy)}.${mm(s)}~${yy(y)}.${mm(fym)}`;
 }
+// 영업이익 칸 맨 위에 영업이익률(OPM) — 2026-10-07 사용자: 모든 기업
+function opmTxt(oi, rev){
+  const v = (oi==null||!rev||rev<=0) ? null : oi/rev*100;
+  return `<span class="opm">OPM <b>${v==null?"—":v.toFixed(1)+"%"}</b></span>`;
+}
 function finHTML(b){
   const src = view.fin==="q" ? b.q : b.a;
   const isQ = view.fin==="q";
@@ -1160,13 +1165,13 @@ function finHTML(b){
       const yoy=isQ ? gr(cur, a[j+4]) : gr(cur, a[j+1]);
       body+=`<td class="fcell" style="background:${heat(yoy)}">
         <span class="fv">${cur===null||cur===undefined?"—":Math.round(cur).toLocaleString("ko-KR")}</span>
-        <span class="fg">${isQ?`<span>QoQ ${gtxt(qoq)}</span>`:""}<span>YoY ${gtxt(yoy)}</span></span></td>`;
+        <span class="fg">${key==="oi"?opmTxt(cur,(src.rev||[])[j]):""}${isQ?`<span>QoQ ${gtxt(qoq)}</span>`:""}<span>YoY ${gtxt(yoy)}</span></span></td>`;
     }
     if(est){
       const ev=est[key], eyoy=gr(ev, a[off]);
       body+=`<td class="fcell est" style="background:${heat(eyoy)}">
         <span class="fv">${ev===null||ev===undefined?"—":Math.round(ev).toLocaleString("ko-KR")}</span>
-        <span class="fg"><span>YoY ${gtxt(eyoy)}</span></span></td>`;
+        <span class="fg">${key==="oi"?opmTxt(ev,est.rev):""}<span>YoY ${gtxt(eyoy)}</span></span></td>`;
     }
     body+=`</tr>`;
   }
