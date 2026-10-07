@@ -527,6 +527,7 @@ function euCo([r,e,x]){
   const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
   return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x, r[F.CODE])}</button>${repLink(x)}`;
 }
+let euFold=false; try{ euFold=localStorage.getItem("jp_screener_eu_fold")==="1"; }catch(e){}
 function renderEarnUp(){
   const box=document.getElementById("earnup"); if(!box) return;
   if(!EARN_META){ box.innerHTML=""; return; }
@@ -534,7 +535,14 @@ function renderEarnUp(){
   const thisMon = td===6 ? isoAdd(today,2) : td===0 ? isoAdd(today,1) : mondayOf(today);
   const scope = (state.cat==="전체"?"전체":state.cat) + (state.favonly?" · ★만":"");
   let h = `<div class="eu-h"><h3>실적 발표 캘린더</h3><span class="sub">${scope} · 발표일 갱신 ${EARN_META.updated||"—"}${RES_META?` · 발표 결과 ${RES_META.updated||"—"}`:""}</span>
-    <div class="eu-seg" data-g="mode">${[["week","주간 캘린더"],["list","목록"]].map(([k,l])=>`<button data-mode="${k}" aria-pressed="${earnMode===k}">${l}</button>`).join("")}</div></div>`;
+    ${euFold?"":`<div class="eu-seg" data-g="mode">${[["week","주간 캘린더"],["list","목록"]].map(([k,l])=>`<button data-mode="${k}" aria-pressed="${earnMode===k}">${l}</button>`).join("")}</div>`}
+    <button class="eu-fold" aria-expanded="${!euFold}">${euFold?"펼치기 ▾":"접기 ▴"}</button></div>`;
+  if(euFold){   // 접힌 상태 — 제목 줄만(2026-10-07 사용자)
+    box.innerHTML=h; box.classList.add("folded");
+    box.querySelector(".eu-fold").onclick=()=>{euFold=false; try{localStorage.setItem("jp_screener_eu_fold","0");}catch(e){} renderEarnUp();};
+    return;
+  }
+  box.classList.remove("folded");
 
   if(earnMode==="week"){
     const byWeek={};
@@ -581,6 +589,7 @@ function renderEarnUp(){
     <em class="rb">컨센</em> 분기 EPS 컨센서스 대비(야후, 커버 종목만) ·
     <em class="rb px">5D</em> 5거래일 뒤 종가 등락. 붉은색 +, 파란색 −, 값이 없으면 —. 종목에 마우스를 올리면 진척률 등 수치와 기준이 보입니다. 주가 반응은 평일 장중 30분마다 갱신.</div>`;
   box.innerHTML = h;
+  box.querySelector(".eu-fold").onclick=()=>{euFold=true; try{localStorage.setItem("jp_screener_eu_fold","1");}catch(e){} renderEarnUp();};
   box.querySelectorAll("[data-mode]").forEach(b=>b.onclick=()=>{earnMode=b.dataset.mode; renderEarnUp();});
   box.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{earnWeek=b.dataset.w; renderEarnUp();});
   box.querySelectorAll("[data-nav]").forEach(b=>b.onclick=()=>{earnWeek=isoAdd(earnWeek,+b.dataset.nav); renderEarnUp();});
