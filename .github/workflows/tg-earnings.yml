@@ -40,7 +40,7 @@ jobs:
       - name: 무엇을 보낼지
         id: m
         run: |
-          M="${{ github.event.inputs.mode }}"
+          M="$(echo '${{ github.event.inputs.mode }}' | tr 'A-Z' 'a-z' | tr -d ' ')"   # TEST·Test 처럼 적어도 되게
           case "${{ github.event.schedule }}" in
             "0 20 * * 5") M=weekly ;;
             "30 22 * * 0-4") M=daily ;;
