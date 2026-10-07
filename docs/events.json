@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-04",
+ "updated": "2026-10-07",
  "events": [
   {
    "id": "ces-2026",
@@ -873,12 +873,22 @@
    "date_start": "2026-10-06",
    "date_end": "2026-10-06",
    "month": "2026-10",
-   "status": "previewed",
+   "status": "done",
    "preview": "마벨은 브로드컴에 이은 커스텀 AI 실리콘(XPU) 2인자로, 이날 제시하는 데이터센터 TAM과 중기 매출 목표가 ASIC 시장 전체의 컨센서스를 다시 잡는다. 아마존 트레이니움·마이크로소프트 마이아 등 하이퍼스케일러 자체 칩 프로그램의 수주 지속 여부와 신규 고객 확보가 최대 관전 포인트다. 커스텀 ASIC 물량이 늘어난다는 확인이 나오면 HBM 수요가 엔비디아 GPU 외 경로로도 확대된다는 뜻이어서 삼성전자·SK하이닉스의 고객 다변화 스토리를 강화한다. 반대로 목표가 보수적이면 'ASIC이 GPU를 대체한다'는 내러티브가 약해지며 엔비디아 상대 강도가 개선되는 구도다. 광통신 DSP·인터커넥트 사업의 성장률 제시도 광모듈 밸류체인 추정치에 직접 반영된다. 매트 머피 회장 겸 CEO와 경영진이 직접 발표하며 웹캐스트로 중계된다.",
-   "summary": "마벨 테크놀로지가 2026년 10월 6일 오전 뉴욕에서 개최하는 투자자 대상 설명회다. 매트 머피 회장 겸 CEO와 경영진이 직접 등판해 사업 전략과 중장기 재무 목표를 제시하며, 라이브 웹캐스트로 중계된다. 커스텀 AI 실리콘, 데이터센터 인터커넥트, 광통신 DSP 사업의 성장 목표가 핵심 발표 내용이 될 전망이다.",
+   "summary": "마벨은 10월 6일 인베스터 데이에서 2031 회계연도 매출 목표를 700억~900억 달러로 제시했다. 2026 회계연도 매출 82억 달러의 약 8.5~11배이며, 앞서 내놓은 2028 회계연도 200억 달러 목표 위에 얹은 장기 경로다. 모닝스타는 중간값 기준 매출 800억 달러·조정 주당순이익 30달러로, 연평균 약 58% 성장을 뜻한다고 정리했다. 조정 영업이익률 목표는 38~40%로 제시됐다. 발표 당일 주가는 약 5.8% 올라 290달러 안팎에서 거래됐다.",
    "full": "",
    "added": "2026-08-30",
-   "updated": "2026-08-30"
+   "updated": "2026-10-07",
+   "sources": [
+    {
+     "label": "Motley Fool — Marvell Now Sees as Much as $90 Billion in Annual Sales by Fiscal 2031",
+     "url": "https://www.fool.com/investing/2026/10/07/marvell-now-sees-as-much-as-usd90-billion-in-annual-sales-by-fiscal-2031-here-s-why-it-s-a-chip-stock-to-buy/"
+    },
+    {
+     "label": "Morningstar — Marvell Technology Stock: Raising Valuation on Bullish Long-Term Guidance",
+     "url": "https://www.morningstar.com/stocks/marvell-technology-stock-raising-valuation-bullish-long-term-guidance"
+    }
+   ]
   },
   {
    "id": "ocp-global-summit-2026",
