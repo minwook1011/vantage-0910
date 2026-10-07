@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-06 18:55 KST",
+ "updated": "2026-10-07 08:21 KST",
  "episodes": [
   {
    "id": "2026-10-06-ilb-andrew-huberman-the-frontier-of-neurotechnology",
@@ -89,7 +89,7 @@
    "audio": "https://api.substack.com/feed/podcast/218345956/4b5f7bc6865a6ab2f2eeea047dff6d8b.mp3",
    "duration": "1:37:23",
    "desc": "New episode with military historian Si Sheppard . The conquests of the Aztec and Inca empires might be the most shocking events in human history. Hernan Cortés and some hundreds of Conquistadors landed on a new continent they knew basically nothing about, and within 2 and a half years, conquered the 6 million strong Aztec empire. Then, a decade later, Francisco Pizarro did the same thing to an Incan Empire of some 10 million inhabitants. In both cases, the Conquistadors consistently beat native armies while being literally 100x (or even in some cases 1000x) outnumbered - and in many cases, did…",
-   "status": "done",
+   "status": "skip",
    "found": "2026-10-02 08:28 KST",
    "image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/c3Vic3RhY2s6cG9zdDoyMTgzNDU5NTY.jpg",
    "show_image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/show.jpg",
@@ -101,7 +101,8 @@
     "image": "https://i.ytimg.com/vi/LwQQ7nBCGSs/hqdefault.jpg",
     "guest": "사이 셰퍼드(Si Sheppard) — 군사사학자 — Long Island University 정치학·국제관계학 부교수, Osprey 『Tenochtitlan 1519–21』『Cuzco 1536–37』 저자",
     "company": "Long Island University (역사 · 군사사)"
-   }
+   },
+   "reason": "주제 무관 — 주식·투자·AI 기술과 관계없는 역사 이야기(2026-10-07 사용자 기준)"
   },
   {
    "id": "2026-10-01-mad-why-ai-agents-cheat-eric-ho-goodfire",

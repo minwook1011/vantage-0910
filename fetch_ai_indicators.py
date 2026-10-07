@@ -1064,7 +1064,7 @@ BOARDS = {
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
     "gpu": ["gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
-    "credit": ["cds_bigtech", "cds_ai", "cds_gap", "cds_table"],
+    "credit": ["cds_bigtech", "cds_ai", "cds_table"],   # 오라클−MS 격차 카드는 뺌(2026-10-07 사용자) — 빅테크 추이를 세로로 길게
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
     "bench": ["arena_agent_rank", "arena_agent_labs", "arena_agent_cost", "arena_text_rank"],
