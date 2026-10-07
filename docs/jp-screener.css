@@ -539,3 +539,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .rb.sc.surp{background:rgba(214,58,48,.12);color:#c0352b;border-color:rgba(214,58,48,.4)}
 .rb.sc.shock{background:rgba(31,111,178,.12);color:#1f5f9e;border-color:rgba(31,111,178,.4)}
 .rb.sc.inl{background:#eef1f5;color:var(--ink-mid)}
+/* 실적표 왼쪽 위 기업명(코드) */
+.fintab thead th.fco-th{text-align:left;vertical-align:bottom}
+.fintab .fco{display:block;font-size:13.5px;font-weight:700;color:var(--ink);letter-spacing:0;margin-bottom:4px;white-space:nowrap;max-width:260px;overflow:hidden;text-overflow:ellipsis}
+.fintab .fco small{display:inline;margin-top:0;font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;color:var(--accent-ink,#2b52ab);margin-left:3px}

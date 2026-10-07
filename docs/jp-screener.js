@@ -1246,7 +1246,9 @@ function finHTML(b){
   const latest = (!isQ && src.lb[off]!=null) ? String(src.lb[off]) : null;
   const est = (!isQ && b.f && latest && /^\d{4}$/.test(latest) && +b.f.y > +latest) ? b.f : null;
   // 왼쪽 = 과거, 오른쪽 = 최근(예상 칸은 맨 오른쪽). 데이터 배열은 최근이 앞이라 거꾸로 돈다
-  let head=`<tr><th>억엔</th>`;
+  // 표 왼쪽 위에 기업명(코드) — 2026-10-07 사용자. 한글 이름이 있으면 한글, 없으면 영문 이름
+  const coNm = koFirst(b.c) || b.n || "";
+  let head=`<tr><th class="fco-th"><span class="fco">${esc(coNm)}<small>(${esc(b.c)})</small></span>억엔</th>`;
   const fym=fyEndMonth(b.c);
   for(let i=n-1;i>=0;i--){ const pd=periodOf(src.lb[i+off], fym, isQ); head+=`<th${i===0?' class="lastp"':""}>${esc(src.lb[i+off])}${pd?`<small>${pd}${i===0?" · 최근":""}</small>`:""}</th>`; }
   if(est) head+=`<th class="esth${est.co?" co":""}">${esc(est.y)}E</th>`;
