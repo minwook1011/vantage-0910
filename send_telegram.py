@@ -81,7 +81,7 @@ def api(method, params):
     raise RuntimeError(f"텔레그램 전송 실패: {last}")
 
 
-def send(text, preview=False):
+def send(text, preview=False, silent=False):
     _, chat = creds()
     if not chat:
         sys.exit("chat_id 가 없습니다 — python send_telegram.py --chat-id 로 확인해 telegram_bot.json 에 넣으세요.")
@@ -96,10 +96,56 @@ def send(text, preview=False):
     ids = []
     for p in parts:
         r = api("sendMessage", {"chat_id": chat, "text": p.strip(), "parse_mode": "HTML",
-                                "disable_web_page_preview": "false" if preview else "true"})
+                                "disable_web_page_preview": "false" if preview else "true",
+                                "disable_notification": "true" if silent else "false"})
         ids.append(r.get("message_id"))
         time.sleep(0.6)
     return ids
+
+
+def _multipart(method, fields, files):
+    """사진 올리기(multipart/form-data) — 표준 라이브러리만"""
+    tok, _ = creds()
+    bnd = "----vantage" + str(int(time.time() * 1000))
+    body = b""
+    for k, v in fields.items():
+        body += f'--{bnd}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode("utf-8")
+    for k, path in files.items():
+        body += (f'--{bnd}\r\nContent-Disposition: form-data; name="{k}"; filename="{os.path.basename(path)}"\r\n'
+                 "Content-Type: image/png\r\n\r\n").encode("utf-8") + open(path, "rb").read() + b"\r\n"
+    body += f"--{bnd}--\r\n".encode("utf-8")
+    last = None
+    for a in range(3):
+        try:
+            req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/{method}", data=body,
+                                         headers={"Content-Type": f"multipart/form-data; boundary={bnd}"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                res = json.loads(r.read().decode("utf-8"))
+            if res.get("ok"):
+                return res["result"]
+            last = res
+        except urllib.error.HTTPError as e:
+            last = e.read().decode("utf-8", "replace")
+            if e.code in (400, 401, 403):
+                break
+        except Exception as e:
+            last = str(e)
+        time.sleep(3 * (a + 1))
+    raise RuntimeError(f"텔레그램 사진 전송 실패: {last}")
+
+
+def send_photos(paths, caption="", silent=False):
+    """그래프 1장은 sendPhoto, 여러 장은 앨범(sendMediaGroup) — 설명(caption)은 1024자까지라 첫 장에만"""
+    _, chat = creds()
+    if not chat:
+        sys.exit("chat_id 가 없습니다 — python send_telegram.py --chat-id 로 확인해 telegram_bot.json 에 넣으세요.")
+    base = {"chat_id": chat, "disable_notification": "true" if silent else "false"}
+    if len(paths) == 1:
+        return _multipart("sendPhoto", dict(base, caption=caption[:1024], parse_mode="HTML"), {"photo": paths[0]})
+    media = [{"type": "photo", "media": f"attach://p{i}"} for i in range(len(paths))]
+    media[0].update(caption=caption[:1024], parse_mode="HTML")
+    return _multipart("sendMediaGroup", dict(base, media=json.dumps(media, ensure_ascii=False)),
+                      {f"p{i}": p for i, p in enumerate(paths)})
 
 
 def esc(s):
@@ -171,8 +217,10 @@ def main():
         send_podcast(a[1], force="--force" in a)
     elif a[0] == "--podcast-pending":
         ix = json.load(open(PODCAST_INDEX, encoding="utf-8"))
+        # 봇을 늦게 연결해도 옛 편이 한꺼번에 쏟아지지 않게 최근 3일 편만 보낸다
+        since = (datetime.now(KST) - timedelta(days=3)).strftime("%Y-%m-%d")
         for e in sorted(ix["episodes"], key=lambda e: e.get("published", "")):
-            if e.get("status") == "done" and os.path.exists(os.path.join(PODCAST_EP, e["id"] + ".json")):
+            if e.get("status") == "done" and e.get("published", "") >= since and os.path.exists(os.path.join(PODCAST_EP, e["id"] + ".json")):
                 send_podcast(e["id"])
     elif a[0] == "--jp-report":
         rid = a[1]

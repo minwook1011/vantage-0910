@@ -1,0 +1,69 @@
+name: telegram-notify
+
+# 사이트 데이터를 읽어 텔레그램 '돈벌레' 채널로 보낸다 — tg_notify.py (무엇을 언제 보내는지는 그 파일 맨 위)
+# PC 가 꺼져 있어도 돈다. 봇 토큰·채널 번호는 저장소 Settings → Secrets 의 TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID.
+# 각 항목은 '데이터 갱신 + 정해진 시각'이 모두 되면 한 번만 나간다(보낸 기록 data_sources/tg_state.json).
+on:
+  push:                     # PC 예약 작업이 글·데이터를 올리면 바로(시황 요약·팟캐스트·AI 지표·공포탐욕)
+    branches: [main]
+    paths: ["docs/**"]
+  workflow_run:             # GitHub 이 직접 모으는 데이터가 끝나면 바로
+    workflows: [macro-dashboard, ai-indicators-daily, podcasts-detect]
+    types: [completed]
+  schedule:
+    - cron: "*/15 * * * *"  # 놓친 것 보충(GitHub 예약은 밀릴 수 있어 위 두 경로가 주력)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tg-notify          # 겹쳐 돌면 같은 알림이 두 번 갈 수 있어 한 줄로 세운다
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 보낼 게 있는지
+        id: due
+        run: echo "due=$(python tg_notify.py --due | tail -1)" >> "$GITHUB_OUTPUT"
+
+      - name: 그래프 도구(matplotlib·한글 글꼴)
+        if: steps.due.outputs.due == 'yes'
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-nanum > /dev/null
+          pip install --quiet matplotlib
+
+      - name: 전송
+        if: steps.due.outputs.due == 'yes'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python tg_notify.py
+
+      - name: 보낸 기록 저장
+        if: steps.due.outputs.due == 'yes'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data_sources/tg_state.json
+          if git diff --cached --quiet; then
+            echo "보낸 것 없음 — 커밋 생략"
+          else
+            git commit -m "tg: 텔레그램 알림 기록 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M')"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
