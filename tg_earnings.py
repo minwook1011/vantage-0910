@@ -480,9 +480,7 @@ def detail(N):
     r = bullets(pick(sec, "리스크", "반론"))
     if r:
         blocks.append("■ <b>걸리는 점</b>\n" + "\n".join("- " + md_tg(x) for x in r[:4]))
-    c = bullets(pick(sec, "체크포인트"))
-    if c:
-        blocks.append("■ <b>다음에 볼 것</b>\n" + "\n".join("- " + md_tg(x) for x in c[:4]))
+    # '다음에 볼 것'(체크포인트)은 넣지 않는다 — 실적 확인 글이라 앞으로의 일정은 군더더기(2026-10-07 사용자)
     if not blocks:   # 분석이 없으면 짧은 요약 문장이라도
         blocks = ["\n".join("- " + md_tg(l) for l in (N.get("tg") or "").split("\n") if l.strip())]
     # 4,000자 넘으면 덩어리 단위로 나눠 여러 메시지
