@@ -18,7 +18,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
   python tg_notify.py --due      # 지금 보낼 게 있으면 "yes" — 워크플로가 그래프 도구 설치 여부를 정할 때
-  python tg_notify.py --force gpu|openrouter|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
+  python tg_notify.py --force all|gpu|openrouter|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
 """
 import json
 import os
@@ -240,10 +240,11 @@ def macro():
         fg = load("docs/data/fear_greed.json") or {}
         imgs, rows = [], []
         if fg.get("history"):
-            imgs.append(line("fg", "CNN 공포·탐욕 지수", f"0 = 극도 공포 · 100 = 극도 탐욕 · 최근 1년 · {fg.get('updated_kst', '')} 기준",
-                             [("지수", [(d, v) for d, v in fg["history"]])], digits=0, since_days=365,
-                             bands=[(0, 25, "#dc5573", "극도 공포"), (25, 45, "#e98a5a", "공포"), (45, 55, "#9aa3b2", "중립"),
-                                    (55, 75, "#5bbf8a", "탐욕"), (75, 100, "#22a886", "극도 탐욕")]))
+            from tg_charts import gauge
+            imgs.append(gauge("fg", float(fg.get("score") or 0), fg.get("rating") or "",
+                              prev=[("전일", fg.get("previous_close")), ("1주 전", fg.get("previous_1_week")),
+                                    ("1달 전", fg.get("previous_1_month")), ("1년 전", fg.get("previous_1_year"))],
+                              sub=f"0 = 극도 공포 · 100 = 극도 탐욕 · {fg.get('updated_kst', '')} 기준"))
             rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')})")
         ys = [(lab, pts(k)) for lab, k in (("2년", "y2"), ("10년", "y10"), ("30년", "y30"))]
         if all(p for _, p in ys):
@@ -300,7 +301,7 @@ def main():
     before = set(sent)
 
     todo = [(key, build) for name, key, gate, build in collect()
-            if ((name == force) if force else (key not in sent and NOW >= gate))]
+            if ((force == "all" or name == force) if force else (key not in sent and NOW >= gate))]
     if due_only:
         print("yes" if todo else "no")
         return

@@ -118,3 +118,42 @@ def bars(name, title, sub, pts, digits=1, unit=""):
     ax.grid(axis="x", visible=False)
     _xaxis(ax, (xs[-1] - xs[0]).days if len(xs) > 1 else 0)
     return _save(fig, name)
+
+
+def gauge(name, score, rating, prev=None, title="CNN 공포·탐욕 지수", sub=""):
+    """반원 계기판(바늘) — 0 극도 공포 ~ 100 극도 탐욕. prev = [(라벨, 값), ...] 아래에 비교값"""
+    import numpy as np
+    from matplotlib.patches import Wedge, Circle
+    fig = plt.figure(figsize=(8, 5.2), dpi=150)
+    fig.text(0.06, 0.93, title, fontsize=15, fontweight="bold", color=INK)
+    if sub:
+        fig.text(0.06, 0.885, sub, fontsize=9.5, color=MUTED)
+    ax = fig.add_axes([0.05, 0.12, 0.9, 0.74])
+    ax.set_xlim(-1.25, 1.25)
+    ax.set_ylim(-0.42, 1.2)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    segs = [(0, 25, "#dc5573", "극도 공포"), (25, 45, "#e98a5a", "공포"), (45, 55, "#b7bdc8", "중립"),
+            (55, 75, "#5bbf8a", "탐욕"), (75, 100, "#22a886", "극도 탐욕")]
+    ang = lambda v: 180 - v * 1.8
+    for lo, hi, col, lab in segs:
+        active = lo <= score < hi or (hi == 100 and score >= 100)
+        ax.add_patch(Wedge((0, 0), 1.0, ang(hi), ang(lo), width=0.28, facecolor=col,
+                           alpha=1 if active else 0.35, edgecolor=BG, linewidth=2))
+        mid = np.radians(ang((lo + hi) / 2))
+        ax.text(1.13 * np.cos(mid), 1.13 * np.sin(mid), lab, ha="center", va="center", fontsize=9,
+                color=INK if active else MUTED, fontweight="bold" if active else "normal")
+    for v in (0, 25, 50, 75, 100):
+        a = np.radians(ang(v))
+        ax.text(0.62 * np.cos(a), 0.62 * np.sin(a), str(v), ha="center", va="center", fontsize=8, color=MUTED)
+    a = np.radians(ang(max(0, min(100, score))))
+    ax.plot([0, 0.8 * np.cos(a)], [0, 0.8 * np.sin(a)], color=INK, lw=3.2, solid_capstyle="round", zorder=5)
+    ax.add_patch(Circle((0, 0), 0.06, color=INK, zorder=6))
+    ax.text(0, -0.24, f"{score:.0f}", ha="center", va="center", fontsize=30, fontweight="bold", color=INK)
+    col = next(c for lo, hi, c, _ in segs if lo <= score < hi or hi == 100)
+    col = "#6b7383" if col == "#b7bdc8" else col
+    fig.text(0.5, 0.1, rating, ha="center", fontsize=14, fontweight="bold", color=col)
+    if prev:
+        txt = "     ".join(f"{lab} {v:.0f}" for lab, v in prev if v is not None)
+        fig.text(0.5, 0.035, txt, ha="center", fontsize=10.5, color=MUTED)
+    return _save(fig, name)
