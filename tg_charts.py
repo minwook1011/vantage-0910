@@ -45,7 +45,7 @@ def _d(s):
 
 def _fig(title, sub):
     fig, ax = plt.subplots(figsize=(8, 4.5), dpi=150)
-    fig.subplots_adjust(left=0.08, right=0.9, top=0.82, bottom=0.12)
+    fig.subplots_adjust(left=0.08, right=0.86, top=0.82, bottom=0.12)
     fig.text(0.08, 0.93, title, fontsize=15, fontweight="bold", color=INK)
     fig.text(0.08, 0.875, sub, fontsize=9.5, color=MUTED)
     ax.tick_params(length=0)
@@ -80,8 +80,16 @@ def line(name, title, sub, series, digits=2, unit="", since_days=None, fill=Fals
     x0, x1 = None, None
     if bands:
         for lo, hi, col, lab in bands:
-            ax.axhspan(lo, hi, color=col, alpha=0.10, lw=0)
-            ax.text(1.005, (lo + hi) / 2, lab, transform=ax.get_yaxis_transform(), fontsize=8, color=MUTED, va="center")
+            ax.axhspan(lo, hi, color=col, alpha=0.16, lw=0)
+            ax.text(1.008, (lo + hi) / 2, lab, transform=ax.get_yaxis_transform(), fontsize=9, color=col,
+                    fontweight="bold", va="center")
+        # 구간 경계: 진한 점선 + 눈금을 경계값으로
+        edges = sorted({b for lo, hi, _, _ in bands for b in (lo, hi)})
+        for b in edges[1:-1]:
+            ax.axhline(b, color="#5b6576", lw=1, ls=(0, (4, 3)), alpha=0.8, zorder=1)
+        ax.set_yticks(edges)
+        ax.set_ylim(edges[0], edges[-1])
+        ax.grid(axis="y", visible=False)
     for i, (label, pts) in enumerate(series):
         pts = [(_d(d), v) for d, v in pts if v is not None and (not cut or _d(d) >= cut)]
         if not pts:

@@ -251,10 +251,10 @@ def macro():
         imgs, rows = [], []
         if fg.get("history"):
             # 사용자가 계기판 대신 처음의 1년 추이 그래프를 골랐다(2026-10-07). tg_charts.gauge 는 남겨 둠
-            imgs.append(line("fg", "CNN 공포·탐욕 지수", f"0 = 극도 공포 · 100 = 극도 탐욕 · 최근 1년 · {fg.get('updated_kst', '')} 기준",
+            imgs.append(line("fg", "CNN 공포·탐욕 지수", f"0 = Extreme Fear · 100 = Extreme Greed · 최근 1년 · {fg.get('updated_kst', '')} 기준",
                              [("지수", [(d, v) for d, v in fg["history"]])], digits=0, since_days=365,
-                             bands=[(0, 25, "#dc5573", "극도 공포"), (25, 45, "#e98a5a", "공포"), (45, 55, "#9aa3b2", "중립"),
-                                    (55, 75, "#5bbf8a", "탐욕"), (75, 100, "#22a886", "극도 탐욕")]))
+                             bands=[(0, 25, "#d33f5b", "Extreme Fear"), (25, 45, "#e07a3f", "Fear"), (45, 55, "#6b7588", "Neutral"),
+                                    (55, 75, "#3a9f6c", "Greed"), (75, 100, "#1b8a63", "Extreme Greed")]))
             rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')} · CNN {stamp(fg.get('updated_kst'))[-5:]})")
         ys = [(lab, pts(k)) for lab, k in (("2년", "y2"), ("10년", "y10"), ("30년", "y30"))]
         if all(p for _, p in ys):
