@@ -1116,6 +1116,23 @@ function gtxt(p){
   if(p===null) return '<span class="na">—</span>';
   return `<b class="${p>0?"up":p<0?"dn":"na"}">${p>0?"+":""}${p.toFixed(0)}%</b>`;
 }
+/* 회계연도 라벨(26Q4·2026)을 실제 달로 — 결산월이 회사마다 달라 헷갈린다(2026-10-07 사용자). 결산월은 JPX 발표 예정일 자료의 fy_end.
+   라벨 연도 = 그 회계연도가 끝나는 해(예: 3월 결산 27Q1 = 2026년 4~6월) */
+function fyEndMonth(code){ const b=BY[code]; if(b && b.fm) return +b.fm; const e=EARN[code]; const m=e&&e.fy_end&&/^\d{4}-(\d{2})/.exec(e.fy_end); return m?+m[1]:null; }
+function periodOf(lb, fym, isQ){
+  if(!fym || lb==null) return "";
+  const yy = n => String((n%100+100)%100).padStart(2,"0"), mm = n => String(n).padStart(2,"0");
+  if(isQ){
+    const m=/^(\d{2})Q([1-4])$/.exec(String(lb)); if(!m) return "";
+    let y=2000+(+m[1]), e=fym-3*(4-(+m[2]));
+    while(e<=0){ e+=12; y--; }
+    let s=e-2, sy=y; if(s<=0){ s+=12; sy--; }
+    return `${yy(sy)}.${mm(s)}~${sy===y?"":yy(y)+"."}${mm(e)}`;
+  }
+  if(!/^\d{4}$/.test(String(lb))) return "";
+  const y=+lb; let s=fym+1, sy=y-1; if(s>12){ s-=12; sy++; }
+  return `${yy(sy)}.${mm(s)}~${yy(y)}.${mm(fym)}`;
+}
 function finHTML(b){
   const src = view.fin==="q" ? b.q : b.a;
   const isQ = view.fin==="q";
@@ -1129,7 +1146,8 @@ function finHTML(b){
   const est = (!isQ && b.f && latest && /^\d{4}$/.test(latest) && +b.f.y > +latest) ? b.f : null;
   // 왼쪽 = 과거, 오른쪽 = 최근(예상 칸은 맨 오른쪽). 데이터 배열은 최근이 앞이라 거꾸로 돈다
   let head=`<tr><th>억엔</th>`;
-  for(let i=n-1;i>=0;i--) head+=`<th>${esc(src.lb[i+off])}</th>`;
+  const fym=fyEndMonth(b.c);
+  for(let i=n-1;i>=0;i--){ const pd=periodOf(src.lb[i+off], fym, isQ); head+=`<th${i===0?' class="lastp"':""}>${esc(src.lb[i+off])}${pd?`<small>${pd}${i===0?" · 최근":""}</small>`:""}</th>`; }
   if(est) head+=`<th class="esth${est.co?" co":""}">${esc(est.y)}E</th>`;
   head+=`</tr>`;
   let body="";

@@ -258,7 +258,7 @@ def r1(v):
 
 
 def qlabel(q, fy_month):
-    fy = K.fy_of(q["yy"], q["m2"], fy_month)
+    fy = K.fy_of(q["yy"], q["m2"], fy_month, q.get("m1"))
     return f"{fy[2:4]}Q{K.quarter_no(q['m2'], fy_month)}"
 
 

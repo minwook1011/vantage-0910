@@ -388,8 +388,10 @@ def quarter_no(m2, fy_month):
     return ((m2 - fy_month - 1) % 12) // 3 + 1
 
 
-def fy_of(yy, m2, fy_month):
-    y = 2000 + yy
+def fy_of(yy, m2, fy_month, m1=None):
+    """yy = 카부탄 분기 라벨의 앞 연도(분기 '시작' 해, 예: 25.12-02 → 25). 해를 넘기는 분기(12~2월 등)는 끝나는 해가 yy+1
+    (2026-10-07: m1 을 안 봐서 12~2월 분기가 1년 앞 회계연도로 붙던 오류 — 쿠스리노아오키 26Q3 이 25Q3 로 표시)"""
+    y = 2000 + yy + (1 if (m1 is not None and m2 < m1) else 0)
     return f"{y if m2 <= fy_month else y + 1}.{fy_month:02d}"
 
 
@@ -572,7 +574,7 @@ def build(code, fin, today, guide_snap, old_rec, now):
     if q and fym:
         qn = quarter_no(q["m2"], fym)
         rec["period"] = f"{qn}Q"
-        rec["fy"] = fy_of(q["yy"], q["m2"], fym)
+        rec["fy"] = fy_of(q["yy"], q["m2"], fym, q.get("m1"))
         rec["q"] = {"label": q["label"], **pick(q)}
         prev = next((x for x in fin["quarter"] if x["yy"] == q["yy"] - 1 and x["m1"] == q["m1"] and x["m2"] == q["m2"]), None)
         if prev:
