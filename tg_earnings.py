@@ -500,9 +500,7 @@ def alerts(st, seed=False, sample=None):
             import tg_shots
             if favs is None:
                 favs = favorites()
-            kb = [[{"text": "📝 요약", "url": link(m, rid, "sum")}, {"text": "🔍 분석 전문", "url": link(m, rid, "ana")}]]
-            if N.get("orig_md"):
-                kb.append([{"text": "🇰🇷 원문 정리", "url": link(m, rid, "orig")}])
+            kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]]   # 버튼은 하나로(2026-10-07 사용자)
             cap = "\n".join([f"📝 {FLAG[m]} <b>{esc(name)}</b> 실적 요약",
                              f'🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>', ""] +
                             ([md_tg(N["headline"])] if N.get("headline") else []))
