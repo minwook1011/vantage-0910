@@ -336,7 +336,7 @@ def candidates(days=FRESH_DAYS, since=None):
             nums.append(f"컨센서스 대비 {sgn(cons)}")
         kind = "jpc" if "cons" in (ix.get("u") or []) else "jpm"
         nm = ix.get("n") or code
-        rows.append(("jp", code, d, x.get("rid") or ix.get("rid") or "", kind, f"{ko[code]}({nm})" if code in ko else nm, why, nums))
+        rows.append(("jp", code, d, x.get("rid") or ix.get("rid") or "", kind, ko.get(code) or nm, why, nums))
     # 미국: 리포트 목록(발표 후 주가·컨센)
     for r in (load("docs/data/us/reports/index.json") or {}).get("reports") or []:
         d = r.get("d") or ""
@@ -470,17 +470,19 @@ def alerts(st, seed=False, sample=None):
         if seed:
             st["sent"].add(ak)
             continue
+        title = f"{FLAG[m]} <b>{esc(name)}({esc(code)})</b>"
         if ak not in st["sent"] or DRY:
+            # 알림 = 재무제표 사진 한 장 + 글(이름(티커)로 시작) — 발표 카드 사진은 뺌(2026-10-07 사용자)
             import tg_shots
             if favs is None:
                 favs = favorites()
-            pngs = tg_shots.alert_pics(kind, code, d, rid, favs)
-            head = f"{FLAG[m]} <b>{esc(name)}</b> <code>{esc(code)}</code> 실적 발표 {d[5:].replace('-', '.')}"
-            cap = "\n".join((["🧪 <b>시험 발송</b> · 지난 실적으로 모양 확인"] if sample else []) +
-                            ([f'🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []) +
-                            [head, " · ".join(why), ""] + [f"• {esc(x)}" for x in nums])
+            png = tg_shots.fin_pic(kind, code, rid, favs) if rid else None
+            cap = "\n".join([title + f" · 실적 발표 {d[5:].replace('-', '.')}", " · ".join(why)] +
+                            (["🧪 시험 발송 · 지난 실적으로 모양 확인"] if sample else []) +
+                            [""] + [f"• {esc(x)}" for x in nums] +
+                            ([f'\n🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []))
             try:
-                mid = out(pngs, cap, f"alert_{code}")
+                mid = out([png] if png else [], cap, f"alert_{code}")
                 if not DRY:
                     st["sent"].add(ak)
                     st["msg"][ak] = mid
@@ -492,27 +494,26 @@ def alerts(st, seed=False, sample=None):
             except Exception as e:
                 print("알림 실패:", ak, e)
                 continue
-        # 요약 글이 붙으면: 재무제표 사진(위) → 자세한 해설(아래, 답글)
+        # 요약 글이 붙으면: 위 알림(재무제표 사진)에 답글로 자세한 해설. 알림 기록이 없을 때만 사진을 새로 올린다
         if rid and (sk not in st["sent"] or DRY):
             N = load(f"docs/data/{m}/reports/notes/{rid}.json")
             if not N:
                 continue
-            import tg_shots
-            if favs is None:
-                favs = favorites()
             kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]]   # 버튼은 하나로(2026-10-07 사용자)
-            cap = "\n".join([f"📝 {FLAG[m]} <b>{esc(name)}</b> 실적 요약",
-                             f'🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>', ""] +
-                            ([md_tg(N["headline"])] if N.get("headline") else []))
             parts = detail(N)
+            parts[0] = f"📝 {title} 실적 요약\n\n" + parts[0]
             try:
-                png = tg_shots.fin_pic(kind, code, rid, favs)
                 if DRY:
-                    out([png] if png else [], cap, f"sum_{code}")
                     for p in parts:
-                        print("─" * 34, "(해설)\n" + re.sub(r"<[^>]+>", "", p))
+                        print("─" * 34, "(해설 답글)\n" + re.sub(r"<[^>]+>", "", p))
                     continue
-                top = send_photos([png], cap) if png else send_text(cap)
+                top = st["msg"].get(ak)
+                if not top:
+                    import tg_shots
+                    if favs is None:
+                        favs = favorites()
+                    png = tg_shots.fin_pic(kind, code, rid, favs)
+                    top = send_photos([png], title) if png else None
                 for i, p in enumerate(parts):
                     send_text(p, kb if i == len(parts) - 1 else None, reply_to=top if i == 0 else None)
                 st["sent"].add(sk)
