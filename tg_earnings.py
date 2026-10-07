@@ -502,35 +502,37 @@ def detail(N):
     return [x[:4000] for x in out]
 
 
-def brief(N):
-    """한눈에 보는 요약 줄들 — 결론 한 구절 · 포인트 제목 · 리스크 이름표만(2026-10-07 사용자: 길고 안 읽힌다, 자세한 건 분석 버튼으로)"""
+def _sents(x):
+    x = re.sub(r"\*\*(.+?)\*\*", r"\1", x or "").replace("\n", " ")
+    return [t.strip() for t in re.split(r"(?<=다\.)\s+", x) if t.strip()]
+
+
+def _plain(x):
+    """한 문장 다듬기: 출처 꼬리표·긴 줄표 제거"""
+    x = re.sub(r"\s*\((?:CFO|CEO|콜|카부탄|[^()]*?월차|[^()]*?단신|보도자료[^()]*)\)", "", x)
+    x = re.sub(r"\s+—\s+", ", ", x)
+    return x.strip()
+
+
+def brief(N, limit=5):
+    """줄글 5줄 요약(2026-10-07 사용자: 아래는 줄글 5줄로).
+    요약 작업이 써 둔 tg5(사람이 읽기 좋게 쓴 5문장)를 그대로 쓰고, 없을 때만 결론 문단 + '포인트 제목. 그래서 문장'으로 채운다"""
+    if isinstance(N.get("tg5"), list) and N["tg5"]:
+        return [esc(str(x).strip()) for x in N["tg5"] if str(x).strip()][:limit]
     sec = sections(N.get("analysis_md"))
-    out = []
-    c = pick(sec, "한 줄 결론", "결론")
-    m = re.search(r"\*\*(.+?)\*\*", c or "")
-    head = m.group(1) if m else re.split(r"(?<=다\.)\s", (c or "").strip())[0]
-    head = re.sub(r"(분기)다\.?$", r"\1", head.strip()).rstrip(".")
-    if head:
-        out.append(f"💬 <b>{esc(head)}</b>")
-    pts = []
+    lines = [esc(_plain(t)) for t in _sents(pick(sec, "한 줄 결론", "결론"))][:limit]
     for x in bullets(pick(sec, "핵심 포인트")):
+        if len(lines) >= limit:
+            break
         t = re.match(r"\*\*(.+?)\*\*", x)
-        t = re.sub(r"^[①-⑩]\s*", "", t.group(1) if t else "").strip()
-        if t:
-            pts.append(t)
-    if pts:
-        out.append("")
-        out += [f"{'①②③④⑤'[i]} {esc(t)}" for i, t in enumerate(pts[:4])]
-    rs = []
-    for x in bullets(pick(sec, "리스크", "반론")):
-        t = re.match(r"\*\*(.+?)\*\*", x)
-        t = (t.group(1) if t else "").strip().rstrip(":")
-        if t and not t.startswith(("반대", "반론")) and len(t) <= 22:
-            rs.append(t)
-    if rs:
-        out.append("")
-        out.append("⚠️ " + " · ".join(esc(t) for t in rs[:3]))
-    return out
+        title = re.sub(r"^[①-⑩]\s*", "", t.group(1)).strip() if t else ""
+        so = re.split(r"\*\*그래서\*\*\s*[:：]\s*", x)
+        so = _sents(so[1])[0] if len(so) > 1 and _sents(so[1]) else ""
+        if title and so:
+            lines.append(f"<b>{esc(title)}</b>. {esc(_plain(so))}")
+    if not lines:
+        lines = [esc(l.strip()) for l in (N.get("tg") or "").split("\n") if l.strip()][:limit]
+    return lines
 
 
 def alerts(st, seed=False, sample=None, only=None):
@@ -567,6 +569,11 @@ def alerts(st, seed=False, sample=None, only=None):
                             (["🧪 시험 발송"] if sample else []) +
                             ([""] + body if body else []) +
                             ([""] + tags if tags else []))
+            while len(re.sub(r"<[^>]+>", "", cap)) > 1000 and body:
+                body.pop()
+                cap = "\n".join([f"{title} · {d[5:].replace('-', '.')} 발표", " · ".join(why)] +
+                                ([num] if num else []) + (["🧪 시험 발송"] if sample else []) +
+                                ([""] + body if body else []) + ([""] + tags if tags else []))
             try:
                 mid = out([png] if png else [], cap, f"alert_{code}", buttons=kb)
                 if not DRY:

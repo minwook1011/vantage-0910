@@ -40,7 +40,7 @@ git pull --rebase --autostash origin main     # 그다음 공용 폴더를 최�
 - 회사가 든 이유를 바깥 자료로 확인. 확인이 안 되면 "확인 못 함".
 
 ## 4. 쓰기 → `docs/data/us/reports/notes/<rid>.json`
-일본과 같은 필드: `rid, written, by, about, issues, headline, summary_md, analysis_md, orig_md, tg, sources` (+ 필요하면 `q_fix: {"rev":…, "op":…, "ni":…, "eps":…}` 백만 달러·달러).
+일본과 같은 필드: `rid, written, by, about, issues, headline, summary_md, analysis_md, orig_md, tg, tg5, sources` (+ 필요하면 `q_fix: {"rev":…, "op":…, "ni":…, "eps":…}` 백만 달러·달러).
 - `about`: 뭐 하는 기업인가 2줄 — 한국 투자자가 읽고 바로 알 수 있게.
 - `issues`: 최근 이슈 4~5개, **날짜 + 한 줄 제목** — 의미 한두 문장.
 - `orig_md`: 보도자료를 원문 순서대로 한국어 정리. 제목 6개 고정 —
