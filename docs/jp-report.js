@@ -315,7 +315,10 @@
     if (el) {
       var d = sec === "orig" && el.querySelector("details.orig");
       if (d) d.open = true;
-      setTimeout(function () { (d || el).scrollIntoView({ block: "start" }); }, 60);
+      // 그래프·주가가 늦게 그려지며 위가 길어지므로 몇 번 다시 맞춘다(사용자가 직접 스크롤하면 멈춤)
+      var go = function () { (d || el).scrollIntoView({ block: "start" }); }, stop = false;
+      ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, function () { stop = true; }, { once: true, passive: true }); });
+      [60, 700, 1600, 3000].forEach(function (t) { setTimeout(function () { if (!stop) go(); }, t); });
     }
   }
 
