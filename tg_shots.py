@@ -235,6 +235,18 @@ def day_all(date, favs=None):
     return asyncio.run(_run(go))
 
 
+def fin_pic(kind, code, rid, favs=None):
+    """재무제표 표 한 장(PNG) — 요약 글 위에 붙인다. 못 찍으면 None"""
+    async def go(br):
+        try:
+            im = await _fin(br, kind, code, rid, favs)
+            return _png(im) if im is not None else None
+        except Exception as e:
+            print("재무제표 사진 실패:", code, e)
+            return None
+    return asyncio.run(_run(go))
+
+
 def alert_pics(kind, code, date, rid, favs=None):
     """[png] — 발표 카드 + 재무제표 표"""
     async def go(br):

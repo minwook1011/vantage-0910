@@ -375,6 +375,87 @@ def pending(st):
     return n
 
 
+def md_tg(s):
+    """요약 글 마크다운 한 줄 → 텔레그램 글(굵게만 살림)"""
+    s = esc(s.strip())
+    s = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s)
+    return re.sub(r"`([^`]+)`", r"\1", s)
+
+
+def sections(md):
+    """### 1. 제목 단위로 나눔 → {제목: 본문}"""
+    out, cur = {}, None
+    for line in (md or "").split("\n"):
+        h = re.match(r"#{2,4}\s*\d*\.?\s*(.+)", line)
+        if h:
+            cur = h.group(1).strip()
+            out[cur] = []
+        elif cur:
+            out[cur].append(line)
+    return {k: "\n".join(v).strip() for k, v in out.items()}
+
+
+def pick(sec, *keys):
+    for k, v in sec.items():
+        if any(x in k for x in keys):
+            return v
+    return ""
+
+
+def bullets(text):
+    return [re.sub(r"^\s*[-*]\s*", "", l).strip() for l in text.split("\n") if re.match(r"^\s*[-*]\s+", l)]
+
+
+def detail(N):
+    """자세한 해설(텔레그램 메시지 1~2개) — 결론 · 핵심 포인트(사실/왜/그래서) · 남은 계획 · 리스크 · 체크포인트"""
+    sec = sections(N.get("analysis_md"))
+    blocks = []
+    concl = pick(sec, "한 줄 결론", "결론")
+    if concl:
+        blocks.append("💡 <b>한 줄 결론</b>\n" + md_tg(" ".join(l for l in concl.split("\n") if l.strip())))
+    pts = bullets(pick(sec, "핵심 포인트"))
+    if pts:
+        lines = ["📌 <b>핵심 포인트</b>"]
+        for p in pts:
+            m = re.match(r"\*\*(.+?)\*\*\s*[—-]\s*(.*)", p)
+            title, rest = (m.group(1), m.group(2)) if m else ("", p)
+            lines.append("")
+            if title:
+                lines.append(f"<b>{esc(title)}</b>")
+            # **사실**: … **왜**: … **그래서**: … → 줄 나눔
+            chunks = re.split(r"\*\*(사실|왜|그래서)\*\*\s*[:：]\s*", rest)
+            if len(chunks) > 1:
+                if chunks[0].strip():
+                    lines.append(md_tg(chunks[0]))
+                icon = {"사실": "▫️ 사실", "왜": "▫️ 왜", "그래서": "👉 그래서"}
+                for lab, txt in zip(chunks[1::2], chunks[2::2]):
+                    lines.append(f"{icon[lab]} — {md_tg(txt)}")
+            else:
+                lines.append(md_tg(rest))
+        blocks.append("\n".join(lines))
+    g = bullets(pick(sec, "가이던스", "진척"))
+    if g:
+        blocks.append("🎯 <b>회사 계획·진척률</b>\n" + "\n".join("• " + md_tg(x) for x in g[:4]))
+    r = bullets(pick(sec, "리스크", "반론"))
+    if r:
+        blocks.append("⚠️ <b>리스크·반론</b>\n" + "\n".join("• " + md_tg(x) for x in r[:4]))
+    c = bullets(pick(sec, "체크포인트"))
+    if c:
+        blocks.append("🔭 <b>다음에 볼 것</b>\n" + "\n".join("• " + md_tg(x) for x in c[:4]))
+    if not blocks:   # 분석이 없으면 짧은 요약 문장이라도
+        blocks = ["\n".join("• " + md_tg(l) for l in (N.get("tg") or "").split("\n") if l.strip())]
+    # 4,000자 넘으면 덩어리 단위로 나눠 여러 메시지
+    out, cur = [], ""
+    for b in blocks:
+        if cur and len(cur) + len(b) + 2 > 3800:
+            out.append(cur)
+            cur = ""
+        cur = (cur + "\n\n" + b) if cur else b
+    if cur:
+        out.append(cur)
+    return [x[:4000] for x in out]
+
+
 def alerts(st, seed=False, sample=None):
     """sample="2026-10-01" 처럼 날짜를 주면 그날 이후 조건 맞은 기업을 '시험'으로 보낸다(최대 6건, 보낸 기록은 남기지 않음)"""
     use_topic("surp")
@@ -411,25 +492,34 @@ def alerts(st, seed=False, sample=None):
             except Exception as e:
                 print("알림 실패:", ak, e)
                 continue
-        # 요약 글이 붙으면 답글
+        # 요약 글이 붙으면: 재무제표 사진(위) → 자세한 해설(아래, 답글)
         if rid and (sk not in st["sent"] or DRY):
             N = load(f"docs/data/{m}/reports/notes/{rid}.json")
             if not N:
                 continue
-            body = [l.strip() for l in (N.get("tg") or "").split("\n") if l.strip()]
-            text = "\n".join([f"📝 <b>{esc(name)} 실적 요약</b>"] + ([f"<b>{esc(N['headline'])}</b>", ""] if N.get("headline") else []) +
-                             [f"• {esc(l)}" for l in body])
-            kb = [[{"text": "📝 요약", "url": link(m, rid, "sum")}, {"text": "🔍 분석", "url": link(m, rid, "ana")}]]
+            import tg_shots
+            if favs is None:
+                favs = favorites()
+            kb = [[{"text": "📝 요약", "url": link(m, rid, "sum")}, {"text": "🔍 분석 전문", "url": link(m, rid, "ana")}]]
             if N.get("orig_md"):
                 kb.append([{"text": "🇰🇷 원문 정리", "url": link(m, rid, "orig")}])
-            if DRY:
-                print("─" * 34, sk, "(답글)\n" + re.sub(r"<[^>]+>", "", text))
-                continue
+            cap = "\n".join([f"📝 {FLAG[m]} <b>{esc(name)}</b> 실적 요약",
+                             f'🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>', ""] +
+                            ([md_tg(N["headline"])] if N.get("headline") else []))
+            parts = detail(N)
             try:
-                send_text(text, kb, reply_to=st["msg"].get(ak))
+                png = tg_shots.fin_pic(kind, code, rid, favs)
+                if DRY:
+                    out([png] if png else [], cap, f"sum_{code}")
+                    for p in parts:
+                        print("─" * 34, "(해설)\n" + re.sub(r"<[^>]+>", "", p))
+                    continue
+                top = send_photos([png], cap) if png else send_text(cap)
+                for i, p in enumerate(parts):
+                    send_text(p, kb if i == len(parts) - 1 else None, reply_to=top if i == 0 else None)
                 st["sent"].add(sk)
             except Exception as e:
-                print("요약 답글 실패:", sk, e)
+                print("요약 실패:", sk, e)
     print(f"발표 후 알림 {n}건")
 
 
