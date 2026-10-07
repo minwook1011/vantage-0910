@@ -476,10 +476,10 @@ def detail(N):
     g = bullets(pick(sec, "가이던스", "진척"))
     g = [x for x in g if "컨센서스 자료는" not in x and "비교 불가" not in x]
     if g:
-        blocks.append("■ <b>회사 계획 · 남은 숙제</b>\n" + "\n".join("- " + md_tg(x) for x in g[:4]))
+        blocks.append("■ <b>가이던스</b>\n" + "\n".join("- " + md_tg(x) for x in g[:4]))
     r = bullets(pick(sec, "리스크", "반론"))
     if r:
-        blocks.append("■ <b>걸리는 점</b>\n" + "\n".join("- " + md_tg(x) for x in r[:4]))
+        blocks.append("■ <b>리스크</b>\n" + "\n".join("- " + md_tg(x) for x in r[:4]))
     # '다음에 볼 것'(체크포인트)은 넣지 않는다 — 실적 확인 글이라 앞으로의 일정은 군더더기(2026-10-07 사용자)
     if not blocks:   # 분석이 없으면 짧은 요약 문장이라도
         blocks = ["\n".join("- " + md_tg(l) for l in (N.get("tg") or "").split("\n") if l.strip())]
