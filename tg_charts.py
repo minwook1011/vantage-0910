@@ -121,39 +121,68 @@ def bars(name, title, sub, pts, digits=1, unit=""):
 
 
 def gauge(name, score, rating, prev=None, title="CNN 공포·탐욕 지수", sub=""):
-    """반원 계기판(바늘) — 0 극도 공포 ~ 100 극도 탐욕. prev = [(라벨, 값), ...] 아래에 비교값"""
+    """반원 계기판(바늘) — 0 극도 공포 ~ 100 극도 탐욕. prev = [(라벨, 값), ...] 아래 비교 칸"""
     import numpy as np
-    from matplotlib.patches import Wedge, Circle
-    fig = plt.figure(figsize=(8, 5.2), dpi=150)
-    fig.text(0.06, 0.93, title, fontsize=15, fontweight="bold", color=INK)
+    from matplotlib.patches import Circle, FancyBboxPatch, Polygon, Wedge
+    segs = [(0, 25, "#e0475f", "극도 공포"), (25, 45, "#f08a4b", "공포"), (45, 55, "#7f8aa3", "중립"),
+            (55, 75, "#4cb782", "탐욕"), (75, 100, "#1f9d74", "극도 탐욕")]
+
+    def seg_of(v):
+        return next(x for x in segs if x[0] <= v < x[1] or (x[1] == 100 and v >= 100))
+
+    ang = lambda v: 180 - v * 1.8
+    fig = plt.figure(figsize=(8, 5.6), dpi=150)
+    fig.text(0.06, 0.935, title, fontsize=15, fontweight="bold", color=INK)
     if sub:
-        fig.text(0.06, 0.885, sub, fontsize=9.5, color=MUTED)
-    ax = fig.add_axes([0.05, 0.12, 0.9, 0.74])
-    ax.set_xlim(-1.25, 1.25)
-    ax.set_ylim(-0.42, 1.2)
+        fig.text(0.06, 0.893, sub, fontsize=9.5, color=MUTED)
+    ax = fig.add_axes([0.0, 0.2, 1.0, 0.66])
+    ax.set_xlim(-1.75, 1.75)
+    ax.set_ylim(-0.38, 1.18)
     ax.set_aspect("equal")
     ax.axis("off")
-    segs = [(0, 25, "#dc5573", "극도 공포"), (25, 45, "#e98a5a", "공포"), (45, 55, "#b7bdc8", "중립"),
-            (55, 75, "#5bbf8a", "탐욕"), (75, 100, "#22a886", "극도 탐욕")]
-    ang = lambda v: 180 - v * 1.8
+
+    act = seg_of(score)
+    # 바탕 트랙 + 구간 색(현재 구간만 진하게·두껍게)
+    ax.add_patch(Wedge((0, 0), 1.0, 0, 180, width=0.2, facecolor="#f1f3f7", edgecolor="none"))
     for lo, hi, col, lab in segs:
-        active = lo <= score < hi or (hi == 100 and score >= 100)
-        ax.add_patch(Wedge((0, 0), 1.0, ang(hi), ang(lo), width=0.28, facecolor=col,
-                           alpha=1 if active else 0.35, edgecolor=BG, linewidth=2))
-        mid = np.radians(ang((lo + hi) / 2))
-        ax.text(1.13 * np.cos(mid), 1.13 * np.sin(mid), lab, ha="center", va="center", fontsize=9,
-                color=INK if active else MUTED, fontweight="bold" if active else "normal")
-    for v in (0, 25, 50, 75, 100):
+        on = (lo, hi) == act[:2]
+        ax.add_patch(Wedge((0, 0), 1.0 if not on else 1.035, ang(hi) + 0.8, ang(lo) - 0.8,
+                           width=0.2 if not on else 0.27, facecolor=col, alpha=1 if on else 0.32, edgecolor="none"))
+        m = np.radians(ang((lo + hi) / 2))
+        ax.text(1.2 * np.cos(m), 1.2 * np.sin(m), lab, ha="center", va="center",
+                fontsize=10 if on else 9, color=col if on else MUTED, fontweight="bold" if on else "normal")
+    # 눈금
+    for v in range(0, 101, 5):
         a = np.radians(ang(v))
-        ax.text(0.62 * np.cos(a), 0.62 * np.sin(a), str(v), ha="center", va="center", fontsize=8, color=MUTED)
+        r0 = 0.74 if v % 50 else 0.715
+        ax.plot([r0 * np.cos(a), 0.77 * np.cos(a)], [r0 * np.sin(a), 0.77 * np.sin(a)],
+                color="#c9ced8" if v % 50 else "#9aa3b2", lw=1 if v % 50 else 1.5, solid_capstyle="round")
+    for v in (0, 50, 100):
+        a = np.radians(ang(v))
+        ax.text(0.62 * np.cos(a), 0.62 * np.sin(a) + (0.03 if v == 50 else 0.0), str(v), ha="center", va="center",
+                fontsize=8, color=MUTED)
+    # 바늘(끝으로 갈수록 가늘게) + 축
     a = np.radians(ang(max(0, min(100, score))))
-    ax.plot([0, 0.8 * np.cos(a)], [0, 0.8 * np.sin(a)], color=INK, lw=3.2, solid_capstyle="round", zorder=5)
-    ax.add_patch(Circle((0, 0), 0.06, color=INK, zorder=6))
-    ax.text(0, -0.24, f"{score:.0f}", ha="center", va="center", fontsize=30, fontweight="bold", color=INK)
-    col = next(c for lo, hi, c, _ in segs if lo <= score < hi or hi == 100)
-    col = "#6b7383" if col == "#b7bdc8" else col
-    fig.text(0.5, 0.1, rating, ha="center", fontsize=14, fontweight="bold", color=col)
+    tip = (0.86 * np.cos(a), 0.86 * np.sin(a))
+    nx, ny = -np.sin(a) * 0.035, np.cos(a) * 0.035
+    ax.add_patch(Polygon([(nx, ny), tip, (-nx, -ny)], closed=True,
+                         facecolor=INK, edgecolor="none", zorder=5))
+    ax.add_patch(Circle((0, 0), 0.075, facecolor=BG, edgecolor=INK, linewidth=3, zorder=6))
+    # 숫자 + 구간 알약
+    ax.text(0, -0.25, f"{score:.0f}", ha="center", va="center", fontsize=34, fontweight="bold", color=INK)
+    fig.patches.append(FancyBboxPatch((0.5 - 0.075, 0.155), 0.15, 0.06, boxstyle="round,pad=0,rounding_size=0.03",
+                                      transform=fig.transFigure, facecolor=act[2], alpha=0.16, edgecolor="none"))
+    fig.text(0.5, 0.185, rating, ha="center", va="center", fontsize=12.5, fontweight="bold", color=act[2])
+    # 비교 칸
+    prev = [(l, v) for l, v in (prev or []) if v is not None]
     if prev:
-        txt = "     ".join(f"{lab} {v:.0f}" for lab, v in prev if v is not None)
-        fig.text(0.5, 0.035, txt, ha="center", fontsize=10.5, color=MUTED)
+        w = 0.17
+        x0 = 0.5 - (w * len(prev) + 0.02 * (len(prev) - 1)) / 2
+        for i, (lab, v) in enumerate(prev):
+            x = x0 + i * (w + 0.02)
+            fig.patches.append(FancyBboxPatch((x, 0.025), w, 0.095, boxstyle="round,pad=0,rounding_size=0.015",
+                                              transform=fig.transFigure, facecolor="#f5f7fa", edgecolor="#e6ebf2"))
+            fig.text(x + w / 2, 0.095, lab, ha="center", va="center", fontsize=8.5, color=MUTED)
+            c = seg_of(float(v))[2]
+            fig.text(x + w / 2, 0.05, f"{float(v):.0f}", ha="center", va="center", fontsize=12, fontweight="bold", color=c)
     return _save(fig, name)
