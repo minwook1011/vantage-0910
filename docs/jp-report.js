@@ -502,7 +502,8 @@
         var on = W.indexOf(x.t) >= 0, r = x.r, b = [];
         if (r) {
           b.push(r.d1 == null ? '<em class="rb px">주가 반응 대기</em>' : '<em class="rb px big ' + cls(r.d1) + '">발표 후 ' + pctS(r.d1) + "</em>");
-          if (r.cons != null) b.push('<em class="rb ' + cls(r.cons) + '">컨센 ' + pctS(r.cons) + "</em>");
+          if (r.cons != null) { var sk = r.cons >= 3 ? "surp" : r.cons <= -3 ? "shock" : "inl";   // 서프·쇼크(2026-10-07 사용자): 컨센 대비 ±3%
+            b.unshift('<em class="rb sc ' + sk + '">' + (sk === "surp" ? "서프" : sk === "shock" ? "쇼크" : "부합") + " " + pctS(r.cons) + "<small>(컨센 대비)</small></em>"); }
         }
         var flag = "";
         if (x.chk === "mismatch" && x.kind === "next" && x.y) flag = '<span class="cf warn" title="나스닥 ' + esc(x.nx && x.nx.date) + " · 야후 " + esc(x.y.date) + (x.y.confirmed ? "(확정)" : "(추정)") + ' — 더 이른 날부터 SEC 공시를 확인합니다">날짜 확인</span>';
