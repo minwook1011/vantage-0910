@@ -47,7 +47,13 @@ def _fig(title, sub):
     fig, ax = plt.subplots(figsize=(8, 4.5), dpi=150)
     fig.subplots_adjust(left=0.08, right=0.86, top=0.82, bottom=0.12)
     fig.text(0.08, 0.93, title, fontsize=15, fontweight="bold", color=INK)
-    fig.text(0.08, 0.875, sub, fontsize=9.5, color=MUTED)
+    # sub = "문장" 또는 ("문장", "굵게 붙일 부분") — 뒤쪽(예: 기준 일시)만 굵고 진하게
+    plain, bold = sub if isinstance(sub, tuple) else (sub, "")
+    t = fig.text(0.08, 0.875, plain, fontsize=9.5, color=MUTED)
+    if bold:
+        r = fig.canvas.get_renderer()
+        x1 = fig.transFigure.inverted().transform(t.get_window_extent(r))[1][0]
+        fig.text(x1 + 0.006, 0.875, bold, fontsize=9.5, fontweight="bold", color=INK)
     ax.tick_params(length=0)
     return fig, ax
 

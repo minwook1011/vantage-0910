@@ -251,7 +251,7 @@ def macro():
         imgs, rows = [], []
         if fg.get("history"):
             # 사용자가 계기판 대신 처음의 1년 추이 그래프를 골랐다(2026-10-07). tg_charts.gauge 는 남겨 둠
-            imgs.append(line("fg", "CNN 공포·탐욕 지수", f"0 = Extreme Fear · 100 = Extreme Greed · 최근 1년 · {fg.get('updated_kst', '')} 기준",
+            imgs.append(line("fg", "CNN 공포·탐욕 지수", ("0 = Extreme Fear · 100 = Extreme Greed · 최근 1년 ·", f"{fg.get('updated_kst', '')} 기준"),
                              [("지수", [(d, v) for d, v in fg["history"]])], digits=0, since_days=365,
                              bands=[(0, 25, "#d33f5b", "Extreme Fear"), (25, 45, "#e07a3f", "Fear"), (45, 55, "#6b7588", "Neutral"),
                                     (55, 75, "#3a9f6c", "Greed"), (75, 100, "#1b8a63", "Extreme Greed")]))
