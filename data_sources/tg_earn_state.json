@@ -3,6 +3,9 @@
   "alert:jp:2726:2026-10-06"
  ],
  "msg": {},
- "topics": {},
+ "topics": {
+  "sched": 4,
+  "surp": 6
+ },
  "seeded": true
 }
