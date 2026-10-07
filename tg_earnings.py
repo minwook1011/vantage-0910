@@ -271,6 +271,65 @@ def weekly(st):
     use_topic("sched")
     out(pngs, cap, "weekly")
     st["sent"].add(key)
+    try:
+        watch(monday, fri)
+    except Exception as e:
+        print("주의 종목 실패:", e)
+
+
+def watch(monday, fri):
+    """다음 주 실적 발표 기업 중 기술적 분석 신호(🔥 주도주 · 📈 거래량 급증 · 🧊 바닥 반등)에 걸린 종목 — 주간 예정 사진 아래 한 통(2026-10-07 사용자)"""
+    import tg_shots
+    sig = tg_shots.ta_signals()
+    S = sig.get("stocks") or {}
+    # 다음 주 발표일: 일본(JPX 예정일, 코드 → 코드.T) · 미국(나스닥 캘린더)
+    days = {}
+    jd = (load("docs/data/jp/earnings_dates.json") or {}).get("dates") or {}
+    for c, v in jd.items():
+        if v.get("date") and monday.isoformat() <= v["date"] <= fri.isoformat():
+            days[f"{c}.T"] = v["date"]
+    ud = (load("docs/data/us/earnings_dates.json") or {}).get("dates") or {}
+    for tk, v in ud.items():
+        n = v.get("next") or {}
+        if n.get("date") and monday.isoformat() <= n["date"] <= fri.isoformat():
+            days[tk] = n["date"]
+    groups = {"lead": [], "vol": [], "rebound": []}
+    for tk, x in S.items():
+        if tk not in days:
+            continue
+        for g in x["sig"]:
+            groups[g].append((days[tk], tk, x))
+    if not any(groups.values()):
+        text = (f"👀 <b>다음 주 실적 발표 · 주의 깊게 볼 종목</b> {monday:%m.%d}–{fri:%m.%d}\n"
+                "이번 주 발표 기업 중 주도주 · 거래량 급증 · 바닥 반등 신호에 걸린 종목은 없습니다.\n#실적예정")
+        if DRY:
+            print("─" * 34, "주의 종목\n" + re.sub(r"<[^>]+>", "", text))
+            return
+        use_topic("sched")
+        send_text(text)
+        return
+    wd = "월화수목금토일"
+    def line(d, tk, x, g):
+        from datetime import date as D
+        dd = D.fromisoformat(d)
+        code = tk[:-2] if tk.endswith(".T") else tk
+        stat = {"lead": f"기술점수 {x.get('score')} · 1개월 {sgn(x['r1m'])}" if x.get("r1m") is not None else f"기술점수 {x.get('score')}",
+                "vol": f"거래대금 평소의 {x['vol']:.1f}배" if x.get("vol") else "",
+                "rebound": f"고점 대비 {sgn(x['from_high'])} · 1주 {sgn(x['r1w'])}" if x.get("from_high") is not None else ""}[g]
+        return f"• {dd:%m.%d}({wd[dd.weekday()]}) <b>{esc(x.get('name') or code)}</b>({esc(code)})" + (f" · {stat}" if stat else "")
+    head = {"lead": "🔥 <b>주도주</b> · 오르고 추세 강함", "vol": "📈 <b>거래량 급증</b> · 돈이 몰리는 중", "rebound": "🧊 <b>바닥 반등</b> · 낙폭 과대 후 반등 시작"}
+    parts = [f"👀 <b>다음 주 실적 발표 · 주의 깊게 볼 종목</b> {monday:%m.%d}–{fri:%m.%d}",
+             "기술적 분석 신호에 걸린 발표 예정 기업"]
+    for g in ("lead", "vol", "rebound"):
+        if groups[g]:
+            parts += ["", head[g]] + [line(d, tk, x, g) for d, tk, x in sorted(groups[g], key=lambda r: (r[0], r[1]))]
+    parts += ["", f'<a href="{SITE}bottomup.html">기술적 분석</a>\n#실적예정']
+    text = "\n".join(parts)
+    if DRY:
+        print("─" * 34, "주의 종목\n" + re.sub(r"<[^>]+>", "", text))
+        return
+    use_topic("sched")
+    send_text(text)
 
 
 # ── ② 매일 ───────────────────────────────────────────────────

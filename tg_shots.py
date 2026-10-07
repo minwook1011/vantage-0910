@@ -239,6 +239,38 @@ def day_all(date, favs=None, kinds=("jpc", "jpm", "us")):
     return asyncio.run(_run(go))
 
 
+def ta_signals():
+    """기술적 분석 페이지(bottomup.html)의 신호를 사이트와 똑같은 계산으로 뽑는다 — {ticker: {...}}
+    주도주: 1개월 수익률 > 0 & 기술점수 ≥ 65 · 거래량 급증: 5일/20일 거래대금 ≥ 1.3배 · 바닥 반등: 52주 고점 대비 ≤ −20% & 1주 상승 & MACD 골든크로스"""
+    async def go(br):
+        pg = await br.new_page()
+        await pg.add_init_script(_init(None))
+        await pg.goto(SITE + "bottomup.html", wait_until="networkidle", timeout=90000)
+        await pg.wait_for_function("typeof taFor === 'function' && typeof computeTA === 'function'", timeout=60000)
+        out = await pg.evaluate("""async () => {
+            const j = u => fetch(u + '?t=' + Date.now()).then(r => r.json());
+            const [lite, full, ts] = await Promise.all([j('megacap_lite.json'), j('megacap.json'), j('ta_scores.json')]);
+            const C = {}; (full.stocks || []).forEach(f => C[f.ticker] = f.candles);
+            const n = v => (typeof v === 'number' && isFinite(v)) ? v : NaN;
+            const res = {};
+            for (const s of lite.stocks || []) {
+                const L = ts.stocks && ts.stocks[s.ticker];
+                const sc = L ? L.s : null;
+                let macd = '';
+                try { const t = computeTA(C[s.ticker] || []); const m = t && t.subs.find(x => x.key === 'macd'); macd = m ? String(m.detail) : ''; } catch (e) {}
+                const sig = [];
+                if (n(s.r1m) > 0 && sc != null && sc >= 65) sig.push('lead');
+                if (n(s.vol_ratio) >= 1.3) sig.push('vol');
+                if (n(s.from_high) <= -20 && n(s.r1w) > 0 && /골든/.test(macd)) sig.push('rebound');
+                if (sig.length) res[s.ticker] = {name: s.name, sig, score: sc, r1m: s.r1m, r1w: s.r1w, vol: s.vol_ratio, from_high: s.from_high};
+            }
+            return {updated: lite.updated, stocks: res};
+        }""")
+        await pg.close()
+        return out
+    return asyncio.run(_run(go))
+
+
 def fin_pic(kind, code, rid, favs=None):
     """재무제표 표 한 장(PNG) — 요약 글 위에 붙인다. 못 찍으면 None"""
     async def go(br):
