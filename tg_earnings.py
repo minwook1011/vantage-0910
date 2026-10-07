@@ -110,13 +110,58 @@ def chat():
     return c
 
 
+# ── 그룹 안 방(주제) ─────────────────────────────────────────
+# 받는 곳이 주제 기능을 켠 그룹이면 봇이 방을 직접 만들어 그 방에 올린다(봇은 사람이 만든 방을 찾을 수 없다).
+# 방 번호는 기록 파일(topics)에 남긴다. 그룹에서 봇에게 '주제 관리' 권한이 있어야 한다. 방을 못 만들면 General 에 올린다.
+TOPICS = {"surp": "🚀 실적 서프", "sched": "🗓 실적 일정"}
+_ST = None          # main 에서 기록(st)을 넣어 둔다
+_TOPIC = None       # 지금 보낼 방 키
+
+
+def use_topic(key):
+    global _TOPIC
+    _TOPIC = key
+
+
+def thread_id(new=False):
+    if not _TOPIC or _ST is None or not str(chat()).startswith("-100"):
+        return None
+    tp = _ST.setdefault("topics", {})
+    if not new and tp.get(_TOPIC):
+        return tp[_TOPIC]
+    try:
+        r = call("createForumTopic", {"chat_id": chat(), "name": TOPICS[_TOPIC]})
+        tp[_TOPIC] = r["message_thread_id"]
+        print("방 만듦:", TOPICS[_TOPIC], r["message_thread_id"])
+        return tp[_TOPIC]
+    except Exception as e:
+        print("방 만들기 실패 — General 에 올림(봇에게 '주제 관리' 권한이 있는지 확인):", e)
+        return None
+
+
+def in_topic(fn):
+    """보낼 때 방 번호를 붙이고, 방이 지워졌으면 다시 만들어 한 번 더 보낸다"""
+    def wrap(*a, **k):
+        tid = thread_id()
+        try:
+            return fn(*a, thread=tid, **k)
+        except RuntimeError as e:
+            if tid and "thread" in str(e).lower():
+                return fn(*a, thread=thread_id(new=True), **k)
+            raise
+    return wrap
+
+
 def silent():
     return "true" if NOW.hour < 7 else "false"
 
 
-def send_text(text, buttons=None, reply_to=None):
+@in_topic
+def send_text(text, buttons=None, reply_to=None, thread=None):
     d = {"chat_id": chat(), "text": text[:4000], "parse_mode": "HTML", "disable_web_page_preview": "true",
          "disable_notification": silent()}
+    if thread:
+        d["message_thread_id"] = thread
     if buttons:
         d["reply_markup"] = json.dumps({"inline_keyboard": buttons}, ensure_ascii=False)
     if reply_to:
@@ -124,11 +169,13 @@ def send_text(text, buttons=None, reply_to=None):
     return call("sendMessage", d)["message_id"]
 
 
-def send_photos(pngs, caption):
+@in_topic
+def send_photos(pngs, caption, thread=None):
     """사진 1장이면 sendPhoto, 여러 장이면 앨범 — 글(링크)은 첫 사진 설명으로. 첫 메시지 번호를 돌려준다"""
     caption = caption[:1020]
+    th = {"message_thread_id": thread} if thread else {}
     if len(pngs) == 1:
-        r = call("sendPhoto", {"chat_id": chat(), "caption": caption, "parse_mode": "HTML", "disable_notification": silent()},
+        r = call("sendPhoto", {"chat_id": chat(), "caption": caption, "parse_mode": "HTML", "disable_notification": silent(), **th},
                  files={"photo": ("p.png", pngs[0], "image/png")})
         return r["message_id"]
     media, files = [], {}
@@ -138,7 +185,7 @@ def send_photos(pngs, caption):
             m.update(caption=caption, parse_mode="HTML")
         media.append(m)
         files[f"p{i}"] = (f"p{i}.png", b, "image/png")
-    r = call("sendMediaGroup", {"chat_id": chat(), "media": json.dumps(media, ensure_ascii=False), "disable_notification": silent()}, files=files)
+    r = call("sendMediaGroup", {"chat_id": chat(), "media": json.dumps(media, ensure_ascii=False), "disable_notification": silent(), **th}, files=files)
     return r[0]["message_id"]
 
 
@@ -216,6 +263,7 @@ def weekly(st):
     cap = (f"🗓 <b>다음 주 실적 발표</b> {monday:%m.%d}–{fri:%m.%d}\n"
            f"일본 소비재 · 일본 닛케이 · 미국\n\n"
            f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>')
+    use_topic("sched")
     out(pngs, cap, "weekly")
     st["sent"].add(key)
 
@@ -235,6 +283,7 @@ def daily(st):
     cap = (f"☀️ <b>오늘 실적 발표</b> {NOW:%m.%d}({'월화수목금토일'[NOW.weekday()]})\n"
            f"일본 소비재 · 일본 닛케이 · 미국(미 동부 날짜 — 장 전 = 오늘 밤, 장 후 = 내일 새벽)\n\n"
            f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>')
+    use_topic("sched")
     out([png] if png else [], cap if png else cap + "\n\n오늘은 발표 예정이 없습니다.", "daily")
     st["sent"].add(key)
 
@@ -327,6 +376,7 @@ def pending(st):
 
 
 def alerts(st, seed=False):
+    use_topic("surp")
     favs = None
     n = 0
     for m, code, d, rid, kind, name, why, nums in candidates():
@@ -386,18 +436,23 @@ def main():
             if c.get("type") == "channel":
                 print(f"chat_id = {c['id']}   ({c.get('title')})")
         return
-    if "--test" in a:
-        send_text("✅ 실적 채널 연결 확인 — 주간·매일 실적 일정과 발표 후 알림이 여기로 옵니다.")
-        print("보냄")
-        return
     try:
         git("fetch", "-q", "origin", "main")
     except Exception as e:
         print("git fetch 실패(이전 내용으로 진행):", e)
     raw = json.load(open(STATE_PATH, encoding="utf-8")) if os.path.exists(STATE_PATH) else {}
-    st = {"sent": set(raw.get("sent") or []), "msg": dict(raw.get("msg") or {})}
+    st = {"sent": set(raw.get("sent") or []), "msg": dict(raw.get("msg") or {}), "topics": dict(raw.get("topics") or {})}
+    global _ST
+    _ST = st
     first = not raw
     try:
+        if "--test" in a:   # 방을 만들고 방마다 시험 글 하나
+            for k, msg in (("sched", "🗓 실적 일정 방 — 토요일 05시 다음 주 일정, 평일 07:30 오늘 발표 사진이 여기로 옵니다."),
+                           ("surp", "🚀 실적 서프 방 — 발표 후 즐겨찾기 · 주가 +2% 이상 · 컨센서스 +5% 이상 기업이 여기로 옵니다.")):
+                use_topic(k)
+                send_text("✅ 연결 확인\n" + msg)
+            print("시험 글 보냄")
+            return
         if "--pending" in a:
             n = pending(st) if raw else 1      # 처음이면 한 번 돌려 기록(seed)을 만든다
             print(f"pending={n}")
@@ -414,8 +469,8 @@ def main():
     finally:
         if not DRY:
             # 기록은 최근 것만(보낸 키 3000개 · 답글용 메시지 번호 400개)
-            new = {"sent": sorted(st["sent"])[-3000:], "msg": dict(list(st["msg"].items())[-400:])}
-            if new != {"sent": raw.get("sent") or [], "msg": raw.get("msg") or {}}:
+            new = {"sent": sorted(st["sent"])[-3000:], "msg": dict(list(st["msg"].items())[-400:]), "topics": st["topics"]}
+            if new != {"sent": raw.get("sent") or [], "msg": raw.get("msg") or {}, "topics": raw.get("topics") or {}}:
                 os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
                 json.dump(new, open(STATE_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
