@@ -250,3 +250,40 @@
     else managedBadge(state.accounts.some(function (a) { return /제현/.test(a.name || ""); }) ? "제현형님 계좌의 최신 매매기록(Claude 입력)이 있습니다 → " : "", true);
   }
 })();
+
+/* 동기화 전 백업으로 되돌리기(2026-10-07: 휴대폰·컴퓨터 자료가 합쳐지며 계좌·예수금이 바뀐 사고).
+   firebase-sync.js 는 이 기기에서 처음 합칠 때 합치기 전 값을 "vantage-sync-backup-v2" 에 남긴다. 그 안의 포트폴리오가
+   지금과 다르면 위에 알림을 띄우고, 누르면 그 상태로 되돌린다(되돌리기 전 지금 상태는 "vantage-portfolio-before-restore" 에 보관). */
+(function () {
+  var PKEY = "vantage-portfolio-v1", BKEY = "vantage-sync-backup-v2", SAVE = "vantage-portfolio-before-restore";
+  function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  var b; try { b = JSON.parse(read(BKEY) || "null"); } catch (e) { b = null; }
+  var old = b && b.values && b.values[PKEY], cur = read(PKEY);
+  if (!old || old === cur) return;
+  var po, pc; try { po = JSON.parse(old); pc = JSON.parse(cur || "null"); } catch (e) { return; }
+  if (!po || !Array.isArray(po.accounts)) return;
+  function desc(s) {
+    if (!s || !Array.isArray(s.accounts)) return "없음";
+    return s.accounts.map(function (a) {
+      var n = (s.transactions || []).filter(function (t) { return t.accountId === a.id; }).length;
+      var cash = (Number(a.cashKrw) || 0) ? " · 원화 예수금 " + Math.round(a.cashKrw).toLocaleString("ko-KR") + "원" : "";
+      return (a.name || "이름 없음") + "(거래 " + n + "건" + cash + ")";
+    }).join(", ");
+  }
+  var when = String(b.savedAt || "").replace("T", " ").slice(0, 16);
+  var box = document.createElement("div");
+  box.className = "pf-restore";
+  box.innerHTML = '<b>동기화로 포트폴리오가 바뀌었을 수 있습니다.</b>' +
+    '<div>동기화 전(' + when.replace(/[<>&]/g, "") + ') 이 기기의 상태: ' + desc(po).replace(/[<>&]/g, "") + '</div>' +
+    '<div>지금 상태: ' + desc(pc).replace(/[<>&]/g, "") + '</div>' +
+    '<div class="pf-restore-btns"><button type="button" class="pf-restore-go">동기화 전 상태로 되돌리기</button><button type="button" class="pf-restore-no">닫기</button></div>';
+  var main = document.querySelector("main.portfolio-page") || document.body;
+  main.insertBefore(box, main.firstChild);
+  box.querySelector(".pf-restore-no").onclick = function () { box.remove(); };
+  box.querySelector(".pf-restore-go").onclick = function () {
+    if (!confirm("동기화 전 상태로 되돌릴까요? 지금 상태는 따로 보관해 둡니다.")) return;
+    try { if (cur) localStorage.setItem(SAVE, JSON.stringify({ savedAt: new Date().toISOString(), value: cur })); localStorage.setItem(PKEY, old); }
+    catch (e) { alert("되돌리지 못했습니다: " + e.message); return; }
+    location.reload();
+  };
+})();

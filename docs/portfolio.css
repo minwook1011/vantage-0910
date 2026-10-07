@@ -82,3 +82,9 @@
 .pf-view .pf-left.short { color:var(--up); font-weight:700; }
 .pf-view .pf-left small { display:block; font-size:11px; }
 .pf-view .pf-trq { font:inherit; font-size:13px; padding:7px 10px; border:1px solid var(--border); border-radius:8px; background:#fff; color:var(--text); min-width:180px; }
+/* 동기화 전 상태로 되돌리기 알림 */
+.pf-restore{margin:12px 0 16px;padding:14px 16px;border:1px solid #f0b44c;border-radius:10px;background:#fff8ea;color:#5a3d00;font-size:13.5px;line-height:1.6}
+.pf-restore b{display:block;font-size:14.5px;margin-bottom:4px;color:#3f2a00}
+.pf-restore-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pf-restore-btns button{font:inherit;font-weight:700;border-radius:8px;padding:7px 14px;cursor:pointer;border:1px solid #d98b1a;background:#e0901f;color:#fff}
+.pf-restore-btns .pf-restore-no{background:#fff;color:#7a5410;border-color:#e8c58a}
