@@ -12,7 +12,7 @@
    "audio": "https://traffic.megaphone.fm/CLS1239827470.mp3",
    "duration": "1:12:28",
    "desc": "Andrew Huberman is a neuroscientist and professor at Stanford, the host of the Huberman Lab podcast, and the author of Protocols. Most of our conversation is about where neuroscience goes next. For decades the field has focused on reading from the brain, and Andrew believes the next era is about writing to it with precise control over specific brain states. He explains why he thinks the leading AI companies are really building toward this, and why understanding our waking brain states is the problem he most wants to see solved. Please enjoy my conversation with Andrew Huberman. For the full sh…",
-   "status": "skip",
+   "status": "done",
    "found": "2026-10-06 17:23 KST",
    "image": "https://megaphone.imgix.net/podcasts/641962f4-bdcf-11f1-899d-0759b6038cac/image/3bb5360f936fff82e741ce59efaea134.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
@@ -25,8 +25,7 @@
     "image": null,
     "guest": "Andrew Huberman — Stanford 의대 신경생물학·안과학 교수, 팟캐스트 Huberman Lab 진행자, 책 Protocols 저자",
     "company": "Huberman Lab (신경과학 · 뇌-컴퓨터 접속 · 신경조절)"
-   },
-   "reason": "주제 무관 — 수면·뇌과학 중심의 건강·과학 이야기(기업·산업 분석 아님)"
+   }
   },
   {
    "id": "2026-10-05-ca-building-the-total-portfolio-at-ontario-teachers",
