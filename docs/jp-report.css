@@ -162,3 +162,45 @@
 .jr .note.qa .qa-q > span, .jr .note.qa .qa-a > span { flex:0 0 auto; min-width:34px; font-size:11.5px; font-weight:700; padding-top:2px; }
 .jr .note.qa .qa-q > span { color:#2b52ab; }
 .jr .note.qa .qa-a > span { color:#b0562a; }
+
+/* 관심 기업 그룹 창 · 캘린더 접기 · 추가할 종목(미국) — 2026-10-07 */
+.favpop{position:fixed;z-index:200;width:260px;background:var(--card,#fff);border:1px solid var(--border);border-radius:10px;box-shadow:0 14px 36px rgba(20,35,60,.18);padding:10px 12px;font-size:12.5px;color:var(--text)}
+.favpop .fp-h{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.favpop .fp-h .mono{color:var(--muted);font-size:11px;font-family:var(--mono)}
+.favpop .fp-x{margin-left:auto;border:0;background:none;font-size:18px;line-height:1;cursor:pointer;color:var(--muted)}
+.favpop .fp-list{display:flex;flex-direction:column;gap:2px;max-height:240px;overflow:auto}
+.favpop .fp-row{display:flex;align-items:center;gap:8px;padding:5px 4px;border-radius:6px;cursor:pointer}
+.favpop .fp-row:hover{background:rgba(79,124,255,.07)}
+.favpop .fp-row small{margin-left:auto;color:var(--muted);font-family:var(--mono)}
+.favpop .fp-col{width:18px;height:18px;padding:0;border:0;background:none;cursor:pointer;flex:0 0 auto}
+.favpop .fp-del{border:0;background:none;color:var(--muted);font-size:11px;cursor:pointer}
+.favpop .fp-new{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.favpop .fp-new input{flex:1;min-width:0;font:inherit;font-size:12px;border:1px solid var(--border);border-radius:6px;padding:5px 8px;background:#fff;color:var(--text)}
+.favpop .fp-new button{font:inherit;font-size:12px;font-weight:600;border:1px solid #2f6fe4;background:#2f6fe4;color:#fff;border-radius:6px;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.favpop .fp-foot{margin-top:7px;font-size:11px;color:var(--muted)}
+.cal .cal-h{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.cal .cal-h h3{margin:0;font-size:15px}
+.cal .cal-gf{display:flex;gap:5px;flex-wrap:wrap}
+.cal .cal-gf button,.cal .cal-fold{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--card,#fff);color:var(--muted);border-radius:999px;padding:4px 11px;cursor:pointer}
+.cal .cal-gf button[aria-pressed="true"]{background:#2f6fe4;border-color:#2f6fe4;color:#fff}
+.cal .cal-gf small{font-family:var(--mono);font-size:10px;opacity:.75}
+.cal .cal-gf .fgb::before{content:"★";color:var(--fc);margin-right:3px}
+.cal .cal-gf .fgb[aria-pressed="true"]::before{color:#fff}
+.cal .cal-fold{margin-left:auto;border-radius:6px}
+.cal .ce.on{border-color:var(--fc,#e0a020)}
+.cal .ce.on .ce-st{color:var(--fc,#e0a020)}
+.addreq{display:flex;flex-direction:column;gap:7px;padding:12px 14px;margin:12px 0;border:1px dashed var(--border);border-radius:10px;background:rgba(255,255,255,.55);max-width:520px}
+.addreq .ar-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.addreq .ar-h b{font-size:13px}
+.addreq .ar-h span{font-size:11px;color:var(--muted)}
+.addreq .ar-in{display:flex;gap:6px}
+.addreq input{flex:1;min-width:0;font:inherit;font-size:12.5px;border:1px solid var(--border);border-radius:6px;padding:6px 9px;background:#fff;color:var(--text)}
+.addreq button{font:inherit;font-size:12.5px;font-weight:600;border:1px solid #2f6fe4;background:#2f6fe4;color:#fff;border-radius:6px;padding:6px 12px;cursor:pointer}
+.addreq .ar-list{display:flex;flex-direction:column;gap:3px;max-height:84px;overflow:auto;font-size:11.5px;color:var(--muted)}
+.addreq .ar-row{display:flex;gap:7px;align-items:baseline}
+.addreq .ar-st{flex:0 0 auto;font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 6px;background:#eef2f7}
+.addreq .ar-st.added{background:rgba(31,140,80,.12);color:#1f7a47}
+.addreq .ar-st.partial{background:rgba(220,150,30,.14);color:#9a6512}
+.addreq .ar-st.failed{background:rgba(200,60,50,.12);color:#b03a30}
+.addreq .ar-st.wait{background:rgba(79,124,255,.12);color:#2b52ab}
+.addreq .ar-tip{font-size:11px;color:var(--muted)}

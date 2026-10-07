@@ -344,6 +344,8 @@
     app.innerHTML = (IS_US
       ? '<div class="kicker"><a href="datahub.html">데이터 허브</a> · 실적 리포트</div><h1>미국 실적 리포트</h1>' +
         '<div class="sub">데이터 허브 미국·해외 기업의 실적 발표마다 <b>분기 표 · 핵심 수치 · 그래프 · SEC 보도자료 원문</b>을 한 장에 모읍니다. 발표 예정일은 나스닥 거래소 캘린더(하루 2번 갱신), 실제 발표는 SEC 8-K(실적 공시)로 확인해 바로 만들고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" +
+        '<div class="addreq" id="addreq"><div class="ar-h"><b>추가할 종목</b><span>매일 0시에 확인해 미국 기업 명단에 넣습니다</span></div>' +
+        '<div class="ar-in"><input type="text" id="ar-q" placeholder="티커나 이름 — 예: PLTR, 코인베이스" maxlength="200"><button id="ar-go">보내기</button></div><div class="ar-list" id="ar-list"></div></div>' +
         '<section class="cal" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>'
       : '<div class="kicker"><a href="jp-screener.html">일본 기업 스크리너</a> · 실적 리포트</div><h1>일본 실적 리포트</h1>' +
         '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 발표 예정일은 도쿄증권거래소(JPX) 공식 목록, 실적 시즌 평일에는 하루 6번 수집하고 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>") +
@@ -387,10 +389,89 @@
     return us;
   }
   function saveWatch(a) { try { var v = loadFav(); v.us = a; localStorage.setItem(WKEY, JSON.stringify(v)); } catch (e) {} }
+  /* 관심 기업 그룹(2026-10-07 사용자: 일본 스크리너처럼 그룹을 만들고 그룹별 색) — 같은 키의 usg 칸 {g:[{id,n,c,col}]}.
+     us(예전 관심 목록)는 그룹 전체의 합집합으로 계속 맞춰 둔다 */
+  var PAL = ["#e0901f", "#d64545", "#2f7de1", "#1f9d6b", "#8e5bd6", "#d6559b", "#16a3b5", "#6b7a8f"];
+  function loadGroups() {
+    var v = loadFav(), g = v.usg && Array.isArray(v.usg.g) ? v.usg.g.filter(function (x) { return x && x.id && Array.isArray(x.c); }) : null;
+    if (!g) { g = [{ id: "base", n: "기본", c: loadWatch() }]; }
+    if (!g.length) g = [{ id: "base", n: "기본", c: [] }];
+    return g;
+  }
+  function saveGroups(g) {
+    try { var v = loadFav(), u = []; g.forEach(function (x) { x.c.forEach(function (t) { if (u.indexOf(t) < 0) u.push(t); }); });
+      v.usg = { g: g }; v.us = u; localStorage.setItem(WKEY, JSON.stringify(v)); } catch (e) {}
+  }
+  function gCol(g, i) { return g.col || PAL[i % PAL.length]; }
+  function tCol(G, t) { for (var i = 0; i < G.length; i++) if (G[i].c.indexOf(t) >= 0) return gCol(G[i], i); return ""; }
+  function closePop() { var p = document.getElementById("favpop"); if (p) p.remove(); document.removeEventListener("mousedown", popOut, true); }
+  function popOut(e) { var p = document.getElementById("favpop"); if (p && !p.contains(e.target)) closePop(); }
+  function favPop(t, anchor, onChange) {
+    closePop();
+    var pop = document.createElement("div"); pop.id = "favpop"; pop.className = "favpop";
+    function draw() {
+      var G = loadGroups();
+      pop.innerHTML = '<div class="fp-h"><b>관심 기업 그룹</b><span class="mono">' + esc(t) + '</span><button class="fp-x" aria-label="닫기">×</button></div>' +
+        '<div class="fp-list">' + G.map(function (x, i) {
+          return '<label class="fp-row"><input type="checkbox" data-g="' + esc(x.id) + '"' + (x.c.indexOf(t) >= 0 ? " checked" : "") + '><input type="color" class="fp-col" data-col="' + esc(x.id) + '" value="' + gCol(x, i) + '" title="그룹 색"><span style="color:' + gCol(x, i) + '">★</span><span>' + esc(x.n) + "</span><small>" + x.c.length + "</small>" +
+            (x.id !== "base" ? '<button class="fp-del" data-del="' + esc(x.id) + '">삭제</button>' : "") + "</label>";
+        }).join("") + "</div>" +
+        '<div class="fp-new"><input type="text" placeholder="새 그룹 이름" maxlength="20"><button>+ 그룹 추가</button></div>' +
+        '<div class="fp-foot">체크한 그룹에 들어갑니다 · 모두 끄면 관심 기업에서 빠집니다</div>';
+      pop.querySelector(".fp-x").onclick = closePop;
+      pop.querySelectorAll("input[data-g]").forEach(function (cb) { cb.onchange = function () {
+        var G2 = loadGroups(), g = G2.filter(function (x) { return x.id === cb.dataset.g; })[0]; if (!g) return;
+        if (cb.checked) { if (g.c.indexOf(t) < 0) g.c.push(t); } else g.c = g.c.filter(function (c) { return c !== t; });
+        saveGroups(G2); onChange(); draw(); }; });
+      pop.querySelectorAll("input[data-col]").forEach(function (ci) { ci.onclick = function (e) { e.stopPropagation(); }; ci.onchange = function () {
+        var G2 = loadGroups(), g = G2.filter(function (x) { return x.id === ci.dataset.col; })[0]; if (!g) return;
+        g.col = ci.value; saveGroups(G2); onChange(); draw(); }; });
+      pop.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function (e) { e.preventDefault();
+        var G2 = loadGroups(), g = G2.filter(function (x) { return x.id === b.dataset.del; })[0]; if (!g) return;
+        if (!confirm('"' + g.n + '" 그룹을 지울까요? (기업 ' + g.c.length + "개가 이 그룹에서 빠집니다)")) return;
+        saveGroups(G2.filter(function (x) { return x !== g; })); onChange(); draw(); }; });
+      var inp = pop.querySelector(".fp-new input");
+      function add() { var n = inp.value.trim(); if (!n) return; var G2 = loadGroups(), g = G2.filter(function (x) { return x.n === n; })[0];
+        if (!g) { var used = G2.map(function (x, i) { return gCol(x, i); }); g = { id: "g" + Date.now().toString(36), n: n, c: [], col: PAL.filter(function (c) { return used.indexOf(c) < 0; })[0] || PAL[G2.length % PAL.length] }; G2.push(g); }
+        if (g.c.indexOf(t) < 0) g.c.push(t); saveGroups(G2); onChange(); draw(); }
+      pop.querySelector(".fp-new button").onclick = add;
+      inp.onkeydown = function (e) { if (e.key === "Enter") add(); };
+    }
+    draw(); document.body.appendChild(pop);
+    var r = anchor.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+    pop.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, r.left)) + "px";
+    pop.style.top = (r.bottom + 6 + h > window.innerHeight ? Math.max(8, r.top - h - 6) : r.bottom + 6) + "px";
+    setTimeout(function () { document.addEventListener("mousedown", popOut, true); }, 0);
+  }
   function ymd(d) { return d.toISOString().slice(0, 10); }
   function monday(dstr) { var d = new Date(dstr + "T00:00:00Z"), w = d.getUTCDay(); d.setUTCDate(d.getUTCDate() - ((w + 6) % 7)); return ymd(d); }
   function addDays(dstr, n) { var d = new Date(dstr + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return ymd(d); }
+  /* 추가할 종목(미국) — 깃허브 이슈 "[추가할 종목·미국] …" 로 남기면 매일 0시 예약 작업이 명단(us_universe.json)에 넣는다 */
+  function drawAddReq() {
+    var box = document.getElementById("addreq"); if (!box) return;
+    var REPO = "minwook1011/vantage-0910", PRE = "[추가할 종목·미국] ", q = document.getElementById("ar-q"), list = document.getElementById("ar-list");
+    function send() { var t = q.value.trim(); if (!t) { q.focus(); return; }
+      var body = "미국 기업 명단에 넣어 주세요: " + t + "\n\n—\n(미국 실적 리포트 '추가할 종목' 칸에서 보냄 · 매일 0시에 처리)";
+      window.open("https://github.com/" + REPO + "/issues/new?title=" + encodeURIComponent(PRE + t) + "&body=" + encodeURIComponent(body), "_blank", "noopener");
+      q.value = ""; list.innerHTML = '<div class="ar-tip">깃허브 창에서 <b>Submit new issue</b>(제출)를 눌러야 요청이 남습니다.</div>' + list.innerHTML; }
+    document.getElementById("ar-go").onclick = send;
+    q.onkeydown = function (e) { if (e.key === "Enter") send(); };
+    var ST = { added: "추가됨", partial: "일부 추가", failed: "못 찾음" };
+    Promise.all([
+      fetch("data/jp/add_requests.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : { items: [] }; }).catch(function () { return { items: [] }; }),
+      fetch("https://api.github.com/repos/" + REPO + "/issues?state=open&per_page=50").then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })
+    ]).then(function (a) {
+      var d = a[0], iss = a[1], done = {}; (d.items || []).forEach(function (x) { done[x.n] = x; });
+      var pend = (iss || []).filter(function (i) { return !i.pull_request && (i.title || "").indexOf("[추가할 종목·미국]") === 0 && (i.user || {}).login === "minwook1011" && !(done[i.number] || {}).status; })
+        .map(function (i) { return '<div class="ar-row"><span class="ar-st wait">대기</span><span>' + esc(i.title.replace("[추가할 종목·미국]", "").trim()) + "</span></div>"; });
+      var fin = (d.items || []).filter(function (x) { return x.status && x.market === "us"; }).slice(0, 4).map(function (x) {
+        return '<div class="ar-row" title="' + esc(x.note || "") + '"><span class="ar-st ' + x.status + '">' + (ST[x.status] || "") + "</span><span>" + esc(x.text || "") +
+          (x.added && x.added.length ? " → " + x.added.map(esc).join(", ") : "") + (x.failed && x.failed.length ? " · 못 찾음 " + x.failed.map(esc).join(", ") : "") + "</span></div>"; });
+      list.innerHTML = pend.concat(fin).join("") || '<div class="ar-tip">아직 요청이 없습니다.</div>';
+    });
+  }
   function drawCal(IX) {
+    drawAddReq();
     var box = document.getElementById("cal"); if (!box) return;
     getJSON("data/us/earnings_dates.json").then(function (D) {
       var rep = {}; (IX && IX.reports || []).forEach(function (r) { if (!rep[r.c] || r.d > rep[r.c].d) rep[r.c] = r; });
@@ -421,28 +502,46 @@
         var flag = "";
         if (x.chk === "mismatch" && x.kind === "next" && x.y) flag = '<span class="cf warn" title="나스닥 ' + esc(x.nx && x.nx.date) + " · 야후 " + esc(x.y.date) + (x.y.confirmed ? "(확정)" : "(추정)") + ' — 더 이른 날부터 SEC 공시를 확인합니다">날짜 확인</span>';
         else if (x.src === "yahoo" && x.kind === "next") flag = '<span class="cf" title="나스닥 캘린더에 아직 없음 — 야후 ' + (x.y && x.y.confirmed ? "확정" : "추정") + ' 날짜">' + (x.y && x.y.confirmed ? "야후" : "예상") + "</span>";
-        return '<div class="ce' + (on ? " on" : "") + '" data-t="' + esc(x.t) + '" title="' + esc(x.n + (x.sec ? " · " + x.sec : "") + (x.fq ? " · 분기 " + x.fq : "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "") + " — 눌러서 관심 기업 표시/해제") + '">' +
+        var fc = on ? tCol(GR, x.t) : "";
+        return '<div class="ce' + (on ? " on" : "") + '"' + (fc ? ' style="--fc:' + fc + '"' : "") + ' data-t="' + esc(x.t) + '" title="' + esc(x.n + (x.sec ? " · " + x.sec : "") + (x.fq ? " · 분기 " + x.fq : "") + (x.eps ? " · EPS 컨센서스 " + x.eps : "") + " — 눌러서 관심 기업 그룹 고르기") + '">' +
           '<div class="ce-h"><span class="ce-st">' + (on ? "★" : "") + '</span><b>' + esc(x.t) + '</b><span class="ce-n">' + esc(x.n) + "</span>" + (TM[x.tm] ? '<i class="ce-tm">' + TM[x.tm] + "</i>" : "") + flag + "</div>" +
           (b.length ? '<div class="ce-b">' + b.join("") + "</div>" : "") +
           (r ? '<a class="ce-rep" href="' + M.page + "?id=" + encodeURIComponent(r.rid) + '">실적 리포트 ›</a>' : "") + "</div>";
       }
+      var GR = [];
+      try { st.fold = localStorage.getItem("us-cal-fold") === "1"; st.gf = sessionStorage.getItem("us-cal-gf") || ""; } catch (e) {}
       function draw() {
-        var W = loadWatch(), days = [0, 1, 2, 3, 4].map(function (k) { return addDays(st.w, k); });
+        GR = loadGroups();
+        var W = []; GR.forEach(function (x) { x.c.forEach(function (t) { if (W.indexOf(t) < 0) W.push(t); }); });
+        if (st.gf && st.gf !== "all" && !GR.some(function (x) { return x.id === st.gf; })) st.gf = "";
+        var gset = !st.gf ? null : st.gf === "all" ? W : (GR.filter(function (x) { return x.id === st.gf; })[0] || { c: [] }).c;
+        var head = '<div class="cal-h"><h3>실적 발표 캘린더</h3>' +
+          (st.fold ? "" : '<div class="cal-gf"><button data-gf=""' + (!st.gf ? ' aria-pressed="true"' : "") + ">전체</button><button data-gf=\"all\"" + (st.gf === "all" ? ' aria-pressed="true"' : "") + ">★ 전부 <small>" + W.length + "</small></button>" +
+            (GR.length > 1 || GR[0].n !== "기본" ? GR.map(function (x, i) { return '<button data-gf="' + esc(x.id) + '" style="--fc:' + gCol(x, i) + '" class="fgb"' + (st.gf === x.id ? ' aria-pressed="true"' : "") + ">" + esc(x.n) + " <small>" + x.c.length + "</small></button>"; }).join("") : "") + "</div>") +
+          '<button class="cal-fold">' + (st.fold ? "펼치기 ▾" : "접기 ▴") + "</button></div>";
+        if (st.fold) {
+          box.innerHTML = head;
+          box.querySelector(".cal-fold").onclick = function () { st.fold = false; try { localStorage.setItem("us-cal-fold", "0"); } catch (e) {} draw(); };
+          return;
+        }
+        var days = [0, 1, 2, 3, 4].map(function (k) { return addDays(st.w, k); });
         var mo = +st.w.slice(5, 7), wk = Math.ceil(+st.w.slice(8, 10) / 7);
         var cols = days.map(function (d) {
-          var L = (ev[d] || []).slice().sort(sorter(W)), lim = st.open[d] ? L.length : 12;
+          var L = (ev[d] || []).filter(function (x) { return !gset || gset.indexOf(x.t) >= 0; }).sort(sorter(W)), lim = st.open[d] ? L.length : 12;
           var wd = "일월화수목금토".charAt(new Date(d + "T00:00:00Z").getUTCDay());
           return '<div class="cd' + (d === today ? " today" : "") + '"><div class="cd-h"><b>' + d.slice(5).replace("-", ".") + "(" + wd + ")</b><span>" + (d === today ? "오늘 · " : "") + L.length + "곳</span></div>" +
             (L.length ? L.slice(0, lim).map(function (x) { return card(x, W); }).join("") : '<div class="cd-empty">발표 없음</div>') +
             (L.length > lim ? '<button class="cd-more" data-d="' + d + '">+ ' + (L.length - lim) + "곳 더 보기</button>" : "") + "</div>";
         }).join("");
-        box.innerHTML = '<div class="cw-top"><button class="btn" id="cwPrev"' + (st.w <= minW ? " disabled" : "") + '>‹ 이전 주</button>' +
+        box.innerHTML = head + '<div class="cw-top"><button class="btn" id="cwPrev"' + (st.w <= minW ? " disabled" : "") + '>‹ 이전 주</button>' +
           '<div class="cw-t"><b>' + mo + "월 " + wk + "주차</b> <span>" + days[0].slice(5).replace("-", ".") + " – " + days[4].slice(5).replace("-", ".") + "</span>" +
           (st.w !== monday(today) ? ' <button class="btn sm" id="cwNow">이번 주</button>' : "") + "</div>" +
           '<button class="btn" id="cwNext"' + (st.w >= maxW ? " disabled" : "") + ">다음 주 ›</button></div>" +
           '<div class="cw">' + cols + "</div>" +
           '<div class="cw-note">나스닥 거래소 실적 캘린더 기준(날짜는 미 동부 — 장 전 = 한국 밤, 장 후 = 한국 새벽)을 야후 캘린더와 교차 확인합니다. <span class="cf warn">날짜 확인</span> 두 곳 날짜가 다름(더 이른 날부터 SEC 공시 확인) · <span class="cf">예상</span> 나스닥에 아직 없어 야후 날짜. ' +
-          "실제 발표는 SEC 8-K(실적 공시)로 확인하고, 캘린더에 없던 발표도 SEC 전수 확인으로 잡습니다. 카드를 누르면 <b class=\"ywl\">관심 기업</b>으로 표시·저장되고(로그인한 기기끼리 동기화) 맨 위로 올라갑니다(그다음 기술주, 시총 순). · 캘린더 갱신 " + esc(D.updated || "") + "</div>";
+          "실제 발표는 SEC 8-K(실적 공시)로 확인하고, 캘린더에 없던 발표도 SEC 전수 확인으로 잡습니다. 카드를 누르면 <b class=\"ywl\">관심 기업</b> 그룹을 고를 수 있고(그룹별 색, 로그인한 기기끼리 동기화) 관심 기업이 맨 위로 올라갑니다(그다음 기술주, 시총 순). · 캘린더 갱신 " + esc(D.updated || "") + "</div>";
+        box.querySelector(".cal-fold").onclick = function () { st.fold = true; try { localStorage.setItem("us-cal-fold", "1"); } catch (e) {} draw(); };
+        box.querySelectorAll("[data-gf]").forEach(function (b) { b.onclick = function () { st.gf = b.dataset.gf; try { sessionStorage.setItem("us-cal-gf", st.gf); } catch (e) {} draw(); }; });
         box.querySelector("#cwPrev").onclick = function () { st.w = addDays(st.w, -7); keep(); draw(); };
         box.querySelector("#cwNext").onclick = function () { st.w = addDays(st.w, 7); keep(); draw(); };
         var nb = box.querySelector("#cwNow"); if (nb) nb.onclick = function () { st.w = monday(today); keep(); draw(); };
@@ -450,9 +549,7 @@
         box.querySelectorAll(".ce").forEach(function (c) {
           c.onclick = function (e) {
             if (e.target.closest("a")) return;
-            var W2 = loadWatch(), t = c.dataset.t, k = W2.indexOf(t);
-            if (k >= 0) W2.splice(k, 1); else W2.push(t);
-            saveWatch(W2); draw();
+            favPop(c.dataset.t, c, draw);
           };
         });
       }
