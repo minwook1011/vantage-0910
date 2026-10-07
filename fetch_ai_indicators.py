@@ -1058,12 +1058,12 @@ GROUPS = [
     {"id": "money", "label": "TSMC · 캐팩스 · AI 랩", "desc": "만드는 쪽 · 쓰는 쪽 · 버는 쪽"},
     {"id": "bench", "label": "모델 성능 순위", "desc": "Arena 실사용 평가"},
 ]
-# 묶음마다 카드 4개 — 한 화면에 2×2 로 들어가게 맞춘다
+# 묶음마다 카드 4개 — 한 화면에 2×2 로 들어가게 맞춘다(GPU 렌탈가는 3개: 왼쪽 GPU별 추이를 세로로 길게)
 BOARDS = {
     "demand": ["or_tokens_weekly", "or_spend_7d", "or_lab_top10", "or_lab_trend"],
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
-    "gpu": ["gpu_h100_index", "gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],
+    "gpu": ["gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
     "credit": ["cds_bigtech", "cds_ai", "cds_gap", "cds_table"],
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],

@@ -318,6 +318,8 @@
   }
 
   /* ── AI 보드 렌더 ─────────────────────────────────────── */
+  /* 세로로 길게(두 줄 차지) 그릴 카드 — 여러 선이 한 축에 있어 변화가 납작하게 보이던 것(2026-10-07 사용자 요청) */
+  var TALL = {gpu_index_multi: 1};
   function cardHTML(s) {
     var h = headline(s), ts_ = TS_TYPES[s.type];
     var num = h ? '<div class="ai-card-num"><strong>' + (h.lead ? '<small class="lead">' + esc(h.lead) + "</small>" : "") + countSpan(h.value, s.digits) + (s.unit && s.type !== "rank" ? "<small>" + esc(s.unit) + "</small>" : s.unit === "%" ? "<small>%</small>" : "") + "</strong>" + (h.delta != null ? pct(h.delta) + '<em class="dl">' + esc(h.dlabel) + "</em>" : "") + "</div>" : "";
@@ -353,12 +355,12 @@
         var g = groups.find(function (x) { return x.id === board; }) || {}, list = (boards[g.id] || []).map(seriesById).filter(Boolean);
         return '<section class="ai-board" id="ai-board-' + esc(g.id) + '" role="tabpanel"><div class="ai-board-head"><h3>' + esc(g.label || "") + "</h3><span>" + esc(g.desc || "") + "</span>" + (g.id === "memory" ? '<a href="#trade" class="ai-link">수출입 탭에서 전체 표 보기 →</a>' : "") +
           '<span class="ai-board-nav"><button type="button" data-step="-1" aria-label="이전 묶음">‹</button><button type="button" data-step="1" aria-label="다음 묶음">›</button></span></div>' +
-          '<div class="ai-cards n' + list.length + '">' + list.map(function (s, i) { return cardHTML(s).replace("<article ", '<article style="--d:' + i * 110 + 'ms" '); }).join("") + "</div></section>";
+          '<div class="ai-cards n' + list.length + (list[0] && TALL[list[0].id] ? " tall" : "") + '">' + list.map(function (s, i) { return cardHTML(s).replace("<article ", '<article style="--d:' + i * 110 + 'ms" '); }).join("") + "</div></section>";
       })() +
       '<p class="ai-footnote">' + (isSample ? "지금 숫자는 화면 설계용 가상 수치입니다." : "GitHub Actions가 소스마다 발표 시각에 맞춰 수집합니다 — 렌탈지수 05:30 · CDS 08:00 · OpenRouter 09:00 · 클라우드 공시가 화 06:00 · 대만 월매출 10~16일 18:00 · 전체점검 07:00 (KST). 실패한 소스는 이전 값을 유지하고 카드에 표시합니다.") + ' <a href="https://github.com/minwook1011/vantage-0910/actions/workflows/ai-indicators.yml" target="_blank" rel="noopener">실행 이력 ↗</a></p>';
     host.querySelectorAll(".ai-plot").forEach(function (box) {
       var s = seriesById(box.dataset.plot); if (!s) return;
-      var p = plot(s, Math.max(260, box.clientWidth), 156);
+      var p = plot(s, Math.max(260, box.clientWidth), box.closest(".ai-cards.tall > :first-child") ? 470 : 156);   // 세로로 긴 카드는 그래프도 크게
       box.innerHTML = legend(p.legendRows) + '<div class="ai-plot-svg">' + p.html + "</div>";
       if (p.hover) attachHover(box.querySelector(".ai-plot-svg"), p.hover);
     });
