@@ -170,10 +170,12 @@ def send_text(text, buttons=None, reply_to=None, thread=None):
 
 
 @in_topic
-def send_photos(pngs, caption, thread=None):
+def send_photos(pngs, caption, buttons=None, thread=None):
     """사진 1장이면 sendPhoto, 여러 장이면 앨범 — 글(링크)은 첫 사진 설명으로. 첫 메시지 번호를 돌려준다"""
     caption = caption[:1020]
     th = {"message_thread_id": thread} if thread else {}
+    if buttons:
+        th["reply_markup"] = json.dumps({"inline_keyboard": buttons}, ensure_ascii=False)
     if len(pngs) == 1:
         r = call("sendPhoto", {"chat_id": chat(), "caption": caption, "parse_mode": "HTML", "disable_notification": silent(), **th},
                  files={"photo": ("p.png", pngs[0], "image/png")})
@@ -185,11 +187,12 @@ def send_photos(pngs, caption, thread=None):
             m.update(caption=caption, parse_mode="HTML")
         media.append(m)
         files[f"p{i}"] = (f"p{i}.png", b, "image/png")
+    th.pop("reply_markup", None)   # 앨범엔 버튼을 못 단다
     r = call("sendMediaGroup", {"chat_id": chat(), "media": json.dumps(media, ensure_ascii=False), "disable_notification": silent(), **th}, files=files)
     return r[0]["message_id"]
 
 
-def out(pngs, caption, tag):
+def out(pngs, caption, tag, buttons=None):
     """--dry 면 사진은 data_sources/tg_shots_preview/ 에 저장하고 글만 출력"""
     if DRY:
         os.makedirs(SHOT_DIR, exist_ok=True)
@@ -198,7 +201,9 @@ def out(pngs, caption, tag):
         print("─" * 34, tag, f"사진 {len(pngs)}장 → {SHOT_DIR}")
         print(re.sub(r"<[^>]+>", "", caption))
         return 0
-    return send_photos(pngs, caption) if pngs else send_text(caption)
+    if pngs:
+        return send_photos(pngs, caption, buttons=buttons)
+    return send_text(caption, buttons)
 
 
 # ── 즐겨찾기 ─────────────────────────────────────────────────
@@ -497,6 +502,37 @@ def detail(N):
     return [x[:4000] for x in out]
 
 
+def brief(N):
+    """한눈에 보는 요약 줄들 — 결론 한 구절 · 포인트 제목 · 리스크 이름표만(2026-10-07 사용자: 길고 안 읽힌다, 자세한 건 분석 버튼으로)"""
+    sec = sections(N.get("analysis_md"))
+    out = []
+    c = pick(sec, "한 줄 결론", "결론")
+    m = re.search(r"\*\*(.+?)\*\*", c or "")
+    head = m.group(1) if m else re.split(r"(?<=다\.)\s", (c or "").strip())[0]
+    head = re.sub(r"(분기)다\.?$", r"\1", head.strip()).rstrip(".")
+    if head:
+        out.append(f"💬 <b>{esc(head)}</b>")
+    pts = []
+    for x in bullets(pick(sec, "핵심 포인트")):
+        t = re.match(r"\*\*(.+?)\*\*", x)
+        t = re.sub(r"^[①-⑩]\s*", "", t.group(1) if t else "").strip()
+        if t:
+            pts.append(t)
+    if pts:
+        out.append("")
+        out += [f"{'①②③④⑤'[i]} {esc(t)}" for i, t in enumerate(pts[:4])]
+    rs = []
+    for x in bullets(pick(sec, "리스크", "반론")):
+        t = re.match(r"\*\*(.+?)\*\*", x)
+        t = (t.group(1) if t else "").strip().rstrip(":")
+        if t and not t.startswith(("반대", "반론")) and len(t) <= 22:
+            rs.append(t)
+    if rs:
+        out.append("")
+        out.append("⚠️ " + " · ".join(esc(t) for t in rs[:3]))
+    return out
+
+
 def alerts(st, seed=False, sample=None, only=None):
     """sample="2026-10-01" 처럼 날짜를 주면 그날 이후 조건 맞은 기업을 '시험'으로 보낸다(최대 6건, 보낸 기록은 남기지 않음)"""
     use_topic("surp")
@@ -515,22 +551,29 @@ def alerts(st, seed=False, sample=None, only=None):
             st["sent"].add(ak)
             continue
         title = f"{FLAG[m]} <b>{esc(name)}({esc(code)})</b>"
+        N = load(f"docs/data/{m}/reports/notes/{rid}.json") if rid else None
+        kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]] if rid else None   # 버튼은 하나로
+        tags = [TAGS[(m, code)]] if TAGS.get((m, code)) else []
         if ak not in st["sent"] or DRY:
-            # 알림 = 재무제표 사진 한 장 + 글(이름(티커)로 시작) — 발표 카드 사진은 뺌(2026-10-07 사용자)
+            # 알림 = 재무제표 사진 한 장 + 짧은 글. 요약이 이미 있으면 한 메시지에 같이(2026-10-07 사용자)
             import tg_shots
             if favs is None:
                 favs = favorites()
             png = tg_shots.fin_pic(kind, code, rid, favs) if rid else None
-            cap = "\n".join([title + f" · 실적 발표 {d[5:].replace('-', '.')}", " · ".join(why)] +
-                            (["🧪 시험 발송 · 지난 실적으로 모양 확인"] if sample else []) +
-                            [""] + [f"• {esc(x)}" for x in nums] +
-                            ([f'\n🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []) +
-                            ([TAGS[(m, code)]] if TAGS.get((m, code)) else []))
+            num = " · ".join(esc(x) for x in nums[:2])
+            body = brief(N) if N else []
+            cap = "\n".join([f"{title} · {d[5:].replace('-', '.')} 발표", " · ".join(why)] +
+                            ([num] if num else []) +
+                            (["🧪 시험 발송"] if sample else []) +
+                            ([""] + body if body else []) +
+                            ([""] + tags if tags else []))
             try:
-                mid = out([png] if png else [], cap, f"alert_{code}")
+                mid = out([png] if png else [], cap, f"alert_{code}", buttons=kb)
                 if not DRY:
                     st["sent"].add(ak)
                     st["msg"][ak] = mid
+                    if body:
+                        st["sent"].add(sk)
                 n += 1
                 print("알림:", ak, "/", " · ".join(why))
             except SystemExit as e:
@@ -539,30 +582,16 @@ def alerts(st, seed=False, sample=None, only=None):
             except Exception as e:
                 print("알림 실패:", ak, e)
                 continue
-        # 요약 글이 붙으면: 위 알림(재무제표 사진)에 답글로 자세한 해설. 알림 기록이 없을 때만 사진을 새로 올린다
-        if rid and (sk not in st["sent"] or DRY):
-            N = load(f"docs/data/{m}/reports/notes/{rid}.json")
-            if not N:
+            if body:
                 continue
-            kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]]   # 버튼은 하나로(2026-10-07 사용자)
-            parts = detail(N)
-            parts[0] = f"{title} 실적 정리\n\n" + parts[0]
-            if TAGS.get((m, code)):
-                parts[-1] += "\n\n" + TAGS[(m, code)]
+        # 요약이 나중에 붙으면: 그 알림에 짧은 답글
+        if rid and N and (sk not in st["sent"]):
+            text = "\n".join([f"📝 {title} 요약", ""] + brief(N) + ([""] + tags if tags else []))
             try:
                 if DRY:
-                    for p in parts:
-                        print("─" * 34, "(해설 답글)\n" + re.sub(r"<[^>]+>", "", p))
+                    print("─" * 34, "(요약 답글)\n" + re.sub(r"<[^>]+>", "", text))
                     continue
-                top = st["msg"].get(ak)
-                if not top:
-                    import tg_shots
-                    if favs is None:
-                        favs = favorites()
-                    png = tg_shots.fin_pic(kind, code, rid, favs)
-                    top = send_photos([png], title) if png else None
-                for i, p in enumerate(parts):
-                    send_text(p, kb if i == len(parts) - 1 else None, reply_to=top if i == 0 else None)
+                send_text(text, kb, reply_to=st["msg"].get(ak))
                 st["sent"].add(sk)
             except Exception as e:
                 print("요약 실패:", sk, e)
