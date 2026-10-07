@@ -4,7 +4,8 @@
 → 발표 예정일이 지났거나 오늘인 종목 → SEC EDGAR 제출 목록에서 그 무렵 8-K Item 2.02(실적 발표) 찾기
 → docs/data/us/reports/<rid>.json  (일본 리포트 jp-report 와 같은 틀)
    qs: 최근 8개 분기(데이터 허브 docs/data/us/<티커>.json 의 SEC XBRL 분기 실적, 백만 달러)
-       막 발표한 분기가 XBRL 에 아직 없으면(10-Q 전) 야후 분기 손익(매출·순이익)으로 채우고 src:"yahoo" 표시
+       막 발표한 분기가 XBRL 에 아직 없으면(10-Q 전) 보도자료(EX-99.1) 손익표에서 바로 읽어 src:"release",
+       그것도 못 읽으면 야후 분기 손익으로 채우고 src:"yahoo" 표시. 숫자 대기(q_ready:false) 리포트는 실행 때마다 다시 시도
    rec: 발표일·장전/장후·EPS 컨센서스 대비(docs/earnings_calendar.json, 야후)·주가 반응(발표 전 종가 대비, 장중이면 현재가)
    docs: 실적 보도자료(8-K EX-99.1 원문)·8-K 공시 페이지
 → docs/data/us/reports/index.json (목록)
@@ -115,6 +116,67 @@ def is_results(url):
     return bool(res) or not non
 
 
+def _num(c):
+    c = c.replace(",", "").replace("$", "").strip()
+    neg = c.startswith("(")
+    c = c.strip("()").strip()
+    if c in ("—", "–", "-", ""):
+        return 0.0
+    try:
+        v = float(c)
+    except ValueError:
+        return None
+    return -v if neg else v
+
+
+def release_q(url, fq, last_rev=None):
+    """실적 보도자료(8-K EX-99.1) 손익계산서 표에서 이번 분기 매출·영업이익·순이익(백만 달러)을 바로 읽는다.
+    10-Q·XBRL·야후보다 먼저 나오므로 발표 당일 표를 채울 수 있다(2026-10-07: 컨스텔레이션 표가 직전 분기에 멈춰 있던 문제).
+    표의 첫 숫자 열 = 이번 3개월. 못 읽거나 앞 분기와 크기가 안 맞으면 None."""
+    h = sec_get(url, as_json=False) if url else None
+    if not h or not fq:
+        return None
+    for m in re.finditer(r"<table.*?</table>", h, re.S | re.I):
+        rows = []
+        for r in re.findall(r"<tr.*?</tr>", m.group(0), re.S | re.I):
+            cells = [html.unescape(re.sub(r"<[^>]+>", "", c)).replace(" ", " ").strip() for c in re.findall(r"<t[dh].*?</t[dh]>", r, re.S | re.I)]
+            cells = [c for c in cells if c and c not in ("$", ")", "%")]
+            if cells:
+                rows.append(cells)
+        lab = lambda r: re.sub(r"\s+", " ", r[0]).lower()
+        if not any(re.match(r"(total )?operating (income|profit)|income from operations", lab(r)) for r in rows):
+            continue
+        head = " ".join(" ".join(r) for r in rows[:4]).lower()
+        if "three months" not in head and "quarter" not in head and "13 weeks" not in head and "thirteen weeks" not in head:
+            continue
+
+        def pick(pats, bad=None):
+            for pat in pats:
+                for r in rows:
+                    if re.match(pat, lab(r)) and not (bad and re.search(bad, lab(r))) and len(r) >= 2:
+                        v = _num(r[1])
+                        if v is not None:
+                            return v
+            return None
+        rev = pick([r"total (net )?revenues?$", r"(net )?revenues?(, net)?$", r"total net sales$", r"net sales$", r"(net )?revenues?", r"sales$"])
+        op = pick([r"(total )?operating (income|profit)( \(loss\))?$", r"income \(loss\) from operations$", r"income from operations$", r"operating (income|profit)"])
+        ni = pick([r"net (income|earnings)( \(loss\))? attributable to (?!non)", r"net (income|earnings)( \(loss\))?$", r"net (income|earnings)"], bad=r"per (common )?share|noncontrolling|non-controlling")
+        if rev is None or rev <= 0:
+            continue
+        pre = re.sub(r"<[^>]+>", " ", h[max(0, m.start() - 4000):m.start()]).lower()
+        if "in thousands" in pre[-1500:]:
+            rev, op, ni = [None if v is None else v / 1000 for v in (rev, op, ni)]
+        elif "in billions" in pre[-1500:]:
+            rev, op, ni = [None if v is None else v * 1000 for v in (rev, op, ni)]
+        if last_rev and not (0.33 < rev / last_rev < 3):   # 단위 오판·다른 표 — 버린다
+            continue
+        y, mo = int(fq[:4]), int(fq[5:7])
+        end = (datetime(y + (mo == 12), mo % 12 + 1, 1) - timedelta(days=1)).strftime("%Y-%m-%d")
+        rnd = lambda v: None if v is None else round(v, 1)
+        return {"date": end, "revenue": rnd(rev), "operating_income": rnd(op), "net_income": rnd(ni)}
+    return None
+
+
 def yahoo_json(url):
     for i in range(3):
         try:
@@ -204,7 +266,7 @@ def qlabel(date):
 def build_qs(fin_q, extra):
     rows = [q for q in fin_q if not q.get("est")]
     if extra and not any(abs((datetime.fromisoformat(q["date"]) - datetime.fromisoformat(extra["date"])).days) < 20 for q in rows):
-        rows.append(dict(extra, src="yahoo"))
+        rows.append(dict(extra, src=extra.get("src") or "yahoo"))
     rows.sort(key=lambda q: q["date"])
     rows = rows[-12:]
     out = []
@@ -260,6 +322,12 @@ def write_index():
     return len(items)
 
 
+def settled(r):
+    """이번 분기 숫자가 다 찬 리포트인가 — 숫자 대기(q_ready:false)거나 야후로 채워 영업이익이 비었으면 다시 만든다"""
+    q = (r.get("qs") or [{}])[-1]
+    return (r.get("rec") or {}).get("q_ready", True) and not (q.get("src") == "yahoo" and q.get("op") is None)
+
+
 def main():
     args = sys.argv[1:]
     px_only = "--px-only" in args
@@ -292,8 +360,8 @@ def main():
             for x in cands:
                 if not x or x["date"] > today or (t0 - datetime.fromisoformat(x["date"]).date()).days > LOOKBACK:
                     continue
-                if any(r["date"] >= x["date"] for r in have.get(t, [])):
-                    continue
+                if any(r["date"] >= x["date"] and settled(r) for r in have.get(t, [])):
+                    continue   # 이번 분기 숫자가 아직 비어 있는(q_ready:false) 리포트는 다시 만든다
                 targets.append((t, x))
     # 안전망 — 캘린더에 없거나 날짜가 틀려도, 지난 3일 안 SEC 에 실적 8-K(2.02)를 낸 명단 종목은 전부 잡는다(2026-10-02)
     if not px_only and "--no-scan" not in args:
@@ -301,7 +369,7 @@ def main():
         seen = {t for t, _ in targets}
         n_scan = 0
         for t in (only or list(uni)):
-            if t in seen or any(r["date"] >= since3 for r in have.get(t, [])):
+            if t in seen or any(r["date"] >= since3 and settled(r) for r in have.get(t, [])):
                 continue
             cik = cik_of(t)
             if not cik:
@@ -345,10 +413,19 @@ def main():
         except Exception:
             co = {}
         fq = fq_month(x.get("fq"))
-        extra = yahoo_last_q(t, cookie, crumb)
-        if extra and fq and extra["date"][:7] != fq:
-            extra = None  # 아직 야후에도 이번 분기가 안 들어왔다
-        qs = build_qs(((co.get("financials") or {}).get("quarterly")) or [], extra)
+        fin_q = ((co.get("financials") or {}).get("quarterly")) or []
+        extra = None
+        if not any(q["date"][:7] == fq for q in fin_q if not q.get("est")):
+            # 이번 분기가 XBRL 에 아직 없으면(10-Q 전) 보도자료 손익표를 먼저, 못 읽으면 야후
+            last_rev = next((q.get("revenue") for q in reversed(fin_q) if not q.get("est") and q.get("revenue")), None)
+            extra = release_q(k8.get("release"), fq, last_rev)
+            if extra:
+                extra["src"] = "release"
+            else:
+                extra = yahoo_last_q(t, cookie, crumb)
+                if extra and fq and extra["date"][:7] != fq:
+                    extra = None  # 아직 야후에도 이번 분기가 안 들어왔다
+        qs = build_qs(fin_q, extra)
         cur = qs[-1] if qs else {}
         got_q = bool(cur and fq and cur["date"][:7] == fq)
         rid = f"{t}-{(fq or k8['date'][:7]).replace('-', '')}"
@@ -373,7 +450,7 @@ def main():
         json.dump(doc, open(old, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
         have.setdefault(t, []).append(doc)
         made += 1
-        print(f"  {t} {rid}: 8-K {k8['date']} · 보도자료 {'있음' if k8.get('release') else '없음'} · 분기 {cur.get('cq')}{'(야후)' if cur.get('src') else ''}"
+        print(f"  {t} {rid}: 8-K {k8['date']} · 보도자료 {'있음' if k8.get('release') else '없음'} · 분기 {cur.get('cq')}{({'yahoo': '(야후)', 'release': '(보도자료)'}).get(cur.get('src'), '')}"
               f"{'' if got_q else ' — 이번 분기 숫자 대기'} · 컨센 {(rec['cons'] or {}).get('pct')}")
 
     # 주가 반응(최근 14일 안 리포트, 5D 비었으면) + 이번 분기 숫자 대기 중이면 다시 채우기
