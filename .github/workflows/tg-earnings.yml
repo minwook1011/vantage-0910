@@ -7,9 +7,12 @@ on:
     branches: [main]
     paths: ["docs/data/jp/earnings_results.json", "docs/data/jp/earnings_pts.json", "docs/data/jp/reports/**", "docs/data/us/reports/**"]
   schedule:
-    - cron: "0 20 * * 5"      # 토 05:00 KST  다음 주 실적 일정(주간)
-    - cron: "0 9 * * 1-5"     # 평일 18:00 KST 일본 실적 결과(그날 발표분)
-    - cron: "0 21 * * 1-5"    # 화~토 06:00 KST 미국 실적 결과(전날 미 동부 발표분)
+    - cron: "0 20 * * 5"      # 토 05:00 KST  다음 주 실적 일정(주간) #실적예정
+    - cron: "35 20 * * 5"     #   └ 30분 뒤 한 번 더(깃허브 예약이 밀리거나 빠질 때 — 이미 보냈으면 건너뜀)
+    - cron: "0 9 * * 1-5"     # 평일 18:00 KST 일본 실적 결과(그날 발표분) #실적결과
+    - cron: "35 9 * * 1-5"    #   └ 30분 뒤 한 번 더
+    - cron: "0 21 * * 1-5"    # 화~토 06:00 KST 미국 실적 결과(전날 미 동부 발표분) #실적결과
+    - cron: "35 21 * * 1-5"   #   └ 30분 뒤 한 번 더
     - cron: "15,45 * * * *"   # 발표 후 알림 놓친 것 보충
   workflow_dispatch:
     inputs:
@@ -43,9 +46,9 @@ jobs:
         run: |
           M="$(echo '${{ github.event.inputs.mode }}' | tr 'A-Z' 'a-z' | tr -d ' ')"   # TEST·Test 처럼 적어도 되게
           case "${{ github.event.schedule }}" in
-            "0 20 * * 5") M=weekly ;;
-            "0 9 * * 1-5") M=resultjp ;;
-            "0 21 * * 1-5") M=resultus ;;
+            "0 20 * * 5"|"35 20 * * 5") M=weekly ;;
+            "0 9 * * 1-5"|"35 9 * * 1-5") M=resultjp ;;
+            "0 21 * * 1-5"|"35 21 * * 1-5") M=resultus ;;
           esac
           echo "mode=${M:-alerts}" >> "$GITHUB_OUTPUT"
 
