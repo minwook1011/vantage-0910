@@ -325,7 +325,8 @@ def write_index():
 def settled(r):
     """이번 분기 숫자가 다 찬 리포트인가 — 숫자 대기(q_ready:false)거나 야후로 채워 영업이익이 비었으면 다시 만든다"""
     q = (r.get("qs") or [{}])[-1]
-    return (r.get("rec") or {}).get("q_ready", True) and not (q.get("src") == "yahoo" and q.get("op") is None)
+    fresh = (datetime.now(ET).date() - datetime.fromisoformat(r["date"]).date()).days <= 3   # 영업이익 빈칸은 발표 3일 안에만 재시도(나이키처럼 표에 영업이익 줄이 없는 회사)
+    return (r.get("rec") or {}).get("q_ready", True) and not (fresh and q.get("src") == "yahoo" and q.get("op") is None)
 
 
 def main():
