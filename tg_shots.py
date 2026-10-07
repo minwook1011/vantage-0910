@@ -129,6 +129,10 @@ async def _day_col(br, kind, date, favs):
         // 그날 칸만 남기고 한 칸짜리 격자로 — 옆 칸이 같이 찍히지 않게
         [...c.parentElement.children].forEach(x => { if (x !== c) x.style.display = 'none'; });
         c.parentElement.style.gridTemplateColumns = '400px'; c.parentElement.style.width = '400px'; }""", [sel, idx, LABEL[kind]])
+    n = await pg.locator(sel).nth(idx).locator(".eu-co, .ce").count()
+    if not n:   # 그날 발표가 없으면 칸을 싣지 않는다
+        await pg.close()
+        return None
     im = await _shot(pg.locator(sel).nth(idx))
     await pg.close()
     return im
@@ -221,11 +225,11 @@ def week_all(monday, favs=None):
     return asyncio.run(_run(go))
 
 
-def day_all(date, favs=None):
-    """그날 세 시장 칸을 나란히 붙인 PNG(발표가 하나도 없으면 None)"""
+def day_all(date, favs=None, kinds=("jpc", "jpm", "us")):
+    """그날 칸들을 나란히 붙인 PNG(발표가 하나도 없으면 None). kinds 로 시장을 고른다"""
     async def go(br):
         cols = []
-        for k in ("jpc", "jpm", "us"):
+        for k in kinds:
             try:
                 cols.append(await _day_col(br, k, date, favs))
             except Exception as e:

@@ -267,7 +267,7 @@ def weekly(st):
     fri = monday + timedelta(days=4)
     cap = (f"🗓 <b>다음 주 실적 발표</b> {monday:%m.%d}–{fri:%m.%d}\n"
            f"일본 소비재 · 일본 닛케이 · 미국\n\n"
-           f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>')
+           f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>\n#실적예정')
     use_topic("sched")
     out(pngs, cap, "weekly")
     st["sent"].add(key)
@@ -290,6 +290,39 @@ def daily(st):
            f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>')
     use_topic("sched")
     out([png] if png else [], cap if png else cap + "\n\n오늘은 발표 예정이 없습니다.", "daily")
+    st["sent"].add(key)
+
+
+# ── ②' 발표 결과(2026-10-07 사용자: 아침 '오늘 발표 예정' 대신, 발표가 끝난 뒤 결과만 한눈에) ──
+#   일본: 평일 18:00 KST 그날 발표분(소비재 · 닛케이 두 칸)
+#   미국: 화~토 06:00 KST 전날(미 동부 날짜) 발표분 — 장 후 발표까지 끝난 시각
+def results(st, market):
+    import tg_shots
+    if market == "jp":
+        day = NOW.date()
+        kinds, label = ("jpc", "jpm"), "일본"
+    else:
+        day = NOW.date() - timedelta(days=1)
+        kinds, label = ("us",), "미국"
+    if day.weekday() >= 5:
+        print("주말 — 보내지 않음")
+        return
+    key = f"res:{market}:{day}"
+    if key in st["sent"] and not DRY:
+        print("이미 보냄:", key)
+        return
+    png = tg_shots.day_all(day.isoformat(), favorites(), kinds)
+    if not png:
+        print(f"{label} {day} 발표 없음 — 보내지 않음")
+        st["sent"].add(key)
+        return
+    page = "jp-screener.html" if market == "jp" else "us-report.html"
+    cap = (f"📊 <b>{label} 실적 결과</b> {day:%m.%d}({'월화수목금토일'[day.weekday()]})"
+           + (" · 미 동부 날짜" if market == "us" else "") + "\n"
+           + ("일본 소비재 · 일본 닛케이" if market == "jp" else "장 전 · 장 후 발표 모두") + "\n\n"
+           + f'<a href="{SITE}{page}">{label} 캘린더</a>\n#실적결과')
+    use_topic("sched")
+    out([png], cap, f"results_{market}")
     st["sent"].add(key)
 
 
@@ -646,7 +679,9 @@ def main():
             daily({"sent": set()})
             alerts(st, sample=since)
             return
-        if "--weekly" in a:
+        if "--results" in a:   # --results jp | us
+            results(st, a[a.index("--results") + 1])
+        elif "--weekly" in a:
             weekly(st)
         elif "--daily" in a:
             daily(st)
