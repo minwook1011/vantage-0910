@@ -309,6 +309,8 @@ def hashtags(en, code, ko):
     e = re.sub(r"(?:,\s*|\s+)(Holdings?|Co|Ltd|Inc|Incorporated|Corporation|Corp|Company|plc|Limited|N\.?V|S\.?A)\b\.?", "", e, flags=re.I)
     e = re.sub(r"[^0-9A-Za-z]", "", e).upper()
     t = re.sub(r"[^0-9A-Za-z]", "", code or "").upper()
+    if t.isdigit():
+        t += "JP"   # 텔레그램은 숫자만 있는 해시태그를 태그로 안 만든다 → #3549JP
     k = re.sub(r"[^0-9A-Za-z가-힣]", "", ko or "")
     out = []
     for x in (e, t, k):
