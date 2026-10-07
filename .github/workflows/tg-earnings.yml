@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "alerts | weekly | daily | test"
+        description: "alerts | weekly | daily | test | sample"
         default: alerts
 
 permissions:
@@ -81,6 +81,7 @@ jobs:
             weekly) python tg_earnings.py --weekly ;;
             daily)  python tg_earnings.py --daily ;;
             test)   python tg_earnings.py --test ;;
+            sample) python tg_earnings.py --sample ;;
             *)      python tg_earnings.py ;;
           esac
 

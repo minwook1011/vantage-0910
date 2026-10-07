@@ -289,9 +289,9 @@ def daily(st):
 
 
 # ── ③ 발표 후 알림 ───────────────────────────────────────────
-def candidates():
+def candidates(days=FRESH_DAYS, since=None):
     """[(m, code, date, rid, kind, name, reasons[], 숫자줄[])]"""
-    since = (NOW - timedelta(days=FRESH_DAYS)).strftime("%Y-%m-%d")
+    since = since or (NOW - timedelta(days=days)).strftime("%Y-%m-%d")
     fj, fu = fav_sets(favorites())
     rows = []
     # 일본: 발표 결과(주가 반응·컨센) + 10분 후 주가 + 리포트 목록(이름·유니버스)
@@ -375,11 +375,16 @@ def pending(st):
     return n
 
 
-def alerts(st, seed=False):
+def alerts(st, seed=False, sample=None):
+    """sample="2026-10-01" 처럼 날짜를 주면 그날 이후 조건 맞은 기업을 '시험'으로 보낸다(최대 6건, 보낸 기록은 남기지 않음)"""
     use_topic("surp")
     favs = None
     n = 0
-    for m, code, d, rid, kind, name, why, nums in candidates():
+    rows = candidates()
+    if sample:
+        rows = sorted(candidates(since=sample), key=lambda r: r[2])[:6]
+        st = {"sent": set(), "msg": {}, "topics": st.get("topics", {})}   # 실제 기록과 분리
+    for m, code, d, rid, kind, name, why, nums in rows:
         ak, sk = f"alert:{m}:{code}:{d}", f"sum:{m}:{code}:{d}"
         if seed:
             st["sent"].add(ak)
@@ -390,7 +395,8 @@ def alerts(st, seed=False):
                 favs = favorites()
             pngs = tg_shots.alert_pics(kind, code, d, rid, favs)
             head = f"{FLAG[m]} <b>{esc(name)}</b> <code>{esc(code)}</code> 실적 발표 {d[5:].replace('-', '.')}"
-            cap = "\n".join(([f'🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []) +
+            cap = "\n".join((["🧪 <b>시험 발송</b> · 지난 실적으로 모양 확인"] if sample else []) +
+                            ([f'🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []) +
                             [head, " · ".join(why), ""] + [f"• {esc(x)}" for x in nums])
             try:
                 mid = out(pngs, cap, f"alert_{code}")
@@ -458,6 +464,12 @@ def main():
             print(f"pending={n}")
             if os.environ.get("GITHUB_OUTPUT"):
                 open(os.environ["GITHUB_OUTPUT"], "a").write(f"pending={n}\n")
+            return
+        if "--sample" in a:   # 시험: 일정 사진(다음 주·오늘) + 지난 서프 알림 — 기록 안 남김
+            since = a[a.index("--since") + 1] if "--since" in a else (NOW - timedelta(days=10)).strftime("%Y-%m-%d")
+            weekly({"sent": set()})
+            daily({"sent": set()})
+            alerts(st, sample=since)
             return
         if "--weekly" in a:
             weekly(st)
