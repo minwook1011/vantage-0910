@@ -289,6 +289,34 @@ def daily(st):
 
 
 # ── ③ 발표 후 알림 ───────────────────────────────────────────
+TAGS = {}
+_USKO = None
+
+
+def us_ko():
+    """미국 기업 한글 이름(data_sources/us_names_ko.json)"""
+    global _USKO
+    if _USKO is None:
+        _USKO = load("data_sources/us_names_ko.json") or {}
+        if not _USKO and os.path.exists(os.path.join(BASE, "data_sources", "us_names_ko.json")):
+            _USKO = json.load(open(os.path.join(BASE, "data_sources", "us_names_ko.json"), encoding="utf-8"))
+    return _USKO
+
+
+def hashtags(en, code, ko):
+    """검색용 해시태그 3개: #영어이름 #티커 #한글이름 (예: #AMAZON #AMZN #아마존)"""
+    e = re.sub(r"\(The\)|\(Class [A-Z]\)|\.com\b", "", en or "", flags=re.I)
+    e = re.sub(r",?\s+(Holdings?|Co|Ltd|Inc|Incorporated|Corporation|Corp|Company|plc|Limited|N\.?V|S\.?A)\b\.?", "", e, flags=re.I)
+    e = re.sub(r"[^0-9A-Za-z]", "", e).upper()
+    t = re.sub(r"[^0-9A-Za-z]", "", code or "").upper()
+    k = re.sub(r"[^0-9A-Za-z가-힣]", "", ko or "")
+    out = []
+    for x in (e, t, k):
+        if x and f"#{x}" not in out:
+            out.append(f"#{x}")
+    return " ".join(out)
+
+
 def candidates(days=FRESH_DAYS, since=None):
     """[(m, code, date, rid, kind, name, reasons[], 숫자줄[])]"""
     since = since or (NOW - timedelta(days=days)).strftime("%Y-%m-%d")
@@ -336,6 +364,7 @@ def candidates(days=FRESH_DAYS, since=None):
             nums.append(f"컨센서스 대비 {sgn(cons)}")
         kind = "jpc" if "cons" in (ix.get("u") or []) else "jpm"
         nm = ix.get("n") or code
+        TAGS[("jp", code)] = hashtags(nm, code, ko.get(code))
         rows.append(("jp", code, d, x.get("rid") or ix.get("rid") or "", kind, ko.get(code) or nm, why, nums))
     # 미국: 리포트 목록(발표 후 주가·컨센)
     for r in (load("docs/data/us/reports/index.json") or {}).get("reports") or []:
@@ -360,7 +389,9 @@ def candidates(days=FRESH_DAYS, since=None):
             nums.append(f"발표 후 주가 {sgn(r['d1'])}")
         if r.get("cons") is not None:
             nums.append(f"EPS 컨센서스 대비 {sgn(r['cons'])}")
-        rows.append(("us", r["c"], d, r["rid"], "us", r.get("n") or r["c"], why, nums))
+        kus = us_ko().get(r["c"])
+        TAGS[("us", r["c"])] = hashtags(r.get("n") or r["c"], r["c"], kus)
+        rows.append(("us", r["c"], d, r["rid"], "us", kus or r.get("n") or r["c"], why, nums))
     return rows
 
 
@@ -376,10 +407,13 @@ def pending(st):
 
 
 def md_tg(s):
-    """요약 글 마크다운 한 줄 → 텔레그램 글(굵게만 살림)"""
+    """요약 글 마크다운 한 줄 → 텔레그램 글. 굵게만 살리고, AI 글 티 나는 긴 줄표·출처 꼬리표를 걷어낸다"""
     s = esc(s.strip())
     s = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s)
-    return re.sub(r"`([^`]+)`", r"\1", s)
+    s = re.sub(r"`([^`]+)`", r"\1", s)
+    s = re.sub(r"\s*\((?:카부탄|[^()]*?월차|[^()]*?단신|보도자료[^()]*|콜)\)", "", s)   # (6월 월차)·(카부탄) 같은 출처 꼬리표
+    s = re.sub(r"\s+—\s+", ", ", s)
+    return re.sub(r",\s*,", ",", s).strip()
 
 
 def sections(md):
@@ -407,43 +441,50 @@ def bullets(text):
 
 
 def detail(N):
-    """자세한 해설(텔레그램 메시지 1~2개) — 결론 · 핵심 포인트(사실/왜/그래서) · 남은 계획 · 리스크 · 체크포인트"""
+    """자세한 해설(텔레그램 메시지 1~2개). 증권사 텔레그램 채널처럼 ■ 소제목 + 이어 쓴 문단.
+    2026-10-07 사용자: '사실/왜/그래서' 꼬리표·이모지 소제목이 AI 같다 → 포인트는 한 문단으로 잇고 결론만 → 한 줄"""
     sec = sections(N.get("analysis_md"))
     blocks = []
     concl = pick(sec, "한 줄 결론", "결론")
     if concl:
-        blocks.append("💡 <b>한 줄 결론</b>\n" + md_tg(" ".join(l for l in concl.split("\n") if l.strip())))
+        blocks.append("■ <b>요약</b>\n" + md_tg(" ".join(l for l in concl.split("\n") if l.strip())))
     pts = bullets(pick(sec, "핵심 포인트"))
     if pts:
-        lines = ["📌 <b>핵심 포인트</b>"]
-        for p in pts:
+        lines = ["■ <b>포인트</b>"]
+        for i, p in enumerate(pts, 1):
             m = re.match(r"\*\*(.+?)\*\*\s*[—-]\s*(.*)", p)
             title, rest = (m.group(1), m.group(2)) if m else ("", p)
+            title = re.sub(r"^[①-⑩]\s*", "", title)
             lines.append("")
             if title:
-                lines.append(f"<b>{esc(title)}</b>")
-            # **사실**: … **왜**: … **그래서**: … → 줄 나눔
+                lines.append(f"<b>{i}) {esc(title)}</b>")
             chunks = re.split(r"\*\*(사실|왜|그래서)\*\*\s*[:：]\s*", rest)
             if len(chunks) > 1:
-                if chunks[0].strip():
-                    lines.append(md_tg(chunks[0]))
-                icon = {"사실": "▫️ 사실", "왜": "▫️ 왜", "그래서": "👉 그래서"}
+                body, so = [chunks[0].strip()] if chunks[0].strip() else [], ""
                 for lab, txt in zip(chunks[1::2], chunks[2::2]):
-                    lines.append(f"{icon[lab]} — {md_tg(txt)}")
+                    if lab == "그래서":
+                        so = txt
+                    else:
+                        body.append(txt.strip())
+                if body:
+                    lines.append(md_tg(" ".join(body)))
+                if so:
+                    lines.append("→ " + md_tg(so))
             else:
                 lines.append(md_tg(rest))
         blocks.append("\n".join(lines))
     g = bullets(pick(sec, "가이던스", "진척"))
+    g = [x for x in g if "컨센서스 자료는" not in x and "비교 불가" not in x]
     if g:
-        blocks.append("🎯 <b>회사 계획·진척률</b>\n" + "\n".join("• " + md_tg(x) for x in g[:4]))
+        blocks.append("■ <b>회사 계획 · 남은 숙제</b>\n" + "\n".join("- " + md_tg(x) for x in g[:4]))
     r = bullets(pick(sec, "리스크", "반론"))
     if r:
-        blocks.append("⚠️ <b>리스크·반론</b>\n" + "\n".join("• " + md_tg(x) for x in r[:4]))
+        blocks.append("■ <b>걸리는 점</b>\n" + "\n".join("- " + md_tg(x) for x in r[:4]))
     c = bullets(pick(sec, "체크포인트"))
     if c:
-        blocks.append("🔭 <b>다음에 볼 것</b>\n" + "\n".join("• " + md_tg(x) for x in c[:4]))
+        blocks.append("■ <b>다음에 볼 것</b>\n" + "\n".join("- " + md_tg(x) for x in c[:4]))
     if not blocks:   # 분석이 없으면 짧은 요약 문장이라도
-        blocks = ["\n".join("• " + md_tg(l) for l in (N.get("tg") or "").split("\n") if l.strip())]
+        blocks = ["\n".join("- " + md_tg(l) for l in (N.get("tg") or "").split("\n") if l.strip())]
     # 4,000자 넘으면 덩어리 단위로 나눠 여러 메시지
     out, cur = [], ""
     for b in blocks:
@@ -480,7 +521,8 @@ def alerts(st, seed=False, sample=None):
             cap = "\n".join([title + f" · 실적 발표 {d[5:].replace('-', '.')}", " · ".join(why)] +
                             (["🧪 시험 발송 · 지난 실적으로 모양 확인"] if sample else []) +
                             [""] + [f"• {esc(x)}" for x in nums] +
-                            ([f'\n🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []))
+                            ([f'\n🔗 <a href="{link(m, rid)}">사이트 실적 리포트</a>'] if rid else []) +
+                            ([TAGS[(m, code)]] if TAGS.get((m, code)) else []))
             try:
                 mid = out([png] if png else [], cap, f"alert_{code}")
                 if not DRY:
@@ -501,7 +543,9 @@ def alerts(st, seed=False, sample=None):
                 continue
             kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]]   # 버튼은 하나로(2026-10-07 사용자)
             parts = detail(N)
-            parts[0] = f"📝 {title} 실적 요약\n\n" + parts[0]
+            parts[0] = f"{title} 실적 정리\n\n" + parts[0]
+            if TAGS.get((m, code)):
+                parts[-1] += "\n\n" + TAGS[(m, code)]
             try:
                 if DRY:
                     for p in parts:
