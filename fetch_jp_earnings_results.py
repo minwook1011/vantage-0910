@@ -802,6 +802,15 @@ def main():
     for code, rec in results.items():
         if code in targets:
             continue
+        # 컨센서스 대비(서프·쇼크)가 비어 있는 최근 7일 발표는 야후를 다시 본다 — 야후가 발표 몇 시간~하루 뒤에 채우는 일이 많다
+        # (2026-10-07: 팔그룹 +9.2% 가 야후엔 있는데 발표 직후 한 번만 봐서 빈칸이었다)
+        if not rec.get("cons") and (t0 - datetime.strptime(rec["date"], "%Y-%m-%d")).days <= 7:
+            sup = yahoo_surprise(code, rec["date"])
+            if sup:
+                rec["cons"] = {k: sup[k] for k in ("eps", "est", "pct")}
+                if not rec.get("time") and sup.get("time"):
+                    rec["time"] = sup["time"]
+                print(f"  {code} 컨센서스 대비 새로 채움 {sup['pct']:+.1f}%")
         px = rec.get("px") or {}
         if px.get("d5") is None and (t0 - datetime.strptime(rec["date"], "%Y-%m-%d")).days <= 14:
             refresh_px(code, rec, now)

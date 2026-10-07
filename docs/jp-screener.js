@@ -186,6 +186,12 @@ function ptsChip(p){
   const now = p.now_pct!=null && p.now_at && p.now_at!==p.at10 ? ` <small>지금 ${sgn(p.now_pct)}% ${p.now_at}</small>` : "";
   return `<em class="rb px big${tone(p.pct10)}" title="발표 ${p.t} → ${p.at10} ${p.src==="PTS"?"장외거래(PTS) 가격":"장중 가격"} · 기준 ${p.base_src||""} ${p.base}">발표 10분 후 ${sgn(p.pct10)}% <small>${p.src} ${p.at10}</small>${now}</em>`;
 }
+// 서프·쇼크(2026-10-07 사용자): 애널리스트 컨센서스(야후 분기 EPS) 대비 ±3% 넘으면 서프/쇼크, 그 안이면 부합
+function surpChip(x){
+  const c=x&&x.cons; if(!c||c.pct==null) return "";
+  const k=c.pct>=3?"surp":c.pct<=-3?"shock":"inl", lab=k==="surp"?"서프":k==="shock"?"쇼크":"부합";
+  return `<em class="rb sc ${k}" title="분기 EPS 실제 ${c.eps} · 발표 직전 컨센서스 ${c.est}(야후)">${lab} ${sgn(c.pct)}%<small>(컨센 대비)</small></em>`;
+}
 function resBadges(x, code){
   const pq = code ? ptsOf(code, x && x.date) : null;
   if(!x) return pq ? `<span class="eu-rx">${ptsChip(pq)}</span>` : "";
@@ -199,8 +205,7 @@ function resBadges(x, code){
   if(p.d1!=null && !p.d1_live) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
   if(x.beat && x.beat.pct!=null) b.push(`<em class="rb${tone(x.beat.pct)}">가이던스 ${sgn(x.beat.pct)}%</em>`);
   if(x.revision && !x.revision.kept && x.revision.pct!=null && x.revision.pct!==0) b.push(`<em class="rb${tone(x.revision.pct)}">${x.revision.pct>0?"상향":"하향"} ${sgn(x.revision.pct)}%</em>`);
-  if(x.cons && x.cons.pct!=null) b.push(`<em class="rb${tone(x.cons.pct)}">컨센 ${sgn(x.cons.pct)}%</em>`);
-  return `<span class="eu-rx">${b.join("")}</span>`;
+  return `<span class="eu-rx">${surpChip(x)}${b.join("")}</span>`;
 }
 // 실적 리포트 페이지(jp-report.html) 링크 — 결과 레코드에 rid가 있을 때만
 function repLink(x, cls){

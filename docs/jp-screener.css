@@ -533,3 +533,9 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 #favflt .fgb::before{content:"★";color:var(--fc);margin-right:3px}
 /* 겹친 그룹 = 그라데이션 별 */
 .star.on,.favbtn.on,.eu-cal .eu-co.fav b::before{background:var(--fg);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+/* 서프·쇼크 칩 */
+.rb.sc{font-weight:800}
+.rb.sc small{font-weight:500;font-size:.85em;margin-left:2px;opacity:.8}
+.rb.sc.surp{background:rgba(214,58,48,.12);color:#c0352b;border-color:rgba(214,58,48,.4)}
+.rb.sc.shock{background:rgba(31,111,178,.12);color:#1f5f9e;border-color:rgba(31,111,178,.4)}
+.rb.sc.inl{background:#eef1f5;color:var(--ink-mid)}
