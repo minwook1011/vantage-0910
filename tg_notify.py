@@ -250,11 +250,11 @@ def macro():
         fg = load("docs/data/fear_greed.json") or {}
         imgs, rows = [], []
         if fg.get("history"):
-            from tg_charts import gauge
-            imgs.append(gauge("fg", float(fg.get("score") or 0), fg.get("rating") or "",
-                              prev=[("전일", fg.get("previous_close")), ("1주 전", fg.get("previous_1_week")),
-                                    ("1달 전", fg.get("previous_1_month")), ("1년 전", fg.get("previous_1_year"))],
-                              sub=f"CNN Fear & Greed · {fg.get('updated_kst', '')}"))
+            # 사용자가 계기판 대신 처음의 1년 추이 그래프를 골랐다(2026-10-07). tg_charts.gauge 는 남겨 둠
+            imgs.append(line("fg", "CNN 공포·탐욕 지수", f"0 = 극도 공포 · 100 = 극도 탐욕 · 최근 1년 · {fg.get('updated_kst', '')} 기준",
+                             [("지수", [(d, v) for d, v in fg["history"]])], digits=0, since_days=365,
+                             bands=[(0, 25, "#dc5573", "극도 공포"), (25, 45, "#e98a5a", "공포"), (45, 55, "#9aa3b2", "중립"),
+                                    (55, 75, "#5bbf8a", "탐욕"), (75, 100, "#22a886", "극도 탐욕")]))
             rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')} · CNN {stamp(fg.get('updated_kst'))[-5:]})")
         ys = [(lab, pts(k)) for lab, k in (("2년", "y2"), ("10년", "y10"), ("30년", "y30"))]
         if all(p for _, p in ys):
