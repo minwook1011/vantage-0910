@@ -331,11 +331,11 @@ details.bmsum .body b{color:var(--ink)}
 .star{background:none;border:0;cursor:pointer;font-size:14px;color:var(--line);padding:0 3px 0 0;line-height:1;
   transition:color .13s;vertical-align:middle}
 .star:hover{color:var(--ma5)}
-.star.on{color:var(--ma5)}
+.star.on{color:var(--fc,var(--ma5))}
 .favbtn{background:none;border:1px solid var(--line);color:var(--ink-mute);border-radius:4px;
   width:30px;height:30px;font-size:16px;cursor:pointer;line-height:1;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
 .favbtn:hover{border-color:var(--ma5);color:var(--ma5)}
-.favbtn.on{border-color:var(--ma5);color:var(--ma5);background:rgba(217,138,33,.08)}
+.favbtn.on{border-color:var(--fc,var(--ma5));color:var(--fc,var(--ma5));background:rgba(217,138,33,.08)}
 .note{margin-top:34px;padding:16px 18px;border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 7px 7px 0;background:var(--surface);font-size:12.5px;color:var(--ink-mid);line-height:1.65}
 .note b{color:var(--ink)}
 .empty{padding:60px 0;text-align:center;color:var(--ink-mute)}
@@ -372,7 +372,7 @@ td .est,.eu-co i,.est-i{font-style:normal;font-size:9.5px;color:var(--flat);bord
 .eu-co{font:inherit;font-size:11.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .eu-co b{font-size:10.5px;color:var(--accent-ink);font-weight:600}
 .eu-co:hover{border-color:var(--accent)}
-.eu-co.fav{border-color:var(--ma5)}
+.eu-co.fav{border-color:var(--fc,var(--ma5))}
 .eu-empty{font-size:12.5px;color:var(--ink-mute);padding:6px 0}
 .eu-note{font-size:11px;color:var(--ink-mute);margin-top:8px}
 @media(max-width:640px){.eu-day{grid-template-columns:78px minmax(0,1fr)}.eu-seg{margin-left:0}}
@@ -417,7 +417,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .eu-cal .eu-co span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px}
 .eu-cal .eu-co b{flex:0 0 auto}
 .eu-cal .eu-co.est span{color:var(--ink-mid)}
-.eu-cal .eu-co.fav b::before{content:"★ ";color:var(--ma5)}
+.eu-cal .eu-co.fav b::before{content:"★ ";color:var(--fc,var(--ma5))}
 .eu-none{color:var(--flat);font-size:12px;padding:8px 6px}
 .eu-more{font:inherit;font-size:11.5px;font-weight:600;color:var(--accent-ink);background:none;border:0;padding:6px;text-align:left;cursor:pointer}
 .eu-more:hover{text-decoration:underline}
@@ -494,3 +494,40 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .eu-h .eu-seg + .eu-fold{margin-left:6px}
 #earnup.folded .eu-fold{margin-left:auto}
 #earnup.folded .eu-h{margin-bottom:0}
+/* 즐겨찾기 그룹 창 */
+.favpop{position:fixed;z-index:200;width:260px;background:var(--surface);border:1px solid var(--line);border-radius:10px;box-shadow:0 14px 36px rgba(20,35,60,.18);padding:10px 12px;font-size:12.5px;color:var(--ink)}
+.favpop .fp-h{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.favpop .fp-h .mono{color:var(--ink-mute);font-size:11px}
+.favpop .fp-x{margin-left:auto;border:0;background:none;font-size:18px;line-height:1;cursor:pointer;color:var(--ink-mute)}
+.favpop .fp-list{display:flex;flex-direction:column;gap:2px;max-height:240px;overflow:auto}
+.favpop .fp-row{display:flex;align-items:center;gap:8px;padding:5px 4px;border-radius:6px;cursor:pointer}
+.favpop .fp-row:hover{background:rgba(79,124,255,.07)}
+.favpop .fp-row small{margin-left:auto;color:var(--ink-mute);font-family:"IBM Plex Mono",monospace}
+.favpop .fp-del{border:0;background:none;color:var(--ink-mute);font-size:11px;cursor:pointer;padding:0 2px}
+.favpop .fp-del:hover{color:var(--down)}
+.favpop .fp-new{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)}
+.favpop .fp-new input{flex:1;min-width:0;font:inherit;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:5px 8px;background:#fff;color:var(--ink)}
+.favpop .fp-new button{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:#121721;border-radius:6px;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.favpop .fp-foot{margin-top:7px;font-size:11px;color:var(--ink-mute)}
+#favflt{flex-wrap:wrap}
+#favflt small{font-family:"IBM Plex Mono",monospace;font-size:10px;opacity:.7}
+
+/* 추가할 종목 칸(머리말 오른쪽) */
+.addreq{flex:1 1 320px;max-width:440px;margin-left:auto;align-self:stretch;display:flex;flex-direction:column;gap:7px;padding:12px 14px;border:1px dashed var(--line);border-radius:10px;background:rgba(255,255,255,.55)}
+.addreq .ar-h{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.addreq .ar-h b{font-size:13px}
+.addreq .ar-h span{font-size:11px;color:var(--ink-mute)}
+.addreq .ar-in{display:flex;gap:6px}
+.addreq input{flex:1;min-width:0;font:inherit;font-size:12.5px;border:1px solid var(--line);border-radius:6px;padding:6px 9px;background:#fff;color:var(--ink)}
+.addreq button{font:inherit;font-size:12.5px;font-weight:600;border:1px solid var(--accent);background:var(--accent);color:#121721;border-radius:6px;padding:6px 12px;cursor:pointer}
+.addreq .ar-list{display:flex;flex-direction:column;gap:3px;max-height:84px;overflow:auto;font-size:11.5px;color:var(--ink-mid)}
+.addreq .ar-row{display:flex;gap:7px;align-items:baseline}
+.addreq .ar-st{flex:0 0 auto;font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 6px;background:#eef2f7;color:var(--ink-mid)}
+.addreq .ar-st.added{background:rgba(31,140,80,.12);color:#1f7a47}
+.addreq .ar-st.partial{background:rgba(220,150,30,.14);color:#9a6512}
+.addreq .ar-st.failed{background:rgba(200,60,50,.12);color:#b03a30}
+.addreq .ar-st.wait{background:rgba(79,124,255,.12);color:#2b52ab}
+.addreq .ar-tip{font-size:11px;color:var(--ink-mute)}
+@media (max-width:900px){.addreq{max-width:none;margin-left:0}}
+.favpop .fp-col{width:18px;height:18px;padding:0;border:0;background:none;cursor:pointer;flex:0 0 auto}
+#favflt .fgb::before{content:"★";color:var(--fc);margin-right:3px}

@@ -151,8 +151,10 @@ def main():
         print(f"수집률이 너무 낮음({len(raw)}/{n_list}) — 기존 파일 유지")
         return 1
     # 시총 300억엔 미만은 소비재 명단에서 뺀다(2026-10-02 사용자 지시 — screener-data.js 도 같은 기준으로 정리함)
-    small = [f"{r[0]}({r[5]})" for r in raw if (r[5] or 0) < MIN_MCAP]
-    keep = {r[0] for r in raw if (r[5] or 0) >= MIN_MCAP}
+    # 단, 사용자가 '추가할 종목'으로 직접 요청한 종목(req:true)은 시총과 상관없이 둔다(2026-10-07)
+    req = {x["code"] for x in items if x.get("req")}
+    small = [f"{r[0]}({r[5]})" for r in raw if (r[5] or 0) < MIN_MCAP and r[0] not in req]
+    keep = {r[0] for r in raw if (r[5] or 0) >= MIN_MCAP or r[0] in req}
     raw = [r for r in raw if r[0] in keep]
     bundle = [b for b in bundle if b["c"] in keep]
     if small:

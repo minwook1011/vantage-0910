@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700&display=swap">
 <link rel="stylesheet" href="theme.css?v=20261004B">
-<link rel="stylesheet" href="jp-screener.css?v=20261007G">
+<link rel="stylesheet" href="jp-screener.css?v=20261007H">
 <link rel="stylesheet" href="jp-report.css?v=20261007X">
 </head>
 <body>
@@ -25,6 +25,11 @@
         <button data-u="con" aria-pressed="true"><b>소비재</b><span>389 · 카테고리별</span></button>
         <button data-u="maj" aria-pressed="false"><b>주요 기업</b><span>시총 상위 200 + 닛케이225</span></button>
       </div>
+    </div>
+    <div class="addreq" id="addreq">
+      <div class="ar-h"><b>추가할 종목</b><span>매일 0시에 확인해 스크리너에 넣습니다</span></div>
+      <div class="ar-in"><input type="text" id="ar-q" placeholder="코드나 이름 — 예: 7769, 고라쿠엔" maxlength="200"><button id="ar-go">보내기</button></div>
+      <div class="ar-list" id="ar-list"></div>
     </div>
     <div class="stats">
       <div class="stat"><b id="s-n"></b><span>종목</span></div>
@@ -132,7 +137,7 @@
 <script src="data/jp/names-ko.js?v=20261007D"></script>
 <script src="data/jp/consumer-extra.js?v=20261007D"></script>
 <script src="jp-report.js?v=20261007X"></script>
-<script src="jp-screener.js?v=20261007G"></script>
+<script src="jp-screener.js?v=20261007H"></script>
 <script src="theme.js?v=20261003L"></script>
 </body>
 </html>

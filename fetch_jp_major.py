@@ -419,6 +419,12 @@ def main():
     for x in nk:
         u = uni.setdefault(x["code"], {"code": x["code"], "jp": x["jp"], "mcap_y": None, "top": False})
         u["nk"] = True
+    # 사용자가 '추가할 종목'으로 넣은 비소비재 종목(data_sources/jp_major_extra.json, [{"code":…, "note":…}]) — 2026-10-07
+    try:
+        for x in json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data_sources", "jp_major_extra.json"), encoding="utf-8")):
+            uni.setdefault(x["code"], {"code": x["code"], "jp": None, "mcap_y": None, "top": False, "nk": False, "req": True})
+    except FileNotFoundError:
+        pass
     codes = list(uni)
     print(f"합집합 {len(codes)}")
     only = [a for a in sys.argv[1:] if not a.startswith("-")]

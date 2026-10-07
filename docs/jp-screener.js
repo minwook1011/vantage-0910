@@ -68,14 +68,89 @@ function initialUniverse(){
   if(!v){ try{ v=localStorage.getItem("jp_screener_universe"); }catch(e){} }
   return (v==="major"||v==="maj") ? "maj" : "con";
 }
-let FAVS; try{FAVS=new Set(JSON.parse(localStorage.getItem("jp_screener_favs")||"[]"));}catch(e){FAVS=new Set();}
-function saveFavs(){try{localStorage.setItem("jp_screener_favs",JSON.stringify([...FAVS]));}catch(e){}}
+/* ===== 즐겨찾기 그룹 (2026-10-07 사용자: 그룹을 만들고 어디에 넣을지 고르게) =====
+   저장: 이미 기기 간 동기화가 허용된 키 "vantage-datahub-favorite-companies-v1" 의 jp 칸 — {g:[{id,n,c:[코드…]}]}
+   (firebase-sync 에 새 키를 넣으면 보안 규칙에 막힌다). 로그인하면 내 계정의 다른 기기와 같아지고, 다른 사람과는 섞이지 않는다.
+   예전 "jp_screener_favs"(이 브라우저에만 있던 목록)는 처음 한 번 "기본" 그룹으로 옮긴다. */
+const FKEY="vantage-datahub-favorite-companies-v1";
+function favRoot(){ try{ const v=JSON.parse(localStorage.getItem(FKEY)||"{}"); return v&&typeof v==="object"&&!Array.isArray(v)?v:{}; }catch(e){ return {}; } }
+function loadGroups(){
+  const v=favRoot(); let g=(v.jp&&Array.isArray(v.jp.g))?v.jp.g.filter(x=>x&&x.id&&Array.isArray(x.c)):[];
+  try{ const old=JSON.parse(localStorage.getItem("jp_screener_favs")||"[]");
+    if(Array.isArray(old)&&old.length){
+      let d=g.find(x=>x.id==="base"); if(!d){ d={id:"base",n:"기본",c:[]}; g.unshift(d); }
+      old.forEach(c=>{ if(!d.c.includes(c)) d.c.push(c); });
+      localStorage.removeItem("jp_screener_favs"); saveGroups(g);
+    } }catch(e){}
+  if(!g.length) g=[{id:"base",n:"기본",c:[]}];
+  return g;
+}
+// 그룹 색(2026-10-07 사용자: 그룹별로 별 색을 정하게). 종목이 여러 그룹에 있으면 먼저 만든 그룹 색
+const FAV_PAL=["#e0901f","#d64545","#2f7de1","#1f9d6b","#8e5bd6","#d6559b","#16a3b5","#6b7a8f"];
+function grpCol(g,i){ return g.col || FAV_PAL[(i==null?GROUPS.indexOf(g):i)%FAV_PAL.length]; }
+function favCol(code){ for(let i=0;i<GROUPS.length;i++) if(GROUPS[i].c.includes(code)) return grpCol(GROUPS[i],i); return ""; }
+function favSty(code){ const c=favCol(code); return c?` style="--fc:${c}"`:""; }
+function saveGroups(g){ try{ const v=favRoot(); v.jp={g:g}; localStorage.setItem(FKEY,JSON.stringify(v)); }catch(e){} }
+let GROUPS=loadGroups(), FAVS=new Set();
+function rebuildFavs(){ FAVS=new Set(); GROUPS.forEach(x=>x.c.forEach(c=>FAVS.add(c))); }
+rebuildFavs();
+function saveFavs(){ saveGroups(GROUPS); rebuildFavs(); }
+// 다른 기기에서 동기화돼 들어온 값 반영
+window.addEventListener("storage",e=>{ if(e.key===FKEY){ GROUPS=loadGroups(); rebuildFavs(); renderFavFilter(); renderTable(); } });
+// 필터: 0 = 전체, 1 = 즐겨찾기 전부, "g:<id>" = 그 그룹만
+function favOk(code){
+  if(!state.favonly) return true;
+  if(state.favonly===1) return FAVS.has(code);
+  const g=GROUPS.find(x=>"g:"+x.id===state.favonly); return !!(g&&g.c.includes(code));
+}
+function renderFavFilter(){
+  const el=document.getElementById("favflt"); if(!el) return;
+  if(typeof state!=="undefined" && typeof state.favonly==="string" && !GROUPS.some(x=>"g:"+x.id===state.favonly)) state.favonly=0;
+  const cur=(typeof state!=="undefined")?state.favonly:0;
+  const btn=(v,l,n)=>`<button data-fv="${v}" aria-pressed="${cur===v}">${esc(l)}${n!=null?` <small>${n}</small>`:""}</button>`;
+  el.innerHTML=btn(0,"전체")+btn(1,"★ 전부",FAVS.size)+(GROUPS.length>1||GROUPS[0].n!=="기본"?GROUPS.map((x,i)=>btn("g:"+x.id,x.n,x.c.length).replace("<button ",`<button style="--fc:${grpCol(x,i)}" class="fgb" `)).join(""):"");
+  el.querySelectorAll("button").forEach(b=>b.onclick=()=>{ const v=b.dataset.fv; state.favonly=v==="0"?0:v==="1"?1:v; renderFavFilter(); renderTable(); });
+}
+function closeFavPop(){ const p=document.getElementById("favpop"); if(p) p.remove(); document.removeEventListener("mousedown",favPopOut,true); }
+function favPopOut(e){ const p=document.getElementById("favpop"); if(p && !p.contains(e.target)) closeFavPop(); }
+function favChanged(code){
+  saveFavs(); renderFavFilter(); renderTable();
+  const fb=document.getElementById("dfav");
+  if(fb && fb.dataset.c===code){ fb.classList.toggle("on",FAVS.has(code)); fb.textContent=FAVS.has(code)?"★":"☆"; fb.style.setProperty("--fc",favCol(code)||""); }
+}
 function toggleFav(code,ev){
   if(ev){ev.stopPropagation();ev.preventDefault();}
-  if(FAVS.has(code))FAVS.delete(code);else FAVS.add(code);
-  saveFavs();renderTable();
-  const fb=document.getElementById("dfav");
-  if(fb){fb.classList.toggle("on",FAVS.has(code));fb.textContent=FAVS.has(code)?"★":"☆";}
+  closeFavPop();
+  const pop=document.createElement("div"); pop.id="favpop"; pop.className="favpop";
+  const draw=()=>{
+    pop.innerHTML=`<div class="fp-h"><b>즐겨찾기 그룹</b><span class="mono">${code}</span><button class="fp-x" aria-label="닫기">×</button></div>
+      <div class="fp-list">${GROUPS.map(x=>`<label class="fp-row"><input type="checkbox" data-g="${x.id}" ${x.c.includes(code)?"checked":""}><input type="color" class="fp-col" data-col="${x.id}" value="${grpCol(x)}" title="그룹 색"><span style="color:${grpCol(x)}">★</span><span>${esc(x.n)}</span><small>${x.c.length}</small>${x.id!=="base"?`<button class="fp-del" data-del="${x.id}" title="그룹 삭제">삭제</button>`:""}</label>`).join("")}</div>
+      <div class="fp-new"><input type="text" placeholder="새 그룹 이름" maxlength="20"><button>+ 그룹 추가</button></div>
+      <div class="fp-foot">체크한 그룹에 들어갑니다 · 모두 끄면 즐겨찾기에서 빠집니다</div>`;
+    pop.querySelector(".fp-x").onclick=closeFavPop;
+    pop.querySelectorAll("input[data-g]").forEach(cb=>cb.onchange=()=>{
+      const g=GROUPS.find(x=>x.id===cb.dataset.g); if(!g) return;
+      if(cb.checked){ if(!g.c.includes(code)) g.c.push(code); } else g.c=g.c.filter(c=>c!==code);
+      favChanged(code); draw();
+    });
+    pop.querySelectorAll("input[data-col]").forEach(ci=>{ ci.onclick=e=>e.stopPropagation(); ci.onchange=()=>{
+      const g=GROUPS.find(x=>x.id===ci.dataset.col); if(!g) return; g.col=ci.value; favChanged(code); draw(); }; });
+    pop.querySelectorAll("[data-del]").forEach(b=>b.onclick=e=>{ e.preventDefault();
+      const g=GROUPS.find(x=>x.id===b.dataset.del); if(!g) return;
+      if(!confirm(`"${g.n}" 그룹을 지울까요? (종목 ${g.c.length}개가 이 그룹에서 빠집니다)`)) return;
+      GROUPS=GROUPS.filter(x=>x!==g); favChanged(code); draw(); });
+    const inp=pop.querySelector(".fp-new input"), add=()=>{ const n=inp.value.trim(); if(!n) return;
+      let g=GROUPS.find(x=>x.n===n); if(!g){ const used=GROUPS.map((x,i)=>grpCol(x,i)); g={id:"g"+Date.now().toString(36),n:n,c:[],col:FAV_PAL.find(c=>!used.includes(c))||FAV_PAL[GROUPS.length%FAV_PAL.length]}; GROUPS.push(g); }
+      if(!g.c.includes(code)) g.c.push(code); favChanged(code); draw(); };
+    pop.querySelector(".fp-new button").onclick=add;
+    inp.onkeydown=e=>{ if(e.key==="Enter") add(); };
+  };
+  draw(); document.body.appendChild(pop);
+  const t=ev&&ev.currentTarget&&ev.currentTarget.getBoundingClientRect ? ev.currentTarget.getBoundingClientRect() : (document.getElementById("dfav")||document.body).getBoundingClientRect();
+  const w=pop.offsetWidth, h=pop.offsetHeight;
+  pop.style.left=Math.max(8,Math.min(window.innerWidth-w-8,t.left))+"px";
+  pop.style.top=(t.bottom+6+h>window.innerHeight ? Math.max(8,t.top-h-6) : t.bottom+6)+"px";
+  setTimeout(()=>document.addEventListener("mousedown",favPopOut,true),0);
 }
 
 let state = {cat:"전체", sort:"mc", dir:-1, minmc:0, q:"", qrom:null, onlych:0, favonly:0, smart:null, fcmpMetric:"기존점매출",
@@ -254,7 +329,7 @@ function filtered(){
     (state.cat==="전체" || r[F.CAT]===state.cat) &&
     (r[F.MCAP]||0) >= state.minmc &&
     (!state.onlych || (BY[r[F.CODE]]&&!BY[r[F.CODE]].iv)) &&
-    (!state.favonly || FAVS.has(r[F.CODE])) &&
+    favOk(r[F.CODE]) &&
     (!state.q || searchMatch(r, state.q, state.qrom)) &&
     (!sm || ((!sm.need109 || BY[r[F.CODE]]) && passSmart(r, sm)))
   );
@@ -276,7 +351,7 @@ function renderMatrix(){
     const has=!!BY[r[F.CODE]];
     const cells=months.map(m=>{ const v=tsVal(r[F.CODE],metric,m); if(v==null) return `<td class="mtna">·</td>`;
       const d=v-100; return `<td class="hcell" style="background:${kheat(d,12)}" title="${m} ${v}%">${(d>=0?"+":"")+d.toFixed(1)}</td>`; }).join("");
-    return `<tr data-c="${r[F.CODE]}" tabindex="0"><td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}" onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td><td class="l tk"><span class="${has?"hasc":"noc"}"></span>${r[F.CODE]}</td><td class="l"><span class="nm jp">${esc(r[F.NAME])}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>${cells}</tr>`;
+    return `<tr data-c="${r[F.CODE]}" tabindex="0"><td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}"${favSty(r[F.CODE])} onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td><td class="l tk"><span class="${has?"hasc":"noc"}"></span>${r[F.CODE]}</td><td class="l"><span class="nm jp">${esc(r[F.NAME])}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>${cells}</tr>`;
   }).join("");
 }
 let view  = {code:null, tf:"D", range:null, ma:{5:true,10:true,20:true,120:true}, spike:null, fin:"q"};
@@ -466,7 +541,7 @@ function current(){
     (state.cat==="전체" || r[F.CAT]===state.cat) &&
     (r[F.MCAP]||0) >= state.minmc &&
     (!state.onlych || (BY[r[F.CODE]]&&!BY[r[F.CODE]].iv)) &&
-    (!state.favonly || FAVS.has(r[F.CODE])) &&
+    favOk(r[F.CODE]) &&
     (!state.q || searchMatch(r, state.q, state.qrom)) &&
     (!sm || ((!sm.need109 || BY[r[F.CODE]]) && passSmart(r, sm)))
   );
@@ -515,7 +590,7 @@ function earnRows(){
   const out=[];
   RAW.forEach(r=>{
     if(state.cat!=="전체" && r[F.CAT]!==state.cat) return;
-    if(state.favonly && !FAVS.has(r[F.CODE])) return;
+    if(!favOk(r[F.CODE])) return;
     const code=r[F.CODE], e=earnInfo(code), x=RES[code];
     if(e) out.push([r,e,x&&x.date===e.date?x:null]);
     // 발표가 끝난 종목: 실적 결과 파일의 발표일로 달력에 올린다(예정일과 같은 날이면 위에서 합쳐짐)
@@ -525,7 +600,7 @@ function earnRows(){
 }
 function euCo([r,e,x]){
   const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
-  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}" title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x, r[F.CODE])}</button>${repLink(x)}`;
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}"${favSty(r[F.CODE])} title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x, r[F.CODE])}</button>${repLink(x)}`;
 }
 let euFold=false; try{ euFold=localStorage.getItem("jp_screener_eu_fold")==="1"; }catch(e){}
 function renderEarnUp(){
@@ -533,7 +608,7 @@ function renderEarnUp(){
   if(!EARN_META){ box.innerHTML=""; return; }
   const all = earnRows(), today = todayJST(), td = dowOf(today);
   const thisMon = td===6 ? isoAdd(today,2) : td===0 ? isoAdd(today,1) : mondayOf(today);
-  const scope = (state.cat==="전체"?"전체":state.cat) + (state.favonly?" · ★만":"");
+  const scope = (state.cat==="전체"?"전체":state.cat) + (state.favonly===1?" · ★ 전부":typeof state.favonly==="string"?" · ★ "+((GROUPS.find(x=>"g:"+x.id===state.favonly)||{}).n||""):"");
   let h = `<div class="eu-h"><h3>실적 발표 캘린더</h3><span class="sub">${scope} · 발표일 갱신 ${EARN_META.updated||"—"}${RES_META?` · 발표 결과 ${RES_META.updated||"—"}`:""}</span>
     ${euFold?"":`<div class="eu-seg" data-g="mode">${[["week","주간 캘린더"],["list","목록"]].map(([k,l])=>`<button data-mode="${k}" aria-pressed="${earnMode===k}">${l}</button>`).join("")}</div>`}
     <button class="eu-fold" aria-expanded="${!euFold}">${euFold?"펼치기 ▾":"접기 ▴"}</button></div>`;
@@ -622,7 +697,7 @@ function appendRows(n){
     const mc=r[F.MCAP]||0, has=!!(BY[r[F.CODE]]&&!BY[r[F.CODE]].iv);
     const dyn = state.cols.map(k=>colCell(r,k)).join("");
     return `<tr data-c="${r[F.CODE]}" tabindex="0">
-      <td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}" onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td>
+      <td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}"${favSty(r[F.CODE])} onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td>
       <td class="l tk"><span class="${has?"hasc":"noc"}"></span>${r[F.CODE]}</td>
       <td class="l"><span class="nm jp">${esc(r[F.NAME])}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>
       <td class="mc">${int(mc)}<i style="width:${(mc/maxmc*46).toFixed(1)}px"></i></td>
@@ -1220,7 +1295,7 @@ function openDetail(code){
       <div class="dnm jp">${esc(r[F.NAME])}</div>
       <div class="chips"><span class="chip k">${r[F.CAT]}</span><span class="chip">${esc(r[F.IND])}</span>${(()=>{const e=earnInfo(code);return e&&e.days>=0?`<span class="chip earnchip">실적발표 ${earnLabel(e)}</span>`:"";})()}</div>
       ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code], code)}${repLink(RES[code],"d-rep")}</div>`:""}
-    </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" title="즐겨찾기">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
+    </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" data-c="${code}"${favSty(code)} title="즐겨찾기 그룹">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
 
     <div class="dtabs" role="tablist"><button data-dt="info" aria-pressed="true">기본 정보</button><button data-dt="earn" aria-pressed="false">실적발표 <small id="dt-earn-n"></small></button></div>
     <div id="dt-earn" hidden></div>
@@ -1248,7 +1323,7 @@ function openDetail(code){
   document.getElementById("scrim").classList.add("on");
   document.getElementById("panel").scrollTop=0;
   document.getElementById("dx").onclick=closeDetail;
-  document.getElementById("dfav").onclick=()=>toggleFav(code);
+  document.getElementById("dfav").onclick=e=>toggleFav(code,e);
   wireDetail(b);
   wireDetailTabs(code);
 }
@@ -1415,7 +1490,8 @@ document.getElementById("scrim").onclick=closeDetail;
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail();});
 const defDir=s=>(s==="PER"||s==="EARN"?1:-1);
 document.getElementById("sort").onchange=e=>{state.sort=e.target.value;state.dir=defDir(e.target.value);if(state.smart&&state.smart.sortKey)state.smart.sortKey=null;renderTable();};
-[["minmc","minmc"],["onlych","onlych"],["favflt","favonly"]].forEach(([id,key])=>{
+renderFavFilter();
+[["minmc","minmc"],["onlych","onlych"]].forEach(([id,key])=>{
   const el=document.getElementById(id);
   el.querySelectorAll("button").forEach(b=>b.onclick=()=>{
     el.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));
@@ -1595,3 +1671,29 @@ fetch("data/jp/earnings_results.json",{cache:"no-cache"}).then(r=>r.ok?r.json():
   RES=d.results||{}; RES_META=d;
   renderTable();
 }).catch(()=>{});
+
+/* ===== 추가할 종목 (2026-10-07 사용자: 오른쪽 빈칸에 적으면 매일 0시에 확인해 추가) =====
+   보내기 → 깃허브 이슈 작성 화면(제목 "[추가할 종목] …")이 열리고, 거기서 한 번 더 '제출'을 누르면 요청이 남는다.
+   매일 0시 예약 작업(jp_add_requests.py)이 저장소 주인이 연 요청만 읽어 종목을 넣고, 결과는 data/jp/add_requests.json 에 남긴다. */
+(function(){
+  const REPO="minwook1011/vantage-0910", PRE="[추가할 종목] ";
+  const box=document.getElementById("addreq"); if(!box) return;
+  const q=document.getElementById("ar-q"), list=document.getElementById("ar-list");
+  const send=()=>{ const t=q.value.trim(); if(!t){ q.focus(); return; }
+    const body="스크리너에 넣어 주세요: "+t+"\n\n—\n(일본 기업 스크리너 '추가할 종목' 칸에서 보냄 · 매일 0시에 처리)";
+    window.open("https://github.com/"+REPO+"/issues/new?title="+encodeURIComponent(PRE+t)+"&body="+encodeURIComponent(body),"_blank","noopener");
+    q.value=""; list.innerHTML='<div class="ar-tip">깃허브 창에서 <b>Submit new issue</b>(제출)를 눌러야 요청이 남습니다.</div>'+list.innerHTML; };
+  document.getElementById("ar-go").onclick=send;
+  q.onkeydown=e=>{ if(e.key==="Enter") send(); };
+  const ST={added:"추가됨",partial:"일부 추가",failed:"못 찾음"};
+  Promise.all([
+    fetch("data/jp/add_requests.json",{cache:"no-cache"}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]})),
+    fetch("https://api.github.com/repos/"+REPO+"/issues?state=open&per_page=50").then(r=>r.ok?r.json():[]).catch(()=>[])
+  ]).then(([d,iss])=>{
+    const done={}; (d.items||[]).forEach(x=>done[x.n]=x);
+    const pend=(iss||[]).filter(i=>!i.pull_request && (i.title||"").indexOf("[추가할 종목]")===0 && (i.user||{}).login==="minwook1011" && !(done[i.number]||{}).status)
+      .map(i=>`<div class="ar-row"><span class="ar-st wait">대기</span><span>${esc(i.title.replace("[추가할 종목]","").trim())}</span></div>`);
+    const fin=(d.items||[]).filter(x=>x.status&&x.market!=="us").slice(0,4).map(x=>`<div class="ar-row" title="${esc(x.note||"")}"><span class="ar-st ${x.status}">${ST[x.status]||""}</span><span>${esc(x.text||"")}${x.added&&x.added.length?` → ${x.added.map(esc).join(", ")}`:""}${x.failed&&x.failed.length?` · 못 찾음 ${x.failed.map(esc).join(", ")}`:""}</span></div>`);
+    list.innerHTML=(pend.concat(fin).join(""))||'<div class="ar-tip">아직 요청이 없습니다.</div>';
+  });
+})();
