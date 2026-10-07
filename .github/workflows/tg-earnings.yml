@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "alerts | weekly | daily | test | sample"
+        description: "alerts | weekly | daily | test | sample | 기업 코드·티커(예: 3549) 한 곳 시험"
         default: alerts
 
 permissions:
@@ -82,7 +82,8 @@ jobs:
             daily)  python tg_earnings.py --daily ;;
             test)   python tg_earnings.py --test ;;
             sample) python tg_earnings.py --sample ;;
-            *)      python tg_earnings.py ;;
+            alerts) python tg_earnings.py ;;
+            *)      python tg_earnings.py --code "${{ steps.m.outputs.mode }}" ;;   # 그 밖의 값 = 기업 코드·티커 한 곳 시험(예: 3549, jbl)
           esac
 
       - name: 보낸 기록 저장

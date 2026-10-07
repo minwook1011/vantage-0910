@@ -306,7 +306,7 @@ def us_ko():
 def hashtags(en, code, ko):
     """검색용 해시태그 3개: #영어이름 #티커 #한글이름 (예: #AMAZON #AMZN #아마존)"""
     e = re.sub(r"\(The\)|\(Class [A-Z]\)|\.com\b", "", en or "", flags=re.I)
-    e = re.sub(r",?\s+(Holdings?|Co|Ltd|Inc|Incorporated|Corporation|Corp|Company|plc|Limited|N\.?V|S\.?A)\b\.?", "", e, flags=re.I)
+    e = re.sub(r"(?:,\s*|\s+)(Holdings?|Co|Ltd|Inc|Incorporated|Corporation|Corp|Company|plc|Limited|N\.?V|S\.?A)\b\.?", "", e, flags=re.I)
     e = re.sub(r"[^0-9A-Za-z]", "", e).upper()
     t = re.sub(r"[^0-9A-Za-z]", "", code or "").upper()
     k = re.sub(r"[^0-9A-Za-z가-힣]", "", ko or "")
@@ -495,14 +495,17 @@ def detail(N):
     return [x[:4000] for x in out]
 
 
-def alerts(st, seed=False, sample=None):
+def alerts(st, seed=False, sample=None, only=None):
     """sample="2026-10-01" 처럼 날짜를 주면 그날 이후 조건 맞은 기업을 '시험'으로 보낸다(최대 6건, 보낸 기록은 남기지 않음)"""
     use_topic("surp")
     favs = None
     n = 0
     rows = candidates()
     if sample:
-        rows = sorted(candidates(since=sample), key=lambda r: r[2])[:6]
+        rows = sorted(candidates(since=sample), key=lambda r: r[2])
+        rows = [r for r in rows if r[1].upper() == only] if only else rows[:6]
+        if only and not rows:
+            print(f"{only}: 최근 30일 안에 조건(주가 +2%·컨센 +5%)에 맞는 발표가 없음")
         st = {"sent": set(), "msg": {}, "topics": st.get("topics", {})}   # 실제 기록과 분리
     for m, code, d, rid, kind, name, why, nums in rows:
         ak, sk = f"alert:{m}:{code}:{d}", f"sum:{m}:{code}:{d}"
@@ -595,6 +598,9 @@ def main():
             print(f"pending={n}")
             if os.environ.get("GITHUB_OUTPUT"):
                 open(os.environ["GITHUB_OUTPUT"], "a").write(f"pending={n}\n")
+            return
+        if "--code" in a:     # 시험: 한 기업만(예: --code 3549, --code JBL) — 최근 30일 발표분, 기록 안 남김
+            alerts(st, sample=(NOW - timedelta(days=30)).strftime("%Y-%m-%d"), only=a[a.index("--code") + 1].upper())
             return
         if "--sample" in a:   # 시험: 일정 사진(다음 주·오늘) + 지난 서프 알림 — 기록 안 남김
             since = a[a.index("--since") + 1] if "--since" in a else (NOW - timedelta(days=10)).strftime("%Y-%m-%d")
