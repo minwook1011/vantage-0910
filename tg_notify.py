@@ -4,13 +4,13 @@
 tg_notify.py — 사이트(origin/main) 데이터를 읽어 텔레그램 '돈벌레' 채널로 보낸다 (봇: @vantage0910_alert_bot)
 
 GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 직후와 15분마다 돌린다 — PC 가 꺼져 있어도 된다.
-데이터는 사이트 수집기가 이미 모아 둔 파일만 읽는다(새 API 없음). 보낸 기록은 data_sources/tg_state.json(커밋됨).
+데이터는 사이트 수집기가 이미 모아 둔 파일만 읽는다(새 API 없음). 메시지에 사이트(깃허브) 주소는 넣지 않는다(사용자 지시). 보낸 기록은 data_sources/tg_state.json(커밋됨).
 
 보내는 것(2026-10-07 사용자 지정) — 각 데이터가 실제로 갱신되는 시각 직후에 한 번씩
   1) AI 지표(그래프)
      · GPU별 렌탈 지수(H100·H200·B200·A100) — 매일 06:00 (Ornn 이 미 동부 16:00 정산 → 서머타임 해제 뒤엔 07:00)
-     · 평균 실효 단가 — 매일 09:30 (OpenRouter 하루가 UTC 자정 = 09:00 KST 에 닫힘)
-     · 주간 토큰 총량·주간 지출 — 월 09:30 (OpenRouter 한 주가 월 09:00 KST 에 닫힘)
+     · OpenRouter 지표 한 메시지(그래프 3장) — 매일 09:30: 평균 실효 단가 + 주간 토큰 총량 + 주간 지출
+       (하루는 UTC 자정 = 09:00 KST 에 닫히고, 주간 값은 월 09:00 KST 에 새 주로 바뀜)
   2) 팟캐스트 — 새 편 요약이 올라오면: 제목 · 핵심 3줄 · 내용 정리(tg_body, 1,000자 이내 단락)
   3) 오늘 시황 요약 — 매일 06:30 예약 작업이 쓰고 올리면 바로(본문 그대로)
   4) 매크로 요약 — 매일 08:20: 공포·탐욕 · 미 국채 2·10·30년 · WTI 그래프 묶음 + 원/달러 환율 그래프
@@ -18,7 +18,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
   python tg_notify.py --due      # 지금 보낼 게 있으면 "yes" — 워크플로가 그래프 도구 설치 여부를 정할 때
-  python tg_notify.py --force gpu|price|weekly|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
+  python tg_notify.py --force gpu|openrouter|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
 """
 import json
 import os
@@ -34,7 +34,7 @@ except Exception:
     pass
 
 import send_telegram as tg
-from send_telegram import esc, SITE, KST
+from send_telegram import esc, KST
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 STATE_PATH = os.path.join(BASE, "data_sources", "tg_state.json")
@@ -139,59 +139,47 @@ def gpu():
             pc = chg(p[-2]["value"], p[-1]["value"]) if len(p) > 1 else 0
             rows.append(f"{arrow(pc)} {esc(l['label'])} <b>${p[-1]['value']:.2f}</b> ({pc:+.1f}%)")
         cap = (f"🖥 <b>GPU 렌탈 지수</b> · {d.strftime('%m/%d')} 정산\n" + "\n".join(rows) +
-               f"\n<i>1시간 임대 체결가 · 전일 대비</i>\n\n👉 {SITE}datahub.html#ai")
+               "\n<i>1시간 임대 체결가 · 전일 대비</i>")
         return [img], cap
     return (f"gpu:{last}", gate, build)
 
 
-def price():
-    p = (ai_series().get("or_avg_price") or {}).get("points") or []
+def openrouter():
+    """평균 실효 단가 + 주간 토큰 총량 + 주간 지출 — 한 메시지(그래프 3장 앨범), 매일 09:30"""
+    S = ai_series()
+    p = (S.get("or_avg_price") or {}).get("points") or []
+    t = (S.get("or_tokens_weekly") or {}).get("points") or []
+    sp = (S.get("or_spend_7d") or {}).get("points") or []
     if len(p) < 2:
         return None
     last = p[-1]["date"]
     gate = at(date.fromisoformat(last) + timedelta(days=1), 9, 30)
 
     def build():
-        from tg_charts import line
-        img = line("price", "OpenRouter 평균 실효 단가", f"토큰 100만 개당 실제 지불액(지출 ÷ 토큰) · $/M · 최근 7일 기준 · {last}",
-                   [("단가", [(x["date"], x["value"]) for x in p])], digits=3, fill=True)
+        from tg_charts import bars, line
+        imgs = [line("price", "OpenRouter 평균 실효 단가", f"토큰 100만 개당 실제 지불액(지출 ÷ 토큰) · $/M · 최근 7일 기준 · {last}",
+                     [("단가", [(x["date"], x["value"]) for x in p])], digits=3, fill=True)]
         d1 = chg(p[-2]["value"], p[-1]["value"])
         wk = (date.fromisoformat(last) - timedelta(days=7)).isoformat()
         w = next((x for x in reversed(p) if x["date"] <= wk), None)
-        cap = (f"💲 <b>평균 실효 단가</b> · {last[5:].replace('-', '/')}\n"
-               f"<b>${p[-1]['value']:.4f}</b> / 100만 토큰  {arrow(d1)} 전일 {d1:+.1f}%"
-               + (f" · 1주 전 대비 {chg(w['value'], p[-1]['value']):+.1f}%" if w else "") +
-               f"\n\n👉 {SITE}datahub.html#ai")
-        return [img], cap
-    return (f"price:{last}", gate, build)
-
-
-def weekly():
-    S = ai_series()
-    t = (S.get("or_tokens_weekly") or {}).get("points") or []
-    sp = (S.get("or_spend_7d") or {}).get("points") or []
-    if len(t) < 2:
-        return None
-    wk = t[-1]["date"]                       # 끝난 주의 월요일
-    gate = at(date.fromisoformat(wk) + timedelta(days=7), 9, 30)
-
-    def build():
-        from tg_charts import bars
-        imgs = [bars("tokens", "OpenRouter 주간 토큰 총량", f"한 주(월~일) 처리 토큰 · 조(T) 토큰 · 최근 26주 · {wk} 주",
-                     [(x["date"], x["value"]) for x in t[-26:]], digits=1, unit="T")]
-        w1 = chg(t[-2]["value"], t[-1]["value"])
-        rows = [f"{arrow(w1)} 주간 토큰 <b>{t[-1]['value']:,.1f}T</b> (전주 대비 {w1:+.1f}%)"]
-        if sp:
+        rows = [f"{arrow(d1)} 평균 실효 단가 <b>${p[-1]['value']:.4f}</b>/100만 토큰 (전일 {d1:+.1f}%"
+                + (f" · 1주 전 대비 {chg(w['value'], p[-1]['value']):+.1f}%)" if w else ")")]
+        if len(t) > 1:
+            ws = t[-1]["date"]
+            we = date.fromisoformat(ws) + timedelta(days=6)
+            imgs.append(bars("tokens", "OpenRouter 주간 토큰 총량", f"한 주(월~일) 처리 토큰 · 조(T) 토큰 · 최근 26주 · {ws} 주",
+                             [(x["date"], x["value"]) for x in t[-26:]], digits=1, unit="T"))
+            w1 = chg(t[-2]["value"], t[-1]["value"])
+            rows.append(f"{arrow(w1)} 주간 토큰 <b>{t[-1]['value']:,.1f}T</b> (전주 대비 {w1:+.1f}% · {ws[5:].replace('-', '/')}~{we.strftime('%m/%d')})")
+        if len(sp) > 1:
             imgs.append(bars("spend", "OpenRouter 주간 지출", f"주간 토큰 × 실효 단가 · 백만 달러 · {sp[-1]['date']} 주",
                              [(x["date"], x["value"]) for x in sp], digits=1, unit="M"))
-            if len(sp) > 1:
-                w2 = chg(sp[-2]["value"], sp[-1]["value"])
-                rows.append(f"{arrow(w2)} 주간 지출 <b>${sp[-1]['value']:,.1f}M</b> (전주 대비 {w2:+.1f}%)")
-        end = date.fromisoformat(wk) + timedelta(days=6)
-        cap = (f"🤖 <b>OpenRouter 주간</b> · {wk[5:].replace('-', '/')}~{end.strftime('%m/%d')}\n" + "\n".join(rows) +
-               f"\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외)</i>\n\n👉 {SITE}datahub.html#ai")
+            w2 = chg(sp[-2]["value"], sp[-1]["value"])
+            rows.append(f"{arrow(w2)} 주간 지출 <b>${sp[-1]['value']:,.1f}M</b> (전주 대비 {w2:+.1f}%)")
+        cap = (f"🤖 <b>OpenRouter 지표</b> · {last[5:].replace('-', '/')}\n" + "\n".join(rows) +
+               "\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외) · 주간 값은 매주 월요일 갱신</i>")
         return imgs, cap
-    return (f"weekly:{wk}", gate, build)
+    return (f"or:{last}", gate, build)
 
 
 # ── 2) 팟캐스트 ───────────────────────────────────────────────
@@ -216,7 +204,7 @@ def podcasts():
             body = ep.get("tg_body") or ep.get("tg") or ""
             if body:
                 lines += ["", "<b>내용 정리</b>", md_to_html(body)]
-            lines += ["", f"📝 요약·분석: {SITE}podcasts.html?id={row['id']}"]
+            lines.append("")
             if ep.get("link") or row.get("link"):
                 lines.append(f"▶️ 원본: {ep.get('link') or row.get('link')}")
             return None, "\n".join(lines)
@@ -233,7 +221,7 @@ def digest():
     def build():
         md = re.sub(r"^## 금일 시황 요약[^\n]*\n", "", g.get("markdown") or "").strip()
         txt = (f"📰 <b>오늘 시황 요약</b> · {NOW.strftime('%m/%d')}({DOW[NOW.weekday()]})\n<b>{esc(g.get('title'))}</b>\n\n"
-               + md_to_html(md) + f"\n\n👉 {SITE}news.html")
+               + md_to_html(md))
         return None, txt
     return (f"digest:{g['date']}", NOW, build)
 
@@ -266,7 +254,7 @@ def macro():
         if w:
             imgs.append(line("wti", "WTI 원유 선물", f"달러/배럴 · 최근 1년 · {w[-1][0]} 기준", [("WTI", w)], digits=2, fill=True))
             rows.append(f"🛢 WTI <b>${w[-1][1]:.2f}</b>" + (f" ({chg(w[-2][1], w[-1][1]):+.1f}%)" if len(w) > 1 else ""))
-        cap = f"📊 <b>매크로 요약</b> · {today.strftime('%m/%d')}({DOW[today.weekday()]})\n" + "\n".join(rows) + f"\n\n👉 {SITE}macro.html"
+        cap = f"📊 <b>매크로 요약</b> · {today.strftime('%m/%d')}({DOW[today.weekday()]})\n" + "\n".join(rows)
         return imgs, cap
 
     def build_krw():
@@ -283,7 +271,7 @@ def macro():
 
 
 # ── 실행 ─────────────────────────────────────────────────────
-ITEMS = {"gpu": gpu, "price": price, "weekly": weekly, "podcast": podcasts, "digest": digest, "macro": macro}
+ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro}
 
 
 def collect():
@@ -323,6 +311,8 @@ def main():
             imgs, text = build()
             if not text:
                 continue
+            # 사이트(깃허브) 주소는 어떤 경우에도 내보내지 않는다(사용자 지시) — 본문에 섞여 들어와도 그 줄째 뺀다
+            text = "\n".join(l for l in text.split("\n") if "github.io" not in l and "github.com" not in l)
             if dry:
                 print("─" * 30, key, imgs or "", "\n" + text)
                 continue
