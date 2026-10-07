@@ -237,13 +237,60 @@ def digest():
 
 
 # ── 4) 매크로 요약 ────────────────────────────────────────────
+LIVE_SYMS = {"y2": "US2Y", "y10": "US10Y", "y30": "US30Y", "wti": "@CL.1", "usdkrw": "KRW="}
+
+
+def live_quotes():
+    """보내는 순간의 시세(CNBC 실시간) — {키: (값, 시세 시각 datetime)}. 실패하면 빈 사전(사이트 데이터만 씀)"""
+    import ssl
+    import urllib.request
+    url = ("https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols="
+           + "|".join(LIVE_SYMS.values()) + "&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json")
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    for ctx in (None, ssl._create_unverified_context()):   # 이 PC 는 SSL 가로채기가 있어 두 번째로 재시도
+        try:
+            with urllib.request.urlopen(req, timeout=20, context=ctx) as r:
+                qs = json.loads(r.read().decode("utf-8"))["FormattedQuoteResult"]["FormattedQuote"]
+            break
+        except Exception as e:
+            err = e
+    else:
+        print("실시간 시세 실패(사이트 데이터로 보냄):", err)
+        return {}
+    by = {q.get("symbol"): q for q in qs}
+    out = {}
+    for k, sym in LIVE_SYMS.items():
+        q = by.get(sym) or {}
+        try:
+            v = float(str(q["last"]).replace("%", "").replace(",", ""))
+            t = datetime.fromisoformat(re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", q["last_time"]))
+            out[k] = (v, t)
+        except Exception:
+            continue
+    return out
+
+
 def macro():
     today = NOW.date()
+    live = {}
 
     def pts(k, days=365):
         x = ((load("docs/macro_dash.json") or {}).get("indicators") or {}).get(k) or {}
         cut = (today - timedelta(days=days)).isoformat()
-        return [(d, v) for d, v in zip(x.get("dates") or [], x.get("values") or []) if d >= cut and v is not None]
+        p = [(d, v) for d, v in zip(x.get("dates") or [], x.get("values") or []) if d >= cut and v is not None]
+        # 보내는 순간의 실시간 값으로 마지막 점을 바꾸거나(같은 거래일) 새 점으로 붙인다(다음 거래일)
+        if k in live and p:
+            v, t = live[k]
+            d = t.date().isoformat() if k != "usdkrw" else t.astimezone(KST).date().isoformat()
+            if d > p[-1][0]:
+                p.append((d, v))
+            elif d == p[-1][0]:
+                p[-1] = (d, v)
+        return p
+
+    def when(k):
+        """'10/07 종가' 대신 '10/08(목) 08:46 실시간' 처럼 시세 시각까지"""
+        return f"{stamp(live[k][1].astimezone(KST).isoformat())} 실시간" if k in live else ""
 
     def build():
         from tg_charts import line
@@ -256,29 +303,35 @@ def macro():
                              bands=[(0, 25, "#d33f5b", "Extreme Fear"), (25, 45, "#e07a3f", "Fear"), (45, 55, "#6b7588", "Neutral"),
                                     (55, 75, "#3a9f6c", "Greed"), (75, 100, "#1b8a63", "Extreme Greed")]))
             rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')} · CNN {stamp(fg.get('updated_kst'))[-5:]})")
+        live.update(live_quotes())
+        upd = stamp((load("docs/macro_dash.json") or {}).get("updated"))
         ys = [(lab, pts(k)) for lab, k in (("2년", "y2"), ("10년", "y10"), ("30년", "y30"))]
         if all(p for _, p in ys):
-            imgs.append(line("yields", "미국 국채금리", f"2년 · 10년 · 30년물 · % · 최근 1년 · {ys[1][1][-1][0]} 기준", ys, digits=2, unit="%"))
+            t_y = when("y10") or f"{ys[1][1][-1][0]} 종가 · {upd} 갱신"
+            imgs.append(line("yields", "미국 국채금리", ("2년 · 10년 · 30년물 · % · 최근 1년 ·", f"{t_y} 기준"), ys, digits=2, unit="%"))
             parts = [f"{lab} <b>{p[-1][1]:.2f}%</b>({(p[-1][1] - p[-2][1]) * 100:+.0f}bp)" for lab, p in ys if len(p) > 1]
-            rows.append("🏦 국채 " + " · ".join(parts))
+            rows.append("🏦 국채 " + " · ".join(parts) + f"\n      <i>{t_y}</i>")
         w = pts("wti")
         if w:
-            imgs.append(line("wti", "WTI 원유 선물", f"달러/배럴 · 최근 1년 · {w[-1][0]} 기준", [("WTI", w)], digits=2, fill=True))
-            rows.append(f"🛢 WTI <b>${w[-1][1]:.2f}</b>" + (f" ({chg(w[-2][1], w[-1][1]):+.1f}%)" if len(w) > 1 else ""))
-        upd = stamp((load("docs/macro_dash.json") or {}).get("updated")) or f"{today.strftime('%m/%d')}({DOW[today.weekday()]})"
-        cap = f"📊 <b>매크로 요약</b> · {upd} 갱신\n" + "\n".join(rows)
+            t_w = when("wti") or f"{w[-1][0]} 종가 · {upd} 갱신"
+            imgs.append(line("wti", "WTI 원유 선물", ("달러/배럴 · 최근 1년 ·", f"{t_w} 기준"), [("WTI", w)], digits=2, fill=True))
+            rows.append(f"🛢 WTI <b>${w[-1][1]:.2f}</b>" + (f" ({chg(w[-2][1], w[-1][1]):+.1f}%)" if len(w) > 1 else "")
+                        + f"\n      <i>{t_w}</i>")
+        cap = f"📊 <b>매크로 요약</b> · {stamp(NOW.isoformat())} 발송\n" + "\n".join(rows)
         return imgs, cap
 
     def build_krw():
         from tg_charts import line
+        if not live:
+            live.update(live_quotes())
         p = pts("usdkrw")
         if not p:
             return None, None
-        img = line("usdkrw", "원/달러 환율", f"원 · 최근 1년 · {p[-1][0]} 기준", [("원/달러", p)], digits=1, fill=True)
-        c = chg(p[-2][1], p[-1][1]) if len(p) > 1 else 0
         upd = stamp((load("docs/macro_dash.json") or {}).get("updated"))
-        return [img], (f"💱 <b>원/달러 환율</b> {p[-1][1]:,.1f}원 ({c:+.2f}%)\n"
-                       f"<i>{p[-1][0][5:].replace('-', '/')} 기준 · {upd} 갱신</i>")
+        t_k = when("usdkrw") or f"{p[-1][0]} 기준 · {upd} 갱신"
+        img = line("usdkrw", "원/달러 환율", ("원 · 최근 1년 ·", f"{t_k} 기준"), [("원/달러", p)], digits=1, fill=True)
+        c = chg(p[-2][1], p[-1][1]) if len(p) > 1 else 0
+        return [img], f"💱 <b>원/달러 환율</b> {p[-1][1]:,.1f}원 ({c:+.2f}%)\n<i>{t_k}</i>"
 
     gate = at(today, 8, 20)
     return [(f"macro:{today}", gate, build), (f"usdkrw:{today}", gate, build_krw)]
