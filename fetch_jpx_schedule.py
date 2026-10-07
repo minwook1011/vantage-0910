@@ -6,7 +6,7 @@
 
 - 각 종목은 '오늘 이후 가장 가까운 JPX 날짜'를 확정일(est:false, src:"jpx")로 쓴다. q(분기)·fy_end(결산기말)도 같이 남긴다.
 - JPX 목록에 없는 종목은 기존 값을 그대로 둔다(아직 회사가 날짜를 안 알렸거나 목록 대상 기간 밖).
-- 대상 종목: earnings_dates.json 에 이미 있는 종목(일본 소비재 + 주요 기업 명단). --all 이면 JPX 목록 전부.
+- 대상 종목: earnings_dates.json 에 이미 있는 종목 + 스크리너 명단(소비재·추가 소비재·주요 기업). --all 이면 JPX 목록 전부.
 - 엑셀을 하나도 못 받으면 파일을 건드리지 않는다. openpyxl 필요.
 """
 import argparse
@@ -83,8 +83,13 @@ def main():
         doc = {"dates": {}}
     dates = doc.setdefault("dates", {})
     n_set = n_new = 0
+    try:   # 스크리너에 새로 넣은 종목도(주간 발표일 수집 전이라 명단에 아직 없어도) 매일 공식 날짜를 확인한다(2026-10-07)
+        import fetch_jp_earnings_dates as ED
+        uni = set(ED.load_codes())
+    except Exception:
+        uni = set()
     for code, r in best.items():
-        if code not in dates and not a.all:
+        if code not in dates and code not in uni and not a.all:
             continue
         old = dates.get(code) or {}
         new = {"date": r["date"], "est": False, "src": "jpx", "q": r["q"], "fy_end": r["fy_end"]}

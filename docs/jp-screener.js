@@ -26,7 +26,7 @@ const UNI = {
 };
 let universe = "con", uniLoading = false, _majPromise = null;
 const isMaj = () => universe==="maj";
-const KPI_COLS = ["STORE","PSU","FOOD","FLR"];
+const KPI_COLS = ["STORE","PSU"];   // 원가율·FL비율 버튼은 뺐다(2026-10-07 사용자) — 가게 상세의 비용률 표에는 그대로 있다
 function swapInPlace(dst, src){ dst.length=0; for(const x of src) dst.push(x); }
 function loadMajor(){
   if(UNI.maj.raw) return Promise.resolve();
@@ -222,7 +222,7 @@ function renderColsel(){
   else {
     el.hidden=false;
     el.innerHTML=`<span class="cslabel">외식 지표</span><div class="csgrp">${KPI_COLS.map(finBtn).join("")}</div>`
-      +`<span class="cslabel" style="margin-left:4px">월별 펼치기</span><div class="csgrp kpi">${MTX_ORDER.map(mtxBtn).join("")}</div>`;
+      +`<span class="cslabel cs2">월별 펼치기</span><div class="csgrp kpi">${MTX_ORDER.map(mtxBtn).join("")}</div>`;
   }
   el.querySelectorAll("button[data-col]").forEach(b=>b.onclick=()=>toggleCol(b.dataset.col));
   el.querySelectorAll("button[data-mtx]").forEach(b=>b.onclick=()=>setMatrix(b.dataset.mtx));
@@ -1472,6 +1472,7 @@ function renderHeader(){
 }
 function resetForUniverse(){
   state.cat="전체"; state.matrix=null; state.matrixMon=null; state.onlych=0;
+  state.cols=state.cols.filter(k=>k!=="FOOD"&&k!=="FLR");
   if(isMaj()) state.cols=state.cols.filter(k=>!KPI_COLS.includes(k));
   if(!state.cols.length) state.cols=["REVG","PY","PYTD","PER","ROE","OPM","EARN"];
   state.cols.sort((a,b)=>FIN_ORDER.indexOf(a)-FIN_ORDER.indexOf(b));
