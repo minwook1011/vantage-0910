@@ -444,7 +444,7 @@ def main():
     st = {"sent": set(raw.get("sent") or []), "msg": dict(raw.get("msg") or {}), "topics": dict(raw.get("topics") or {})}
     global _ST
     _ST = st
-    first = not raw
+    first = not raw.get("seeded")      # 발표 후 알림을 아직 한 번도 안 돌렸으면(시험·일정 발송과 무관)
     try:
         if "--test" in a:   # 방을 만들고 방마다 시험 글 하나
             for k, msg in (("sched", "🗓 실적 일정 방 — 토요일 05시 다음 주 일정, 평일 07:30 오늘 발표 사진이 여기로 옵니다."),
@@ -454,7 +454,7 @@ def main():
             print("시험 글 보냄")
             return
         if "--pending" in a:
-            n = pending(st) if raw else 1      # 처음이면 한 번 돌려 기록(seed)을 만든다
+            n = pending(st) if raw.get("seeded") else 1      # 처음이면 한 번 돌려 기록(seed)을 만든다
             print(f"pending={n}")
             if os.environ.get("GITHUB_OUTPUT"):
                 open(os.environ["GITHUB_OUTPUT"], "a").write(f"pending={n}\n")
@@ -466,11 +466,12 @@ def main():
         else:
             # 처음 켤 때는 지금 조건에 맞는 것들을 '보낸 것'으로만 기록(옛 알림이 쏟아지지 않게)
             alerts(st, seed=("--seed" in a) or (first and not DRY))
+            st["seeded"] = True
     finally:
         if not DRY:
             # 기록은 최근 것만(보낸 키 3000개 · 답글용 메시지 번호 400개)
-            new = {"sent": sorted(st["sent"])[-3000:], "msg": dict(list(st["msg"].items())[-400:]), "topics": st["topics"]}
-            if new != {"sent": raw.get("sent") or [], "msg": raw.get("msg") or {}, "topics": raw.get("topics") or {}}:
+            new = {"sent": sorted(st["sent"])[-3000:], "msg": dict(list(st["msg"].items())[-400:]), "topics": st["topics"], "seeded": bool(st.get("seeded") or raw.get("seeded"))}
+            if new != {"sent": raw.get("sent") or [], "msg": raw.get("msg") or {}, "topics": raw.get("topics") or {}, "seeded": bool(raw.get("seeded"))}:
                 os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
                 json.dump(new, open(STATE_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 
