@@ -47,6 +47,7 @@
   function origBtn(N) {   // 상단 버튼: 아래 '원문 정리 (한글)'을 펼치고 그 자리로 이동
     return N && N.orig_md ? '<a class="btn" href="#orig" onclick="var r=this.closest(\'.jr\')||document,d=r.querySelector(\'details.orig\')||document.querySelector(\'details.orig\');if(d){d.open=true;d.scrollIntoView({behavior:\'smooth\',block:\'start\'});}return false;">🇰🇷 원문 정리 <small>한글</small></a>' : "";
   }
+  function rng(l) { return String(l || "").replace(/^(\d{2})\.(\d{2})-(\d{2})$/, "$1.$2~$3"); }   // 26.06-08 → 26.06~08 (2026-10-07 사용자: 6.8처럼 보임)
   function md(t) {
     if (!t) return "";
     var out = [], list = null;
@@ -85,7 +86,7 @@
   function table(qs) {
     var cols = qs.slice(-5), last = cols.length - 1;
     function head() {
-      return "<thead><tr><th></th>" + cols.map(function (q, i) { return '<th class="' + (i === last ? "cur" : "") + '">' + esc(q.cq) + "<small>" + esc(q.label) + "</small></th>"; }).join("") + "</tr></thead>";
+      return "<thead><tr><th></th>" + cols.map(function (q, i) { return '<th class="' + (i === last ? "cur" : "") + '">' + esc(q.cq) + "<small>" + esc(rng(q.label)) + "</small></th>"; }).join("") + "</tr></thead>";
     }
     function row(label, fn, kind) {
       return '<tr class="' + kind + '"><td>' + label + "</td>" + cols.map(function (q, i) { var r = fn(q); return '<td class="' + (i === last ? "cur " : "") + (r[1] || "") + '">' + r[0] + "</td>"; }).join("") + "</tr>";
@@ -255,14 +256,14 @@
       : '<div class="kicker"><a href="jp-screener.html' + ((R.u || []).indexOf("cons") < 0 ? "?u=major" : "") + '">일본 기업 스크리너</a> · <a href="jp-report.html">실적 리포트</a> · ' + (R.u || []).map(function (u) { return UL[u]; }).join("·") + "</div>";
     var tmS = r.time ? " " + esc(IS_US ? ({ pre: "장 전", after: "장 마감 후", na: "" }[r.time] || "") : r.time) : "";
     var html = embed
-      ? '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + tmS + "</b></div>" +
+      ? '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(rng(cur.label)) + ") · 발표 <b>" + esc(R.date) + tmS + "</b></div>" +
         '<div class="acts">' + mainBtn(tan) + origBtn(N) +
         (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") +
         '<a class="btn" href="' + M.page + '?id=' + encodeURIComponent(R.rid) + '" target="_blank" rel="noopener">↗ 리포트 페이지(공유용)</a></div>'
       :
       kick +
       "<h1>" + esc(R.name || R.code) + '<span class="code">' + esc(R.code) + "</span></h1>" +
-      '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(cur.label || "") + ") · 발표 <b>" + esc(R.date) + tmS + "</b>" + (R.cat ? " · " + esc(R.cat) : "") + (R.mcap ? " · 시총 " + Math.round(R.mcap).toLocaleString() + U : "") + "</div>" +
+      '<div class="sub"><b>' + esc(fyLabel(R.fy, R.period)) + "</b> · " + esc(cur.cq || "") + " (" + esc(rng(cur.label)) + ") · 발표 <b>" + esc(R.date) + tmS + "</b>" + (R.cat ? " · " + esc(R.cat) : "") + (R.mcap ? " · 시총 " + Math.round(R.mcap).toLocaleString() + U : "") + "</div>" +
       '<div class="acts">' + mainBtn(tan) + origBtn(N) +
       (r.url ? '<a class="btn" href="' + esc(r.url) + '" target="_blank" rel="noopener">📰 카부탄 속보</a>' : "") + ext +
       '<button class="btn" id="copy">🔗 링크 복사</button></div>';
