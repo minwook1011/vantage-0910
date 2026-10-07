@@ -244,7 +244,7 @@ def macro():
             imgs.append(gauge("fg", float(fg.get("score") or 0), fg.get("rating") or "",
                               prev=[("전일", fg.get("previous_close")), ("1주 전", fg.get("previous_1_week")),
                                     ("1달 전", fg.get("previous_1_month")), ("1년 전", fg.get("previous_1_year"))],
-                              sub=f"0 = 극도 공포 · 100 = 극도 탐욕 · {fg.get('updated_kst', '')} 기준"))
+                              sub=f"CNN Fear & Greed · {fg.get('updated_kst', '')}"))
             rows.append(f"😨 공포·탐욕 <b>{fg.get('score'):.0f} {esc(fg.get('rating'))}</b> (전일 {fg.get('previous_close')} · 1주 전 {fg.get('previous_1_week')})")
         ys = [(lab, pts(k)) for lab, k in (("2년", "y2"), ("10년", "y10"), ("30년", "y30"))]
         if all(p for _, p in ys):

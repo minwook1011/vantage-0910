@@ -120,69 +120,77 @@ def bars(name, title, sub, pts, digits=1, unit=""):
     return _save(fig, name)
 
 
-def gauge(name, score, rating, prev=None, title="CNN 공포·탐욕 지수", sub=""):
-    """반원 계기판(바늘) — 0 극도 공포 ~ 100 극도 탐욕. prev = [(라벨, 값), ...] 아래 비교 칸"""
+def gauge(name, score, rating, prev=None, title="공포·탐욕 지수", sub=""):
+    """반원 계기판 — 0 극도 공포 ~ 100 극도 탐욕. 연속 그라데이션 호 + 빛나는 표지 + 지난 값 표지.
+    prev = [(라벨, 값), ...] — 호 바깥에 작은 점으로, 아래 줄에 숫자로"""
     import numpy as np
-    from matplotlib.patches import Circle, FancyBboxPatch, Polygon, Wedge
-    segs = [(0, 25, "#e0475f", "극도 공포"), (25, 45, "#f08a4b", "공포"), (45, 55, "#7f8aa3", "중립"),
-            (55, 75, "#4cb782", "탐욕"), (75, 100, "#1f9d74", "극도 탐욕")]
+    from matplotlib.colors import LinearSegmentedColormap, to_rgb
+    from matplotlib.patches import Circle, Wedge
 
-    def seg_of(v):
-        return next(x for x in segs if x[0] <= v < x[1] or (x[1] == 100 and v >= 100))
+    stops = [(0.0, "#d33f5b"), (0.25, "#ee7d4a"), (0.5, "#9fabc2"), (0.75, "#4fb985"), (1.0, "#178f6b")]
+    cmap = LinearSegmentedColormap.from_list("fg", stops)
+    names = [(0, 25, "극도 공포"), (25, 45, "공포"), (45, 55, "중립"), (55, 75, "탐욕"), (75, 101, "극도 탐욕")]
+    col_of = lambda v: cmap(max(0, min(100, v)) / 100)
+    deep = lambda v: tuple(c * (0.62 if 40 <= v <= 60 else 0.8) for c in to_rgb(col_of(v)))   # 글자용으로 한 톤 진하게
+    ang = lambda v: np.radians(180 - v * 1.8)
+    pos = lambda v, r: (r * np.cos(ang(v)), r * np.sin(ang(v)))
 
-    ang = lambda v: 180 - v * 1.8
     fig = plt.figure(figsize=(8, 5.6), dpi=150)
-    fig.text(0.06, 0.935, title, fontsize=15, fontweight="bold", color=INK)
+    bg = fig.add_axes([0, 0, 1, 1], zorder=-10)
+    bg.imshow(np.linspace(0, 1, 256)[:, None], aspect="auto", extent=[0, 1, 0, 1],
+              cmap=LinearSegmentedColormap.from_list("bg", ["#eef2f9", "#fdfdfe"]), origin="lower")
+    bg.axis("off")
+    fig.text(0.07, 0.925, title, fontsize=16, fontweight="bold", color=INK)
     if sub:
-        fig.text(0.06, 0.893, sub, fontsize=9.5, color=MUTED)
-    ax = fig.add_axes([0.0, 0.2, 1.0, 0.66])
-    ax.set_xlim(-1.75, 1.75)
-    ax.set_ylim(-0.38, 1.18)
+        fig.text(0.93, 0.93, sub, fontsize=9.5, color=MUTED, ha="right")
+    ax = fig.add_axes([0.04, 0.2, 0.92, 0.68])
+    ax.set_xlim(-1.45, 1.45)
+    ax.set_ylim(-0.12, 1.32)
     ax.set_aspect("equal")
     ax.axis("off")
 
-    act = seg_of(score)
-    # 바탕 트랙 + 구간 색(현재 구간만 진하게·두껍게)
-    ax.add_patch(Wedge((0, 0), 1.0, 0, 180, width=0.2, facecolor="#f1f3f7", edgecolor="none"))
-    for lo, hi, col, lab in segs:
-        on = (lo, hi) == act[:2]
-        ax.add_patch(Wedge((0, 0), 1.0 if not on else 1.035, ang(hi) + 0.8, ang(lo) - 0.8,
-                           width=0.2 if not on else 0.27, facecolor=col, alpha=1 if on else 0.32, edgecolor="none"))
-        m = np.radians(ang((lo + hi) / 2))
-        ax.text(1.2 * np.cos(m), 1.2 * np.sin(m), lab, ha="center", va="center",
-                fontsize=10 if on else 9, color=col if on else MUTED, fontweight="bold" if on else "normal")
-    # 눈금
-    for v in range(0, 101, 5):
-        a = np.radians(ang(v))
-        r0 = 0.74 if v % 50 else 0.715
-        ax.plot([r0 * np.cos(a), 0.77 * np.cos(a)], [r0 * np.sin(a), 0.77 * np.sin(a)],
-                color="#c9ced8" if v % 50 else "#9aa3b2", lw=1 if v % 50 else 1.5, solid_capstyle="round")
-    for v in (0, 50, 100):
-        a = np.radians(ang(v))
-        ax.text(0.62 * np.cos(a), 0.62 * np.sin(a) + (0.03 if v == 50 else 0.0), str(v), ha="center", va="center",
-                fontsize=8, color=MUTED)
-    # 바늘(끝으로 갈수록 가늘게) + 축
-    a = np.radians(ang(max(0, min(100, score))))
-    tip = (0.86 * np.cos(a), 0.86 * np.sin(a))
-    nx, ny = -np.sin(a) * 0.035, np.cos(a) * 0.035
-    ax.add_patch(Polygon([(nx, ny), tip, (-nx, -ny)], closed=True,
-                         facecolor=INK, edgecolor="none", zorder=5))
-    ax.add_patch(Circle((0, 0), 0.075, facecolor=BG, edgecolor=INK, linewidth=3, zorder=6))
-    # 숫자 + 구간 알약
-    ax.text(0, -0.25, f"{score:.0f}", ha="center", va="center", fontsize=34, fontweight="bold", color=INK)
-    fig.patches.append(FancyBboxPatch((0.5 - 0.075, 0.155), 0.15, 0.06, boxstyle="round,pad=0,rounding_size=0.03",
-                                      transform=fig.transFigure, facecolor=act[2], alpha=0.16, edgecolor="none"))
-    fig.text(0.5, 0.185, rating, ha="center", va="center", fontsize=12.5, fontweight="bold", color=act[2])
-    # 비교 칸
+    # 은은한 번짐 → 본 호(연속 그라데이션)
+    n = 360
+    for k in range(n):
+        v0, v1 = 100 * k / n, 100 * (k + 1) / n + 0.15
+        c = col_of((v0 + v1) / 2)
+        ax.add_patch(Wedge((0, 0), 1.0, 180 - v1 * 1.8, 180 - v0 * 1.8, width=0.12, facecolor=c, edgecolor=c, lw=0.3))
+    ax.add_patch(Wedge((0, 0), 1.06, 0, 180, width=0.24, facecolor="#ffffff", alpha=0.55, lw=0, zorder=-1))
+    # 안쪽 점 눈금과 숫자
+    for v in np.arange(0, 100.1, 2.5):
+        x, y = pos(v, 0.8)
+        big = v % 25 == 0
+        ax.add_patch(Circle((x, y), 0.012 if big else 0.006, color="#8d96a8" if big else "#c5cbd6", lw=0))
+    for v in (0, 25, 50, 75, 100):
+        x, y = pos(v, 0.7)
+        ax.text(x, y, str(v), ha="center", va="center", fontsize=8, color="#9aa3b2")
+    # 구간 이름(호 바깥)
+    for lo, hi, lab in names:
+        on = lo <= score < hi
+        x, y = pos((lo + min(hi, 100)) / 2, 1.2)
+        ax.text(x, y, lab, ha="center", va="center", fontsize=10 if on else 8.5,
+                color=deep(score) if on else "#9aa3b2", fontweight="bold" if on else "normal")
+    # 바늘: 가는 선 + 호 위의 빛나는 표지
+    sv = max(0, min(100, score))
+    tx, ty = pos(sv, 0.94)
+    # 호 안쪽으로 짧은 바늘(표지 → 중심 방향)
+    ix, iy = pos(sv, 0.62)
+    ax.plot([ix, tx * 0.93], [iy, ty * 0.93], color=deep(sv), lw=2.2, solid_capstyle="round", zorder=5)
+    for r, a in ((0.11, 0.08), (0.085, 0.14), (0.065, 0.25)):
+        ax.add_patch(Circle((tx, ty), r, color=col_of(sv), alpha=a, lw=0, zorder=6))
+    ax.add_patch(Circle((tx, ty), 0.048, facecolor=BG, edgecolor=deep(sv), lw=2.6, zorder=7))
+    ax.add_patch(Circle((tx, ty), 0.02, color=deep(sv), zorder=8))
+    # 가운데 큰 숫자 + 구간
+    ax.text(0, 0.25, f"{score:.0f}", ha="center", va="center", fontsize=60, fontweight="bold", color=INK, zorder=3)
+    ax.text(0, 0.0, rating, ha="center", va="center", fontsize=13, fontweight="bold", color=deep(score), zorder=3)
+    # 아래 줄: 지난 값
     prev = [(l, v) for l, v in (prev or []) if v is not None]
     if prev:
-        w = 0.17
-        x0 = 0.5 - (w * len(prev) + 0.02 * (len(prev) - 1)) / 2
+        w = 0.8 / len(prev)
         for i, (lab, v) in enumerate(prev):
-            x = x0 + i * (w + 0.02)
-            fig.patches.append(FancyBboxPatch((x, 0.025), w, 0.095, boxstyle="round,pad=0,rounding_size=0.015",
-                                              transform=fig.transFigure, facecolor="#f5f7fa", edgecolor="#e6ebf2"))
-            fig.text(x + w / 2, 0.095, lab, ha="center", va="center", fontsize=8.5, color=MUTED)
-            c = seg_of(float(v))[2]
-            fig.text(x + w / 2, 0.05, f"{float(v):.0f}", ha="center", va="center", fontsize=12, fontweight="bold", color=c)
+            cx = 0.1 + w * (i + 0.5)
+            fig.text(cx, 0.135, lab, ha="center", va="center", fontsize=9, color=MUTED)
+            fig.text(cx, 0.08, f"{float(v):.0f}", ha="center", va="center", fontsize=15, fontweight="bold", color=deep(float(v)))
+            if i:
+                fig.add_artist(plt.Line2D([0.1 + w * i] * 2, [0.06, 0.155], transform=fig.transFigure, color="#dde2ea", lw=1))
     return _save(fig, name)
