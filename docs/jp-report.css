@@ -210,3 +210,28 @@
 .rb.sc.surp{background:rgba(214,58,48,.12);color:#c0352b;border-color:rgba(214,58,48,.4)}
 .rb.sc.shock{background:rgba(31,111,178,.12);color:#1f5f9e;border-color:rgba(31,111,178,.4)}
 .rb.sc.inl{background:#eef1f5;color:#4a5568}
+
+/* 미국 기업 전체 목록(캘린더 아래) */
+.uco{margin:18px 0 22px;padding:16px 18px;border:1px solid var(--border);border-radius:12px;background:var(--card,#fff)}
+.uco .uco-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.uco .uco-h h3{margin:0;font-size:15px}
+.uco .uco-ctl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.uco .uco-seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.uco .uco-seg button{font:inherit;font-size:12px;font-weight:600;border:0;background:var(--card,#fff);color:var(--muted);padding:6px 11px;cursor:pointer}
+.uco .uco-seg button[aria-pressed="true"]{background:#2f6fe4;color:#fff}
+.uco #uco-q{font:inherit;font-size:12.5px;border:1px solid var(--border);border-radius:8px;padding:6px 10px;min-width:180px;background:#fff;color:var(--text)}
+.uco .uco-tbl{display:flex;flex-direction:column}
+.uco .uco-row{display:grid;grid-template-columns:78px minmax(0,1.6fr) minmax(0,1.3fr) 110px minmax(0,1.3fr) minmax(0,1fr);gap:10px;align-items:center;padding:7px 4px;border-bottom:1px solid var(--border);font-size:13px}
+.uco .uco-row.head{font-size:11.5px;font-weight:700;color:var(--muted);border-bottom:1px solid var(--border-strong,#c9d3e1)}
+.uco .uco-row .tk{font-family:var(--mono);font-weight:700;color:#2b52ab}
+.uco .uco-row .tk .st{font-style:normal;color:var(--fc,#e0a020);margin-right:3px}
+.uco .uco-row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.uco .uco-row .cat{color:var(--muted);font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.uco .uco-row .num{text-align:right;font-family:var(--mono)}
+.uco .uco-row small{font-family:var(--mono);color:var(--muted)}
+.uco .uco-row small.soon{color:#c0352b;font-weight:700}
+.uco .uco-row .na{color:var(--muted)}
+.uco .uco-row a{color:inherit;text-decoration:none}
+.uco .uco-row a:hover{text-decoration:underline}
+.uco .btn.more{margin:12px auto 0;display:block}
+@media (max-width:720px){.uco .uco-row{grid-template-columns:64px minmax(0,1fr) minmax(0,1.2fr)}.uco .hide-m{display:none}}

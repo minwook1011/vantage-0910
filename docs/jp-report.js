@@ -346,7 +346,8 @@
         '<div class="sub">데이터 허브 미국·해외 기업의 실적 발표마다 <b>분기 표 · 핵심 수치 · 그래프 · SEC 보도자료 원문</b>을 한 장에 모읍니다. 발표 예정일은 나스닥 거래소 캘린더(하루 2번 갱신), 실제 발표는 SEC 8-K(실적 공시)로 확인해 바로 만들고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" +
         '<div class="addreq" id="addreq"><div class="ar-h"><b>추가할 종목</b><span>매일 0시에 확인해 미국 기업 명단에 넣습니다</span></div>' +
         '<div class="ar-in"><input type="text" id="ar-q" placeholder="티커나 이름 — 예: PLTR, 코인베이스" maxlength="200"><button id="ar-go">보내기</button></div><div class="ar-list" id="ar-list"></div></div>' +
-        '<section class="cal" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>'
+        '<section class="cal" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>' +
+        '<section class="uco" id="uco"><div class="empty">기업 목록 불러오는 중…</div></section>'
       : '<div class="kicker"><a href="jp-screener.html">일본 기업 스크리너</a> · 실적 리포트</div><h1>일본 실적 리포트</h1>' +
         '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 발표 예정일은 도쿄증권거래소(JPX) 공식 목록, 실적 시즌 평일에는 하루 6번 수집하고 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>") +
       '<div class="ctl">' + (IS_US ? "" : '<div class="seg" id="u"><button data-v="all">전체</button><button data-v="cons">소비재</button><button data-v="major">주요 기업</button></div>') +
@@ -368,7 +369,7 @@
       }).join("") : '<div class="empty">조건에 맞는 리포트가 없습니다.</div>';
       document.getElementById("more").hidden = rows.length <= st.n;
     }
-    if (IS_US) drawCal(IX);
+    if (IS_US) { drawCal(IX); drawCos(IX); }
     if (document.getElementById("u")) document.getElementById("u").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.u = b.dataset.v; st.n = 60; draw(); } };
     document.getElementById("nt").onclick = function (e) { var b = e.target.closest("button"); if (b) { st.note = b.dataset.v === "1"; st.n = 60; draw(); } };
     var tq; document.getElementById("q").oninput = function (e) { clearTimeout(tq); tq = setTimeout(function () { st.q = e.target.value.trim(); st.n = 60; draw(); }, 150); };
@@ -474,6 +475,56 @@
           (x.added && x.added.length ? " → " + x.added.map(esc).join(", ") : "") + (x.failed && x.failed.length ? " · 못 찾음 " + x.failed.map(esc).join(", ") : "") + "</span></div>"; });
       list.innerHTML = pend.concat(fin).join("") || '<div class="ar-tip">아직 요청이 없습니다.</div>';
     });
+  }
+  /* 미국 기업 전체 목록(2026-10-08 사용자: 일본 스크리너처럼 캘린더 아래에 기업 전부) — data/us/earnings_dates.json
+     S&P500 전 종목 + 데이터 허브 명단 + AI 관련 기업. 다음 발표일 순(기본) · 시총 순 · 이름 순, 전체/AI 관련/관심 기업, 검색 */
+  function drawCos(IX) {
+    var box = document.getElementById("uco"); if (!box) return;
+    getJSON("data/us/earnings_dates.json").then(function (D) {
+      var rep = {}; (IX && IX.reports || []).forEach(function (r) { if (!rep[r.c] || r.d > rep[r.c].d) rep[r.c] = r; });
+      var today = new Date(Date.now() - 4 * 3600e3).toISOString().slice(0, 10);
+      var all = Object.keys(D.dates || {}).map(function (t) { var e = D.dates[t]; return { t: t, e: e, n: e.name || t, r: rep[t] }; });
+      var st = { f: "all", s: "next", q: "", n: 80 };
+      try { var sv = JSON.parse(localStorage.getItem("us-cos-view") || "null"); if (sv) { st.f = sv.f || "all"; st.s = sv.s || "next"; } } catch (e) {}
+      var TM = { pre: "장 전", after: "장 후" };
+      function dday(d) { var n = Math.round((Date.parse(d) - Date.parse(today)) / 864e5); return n === 0 ? "오늘" : n > 0 ? "D-" + n : "D+" + (-n); }
+      function draw() {
+        try { localStorage.setItem("us-cos-view", JSON.stringify({ f: st.f, s: st.s })); } catch (e) {}
+        var G = loadGroups(), W = []; G.forEach(function (x) { x.c.forEach(function (t) { if (W.indexOf(t) < 0) W.push(t); }); });
+        var q = st.q.toLowerCase();
+        var rows = all.filter(function (x) {
+          if (st.f === "ai" && !x.e.ai) return false;
+          if (st.f === "fav" && W.indexOf(x.t) < 0) return false;
+          return !q || x.t.toLowerCase().indexOf(q) >= 0 || String(x.n).toLowerCase().indexOf(q) >= 0 || String(x.e.ai || "").indexOf(st.q) >= 0;
+        });
+        var nd = function (x) { var d = (x.e.next || {}).date; return d && d >= today ? d : "9999"; };
+        rows.sort(st.s === "mcap" ? function (a, b) { return (b.e.mcap || 0) - (a.e.mcap || 0); }
+          : st.s === "name" ? function (a, b) { return String(a.n).localeCompare(String(b.n)); }
+          : function (a, b) { return nd(a) < nd(b) ? -1 : nd(a) > nd(b) ? 1 : (b.e.mcap || 0) - (a.e.mcap || 0); });
+        var nAi = all.filter(function (x) { return x.e.ai; }).length;
+        var seg = function (k, v, l) { return '<button data-' + k + '="' + v + '"' + (st[k] === v ? ' aria-pressed="true"' : "") + ">" + l + "</button>"; };
+        var html = '<div class="uco-h"><h3>미국 기업 실적 발표일</h3><span class="sub">S&amp;P500 전 종목 · AI 관련 기업 · 데이터 허브 명단 · ' + all.length + "곳</span></div>" +
+          '<div class="uco-ctl"><div class="uco-seg">' + seg("f", "all", "전체 " + all.length) + seg("f", "ai", "AI 관련 " + nAi) + seg("f", "fav", "★ 관심 " + W.length) + "</div>" +
+          '<div class="uco-seg">' + seg("s", "next", "발표일 순") + seg("s", "mcap", "시총 순") + seg("s", "name", "이름 순") + "</div>" +
+          '<input type="search" id="uco-q" placeholder="티커 · 기업명 · 분류" value="' + esc(st.q) + '"><span class="sub">' + rows.length + "곳</span></div>" +
+          '<div class="uco-tbl"><div class="uco-row head"><span>티커</span><span>기업</span><span class="hide-m">분류</span><span class="num hide-m">시총(억 달러)</span><span>다음 발표</span><span class="hide-m">지난 발표</span></div>' +
+          rows.slice(0, st.n).map(function (x) {
+            var nx = x.e.next || {}, ls = x.e.last || {}, r = x.r, fc = tCol(G, x.t);
+            var nxt = nx.date && nx.date >= today ? '<b>' + nx.date.slice(5).replace("-", "/") + '</b> <small class="' + (Date.parse(nx.date) - Date.parse(today) <= 7 * 864e5 ? "soon" : "") + '">' + dday(nx.date) + "</small>" + (TM[nx.time] ? ' <i class="ce-tm">' + TM[nx.time] + "</i>" : "") + (nx.src === "yahoo" ? ' <span class="cf">예상</span>' : x.e.check === "mismatch" ? ' <span class="cf warn">날짜 확인</span>' : "") : '<span class="na">미정</span>';
+            var last = r ? '<a href="' + M.page + "?id=" + encodeURIComponent(r.rid) + '">' + r.d.slice(5).replace("-", "/") + (r.d1 != null ? ' <em class="' + cls(r.d1) + '">' + pctS(r.d1) + "</em>" : "") + " ›</a>" : (ls.date ? ls.date.slice(5).replace("-", "/") : '<span class="na">—</span>');
+            return '<div class="uco-row"' + (fc ? ' style="--fc:' + fc + '"' : "") + '><span class="tk">' + (fc ? '<i class="st">★</i>' : "") + esc(x.t) + '</span><span class="nm">' + esc(x.n) + '</span><span class="hide-m cat">' + esc(x.e.ai || x.e.sector || "") + '</span><span class="num hide-m">' + (x.e.mcap ? Math.round(x.e.mcap).toLocaleString() : "—") + "</span><span>" + nxt + '</span><span class="hide-m">' + last + "</span></div>";
+          }).join("") + "</div>" +
+          (rows.length > st.n ? '<button class="btn more" id="uco-more">' + (rows.length - st.n) + "곳 더 보기</button>" : "") +
+          '<div class="cw-note">발표일은 나스닥 거래소 캘린더(야후와 교차 확인), 날짜는 미국 동부 기준입니다. 시총은 데이터 허브 명단에 있는 기업만 나옵니다. 관심 기업은 위 캘린더 카드를 눌러 그룹으로 고릅니다.</div>';
+        box.innerHTML = html;
+        box.querySelectorAll("[data-f]").forEach(function (b) { b.onclick = function () { st.f = b.dataset.f; st.n = 80; draw(); }; });
+        box.querySelectorAll("[data-s]").forEach(function (b) { b.onclick = function () { st.s = b.dataset.s; draw(); }; });
+        var qi = box.querySelector("#uco-q"), tm;
+        qi.oninput = function () { clearTimeout(tm); tm = setTimeout(function () { st.q = qi.value.trim(); st.n = 80; draw(); var q2 = box.querySelector("#uco-q"); q2.focus(); q2.setSelectionRange(q2.value.length, q2.value.length); }, 200); };
+        var mb = box.querySelector("#uco-more"); if (mb) mb.onclick = function () { st.n += 120; draw(); };
+      }
+      draw();
+    }).catch(function () { box.innerHTML = '<div class="empty">기업 목록을 불러오지 못했습니다.</div>'; });
   }
   function drawCal(IX) {
     drawAddReq();
