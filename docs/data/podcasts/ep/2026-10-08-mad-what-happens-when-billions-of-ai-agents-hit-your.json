@@ -1,0 +1,219 @@
+{
+ "id": "2026-10-08-mad-what-happens-when-billions-of-ai-agents-hit-your",
+ "title_ko": "Andy Pavlo — 수십억 AI 에이전트가 데이터베이스를 두드리면 무슨 일이 생기나",
+ "guest": {
+  "name": "앤디 파블로(Andy Pavlo)",
+  "role": "카네기멜런대 데이터베이스 교수 · 2026년 8월 ClickHouse 데이터베이스 연구 부사장으로 합류해 ClickHouse Labs 설립 — 자동 튜닝 스타트업 OtterTune 공동창업자"
+ },
+ "company": {
+  "name": "ClickHouse",
+  "sector": "데이터베이스 · 실시간 분석 · AI 관찰 도구",
+  "what": "열(컬럼) 단위로 저장하는 오픈소스 실시간 분석 데이터베이스 회사(비상장). 2026년 1월 기업가치 150억 달러에 4억 달러 유치, 같은 달 LLM 관찰 도구 Langfuse 인수, Postgres 관리형 서비스도 운영"
+ },
+ "topic": "AI 에이전트가 데이터베이스의 최대 사용자가 될 때 바뀌는 것과 안 바뀌는 것 — 트래픽·보안·자동 튜닝·데이터베이스 시장 지형",
+ "headline": "에이전트는 데이터베이스 사용량을 10~100배 늘릴 수 있지만, 필요한 건 새 데이터베이스가 아니라 이미 있는 안전장치와 Postgres다",
+ "tldr": [
+  "에이전트는 컴퓨터·인터넷·스마트폰에 이은 네 번째 데이터베이스 트래픽 급증기 — 24시간 돌아 질의량이 10~100배 늘 수 있다고 봄",
+  "필요한 건 새 기술이 아니라 권한·격리 같은 기존 안전장치. 사고 대부분은 같은 비밀번호를 에이전트에 넘기는 게으름에서 나온다",
+  "벡터 DB는 이제 모든 데이터베이스의 기본 기능, 그래프 DB는 계속 틈새 — 에이전트 앱의 기본값은 Postgres",
+  "자연어→SQL은 한 대형 은행에서 정확도 약 60%가 수년간의 의미 계층 투자로 약 95%까지 올라감",
+  "오픈소스 데이터베이스 중 60% 이상이 이미 AI 에이전트가 쓴 코드 커밋을 받고 있다(파블로의 dbdb.io 집계)",
+  "분석 DB가 먼저 자리 잡고 거래용 Postgres를 붙이는 순서가 맞다고 봄 — Databricks의 Neon, Snowflake의 Crunchy Data, ClickHouse의 Postgres 서비스"
+ ],
+ "summary_md": "### 1. 벡터 DB 붐 이후, 에이전트의 시대\n- 진행자 Matt Turck는 2년 전 \"AI와 데이터베이스\"가 벡터 검색과 검색 증강(RAG)을 뜻했는데, 많은 사람의 이해가 거기서 멈췄다고 문제를 던진다.\n- 파블로는 벡터 데이터베이스 상당수가 2016년 무렵부터 있었고, 챗봇이 뜨면서 \"의미로 비슷한 것 찾기\"라는 쓸모가 갑자기 분명해졌을 뿐이라고 설명한다. 정확한 단어 일치가 아니라 뜻이 가까운 것을 찾는 **근사 최근접 탐색**이 핵심이다.\n- 하지만 해자는 작았다. 결국 색인 하나라서 1년 안에 거의 모든 데이터베이스 회사가 자체 벡터 색인을 붙였고, 지금은 **기본 기능(테이블 스테이크)**이 됐다는 평가다.\n\n### 2. 에이전트가 데이터베이스를 만들고, 복제하고, 지운다\n- Databricks가 Neon을 사들일 때 나온 \"에이전트가 만든 데이터베이스 비중 30%→80%\" 이야기를 진행자가 꺼낸다. 파블로는 이 수치의 상당 부분이 새 데이터베이스라기보다 **브랜치(branching)**라고 정리한다.\n- 브랜치는 운영 중인 실제 데이터베이스를 복사 없이 순간 스냅숏으로 떼어 내 별개 데이터베이스처럼 쓰는 기능이다. 예전엔 비싸서 작은 견본 데이터베이스로 시험했는데, 이제 코딩 에이전트가 새 기능을 짤 때 실제 데이터 사본 위에서 시험하고 문제없으면 운영 쪽에 반영한다. 깃허브 자동 시험에서도 많이 쓰인다.\n\n[[chart:1]]\n\n- 문제는 지우기다. 진행자는 Replit 에이전트가 사용자의 운영 데이터베이스를 지운 사건을 언급하고, 파블로는 \"매달 그런 이야기가 나온다\"며 이것이 데이터베이스 역사를 모르는 사람들에게만 무법지대라고 꼬집는다.\n\n### 3. 필요한 건 새 기술이 아니라 안전장치\n- 파블로의 비유는 걸음마 아기다. 계단에 난간을 달 듯 에이전트에도 **권한과 통제**를 걸어야 한다. 사람이 매번 \"승인\"을 누르면 수백 개 에이전트를 동시에 돌릴 수 없으니, 처음부터 운영 테이블을 지우거나 읽으면 안 되는 데이터를 읽지 못하게 막아야 한다는 것이다.\n- 흔한 사고 원인은 회사 전체가 같은 비밀번호를 쓰고 그걸 에이전트에도 넘기는 습관이다.\n- 에이전트가 사람과 근본적으로 다르게 행동한다는 증거는 아직 못 봤다고 한다. 결국 데이터베이스가 노출하는 기능(API)은 정해져 있으니 사람에게 걸던 제약을 그대로 걸면 된다. 이 점에서 Oracle 같은 오래된 상용 데이터베이스가 이미 이런 보호 장치를 다 갖추고 있다고 짚는다.\n\n### 4. 트래픽은 몇 배 늘까 — 네 번째 시대\n- 파블로는 데이터베이스 사용량 급증기를 ① 1970~80년대 업무 전산화 ② 1990~2000년대 인터넷 ③ 모바일로 나누고, 에이전트를 **네 번째 시대**로 본다.\n- 사람은 깨어 있을 때 한 번에 한 가지만 하지만, 한 사람이 수백 개 에이전트를 24시간 돌리면 질의량이 **10~100배** 늘 수 있다는 추정이다. 사물인터넷처럼 쓰기만 하거나 모바일 앱처럼 읽기 위주가 아니라 읽기·쓰기가 섞인 복잡한 트래픽이 될 수 있다.\n- 업계 지인과 ClickHouse에서도 비슷한 증가를 보고 있다고 하지만, 에이전트의 질의가 사람보다 더 복잡한지 오히려 얕은지는 아직 모른다고 선을 긋는다. 에이전트가 쏟아내는 기록(텔레메트리)을 저장·분석하는 것도 새 과제다.\n\n### 5. 에이전트 기억 장치 — 파일이냐 데이터베이스냐\n- \"파일 시스템도 결국 데이터베이스\"라는 게 그의 답이다. 에이전트에 넣는 맥락은 어차피 사람이 읽는 글이라 출처가 JSON 파일이든 데이터베이스든 상관없지만, 여러 에이전트가 같은 상태를 공유하고 안전하게 쓰려면 SQLite 같은 데이터베이스가 주는 보장이 낫다는 것이다.\n- 모델에게 새 앱을 만들라고 하면 거의 항상 **Postgres**를 추천한다. 학습 데이터 때문이다. 두 데이터베이스 회사가 \"에이전트가 우리 걸 먼저 추천하게 하는 법\"을 물어 왔는데, 그건 연구가 아니라 검색 최적화(SEO) 같은 문제라며 모델 회사에 가라고 했다고 한다.\n- 그래프 데이터베이스에는 회의적이다. 관계형 데이터베이스가 서버 안에서 그래프 탐색을 할 수 있으면 전용 그래프 DB가 더 빠르다는 벤치마크를 본 적이 없고, 2023년 SQL 표준에 그래프 질의가 들어갔다는 점을 근거로 든다.\n\n### 6. MCP와 자연어→SQL\n- 자연어를 SQL로 바꾸려는 시도는 1970년대부터 있었고 대형 언어모델 전까지는 성공하지 못했다. 학계 벤치마크는 모델이 이미 답을 외운 데이터라 믿기 어렵다고 본다.\n- 한 대형 은행 사례: 기성 도구로 시작했을 때 정답률이 **약 60%**였는데, 수년간 수백만 달러를 들여 의미 계층(시맨틱 레이어)을 쌓은 뒤 약 95%까지 올랐다. 돈 많은 은행이니 가능했지, 아무 도구나 내려받아서는 그 수준이 안 나온다는 단서를 단다.\n\n[[chart:2]]\n\n- MCP(모델 맥락 프로토콜)는 사실상 표준화된 웹 요청 방식이라 사라지지 않는다고 본다. 사람이 읽는 글을 주고받아 비효율적이긴 하지만 충분히 쓸 만하고, 보안 판단(누가, 무엇을, 해도 되는가)은 SQL로 들어오든 MCP로 들어오든 똑같다.\n\n### 7. AI가 데이터베이스를 만들고 운영한다\n- 카네기멜런 데이터베이스 수업 과제를 1년 전엔 에이전트가 다 못 했는데, Anthropic의 새 모델이 나온 뒤로는 거의 혼자 해낸다. 과제가 전부 오픈소스라 학습 데이터가 많기 때문이기도 하다.\n- 그가 운영하는 데이터베이스 목록 사이트 dbdb.io에서 매일 밤 오픈소스 데이터베이스 커밋을 확인해 보면 **60% 이상**이 Claude·Codex 같은 에이전트의 공동 서명이 붙은 커밋을 받고 있다.\n- \"데이터베이스는 처음 90%를 3년에, 나머지 10%를 7년에 만든다\"는 업계 격언을 소개하며, 이제는 토큰과 안내만 충분하면 데이터베이스 전체를 만들 수 있다고 본다.\n- 자동 튜닝: 그가 10년 전 연구하고 OtterTune으로 창업했던 분야다. 예전 기계학습 방식은 학습 데이터가 부족해 몇 시간씩 걸렸는데, 대형 언어모델은 문서·블로그를 다 학습해 15분 만에 **약 85%** 수준의 설정을 내놓는다. 클라우드 기본 설정 그대로 쓰는 고객이 놀랄 만큼 많았다는 경험도 덧붙인다.\n- 전통적 데이터베이스 관리자(DBA) 역할은 줄겠지만 데이터 모델링처럼 사업을 이해해야 하는 일은 남는다고 본다.\n\n### 8. 왜 ClickHouse Labs인가\n- 미국 대학 연구비 사정이 나빠졌고, 에이전트가 많은 일을 하는 시대에 박사과정 학생을 몇 명이나 둬야 하는지도 불분명해졌다는 게 이직 배경이다.\n- 다른 회사들은 엔지니어 자리를 제안했지만, ClickHouse는 실패할 수 있는 진짜 연구를 하라고 했다. 상장사가 아닌 스타트업이 연구소를 세우는 건 드물다고 강조한다. 연구 결과를 실제 고객 작업에 바로 시험·배포할 수 있다는 점이 끌렸다.\n- 2016년 ClickHouse가 처음 공개됐을 때 열 저장·벡터화 실행·압축을 다 갖춘 오픈소스 분석 엔진이 갑자기 나와 \"가짜인 줄 알았다\"는 일화도 있다. 지금은 그 구조가 업계 표준이 됐고, ClickHouse의 강점은 계속된 성능 개선과 쓰임새 확장이라고 본다. 고객 사례로는 **에이전트 텔레메트리 관찰**, 금융시장·사기 탐지처럼 빠르게 넣고 밀리초 단위로 묻는 일을 든다.\n\n### 9. 데이터베이스 시장 지형\n- 분석과 거래(OLTP) 통합: 분석 회사가 먼저 자리 잡고 Postgres를 붙이는 순서가 더 현명해 보인다고 한다(ClickHouse 편향을 스스로 인정). Databricks의 Lakebase처럼 데이터 한 벌을 두 엔진이 같이 읽는 방식도 소개한다. 통합 시스템이 그동안 실패한 이유는 기술보다 조직 — 각 팀이 자기 분야 최고 제품을 원하기 때문이다.\n- 벡터 DB: 확실히 잘되는 곳으로 **Turbopuffer**를 꼽는다. 살아남으려면 Postgres처럼 원본을 다 담는 범용 시스템이 되거나 Elasticsearch처럼 사본을 두는 보조 시스템이 돼야 한다고 본다.\n- 그래프 DB는 2030년까지 관계형 시장을 넘을 일은 없다고 공개 내기까지 걸어 둔 상태다.\n- GPU 데이터베이스: 1970년대 전용 하드웨어부터 늘 실패해 온 분야지만, 최근 **Nvidia**가 어려운 GPU 데이터베이스 회사들을 사들이며 밀고 있다. GPU가 가장 비싸고 구하기 어려운 하드웨어라 단기적으로 맞는지는 모르겠다고 본다. 마이크로소프트는 GPU 가속 분석을 내놨고, 다른 한 대형 회사는 경제성이 안 맞아 접었다고 한다.\n- 마무리: 업계가 정체돼 보이는 건 AI 속도와 비교해서일 뿐이고, 관계형 모델은 1+1=2처럼 바뀌지 않는다. 당분간 에너지는 Postgres에 모이고, 승부는 핵심 엔진보다 그 주변의 개발자 경험·데이터 수집 같은 \"주변 장치\"에서 갈린다고 정리한다.",
+ "insights_md": "### 투자 관점\n- 이 편의 핵심 주장은 **에이전트 = 데이터베이스 트래픽 증가**다. 새 종류의 데이터베이스가 필요하다는 게 아니라 같은 데이터베이스를 훨씬 많이 쓰게 된다는 이야기라, 수혜는 기존 강자 쪽으로 해석된다. **사용량 과금** 데이터 플랫폼이 직접 연결된다.\n- 미국 상장사 중 가장 가까운 곳은 Snowflake(SNOW)와 MongoDB(MDB)다. 둘 다 최근 분기 성장률이 다시 30%대로 올라왔다(외부 자료). 파블로가 말한 \"분석에서 출발해 Postgres를 붙이는\" 흐름의 상장사 쪽 대표는 Crunchy Data를 산 **Snowflake**다.\n- Oracle(ORCL)은 대화 내내 농담거리였지만, 파블로는 오래된 상용 데이터베이스가 이미 **권한·감사 장치**를 갖췄다고 인정한다. 에이전트 보안이 화두가 되면 오히려 유리할 수 있는 지점이다.\n- 관찰 도구: ClickHouse는 Langfuse·HyperDX를 사들여 에이전트 기록 분석으로 넓히고 있다. Datadog(DDOG) 같은 관찰 플랫폼과 겹치는 영역이다.\n- GPU 데이터베이스는 Nvidia(NVDA)의 GPU 수요를 넓히는 시도지만, 파블로 본인도 경제성을 확신하지 못한다. 기대보다 연구 단계로 보는 게 맞다.\n- 한국·일본 상장사와의 직접 연결 고리는 이 편에서 확인 못 함. 다만 파블로가 \"연산·메모리 장비 구하기가 어렵다\"고 말한 대목은 서버 메모리 수요 이야기와 맞닿아 있다.\n\n### 수치\n- 질의량 10~100배는 파블로의 **추정**이지 측정값이 아니다. 오픈소스 데이터베이스 60% 이상이 에이전트 커밋을 받는다는 것은 그의 dbdb.io 집계라 상대적으로 근거가 있다.\n\n### 반론·리스크\n- 파블로는 ClickHouse 직원이고 진행자 쪽 FirstMark는 ClickHouse 투자자다. 분석→거래 확장이 맞다는 판단에는 본인도 편향을 인정했다.\n- 에이전트 트래픽이 실제로 늘더라도 질의가 얕으면(테이블 한두 개 읽기) 매출 증가는 질의 수만큼 크지 않을 수 있다.\n\n### 체크포인트\n- Snowflake·MongoDB 분기 실적에서 에이전트·AI 관련 사용량 언급과 순매출유지율.\n- ClickHouse Labs의 첫 논문(에이전트 작업 부하가 사람과 다른지)과 ClickHouse 상장 여부.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크 (외부 자료)\n- 파블로의 합류: ClickHouse는 2026년 8월 3일 파블로를 데이터베이스 연구 부사장으로 영입하고 ClickHouse Labs를 세운다고 발표했다. 연구 범위는 ClickHouse와 PostgreSQL 양쪽이다. 대본의 \"두 달째\"라는 말과 맞는다. 그는 2013년부터 카네기멜런 데이터베이스 연구실을 이끌었고, 기계학습 자동 튜닝 회사 OtterTune을 공동 창업해 대표를 지냈다.\n- ClickHouse 자금·가치: 2026년 1월 Dragoneer가 이끈 시리즈 D에서 4억 달러를 받으며 기업가치 **150억 달러**를 인정받았다. 2025년 5월 시리즈 C 63.5억 달러의 **약 2.4배**다. 비상장 주식 거래 시장에서는 훨씬 높은 가격도 보이지만 공식 투자 라운드가 아니라 참고만 한다.\n\n[[chart:3]]\n\n- 매출: 회사는 2026년 5월 행사에서 연환산 매출 2.5억 달러를 넘었다고 밝혔고, 리서치 회사 Sacra는 2026년 8월 연간 반복매출을 3.5억 달러로 **추정**한다(2025년 말 1.6억 달러). 회사 발표가 아닌 추정치다.\n\n[[chart:4]]\n\n- Langfuse 인수: 대본의 \"LLM 관찰 회사 인수\"는 2026년 1월 16일 발표된 Langfuse다. 유료 고객 2,000곳 이상, 포천 500 중 63곳이 쓴다고 자문 로펌이 밝혔다. 그 전에 Postgres 변경 데이터 복제(PeerDB)와 인프라 관찰(HyperDX)도 샀다.\n\n### 2. 밸류체인과 관련 상장사\n- Postgres 쟁탈전: Databricks는 2025년 5월 Neon을 **약 10억 달러**에, Snowflake는 한 달 뒤 Crunchy Data를 약 2.5억 달러(보도 기준, 회사 미확인)에 샀다. 분석 플랫폼이 거래용 데이터베이스를 품는 흐름은 대본 속 파블로 주장과 같은 방향이다.\n\n[[chart:5]]\n\n- Neon 인수 당시 Databricks 최고경영자는 Neon에서 만들어지는 데이터베이스의 80%가 사람이 아니라 AI 에이전트가 만든 것이라고 말했다. 회사 주장이고 독립 검증은 확인 못 함.\n- 상장사 실적: Snowflake는 2026년 9월 발표한 분기에 제품 매출이 약 37% 늘어 **세 분기 연속** 성장이 빨라졌다(분석 기사 기준). MongoDB는 같은 시기 매출 7.72억 달러로 30% 늘었고 연간 전망을 올렸다. 데이터베이스 사용량 증가가 상장사 숫자로도 보이는 국면이다.\n- GPU 데이터베이스: Nvidia가 GPU 데이터베이스 **HEAVY.AI**를 2025년에 인수한 것은 여러 자료로 확인된다. 파블로가 자문했다는 Voltron Data가 Nvidia에 인수됐다는 공식 자료는 **확인 못 함**(대본 발언만 있음).\n- 한국·일본 상장사로 이어지는 직접 고리는 확인 못 함.\n\n### 3. 숫자의 맥락\n- 벡터 DB 생존자 Turbopuffer: Sacra는 2026년 3월 연환산 매출을 **1억 달러**로 추정하고, 고객으로 Anthropic·Cursor·Notion을 든다. 외부 투자는 아주 적다. 파블로가 \"확실히 잘되는 곳\"으로 꼽은 근거와 맞는다.\n- 그래프 DB: Neo4j는 연간 반복매출 2억 달러를 넘었다고 밝혔지만, 2026년 6월 비상장 거래 가격은 **약 11억 달러** 가치로 2021년 라운드(20억 달러 이상)보다 낮다. \"틈새 시장\"이라는 파블로 평가와 결이 같다.\n- SQL 그래프 질의: 대본에서 \"Postgres 19에 들어갈 예정이었는데 미뤄졌다\"고 한 기능은 실제로 2026년 9월 커밋 목록에서 되돌려졌다. 경로 탐색 같은 핵심 기능이 아직 부족했다는 설명이다.\n\n### 4. 반론과 리스크\n- 에이전트 사고는 실재한다: 2025년 7월 SaaStr 창업자 Jason Lemkin의 실험에서 Replit 에이전트가 \"변경하지 말라\"는 지시를 어기고 운영 데이터베이스를 지웠다. Replit은 개발·운영 데이터베이스 자동 분리와 백업 복구를 도입했다. 당시 Replit은 미리보기·시험·운영에 같은 데이터베이스를 쓰고 있었는데, 파블로가 말한 **격리 부재** 문제 그대로다.\n- 이해 상충: 파블로는 ClickHouse 직원, 진행자 회사는 ClickHouse 투자자다. \"분석이 먼저\"라는 주장은 ClickHouse·Databricks 전략을 정당화하는 쪽이다.\n- 트래픽≠매출: 10~100배는 추정이고, 에이전트 질의가 얕다면 컴퓨팅 사용량이 그만큼 늘지 않을 수 있다. 파블로도 이 부분은 모른다고 했다.\n- 가치 부담: ClickHouse 150억 달러는 Sacra 추정 반복매출 기준 **40배대**다. 성장이 꺾이면 조정 폭이 클 수 있다.\n\n### 5. 앞으로 볼 것\n- Snowflake·MongoDB 다음 분기(2026년 12월 초 발표)에서 성장 가속이 이어지는지, AI 에이전트 관련 사용량 언급이 늘어나는지.\n- ClickHouse Labs가 내놓을 에이전트 작업 부하 분석 — 에이전트 질의가 사람과 다른지에 대한 첫 데이터.\n- PostgreSQL 19 정식 출시와 SQL 그래프 질의의 다음 버전 재도입 여부.\n- Nvidia의 GPU 데이터베이스 가속(cuDF·Sirius 계열)이 클라우드 분석 서비스에 실제 상품으로 붙는지.",
+ "sources": [
+  {
+   "label": "MAD Podcast 유튜브 — 이 편 영상",
+   "url": "https://www.youtube.com/watch?v=74X0DJOVEc8"
+  },
+  {
+   "label": "BusinessWire — ClickHouse Labs 설립·파블로 영입 발표(2026-08-03)",
+   "url": "https://www.businesswire.com/news/home/20260803890510/en/"
+  },
+  {
+   "label": "BusinessWire — ClickHouse 4억 달러 시리즈 D(2026-01-16)",
+   "url": "https://businesswire.com/news/home/20260116008883/en/ClickHouse-Raises-$400M-Series-D-Led-by-Dragoneer-to-Accelerate-Expansion-Across-Analytics-and-AI-Infrastructure"
+  },
+  {
+   "label": "Bloomberg Government — ClickHouse 기업가치 150억 달러",
+   "url": "https://news.bgov.com/private-equity/clickhouse-lands-15-billion-valuation-in-ai-database-race"
+  },
+  {
+   "label": "CB Insights — ClickHouse 2025년 5월 기업가치 63.5억 달러",
+   "url": "https://www.cbinsights.com/company/clickhouse/financials"
+  },
+  {
+   "label": "Sacra — ClickHouse 반복매출 추정(1.6억→3.5억 달러)",
+   "url": "https://sacra.com/c/clickhouse/"
+  },
+  {
+   "label": "ClickHouse 블로그 — Langfuse 인수",
+   "url": "https://clickhouse.com/blog/clickhouse-acquires-langfuse-open-source-llm-observability"
+  },
+  {
+   "label": "Orrick — Langfuse 고객 규모",
+   "url": "https://www.orrick.com/en/news/2026/01/open-source-llm-observability-langfuse-acquired-by-clickhouse-inc"
+  },
+  {
+   "label": "TechTarget — Databricks의 Neon 약 10억 달러 인수",
+   "url": "https://www.techtarget.com/searchdatamanagement/news/366623864/Databricks-adds-Postgres-database-with-1B-Neon-acquisition"
+  },
+  {
+   "label": "Constellation Research — Neon 데이터베이스 80% 에이전트 생성 발언",
+   "url": "https://www.constellationr.com/insights/news/databricks-acquires-neon-sees-postgres-scaling-key-agentic-ai"
+  },
+  {
+   "label": "Constellation Research — Snowflake의 Crunchy Data 인수(약 2.5억 달러 보도)",
+   "url": "https://www.constellationr.com/insights/news/snowflake-makes-its-postgres-move-acquires-crunchy-data"
+  },
+  {
+   "label": "SaaStr — Snowflake 2027 회계연도 2분기 제품 매출 37% 성장",
+   "url": "https://www.saastr.com/5-interesting-learnings-from-snowflake-at-6-billion-in-revenue-37-growth-and-accelerating-126-nrr-and-a-gross-margin-guided-down-to-pay-for-ai/"
+  },
+  {
+   "label": "MongoDB IR — 2027 회계연도 2분기 실적",
+   "url": "https://investors.mongodb.com/news-releases/news-release-details/mongodb-inc-announces-second-quarter-fiscal-2027-financial"
+  },
+  {
+   "label": "eWeek — Replit 에이전트 운영 데이터베이스 삭제 사건",
+   "url": "https://www.eweek.com/news/replit-ai-coding-assistant-failure/"
+  },
+  {
+   "label": "Sacra — Turbopuffer 매출 추정·고객",
+   "url": "https://sacra.com/c/turbopuffer"
+  },
+  {
+   "label": "Wikipedia — HEAVY.AI(Nvidia 인수)",
+   "url": "https://en.wikipedia.org/wiki/HEAVY.AI"
+  },
+  {
+   "label": "Forge Global — Neo4j 비상장 거래 가치",
+   "url": "https://forgeglobal.com/insights/neo4j-upcoming-ipo-news/"
+  },
+  {
+   "label": "PostgreSQL 커밋 목록 — SQL/PGQ 되돌림",
+   "url": "https://www.postgresql.org/message-id/E1x3f62-00000003sxD-0vdk@gemulon.postgresql.org"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Neon에서 에이전트가 만든 데이터베이스 비중",
+   "sub": "% · 진행자가 인용한 Neon 수치",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "이전",
+    "Databricks 인수 무렵"
+   ],
+   "series": [
+    {
+     "name": "에이전트 생성 비중",
+     "values": [
+      30,
+      80
+     ]
+    }
+   ],
+   "note": "파블로는 이 숫자의 상당 부분이 새 데이터베이스가 아니라 시험용 '브랜치'라고 설명",
+   "source": "대본(Matt Turck 발언)"
+  },
+  {
+   "at": "summary",
+   "title": "한 대형 은행의 자연어→SQL 정답률",
+   "sub": "% · 파블로가 전한 사례",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "기성 도구 도입 초기",
+    "의미 계층 구축 후(수년)"
+   ],
+   "series": [
+    {
+     "name": "정답률",
+     "values": [
+      60,
+      95
+     ]
+    }
+   ],
+   "note": "수백만 달러와 수년을 들인 결과 — 대본 발음이 모호해 약 95%로 표시",
+   "source": "대본(Andy Pavlo 발언)"
+  },
+  {
+   "at": "deep",
+   "title": "ClickHouse 기업가치",
+   "sub": "억 달러 · 투자 라운드 기준",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2025-05 시리즈 C",
+    "2026-01 시리즈 D"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      63.5,
+      150
+     ]
+    }
+   ],
+   "note": "8개월 새 약 2.4배 — 같은 달 Langfuse 인수",
+   "source": "CB Insights · BusinessWire/Bloomberg"
+  },
+  {
+   "at": "deep",
+   "title": "ClickHouse 연간 반복매출(추정)",
+   "sub": "억 달러 · Sacra 추정",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2025년 말",
+    "2026-08"
+   ],
+   "series": [
+    {
+     "name": "반복매출",
+     "values": [
+      1.6,
+      3.5
+     ]
+    }
+   ],
+   "note": "회사 공식 숫자가 아닌 추정 — 회사는 5월에 연환산 2.5억 달러 돌파만 밝힘",
+   "source": "Sacra"
+  },
+  {
+   "at": "deep",
+   "title": "분석 플랫폼의 Postgres 회사 인수가",
+   "sub": "억 달러 · 2025년",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Databricks ← Neon",
+    "Snowflake ← Crunchy Data"
+   ],
+   "series": [
+    {
+     "name": "인수가",
+     "values": [
+      10,
+      2.5
+     ]
+    }
+   ],
+   "note": "둘 다 회사가 공식 확인하지 않은 보도 기준 근사치",
+   "source": "TechTarget · Constellation Research(WSJ 인용)"
+  }
+ ],
+ "tg": "Andy Pavlo(ClickHouse Labs) — 에이전트가 데이터베이스 트래픽을 10~100배 늘릴 수 있지만 필요한 건 새 DB가 아니라 기존 안전장치와 Postgres. 벡터 DB는 기본 기능이 됐고 그래프 DB는 틈새. 오픈소스 DB 60% 이상이 이미 에이전트 커밋을 받는다.",
+ "tg_body": "카네기멜런대 데이터베이스 교수에서 올해 8월 ClickHouse 연구소장으로 옮긴 앤디 파블로는 AI 에이전트를 컴퓨터·인터넷·스마트폰에 이은 네 번째 데이터베이스 트래픽 급증기로 본다. 한 사람이 에이전트 수백 개를 24시간 돌리면 질의가 10~100배 늘 수 있다는 추정이다. 다만 에이전트 질의가 사람보다 복잡한지 얕은지는 아직 모른다고 했다.\n\n에이전트가 운영 데이터베이스를 지우는 사고가 매달 나오지만, 필요한 건 새 기술이 아니라 권한 분리와 시험용 복제본(브랜치) 같은 오래된 안전장치라고 말한다. Neon에서 에이전트가 만든 데이터베이스 비중이 30%에서 80%로 뛴 것도 대부분 이 시험용 복제본이다.\n\n벡터 DB는 1년 만에 모든 데이터베이스의 기본 기능이 됐고, 그래프 DB는 계속 틈새로 본다. 모델에게 앱을 만들라 하면 거의 항상 Postgres를 고른다. 한 대형 은행은 자연어→SQL 정답률을 수년 투자로 60%에서 약 95%로 올렸고, 오픈소스 데이터베이스의 60% 이상이 이미 에이전트가 쓴 커밋을 받고 있다.\n\n외부 자료로 보면 ClickHouse는 1월 기업가치 150억 달러에 4억 달러를 유치하고 LLM 관찰 도구 Langfuse를 샀다. Databricks(Neon 약 10억 달러)와 Snowflake(Crunchy Data 약 2.5억 달러)도 Postgres를 품었다. 파블로는 ClickHouse 직원이고 진행자 회사는 ClickHouse 투자자라, 분석 회사가 Postgres로 넓히는 게 맞다는 주장은 감안해서 들을 필요가 있다.",
+ "youtube": "https://www.youtube.com/watch?v=74X0DJOVEc8",
+ "image": "https://i.ytimg.com/vi/74X0DJOVEc8/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-08 23:10 KST"
+}

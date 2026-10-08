@@ -1,6 +1,31 @@
 {
- "updated": "2026-10-08 17:45 KST",
+ "updated": "2026-10-08 22:27 KST",
  "episodes": [
+  {
+   "id": "2026-10-08-mad-what-happens-when-billions-of-ai-agents-hit-your",
+   "show": "mad",
+   "show_name": "The MAD Podcast",
+   "title": "What Happens When Billions of AI Agents Hit Your Database? (Andy Pavlo)",
+   "date": "2026-10-08",
+   "published": "2026-10-08 20:30 KST",
+   "link": "https://podcasters.spotify.com/pod/show/firstmark/episodes/What-Happens-When-Billions-of-AI-Agents-Hit-Your-Database--Andy-Pavlo-e3q4qu7",
+   "audio": "https://anchor.fm/s/f2ee4948/podcast/play/127084935/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-8%2F433665610-44100-2-a2e92ad5e51b2.mp3",
+   "duration": "01:16:46",
+   "desc": "AI agents are becoming the biggest users of databases: creating them, querying them, and sometimes deleting them. Andy Pavlo, Carnegie Mellon's database professor and now VP of Database Research at ClickHouse, explains what changes when billions of agents hit the data layer, and why most of the AI world's mental model of databases stopped at vector databases and RAG. Andy's CMU courses taught a generation of engineers (and, it turns out, the AI models); he writes the year-in-review on databases the whole industry reads; and this summer he joined ClickHouse to found ClickHouse Labs. We cover wh…",
+   "status": "done",
+   "found": "2026-10-08 22:24 KST",
+   "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
+   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
+   "title_ko": "Andy Pavlo — 수십억 AI 에이전트가 데이터베이스를 두드리면 무슨 일이 생기나",
+   "desc_ko": "AI 에이전트가 데이터베이스를 만들고, 조회하고, 때로는 지우는 가장 큰 사용자가 되고 있다. 카네기멜런대 데이터베이스 교수이자 올여름 ClickHouse 데이터베이스 연구 부사장으로 합류해 ClickHouse Labs를 세운 Andy Pavlo가, 에이전트가 데이터 계층으로 몰려들 때 무엇이 바뀌는지 설명한다. 그는 AI 업계가 데이터베이스를 벡터 DB와 검색 증강(RAG) 수준에서만 이해하고 멈췄다고 본다. 그의 강의는 한 세대의 엔지니어(그리고 AI 모델)를 가르쳤고, 매년 쓰는 데이터베이스 연말 결산 글은 업계 전체가 읽는다.",
+   "summary": {
+    "title_ko": "Andy Pavlo — 수십억 AI 에이전트가 데이터베이스를 두드리면 무슨 일이 생기나",
+    "headline": "에이전트는 데이터베이스 사용량을 10~100배 늘릴 수 있지만, 필요한 건 새 데이터베이스가 아니라 이미 있는 안전장치와 Postgres다",
+    "image": "https://i.ytimg.com/vi/74X0DJOVEc8/hqdefault.jpg",
+    "guest": "앤디 파블로(Andy Pavlo) — 카네기멜런대 데이터베이스 교수 · 2026년 8월 ClickHouse 데이터베이스 연구 부사장으로 합류해 ClickHouse Labs 설립 — 자동 튜닝 스타트업 OtterTune 공동창업자",
+    "company": "ClickHouse (데이터베이스 · 실시간 분석 · AI 관찰 도구)"
+   }
+  },
   {
    "id": "2026-10-08-ca-real-estate-credit-over-yield-at-invesco-charlie",
    "show": "ca",
