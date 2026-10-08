@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-07",
+ "updated": "2026-10-08",
  "events": [
   {
    "id": "ces-2026",
@@ -2293,12 +2293,22 @@
    "date_start": "2026-10-07",
    "date_end": "2026-10-07",
    "month": "2026-10",
-   "status": "previewed",
+   "status": "done",
    "preview": "마이크로소프트가 2년 만에 여는 대형 Windows 이벤트로, 온디바이스 AI가 PC의 다음 챕터를 어떻게 바꾸는지가 주제다. 젠슨 황 엔비디아 CEO가 참석해 RTX 기반 PC용 신제품(RTX Spark 등) 언급이 예상되어 엔비디아·마이크로소프트의 PC 협업이 관전 포인트다. Surface 신제품(Laptop Ultra 등)의 가격·사양은 Arm·x86 PC 칩 경쟁(퀄컴·인텔·AMD·엔비디아)과 직결된다. AI PC 교체 수요가 커지면 온디바이스 AI용 DRAM 탑재량 증가로 삼성전자·SK하이닉스·마이크론 등 메모리 업체와 PC 부품 밸류체인에도 긍정적일 수 있다. 다만 Windows 12 발표 가능성은 낮다는 관측이라 기대 관리도 필요하다.",
-   "summary": "마이크로소프트가 10월 7일 샌프란시스코에서 여는 Windows·Surface 행사로, 로컬 AI가 PC 경험을 어떻게 바꿀지를 다룬다. 사티아 나델라, Surface 총괄 파반 다불리, 젠슨 황이 참석하며 핵심은 AI PC용 신규 Surface와 Windows AI 기능 발표다.",
+   "summary": "10월 7일 샌프란시스코 행사에서 마이크로소프트는 엔비디아 RTX 스파크 칩(블랙웰 RTX 그래픽·최대 20코어 CPU·최대 128GB 통합 메모리)을 쓴 '서피스 랩톱 울트라'를 2,599달러부터 공개했다. 회사는 기기 안 AI 응답 속도가 맥북프로 M5의 2배라고 주장했다. 함께 AI 에이전트의 무단 데이터 접근을 막는 'MS 실행 컨테이너'를 윈도 11에 내놨고, 앤스로픽·오픈AI·엔비디아가 쓸 예정이라고 밝혔다. 나델라 MS 최고경영자와 젠슨 황 엔비디아 최고경영자가 함께 무대에 올랐다.",
    "full": "",
    "added": "2026-09-20",
-   "updated": "2026-09-20"
+   "updated": "2026-10-08",
+   "sources": [
+    {
+     "label": "뉴스핌: MS, 엔비디아 칩 탑재 서피스 랩톱 울트라 공개(2026-10-08)",
+     "url": "https://www.newspim.com/news/view/20261008000018"
+    },
+    {
+     "label": "윈도 개발자 블로그: MS 실행 컨테이너(2026-10-07)",
+     "url": "https://blogs.windows.com/windowsdeveloper/2026/10/07/microsoft-execution-containers-policy-driven-containment-for-ai-agents/"
+    }
+   ]
   },
   {
    "id": "amazon-accelerate-2026",
