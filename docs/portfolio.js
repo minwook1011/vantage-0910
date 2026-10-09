@@ -134,6 +134,11 @@
     reader.onload = function () {
       try {
         var book = XLSX.read(new Uint8Array(reader.result), { type: "array", cellDates: true });
+        /* 「포트폴리오 업데이트.xlsx」(계좌설정 + 계좌별 메리츠 붙여넣기 시트) → 모든 계좌를 한 번에 */
+        if (window.PortfolioImport) {
+          var raw = XLSX.read(new Uint8Array(reader.result), { type: "array" }), rowsBook = PortfolioImport.bookFromWorkbook(raw);
+          if (PortfolioImport.looksLikeBook(rowsBook)) { importBook(rowsBook); return; }
+        }
         var sheet = book.Sheets[book.SheetNames[0]], rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: true, defval: null });
         var headerAt = -1;
         for (var r = 0; r < rows.length; r++) {
@@ -162,6 +167,21 @@
       } catch (e) { alert("첫 시트에서 날짜·시장·종목명/티커·매수/매도·주식 수·체결단가 열을 찾지 못했습니다."); }
     };
     reader.readAsArrayBuffer(file);
+  }
+  /* 여러 계좌 엑셀 가져오기: 붙여넣은 기간의 첫날부터는 엑셀 기록으로 교체(그 전 기록은 유지). 바꾸기 전 상태는 따로 보관 */
+  async function importBook(rowsBook) {
+    setUpdated("엑셀 읽는 중…");
+    var ctx = await PortfolioImport.context(state), parsed = PortfolioImport.parseBook(rowsBook, ctx);
+    if (!parsed.accounts.length) { alert("붙여넣은 매매내역이 없습니다. 「내계좌」「제현형님」 시트에 메리츠 매매내역을 머리줄까지 붙여넣어 주세요."); setUpdated(""); return; }
+    var preview = JSON.parse(JSON.stringify(state)), report = PortfolioImport.apply(preview, parsed, { newId: S.id });
+    var ok = report.some(function (r) { return !r.error; });
+    if (!ok) { alert("반영할 수 있는 내역이 없습니다.\n\n" + PortfolioImport.describe(report)); setUpdated(""); return; }
+    if (!confirm("엑셀 내용을 이렇게 반영할까요?\n\n" + PortfolioImport.describe(report) + "\n\n(바꾸기 전 상태는 이 기기에 보관합니다)")) { setUpdated(""); return; }
+    try { localStorage.setItem("vantage-portfolio-before-restore", JSON.stringify({ savedAt: new Date().toISOString(), value: JSON.stringify(state) })); } catch (e) {}
+    state = preview; S.save(state); perfKey = null;
+    var first = report.filter(function (r) { return !r.error && r.account; })[0], fa = first && state.accounts.filter(function (a) { return a.name === first.account; })[0];
+    if (fa) activeId = fa.id;
+    render(); setUpdated("엑셀 반영 완료 · 시세 갱신 중"); refresh();
   }
   function backupPayload() {
     return { format: "vantage-portfolio-backup", version: 1, exportedAt: new Date().toISOString(), data: state };
@@ -237,13 +257,30 @@
     el.innerHTML = ""; el.appendChild(document.createTextNode(text));
     if (btn) { var b = document.createElement("button"); b.className = "quiet-btn"; b.textContent = "🔑 관리 계좌 불러오기"; b.onclick = function () { PortfolioManaged.unlock(function (d) { applyManaged(d, true); }); }; el.appendChild(b); }
   }
-  function applyManaged(d, jump) {
+  async function applyManaged(d, jump) {
+    if (d && d.kind === "excel") return applyManagedExcel(d, jump);
     var ids = (d.accounts || []).map(function (a) { return a.id; }), names = (d.accounts || []).map(function (a) { return a.name; }).join("·");
     var changed = window.PortfolioManaged && PortfolioManaged.merge(state, d);
     if (jump) { var mg = state.accounts.filter(function (a) { return a.managed; })[0]; if (mg) activeId = mg.id; }
     if (!state.accounts.some(function (a) { return a.id === activeId; })) activeId = state.accounts[0].id;
     if (changed || jump) { S.save(state); perfKey = null; render(); if (view === "perf" && window.PortfolioPerf) PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId); }
     managedBadge("🔑 Claude 입력 기록(" + names + ") · " + String(d.updated || "").replace("T", " ").slice(5, 16).replace("-", "/") + " 기록까지 반영(" + (d.transactions || []).length + "건)");
+  }
+  /* Claude 가 「포트폴리오 업데이트.xlsx」를 통째로 올린 관리 파일(kind:"excel") — 화면 가져오기와 같은 파서로 반영.
+     이 기기에서 그보다 나중에 직접 가져온 계좌(importedAt 이 더 최근)는 건드리지 않는다. */
+  async function applyManagedExcel(d, jump) {
+    if (!window.PortfolioImport) return;
+    var ctx = await PortfolioImport.context(state), parsed = PortfolioImport.parseBook(d.book || {}, ctx), fileAt = Date.parse(d.updated) || 0;
+    var next = JSON.parse(JSON.stringify(state));
+    var report = PortfolioImport.apply(next, parsed, { stamp: d.updated, newId: S.id, only: function (a) { return !(a.importedAt && (Date.parse(a.importedAt) || 0) >= fileAt); } });
+    var applied = report.filter(function (r) { return !r.error && !r.kept; });
+    if (applied.length) {
+      state = next; S.save(state); perfKey = null;
+      if (jump) { var fa = state.accounts.filter(function (a) { return a.name === applied[0].account; })[0]; if (fa) activeId = fa.id; }
+      render(); if (view === "perf" && window.PortfolioPerf) PortfolioPerf.perf(document.getElementById("perf-body"), state, activeId);
+    }
+    var when = String(d.updated || "").replace("T", " ").slice(5, 16).replace("-", "/");
+    managedBadge("📗 엑셀 매매내역 " + when + " 기준 · " + report.filter(function (r) { return !r.error; }).map(function (r) { return r.sheet + " " + (r.trades || 0) + "건"; }).join(" · ") + (applied.length ? " 반영" : " (최신 상태)"));
   }
   if (window.PortfolioManaged) {
     if (PortfolioManaged.hasKey()) { managedBadge("🔑 관리 계좌 확인 중…"); PortfolioManaged.load(function (d) { applyManaged(d); }, function () { managedBadge("⚠️ 관리 계좌를 못 불러옴 — ", true); }); }

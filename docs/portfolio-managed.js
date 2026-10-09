@@ -27,7 +27,9 @@
   /* 상태에 반영: 관리 계좌는 맨 앞, 매매기록은 파일 것으로 교체. 바뀐 게 있으면 true */
   function merge(state, data) {
     data = Object.assign({}, data, { transactions: applyOv(data.transactions || []) });
-    var before = JSON.stringify([state.accounts, state.transactions.length]), changed = false;
+    var before = JSON.stringify([state.accounts, state.transactions.length]), changed = false, fileAt = Date.parse(data.updated) || 0;
+    /* 이 계좌를 그 뒤에 엑셀로 가져왔으면(importedAt 이 파일보다 최근) 옛 관리 파일이 덮어쓰지 않는다 */
+    function newer(acct) { return acct && acct.importedAt && (Date.parse(acct.importedAt) || 0) >= fileAt; }
     (data.accounts || []).slice().reverse().forEach(function (a0) {
       /* 덧붙이기(mode:"append", 사장님 본인 계좌): 기존 기록은 그대로 두고 파일의 거래만 id 기준으로 추가·수정.
          대상 = 이름에 match 가 들어간 계좌, 없으면 다른 관리 계좌가 아닌 첫 계좌 */
@@ -35,7 +37,7 @@
         var others = (data.accounts || []).filter(function (x) { return x !== a0; }).map(function (x) { return x.match || String(x.name || "").replace(/형님|계좌|\s/g, ""); });
         var tg = state.accounts.filter(function (x) { return a0.match && String(x.name || "").indexOf(a0.match) >= 0; })[0] ||
           state.accounts.filter(function (x) { return !x.managed && !others.some(function (k) { return k && String(x.name || "").indexOf(k) >= 0; }); })[0];
-        if (!tg) return;
+        if (!tg || newer(tg)) return;
         (data.transactions || []).filter(function (t) { return t.accountId === a0.id; }).forEach(function (t) {
           var c = Object.assign({}, t, { accountId: tg.id }); delete c.no;
           var j = state.transactions.findIndex(function (x) { return x.id === c.id; });
@@ -47,6 +49,7 @@
       /* 사용자가 직접 만든 같은 사람 계좌(예: '제현형님 계좌')가 있으면 그 계좌에 넣는다 — 이름에 match(예: '제현')가 들어간 계좌 */
       var a = Object.assign({}, a0), key = a.match || String(a.name || "").replace(/형님|계좌|\s/g, "");
       var own = state.accounts.filter(function (x) { return x.id !== a.id && key && String(x.name || "").indexOf(key) >= 0; })[0];
+      if (newer(own) || newer(state.accounts.filter(function (x) { return x.id === a.id; })[0])) return;
       if (own) {
         a.id = own.id; a.name = own.name;
         state.accounts = state.accounts.filter(function (x) { return x.id !== a0.id; });   // 예전에 따로 만들어진 관리 계좌는 정리

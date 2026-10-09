@@ -9,11 +9,15 @@
   /* 국내 종목은 종목명으로도 입력할 수 있게 하되, 시세 조회에는 거래소 티커를 사용한다. */
   var KR_TICKERS = { "삼성전자": "005930.KS", "삼성전자우": "005935.KS", "파인텍": "131760.KQ", "파인엠텍": "441270.KQ", "441270": "441270.KQ", "티엘비": "356860.KQ", "TLB": "356860.KQ", "356860": "356860.KQ", "삼성전기": "009150.KS", "009150": "009150.KS" };
   var KR_NAMES = { "005930": "삼성전자", "005935": "삼성전자우", "131760": "파인텍", "441270": "파인엠텍", "356860": "티엘비", "009150": "삼성전기" };
+  /* 엑셀에서 가져온 국내 종목은 거래에 종목명(name)이 붙어 온다 → 화면 표시용 이름표에 더한다 */
+  var EXTRA_NAMES = {};
+  function learnNames(list) { (list || []).forEach(function (t) { if (t && t.name && t.market === "KR") { var bare = String(t.ticker || "").replace(/\.(KS|KQ)$/i, ""); if (!KR_NAMES[bare]) EXTRA_NAMES[bare] = t.name; } }); }
   function id(prefix) { return prefix + "-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function load() {
     try {
       var parsed = JSON.parse(localStorage.getItem(KEY) || "null");
       if (!parsed) return JSON.parse(JSON.stringify(DEFAULT));
+      learnNames(parsed.transactions);
       return {
         accounts: Array.isArray(parsed.accounts) && parsed.accounts.length ? parsed.accounts : JSON.parse(JSON.stringify(DEFAULT.accounts)),
         transactions: Array.isArray(parsed.transactions) ? parsed.transactions : [],
@@ -23,7 +27,7 @@
       };
     } catch (e) { return JSON.parse(JSON.stringify(DEFAULT)); }
   }
-  function save(data) { localStorage.setItem(KEY, JSON.stringify(data)); return data; }
+  function save(data) { learnNames(data && data.transactions); localStorage.setItem(KEY, JSON.stringify(data)); return data; }
   function tickerFor(ticker, market) {
     ticker = String(ticker || "").trim().toUpperCase();
     var bare = ticker.replace(/\.(KS|KQ)$/i, "");
@@ -38,7 +42,7 @@
     if (/\.(KS|KQ)$/.test(t) || /^\d{4}[0-9A-Z]{2}$/.test(t) || /[가-힣]/.test(t) || KR_TICKERS[t]) return "KR";
     return "US";
   }
-  function displayTicker(ticker) { var bare = String(ticker || "").replace(/\.(KS|KQ)$/i, ""); return KR_NAMES[bare] || bare; }
+  function displayTicker(ticker) { var bare = String(ticker || "").replace(/\.(KS|KQ)$/i, ""); return KR_NAMES[bare] || EXTRA_NAMES[bare] || bare; }
   function groupKey(market, ticker) { return market + ":" + tickerFor(ticker, market); }
   function aggregate(data, accountId) {
     var result = {};
@@ -47,13 +51,14 @@
     }).forEach(function (t) {
       var market = t.market === "KR" ? "KR" : "US", ticker = tickerFor(t.ticker, market), key = groupKey(market, ticker);
       var h = result[key] || (result[key] = { key: key, market: market, ticker: ticker, qty: 0, costLocal: 0, costKrw: 0, realizedKrw: 0 });
-      var qty = Number(t.qty) || 0, price = Number(t.price) || 0, fx = Number(t.fx) || Number(data.fx && data.fx.price) || 1350;
+      /* fee = 수수료+세금(체결 통화). 엑셀(메리츠) 가져오기에만 있다 — 매수는 원가에 더하고 매도는 받은 돈에서 뺀다 */
+      var qty = Number(t.qty) || 0, price = Number(t.price) || 0, fee = Number(t.fee) || 0, fx = Number(t.fx) || Number(data.fx && data.fx.price) || 1350, f = market === "US" ? fx : 1;
       if (t.side === "sell") {
-        var sold = Math.min(qty, h.qty), avgLocal = h.qty ? h.costLocal / h.qty : 0, avgKrw = h.qty ? h.costKrw / h.qty : 0;
-        h.realizedKrw += sold * (price * (market === "US" ? fx : 1) - avgKrw);
+        var sold = Math.min(qty, h.qty), avgLocal = h.qty ? h.costLocal / h.qty : 0, avgKrw = h.qty ? h.costKrw / h.qty : 0, feeShare = qty ? fee * sold / qty : 0;
+        h.realizedKrw += sold * price * f - feeShare * f - sold * avgKrw;
         h.qty -= sold; h.costLocal -= sold * avgLocal; h.costKrw -= sold * avgKrw;
       } else {
-        h.qty += qty; h.costLocal += qty * price; h.costKrw += qty * price * (market === "US" ? fx : 1);
+        h.qty += qty; h.costLocal += qty * price + fee; h.costKrw += (qty * price + fee) * f;
       }
     });
     return Object.keys(result).map(function (key) {
@@ -141,5 +146,5 @@
     if (fx) latest.fx = fx;
     save(latest); return latest;
   }
-  window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey, marketOf: marketOf };
+  window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey, marketOf: marketOf, quoteFor: quoteFor };
 })();

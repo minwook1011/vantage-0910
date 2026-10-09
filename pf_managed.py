@@ -38,6 +38,13 @@ def key_phrase():
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     data = json.load(open(SRC, encoding="utf-8"))
+    write_encrypted(data)
+    n = len(data.get("transactions", []))
+    print(f"wrote {OUT} · 계좌 {len(data.get('accounts', []))}개 · 매매 {n}건 · {data['updated']}")
+
+
+def write_encrypted(data):
+    """data 에 updated(한국 시각)를 붙여 암호화해 OUT 에 쓴다. pf_excel.py 도 이걸 쓴다."""
     data["updated"] = datetime.now(timezone(timedelta(hours=9))).isoformat(timespec="minutes")
     raw = json.dumps(data, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     salt, iv = os.urandom(16), os.urandom(12)
@@ -46,8 +53,7 @@ def main():
     b64 = lambda b: base64.b64encode(b).decode()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     json.dump({"v": 1, "iter": ITER, "salt": b64(salt), "iv": b64(iv), "ct": b64(ct)}, open(OUT, "w", encoding="utf-8"))
-    n = len(data.get("transactions", []))
-    print(f"wrote {OUT} · 계좌 {len(data.get('accounts', []))}개 · 매매 {n}건 · {data['updated']}")
+    return data
 
 
 if __name__ == "__main__":
