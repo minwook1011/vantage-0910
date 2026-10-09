@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-02",
+ "updated": "2026-10-10",
  "count": 503,
  "map": {
   "MMM": {
@@ -513,10 +513,6 @@
   "CPAY": {
    "name": "Corpay",
    "sector": "Financials"
-  },
-  "CTVA": {
-   "name": "Corteva",
-   "sector": "Materials"
   },
   "CSGP": {
    "name": "CoStar Group",
@@ -1434,10 +1430,6 @@
    "name": "Palo Alto Networks",
    "sector": "Information Technology"
   },
-  "PSKY": {
-   "name": "Paramount Skydance Corporation",
-   "sector": "Communication Services"
-  },
   "PH": {
    "name": "Parker Hannifin",
    "sector": "Industrials"
@@ -1650,6 +1642,10 @@
    "name": "Simon Property Group",
    "sector": "Real Estate"
   },
+  "SKYD": {
+   "name": "Skydance Corporation",
+   "sector": "Communication Services"
+  },
   "SWKS": {
    "name": "Skyworks Solutions",
    "sector": "Information Technology"
@@ -1806,6 +1802,10 @@
    "name": "Truist Financial",
    "sector": "Financials"
   },
+  "TWLO": {
+   "name": "Twilio",
+   "sector": "Information Technology"
+  },
   "TYL": {
    "name": "Tyler Technologies",
    "sector": "Information Technology"
@@ -1914,6 +1914,10 @@
    "name": "Vulcan Materials Company",
    "sector": "Materials"
   },
+  "VYLR": {
+   "name": "Vylor",
+   "sector": "Consumer Staples"
+  },
   "WRB": {
    "name": "W. R. Berkley Corporation",
    "sector": "Financials"
@@ -1932,10 +1936,6 @@
   },
   "DIS": {
    "name": "Walt Disney Company (The)",
-   "sector": "Communication Services"
-  },
-  "WBD": {
-   "name": "Warner Bros. Discovery",
    "sector": "Communication Services"
   },
   "WM": {
