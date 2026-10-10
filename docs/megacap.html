@@ -17,6 +17,9 @@
 .sec-head .med { font-family: var(--mono); font-size: 13px; font-weight: 700; }
 .sec-head .rk { color: var(--muted); font-size: 12px; font-family: var(--mono); }
 </style>
+<style>
+.nd-th select{font:inherit;font-weight:700;font-size:12px;color:inherit;background:transparent;border:1px solid rgba(120,140,170,.45);border-radius:6px;padding:1px 4px;cursor:pointer}
+</style>
 </head>
 <body>
 <header id="topnav"></header>
@@ -59,6 +62,7 @@
           <th class="l" data-key="name" data-str="1">이름</th>
           <th class="l" data-key="sector" data-str="1">섹터</th>
           <th data-key="mcap_usd">시총</th>
+          <th data-key="rnd" class="nd-th"><select id="nd-sel" title="며칠 등락률을 볼지 고르기"><option value="1">1D</option><option value="2">2D</option><option value="3">3D</option><option value="5">5D</option><option value="10">10D</option><option value="20">20D</option></select></th>
           <th data-key="r1w">1W</th>
           <th data-key="r1m">1M</th>
           <th data-key="r3m">3M</th>
@@ -199,7 +203,11 @@ function renderFilter() {
 function filtered() {
   return scoped().filter(function (s) { return curSector === "전체" || s.sector === curSector; });
 }
+/* N일 등락률(2026-10-10 사용자: 1D·3D 등 일수를 직접 고르게) — 최근 30거래일 종가(spark)로 계산 */
+var ND = 1; try { ND = +localStorage.getItem("megacap-nd") || 1; } catch (e) {}
+function ndRet(s) { var c = s.spark || []; if (c.length <= ND) return null; var a = c[c.length - 1 - ND], b = c[c.length - 1]; return a > 0 && b > 0 ? (b / a - 1) * 100 : null; }
 function renderTable(rows) {
+  rows.forEach(function (s) { s.rnd = ndRet(s); });
   $q("#mc-table tbody").innerHTML = rows.map(function (s, i) {
     return "<tr data-t=\"" + s.ticker + "\">" +
       '<td class="l muted">' + (i + 1) + "</td>" +
@@ -207,6 +215,7 @@ function renderTable(rows) {
       '<td class="l">' + escapeHtml(s.name) + badges(s) + "</td>" +
       '<td class="l muted">' + escapeHtml(s.sector) + "</td>" +
       "<td>" + fmtMcap(s.mcap_usd) + "</td>" +
+      "<td style='background:" + (s.rnd == null ? "transparent" : heatBg(s.rnd, ND <= 1 ? 3 : ND <= 3 ? 5 : ND <= 5 ? 7 : ND <= 10 ? 10 : 12)) + "'>" + (s.rnd == null ? '<span class="muted">—</span>' : pctSpan(s.rnd)) + "</td>" +
       "<td style='background:" + heatBg(s.r1w, 8) + "'>" + pctSpan(s.r1w) + "</td>" +
       "<td style='background:" + heatBg(s.r1m, 12) + "'>" + pctSpan(s.r1m) + "</td>" +
       "<td style='background:" + heatBg(s.r3m, 20) + "'>" + pctSpan(s.r3m) + "</td>" +
@@ -278,8 +287,16 @@ Promise.all([
   var uni = d.universe_updated ? " · 명단 " + d.universe_updated.slice(0, 10) + " 기준(주 1회)" : "";
   $q("#updated").textContent = "시세 " + (d.updated || "-") + " · " + d.count + "종목" + uni;
   renderAll();
+  var sel = $q("#nd-sel");
+  if (sel) {
+    sel.value = String(ND);
+    sel.onclick = function (e) { e.stopPropagation(); };
+    sel.onchange = function () { ND = +sel.value || 1; try { localStorage.setItem("megacap-nd", ND); } catch (e) {} renderTable(filtered()); };
+  }
   $qa("#mc-table thead th[data-key]").forEach(function (th) {
-    th.onclick = function () {
+    th.onclick = function (e) {
+      if (e && e.target && e.target.tagName === "SELECT") return;
+      if (th.dataset.key === "rnd") filtered().forEach(function (s) { s.rnd = ndRet(s); });
       var k = th.dataset.key, isStr = th.dataset.str === "1";
       th._dir = th._dir === -1 ? 1 : -1;
       var rows = filtered().sort(function (a, b) {
