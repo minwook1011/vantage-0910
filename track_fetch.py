@@ -336,6 +336,7 @@ def main():
     # 지난번 후보를 아직 반영 못 했으면(요약 도중 실패 등) 이어서 처리
     cands = [c for c in load(CAND, {}).get("candidates", []) if any(t["term"] == c["term"] for t in watch.get("terms", []))]
     report = [f"지난번 미처리 후보 {len(cands)}건 이어서"] if cands else []
+    popped = []
     for t in watch.get("terms", []):
         slug = t.setdefault("slug", slugify(t["term"], t.get("ticker", "")))
         first = slug not in state.setdefault("started", {})
@@ -343,10 +344,17 @@ def main():
         items, errs, keys = fetch_term(t)
         keys_l = [k.lower() for k in keys if k]
         kept = 0
-        for it in sorted(items, key=lambda x: x["published"], reverse=True):
+        # 블로그 'backfill: N' — 최근 글 N개는 기간·기록과 상관없이 한 번 다시 올린다(이미 요약한 글은 제외)
+        back = int(t.pop("backfill", 0) or 0) if t.get("market") == "blog" else 0
+        if back:
+            popped.append(t["term"])
+            done_ids = {x["id"] for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", slug + ".json"), {}).get("items", [])}
+        for n_i, it in enumerate(sorted(items, key=lambda x: x["published"], reverse=True)):
             nt = norm_title(it["title"])
             sid = hashlib.md5((slug + nt).encode("utf-8")).hexdigest()[:12]
-            if not nt or sid in seen or it["published"] < since:
+            if back and n_i < back and nt and sid not in done_ids:
+                pass
+            elif not nt or sid in seen or it["published"] < since:
                 continue
             seen[sid] = NOW.strftime("%Y-%m-%d")                   # 후보로 올린 건 다시 안 올림(채택·탈락 무관)
             blog = t.get("market") == "blog"                       # 블로그는 거르기 없이 새 글 전부
@@ -363,6 +371,10 @@ def main():
             kept += 1
         state["started"][slug] = state["started"].get(slug) or NOW.strftime("%Y-%m-%d %H:%M")
         report.append(f"#{hashtag(t['term'])} 원문 {len(items)} → 후보 {kept}" + (f" (실패: {'; '.join(errs)})" if errs else ""))
+
+    if popped:                                     # backfill 표시는 한 번 쓰고 지운다
+        save(WATCH, watch)
+        report.append("최근 글 다시 올림: " + ", ".join(popped) + " · 목록 바뀜")
 
     cands = week_check(cands, watch)
     flagged = sum(1 for c in cands if c.get("earlier") or c.get("sent_similar"))
