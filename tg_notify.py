@@ -229,7 +229,8 @@ def podcasts():
             lines.append("")
             if ep.get("link") or row.get("link"):
                 lines.append(f"▶️ 원본: {ep.get('link') or row.get('link')}")
-            return None, "\n".join(lines), route("blog")       # 팟캐스트 = 인터뷰 → 블로그·인터뷰 토픽
+            dest = route("blog")       # 팟캐스트 = 인터뷰 → 블로그·인터뷰 토픽. 그룹 연결 전엔 보내지 않고 대기(채널엔 안 올림)
+            return (None, "\n".join(lines), dest) if dest else (None, None)
         out.append((f"pod:{row['id']}", NOW, build))
     return out
 
@@ -259,7 +260,8 @@ def tracking():
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
                 lines += ["", f'📰 <a href="{esc(it["url"])}">{esc(it.get("source") or "원문")}</a> · {stamp(it.get("published"))}']
-                return None, "\n".join(lines), route("blog" if t.get("market") == "blog" else "news")
+                dest = route("blog" if t.get("market") == "blog" else "news")
+                return (None, "\n".join(lines), dest) if dest else (None, None)   # 그룹 연결 전엔 대기
             out.append((f"trk:{t.get('slug')}:{it['id']}", NOW, build))
     return out
 
