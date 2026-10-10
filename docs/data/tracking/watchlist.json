@@ -19,47 +19,170 @@
    "last": "2026-10-09 18:39 KST"
   },
   {
-   "term": "기판(티엘비, 심텍, 삼성전기, 코리아써키트)",
-   "slug": "t-db4a444a",
-   "market": "kr",
+   "term": "기판",
+   "slug": "t-0a23e71f",
+   "market": "theme",
    "ticker": "",
+   "name": "반도체 패키지 기판·PCB",
    "aliases": [
-    "티엘비",
-    "심텍",
-    "삼성전기",
-    "코리아써키트",
-    "기판(티엘비, 심텍, 삼성전기, 코리아써키트)"
+    "기판",
+    "패키지 기판",
+    "FC-BGA",
+    "IC substrate",
+    "PCB maker"
    ],
    "resolved": true,
-   "added": "2026-10-10 13:14",
+   "added": "2026-10-10 13:30",
    "by": "telegram",
-   "name": "기판(티엘비·심텍·삼성전기·코리아써키트)",
    "count": 0,
    "last": ""
   },
   {
-   "term": "아마존(AMZN), 마이크로소프트, 메타, 뮤즈, 구글",
-   "slug": "amzn",
-   "market": "theme",
-   "ticker": "",
+   "term": "티엘비",
+   "slug": "356860",
+   "market": "kr",
+   "ticker": "356860",
+   "name": "티엘비",
    "aliases": [
-    "Amazon",
-    "Microsoft",
-    "Meta Platforms",
-    "Muse Spark",
-    "Alphabet",
-    "아마존",
-    "마이크로소프트",
-    "메타플랫폼스",
-    "구글",
-    "아마존(AMZN), 마이크로소프트, 메타, 뮤즈, 구글"
+    "티엘비",
+    "TLB"
    ],
    "resolved": true,
-   "added": "2026-10-10 13:14",
+   "added": "2026-10-10 13:30",
    "by": "telegram",
-   "name": "빅테크(아마존·마이크로소프트·메타·구글)",
-   "count": 4,
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "심텍",
+   "slug": "222800",
+   "market": "kr",
+   "ticker": "222800",
+   "name": "심텍",
+   "aliases": [
+    "심텍",
+    "Simmtech"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "삼성전기",
+   "slug": "009150",
+   "market": "kr",
+   "ticker": "009150",
+   "name": "삼성전기",
+   "aliases": [
+    "삼성전기",
+    "Samsung Electro-Mechanics"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "코리아써키트",
+   "slug": "007810",
+   "market": "kr",
+   "ticker": "007810",
+   "name": "코리아써키트",
+   "aliases": [
+    "코리아써키트"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "아마존",
+   "slug": "amzn",
+   "market": "us",
+   "ticker": "AMZN",
+   "name": "Amazon.com",
+   "aliases": [
+    "Amazon",
+    "AMZN",
+    "아마존"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "마이크로소프트",
+   "slug": "msft",
+   "market": "us",
+   "ticker": "MSFT",
+   "name": "Microsoft",
+   "aliases": [
+    "Microsoft",
+    "MSFT",
+    "마이크로소프트"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 2,
    "last": "2026-10-09 13:04 KST"
+  },
+  {
+   "term": "메타",
+   "slug": "meta",
+   "market": "us",
+   "ticker": "META",
+   "name": "Meta Platforms",
+   "aliases": [
+    "Meta Platforms",
+    "META",
+    "메타"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "뮤즈",
+   "slug": "t-3f524a5b",
+   "market": "",
+   "ticker": "",
+   "name": "",
+   "aliases": [
+    "뮤즈"
+   ],
+   "resolved": false,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "구글",
+   "slug": "googl",
+   "market": "us",
+   "ticker": "GOOGL",
+   "name": "Alphabet",
+   "aliases": [
+    "Alphabet",
+    "Google",
+    "GOOGL",
+    "구글"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:30",
+   "by": "telegram",
+   "count": 2,
+   "last": "2026-10-09 04:26 KST"
   },
   {
    "term": "AWS",
@@ -79,5 +202,5 @@
    "last": ""
   }
  ],
- "updated": "2026-10-10 13:16 KST"
+ "updated": "2026-10-10 13:30 KST"
 }

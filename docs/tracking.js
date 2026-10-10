@@ -96,19 +96,42 @@
       return r.json();
     });
   }
-  function edit(kind, term) {
-    term = String(term || "").trim();
-    if (!term) return;
+  // '기판(티엘비, 심텍), 아마존(AMZN), 메타' → 기판·티엘비·심텍·아마존(AMZN 티커)·메타 각각 (track_fetch.py split_terms 와 같은 규칙)
+  function splitTerms(s) {
+    s = String(s || "").replace(/([^,(\n]*)\(([^)]*)\)/g, function (_, head, inner) {
+      head = head.trim();
+      var parts = inner.split(/[,/·\n]+/).map(function (p) { return p.trim(); }).filter(Boolean);
+      if (parts.length === 1 && /^[A-Za-z0-9.\-]{1,10}$/.test(parts[0])) return head + "\u0000" + parts[0].toUpperCase();
+      return (head ? [head] : []).concat(parts).join(",");
+    });
+    var out = [], seen = {};
+    s.split(/[,/·\n]+/).forEach(function (p) {
+      p = p.trim(); if (!p) return;
+      var kv = p.split("\u0000"), term = kv[0].trim();
+      if (term && !seen[term]) { seen[term] = 1; out.push({ term: term, ticker: kv[1] || "" }); }
+    });
+    return out;
+  }
+  function edit(kind, raw) {
+    var list = splitTerms(raw);
+    if (!list.length) return;
+    var term = list.map(function (x) { return x.term; }).join(", ");
     if (!getLS(TOKEN_KEY)) { $("#token-box").open = true; status("이 기기에 깃허브 열쇠를 먼저 저장해 주세요(아래 안내). 또는 텔레그램 봇에 /" + (kind === "add" ? "추가 " : "삭제 ") + term, true); return; }
     status(kind === "add" ? "추가하는 중…" : "삭제하는 중…");
     api("GET").then(function (f) {
       var w = JSON.parse(unb64(f.content)); w.terms = w.terms || [];
       if (kind === "add") {
-        if (w.terms.some(function (t) { return t.term === term; })) throw new Error("이미 트래킹 중: " + tag(term));
         var now = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 16).replace("T", " ");
-        w.terms.push({ term: term, slug: slugOf(term), market: "", ticker: "", aliases: [term], resolved: false, added: now, by: "site" });
+        var added = list.filter(function (x) { return !w.terms.some(function (t) { return t.term === x.term; }); });
+        if (!added.length) throw new Error("이미 트래킹 중: " + list.map(function (x) { return tag(x.term); }).join(" "));
+        added.forEach(function (x) {
+          w.terms.push({ term: x.term, slug: x.ticker ? x.ticker.toLowerCase().replace(/[^a-z0-9]+/g, "-") : slugOf(x.term), market: "",
+            ticker: x.ticker, aliases: x.ticker ? [x.term, x.ticker] : [x.term], resolved: false, added: now, by: "site" });
+        });
+        term = added.map(function (x) { return x.term; }).join(", ");
       } else {
-        var n = w.terms.length; w.terms = w.terms.filter(function (t) { return t.term !== term; });
+        var n = w.terms.length, names = list.map(function (x) { return x.term; });
+        w.terms = w.terms.filter(function (t) { return names.indexOf(t.term) < 0; });
         if (w.terms.length === n) throw new Error("목록에 없는 단어: " + term);
       }
       return api("PUT", { message: "tracking: " + (kind === "add" ? "추가 " : "삭제 ") + term + " (사이트)", branch: "main",
@@ -116,7 +139,7 @@
     }).then(function (w) {
       W = w; if (kind === "del" && sel !== "__all") sel = "__all";
       renderChips(); renderList();
-      status(kind === "add" ? "✅ " + tag(term) + " 추가 — 다음 수집(30분 이내)부터 기사를 보냅니다. 사이트 반영은 1~2분 걸립니다." : "🗑 " + term + " 삭제했습니다.");
+      status(kind === "add" ? "✅ " + term.split(", ").map(tag).join(" ") + " 추가 — 다음 수집(30분 이내)부터 기사를 보냅니다. 사이트 반영은 1~2분 걸립니다." : "🗑 " + term + " 삭제했습니다.");
       $("#add-input").value = "";
     }).catch(function (e) { status(e.message || String(e), true); });
   }

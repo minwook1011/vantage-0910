@@ -127,18 +127,23 @@ def telegram_commands(watch, state):
         cmd, arg = mt.group(1).lower(), mt.group(2).strip().strip('"\'')
         terms = watch.setdefault("terms", [])
         if cmd in ("추가", "add") and arg:
-            if any(t["term"] == arg for t in terms):
-                reply = f"이미 트래킹 중: #{hashtag(arg)}"
-            else:
-                terms.append({"term": arg, "slug": slugify(arg), "market": "", "ticker": "", "aliases": [arg],
-                              "resolved": False, "added": NOW.strftime("%Y-%m-%d %H:%M"), "by": "telegram"})
-                reply = f"✅ 트래킹 추가: #{hashtag(arg)}\n다음 수집(30분 이내)부터 관련 뉴스를 보냅니다."
-                changed = True
+            new, dup = [], []
+            for term, tk in split_terms(arg):          # 쉼표로 여러 개 보내도 하나씩 따로
+                if any(t["term"] == term for t in terms):
+                    dup.append(term)
+                    continue
+                terms.append({"term": term, "slug": slugify(term, tk), "market": "", "ticker": tk,
+                              "aliases": [term] + ([tk] if tk else []), "resolved": False,
+                              "added": NOW.strftime("%Y-%m-%d %H:%M"), "by": "telegram"})
+                new.append(term)
+            changed = changed or bool(new)
+            reply = (("✅ 트래킹 추가: " + " ".join(f"#{hashtag(x)}" for x in new) + "\n다음 수집(30분 이내)부터 관련 뉴스를 보냅니다.")
+                     if new else "") + (("\n" if new else "") + "이미 트래킹 중: " + " ".join(f"#{hashtag(x)}" for x in dup) if dup else "")
         elif cmd in ("삭제", "del") and arg:
-            n = len(terms)
-            watch["terms"] = [t for t in terms if t["term"] != arg]
-            changed = changed or len(watch["terms"]) != n
-            reply = f"🗑 트래킹 삭제: {arg}" if len(watch["terms"]) != n else f"목록에 없는 단어: {arg}"
+            gone = [term for term, _ in split_terms(arg) if any(t["term"] == term for t in watch["terms"])]
+            watch["terms"] = [t for t in watch["terms"] if t["term"] not in gone]
+            changed = changed or bool(gone)
+            reply = ("🗑 트래킹 삭제: " + ", ".join(gone)) if gone else f"목록에 없는 단어: {arg}"
         else:
             reply = "📋 트래킹 목록\n" + ("\n".join(f"#{hashtag(t['term'])}" for t in terms) or "(비어 있음)") + \
                     "\n\n/추가 단어 · /삭제 단어"
@@ -151,6 +156,28 @@ def telegram_commands(watch, state):
 
 def hashtag(term):
     return re.sub(r"[^\w가-힣]", "", term.replace(" ", "_"))
+
+
+def split_terms(arg):
+    """'/추가 기판(티엘비, 심텍), 아마존(AMZN), 메타' → [('기판',''), ('티엘비',''), ('심텍',''), ('아마존','AMZN'), ('메타','')]
+    쉼표·줄바꿈·슬래시로 나눈다. 괄호 안이 목록이면 묶음 이름과 안의 이름을 각각, 괄호 안이 영문 한 단어면 티커로 본다."""
+    out = []
+
+    def group(m):
+        head, inner = m.group(1).strip(), m.group(2)
+        parts = [p.strip() for p in re.split(r"[,/·\n]+", inner) if p.strip()]
+        if len(parts) == 1 and re.fullmatch(r"[A-Za-z0-9.\-]{1,10}", parts[0]):
+            return f"{head}\x00{parts[0].upper()}"          # 아마존(AMZN) → 티커 힌트
+        return ",".join(([head] if head else []) + parts)
+    s = re.sub(r"([^,(\n]*)\(([^)]*)\)", group, arg)
+    for p in re.split(r"[,/·\n]+", s):
+        p = p.strip().strip('"\'')
+        if not p:
+            continue
+        term, _, tk = p.partition("\x00")
+        if term.strip() and term.strip() not in [t for t, _ in out]:
+            out.append((term.strip(), tk))
+    return out
 
 
 # ── 2) 출처별 수집 ────────────────────────────────────────────
