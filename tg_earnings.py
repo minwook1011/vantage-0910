@@ -416,6 +416,20 @@ def hashtags(en, code, ko):
     return " ".join(out)
 
 
+NOPX = set()   # 주가 반응이 아직 없는 알림(잠깐 미룬다)
+
+
+def px_line(moves, cons, fav=False):
+    """둘째 줄: 기준에 걸렸든 아니든 주가 반응과 컨센을 항상 다 보여 준다(2026-10-10 사용자)"""
+    out = ["⭐ 즐겨찾기"] if fav else []
+    if moves:
+        out.append(" · ".join(f"{'📈' if v >= 0 else '📉'} {lab} {sgn(v)}" for lab, v in moves))
+    else:
+        out.append("⏳ 주가 반응 집계 중")
+    out.append(f"🎯 컨센 {sgn(cons)}" if cons is not None else "🎯 컨센 자료 없음")
+    return " · ".join(out)
+
+
 def candidates(days=FRESH_DAYS, since=None):
     """[(m, code, date, rid, kind, name, reasons[], 숫자줄[])]"""
     since = since or (NOW - timedelta(days=days)).strftime("%Y-%m-%d")
@@ -440,27 +454,20 @@ def candidates(days=FRESH_DAYS, since=None):
         p10 = pts.get(code) if (pts.get(code) or {}).get("date") == d else None
         moves = [v for v in ((p10 or {}).get("pct10"), px.get("d1")) if v is not None]
         cons = (x.get("cons") or {}).get("pct")
-        why = []
-        if code in fj:
-            why.append("⭐ 즐겨찾기")
-        if moves and max(moves) >= UP:
-            why.append(f"📈 주가 {sgn(max(moves))}")
-        if cons is not None and cons >= BEAT:
-            why.append(f"🎯 컨센 {sgn(cons)}")
-        if not why:
+        hit = (code in fj) or (moves and max(moves) >= UP) or (cons is not None and cons >= BEAT)
+        if not hit:
             continue
+        mv = ([("10분 후", p10["pct10"])] if p10 and p10.get("pct10") is not None else []) + \
+             ([("다음 거래일" if px.get("timing") == "after" else "그날 종가", px["d1"])] if px.get("d1") is not None else [])
+        why = [px_line(mv, cons, code in fj)]
+        if not mv:
+            NOPX.add(("jp", code, d))
         nums = []
         q, qy = x.get("q") or {}, x.get("q_yoy") or {}
         if q.get("rev") is not None:
             nums.append(f"매출 {q['rev']/100:,.0f}억엔" + (f" ({sgn(qy['rev'])})" if qy.get("rev") is not None else ""))
         if q.get("op") is not None:
             nums.append(f"영업이익 {q['op']/100:,.1f}억엔" + (f" ({sgn(qy['op'])})" if qy.get("op") is not None else ""))
-        if p10:
-            nums.append(f"발표 10분 후 {sgn(p10['pct10'])} ({p10.get('src', '')} {p10.get('at10', '')})")
-        if px.get("d1") is not None:
-            nums.append(f"{'다음 거래일' if px.get('timing') == 'after' else '그날 종가'} {sgn(px['d1'])}")
-        if cons is not None:
-            nums.append(f"컨센서스 대비 {sgn(cons)}")
         kind = "jpc" if "cons" in (ix.get("u") or []) else "jpm"
         nm = ix.get("n") or code
         TAGS[("jp", code)] = hashtags(nm, code, ko.get(code))
@@ -470,24 +477,18 @@ def candidates(days=FRESH_DAYS, since=None):
         d = r.get("d") or ""
         if d < since:
             continue
-        why = []
-        if r["c"] in fu:
-            why.append("⭐ 즐겨찾기")
-        if r.get("d1") is not None and r["d1"] >= UP:
-            why.append(f"📈 주가 {sgn(r['d1'])}")
-        if r.get("cons") is not None and r["cons"] >= BEAT:
-            why.append(f"🎯 컨센 {sgn(r['cons'])}")
-        if not why:
+        hit = (r["c"] in fu) or (r.get("d1") is not None and r["d1"] >= UP) or (r.get("cons") is not None and r["cons"] >= BEAT)
+        if not hit:
             continue
+        mv = [("발표 후", r["d1"])] if r.get("d1") is not None else []
+        why = [px_line(mv, r.get("cons"), r["c"] in fu)]
+        if not mv:
+            NOPX.add(("us", r["c"], d))
         nums = []
         if r.get("rev_yoy") is not None:
             nums.append(f"매출 YoY {sgn(r['rev_yoy'])}")
         if r.get("op_yoy") is not None:
             nums.append(f"영업이익 YoY {sgn(r['op_yoy'])}")
-        if r.get("d1") is not None:
-            nums.append(f"발표 후 주가 {sgn(r['d1'])}")
-        if r.get("cons") is not None:
-            nums.append(f"EPS 컨센서스 대비 {sgn(r['cons'])}")
         kus = us_ko().get(r["c"])
         TAGS[("us", r["c"])] = hashtags(r.get("n") or r["c"], r["c"], kus)
         rows.append(("us", r["c"], d, r["rid"], "us", kus or r.get("n") or r["c"], why, nums))
@@ -498,6 +499,8 @@ def pending(st):
     """보낼 것(새 알림·새 요약 답글) 개수 — 화면 찍기 도구 설치 전에 깃허브에서 먼저 확인"""
     n = 0
     for m, code, d, rid, *_ in candidates():
+        if f"alert:{m}:{code}:{d}" not in st["sent"] and (m, code, d) in NOPX and d >= (NOW - timedelta(days=1)).strftime("%Y-%m-%d"):
+            continue
         if f"alert:{m}:{code}:{d}" not in st["sent"]:
             n += 1
         elif rid and f"sum:{m}:{code}:{d}" not in st["sent"] and load(f"docs/data/{m}/reports/notes/{rid}.json"):
@@ -648,6 +651,9 @@ def alerts(st, seed=False, sample=None, only=None):
         N = load(f"docs/data/{m}/reports/notes/{rid}.json") if rid else None
         kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]] if rid else None   # 버튼은 하나로
         tags = [TAGS[(m, code)]] if TAGS.get((m, code)) else []
+        if (ak not in st["sent"] or DRY) and not sample and (m, code, d) in NOPX and d >= (NOW - timedelta(days=1)).strftime("%Y-%m-%d"):
+            print("주가 반응 기다림:", ak)
+            continue
         if ak not in st["sent"] or DRY:
             # 알림 = 재무제표 사진 한 장 + 짧은 글. 요약이 이미 있으면 한 메시지에 같이(2026-10-07 사용자)
             import tg_shots
