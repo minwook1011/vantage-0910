@@ -81,8 +81,10 @@ def api(method, params):
     raise RuntimeError(f"텔레그램 전송 실패: {last}")
 
 
-def send(text, preview=False, silent=False):
-    _, chat = creds()
+def send(text, preview=False, silent=False, chat=None, thread=None):
+    """chat·thread 를 주면 그 그룹·토픽으로(트래킹 전용 그룹), 아니면 기본 채널로"""
+    _, default_chat = creds()
+    chat = chat or default_chat
     if not chat:
         sys.exit("chat_id 가 없습니다 — python send_telegram.py --chat-id 로 확인해 telegram_bot.json 에 넣으세요.")
     # 텔레그램 한 메시지 최대 4096자 → 넘으면 나눠 보낸다
@@ -95,9 +97,12 @@ def send(text, preview=False, silent=False):
     parts.append(cur)
     ids = []
     for p in parts:
-        r = api("sendMessage", {"chat_id": chat, "text": p.strip(), "parse_mode": "HTML",
-                                "disable_web_page_preview": "false" if preview else "true",
-                                "disable_notification": "true" if silent else "false"})
+        params = {"chat_id": chat, "text": p.strip(), "parse_mode": "HTML",
+                  "disable_web_page_preview": "false" if preview else "true",
+                  "disable_notification": "true" if silent else "false"}
+        if thread:
+            params["message_thread_id"] = thread
+        r = api("sendMessage", params)
         ids.append(r.get("message_id"))
         time.sleep(0.6)
     return ids

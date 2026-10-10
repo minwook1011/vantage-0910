@@ -119,7 +119,7 @@ def telegram_commands(watch, state):
         text = (m.get("text") or "").strip()
         chat = m.get("chat") or {}
         who = (m.get("from") or {}).get("id") or chat.get("id")
-        mt = re.match(r"^/?(추가|삭제|목록|add|del|list)(?:@\w+)?\s*(.*)$", text, re.I)
+        mt = re.match(r"^/?(추가|삭제|목록|연결|add|del|list|link)(?:@\w+)?\s*(.*)$", text, re.I)
         if not mt:
             continue
         if not state.get("owner"):
@@ -128,7 +128,18 @@ def telegram_commands(watch, state):
             continue
         cmd, arg = mt.group(1).lower(), mt.group(2).strip().strip('"\'')
         terms = watch.setdefault("terms", [])
-        if cmd in ("추가", "add") and arg:
+        thread = m.get("message_thread_id") if m.get("is_topic_message") else None
+        if cmd in ("연결", "link"):
+            # 트래킹 전용 그룹의 토픽에서 '/연결 뉴스' · '/연결 블로그' → 그 토픽으로 보낸다(채널엔 안 올림)
+            kind = "blog" if re.search(r"블로그|인터뷰|blog|팟캐", arg, re.I) else "news" if re.search(r"뉴스|news", arg, re.I) else ""
+            if not kind:
+                reply = "어느 쪽을 연결할까요? 이 토픽에서 '/연결 뉴스' 또는 '/연결 블로그'를 보내 주세요."
+            else:
+                state.setdefault("route", {})[kind] = {"chat": chat.get("id"), "thread": thread}
+                changed = True
+                reply = ("✅ 이 " + ("토픽" if thread else "대화방") + "에 " + ("트래킹 뉴스" if kind == "news" else "블로그·인터뷰(팟캐스트)") +
+                         "를 보냅니다. 채널(돈벌레)에는 더 이상 올리지 않습니다.")
+        elif cmd in ("추가", "add") and arg:
             new, dup = [], []
             for term, tk in split_terms(arg):          # 쉼표로 여러 개 보내도 하나씩 따로
                 if any(t["term"] == term for t in terms):
@@ -148,9 +159,12 @@ def telegram_commands(watch, state):
             reply = ("🗑 트래킹 삭제: " + ", ".join(gone)) if gone else f"목록에 없는 단어: {arg}"
         else:
             reply = "📋 트래킹 목록\n" + ("\n".join(f"#{hashtag(t['term'])}" for t in terms) or "(비어 있음)") + \
-                    "\n\n/추가 단어 · /삭제 단어"
+                    "\n\n/추가 단어 · /삭제 단어 · /연결 뉴스(또는 블로그)"
         try:
-            tg.api("sendMessage", {"chat_id": chat.get("id"), "text": reply})
+            params = {"chat_id": chat.get("id"), "text": reply}
+            if thread:
+                params["message_thread_id"] = thread
+            tg.api("sendMessage", params)
         except Exception:
             pass
     return changed

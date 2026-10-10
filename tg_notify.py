@@ -198,6 +198,13 @@ def openrouter():
 
 
 # ── 2) 팟캐스트 ───────────────────────────────────────────────
+def route(kind):
+    """트래킹 전용 그룹 토픽(텔레그램에서 '/연결 뉴스|블로그'로 지정, track_fetch 가 tracking_state 에 저장).
+    지정돼 있으면 {"chat","thread"}, 없으면 {} → 기본 채널"""
+    r = ((load("data_sources/tracking_state.json") or {}).get("route") or {}).get(kind) or {}
+    return {"chat": r.get("chat"), "thread": r.get("thread")} if r.get("chat") else {}
+
+
 def podcasts():
     ix = load("docs/data/podcasts/index.json") or {}
     since = (NOW - timedelta(days=3)).strftime("%Y-%m-%d")
@@ -222,7 +229,7 @@ def podcasts():
             lines.append("")
             if ep.get("link") or row.get("link"):
                 lines.append(f"▶️ 원본: {ep.get('link') or row.get('link')}")
-            return None, "\n".join(lines)
+            return None, "\n".join(lines), route("blog")       # 팟캐스트 = 인터뷰 → 블로그·인터뷰 토픽
         out.append((f"pod:{row['id']}", NOW, build))
     return out
 
@@ -252,7 +259,7 @@ def tracking():
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
                 lines += ["", f'📰 <a href="{esc(it["url"])}">{esc(it.get("source") or "원문")}</a> · {stamp(it.get("published"))}']
-                return None, "\n".join(lines)
+                return None, "\n".join(lines), route("blog" if t.get("market") == "blog" else "news")
             out.append((f"trk:{t.get('slug')}:{it['id']}", NOW, build))
     return out
 
@@ -422,7 +429,9 @@ def main():
     silent = NOW.hour < 7
     for key, build in todo:
         try:
-            imgs, text = build()
+            res = build()
+            imgs, text = res[0], res[1]
+            dest = res[2] if len(res) > 2 else {}
             if not text:
                 continue
             # 사이트(깃허브) 주소는 어떤 경우에도 내보내지 않는다(사용자 지시) — 본문에 섞여 들어와도 그 줄째 뺀다
@@ -434,7 +443,7 @@ def main():
                 r = tg.send_photos(imgs, text if len(text) <= 1024 else text[:1000] + "…", silent=silent)
                 ids = [m.get("message_id") for m in (r if isinstance(r, list) else [r]) if isinstance(m, dict)]
             else:
-                ids = tg.send(text, silent=silent)
+                ids = tg.send(text, silent=silent, chat=dest.get("chat"), thread=dest.get("thread"))
             sent.update(key.split("|"))
             # 채널 메시지 번호 기록(나중에 고치거나 지울 때 씀) — 최근 500건만
             msgs = state.setdefault("msg", {})
