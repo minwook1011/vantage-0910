@@ -21,3 +21,7 @@ data_sources/_podcast_tmp/
 # 이 PC의 Claude 권한 설정(예약 작업 자동 허용) — 올리지 않는다
 .claude/settings.local.json
 data_sources/tg_shots_preview/
+
+# 트래킹 수집 중간 파일(track_fetch → Claude → track_apply)
+data_sources/_tracking_candidates.json
+data_sources/_tracking_decisions.json

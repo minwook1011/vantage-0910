@@ -23,6 +23,7 @@ window.vantageJSON = function (path, fresh) {
     ["bottomup.html", "기술적 분석"],
     ["worldflow.html", "세상 흐름 파악"],
     ["news.html", "실시간 뉴스"],
+    ["tracking.html", "트래킹"],
     ["podcasts.html", "팟캐스트"],
     ["macro.html", "매크로 및 투자전략"],
     ["datahub.html", "데이터 허브"],

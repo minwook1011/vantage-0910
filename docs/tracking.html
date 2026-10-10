@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="firebase-sync.js?v=20261004K"></script>
+<script src="gate.js?v=20261003L"></script>
+<title>트래킹 — 100억</title>
+<link rel="stylesheet" href="theme.css?v=20261004B">
+<link rel="stylesheet" href="tracking.css?v=20261010A">
+</head>
+<body class="pc-light">
+<header id="topnav"></header>
+<main class="container trk" id="app">
+  <div class="kicker">트래킹 · 섹터·기업 뉴스 추적</div>
+  <h1>트래킹</h1>
+  <p class="lede">단어(기업·섹터)를 넣어 두면 30분마다 해외·국내 주요 매체 뉴스를 훑어, 쓸모 있는 기사만 골라
+    <b>제목(결론) → 3줄 요약 → 내용 요약</b>으로 정리해 텔레그램 '돈벌레'에 <b>#단어</b>를 달아 보냅니다. 여기서도 같은 기사를 볼 수 있습니다.</p>
+
+  <section class="manage">
+    <form id="add-form" autocomplete="off">
+      <input id="add-input" type="text" maxlength="40" placeholder="예: 네비우스, 삼성전기, 광통신, HBM">
+      <button type="submit" class="btn pri">추가</button>
+    </form>
+    <div class="hint">텔레그램 봇에 <code>/추가 단어</code> · <code>/삭제 단어</code> · <code>/목록</code>을 보내도 됩니다. 추가하면 다음 수집(30분 이내)부터 반영됩니다.</div>
+    <div id="status" class="status"></div>
+  </section>
+
+  <div id="chips" class="chips"></div>
+  <div id="list"><div class="empty">불러오는 중…</div></div>
+
+  <details id="token-box" class="token">
+    <summary>이 기기에서 추가·삭제하려면 (깃허브 열쇠 설정)</summary>
+    <ol>
+      <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">깃허브 새 열쇠 만들기</a>를 엽니다.</li>
+      <li>이름은 아무거나, 만료는 원하는 기간으로 정합니다.</li>
+      <li><b>Repository access</b> → <b>Only select repositories</b> → <code>vantage-0910</code> 하나만 고릅니다.</li>
+      <li><b>Permissions</b> → <b>Contents</b>를 <b>Read and write</b>로 바꾸고 만듭니다.</li>
+      <li>나온 열쇠(<code>github_pat_…</code>)를 아래에 붙여넣고 저장합니다. 이 기기 브라우저에만 저장되고 다른 곳으로 보내지 않습니다.</li>
+    </ol>
+    <div class="token-row">
+      <input id="token-input" type="password" placeholder="github_pat_…" autocomplete="off">
+      <button id="token-save" class="btn" type="button">저장</button>
+      <button id="token-clear" class="btn" type="button">지우기</button>
+    </div>
+    <div id="token-state" class="hint"></div>
+  </details>
+</main>
+<script src="theme.js?v=20261010A"></script>
+<script src="tracking.js?v=20261010A"></script>
+</body>
+</html>

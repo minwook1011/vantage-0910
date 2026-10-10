@@ -228,6 +228,34 @@ def podcasts():
 
 
 # ── 3) 오늘 시황 요약 ─────────────────────────────────────────
+def hashtag(term):
+    return re.sub(r"[^\w가-힣]", "", (term or "").replace(" ", "_"))
+
+
+def tracking():
+    """트래킹 단어 뉴스(2026-10-10~) — 예약 작업 vantage-tracking 이 30분마다 걸러 요약해 올린 기사를 #단어 로 바로 보낸다.
+    형식: #단어 → 제목(결론) → 3줄 요약 → 내용 요약 → 원문 링크"""
+    watch = load("docs/data/tracking/watchlist.json") or {}
+    cut = (NOW - timedelta(days=2)).strftime("%Y-%m-%d %H:%M")
+    out = []
+    for t in watch.get("terms") or []:
+        items = (load(f"docs/data/tracking/items/{t.get('slug')}.json") or {}).get("items") or []
+        for it in sorted(items, key=lambda x: x.get("published", "")):
+            if (it.get("written") or "") < cut:
+                continue
+
+            def build(t=t, it=it):
+                lines = [f"#{hashtag(t['term'])}" + (f" · {esc(t.get('ticker'))}" if t.get("ticker") else ""),
+                         f"<b>{esc(it['headline'])}</b>", ""]
+                lines += [f"{i}. {esc(b)}" for i, b in enumerate(it.get("bullets") or [], 1)]
+                if it.get("summary"):
+                    lines += ["", esc(it["summary"])]
+                lines += ["", f'📰 <a href="{esc(it["url"])}">{esc(it.get("source") or "원문")}</a> · {stamp(it.get("published"))}']
+                return None, "\n".join(lines)
+            out.append((f"trk:{t.get('slug')}:{it['id']}", NOW, build))
+    return out
+
+
 SESSION_NAME = {"asia": "아시아 마감", "us": "미국 마감"}
 
 
@@ -355,7 +383,7 @@ SENT = set()   # 이미 보낸 키(항목 함수가 '주간 값을 붙일지' �
 
 
 # ── 실행 ─────────────────────────────────────────────────────
-ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro}
+ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking}
 
 
 def collect():
