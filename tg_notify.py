@@ -430,10 +430,17 @@ def main():
                 print("─" * 30, key, imgs or "", "\n" + text)
                 continue
             if imgs:
-                tg.send_photos(imgs, text if len(text) <= 1024 else text[:1000] + "…", silent=silent)
+                r = tg.send_photos(imgs, text if len(text) <= 1024 else text[:1000] + "…", silent=silent)
+                ids = [m.get("message_id") for m in (r if isinstance(r, list) else [r]) if isinstance(m, dict)]
             else:
-                tg.send(text, silent=silent)
+                ids = tg.send(text, silent=silent)
             sent.update(key.split("|"))
+            # 채널 메시지 번호 기록(나중에 고치거나 지울 때 씀) — 최근 500건만
+            msgs = state.setdefault("msg", {})
+            msgs[key] = ids
+            if len(msgs) > 500:
+                for k in list(msgs)[:-500]:
+                    del msgs[k]
             print("보냄:", key)
         except SystemExit as e:
             print("텔레그램 설정 없음:", e)
