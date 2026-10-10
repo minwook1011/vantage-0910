@@ -72,7 +72,7 @@ def main():
         if not c or not k.get("headline") or len(b) < 3:
             bad.append(k.get("id"))
             continue
-        item = {"id": c["id"], "headline": k["headline"].strip(), "bullets": b[:3], "summary": (k.get("summary") or "").strip(),
+        item = {"id": c["id"], "kind": c.get("kind", "news"), "headline": k["headline"].strip(), "bullets": b[:3], "summary": (k.get("summary") or "").strip(),
                 "title": c["title"], "source": c["source"], "url": c["url"], "published": c["published"],
                 "written": NOW.strftime("%Y-%m-%d %H:%M KST")}
         added.setdefault(c["slug"], []).append(item)

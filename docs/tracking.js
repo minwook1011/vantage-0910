@@ -31,7 +31,7 @@
     var chips = W.terms.map(function (t) {
       var n = (ITEMS[t.slug] || []).length; total += n;
       return '<span class="chip' + (sel === t.slug ? " on" : "") + '" data-s="' + esc(t.slug) + '">' +
-        '<button type="button" class="pick">' + esc(tag(t.term)) + (t.ticker ? " <small>" + esc(t.ticker) + "</small>" : "") +
+        '<button type="button" class="pick">' + (t.market === "blog" ? "📝 " : "") + esc(tag(t.term)) + (t.ticker ? " <small>" + esc(t.ticker) + "</small>" : "") +
         ' <em>' + n + '</em></button><button type="button" class="del" title="트래킹 삭제" data-term="' + esc(t.term) + '">×</button></span>';
     }).join("");
     $("#chips").innerHTML = '<span class="chip' + (sel === "__all" ? " on" : "") + '" data-s="__all"><button type="button" class="pick">전체 <em>' + total + "</em></button></span>" + chips;
@@ -45,7 +45,7 @@
   function card(it, t) {
     var paras = String(it.summary || "").split(/\n{2,}/).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
     return '<article class="item">' +
-      '<div class="itop"><span class="itag">' + esc(tag(t.term)) + "</span><span class=\"itime\">" + esc(when(it.published)) + " · " + esc(it.source || "") + "</span></div>" +
+      '<div class="itop"><span class="itag">' + (t.market === "blog" ? "📝 블로그 " : "") + esc(tag(t.term)) + "</span><span class=\"itime\">" + esc(when(it.published)) + " · " + esc(it.source || "") + "</span></div>" +
       "<h3>" + esc(it.headline) + "</h3>" +
       "<ol class=\"bul\">" + (it.bullets || []).map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ol>" +
       (paras ? '<details class="sum"><summary>내용 요약</summary>' + paras + "</details>" : "") +

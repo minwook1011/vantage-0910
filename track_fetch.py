@@ -43,6 +43,8 @@ EN_SITES = ["reuters.com", "bloomberg.com", "cnbc.com", "wsj.com", "barrons.com"
 KO_SITES = ["hankyung.com", "mk.co.kr", "edaily.co.kr", "mt.co.kr", "sedaily.com", "yna.co.kr", "biz.chosun.com",
             "thebell.co.kr", "news.einfomax.co.kr", "news1.kr", "heraldcorp.com"]
 KO_FEEDS = ["https://www.hankyung.com/feed/finance", "https://www.yna.co.kr/rss/economy.xml"]
+# 대만 경제지(2026-10-10 사용자 요청: 공상시보) — TSMC·엔비디아 공급망·AI 서버·메모리·기판 보도가 빠르고 깊다. 검색은 중국어 이름+영문 이름
+TW_SITES = ["ctee.com.tw", "money.udn.com"]
 
 # 잡글: 추천·전망 낚시, 장기 가정, 자동 생성 시세 기사
 JUNK = re.compile(
@@ -54,7 +56,7 @@ JUNK = re.compile(
     r"(in|out)flows detected|advanced charts|research & ratings|company & people|\| [A-Z]{1,5}$|"
     r"stock (quote|price) (today|history)|earnings (preview|call transcript)|"
     r"추천주|급등주|테마주 정리|오늘의 특징주|특징주 \]|\[마감시황\]|\[개장시황\]|장마감|주가 (\d|상승|하락) ?(%|률)|"
-    r"\[포토\]|\[인사\]|\[부고\]|\[게시판\])", re.I)
+    r"\[포토\]|\[인사\]|\[부고\]|\[게시판\]|搜尋結果|懶人包|盤前|盤後|台股盤勢|個股)", re.I)
 JUNK_SRC = re.compile(r"(fool\.com|motley fool|zacks|insidermonkey|investorplace|247wallst|24/7 wall|tipranks|"
                       r"gurufocus|marketbeat|simply wall|stocktwits|benzinga|finbold|coincodex)", re.I)
 
@@ -203,7 +205,7 @@ def parse_rss(xml, default_src=""):
 
 def gnews(query, sites, lang):
     q = f"({query}) ({' OR '.join('site:' + s for s in sites)}) when:2d"
-    hl = "hl=en-US&gl=US&ceid=US:en" if lang == "en" else "hl=ko&gl=KR&ceid=KR:ko"
+    hl = {"en": "hl=en-US&gl=US&ceid=US:en", "ko": "hl=ko&gl=KR&ceid=KR:ko", "zh": "hl=zh-TW&gl=TW&ceid=TW:zh-Hant"}[lang]
     items = parse_rss(http("https://news.google.com/rss/search?q=" + urllib.parse.quote(q) + "&" + hl))
     for it in items:   # 구글 뉴스 제목 끝의 ' - 매체명' 은 떼고 매체 칸으로
         it["title"] = re.sub(r"\s+-\s+[^-]{2,40}$", "", it["title"])
@@ -211,6 +213,16 @@ def gnews(query, sites, lang):
 
 
 def fetch_term(t):
+    if t.get("market") == "blog":                            # 네이버 블로그: 새 글 목록(RSS) 그대로
+        bid = t.get("blog_id") or ""
+        try:
+            items = parse_rss(http(f"https://rss.blog.naver.com/{bid}.xml"), t.get("name") or t["term"])
+            for it in items:
+                it["url"] = re.sub(r"\?fromRss.*$", "", it["url"])
+                it["source"] = t.get("name") or t["term"]
+            return items, [], []
+        except Exception as e:
+            return [], [f"blog {bid}: {str(e)[:80]}"], []
     aliases = [a for a in (t.get("aliases") or [t["term"]]) if a]
     market = t.get("market") or ("kr" if re.search(r"[가-힣]", t["term"]) else "us")
     en = [a for a in aliases if not re.search(r"[가-힣]", a)]
@@ -230,6 +242,9 @@ def fetch_term(t):
         add(gnews, q(ko), KO_SITES, "ko")
         for f in KO_FEEDS:
             add(lambda u: parse_rss(http(u), urllib.parse.urlparse(u).netloc), f)
+    zh = [a for a in aliases if re.search(r"[一-鿿]", a) and not re.search(r"[가-힣]", a)]
+    if zh or en:                                         # 대만 경제지(공상시보·경제일보)
+        add(gnews, q(zh + en), TW_SITES, "zh")
     tk = (t.get("ticker") or "").upper()
     if market == "us" and tk:
         add(lambda: parse_rss(http(f"https://seekingalpha.com/api/sa/combined/{tk}.xml"), "Seeking Alpha"))
@@ -263,7 +278,7 @@ def week_check(cands, watch):
         for it in load(os.path.join(BASE, "docs", "data", "tracking", "items", t["slug"] + ".json"), {}).get("items", []):
             if (it.get("published") or "") >= cut:
                 sent.append(it)
-    for c in cands[:40]:
+    for c in [c for c in cands if c.get("kind") != "blog"][:40]:
         if "earlier" in c:                                 # 지난번에 확인한 후보
             continue
         c["sent_similar"] = [{"headline": s["headline"], "title": s["title"], "published": s["published"]}
@@ -285,6 +300,13 @@ def week_check(cands, watch):
                 c["earlier"].append({"title": g["title"], "source": g["source"], "published": g["published"].strftime("%Y-%m-%d %H:%M KST")})
         c["earlier"] = sorted(c["earlier"], key=lambda x: x["published"])[:4]
     return cands
+
+
+def has_key(k, text):
+    """영문 이름은 단어 단위로만('meta' 가 'metal' 에 걸리지 않게), 한글·한자는 포함 여부로"""
+    if k.isascii():
+        return re.search(r"(?<![a-z0-9])" + re.escape(k) + r"(?![a-z0-9])", text) is not None
+    return k in text
 
 
 def main():
@@ -313,15 +335,16 @@ def main():
             if not nt or sid in seen or it["published"] < since:
                 continue
             seen[sid] = NOW.strftime("%Y-%m-%d")                   # 후보로 올린 건 다시 안 올림(채택·탈락 무관)
+            blog = t.get("market") == "blog"                       # 블로그는 거르기 없이 새 글 전부
             text = (it["title"] + " " + it["snippet"]).lower()
-            if JUNK.search(it["title"]) or JUNK_SRC.search(it["source"] + " " + it["url"]):
+            if not blog and (JUNK.search(it["title"]) or JUNK_SRC.search(it["source"] + " " + it["url"])):
                 continue
-            if not any(k in it["title"].lower() for k in keys_l) and not any(k in text for k in keys_l):
+            if not blog and not any(has_key(k, it["title"].lower()) for k in keys_l):   # 제목에 있어야(구글 뉴스 설명문엔 "Google" 이 늘 들어감)
                 continue
             if any(norm_title(c["title"]) == nt for c in cands):
                 continue
-            cands.append({"id": sid, "term": t["term"], "slug": slug, "source": it["source"], "url": it["url"],
-                          "title": it["title"], "snippet": it["snippet"],
+            cands.append({"id": sid, "term": t["term"], "slug": slug, "kind": "blog" if blog else "news",
+                          "source": it["source"], "url": it["url"], "title": it["title"], "snippet": it["snippet"],
                           "published": it["published"].strftime("%Y-%m-%d %H:%M KST")})
             kept += 1
         state["started"][slug] = state["started"].get(slug) or NOW.strftime("%Y-%m-%d %H:%M")

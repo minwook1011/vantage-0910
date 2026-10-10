@@ -29,7 +29,10 @@
     "패키지 기판",
     "FC-BGA",
     "IC substrate",
-    "PCB maker"
+    "PCB maker",
+    "載板",
+    "ABF載板",
+    "IC載板"
    ],
    "resolved": true,
    "added": "2026-10-10 13:30",
@@ -77,7 +80,8 @@
    "name": "삼성전기",
    "aliases": [
     "삼성전기",
-    "Samsung Electro-Mechanics"
+    "Samsung Electro-Mechanics",
+    "三星電機"
    ],
    "resolved": true,
    "added": "2026-10-10 13:30",
@@ -109,7 +113,8 @@
    "aliases": [
     "Amazon",
     "AMZN",
-    "아마존"
+    "아마존",
+    "亞馬遜"
    ],
    "resolved": true,
    "added": "2026-10-10 13:30",
@@ -126,7 +131,8 @@
    "aliases": [
     "Microsoft",
     "MSFT",
-    "마이크로소프트"
+    "마이크로소프트",
+    "微軟"
    ],
    "resolved": true,
    "added": "2026-10-10 13:30",
@@ -143,7 +149,8 @@
    "aliases": [
     "Meta Platforms",
     "META",
-    "메타"
+    "메타",
+    "Meta"
    ],
    "resolved": true,
    "added": "2026-10-10 13:30",
@@ -181,7 +188,8 @@
     "Alphabet",
     "Google",
     "GOOGL",
-    "구글"
+    "구글",
+    "谷歌"
    ],
    "resolved": true,
    "added": "2026-10-10 13:30",
@@ -264,6 +272,18 @@
    "name": "Claude (앤트로픽 인공지능 모델)",
    "count": 0,
    "last": ""
+  },
+  {
+   "term": "메르",
+   "slug": "blog-ranto28",
+   "market": "blog",
+   "blog_id": "ranto28",
+   "ticker": "",
+   "name": "메르의 블로그",
+   "aliases": [],
+   "resolved": true,
+   "added": "2026-10-10 14:00",
+   "by": "claude"
   }
  ],
  "updated": "2026-10-10 14:14 KST"

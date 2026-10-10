@@ -245,7 +245,8 @@ def tracking():
                 continue
 
             def build(t=t, it=it):
-                lines = [f"#{hashtag(t['term'])}" + (f" · {esc(t.get('ticker'))}" if t.get("ticker") else ""),
+                label = " · 📝 블로그" if t.get("market") == "blog" else (f" · {esc(t.get('ticker'))}" if t.get("ticker") else "")
+                lines = [f"#{hashtag(t['term'])}" + label,
                          f"<b>{esc(it['headline'])}</b>", ""]
                 lines += [f"{i}. {esc(b)}" for i, b in enumerate(it.get("bullets") or [], 1)]
                 if it.get("summary"):
