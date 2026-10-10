@@ -23,14 +23,19 @@
   "pod:2026-10-09-synopsis-dialogue-business-frameworks-from-thousands-of-h",
   "price:2026-10-06",
   "trk:amzn:1dd4d3b49ae5",
+  "trk:amzn:32bc35a6bf9a",
   "trk:amzn:515865eecad0",
   "trk:amzn:63f2e4fcda5c",
   "trk:amzn:f728a1519228",
   "trk:googl:1dd4d3b49ae5",
   "trk:googl:515865eecad0",
+  "trk:meta:27881b98bd4b",
+  "trk:meta:cc86d4669999",
   "trk:msft:63f2e4fcda5c",
   "trk:msft:f728a1519228",
   "trk:nbis:72429f93efe2",
+  "trk:t-759fd052:8d6d18863984",
+  "trk:t-759fd052:98c661336610",
   "usdkrw:2026-10-07",
   "usdkrw:2026-10-08",
   "usdkrw:2026-10-09",
@@ -49,6 +54,21 @@
   ],
   "trk:googl:515865eecad0": [
    107
+  ],
+  "trk:amzn:32bc35a6bf9a": [
+   109
+  ],
+  "trk:meta:cc86d4669999": [
+   110
+  ],
+  "trk:meta:27881b98bd4b": [
+   111
+  ],
+  "trk:t-759fd052:98c661336610": [
+   112
+  ],
+  "trk:t-759fd052:8d6d18863984": [
+   113
   ]
  }
 }
