@@ -17,7 +17,67 @@
    "by": "claude",
    "count": 1,
    "last": "2026-10-09 18:39 KST"
+  },
+  {
+   "term": "기판(티엘비, 심텍, 삼성전기, 코리아써키트)",
+   "slug": "t-db4a444a",
+   "market": "kr",
+   "ticker": "",
+   "aliases": [
+    "티엘비",
+    "심텍",
+    "삼성전기",
+    "코리아써키트",
+    "기판(티엘비, 심텍, 삼성전기, 코리아써키트)"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:14",
+   "by": "telegram",
+   "name": "기판(티엘비·심텍·삼성전기·코리아써키트)",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "아마존(AMZN), 마이크로소프트, 메타, 뮤즈, 구글",
+   "slug": "amzn",
+   "market": "theme",
+   "ticker": "",
+   "aliases": [
+    "Amazon",
+    "Microsoft",
+    "Meta Platforms",
+    "Muse Spark",
+    "Alphabet",
+    "아마존",
+    "마이크로소프트",
+    "메타플랫폼스",
+    "구글",
+    "아마존(AMZN), 마이크로소프트, 메타, 뮤즈, 구글"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:14",
+   "by": "telegram",
+   "name": "빅테크(아마존·마이크로소프트·메타·구글)",
+   "count": 4,
+   "last": "2026-10-09 13:04 KST"
+  },
+  {
+   "term": "AWS",
+   "slug": "aws",
+   "market": "theme",
+   "ticker": "",
+   "aliases": [
+    "Amazon Web Services",
+    "AWS",
+    "아마존웹서비스"
+   ],
+   "resolved": true,
+   "added": "2026-10-10 13:14",
+   "by": "telegram",
+   "name": "Amazon Web Services",
+   "count": 0,
+   "last": ""
   }
  ],
- "updated": "2026-10-10 13:00 KST"
+ "updated": "2026-10-10 13:16 KST"
 }
