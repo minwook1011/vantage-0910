@@ -6,7 +6,7 @@ name: telegram-notify
 on:
   push:                     # PC 예약 작업이 글·데이터를 올리면 바로(시황 요약·팟캐스트·AI 지표·공포탐욕)
     branches: [main]
-    paths: ["docs/**"]
+    paths: ["docs/**", "data_sources/tracking_state.json"]
   workflow_run:             # GitHub 이 직접 모으는 데이터가 끝나면 바로
     workflows: [macro-dashboard, ai-indicators-daily, podcasts-detect]
     types: [completed]
