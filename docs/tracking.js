@@ -26,49 +26,105 @@
   function when(s) { return String(s || "").replace(/^\d{4}-/, "").replace(" KST", "").replace("-", "/"); }
 
   // ── 보기 ──
-  function renderChips() {
-    var total = 0;
-    var chips = W.terms.map(function (t) {
-      var n = (ITEMS[t.slug] || []).length; total += n;
-      return '<span class="chip' + (sel === t.slug ? " on" : "") + '" data-s="' + esc(t.slug) + '">' +
-        '<button type="button" class="pick">' + (t.market === "blog" ? "📝 " : "") + esc(tag(t.term)) + (t.ticker ? " <small>" + esc(t.ticker) + "</small>" : "") +
-        ' <em>' + n + '</em></button><button type="button" class="del" title="트래킹 삭제" data-term="' + esc(t.term) + '">×</button></span>';
-    }).join("");
-    $("#chips").innerHTML = '<span class="chip' + (sel === "__all" ? " on" : "") + '" data-s="__all"><button type="button" class="pick">전체 <em>' + total + "</em></button></span>" + chips;
-    Array.prototype.forEach.call(document.querySelectorAll("#chips .pick"), function (b) {
-      b.onclick = function () { sel = b.parentNode.getAttribute("data-s"); setLS(SEL_KEY, sel); renderChips(); renderList(); };
+  var TAB_KEY = "vantage-tracking-tab";
+  var tab = getLS(TAB_KEY) === "blog" ? "blog" : "news", q = "", editing = false;
+  var GROUPS = [
+    { key: "us", label: "해외 종목", test: function (t) { return t.market === "us"; } },
+    { key: "kr", label: "한국 종목", test: function (t) { return t.market === "kr"; } },
+    { key: "theme", label: "섹터·주제", test: function (t) { return t.market === "theme"; } },
+    { key: "new", label: "정보 확인 중", test: function (t) { return !t.market; } }
+  ];
+  function isBlog(t) { return t.market === "blog"; }
+  function inTab(t) { return tab === "blog" ? isBlog(t) : !isBlog(t); }
+  function norm(s) { return String(s || "").toLowerCase().replace(/\s+/g, ""); }
+  function termHit(t) {
+    if (!q) return true;
+    return [t.term, t.ticker, t.name].concat(t.aliases || []).some(function (x) { return norm(x).indexOf(q) >= 0; });
+  }
+  function itemHit(it) {
+    if (!q) return true;
+    return norm([it.headline, it.title, it.summary, it.source].concat(it.bullets || []).join(" ")).indexOf(q) >= 0;
+  }
+  function count(list) { return list.reduce(function (n, t) { return n + (ITEMS[t.slug] || []).length; }, 0); }
+  function lastOf(t) { var it = (ITEMS[t.slug] || [])[0]; return it ? when(it.published) : ""; }
+  function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+
+  function tile(t) {
+    var n = (ITEMS[t.slug] || []).length, last = lastOf(t);
+    var sub = isBlog(t) ? (t.name || "") : [t.ticker, t.name && t.name !== t.term ? t.name : ""].filter(Boolean).join(" · ");
+    return '<button type="button" class="tile' + (sel === t.slug ? " on" : "") + (n ? "" : " zero") + '" data-s="' + esc(t.slug) + '" data-term="' + esc(t.term) + '">' +
+      '<span class="tn">' + esc(t.term) + "</span>" +
+      (sub ? '<span class="ts">' + esc(sub) + "</span>" : "") +
+      '<span class="tf"><b>' + n + "건</b>" + (last ? " · " + esc(last) : n ? "" : " · 아직 없음") + "</span>" +
+      (editing ? '<span class="tx" title="삭제">×</span>' : "") + "</button>";
+  }
+  function renderTiles() {
+    var all = W.terms.filter(inTab), shown = all.filter(termHit), html = "";
+    $("#cnt-news").textContent = count(W.terms.filter(function (t) { return !isBlog(t); }));
+    $("#cnt-blog").textContent = count(W.terms.filter(isBlog));
+    each("#tabs button", function (b) {
+      var on = b.getAttribute("data-tab") === tab;
+      b.classList.toggle("on", on); b.setAttribute("aria-selected", on ? "true" : "false");
     });
-    Array.prototype.forEach.call(document.querySelectorAll("#chips .del"), function (b) {
-      b.onclick = function () { var t = b.getAttribute("data-term"); if (confirm("'" + t + "' 트래킹을 그만할까요? 지난 기사는 남습니다.")) edit("del", t); };
+    if (tab === "blog") {
+      if (shown.length) html = '<div class="grp"><div class="gl">구독 블로그 <em>' + shown.length + '</em></div><div class="grid">' + shown.map(tile).join("") + "</div></div>";
+    } else {
+      GROUPS.forEach(function (g) {
+        var ts = shown.filter(g.test);
+        if (ts.length) html += '<div class="grp"><div class="gl">' + g.label + " <em>" + ts.length + '</em></div><div class="grid">' + ts.map(tile).join("") + "</div></div>";
+      });
+    }
+    if (!all.length) html = '<div class="empty">' + (tab === "blog" ? "구독 중인 블로그가 없습니다. 블로그 주소를 Claude에게 알려 주세요." : "트래킹 중인 종목이 없습니다. ＋ 추가를 눌러 넣어 보세요.") + "</div>";
+    else if (!shown.length) html = '<div class="empty small">이름이 맞는 ' + (tab === "blog" ? "블로그는" : "종목은") + " 없습니다. 아래는 글 내용으로 찾은 결과입니다.</div>";
+    $("#tiles").innerHTML = html;
+    $("#tiles").classList.toggle("editing", editing);
+    each("#tiles .tile", function (b) {
+      b.onclick = function () {
+        var s = b.getAttribute("data-s"), term = b.getAttribute("data-term");
+        if (editing) { if (confirm("'" + term + "' 트래킹을 그만할까요? 지난 기사는 남습니다.")) edit("del", term); return; }
+        sel = sel === s ? "__all" : s; setLS(SEL_KEY, sel); renderTiles(); renderList();
+        if (sel !== "__all") $("#list-title").scrollIntoView({ behavior: "smooth", block: "start" });
+      };
     });
   }
   function card(it, t) {
     var paras = String(it.summary || "").split(/\n{2,}/).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
-    return '<article class="item">' +
-      '<div class="itop"><span class="itag">' + (t.market === "blog" ? "📝 블로그 " : "") + esc(tag(t.term)) + "</span><span class=\"itime\">" + esc(when(it.published)) + " · " + esc(it.source || "") + "</span></div>" +
+    return '<article class="item' + (isBlog(t) ? " blog" : "") + '">' +
+      '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + (isBlog(t) ? "📝 " : "") + esc(tag(t.term)) + "</button>" +
+      '<span class="itime">' + esc(when(it.published)) + " · " + esc(it.source || "") + "</span></div>" +
       "<h3>" + esc(it.headline) + "</h3>" +
-      "<ol class=\"bul\">" + (it.bullets || []).map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ol>" +
+      '<ol class="bul">' + (it.bullets || []).map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ol>" +
       (paras ? '<details class="sum"><summary>내용 요약</summary>' + paras + "</details>" : "") +
-      '<a class="src" href="' + esc(it.url) + '" target="_blank" rel="noopener">원문 보기 · ' + esc(it.title || it.source || "") + " ↗</a>" +
+      '<a class="src" href="' + esc(it.url) + '" target="_blank" rel="noopener">원문 ↗ ' + esc(it.title || it.source || "") + "</a>" +
       "</article>";
   }
   function renderList() {
+    var cur = W.terms.filter(function (t) { return t.slug === sel; })[0];
+    if (cur && !inTab(cur)) { sel = "__all"; cur = null; }
     var rows = [];
     W.terms.forEach(function (t) {
-      if (sel !== "__all" && sel !== t.slug) return;
-      (ITEMS[t.slug] || []).forEach(function (it) { rows.push({ it: it, t: t }); });
+      if (!inTab(t) || (cur && t !== cur)) return;
+      var termMatch = q && termHit(t);
+      (ITEMS[t.slug] || []).forEach(function (it) { if (cur || !q || termMatch || itemHit(it)) rows.push({ it: it, t: t }); });
     });
     rows.sort(function (a, b) { return (b.it.published || "").localeCompare(a.it.published || ""); });
-    if (!W.terms.length) { $("#list").innerHTML = '<div class="empty">트래킹 중인 단어가 없습니다. 위에서 추가해 보세요.</div>'; return; }
-    if (!rows.length) { $("#list").innerHTML = '<div class="empty">아직 보낸 기사가 없습니다. 30분마다 확인합니다.</div>'; return; }
+    $("#list-title").textContent = (cur ? tag(cur.term) : tab === "blog" ? "블로그 전체" : "종목·섹터 전체") +
+      (q && !cur ? " · '" + $("#q").value.trim() + "' 검색" : "") + " · " + rows.length + "건";
+    $("#btn-all").hidden = !cur;
+    $("#btn-up").textContent = tab === "blog" ? "↑ 블로그 고르기" : "↑ 종목 고르기";
+    if (!rows.length) { $("#list").innerHTML = '<div class="empty">' + (q ? "검색 결과가 없습니다." : "아직 보낸 글이 없습니다. 30분마다 확인합니다.") + "</div>"; return; }
     var html = "", day = "";
-    rows.slice(0, 200).forEach(function (r) {
+    rows.slice(0, 150).forEach(function (r) {
       var d = (r.it.published || "").slice(0, 10);
       if (d !== day) { day = d; html += '<div class="day">' + esc(d) + "</div>"; }
       html += card(r.it, r.t);
     });
     $("#list").innerHTML = html;
+    each("#list .itag", function (b) {
+      b.onclick = function () { sel = b.getAttribute("data-s"); setLS(SEL_KEY, sel); renderTiles(); renderList(); $("#list-title").scrollIntoView({ behavior: "smooth", block: "start" }); };
+    });
   }
+  function renderChips() { renderTiles(); }      // 쓰기 쪽에서 부르는 이름 유지
   function loadAll() {
     return json("data/tracking/watchlist.json").catch(function () { return { terms: [] }; }).then(function (w) {
       W = w && w.terms ? w : { terms: [] };
@@ -77,8 +133,28 @@
         return json("data/tracking/items/" + t.slug + ".json").then(function (d) { ITEMS[t.slug] = d.items || []; })
           .catch(function () { ITEMS[t.slug] = []; });
       }));
-    }).then(function () { renderChips(); renderList(); });
+    }).then(function () { renderTiles(); renderList(); });
   }
+  each("#tabs button", function (b) {
+    b.onclick = function () { tab = b.getAttribute("data-tab"); setLS(TAB_KEY, tab); sel = "__all"; setLS(SEL_KEY, sel); renderTiles(); renderList(); };
+  });
+  var qt;
+  $("#q").addEventListener("input", function () { clearTimeout(qt); qt = setTimeout(function () { q = norm($("#q").value); renderTiles(); renderList(); }, 120); });
+  // 사이트 상단 메뉴(고정)가 기사 머리줄을 가리지 않게 그 높이만큼 내려 붙인다
+  function fitSticky() {
+    var nav = document.getElementById("topnav"), h = nav ? nav.getBoundingClientRect().height : 0;
+    var lh = document.querySelector(".list-head");
+    lh.style.top = Math.round(h) + "px"; lh.style.scrollMarginTop = Math.round(h + 6) + "px";
+    $("#tabs").style.scrollMarginTop = Math.round(h + 10) + "px";
+  }
+  window.addEventListener("resize", fitSticky); setTimeout(fitSticky, 300); setTimeout(fitSticky, 1500);
+  $("#btn-up").onclick = function () { $("#tabs").scrollIntoView({ behavior: "smooth", block: "start" }); };
+  $("#btn-all").onclick = function () { sel = "__all"; setLS(SEL_KEY, sel); renderTiles(); renderList(); };
+  $("#btn-add").onclick = function () { var box = $("#add-box"); box.hidden = !box.hidden; if (!box.hidden) $("#add-input").focus(); };
+  $("#btn-edit").onclick = function () {
+    editing = !editing; this.classList.toggle("on", editing); this.textContent = editing ? "편집 끝" : "편집";
+    status(editing ? "지울 칸을 누르세요." : ""); renderTiles();
+  };
 
   // ── 쓰기(깃허브 API) ──
   function b64(str) { return btoa(unescape(encodeURIComponent(str))); }

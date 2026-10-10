@@ -7,26 +7,43 @@
 <script src="gate.js?v=20261003L"></script>
 <title>트래킹 — 100억</title>
 <link rel="stylesheet" href="theme.css?v=20261004B">
-<link rel="stylesheet" href="tracking.css?v=20261010A">
+<link rel="stylesheet" href="tracking.css?v=20261010F">
 </head>
 <body class="pc-light">
 <header id="topnav"></header>
 <main class="container trk" id="app">
-  <div class="kicker">트래킹 · 섹터·기업 뉴스 추적</div>
-  <h1>트래킹</h1>
-  <p class="lede">단어(기업·섹터)를 넣어 두면 30분마다 해외·국내·대만 주요 매체 뉴스와 구독 블로그를 훑어, 쓸모 있는 기사만 골라
-    <b>제목(결론) → 3줄 요약 → 내용 요약</b>으로 정리해 텔레그램 '돈벌레'에 <b>#단어</b>를 달아 보냅니다. 여기서도 같은 기사를 볼 수 있습니다.</p>
+  <div class="kicker">트래킹 · 종목·섹터 뉴스와 구독 블로그</div>
+  <div class="head">
+    <h1>트래킹</h1>
+    <p class="lede">30분마다 새 기사·새 글만 골라 <b>제목(결론) → 3줄 → 내용 요약</b>으로 정리합니다. 텔레그램으로 간 것과 같은 글입니다.</p>
+  </div>
 
-  <section class="manage">
+  <nav class="tabs" id="tabs" role="tablist">
+    <button type="button" data-tab="news" role="tab">📰 종목·섹터 <em id="cnt-news"></em></button>
+    <button type="button" data-tab="blog" role="tab">📝 블로그 <em id="cnt-blog"></em></button>
+  </nav>
+
+  <div class="bar">
+    <label class="search"><span>🔍</span><input id="q" type="search" placeholder="종목·기사 검색 (예: 엔비디아, HBM, 목표가)" autocomplete="off"></label>
+    <button type="button" id="btn-add" class="btn">＋ 추가</button>
+    <button type="button" id="btn-edit" class="btn">편집</button>
+  </div>
+
+  <section id="add-box" class="add-box" hidden>
     <form id="add-form" autocomplete="off">
-      <input id="add-input" type="text" maxlength="200" placeholder="예: 네비우스, 삼성전기, 광통신 (쉼표로 여러 개)">
+      <input id="add-input" type="text" maxlength="200" placeholder="종목·섹터 이름 (쉼표로 여러 개: 네비우스, 삼성전기, 광통신)">
       <button type="submit" class="btn pri">추가</button>
     </form>
-    <div class="hint">텔레그램 봇에 <code>/추가 단어</code> · <code>/삭제 단어</code> · <code>/목록</code>을 보내도 됩니다. 추가하면 다음 수집(30분 이내)부터 반영됩니다.</div>
-    <div id="status" class="status"></div>
+    <div class="hint">텔레그램 봇에 <code>/추가 단어</code>를 보내도 됩니다. 블로그 구독은 블로그 주소를 Claude에게 알려 주세요. 추가하면 다음 수집(30분 이내)부터 반영됩니다.</div>
   </section>
+  <div id="status" class="status"></div>
 
-  <div id="chips" class="chips"></div>
+  <div id="tiles" class="tiles"></div>
+
+  <div class="list-head">
+    <h2 id="list-title">전체 기사</h2>
+    <span class="lh-btns"><button type="button" id="btn-all" class="link" hidden>전체 보기 ×</button><button type="button" id="btn-up" class="link up">↑ 종목 고르기</button></span>
+  </div>
   <div id="list"><div class="empty">불러오는 중…</div></div>
 
   <details id="token-box" class="token">
@@ -47,6 +64,6 @@
   </details>
 </main>
 <script src="theme.js?v=20261010A"></script>
-<script src="tracking.js?v=20261010C"></script>
+<script src="tracking.js?v=20261010F"></script>
 </body>
 </html>
