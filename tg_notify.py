@@ -9,7 +9,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
 보내는 것(2026-10-07 사용자 지정) — 각 데이터가 실제로 갱신되는 시각 직후에 한 번씩
   1) AI 지표(그래프)
      · GPU별 렌탈 지수(H100·H200·B200·A100) — 매일 06:00 (Ornn 이 미 동부 16:00 정산 → 서머타임 해제 뒤엔 07:00)
-     · OpenRouter 지표 한 메시지(그래프 3장) — 매일 09:30: 평균 실효 단가 + 주간 토큰 총량 + 주간 지출
+     · OpenRouter 지표 — 매일 09:30 평균 실효 단가, 월요일 09:30에만 주간 토큰 총량·주간 지출 그래프를 함께(앨범)
        (하루는 UTC 자정 = 09:00 KST 에 닫히고, 주간 값은 월 09:00 KST 에 새 주로 바뀜)
   2) 팟캐스트 — 새 편 요약이 올라오면: 제목 · 핵심 3줄 · 내용 정리(tg_body, 1,000자 이내 단락)
   3) 오늘 시황 요약 — 매일 06:30 예약 작업이 쓰고 올리면 바로(본문 그대로)
@@ -163,6 +163,11 @@ def openrouter():
         return None
     last = p[-1]["date"]
     gate = at(date.fromisoformat(last) + timedelta(days=1), 9, 30)
+    # 주간 값(토큰·지출)은 새 주가 확정되는 월 09:30 이후 첫 메시지에만 한 번 붙인다(2026-10-10 사용자 지시)
+    wk_key = f"weekly:{t[-1]['date']}" if len(t) > 1 else None
+    weekly_due = bool(wk_key) and wk_key not in SENT and NOW >= at(date.fromisoformat(t[-1]["date"]) + timedelta(days=7), 9, 30)
+    if not weekly_due:
+        t, sp = [], []
 
     def build():
         from tg_charts import bars, line
@@ -187,9 +192,9 @@ def openrouter():
             rows.append(f"{arrow(w2)} 주간 지출 <b>${sp[-1]['value']:,.1f}M</b> (전주 대비 {w2:+.1f}%)")
         cap = (f"🤖 <b>OpenRouter 지표</b> · {last[5:].replace('-', '/')} 기준 · "
                f"{stamp((S.get('or_avg_price') or {}).get('updated_at'))} 갱신\n" + "\n".join(rows) +
-               "\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외) · 주간 값은 매주 월요일 갱신</i>")
+               "\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외)" + (" · 주간 값은 매주 월요일 09:30에 한 번" if t else "") + "</i>")
         return imgs, cap
-    return (f"or:{last}", gate, build)
+    return (f"or:{last}|{wk_key}" if weekly_due else f"or:{last}", gate, build)
 
 
 # ── 2) 팟캐스트 ───────────────────────────────────────────────
@@ -223,17 +228,26 @@ def podcasts():
 
 
 # ── 3) 오늘 시황 요약 ─────────────────────────────────────────
-def digest():
-    g = ((load("docs/news_digest.json") or {}).get("digests") or [None])[0]
-    if not g or g.get("date") != NOW.strftime("%Y-%m-%d"):
-        return None
+SESSION_NAME = {"asia": "아시아 마감", "us": "미국 마감"}
 
-    def build():
-        md = re.sub(r"^## 금일 시황 요약[^\n]*\n", "", g.get("markdown") or "").strip()
-        txt = (f"📰 <b>오늘 시황 요약</b> · {stamp(g.get('generated')) or NOW.strftime('%m/%d')} 작성\n<b>{esc(g.get('title'))}</b>\n\n"
-               + md_to_html(md))
-        return None, txt
-    return (f"digest:{g['date']}", NOW, build)
+
+def digest():
+    """하루 두 번(2026-10-10~): 16:10 아시아 마감(일본·한국 + 밤사이 미국 이슈) · 06:30 미국 마감(미국 + 장 후 한국·일본 이슈).
+    session 칸이 있는 항목은 회차별로 한 번씩, 없는 옛 항목은 날짜당 한 번."""
+    out = []
+    for g in (load("docs/news_digest.json") or {}).get("digests") or []:
+        if g.get("date") != NOW.strftime("%Y-%m-%d"):
+            continue
+        ses = g.get("session")
+
+        def build(g=g, ses=ses):
+            md = re.sub(r"^## [^\n]*시황 요약[^\n]*\n", "", g.get("markdown") or "").strip()
+            head = f"📰 <b>시황 요약 · {SESSION_NAME[ses]}</b>" if ses in SESSION_NAME else "📰 <b>오늘 시황 요약</b>"
+            txt = (f"{head} · {stamp(g.get('generated')) or NOW.strftime('%m/%d')} 작성\n<b>{esc(g.get('title'))}</b>\n\n"
+                   + md_to_html(md))
+            return None, txt
+        out.append((f"digest:{g['date']}:{ses}" if ses else f"digest:{g['date']}", NOW, build))
+    return out
 
 
 # ── 4) 매크로 요약 ────────────────────────────────────────────
@@ -337,6 +351,9 @@ def macro():
     return [(f"macro:{today}", gate, build), (f"usdkrw:{today}", gate, build_krw)]
 
 
+SENT = set()   # 이미 보낸 키(항목 함수가 '주간 값을 붙일지' 정할 때 씀)
+
+
 # ── 실행 ─────────────────────────────────────────────────────
 ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro}
 
@@ -364,6 +381,7 @@ def main():
         print("git fetch 실패(이전 내용으로 진행):", e)
     state = json.load(open(STATE_PATH, encoding="utf-8")) if os.path.exists(STATE_PATH) else {}
     sent = set(state.get("sent") or [])
+    SENT.update(sent)
     before = set(sent)
 
     todo = [(key, build) for name, key, gate, build in collect()
@@ -387,7 +405,7 @@ def main():
                 tg.send_photos(imgs, text if len(text) <= 1024 else text[:1000] + "…", silent=silent)
             else:
                 tg.send(text, silent=silent)
-            sent.add(key)
+            sent.update(key.split("|"))
             print("보냄:", key)
         except SystemExit as e:
             print("텔레그램 설정 없음:", e)

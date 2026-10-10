@@ -267,6 +267,7 @@ function renderFavs() {
 }
 
 /* ---------- 시황 요약 ---------- */
+var SESSION_LABEL = { asia: "아시아", us: "미국" };
 function renderDigest() {
   var d = DIGESTS[curDigest];
   var box = $q("#digest-box");
@@ -281,7 +282,8 @@ function renderDigest() {
   }).join("");
   box.innerHTML =
     '<div class="digest-title">' + escapeHtml(d.title || "종합 요약") + "</div>" +
-    '<div class="digest-meta">' + escapeHtml(d.generated || d.date || "") + "</div>" +
+    '<div class="digest-meta">' + (SESSION_LABEL[d.session] ? escapeHtml(SESSION_LABEL[d.session] + " 마감 · ") : "") +
+    escapeHtml(d.generated || d.date || "") + "</div>" +
     (stats ? '<div class="digest-stats">' + stats + "</div>" : "") +
     (imgs ? '<div class="digest-imgs">' + imgs + "</div>" : "") +
     '<div class="digest-body">' + mdRender(d.markdown) + "</div>";
@@ -299,7 +301,8 @@ function renderArchive() {
   $q("#digest-archive").innerHTML = order.map(function (wk, gi) {
     var rows = groups[wk].map(function (o) {
       return '<div class="wk-item' + (o.i === curDigest ? " on" : "") + '" data-di="' + o.i + '">' +
-        '<span class="wd">' + o.d.date.slice(5) + "</span><span class=\"wt\">" + escapeHtml(o.d.title || "") + "</span></div>";
+        '<span class="wd">' + o.d.date.slice(5) + (SESSION_LABEL[o.d.session] ? " " + SESSION_LABEL[o.d.session] : "") +
+        "</span><span class=\"wt\">" + escapeHtml(o.d.title || "") + "</span></div>";
     }).join("");
     return '<div class="wk-group' + (gi === 0 ? " open" : "") + '"><button class="wk-head" data-wk="' + wk + '">' +
       "<span>" + wk + " · " + groups[wk].length + "건</span><span class=\"wk-caret\">▾</span></button>" +
@@ -393,7 +396,10 @@ $q("#news-search").addEventListener("input", function () { kw = this.value.trim(
 
 /* ---------- 로드 ---------- */
 fetchJSON("news_digest.json").then(function (d) {
-  DIGESTS = (d.digests || []).slice().sort(function (a, b) { return (b.date || "").localeCompare(a.date || ""); });
+  // 하루 두 번(아시아 마감 · 미국 마감) — 같은 날짜는 나중에 쓴 것이 위로
+  DIGESTS = (d.digests || []).slice().sort(function (a, b) {
+    return ((b.date || "") + (b.generated || "")).localeCompare((a.date || "") + (a.generated || ""));
+  });
   curDigest = 0;
   renderDigest();
   renderArchive();
