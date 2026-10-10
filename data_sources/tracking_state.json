@@ -2351,5 +2351,15 @@
   "blog-egzion": "2026-10-10 14:44",
   "blog-travelingcompanion": "2026-10-10 14:44"
  },
- "owner": 7257925471
+ "owner": 7257925471,
+ "route": {
+  "news": {
+   "chat": 7257925471,
+   "thread": null
+  },
+  "blog": {
+   "chat": 7257925471,
+   "thread": null
+  }
+ }
 }
