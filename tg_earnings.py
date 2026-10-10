@@ -344,9 +344,9 @@ def daily(st):
         print("이미 보냄:", key)
         return
     png = tg_shots.day_all(today, favorites())
-    cap = (f"☀️ <b>오늘 실적 발표</b> {NOW:%m.%d}({'월화수목금토일'[NOW.weekday()]})\n"
+    cap = (f"☀️ <b>오늘 실적 발표 예정</b> {NOW:%m.%d}({'월화수목금토일'[NOW.weekday()]})\n"
            f"일본 소비재 · 일본 닛케이 · 미국(미 동부 날짜 — 장 전 = 오늘 밤, 장 후 = 내일 새벽)\n\n"
-           f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>')
+           f'<a href="{SITE}jp-screener.html">일본 캘린더</a> · <a href="{SITE}us-report.html">미국 캘린더</a>\n#실적예정')
     use_topic("sched")
     out([png] if png else [], cap if png else cap + "\n\n오늘은 발표 예정이 없습니다.", "daily")
     st["sent"].add(key)
