@@ -238,6 +238,55 @@ def fetch_term(t):
     return got, errs, aliases + ([tk] if tk else [])
 
 
+# ── 3) 최근 일주일 중복 확인(2026-10-10 사용자 지시: 새롭고 가장 최근 뉴스만, 지난 보도를 재탕한 기사는 뺀다) ──
+STOP = set("the a an of to in on for and with is are as at by from its after over new says said will stock stocks shares "
+           "inc corp group co ltd plc 및 등 의 에 를 을 이 가 은 는 와 과 로 으로 한다 했다 위해 대한 관련".split())
+
+
+def sim(a, b):
+    from difflib import SequenceMatcher
+    return SequenceMatcher(None, norm_title(a), norm_title(b)).ratio()
+
+
+def key_words(title, n=7):
+    t = re.sub(r"[^\w가-힣$%.\- ]", " ", title)
+    ws = [w for w in t.split() if w.lower() not in STOP and len(w) > 1]
+    return ws[:n]
+
+
+def week_check(cands, watch):
+    """후보마다 ① 지난 7일 이미 보낸 기사(모든 단어) 중 비슷한 것 ② 다른 매체가 12시간 넘게 먼저 낸 비슷한 기사를 붙인다."""
+    from datetime import datetime as _dt
+    cut = (NOW - timedelta(days=7)).strftime("%Y-%m-%d %H:%M")
+    sent = []
+    for t in watch.get("terms", []):
+        for it in load(os.path.join(BASE, "docs", "data", "tracking", "items", t["slug"] + ".json"), {}).get("items", []):
+            if (it.get("published") or "") >= cut:
+                sent.append(it)
+    for c in cands[:40]:
+        if "earlier" in c:                                 # 지난번에 확인한 후보
+            continue
+        c["sent_similar"] = [{"headline": s["headline"], "title": s["title"], "published": s["published"]}
+                             for s in sent if max(sim(c["title"], s["title"]), sim(c["title"], s["headline"])) >= 0.42][:3]
+        kw = key_words(c["title"])
+        c["earlier"] = []
+        if len(kw) < 2:
+            continue
+        lang = "ko" if re.search(r"[가-힣]", c["title"]) else "en"
+        hl = "hl=en-US&gl=US&ceid=US:en" if lang == "en" else "hl=ko&gl=KR&ceid=KR:ko"
+        try:
+            got = parse_rss(http("https://news.google.com/rss/search?q=" + urllib.parse.quote(" ".join(kw) + " when:7d") + "&" + hl))
+        except Exception:
+            continue
+        mine = _dt.strptime(c["published"][:16], "%Y-%m-%d %H:%M").replace(tzinfo=KST)
+        for g in got:
+            g["title"] = re.sub(r"\s+-\s+[^-]{2,40}$", "", g["title"])
+            if g["published"] < mine - timedelta(hours=12) and sim(c["title"], g["title"]) >= 0.38:
+                c["earlier"].append({"title": g["title"], "source": g["source"], "published": g["published"].strftime("%Y-%m-%d %H:%M KST")})
+        c["earlier"] = sorted(c["earlier"], key=lambda x: x["published"])[:4]
+    return cands
+
+
 def main():
     a = sys.argv[1:]
     watch = load(WATCH, {"schema": 1, "terms": []})
@@ -277,6 +326,11 @@ def main():
             kept += 1
         state["started"][slug] = state["started"].get(slug) or NOW.strftime("%Y-%m-%d %H:%M")
         report.append(f"#{hashtag(t['term'])} 원문 {len(items)} → 후보 {kept}" + (f" (실패: {'; '.join(errs)})" if errs else ""))
+
+    cands = week_check(cands, watch)
+    flagged = sum(1 for c in cands if c.get("earlier") or c.get("sent_similar"))
+    if flagged:
+        report.append(f"지난 7일 비슷한 보도가 있는 후보 {flagged}건(재탕 여부 확인 필요)")
 
     # 오래된 기록 정리(10일)
     cut = (NOW - timedelta(days=10)).strftime("%Y-%m-%d")
