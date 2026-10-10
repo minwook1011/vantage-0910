@@ -231,8 +231,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "OpenAI",
-   "count": 0,
-   "last": ""
+   "count": 1,
+   "last": "2026-10-09 06:30 KST"
   },
   {
    "term": "엔스로픽",
@@ -283,7 +283,9 @@
    "aliases": [],
    "resolved": true,
    "added": "2026-10-10 14:00",
-   "by": "claude"
+   "by": "claude",
+   "count": 2,
+   "last": "2026-10-10 07:30 KST"
   },
   {
    "term": "매크로비욘드",
@@ -295,7 +297,9 @@
    "aliases": [],
    "resolved": true,
    "added": "2026-10-10 14:40",
-   "by": "claude"
+   "by": "claude",
+   "count": 1,
+   "last": "2026-10-10 12:36 KST"
   },
   {
    "term": "농구천재",
@@ -307,7 +311,9 @@
    "aliases": [],
    "resolved": true,
    "added": "2026-10-10 14:40",
-   "by": "claude"
+   "by": "claude",
+   "count": 0,
+   "last": ""
   },
   {
    "term": "이그전",
@@ -319,7 +325,9 @@
    "aliases": [],
    "resolved": true,
    "added": "2026-10-10 14:40",
-   "by": "claude"
+   "by": "claude",
+   "count": 0,
+   "last": ""
   },
   {
    "term": "주식하는하루키",
@@ -331,8 +339,10 @@
    "aliases": [],
    "resolved": true,
    "added": "2026-10-10 14:50",
-   "by": "claude"
+   "by": "claude",
+   "count": 0,
+   "last": ""
   }
  ],
- "updated": "2026-10-10 14:14 KST"
+ "updated": "2026-10-10 14:48 KST"
 }
