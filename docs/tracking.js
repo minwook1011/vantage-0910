@@ -6,7 +6,7 @@
   var TOKEN_KEY = "vantage-gh-token";            // 동기화 대상 아님(기기별)
   var SEL_KEY = "vantage-tracking-selected";
   var $ = function (s) { return document.querySelector(s); };
-  var W = { terms: [] }, ITEMS = {}, sel = "__all";
+  var W = { terms: [] }, ITEMS = {}, sel = [];          // sel: 고른 칸 slug 여러 개(비면 전체)
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function getLS(k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } }
@@ -52,13 +52,16 @@
   function lastOf(t) { var it = (ITEMS[t.slug] || [])[0]; return it ? when(it.published) : ""; }
   function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
 
+  function saveSel() { setLS(SEL_KEY, sel.length ? JSON.stringify(sel) : ""); }
+  function isFresh(t) { var it = (ITEMS[t.slug] || [])[0]; return it && (Date.now() - Date.parse(String(it.published || "").replace(" KST", "+09:00").replace(" ", "T"))) < 24 * 3600e3; }
+  // 칸 = 작은 이름표(이름 + 건수). 24시간 안에 새 글이 있으면 점. 자세한 정보는 마우스를 올리면.
   function tile(t) {
     var n = (ITEMS[t.slug] || []).length, last = lastOf(t);
-    var sub = isBlog(t) || isYT(t) ? (t.name || "") : [t.ticker, t.name && t.name !== t.term ? t.name : ""].filter(Boolean).join(" · ");
-    return '<button type="button" class="tile' + (sel === t.slug ? " on" : "") + (n ? "" : " zero") + '" data-s="' + esc(t.slug) + '" data-term="' + esc(t.term) + '">' +
-      '<span class="tn">' + esc(t.term) + "</span>" +
-      (sub ? '<span class="ts">' + esc(sub) + "</span>" : "") +
-      '<span class="tf"><b>' + n + "건</b>" + (last ? " · " + esc(last) : n ? "" : " · 아직 없음") + "</span>" +
+    var sub = [t.ticker, t.name && t.name !== t.term ? t.name : ""].filter(Boolean).join(" · ");
+    var tip = [sub, n ? n + "건 · 마지막 " + last : "아직 글 없음"].filter(Boolean).join(" · ");
+    return '<button type="button" class="tile' + (sel.indexOf(t.slug) >= 0 ? " on" : "") + (n ? "" : " zero") + '" data-s="' + esc(t.slug) + '" data-term="' + esc(t.term) + '" title="' + esc(tip) + '">' +
+      (isFresh(t) ? '<i class="dot"></i>' : "") + '<span class="tn">' + esc(t.term) + "</span>" +
+      '<span class="tc">' + n + "</span>" +
       (editing ? '<span class="tx" title="삭제">×</span>' : "") + "</button>";
   }
   function renderTiles() {
@@ -84,8 +87,8 @@
       b.onclick = function () {
         var s = b.getAttribute("data-s"), term = b.getAttribute("data-term");
         if (editing) { if (confirm("'" + term + "' 트래킹을 그만할까요? 지난 기사는 남습니다.")) edit("del", term); return; }
-        sel = sel === s ? "__all" : s; setLS(SEL_KEY, sel); renderTiles(); renderList();
-        if (sel !== "__all") $("#list-title").scrollIntoView({ behavior: "smooth", block: "start" });
+        var i = sel.indexOf(s); i >= 0 ? sel.splice(i, 1) : sel.push(s);    // 여러 개 같이 고르기
+        saveSel(); renderTiles(); renderList();
       };
     });
   }
@@ -110,37 +113,75 @@
       '<a class="src" href="' + esc(it.url) + '" target="_blank" rel="noopener">원문 ↗ ' + esc(it.title || it.source || "") + "</a>" +
       "</article>";
   }
+  var ROWS = [];
+  function mini(it, t, i) {
+    var kind = isBlog(t) ? " blog" : isYT(t) ? " yt" : "";
+    return '<div class="mini' + kind + '" tabindex="0" role="button" data-i="' + i + '">' +
+      '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + esc(tag(t.term)) + "</button>" +
+      '<span class="itime">' + esc(when(it.published).replace(/^\d\d\/\d\d /, "")) + "</span></div>" +
+      "<h3>" + esc(it.headline) + "</h3>" +
+      '<p class="pv">' + esc((it.bullets || [])[0] || "") + "</p>" +
+      '<div class="mfoot">' + esc(it.source || "") + "</div></div>";
+  }
+  function openReader(i) {
+    var r = ROWS[i]; if (!r) return;
+    $("#reader-body").innerHTML = card(r.it, r.t).replace("<details class=\"sum\">", "<details class=\"sum\" open>");
+    $("#reader").hidden = false; document.body.classList.add("noscroll");
+    $("#reader-body").scrollTop = 0;
+    each("#reader-body .itag", function (b) {
+      b.onclick = function () { closeReader(); sel = [b.getAttribute("data-s")]; saveSel(); renderTiles(); renderList(); };
+    });
+    $("#reader-prev").disabled = i <= 0; $("#reader-next").disabled = i >= ROWS.length - 1;
+    $("#reader").setAttribute("data-i", i);
+  }
+  function closeReader() { $("#reader").hidden = true; document.body.classList.remove("noscroll"); }
+  function step(d) { var i = +$("#reader").getAttribute("data-i") + d; if (ROWS[i]) openReader(i); }
+  $("#reader").addEventListener("click", function (e) { if (e.target.id === "reader") closeReader(); });
+  $("#reader-x").onclick = closeReader;
+  $("#reader-prev").onclick = function () { step(-1); };
+  $("#reader-next").onclick = function () { step(1); };
+  document.addEventListener("keydown", function (e) {
+    if ($("#reader").hidden) return;
+    if (e.key === "Escape") closeReader(); else if (e.key === "ArrowLeft") step(-1); else if (e.key === "ArrowRight") step(1);
+  });
   function renderList() {
-    var cur = W.terms.filter(function (t) { return t.slug === sel; })[0];
-    if (cur && !inTab(cur)) { sel = "__all"; cur = null; }
+    var cur = W.terms.filter(function (t) { return sel.indexOf(t.slug) >= 0 && inTab(t); });
+    if (!cur.length) cur = null;
     var rows = [];
     W.terms.forEach(function (t) {
-      if (!inTab(t) || (cur && t !== cur)) return;
+      if (!inTab(t) || (cur && cur.indexOf(t) < 0)) return;
       var termMatch = q && termHit(t);
       (ITEMS[t.slug] || []).forEach(function (it) { if (cur || !q || termMatch || itemHit(it)) rows.push({ it: it, t: t }); });
     });
     rows.sort(function (a, b) { return (b.it.published || "").localeCompare(a.it.published || ""); });
-    $("#list-title").textContent = (cur ? tag(cur.term) : TAB_NAME[tab] + " 전체") +
+    $("#list-title").textContent = (cur ? cur.map(function (t) { return tag(t.term); }).join(" ") : TAB_NAME[tab] + " 전체") +
       (q && !cur ? " · '" + $("#q").value.trim() + "' 검색" : "") + " · " + rows.length + "건";
     $("#btn-all").hidden = !cur;
+    $("#btn-all").textContent = cur && cur.length > 1 ? "선택 " + cur.length + "개 해제 ×" : "전체 보기 ×";
     $("#btn-up").textContent = "↑ " + (tab === "news" ? "종목" : tab === "yt" ? "채널" : "블로그") + " 고르기";
     if (!rows.length) { $("#list").innerHTML = '<div class="empty">' + (q ? "검색 결과가 없습니다." : "아직 보낸 글이 없습니다. 30분마다 확인합니다.") + "</div>"; return; }
+    // 기사는 작은 네모 칸(한 줄 4개)으로 — 누르면 전체 내용 창
     var html = "", day = "";
-    rows.slice(0, 150).forEach(function (r) {
+    ROWS = rows.slice(0, 200);
+    ROWS.forEach(function (r, i) {
       var d = (r.it.published || "").slice(0, 10);
-      if (d !== day) { day = d; html += '<div class="day">' + esc(d) + "</div>"; }
-      html += card(r.it, r.t);
+      if (d !== day) { html += (day ? "</div>" : "") + '<div class="day">' + esc(d) + '</div><div class="cards">'; day = d; }
+      html += mini(r.it, r.t, i);
     });
-    $("#list").innerHTML = html;
+    $("#list").innerHTML = html + "</div>";
+    each("#list .mini", function (el) {
+      el.onclick = function (e) { if (e.target.closest(".itag")) return; openReader(+el.getAttribute("data-i")); };
+      el.onkeydown = function (e) { if (e.key === "Enter") openReader(+el.getAttribute("data-i")); };
+    });
     each("#list .itag", function (b) {
-      b.onclick = function () { sel = b.getAttribute("data-s"); setLS(SEL_KEY, sel); renderTiles(); renderList(); $("#list-title").scrollIntoView({ behavior: "smooth", block: "start" }); };
+      b.onclick = function () { sel = [b.getAttribute("data-s")]; saveSel(); renderTiles(); renderList(); $("#list-title").scrollIntoView({ behavior: "smooth", block: "start" }); };
     });
   }
   function renderChips() { renderTiles(); }      // 쓰기 쪽에서 부르는 이름 유지
   function loadAll() {
     return json("data/tracking/watchlist.json").catch(function () { return { terms: [] }; }).then(function (w) {
       W = w && w.terms ? w : { terms: [] };
-      if (sel !== "__all" && !W.terms.some(function (t) { return t.slug === sel; })) sel = "__all";
+      sel = sel.filter(function (s) { return W.terms.some(function (t) { return t.slug === s; }); });
       return Promise.all(W.terms.map(function (t) {
         return json("data/tracking/items/" + t.slug + ".json").then(function (d) { ITEMS[t.slug] = d.items || []; })
           .catch(function () { ITEMS[t.slug] = []; });
@@ -148,7 +189,7 @@
     }).then(function () { renderTiles(); renderList(); });
   }
   each("#tabs button", function (b) {
-    b.onclick = function () { tab = b.getAttribute("data-tab"); setLS(TAB_KEY, tab); sel = "__all"; setLS(SEL_KEY, sel); renderTiles(); renderList(); };
+    b.onclick = function () { tab = b.getAttribute("data-tab"); setLS(TAB_KEY, tab); sel = []; saveSel(); renderTiles(); renderList(); };
   });
   var qt;
   $("#q").addEventListener("input", function () { clearTimeout(qt); qt = setTimeout(function () { q = norm($("#q").value); renderTiles(); renderList(); }, 120); });
@@ -161,7 +202,7 @@
   }
   window.addEventListener("resize", fitSticky); setTimeout(fitSticky, 300); setTimeout(fitSticky, 1500);
   $("#btn-up").onclick = function () { $("#tabs").scrollIntoView({ behavior: "smooth", block: "start" }); };
-  $("#btn-all").onclick = function () { sel = "__all"; setLS(SEL_KEY, sel); renderTiles(); renderList(); };
+  $("#btn-all").onclick = function () { sel = []; saveSel(); renderTiles(); renderList(); };
   $("#btn-add").onclick = function () { var box = $("#add-box"); box.hidden = !box.hidden; if (!box.hidden) $("#add-input").focus(); };
   $("#btn-edit").onclick = function () {
     editing = !editing; this.classList.toggle("on", editing); this.textContent = editing ? "편집 끝" : "편집";
@@ -225,7 +266,7 @@
       return api("PUT", { message: "tracking: " + (kind === "add" ? "추가 " : "삭제 ") + term + " (사이트)", branch: "main",
         sha: f.sha, content: b64(JSON.stringify(w, null, 1) + "\n") }).then(function () { return w; });
     }).then(function (w) {
-      W = w; if (kind === "del" && sel !== "__all") sel = "__all";
+      W = w; if (kind === "del") { sel = []; saveSel(); }
       renderChips(); renderList();
       status(kind === "add" ? "✅ " + term.split(", ").map(tag).join(" ") + " 추가 — 다음 수집(30분 이내)부터 기사를 보냅니다. 사이트 반영은 1~2분 걸립니다." : "🗑 " + term + " 삭제했습니다.");
       $("#add-input").value = "";
@@ -237,6 +278,6 @@
   $("#token-save").onclick = function () { var v = $("#token-input").value.trim(); if (!v) return; setLS(TOKEN_KEY, v); $("#token-input").value = ""; tokenState(); status("열쇠를 저장했습니다. 이제 추가·삭제할 수 있습니다."); };
   $("#token-clear").onclick = function () { setLS(TOKEN_KEY, ""); tokenState(); };
   tokenState();
-  sel = getLS(SEL_KEY) || "__all";
+  try { sel = JSON.parse(getLS(SEL_KEY) || "[]"); if (!Array.isArray(sel)) sel = []; } catch (e) { sel = []; }
   loadAll();
 })();

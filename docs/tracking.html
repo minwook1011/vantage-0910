@@ -7,7 +7,7 @@
 <script src="gate.js?v=20261003L"></script>
 <title>트래킹 — 100억</title>
 <link rel="stylesheet" href="theme.css?v=20261004B">
-<link rel="stylesheet" href="tracking.css?v=20261011A">
+<link rel="stylesheet" href="tracking.css?v=20261012A">
 </head>
 <body class="pc-light">
 <header id="topnav"></header>
@@ -35,7 +35,7 @@
       <input id="add-input" type="text" maxlength="200" placeholder="종목·섹터 이름 (쉼표로 여러 개: 네비우스, 삼성전기, 광통신)">
       <button type="submit" class="btn pri">추가</button>
     </form>
-    <div class="hint">텔레그램 봇에 <code>/추가 단어</code>를 보내도 됩니다. 블로그 구독은 블로그 주소를 Claude에게 알려 주세요. 추가하면 다음 수집(30분 이내)부터 반영됩니다.</div>
+    <div class="hint">텔레그램 그룹에서는 <code>/add 단어</code>로 보내 주세요(한글 <code>/추가</code>는 그룹에서 봇에 안 닿습니다). 블로그 구독은 블로그 주소를 Claude에게 알려 주세요. 추가하면 다음 수집(30분 이내)부터 반영됩니다.</div>
   </section>
   <div id="status" class="status"></div>
 
@@ -46,6 +46,13 @@
     <span class="lh-btns"><button type="button" id="btn-all" class="link" hidden>전체 보기 ×</button><button type="button" id="btn-up" class="link up">↑ 종목 고르기</button></span>
   </div>
   <div id="list"><div class="empty">불러오는 중…</div></div>
+
+  <div id="reader" class="reader" hidden>
+    <div class="reader-card" role="dialog" aria-modal="true">
+      <div class="reader-bar"><button type="button" id="reader-prev" class="link up">← 이전</button><button type="button" id="reader-next" class="link up">다음 →</button><button type="button" id="reader-x" class="link">닫기 ×</button></div>
+      <div id="reader-body" class="reader-body"></div>
+    </div>
+  </div>
 
   <details id="token-box" class="token">
     <summary>이 기기에서 추가·삭제하려면 (깃허브 열쇠 설정)</summary>
@@ -65,6 +72,6 @@
   </details>
 </main>
 <script src="theme.js?v=20261010A"></script>
-<script src="tracking.js?v=20261011A"></script>
+<script src="tracking.js?v=20261012A"></script>
 </body>
 </html>
