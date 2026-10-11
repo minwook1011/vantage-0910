@@ -73,7 +73,7 @@
   function nm(x) { return x.mk === "jp" ? (x.ko || x.n) : x.n; }
   function card(x, p) {
     var href = link(x);
-    var title = (href ? '<a class="ep-nm" href="' + href + '">' : '<span class="ep-nm">') + esc(nm(x)) + (href ? " ›</a>" : "</span>");
+    var title = (href ? '<a class="ep-nm" href="' + href + '" target="_blank" rel="noopener" title="새 탭에서 재무제표·차트 열기">' : '<span class="ep-nm">') + esc(nm(x)) + (href ? " ›</a>" : "</span>");
     var meta = [];
     meta.push('<span class="mk ' + x.mk + '">' + (x.mk === "jp" ? "일본" : "미국") + "</span>");
     meta.push('<span class="cd">' + esc(x.c) + "</span>");
