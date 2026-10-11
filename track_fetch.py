@@ -41,7 +41,10 @@ NOW = datetime.now(KST)
 EN_SITES = ["reuters.com", "bloomberg.com", "cnbc.com", "wsj.com", "barrons.com", "marketwatch.com", "ft.com",
             "theinformation.com", "apnews.com", "axios.com", "finance.yahoo.com"]
 KO_SITES = ["hankyung.com", "mk.co.kr", "edaily.co.kr", "mt.co.kr", "sedaily.com", "yna.co.kr", "biz.chosun.com",
-            "thebell.co.kr", "news.einfomax.co.kr", "news1.kr", "heraldcorp.com"]
+            "thebell.co.kr", "news.einfomax.co.kr", "news1.kr", "heraldcorp.com",
+            # 2026-10-12 추가: 산업·IT 전문지와 주요 경제지(전자부품·반도체 기사가 여기서 먼저 나옴)
+            "newsis.com", "asiae.co.kr", "fnnews.com", "etnews.com", "thelec.kr", "zdnet.co.kr", "businesspost.co.kr",
+            "wowtv.co.kr", "etoday.co.kr", "dt.co.kr", "ddaily.co.kr", "hankooki.com", "ajunews.com", "chosun.com"]
 KO_FEEDS = ["https://www.hankyung.com/feed/finance", "https://www.yna.co.kr/rss/economy.xml"]
 # 대만 경제지(2026-10-10 사용자 요청: 공상시보) — TSMC·엔비디아 공급망·AI 서버·메모리·기판 보도가 빠르고 깊다. 검색은 중국어 이름+영문 이름
 TW_SITES = ["ctee.com.tw", "money.udn.com"]
@@ -55,6 +58,7 @@ JUNK = re.compile(
     r"\bvs\.?\b.*which (stock|is)|economic moat|better buy|better .{0,30} pick|which .{0,20}stock is|"
     r"(in|out)flows detected|advanced charts|research & ratings|company & people|\| [A-Z]{1,5}$|"
     r"stock (quote|price) (today|history)|earnings (preview|call transcript)|"
+    r"\b(put|call)\b.*\([A-Z]{1,5}\d{6}|[A-Z]{1,5}\d{6}[PC]\d{6,}|interactive stock chart|we asked chatgpt|"
     r"추천주|급등주|테마주 정리|오늘의 특징주|특징주 \]|\[마감시황\]|\[개장시황\]|장마감|주가 (\d|상승|하락) ?(%|률)|"
     r"\[포토\]|\[인사\]|\[부고\]|\[게시판\]|搜尋結果|懶人包|盤前|盤後|台股盤勢|個股)", re.I)
 JUNK_SRC = re.compile(r"(fool\.com|motley fool|zacks|insidermonkey|investorplace|247wallst|24/7 wall|tipranks|"
@@ -206,24 +210,31 @@ def parse_rss(xml, default_src=""):
             v = re.sub(r"^<!\[CDATA\[(.*)\]\]>$", r"\1", v.strip(), flags=re.S)
             return html.unescape(re.sub(r"<[^>]+>", " ", v)).strip()
         src = tag("source") or default_src
+        su = re.search(r'<source[^>]*url="([^"]+)"', it)                 # 구글 뉴스: 원 매체 주소
         try:
             pub = parsedate_to_datetime(tag("pubDate")).astimezone(KST)
         except Exception:
             continue
         title = re.sub(r"\s+", " ", tag("title"))
         link = tag("link") or (re.search(r"<link>(.*?)</link>", it, re.S) or [None, ""])[1]
-        out.append({"title": title, "url": link.strip(), "source": src, "published": pub,
+        out.append({"title": title, "url": link.strip(), "source": src, "published": pub, "src_url": su.group(1) if su else "",
                     "snippet": re.sub(r"\s+", " ", tag("description"))[:400]})
     return out
 
 
 def gnews(query, sites, lang):
-    q = f"({query}) ({' OR '.join('site:' + s for s in sites)}) when:2d"
+    """검색은 매체 제한 없이 하고(site: 를 여러 개 걸면 구글 뉴스가 검색어를 무시해 엉뚱한 기사를 줌 — 2026-10-12 확인),
+    받은 뒤 원 매체 주소로 허용 목록만 남긴다"""
+    q = f"({query}) when:2d"
     hl = {"en": "hl=en-US&gl=US&ceid=US:en", "ko": "hl=ko&gl=KR&ceid=KR:ko", "zh": "hl=zh-TW&gl=TW&ceid=TW:zh-Hant"}[lang]
     items = parse_rss(http("https://news.google.com/rss/search?q=" + urllib.parse.quote(q) + "&" + hl))
+    keep = []
     for it in items:   # 구글 뉴스 제목 끝의 ' - 매체명' 은 떼고 매체 칸으로
         it["title"] = re.sub(r"\s+-\s+[^-]{2,40}$", "", it["title"])
-    return items
+        host = urllib.parse.urlparse(it.get("src_url") or "").netloc.lower()
+        if any(host == d or host.endswith("." + d) for d in sites):
+            keep.append(it)
+    return keep
 
 
 def parse_yt(xml, src):
@@ -358,7 +369,9 @@ def main():
 
     seen = state.setdefault("seen", {})
     # 지난번 후보를 아직 반영 못 했으면(요약 도중 실패 등) 이어서 처리
-    cands = [c for c in load(CAND, {}).get("candidates", []) if any(t["term"] == c["term"] for t in watch.get("terms", []))]
+    old_cut = (NOW - timedelta(hours=36)).strftime("%Y-%m-%d %H:%M")   # 너무 오래 밀린 뉴스 후보는 버림(블로그·유튜브는 유지)
+    cands = [c for c in load(CAND, {}).get("candidates", []) if any(t["term"] == c["term"] for t in watch.get("terms", []))
+             and (c.get("kind") != "news" or c.get("published", "") >= old_cut)]
     report = [f"지난번 미처리 후보 {len(cands)}건 이어서"] if cands else []
     popped = []
     for t in watch.get("terms", []):
@@ -385,7 +398,9 @@ def main():
             text = (it["title"] + " " + it["snippet"]).lower()
             if not blog and (JUNK.search(it["title"]) or JUNK_SRC.search(it["source"] + " " + it["url"])):
                 continue
-            if not blog and not any(has_key(k, it["title"].lower()) for k in keys_l):   # 제목에 있어야(구글 뉴스 설명문엔 "Google" 이 늘 들어감)
+            # 구글 뉴스는 제목에 있어야(설명문엔 "Google" 이 늘 들어감). 한경·연합·시킹알파 등 요약문이 정확한 출처는 요약문까지 본다
+            where = it["title"].lower() if "news.google.com" in it["url"] else text
+            if not blog and not any(has_key(k, where) for k in keys_l):
                 continue
             if any(norm_title(c["title"]) == nt for c in cands):
                 continue
