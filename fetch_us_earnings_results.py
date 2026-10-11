@@ -38,6 +38,14 @@ LOOKBACK = 10
 _last = [0.0]
 
 
+
+def note_grade(path):
+    """요약 노트의 실적 판정(verdict.grade) — 목록에 서프라이즈·부합·쇼크 표시용(2026-10-11)"""
+    try:
+        return (json.load(open(path, encoding="utf-8")).get("verdict") or {}).get("grade")
+    except Exception:
+        return None
+
 def sec_get(url, as_json=True):
     wait = _last[0] + 0.15 - time.time()
     if wait > 0:
@@ -313,6 +321,7 @@ def write_index():
         cur = (r.get("qs") or [{}])[-1]
         items.append({"rid": r["rid"], "c": r["code"], "n": r.get("name"), "cat": r.get("cat"), "u": ["us"], "mc": r.get("mcap"),
                       "d": r["date"], "p": r.get("period"), "cq": cur.get("cq"), "note": os.path.exists(os.path.join(REPORTS, "notes", fn)),
+                      "g": note_grade(os.path.join(REPORTS, "notes", fn)),
                       "rev_yoy": (cur.get("yoy") or {}).get("rev"), "op_yoy": (cur.get("yoy") or {}).get("op"),
                       "d1": ((r.get("rec") or {}).get("px") or {}).get("d1"), "cons": ((r.get("rec") or {}).get("cons") or {}).get("pct"),
                       "pdf": bool(r.get("docs"))})

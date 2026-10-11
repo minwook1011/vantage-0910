@@ -612,8 +612,16 @@ def _plain(x):
 def brief(N, limit=5):
     """줄글 5줄 요약(2026-10-07 사용자: 아래는 줄글 5줄로).
     요약 작업이 써 둔 tg5(사람이 읽기 좋게 쓴 5문장)를 그대로 쓰고, 없을 때만 결론 문단 + '포인트 제목. 그래서 문장'으로 채운다"""
+    # 실적 평가 한 줄을 맨 위에(2026-10-11 사용자: 잘 나온 건지 못 나온 건지 바로 알게)
+    V = N.get("verdict") or {}
+    GE = {"서프라이즈": "🚀", "양호": "👍", "부합": "➖", "부진": "👎", "쇼크": "💥"}
+    head = [f"{GE.get(V['grade'], '📊')} <b>{esc(V['grade'])}</b> — {esc(V.get('line', ''))}"] if V.get("grade") else []
     if isinstance(N.get("tg5"), list) and N["tg5"]:
-        return [esc(str(x).strip()) for x in N["tg5"] if str(x).strip()][:limit]
+        return head + [esc(str(x).strip()) for x in N["tg5"] if str(x).strip()][:limit]
+    return head + _brief_rest(N, limit)
+
+
+def _brief_rest(N, limit):
     sec = sections(N.get("analysis_md"))
     lines = [esc(_plain(t)) for t in _sents(pick(sec, "한 줄 결론", "결론"))][:limit]
     for x in bullets(pick(sec, "핵심 포인트")):

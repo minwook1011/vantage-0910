@@ -65,6 +65,14 @@ if os.environ.get("JP_INSECURE_SSL") == "1":
 _last_kabu = [0.0]
 
 
+
+def note_grade(path):
+    """요약 노트의 실적 판정(verdict.grade) — 목록에 서프라이즈·부합·쇼크 표시용(2026-10-11)"""
+    try:
+        return (json.load(open(path, encoding="utf-8")).get("verdict") or {}).get("grade")
+    except Exception:
+        return None
+
 def http_get(url, headers=None, timeout=20, kabu=False):
     if kabu:  # 카부탄은 1초 간격
         wait = 1.0 - (time.time() - _last_kabu[0])
@@ -549,7 +557,7 @@ def write_index():
         last = (r.get("qs") or [{}])[-1]
         rows.append({"rid": r["rid"], "c": r["code"], "n": r.get("name"), "cat": r.get("cat"), "u": r.get("u", []),
                      "mc": r.get("mcap"), "d": r["date"], "p": r.get("period"), "fy": r.get("fy"), "cq": last.get("cq"),
-                     "note": os.path.exists(os.path.join(NOTES, r["rid"] + ".json")),
+                     "note": os.path.exists(os.path.join(NOTES, r["rid"] + ".json")), "g": note_grade(os.path.join(NOTES, r["rid"] + ".json")),
                      "beat": (rec.get("beat") or {}).get("pct"), "prog": (rec.get("progress") or {}).get("diff"),
                      "rev_yoy": (last.get("yoy") or {}).get("rev"), "op_yoy": (last.get("yoy") or {}).get("op"),
                      "d1": (rec.get("px") or {}).get("d1"), "pdf": bool(r.get("docs"))})

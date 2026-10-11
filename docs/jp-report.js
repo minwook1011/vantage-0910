@@ -270,8 +270,29 @@
     html += body(R, N, qs, r);
     return html;
   }
+  /* 실적 평가(2026-10-11 사용자: "기준이 없어 잘 나온 건지 못 나온 건지 모르겠다") — N.verdict
+     {grade: 서프라이즈|양호|부합|부진|쇼크, line, basis, guide, market, checks:[{item, actual, base, diff, tone}]} */
+  var GRADE = { "서프라이즈": ["🚀", "g5"], "양호": ["👍", "g4"], "부합": ["➖", "g3"], "부진": ["👎", "g2"], "쇼크": ["💥", "g1"] };
+  function gradeChip(g) { var x = GRADE[g]; return x ? '<span class="gchip ' + x[1] + '">' + x[0] + " " + esc(g) + "</span>" : ""; }
+  function verdictCard(V) {
+    if (!V || !V.grade) return "";
+    var x = GRADE[V.grade] || ["", "g3"];
+    var rows = (V.checks || []).map(function (c) {
+      return "<tr><th>" + esc(c.item) + "</th><td>" + esc(c.actual || "") + '</td><td class="b">' + esc(c.base || "") + '</td><td class="num ' + (c.tone === "up" ? "up" : c.tone === "dn" ? "dn" : "") + '">' + esc(c.diff || "") + "</td></tr>";
+    }).join("");
+    return '<section class="verdict card ' + x[1] + '">' +
+      '<div class="vh"><span class="vbadge">' + x[0] + " " + esc(V.grade) + "</span>" +
+      '<div class="vt"><b>실적 평가</b>' + (V.basis ? '<span>기준: ' + esc(V.basis) + "</span>" : "") + "</div></div>" +
+      (V.line ? '<p class="vline">' + esc(V.line) + "</p>" : "") +
+      (rows ? '<table class="vtab"><thead><tr><th></th><th>이번 실적</th><th>기준</th><th>차이</th></tr></thead><tbody>' + rows + "</tbody></table>" : "") +
+      '<div class="vfoot">' + (V.guide ? "<span>가이던스 <b>" + esc(V.guide) + "</b></span>" : "") + (V.market ? "<span>시장 반응 <b>" + esc(V.market) + "</b></span>" : "") + "</div>" +
+      '<details class="vrule"><summary>판정 기준</summary><p>① 컨센서스(시장 예상)가 있으면 영업이익·EPS 차이로: <b>+10% 이상 서프라이즈 · +3~10% 양호 · ±3% 부합 · −3~−10% 부진 · −10% 이하 쇼크</b> (매출은 그 절반 폭으로 보조). ' +
+      "② 컨센서스가 없으면 회사 연간 계획 대비 진척률을 같은 분기 5년 평균과 비교(+6%p 이상 서프라이즈 · +2~6 양호 · ±2 부합 · −2~−6 부진 · −6%p 이하 쇼크). " +
+      "③ 연간 가이던스 상향은 한 단계 올리고 하향은 한 단계 내림. ④ 일회성 이익으로 맞췄거나 이익률·현금흐름이 나빠졌으면 한 단계 내림. 주가 반응은 판정에 넣지 않고 따로 표시.</p></details>" +
+      "</section>";
+  }
   function body(R, N, qs, r) {
-    var html = "";
+    var html = N ? verdictCard(N.verdict) : "";
     if (N && (N.about || (N.issues && N.issues.length))) {
       html += '<section class="brief card">' +
         (N.about ? "<h3>뭐 하는 기업인가?</h3>" + md(N.about) : "") +
@@ -362,10 +383,10 @@
         return (st.u === "all" || (r.u || []).indexOf(st.u) >= 0) && (!st.note || r.note) && (!q || (r.n || "").toLowerCase().indexOf(q) >= 0 || r.c.toLowerCase().indexOf(q) >= 0);
       });
       document.getElementById("cnt").textContent = rows.length + "건";
-      var head = '<div class="row head"><span>발표일</span><span>기업</span><span>분기</span><span class="num hide-m">매출 YoY</span><span class="num">영업 YoY</span><span class="num hide-m">발표 후 주가</span><span class="st">요약</span></div>';
+      var head = '<div class="row head"><span>발표일</span><span>기업</span><span>분기</span><span class="num hide-m">매출 YoY</span><span class="num">영업 YoY</span><span class="num hide-m">발표 후 주가</span><span class="st">평가</span></div>';
       document.getElementById("list").innerHTML = rows.length ? head + rows.slice(0, st.n).map(function (r) {
         return '<a class="row" href="' + M.page + '?id=' + encodeURIComponent(r.rid) + '"><span class="d">' + r.d.slice(2) + '</span><span class="nm"><b>' + esc(r.n || r.c) + "</b><small>" + esc(r.c) + (r.cat ? " · " + esc(r.cat) : "") + '</small></span><span class="d">' + esc(r.cq || r.p || "") + "</span>" +
-          '<span class="num hide-m ' + cls(r.rev_yoy) + '">' + pctS(r.rev_yoy) + '</span><span class="num ' + cls(r.op_yoy) + '">' + pctS(r.op_yoy) + '</span><span class="num hide-m ' + cls(r.d1) + '">' + pctS(r.d1) + '</span><span class="st">' + (r.note ? '<span class="pill ok">요약</span>' : '<span class="pill no">표·그래프</span>') + "</span></a>";
+          '<span class="num hide-m ' + cls(r.rev_yoy) + '">' + pctS(r.rev_yoy) + '</span><span class="num ' + cls(r.op_yoy) + '">' + pctS(r.op_yoy) + '</span><span class="num hide-m ' + cls(r.d1) + '">' + pctS(r.d1) + '</span><span class="st">' + (r.g ? gradeChip(r.g) : r.note ? '<span class="pill ok">요약</span>' : '<span class="pill no">표·그래프</span>') + "</span></a>";
       }).join("") : '<div class="empty">조건에 맞는 리포트가 없습니다.</div>';
       document.getElementById("more").hidden = rows.length <= st.n;
     }

@@ -40,7 +40,7 @@ git pull --rebase --autostash origin main     # 그다음 공용 폴더를 최�
 - 회사가 든 이유를 바깥 자료로 확인. 확인이 안 되면 "확인 못 함".
 
 ## 4. 쓰기 → `docs/data/us/reports/notes/<rid>.json`
-일본과 같은 필드: `rid, written, by, about, issues, headline, summary_md, analysis_md, orig_md, tg, tg5, sources` (+ 필요하면 `q_fix: {"rev":…, "op":…, "ni":…, "eps":…}` 백만 달러·달러).
+일본과 같은 필드: `rid, written, by, about, issues, headline, summary_md, analysis_md, orig_md, tg, tg5, verdict, sources` (+ 필요하면 `q_fix: {"rev":…, "op":…, "ni":…, "eps":…}` 백만 달러·달러).
 - `about`: 뭐 하는 기업인가 2줄 — 한국 투자자가 읽고 바로 알 수 있게.
 - `issues`: 최근 이슈 4~5개, **날짜 + 한 줄 제목** — 의미 한두 문장.
 - `orig_md`: 보도자료를 원문 순서대로 한국어 정리. 제목 6개 고정 —
@@ -49,6 +49,9 @@ git pull --rebase --autostash origin main     # 그다음 공용 폴더를 최�
 - `analysis_md`: 일본과 같은 9개 항목(`### 1. 한 줄 결론` … `### 9. 다음 발표 전 체크포인트`), 2,500~4,000자.
   5번은 「가이던스·컨센서스」 — 회사 가이던스(다음 분기·연간)와 컨센서스(`rec.cons`, 매출 컨센서스는 `docs/earnings_calendar.json`의 `rev_consensus_snapshots`) 대비.
 - 공통: 전부 한국어(회사·제품 이름은 원문 영어 그대로 써도 된다 — 영어 표기는 허용, 문장은 한국어). 출처 없는 추측 금지. 투자 권유 표현 금지. 사이트가 분기 표·그래프를 자동으로 그리니 그 표를 다시 만들지 말 것.
+
+## 4-2. 실적 평가 `verdict`(필수, 2026-10-11)
+일본 절차서 **3-4. `verdict`** 와 같은 형식·기준. 미국은 EPS 컨센서스(`rec.cons`: est·pct)와 매출 컨센서스(`docs/earnings_calendar.json` 의 `rev_consensus_snapshots` — 해당 분기 말 날짜 키)가 기준이고, **다음 분기·연간 가이던스가 컨센서스보다 위인지 아래인지**를 반드시 판정에 반영한다(가이던스가 미국 주가에 가장 큰 영향). `market` = 발표 후 주가(`rec.px.d1`, 장 후 발표면 다음 날). 발표 7일 안의 리포트 중 verdict 가 없는 것은 실행 때마다 채운다.
 
 ## 4-0. 문체
 일본 절차서 `data_sources/jp_earnings_notes.md` 의 **3-0. 문체 — 읽기 쉽게** 를 그대로 따른다(꼬리표 금지 · 결론 먼저 · 한 문장 한 가지 · 영어 약어 풀어 쓰기 · AI 말투 금지). 완성 예시: `JBL-202608`.
