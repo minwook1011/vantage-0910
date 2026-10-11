@@ -13,7 +13,13 @@
     bb: ["비즈니스 브레이크다운스", "#7a4bc9", "한 회사를 한 편에 걸쳐 해부"],
     dwarkesh: ["드와케시 파텔 팟캐스트", "#c93447", "AI·과학·역사 장시간 인터뷰"],
     mad: ["MAD 팟캐스트", "#2f7a55", "AI·데이터 인프라 창업자 인터뷰"],
-    synopsis: ["더 시놉시스", "#c46a1c", "개별 기업 사업 구조 분석·투자자 인터뷰"]
+    synopsis: ["더 시놉시스", "#c46a1c", "개별 기업 사업 구조 분석·투자자 인터뷰"],
+    oddlots: ["오드 랏츠", "#5a3fb8", "산업 현장 실무자 인터뷰(블룸버그)"],
+    acquired: ["어콰이어드", "#1b6f8a", "한 회사의 역사와 전략을 깊게 해부"],
+    bg2: ["비지투 팟", "#3c4a5e", "인공지능·빅테크 투자자 대담"],
+    nopriors: ["노 프라이어스", "#b5446e", "인공지능 창업자·연구자 인터뷰"],
+    cheeky: ["치키 파인트", "#6b7a1e", "대기업 최고경영자·창업자 대담"],
+    understanding: ["언더스탠딩", "#d0461c", "산업 전문가 장시간 인터뷰(한국어)"]
   };
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function getJSON(p) { return fetch(p, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); }

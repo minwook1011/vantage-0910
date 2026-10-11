@@ -34,7 +34,8 @@ INDEX = os.path.join(BASE, "docs", "data", "podcasts", "index.json")
 TMP = os.path.join(BASE, "data_sources", "_podcast_tmp")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-podcasts/1.0"
 SHOW_YT = {"ilb": "Invest Like the Best", "bb": "Business Breakdowns Colossus", "ca": "Capital Allocators Ted Seides",
-           "dwarkesh": "Dwarkesh Patel", "mad": "MAD Podcast Matt Turck", "synopsis": "Drew Cohen The Synopsis"}
+           "dwarkesh": "Dwarkesh Patel", "mad": "MAD Podcast Matt Turck", "synopsis": "Drew Cohen The Synopsis",
+           "oddlots": "Odd Lots Bloomberg", "acquired": "Acquired podcast", "bg2": "BG2 Pod", "nopriors": "No Priors podcast", "cheeky": "Cheeky Pint John Collison"}
 
 
 def page_text(url):
@@ -88,9 +89,9 @@ def from_youtube(row):
     q = f"{SHOW_YT.get(row['show'], row.get('show_name', ''))} {re.sub(r'\[.*?\]|\(EP\.?\s*\d+\)', '', row['title'])}".strip()
     with tempfile.TemporaryDirectory() as d:
         # 자막은 영어 한 종류만 받는다 — "en.*"처럼 여러 종류를 한꺼번에 받으면 유튜브가 429(요청 과다)로 막는다.
-        cmd = [sys.executable, "-m", "yt_dlp", "--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", "en",
+        cmd = [sys.executable, "-m", "yt_dlp", "--skip-download", "--write-subs", "--write-auto-subs", "--sub-langs", row.get("lang") or "en",
                "--sub-format", "vtt", "--playlist-items", "1", "--no-simulate", "--print", "%(webpage_url)s|%(title)s|%(duration)s",
-               "-o", os.path.join(d, "%(id)s.%(ext)s"), f"ytsearch3:{q}"]
+               "-o", os.path.join(d, "%(id)s.%(ext)s"), (row.get("youtube") or f"ytsearch3:{q}")]
         try:   # 브라우저처럼 요청하면 차단이 훨씬 덜하다(pip install "yt-dlp[default,curl-cffi]")
             import curl_cffi  # noqa: F401
             cmd[3:3] = ["--impersonate", "chrome"]
@@ -98,7 +99,8 @@ def from_youtube(row):
             pass
         try:
             for attempt in range(3):   # 유튜브가 자막 요청을 잠깐 막으면(429) 쉬었다 다시
-                p = subprocess.run(cmd + ["--sleep-subtitles", "3"], capture_output=True, text=True, encoding="utf-8", timeout=300)
+                p = subprocess.run(cmd + ["--sleep-subtitles", "3"], capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300,
+                                   env={**os.environ, "PYTHONIOENCODING": "utf-8"})
                 if "429" not in (p.stderr or "") or any(f.endswith(".vtt") for f in os.listdir(d)):
                     break
                 print(f"  유튜브 429 — {30 * (attempt + 1)}초 뒤 다시")
@@ -113,12 +115,12 @@ def from_youtube(row):
             print("  yt-dlp 없음 — pip install yt-dlp")
             return None, None
         info = (p.stdout or "").strip().splitlines()
-        url = info[-1].split("|")[0] if info else None
+        url = info[-1].split("|")[0] if info else row.get("youtube")
         vtts = [os.path.join(d, f) for f in os.listdir(d) if f.endswith(".vtt")]
         if not vtts:
             print(f"  유튜브 자막 없음 (검색어: {q}) {p.stderr[-300:] if p.stderr else ''}")
             return None, url
-        vtts.sort(key=lambda f: (".en." not in f, "orig" in f))   # 사람이 단 영어 자막 우선
+        vtts.sort(key=lambda f: ("." + (row.get("lang") or "en") + "." not in f, "orig" in f))   # 사람이 단 영어 자막 우선
         text = clean_vtt(open(vtts[0], encoding="utf-8", errors="replace").read())
         print(f"  유튜브 자막 {len(text):,}자 ← {info[-1] if info else ''}")
         return (text if len(text) > 5000 else None), url

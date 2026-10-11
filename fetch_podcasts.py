@@ -39,6 +39,7 @@ EP_DIR = os.path.join(OUT_DIR, "ep")
 KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-podcasts/1.0"
 NS = {"itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd"}
+ATOM = {"a": "http://www.w3.org/2005/Atom", "media": "http://search.yahoo.com/mrss/", "yt": "http://www.youtube.com/xml/schemas/2015"}
 
 
 def get(url):
@@ -77,8 +78,45 @@ def og_image(url):
         return None
 
 
+def parse_youtube(show, root, since):
+    """유튜브 채널 피드(Atom) — 언더스탠딩처럼 유튜브에만 올리는 방송(2026-10-12 추가).
+    쇼츠와 '몰아보기'(예전 영상을 다시 엮은 편)는 건너뛴다. 길이는 피드에 없어서 비워 둔다."""
+    out = []
+    for en in root.findall("a:entry", ATOM):
+        title = clean(en.findtext("a:title", default="", namespaces=ATOM))
+        pub = en.findtext("a:published", default="", namespaces=ATOM)
+        try:
+            dt = datetime.fromisoformat(pub.replace("Z", "+00:00")).astimezone(KST)
+        except Exception:
+            continue
+        date = dt.strftime("%Y-%m-%d")
+        if date < since:
+            continue
+        ln = en.find("a:link", ATOM)
+        link = ln.get("href") if ln is not None else ""
+        mg = en.find("media:group", ATOM)
+        desc = mg.findtext("media:description", default="", namespaces=ATOM) if mg is not None else ""
+        th = mg.find("media:thumbnail", ATOM) if mg is not None else None
+        vid = (en.findtext("yt:videoId", default="", namespaces=ATOM) or "").strip()
+        row = {"id": f"{date}-{show['id']}-{vid}" if vid else ep_id(show["id"], date, title), "show": show["id"], "show_name": show["name"],
+               "title": title, "date": date, "published": dt.strftime("%Y-%m-%d %H:%M KST"),
+               "link": link, "youtube": link, "audio": None, "duration": "", "desc": clean(desc, 600), "status": "new",
+               "found": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
+               "image": th.get("url") if th is not None else None, "show_image": None}
+        if show.get("lang"):
+            row["lang"] = show["lang"]
+        if "/shorts/" in link:
+            row.update(status="skip", reason="쇼츠")
+        elif re.search(r"몰아보기|다시보기|재업로드|하이라이트 모음", title):
+            row.update(status="skip", reason="몰아보기(예전 영상 재편집)")
+        out.append(row)
+    return out
+
+
 def parse_feed(show, xml_bytes, since):
     root = ET.fromstring(xml_bytes)
+    if root.tag.endswith("}feed"):
+        return parse_youtube(show, root, since)
     ch = root.find("./channel/itunes:image", NS)
     ch_img = ch.get("href") if ch is not None else (root.findtext("./channel/image/url") or None)
     out = []
@@ -172,14 +210,14 @@ def main():
             print(f"{show['name']}: 피드 수신 실패 — 다음 실행에서 다시")
             continue
         try:
-            eps = parse_feed(show, raw, cfg.get("since", "2000-01-01"))
+            eps = parse_feed(show, raw, max(cfg.get("since", "2000-01-01"), show.get("since", "")))   # 새로 붙인 방송은 붙인 날 무렵부터
         except Exception as e:
             print(f"{show['name']}: 피드 해석 실패 {e}")
             continue
         # 방송사가 제목만 바꿔 다시 올려도(링크·id가 바뀜) 같은 오디오 파일이면 같은 편으로 본다
         fresh = [e for e in eps if e["id"] not in known and (not e["link"] or e["link"] not in known_links)
                  and (not e.get("audio") or e["audio"] not in known_audio)]
-        fill_images(fresh)
+        fill_images([e for e in fresh if not e.get("youtube")])
         # 예전에 올린 에피소드에 사진이 없으면 채워 넣는다
         by_id = {e["id"]: e for e in eps}
         old_rows = [r for r in ix["episodes"] if r["id"] in by_id and not r.get("image")]
