@@ -1,0 +1,16 @@
+/* 료힌케이카쿠(무지) 워크벤치 — 글이 긴 표라 줄바꿈·왼쪽 정렬 */
+.rk-wrap { max-height:none; }
+.rk-table { white-space:normal; table-layout:fixed; }
+.rk-table th, .rk-table td { text-align:left; vertical-align:top; line-height:1.55; }
+.rk-table td { font-family:inherit; }
+.rk-table td.rk-num { font-family:var(--mono); white-space:nowrap; }
+.rk-table .rk-name { font-weight:600; }
+.rk-table .rk-name a, .rk-table td a { color:#1e55b9; text-decoration:none; }
+.rk-table .rk-name a:hover, .rk-table td a:hover { text-decoration:underline; }
+.rk-4 th:nth-child(1) { width:22%; } .rk-4 th:nth-child(2) { width:34%; } .rk-4 th:nth-child(3) { width:20%; }
+.rk-3 th:nth-child(1) { width:22%; } .rk-3 th:nth-child(2) { width:30%; }
+.rk-snap th:nth-child(1) { width:9%; } .rk-snap th:nth-child(2) { width:12%; } .rk-snap th:nth-child(3) { width:16%; } .rk-snap th:nth-child(4) { width:10%; } .rk-snap th:nth-child(5) { width:14%; }
+.rk-ok, .rk-no { display:inline-block; width:16px; margin-right:6px; font-style:normal; font-weight:700; text-align:center; }
+.rk-ok { color:#1f9a72; }
+.rk-no { color:#8a97ab; }
+@media (max-width:720px) { .rk-table { table-layout:auto; min-width:640px; } }

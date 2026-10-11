@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "기업별 데이터 모음(기업 워크벤치) 설정. ticker = 화면 키, yahoo = 야후 파이낸스 심볼(한국은 .KS/.KQ), name = 화면 표시 이름, financials = docs/financials.json 의 키, fin_unit/fin_div = 실적 표시 단위와 나눌 값, indicators = 기업 아래 '주요 지표'로 보일 지표 id 목록(ai_indicators.json 의 series id. 여러 선이 있는 지표는 '지표id::선이름', 합계는 '지표id::합계'). module 이 있는 기업은 전용 화면(finemtec.js)을 쓰고 주가 수집 대상에서 빠진다. 기업을 추가하면 다음 수집 때 주가까지 받아온다.",
+  "note": "기업별 데이터 모음(기업 워크벤치) 설정. ticker = 화면 키, yahoo = 야후 파이낸스 심볼(한국은 .KS/.KQ), name = 화면 표시 이름, financials = docs/financials.json 의 키, fin_unit/fin_div = 실적 표시 단위와 나눌 값, indicators = 기업 아래 '주요 지표'로 보일 지표 id 목록(ai_indicators.json 의 series id. 여러 선이 있는 지표는 '지표id::선이름', 합계는 '지표id::합계'). module 이 있는 기업은 전용 화면(finemtec.js · zeta.js · ryohin.js)을 쓰고 주가 수집 대상에서 빠진다. 기업을 추가하면 다음 수집 때 주가까지 받아온다.",
   "companies": [
     {"ticker": "NVDA", "yahoo": "NVDA", "label": "NVIDIA", "name": "NVIDIA", "market": "US", "desc": "AI 가속기 · 데이터센터",
      "financials": "NVDA", "fin_unit": "$B", "fin_div": 1000, "fin_note": "회계연도 1월 말 결산 · 분기 말 월로 표시",
@@ -15,6 +15,7 @@
      "financials": "TSM", "fin_unit": "NT$ 십억", "fin_div": 1000,
      "indicators": ["tsmc_monthly_rev", "hyperscaler_capex::합계", "gpu_h100_index", "or_tokens_weekly"]},
     {"ticker": "441270", "label": "파인엠텍", "name": "파인엠텍", "market": "KR", "desc": "폴더블 부품 · 베트남 납품", "module": "finemtec"},
-    {"ticker": "비상장", "label": "스캐터랩", "name": "스캐터랩 (제타)", "market": "PRIVATE", "desc": "AI 캐릭터 채팅 · 트래픽 대리 지표", "module": "zeta"}
+    {"ticker": "비상장", "label": "스캐터랩", "name": "스캐터랩 (제타)", "market": "PRIVATE", "desc": "AI 캐릭터 채팅 · 트래픽 대리 지표", "module": "zeta"},
+    {"ticker": "7453", "label": "료힌케이카쿠", "name": "료힌케이카쿠 (무지)", "market": "JP", "desc": "무인양품 · 선행지표 모음", "module": "ryohin"}
   ]
 }
