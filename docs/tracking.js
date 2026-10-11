@@ -27,7 +27,8 @@
 
   // ── 보기 ──
   var TAB_KEY = "vantage-tracking-tab";
-  var tab = getLS(TAB_KEY) === "blog" ? "blog" : "news", q = "", editing = false;
+  var tab = ["blog", "yt"].indexOf(getLS(TAB_KEY)) >= 0 ? getLS(TAB_KEY) : "news", q = "", editing = false;
+  var TAB_NAME = { news: "종목·섹터", blog: "블로그", yt: "유튜브" };
   var GROUPS = [
     { key: "us", label: "해외 종목", test: function (t) { return t.market === "us"; } },
     { key: "kr", label: "한국 종목", test: function (t) { return t.market === "kr"; } },
@@ -35,7 +36,9 @@
     { key: "new", label: "정보 확인 중", test: function (t) { return !t.market; } }
   ];
   function isBlog(t) { return t.market === "blog"; }
-  function inTab(t) { return tab === "blog" ? isBlog(t) : !isBlog(t); }
+  function isYT(t) { return t.market === "youtube"; }
+  function tabOf(t) { return isBlog(t) ? "blog" : isYT(t) ? "yt" : "news"; }
+  function inTab(t) { return tabOf(t) === tab; }
   function norm(s) { return String(s || "").toLowerCase().replace(/\s+/g, ""); }
   function termHit(t) {
     if (!q) return true;
@@ -51,7 +54,7 @@
 
   function tile(t) {
     var n = (ITEMS[t.slug] || []).length, last = lastOf(t);
-    var sub = isBlog(t) ? (t.name || "") : [t.ticker, t.name && t.name !== t.term ? t.name : ""].filter(Boolean).join(" · ");
+    var sub = isBlog(t) || isYT(t) ? (t.name || "") : [t.ticker, t.name && t.name !== t.term ? t.name : ""].filter(Boolean).join(" · ");
     return '<button type="button" class="tile' + (sel === t.slug ? " on" : "") + (n ? "" : " zero") + '" data-s="' + esc(t.slug) + '" data-term="' + esc(t.term) + '">' +
       '<span class="tn">' + esc(t.term) + "</span>" +
       (sub ? '<span class="ts">' + esc(sub) + "</span>" : "") +
@@ -60,22 +63,21 @@
   }
   function renderTiles() {
     var all = W.terms.filter(inTab), shown = all.filter(termHit), html = "";
-    $("#cnt-news").textContent = count(W.terms.filter(function (t) { return !isBlog(t); }));
-    $("#cnt-blog").textContent = count(W.terms.filter(isBlog));
+    ["news", "blog", "yt"].forEach(function (k) { $("#cnt-" + k).textContent = count(W.terms.filter(function (t) { return tabOf(t) === k; })); });
     each("#tabs button", function (b) {
       var on = b.getAttribute("data-tab") === tab;
       b.classList.toggle("on", on); b.setAttribute("aria-selected", on ? "true" : "false");
     });
-    if (tab === "blog") {
-      if (shown.length) html = '<div class="grp"><div class="gl">구독 블로그 <em>' + shown.length + '</em></div><div class="grid">' + shown.map(tile).join("") + "</div></div>";
+    if (tab !== "news") {
+      if (shown.length) html = '<div class="grp"><div class="gl">' + (tab === "yt" ? "구독 유튜브 채널" : "구독 블로그") + ' <em>' + shown.length + '</em></div><div class="grid">' + shown.map(tile).join("") + "</div></div>";
     } else {
       GROUPS.forEach(function (g) {
         var ts = shown.filter(g.test);
         if (ts.length) html += '<div class="grp"><div class="gl">' + g.label + " <em>" + ts.length + '</em></div><div class="grid">' + ts.map(tile).join("") + "</div></div>";
       });
     }
-    if (!all.length) html = '<div class="empty">' + (tab === "blog" ? "구독 중인 블로그가 없습니다. 블로그 주소를 Claude에게 알려 주세요." : "트래킹 중인 종목이 없습니다. ＋ 추가를 눌러 넣어 보세요.") + "</div>";
-    else if (!shown.length) html = '<div class="empty small">이름이 맞는 ' + (tab === "blog" ? "블로그는" : "종목은") + " 없습니다. 아래는 글 내용으로 찾은 결과입니다.</div>";
+    if (!all.length) html = '<div class="empty">' + (tab === "news" ? "트래킹 중인 종목이 없습니다. ＋ 추가를 눌러 넣어 보세요." : "구독 중인 " + TAB_NAME[tab] + "가 없습니다. 주소를 Claude에게 알려 주세요.") + "</div>";
+    else if (!shown.length) html = '<div class="empty small">이름이 맞는 ' + (tab === "news" ? "종목은" : TAB_NAME[tab] + "는") + " 없습니다. 아래는 글 내용으로 찾은 결과입니다.</div>";
     $("#tiles").innerHTML = html;
     $("#tiles").classList.toggle("editing", editing);
     each("#tiles .tile", function (b) {
@@ -87,14 +89,24 @@
       };
     });
   }
+  // 긴 정리본: '### 소제목' · '- 글머리' · 빈 줄 문단만 간단히
+  function mdLite(md) {
+    return String(md).split(/\n{2,}/).map(function (blk) {
+      var lines = blk.split("\n");
+      if (/^#{2,4}\s/.test(lines[0])) return "<h4>" + esc(lines[0].replace(/^#+\s*/, "")) + "</h4>" + (lines.length > 1 ? mdLite(lines.slice(1).join("\n")) : "");
+      if (lines.every(function (l) { return /^\s*[-•]\s/.test(l); })) return "<ul>" + lines.map(function (l) { return "<li>" + esc(l.replace(/^\s*[-•]\s*/, "")) + "</li>"; }).join("") + "</ul>";
+      return "<p>" + esc(blk).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>") + "</p>";
+    }).join("");
+  }
   function card(it, t) {
     var paras = String(it.summary || "").split(/\n{2,}/).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
-    return '<article class="item' + (isBlog(t) ? " blog" : "") + '">' +
-      '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + (isBlog(t) ? "📝 " : "") + esc(tag(t.term)) + "</button>" +
+    var detail = it.detail ? '<details class="sum full"><summary>▶ 영상 전체 정리 (' + Math.round(it.detail.length / 100) / 10 + "천 자)</summary>" + mdLite(it.detail) + "</details>" : "";
+    return '<article class="item' + (isBlog(t) ? " blog" : isYT(t) ? " yt" : "") + '">' +
+      '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + (isBlog(t) ? "📝 " : isYT(t) ? "▶️ " : "") + esc(tag(t.term)) + "</button>" +
       '<span class="itime">' + esc(when(it.published)) + " · " + esc(it.source || "") + "</span></div>" +
       "<h3>" + esc(it.headline) + "</h3>" +
       '<ol class="bul">' + (it.bullets || []).map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ol>" +
-      (paras ? '<details class="sum"><summary>내용 요약</summary>' + paras + "</details>" : "") +
+      (paras ? '<details class="sum"><summary>내용 요약</summary>' + paras + "</details>" : "") + detail +
       '<a class="src" href="' + esc(it.url) + '" target="_blank" rel="noopener">원문 ↗ ' + esc(it.title || it.source || "") + "</a>" +
       "</article>";
   }
@@ -108,10 +120,10 @@
       (ITEMS[t.slug] || []).forEach(function (it) { if (cur || !q || termMatch || itemHit(it)) rows.push({ it: it, t: t }); });
     });
     rows.sort(function (a, b) { return (b.it.published || "").localeCompare(a.it.published || ""); });
-    $("#list-title").textContent = (cur ? tag(cur.term) : tab === "blog" ? "블로그 전체" : "종목·섹터 전체") +
+    $("#list-title").textContent = (cur ? tag(cur.term) : TAB_NAME[tab] + " 전체") +
       (q && !cur ? " · '" + $("#q").value.trim() + "' 검색" : "") + " · " + rows.length + "건";
     $("#btn-all").hidden = !cur;
-    $("#btn-up").textContent = tab === "blog" ? "↑ 블로그 고르기" : "↑ 종목 고르기";
+    $("#btn-up").textContent = "↑ " + (tab === "news" ? "종목" : tab === "yt" ? "채널" : "블로그") + " 고르기";
     if (!rows.length) { $("#list").innerHTML = '<div class="empty">' + (q ? "검색 결과가 없습니다." : "아직 보낸 글이 없습니다. 30분마다 확인합니다.") + "</div>"; return; }
     var html = "", day = "";
     rows.slice(0, 150).forEach(function (r) {

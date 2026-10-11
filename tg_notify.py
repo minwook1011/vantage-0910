@@ -253,14 +253,15 @@ def tracking():
                 continue
 
             def build(t=t, it=it):
-                label = " · 📝 블로그" if t.get("market") == "blog" else (f" · {esc(t.get('ticker'))}" if t.get("ticker") else "")
+                label = (" · 📝 블로그" if t.get("market") == "blog" else " · ▶️ 유튜브" if t.get("market") == "youtube"
+                         else (f" · {esc(t.get('ticker'))}" if t.get("ticker") else ""))
                 lines = [f"#{hashtag(t['term'])}" + label,
                          f"<b>{esc(it['headline'])}</b>", ""]
                 lines += [f"{i}. {esc(b)}" for i, b in enumerate(it.get("bullets") or [], 1)]
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
                 lines += ["", f'📰 <a href="{esc(it["url"])}">{esc(it.get("source") or "원문")}</a> · {stamp(it.get("published"))}']
-                dest = route("blog" if t.get("market") == "blog" else "news")
+                dest = route("blog" if t.get("market") in ("blog", "youtube") else "news")   # 유튜브도 블로그·인터뷰 쪽
                 return (None, "\n".join(lines), dest) if dest else (None, None)   # 그룹 연결 전엔 대기
             out.append((f"trk:{t.get('slug')}:{it['id']}", NOW, build))
     return out

@@ -75,6 +75,8 @@ def main():
         item = {"id": c["id"], "kind": c.get("kind", "news"), "headline": k["headline"].strip(), "bullets": b[:3], "summary": (k.get("summary") or "").strip(),
                 "title": c["title"], "source": c["source"], "url": c["url"], "published": c["published"],
                 "written": NOW.strftime("%Y-%m-%d %H:%M KST")}
+        if k.get("detail"):                     # 유튜브: 대본 전체를 흐름대로 정리한 긴 정리본(사이트에만)
+            item["detail"] = k["detail"].strip()
         added.setdefault(c["slug"], []).append(item)
 
     for slug, new in added.items():
@@ -94,9 +96,15 @@ def main():
     watch["updated"] = NOW.strftime("%Y-%m-%d %H:%M KST")
     save(WATCH, watch)
 
-    for p in (CAND, DEC):
-        if os.path.exists(p):
-            os.remove(p)
+    # keep·drop 어디에도 없는 후보(예: 유튜브 자막을 아직 못 받음)는 남겨 다음 실행에 다시 처리
+    handled = {k.get("id") for k in dec.get("keep") or []} | set(dec.get("drop") or [])
+    left = [c for c in cand.values() if c["id"] not in handled]
+    if left:
+        save(CAND, dict(load(CAND, {}), candidates=left))
+    elif os.path.exists(CAND):
+        os.remove(CAND)
+    if os.path.exists(DEC):
+        os.remove(DEC)
     n = sum(len(v) for v in added.values())
     print(f"반영 {n}건 · 탈락 {len(dec.get('drop') or [])}건" + (f" · 형식 오류로 뺀 것 {len(bad)}건" if bad else ""))
 

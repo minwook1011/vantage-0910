@@ -226,7 +226,31 @@ def gnews(query, sites, lang):
     return items
 
 
+def parse_yt(xml, src):
+    """유튜브 채널 새 영상(Atom). 쇼츠(/shorts/)는 뺀다."""
+    out = []
+    for e in re.findall(r"<entry>.*?</entry>", xml, re.S):
+        link = (re.search(r'<link rel="alternate" href="([^"]+)"', e) or [None, ""])[1]
+        if not link or "/shorts/" in link:
+            continue
+        title = html.unescape((re.search(r"<title>(.*?)</title>", e, re.S) or [None, ""])[1]).strip()
+        pub = (re.search(r"<published>(.*?)</published>", e) or [None, ""])[1]
+        try:
+            pub = datetime.fromisoformat(pub.replace("Z", "+00:00")).astimezone(KST)
+        except Exception:
+            continue
+        desc = html.unescape((re.search(r"<media:description>(.*?)</media:description>", e, re.S) or [None, ""])[1])
+        out.append({"title": title, "url": link, "source": src, "published": pub, "snippet": re.sub(r"\s+", " ", desc)[:400]})
+    return out
+
+
 def fetch_term(t):
+    if t.get("market") == "youtube":                         # 유튜브 채널: 새 영상(쇼츠 제외)
+        cid = t.get("channel_id") or ""
+        try:
+            return parse_yt(http(f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}"), t.get("name") or t["term"]), [], []
+        except Exception as e:
+            return [], [f"youtube {cid}: {str(e)[:80]}"], []
     if t.get("market") == "blog":                            # 네이버 블로그: 새 글 목록(RSS) 그대로
         bid = t.get("blog_id") or ""
         try:
@@ -292,7 +316,7 @@ def week_check(cands, watch):
         for it in load(os.path.join(BASE, "docs", "data", "tracking", "items", t["slug"] + ".json"), {}).get("items", []):
             if (it.get("published") or "") >= cut:
                 sent.append(it)
-    for c in [c for c in cands if c.get("kind") != "blog"][:40]:
+    for c in [c for c in cands if c.get("kind") == "news"][:40]:
         if "earlier" in c:                                 # 지난번에 확인한 후보
             continue
         c["sent_similar"] = [{"headline": s["headline"], "title": s["title"], "published": s["published"]}
@@ -345,7 +369,7 @@ def main():
         keys_l = [k.lower() for k in keys if k]
         kept = 0
         # 블로그 'backfill: N' — 최근 글 N개는 기간·기록과 상관없이 한 번 다시 올린다(이미 요약한 글은 제외)
-        back = int(t.pop("backfill", 0) or 0) if t.get("market") == "blog" else 0
+        back = int(t.pop("backfill", 0) or 0) if t.get("market") in ("blog", "youtube") else 0
         if back:
             popped.append(t["term"])
             done_ids = {x["id"] for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", slug + ".json"), {}).get("items", [])}
@@ -357,7 +381,7 @@ def main():
             elif not nt or sid in seen or it["published"] < since:
                 continue
             seen[sid] = NOW.strftime("%Y-%m-%d")                   # 후보로 올린 건 다시 안 올림(채택·탈락 무관)
-            blog = t.get("market") == "blog"                       # 블로그는 거르기 없이 새 글 전부
+            blog = t.get("market") in ("blog", "youtube")          # 블로그·유튜브는 거르기 없이 새 글·새 영상 전부
             text = (it["title"] + " " + it["snippet"]).lower()
             if not blog and (JUNK.search(it["title"]) or JUNK_SRC.search(it["source"] + " " + it["url"])):
                 continue
@@ -365,7 +389,8 @@ def main():
                 continue
             if any(norm_title(c["title"]) == nt for c in cands):
                 continue
-            cands.append({"id": sid, "term": t["term"], "slug": slug, "kind": "blog" if blog else "news",
+            cands.append({"id": sid, "term": t["term"], "slug": slug,
+                          "kind": "video" if t.get("market") == "youtube" else "blog" if blog else "news",
                           "source": it["source"], "url": it["url"], "title": it["title"], "snippet": it["snippet"],
                           "published": it["published"].strftime("%Y-%m-%d %H:%M KST")})
             kept += 1

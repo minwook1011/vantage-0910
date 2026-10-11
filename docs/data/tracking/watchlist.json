@@ -342,6 +342,32 @@
    "by": "claude",
    "count": 5,
    "last": "2026-10-06 13:07 KST"
+  },
+  {
+   "term": "김단테",
+   "slug": "yt-wy-8burq",
+   "market": "youtube",
+   "channel_id": "UCKTMvIu9a4VGSrpWy-8bUrQ",
+   "ticker": "",
+   "name": "내일은 투자왕 - 김단테",
+   "aliases": [],
+   "resolved": true,
+   "added": "2026-10-11 17:00",
+   "by": "claude",
+   "backfill": 3
+  },
+  {
+   "term": "테크피드",
+   "slug": "yt-kyrxne0q",
+   "market": "youtube",
+   "channel_id": "UCH2sxkxg_vdJSK4KYRXNE0Q",
+   "ticker": "",
+   "name": "T3chfeed - 테크피드 미국 주식 인사이트",
+   "aliases": [],
+   "resolved": true,
+   "added": "2026-10-11 17:00",
+   "by": "claude",
+   "backfill": 3
   }
  ],
  "updated": "2026-10-11 12:45 KST"
