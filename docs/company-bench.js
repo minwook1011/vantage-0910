@@ -781,6 +781,9 @@
       if (res[1].schema_version !== 1) throw new Error("AI 지표 파일 형식 불일치");
       AI = res[1]; FINS = (res[2] && res[2].financials) || {}; FM = res[3];
       buildCatalog(); tailCache = {}; loaded = true; loadError = "";
+      // ?co=TICKER 로 들어오면 그 기업을 연다(관전 포인트 화면에서 넘어올 때, 2026-10-11)
+      var qco = null; try { qco = new URLSearchParams(location.search).get("co"); } catch (e) {}
+      if (qco && !manual && COMPANIES.some(function (c) { return c.ticker === qco; })) state.company = qco;
       if (!COMPANIES.some(function (c) { return c.ticker === state.company; })) state.company = COMPANIES[0].ticker;
       renderAll(); if (manual) toast("서버에 저장된 최신 데이터를 불러왔어요.");
     }).catch(function (e) {

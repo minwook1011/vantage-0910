@@ -613,6 +613,7 @@
         }).join("");
         box.innerHTML = head + '<div class="cw-top"><button class="btn" id="cwPrev"' + (st.w <= minW ? " disabled" : "") + '>‹ 이전 주</button>' +
           '<div class="cw-t"><b>' + mo + "월 " + wk + "주차</b> <span>" + days[0].slice(5).replace("-", ".") + " – " + days[4].slice(5).replace("-", ".") + "</span>" +
+          (PV.indexOf(st.w) >= 0 ? ' <a class="cw-pv" href="earnings-preview.html?w=' + st.w + '" title="이 주에 발표하는 기업이 어떤 회사인지 · 무엇을 볼지">관전 포인트 ›</a>' : "") +
           (st.w !== monday(today) ? ' <button class="btn sm" id="cwNow">이번 주</button>' : "") + "</div>" +
           '<button class="btn" id="cwNext"' + (st.w >= maxW ? " disabled" : "") + ">다음 주 ›</button></div>" +
           '<div class="cw">' + cols + "</div>" +
@@ -632,6 +633,9 @@
         });
       }
       function keep() { try { sessionStorage.setItem("us-cal-week", st.w); } catch (e) {} }
+      // 관전 포인트 리포트가 있는 주(2026-10-11 사용자) — earnings-preview.html
+      var PV = [];
+      getJSON("data/preview/index.json").then(function (d) { PV = d.weeks || []; draw(); }).catch(function () {});
       draw();
     }).catch(function () { box.innerHTML = '<div class="empty">발표 예정 캘린더를 불러오지 못했습니다.</div>'; });
   }

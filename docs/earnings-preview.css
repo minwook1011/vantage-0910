@@ -1,0 +1,56 @@
+/* earnings-preview.css — 실적 관전 포인트 (earnings-preview.html) */
+.ep { max-width:1180px; --jp:#c0352b; --us:#2f6fe4; }
+.ep a { color:#0045d6; }
+.ep .kicker a { color:inherit; }
+.ep-empty { color:var(--muted); padding:30px 0; }
+.ep-head { display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap; margin:6px 0 12px; }
+.ep-head h1 { margin:0 0 4px; font-size:26px; letter-spacing:-.02em; }
+.ep-sub { color:var(--muted); font-size:13px; }
+.ep-nav { display:flex; gap:8px; }
+.ep-btn { display:inline-flex; align-items:center; padding:7px 12px; border:1px solid var(--border-strong); border-radius:9px; background:var(--card); color:var(--text) !important; font-size:12.5px; text-decoration:none; }
+.ep-btn:hover { border-color:var(--accent); }
+.ep-btn.off { opacity:.4; }
+.ep-ban { margin:0 0 12px; padding:10px 14px; border:1px solid #e8c56a; background:#fff8e3; border-radius:10px; font-size:13.5px; color:#5a4400; }
+.ep-ban.end { border-color:#e5a0a0; background:#fff0f0; color:#7a1d1d; }
+.ep-bar { position:sticky; top:var(--navh,0); z-index:5; background:var(--bg,#f4f7fb); padding:8px 0; display:flex; gap:10px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--border); }
+.ep-seg { display:inline-flex; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+.ep-seg button { font:inherit; font-size:12.5px; font-weight:600; border:0; background:var(--card); color:var(--muted); padding:6px 12px; cursor:pointer; }
+.ep-seg button[aria-pressed="true"] { background:#2f6fe4; color:#fff; }
+.ep-days { display:flex; gap:6px; flex-wrap:wrap; }
+.ep-dj { display:inline-flex; gap:6px; align-items:baseline; padding:5px 10px; border:1px solid var(--border); border-radius:8px; background:var(--card); color:var(--text) !important; text-decoration:none; font-size:12.5px; }
+.ep-dj b { font-size:13.5px; }
+.ep-dj span { color:var(--muted); font-family:var(--mono); font-size:11.5px; }
+.ep-dj.none { opacity:.45; }
+.ep-dj:hover { border-color:var(--accent); }
+.ep-day { margin-top:22px; scroll-margin-top:calc(var(--navh,0px) + 60px); }
+.ep-day h2 { font-size:19px; margin:0 0 8px; display:flex; align-items:baseline; gap:8px; }
+.ep-day h2 small { color:var(--muted); font-size:12.5px; font-weight:500; }
+.ep-idx { display:flex; flex-wrap:wrap; gap:4px 6px; margin-bottom:10px; }
+.ep-idx a { font-size:12.5px; padding:3px 9px; border-radius:999px; background:var(--card); border:1px solid var(--border); color:var(--text) !important; text-decoration:none; }
+.ep-idx a.jp { border-left:3px solid var(--jp); }
+.ep-idx a.us { border-left:3px solid var(--us); }
+.ep-idx a:hover { border-color:var(--accent); }
+.ep-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(420px,1fr)); gap:12px; }
+.ep-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px; min-width:0; scroll-margin-top:calc(var(--navh,0px) + 60px); border-top:3px solid var(--us); }
+.ep-card.jp { border-top-color:var(--jp); }
+.ep-card:target { box-shadow:0 0 0 2px var(--accent); }
+.ep-ch { margin-bottom:8px; }
+.ep-nm { font-size:17px; font-weight:800; text-decoration:none; color:var(--text) !important; letter-spacing:-.01em; }
+a.ep-nm:hover { color:#0045d6 !important; text-decoration:underline; }
+.ep-one { font-size:13.5px; color:var(--text); margin-top:3px; font-weight:600; }
+.ep-meta { display:flex; flex-wrap:wrap; gap:4px 8px; margin-top:6px; font-size:11.5px; color:var(--muted); }
+.ep-meta .mk { font-weight:700; color:#fff; padding:0 6px; border-radius:4px; }
+.ep-meta .mk.jp { background:var(--jp); }
+.ep-meta .mk.us { background:var(--us); }
+.ep-meta .cd { font-family:var(--mono); font-weight:700; color:#2b52ab; }
+.ep-meta .en { color:var(--faint,#8a96a8); }
+.ep-meta .est { font-style:normal; color:#b26a00; border:1px solid #e8c56a; border-radius:4px; padding:0 5px; }
+.ep-desc { margin:0; padding-left:20px; font-size:13.5px; line-height:1.75; color:var(--text); }
+.ep-desc li::marker { color:var(--faint,#8a96a8); font-size:11px; }
+.ep-wait { color:var(--muted); font-size:13px; }
+.ep-pts { margin-top:10px; padding:9px 12px; background:rgba(47,111,228,.07); border-radius:9px; }
+.ep-card.jp .ep-pts { background:rgba(192,53,43,.06); }
+.ep-pts b { font-size:12.5px; }
+.ep-pts ul { margin:4px 0 0; padding-left:18px; font-size:13.5px; line-height:1.7; }
+.ep-note { margin:26px 0 10px; color:var(--muted); font-size:12px; line-height:1.8; }
+@media (max-width:720px) { .ep-grid { grid-template-columns:1fr; } .ep-head h1 { font-size:21px; } }

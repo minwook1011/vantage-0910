@@ -262,3 +262,6 @@
 .jr .gchip.g5 { background:#fde0e5; color:#d0243f; } .jr .gchip.g4 { background:#fdeef0; color:#d9475c; }
 .jr .gchip.g2 { background:#e6eefd; color:#2f63d6; } .jr .gchip.g1 { background:#dbe6fd; color:#1446c4; }
 @media (max-width:640px) { .jr .verdict { padding:13px 14px; } .jr .verdict .vbadge { font-size:17px; } .jr .verdict .vtab { font-size:12.5px; } }
+/* 관전 포인트 버튼(주차 옆) */
+.jr .cw-pv{display:inline-block;margin-left:6px;padding:4px 11px;border-radius:999px;background:#2f6fe4;color:#fff !important;font-size:12px;font-weight:700;text-decoration:none;vertical-align:middle}
+.jr .cw-pv:hover{background:#1f57c4}

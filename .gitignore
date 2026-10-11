@@ -25,3 +25,6 @@ data_sources/tg_shots_preview/
 # 트래킹 수집 중간 파일(track_fetch → Claude → track_apply)
 data_sources/_tracking_candidates.json
 data_sources/_tracking_decisions.json
+
+# 관전 포인트 리포트 작성 중간 파일(build_earnings_preview.py)
+data_sources/_preview_work/

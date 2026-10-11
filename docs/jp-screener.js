@@ -644,7 +644,7 @@ function renderEarnUp(){
     const weeks=[]; for(let w=firstW; w<=lastW; w=isoAdd(w,7)) weeks.push(w);
     h += `<div class="eu-weeks" role="tablist" aria-label="주차 선택">${weeks.map(w=>`<button role="tab" data-w="${w}" aria-pressed="${w===earnWeek}"><b>${weekLabel(w)}${w===thisMon?" · 이번 주":""}</b><span>${mdDot(w)}~${mdDot(isoAdd(w,4))} · ${(byWeek[w]||[]).length}개</span></button>`).join("")}</div>`;
     const prevOk = earnWeek>firstW, nextOk = earnWeek<lastW;
-    h += `<div class="eu-wnav"><button data-nav="-7" ${prevOk?"":"disabled"} aria-label="이전 주">‹ 이전 주</button><b>${weekLabel(earnWeek)}</b><span class="mono">${mdDot(earnWeek)} – ${mdDot(isoAdd(earnWeek,4))}</span><button data-nav="7" ${nextOk?"":"disabled"} aria-label="다음 주">다음 주 ›</button></div>`;
+    h += `<div class="eu-wnav"><button data-nav="-7" ${prevOk?"":"disabled"} aria-label="이전 주">‹ 이전 주</button><b>${weekLabel(earnWeek)}</b><span class="mono">${mdDot(earnWeek)} – ${mdDot(isoAdd(earnWeek,4))}</span>${(PV_WEEKS||[]).includes(earnWeek)?`<a class="eu-pv" href="earnings-preview.html?w=${earnWeek}" title="이 주에 발표하는 기업이 어떤 회사인지 · 무엇을 볼지">관전 포인트 ›</a>`:""}<button data-nav="7" ${nextOk?"":"disabled"} aria-label="다음 주">다음 주 ›</button></div>`;
     h += `<div class="eu-cal">` + [0,1,2,3,4].map(i=>{
       const d=isoAdd(earnWeek,i), open=earnOpen.has(d);
       // 지난 날짜는 결과가 있는 종목만, 결과 있는 종목을 먼저(시총 순 유지)
@@ -1680,6 +1680,12 @@ fetch("data/jp/earnings_dates.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Pr
   const el=document.getElementById("earnasof"); if(el) el.textContent=d.updated||"—";
   renderTable();
 }).catch(()=>{ const el=document.getElementById("earnasof"); if(el) el.textContent="불러오기 실패"; });
+/* 관전 포인트 리포트가 있는 주(2026-10-11 사용자) — earnings-preview.html */
+var PV_WEEKS=[];
+fetch("data/preview/index.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{ PV_WEEKS=d.weeks||[]; if(!uniLoading) renderEarnUp(); }).catch(()=>{});
+/* ?code=1234 로 들어오면 그 종목 상세(재무제표·차트)를 바로 연다 — 관전 포인트 화면에서 넘어올 때 */
+(function(){ let dc=null; try{ dc=new URL(location.href).searchParams.get("code"); }catch(e){} if(!dc) return;
+  let n=0; const t=setInterval(()=>{ if(!uniLoading && RAW.some(x=>x[F.CODE]===dc)){ clearInterval(t); openDetail(dc); } else if(++n>80) clearInterval(t); },250); })();
 fetch("data/jp/earnings_pts.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{ PTS=d.items||{}; renderTable(); }).catch(()=>{});
 fetch("data/jp/earnings_results.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject(r.status)).then(d=>{
   RES=d.results||{}; RES_META=d;
