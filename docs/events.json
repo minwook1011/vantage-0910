@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08",
+ "updated": "2026-10-11",
  "events": [
   {
    "id": "ces-2026",
@@ -2784,6 +2784,210 @@
     {
      "label": "뉴시스 — 한은, 2026년 금통위 일정 발표",
      "url": "https://www.newsis.com/view/NISX20251030_0003383692"
+    }
+   ]
+  },
+  {
+   "id": "fii10-2026",
+   "name": "미래투자이니셔티브(FII10) 2026",
+   "org": "사우디 공공투자펀드(PIF) 산하 FII 연구소",
+   "desc": "사우디 리야드 투자 회의 10회째, 킹압둘아지즈 국제회의장",
+   "date_start": "2026-10-26",
+   "date_end": "2026-10-29",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "사우디 국부펀드가 여는 연례 투자 회의로 올해 10회째다. 주제는 '유산의 힘'이며 발표자 550명 이상, 세션 250개 이상이 예정돼 있다. 중동 자본의 AI 데이터센터·에너지 투자 약속이 나오는 자리다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "Sharikat Mubasher — FII 10회 리야드 개최",
+     "url": "https://sharikatmubasher.com/news/article/21562118/riyadh-to-host-10th-edition-of-future-investment-initiative-next-october?lang=en"
+    }
+   ]
+  },
+  {
+   "id": "jimtof-2026",
+   "name": "JIMTOF 2026 (제33회 일본국제공작기계견본시)",
+   "org": "일본공작기계공업회·도쿄 빅사이트",
+   "desc": "2년마다 열리는 세계 최대급 공작기계 전시회, 도쿄 빅사이트",
+   "date_start": "2026-10-26",
+   "date_end": "2026-10-31",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "일본공작기계공업회가 2년마다 여는 공작기계 전시회다. 올해는 처음으로 월~토 6일 일정으로 바뀌었다. 화낙·DMG모리·오쿠마 등 일본 공작기계 업체의 신제품과 수주 분위기를 볼 수 있다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "도쿄 빅사이트 — JIMTOF 2026 보도자료",
+     "url": "https://www.bigsight.jp/english/visitor/company/newsrelease/d386pl00000000ht-att/JIMTOF2026_News_Release250729_En.pdf"
+    }
+   ]
+  },
+  {
+   "id": "github-universe-2026",
+   "name": "GitHub Universe 2026",
+   "org": "GitHub (마이크로소프트)",
+   "desc": "개발자 플랫폼 연례 행사, 미국 샌프란시스코 포트메이슨 센터",
+   "date_start": "2026-10-28",
+   "date_end": "2026-10-29",
+   "month": "2026-10",
+   "status": "upcoming",
+   "summary": "깃허브의 연례 개발자 행사로 샌프란시스코 포트메이슨 센터에서 열린다. 코파일럿 등 AI 코딩 에이전트 기능 발표가 중심이다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "GitHub 블로그 — GitHub Universe is back",
+     "url": "https://github.blog/author/arielkanter/"
+    }
+   ]
+  },
+  {
+   "id": "adipec-2026",
+   "name": "ADIPEC 2026 (아부다비 국제석유전시회)",
+   "org": "ADNOC(아부다비 국영석유회사)",
+   "desc": "세계 최대급 에너지 전시·회의, 아부다비 ADNEC",
+   "date_start": "2026-11-02",
+   "date_end": "2026-11-05",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "아부다비 국영석유회사가 주관하는 에너지 전시·회의다. 참가 기업 2,250곳 이상, 관람객 23만 명 이상이 예상된다. 석유·가스 투자, 액화천연가스, AI 데이터센터 전력 수요가 주요 의제다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "Hydrocarbon Engineering — ADIPEC 2026",
+     "url": "https://www.hydrocarbonengineering.com/events/adipec-2026/"
+    }
+   ]
+  },
+  {
+   "id": "bixpo-2026",
+   "name": "빅스포(BIXPO) 2026",
+   "org": "한국전력공사",
+   "desc": "국내 최대 전력·에너지 기술 박람회, 광주 김대중컨벤션센터",
+   "date_start": "2026-11-04",
+   "date_end": "2026-11-06",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "한국전력이 해마다 여는 전력 기술 박람회다. 송배전·전력망·원전·재생에너지 기술과 중소기업 신기술이 전시된다. 한국 측 공식 보도자료는 아직 확인하지 못했고 날짜는 캐나다 통상대표부 행사 안내 기준이다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "캐나다 통상대표부 — BIXPO 2026 행사 안내",
+     "url": "https://www.tradecommissioner.gc.ca/en/trade-events-training/2026/11/bitgaram-international-exposition-electric-power-technology-bixpo.html"
+    }
+   ]
+  },
+  {
+   "id": "airshow-china-2026",
+   "name": "중국 국제항공우주박람회(주하이 에어쇼) 2026",
+   "org": "중국 정부(주하이 에어쇼 조직위)",
+   "desc": "2년마다 열리는 중국 최대 항공·방산 전시회, 광둥성 주하이",
+   "date_start": "2026-11-10",
+   "date_end": "2026-11-15",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "2년마다 열리는 중국 최대 항공우주·방산 전시회다. 앞 사흘은 업계 관계자, 뒤 사흘은 일반 관람이다. 중국 전투기·무인기·상용 항공기(코맥) 공개가 관전 포인트다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "Wikipedia — China International Aviation & Aerospace Exhibition",
+     "url": "https://en.wikipedia.org/wiki/China_International_Aviation_%26_Aerospace_Exhibition"
+    },
+    {
+     "label": "Breaking Travel News — Airshow China 2026",
+     "url": "https://www.breakingtravelnews.com/events/details/airshow-china-2026/"
+    }
+   ]
+  },
+  {
+   "id": "slush-2026",
+   "name": "Slush 2026",
+   "org": "Slush (비영리 스타트업 단체)",
+   "desc": "유럽 최대 스타트업·벤처투자 행사, 핀란드 헬싱키 메수케스쿠스",
+   "date_start": "2026-11-18",
+   "date_end": "2026-11-19",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "헬싱키에서 열리는 유럽 최대 스타트업·벤처투자 행사다. 유럽 AI·딥테크 스타트업 투자 흐름을 확인하는 자리다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "The Recursive — Slush 2026",
+     "url": "https://www.therecursive.com/slush-2026/"
+    }
+   ]
+  },
+  {
+   "id": "singapore-fintech-festival-2026",
+   "name": "싱가포르 핀테크 페스티벌 2026",
+   "org": "싱가포르 통화청(MAS)",
+   "desc": "세계 최대급 핀테크 행사 11회째, 싱가포르 엑스포",
+   "date_start": "2026-11-18",
+   "date_end": "2026-11-20",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "싱가포르 통화청이 주관하는 핀테크 행사로 올해 11회째다. 스테이블코인·토큰화 예금 등 디지털 자산 규제와 아시아 결제망 연결이 주요 의제다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "Luxembourg for Finance — SFF 2026 참가 안내",
+     "url": "https://www.luxembourgforfinance.com/?p=20389"
+    }
+   ]
+  },
+  {
+   "id": "sps-2026",
+   "name": "SPS 2026 (스마트 생산 솔루션 전시회)",
+   "org": "메사고 메세 프랑크푸르트",
+   "desc": "유럽 최대 공장 자동화 전시회, 독일 뉘른베르크 메세",
+   "date_start": "2026-11-24",
+   "date_end": "2026-11-26",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "지멘스·로크웰·벡호프 등이 참가하는 유럽 최대 공장 자동화 전시회다. 산업용 AI와 휴머노이드 로봇의 공장 적용 사례가 관전 포인트다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "HBK — SPS 2026",
+     "url": "https://www.hbkworld.com/de/knowledge/events/trade-show/sps-expo-2026"
+    }
+   ]
+  },
+  {
+   "id": "rsna-2026",
+   "name": "RSNA 2026 (북미영상의학회 연례 학술대회)",
+   "org": "북미영상의학회(RSNA)",
+   "desc": "세계 최대 영상의학 학술대회·전시, 미국 시카고 매코믹 플레이스",
+   "date_start": "2026-11-29",
+   "date_end": "2026-12-03",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "세계 최대 영상의학 학술대회로 시카고 매코믹 플레이스에서 열린다. 의료영상 AI 판독과 CT·MRI 장비 신제품이 발표된다. 루닛·뷰노 등 한국 의료 AI 기업도 해마다 참가한다.",
+   "full": "",
+   "added": "2026-10-11",
+   "updated": "2026-10-11",
+   "sources": [
+    {
+     "label": "RSNA — Annual Meeting 공지",
+     "url": "https://rsna.org/news/announcements/annual-meeting"
     }
    ]
   }
