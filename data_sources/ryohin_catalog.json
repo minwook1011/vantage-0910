@@ -1,0 +1,119 @@
+{
+ "company": {
+  "name": "료힌케이카쿠",
+  "brand": "MUJI · 무인양품",
+  "code": "7453",
+  "market": "TSE 프라임",
+  "fy_end": "8월 결산"
+ },
+ "next_event": {
+  "label": "FY26 4Q 결산 발표",
+  "date": "2026-10-14",
+  "time": "15:30 JST"
+ },
+ "monthly_release": "월차: 국내는 다음 달 2~4영업일, 해외는 다음 달 10일 전후",
+ "tiers": [
+  {
+   "id": "t1",
+   "title": "1순위: 무료이고 효과가 큰 지표",
+   "columns": [
+    "지표",
+    "무엇을 미리 보나",
+    "실적보다 얼마나 빠른가",
+    "확인"
+   ],
+   "rows": [
+    {
+     "name": "무지 주간(회원 할인) 일정",
+     "what": "그 달 기존점 매출. 행사가 있는 달과 없는 달 차이가 커요(1Q·3Q 판관비율 차이의 원인).",
+     "lead": "행사 1~2주 전 공지",
+     "check": "무지 앱·홈페이지 공지 (일정은 직접 확인 못 했어요)",
+     "ok": false,
+     "url": "https://www.muji.com/jp/ja/"
+    },
+    {
+     "name": "일본 날씨 (기상청 일별 기온·강수)",
+     "what": "국내 월차. 회사가 월차 설명에서 매번 \"기상 불순\", \"따뜻한 겨울\"을 이유로 들어요.",
+     "lead": "실시간. 그 달이 끝나기 전에 방향을 알 수 있어요.",
+     "check": "data.jma.go.jp 접속 확인",
+     "ok": true,
+     "url": "https://www.data.jma.go.jp/stats/etrn/"
+    },
+    {
+     "name": "회사 출점 데이터 페이지",
+     "what": "전점 매출 성장률. 점포명, 개점 월, 매장 면적까지 나와요.",
+     "lead": "수개월 앞서요",
+     "check": "확인. 다만 지금 2025년분까지만 올라와 있어요",
+     "ok": true,
+     "url": "https://www.ryohin-keikaku.jp/corporate/opening-store-data"
+    },
+    {
+     "name": "환율 (일별)",
+     "what": "엔 환산 해외 매출과 이익",
+     "lead": "실시간",
+     "check": "이미 보드에 반영",
+     "ok": true,
+     "url": ""
+    }
+   ]
+  },
+  {
+   "id": "t2",
+   "title": "2순위: 무료지만 잡음이 있는 지표",
+   "columns": [
+    "지표",
+    "무엇을 미리 보나",
+    "확인 결과"
+   ],
+   "rows": [
+    {
+     "name": "Similarweb (muji.com)",
+     "what": "국내 EC 방문 수. 온라인 결제의 대리 지표예요.",
+     "check": "무료로 최근 3개월만 보여요. 9월 방문 1,790만, 전월 대비 −5.6%, 일본 비중 90%. 이력이 안 남아서 매달 기록해 쌓아야 해요.",
+     "ok": true,
+     "url": "https://www.similarweb.com/website/muji.com/"
+    },
+    {
+     "name": "구글 트렌드 / 바이두 지수",
+     "what": "해외와 중국의 브랜드 관심도",
+     "check": "바이두 지수 접속 확인 (로그인 필요)",
+     "ok": true,
+     "url": "https://index.baidu.com/"
+    },
+    {
+     "name": "유니클로 국내 월차",
+     "what": "날씨와 소비 분위기 비교 기준",
+     "check": "월차 데이터 도구로 받을 수 있어요. 무지 국내 월차(다음 달 2~4영업일)와 비슷한 시기거나 조금 빨라요.",
+     "ok": true,
+     "url": "https://www.fastretailing.com/jp/ir/news/"
+    },
+    {
+     "name": "티몰 무지 공식 플래그십",
+     "what": "중국 EC. 상품별 판매량, 팔로워, 광군제(双11) 브랜드 순위",
+     "check": "앞서 판매량 순으로 정렬해 본 그 페이지예요",
+     "ok": null,
+     "url": ""
+    },
+    {
+     "name": "앱 순위 (MUJI passport)",
+     "what": "회원 활동",
+     "check": "AppMagic 등에서 제한적으로 무료",
+     "ok": null,
+     "url": "https://appmagic.rocks/"
+    }
+   ]
+  }
+ ],
+ "snapshots": [
+  {
+   "month": "2026-09",
+   "source": "Similarweb",
+   "metric": "muji.com 월 방문",
+   "value": "1,790만",
+   "change": "전월 대비 −5.6%",
+   "memo": "일본 89.7% · 미국 2.2% · 대만 1.4% · 싱가포르 1.1% · 한국 1.0%",
+   "url": "https://www.similarweb.com/website/muji.com/"
+  }
+ ],
+ "updated": "2026-10-11"
+}

@@ -14,3 +14,22 @@
 .rk-ok { color:#1f9a72; }
 .rk-no { color:#8a97ab; }
 @media (max-width:720px) { .rk-table { table-layout:auto; min-width:640px; } }
+.rk-chart { position:relative; }
+.rk-chart svg text { font-family:var(--mono); font-size:10px; fill:#566987; }
+.rk-tip { position:absolute; z-index:3; min-width:200px; max-width:280px; padding:9px 11px; border:1px solid rgba(124,148,186,.35); border-radius:9px; background:rgba(250,252,255,.97); box-shadow:0 6px 18px rgba(30,45,80,.12); font-size:11px; line-height:1.6; pointer-events:none; }
+.rk-tip b { display:block; font-family:var(--mono); margin-bottom:3px; }
+.rk-tip span { display:flex; align-items:center; gap:6px; }
+.rk-tip i { display:inline-block; width:8px; height:8px; border-radius:3px; background:var(--series-color); flex:0 0 8px; }
+.rk-tip small { color:#7b8aa3; }
+.rk-selectors { grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:18px; }
+.rk-metric input { margin:0 2px 0 0; }
+.rk-scroll { max-height:420px; overflow:auto; }
+.rk-over { table-layout:auto; }
+.rk-over td { white-space:nowrap; }
+.rk-over td:nth-child(7) { white-space:normal; min-width:160px; }
+.rk-pick { border:1px solid rgba(124,148,186,.35); background:#e8edf5; color:#1a2130; padding:3px 8px; border-radius:6px; font-size:11px; cursor:pointer; }
+.rk-up { color:#d4507a; font-weight:600; }
+.rk-down { color:#3a6fd8; font-weight:600; }
+@media (max-width:980px) { .rk-selectors { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:600px) { .rk-selectors { grid-template-columns:1fr; } }
+#ryohin-workspace .fm-segment button.on { color:#fff; background:#3a6fd8; }

@@ -1,0 +1,56 @@
+name: ryohin-daily
+
+# 료힌케이카쿠(무지, 7453) 워크벤치 → docs/data/ryohin.json (cron 은 UTC, 괄호는 한국시간)
+#   07:40 UTC (16:40 KST) 평일  도쿄 장 마감 뒤 주가·환율·도쿄 날씨·구글 트렌드
+# 무지 월차·분기 실적·점포 수·유니클로 월차는 data_sources/ryohin_manual.json 에 손으로 추가한다.
+on:
+  schedule:
+    - cron: "40 7 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "수집기만 골라 실행 (비우면 전체). 예: price,fx"
+        required: false
+        default: ""
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: ryohin-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q trendspy
+      - name: 지표 수집
+        run: |
+          if [ -n "${{ github.event.inputs.only }}" ]; then
+            python fetch_ryohin.py --only "${{ github.event.inputs.only }}"
+          else
+            python fetch_ryohin.py
+          fi
+      - name: 변경분 커밋
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/ryohin.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: 료힌케이카쿠 지표 갱신 $(TZ=Asia/Seoul date +'%Y-%m-%d %H:%M') KST"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: Pages 배포 요청
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py
