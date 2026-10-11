@@ -123,6 +123,7 @@ def telegram_commands(watch, state):
         text = (m.get("text") or "").strip()
         chat = m.get("chat") or {}
         who = (m.get("from") or {}).get("id") or chat.get("id")
+        text = plain_command(text)                     # '기판 추가해줘'·'삼성전기 빼줘' 같은 말도 명령으로
         mt = re.match(r"^/?(추가|삭제|목록|연결|add|del|list|link)(?:@\w+)?\s*(.*)$", text, re.I)
         if not mt:
             continue
@@ -159,7 +160,12 @@ def telegram_commands(watch, state):
             reply = (("✅ 트래킹 추가: " + " ".join(f"#{hashtag(x)}" for x in new) + "\n다음 수집(30분 이내)부터 관련 뉴스를 보냅니다.")
                      if new else "") + (("\n" if new else "") + "이미 트래킹 중: " + " ".join(f"#{hashtag(x)}" for x in dup) if dup else "")
         elif cmd in ("삭제", "del") and arg:
-            gone = [term for term, _ in split_terms(arg) if any(t["term"] == term for t in watch["terms"])]
+            gone = []
+            for term, _ in split_terms(arg):           # '삭제 AMZN' 처럼 다른 이름으로 불러도 그 단어를 지운다
+                k = keyof(term)
+                hit = next((t for t in watch["terms"] if k in {keyof(x) for x in [t["term"], t.get("ticker", ""), t.get("name", "")] + t.get("aliases", []) if x}), None)
+                if hit and hit["term"] not in gone:
+                    gone.append(hit["term"])
             watch["terms"] = [t for t in watch["terms"] if t["term"] not in gone]
             changed = changed or bool(gone)
             reply = ("🗑 트래킹 삭제: " + ", ".join(gone)) if gone else f"목록에 없는 단어: {arg}"
@@ -174,6 +180,22 @@ def telegram_commands(watch, state):
         except Exception:
             pass
     return changed
+
+
+def plain_command(text):
+    """슬래시·영어 없이 보낸 말을 명령으로 바꾼다. 예: '기판, ABF 추가' · '추가해줘 심텍' · '삼성전기 빼줘' · '목록 보여줘'"""
+    t = re.sub(r"\s+", " ", text.strip().lstrip("/")).strip()
+    if re.fullmatch(r"(트래킹 ?)?(목록|리스트|뭐 ?있(어|지|냐)\??)( ?보여 ?줘| ?알려 ?줘)?\??", t):
+        return "목록"
+    ADD = r"(추가|넣어|등록|트래킹)(해)?( ?줘| ?주세요| ?해줘| ?ㄱㄱ| ?하자)?[.!~]*"
+    DEL = r"(삭제|빼|제외|지워|그만)(해)?( ?줘| ?주세요| ?해줘| ?ㄱㄱ| ?하자)?[.!~]*"
+    for verb, pat in (("추가", ADD), ("삭제", DEL)):
+        m = re.fullmatch(r"(.+?) ?(을|를|도|좀)? ?" + pat, t) or re.fullmatch(pat + r" (.+)", t)
+        if m:
+            arg = m.group(1) if not re.match(pat, t) else m.groups()[-1]
+            arg = re.sub(r"\s*(이랑|하고|랑|그리고|및)\s*", ", ", arg.strip())
+            return f"{verb} {arg}"
+    return text
 
 
 def keyof(x):
