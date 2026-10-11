@@ -382,6 +382,54 @@
    "resolved": true,
    "added": "2026-10-12 09:30",
    "by": "claude"
+  },
+  {
+   "term": "ABF",
+   "slug": "abf",
+   "market": "",
+   "ticker": "",
+   "aliases": [
+    "ABF"
+   ],
+   "resolved": false,
+   "added": "2026-10-12 08:16",
+   "by": "telegram"
+  },
+  {
+   "term": "파인엠텍",
+   "slug": "t-4123f0f6",
+   "market": "",
+   "ticker": "",
+   "aliases": [
+    "파인엠텍"
+   ],
+   "resolved": false,
+   "added": "2026-10-12 08:16",
+   "by": "telegram"
+  },
+  {
+   "term": "애플 폴더블",
+   "slug": "t-c44f9b86",
+   "market": "",
+   "ticker": "",
+   "aliases": [
+    "애플 폴더블"
+   ],
+   "resolved": false,
+   "added": "2026-10-12 08:16",
+   "by": "telegram"
+  },
+  {
+   "term": "애플 듀오",
+   "slug": "t-62bbe9b6",
+   "market": "",
+   "ticker": "",
+   "aliases": [
+    "애플 듀오"
+   ],
+   "resolved": false,
+   "added": "2026-10-12 08:16",
+   "by": "telegram"
   }
  ],
  "updated": "2026-10-12 06:15 KST"
