@@ -146,8 +146,10 @@ def telegram_commands(watch, state):
         elif cmd in ("추가", "add") and arg:
             new, dup = [], []
             for term, tk in split_terms(arg):          # 쉼표로 여러 개 보내도 하나씩 따로
-                if any(t["term"] == term for t in terms):
-                    dup.append(term)
+                k = keyof(term)
+                hit = next((t for t in terms if k in {keyof(x) for x in [t["term"], t.get("ticker", ""), t.get("name", "")] + t.get("aliases", []) if x}), None)
+                if hit or (tk and any(tk == t.get("ticker") for t in terms)):
+                    dup.append(hit["term"] if hit else term)      # AMAZON·AMZN 처럼 이미 있는 단어의 다른 이름이면 새로 안 만든다
                     continue
                 terms.append({"term": term, "slug": slugify(term, tk), "market": "", "ticker": tk,
                               "aliases": [term] + ([tk] if tk else []), "resolved": False,
@@ -172,6 +174,10 @@ def telegram_commands(watch, state):
         except Exception:
             pass
     return changed
+
+
+def keyof(x):
+    return re.sub(r"[\s._\-]+", "", str(x).lower())
 
 
 def hashtag(term):
