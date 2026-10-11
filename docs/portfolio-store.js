@@ -28,8 +28,12 @@
     } catch (e) { return JSON.parse(JSON.stringify(DEFAULT)); }
   }
   function save(data) { learnNames(data && data.transactions); localStorage.setItem(KEY, JSON.stringify(data)); return data; }
+  /* 증권사 표기의 미국 거래소 꼬리표(로이터식 AMZN.OQ·ASX.NY 등)를 뗀다 — 시세는 꼬리표 없는 티커로만 조회된다.
+     BRK.B 같은 주식 종류(.A·.B)는 그대로 둔다. */
+  function usBare(ticker) { return String(ticker || "").replace(/\.(OQ|O|NQ|N|NY|OB|PK|AM)$/i, ""); }
   function tickerFor(ticker, market) {
     ticker = String(ticker || "").trim().toUpperCase();
+    if (market !== "KR" && !/\.(KS|KQ)$/.test(ticker)) ticker = usBare(ticker);
     var bare = ticker.replace(/\.(KS|KQ)$/i, "");
     if (market === "KR" && KR_TICKERS[bare]) return KR_TICKERS[bare];
     if (market === "KR" && !/\.(KS|KQ)$/.test(ticker)) return ticker + ".KS";
@@ -42,7 +46,7 @@
     if (/\.(KS|KQ)$/.test(t) || /^\d{4}[0-9A-Z]{2}$/.test(t) || /[가-힣]/.test(t) || KR_TICKERS[t]) return "KR";
     return "US";
   }
-  function displayTicker(ticker) { var bare = String(ticker || "").replace(/\.(KS|KQ)$/i, ""); return KR_NAMES[bare] || EXTRA_NAMES[bare] || bare; }
+  function displayTicker(ticker) { var bare = usBare(String(ticker || "").replace(/\.(KS|KQ)$/i, "")); return KR_NAMES[bare] || EXTRA_NAMES[bare] || bare; }
   function groupKey(market, ticker) { return market + ":" + tickerFor(ticker, market); }
   function aggregate(data, accountId) {
     var result = {};

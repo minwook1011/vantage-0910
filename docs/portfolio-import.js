@@ -10,6 +10,8 @@
  *
  * 반영 방식(apply): 붙여넣은 내역의 가장 이른 날짜부터는 엑셀이 정답 — 그 계좌의 그 날짜 이후 기록을 지우고 엑셀 것으로 채운다.
  * 그 전 기록은 그대로 둔다(최근 몇 달만 붙여넣어도 예전 기록이 사라지지 않게).
+ * 메리츠는 국내 거래내역과 해외주식 거래내역이 다른 화면이라, 한 계좌에 시트를 둘(예: 내계좌_국내·내계좌_해외) 둘 수 있다.
+ * 그때는 시트마다 자기 몫(국내 종목·원화 / 미국 종목·달러)만 바꿔서 서로의 기록을 지우지 않는다.
  */
 (function () {
   "use strict";
@@ -100,6 +102,7 @@
   function tickerShape(s) {
     var t = clean(s).toUpperCase().replace(/^A(?=\d{6}$)/, "");          // 국내 코드 'A005930' 형태
     if (/^\d{4}[0-9A-Z]{2}$/.test(t) || /^\d{6}\.(KS|KQ)$/.test(t)) return { t: t, m: "KR" };
+    t = t.replace(/\.(OQ|O|NQ|N|NY|OB|PK|AM)$/, "");                    // 메리츠 해외 종목코드 'AMZN.OQ'·'ASX.NY' → 거래소 꼬리표 떼기
     if (/^[A-Z][A-Z0-9.\-]{0,6}$/.test(t)) return { t: t, m: "US" };
     return null;
   }
@@ -119,6 +122,14 @@
     var lo = 0, hi = h.d.length - 1, ans = null;
     while (lo <= hi) { var mid = (lo + hi) >> 1; if (h.d[mid] <= date) { ans = h.c[mid]; lo = mid + 1; } else hi = mid - 1; }
     return ans || h.c[0];
+  }
+
+  /* 시트 이름으로 국내·해외 구분: '내계좌_해외' → 미국 종목·달러, '내계좌_국내' → 국내 종목·원화. 구분이 없으면 null */
+  function sideOf(sheetName) {
+    var s = String(sheetName || "");
+    if (/해외|미국|외화|usd|(^|[^a-z])us([^a-z]|$)/i.test(s)) return { market: "US", cur: "USD" };
+    if (/국내|한국|원화|krw|(^|[^a-z])kr([^a-z]|$)/i.test(s)) return { market: "KR", cur: "KRW" };
+    return { market: null, cur: null };
   }
 
   /* ───────── 시트 하나 읽기 ───────── */
@@ -148,7 +159,7 @@
     function get(rec, f) { var p = L.cols[f]; return p ? (rec[p.r] || [])[p.c] : null; }
     var seen = {};
     function uid(parts) { var base = parts.join("|").replace(/[^0-9A-Za-z가-힣.|\-]/g, ""), n = (seen[base] = (seen[base] || 0) + 1); return "x-" + base + (n > 1 ? "|" + n : ""); }
-    var mktDefault = /해외|미국|us/i.test(sheetName) ? "US" : null;
+    var mktDefault = sideOf(sheetName).market;
     for (var i = L.at + L.span; i < rows.length; i += L.span) {
       var rec = rows.slice(i, i + L.span), date = dateOf(get(rec, "date"));
       if (!date) { if ((rec[0] || []).some(function (v) { return clean(v); })) out.skipped++; continue; }
@@ -251,26 +262,61 @@
     return null;
   }
   /* parsed = parseBook 결과. opt: { stamp, newId(prefix), only(acct, p) → false 면 건너뜀 }. 반환: 계좌별 요약 */
+  /* 같은 계좌로 가는 시트가 여럿이면(예: 내계좌_국내 + 내계좌_해외) 시트마다 자기 몫만 바꾼다.
+     국내 시트 → 국내 종목 매매·원화 입출금, 해외 시트 → 미국 종목 매매·달러 입출금·배당. 이름에 구분이 없으면 붙여넣은 내용의 시장·통화로 정한다.
+     이름에 국내·해외가 들어간 시트는 혼자 붙여넣어도 자기 몫만 바꾼다(해외만 새로 붙여넣어도 국내 기록이 남게).
+     이름에 구분이 없는 시트가 계좌에 하나뿐이면 예전처럼 그 날짜 이후 계좌 기록 전체를 바꾼다. */
+  function scopeOf(p) {
+    var side = sideOf(p.sheet), mk = {}, cu = {};
+    if (side.market) { mk[side.market] = 1; cu[side.cur] = 1; }
+    else { p.txs.forEach(function (t) { mk[t.market] = 1; }); p.flows.forEach(function (f) { cu[f.cur] = 1; }); }
+    return { market: function (m) { return !!mk[m]; }, cur: function (c) { return !!cu[c]; } };
+  }
+  function baseName(sheet) { return String(sheet || "").replace(/[\s_\-]*(국내|해외|한국|미국|원화|외화|KRW|USD|KR|US)$/i, "") || sheet; }
+
+  /* parsed = parseBook 결과. opt: { stamp, newId(prefix), only(acct, p) → false 면 건너뜀 }. 반환: 시트별 요약 */
   function apply(state, parsed, opt) {
     opt = opt || {};
-    var stamp = opt.stamp || new Date().toISOString(), report = [];
+    var stamp = opt.stamp || new Date().toISOString(), report = [], groups = [], byKey = {};
     state.transactions = state.transactions || [];
+    /* ① 시트 → 계좌 묶기(계좌를 새로 만들 때도 국내·해외 시트는 한 계좌로) */
     parsed.accounts.forEach(function (p) {
       var line = { sheet: p.sheet, error: p.error, unresolved: p.unresolved, ignored: p.ignored, skipped: p.skipped, layout: p.layout };
       if (p.error || !p.from) { line.error = line.error || "반영할 거래가 없음"; report.push(line); return; }
-      var a = targetFor(state, p, parsed.accounts);
-      if (!a) { a = { id: (opt.newId ? opt.newId("account") : "account-" + Date.now().toString(36)), name: p.sheet, cashKrw: 0, cashUsd: 0 }; state.accounts.push(a); line.created = true; }
-      if (opt.only && opt.only(a, p) === false) { line.kept = true; line.account = a.name; report.push(line); return; }
-      var before = state.transactions.filter(function (t) { return t.accountId === a.id && t.date >= p.from; }).length;
-      state.transactions = state.transactions.filter(function (t) { return !(t.accountId === a.id && t.date >= p.from); })
-        .concat(p.txs.map(function (t) { return Object.assign({}, t, { accountId: a.id }); }));
-      a.flows = (a.flows || []).filter(function (f) { return f.date < p.from; }).concat(p.flows);
-      if (p.seed > 0) { a.seed = p.seed; a.seedDate = p.seedDate || a.seedDate || p.from; }
-      if (isFinite(p.cashKrw) && p.cashKrw >= 0) a.cashKrw = p.cashKrw;
-      if (isFinite(p.cashUsd) && p.cashUsd >= 0) a.cashUsd = p.cashUsd;
-      a.importedAt = stamp; a.importFrom = p.from; a.importTo = p.to;
-      line.account = a.name; line.from = p.from; line.to = p.to; line.trades = p.txs.length; line.flows = p.flows.length; line.replaced = before;
+      var a = targetFor(state, p, parsed.accounts), key = a ? "id:" + a.id : "new:" + baseName(p.sheet);
+      if (!byKey[key]) { byKey[key] = { a: a, items: [] }; groups.push(byKey[key]); }
+      byKey[key].items.push({ p: p, line: line });
       report.push(line);
+    });
+    /* ② 계좌마다 한 번에 반영 */
+    groups.forEach(function (g) {
+      var first = g.items[0].p, a = g.a;
+      if (!a) {
+        a = { id: (opt.newId ? opt.newId("account") : "account-" + Date.now().toString(36)), name: g.items.length > 1 ? baseName(first.sheet) : first.sheet, cashKrw: 0, cashUsd: 0 };
+        state.accounts.push(a); g.items.forEach(function (it) { it.line.created = true; });
+      }
+      /* 이미 더 최근에 가져온 계좌면(관리 파일) 이 계좌의 시트는 모두 건너뜀 — 반영 전에 한 번만 판단 */
+      if (opt.only && opt.only(a, first) === false) { g.items.forEach(function (it) { it.line.kept = true; it.line.account = a.name; }); return; }
+      var multi = g.items.length > 1, from = null, to = null;
+      g.items.forEach(function (it) {
+        var p = it.p, sc = multi || sideOf(p.sheet).market ? scopeOf(p) : null;   // 이름에 국내·해외가 있으면 혼자여도 자기 몫만
+        var newTx = {}, newFl = {};
+        p.txs.forEach(function (t) { newTx[t.id] = 1; }); p.flows.forEach(function (f) { newFl[f.id] = 1; });
+        function dropTx(t) { return t.accountId === a.id && (newTx[t.id] || t.date >= p.from && (!sc || sc.market(t.market))); }
+        function dropFl(f) { return newFl[f.id] || f.date >= p.from && (!sc || sc.cur(f.cur)); }
+        var before = state.transactions.filter(dropTx).length;
+        state.transactions = state.transactions.filter(function (t) { return !dropTx(t); })
+          .concat(p.txs.map(function (t) { return Object.assign({}, t, { accountId: a.id }); }));
+        a.flows = (a.flows || []).filter(function (f) { return !dropFl(f); }).concat(p.flows);
+        if (p.seed > 0) { a.seed = p.seed; a.seedDate = p.seedDate || a.seedDate || p.from; }
+        if (isFinite(p.cashKrw) && p.cashKrw >= 0) a.cashKrw = p.cashKrw;
+        if (isFinite(p.cashUsd) && p.cashUsd >= 0) a.cashUsd = p.cashUsd;
+        if (!from || p.from < from) from = p.from;
+        if (!to || p.to > to) to = p.to;
+        var L = it.line; L.account = a.name; L.from = p.from; L.to = p.to; L.trades = p.txs.length; L.flows = p.flows.length; L.replaced = before;
+        if (sc) L.scope = sideOf(p.sheet).market === "US" ? "해외분만" : sideOf(p.sheet).market === "KR" ? "국내분만" : "이 시트 시장·통화분만";
+      });
+      a.importedAt = stamp; a.importFrom = from; a.importTo = to;
     });
     return report;
   }
@@ -279,7 +325,7 @@
       var s = "• " + r.sheet + (r.account ? " → " + r.account : "") + ": ";
       if (r.error) s += r.error;
       else if (r.kept) s += "이 기기에 더 최근에 가져온 기록이 있어 건너뜀";
-      else s += r.from + " ~ " + r.to + " · 매매 " + r.trades + "건" + (r.flows ? " · 입출금·배당 " + r.flows + "건" : "") + " (그 기간 기존 기록 " + r.replaced + "건 교체)" + (r.created ? " · 새 계좌 만듦" : "");
+      else s += r.from + " ~ " + r.to + " · 매매 " + r.trades + "건" + (r.flows ? " · 입출금·배당 " + r.flows + "건" : "") + " (그 기간 기존 기록" + (r.scope ? " 중 " + r.scope : "") + " " + r.replaced + "건 교체)" + (r.created ? " · 새 계좌 만듦" : "");
       var un = Object.keys(r.unresolved || {}); if (un.length) s += "\n   ⚠️ 티커를 못 찾은 종목(종목매핑 시트에 추가): " + un.join(", ");
       var ig = Object.keys(r.ignored || {}).filter(function (k) { return !/환전/.test(k); }); if (ig.length) s += "\n   · 계산에서 뺀 줄: " + ig.map(function (k) { return k + " " + r.ignored[k] + "건"; }).join(", ");
       return s;
