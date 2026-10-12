@@ -37,8 +37,8 @@
    "resolved": true,
    "added": "2026-10-10 13:30",
    "by": "telegram",
-   "count": 0,
-   "last": ""
+   "count": 1,
+   "last": "2026-10-12 16:33 KST"
   },
   {
    "term": "티엘비",
@@ -119,8 +119,8 @@
    "resolved": true,
    "added": "2026-10-10 13:30",
    "by": "telegram",
-   "count": 1,
-   "last": "2026-10-10 06:38 KST"
+   "count": 2,
+   "last": "2026-10-12 06:16 KST"
   },
   {
    "term": "마이크로소프트",
@@ -155,8 +155,8 @@
    "resolved": true,
    "added": "2026-10-10 13:30",
    "by": "telegram",
-   "count": 2,
-   "last": "2026-10-10 05:38 KST"
+   "count": 3,
+   "last": "2026-10-12 13:21 KST"
   },
   {
    "term": "뮤즈",
@@ -250,8 +250,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "Anthropic",
-   "count": 2,
-   "last": "2026-10-10 04:21 KST"
+   "count": 3,
+   "last": "2026-10-12 10:04 KST"
   },
   {
    "term": "클로드",
@@ -270,8 +270,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "Claude (앤트로픽 인공지능 모델)",
-   "count": 0,
-   "last": ""
+   "count": 1,
+   "last": "2026-10-12 16:55 KST"
   },
   {
    "term": "메르",
@@ -284,8 +284,8 @@
    "resolved": true,
    "added": "2026-10-10 14:00",
    "by": "claude",
-   "count": 8,
-   "last": "2026-10-12 00:10 KST"
+   "count": 9,
+   "last": "2026-10-12 07:10 KST"
   },
   {
    "term": "매크로비욘드",
@@ -298,8 +298,8 @@
    "resolved": true,
    "added": "2026-10-10 14:40",
    "by": "claude",
-   "count": 6,
-   "last": "2026-10-11 19:48 KST"
+   "count": 7,
+   "last": "2026-10-12 08:10 KST"
   },
   {
    "term": "농구천재",
@@ -381,56 +381,86 @@
    "aliases": [],
    "resolved": true,
    "added": "2026-10-12 09:30",
-   "by": "claude"
+   "by": "claude",
+   "count": 12,
+   "last": "2026-10-12 18:00 KST"
   },
   {
    "term": "ABF",
    "slug": "abf",
-   "market": "",
+   "market": "theme",
    "ticker": "",
    "aliases": [
+    "ABF substrate",
+    "Ajinomoto Build-up Film",
+    "ABF 기판",
+    "ABF 필름",
+    "ABF載板",
     "ABF"
    ],
-   "resolved": false,
+   "resolved": true,
    "added": "2026-10-12 08:16",
-   "by": "telegram"
+   "by": "telegram",
+   "name": "ABF(아지노모토 빌드업 필름) 기판",
+   "count": 0,
+   "last": ""
   },
   {
    "term": "파인엠텍",
    "slug": "t-4123f0f6",
-   "market": "",
-   "ticker": "",
+   "market": "kr",
+   "ticker": "441270",
    "aliases": [
-    "파인엠텍"
+    "파인엠텍",
+    "Fine M-Tec",
+    "441270"
    ],
-   "resolved": false,
+   "resolved": true,
    "added": "2026-10-12 08:16",
-   "by": "telegram"
+   "by": "telegram",
+   "name": "파인엠텍",
+   "count": 0,
+   "last": ""
   },
   {
    "term": "애플 폴더블",
    "slug": "t-c44f9b86",
-   "market": "",
+   "market": "theme",
    "ticker": "",
    "aliases": [
-    "애플 폴더블"
+    "foldable iPhone",
+    "Apple foldable",
+    "iPhone Fold",
+    "애플 폴더블",
+    "폴더블 아이폰",
+    "摺疊iPhone"
    ],
-   "resolved": false,
+   "resolved": true,
    "added": "2026-10-12 08:16",
-   "by": "telegram"
+   "by": "telegram",
+   "name": "애플 폴더블 아이폰",
+   "count": 0,
+   "last": ""
   },
   {
    "term": "애플 듀오",
    "slug": "t-62bbe9b6",
-   "market": "",
+   "market": "theme",
    "ticker": "",
    "aliases": [
-    "애플 듀오"
+    "iPhone Duo",
+    "Apple iPhone Duo",
+    "아이폰 듀오",
+    "애플 듀오",
+    "iPhone Duo摺疊"
    ],
-   "resolved": false,
+   "resolved": true,
    "added": "2026-10-12 08:16",
-   "by": "telegram"
+   "by": "telegram",
+   "name": "아이폰 듀오(애플 첫 폴더블폰)",
+   "count": 3,
+   "last": "2026-10-12 14:38 KST"
   }
  ],
- "updated": "2026-10-12 06:15 KST"
+ "updated": "2026-10-12 19:14 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "cc12a444557f",
+   "kind": "news",
+   "headline": "대만 力旺(이메모리), 자회사 보안 IP가 Arm·메타 차세대 데이터센터 칩에 채택",
+   "bullets": [
+    "반도체 설계자산 업체 力旺은 12일 자회사 熵碼科技(PUF시큐리티)의 핵심 보안 설계자산이 Arm과 메타가 함께 개발하는 차세대 데이터센터 프로세서에 들어간다고 발표했다.",
+    "메타는 사용자 키를 지키려 기밀 연산 가상머신을 도입할 계획이고, 그 신뢰 기반이 熵碼의 하드웨어 신뢰 루트 PUFrt 등이다.",
+    "회사는 대만 설계자산 업체가 연산·전력 중심에서 최상류 '보안 신뢰' 단계로 자리를 넓혔다고 설명했다."
+   ],
+   "summary": "대만 반도체 설계자산 업체 力旺(이메모리)이 메타 AI 칩 공급망에 들어갔다. 자회사 熵碼科技의 핵심 보안 설계자산이 Arm과 메타가 공동 개발하는 차세대 데이터센터 프로세서에 채택됐다고 회사가 12일 밝혔다(중앙통신사·經濟日報 보도).\n\n力旺은 배경으로 메타의 AI 에이전트 '뮤즈'를 들었다. 일정 예약·메일 처리처럼 사용자 권한을 대신 쓰는 에이전트가 나오면서, 보안 위협이 '틀린 답'에서 '속아서 사용자 권한을 마음대로 쓰는 것'으로 커졌다는 설명이다. 메타는 사용자 키를 보호하려고 기밀 연산 가상머신을 도입할 계획이며, 이 구조의 신뢰 기반이 熵碼의 PUFrt 같은 하드웨어 신뢰 루트라고 회사는 밝혔다.\n\n공급 규모·매출 반영 시점 같은 숫자는 발표에 없었다.",
+   "title": "力旺子公司卡位安全信任 資安IP打進Meta AI晶片",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5CcnBpU05reUhUeVJTOXktZEJZR3F2d3ZJZEtSd1hySDd5TlVDaTRYNnBOLXowMUZraGp1ZEt2X3VlS081SGlRTG0zQjhCcldUanVPQVk4SUNfMUt6QjdJ0gFfQVVfeXFMTkJycGlTTmt5SFR5UlM5eS1kQllHcXZ3dklkS1J3WHJIN3lOVUNpNFg2cE4tejAxRmtoanVkS3ZfdWVLTzVIaVFMbTNCOEJyV1RqdU9BWThJQ18xS3pCN0k?oc=5",
+   "published": "2026-10-12 13:21 KST",
+   "written": "2026-10-12 19:12 KST"
+  },
+  {
    "id": "27881b98bd4b",
    "headline": "헌터브룩, 메타 공매도 공개 — 뮤즈 내려받기 주간 8.1% 감소, 하루 사용자 순증 62% 둔화",
    "bullets": [
@@ -33,5 +49,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-10 13:48 KST"
+ "updated": "2026-10-12 19:12 KST"
 }

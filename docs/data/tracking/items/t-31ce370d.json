@@ -1,0 +1,23 @@
+{
+ "schema": 1,
+ "slug": "t-31ce370d",
+ "items": [
+  {
+   "id": "d968293030c7",
+   "kind": "news",
+   "headline": "클로드가 찾은 오픈소스 취약점 후보 2만9439건 — 개발자 통보 6157건 중 수정 확인은 516건",
+   "bullets": [
+    "앤트로픽이 12일 공개한 현황에 따르면 클로드는 11개월간 오픈소스에서 취약점 후보 2만9439건을 찾았다.",
+    "외부 보안업체 6곳이 검토한 6123건 중 5674건(92.7%)이 실제 문제로 확인됐다.",
+    "591개 프로젝트에 6157건을 통보했지만 수정이 확인된 것은 516건(약 8.4%)뿐이다."
+   ],
+   "summary": "앤트로픽이 클로드의 오픈소스 취약점 탐지 실적을 공개했다. 10월 2일 기준 '클로드 미토스 프리뷰' 등 여러 모델이 찾은 후보는 2만9439건이다.\n\n검증 결과는 높게 나왔다. 외부 보안업체 6곳이 6123건을 검토해 5674건을 실제 문제로 판정했다. 다만 이미 알려진 취약점이나 개발자가 고치지 않기로 할 문제도 섞여 있다. 개발자에게 간 보고서는 외부 검증분 1333건과 앤트로픽 직접 전달분 4824건을 합쳐 591개 프로젝트, 6157건이다. 공식 취약점 식별번호는 219건, 깃허브 보안 권고는 365건 발급됐다.\n\n병목은 수정 쪽이다. 개발자 응답은 5103건이었지만 코드 수정이 확인된 것은 516건에 그쳤다. 앤트로픽은 검증 인력과 처리 역량의 한계를 원인으로 꼽았고, 확인됐지만 아직 전달하지 못한 취약점도 상당하다고 밝혔다. AI의 탐지 속도를 사람의 검증·수정이 따라가지 못하는 셈이다.",
+   "title": "클로드가 찾은 오픈소스 취약점 후보 2.9만건…수정 확인은 516건",
+   "source": "IT조선",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5ON1YxMUhzVlZkdk50enFXSUhzUjZJME1DMDBlZmNmTkJIbDZKUnUtY3pwRnhuZWpUTU41al9CYmhiQkdFOTQxNW5nVVBPek9YMU1rOUtPWG41MmllN0t4cGR2T0hMVXFqRXRHUlBhZDHSAXRBVV95cUxPclZIaVhfZGJFQkdrTXVGZ3o1bENxSVJKaUxsMHVqU3pxWS03QXNCM2hpejZfYXg1eEVXWFZGQXRZM3lTOGdILWdrRHpwdXdjaXk5eEtRYWtkVHc5TmNfcGpTVE55SUdnYkNoMWZOejlDUklaag?oc=5",
+   "published": "2026-10-12 16:55 KST",
+   "written": "2026-10-12 19:12 KST"
+  }
+ ],
+ "updated": "2026-10-12 19:12 KST"
+}
