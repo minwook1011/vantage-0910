@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "3190677ef61f",
+   "kind": "news",
+   "headline": "메타, 에이전트용 새 모델 '뮤즈 원더' 공개 — 상위판은 월 20·100달러 구독자 전용",
+   "bullets": [
+    "메타가 10월 12일 개인·업무용 인공지능 에이전트에 맞춘 새 모델 '뮤즈 원더'와 상위판 '뮤즈 원더 풀'을 내놨다.",
+    "메타는 기억·코딩·에이전트 성능에서 업계 최고 수준이라고 밝혔다. 다만 비교 점수는 공개되지 않았다.",
+    "상위판은 뮤즈 앱의 월 20달러·100달러 구독자만 쓸 수 있어, 광고 중심이던 메타가 이용자 유료 결제 의향을 시험하는 무대가 됐다."
+   ],
+   "summary": "메타가 10월 12일 새 인공지능 모델 '뮤즈 원더'를 공개했다. 4월 '뮤즈 스파크', 7월 이미지·영상 모델에 이은 뮤즈 계열의 최신판이다. 일반판 '뮤즈 원더'와 상위판 '뮤즈 원더 풀' 두 가지다. 메타 초지능 연구조직이 만들었고, 메타의 기가와트급 데이터센터 '프로메테우스'에서 학습했다.\n\n핵심은 오래 걸리는 일을 끝까지 해내는 에이전트 능력이다. 긴 작업 흐름을 위한 '능동 기억'과 '능동 집중' 기능을 넣었다. 알렉산더 왕 최고인공지능책임자는 식당 예약처럼 막히기 쉬운 일에서 멈추지 않고 다른 방법을 시도하도록 훈련했다고 설명했다. 메타는 기억·코딩·에이전트 성능에서 업계 최고 수준이라고 밝혔지만, 경쟁 모델과의 구체적 점수는 내놓지 않았다. 사이버 악용을 막는 안전장치도 지금까지 가장 강하다고 했다.\n\n돈을 받는 방식이 쟁점이다. 상위판은 9월 출시한 뮤즈 에이전트 앱의 월 20달러·100달러 구독자만 쓸 수 있다. 두 모델은 메타 모델 응용프로그램 인터페이스와 '뮤즈 코드'로도 바로 열렸다. 광고로 돈을 벌어온 메타가 이용자 직접 결제를 늘릴 수 있을지 보여주는 시험대라는 평가다. 파이낸셜타임스에 따르면 저커버그 최고경영자는 메타가 인공지능 '최전선'에 올랐다며 개발 속도를 늦추라는 요구를 거부했다.",
+   "title": "Meta debuts Muse Wonder AI model in latest test of users' willingness to pay",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE11QldFTGNiMGg4N0FwZHE0OGl5ZTBoZkZGdnBjZ1ZyOURmb1lxUHZScVViOXQzMzNmZnJBdlNPbE1xdkVTWEpLSXVPR1R1ajRmTElvSi1JNG5YbHk0SnlnUUhVZzR5SG16YXZyMWFQQWQ2YzRUUmpZ0gF8QVVfeXFMUFVKWjBUSUhEcDFKSk1lQ2M0dVNWMHYtZVVlbkRfS0ZTVnZIQ0E2elc1UEdSbkFKcXRncjhOVjAteDJ0Y0R2YzVhRGlOY0tOWnpuUjN0dmxHSy0zUVk3bW5RWFBlUTJ5LWd0WWMxaEpqVkoxY05pdzY4a3JzSA?oc=5",
+   "published": "2026-10-13 02:00 KST",
+   "written": "2026-10-13 02:17 KST"
+  },
+  {
    "id": "2dd6fc72bd1c",
    "kind": "news",
    "headline": "엔비디아·AMD·구글·메타, 데이터센터 설계 공통 규격 '오픈 데이터센터 사양 0.7판' 공개",
@@ -65,5 +81,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-13 00:17 KST"
+ "updated": "2026-10-13 02:17 KST"
 }
