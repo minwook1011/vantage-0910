@@ -20,6 +20,7 @@
   "macro:2026-10-10",
   "macro:2026-10-11",
   "macro:2026-10-12",
+  "macro:2026-10-13",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -57,6 +58,7 @@
   "trk:blog-ranto28:b2ad82da6365",
   "trk:blog-ranto28:e28ef17622e9",
   "trk:blog-ranto28:e44af80ee32f",
+  "trk:blog-ssh-fedinsight:0760a0131972",
   "trk:blog-ssh-fedinsight:1c4f5d4a9d22",
   "trk:blog-ssh-fedinsight:1ef1273a3f6b",
   "trk:blog-ssh-fedinsight:235c9b7f956c",
@@ -73,6 +75,7 @@
   "trk:blog-travelingcompanion:d636765a82cc",
   "trk:blog-travelingcompanion:efeecc19e09e",
   "trk:cxmt-yxmt:2307204886d8",
+  "trk:cxmt:2d3a0c6d94d8",
   "trk:googl:1dd4d3b49ae5",
   "trk:googl:433f0086cb3b",
   "trk:googl:515865eecad0",
@@ -97,6 +100,7 @@
   "trk:t-0a23e71f:9fcb31e3da60",
   "trk:t-31ce370d:d968293030c7",
   "trk:t-3f524a5b:7b27e7e63245",
+  "trk:t-3f524a5b:920ed87a79f7",
   "trk:t-3f524a5b:bf20868c4bf9",
   "trk:t-62bbe9b6:2fe9fa83fffd",
   "trk:t-62bbe9b6:5cecf1e0217d",
@@ -108,6 +112,8 @@
   "trk:t-759fd052:7d78b722dcc2",
   "trk:t-759fd052:8d6d18863984",
   "trk:t-759fd052:98c661336610",
+  "trk:t-c3c842c3:4e876d2614e6",
+  "trk:t-c3c842c3:b4247b8fc218",
   "trk:yt--jklonfa:0347fc1ac731",
   "trk:yt--jklonfa:17030502403d",
   "trk:yt--jklonfa:1b3a4cba1129",
@@ -140,6 +146,7 @@
   "usdkrw:2026-10-10",
   "usdkrw:2026-10-11",
   "usdkrw:2026-10-12",
+  "usdkrw:2026-10-13",
   "weekly:2026-09-28",
   "weekly:2026-10-05"
  ],
@@ -482,6 +489,29 @@
   ],
   "trk:cxmt-yxmt:2307204886d8": [
    168
+  ],
+  "macro:2026-10-13": [
+   143,
+   144,
+   145
+  ],
+  "usdkrw:2026-10-13": [
+   146
+  ],
+  "trk:t-3f524a5b:920ed87a79f7": [
+   175
+  ],
+  "trk:blog-ssh-fedinsight:0760a0131972": [
+   176
+  ],
+  "trk:cxmt:2d3a0c6d94d8": [
+   177
+  ],
+  "trk:t-c3c842c3:4e876d2614e6": [
+   178
+  ],
+  "trk:t-c3c842c3:b4247b8fc218": [
+   179
   ]
  }
 }
