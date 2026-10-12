@@ -245,9 +245,11 @@ def podcasts():
                     sec = sec * 60 + x
                 hh, mm = sec // 3600, round(sec % 3600 / 60)
                 dur = (f"{hh}시간 {mm}분" if hh else f"{mm}분") if sec else ""
-            meta = " · ".join(x for x in (show, when, dur) if x)
-            if meta:
-                lines.append(f"<i>{esc(meta)}</i>")
+            top = " · ".join(x for x in (when, dur) if x)   # 날짜·시간은 맨 위(2026-10-12 사용자)
+            if top:
+                lines.insert(0, f"🗓 {esc(top)}")
+            if show:
+                lines.append(f"<i>{esc(show)}</i>")
             tl = ep.get("tldr") or []
             if tl:
                 lines += ["", "<b>핵심 요약</b>"] + [f"{i}. {esc(str(x).replace('__', ''))}" for i, x in enumerate(tl[:3], 1)]
