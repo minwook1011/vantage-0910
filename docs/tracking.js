@@ -1,6 +1,7 @@
 /* tracking.js — 트래킹(섹터·기업 뉴스 추적) 화면
    읽기: data/tracking/watchlist.json · data/tracking/items/<slug>.json (예약 작업 vantage-tracking 이 30분마다 갱신)
-   쓰기: 이 기기에 저장한 깃허브 열쇠로 watchlist.json 을 직접 고친다(깃허브 API). 열쇠는 localStorage 에만 둔다. */
+   쓰기: 기본은 깃허브 이슈(요청서) — 수집 작업(track_fetch.py site_requests)이 30분마다 반영. 블로그·유튜브는 주소 확인이 필요해 늘 이 길.
+         (선택) 이 기기에 깃허브 열쇠를 저장하면 종목·섹터 단어는 watchlist.json 을 바로 고친다. 열쇠는 localStorage 에만 둔다. */
 (function () {
   var REPO = "minwook1011/vantage-0910", PATH = "docs/data/tracking/watchlist.json";
   var TOKEN_KEY = "vantage-gh-token";            // 동기화 대상 아님(기기별)
@@ -189,7 +190,7 @@
     }).then(function () { renderTiles(); renderList(); });
   }
   each("#tabs button", function (b) {
-    b.onclick = function () { tab = b.getAttribute("data-tab"); setLS(TAB_KEY, tab); sel = []; saveSel(); renderTiles(); renderList(); };
+    b.onclick = function () { tab = b.getAttribute("data-tab"); setLS(TAB_KEY, tab); sel = []; saveSel(); renderTiles(); renderList(); if (window.__addUI) window.__addUI(); };
   });
   var qt;
   $("#q").addEventListener("input", function () { clearTimeout(qt); qt = setTimeout(function () { q = norm($("#q").value); renderTiles(); renderList(); }, 120); });
@@ -245,7 +246,8 @@
     var list = splitTerms(raw);
     if (!list.length) return;
     var term = list.map(function (x) { return x.term; }).join(", ");
-    if (!getLS(TOKEN_KEY)) { $("#token-box").open = true; status("이 기기에 깃허브 열쇠를 먼저 저장해 주세요(아래 안내). 또는 텔레그램 봇에 /" + (kind === "add" ? "추가 " : "삭제 ") + term, true); return; }
+    // 열쇠가 없거나 블로그·유튜브 추가면: 깃허브 이슈(요청서)로 보낸다 → 30분마다 도는 수집 작업이 주소를 확인해 넣는다(2026-10-13)
+    if (!getLS(TOKEN_KEY) || (kind === "add" && tab !== "news")) { request(kind, raw); return; }
     status(kind === "add" ? "추가하는 중…" : "삭제하는 중…");
     api("GET").then(function (f) {
       var w = JSON.parse(unb64(f.content)); w.terms = w.terms || [];
@@ -273,6 +275,23 @@
     }).catch(function (e) { status(e.message || String(e), true); });
   }
 
+  function request(kind, raw) {
+    var label = kind === "add" ? (tab === "blog" ? "[트래킹·블로그] 추가: " : tab === "yt" ? "[트래킹·유튜브] 추가: " : "[트래킹] 추가: ") : "[트래킹] 삭제: ";
+    var body = "트래킹 화면에서 보낸 요청입니다. 30분마다 도는 수집 작업이 확인해 반영합니다.\n\n" + raw;
+    window.open("https://github.com/" + REPO + "/issues/new?title=" + encodeURIComponent(label + String(raw).trim()) + "&body=" + encodeURIComponent(body), "_blank", "noopener");
+    status("깃허브 창에서 'Submit new issue'(제출)를 누르면 요청이 남고, 30분 안에 반영됩니다.");
+    $("#add-input").value = "";
+  }
+  var ADD_UI = {
+    news: ["＋ 종목·섹터 추가", "종목·섹터 이름 (쉼표로 여러 개: 네비우스, 삼성전기, 광통신)", "텔레그램 뉴스방에 <code>기판 추가</code>, <code>삼성전기 빼줘</code>, <code>목록</code>처럼 보내도 됩니다. 추가하면 다음 수집(30분 이내)부터 반영됩니다."],
+    blog: ["＋ 블로그 추가", "네이버 블로그 주소나 아이디 (예: blog.naver.com/pillion21)", "블로그 주소를 넣으면 30분 안에 구독을 시작하고, 최근 글 5개도 요약해 둡니다. 새 글은 모두 요약해 텔레그램 블로그방으로 보냅니다."],
+    yt: ["＋ 유튜브 추가", "유튜브 채널 주소 (예: youtube.com/@understanding.)", "채널 주소를 넣으면 30분 안에 구독을 시작하고, 최근 영상 3개도 정리해 둡니다. 새 영상은 모두 요약합니다(쇼츠 제외)."]
+  };
+  function addUI() {
+    var u = ADD_UI[tab] || ADD_UI.news;
+    $("#btn-add").textContent = u[0]; $("#add-input").placeholder = u[1]; $("#add-hint").innerHTML = u[2];
+  }
+  addUI(); window.__addUI = addUI;
   $("#add-form").addEventListener("submit", function (e) { e.preventDefault(); edit("add", $("#add-input").value); });
   function tokenState() { $("#token-state").textContent = getLS(TOKEN_KEY) ? "이 기기에 열쇠가 저장돼 있습니다." : "저장된 열쇠가 없습니다."; }
   $("#token-save").onclick = function () { var v = $("#token-input").value.trim(); if (!v) return; setLS(TOKEN_KEY, v); $("#token-input").value = ""; tokenState(); status("열쇠를 저장했습니다. 이제 추가·삭제할 수 있습니다."); };

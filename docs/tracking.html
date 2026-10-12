@@ -35,7 +35,7 @@
       <input id="add-input" type="text" maxlength="200" placeholder="종목·섹터 이름 (쉼표로 여러 개: 네비우스, 삼성전기, 광통신)">
       <button type="submit" class="btn pri">추가</button>
     </form>
-    <div class="hint">텔레그램 뉴스방에 <code>기판 추가</code>, <code>삼성전기 빼줘</code>, <code>목록</code>처럼 보내도 됩니다. 블로그 구독은 블로그 주소를 Claude에게 알려 주세요. 추가하면 다음 수집(30분 이내)부터 반영됩니다.</div>
+    <div class="hint" id="add-hint"></div>
   </section>
   <div id="status" class="status"></div>
 
@@ -55,7 +55,8 @@
   </div>
 
   <details id="token-box" class="token">
-    <summary>이 기기에서 추가·삭제하려면 (깃허브 열쇠 설정)</summary>
+    <summary>(선택) 종목·섹터를 30분 기다리지 않고 바로 반영하려면 — 깃허브 열쇠 설정</summary>
+    <p class="hint">열쇠가 없어도 추가·삭제는 됩니다(깃허브 요청서로 보내고 30분 안에 반영). 열쇠를 이 기기에 저장해 두면 종목·섹터 단어만 바로 반영됩니다. 블로그·유튜브는 주소 확인이 필요해 늘 요청서로 갑니다.</p>
     <ol>
       <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">깃허브 새 열쇠 만들기</a>를 엽니다.</li>
       <li>이름은 아무거나, 만료는 원하는 기간으로 정합니다.</li>
@@ -72,6 +73,6 @@
   </details>
 </main>
 <script src="theme.js?v=20261012T"></script>
-<script src="tracking.js?v=20261012A"></script>
+<script src="tracking.js?v=20261013A"></script>
 </body>
 </html>

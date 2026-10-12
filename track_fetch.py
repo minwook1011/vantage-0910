@@ -386,11 +386,119 @@ def has_key(k, text):
     return k in text
 
 
+# ── 사이트 '추가' 요청(깃허브 이슈, 2026-10-13~) ──
+# 사이트 트래킹 화면에서 열쇠 없이 추가·삭제하면 제목 "[트래킹] 추가: …" / "[트래킹·블로그] 추가: …" / "[트래킹·유튜브] 추가: …" /
+# "[트래킹] 삭제: …" 인 깃허브 이슈 작성 화면이 열린다. 저장소 주인(minwook1011)이 연 이슈만, 처리한 번호는 state["issues_done"].
+ISSUE_OWNER = "minwook1011"
+ISSUE_RE = re.compile(r"^\[트래킹(?:·(블로그|유튜브))?\]\s*(추가|삭제)\s*[:：]\s*(.+)$")
+
+
+def yt_channel(s):
+    """유튜브 주소·@핸들 → (channel_id, 채널 이름). 못 찾으면 (None, None)"""
+    s = s.strip()
+    m = re.search(r"(UC[\w-]{22})", s)
+    if m:
+        cid = m.group(1)
+    else:
+        h = re.search(r"@[\w.\-가-힣]+", s)
+        url = "https://www.youtube.com/" + (h.group(0) if h else s.split("youtube.com/")[-1].strip("/"))
+        try:
+            page = http(url)
+            page = page.decode("utf-8", "replace") if isinstance(page, bytes) else page
+            m = re.search(r'"(?:channelId|externalId)":"(UC[\w-]{22})"', page)
+            cid = m.group(1) if m else None
+        except Exception:
+            cid = None
+    if not cid:
+        return None, None
+    try:
+        feed = http(f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}")
+        feed = feed.decode("utf-8", "replace") if isinstance(feed, bytes) else feed
+        name = html.unescape((re.search(r"<title>(.*?)</title>", feed) or [None, ""])[1]) or cid
+    except Exception:
+        name = cid
+    return cid, name
+
+
+def blog_info(s):
+    """네이버 블로그 주소·아이디 → (blog_id, 블로그 이름)"""
+    s = s.strip()
+    m = re.search(r"blog\.naver\.com/(?:PostList\.naver\?blogId=)?([A-Za-z0-9_\-]+)", s)
+    bid = m.group(1) if m else (s if re.fullmatch(r"[A-Za-z0-9_\-]{3,40}", s) else None)
+    if not bid:
+        return None, None
+    try:
+        rss = http(f"https://rss.blog.naver.com/{bid}.xml")
+        rss = rss.decode("utf-8", "replace") if isinstance(rss, bytes) else rss
+        name = html.unescape((re.search(r"<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?</title>", rss, re.S) or [None, ""])[1]).strip() or bid
+    except Exception:
+        return None, None
+    return bid, name
+
+
+def site_requests(watch, state):
+    """열린 이슈 중 트래킹 요청을 watchlist 에 반영. 바뀌면 True"""
+    try:
+        raw = http("https://api.github.com/repos/minwook1011/vantage-0910/issues?state=open&per_page=50")
+        issues = json.loads(raw.decode("utf-8") if isinstance(raw, bytes) else raw)
+    except Exception as e:
+        print("사이트 요청(이슈) 확인 실패:", str(e)[:80])
+        return False
+    done = state.setdefault("issues_done", [])
+    changed = False
+    now = NOW.strftime("%Y-%m-%d %H:%M")
+    for it in issues:
+        if it.get("number") in done or (it.get("user") or {}).get("login") != ISSUE_OWNER or it.get("pull_request"):
+            continue
+        m = ISSUE_RE.match((it.get("title") or "").strip())
+        if not m:
+            continue
+        kind, op, body = m.group(1), m.group(2), m.group(3)
+        parts = [p.strip() for p in re.split(r"[,\n]+", body) if p.strip()]
+        terms = watch.setdefault("terms", [])
+        for p in parts:
+            if op == "삭제":
+                n = len(terms)
+                terms[:] = [t for t in terms if t["term"] != p and t.get("blog_id") != p and t.get("name") != p]
+                if len(terms) != n:
+                    print(f"사이트 요청 삭제: {p}"); changed = True
+                continue
+            if kind == "블로그":
+                bid, name = blog_info(p)
+                if not bid:
+                    print(f"사이트 요청 블로그 못 찾음: {p}"); continue
+                if any(t.get("blog_id") == bid for t in terms):
+                    continue
+                short = re.sub(r"(님)?의\s*블로그$", "", name).strip() or bid
+                terms.append({"term": short[:20], "slug": "blog-" + re.sub(r"[^a-z0-9]+", "-", bid.lower()).strip("-"), "market": "blog", "blog_id": bid,
+                              "ticker": "", "name": name, "aliases": [], "resolved": True, "added": now, "by": "site", "backfill": 5})
+                print(f"사이트 요청 블로그 추가: {name} ({bid})"); changed = True
+            elif kind == "유튜브":
+                cid, name = yt_channel(p)
+                if not cid:
+                    print(f"사이트 요청 유튜브 못 찾음: {p}"); continue
+                if any(t.get("channel_id") == cid for t in terms):
+                    continue
+                terms.append({"term": re.sub(r"\s*[-|·].*$", "", name).strip()[:20] or name[:20], "slug": "yt-" + cid[-8:].lower(), "market": "youtube",
+                              "channel_id": cid, "ticker": "", "name": name, "aliases": [], "resolved": True, "added": now, "by": "site", "backfill": 3})
+                print(f"사이트 요청 유튜브 추가: {name} ({cid})"); changed = True
+            else:
+                if any(t["term"] == p for t in terms):
+                    continue
+                terms.append({"term": p, "slug": slugify(p, ""), "market": "", "ticker": "", "aliases": [p], "resolved": False, "added": now, "by": "site"})
+                print(f"사이트 요청 단어 추가: {p}"); changed = True
+        done.append(it["number"])
+    state["issues_done"] = done[-300:]
+    return changed
+
+
 def main():
     a = sys.argv[1:]
     watch = load(WATCH, {"schema": 1, "terms": []})
     state = load(STATE, {"tg_offset": 0, "seen": {}})
     changed = False if "--no-tg" in a else telegram_commands(watch, state)
+    if "--no-tg" not in a and site_requests(watch, state):   # 사이트 '추가' 요청(깃허브 이슈)
+        changed = True
     if changed:
         watch["updated"] = NOW.strftime("%Y-%m-%d %H:%M KST")
         save(WATCH, watch)
