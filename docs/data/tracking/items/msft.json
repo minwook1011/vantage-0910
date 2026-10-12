@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "8e59f5dd69e7",
+   "kind": "news",
+   "headline": "마이크로소프트, 3세대 자체 AI 칩 '마이아 300' 공개 — 2027년 생산, 랙당 처리량 최대 7배",
+   "bullets": [
+    "마이크로소프트가 3세대 AI 가속기 '마이아 300'을 공개했습니다. 앞으로 AI 요청 처리(추론)는 주로 자체 칩으로 맡기겠다고 했습니다.",
+    "랙 하나에 96개를 넣어 이전 세대(마이아 200)보다 2배 많고, 랙당 처리량은 최대 7배, 전력 1메가와트당 처리량은 GPU 대비 40% 많다고 밝혔습니다.",
+    "생산은 2027년부터입니다. 에버코어는 마이아가 2027년 1분기 마이크로소프트 AI 칩 지출의 약 10%를 차지할 것으로 봤습니다."
+   ],
+   "summary": "마이크로소프트가 12일 3세대 자체 AI 가속기 '마이아 300'을 공개했습니다. 이 칩부터는 고객 요청을 처리하는 추론 작업을 주로 자체 칩으로 맡기겠다는 방침입니다. 2023년 마이아 100, 올해 1월 마이아 200에 이은 세대입니다. 나델라 최고경영자는 7월에 마이아 200이 기존 장비보다 달러당 성능이 30% 좋고 오픈AI 모델도 돌린다고 말한 바 있습니다.\n\n마이아 300은 랙 하나에 96개가 들어가 마이아 200의 2배입니다. 랙당 처리할 수 있는 AI 토큰은 최대 7배, 전력 1메가와트당 토큰은 GPU 대비 40% 많다고 회사는 밝혔습니다. 생산은 2027년에 시작하며, 스콧 거스리 부사장은 마이아 계열로 수 기가와트 규모 배치를 목표로 한다고 했습니다. 다만 구체적인 일정은 내놓지 않았습니다. 마이크로소프트 365 코파일럿 일부 기능이 빨라질 것이라고 했습니다. 에버코어 ISI는 마이아가 2027년 1분기 마이크로소프트 AI 칩 지출의 약 10%를 차지할 것으로 추정했습니다.\n\n엔비디아와의 관계는 이어집니다. 모델 학습은 계속 엔비디아·AMD와 협력합니다. 구글 TPU나 아마존 트레이니엄과 달리 마이아는 외부 기업에 시간 단위로 빌려주지 않아, 바깥에서 성능을 검증받은 적은 아직 없습니다.",
+   "title": "Microsoft to rely more on homegrown AI chips, reducing dependence on Nvidia",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbXdvdGREcjRPNHptRzBRc0U2a3ZSZXQ5cHdDRG5HVkpyYnZCTmJKcVdJVnpGUnhua09PbmR4bXdXM0diYVptTWNmcHFaY3FTRmlJV2N6d2Vma183QnA3UnFjUTVNRjhEWWRFZDJNQTdGNkkzbFNNSzFvLTloQ25kQmlYRXFfcmRCSzVvdU9VdXhSUEx5d1ZqU3VB0gGfAUFVX3lxTFBYNlVqUHRKWk9zYWtJU1hCWEpKM2tRUDgxdDltRlV1aU52dmlieFIyWTNwOEt2VndRT01ERnVmVG1xaEt6YnptRDhJNW42bFgwQWM4QXJMTTE5SllPZFc5dUtoclhJamluZENjdXdzeGdDNDFzejZlSHRwbjBVX0VTbHh0ZDRPVlNfQVgyelJVUl9KZi1LQllkR29uRlg4NA?oc=5",
+   "published": "2026-10-12 22:00 KST",
+   "written": "2026-10-12 22:17 KST"
+  },
+  {
    "id": "06b844a7706d",
    "kind": "news",
    "headline": "노르웨이, 마이크로소프트 광고 자회사 잰더에 960만 달러 과징금 — 그라인더 이용자 정보 공유 문제",
@@ -49,5 +65,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-12 20:18 KST"
+ "updated": "2026-10-12 22:17 KST"
 }
