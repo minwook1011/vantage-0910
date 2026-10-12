@@ -28,7 +28,7 @@
     amount: ["거래금액", "체결금액", "매매금액", "약정금액", "금액"],
     fee: ["수수료", "거래수수료", "매매수수료"],
     tax: ["제세금", "세금", "거래세", "농특세", "제세금합", "세금합계", "기타비용"],
-    settle: ["정산금액", "결제금액", "입출금액", "입금액", "출금액"],
+    settle: ["정산금액", "결제금액", "입출금액", "입금액", "출금액", "반영금액"],
     fx: ["적용환율", "환율", "거래환율", "체결환율"],
     cur: ["통화", "통화코드", "통화구분", "결제통화", "거래통화"]
   };
@@ -160,6 +160,23 @@
     var seen = {};
     function uid(parts) { var base = parts.join("|").replace(/[^0-9A-Za-z가-힣.|\-]/g, ""), n = (seen[base] = (seen[base] || 0) + 1); return "x-" + base + (n > 1 ? "|" + n : ""); }
     var mktDefault = sideOf(sheetName).market;
+    /* 환율 칸이 없는 화면(메리츠 [7631] 거래내역 등)은 환전 줄(달러 금액 ↔ 원화 금액)에서 실제 환전 환율을 구해 쓴다 */
+    var fxRows = [];   // { d: 날짜, n: 줄 순서, c: 원/달러 }
+    for (var j = L.at + L.span; j < rows.length; j += L.span) {
+      var fr = rows.slice(j, j + L.span), fd = dateOf(get(fr, "date"));
+      if (!fd || kindOf(clean(get(fr, "type"))) !== "fx") continue;
+      var a1 = Math.abs(numberOf(get(fr, "amount"))), a2 = Math.abs(numberOf(get(fr, "settle")));
+      if (!(a1 > 0 && a2 > 0)) continue;
+      var rt = Math.max(a1, a2) / Math.min(a1, a2);
+      if (rt > 500 && rt < 3000) fxRows.push({ d: fd, n: j, c: Math.round(rt * 100) / 100 });
+    }
+    /* 그 거래 바로 전에 한 환전(날짜 → 같은 날이면 줄 순서)의 환율. 그 전 환전이 없으면 그날 시장 환율 */
+    function usdRate(fx, date, n) {
+      if (fx > 100) return fx;
+      var best = null;
+      fxRows.forEach(function (x) { if ((x.d < date || x.d === date && x.n < n) && (!best || x.d > best.d || x.d === best.d && x.n > best.n)) best = x; });
+      return best ? best.c : (fxOn(ctx, date) || ctx.fxNow || 1350);
+    }
     for (var i = L.at + L.span; i < rows.length; i += L.span) {
       var rec = rows.slice(i, i + L.span), date = dateOf(get(rec, "date"));
       if (!date) { if ((rec[0] || []).some(function (v) { return clean(v); })) out.skipped++; continue; }
@@ -183,7 +200,7 @@
         /* 국내: 이 계좌에 이미 있는 표기(예: 356860.KQ) > 상장시장 표(코스피 .KS·코스닥 .KQ) > 기본 규칙 */
         var bare = r.t.toUpperCase().replace(/\.(KS|KQ)$/, "");
         var ticker = market === "KR" ? ((ctx.krTick && ctx.krTick[bare]) || window_tickerFor(/\.(KS|KQ)$/.test(r.t) ? r.t.toUpperCase() : bare + ((ctx.krSfx && ctx.krSfx[bare]) || ""), "KR")) : r.t.toUpperCase();
-        var rate = market === "US" ? (fx > 100 ? fx : (fxOn(ctx, date) || ctx.fxNow || 1350)) : 1;
+        var rate = market === "US" ? usdRate(fx, date, i) : 1;
         out.txs.push({ id: uid([out.sheet, date, ticker, kind, qty, price]), date: date, market: market, ticker: ticker, side: kind, qty: qty, price: price, fee: Math.round((fee + tax) * 10000) / 10000, fx: rate, src: "excel", name: market === "KR" && name && !tickerShape(name) ? name : undefined, createdAt: date + "T00:00:00.000Z-" + ("00000" + i).slice(-6) });
       } else if (kind === "in-stock" || kind === "out-stock") {
         out.ignored[typeText] = (out.ignored[typeText] || 0) + 1;   // 주식 입·출고는 가격을 몰라 수익률에 넣지 않음 — 화면에 알림
@@ -191,7 +208,7 @@
         var amt = Math.abs(isFinite(settle) && settle ? settle : amount);
         if (!(amt > 0)) { out.skipped++; continue; }
         var fcur = cur || (/[A-Z]/.test(code) && !/^\d/.test(code) ? "USD" : "KRW");
-        out.flows.push({ id: uid([out.sheet, date, kind, fcur, amt]), date: date, kind: kind, cur: fcur, amt: amt, fx: fcur === "USD" ? (fx > 100 ? fx : (fxOn(ctx, date) || ctx.fxNow || 1350)) : 1, memo: (typeText + " " + name).trim() });
+        out.flows.push({ id: uid([out.sheet, date, kind, fcur, amt]), date: date, kind: kind, cur: fcur, amt: amt, fx: fcur === "USD" ? usdRate(fx, date, i) : 1, memo: (typeText + " " + name).trim() });
       }
     }
     return out;
@@ -233,7 +250,13 @@
     var setName = names.filter(function (n) { return /계좌설정|설정/.test(n); })[0], mapName = names.filter(function (n) { return /매핑|종목표/.test(n); })[0];
     ctx.map = Object.assign({}, ctx.map || {}, mapName ? readMap(book[mapName]) : {});
     var settings = setName ? readSettings(book[setName]) : [];
-    var targets = settings.length ? settings : names.filter(function (n) { return n !== setName && n !== mapName && !/사용법|안내|설명/.test(n); }).map(function (n) { return { sheet: n, match: "" }; });
+    var dataSheets = names.filter(function (n) { return n !== setName && n !== mapName && !/사용법|안내|설명/.test(n); });
+    /* 계좌설정의 '제현형님' 한 줄 → 「제현형님(국내)」「제현형님(해외)」처럼 그 이름으로 시작하는 시트 모두. 설정에 없는 시트도 그대로 읽는다 */
+    var targets = [], used = {};
+    settings.forEach(function (s) {
+      dataSheets.filter(function (n) { return n === s.sheet || baseName(n) === s.sheet; }).forEach(function (n) { used[n] = 1; targets.push(Object.assign({}, s, { sheet: n })); });
+    });
+    dataSheets.forEach(function (n) { if (!used[n]) targets.push({ sheet: n, match: "" }); });
     var accounts = [];
     targets.forEach(function (s) {
       if (s.off || !book[s.sheet]) return;
@@ -251,11 +274,12 @@
     var accts = state.accounts;
     function has(a, k) { return k && String(a.name || "").replace(/\s/g, "").indexOf(String(k).replace(/\s/g, "")) >= 0; }
     if (p.match) { var m = accts.filter(function (a) { return has(a, p.match); })[0]; if (m) return m; }
-    var bySheet = accts.filter(function (a) { return has(a, p.sheet.replace(/계좌/g, "")) && p.sheet.replace(/계좌/g, "").length >= 2; })[0];
+    var bn = baseName(p.sheet).replace(/계좌/g, "");
+    var bySheet = bn.length >= 2 ? accts.filter(function (a) { return has(a, bn); })[0] : null;
     if (bySheet) return bySheet;
     /* '내계좌'처럼 이름으로 못 찾으면: 다른 시트가 가리키는 계좌가 아닌 첫 계좌 */
     if (/^내/.test(p.sheet)) {
-      var others = all.filter(function (x) { return x !== p; }).map(function (x) { return x.match || x.sheet.replace(/계좌|형님|\s/g, ""); });
+      var others = all.filter(function (x) { return baseName(x.sheet) !== baseName(p.sheet); }).map(function (x) { return x.match || baseName(x.sheet).replace(/계좌|형님|\s/g, ""); });
       var free = accts.filter(function (a) { return !others.some(function (k) { return has(a, k); }); })[0];
       if (free) return free;
     }
@@ -267,12 +291,15 @@
      이름에 국내·해외가 들어간 시트는 혼자 붙여넣어도 자기 몫만 바꾼다(해외만 새로 붙여넣어도 국내 기록이 남게).
      이름에 구분이 없는 시트가 계좌에 하나뿐이면 예전처럼 그 날짜 이후 계좌 기록 전체를 바꾼다. */
   function scopeOf(p) {
+    /* 이름의 구분 + 실제로 붙여넣은 내용의 시장·통화(국내·미국이 같이 나오는 [7631] 거래내역을 _국내 시트에 붙여도 둘 다 바뀌게) */
     var side = sideOf(p.sheet), mk = {}, cu = {};
     if (side.market) { mk[side.market] = 1; cu[side.cur] = 1; }
-    else { p.txs.forEach(function (t) { mk[t.market] = 1; }); p.flows.forEach(function (f) { cu[f.cur] = 1; }); }
-    return { market: function (m) { return !!mk[m]; }, cur: function (c) { return !!cu[c]; } };
+    p.txs.forEach(function (t) { mk[t.market] = 1; }); p.flows.forEach(function (f) { cu[f.cur] = 1; });
+    var label = mk.KR && mk.US ? "국내·해외분" : mk.US ? "해외분만" : mk.KR ? "국내분만" : "이 시트 통화분만";
+    return { market: function (m) { return !!mk[m]; }, cur: function (c) { return !!cu[c]; }, label: label };
   }
-  function baseName(sheet) { return String(sheet || "").replace(/[\s_\-]*(국내|해외|한국|미국|원화|외화|KRW|USD|KR|US)$/i, "") || sheet; }
+  /* '제현형님(국내)'·'내계좌_해외'·'내계좌 US' → '제현형님'·'내계좌' */
+  function baseName(sheet) { return String(sheet || "").replace(/[\s_\-]*[(\[]?\s*(국내|해외|한국|미국|원화|외화|KRW|USD|KR|US)\s*[)\]]?$/i, "").trim() || sheet; }
 
   /* parsed = parseBook 결과. opt: { stamp, newId(prefix), only(acct, p) → false 면 건너뜀 }. 반환: 시트별 요약 */
   function apply(state, parsed, opt) {
@@ -314,7 +341,7 @@
         if (!from || p.from < from) from = p.from;
         if (!to || p.to > to) to = p.to;
         var L = it.line; L.account = a.name; L.from = p.from; L.to = p.to; L.trades = p.txs.length; L.flows = p.flows.length; L.replaced = before;
-        if (sc) L.scope = sideOf(p.sheet).market === "US" ? "해외분만" : sideOf(p.sheet).market === "KR" ? "국내분만" : "이 시트 시장·통화분만";
+        if (sc) L.scope = sc.label;
       });
       a.importedAt = stamp; a.importFrom = from; a.importTo = to;
     });
