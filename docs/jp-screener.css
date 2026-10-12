@@ -619,3 +619,15 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .px6 path.up{stroke:var(--up)} .px6 path.dn{stroke:var(--down)}
 .px6 b{font-size:11px;font-variant-numeric:tabular-nums}
 .px6 b.up{color:var(--up)} .px6 b.dn{color:var(--down)}
+
+/* 종목 창 월차 원본 24개월 */
+.dsec small{font-size:11.5px;font-weight:500;color:var(--ink-mute);margin-left:6px}
+.mo24-l{display:flex;gap:14px;font-size:12px;margin:-2px 0 8px}
+.mo24-l a{color:var(--accent-ink)}
+.mo24{overflow:auto;max-height:420px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.mo24 table{border-collapse:collapse;font-size:12px;min-width:100%}
+.mo24 th{position:sticky;top:0;background:var(--surface-2);font-weight:600;color:var(--ink-mute);text-align:right;padding:6px 9px;border-bottom:1px solid var(--line);white-space:nowrap;z-index:1}
+.mo24 td{text-align:right;padding:4px 9px;border-bottom:1px solid var(--line-soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mo24 th:first-child,.mo24 td.m{text-align:left;position:sticky;left:0;background:var(--surface);z-index:2}
+.mo24 th:first-child{background:var(--surface-2);z-index:3}
+.mo24 td.up{color:var(--up)} .mo24 td.dn{color:var(--down)} .mo24 td.na{color:var(--ink-mute)}
