@@ -40,3 +40,8 @@
 /* 데이터 허브 탭이 4개가 되어서(일본 월차 추가) */
 @media (min-width:721px) { .dh-views { grid-template-columns:repeat(4,minmax(0,1fr)); } }
 @media (max-width:720px) { .dh-views { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.jpm-blk { margin-top:14px; font-size:12.5px; }
+.jpm-blk summary { cursor:pointer; color:var(--muted); font-weight:600; }
+.jpm-blk ul { margin:8px 0 0; padding-left:18px; line-height:1.9; color:var(--muted); }
+.jpm-blk b { color:var(--text); }
+.jpm-blk a { color:#0045d6; }

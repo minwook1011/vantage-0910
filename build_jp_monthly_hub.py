@@ -79,9 +79,14 @@ def main():
     prev_latest = {r["c"]: r.get("m") for r in ix.get("items") or []}
     KO, CAT = ko_names(), cats()
     touched = {}
+    blocked = {r["c"]: r for r in ix.get("blocked") or []}
     for f in files:
         for b in (jd(f, {}) or {}).get("batch") or []:
             c = str(b.get("code") or "")
+            if c and not b.get("rows") and b.get("status"):   # 자동 수집 막힘·수집 대기 — 회사 IR 주소와 함께 따로 보여 준다
+                st_ = b["status"]
+                u = re.search(r"https?://\S+", st_)
+                blocked[c] = {"c": c, "n": b.get("name"), "why": st_.split(",")[0].split("회사 IR")[0].strip(" ,—·"), "url": u.group(0) if u else None}
             if not c or not b.get("rows"):
                 continue
             p = os.path.join(OUT, c + ".json")
@@ -128,7 +133,8 @@ def main():
             new += 1
     doc = {"updated": now, "src": "일본 월차 원장(TDnet 공시 + 회사 IR) · 전년比는 전년 같은 달=100",
            "count": len(items), "items": sorted(items.values(), key=lambda r: (r.get("m") or "", r.get("pub") or ""), reverse=True),
-           "events": events[-400:]}
+           "events": events[-400:],
+           "blocked": sorted(({**r, "ko": ((KO.get(r["c"]) or "").split() or [""])[0]} for c_, r in blocked.items() if c_ not in items), key=lambda r: r["c"])}
     json.dump(doc, open(os.path.join(OUT, "index.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print(f"데이터 허브 월차: 회사 {len(items)}곳 · 이번에 읽은 회사 {len(touched)} · 새 달 {new}건")
     return 0

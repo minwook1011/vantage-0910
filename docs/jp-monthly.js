@@ -62,6 +62,8 @@
           "<span>" + (x.hk ? '<small class="hk">' + esc(ko(x.hk).replace(" 전년비", "")) + "</small> " + yoyTxt(x.hv) : "—") + '</span><span class="hm mono">' + (x.n_m || "") + "</span></div>" +
           (open ? '<div class="jpm-det" id="jpm-det">불러오는 중…</div>' : "");
       }).join("") + "</div>" +
+      ((IX.blocked || []).length ? '<details class="jpm-blk"><summary>자동으로 못 모으는 회사 ' + IX.blocked.length + "곳 — 회사 IR 사이트에서 직접 확인</summary><ul>" +
+        IX.blocked.map(function (b) { return "<li><b>" + esc(b.ko || b.n) + "</b> <small>" + esc(b.c) + "</small> · " + esc(b.why || "") + (b.url ? ' · <a href="' + esc(b.url) + '" target="_blank" rel="noopener">회사 IR ›</a>' : "") + "</li>"; }).join("") + "</ul></details>" : "") +
       '<div class="jpm-note">전년比(전년 같은 달 = 100)는 ±%로 풀어 보여 줍니다(104.7 → +4.7%). 열 이름은 회사 원문을 한국어로 풀었고, 마우스를 올리면 원문이 보입니다. ' +
       "<i class=\"pre\">속보</i>는 나중에 확정치로 바뀔 수 있는 값입니다. 출처: TDnet 공시 · 회사 IR 사이트. 새 월차가 나오면 텔레그램으로도 알려 드립니다.</div>";
     host.innerHTML = h;
