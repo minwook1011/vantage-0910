@@ -1,0 +1,23 @@
+{
+ "schema": 1,
+ "slug": "cxmt-yxmt",
+ "items": [
+  {
+   "id": "2307204886d8",
+   "kind": "news",
+   "headline": "中 CXMT, 셀 면적 줄인 '4F²' D램으로 연말 서버용 DDR5 출시 예고 — 삼성 상용화 목표(2028년 이후)보다 앞서",
+   "bullets": [
+    "차오칸위 CXMT 총재가 10월 10일 학회에서 트랜지스터를 세운 '4F²' D램 구조를 소개하고 연말까지 이를 쓴 서버용 DDR5 모듈을 내겠다고 밝혔다.",
+    "업계 표준 6F²보다 셀 면적이 작아 같은 면적에 30~50% 더 많이 담을 수 있다. CXMT는 관련 특허군이 300개가 넘는다고 했다.",
+    "다만 연말 제품은 4F²를 일부만 적용했을 수 있고, 대량 양산은 별개의 문제라는 지적이 나온다. 발표 뒤 마이크론·SK하이닉스 주가가 약 4% 내렸다."
+   ],
+   "summary": "중국 최대 D램 회사 CXMT(창신메모리)가 차세대 D램 구조인 '4F²'에서 진전을 냈다고 밝혔다. 차오칸위 총재는 10월 10일 집적회로 학회에서 이 구조를 소개하고, 2026년 말까지 이를 바탕으로 한 서버용 DDR5 모듈(RDIMM)을 내놓겠다고 했다. 9월 5세대 D램 공정(G5)과 LPDDR6 양산을 발표한 데 이은 것이다.\n\n지금 업계 표준은 셀 하나가 6F² 면적을 쓰는 구조다. 4F²는 트랜지스터를 수직으로 세우고 게이트가 사방에서 감싸는 방식(VSG)이라 같은 면적에 30~50% 더 담을 수 있다. 셀과 주변 회로를 따로 만들어 붙이는 하이브리드 본딩도 거론된다. 삼성전자는 올해 2월 학회에서 4F² 시제품을 공개했지만 상용화는 2028년 이후로 예상되고, SK하이닉스도 수직 게이트 4F²를 개발 중이다. CXMT의 2분기 세계 D램 매출 점유율은 9.5%로 4위다(직전 분기 7.6%).\n\n남은 쟁점은 실제 양산이다. 연말 제품은 4F²를 일부만 썼을 가능성이 거론되고, CXMT는 수율·데이터 유지 시간 같은 수치를 내지 않았다. 서버용 D램은 24시간 가동되는 만큼 높은 신뢰성이 필요한데, CXMT는 그동안 소비자 기기용에 집중해 왔다. 발표 뒤 미국 장에서 마이크론과 SK하이닉스 주가가 약 4% 내렸다.",
+   "title": "中 CXMT, 차세대 D램 기술 진전…\"삼전닉스에 도전\"(종합)",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1FSFZ0NlpzMHBnSkJrZDFTQlotWGxNcEZRRzdldl9JMDVVdTZ2eGJnWWc1VWMzSGV4MWtGWVdrMUtaZ2o5dVp3V1NXS0Fnd0VFdV9UTzBEMTM2SzAzZ0VuLdIBYEFVX3lxTE1FSFZ0NlpzMHBnSkJrZDFTQlotWGxNcEZRRzdldl9JMDVVdTZ2eGJnWWc1VWMzSGV4MWtGWVdrMUtaZ2o5dVp3V1NXS0Fnd0VFdV9UTzBEMTM2SzAzZ0VuLQ?oc=5",
+   "published": "2026-10-12 20:49 KST",
+   "written": "2026-10-13 07:44 KST"
+  }
+ ],
+ "updated": "2026-10-13 07:44 KST"
+}

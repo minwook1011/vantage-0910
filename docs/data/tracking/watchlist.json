@@ -175,8 +175,8 @@
    "resolved": true,
    "added": "2026-10-10 13:30",
    "by": "telegram",
-   "count": 1,
-   "last": "2026-10-13 03:56 KST"
+   "count": 2,
+   "last": "2026-10-13 07:17 KST"
   },
   {
    "term": "구글",
@@ -284,8 +284,8 @@
    "resolved": true,
    "added": "2026-10-10 14:00",
    "by": "claude",
-   "count": 10,
-   "last": "2026-10-13 00:10 KST"
+   "count": 11,
+   "last": "2026-10-13 07:01 KST"
   },
   {
    "term": "매크로비욘드",
@@ -382,8 +382,8 @@
    "resolved": true,
    "added": "2026-10-12 09:30",
    "by": "claude",
-   "count": 18,
-   "last": "2026-10-12 18:00 KST"
+   "count": 19,
+   "last": "2026-10-13 07:01 KST"
   },
   {
    "term": "ABF",
@@ -460,7 +460,50 @@
    "name": "아이폰 듀오(애플 첫 폴더블폰)",
    "count": 4,
    "last": "2026-10-11 18:00 KST"
+  },
+  {
+   "term": "CXMT YXMT",
+   "slug": "cxmt-yxmt",
+   "market": "theme",
+   "ticker": "",
+   "aliases": [
+    "CXMT",
+    "ChangXin Memory",
+    "YMTC",
+    "Yangtze Memory",
+    "창신메모리",
+    "창신 메모리",
+    "양쯔메모리",
+    "長鑫存儲",
+    "長江存儲",
+    "CXMT YXMT"
+   ],
+   "resolved": true,
+   "added": "2026-10-13 07:38",
+   "by": "telegram",
+   "name": "CXMT(창신메모리)·YMTC(양쯔메모리)",
+   "count": 1,
+   "last": "2026-10-12 20:49 KST"
+  },
+  {
+   "term": "YMTC",
+   "slug": "ymtc",
+   "market": "theme",
+   "ticker": "",
+   "aliases": [
+    "YMTC",
+    "Yangtze Memory Technologies",
+    "양쯔메모리",
+    "양쯔메모리테크놀로지",
+    "長江存儲"
+   ],
+   "resolved": true,
+   "added": "2026-10-13 07:38",
+   "by": "telegram",
+   "name": "YMTC(양쯔메모리)",
+   "count": 0,
+   "last": ""
   }
  ],
- "updated": "2026-10-13 06:47 KST"
+ "updated": "2026-10-13 07:44 KST"
 }
