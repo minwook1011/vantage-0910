@@ -3,6 +3,22 @@
  "slug": "amzn",
  "items": [
   {
+   "id": "11e2f839692b",
+   "kind": "news",
+   "headline": "MIT, 아마존웹서비스(AWS)에 클라우드 보안 특허 침해 소송 — 칩 고유 식별 기술 특허 2건",
+   "bullets": [
+    "매사추세츠공대(MIT)가 아마존웹서비스를 매사추세츠 연방지방법원에 특허 침해로 제소했다.",
+    "쟁점은 칩마다 복제할 수 없는 고유 암호 키를 만드는 '물리적 복제 방지 기능(PUF)' 특허 2건이다.",
+    "손해배상 금액은 밝히지 않았고 배심 재판을 요구했다. 아마존은 답하지 않았다."
+   ],
+   "summary": "매사추세츠공대(MIT)가 아마존웹서비스(AWS)를 상대로 클라우드 보안 특허 침해 소송을 냈다. 소장은 10월 9일 매사추세츠 연방지방법원에 접수됐고, 보도는 12일(현지) 나왔다.\n\n문제가 된 특허는 2건(미국 특허 7,681,103호·7,818,569호)이다. 칩마다 물리적으로 복제할 수 없는 고유 식별값을 만들어 암호 키로 쓰는 '물리적 복제 방지 기능(PUF)' 기술로, MIT 교수의 연구에서 나왔다. MIT는 AWS가 이 기술로 고유 암호 키를 만들어 특허를 침해했다고 주장한다. 해당 기술은 시놉시스가 공급한 것이라고 소장에 적혀 있지만, 시놉시스는 피고에서 빠졌다.\n\nMIT는 손해배상을 청구했으나 금액은 밝히지 않았고 배심 재판을 요구했다. 아마존은 답하지 않았다. MIT는 같은 특허로 지난 5월 텍사스에서 마이크로소프트도 제소했으며 그 소송은 진행 중이다.",
+   "title": "MIT files patent lawsuit against Amazon over cloud security technology",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPMnBCaFpKR1lWaVh4a241MWNjNkxmaGlXc0VLQUtPNFZTN3lKM0puQ3QxUnhodFRQLUJfU3dnZll3VkNqNTJMM3QtZFNqTGJGTF9ndUZ1bWFPaUViYXV3RFFlclM2SzBkdHc2T1FBY3VMdmM1el9nWVZxYkFlbnJHNm9vUjZmV1gxbmptT3RHLXpQUEdKUXNqUmRydDF0NzF5cTdVRXR3RndHTGxzdFdxbjJZTGdiZG5LajdNekw1cF9TS1d5?oc=5",
+   "published": "2026-10-13 00:12 KST",
+   "written": "2026-10-13 00:46 KST"
+  },
+  {
    "id": "1eb3be945139",
    "kind": "news",
    "headline": "아마존, AI 스타트업 데카트를 약 70억달러에 인수 협상 — 앤트로픽이 9월 접은 거래",
@@ -34,5 +50,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-12 19:12 KST"
+ "updated": "2026-10-13 00:46 KST"
 }
