@@ -174,7 +174,8 @@ def openrouter():
     wk = (NOW.date() - timedelta(days=NOW.weekday() + 7)).isoformat()      # 마지막으로 끝난 주(월요일)
     wk_key = f"weekly:{wk}"
     weekly_ready = len(t) > 1 and len(sp) > 1 and t[-1]["date"] == wk and sp[-1]["date"] == wk
-    weekly_due = weekly_ready and wk_key not in SENT and NOW >= at(date.fromisoformat(wk) + timedelta(days=7), 9, 0)
+    forced = "--force" in sys.argv                                         # 시험 발송은 이미 보낸 주간 값도 다시 붙인다
+    weekly_due = weekly_ready and (forced or wk_key not in SENT) and NOW >= at(date.fromisoformat(wk) + timedelta(days=7), 9, 0)
     if NOW.weekday() == 0 and not weekly_ready and wk_key not in SENT and NOW < at(NOW.date(), 12, 0):
         return None
     if not weekly_due:
