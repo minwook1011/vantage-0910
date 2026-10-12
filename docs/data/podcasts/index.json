@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12 08:44 KST",
+ "updated": "2026-10-12 10:32 KST",
  "episodes": [
   {
    "id": "2026-10-11-understanding-HC6itpztIHc",
@@ -132,12 +132,19 @@
    "audio": "https://traffic.megaphone.fm/PDP1028435739.mp3",
    "duration": "1:09:44",
    "desc": "Is the future of frontier AI open or closed? ReflectionAI co-founder and CEO Misha Laskin joins Sarah Guo and Elad Gil to discuss the launch of Beam, the company’s 500 billion parameter open-weight reasoning model. Misha breaks down the pre-training and reinforcement learning required to produce Beam’s reasoning efficiency, the shift in enterprise compute from renting to owning intelligence, and how he believes that open models will capture the majority of global token demand. He also talks about the open model ecosystem in China and why competition with China’s models is a good thing, safety …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-12 08:23 KST",
    "image": "https://megaphone.imgix.net/podcasts/994123ec-c395-11f1-b01e-fff03490a570/image/a780ca93bbc1d2ef87196858bbf07e31.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/803e0244-9d0f-11ed-923a-4bb54bf77468/image/NO_PRIORS_ALBUM_and_PROFILE_PIC-01.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "title_ko": "Beam — 미국판 대형 공개 모델을 내놓은 ReflectionAI (Misha Laskin)",
-   "desc_ko": "ReflectionAI 공동창업자이자 최고경영자 Misha Laskin이 Sarah Guo·Elad Gil과 함께 회사의 첫 공개 가중치 추론 모델 Beam(매개변수 5,000억 개)을 소개한다. 사전학습과 강화학습을 어떻게 설계해 적은 연산으로 추론하게 만들었는지 설명한다. 기업이 인공지능을 빌려 쓰던 데서 직접 소유하는 쪽으로 옮겨 가고 있으며, 전 세계 토큰 수요의 대부분을 공개 모델이 가져갈 것이라고 본다. 중국 공개 모델 생태계와의 경쟁, 안전 문제도 다룬다."
+   "desc_ko": "ReflectionAI 공동창업자이자 최고경영자 Misha Laskin이 Sarah Guo·Elad Gil과 함께 회사의 첫 공개 가중치 추론 모델 Beam(매개변수 5,000억 개)을 소개한다. 사전학습과 강화학습을 어떻게 설계해 적은 연산으로 추론하게 만들었는지 설명한다. 기업이 인공지능을 빌려 쓰던 데서 직접 소유하는 쪽으로 옮겨 가고 있으며, 전 세계 토큰 수요의 대부분을 공개 모델이 가져갈 것이라고 본다. 중국 공개 모델 생태계와의 경쟁, 안전 문제도 다룬다.",
+   "summary": {
+    "title_ko": "Beam — 미국판 대형 공개 모델을 내놓은 ReflectionAI (Misha Laskin)",
+    "headline": "강화학습에 GB300 1만 장 — 'DeepSeek의 서방판' Reflection이 Beam으로 공개 모델 경쟁에 뛰어들다",
+    "image": "https://i.ytimg.com/vi/up4sG9RM20M/hqdefault.jpg",
+    "guest": "미샤 라스킨(Misha Laskin) — ReflectionAI 공동창업자·최고경영자, 전 구글 딥마인드 Gemini 강화학습 연구자",
+    "company": "Reflection AI (인공지능 모델 · 공개 가중치)"
+   }
   },
   {
    "id": "2026-10-09-oddlots-how-ai-is-upending-the-world-of-mathematics",
