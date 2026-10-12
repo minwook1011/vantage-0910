@@ -10,7 +10,7 @@
    "name": "Nvidia",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 5649190617088,
+   "mcap": 5536424132608,
    "mcap_rank": 1
   },
   {
@@ -22,7 +22,7 @@
    "name": "Apple Inc.",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 4869931925504,
+   "mcap": 4912984883200,
    "mcap_rank": 2
   },
   {
@@ -34,7 +34,7 @@
    "name": "Alphabet Inc. (Class A)",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 4200982642688,
+   "mcap": 4300779028480,
    "mcap_rank": 3
   },
   {
@@ -46,7 +46,7 @@
    "name": "Microsoft",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 3842942959616,
+   "mcap": 3973186846720,
    "mcap_rank": 4
   },
   {
@@ -58,7 +58,7 @@
    "name": "Amazon",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 2712973606912,
+   "mcap": 2830652145664,
    "mcap_rank": 5
   },
   {
@@ -70,7 +70,7 @@
    "name": "Meta Platforms",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 1854788337664,
+   "mcap": 1830816186368,
    "mcap_rank": 6
   },
   {
@@ -82,7 +82,7 @@
    "name": "Broadcom",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 1695307005952,
+   "mcap": 1725858185216,
    "mcap_rank": 7
   },
   {
@@ -94,7 +94,7 @@
    "name": "Tesla, Inc.",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 1463662804992,
+   "mcap": 1511491895296,
    "mcap_rank": 8
   },
   {
@@ -106,7 +106,7 @@
    "name": "Micron Technology",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 1213973397504,
+   "mcap": 1164234457088,
    "mcap_rank": 9
   },
   {
@@ -118,20 +118,8 @@
    "name": "Berkshire Hathaway",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 1076027719680,
+   "mcap": 1103792701440,
    "mcap_rank": 10
-  },
-  {
-   "ticker": "AMD",
-   "yahoo": "AMD",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Advanced Micro Devices",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 1034842210304,
-   "mcap_rank": 11
   },
   {
    "ticker": "LLY",
@@ -142,20 +130,20 @@
    "name": "Lilly (Eli)",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 1019126611968,
-   "mcap_rank": 12
+   "mcap": 1051603894272,
+   "mcap_rank": 11
   },
   {
-   "ticker": "JPM",
-   "yahoo": "JPM",
+   "ticker": "AMD",
+   "yahoo": "AMD",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "JPMorgan Chase",
-   "sector": "Financials",
+   "name": "Advanced Micro Devices",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 883527974912,
-   "mcap_rank": 13
+   "mcap": 992708001792,
+   "mcap_rank": 12
   },
   {
    "ticker": "WMT",
@@ -166,7 +154,19 @@
    "name": "Walmart",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 829709352960,
+   "mcap": 886132113408,
+   "mcap_rank": 13
+  },
+  {
+   "ticker": "JPM",
+   "yahoo": "JPM",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "JPMorgan Chase",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 885149401088,
    "mcap_rank": 14
   },
   {
@@ -178,7 +178,7 @@
    "name": "Visa Inc.",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 677086953472,
+   "mcap": 723626622976,
    "mcap_rank": 15
   },
   {
@@ -190,20 +190,8 @@
    "name": "ExxonMobil",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 674394669056,
+   "mcap": 694666395648,
    "mcap_rank": 16
-  },
-  {
-   "ticker": "INTC",
-   "yahoo": "INTC",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Intel",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 630790946816,
-   "mcap_rank": 17
   },
   {
    "ticker": "JNJ",
@@ -214,7 +202,19 @@
    "name": "Johnson & Johnson",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 617006301184,
+   "mcap": 630043836416,
+   "mcap_rank": 17
+  },
+  {
+   "ticker": "INTC",
+   "yahoo": "INTC",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Intel",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 553455190016,
    "mcap_rank": 18
   },
   {
@@ -226,20 +226,8 @@
    "name": "Mastercard",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 483785244672,
+   "mcap": 516092493824,
    "mcap_rank": 19
-  },
-  {
-   "ticker": "ABBV",
-   "yahoo": "ABBV",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "AbbVie",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 464433774592,
-   "mcap_rank": 20
   },
   {
    "ticker": "PLTR",
@@ -250,7 +238,19 @@
    "name": "Palantir Technologies",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 453577277440,
+   "mcap": 502359359488,
+   "mcap_rank": 20
+  },
+  {
+   "ticker": "ABBV",
+   "yahoo": "ABBV",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "AbbVie",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 488554921984,
    "mcap_rank": 21
   },
   {
@@ -262,20 +262,8 @@
    "name": "Cisco",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 442358235136,
+   "mcap": 466762858496,
    "mcap_rank": 22
-  },
-  {
-   "ticker": "LRCX",
-   "yahoo": "LRCX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Lam Research",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 434857443328,
-   "mcap_rank": 23
   },
   {
    "ticker": "ORCL",
@@ -286,20 +274,8 @@
    "name": "Oracle Corporation",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 431382593536,
-   "mcap_rank": 24
-  },
-  {
-   "ticker": "AMAT",
-   "yahoo": "AMAT",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Applied Materials",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 428574343168,
-   "mcap_rank": 25
+   "mcap": 428654231552,
+   "mcap_rank": 23
   },
   {
    "ticker": "COST",
@@ -310,8 +286,8 @@
    "name": "Costco",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 408092835840,
-   "mcap_rank": 26
+   "mcap": 419608035328,
+   "mcap_rank": 24
   },
   {
    "ticker": "CVX",
@@ -322,20 +298,32 @@
    "name": "Chevron Corporation",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 405443805184,
-   "mcap_rank": 27
+   "mcap": 415820677120,
+   "mcap_rank": 25
   },
   {
-   "ticker": "CAT",
-   "yahoo": "CAT",
+   "ticker": "AMAT",
+   "yahoo": "AMAT",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Caterpillar Inc.",
-   "sector": "Industrials",
+   "name": "Applied Materials",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 388618321920,
-   "mcap_rank": 28
+   "mcap": 402377703424,
+   "mcap_rank": 26
+  },
+  {
+   "ticker": "LRCX",
+   "yahoo": "LRCX",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Lam Research",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 399004139520,
+   "mcap_rank": 27
   },
   {
    "ticker": "BAC",
@@ -346,8 +334,8 @@
    "name": "Bank of America",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 375860232192,
-   "mcap_rank": 29
+   "mcap": 379846098944,
+   "mcap_rank": 28
   },
   {
    "ticker": "KO",
@@ -358,8 +346,8 @@
    "name": "Coca-Cola Company (The)",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 368513318912,
-   "mcap_rank": 30
+   "mcap": 378839465984,
+   "mcap_rank": 29
   },
   {
    "ticker": "DELL",
@@ -370,7 +358,19 @@
    "name": "Dell Technologies",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 357657378816,
+   "mcap": 372624424960,
+   "mcap_rank": 30
+  },
+  {
+   "ticker": "CAT",
+   "yahoo": "CAT",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Caterpillar Inc.",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 367955935232,
    "mcap_rank": 31
   },
   {
@@ -382,7 +382,7 @@
    "name": "Merck & Co.",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 356012851200,
+   "mcap": 359220183040,
    "mcap_rank": 32
   },
   {
@@ -394,20 +394,8 @@
    "name": "Procter & Gamble",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 336578478080,
+   "mcap": 351257722880,
    "mcap_rank": 33
-  },
-  {
-   "ticker": "UNH",
-   "yahoo": "UNH",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "UnitedHealth Group",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 333815513088,
-   "mcap_rank": 34
   },
   {
    "ticker": "PANW",
@@ -418,7 +406,19 @@
    "name": "Palo Alto Networks",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 329850322944,
+   "mcap": 342562045952,
+   "mcap_rank": 34
+  },
+  {
+   "ticker": "UNH",
+   "yahoo": "UNH",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "UnitedHealth Group",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 340457717760,
    "mcap_rank": 35
   },
   {
@@ -430,20 +430,8 @@
    "name": "GE Aerospace",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 321187840000,
+   "mcap": 319776784384,
    "mcap_rank": 36
-  },
-  {
-   "ticker": "MS",
-   "yahoo": "MS",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Morgan Stanley",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 298894458880,
-   "mcap_rank": 37
   },
   {
    "ticker": "PM",
@@ -454,20 +442,20 @@
    "name": "Philip Morris International",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 292177674240,
-   "mcap_rank": 38
+   "mcap": 313577439232,
+   "mcap_rank": 37
   },
   {
-   "ticker": "HD",
-   "yahoo": "HD",
+   "ticker": "MS",
+   "yahoo": "MS",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Home Depot (The)",
-   "sector": "Consumer Discretionary",
+   "name": "Morgan Stanley",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 282196508672,
-   "mcap_rank": 39
+   "mcap": 298439016448,
+   "mcap_rank": 38
   },
   {
    "ticker": "NFLX",
@@ -478,7 +466,19 @@
    "name": "Netflix",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 279233789952,
+   "mcap": 292724965376,
+   "mcap_rank": 39
+  },
+  {
+   "ticker": "HD",
+   "yahoo": "HD",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Home Depot (The)",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 290068267008,
    "mcap_rank": 40
   },
   {
@@ -490,56 +490,8 @@
    "name": "CrowdStrike",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 276503363584,
+   "mcap": 281623035904,
    "mcap_rank": 41
-  },
-  {
-   "ticker": "KLAC",
-   "yahoo": "KLAC",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "KLA Corporation",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 269992787968,
-   "mcap_rank": 42
-  },
-  {
-   "ticker": "TXN",
-   "yahoo": "TXN",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Texas Instruments",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 268312150016,
-   "mcap_rank": 43
-  },
-  {
-   "ticker": "GEV",
-   "yahoo": "GEV",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "GE Vernova",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 263324024832,
-   "mcap_rank": 44
-  },
-  {
-   "ticker": "GS",
-   "yahoo": "GS",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Goldman Sachs",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 262799654912,
-   "mcap_rank": 45
   },
   {
    "ticker": "ANET",
@@ -550,19 +502,67 @@
    "name": "Arista Networks",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 261514952704,
-   "mcap_rank": 46
+   "mcap": 273357848576,
+   "mcap_rank": 42
   },
   {
-   "ticker": "SNDK",
-   "yahoo": "SNDK",
+   "ticker": "GEV",
+   "yahoo": "GEV",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Sandisk",
+   "name": "GE Vernova",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 267593334784,
+   "mcap_rank": 43
+  },
+  {
+   "ticker": "GS",
+   "yahoo": "GS",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Goldman Sachs",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 260691574784,
+   "mcap_rank": 44
+  },
+  {
+   "ticker": "TXN",
+   "yahoo": "TXN",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Texas Instruments",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 251839234048,
+   "mcap": 259124887552,
+   "mcap_rank": 45
+  },
+  {
+   "ticker": "KLAC",
+   "yahoo": "KLAC",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "KLA Corporation",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 255220121600,
+   "mcap_rank": 46
+  },
+  {
+   "ticker": "WFC",
+   "yahoo": "WFC",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Wells Fargo",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 252655140864,
    "mcap_rank": 47
   },
   {
@@ -574,7 +574,7 @@
    "name": "RTX Corporation",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 248903958528,
+   "mcap": 250642579456,
    "mcap_rank": 48
   },
   {
@@ -586,20 +586,8 @@
    "name": "Marvell Technology",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 244708294656,
+   "mcap": 247395418112,
    "mcap_rank": 49
-  },
-  {
-   "ticker": "WFC",
-   "yahoo": "WFC",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Wells Fargo",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 243280723968,
-   "mcap_rank": 50
   },
   {
    "ticker": "TMO",
@@ -610,20 +598,20 @@
    "name": "Thermo Fisher Scientific",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 242110529536,
-   "mcap_rank": 51
+   "mcap": 243301122048,
+   "mcap_rank": 50
   },
   {
-   "ticker": "LIN",
-   "yahoo": "LIN",
+   "ticker": "SNDK",
+   "yahoo": "SNDK",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Linde plc",
-   "sector": "Materials",
+   "name": "Sandisk",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 221030776832,
-   "mcap_rank": 52
+   "mcap": 228616585216,
+   "mcap_rank": 51
   },
   {
    "ticker": "AMGN",
@@ -634,7 +622,19 @@
    "name": "Amgen",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 217896321024,
+   "mcap": 224291995648,
+   "mcap_rank": 52
+  },
+  {
+   "ticker": "LIN",
+   "yahoo": "LIN",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Linde plc",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 222989942784,
    "mcap_rank": 53
   },
   {
@@ -646,7 +646,7 @@
    "name": "Citigroup",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 215550623744,
+   "mcap": 217462898688,
    "mcap_rank": 54
   },
   {
@@ -658,7 +658,7 @@
    "name": "Amphenol",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 214440476672,
+   "mcap": 215130947584,
    "mcap_rank": 55
   },
   {
@@ -670,7 +670,7 @@
    "name": "IBM",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 209756798976,
+   "mcap": 213986983936,
    "mcap_rank": 56
   },
   {
@@ -682,7 +682,7 @@
    "name": "American Express",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 204470304768,
+   "mcap": 208110239744,
    "mcap_rank": 57
   },
   {
@@ -694,20 +694,8 @@
    "name": "Analog Devices",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 202136485888,
+   "mcap": 196825645056,
    "mcap_rank": 58
-  },
-  {
-   "ticker": "QCOM",
-   "yahoo": "QCOM",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Qualcomm",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 197452333056,
-   "mcap_rank": 59
   },
   {
    "ticker": "CRM",
@@ -718,44 +706,8 @@
    "name": "Salesforce",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 193149878272,
-   "mcap_rank": 60
-  },
-  {
-   "ticker": "STX",
-   "yahoo": "STX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Seagate Technology",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 193054392320,
-   "mcap_rank": 61
-  },
-  {
-   "ticker": "VZ",
-   "yahoo": "VZ",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Verizon",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 190787272704,
-   "mcap_rank": 62
-  },
-  {
-   "ticker": "DE",
-   "yahoo": "DE",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Deere & Company",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 185232654336,
-   "mcap_rank": 63
+   "mcap": 188573990912,
+   "mcap_rank": 59
   },
   {
    "ticker": "GILD",
@@ -766,8 +718,20 @@
    "name": "Gilead Sciences",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 179471122432,
-   "mcap_rank": 64
+   "mcap": 187444019200,
+   "mcap_rank": 60
+  },
+  {
+   "ticker": "QCOM",
+   "yahoo": "QCOM",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Qualcomm",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 187405828096,
+   "mcap_rank": 61
   },
   {
    "ticker": "DIS",
@@ -778,20 +742,20 @@
    "name": "Walt Disney Company (The)",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 176450125824,
-   "mcap_rank": 65
+   "mcap": 186568523776,
+   "mcap_rank": 62
   },
   {
-   "ticker": "TMUS",
-   "yahoo": "TMUS",
+   "ticker": "STX",
+   "yahoo": "STX",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "T-Mobile US",
-   "sector": "Communication Services",
+   "name": "Seagate Technology",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 175531982848,
-   "mcap_rank": 66
+   "mcap": 178048729088,
+   "mcap_rank": 63
   },
   {
    "ticker": "BLK",
@@ -802,32 +766,20 @@
    "name": "BlackRock",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 172164644864,
-   "mcap_rank": 67
+   "mcap": 175862611968,
+   "mcap_rank": 64
   },
   {
-   "ticker": "PEP",
-   "yahoo": "PEP",
+   "ticker": "VZ",
+   "yahoo": "VZ",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "PepsiCo",
-   "sector": "Consumer Staples",
+   "name": "Verizon",
+   "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 171965743104,
-   "mcap_rank": 68
-  },
-  {
-   "ticker": "ETN",
-   "yahoo": "ETN",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Eaton Corporation",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 169385115648,
-   "mcap_rank": 69
+   "mcap": 173046398976,
+   "mcap_rank": 65
   },
   {
    "ticker": "ABT",
@@ -838,8 +790,32 @@
    "name": "Abbott Laboratories",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 168712372224,
-   "mcap_rank": 70
+   "mcap": 172346179584,
+   "mcap_rank": 66
+  },
+  {
+   "ticker": "PEP",
+   "yahoo": "PEP",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "PepsiCo",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 171664506880,
+   "mcap_rank": 67
+  },
+  {
+   "ticker": "DE",
+   "yahoo": "DE",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Deere & Company",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 167418494976,
+   "mcap_rank": 68
   },
   {
    "ticker": "SCHW",
@@ -851,31 +827,19 @@
    "sector": "Financials",
    "currency": "USD",
    "mcap": 167226753024,
-   "mcap_rank": 71
+   "mcap_rank": 69
   },
   {
-   "ticker": "T",
-   "yahoo": "T",
+   "ticker": "ETN",
+   "yahoo": "ETN",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "AT&T",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 166512967680,
-   "mcap_rank": 72
-  },
-  {
-   "ticker": "UNP",
-   "yahoo": "UNP",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Union Pacific Corporation",
+   "name": "Eaton Corporation",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 165319327744,
-   "mcap_rank": 73
+   "mcap": 166876053504,
+   "mcap_rank": 70
   },
   {
    "ticker": "MCD",
@@ -886,8 +850,20 @@
    "name": "McDonald's",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 164095000576,
-   "mcap_rank": 74
+   "mcap": 166458523648,
+   "mcap_rank": 71
+  },
+  {
+   "ticker": "UNP",
+   "yahoo": "UNP",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Union Pacific Corporation",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 165354979328,
+   "mcap_rank": 72
   },
   {
    "ticker": "WELL",
@@ -898,8 +874,8 @@
    "name": "Welltower",
    "sector": "Real Estate",
    "currency": "USD",
-   "mcap": 164081467392,
-   "mcap_rank": 75
+   "mcap": 162467381248,
+   "mcap_rank": 73
   },
   {
    "ticker": "NEE",
@@ -910,8 +886,8 @@
    "name": "NextEra Energy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 160265715712,
-   "mcap_rank": 76
+   "mcap": 161412988928,
+   "mcap_rank": 74
   },
   {
    "ticker": "PFE",
@@ -922,20 +898,8 @@
    "name": "Pfizer",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 158450925568,
-   "mcap_rank": 77
-  },
-  {
-   "ticker": "BA",
-   "yahoo": "BA",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Boeing",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 152984027136,
-   "mcap_rank": 78
+   "mcap": 161186775040,
+   "mcap_rank": 75
   },
   {
    "ticker": "COP",
@@ -946,8 +910,20 @@
    "name": "ConocoPhillips",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 152269520896,
-   "mcap_rank": 79
+   "mcap": 161099366400,
+   "mcap_rank": 76
+  },
+  {
+   "ticker": "TMUS",
+   "yahoo": "TMUS",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "T-Mobile US",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 159377555456,
+   "mcap_rank": 77
   },
   {
    "ticker": "DHR",
@@ -958,32 +934,8 @@
    "name": "Danaher Corporation",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 150481190912,
-   "mcap_rank": 80
-  },
-  {
-   "ticker": "IBKR",
-   "yahoo": "IBKR",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Interactive Brokers",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 150446915584,
-   "mcap_rank": 81
-  },
-  {
-   "ticker": "WDC",
-   "yahoo": "WDC",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Western Digital",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 149729050624,
-   "mcap_rank": 82
+   "mcap": 154523369472,
+   "mcap_rank": 78
   },
   {
    "ticker": "TJX",
@@ -994,19 +946,67 @@
    "name": "TJX Companies",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 145944543232,
-   "mcap_rank": 83
+   "mcap": 152632393728,
+   "mcap_rank": 79
   },
   {
-   "ticker": "GLW",
-   "yahoo": "GLW",
+   "ticker": "T",
+   "yahoo": "T",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Corning Inc.",
+   "name": "AT&T",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 151985913856,
+   "mcap_rank": 80
+  },
+  {
+   "ticker": "BA",
+   "yahoo": "BA",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Boeing",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 150462742528,
+   "mcap_rank": 81
+  },
+  {
+   "ticker": "ISRG",
+   "yahoo": "ISRG",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Intuitive Surgical",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 149775761408,
+   "mcap_rank": 82
+  },
+  {
+   "ticker": "IBKR",
+   "yahoo": "IBKR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Interactive Brokers",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 149714272256,
+   "mcap_rank": 83
+  },
+  {
+   "ticker": "WDC",
+   "yahoo": "WDC",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Western Digital",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 141431357440,
+   "mcap": 148711145472,
    "mcap_rank": 84
   },
   {
@@ -1018,7 +1018,7 @@
    "name": "Uber",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 139118772224,
+   "mcap": 146063474688,
    "mcap_rank": 85
   },
   {
@@ -1030,19 +1030,19 @@
    "name": "ServiceNow",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 138930388992,
+   "mcap": 145629806592,
    "mcap_rank": 86
   },
   {
-   "ticker": "ISRG",
-   "yahoo": "ISRG",
+   "ticker": "FTNT",
+   "yahoo": "FTNT",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Intuitive Surgical",
-   "sector": "Health Care",
+   "name": "Fortinet",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 138467328000,
+   "mcap": 142890729472,
    "mcap_rank": 87
   },
   {
@@ -1054,32 +1054,20 @@
    "name": "Blackstone Inc.",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 133574524928,
+   "mcap": 136610586624,
    "mcap_rank": 88
   },
   {
-   "ticker": "FTNT",
-   "yahoo": "FTNT",
+   "ticker": "GLW",
+   "yahoo": "GLW",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Fortinet",
+   "name": "Corning Inc.",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 132765483008,
+   "mcap": 134962323456,
    "mcap_rank": 89
-  },
-  {
-   "ticker": "VRTX",
-   "yahoo": "VRTX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Vertex Pharmaceuticals",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 127929335808,
-   "mcap_rank": 90
   },
   {
    "ticker": "CB",
@@ -1090,68 +1078,20 @@
    "name": "Chubb Limited",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 127657328640,
-   "mcap_rank": 91
+   "mcap": 131634921472,
+   "mcap_rank": 90
   },
   {
-   "ticker": "PLD",
-   "yahoo": "PLD",
+   "ticker": "VRTX",
+   "yahoo": "VRTX",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Prologis",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 125312303104,
-   "mcap_rank": 92
-  },
-  {
-   "ticker": "BMY",
-   "yahoo": "BMY",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Bristol Myers Squibb",
+   "name": "Vertex Pharmaceuticals",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 124912001024,
-   "mcap_rank": 93
-  },
-  {
-   "ticker": "PH",
-   "yahoo": "PH",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Parker Hannifin",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 122650632192,
-   "mcap_rank": 94
-  },
-  {
-   "ticker": "PGR",
-   "yahoo": "PGR",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Progressive Corporation",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 122063921152,
-   "mcap_rank": 95
-  },
-  {
-   "ticker": "NEM",
-   "yahoo": "NEM",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Newmont",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 121764675584,
-   "mcap_rank": 96
+   "mcap": 129285349376,
+   "mcap_rank": 91
   },
   {
    "ticker": "ACN",
@@ -1162,32 +1102,8 @@
    "name": "Accenture",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 121715277824,
-   "mcap_rank": 97
-  },
-  {
-   "ticker": "BKNG",
-   "yahoo": "BKNG",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Booking Holdings",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 119484530688,
-   "mcap_rank": 98
-  },
-  {
-   "ticker": "COF",
-   "yahoo": "COF",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Capital One",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 119457775616,
-   "mcap_rank": 99
+   "mcap": 127932612608,
+   "mcap_rank": 92
   },
   {
    "ticker": "MPC",
@@ -1198,8 +1114,32 @@
    "name": "Marathon Petroleum",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 118600720384,
-   "mcap_rank": 100
+   "mcap": 127783690240,
+   "mcap_rank": 93
+  },
+  {
+   "ticker": "PGR",
+   "yahoo": "PGR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Progressive Corporation",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 126196367360,
+   "mcap_rank": 94
+  },
+  {
+   "ticker": "PLD",
+   "yahoo": "PLD",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Prologis",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 125876117504,
+   "mcap_rank": 95
   },
   {
    "ticker": "VLO",
@@ -1210,20 +1150,68 @@
    "name": "Valero Energy",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 116984922112,
-   "mcap_rank": 101
+   "mcap": 124888530944,
+   "mcap_rank": 96
   },
   {
-   "ticker": "LMT",
-   "yahoo": "LMT",
+   "ticker": "NEM",
+   "yahoo": "NEM",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Lockheed Martin",
+   "name": "Newmont",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 124167094272,
+   "mcap_rank": 97
+  },
+  {
+   "ticker": "COF",
+   "yahoo": "COF",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Capital One",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 122242990080,
+   "mcap_rank": 98
+  },
+  {
+   "ticker": "PH",
+   "yahoo": "PH",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Parker Hannifin",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 116643954688,
-   "mcap_rank": 102
+   "mcap": 121390768128,
+   "mcap_rank": 99
+  },
+  {
+   "ticker": "BMY",
+   "yahoo": "BMY",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Bristol Myers Squibb",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 120765284352,
+   "mcap_rank": 100
+  },
+  {
+   "ticker": "BKNG",
+   "yahoo": "BKNG",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Booking Holdings",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 120476344320,
+   "mcap_rank": 101
   },
   {
    "ticker": "SPGI",
@@ -1234,8 +1222,8 @@
    "name": "S&P Global",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 113872396288,
-   "mcap_rank": 103
+   "mcap": 120225341440,
+   "mcap_rank": 102
   },
   {
    "ticker": "MO",
@@ -1246,20 +1234,20 @@
    "name": "Altria",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 112457244672,
-   "mcap_rank": 104
+   "mcap": 119687241728,
+   "mcap_rank": 103
   },
   {
-   "ticker": "CVS",
-   "yahoo": "CVS",
+   "ticker": "LMT",
+   "yahoo": "LMT",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "CVS Health",
-   "sector": "Health Care",
+   "name": "Lockheed Martin",
+   "sector": "Industrials",
    "currency": "USD",
-   "mcap": 110579777536,
-   "mcap_rank": 105
+   "mcap": 117608660992,
+   "mcap_rank": 104
   },
   {
    "ticker": "MDT",
@@ -1270,20 +1258,8 @@
    "name": "Medtronic",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 110491926528,
-   "mcap_rank": 106
-  },
-  {
-   "ticker": "SBUX",
-   "yahoo": "SBUX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Starbucks",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 107969396736,
-   "mcap_rank": 107
+   "mcap": 113178124288,
+   "mcap_rank": 105
   },
   {
    "ticker": "PSX",
@@ -1294,20 +1270,20 @@
    "name": "Phillips 66",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 106079379456,
-   "mcap_rank": 108
+   "mcap": 111532097536,
+   "mcap_rank": 106
   },
   {
-   "ticker": "SYK",
-   "yahoo": "SYK",
+   "ticker": "CVS",
+   "yahoo": "CVS",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Stryker Corporation",
+   "name": "CVS Health",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 105647521792,
-   "mcap_rank": 109
+   "mcap": 110196088832,
+   "mcap_rank": 107
   },
   {
    "ticker": "MCK",
@@ -1318,20 +1294,8 @@
    "name": "McKesson Corporation",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 105197150208,
-   "mcap_rank": 110
-  },
-  {
-   "ticker": "FCX",
-   "yahoo": "FCX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Freeport-McMoRan",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 103450705920,
-   "mcap_rank": 111
+   "mcap": 109459693568,
+   "mcap_rank": 108
   },
   {
    "ticker": "ADP",
@@ -1342,20 +1306,20 @@
    "name": "Automatic Data Processing",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 102106095616,
-   "mcap_rank": 112
+   "mcap": 107336622080,
+   "mcap_rank": 109
   },
   {
-   "ticker": "TT",
-   "yahoo": "TT",
+   "ticker": "SYK",
+   "yahoo": "SYK",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Trane Technologies",
-   "sector": "Industrials",
+   "name": "Stryker Corporation",
+   "sector": "Health Care",
    "currency": "USD",
-   "mcap": 102070960128,
-   "mcap_rank": 113
+   "mcap": 106376306688,
+   "mcap_rank": 110
   },
   {
    "ticker": "PWR",
@@ -1366,44 +1330,32 @@
    "name": "Quanta Services",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 101716328448,
-   "mcap_rank": 114
+   "mcap": 106133413888,
+   "mcap_rank": 111
   },
   {
-   "ticker": "LOW",
-   "yahoo": "LOW",
+   "ticker": "FCX",
+   "yahoo": "FCX",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Lowe's",
-   "sector": "Consumer Discretionary",
+   "name": "Freeport-McMoRan",
+   "sector": "Materials",
    "currency": "USD",
-   "mcap": 101438570496,
-   "mcap_rank": 115
+   "mcap": 105820135424,
+   "mcap_rank": 112
   },
   {
-   "ticker": "HOOD",
-   "yahoo": "HOOD",
+   "ticker": "CEG",
+   "yahoo": "CEG",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Robinhood Markets",
-   "sector": "Financials",
+   "name": "Constellation Energy",
+   "sector": "Utilities",
    "currency": "USD",
-   "mcap": 101362540544,
-   "mcap_rank": 116
-  },
-  {
-   "ticker": "EQIX",
-   "yahoo": "EQIX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Equinix",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 101209522176,
-   "mcap_rank": 117
+   "mcap": 105608404992,
+   "mcap_rank": 113
   },
   {
    "ticker": "DDOG",
@@ -1414,19 +1366,67 @@
    "name": "Datadog",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 99542777856,
-   "mcap_rank": 118
+   "mcap": 105302343680,
+   "mcap_rank": 114
   },
   {
-   "ticker": "BNY",
-   "yahoo": "BNY",
+   "ticker": "TT",
+   "yahoo": "TT",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "BNY Mellon",
+   "name": "Trane Technologies",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 104946663424,
+   "mcap_rank": 115
+  },
+  {
+   "ticker": "LOW",
+   "yahoo": "LOW",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Lowe's",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 104356044800,
+   "mcap_rank": 116
+  },
+  {
+   "ticker": "SBUX",
+   "yahoo": "SBUX",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Starbucks",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 103454998528,
+   "mcap_rank": 117
+  },
+  {
+   "ticker": "EQIX",
+   "yahoo": "EQIX",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Equinix",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 101243076608,
+   "mcap_rank": 118
+  },
+  {
+   "ticker": "CME",
+   "yahoo": "CME",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "CME Group",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 98654494720,
+   "mcap": 100883554304,
    "mcap_rank": 119
   },
   {
@@ -1438,7 +1438,7 @@
    "name": "Lumentum",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 97362173952,
+   "mcap": 99945046016,
    "mcap_rank": 120
   },
   {
@@ -1450,32 +1450,8 @@
    "name": "Airbnb",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 97260748800,
+   "mcap": 99320578048,
    "mcap_rank": 121
-  },
-  {
-   "ticker": "VRT",
-   "yahoo": "VRT",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Vertiv",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 97086308352,
-   "mcap_rank": 122
-  },
-  {
-   "ticker": "CDNS",
-   "yahoo": "CDNS",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Cadence Design Systems",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 96759332864,
-   "mcap_rank": 123
   },
   {
    "ticker": "SO",
@@ -1486,32 +1462,20 @@
    "name": "Southern Company",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 96308396032,
-   "mcap_rank": 124
+   "mcap": 99126779904,
+   "mcap_rank": 122
   },
   {
-   "ticker": "JCI",
-   "yahoo": "JCI",
+   "ticker": "HOOD",
+   "yahoo": "HOOD",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Johnson Controls",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 94641045504,
-   "mcap_rank": 125
-  },
-  {
-   "ticker": "CME",
-   "yahoo": "CME",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "CME Group",
+   "name": "Robinhood Markets",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 94619688960,
-   "mcap_rank": 126
+   "mcap": 98017951744,
+   "mcap_rank": 123
   },
   {
    "ticker": "SNPS",
@@ -1522,32 +1486,8 @@
    "name": "Synopsys",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 93882785792,
-   "mcap_rank": 127
-  },
-  {
-   "ticker": "MAR",
-   "yahoo": "MAR",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Marriott International",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 93604667392,
-   "mcap_rank": 128
-  },
-  {
-   "ticker": "ADBE",
-   "yahoo": "ADBE",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Adobe Inc.",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 92508946432,
-   "mcap_rank": 129
+   "mcap": 97732771840,
+   "mcap_rank": 124
   },
   {
    "ticker": "HCA",
@@ -1558,20 +1498,8 @@
    "name": "HCA Healthcare",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 92379029504,
-   "mcap_rank": 130
-  },
-  {
-   "ticker": "HWM",
-   "yahoo": "HWM",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Howmet Aerospace",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 92230803456,
-   "mcap_rank": 131
+   "mcap": 97661665280,
+   "mcap_rank": 125
   },
   {
    "ticker": "HPE",
@@ -1582,32 +1510,80 @@
    "name": "Hewlett Packard Enterprise",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 92033138688,
-   "mcap_rank": 132
+   "mcap": 97515569152,
+   "mcap_rank": 126
   },
   {
-   "ticker": "CEG",
-   "yahoo": "CEG",
+   "ticker": "CDNS",
+   "yahoo": "CDNS",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Constellation Energy",
-   "sector": "Utilities",
+   "name": "Cadence Design Systems",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 91230609408,
-   "mcap_rank": 133
+   "mcap": 97169661952,
+   "mcap_rank": 127
   },
   {
-   "ticker": "EMR",
-   "yahoo": "EMR",
+   "ticker": "BNY",
+   "yahoo": "BNY",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Emerson Electric",
+   "name": "BNY Mellon",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 96829325312,
+   "mcap_rank": 128
+  },
+  {
+   "ticker": "MAR",
+   "yahoo": "MAR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Marriott International",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 95409168384,
+   "mcap_rank": 129
+  },
+  {
+   "ticker": "JCI",
+   "yahoo": "JCI",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Johnson Controls",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 90146062336,
-   "mcap_rank": 134
+   "mcap": 95367929856,
+   "mcap_rank": 130
+  },
+  {
+   "ticker": "ADBE",
+   "yahoo": "ADBE",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Adobe Inc.",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 94291484672,
+   "mcap_rank": 131
+  },
+  {
+   "ticker": "VRT",
+   "yahoo": "VRT",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Vertiv",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 93467426816,
+   "mcap_rank": 132
   },
   {
    "ticker": "APP",
@@ -1618,32 +1594,8 @@
    "name": "AppLovin",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 90105700352,
-   "mcap_rank": 135
-  },
-  {
-   "ticker": "USB",
-   "yahoo": "USB",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "U.S. Bancorp",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 89603538944,
-   "mcap_rank": 136
-  },
-  {
-   "ticker": "GD",
-   "yahoo": "GD",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "General Dynamics",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 89308217344,
-   "mcap_rank": 137
+   "mcap": 93068689408,
+   "mcap_rank": 133
   },
   {
    "ticker": "DUK",
@@ -1654,31 +1606,79 @@
    "name": "Duke Energy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 88987410432,
+   "mcap": 90952261632,
+   "mcap_rank": 134
+  },
+  {
+   "ticker": "EMR",
+   "yahoo": "EMR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Emerson Electric",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 90268778496,
+   "mcap_rank": 135
+  },
+  {
+   "ticker": "HWM",
+   "yahoo": "HWM",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Howmet Aerospace",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 89834004480,
+   "mcap_rank": 136
+  },
+  {
+   "ticker": "MRNA",
+   "yahoo": "MRNA",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Moderna",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 89828081664,
+   "mcap_rank": 137
+  },
+  {
+   "ticker": "GD",
+   "yahoo": "GD",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "General Dynamics",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 89627475968,
    "mcap_rank": 138
   },
   {
-   "ticker": "PNC",
-   "yahoo": "PNC",
+   "ticker": "ELV",
+   "yahoo": "ELV",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "PNC Financial Services",
-   "sector": "Financials",
+   "name": "Elevance Health",
+   "sector": "Health Care",
    "currency": "USD",
-   "mcap": 88178524160,
+   "mcap": 89501958144,
    "mcap_rank": 139
   },
   {
-   "ticker": "CSX",
-   "yahoo": "CSX",
+   "ticker": "USB",
+   "yahoo": "USB",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "CSX Corporation",
-   "sector": "Industrials",
+   "name": "U.S. Bancorp",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 87862886400,
+   "mcap": 88933580800,
    "mcap_rank": 140
   },
   {
@@ -1690,20 +1690,8 @@
    "name": "Williams Companies",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 86282231808,
+   "mcap": 88887582720,
    "mcap_rank": 141
-  },
-  {
-   "ticker": "BE",
-   "yahoo": "BE",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Bloom Energy",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 85162582016,
-   "mcap_rank": 142
   },
   {
    "ticker": "ICE",
@@ -1714,8 +1702,32 @@
    "name": "Intercontinental Exchange",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 84293378048,
+   "mcap": 87684210688,
+   "mcap_rank": 142
+  },
+  {
+   "ticker": "CSX",
+   "yahoo": "CSX",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "CSX Corporation",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 87547961344,
    "mcap_rank": 143
+  },
+  {
+   "ticker": "PNC",
+   "yahoo": "PNC",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "PNC Financial Services",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 87452450816,
+   "mcap_rank": 144
   },
   {
    "ticker": "MNST",
@@ -1726,44 +1738,8 @@
    "name": "Monster Beverage",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 84121681920,
-   "mcap_rank": 144
-  },
-  {
-   "ticker": "ELV",
-   "yahoo": "ELV",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Elevance Health",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 83804798976,
+   "mcap": 85493014528,
    "mcap_rank": 145
-  },
-  {
-   "ticker": "MMM",
-   "yahoo": "MMM",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "3M",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 83490308096,
-   "mcap_rank": 146
-  },
-  {
-   "ticker": "KKR",
-   "yahoo": "KKR",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "KKR & Co.",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 83390988288,
-   "mcap_rank": 147
   },
   {
    "ticker": "DASH",
@@ -1774,20 +1750,32 @@
    "name": "DoorDash",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 81958305792,
-   "mcap_rank": 148
+   "mcap": 85143044096,
+   "mcap_rank": 146
   },
   {
-   "ticker": "WM",
-   "yahoo": "WM",
+   "ticker": "AMT",
+   "yahoo": "AMT",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Waste Management",
-   "sector": "Industrials",
+   "name": "American Tower",
+   "sector": "Real Estate",
    "currency": "USD",
-   "mcap": 81721769984,
-   "mcap_rank": 149
+   "mcap": 84916568064,
+   "mcap_rank": 147
+  },
+  {
+   "ticker": "KKR",
+   "yahoo": "KKR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "KKR & Co.",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 84000555008,
+   "mcap_rank": 148
   },
   {
    "ticker": "MRSH",
@@ -1798,20 +1786,44 @@
    "name": "Marsh McLennan",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 81154547712,
-   "mcap_rank": 150
+   "mcap": 83874652160,
+   "mcap_rank": 149
   },
   {
-   "ticker": "UPS",
-   "yahoo": "UPS",
+   "ticker": "WM",
+   "yahoo": "WM",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "United Parcel Service",
+   "name": "Waste Management",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 79139700736,
+   "mcap": 83472523264,
+   "mcap_rank": 150
+  },
+  {
+   "ticker": "BE",
+   "yahoo": "BE",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Bloom Energy",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 82614927360,
    "mcap_rank": 151
+  },
+  {
+   "ticker": "MMM",
+   "yahoo": "MMM",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "3M",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 82494963712,
+   "mcap_rank": 152
   },
   {
    "ticker": "WBD",
@@ -1826,52 +1838,28 @@
    "mcap_rank": 152
   },
   {
-   "ticker": "SHW",
-   "yahoo": "SHW",
+   "ticker": "INTU",
+   "yahoo": "INTU",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Sherwin-Williams",
-   "sector": "Materials",
+   "name": "Intuit",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 77563658240,
+   "mcap": 80905699328,
    "mcap_rank": 153
   },
   {
-   "ticker": "CTAS",
-   "yahoo": "CTAS",
+   "ticker": "UPS",
+   "yahoo": "UPS",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Cintas",
+   "name": "United Parcel Service",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 77114769408,
+   "mcap": 80458416128,
    "mcap_rank": 154
-  },
-  {
-   "ticker": "ECL",
-   "yahoo": "ECL",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Ecolab",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 76725944320,
-   "mcap_rank": 155
-  },
-  {
-   "ticker": "CMCSA",
-   "yahoo": "CMCSA",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Comcast",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 76544090112,
-   "mcap_rank": 156
   },
   {
    "ticker": "MCO",
@@ -1882,116 +1870,32 @@
    "name": "Moody's Corporation",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 76435161088,
-   "mcap_rank": 157
+   "mcap": 80395812864,
+   "mcap_rank": 155
   },
   {
-   "ticker": "SPG",
-   "yahoo": "SPG",
+   "ticker": "CTAS",
+   "yahoo": "CTAS",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Simon Property Group",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 76285337600,
-   "mcap_rank": 158
-  },
-  {
-   "ticker": "MRNA",
-   "yahoo": "MRNA",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Moderna",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 75858812928,
-   "mcap_rank": 159
-  },
-  {
-   "ticker": "REGN",
-   "yahoo": "REGN",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Regeneron Pharmaceuticals",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 75692515328,
-   "mcap_rank": 160
-  },
-  {
-   "ticker": "AMT",
-   "yahoo": "AMT",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "American Tower",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 75578720256,
-   "mcap_rank": 161
-  },
-  {
-   "ticker": "TRV",
-   "yahoo": "TRV",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Travelers Companies (The)",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 75166269440,
-   "mcap_rank": 162
-  },
-  {
-   "ticker": "INTU",
-   "yahoo": "INTU",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Intuit",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 75114692608,
-   "mcap_rank": 163
-  },
-  {
-   "ticker": "ITW",
-   "yahoo": "ITW",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Illinois Tool Works",
+   "name": "Cintas",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 74879623168,
-   "mcap_rank": 164
+   "mcap": 80371974144,
+   "mcap_rank": 156
   },
   {
-   "ticker": "RCL",
-   "yahoo": "RCL",
+   "ticker": "ECL",
+   "yahoo": "ECL",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Royal Caribbean Group",
-   "sector": "Consumer Discretionary",
+   "name": "Ecolab",
+   "sector": "Materials",
    "currency": "USD",
-   "mcap": 74282139648,
-   "mcap_rank": 165
-  },
-  {
-   "ticker": "MDLZ",
-   "yahoo": "MDLZ",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Mondelez International",
-   "sector": "Consumer Staples",
-   "currency": "USD",
-   "mcap": 74268368896,
-   "mcap_rank": 166
+   "mcap": 79005007872,
+   "mcap_rank": 157
   },
   {
    "ticker": "EOG",
@@ -2002,68 +1906,92 @@
    "name": "EOG Resources",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 74157940736,
-   "mcap_rank": 167
+   "mcap": 77714243584,
+   "mcap_rank": 158
   },
   {
-   "ticker": "MSI",
-   "yahoo": "MSI",
+   "ticker": "SHW",
+   "yahoo": "SHW",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Motorola Solutions",
-   "sector": "Information Technology",
+   "name": "Sherwin-Williams",
+   "sector": "Materials",
    "currency": "USD",
-   "mcap": 74043580416,
-   "mcap_rank": 168
+   "mcap": 77527236608,
+   "mcap_rank": 159
   },
   {
-   "ticker": "ROST",
-   "yahoo": "ROST",
+   "ticker": "MDLZ",
+   "yahoo": "MDLZ",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Ross Stores",
+   "name": "Mondelez International",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 77101768704,
+   "mcap_rank": 160
+  },
+  {
+   "ticker": "TRV",
+   "yahoo": "TRV",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Travelers Companies (The)",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 76912041984,
+   "mcap_rank": 161
+  },
+  {
+   "ticker": "REGN",
+   "yahoo": "REGN",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Regeneron Pharmaceuticals",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 76860014592,
+   "mcap_rank": 162
+  },
+  {
+   "ticker": "SPG",
+   "yahoo": "SPG",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Simon Property Group",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 75704516608,
+   "mcap_rank": 163
+  },
+  {
+   "ticker": "RCL",
+   "yahoo": "RCL",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Royal Caribbean Group",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 73311305728,
-   "mcap_rank": 169
+   "mcap": 75491024896,
+   "mcap_rank": 164
   },
   {
-   "ticker": "CMI",
-   "yahoo": "CMI",
+   "ticker": "ITW",
+   "yahoo": "ITW",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Cummins",
+   "name": "Illinois Tool Works",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 72730902528,
-   "mcap_rank": 170
-  },
-  {
-   "ticker": "SLB",
-   "yahoo": "SLB",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Schlumberger",
-   "sector": "Energy",
-   "currency": "USD",
-   "mcap": 72337145856,
-   "mcap_rank": 171
-  },
-  {
-   "ticker": "HLT",
-   "yahoo": "HLT",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Hilton Worldwide",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 71876730880,
-   "mcap_rank": 172
+   "mcap": 75224227840,
+   "mcap_rank": 165
   },
   {
    "ticker": "CI",
@@ -2074,7 +2002,91 @@
    "name": "Cigna",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 71484973056,
+   "mcap": 74629439488,
+   "mcap_rank": 166
+  },
+  {
+   "ticker": "MSI",
+   "yahoo": "MSI",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Motorola Solutions",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 73509027840,
+   "mcap_rank": 167
+  },
+  {
+   "ticker": "HLT",
+   "yahoo": "HLT",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Hilton Worldwide",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 73497198592,
+   "mcap_rank": 168
+  },
+  {
+   "ticker": "CMCSA",
+   "yahoo": "CMCSA",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Comcast",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 73314836480,
+   "mcap_rank": 169
+  },
+  {
+   "ticker": "SLB",
+   "yahoo": "SLB",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Schlumberger",
+   "sector": "Energy",
+   "currency": "USD",
+   "mcap": 72648810496,
+   "mcap_rank": 170
+  },
+  {
+   "ticker": "GM",
+   "yahoo": "GM",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "General Motors",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 72591564800,
+   "mcap_rank": 171
+  },
+  {
+   "ticker": "KMI",
+   "yahoo": "KMI",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Kinder Morgan",
+   "sector": "Energy",
+   "currency": "USD",
+   "mcap": 72348803072,
+   "mcap_rank": 172
+  },
+  {
+   "ticker": "CMI",
+   "yahoo": "CMI",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Cummins",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 72052211712,
    "mcap_rank": 173
   },
   {
@@ -2086,32 +2098,20 @@
    "name": "Norfolk Southern",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 71299678208,
+   "mcap": 71378296832,
    "mcap_rank": 174
   },
   {
-   "ticker": "TGT",
-   "yahoo": "TGT",
+   "ticker": "ROST",
+   "yahoo": "ROST",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Target Corporation",
-   "sector": "Consumer Staples",
+   "name": "Ross Stores",
+   "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 70870294528,
+   "mcap": 71344922624,
    "mcap_rank": 175
-  },
-  {
-   "ticker": "MPWR",
-   "yahoo": "MPWR",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Monolithic Power Systems",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 70752649216,
-   "mcap_rank": 176
   },
   {
    "ticker": "CVNA",
@@ -2122,128 +2122,8 @@
    "name": "Carvana",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 70686736384,
-   "mcap_rank": 177
-  },
-  {
-   "ticker": "TER",
-   "yahoo": "TER",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Teradyne",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 70203252736,
-   "mcap_rank": 178
-  },
-  {
-   "ticker": "KMI",
-   "yahoo": "KMI",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Kinder Morgan",
-   "sector": "Energy",
-   "currency": "USD",
-   "mcap": 69186740224,
-   "mcap_rank": 179
-  },
-  {
-   "ticker": "FDX",
-   "yahoo": "FDX",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "FedEx",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 68719624192,
-   "mcap_rank": 180
-  },
-  {
-   "ticker": "ORLY",
-   "yahoo": "ORLY",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "O'Reilly Automotive",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 68680769536,
-   "mcap_rank": 181
-  },
-  {
-   "ticker": "GM",
-   "yahoo": "GM",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "General Motors",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 68678127616,
-   "mcap_rank": 182
-  },
-  {
-   "ticker": "NOC",
-   "yahoo": "NOC",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Northrop Grumman",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 67906125824,
-   "mcap_rank": 183
-  },
-  {
-   "ticker": "HON",
-   "yahoo": "HON",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Honeywell Technologies",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 67821993984,
-   "mcap_rank": 184
-  },
-  {
-   "ticker": "DLR",
-   "yahoo": "DLR",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Digital Realty",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 67431858176,
-   "mcap_rank": 185
-  },
-  {
-   "ticker": "APO",
-   "yahoo": "APO",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Apollo Global Management",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 67333730304,
-   "mcap_rank": 186
-  },
-  {
-   "ticker": "URI",
-   "yahoo": "URI",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "United Rentals",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 67286622208,
-   "mcap_rank": 187
+   "mcap": 70642393088,
+   "mcap_rank": 176
   },
   {
    "ticker": "CL",
@@ -2254,32 +2134,92 @@
    "name": "Colgate-Palmolive",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 67169783808,
-   "mcap_rank": 188
+   "mcap": 70366437376,
+   "mcap_rank": 177
   },
   {
-   "ticker": "COHR",
-   "yahoo": "COHR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Coherent Corp.",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 66003300352,
-   "mcap_rank": 189
-  },
-  {
-   "ticker": "KEYS",
-   "yahoo": "KEYS",
+   "ticker": "APO",
+   "yahoo": "APO",
    "market": "S&P500",
    "added_at": "2026-09-27",
    "added_by": "S&P500 시총 상위 200",
-   "name": "Keysight Technologies",
+   "name": "Apollo Global Management",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 70067945472,
+   "mcap_rank": 178
+  },
+  {
+   "ticker": "ORLY",
+   "yahoo": "ORLY",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "O'Reilly Automotive",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 69934653440,
+   "mcap_rank": 179
+  },
+  {
+   "ticker": "TGT",
+   "yahoo": "TGT",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Target Corporation",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 69798150144,
+   "mcap_rank": 180
+  },
+  {
+   "ticker": "FDX",
+   "yahoo": "FDX",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "FedEx",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 69039128576,
+   "mcap_rank": 181
+  },
+  {
+   "ticker": "NOC",
+   "yahoo": "NOC",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Northrop Grumman",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 68292538368,
+   "mcap_rank": 182
+  },
+  {
+   "ticker": "MPWR",
+   "yahoo": "MPWR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Monolithic Power Systems",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 65482944512,
-   "mcap_rank": 190
+   "mcap": 68126449664,
+   "mcap_rank": 183
+  },
+  {
+   "ticker": "DLR",
+   "yahoo": "DLR",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Digital Realty",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 67511164928,
+   "mcap_rank": 184
   },
   {
    "ticker": "AEP",
@@ -2290,8 +2230,8 @@
    "name": "American Electric Power",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 65093595136,
-   "mcap_rank": 191
+   "mcap": 66857439232,
+   "mcap_rank": 185
   },
   {
    "ticker": "RSG",
@@ -2302,8 +2242,56 @@
    "name": "Republic Services",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 64169992192,
-   "mcap_rank": 192
+   "mcap": 66411474944,
+   "mcap_rank": 186
+  },
+  {
+   "ticker": "HON",
+   "yahoo": "HON",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Honeywell Technologies",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 65837944832,
+   "mcap_rank": 187
+  },
+  {
+   "ticker": "URI",
+   "yahoo": "URI",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "United Rentals",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 65751097344,
+   "mcap_rank": 188
+  },
+  {
+   "ticker": "KEYS",
+   "yahoo": "KEYS",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Keysight Technologies",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 65161179136,
+   "mcap_rank": 189
+  },
+  {
+   "ticker": "CIEN",
+   "yahoo": "CIEN",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Ciena",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 63781220352,
+   "mcap_rank": 190
   },
   {
    "ticker": "TEL",
@@ -2314,8 +2302,20 @@
    "name": "TE Connectivity",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 63797133312,
-   "mcap_rank": 193
+   "mcap": 63197839360,
+   "mcap_rank": 191
+  },
+  {
+   "ticker": "TER",
+   "yahoo": "TER",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Teradyne",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 62955294720,
+   "mcap_rank": 192
   },
   {
    "ticker": "APD",
@@ -2326,7 +2326,19 @@
    "name": "Air Products",
    "sector": "Materials",
    "currency": "USD",
-   "mcap": 61810827264,
+   "mcap": 62632534016,
+   "mcap_rank": 193
+  },
+  {
+   "ticker": "MET",
+   "yahoo": "MET",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "MetLife",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 62486446080,
    "mcap_rank": 194
   },
   {
@@ -2338,31 +2350,31 @@
    "name": "Boston Scientific",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 61737177088,
+   "mcap": 61925580800,
    "mcap_rank": 195
   },
   {
-   "ticker": "NXPI",
-   "yahoo": "NXPI",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "NXP Semiconductors",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 61442322432,
-   "mcap_rank": 196
-  },
-  {
-   "ticker": "FIX",
-   "yahoo": "FIX",
+   "ticker": "COR",
+   "yahoo": "COR",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Comfort Systems USA",
-   "sector": "Industrials",
+   "name": "Cencora",
+   "sector": "Health Care",
    "currency": "USD",
-   "mcap": 60816150528,
+   "mcap": 61799378944,
+   "mcap_rank": 196
+  },
+  {
+   "ticker": "COHR",
+   "yahoo": "COHR",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Coherent Corp.",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 61564620800,
    "mcap_rank": 197
   },
   {
@@ -2374,20 +2386,8 @@
    "name": "Targa Resources",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 60413796352,
+   "mcap": 61477376000,
    "mcap_rank": 198
-  },
-  {
-   "ticker": "GWW",
-   "yahoo": "GWW",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "W. W. Grainger",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 60303339520,
-   "mcap_rank": 199
   },
   {
    "ticker": "TDG",
@@ -2398,32 +2398,56 @@
    "name": "TransDigm Group",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 60272414720,
-   "mcap_rank": 200
+   "mcap": 61245837312,
+   "mcap_rank": 199
   },
   {
-   "ticker": "MET",
-   "yahoo": "MET",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "MetLife",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 60008087552,
-   "mcap_rank": 201
-  },
-  {
-   "ticker": "COR",
-   "yahoo": "COR",
+   "ticker": "GWW",
+   "yahoo": "GWW",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Cencora",
-   "sector": "Health Care",
+   "name": "W. W. Grainger",
+   "sector": "Industrials",
    "currency": "USD",
-   "mcap": 58975133696,
+   "mcap": 60750327808,
+   "mcap_rank": 200
+  },
+  {
+   "ticker": "FIX",
+   "yahoo": "FIX",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Comfort Systems USA",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 60382556160,
+   "mcap_rank": 201
+  },
+  {
+   "ticker": "OXY",
+   "yahoo": "OXY",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Occidental Petroleum",
+   "sector": "Energy",
+   "currency": "USD",
+   "mcap": 60088205312,
    "mcap_rank": 202
+  },
+  {
+   "ticker": "AJG",
+   "yahoo": "AJG",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Arthur J. Gallagher & Co.",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 59650547712,
+   "mcap_rank": 203
   },
   {
    "ticker": "FAST",
@@ -2435,79 +2459,7 @@
    "sector": "Industrials",
    "currency": "USD",
    "mcap": 58235502592,
-   "mcap_rank": 203
-  },
-  {
-   "ticker": "OXY",
-   "yahoo": "OXY",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Occidental Petroleum",
-   "sector": "Energy",
-   "currency": "USD",
-   "mcap": 58058940416,
    "mcap_rank": 204
-  },
-  {
-   "ticker": "AJG",
-   "yahoo": "AJG",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Arthur J. Gallagher & Co.",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 57961263104,
-   "mcap_rank": 205
-  },
-  {
-   "ticker": "AME",
-   "yahoo": "AME",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ametek",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 57757786112,
-   "mcap_rank": 206
-  },
-  {
-   "ticker": "PCAR",
-   "yahoo": "PCAR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Paccar",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 57731710976,
-   "mcap_rank": 207
-  },
-  {
-   "ticker": "AON",
-   "yahoo": "AON",
-   "market": "S&P500",
-   "added_at": "2026-09-27",
-   "added_by": "S&P500 시총 상위 200",
-   "name": "Aon plc",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 57157201920,
-   "mcap_rank": 208
-  },
-  {
-   "ticker": "TFC",
-   "yahoo": "TFC",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Truist Financial",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 56744538112,
-   "mcap_rank": 209
   },
   {
    "ticker": "ALL",
@@ -2518,8 +2470,20 @@
    "name": "Allstate",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 56574439424,
-   "mcap_rank": 210
+   "mcap": 58013196288,
+   "mcap_rank": 205
+  },
+  {
+   "ticker": "AON",
+   "yahoo": "AON",
+   "market": "S&P500",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "Aon plc",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 58009944064,
+   "mcap_rank": 206
   },
   {
    "ticker": "AFL",
@@ -2530,56 +2494,44 @@
    "name": "Aflac",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 55919833088,
-   "mcap_rank": 211
+   "mcap": 57423859712,
+   "mcap_rank": 207
   },
   {
-   "ticker": "BKR",
-   "yahoo": "BKR",
+   "ticker": "NXPI",
+   "yahoo": "NXPI",
    "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Baker Hughes",
-   "sector": "Energy",
-   "currency": "USD",
-   "mcap": 55589748736,
-   "mcap_rank": 212
-  },
-  {
-   "ticker": "CIEN",
-   "yahoo": "CIEN",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ciena",
+   "added_at": "2026-09-27",
+   "added_by": "S&P500 시총 상위 200",
+   "name": "NXP Semiconductors",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 55495348224,
-   "mcap_rank": 213
+   "mcap": 57372393472,
+   "mcap_rank": 208
   },
   {
-   "ticker": "OKE",
-   "yahoo": "OKE",
+   "ticker": "AME",
+   "yahoo": "AME",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Oneok",
-   "sector": "Energy",
-   "currency": "USD",
-   "mcap": 55400361984,
-   "mcap_rank": 214
-  },
-  {
-   "ticker": "DAL",
-   "yahoo": "DAL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Delta Air Lines",
+   "name": "Ametek",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 55299518464,
-   "mcap_rank": 215
+   "mcap": 56989761536,
+   "mcap_rank": 209
+  },
+  {
+   "ticker": "PCAR",
+   "yahoo": "PCAR",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Paccar",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 56868470784,
+   "mcap_rank": 210
   },
   {
    "ticker": "NUE",
@@ -2590,56 +2542,44 @@
    "name": "Nucor",
    "sector": "Materials",
    "currency": "USD",
-   "mcap": 54538645504,
-   "mcap_rank": 216
+   "mcap": 56793788416,
+   "mcap_rank": 211
   },
   {
-   "ticker": "CRH",
-   "yahoo": "CRH",
+   "ticker": "OKE",
+   "yahoo": "OKE",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "CRH plc",
-   "sector": "Materials",
+   "name": "Oneok",
+   "sector": "Energy",
    "currency": "USD",
-   "mcap": 54513410048,
-   "mcap_rank": 217
+   "mcap": 56610750464,
+   "mcap_rank": 212
   },
   {
-   "ticker": "GRMN",
-   "yahoo": "GRMN",
+   "ticker": "TFC",
+   "yahoo": "TFC",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Garmin",
-   "sector": "Consumer Discretionary",
+   "name": "Truist Financial",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 54222422016,
-   "mcap_rank": 218
+   "mcap": 56329187328,
+   "mcap_rank": 213
   },
   {
-   "ticker": "D",
-   "yahoo": "D",
+   "ticker": "BKR",
+   "yahoo": "BKR",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Dominion Energy",
-   "sector": "Utilities",
+   "name": "Baker Hughes",
+   "sector": "Energy",
    "currency": "USD",
-   "mcap": 53923737600,
-   "mcap_rank": 219
-  },
-  {
-   "ticker": "PSA",
-   "yahoo": "PSA",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Public Storage",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 53030547456,
-   "mcap_rank": 220
+   "mcap": 56284618752,
+   "mcap_rank": 214
   },
   {
    "ticker": "CAH",
@@ -2650,20 +2590,68 @@
    "name": "Cardinal Health",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 52864999424,
-   "mcap_rank": 221
+   "mcap": 55011553280,
+   "mcap_rank": 215
   },
   {
-   "ticker": "DVN",
-   "yahoo": "DVN",
+   "ticker": "CRH",
+   "yahoo": "CRH",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Devon Energy",
-   "sector": "Energy",
+   "name": "CRH plc",
+   "sector": "Materials",
    "currency": "USD",
-   "mcap": 52415000576,
-   "mcap_rank": 222
+   "mcap": 54247297024,
+   "mcap_rank": 216
+  },
+  {
+   "ticker": "D",
+   "yahoo": "D",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Dominion Energy",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 54213980160,
+   "mcap_rank": 217
+  },
+  {
+   "ticker": "VST",
+   "yahoo": "VST",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Vistra Corp.",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 54198370304,
+   "mcap_rank": 218
+  },
+  {
+   "ticker": "PSA",
+   "yahoo": "PSA",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Public Storage",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 54161002496,
+   "mcap_rank": 219
+  },
+  {
+   "ticker": "DAL",
+   "yahoo": "DAL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Delta Air Lines",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 54036885504,
+   "mcap_rank": 220
   },
   {
    "ticker": "FANG",
@@ -2674,8 +2662,8 @@
    "name": "Diamondback Energy",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 51722452992,
-   "mcap_rank": 223
+   "mcap": 53800202240,
+   "mcap_rank": 221
   },
   {
    "ticker": "SRE",
@@ -2686,32 +2674,20 @@
    "name": "Sempra",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 51252707328,
-   "mcap_rank": 224
+   "mcap": 53188251648,
+   "mcap_rank": 222
   },
   {
-   "ticker": "O",
-   "yahoo": "O",
+   "ticker": "DVN",
+   "yahoo": "DVN",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Realty Income",
-   "sector": "Real Estate",
+   "name": "Devon Energy",
+   "sector": "Energy",
    "currency": "USD",
-   "mcap": 51218784256,
-   "mcap_rank": 225
-  },
-  {
-   "ticker": "ROK",
-   "yahoo": "ROK",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Rockwell Automation",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 50557321216,
-   "mcap_rank": 226
+   "mcap": 53085999104,
+   "mcap_rank": 223
   },
   {
    "ticker": "NDAQ",
@@ -2722,7 +2698,43 @@
    "name": "Nasdaq, Inc.",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 50492424192,
+   "mcap": 52348227584,
+   "mcap_rank": 224
+  },
+  {
+   "ticker": "VYLR",
+   "yahoo": "VYLR",
+   "market": "S&P500",
+   "added_at": "2026-10-12",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Vylor",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 52049588224,
+   "mcap_rank": 225
+  },
+  {
+   "ticker": "HUM",
+   "yahoo": "HUM",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Humana",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 51859079168,
+   "mcap_rank": 226
+  },
+  {
+   "ticker": "GRMN",
+   "yahoo": "GRMN",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Garmin",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 51753906176,
    "mcap_rank": 227
   },
   {
@@ -2734,20 +2746,32 @@
    "name": "Nike, Inc.",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 50246103040,
+   "mcap": 51555065856,
    "mcap_rank": 228
   },
   {
-   "ticker": "EW",
-   "yahoo": "EW",
+   "ticker": "P",
+   "yahoo": "P",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Edwards Lifesciences",
-   "sector": "Health Care",
+   "name": "Everpure",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 49080459264,
+   "mcap": 51480281088,
    "mcap_rank": 229
+  },
+  {
+   "ticker": "O",
+   "yahoo": "O",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Realty Income",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 51266093056,
+   "mcap_rank": 230
   },
   {
    "ticker": "HONA",
@@ -2758,55 +2782,43 @@
    "name": "Honeywell Aerospace",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 49010401280,
-   "mcap_rank": 230
-  },
-  {
-   "ticker": "WAB",
-   "yahoo": "WAB",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Wabtec",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 48568627200,
+   "mcap": 50059513856,
    "mcap_rank": 231
   },
   {
-   "ticker": "STT",
-   "yahoo": "STT",
+   "ticker": "BDX",
+   "yahoo": "BDX",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "State Street Corporation",
-   "sector": "Financials",
+   "name": "Becton Dickinson",
+   "sector": "Health Care",
    "currency": "USD",
-   "mcap": 48336523264,
+   "mcap": 50051076096,
    "mcap_rank": 232
   },
   {
-   "ticker": "COIN",
-   "yahoo": "COIN",
+   "ticker": "EBAY",
+   "yahoo": "EBAY",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Coinbase",
-   "sector": "Financials",
+   "name": "eBay Inc.",
+   "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 48282157056,
+   "mcap": 49924550656,
    "mcap_rank": 233
   },
   {
-   "ticker": "F",
-   "yahoo": "F",
+   "ticker": "ADSK",
+   "yahoo": "ADSK",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Ford Motor Company",
-   "sector": "Consumer Discretionary",
+   "name": "Autodesk",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 48249909248,
+   "mcap": 49188151296,
    "mcap_rank": 234
   },
   {
@@ -2818,32 +2830,56 @@
    "name": "Entergy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 48212525056,
+   "mcap": 49115525120,
    "mcap_rank": 235
   },
   {
-   "ticker": "BDX",
-   "yahoo": "BDX",
+   "ticker": "EW",
+   "yahoo": "EW",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Becton Dickinson",
+   "name": "Edwards Lifesciences",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 48157990912,
+   "mcap": 49115041792,
    "mcap_rank": 236
   },
   {
-   "ticker": "EBAY",
-   "yahoo": "EBAY",
+   "ticker": "F",
+   "yahoo": "F",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "eBay Inc.",
+   "name": "Ford Motor Company",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 47347998720,
+   "mcap": 48529039360,
    "mcap_rank": 237
+  },
+  {
+   "ticker": "WAB",
+   "yahoo": "WAB",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Wabtec",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 48212221952,
+   "mcap_rank": 238
+  },
+  {
+   "ticker": "ROK",
+   "yahoo": "ROK",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Rockwell Automation",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 48135999488,
+   "mcap_rank": 239
   },
   {
    "ticker": "A",
@@ -2854,92 +2890,32 @@
    "name": "Agilent Technologies",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 47308226560,
-   "mcap_rank": 238
-  },
-  {
-   "ticker": "VST",
-   "yahoo": "VST",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Vistra Corp.",
-   "sector": "Utilities",
-   "currency": "USD",
-   "mcap": 46995640320,
-   "mcap_rank": 239
-  },
-  {
-   "ticker": "P",
-   "yahoo": "P",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Everpure",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 46698467328,
+   "mcap": 48086450176,
    "mcap_rank": 240
   },
   {
-   "ticker": "HUM",
-   "yahoo": "HUM",
+   "ticker": "STT",
+   "yahoo": "STT",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Humana",
-   "sector": "Health Care",
+   "name": "State Street Corporation",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 46634385408,
+   "mcap": 48061820928,
    "mcap_rank": 241
   },
   {
-   "ticker": "VMRK",
-   "yahoo": "VMRK",
+   "ticker": "VEEV",
+   "yahoo": "VEEV",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Vivmark Residential",
-   "sector": "Real Estate",
+   "name": "Veeva Systems",
+   "sector": "Health Care",
    "currency": "USD",
-   "mcap": 46264254464,
+   "mcap": 47946067968,
    "mcap_rank": 242
-  },
-  {
-   "ticker": "FITB",
-   "yahoo": "FITB",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Fifth Third Bancorp",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 46133620736,
-   "mcap_rank": 243
-  },
-  {
-   "ticker": "CARR",
-   "yahoo": "CARR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Carrier Global",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 45436796928,
-   "mcap_rank": 244
-  },
-  {
-   "ticker": "PYPL",
-   "yahoo": "PYPL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "PayPal",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 45168332800,
-   "mcap_rank": 245
   },
   {
    "ticker": "AZO",
@@ -2950,19 +2926,55 @@
    "name": "AutoZone",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 45155500032,
-   "mcap_rank": 246
+   "mcap": 47546195968,
+   "mcap_rank": 243
   },
   {
-   "ticker": "WDAY",
-   "yahoo": "WDAY",
+   "ticker": "PYPL",
+   "yahoo": "PYPL",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Workday, Inc.",
+   "name": "PayPal",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 47503740928,
+   "mcap_rank": 244
+  },
+  {
+   "ticker": "COIN",
+   "yahoo": "COIN",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Coinbase",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 47329705984,
+   "mcap_rank": 245
+  },
+  {
+   "ticker": "VMRK",
+   "yahoo": "VMRK",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Vivmark Residential",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 47324332032,
+   "mcap_rank": 246
+  },
+  {
+   "ticker": "NTAP",
+   "yahoo": "NTAP",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "NetApp",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 44859740160,
+   "mcap": 46580764672,
    "mcap_rank": 247
   },
   {
@@ -2974,8 +2986,20 @@
    "name": "Block, Inc.",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 44657094656,
+   "mcap": 46405406720,
    "mcap_rank": 248
+  },
+  {
+   "ticker": "SKYD",
+   "yahoo": "SKYD",
+   "market": "S&P500",
+   "added_at": "2026-10-12",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Skydance Corporation",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 46186348544,
+   "mcap_rank": 249
   },
   {
    "ticker": "XEL",
@@ -2986,104 +3010,56 @@
    "name": "Xcel Energy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 44598890496,
-   "mcap_rank": 249
-  },
-  {
-   "ticker": "NTAP",
-   "yahoo": "NTAP",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "NetApp",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 44443729920,
+   "mcap": 46082396160,
    "mcap_rank": 250
   },
   {
-   "ticker": "ADSK",
-   "yahoo": "ADSK",
+   "ticker": "FITB",
+   "yahoo": "FITB",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Autodesk",
-   "sector": "Information Technology",
+   "name": "Fifth Third Bancorp",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 44308000768,
+   "mcap": 45925036032,
    "mcap_rank": 251
   },
   {
-   "ticker": "VEEV",
-   "yahoo": "VEEV",
+   "ticker": "CARR",
+   "yahoo": "CARR",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Veeva Systems",
-   "sector": "Health Care",
+   "name": "Carrier Global",
+   "sector": "Industrials",
    "currency": "USD",
-   "mcap": 44254543872,
+   "mcap": 45799501824,
    "mcap_rank": 252
   },
   {
-   "ticker": "MCHP",
-   "yahoo": "MCHP",
+   "ticker": "WDAY",
+   "yahoo": "WDAY",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Microchip Technology",
+   "name": "Workday, Inc.",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 44157468672,
+   "mcap": 44968189952,
    "mcap_rank": 253
   },
   {
-   "ticker": "LHX",
-   "yahoo": "LHX",
+   "ticker": "TWLO",
+   "yahoo": "TWLO",
    "market": "S&P500",
-   "added_at": "2026-09-28",
+   "added_at": "2026-10-12",
    "added_by": "S&P500 시총 상위 400",
-   "name": "L3Harris",
-   "sector": "Industrials",
+   "name": "Twilio",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 44058382336,
+   "mcap": 44455419904,
    "mcap_rank": 254
-  },
-  {
-   "ticker": "AMP",
-   "yahoo": "AMP",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ameriprise Financial",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 43363659776,
-   "mcap_rank": 255
-  },
-  {
-   "ticker": "FERG",
-   "yahoo": "FERG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ferguson Enterprises",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 43203796992,
-   "mcap_rank": 256
-  },
-  {
-   "ticker": "VTR",
-   "yahoo": "VTR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ventas",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 43092627456,
-   "mcap_rank": 257
   },
   {
    "ticker": "FLEX",
@@ -3094,20 +3070,44 @@
    "name": "Flex Ltd.",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 43076079616,
-   "mcap_rank": 258
+   "mcap": 44272447488,
+   "mcap_rank": 255
   },
   {
-   "ticker": "IQV",
-   "yahoo": "IQV",
+   "ticker": "AMP",
+   "yahoo": "AMP",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "IQVIA",
-   "sector": "Health Care",
+   "name": "Ameriprise Financial",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 42501365760,
-   "mcap_rank": 259
+   "mcap": 44211658752,
+   "mcap_rank": 256
+  },
+  {
+   "ticker": "LHX",
+   "yahoo": "LHX",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "L3Harris",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 44127281152,
+   "mcap_rank": 257
+  },
+  {
+   "ticker": "KDP",
+   "yahoo": "KDP",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Keurig Dr Pepper",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 43219832832,
+   "mcap_rank": 258
   },
   {
    "ticker": "EXC",
@@ -3118,7 +3118,19 @@
    "name": "Exelon",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 41962242048,
+   "mcap": 43023405056,
+   "mcap_rank": 259
+  },
+  {
+   "ticker": "IQV",
+   "yahoo": "IQV",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "IQVIA",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 42776248320,
    "mcap_rank": 260
   },
   {
@@ -3130,20 +3142,32 @@
    "name": "Waters Corporation",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 41749606400,
+   "mcap": 42590076928,
    "mcap_rank": 261
   },
   {
-   "ticker": "KDP",
-   "yahoo": "KDP",
+   "ticker": "FERG",
+   "yahoo": "FERG",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Keurig Dr Pepper",
-   "sector": "Consumer Staples",
+   "name": "Ferguson Enterprises",
+   "sector": "Industrials",
    "currency": "USD",
-   "mcap": 41328287744,
+   "mcap": 42567335936,
    "mcap_rank": 262
+  },
+  {
+   "ticker": "VTR",
+   "yahoo": "VTR",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Ventas",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 42082119680,
+   "mcap_rank": 263
   },
   {
    "ticker": "ILMN",
@@ -3154,68 +3178,8 @@
    "name": "Illumina, Inc.",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 41229041664,
-   "mcap_rank": 263
-  },
-  {
-   "ticker": "CMG",
-   "yahoo": "CMG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Chipotle Mexican Grill",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 40948928512,
+   "mcap": 42003673088,
    "mcap_rank": 264
-  },
-  {
-   "ticker": "IDXX",
-   "yahoo": "IDXX",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Idexx Laboratories",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 40839344128,
-   "mcap_rank": 265
-  },
-  {
-   "ticker": "LYV",
-   "yahoo": "LYV",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Live Nation Entertainment",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 39316578304,
-   "mcap_rank": 266
-  },
-  {
-   "ticker": "AIG",
-   "yahoo": "AIG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "American International Group",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 39180386304,
-   "mcap_rank": 267
-  },
-  {
-   "ticker": "ARES",
-   "yahoo": "ARES",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ares Management",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 39000260608,
-   "mcap_rank": 268
   },
   {
    "ticker": "MSCI",
@@ -3226,56 +3190,56 @@
    "name": "MSCI",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 38963564544,
-   "mcap_rank": 269
+   "mcap": 41084223488,
+   "mcap_rank": 265
   },
   {
-   "ticker": "PRU",
-   "yahoo": "PRU",
+   "ticker": "MCHP",
+   "yahoo": "MCHP",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Prudential Financial",
+   "name": "Microchip Technology",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 41024307200,
+   "mcap_rank": 266
+  },
+  {
+   "ticker": "IDXX",
+   "yahoo": "IDXX",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Idexx Laboratories",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 40808620032,
+   "mcap_rank": 267
+  },
+  {
+   "ticker": "AIG",
+   "yahoo": "AIG",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "American International Group",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 38847000576,
-   "mcap_rank": 270
+   "mcap": 40283693056,
+   "mcap_rank": 268
   },
   {
-   "ticker": "ADM",
-   "yahoo": "ADM",
+   "ticker": "CMG",
+   "yahoo": "CMG",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Archer Daniels Midland",
-   "sector": "Consumer Staples",
+   "name": "Chipotle Mexican Grill",
+   "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 38773645312,
-   "mcap_rank": 271
-  },
-  {
-   "ticker": "ED",
-   "yahoo": "ED",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Consolidated Edison",
-   "sector": "Utilities",
-   "currency": "USD",
-   "mcap": 38236581888,
-   "mcap_rank": 272
-  },
-  {
-   "ticker": "SYY",
-   "yahoo": "SYY",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Sysco",
-   "sector": "Consumer Staples",
-   "currency": "USD",
-   "mcap": 38118412288,
-   "mcap_rank": 273
+   "mcap": 39974555648,
+   "mcap_rank": 269
   },
   {
    "ticker": "TTWO",
@@ -3286,44 +3250,20 @@
    "name": "Take-Two Interactive",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 37906546688,
-   "mcap_rank": 274
+   "mcap": 39909105664,
+   "mcap_rank": 270
   },
   {
-   "ticker": "DHI",
-   "yahoo": "DHI",
+   "ticker": "LYV",
+   "yahoo": "LYV",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "D. R. Horton",
-   "sector": "Consumer Discretionary",
+   "name": "Live Nation Entertainment",
+   "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 37759672320,
-   "mcap_rank": 275
-  },
-  {
-   "ticker": "ODFL",
-   "yahoo": "ODFL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Old Dominion",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 37534113792,
-   "mcap_rank": 276
-  },
-  {
-   "ticker": "CBRE",
-   "yahoo": "CBRE",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "CBRE Group",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 37523169280,
-   "mcap_rank": 277
+   "mcap": 39679991808,
+   "mcap_rank": 271
   },
   {
    "ticker": "YUM",
@@ -3334,8 +3274,8 @@
    "name": "Yum! Brands",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 37147295744,
-   "mcap_rank": 278
+   "mcap": 39521538048,
+   "mcap_rank": 272
   },
   {
    "ticker": "PCG",
@@ -3346,20 +3286,104 @@
    "name": "PG&E Corporation",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 36989161472,
-   "mcap_rank": 279
+   "mcap": 39421079552,
+   "mcap_rank": 273
   },
   {
-   "ticker": "UAL",
-   "yahoo": "UAL",
+   "ticker": "ED",
+   "yahoo": "ED",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "United Airlines Holdings",
+   "name": "Consolidated Edison",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 39238819840,
+   "mcap_rank": 274
+  },
+  {
+   "ticker": "PRU",
+   "yahoo": "PRU",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Prudential Financial",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 39016050688,
+   "mcap_rank": 275
+  },
+  {
+   "ticker": "ARES",
+   "yahoo": "ARES",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Ares Management",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 38890774528,
+   "mcap_rank": 276
+  },
+  {
+   "ticker": "ADM",
+   "yahoo": "ADM",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Archer Daniels Midland",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 38503751680,
+   "mcap_rank": 277
+  },
+  {
+   "ticker": "SYY",
+   "yahoo": "SYY",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Sysco",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 38438154240,
+   "mcap_rank": 278
+  },
+  {
+   "ticker": "CBRE",
+   "yahoo": "CBRE",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "CBRE Group",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 37876449280,
+   "mcap_rank": 279
+  },
+  {
+   "ticker": "ODFL",
+   "yahoo": "ODFL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Old Dominion",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 36518920192,
+   "mcap": 37843988480,
    "mcap_rank": 280
+  },
+  {
+   "ticker": "DHI",
+   "yahoo": "DHI",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "D. R. Horton",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 37726109696,
+   "mcap_rank": 281
   },
   {
    "ticker": "PAYX",
@@ -3370,19 +3394,7 @@
    "name": "Paychex",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 35220709376,
-   "mcap_rank": 281
-  },
-  {
-   "ticker": "ROP",
-   "yahoo": "ROP",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Roper Technologies",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 35042557952,
+   "mcap": 37014851584,
    "mcap_rank": 282
   },
   {
@@ -3394,56 +3406,8 @@
    "name": "Kroger",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 34862448640,
+   "mcap": 36403884032,
    "mcap_rank": 283
-  },
-  {
-   "ticker": "EME",
-   "yahoo": "EME",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Emcor",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 34697289728,
-   "mcap_rank": 284
-  },
-  {
-   "ticker": "CCL",
-   "yahoo": "CCL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Carnival Corporation",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 34637160448,
-   "mcap_rank": 285
-  },
-  {
-   "ticker": "MLM",
-   "yahoo": "MLM",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Martin Marietta Materials",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 34250518528,
-   "mcap_rank": 286
-  },
-  {
-   "ticker": "HIG",
-   "yahoo": "HIG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Hartford (The)",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 34143416320,
-   "mcap_rank": 287
   },
   {
    "ticker": "PEG",
@@ -3454,32 +3418,20 @@
    "name": "Public Service Enterprise Group",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 33927450624,
-   "mcap_rank": 288
+   "mcap": 36025798656,
+   "mcap_rank": 284
   },
   {
-   "ticker": "IRM",
-   "yahoo": "IRM",
+   "ticker": "ROP",
+   "yahoo": "ROP",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Iron Mountain",
-   "sector": "Real Estate",
+   "name": "Roper Technologies",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 33756522496,
-   "mcap_rank": 289
-  },
-  {
-   "ticker": "AXON",
-   "yahoo": "AXON",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Axon Enterprise",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 33579487232,
-   "mcap_rank": 290
+   "mcap": 36008816640,
+   "mcap_rank": 285
   },
   {
    "ticker": "EL",
@@ -3490,8 +3442,80 @@
    "name": "Estée Lauder Companies (The)",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 33322827776,
+   "mcap": 35525750784,
+   "mcap_rank": 286
+  },
+  {
+   "ticker": "CCL",
+   "yahoo": "CCL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Carnival Corporation",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 35430477824,
+   "mcap_rank": 287
+  },
+  {
+   "ticker": "HIG",
+   "yahoo": "HIG",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Hartford (The)",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 34972282880,
+   "mcap_rank": 288
+  },
+  {
+   "ticker": "UAL",
+   "yahoo": "UAL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "United Airlines Holdings",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 34878148608,
+   "mcap_rank": 289
+  },
+  {
+   "ticker": "EME",
+   "yahoo": "EME",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Emcor",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 34822561792,
+   "mcap_rank": 290
+  },
+  {
+   "ticker": "CCI",
+   "yahoo": "CCI",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Crown Castle",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 34802679808,
    "mcap_rank": 291
+  },
+  {
+   "ticker": "AXON",
+   "yahoo": "AXON",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Axon Enterprise",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 34354491392,
+   "mcap_rank": 292
   },
   {
    "ticker": "STLD",
@@ -3502,44 +3526,20 @@
    "name": "Steel Dynamics",
    "sector": "Materials",
    "currency": "USD",
-   "mcap": 33250684928,
-   "mcap_rank": 292
-  },
-  {
-   "ticker": "TKO",
-   "yahoo": "TKO",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "TKO Group Holdings",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 33231976448,
+   "mcap": 34166552576,
    "mcap_rank": 293
   },
   {
-   "ticker": "WEC",
-   "yahoo": "WEC",
+   "ticker": "IRM",
+   "yahoo": "IRM",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "WEC Energy Group",
-   "sector": "Utilities",
+   "name": "Iron Mountain",
+   "sector": "Real Estate",
    "currency": "USD",
-   "mcap": 33103036416,
+   "mcap": 34089949184,
    "mcap_rank": 294
-  },
-  {
-   "ticker": "ON",
-   "yahoo": "ON",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "ON Semiconductor",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 33049257984,
-   "mcap_rank": 295
   },
   {
    "ticker": "KVUE",
@@ -3550,8 +3550,44 @@
    "name": "Kenvue",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 33037305856,
+   "mcap": 33997692928,
+   "mcap_rank": 295
+  },
+  {
+   "ticker": "MLM",
+   "yahoo": "MLM",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Martin Marietta Materials",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 33972123648,
    "mcap_rank": 296
+  },
+  {
+   "ticker": "WEC",
+   "yahoo": "WEC",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "WEC Energy Group",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 33803614208,
+   "mcap_rank": 297
+  },
+  {
+   "ticker": "TKO",
+   "yahoo": "TKO",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "TKO Group Holdings",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 33691899904,
+   "mcap_rank": 298
   },
   {
    "ticker": "BIIB",
@@ -3562,104 +3598,8 @@
    "name": "Biogen",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 32488151040,
-   "mcap_rank": 297
-  },
-  {
-   "ticker": "DXCM",
-   "yahoo": "DXCM",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Dexcom",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 32211515392,
-   "mcap_rank": 298
-  },
-  {
-   "ticker": "HSY",
-   "yahoo": "HSY",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Hershey Company (The)",
-   "sector": "Consumer Staples",
-   "currency": "USD",
-   "mcap": 32186281984,
+   "mcap": 33349556224,
    "mcap_rank": 299
-  },
-  {
-   "ticker": "ACGL",
-   "yahoo": "ACGL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Arch Capital Group",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 31939045376,
-   "mcap_rank": 300
-  },
-  {
-   "ticker": "JBL",
-   "yahoo": "JBL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Jabil",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 31898236928,
-   "mcap_rank": 301
-  },
-  {
-   "ticker": "EXPE",
-   "yahoo": "EXPE",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Expedia Group",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 31805851648,
-   "mcap_rank": 302
-  },
-  {
-   "ticker": "MTB",
-   "yahoo": "MTB",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "M&T Bank",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 31647377408,
-   "mcap_rank": 303
-  },
-  {
-   "ticker": "VMC",
-   "yahoo": "VMC",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Vulcan Materials Company",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 31495407616,
-   "mcap_rank": 304
-  },
-  {
-   "ticker": "KMB",
-   "yahoo": "KMB",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Kimberly-Clark",
-   "sector": "Consumer Staples",
-   "currency": "USD",
-   "mcap": 31382159360,
-   "mcap_rank": 305
   },
   {
    "ticker": "EQT",
@@ -3670,44 +3610,56 @@
    "name": "EQT Corporation",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 31382138880,
-   "mcap_rank": 306
+   "mcap": 33046013952,
+   "mcap_rank": 300
   },
   {
-   "ticker": "NTRS",
-   "yahoo": "NTRS",
+   "ticker": "EXPE",
+   "yahoo": "EXPE",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Northern Trust",
+   "name": "Expedia Group",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 32912455680,
+   "mcap_rank": 301
+  },
+  {
+   "ticker": "HSY",
+   "yahoo": "HSY",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Hershey Company (The)",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 32698644480,
+   "mcap_rank": 302
+  },
+  {
+   "ticker": "ACGL",
+   "yahoo": "ACGL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Arch Capital Group",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 31358597120,
-   "mcap_rank": 307
+   "mcap": 32611266560,
+   "mcap_rank": 303
   },
   {
-   "ticker": "CNC",
-   "yahoo": "CNC",
+   "ticker": "KMB",
+   "yahoo": "KMB",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Centene Corporation",
-   "sector": "Health Care",
+   "name": "Kimberly-Clark",
+   "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 31116746752,
-   "mcap_rank": 308
-  },
-  {
-   "ticker": "HBAN",
-   "yahoo": "HBAN",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Huntington Bancshares",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 30972958720,
-   "mcap_rank": 309
+   "mcap": 32456386560,
+   "mcap_rank": 304
   },
   {
    "ticker": "RMD",
@@ -3718,19 +3670,79 @@
    "name": "ResMed|",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 30784524288,
-   "mcap_rank": 310
+   "mcap": 32354060288,
+   "mcap_rank": 305
   },
   {
-   "ticker": "RJF",
-   "yahoo": "RJF",
+   "ticker": "CNC",
+   "yahoo": "CNC",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Raymond James Financial",
+   "name": "Centene Corporation",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 32287514624,
+   "mcap_rank": 306
+  },
+  {
+   "ticker": "JBL",
+   "yahoo": "JBL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Jabil",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 32094189568,
+   "mcap_rank": 307
+  },
+  {
+   "ticker": "CBOE",
+   "yahoo": "CBOE",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Cboe Global Markets",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 30392141824,
+   "mcap": 31763738624,
+   "mcap_rank": 308
+  },
+  {
+   "ticker": "DXCM",
+   "yahoo": "DXCM",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Dexcom",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 31739813888,
+   "mcap_rank": 309
+  },
+  {
+   "ticker": "VMC",
+   "yahoo": "VMC",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Vulcan Materials Company",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 31692367872,
+   "mcap_rank": 310
+  },
+  {
+   "ticker": "MTB",
+   "yahoo": "MTB",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "M&T Bank",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 31409092608,
    "mcap_rank": 311
   },
   {
@@ -3742,68 +3754,20 @@
    "name": "Mettler Toledo",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 29778132992,
+   "mcap": 31056467968,
    "mcap_rank": 312
   },
   {
-   "ticker": "IR",
-   "yahoo": "IR",
+   "ticker": "HBAN",
+   "yahoo": "HBAN",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Ingersoll Rand",
-   "sector": "Industrials",
+   "name": "Huntington Bancshares",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 29515116544,
+   "mcap": 30952755200,
    "mcap_rank": 313
-  },
-  {
-   "ticker": "EXR",
-   "yahoo": "EXR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Extra Space Storage",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 29408614400,
-   "mcap_rank": 314
-  },
-  {
-   "ticker": "GEHC",
-   "yahoo": "GEHC",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "GE HealthCare",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 29038909440,
-   "mcap_rank": 315
-  },
-  {
-   "ticker": "CCI",
-   "yahoo": "CCI",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Crown Castle",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 29034280960,
-   "mcap_rank": 316
-  },
-  {
-   "ticker": "HPQ",
-   "yahoo": "HPQ",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "HP Inc.",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 28965525504,
-   "mcap_rank": 317
   },
   {
    "ticker": "ZTS",
@@ -3814,32 +3778,20 @@
    "name": "Zoetis",
    "sector": "Health Care",
    "currency": "USD",
-   "mcap": 28797554688,
-   "mcap_rank": 318
+   "mcap": 30913257472,
+   "mcap_rank": 314
   },
   {
-   "ticker": "SMCI",
-   "yahoo": "SMCI",
+   "ticker": "NTRS",
+   "yahoo": "NTRS",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Supermicro",
-   "sector": "Information Technology",
+   "name": "Northern Trust",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 28702816256,
-   "mcap_rank": 319
-  },
-  {
-   "ticker": "TDY",
-   "yahoo": "TDY",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Teledyne Technologies",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 28609329152,
-   "mcap_rank": 320
+   "mcap": 30774970368,
+   "mcap_rank": 315
   },
   {
    "ticker": "RDDT",
@@ -3850,56 +3802,68 @@
    "name": "Reddit",
    "sector": "Communication Services",
    "currency": "USD",
-   "mcap": 28447748096,
-   "mcap_rank": 321
+   "mcap": 30766127104,
+   "mcap_rank": 316
   },
   {
-   "ticker": "CBOE",
-   "yahoo": "CBOE",
+   "ticker": "IR",
+   "yahoo": "IR",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Cboe Global Markets",
+   "name": "Ingersoll Rand",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 30554953728,
+   "mcap_rank": 317
+  },
+  {
+   "ticker": "RJF",
+   "yahoo": "RJF",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Raymond James Financial",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 28327958528,
-   "mcap_rank": 322
+   "mcap": 30424799232,
+   "mcap_rank": 318
   },
   {
-   "ticker": "AEE",
-   "yahoo": "AEE",
+   "ticker": "ON",
+   "yahoo": "ON",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Ameren",
-   "sector": "Utilities",
-   "currency": "USD",
-   "mcap": 27667716096,
-   "mcap_rank": 323
-  },
-  {
-   "ticker": "Q",
-   "yahoo": "Q",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Qnity Electronics",
+   "name": "ON Semiconductor",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 27506739200,
-   "mcap_rank": 324
+   "mcap": 30183872512,
+   "mcap_rank": 319
   },
   {
-   "ticker": "ECHO",
-   "yahoo": "ECHO",
+   "ticker": "EXR",
+   "yahoo": "EXR",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "EchoStar",
-   "sector": "Communication Services",
+   "name": "Extra Space Storage",
+   "sector": "Real Estate",
    "currency": "USD",
-   "mcap": 27409393664,
-   "mcap_rank": 325
+   "mcap": 29717596160,
+   "mcap_rank": 320
+  },
+  {
+   "ticker": "GEHC",
+   "yahoo": "GEHC",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "GE HealthCare",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 29693851648,
+   "mcap_rank": 321
   },
   {
    "ticker": "WSM",
@@ -3910,92 +3874,32 @@
    "name": "Williams-Sonoma, Inc.",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 27360102400,
-   "mcap_rank": 326
+   "mcap": 28476649472,
+   "mcap_rank": 322
   },
   {
-   "ticker": "CFG",
-   "yahoo": "CFG",
+   "ticker": "TDY",
+   "yahoo": "TDY",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Citizens Financial Group",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 27094304768,
-   "mcap_rank": 327
-  },
-  {
-   "ticker": "WTW",
-   "yahoo": "WTW",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Willis Towers Watson",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 26803767296,
-   "mcap_rank": 328
-  },
-  {
-   "ticker": "ATO",
-   "yahoo": "ATO",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Atmos Energy",
-   "sector": "Utilities",
-   "currency": "USD",
-   "mcap": 26559932416,
-   "mcap_rank": 329
-  },
-  {
-   "ticker": "HAL",
-   "yahoo": "HAL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Halliburton",
-   "sector": "Energy",
-   "currency": "USD",
-   "mcap": 26535202816,
-   "mcap_rank": 330
-  },
-  {
-   "ticker": "CTSH",
-   "yahoo": "CTSH",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Cognizant",
+   "name": "Teledyne Technologies",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 26355490816,
-   "mcap_rank": 331
+   "mcap": 28446619648,
+   "mcap_rank": 323
   },
   {
-   "ticker": "KHC",
-   "yahoo": "KHC",
+   "ticker": "AEE",
+   "yahoo": "AEE",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Kraft Heinz",
-   "sector": "Consumer Staples",
+   "name": "Ameren",
+   "sector": "Utilities",
    "currency": "USD",
-   "mcap": 26313428992,
-   "mcap_rank": 332
-  },
-  {
-   "ticker": "FOXA",
-   "yahoo": "FOXA",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Fox Corporation (Class A)",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 26261833728,
-   "mcap_rank": 333
+   "mcap": 28290613248,
+   "mcap_rank": 324
   },
   {
    "ticker": "DG",
@@ -4006,8 +3910,44 @@
    "name": "Dollar General",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 26240161792,
-   "mcap_rank": 334
+   "mcap": 28069074944,
+   "mcap_rank": 325
+  },
+  {
+   "ticker": "ECHO",
+   "yahoo": "ECHO",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "EchoStar",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 27580973056,
+   "mcap_rank": 326
+  },
+  {
+   "ticker": "WTW",
+   "yahoo": "WTW",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Willis Towers Watson",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 27514241024,
+   "mcap_rank": 327
+  },
+  {
+   "ticker": "SMCI",
+   "yahoo": "SMCI",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Supermicro",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 27497285632,
+   "mcap_rank": 328
   },
   {
    "ticker": "VRSN",
@@ -4018,56 +3958,32 @@
    "name": "Verisign",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 26064128000,
-   "mcap_rank": 335
+   "mcap": 27458095104,
+   "mcap_rank": 329
   },
   {
-   "ticker": "CPAY",
-   "yahoo": "CPAY",
+   "ticker": "ATO",
+   "yahoo": "ATO",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Corpay",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 25909278720,
-   "mcap_rank": 336
-  },
-  {
-   "ticker": "DTE",
-   "yahoo": "DTE",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "DTE Energy",
+   "name": "Atmos Energy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 25896558592,
-   "mcap_rank": 337
+   "mcap": 27318691840,
+   "mcap_rank": 330
   },
   {
-   "ticker": "AWK",
-   "yahoo": "AWK",
+   "ticker": "HPQ",
+   "yahoo": "HPQ",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "American Water Works",
-   "sector": "Utilities",
+   "name": "HP Inc.",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 25884450816,
-   "mcap_rank": 338
-  },
-  {
-   "ticker": "DGX",
-   "yahoo": "DGX",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Quest Diagnostics",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 25753415680,
-   "mcap_rank": 339
+   "mcap": 27234088960,
+   "mcap_rank": 331
   },
   {
    "ticker": "FFIV",
@@ -4078,20 +3994,32 @@
    "name": "F5, Inc.",
    "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 25711007744,
-   "mcap_rank": 340
+   "mcap": 27171420160,
+   "mcap_rank": 332
   },
   {
-   "ticker": "WST",
-   "yahoo": "WST",
+   "ticker": "HAL",
+   "yahoo": "HAL",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "West Pharmaceutical Services",
-   "sector": "Health Care",
+   "name": "Halliburton",
+   "sector": "Energy",
    "currency": "USD",
-   "mcap": 25685745664,
-   "mcap_rank": 341
+   "mcap": 27118393344,
+   "mcap_rank": 333
+  },
+  {
+   "ticker": "CFG",
+   "yahoo": "CFG",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Citizens Financial Group",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 26774208512,
+   "mcap_rank": 334
   },
   {
    "ticker": "WRB",
@@ -4102,44 +4030,80 @@
    "name": "W. R. Berkley Corporation",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 25607276544,
-   "mcap_rank": 342
+   "mcap": 26694971392,
+   "mcap_rank": 335
   },
   {
-   "ticker": "DOV",
-   "yahoo": "DOV",
+   "ticker": "CTSH",
+   "yahoo": "CTSH",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Dover Corporation",
-   "sector": "Industrials",
+   "name": "Cognizant",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 25547491328,
-   "mcap_rank": 343
+   "mcap": 26666299392,
+   "mcap_rank": 336
   },
   {
-   "ticker": "CPRT",
-   "yahoo": "CPRT",
+   "ticker": "Q",
+   "yahoo": "Q",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Copart",
-   "sector": "Industrials",
+   "name": "Qnity Electronics",
+   "sector": "Information Technology",
    "currency": "USD",
-   "mcap": 25214713856,
-   "mcap_rank": 344
+   "mcap": 26485800960,
+   "mcap_rank": 337
   },
   {
-   "ticker": "HUBB",
-   "yahoo": "HUBB",
+   "ticker": "KHC",
+   "yahoo": "KHC",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Hubbell Incorporated",
-   "sector": "Industrials",
+   "name": "Kraft Heinz",
+   "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 25122945024,
-   "mcap_rank": 345
+   "mcap": 26408294400,
+   "mcap_rank": 338
+  },
+  {
+   "ticker": "DTE",
+   "yahoo": "DTE",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "DTE Energy",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 26406375424,
+   "mcap_rank": 339
+  },
+  {
+   "ticker": "FOXA",
+   "yahoo": "FOXA",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Fox Corporation (Class A)",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 26316650496,
+   "mcap_rank": 340
+  },
+  {
+   "ticker": "CPAY",
+   "yahoo": "CPAY",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Corpay",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 26127269888,
+   "mcap_rank": 341
   },
   {
    "ticker": "FE",
@@ -4150,68 +4114,8 @@
    "name": "FirstEnergy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 25078255616,
-   "mcap_rank": 346
-  },
-  {
-   "ticker": "EXPD",
-   "yahoo": "EXPD",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Expeditors International",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 25019295744,
-   "mcap_rank": 347
-  },
-  {
-   "ticker": "LH",
-   "yahoo": "LH",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Labcorp",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 25018537984,
-   "mcap_rank": 348
-  },
-  {
-   "ticker": "VICI",
-   "yahoo": "VICI",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Vici Properties",
-   "sector": "Real Estate",
-   "currency": "USD",
-   "mcap": 24939405312,
-   "mcap_rank": 349
-  },
-  {
-   "ticker": "CNP",
-   "yahoo": "CNP",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "CenterPoint Energy",
-   "sector": "Utilities",
-   "currency": "USD",
-   "mcap": 24893038592,
-   "mcap_rank": 350
-  },
-  {
-   "ticker": "CINF",
-   "yahoo": "CINF",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Cincinnati Financial",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 24855769088,
-   "mcap_rank": 351
+   "mcap": 26038796288,
+   "mcap_rank": 342
   },
   {
    "ticker": "PPL",
@@ -4222,7 +4126,115 @@
    "name": "PPL Corporation",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 24683470848,
+   "mcap": 25774659584,
+   "mcap_rank": 343
+  },
+  {
+   "ticker": "WST",
+   "yahoo": "WST",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "West Pharmaceutical Services",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 25757528064,
+   "mcap_rank": 344
+  },
+  {
+   "ticker": "AWK",
+   "yahoo": "AWK",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "American Water Works",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 25612193792,
+   "mcap_rank": 345
+  },
+  {
+   "ticker": "DGX",
+   "yahoo": "DGX",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Quest Diagnostics",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 25492934656,
+   "mcap_rank": 346
+  },
+  {
+   "ticker": "DOV",
+   "yahoo": "DOV",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Dover Corporation",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 25431666688,
+   "mcap_rank": 347
+  },
+  {
+   "ticker": "CNP",
+   "yahoo": "CNP",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "CenterPoint Energy",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 25426599936,
+   "mcap_rank": 348
+  },
+  {
+   "ticker": "LH",
+   "yahoo": "LH",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Labcorp",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 25315364864,
+   "mcap_rank": 349
+  },
+  {
+   "ticker": "CPRT",
+   "yahoo": "CPRT",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Copart",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 25307346944,
+   "mcap_rank": 350
+  },
+  {
+   "ticker": "VICI",
+   "yahoo": "VICI",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Vici Properties",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 25192652800,
+   "mcap_rank": 351
+  },
+  {
+   "ticker": "EXPD",
+   "yahoo": "EXPD",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Expeditors International",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 25119389696,
    "mcap_rank": 352
   },
   {
@@ -4234,68 +4246,32 @@
    "name": "Otis Worldwide",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 24381872128,
+   "mcap": 25105141760,
    "mcap_rank": 353
   },
   {
-   "ticker": "ES",
-   "yahoo": "ES",
+   "ticker": "CINF",
+   "yahoo": "CINF",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Eversource Energy",
-   "sector": "Utilities",
+   "name": "Cincinnati Financial",
+   "sector": "Financials",
    "currency": "USD",
-   "mcap": 24295522304,
+   "mcap": 25076779008,
    "mcap_rank": 354
   },
   {
-   "ticker": "PFG",
-   "yahoo": "PFG",
+   "ticker": "HUBB",
+   "yahoo": "HUBB",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Principal Financial Group",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 23971155968,
-   "mcap_rank": 355
-  },
-  {
-   "ticker": "XYL",
-   "yahoo": "XYL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Xylem Inc.",
+   "name": "Hubbell Incorporated",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 23766622208,
-   "mcap_rank": 356
-  },
-  {
-   "ticker": "FISV",
-   "yahoo": "FISV",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Fiserv",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 23589171200,
-   "mcap_rank": 357
-  },
-  {
-   "ticker": "LVS",
-   "yahoo": "LVS",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Las Vegas Sands",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 23466213376,
-   "mcap_rank": 358
+   "mcap": 25048449024,
+   "mcap_rank": 355
   },
   {
    "ticker": "TPL",
@@ -4306,56 +4282,20 @@
    "name": "Texas Pacific Land Corporation",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 23464497152,
-   "mcap_rank": 359
+   "mcap": 24898480128,
+   "mcap_rank": 356
   },
   {
-   "ticker": "TPR",
-   "yahoo": "TPR",
+   "ticker": "ES",
+   "yahoo": "ES",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Tapestry, Inc.",
-   "sector": "Consumer Discretionary",
+   "name": "Eversource Energy",
+   "sector": "Utilities",
    "currency": "USD",
-   "mcap": 23439183872,
-   "mcap_rank": 360
-  },
-  {
-   "ticker": "PPG",
-   "yahoo": "PPG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "PPG Industries",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 23374845952,
-   "mcap_rank": 361
-  },
-  {
-   "ticker": "INCY",
-   "yahoo": "INCY",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Incyte",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 23371051008,
-   "mcap_rank": 362
-  },
-  {
-   "ticker": "SYF",
-   "yahoo": "SYF",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Synchrony Financial",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 23351865344,
-   "mcap_rank": 363
+   "mcap": 24758833152,
+   "mcap_rank": 357
   },
   {
    "ticker": "ULTA",
@@ -4366,32 +4306,32 @@
    "name": "Ulta Beauty",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 23246809088,
-   "mcap_rank": 364
+   "mcap": 24387579904,
+   "mcap_rank": 358
   },
   {
-   "ticker": "RF",
-   "yahoo": "RF",
+   "ticker": "FISV",
+   "yahoo": "FISV",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Regions Financial Corporation",
+   "name": "Fiserv",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 23087290368,
-   "mcap_rank": 365
+   "mcap": 24264515584,
+   "mcap_rank": 359
   },
   {
-   "ticker": "VLTO",
-   "yahoo": "VLTO",
+   "ticker": "XYL",
+   "yahoo": "XYL",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Veralto",
+   "name": "Xylem Inc.",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 23082354688,
-   "mcap_rank": 366
+   "mcap": 23981430784,
+   "mcap_rank": 360
   },
   {
    "ticker": "CASY",
@@ -4402,20 +4342,44 @@
    "name": "Casey's",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 22832513024,
-   "mcap_rank": 367
+   "mcap": 23886247936,
+   "mcap_rank": 361
   },
   {
-   "ticker": "DRI",
-   "yahoo": "DRI",
+   "ticker": "SYF",
+   "yahoo": "SYF",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Darden Restaurants",
+   "name": "Synchrony Financial",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 23686998016,
+   "mcap_rank": 362
+  },
+  {
+   "ticker": "VLTO",
+   "yahoo": "VLTO",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Veralto",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 23630888960,
+   "mcap_rank": 363
+  },
+  {
+   "ticker": "LVS",
+   "yahoo": "LVS",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Las Vegas Sands",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 22745821184,
-   "mcap_rank": 368
+   "mcap": 23427350528,
+   "mcap_rank": 364
   },
   {
    "ticker": "CHD",
@@ -4426,92 +4390,8 @@
    "name": "Church & Dwight",
    "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 22370699264,
-   "mcap_rank": 369
-  },
-  {
-   "ticker": "TROW",
-   "yahoo": "TROW",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "T. Rowe Price",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 22317105152,
-   "mcap_rank": 370
-  },
-  {
-   "ticker": "SW",
-   "yahoo": "SW",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Smurfit Westrock",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 22313205760,
-   "mcap_rank": 371
-  },
-  {
-   "ticker": "PHM",
-   "yahoo": "PHM",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "PulteGroup",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 22044985344,
-   "mcap_rank": 372
-  },
-  {
-   "ticker": "JBHT",
-   "yahoo": "JBHT",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "J.B. Hunt",
-   "sector": "Industrials",
-   "currency": "USD",
-   "mcap": 21994876928,
-   "mcap_rank": 373
-  },
-  {
-   "ticker": "L",
-   "yahoo": "L",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Loews Corporation",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 21675470848,
-   "mcap_rank": 374
-  },
-  {
-   "ticker": "RL",
-   "yahoo": "RL",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Ralph Lauren Corporation",
-   "sector": "Consumer Discretionary",
-   "currency": "USD",
-   "mcap": 21650399232,
-   "mcap_rank": 375
-  },
-  {
-   "ticker": "KEY",
-   "yahoo": "KEY",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "KeyCorp",
-   "sector": "Financials",
-   "currency": "USD",
-   "mcap": 21427941376,
-   "mcap_rank": 376
+   "mcap": 23272075264,
+   "mcap_rank": 365
   },
   {
    "ticker": "VRSK",
@@ -4522,152 +4402,68 @@
    "name": "Verisk Analytics",
    "sector": "Industrials",
    "currency": "USD",
-   "mcap": 21329969152,
-   "mcap_rank": 377
+   "mcap": 23119613952,
+   "mcap_rank": 366
   },
   {
-   "ticker": "DLTR",
-   "yahoo": "DLTR",
+   "ticker": "PPG",
+   "yahoo": "PPG",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Dollar Tree",
-   "sector": "Consumer Staples",
-   "currency": "USD",
-   "mcap": 21044615168,
-   "mcap_rank": 378
-  },
-  {
-   "ticker": "IFF",
-   "yahoo": "IFF",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "International Flavors & Fragrances",
+   "name": "PPG Industries",
    "sector": "Materials",
    "currency": "USD",
-   "mcap": 21029459968,
-   "mcap_rank": 379
+   "mcap": 23110307840,
+   "mcap_rank": 367
   },
   {
-   "ticker": "LUV",
-   "yahoo": "LUV",
+   "ticker": "TPR",
+   "yahoo": "TPR",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Southwest Airlines",
-   "sector": "Industrials",
+   "name": "Tapestry, Inc.",
+   "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 20776673280,
-   "mcap_rank": 380
+   "mcap": 23066124288,
+   "mcap_rank": 368
   },
   {
-   "ticker": "GPN",
-   "yahoo": "GPN",
+   "ticker": "RF",
+   "yahoo": "RF",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Global Payments",
+   "name": "Regions Financial Corporation",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 20740788224,
-   "mcap_rank": 381
+   "mcap": 23027656704,
+   "mcap_rank": 369
   },
   {
-   "ticker": "EIX",
-   "yahoo": "EIX",
+   "ticker": "PFG",
+   "yahoo": "PFG",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Edison International",
-   "sector": "Utilities",
-   "currency": "USD",
-   "mcap": 20737626112,
-   "mcap_rank": 382
-  },
-  {
-   "ticker": "BG",
-   "yahoo": "BG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Bunge Global",
-   "sector": "Consumer Staples",
-   "currency": "USD",
-   "mcap": 20502951936,
-   "mcap_rank": 383
-  },
-  {
-   "ticker": "PKG",
-   "yahoo": "PKG",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Packaging Corporation of America",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 20362524672,
-   "mcap_rank": 384
-  },
-  {
-   "ticker": "OMC",
-   "yahoo": "OMC",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Omnicom Group",
-   "sector": "Communication Services",
-   "currency": "USD",
-   "mcap": 20342753280,
-   "mcap_rank": 385
-  },
-  {
-   "ticker": "STE",
-   "yahoo": "STE",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Steris",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 20332673024,
-   "mcap_rank": 386
-  },
-  {
-   "ticker": "VTRS",
-   "yahoo": "VTRS",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Viatris",
-   "sector": "Health Care",
-   "currency": "USD",
-   "mcap": 20215199744,
-   "mcap_rank": 387
-  },
-  {
-   "ticker": "DOW",
-   "yahoo": "DOW",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Dow Inc.",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 20203870208,
-   "mcap_rank": 388
-  },
-  {
-   "ticker": "BRO",
-   "yahoo": "BRO",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Brown & Brown",
+   "name": "Principal Financial Group",
    "sector": "Financials",
    "currency": "USD",
-   "mcap": 20046508032,
-   "mcap_rank": 389
+   "mcap": 22960580608,
+   "mcap_rank": 370
+  },
+  {
+   "ticker": "INCY",
+   "yahoo": "INCY",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Incyte",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 22862278656,
+   "mcap_rank": 371
   },
   {
    "ticker": "NRG",
@@ -4678,7 +4474,223 @@
    "name": "NRG Energy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 20018343936,
+   "mcap": 22696425472,
+   "mcap_rank": 372
+  },
+  {
+   "ticker": "TROW",
+   "yahoo": "TROW",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "T. Rowe Price",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 22432296960,
+   "mcap_rank": 373
+  },
+  {
+   "ticker": "DRI",
+   "yahoo": "DRI",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Darden Restaurants",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 22363889664,
+   "mcap_rank": 374
+  },
+  {
+   "ticker": "DLTR",
+   "yahoo": "DLTR",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Dollar Tree",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 22260459520,
+   "mcap_rank": 375
+  },
+  {
+   "ticker": "RL",
+   "yahoo": "RL",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Ralph Lauren Corporation",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 22121693184,
+   "mcap_rank": 376
+  },
+  {
+   "ticker": "L",
+   "yahoo": "L",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Loews Corporation",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 21810393088,
+   "mcap_rank": 377
+  },
+  {
+   "ticker": "GPN",
+   "yahoo": "GPN",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Global Payments",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 21751629824,
+   "mcap_rank": 378
+  },
+  {
+   "ticker": "SW",
+   "yahoo": "SW",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Smurfit Westrock",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 21657550848,
+   "mcap_rank": 379
+  },
+  {
+   "ticker": "IFF",
+   "yahoo": "IFF",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "International Flavors & Fragrances",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 21572931584,
+   "mcap_rank": 380
+  },
+  {
+   "ticker": "JBHT",
+   "yahoo": "JBHT",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "J.B. Hunt",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 21530937344,
+   "mcap_rank": 381
+  },
+  {
+   "ticker": "PHM",
+   "yahoo": "PHM",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "PulteGroup",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 21357330432,
+   "mcap_rank": 382
+  },
+  {
+   "ticker": "KEY",
+   "yahoo": "KEY",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "KeyCorp",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 21310556160,
+   "mcap_rank": 383
+  },
+  {
+   "ticker": "EIX",
+   "yahoo": "EIX",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Edison International",
+   "sector": "Utilities",
+   "currency": "USD",
+   "mcap": 21280212992,
+   "mcap_rank": 384
+  },
+  {
+   "ticker": "PTC",
+   "yahoo": "PTC",
+   "market": "S&P500",
+   "added_at": "2026-10-12",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "PTC Inc.",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 21123534848,
+   "mcap_rank": 385
+  },
+  {
+   "ticker": "BRO",
+   "yahoo": "BRO",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Brown & Brown",
+   "sector": "Financials",
+   "currency": "USD",
+   "mcap": 21040300032,
+   "mcap_rank": 386
+  },
+  {
+   "ticker": "OMC",
+   "yahoo": "OMC",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Omnicom Group",
+   "sector": "Communication Services",
+   "currency": "USD",
+   "mcap": 20981979136,
+   "mcap_rank": 387
+  },
+  {
+   "ticker": "STE",
+   "yahoo": "STE",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Steris",
+   "sector": "Health Care",
+   "currency": "USD",
+   "mcap": 20904024064,
+   "mcap_rank": 388
+  },
+  {
+   "ticker": "STZ",
+   "yahoo": "STZ",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Constellation Brands",
+   "sector": "Consumer Staples",
+   "currency": "USD",
+   "mcap": 20753657856,
+   "mcap_rank": 389
+  },
+  {
+   "ticker": "PKG",
+   "yahoo": "PKG",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Packaging Corporation of America",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 20538048512,
    "mcap_rank": 390
   },
   {
@@ -4690,8 +4702,20 @@
    "name": "CMS Energy",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 19987408896,
+   "mcap": 20536166400,
    "mcap_rank": 391
+  },
+  {
+   "ticker": "DOW",
+   "yahoo": "DOW",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Dow Inc.",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 20528924672,
+   "mcap_rank": 392
   },
   {
    "ticker": "EXE",
@@ -4702,68 +4726,44 @@
    "name": "Expand Energy",
    "sector": "Energy",
    "currency": "USD",
-   "mcap": 19798204416,
-   "mcap_rank": 392
-  },
-  {
-   "ticker": "AMCR",
-   "yahoo": "AMCR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "Amcor",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 19337048064,
+   "mcap": 20423264256,
    "mcap_rank": 393
   },
   {
-   "ticker": "STZ",
-   "yahoo": "STZ",
+   "ticker": "LUV",
+   "yahoo": "LUV",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Constellation Brands",
-   "sector": "Consumer Staples",
+   "name": "Southwest Airlines",
+   "sector": "Industrials",
    "currency": "USD",
-   "mcap": 19275761664,
+   "mcap": 20380413952,
    "mcap_rank": 394
   },
   {
-   "ticker": "LEN",
-   "yahoo": "LEN",
+   "ticker": "VTRS",
+   "yahoo": "VTRS",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Lennar",
-   "sector": "Consumer Discretionary",
+   "name": "Viatris",
+   "sector": "Health Care",
    "currency": "USD",
-   "mcap": 19225839616,
+   "mcap": 20261142528,
    "mcap_rank": 395
   },
   {
-   "ticker": "SNA",
-   "yahoo": "SNA",
+   "ticker": "BG",
+   "yahoo": "BG",
    "market": "S&P500",
    "added_at": "2026-09-28",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Snap-on",
-   "sector": "Industrials",
+   "name": "Bunge Global",
+   "sector": "Consumer Staples",
    "currency": "USD",
-   "mcap": 19082135552,
+   "mcap": 19736397824,
    "mcap_rank": 396
-  },
-  {
-   "ticker": "LYB",
-   "yahoo": "LYB",
-   "market": "S&P500",
-   "added_at": "2026-10-05",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "LyondellBasell",
-   "sector": "Materials",
-   "currency": "USD",
-   "mcap": 18923563008,
-   "mcap_rank": 397
   },
   {
    "ticker": "NI",
@@ -4774,31 +4774,43 @@
    "name": "NiSource",
    "sector": "Utilities",
    "currency": "USD",
-   "mcap": 18909054976,
-   "mcap_rank": 398
+   "mcap": 19546867712,
+   "mcap_rank": 397
   },
   {
-   "ticker": "FSLR",
-   "yahoo": "FSLR",
-   "market": "S&P500",
-   "added_at": "2026-09-28",
-   "added_by": "S&P500 시총 상위 400",
-   "name": "First Solar",
-   "sector": "Information Technology",
-   "currency": "USD",
-   "mcap": 18765299712,
-   "mcap_rank": 399
-  },
-  {
-   "ticker": "NDSN",
-   "yahoo": "NDSN",
+   "ticker": "LYB",
+   "yahoo": "LYB",
    "market": "S&P500",
    "added_at": "2026-10-05",
    "added_by": "S&P500 시총 상위 400",
-   "name": "Nordson Corporation",
-   "sector": "Industrials",
+   "name": "LyondellBasell",
+   "sector": "Materials",
    "currency": "USD",
-   "mcap": 18577967104,
+   "mcap": 19391967232,
+   "mcap_rank": 398
+  },
+  {
+   "ticker": "SBAC",
+   "yahoo": "SBAC",
+   "market": "S&P500",
+   "added_at": "2026-10-12",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "SBA Communications",
+   "sector": "Real Estate",
+   "currency": "USD",
+   "mcap": 19360020480,
+   "mcap_rank": 399
+  },
+  {
+   "ticker": "AMCR",
+   "yahoo": "AMCR",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Amcor",
+   "sector": "Materials",
+   "currency": "USD",
+   "mcap": 19272374272,
    "mcap_rank": 400
   },
   {
@@ -4811,7 +4823,43 @@
    "sector": "Information Technology",
    "desc": "반도체 장비 · ALD · 에피",
    "currency": "EUR",
-   "mcap": 46122332160,
+   "mcap": 43134730240,
+   "mcap_rank": null
+  },
+  {
+   "ticker": "FSLR",
+   "yahoo": "FSLR",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "First Solar",
+   "sector": "Information Technology",
+   "currency": "USD",
+   "mcap": 19110279168,
+   "mcap_rank": null
+  },
+  {
+   "ticker": "SNA",
+   "yahoo": "SNA",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Snap-on",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 18640904192,
+   "mcap_rank": null
+  },
+  {
+   "ticker": "NDSN",
+   "yahoo": "NDSN",
+   "market": "S&P500",
+   "added_at": "2026-10-05",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Nordson Corporation",
+   "sector": "Industrials",
+   "currency": "USD",
+   "mcap": 18278862848,
    "mcap_rank": null
   },
   {
@@ -4823,7 +4871,19 @@
    "name": "Best Buy",
    "sector": "Consumer Discretionary",
    "currency": "USD",
-   "mcap": 18449745920,
+   "mcap": 18248407040,
+   "mcap_rank": null
+  },
+  {
+   "ticker": "LEN",
+   "yahoo": "LEN",
+   "market": "S&P500",
+   "added_at": "2026-09-28",
+   "added_by": "S&P500 시총 상위 400",
+   "name": "Lennar",
+   "sector": "Consumer Discretionary",
+   "currency": "USD",
+   "mcap": 18244569088,
    "mcap_rank": null
   },
   {
@@ -4839,6 +4899,6 @@
    "mcap_rank": null
   }
  ],
- "updated_at": "2026-10-05T09:38:58+09:00",
+ "updated_at": "2026-10-12T10:07:55+09:00",
  "criteria": "S&P500 시가총액 상위 400개(편입 후 유지) + 개별 추가(ASM 등)"
 }
