@@ -160,7 +160,7 @@ function toggleFav(code,ev){
   setTimeout(()=>document.addEventListener("mousedown",favPopOut,true),0);
 }
 
-let state = {cat:"전체", sort:"mc", dir:-1, minmc:0, q:"", qrom:null, onlych:0, favonly:0, smart:null, fcmpMetric:"기존점매출",
+let state = {hiview:(()=>{ try{ return localStorage.getItem("jp_screener_hiview")==="1"; }catch(e){ return false; } })(), cat:"전체", sort:"mc", dir:-1, minmc:0, q:"", qrom:null, onlych:0, favonly:0, smart:null, fcmpMetric:"기존점매출",
   cols:["REVG","PY","PYTD","PER","ROE","OPM","EARN"], matrix:null, matrixMon:null};
 
 /* ===== 표시 지표(컬럼) 정의 ===== */
@@ -690,6 +690,8 @@ function renderTable(){
   const mb=document.getElementById("tbmore"); if(mb) mb.hidden=true;
   if(uniLoading) return;
   renderEarnUp();
+  setHiView(!!state.hiview);
+  if(state.hiview){ renderHiGrid(); return; }
   if(state.matrix){ renderMatrix(); return; }
   const rows = current();
   const maxmc = Math.max(...rows.map(r=>r[F.MCAP]||0), 1);
@@ -795,8 +797,66 @@ function renderFoodCompare(){
 function buildRail(){
   const el=document.getElementById("rail");
   const mk=(n,c)=>`<button class="cat" data-cat="${n}" aria-pressed="${state.cat===n}">${n}<span class="n">${c}</span></button>`;
-  el.innerHTML = mk("전체",RAW.length)+CATS.map(c=>mk(c,RAW.filter(r=>r[F.CAT]===c).length)).join("");
-  el.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{state.cat=b.dataset.cat;buildRail();renderFoodCompare();renderTable();});
+  el.innerHTML = mk("전체",RAW.length)+CATS.map(c=>mk(c,RAW.filter(r=>r[F.CAT]===c).length)).join("")
+    + `<span class="rail-sep"></span><button class="cat hiv" id="hiv" aria-pressed="${!!state.hiview}" title="52주 신고가 돌파·근접 종목을 차트 카드로">신고가 차트</button>`;
+  el.querySelectorAll(".cat[data-cat]").forEach(b=>b.onclick=()=>{state.cat=b.dataset.cat;buildRail();renderFoodCompare();renderTable();});
+  document.getElementById("hiv").onclick=()=>{ setHiView(!state.hiview); buildRail(); renderTable(); };
+}
+
+/* ================= 신고가 차트(2026-10-12 사용자) =================
+   분류 줄 끝 '신고가 차트'를 누르면 종목표 대신 카드로 본다(검색 트렌드 화면과 같은 꼴).
+   - 신고가 돌파: 최근 5거래일 안에 종가가 그 전 250거래일(약 52주) 최고 종가를 넘은 종목
+   - 신고가 근접: 돌파는 아니지만 지금 종가가 52주 최고 종가의 95% 이상
+   이름은 한국어(영어). 분류·시총·즐겨찾기·검색 조건은 그대로 따른다. 카드를 누르면 상세(재무제표·차트). */
+function hiStat(code){
+  const b=BY[code]; if(!b||b.iv||!b.px||b.px.length<200) return null;
+  const c=b.px.map(v=>v/10), n=c.length, last=c[n-1];
+  const win=c.slice(Math.max(0,n-251));                 // 최근 약 52주
+  const hi=Math.max(...win), prevHi=Math.max(...c.slice(Math.max(0,n-256),n-5));   // 최근 5일을 뺀 그 전 52주 최고
+  let brk=-1; for(let k=n-5;k<n;k++){ if(c[k]>prevHi){ brk=n-1-k; break; } }  // 몇 거래일 전에 처음 넘었나
+  const r=(a,bb)=>bb?((a/bb-1)*100):null;
+  return {last, hi, prevHi, gap:r(last,hi), brk, m1:r(last,c[n-22]), y1:r(last,c[Math.max(0,n-251)]), pts:win, prevIdx:Math.max(0,win.length-(n-Math.max(0,n-256))+0)};
+}
+function hiName(r){ const ko=koFirst(r[F.CODE]), en=shortName(r[F.NAME]); return ko?`${esc(ko)} <small>(${esc(en)})</small>`:esc(en); }
+function hiSpark(s){
+  const p=s.pts, n=p.length, W=200, H=54, lo=Math.min(...p), hi=Math.max(...p), sp=(hi-lo)||1;
+  const y=v=>H-3-((v-lo)/sp)*(H-8), x=i=>(i/(n-1))*W;
+  const d=p.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+y(v).toFixed(1)).join("");
+  const hl=y(s.prevHi);
+  const dot=s.brk>=0?`<circle cx="${x(n-1-s.brk).toFixed(1)}" cy="${y(p[n-1-s.brk]).toFixed(1)}" r="2.6" class="bk"/>`:"";
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><line x1="0" x2="${W}" y1="${hl.toFixed(1)}" y2="${hl.toFixed(1)}" class="hl"/><path d="${d}" class="ln"/>${dot}</svg>`;
+}
+const pctS=v=>v==null?"—":(v>0?"+":"")+v.toFixed(1)+"%";
+const pcls=v=>v==null?"":v>0?"up":v<0?"dn":"";
+function hiCard(r,s){
+  const code=r[F.CODE];
+  const tag=s.brk>=0?`<b class="hb brk">${s.brk===0?"오늘 돌파":s.brk+"일 전 돌파"}</b>`:`<b class="hb near">고가까지 ${pctS(s.gap)}</b>`;
+  return `<article class="hc" data-c="${code}" tabindex="0">
+    <button class="star${FAVS.has(code)?" on":""}"${favSty(code)} onclick="toggleFav('${code}',event)" title="즐겨찾기">★</button>
+    <div class="hc-n">${hiName(r)}</div>
+    <div class="hc-m"><span class="mono">${code}</span><span>${esc(r[F.CAT])}</span>${tag}</div>
+    <div class="hc-r"><span>1개월 <b class="${pcls(s.m1)}">${pctS(s.m1)}</b></span><span>1년 <b class="${pcls(s.y1)}">${pctS(s.y1)}</b></span><span>시총 ${int(r[F.MCAP])}억엔</span></div>
+    <div class="hc-sp">${hiSpark(s)}</div></article>`;
+}
+function renderHiGrid(){
+  const box=document.getElementById("higrid"); if(!box) return;
+  const rows=current(), brk=[], near=[]; let skip=0;
+  rows.forEach(r=>{ const s=hiStat(r[F.CODE]); if(!s){ skip++; return; } if(s.brk>=0) brk.push([r,s]); else if(s.gap>=-5) near.push([r,s]); });
+  brk.sort((a,b)=>a[1].brk-b[1].brk || (b[1].y1||0)-(a[1].y1||0));
+  near.sort((a,b)=>b[1].gap-a[1].gap);
+  document.getElementById("cnt").textContent=brk.length+near.length;
+  const sec=(t,sub,L)=>`<section class="hs"><h3>${t} <span>${L.length}곳</span></h3><p>${sub}</p>${L.length?`<div class="hgrid">${L.map(([r,s])=>hiCard(r,s)).join("")}</div>`:`<div class="hempty">해당 종목이 없습니다.</div>`}</section>`;
+  box.innerHTML = sec("신고가 돌파","최근 5거래일 안에 종가가 그 전 52주 최고 종가를 넘은 종목 · 점 = 처음 넘은 날 · 가로 점선 = 넘기 전 52주 최고",brk)
+    + sec("신고가 근접","52주 최고 종가까지 5% 안 · 가까운 순",near)
+    + `<div class="hnote">${esc(state.cat)} ${rows.length}곳 중 · 주가는 종가 기준(분할 조정) · 차트는 최근 약 1년 일봉 · 주가 자료가 1년이 안 되거나 주봉만 있는 ${skip}곳은 뺐습니다 · 카드를 누르면 재무제표·차트 상세</div>`;
+  box.querySelectorAll(".hc").forEach(el=>{ el.onclick=e=>{ if(e.target.closest(".star")) return; openDetail(el.dataset.c); }; el.onkeydown=e=>{ if(e.key==="Enter") openDetail(el.dataset.c); }; });
+}
+function setHiView(on){
+  state.hiview=on; try{ localStorage.setItem("jp_screener_hiview", on?"1":"0"); }catch(e){}
+  const tw=document.querySelector(".tblwrap"), g=document.getElementById("higrid");
+  if(tw) tw.hidden=on; if(g) g.hidden=!on;
+  ["colsel","mtxnote"].forEach(id=>{ const el=document.getElementById(id); if(el) el.hidden=on; });
+  const mb=document.getElementById("tbmore"); if(mb&&on) mb.hidden=true;
 }
 
 /* ================= 봉 집계 ================= */

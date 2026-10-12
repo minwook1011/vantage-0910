@@ -149,8 +149,11 @@ def main():
             hub |= {c["code"] for c in json.load(open(os.path.join(BASE, "docs", "data", fn), encoding="utf-8"))["companies"]}
         except Exception:
             pass
+    labels = cfg.get("labels") or {}
     for r in rows:
         r["hub"] = r["tk"] in hub
+        if labels.get(r["kw"]):
+            r["label"] = labels[r["kw"]]   # 화면 이름 한국어(영어) — 일본어 키워드를 그대로 보이지 않게
     doc = {"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
            "src": "구글 트렌드 · 최근 5년 주간 · 키워드마다 그 기간 최댓값 = 100",
            "geo_ko": GEO_KO, "count": len(rows), "items": rows}

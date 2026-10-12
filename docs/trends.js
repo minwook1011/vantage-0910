@@ -46,7 +46,7 @@
         if (st.cat !== "all" && x.cat !== st.cat) return false;
         if (st.mk !== "all" && x.mk !== st.mk) return false;
         if (st.fav && F.indexOf(x.k) < 0) return false;
-        return !q || x.kw.toLowerCase().indexOf(q) >= 0 || String(x.tk).toLowerCase().indexOf(q) >= 0;
+        return !q || x.kw.toLowerCase().indexOf(q) >= 0 || String(x.label || "").toLowerCase().indexOf(q) >= 0 || String(x.tk).toLowerCase().indexOf(q) >= 0;
       });
       var key = st.sort;
       L.sort(function (a, b) { var va = a[key], vb = b[key]; if (va == null) va = -1e9; if (vb == null) vb = -1e9; return vb - va; });
@@ -62,7 +62,7 @@
           var on = F.indexOf(x.k) >= 0, link = stockLink(x), main = x[st.sort === "now" ? "spk" : st.sort];
           return '<article class="tc">' +
             '<button class="tc-h' + (on ? " on" : "") + '" data-k="' + esc(x.k) + '" title="관심 표시">' + (on ? "♥" : "♡") + "</button>" +
-            '<a class="tc-kw" href="' + gUrl(x) + '" target="_blank" rel="noopener" title="구글 트렌드에서 보기">' + esc(x.kw) + "</a>" +
+            '<a class="tc-kw" href="' + gUrl(x) + '" target="_blank" rel="noopener" title="구글 트렌드에서 보기 · 검색어: ' + esc(x.kw) + '">' + esc(x.label || x.kw) + "</a>" +
             '<div class="tc-m">' + (link ? '<a class="tc-tk" href="' + link + '" target="_blank" rel="noopener" title="새 탭에서 재무제표·차트">' + esc(x.tk) + "</a>" : '<span class="tc-tk">' + esc(x.tk) + "</span>") +
             '<span class="tc-geo">' + esc(GEO[x.geo] != null ? GEO[x.geo] : x.geo) + "</span>" +
             '<b class="' + cls(x.yoy) + '" title="최근 4주 평균 ÷ 1년 전 같은 4주">전년 ' + pct(x.yoy) + "</b>" +

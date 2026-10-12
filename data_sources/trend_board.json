@@ -1,74 +1,545 @@
 {
- "note": "검색 트렌드 보드(trends.html) 키워드 목록 — fetch_trend_board.py 가 구글 트렌드(최근 5년 주간)를 받는다. 일본 소비재 리포트 키워드(docs/data/jp/trends/*.json)는 fetch_jp_px.py 가 이미 받으므로 여기 없어도 보드에 자동으로 들어간다. cat: food 먹거리 · fashion 패션·뷰티 · house 생활·집 · hobby 취미·콘텐츠 · etc 기타. geo: US·JP·KR, 빈 문자열이면 전 세계.",
+ "note": "검색 트렌드 보드(trends.html) 키워드 목록 — fetch_trend_board.py 가 구글 트렌드(최근 5년 주간)를 받는다. 일본 소비재 리포트 키워드(docs/data/jp/trends/*.json)는 fetch_jp_px.py 가 이미 받으므로 여기 없어도 보드에 자동으로 들어간다. cat: food 먹거리 · fashion 패션·뷰티 · house 생활·집 · hobby 취미·콘텐츠 · etc 기타. geo: US·JP·KR, 빈 문자열이면 전 세계. labels: 일본어 키워드의 화면 이름 — 한국어(영어)(2026-10-12 사용자: 일본어 그대로 쓰지 말 것). 새 일본어 키워드를 넣으면 여기에도 이름을 단다.",
  "items": [
-  {"kw": "Shake Shack", "geo": "US", "tk": "SHAK", "mk": "us", "cat": "food"},
-  {"kw": "Cava", "geo": "US", "tk": "CAVA", "mk": "us", "cat": "food"},
-  {"kw": "Chipotle", "geo": "US", "tk": "CMG", "mk": "us", "cat": "food"},
-  {"kw": "Sweetgreen", "geo": "US", "tk": "SG", "mk": "us", "cat": "food"},
-  {"kw": "Dutch Bros", "geo": "US", "tk": "BROS", "mk": "us", "cat": "food"},
-  {"kw": "Wingstop", "geo": "US", "tk": "WING", "mk": "us", "cat": "food"},
-  {"kw": "Taco Bell", "geo": "US", "tk": "YUM", "mk": "us", "cat": "food"},
-  {"kw": "Starbucks", "geo": "US", "tk": "SBUX", "mk": "us", "cat": "food"},
-  {"kw": "McDonald's", "geo": "US", "tk": "MCD", "mk": "us", "cat": "food"},
-  {"kw": "Domino's", "geo": "US", "tk": "DPZ", "mk": "us", "cat": "food"},
-  {"kw": "Olive Garden", "geo": "US", "tk": "DRI", "mk": "us", "cat": "food"},
-  {"kw": "Texas Roadhouse", "geo": "US", "tk": "TXRH", "mk": "us", "cat": "food"},
-  {"kw": "Cheesecake Factory", "geo": "US", "tk": "CAKE", "mk": "us", "cat": "food"},
-  {"kw": "Celsius energy drink", "geo": "US", "tk": "CELH", "mk": "us", "cat": "food"},
-  {"kw": "Doritos", "geo": "US", "tk": "PEP", "mk": "us", "cat": "food"},
-  {"kw": "Costco", "geo": "US", "tk": "COST", "mk": "us", "cat": "food"},
-  {"kw": "Hoka", "geo": "US", "tk": "DECK", "mk": "us", "cat": "fashion"},
-  {"kw": "Ugg", "geo": "US", "tk": "DECK", "mk": "us", "cat": "fashion"},
-  {"kw": "On Cloud shoes", "geo": "US", "tk": "ONON", "mk": "us", "cat": "fashion"},
-  {"kw": "Lululemon", "geo": "US", "tk": "LULU", "mk": "us", "cat": "fashion"},
-  {"kw": "Nike", "geo": "US", "tk": "NKE", "mk": "us", "cat": "fashion"},
-  {"kw": "Crocs", "geo": "US", "tk": "CROX", "mk": "us", "cat": "fashion"},
-  {"kw": "Birkenstock", "geo": "US", "tk": "BIRK", "mk": "us", "cat": "fashion"},
-  {"kw": "Abercrombie", "geo": "US", "tk": "ANF", "mk": "us", "cat": "fashion"},
-  {"kw": "Urban Outfitters", "geo": "US", "tk": "URBN", "mk": "us", "cat": "fashion"},
-  {"kw": "Ralph Lauren", "geo": "US", "tk": "RL", "mk": "us", "cat": "fashion"},
-  {"kw": "Coach bag", "geo": "US", "tk": "TPR", "mk": "us", "cat": "fashion"},
-  {"kw": "Victoria's Secret", "geo": "US", "tk": "VSCO", "mk": "us", "cat": "fashion"},
-  {"kw": "e.l.f. cosmetics", "geo": "US", "tk": "ELF", "mk": "us", "cat": "fashion"},
-  {"kw": "Five Below", "geo": "US", "tk": "FIVE", "mk": "us", "cat": "house"},
-  {"kw": "Williams Sonoma", "geo": "US", "tk": "WSM", "mk": "us", "cat": "house"},
-  {"kw": "Wayfair", "geo": "US", "tk": "W", "mk": "us", "cat": "house"},
-  {"kw": "Ninja Creami", "geo": "US", "tk": "SN", "mk": "us", "cat": "house"},
-  {"kw": "Yeti cooler", "geo": "US", "tk": "YETI", "mk": "us", "cat": "house"},
-  {"kw": "Magic The Gathering", "geo": "US", "tk": "HAS", "mk": "us", "cat": "hobby"},
-  {"kw": "Pokemon cards", "geo": "US", "tk": "7974", "mk": "jp", "cat": "hobby"},
-  {"kw": "Labubu", "geo": "", "tk": "9992", "mk": "hk", "cat": "hobby"},
-  {"kw": "PS5", "geo": "US", "tk": "6758", "mk": "jp", "cat": "hobby"},
-  {"kw": "Roblox", "geo": "US", "tk": "RBLX", "mk": "us", "cat": "hobby"},
-  {"kw": "Duolingo", "geo": "US", "tk": "DUOL", "mk": "us", "cat": "hobby"},
-  {"kw": "Peloton", "geo": "US", "tk": "PTON", "mk": "us", "cat": "hobby"},
-  {"kw": "Funko Pop", "geo": "US", "tk": "FNKO", "mk": "us", "cat": "hobby"},
-  {"kw": "Hims", "geo": "US", "tk": "HIMS", "mk": "us", "cat": "etc"},
-  {"kw": "불닭볶음면", "geo": "KR", "tk": "003230", "mk": "kr", "cat": "food"},
-  {"kw": "Buldak", "geo": "US", "tk": "003230", "mk": "kr", "cat": "food"},
-  {"kw": "신라면", "geo": "KR", "tk": "004370", "mk": "kr", "cat": "food"},
-  {"kw": "메디큐브", "geo": "KR", "tk": "278470", "mk": "kr", "cat": "fashion"},
-  {"kw": "Medicube", "geo": "US", "tk": "278470", "mk": "kr", "cat": "fashion"},
-  {"kw": "달바", "geo": "KR", "tk": "483650", "mk": "kr", "cat": "fashion"},
-  {"kw": "올리브영", "geo": "KR", "tk": "001040", "mk": "kr", "cat": "fashion"},
-  {"kw": "설화수", "geo": "KR", "tk": "090430", "mk": "kr", "cat": "fashion"},
-  {"kw": "젝시믹스", "geo": "KR", "tk": "337930", "mk": "kr", "cat": "fashion"},
-  {"kw": "치이카와", "geo": "KR", "tk": "048910", "mk": "kr", "cat": "hobby"},
-  {"kw": "배틀그라운드", "geo": "KR", "tk": "259960", "mk": "kr", "cat": "hobby"},
-  {"kw": "ちいかわ", "geo": "JP", "tk": "048910", "mk": "kr", "cat": "hobby"},
-  {"kw": "ガンダム", "geo": "JP", "tk": "7832", "mk": "jp", "cat": "hobby"},
-  {"kw": "ワンピースカード", "geo": "JP", "tk": "7832", "mk": "jp", "cat": "hobby"},
-  {"kw": "ガチャ", "geo": "JP", "tk": "7832", "mk": "jp", "cat": "hobby"},
-  {"kw": "ポケモンカード", "geo": "JP", "tk": "7974", "mk": "jp", "cat": "hobby"},
-  {"kw": "サンリオ", "geo": "JP", "tk": "8136", "mk": "jp", "cat": "hobby"},
-  {"kw": "アシックス", "geo": "JP", "tk": "7936", "mk": "jp", "cat": "fashion"},
-  {"kw": "オニツカタイガー", "geo": "JP", "tk": "7936", "mk": "jp", "cat": "fashion"},
-  {"kw": "ワークマン", "geo": "JP", "tk": "7564", "mk": "jp", "cat": "fashion"},
-  {"kw": "ドンキ", "geo": "JP", "tk": "7532", "mk": "jp", "cat": "house"},
-  {"kw": "無印良品", "geo": "JP", "tk": "7453", "mk": "jp", "cat": "house"},
-  {"kw": "スシロー", "geo": "JP", "tk": "3563", "mk": "jp", "cat": "food"},
-  {"kw": "くら寿司", "geo": "JP", "tk": "2695", "mk": "jp", "cat": "food"},
-  {"kw": "丸亀製麺", "geo": "JP", "tk": "3397", "mk": "jp", "cat": "food"},
-  {"kw": "サイゼリヤ", "geo": "JP", "tk": "7581", "mk": "jp", "cat": "food"}
- ]
+  {
+   "kw": "Shake Shack",
+   "geo": "US",
+   "tk": "SHAK",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Cava",
+   "geo": "US",
+   "tk": "CAVA",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Chipotle",
+   "geo": "US",
+   "tk": "CMG",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Sweetgreen",
+   "geo": "US",
+   "tk": "SG",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Dutch Bros",
+   "geo": "US",
+   "tk": "BROS",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Wingstop",
+   "geo": "US",
+   "tk": "WING",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Taco Bell",
+   "geo": "US",
+   "tk": "YUM",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Starbucks",
+   "geo": "US",
+   "tk": "SBUX",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "McDonald's",
+   "geo": "US",
+   "tk": "MCD",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Domino's",
+   "geo": "US",
+   "tk": "DPZ",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Olive Garden",
+   "geo": "US",
+   "tk": "DRI",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Texas Roadhouse",
+   "geo": "US",
+   "tk": "TXRH",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Cheesecake Factory",
+   "geo": "US",
+   "tk": "CAKE",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Celsius energy drink",
+   "geo": "US",
+   "tk": "CELH",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Doritos",
+   "geo": "US",
+   "tk": "PEP",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Costco",
+   "geo": "US",
+   "tk": "COST",
+   "mk": "us",
+   "cat": "food"
+  },
+  {
+   "kw": "Hoka",
+   "geo": "US",
+   "tk": "DECK",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Ugg",
+   "geo": "US",
+   "tk": "DECK",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "On Cloud shoes",
+   "geo": "US",
+   "tk": "ONON",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Lululemon",
+   "geo": "US",
+   "tk": "LULU",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Nike",
+   "geo": "US",
+   "tk": "NKE",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Crocs",
+   "geo": "US",
+   "tk": "CROX",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Birkenstock",
+   "geo": "US",
+   "tk": "BIRK",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Abercrombie",
+   "geo": "US",
+   "tk": "ANF",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Urban Outfitters",
+   "geo": "US",
+   "tk": "URBN",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Ralph Lauren",
+   "geo": "US",
+   "tk": "RL",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Coach bag",
+   "geo": "US",
+   "tk": "TPR",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Victoria's Secret",
+   "geo": "US",
+   "tk": "VSCO",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "e.l.f. cosmetics",
+   "geo": "US",
+   "tk": "ELF",
+   "mk": "us",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Five Below",
+   "geo": "US",
+   "tk": "FIVE",
+   "mk": "us",
+   "cat": "house"
+  },
+  {
+   "kw": "Williams Sonoma",
+   "geo": "US",
+   "tk": "WSM",
+   "mk": "us",
+   "cat": "house"
+  },
+  {
+   "kw": "Wayfair",
+   "geo": "US",
+   "tk": "W",
+   "mk": "us",
+   "cat": "house"
+  },
+  {
+   "kw": "Ninja Creami",
+   "geo": "US",
+   "tk": "SN",
+   "mk": "us",
+   "cat": "house"
+  },
+  {
+   "kw": "Yeti cooler",
+   "geo": "US",
+   "tk": "YETI",
+   "mk": "us",
+   "cat": "house"
+  },
+  {
+   "kw": "Magic The Gathering",
+   "geo": "US",
+   "tk": "HAS",
+   "mk": "us",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Pokemon cards",
+   "geo": "US",
+   "tk": "7974",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Labubu",
+   "geo": "",
+   "tk": "9992",
+   "mk": "hk",
+   "cat": "hobby"
+  },
+  {
+   "kw": "PS5",
+   "geo": "US",
+   "tk": "6758",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Roblox",
+   "geo": "US",
+   "tk": "RBLX",
+   "mk": "us",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Duolingo",
+   "geo": "US",
+   "tk": "DUOL",
+   "mk": "us",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Peloton",
+   "geo": "US",
+   "tk": "PTON",
+   "mk": "us",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Funko Pop",
+   "geo": "US",
+   "tk": "FNKO",
+   "mk": "us",
+   "cat": "hobby"
+  },
+  {
+   "kw": "Hims",
+   "geo": "US",
+   "tk": "HIMS",
+   "mk": "us",
+   "cat": "etc"
+  },
+  {
+   "kw": "불닭볶음면",
+   "geo": "KR",
+   "tk": "003230",
+   "mk": "kr",
+   "cat": "food"
+  },
+  {
+   "kw": "Buldak",
+   "geo": "US",
+   "tk": "003230",
+   "mk": "kr",
+   "cat": "food"
+  },
+  {
+   "kw": "신라면",
+   "geo": "KR",
+   "tk": "004370",
+   "mk": "kr",
+   "cat": "food"
+  },
+  {
+   "kw": "메디큐브",
+   "geo": "KR",
+   "tk": "278470",
+   "mk": "kr",
+   "cat": "fashion"
+  },
+  {
+   "kw": "Medicube",
+   "geo": "US",
+   "tk": "278470",
+   "mk": "kr",
+   "cat": "fashion"
+  },
+  {
+   "kw": "달바",
+   "geo": "KR",
+   "tk": "483650",
+   "mk": "kr",
+   "cat": "fashion"
+  },
+  {
+   "kw": "올리브영",
+   "geo": "KR",
+   "tk": "001040",
+   "mk": "kr",
+   "cat": "fashion"
+  },
+  {
+   "kw": "설화수",
+   "geo": "KR",
+   "tk": "090430",
+   "mk": "kr",
+   "cat": "fashion"
+  },
+  {
+   "kw": "젝시믹스",
+   "geo": "KR",
+   "tk": "337930",
+   "mk": "kr",
+   "cat": "fashion"
+  },
+  {
+   "kw": "치이카와",
+   "geo": "KR",
+   "tk": "048910",
+   "mk": "kr",
+   "cat": "hobby"
+  },
+  {
+   "kw": "배틀그라운드",
+   "geo": "KR",
+   "tk": "259960",
+   "mk": "kr",
+   "cat": "hobby"
+  },
+  {
+   "kw": "ちいかわ",
+   "geo": "JP",
+   "tk": "048910",
+   "mk": "kr",
+   "cat": "hobby"
+  },
+  {
+   "kw": "ガンダム",
+   "geo": "JP",
+   "tk": "7832",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "ワンピースカード",
+   "geo": "JP",
+   "tk": "7832",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "ガチャ",
+   "geo": "JP",
+   "tk": "7832",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "ポケモンカード",
+   "geo": "JP",
+   "tk": "7974",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "サンリオ",
+   "geo": "JP",
+   "tk": "8136",
+   "mk": "jp",
+   "cat": "hobby"
+  },
+  {
+   "kw": "アシックス",
+   "geo": "JP",
+   "tk": "7936",
+   "mk": "jp",
+   "cat": "fashion"
+  },
+  {
+   "kw": "オニツカタイガー",
+   "geo": "JP",
+   "tk": "7936",
+   "mk": "jp",
+   "cat": "fashion"
+  },
+  {
+   "kw": "ワークマン",
+   "geo": "JP",
+   "tk": "7564",
+   "mk": "jp",
+   "cat": "fashion"
+  },
+  {
+   "kw": "ドンキ",
+   "geo": "JP",
+   "tk": "7532",
+   "mk": "jp",
+   "cat": "house"
+  },
+  {
+   "kw": "無印良品",
+   "geo": "JP",
+   "tk": "7453",
+   "mk": "jp",
+   "cat": "house"
+  },
+  {
+   "kw": "スシロー",
+   "geo": "JP",
+   "tk": "3563",
+   "mk": "jp",
+   "cat": "food"
+  },
+  {
+   "kw": "くら寿司",
+   "geo": "JP",
+   "tk": "2695",
+   "mk": "jp",
+   "cat": "food"
+  },
+  {
+   "kw": "丸亀製麺",
+   "geo": "JP",
+   "tk": "3397",
+   "mk": "jp",
+   "cat": "food"
+  },
+  {
+   "kw": "サイゼリヤ",
+   "geo": "JP",
+   "tk": "7581",
+   "mk": "jp",
+   "cat": "food"
+  }
+ ],
+ "labels": {
+  "ABCマート": "ABC마트 (ABC-Mart)",
+  "くら寿司": "구라스시 (Kura Sushi)",
+  "しまむら": "시마무라 (Shimamura)",
+  "ちいかわ": "치이카와 (Chiikawa)",
+  "わらべや日洋": "와라베야니치요 (Warabeya Nichiyo)",
+  "アシックス": "아식스 (Asics)",
+  "オニツカタイガー": "오니츠카 타이거 (Onitsuka Tiger)",
+  "オンワード": "온워드 (Onward)",
+  "オークワ": "오쿠와 (Okuwa)",
+  "カネ美": "가네미 (Kanemi)",
+  "カラオケまねきねこ": "노래방 마네키네코 (Karaoke Manekineko)",
+  "ガチャ": "가챠 (Gacha)",
+  "ガンダム": "건담 (Gundam)",
+  "キャンドゥ": "캔두 (Can Do)",
+  "キユーピー": "큐피 (Kewpie)",
+  "クスリのアオキ": "구스리노아오키 (Kusuri no Aoki)",
+  "クリエイトSD": "크리에이트SD (Create SD)",
+  "グローバルワーク": "글로벌워크 (Global Work)",
+  "ココイチ": "코코이치 (CoCo Ichibanya)",
+  "コジマ": "고지마 (Kojima)",
+  "サイクルベースあさひ": "사이클베이스 아사히 (Cycle Base Asahi)",
+  "サイゼリヤ": "사이제리야 (Saizeriya)",
+  "サンエー": "산에이 (San-A)",
+  "サンリオ": "산리오 (Sanrio)",
+  "スギ薬局": "스기약국 (Sugi Pharmacy)",
+  "スシロー": "스시로 (Sushiro)",
+  "セブンイレブン": "세븐일레븐 (7-Eleven)",
+  "ツルハドラッグ": "쓰루하드럭 (Tsuruha Drug)",
+  "ドンキ": "돈키호테 (Don Quijote)",
+  "ネクステージ": "넥스테이지 (Nextage)",
+  "ハニーズ": "허니즈 (Honeys)",
+  "ハローズ": "하로즈 (Halows)",
+  "ビックカメラ": "빅카메라 (Bic Camera)",
+  "フジグラン": "후지그랑 (Fuji Grand)",
+  "ベルク": "베르크 (Belc)",
+  "ポケモンカード": "포켓몬 카드 (Pokemon Card)",
+  "マッキントッシュ ロンドン": "매킨토시 런던 (Mackintosh London)",
+  "マルエツ": "마루에쓰 (Maruetsu)",
+  "ミニストップ": "미니스톱 (Ministop)",
+  "ユニクロ": "유니클로 (Uniqlo)",
+  "ライフ チラシ": "라이프 전단 (Life flyer)",
+  "リンガーハット": "링거헛 (Ringer Hut)",
+  "ワンピースカード": "원피스 카드 (One Piece Card)",
+  "ワークマン": "워크맨 (Workman)",
+  "ワールド オンラインストア": "월드 온라인스토어 (World Online Store)",
+  "丸亀製麺": "마루가메제면 (Marugame Udon)",
+  "吉野家": "요시노야 (Yoshinoya)",
+  "平和堂": "헤이와도 (Heiwado)",
+  "日高屋": "히다카야 (Hidakaya)",
+  "東京靴流通センター": "도쿄 구두유통센터 (Tokyo Shoes Center)",
+  "無印良品": "무인양품 (Muji)",
+  "薬王堂": "야쿠오도 (Yakuodo)",
+  "西松屋": "니시마쓰야 (Nishimatsuya)",
+  "象印": "조지루시 (Zojirushi)",
+  "近鉄百貨店": "긴테쓰백화점 (Kintetsu Department Store)"
+ }
 }
