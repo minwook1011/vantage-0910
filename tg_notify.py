@@ -153,6 +153,12 @@ def gpu():
     return (f"gpu:{last}", gate, build)
 
 
+def span(ws):
+    """주 시작일 → '10.05~10.11'"""
+    d = date.fromisoformat(ws)
+    return f"{d:%m.%d}~{d + timedelta(days=6):%m.%d}"
+
+
 def openrouter():
     """평균 실효 단가 + 주간 토큰 총량 + 주간 지출 — 한 메시지(그래프 3장 앨범), 매일 09:30"""
     S = ai_series()
@@ -185,13 +191,12 @@ def openrouter():
                 + (f" · 1주 전 대비 {chg(w['value'], p[-1]['value']):+.1f}%)" if w else ")")]
         if len(t) > 1:
             ws = t[-1]["date"]
-            we = date.fromisoformat(ws) + timedelta(days=6)
-            imgs.append(bars("tokens", "OpenRouter 주간 토큰 총량", f"한 주(월~일) 처리 토큰 · 조(T) 토큰 · 최근 26주 · {ws} 주",
+            imgs.append(bars("tokens", "OpenRouter 주간 토큰 총량", f"한 주(월~일) 처리 토큰 · 조(T) 토큰 · 최근 26주 · {span(ws)}",
                              [(x["date"], x["value"]) for x in t[-26:]], digits=1, unit="T"))
             w1 = chg(t[-2]["value"], t[-1]["value"])
-            rows.append(f"{arrow(w1)} 주간 토큰 <b>{t[-1]['value']:,.1f}T</b> (전주 대비 {w1:+.1f}% · {ws[5:].replace('-', '/')}~{we.strftime('%m/%d')})")
+            rows.append(f"{arrow(w1)} 주간 토큰 <b>{t[-1]['value']:,.1f}T</b> (전주 대비 {w1:+.1f}% · {span(ws)})")
         if len(sp) > 1:
-            imgs.append(bars("spend", "OpenRouter 주간 지출", f"주간 토큰 × 실효 단가 · 백만 달러 · {sp[-1]['date']} 주",
+            imgs.append(bars("spend", "OpenRouter 주간 지출", f"주간 토큰 × 실효 단가 · 백만 달러 · {span(sp[-1]['date'])}",
                              [(x["date"], x["value"]) for x in sp], digits=1, unit="M"))
             w2 = chg(sp[-2]["value"], sp[-1]["value"])
             rows.append(f"{arrow(w2)} 주간 지출 <b>${sp[-1]['value']:,.1f}M</b> (전주 대비 {w2:+.1f}%)")
