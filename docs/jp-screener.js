@@ -160,7 +160,7 @@ function toggleFav(code,ev){
   setTimeout(()=>document.addEventListener("mousedown",favPopOut,true),0);
 }
 
-let state = {hiview:(()=>{ try{ return localStorage.getItem("jp_screener_hiview")==="1"; }catch(e){ return false; } })(), cat:"전체", sort:"mc", dir:-1, minmc:0, q:"", qrom:null, onlych:0, favonly:0, smart:null, fcmpMetric:"기존점매출",
+let state = {hiview:(()=>{ try{ const v=localStorage.getItem("jp_screener_hiview"); return v==="1"?"hi":(v==="hi"||v==="mo")?v:""; }catch(e){ return ""; } })(), cat:"전체", sort:"mc", dir:-1, minmc:0, q:"", qrom:null, onlych:0, favonly:0, smart:null, fcmpMetric:"기존점매출",
   cols:["REVG","PY","PYTD","PER","ROE","OPM","EARN"], matrix:null, matrixMon:null};
 
 /* ===== 표시 지표(컬럼) 정의 ===== */
@@ -690,8 +690,9 @@ function renderTable(){
   const mb=document.getElementById("tbmore"); if(mb) mb.hidden=true;
   if(uniLoading) return;
   renderEarnUp();
-  setHiView(!!state.hiview);
-  if(state.hiview){ renderHiGrid(); return; }
+  setHiView(state.hiview);
+  if(state.hiview==="hi"){ renderHiGrid(); return; }
+  if(state.hiview==="mo"){ renderMoBoard(); return; }
   if(state.matrix){ renderMatrix(); return; }
   const rows = current();
   const maxmc = Math.max(...rows.map(r=>r[F.MCAP]||0), 1);
@@ -798,9 +799,9 @@ function buildRail(){
   const el=document.getElementById("rail");
   const mk=(n,c)=>`<button class="cat" data-cat="${n}" aria-pressed="${state.cat===n}">${n}<span class="n">${c}</span></button>`;
   el.innerHTML = mk("전체",RAW.length)+CATS.map(c=>mk(c,RAW.filter(r=>r[F.CAT]===c).length)).join("")
-    + `<span class="rail-sep"></span><button class="cat hiv" id="hiv" aria-pressed="${!!state.hiview}" title="52주 신고가 돌파·근접 종목을 차트 카드로">신고가 차트</button>`;
+    + `<span class="rail-sep"></span><button class="cat hiv" data-v="hi" aria-pressed="${state.hiview==="hi"}" title="52주 신고가 돌파·근접 종목을 차트 카드로">신고가 차트</button><button class="cat hiv" data-v="mo" aria-pressed="${state.hiview==="mo"}" title="고른 달의 월차를 회사별로 한눈에">월차 보드</button>`;
   el.querySelectorAll(".cat[data-cat]").forEach(b=>b.onclick=()=>{state.cat=b.dataset.cat;buildRail();renderFoodCompare();renderTable();});
-  document.getElementById("hiv").onclick=()=>{ setHiView(!state.hiview); buildRail(); renderTable(); };
+  el.querySelectorAll(".hiv").forEach(b=>b.onclick=()=>{ setHiView(state.hiview===b.dataset.v?"":b.dataset.v); buildRail(); renderTable(); });
 }
 
 /* ================= 신고가 차트(2026-10-12 사용자) =================
@@ -852,11 +853,70 @@ function renderHiGrid(){
   box.querySelectorAll(".hc").forEach(el=>{ el.onclick=e=>{ if(e.target.closest(".star")) return; openDetail(el.dataset.c); }; el.onkeydown=e=>{ if(e.key==="Enter") openDetail(el.dataset.c); }; });
 }
 function setHiView(on){
-  state.hiview=on; try{ localStorage.setItem("jp_screener_hiview", on?"1":"0"); }catch(e){}
+  on=on||""; state.hiview=on; try{ localStorage.setItem("jp_screener_hiview", on); }catch(e){}
   const tw=document.querySelector(".tblwrap"), g=document.getElementById("higrid");
   if(tw) tw.hidden=on; if(g) g.hidden=!on;
   ["colsel","mtxnote"].forEach(id=>{ const el=document.getElementById(id); if(el) el.hidden=on; });
   const mb=document.getElementById("tbmore"); if(mb&&on) mb.hidden=true;
+}
+
+/* ================= 월차 보드(2026-10-12 사용자) =================
+   분류 줄 '월차 보드' — 고른 달의 월차(전년 같은 달 대비)를 회사별로 한 화면에 줄 세운다.
+   지표: 기존점 매출·객수·객단가·전점 매출(KPI.ts — update_jp_kpi.py). 분류·시총·즐겨찾기·검색 조건을 따른다.
+   행마다: 이름 한국어(영어) · 0 기준 막대(빨강 +, 파랑 −, 세로 점선 = 중앙값) · 값 · 객수/객단가 분해 · 최근 6개월 작은 막대 · 전월 대비 · 양전/음전 */
+const MO_MET=[["기존점 매출","기존점 매출"],["기존점 객수","객수"],["기존점 객단가","객단가"],["전점 매출","전점 매출"]];
+let moMet="기존점 매출", moMon=null;
+function moSeries(code, met){ const ts=(KPI[code]||{}).ts; if(!ts||!ts.s[met]) return null; return {m:ts.m, v:ts.s[met]}; }
+function moAt(code, met, m){ const s=moSeries(code, met); if(!s) return null; const i=s.m.indexOf(m); return i<0||s.v[i]==null?null:+(s.v[i]-100).toFixed(1); }
+function moPrevMonth(m){ const y=+m.slice(0,4), mo=+m.slice(5,7)-1; return mo<1?`${y-1}-12`:`${y}-${String(mo).padStart(2,"0")}`; }
+function renderMoBoard(){
+  const box=document.getElementById("higrid"); if(!box) return;
+  const rows=current();
+  const mons=[...new Set(rows.flatMap(r=>{ const s=moSeries(r[F.CODE], moMet); return s?s.m.filter((m,i)=>s.v[i]!=null):[]; }))].sort().reverse();
+  if(!moMon || !mons.includes(moMon)){ // 기본: 가장 많은 회사가 낸 최근 달(막 나오기 시작한 달은 몇 곳뿐이라)
+    const cnt=m=>rows.filter(r=>moAt(r[F.CODE],moMet,m)!=null).length;
+    const top=mons.slice(0,3), mx=Math.max(0,...top.map(cnt));
+    moMon = top.find(m=>cnt(m)>=mx*0.6) || null;   // 최근 달 중 회사 60% 이상이 낸 가장 최근 달
+  }
+  const pm=moMon?moPrevMonth(moMon):null;
+  const L=rows.map(r=>{ const c=r[F.CODE], v=moAt(c,moMet,moMon); if(v==null) return null;
+    const p=moAt(c,moMet,pm), s=moSeries(c,moMet), i=s.m.indexOf(moMon);
+    return {r, c, v, p, d:p==null?null:+(v-p).toFixed(1), turn:p==null?"":(v>=0&&p<0?"up":v<0&&p>=0?"dn":""),
+      cu:moMet==="기존점 매출"?moAt(c,"기존점 객수",moMon):null, up:moMet==="기존점 매출"?moAt(c,"기존점 객단가",moMon):null,
+      hist:s.v.slice(Math.max(0,i-5), i+1).map(x=>x==null?null:x-100)};
+  }).filter(Boolean).sort((a,b)=>b.v-a.v);
+  document.getElementById("cnt").textContent=L.length;
+  const vals=L.map(x=>x.v).sort((a,b)=>a-b), med=vals.length?(vals.length%2?vals[(vals.length-1)/2]:(vals[vals.length/2-1]+vals[vals.length/2])/2):0;
+  const plus=L.filter(x=>x.v>0).length, minus=L.filter(x=>x.v<0).length, tu=L.filter(x=>x.turn==="up").length, td=L.filter(x=>x.turn==="dn").length;
+  const amax=Math.max(5, ...L.map(x=>Math.abs(x.v)));
+  const sgn=v=>v==null?"—":(v>0?"+":"")+v.toFixed(1);
+  const cl=v=>v==null?"":v>0?"up":v<0?"dn":"";
+  const bar=v=>{ const w=Math.min(50, Math.abs(v)/amax*50); return v>=0?`<i class="mb up" style="left:50%;width:${w}%"></i>`:`<i class="mb dn" style="left:${50-w}%;width:${w}%"></i>`; };
+  const mini=h=>{ const mx=Math.max(1,...h.filter(x=>x!=null).map(Math.abs)), n=h.length, W=60, H=22, bw=W/Math.max(n,1); return `<svg class="mh" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${H/2}" y2="${H/2}" class="z"/>${h.map((x,i)=>{ if(x==null) return ""; const hh=Math.max(1.5,Math.abs(x)/mx*(H/2-1)); return `<rect x="${(i*bw+1).toFixed(1)}" y="${(x>=0?H/2-hh:H/2).toFixed(1)}" width="${(bw-2).toFixed(1)}" height="${hh.toFixed(1)}" class="${x>=0?"up":"dn"}${i===n-1?" cur":""}"/>`; }).join("")}</svg>`; };
+  const ml=m=>m?`${+m.slice(0,4)%100}년 ${+m.slice(5,7)}월`:"—";
+  let h=`<div class="mo-top"><div class="mo-ctl"><div class="seg">${MO_MET.map(([k,l])=>`<button data-mm="${k}" aria-pressed="${moMet===k}">${l}</button>`).join("")}</div>
+      <select id="mo-mon">${mons.slice(0,13).map(m=>`<option value="${m}"${m===moMon?" selected":""}>${ml(m)}</option>`).join("")}</select></div>
+    <div class="mo-sum">
+      <div><span>공시</span><b>${L.length}<small>곳</small></b></div>
+      <div><span>플러스 / 마이너스</span><b><em class="up">${plus}</em> / <em class="dn">${minus}</em></b></div>
+      <div><span>중앙값</span><b class="${cl(med)}">${sgn(med)}%</b></div>
+      <div><span>최고</span><b class="up">${L[0]?sgn(L[0].v)+"%":"—"}</b><small>${L[0]?hiName(L[0].r):""}</small></div>
+      <div><span>최저</span><b class="${cl(L.length?L[L.length-1].v:null)}">${L.length?sgn(L[L.length-1].v)+"%":"—"}</b><small>${L.length?hiName(L[L.length-1].r):""}</small></div>
+      <div><span>양전 / 음전</span><b><em class="up">▲${tu}</em> <em class="dn">▼${td}</em></b><small>전월 대비 부호가 바뀐 곳</small></div>
+    </div></div>`;
+  h+=`<div class="mo-list"><div class="mo-row head"><span>#</span><span>회사</span><span class="mo-axis"><i style="left:${50+med/amax*50}%"></i>${ml(moMon)} ${esc(MO_MET.find(x=>x[0]===moMet)[1])} 전년 대비 (세로 점선 = 중앙값)</span><span>값</span>${moMet==="기존점 매출"?"<span class=\"hm\">객수 · 객단가</span>":"<span class=\"hm\"></span>"}<span class="hm">최근 6개월</span><span class="hm">전월 대비</span></div>`+
+    L.map((x,i)=>`<div class="mo-row" data-c="${x.c}" tabindex="0"><span class="rk">${i+1}</span><span class="nm">${hiName(x.r)}${x.turn?`<b class="tn ${x.turn}">${x.turn==="up"?"▲양전":"▼음전"}</b>`:""}</span>
+      <span class="mo-bar"><i class="z"></i><i class="md" style="left:${50+med/amax*50}%"></i>${bar(x.v)}</span>
+      <span class="val ${cl(x.v)}">${sgn(x.v)}</span>
+      <span class="hm dec">${x.cu!=null||x.up!=null?`<em class="${cl(x.cu)}">${sgn(x.cu)}</em> · <em class="${cl(x.up)}">${sgn(x.up)}</em>`:""}</span>
+      <span class="hm">${mini(x.hist)}</span>
+      <span class="hm dlt ${cl(x.d)}">${x.d==null?"—":(x.d>0?"▲":"▼")+Math.abs(x.d).toFixed(1)+"p"}</span></div>`).join("")+`</div>`;
+  const miss=rows.filter(r=>moSeries(r[F.CODE],moMet) && moAt(r[F.CODE],moMet,moMon)==null).length;
+  h+=`<div class="hnote">전년 같은 달 대비 %(회사 월차 공시 · 일본 월차 원장). ${esc(state.cat)} 기준 · 이 달 아직 안 낸 곳 ${miss}곳 · 객수 · 객단가는 기존점 기준 · 최근 6개월 작은 막대는 왼쪽이 오래된 달 · 회사를 누르면 상세. 원본 표는 데이터 허브 → 일본 소비재 월차.</div>`;
+  box.innerHTML=h;
+  box.querySelectorAll("[data-mm]").forEach(b=>b.onclick=()=>{ moMet=b.dataset.mm; renderMoBoard(); });
+  box.querySelector("#mo-mon").onchange=e=>{ moMon=e.target.value; renderMoBoard(); };
+  box.querySelectorAll(".mo-row[data-c]").forEach(el=>{ el.onclick=()=>openDetail(el.dataset.c); el.onkeydown=e=>{ if(e.key==="Enter") openDetail(el.dataset.c); }; });
 }
 
 /* ================= 봉 집계 ================= */
