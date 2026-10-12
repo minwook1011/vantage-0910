@@ -364,7 +364,7 @@
       if (!finite(x) && !finite(y)) return a.i - b.i; if (!finite(x)) return 1; if (!finite(y)) return -1;
       return dir * (x - y);
     });
-    var open = state.listOpen || !!q || conds.length > 0;
+    var open = !!state.listOpen;   // 검색·조건이 있어도 접을 수 있게(2026-10-12 사용자) — 검색어 입력·조건 검색 때 자동으로 펼친다
     pickerRows = open ? list : [];  // 접힌 상태에서는 행을 만들지 않는다(800행+ 표가 랙의 주원인)
     var usCount = COMPANIES.filter(isUS).length;
     var krCount = COMPANIES.filter(function (c) { return c.kr && !isUS(c); }).length, kqCount = COMPANIES.filter(function (c) { return c.kr && c.kr.market === "KOSDAQ"; }).length;
@@ -377,7 +377,7 @@
       '<select id="cb-mkt" aria-label="시장"><option value="">전체 시장</option><option value="KOSPI"' + (mkt === "KOSPI" ? " selected" : "") + '>코스피</option><option value="KOSDAQ"' + (mkt === "KOSDAQ" ? " selected" : "") + '>코스닥</option><option value="US"' + (mkt === "US" ? " selected" : "") + ">미국·해외</option></select>" +
       '<select id="cb-sector" aria-label="업종"><option value="">전체 업종</option><option value="★"' + (sector === "★" ? " selected" : "") + ">★ 즐겨찾기만</option>" + sectors.map(function (x) { return "<option" + (x === sector ? " selected" : "") + ">" + esc(x) + "</option>"; }).join("") + "</select>" +
       '<button type="button" id="cb-list-toggle" class="cb-list-toggle" aria-expanded="' + open + '">전체 기업 ' + COMPANIES.length + "개 " + (open ? "접기 ▴" : "펼치기 ▾") + "</button>" + sortSegHtml() + "</div>" + condBarHtml() +
-      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + (usCount ? " · 미국 S&P500 시총 상위 + 해외 " + usCount + "개(금액 $B · 실적 SEC 공시)" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
+      '<div class="cb-list"' + (open ? "" : " hidden") + '><div class="cb-list-meta"><button type="button" class="cb-list-fold" id="cb-list-fold">표 접기 ▴</button><b id="cb-count"></b>' + esc((KRX && KRX.criteria) || "") + (krCount ? " · 코스피 " + (krCount - kqCount) + " · 코스닥 " + kqCount + "개" : "") + (usCount ? " · 미국 S&P500 시총 상위 + 해외 " + usCount + "개(금액 $B · 실적 SEC 공시)" : "") + " · 실적은 가장 최근 확정 분기 · 제목을 누르면 정렬 · 행을 누르면 아래에 열립니다</div>" +
       '<div class="cb-list-wrap"><table class="cb-table"><thead>' + head + '</thead><tbody id="cb-tbody"></tbody></table></div></div>';
     bindFavs();
     chipHost.querySelectorAll("[data-cb-star]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); toggleFav(b.dataset.cbStar); }; });
@@ -398,6 +398,7 @@
     var cc = document.getElementById("cb-cond-clear"); if (cc) cc.onclick = function () { runCond(""); };
     applyListFilter();
     document.getElementById("cb-list-toggle").onclick = function () { state.listOpen = !open; if (!state.listOpen) query = ""; store(); renderPicker(); };
+    document.getElementById("cb-list-fold").onclick = function () { state.listOpen = false; store(); renderPicker(); var t = document.getElementById("cb-list-toggle"); if (t) t.scrollIntoView({block: "nearest"}); };
   }
   // 검색·시장·업종 필터는 표 틀은 두고 tbody 만 다시 채운다. 한 번에 PAGE_ROWS 행까지만 그리고 나머지는 "더 보기"
   var pickerRows = [], pickerLimit = 150, PAGE_ROWS = 150;

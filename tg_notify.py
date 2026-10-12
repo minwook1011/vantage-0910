@@ -11,6 +11,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
      · GPU별 렌탈 지수(H100·H200·B200·A100) — 매일 06:00 (Ornn 이 미 동부 16:00 정산 → 서머타임 해제 뒤엔 07:00)
      · OpenRouter 지표 — 매일 09:30 평균 실효 단가, 월요일 09:30에만 주간 토큰 총량·주간 지출 그래프를 함께(앨범)
        (하루는 UTC 자정 = 09:00 KST 에 닫히고, 주간 값은 월 09:00 KST 에 새 주로 바뀜)
+  ·) 일본 소비재 월차 — 새 달 월차가 들어오면 확인 회차마다 한 통(데이터 허브 일본 소비재 월차)
   2) 팟캐스트 — 새 편 요약이 올라오면: 제목 · 핵심 3줄 · 내용 정리(tg_body, 1,000자 이내 단락)
   3) 오늘 시황 요약 — 매일 06:30 예약 작업이 쓰고 올리면 바로(본문 그대로)
   4) 매크로 요약 — 매일 08:20: 공포·탐욕 · 미 국채 2·10·30년 · WTI 그래프 묶음 + 원/달러 환율 그래프
@@ -426,7 +427,40 @@ SENT = set()   # 이미 보낸 키(항목 함수가 '주간 값을 붙일지' �
 
 
 # ── 실행 ─────────────────────────────────────────────────────
-ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking}
+NL = chr(10)
+
+
+def jp_monthly():
+    """일본 소비재 월차 새로 나옴(2026-10-12~) — build_jp_monthly_hub.py 가 index.json events 에 남긴 것을
+    확인한 회차(found)마다 한 통으로 묶어 보낸다. 형식: 회사(코드) 달 · 대표 지표 ±% (전년 같은 달 대비)"""
+    ix = load("docs/data/jp/monthly/index.json") or {}
+    cut = (NOW - timedelta(days=2)).strftime("%Y-%m-%d %H:%M")
+    groups = {}
+    for e in ix.get("events") or []:
+        if (e.get("found") or "") >= cut:
+            groups.setdefault(e["found"], []).append(e)
+    out = []
+    for found, evs in sorted(groups.items()):
+        def build(evs=evs, found=found):
+            def ko_col(k):   # 텔레그램엔 '기존점 매출'·'전점 객수'처럼 짧게(사업부·브랜드 이름은 빼고)
+                k = k or ""
+                scope = "기존점" if "既存店" in k else "전점" if any(x in k for x in ("全店", "全社", "直営", "合計", "計")) else ""
+                metric = "객단가" if "客単価" in k else "객수" if "客数" in k else "매출" if "売上" in k else "지표"
+                return (scope + " " + metric).strip()
+            rows = []
+            for e in sorted(evs, key=lambda x: -(x.get("hv") or 0)):
+                m = e.get("m") or ""
+                val = f" {ko_col(e.get('hk'))} {'+' if e['hv'] >= 100 else ''}{e['hv'] - 100:.1f}%" if e.get("hv") is not None else ""
+                rows.append(f"• {esc(e.get('ko') or e['c'])}({e['c']}) {int(m[5:7]) if m else ''}월{esc(val)}")
+            more = (NL + "…외 " + str(len(rows) - 40) + "곳") if len(rows) > 40 else ""
+            head = f"📊 <b>일본 소비재 월차 — {len(evs)}곳 새로 나옴</b>"
+            tail = "전년 같은 달 대비 · 전체 표: 데이터 허브 → 일본 소비재 월차" + NL + "https://minwook1011.github.io/vantage-0910/datahub.html#jpm"
+            return (None, head + NL + NL.join(rows[:40]) + more + NL + NL + tail, {})
+        out.append((f"jpm:{found}", NOW, build))
+    return out
+
+
+ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
 
 
 def collect():

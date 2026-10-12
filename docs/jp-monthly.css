@@ -1,0 +1,42 @@
+/* jp-monthly.css — 데이터 허브 '일본 소비재 월차' */
+#jpm-workspace { --up:#d6334a; --dn:#2f6fe4; background:var(--card,#fff); border:1px solid var(--border); border-radius:14px; padding:18px 20px; }
+.jpm-empty { color:var(--muted); padding:24px 0; }
+.jpm-head h2 { margin:2px 0 4px; font-size:20px; }
+.jpm-sub { margin:0; color:var(--muted); font-size:12.5px; }
+.jpm-new { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:14px 0 4px; padding:10px 12px; background:rgba(47,111,228,.06); border-radius:10px; font-size:12.5px; }
+.jpm-new > b { margin-right:4px; }
+.jpm-chip { font:inherit; font-size:12px; border:1px solid var(--border); background:var(--card,#fff); border-radius:999px; padding:3px 10px; cursor:pointer; color:var(--text); }
+.jpm-chip small { color:var(--muted); font-family:var(--mono); }
+.jpm-chip:hover { border-color:var(--accent); }
+.jpm-ctl { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:14px 0 8px; }
+.jpm-ctl input, .jpm-ctl select { font:inherit; font-size:12.5px; border:1px solid var(--border); border-radius:8px; padding:6px 10px; background:var(--card,#fff); color:var(--text); }
+.jpm-ctl input { min-width:180px; }
+.jpm-seg { display:inline-flex; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+.jpm-seg button { font:inherit; font-size:12px; font-weight:600; border:0; background:var(--card,#fff); color:var(--muted); padding:6px 11px; cursor:pointer; }
+.jpm-seg button[aria-pressed="true"] { background:#2f6fe4; color:#fff; }
+.jpm-n { color:var(--muted); font-size:12px; }
+.jpm-tbl { display:flex; flex-direction:column; }
+.jpm-row { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr) 90px 70px minmax(0,1.6fr) 50px; gap:10px; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); font-size:13px; cursor:pointer; }
+.jpm-row:hover, .jpm-row.on { background:rgba(47,111,228,.05); }
+.jpm-row.head { font-size:11.5px; font-weight:700; color:var(--muted); cursor:default; background:none; }
+.jpm-row .nm b { display:block; }
+.jpm-row .nm small { color:var(--faint); font-size:11px; display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.jpm-row .cat { color:var(--muted); font-size:12px; }
+.jpm-row .hk { color:var(--muted); font-size:11.5px; }
+.jpm-row .mono { font-family:var(--mono); font-size:12px; color:var(--muted); }
+#jpm-workspace .up { color:var(--up); font-weight:700; } #jpm-workspace .dn { color:var(--dn); font-weight:700; }
+#jpm-workspace .pre { font-style:normal; font-size:10.5px; color:#b26a00; border:1px solid #e8c56a; border-radius:4px; padding:0 4px; }
+.jpm-det { padding:10px 4px 16px; border-bottom:1px solid var(--border-strong); background:rgba(47,111,228,.03); }
+.jpm-dh { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12px; color:var(--muted); margin-bottom:8px; }
+.jpm-dh a { color:#0045d6; }
+.jpm-scroll { overflow-x:auto; }
+.jpm-t { border-collapse:collapse; font-size:12px; min-width:100%; }
+.jpm-t th { font-weight:600; color:var(--muted); text-align:right; padding:6px 9px; border-bottom:1px solid var(--border-strong); white-space:nowrap; max-width:160px; overflow:hidden; text-overflow:ellipsis; }
+.jpm-t td { text-align:right; padding:5px 9px; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.jpm-t th:first-child, .jpm-t td.m { text-align:left; font-family:var(--mono); position:sticky; left:0; background:var(--card,#fff); }
+.jpm-note { margin-top:14px; color:var(--muted); font-size:11.5px; line-height:1.8; }
+@media (max-width:720px) { .jpm-row { grid-template-columns:minmax(0,1.6fr) 60px minmax(0,1.2fr); } .jpm-row .hm { display:none; } #jpm-workspace { padding:14px 12px; } }
+
+/* 데이터 허브 탭이 4개가 되어서(일본 월차 추가) */
+@media (min-width:721px) { .dh-views { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+@media (max-width:720px) { .dh-views { grid-template-columns:repeat(2,minmax(0,1fr)); } }
