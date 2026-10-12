@@ -893,6 +893,9 @@ function renderMoBoard(){
   const cl=v=>v==null?"":v>0?"up":v<0?"dn":"";
   const bar=v=>{ const w=Math.min(50, Math.abs(v)/amax*50); return v>=0?`<i class="mb up" style="left:50%;width:${w}%"></i>`:`<i class="mb dn" style="left:${50-w}%;width:${w}%"></i>`; };
   const mini=h=>{ const mx=Math.max(1,...h.filter(x=>x!=null).map(Math.abs)), n=h.length, W=60, H=22, bw=W/Math.max(n,1); return `<svg class="mh" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${H/2}" y2="${H/2}" class="z"/>${h.map((x,i)=>{ if(x==null) return ""; const hh=Math.max(1.5,Math.abs(x)/mx*(H/2-1)); return `<rect x="${(i*bw+1).toFixed(1)}" y="${(x>=0?H/2-hh:H/2).toFixed(1)}" width="${(bw-2).toFixed(1)}" height="${hh.toFixed(1)}" class="${x>=0?"up":"dn"}${i===n-1?" cur":""}"/>`; }).join("")}</svg>`; };
+  const px6=c=>{ const b=BY[c]; if(!b||!b.px||b.px.length<30) return ""; const p=b.px.slice(-126).map(v=>v/10), n=p.length, W=86, H=22, lo=Math.min(...p), hi=Math.max(...p), sp=(hi-lo)||1;
+    const d=p.map((v,i)=>(i?"L":"M")+(i/(n-1)*W).toFixed(1)+" "+(H-2-(v-lo)/sp*(H-4)).toFixed(1)).join(""), r=(p[n-1]/p[0]-1)*100;
+    return `<span class="px6"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${d}" class="${r>=0?"up":"dn"}"/></svg><b class="${r>=0?"up":"dn"}">${r>=0?"+":""}${r.toFixed(0)}%</b></span>`; };
   const ml=m=>m?`${+m.slice(0,4)%100}년 ${+m.slice(5,7)}월`:"—";
   let h=`<div class="mo-top"><div class="mo-ctl"><div class="seg">${MO_MET.map(([k,l])=>`<button data-mm="${k}" aria-pressed="${moMet===k}">${l}</button>`).join("")}</div>
       <select id="mo-mon">${mons.slice(0,13).map(m=>`<option value="${m}"${m===moMon?" selected":""}>${ml(m)}</option>`).join("")}</select></div>
@@ -904,15 +907,16 @@ function renderMoBoard(){
       <div><span>최저</span><b class="${cl(L.length?L[L.length-1].v:null)}">${L.length?sgn(L[L.length-1].v)+"%":"—"}</b><small>${L.length?hiName(L[L.length-1].r):""}</small></div>
       <div><span>양전 / 음전</span><b><em class="up">▲${tu}</em> <em class="dn">▼${td}</em></b><small>전월 대비 부호가 바뀐 곳</small></div>
     </div></div>`;
-  h+=`<div class="mo-list"><div class="mo-row head"><span>#</span><span>회사</span><span class="mo-axis"><i style="left:${50+med/amax*50}%"></i>${ml(moMon)} ${esc(MO_MET.find(x=>x[0]===moMet)[1])} 전년 대비 (세로 점선 = 중앙값)</span><span>값</span>${moMet==="기존점 매출"?"<span class=\"hm\">객수 · 객단가</span>":"<span class=\"hm\"></span>"}<span class="hm">최근 6개월</span><span class="hm">전월 대비</span></div>`+
+  h+=`<div class="mo-list"><div class="mo-row head"><span>#</span><span>회사</span><span class="mo-axis"><i style="left:${50+med/amax*50}%"></i>${ml(moMon)} ${esc(MO_MET.find(x=>x[0]===moMet)[1])} 전년 대비 (세로 점선 = 중앙값)</span><span>값</span>${moMet==="기존점 매출"?"<span class=\"hm\">객수 · 객단가</span>":"<span class=\"hm\"></span>"}<span class="hm">월차 6개월</span><span class="hm">주가 6개월</span><span class="hm">전월 대비</span></div>`+
     L.map((x,i)=>`<div class="mo-row" data-c="${x.c}" tabindex="0"><span class="rk">${i+1}</span><span class="nm">${hiName(x.r)}${x.turn?`<b class="tn ${x.turn}">${x.turn==="up"?"▲양전":"▼음전"}</b>`:""}</span>
       <span class="mo-bar"><i class="z"></i><i class="md" style="left:${50+med/amax*50}%"></i>${bar(x.v)}</span>
       <span class="val ${cl(x.v)}">${sgn(x.v)}</span>
       <span class="hm dec">${x.cu!=null||x.up!=null?`<em class="${cl(x.cu)}">${sgn(x.cu)}</em> · <em class="${cl(x.up)}">${sgn(x.up)}</em>`:""}</span>
       <span class="hm">${mini(x.hist)}</span>
+      <span class="hm">${px6(x.c)}</span>
       <span class="hm dlt ${cl(x.d)}">${x.d==null?"—":(x.d>0?"▲":"▼")+Math.abs(x.d).toFixed(1)+"p"}</span></div>`).join("")+`</div>`;
   const miss=rows.filter(r=>moSeries(r[F.CODE],moMet) && moAt(r[F.CODE],moMet,moMon)==null).length;
-  h+=`<div class="hnote">전년 같은 달 대비 %(회사 월차 공시 · 일본 월차 원장). ${esc(state.cat)} 기준 · 이 달 아직 안 낸 곳 ${miss}곳 · 객수 · 객단가는 기존점 기준 · 최근 6개월 작은 막대는 왼쪽이 오래된 달 · 회사를 누르면 상세. 원본 표는 데이터 허브 → 일본 소비재 월차.</div>`;
+  h+=`<div class="hnote">전년 같은 달 대비 %(회사 월차 공시 · 일본 월차 원장). ${esc(state.cat)} 기준 · 이 달 아직 안 낸 곳 ${miss}곳 · 객수 · 객단가는 기존점 기준 · 월차 6개월 작은 막대는 왼쪽이 오래된 달(진한 막대 = 고른 달) · 주가 6개월은 일봉 종가와 기간 등락률 · 회사를 누르면 상세. 원본 표는 데이터 허브 → 일본 소비재 월차.</div>`;
   box.innerHTML=h;
   box.querySelectorAll("[data-mm]").forEach(b=>b.onclick=()=>{ moMet=b.dataset.mm; renderMoBoard(); });
   box.querySelector("#mo-mon").onchange=e=>{ moMon=e.target.value; renderMoBoard(); };
