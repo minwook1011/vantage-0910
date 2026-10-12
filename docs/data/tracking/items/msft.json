@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "06b844a7706d",
+   "kind": "news",
+   "headline": "노르웨이, 마이크로소프트 광고 자회사 잰더에 960만 달러 과징금 — 그라인더 이용자 정보 공유 문제",
+   "bullets": [
+    "노르웨이 당국이 마이크로소프트의 광고 기술 자회사 잰더(Xandr)에 약 960만 달러 과징금을 매겼다고 로이터가 보도했다.",
+    "사유는 성소수자 만남 앱 그라인더(Grindr)에서 넘어온 이용자 정보를 광고에 쓴 문제다.",
+    "그라인더 자체는 같은 사안으로 2021년 6,500만 크로네 과징금을 받았고, 소송 끝에 2025년 확정됐다."
+   ],
+   "summary": "노르웨이 개인정보 당국이 마이크로소프트 자회사 잰더에 약 960만 달러 과징금을 매겼다. 잰더는 마이크로소프트가 2022년 인수한 광고 기술 회사다. 문제가 된 것은 그라인더 앱에서 넘겨받은 이용자 정보를 광고 거래에 쓴 부분이다.\n\n이 사안의 출발점은 2020년 노르웨이 소비자위원회의 신고다. 당국은 그라인더가 이용자 동의 없이 위치·광고 식별 정보 등을 잰더를 포함한 여러 광고 회사에 넘겼다고 판단했다. 그라인더 이용 사실 자체가 성적 지향을 드러내는 민감 정보라는 해석이었다. 그라인더는 2021년 6,500만 크로네(약 540만 유로) 과징금을 받았고, 항소가 모두 기각돼 2025년 확정됐다.\n\n이번에는 정보를 받은 쪽 광고 회사에도 책임을 물었다는 점이 다르다. 금액은 마이크로소프트 규모에 비해 작다. 다만 정보를 받은 광고 회사에도 책임을 묻는 선례가 될 수 있다. 본문을 열지 못해 결정 세부 내용과 회사 대응은 확인하지 못했다.",
+   "title": "Norway fines Microsoft's Xandr $9.6 million over Grindr data sharing",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxORHdmTEZnTEN2Uk0xcXN1LWM1STRqOFM4VkRXcEFJZ0ttX2swdVd5Vkhyb2xvam1zQVNiZGlLVlVHeVJDNlNzSVpfUllhQzJtNkVEMDZrelhxRmZySnhOVlBWblR3VGVIX3QwZ0FLSV9CRnBORExKWWdjSGljLXZnY1RTMXNIVWdLbm44RVVSci0zWm1ETnJpUWxiaEJPRWluTXZaT1FBTEYxcVlic1VFTnJkaENVMzB4Y1E?oc=5",
+   "published": "2026-10-12 19:56 KST",
+   "written": "2026-10-12 20:18 KST"
+  },
+  {
    "id": "63f2e4fcda5c",
    "headline": "미국 노동부, 마이크로소프트·어도비 등 8개사 영주권 노동허가(PERM) 신청 중단",
    "bullets": [
@@ -33,5 +49,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-10 13:30 KST"
+ "updated": "2026-10-12 20:18 KST"
 }
