@@ -229,8 +229,25 @@ def podcasts():
             ep = load(f"docs/data/podcasts/ep/{row['id']}.json") or {}
             show = ep.get("show_name") or row.get("show_name") or ""
             lines = [f"🎙 <b>{esc(ep.get('title_ko') or ep.get('title') or row.get('title'))}</b>"]
-            if show:
-                lines.append(f"<i>{esc(show)}</i>")
+            # 공개 일시·길이(2026-10-12 사용자: 인터뷰 날짜·시간이 왜 없나) — 방송사가 올린 시각(한국 시간). 녹화일은 방송사가 밝히지 않는다
+            pub, when = row.get("published") or "", ""
+            try:
+                dt = datetime.strptime(pub[:16], "%Y-%m-%d %H:%M")
+                h = dt.hour
+                when = f"{dt.year}년 {dt.month}월 {dt.day}일({'월화수목금토일'[dt.weekday()]}) {'오전' if h < 12 else '오후'} {h % 12 or 12}:{dt.minute:02d} 공개"
+            except Exception:
+                when = (row.get("date") or "") and f"{row['date']} 공개"
+            dur = row.get("duration") or ""
+            if dur:
+                p = [int(x) for x in dur.split(":") if x.isdigit()]
+                sec = 0
+                for x in p:
+                    sec = sec * 60 + x
+                hh, mm = sec // 3600, round(sec % 3600 / 60)
+                dur = (f"{hh}시간 {mm}분" if hh else f"{mm}분") if sec else ""
+            meta = " · ".join(x for x in (show, when, dur) if x)
+            if meta:
+                lines.append(f"<i>{esc(meta)}</i>")
             tl = ep.get("tldr") or []
             if tl:
                 lines += ["", "<b>핵심 요약</b>"] + [f"{i}. {esc(str(x).replace('__', ''))}" for i, x in enumerate(tl[:3], 1)]
