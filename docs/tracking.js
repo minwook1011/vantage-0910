@@ -24,6 +24,8 @@
     return "t-" + ("0000000" + h.toString(16)).slice(-8);
   }
   function status(msg, bad) { var s = $("#status"); s.textContent = msg || ""; s.className = "status" + (bad ? " bad" : msg ? " ok" : ""); }
+  // 올해가 아니면 연도까지(지난 글 — 예: 블로그 공감 상위)
+  function when2(s) { s = String(s || ""); return s.slice(0, 4) === String(new Date().getFullYear()) ? when(s) : s.replace(" KST", "").slice(0, 10).replace(/-/g, "."); }
   function when(s) { return String(s || "").replace(/^\d{4}-/, "").replace(" KST", "").replace("-", "/"); }
 
   // ── 보기 ──
@@ -107,7 +109,8 @@
     var detail = it.detail ? '<details class="sum full"><summary>▶ 영상 전체 정리 (' + Math.round(it.detail.length / 100) / 10 + "천 자)</summary>" + mdLite(it.detail) + "</details>" : "";
     return '<article class="item' + (isBlog(t) ? " blog" : isYT(t) ? " yt" : "") + '">' +
       '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + (isBlog(t) ? "📝 " : isYT(t) ? "▶️ " : "") + esc(tag(t.term)) + "</button>" +
-      '<span class="itime">' + esc(when(it.published)) + " · " + esc(it.source || "") + "</span></div>" +
+      '<span class="itime">' + esc(when2(it.published)) + " · " + esc(it.source || "") + (it.sym != null ? " · 공감 " + Number(it.sym).toLocaleString() + (it.cmt != null ? " · 댓글 " + Number(it.cmt).toLocaleString() : "") : "") + "</span></div>" +
+      (it.pick ? '<b class="pick">공감 상위 ' + it.pick + "위 · 최근 3년</b>" : "") +
       "<h3>" + esc(it.headline) + "</h3>" +
       '<ol class="bul">' + (it.bullets || []).map(function (b) { return "<li>" + esc(b) + "</li>"; }).join("") + "</ol>" +
       (paras ? '<details class="sum"><summary>내용 요약</summary>' + paras + "</details>" : "") + detail +
@@ -119,7 +122,7 @@
     var kind = isBlog(t) ? " blog" : isYT(t) ? " yt" : "";
     return '<div class="mini' + kind + '" tabindex="0" role="button" data-i="' + i + '">' +
       '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + esc(tag(t.term)) + "</button>" +
-      '<span class="itime">' + esc(when(it.published).replace(/^\d\d\/\d\d /, "")) + "</span></div>" +
+      '<span class="itime">' + esc(it.pick ? "공감 " + it.pick + "위" : when(it.published).replace(/^\d\d\/\d\d /, "")) + "</span></div>" +
       "<h3>" + esc(it.headline) + "</h3>" +
       '<p class="pv">' + esc((it.bullets || [])[0] || "") + "</p>" +
       '<div class="mfoot">' + esc(it.source || "") + "</div></div>";
