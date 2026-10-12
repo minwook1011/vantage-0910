@@ -163,9 +163,14 @@ def openrouter():
         return None
     last = p[-1]["date"]
     gate = at(date.fromisoformat(last) + timedelta(days=1), 9, 30)
-    # 주간 값(토큰·지출)은 새 주가 확정되는 월 09:30 이후 첫 메시지에만 한 번 붙인다(2026-10-10 사용자 지시)
-    wk_key = f"weekly:{t[-1]['date']}" if len(t) > 1 else None
-    weekly_due = bool(wk_key) and wk_key not in SENT and NOW >= at(date.fromisoformat(t[-1]["date"]) + timedelta(days=7), 9, 30)
+    # 주간 값(토큰·지출)은 OpenRouter 가 지난주를 확정하는 월 09:00 KST(세계 표준시 월 0시) 이후, 둘 다 같은 새 주로
+    # 바뀐 날의 메시지에만 한 번 붙인다(2026-10-10·12 사용자 지시). 월요일엔 주간 값이 들어올 때까지 12:00 까지 기다린다.
+    wk = (NOW.date() - timedelta(days=NOW.weekday() + 7)).isoformat()      # 마지막으로 끝난 주(월요일)
+    wk_key = f"weekly:{wk}"
+    weekly_ready = len(t) > 1 and len(sp) > 1 and t[-1]["date"] == wk and sp[-1]["date"] == wk
+    weekly_due = weekly_ready and wk_key not in SENT and NOW >= at(date.fromisoformat(wk) + timedelta(days=7), 9, 0)
+    if NOW.weekday() == 0 and not weekly_ready and wk_key not in SENT and NOW < at(NOW.date(), 12, 0):
+        return None
     if not weekly_due:
         t, sp = [], []
 
@@ -192,7 +197,7 @@ def openrouter():
             rows.append(f"{arrow(w2)} 주간 지출 <b>${sp[-1]['value']:,.1f}M</b> (전주 대비 {w2:+.1f}%)")
         cap = (f"🤖 <b>OpenRouter 지표</b> · {last[5:].replace('-', '/')} 기준 · "
                f"{stamp((S.get('or_avg_price') or {}).get('updated_at'))} 갱신\n" + "\n".join(rows) +
-               "\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외)" + (" · 주간 값은 매주 월요일 09:30에 한 번" if t else "") + "</i>")
+               "\n<i>OpenRouter 경유 트래픽만 집계(직접 API 제외)" + (" · 주간 값은 OpenRouter가 지난주를 확정하는 월요일에만" if t else "") + "</i>")
         return imgs, cap
     return (f"or:{last}|{wk_key}" if weekly_due else f"or:{last}", gate, build)
 

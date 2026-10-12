@@ -244,12 +244,13 @@ def c_or_models(ctx):
 @collector("or_tokens_weekly", "or_lab_trend")
 def c_or_chart(ctx):
     rows = jget(OR + "/rankings/model-rankings-chart")["data"]["data"]
-    today = NOW.date()
-    done = [r for r in rows if date.fromisoformat(r["x"]) + timedelta(days=7) <= today]  # 진행 중인 주 제외
+    # OpenRouter 주는 세계 표준시 월 0시(한국 월 09:00)에 끝난다. 한국 날짜로 끊으면 월 00:00~09:00 에 덜 찬 주가 들어가므로 UTC 로 본다.
+    utc_now = datetime.now(timezone.utc)
+    done = [r for r in rows if datetime.fromisoformat(r["x"]).replace(tzinfo=timezone.utc) + timedelta(days=7, minutes=10) <= utc_now]  # 진행 중인 주 제외
     ctx.chart_totals = {r["x"]: sum(r["ys"].values()) for r in done}  # 주간 지출 추정에 재사용
     total = [{"date": r["x"], "value": round(sum(r["ys"].values()) / 1e12, 2)} for r in done]
     ctx.put({"id": "or_tokens_weekly", "group": "demand", "label": "OpenRouter 주간 토큰 총량", "unit": "T 토큰", "type": "line", "kpi": True, "digits": 1,
-             "cadence": "주간 (월요일 시작) · 매일 확인", "source": "OpenRouter Rankings", "source_url": "https://openrouter.ai/rankings", "method": "scrape",
+             "cadence": "주간 (월~일) · 매주 월 09:00 KST 확정", "source": "OpenRouter Rankings", "source_url": "https://openrouter.ai/rankings", "method": "scrape",
              "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(ctx.old_points("or_tokens_weekly"), total),
              "caveat": "OpenRouter를 거친 트래픽만 집계합니다. OpenAI·Anthropic 직접 API 물량은 빠진 하한값입니다. 진행 중인 주는 제외합니다."})
 
@@ -341,7 +342,7 @@ def c_or_week(ctx):
     first_spend = spend_pts[0]["date"] if spend_pts else "9999"
     old_before = lambda sid, first: [p for p in ctx.old_points(sid) if p["date"] < first]
     ctx.put({"id": "or_spend_7d", "group": "demand", "label": "OpenRouter 주간 지출 (추정)", "unit": "$M", "type": "line", "digits": 1,
-             "cadence": "주간 (월요일 시작) · 매일 확인", "source": "OpenRouter 주간 토큰 × 실효 단가", "source_url": "https://openrouter.ai/rankings", "method": "computed",
+             "cadence": "주간 (월~일) · 매주 월 09:00 KST 확정", "source": "OpenRouter 주간 토큰 × 실효 단가", "source_url": "https://openrouter.ai/rankings", "method": "computed",
              "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(old_before("or_spend_7d", first_spend), spend_pts),
              "caveat": "그 주 전체 토큰(정확) × 표본 모델의 실효 단가로 추정합니다. " + note + " 모델별 일간 기록이 최근 30일만 공개돼 그 이전 주는 이후 매주 쌓입니다."})
     ctx.put({"id": "or_avg_price", "group": "price", "label": "평균 실효 단가", "unit": "$/M", "type": "line", "kpi": True, "digits": 3,
