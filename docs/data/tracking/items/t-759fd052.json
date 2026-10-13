@@ -3,6 +3,38 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "c53199818f7d",
+   "kind": "news",
+   "headline": "앤트로픽, 새 증류 공격 방어책으로 클로드에서 빼가는 데이터 90~99% 줄였다고 발표",
+   "bullets": [
+    "앤트로픽은 경쟁사가 클로드 답변을 대량으로 모아 자기 모델을 학습시키는 '증류 공격'을 막는 새 장치를 공개했다(로이터 보도).",
+    "대화·모델·계정 사이 추론 기록 이동 제한, 2단계 분류기(오탐률 0.1% 미만), 추론 과정 요약 제공, 반복 추출 계정 사용량 제한 등을 적용했다.",
+    "회사는 90~99% 감소가 초기 수치이며, 공격자가 우회로를 찾을 것으로 보고 감시를 이어간다고 밝혔다."
+   ],
+   "summary": "앤트로픽이 10월 12일(현지) 클로드 모델의 능력을 경쟁사가 베껴 가는 '증류 공격'을 막는 새 방어책을 공개했다. 회사는 초기 결과로 공격자가 거둬 가는 데이터가 90~99% 줄었다고 밝혔다.\n\n새 장치는 네 갈래다. 대화·모델·계정 사이로 추론 기록이 옮겨지는 것을 제한하고, 2단계 분류기로 증류 패턴을 잡는다. 앤트로픽은 이 분류기가 생물무기 제작 지원을 막는 장치와 비슷한 수준으로 견고하며 오탐률은 0.1% 미만이라고 설명했다. 클로드의 추론 과정은 요약해서 보여 줘 학습 데이터로서 가치를 낮췄다. 수만 개 계정을 두 시간 안에 차단한 사례도 있었고, 반복 추출자에게는 더 엄격한 사용량 제한을 건다.\n\n앤트로픽은 2월 중국 인공지능 업체들이 가짜 계정으로 클로드와 대량 대화를 주고받아 능력을 빼갔다고 공개한 바 있다. 회사는 이번 수치가 예비 결과이고 최상위급 공격자를 상대로는 아직 검증되지 않았으며, 공격자가 우회로를 찾을 것으로 보고 감시를 계속한다고 밝혔다.",
+   "title": "Anthropic says new safeguards sharply reduce AI distillation attacks",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPVlZuUXZob1BWeEV1WEZOdWIwRW9ucW92UFVueWd3clAxbHNSUHh1VXFuX1dTalVxLWgyX3Y5ZmZhYzIxc1BNRGN4Y3JUOXBIQjhZUUlDMlNyZ2Q1WW4zOThMbF85R1NGZ0RrWnRLVWMyNjdFWmswb2hrMmNlQWttOUZVOGFjUnRaUzduMDVKMnI1ODlUaWJuTkZ1M3U5N3haQWIzMzNyNzNNUUt1eW5ZVk5EV1pPczA?oc=5",
+   "published": "2026-10-13 10:07 KST",
+   "written": "2026-10-13 10:17 KST"
+  },
+  {
+   "id": "e004ce282e0c",
+   "kind": "news",
+   "headline": "아마존, 인공지능 스타트업 디카트 약 70억달러 인수 협상 — 앤트로픽이 9월 포기한 거래",
+   "bullets": [
+    "월스트리트저널은 10월 11일(현지) 아마존이 이스라엘 인공지능 스타트업 디카트를 약 70억달러에 사는 협상을 하고 있다고 보도했다.",
+    "앤트로픽은 약 60억달러 인수를 추진하다 실사 뒤 9월 손을 뗐고, 엔비디아도 앞서 인수를 검토했다.",
+    "디카트 기업가치는 5월 약 40억달러(피치북)였고, 아마존과 디카트는 확인을 거부했다."
+   ],
+   "summary": "월스트리트저널은 10월 11일(현지) 아마존이 이스라엘 인공지능 스타트업 디카트(Decart)를 약 70억달러에 인수하는 협상을 벌이고 있다고 보도했다. 협상이 깨지거나 다른 경쟁자가 나서지 않으면 곧 합의할 수 있다고 전했다. 아마존과 디카트는 로이터의 확인 요청에 답하지 않았다.\n\n디카트는 앞서 앤트로픽이 약 60억달러에 사려던 회사다. 블룸버그에 따르면 앤트로픽은 실사를 마친 뒤 9월 인수를 포기했고, 이유는 알려지지 않았다. 디카트 투자자인 엔비디아도 한때 인수를 깊이 논의했다.\n\n피치북 자료로 디카트의 5월 기업가치는 약 40억달러였다. 업계에서는 아마존이 엔비디아와 자체 인공지능 칩(트레이니엄) 고객을 두고 경쟁하는 만큼, 디카트 기술을 통해 다른 칩에서 돌던 작업을 자사 칩으로 옮기기 쉽게 하려는 것으로 본다. 거래는 확정되지 않았다.",
+   "title": "Anthropic放棄後 亞馬遜傳洽購AI新創Decart 價碼上看70億美元 | 美股動態 | 國際",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5EN21sN0lCcHAwdUhPN0lqdW9sNzlQeXlWNEhKdW1mZzhZT2xndHVRQ1lIbGdSdVQyLVNxaUxZVWlGMFRTNUF2dm1HdjF2akk4NFBvSVo4LUVNOGJjZ1dVNFFjSHBNOVFLVXJkNEZsOWNFMDllaGlvWE9n?oc=5",
+   "published": "2026-10-12 08:43 KST",
+   "written": "2026-10-13 10:17 KST"
+  },
+  {
    "id": "05bcc7f6a103",
    "kind": "news",
    "headline": "앤트로픽, 아이렌(IREN)과 여러 해짜리 클라우드 계약 맺어 — 디인포메이션 보도, 양사 공식 확인은 아직",
@@ -97,5 +129,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-13 01:46 KST"
+ "updated": "2026-10-13 10:17 KST"
 }
