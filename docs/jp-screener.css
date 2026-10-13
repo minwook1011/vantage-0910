@@ -631,3 +631,8 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .mo24 th:first-child,.mo24 td.m{text-align:left;position:sticky;left:0;background:var(--surface);z-index:2}
 .mo24 th:first-child{background:var(--surface-2);z-index:3}
 .mo24 td.up{color:var(--up)} .mo24 td.dn{color:var(--down)} .mo24 td.na{color:var(--ink-mute)}
+/* 캘린더 결과 칩이 옆 날짜 칸으로 넘치지 않게(2026-10-13): 칸 안에서 줄바꿈, 'PTS·지금' 같은 부가 정보는 칩 안 둘째 줄로 */
+.eu-cal .eu-col{min-width:0;overflow:hidden}
+.eu-cal .eu-co .eu-rx{display:flex;flex-wrap:wrap;gap:3px 4px;margin-top:3px}
+.eu-cal .rb{white-space:normal;max-width:100%;overflow-wrap:anywhere}
+.eu-cal .rb.px.big small{display:block;font-size:9px;line-height:1.35}
