@@ -16,7 +16,7 @@
 .jpm-seg button[aria-pressed="true"] { background:#2f6fe4; color:#fff; }
 .jpm-n { color:var(--muted); font-size:12px; }
 .jpm-tbl { display:flex; flex-direction:column; }
-.jpm-row { display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr) 90px 70px minmax(0,1.6fr) 50px; gap:10px; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); font-size:13px; cursor:pointer; }
+.jpm-row { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr) 78px 56px minmax(330px,3fr) 130px; gap:10px; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); font-size:13px; cursor:pointer; }
 .jpm-row:hover, .jpm-row.on { background:rgba(47,111,228,.05); }
 .jpm-row.head { font-size:11.5px; font-weight:700; color:var(--muted); cursor:default; background:none; }
 .jpm-row .nm b { display:block; }
@@ -45,3 +45,14 @@
 .jpm-blk ul { margin:8px 0 0; padding-left:18px; line-height:1.9; color:var(--muted); }
 .jpm-blk b { color:var(--text); }
 .jpm-blk a { color:#0045d6; }
+/* 최근 12개월 한 줄 + 주가 6개월(2026-10-13) */
+.m12 { display:flex; gap:2px; }
+.m12 i { flex:1; min-width:24px; font-style:normal; text-align:center; font-size:10.5px; font-weight:700; font-variant-numeric:tabular-nums; padding:3px 0; border-radius:3px; color:#1a2231; background:#f1f4f9; }
+.m12n { display:block; font-size:10.5px; color:var(--faint); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.px6 { display:flex; align-items:center; gap:6px; }
+.px6 svg { width:90px; height:24px; display:block; }
+.px6 path { fill:none; stroke-width:1.4; vector-effect:non-scaling-stroke; }
+.px6 path.up { stroke:#d6334a; } .px6 path.dn { stroke:#2f6fe4; }
+.px6 b { font-size:11px; font-variant-numeric:tabular-nums; }
+#jpm-workspace .na { color:var(--faint); }
+@media (max-width:720px) { .jpm-row { grid-template-columns:minmax(0,1fr); } .m12 i { min-width:0; font-size:9.5px; } }

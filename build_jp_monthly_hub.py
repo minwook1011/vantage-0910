@@ -64,6 +64,43 @@ def headline(latest):
     return None, None
 
 
+def price_6m(codes):
+    """종목별 최근 약 6개월 일봉 종가(목록의 작은 차트용) — 스크리너 묶음 + 최근 일봉(px_recent) + 종목별 파일(data/jp/px)"""
+    dec = json.JSONDecoder()
+    bars = {c: {} for c in codes}
+    for fn, var in (("screener-data.js", "BUNDLE"), ("consumer-extra.js", "BUNDLE_EXT"), ("major-data.js", "BUNDLE_MAJ")):
+        try:
+            s = open(os.path.join(ROOT, "docs", "data", "jp", fn), encoding="utf-8").read()
+            i = s.find("const " + var)
+            if i < 0:
+                continue
+            v, _ = dec.raw_decode(s[s.index("[", i):])
+        except Exception:
+            continue
+        for b in v:
+            if b["c"] in bars and b.get("px") and not b.get("iv") and not bars[b["c"]]:
+                d = b["d0"]
+                for k in range(len(b["px"])):
+                    if k:
+                        d += b["dd"][k]
+                    bars[b["c"]][d] = b["px"][k] / 10
+    rec = (jd(os.path.join(ROOT, "docs", "data", "jp", "px_recent.json"), {}) or {}).get("bars") or {}
+    out = {}
+    for c in codes:
+        pf = jd(os.path.join(ROOT, "docs", "data", "jp", "px", c + ".json"), {}) or {}
+        for row in pf.get("b") or []:
+            if isinstance(row[0], int):
+                bars[c][row[0]] = row[1]
+        for row in rec.get(c) or []:
+            bars[c][row[0]] = row[1] / 10
+        if bars[c]:
+            last = max(bars[c])
+            ks = [k for k in sorted(bars[c]) if k > last - 183]
+            if len(ks) >= 20:
+                out[c] = [round(bars[c][k], 1) for k in ks]
+    return out
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
@@ -123,7 +160,9 @@ def main():
             lt = {**{k: v for k, v in lt.items() if k in ("published", "preliminary", "pdf", "url", "source") and lt.get("month") == m}, "month": m, **doc["data"][m]}
         hk, hv = headline(lt)
         k = (KO.get(c) or "").split()
-        items[c] = {"c": c, "n": doc.get("name"), "en": doc.get("name_en") or (CAT.get(c) or {}).get("en"),
+        # 대표 계열 최근 12개월(목록에 한 줄로) — 열은 hk(기존점 매출 우선)
+        h12 = [[mm, (doc["data"].get(mm) or {}).get(hk)] for mm in sorted(doc["data"])[-12:]] if hk else []
+        items[c] = {"c": c, "h12": h12, "n": doc.get("name"), "en": doc.get("name_en") or (CAT.get(c) or {}).get("en"),
                     "ko": k[0] if k and re.search("[가-힣]", k[0]) else "", "cat": (CAT.get(c) or {}).get("cat"),
                     "mc": (CAT.get(c) or {}).get("mc"), "m": m, "pub": lt.get("published"), "pre": bool(lt.get("preliminary")),
                     "src": lt.get("pdf") or lt.get("url"), "hk": hk, "hv": hv, "n_m": len(doc["data"]), "n_c": len(doc["cols"])}
@@ -131,6 +170,10 @@ def main():
             events.append({"c": c, "ko": items[c]["ko"] or doc.get("name"), "m": m, "hk": hk, "hv": hv,
                            "pub": lt.get("published"), "src": items[c]["src"], "found": now})
             new += 1
+    PX = price_6m(list(items))
+    for c, r in items.items():
+        if PX.get(c):
+            r["px"] = PX[c]
     doc = {"updated": now, "src": "일본 월차 원장(TDnet 공시 + 회사 IR) · 전년比는 전년 같은 달=100",
            "count": len(items), "items": sorted(items.values(), key=lambda r: (r.get("m") or "", r.get("pub") or ""), reverse=True),
            "events": events[-400:],

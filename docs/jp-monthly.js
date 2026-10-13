@@ -18,6 +18,23 @@
   function num(v) { if (v == null) return "—"; return typeof v === "number" ? (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : String(v)) : esc(v); }
   function mLabel(m) { return m ? m.slice(2, 4) + "." + m.slice(5, 7) : "—"; }
 
+  // 최근 12개월 한 줄(2026-10-13 사용자: 대표 지표 대신 12개월을 쭉, 작은 주가 차트와 함께)
+  function strip(x) {
+    var h = x.h12 || [];
+    if (!h.length) return "—";
+    var cells = h.map(function (p) {
+      var v = p[1] == null ? null : p[1] - 100, a = v == null ? 0 : Math.min(1, Math.abs(v) / 20) * 0.55 + 0.08;
+      var bg = v == null ? "" : ' style="background:' + (v >= 0 ? "rgba(214,51,74," : "rgba(47,111,228,") + a.toFixed(2) + ')"';
+      return '<i' + bg + ' title="' + esc(mLabel(p[0]) + " " + (v == null ? "없음" : (v > 0 ? "+" : "") + v.toFixed(1) + "%")) + '">' + (v == null ? "·" : (v > 0 ? "+" : "") + v.toFixed(0)) + "</i>";
+    }).join("");
+    return '<span class="m12">' + cells + '</span><small class="m12n">' + esc(ko(x.hk || "").replace(" 전년비", "")) + " · " + mLabel(h[0][0]) + "~" + mLabel(h[h.length - 1][0]) + "</small>";
+  }
+  function px6(px) {
+    if (!px || px.length < 2) return '<span class="na">—</span>';
+    var n = px.length, W = 90, H = 24, lo = Math.min.apply(null, px), hi = Math.max.apply(null, px), sp = (hi - lo) || 1, r = (px[n - 1] / px[0] - 1) * 100;
+    var d = px.map(function (v, i) { return (i ? "L" : "M") + (i / (n - 1) * W).toFixed(1) + " " + (H - 2 - (v - lo) / sp * (H - 4)).toFixed(1); }).join("");
+    return '<span class="px6"><svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none"><path d="' + d + '" class="' + (r >= 0 ? "up" : "dn") + '"/></svg><b class="' + (r >= 0 ? "up" : "dn") + '">' + (r >= 0 ? "+" : "") + r.toFixed(0) + "%</b></span>";
+  }
   var IX = null, st = { q: "", cat: "", sort: "pub", open: null };
   try { var sv = JSON.parse(localStorage.getItem("jpm-view") || "null"); if (sv) { st.cat = sv.cat || ""; st.sort = sv.sort || "pub"; } } catch (e) {}
   var CACHE = {};
@@ -48,13 +65,13 @@
       }).join("") + "</div>" : "") +
       '<div class="jpm-ctl"><input type="search" id="jpm-q" placeholder="회사 이름 · 코드" value="' + esc(st.q) + '">' +
       '<select id="jpm-cat"><option value="">전체 업종</option>' + cats.map(function (c) { return "<option" + (c === st.cat ? " selected" : "") + ">" + esc(c) + "</option>"; }).join("") + "</select>" +
-      '<div class="jpm-seg">' + seg("pub", "최근 공시 순") + seg("hv", "대표 지표 높은 순") + seg("mc", "시총 순") + "</div><span class=\"jpm-n\">" + L.length + "곳</span></div>" +
-      '<div class="jpm-tbl"><div class="jpm-row head"><span>회사</span><span class="hm">업종</span><span>최신 달</span><span class="hm">공시일</span><span>대표 지표</span><span class="hm">개월</span></div>' +
+      '<div class="jpm-seg">' + seg("pub", "최근 공시 순") + seg("hv", "최근 달 높은 순") + seg("mc", "시총 순") + "</div><span class=\"jpm-n\">" + L.length + "곳</span></div>" +
+      '<div class="jpm-tbl"><div class="jpm-row head"><span>회사</span><span class="hm">업종</span><span>최신 달</span><span class="hm">공시일</span><span>최근 12개월 전년 대비 <small>(왼쪽 → 오른쪽 최신)</small></span><span class="hm">주가 6개월</span></div>' +
       L.map(function (x) {
         var open = st.open === x.c;
         return '<div class="jpm-row' + (open ? " on" : "") + '" data-c="' + esc(x.c) + '"><span class="nm"><b>' + esc(x.ko || x.n) + '</b><small>' + esc(x.c) + " · " + esc(x.ko ? x.n : x.en || "") + "</small></span>" +
           '<span class="hm cat">' + esc(x.cat || "") + "</span><span>" + mLabel(x.m) + (x.pre ? ' <i class="pre" title="속보치 — 나중에 확정치로 바뀔 수 있음">속보</i>' : "") + '</span><span class="hm mono">' + esc((x.pub || "").slice(5).replace("-", ".")) + "</span>" +
-          "<span>" + (x.hk ? '<small class="hk">' + esc(ko(x.hk).replace(" 전년비", "")) + "</small> " + yoyTxt(x.hv) : "—") + '</span><span class="hm mono">' + (x.n_m || "") + "</span></div>" +
+          "<span>" + strip(x) + '</span><span class="hm">' + px6(x.px) + "</span></div>" +
           (open ? '<div class="jpm-det" id="jpm-det">불러오는 중…</div>' : "");
       }).join("") + "</div>" +
       ((IX.blocked || []).length ? '<details class="jpm-blk"><summary>자동으로 못 모으는 회사 ' + IX.blocked.length + "곳 — 회사 IR 사이트에서 직접 확인</summary><ul>" +
