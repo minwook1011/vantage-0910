@@ -65,6 +65,100 @@ def next_monday(today):
     return today + timedelta(days=(7 - today.weekday()) % 7 or 7)
 
 
+# ── 카드용 작은 차트·재무 (2026-10-13 사용자: 관전 포인트에 차트와 재무제표를 작게) ──
+def _bundles():
+    out = {}
+    dec = json.JSONDecoder()
+    for fn, var in (("screener-data.js", "BUNDLE"), ("consumer-extra.js", "BUNDLE_EXT"), ("major-data.js", "BUNDLE_MAJ")):
+        try:
+            s = open(os.path.join(BASE, "docs", "data", "jp", fn), encoding="utf-8").read()
+            i = s.find("const " + var)
+            if i < 0:
+                continue
+            v, _ = dec.raw_decode(s[s.index("[", i):])
+            for b in v:
+                out.setdefault(b["c"], b)
+        except Exception as e:
+            print("  묶음 읽기 실패", fn, e)
+    return out
+
+
+def _r(v, n=1):
+    return None if v is None else round(v, n)
+
+
+PXR = {}
+
+
+def attach_data(doc):
+    """주 파일의 기업마다 px(최근 약 1년 일봉 종가)·pxd(마지막 날)·fin(분기 8개·연간 4개 매출·영업이익·순이익)을 붙인다"""
+    B = None
+    global PXR
+    PXR = (jd(os.path.join(BASE, "docs", "data", "jp", "px_recent.json"), {}) or {}).get("bars") or {}
+    for L in doc["days"].values():
+        for x in L:
+            try:
+                if x["mk"] == "jp":
+                    if B is None:
+                        B = _bundles()
+                    b = B.get(x["c"])
+                    if not b:
+                        continue
+                    # 주가: 스크리너 묶음(일봉, 일부는 주봉) + 최근 일봉(px_recent) + 종목별 파일(data/jp/px) 중 있는 것을 이어 붙인다
+                    bars = {}
+                    if b.get("px"):
+                        d = b["d0"]
+                        for k in range(len(b["px"])):
+                            if k:
+                                d += b["dd"][k]
+                            bars[d] = b["px"][k] / 10
+                    pf = jd(os.path.join(BASE, "docs", "data", "jp", "px", x["c"] + ".json"), {}) or {}
+                    for row in pf.get("b") or []:
+                        dd_ = row[0] if isinstance(row[0], int) else (date.fromisoformat(row[0]) - date(1970, 1, 1)).days
+                        bars[dd_] = row[1]
+                    for row in PXR.get(x["c"]) or []:
+                        bars[row[0]] = row[1] / 10
+                    if bars:
+                        last = max(bars)
+                        ks = [k for k in sorted(bars) if k > last - 366]          # 날짜 기준 최근 1년
+                        if b.get("iv") == "w":                                     # 묶음이 주봉인 종목: 전부 주봉으로 맞춘다(시간축 왜곡 방지)
+                            wk = {}
+                            for k in ks:
+                                wk[(k + 3) // 7] = k                               # 같은 주의 마지막 날
+                            ks = sorted(wk.values())
+                            x["pxw"] = 1
+                        else:
+                            x.pop("pxw", None)
+                        x["px"] = [round(bars[k], 1) for k in ks]
+                        x["pxd"] = (date(1970, 1, 1) + timedelta(days=ks[-1])).isoformat()
+                    q, a, f = b.get("q") or {}, b.get("a") or {}, b.get("f") or {}
+                    n = min(8, len(q.get("lb") or []))
+                    fin = {"u": "억엔", "q": {k: list(reversed((q.get(k) or [])[:n])) for k in ("lb", "rev", "oi", "ni")}}
+                    al = [i for i, l in enumerate(a.get("lb") or []) if l != "TTM"][:4]
+                    fin["a"] = {k: [((a.get(k) or [None] * 99)[i]) for i in reversed(al)] for k in ("lb", "rev", "oi", "ni")}
+                    if f.get("rev") is not None or f.get("oi") is not None:
+                        fin["f"] = {"lb": str(f.get("y") or "") + " 회사 예상", "rev": f.get("rev"), "oi": f.get("oi"), "ni": f.get("ni")}
+                    x["fin"] = fin
+                else:
+                    p = os.path.join(BASE, "docs", "data", "us", x["c"] + ".json")
+                    if not os.path.exists(p):
+                        continue
+                    u = jd(p, {}) or {}
+                    pts = ((u.get("price") or {}).get("points") or [])[-250:]
+                    if pts:
+                        x["px"] = [_r(pt["value"], 2) for pt in pts]
+                        x["pxd"] = pts[-1]["date"]
+                    fq = ((u.get("financials") or {}).get("quarterly") or [])
+                    fq = [r for r in fq if not r.get("est")][-8:]
+                    fa = [r for r in ((u.get("financials") or {}).get("annual") or []) if not r.get("est")][-4:]
+                    lab = lambda r: r["date"][2:4] + "." + r["date"][5:7]
+                    x["fin"] = {"u": "백만 달러",
+                                "q": {"lb": [lab(r) for r in fq], "rev": [_r(r.get("revenue")) for r in fq], "oi": [_r(r.get("operating_income")) for r in fq], "ni": [_r(r.get("net_income")) for r in fq]},
+                                "a": {"lb": [r["date"][:4] for r in fa], "rev": [_r(r.get("revenue")) for r in fa], "oi": [_r(r.get("operating_income")) for r in fa], "ni": [_r(r.get("net_income")) for r in fa]}}
+            except Exception as e:
+                print("  차트·재무 붙이기 실패", x.get("c"), e)
+
+
 def skeleton(mon):
     days = [(mon + timedelta(days=k)).isoformat() for k in range(5)]
     d0, d4 = days[0], days[-1]
@@ -104,6 +198,7 @@ def skeleton(mon):
                 x["pts"] = oldpts[(x["mk"], x["c"])]
     doc = {"week": mon.isoformat(), "range": [d0, d4], "until": UNTIL,
            "made": old.get("made") or datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"), "days": items}
+    attach_data(doc)
     wj(p, doc)
     prof = jd(os.path.join(OUT, "profiles.json"), {}) or {}
     todo = []
@@ -143,6 +238,7 @@ def merge(mon):
                 x["pts"] = [s for s in w["pts"] if s][:5]
             got += 1
     doc["made"] = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+    attach_data(doc)
     wj(p, doc)
     wj(pp, dict(sorted(prof.items())))
     weeks = sorted(os.path.basename(f)[:10] for f in glob.glob(os.path.join(OUT, "20??-??-??.json")))
@@ -157,6 +253,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--skeleton", action="store_true")
     ap.add_argument("--merge", action="store_true")
+    ap.add_argument("--data", action="store_true", help="주 파일에 차트·재무만 다시 붙인다")
     ap.add_argument("--week", help="월요일 날짜 YYYY-MM-DD(기본: 다음 월요일, 월~금이면 이번 주 다음 월요일)")
     a = ap.parse_args()
     today = datetime.now(KST).date()
@@ -167,6 +264,12 @@ def main():
         skeleton(mon)
     if a.merge:
         return merge(mon)
+    if a.data:
+        p = os.path.join(OUT, mon.isoformat() + ".json")
+        doc = jd(p)
+        attach_data(doc)
+        wj(p, doc)
+        print("차트·재무 붙임:", sum(1 for L in doc["days"].values() for x in L if x.get("fin")), "곳")
     return 0
 
 

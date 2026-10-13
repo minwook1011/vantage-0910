@@ -51,6 +51,7 @@
       '<div class="ep-nav">' + (i > 0 ? '<a class="ep-btn" href="?w=' + weeks[i - 1] + '">‹ 이전 주</a>' : '<span class="ep-btn off">‹ 이전 주</span>') +
       (i < weeks.length - 1 ? '<a class="ep-btn" href="?w=' + weeks[i + 1] + '">다음 주 ›</a>' : '<span class="ep-btn off">다음 주 ›</span>') + "</div></div>" + banner +
       '<div class="ep-bar"><div class="ep-seg">' + seg("all", "전체 " + all.length) + seg("jp", "일본 " + nJ) + seg("us", "미국 " + nU) + "</div>" +
+      '<button class="ep-btn sm" id="ep-foldall">' + (FOLD.length ? "모두 펼치기" : "모두 접기") + "</button>" +
       '<div class="ep-days">' + days.map(function (d) {
         var n = W.days[d].filter(ok).length;
         return '<a href="#d-' + d + '" class="ep-dj' + (n ? "" : " none") + '"><b>' + wd(d) + "</b><span>" + md(d) + " · " + n + "곳</span></a>";
@@ -58,22 +59,84 @@
     h += days.map(function (d) {
       var L = W.days[d].filter(ok);
       if (!L.length) return '<section class="ep-day" id="d-' + d + '"><h2>' + md(d) + "(" + wd(d) + ')<small>발표 없음</small></h2></section>';
-      return '<section class="ep-day" id="d-' + d + '"><h2>' + md(d) + "(" + wd(d) + ")<small>" + L.length + "곳" + (d === todayK ? " · 오늘" : "") + "</small></h2>" +
+      var shut = FOLD.indexOf(d) >= 0;
+      return '<section class="ep-day' + (shut ? " shut" : "") + '" id="d-' + d + '"><h2 class="ep-dh" data-fold="' + d + '" title="눌러서 접기·펼치기">' + md(d) + "(" + wd(d) + ")<small>" + L.length + "곳" + (d === todayK ? " · 오늘" : "") + '</small><span class="ep-fold">' + (shut ? "펼치기 ▾" : "접기 ▴") + "</span></h2>" +
         '<div class="ep-idx">' + L.map(function (x) { return '<a href="#c-' + x.mk + "-" + esc(x.c) + '" class="' + x.mk + '">' + esc(nm(x)) + "</a>"; }).join("") + "</div>" +
         '<div class="ep-grid">' + L.map(function (x) { return card(x, P[x.mk + ":" + x.c] || {}); }).join("") + "</div></section>";
     }).join("");
     h += '<div class="ep-note">발표일은 일본은 도쿄증권거래소 공식 예정일, 미국은 나스닥 거래소 캘린더(미 동부 날짜 · 장 전 = 한국 밤, 장 후 = 한국 새벽) 기준입니다. ' +
-      "<i>예상</i>은 회사가 아직 날짜를 알리지 않은 추정일입니다. 기업 이름을 누르면 재무제표·주가 차트로 갑니다(일본은 스크리너, 미국은 데이터 허브). " +
+      "<i>예상</i>은 회사가 아직 날짜를 알리지 않은 추정일입니다. 기업 이름을 누르면 이 화면 위에 주가 차트·재무제표가 크게 열립니다(창 밖으로 나가지 않음). 카드의 작은 표는 최근 4분기, 단위는 일본 억 엔·미국 백만 달러. 요일 제목을 누르면 접고 펼 수 있습니다. " +
       "기업 설명은 처음 한 번 쓰고 다음 분기에 다시 쓰며, 관전 포인트는 매주 새로 씁니다. 이 리포트는 " + esc(until) + "까지 매주 일요일 밤 10시에 올라옵니다.</div>";
     app.innerHTML = h;
     app.querySelectorAll("[data-mk]").forEach(function (b) { b.onclick = function () { st.mk = b.dataset.mk; try { localStorage.setItem("ep-mk", st.mk); } catch (e) {} render(IX, W, P); }; });
+    app.querySelectorAll("[data-fold]").forEach(function (h2) { h2.onclick = function () { var d = h2.dataset.fold, k = FOLD.indexOf(d); if (k >= 0) FOLD.splice(k, 1); else FOLD.push(d); saveFold(); render(IX, W, P); }; });
+    app.querySelector("#ep-foldall").onclick = function () { FOLD = FOLD.length ? [] : days.slice(); saveFold(); render(IX, W, P); };
+    app.querySelectorAll("[data-pop]").forEach(function (a) { a.onclick = function (e) { e.preventDefault(); var k = a.dataset.pop.split(":"); var x = all.filter(function (y) { return y.mk === k[0] && y.c === k[1]; })[0]; if (x) pop(x, P[x.mk + ":" + x.c] || {}); }; });
     if (location.hash) { var el = document.getElementById(location.hash.slice(1)); if (el) setTimeout(function () { el.scrollIntoView(); }, 50); }
+  }
+  // ── 작은 차트·재무(2026-10-13 사용자) — data/preview/<주>.json 의 px(최근 약 1년 종가)·fin(분기·연간 매출·영업이익·순이익) ──
+  var FOLD = [];
+  function foldKey() { return "ep-fold-" + (new URLSearchParams(location.search).get("w") || "cur"); }
+  try { FOLD = JSON.parse(localStorage.getItem(foldKey()) || "[]") || []; } catch (e) { FOLD = []; }
+  function saveFold() { try { localStorage.setItem(foldKey(), JSON.stringify(FOLD)); } catch (e) {} }
+  // 기간 등락: n = 거래일 수(일봉). 주봉 종목(pxw)은 주 수로 바꿔 계산
+  function retx(x, n) { return x.px ? ret(x.px, x.pxw ? Math.max(1, Math.round(n / 5)) : n) : null; }
+  function ret(px, n) { if (!px || px.length <= n) return null; var a = px[px.length - 1 - n], b = px[px.length - 1]; return a ? (b / a - 1) * 100 : null; }
+  function pct(v) { return v == null ? "—" : (v > 0 ? "+" : "") + v.toFixed(1) + "%"; }
+  function pcl(v) { return v == null ? "" : v > 0 ? "up" : v < 0 ? "dn" : ""; }
+  function spark(px, W, H, big) {
+    if (!px || px.length < 2) return "";
+    var n = px.length, lo = Math.min.apply(null, px), hi = Math.max.apply(null, px), sp = (hi - lo) || 1;
+    var X = function (i) { return (i / (n - 1)) * W; }, Y = function (v) { return H - 4 - (v - lo) / sp * (H - 10); };
+    var d = px.map(function (v, i) { return (i ? "L" : "M") + X(i).toFixed(1) + " " + Y(v).toFixed(1); }).join("");
+    var up = px[n - 1] >= px[0];
+    var area = big ? '<path d="' + d + "L" + W + " " + H + "L0 " + H + 'Z" class="ar ' + (up ? "up" : "dn") + '"/>' : "";
+    var lab = big ? '<text x="' + (W - 2) + '" y="' + (Y(hi) - 2 < 10 ? 10 : Y(hi) - 2) + '" text-anchor="end">최고 ' + num(hi) + '</text><text x="2" y="' + (H - 2) + '">최저 ' + num(lo) + "</text>" : "";
+    return '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" class="sp">' + area + '<path d="' + d + '" class="ln ' + (up ? "up" : "dn") + '"/>' + lab + "</svg>";
+  }
+  function num(v) { return v == null ? "—" : Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : (Math.round(v * 10) / 10).toLocaleString(); }
+  function opRow(f) { var q = f.q || {}; return (q.oi || []).some(function (v) { return v != null; }) ? ["oi", "영업이익"] : ["ni", "순이익"]; }
+  function finTable(f, nq, withA) {
+    if (!f || !f.q || !(f.q.lb || []).length) return '<div class="ep-nofin">재무 자료 없음</div>';
+    var q = f.q, k = q.lb.length, from = Math.max(0, k - nq), cols = [], o = opRow(f);
+    for (var i = from; i < k; i++) cols.push({ lb: q.lb[i], rev: q.rev[i], op: q[o[0]][i], ni: q.ni[i], py: i - 4 >= 0 ? q.rev[i - 4] : null });
+    if (withA && f.a && (f.a.lb || []).length) f.a.lb.forEach(function (l, j) { cols.push({ lb: l + "년", rev: f.a.rev[j], op: f.a[o[0]][j], ni: f.a.ni[j], an: true }); });
+    if (withA && f.f) cols.push({ lb: f.f.lb, rev: f.f.rev, op: f.f[o[0]], ni: f.f.ni, an: true, fc: true });
+    var row = function (lab, key) { return "<tr><th>" + lab + "</th>" + cols.map(function (c) { return '<td class="' + (c.an ? "an" : "") + (c.fc ? " fc" : "") + '">' + num(c[key]) + "</td>"; }).join("") + "</tr>"; };
+    var yoy = "<tr class=\"yy\"><th>매출 전년 대비</th>" + cols.map(function (c) { var v = c.py ? (c.rev / c.py - 1) * 100 : null; return '<td class="' + pcl(v) + (c.an ? " an" : "") + '">' + (c.an ? "" : pct(v)) + "</td>"; }).join("") + "</tr>";
+    var mg = "<tr class=\"yy\"><th>" + o[1] + "률</th>" + cols.map(function (c) { var v = c.rev && c.op != null ? c.op / c.rev * 100 : null; return '<td class="' + (c.an ? "an" : "") + '">' + (v == null ? "—" : v.toFixed(1) + "%") + "</td>"; }).join("") + "</tr>";
+    return '<table class="ep-fin"><thead><tr><th>' + esc(f.u) + "</th>" + cols.map(function (c) { return '<th class="' + (c.an ? "an" : "") + (c.fc ? " fc" : "") + '">' + esc(c.lb) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      row("매출", "rev") + row(o[1], "op") + (withA ? row("순이익", "ni") : "") + (withA ? yoy : "") + mg + "</tbody></table>";
+  }
+  function miniData(x) {
+    if (!x.px && !x.fin) return "";
+    var r1 = retx(x, 21), r12 = x.px ? ret(x.px, x.px.length - 1) : null;
+    return '<div class="ep-mini"><div class="ep-mc">' + (x.px ? spark(x.px, 160, 48) + '<div class="ep-mr"><span>1개월 <b class="' + pcl(r1) + '">' + pct(r1) + '</b></span><span>1년 <b class="' + pcl(r12) + '">' + pct(r12) + "</b></span></div>" : '<div class="ep-nofin">주가 자료 없음</div>') +
+      '</div><div class="ep-mf">' + finTable(x.fin, 4, false) + "</div></div>";
+  }
+  // ── 크게 보기(팝업) — 창 밖으로 나가지 않는다(2026-10-13 사용자) ──
+  function pop(x, p) {
+    var box = document.getElementById("ep-pop");
+    if (!box) { box = document.createElement("div"); box.id = "ep-pop"; box.className = "ep-pop"; document.body.appendChild(box); }
+    var href = link(x), r1 = retx(x, 21), r3 = retx(x, 63), r12 = x.px ? ret(x.px, x.px.length - 1) : null;
+    box.innerHTML = '<div class="ep-pc" role="dialog" aria-modal="true"><button class="ep-x" aria-label="닫기">×</button>' +
+      '<div class="ep-ph"><span class="mk ' + x.mk + '">' + (x.mk === "jp" ? "일본" : "미국") + "</span><h3>" + esc(nm(x)) + ' <small>' + esc(x.c) + (x.mk === "jp" && x.ko ? " · " + esc(x.n) : "") + "</small></h3>" + (p.one ? "<p>" + esc(p.one) + "</p>" : "") + "</div>" +
+      '<div class="ep-psec"><b>주가 (최근 약 1년' + (x.pxd ? " · " + esc(x.pxd) + " 종가 " + num(x.px[x.px.length - 1]) + (x.mk === "jp" ? "엔" : "달러") : "") + ')</b><span class="ep-pr">1개월 <i class="' + pcl(r1) + '">' + pct(r1) + '</i> · 3개월 <i class="' + pcl(r3) + '">' + pct(r3) + '</i> · 1년 <i class="' + pcl(r12) + '">' + pct(r12) + "</i></span></div>" +
+      (x.px ? '<div class="ep-big">' + spark(x.px, 640, 180, true) + "</div>" : '<div class="ep-nofin">주가 자료 없음</div>') +
+      '<div class="ep-psec"><b>재무제표</b><span class="ep-pr">최근 8분기 · 연간 4년' + (x.fin && x.fin.f ? " · 회사 예상" : "") + "</span></div>" +
+      '<div class="ep-ptbl">' + finTable(x.fin, 8, true) + "</div>" +
+      ((x.pts || []).length ? '<div class="ep-pts"><b>관전 포인트</b><ul>' + x.pts.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul></div>" : "") +
+      (href ? '<a class="ep-more" href="' + href + '" target="_blank" rel="noopener">' + (x.mk === "jp" ? "스크리너에서 전체 보기" : "데이터 허브에서 전체 보기") + " ↗ (새 탭)</a>" : "") + "</div>";
+    box.hidden = false; document.body.style.overflow = "hidden";
+    var close = function () { box.hidden = true; document.body.style.overflow = ""; };
+    box.querySelector(".ep-x").onclick = close;
+    box.onclick = function (e) { if (e.target === box) close(); };
+    document.onkeydown = function (e) { if (e.key === "Escape" && !box.hidden) close(); };
   }
   function ok(x) { return st.mk === "all" || st.mk === x.mk; }
   function nm(x) { return x.mk === "jp" ? (x.ko || x.n) : x.n; }
   function card(x, p) {
-    var href = link(x);
-    var title = (href ? '<a class="ep-nm" href="' + href + '" target="_blank" rel="noopener" title="새 탭에서 재무제표·차트 열기">' : '<span class="ep-nm">') + esc(nm(x)) + (href ? " ›</a>" : "</span>");
+    var title = '<a class="ep-nm" href="#" data-pop="' + x.mk + ":" + esc(x.c) + '" title="주가 차트·재무제표 크게 보기">' + esc(nm(x)) + " ›</a>";
     var meta = [];
     meta.push('<span class="mk ' + x.mk + '">' + (x.mk === "jp" ? "일본" : "미국") + "</span>");
     meta.push('<span class="cd">' + esc(x.c) + "</span>");
@@ -87,6 +150,6 @@
     if (x.est) meta.push('<i class="est">예상일</i>');
     var desc = (p.desc || []).length ? '<ol class="ep-desc">' + p.desc.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ol>" : '<div class="ep-wait">기업 설명을 쓰는 중입니다.</div>';
     var pts = (x.pts || []).length ? '<div class="ep-pts"><b>관전 포인트</b><ul>' + x.pts.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul></div>" : "";
-    return '<article class="ep-card ' + x.mk + '" id="c-' + x.mk + "-" + esc(x.c) + '"><div class="ep-ch">' + title + (p.one ? '<div class="ep-one">' + esc(p.one) + "</div>" : "") + '<div class="ep-meta">' + meta.join("") + "</div></div>" + desc + pts + "</article>";
+    return '<article class="ep-card ' + x.mk + '" id="c-' + x.mk + "-" + esc(x.c) + '"><div class="ep-ch">' + title + (p.one ? '<div class="ep-one">' + esc(p.one) + "</div>" : "") + '<div class="ep-meta">' + meta.join("") + "</div></div>" + miniData(x) + desc + pts + "</article>";
   }
 })();
