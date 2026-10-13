@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "71accb65f098",
+   "kind": "news",
+   "headline": "NTT데이터, 앤스로픽 첫 일본 데이터센터 최종 협상 — 오사카, 공사비 최대 1조 엔",
+   "bullets": [
+    "닛케이에 따르면 NTT데이터그룹이 앤스로픽의 일본 첫 데이터센터를 오사카에 짓는 방안을 최종 협상 중이다.",
+    "공사비는 최대 1조 엔(약 63억 달러)으로, 처리 능력 기준 일본 최대급 시설이 될 전망이다.",
+    "양측은 이번 회계연도 안 계약을 목표로 하며, 일부 가동은 이르면 2028년이다."
+   ],
+   "summary": "NTT데이터그룹이 미국 인공지능 회사 앤스로픽과 일본 오사카에 데이터센터를 짓는 최종 협상을 하고 있다고 닛케이가 13일 보도했고, 로이터가 이를 전했다. 성사되면 앤스로픽이 일본에 두는 첫 전용 데이터센터가 된다. 아직 회사 공식 발표는 없다.\n\n공사비는 최대 1조 엔(약 63억 달러)으로 거론된다. 처리 능력 기준으로 일본 최대급 데이터센터가 될 것으로 보인다. 양측은 2026 회계연도 안에 협력 계약을 맺는 것을 목표로 하고, 일부 시설은 이르면 2028년에 가동할 수 있다.\n\n남은 쟁점은 전력이다. 전력망에서 500메가와트를 끌어오는 데 시간이 걸려, 초기에는 현장 발전이나 연료전지 같은 대안을 검토할 가능성이 크다고 보도는 전했다. NTT데이터는 지난 8월 2033년까지 최소 90억 달러를 들여 일본 데이터센터 용량을 1기가와트로 늘리는 계획이 알려진 바 있다.",
+   "title": "NTT Data in final talks to build Anthropic's first data centre in Japan, Nikkei reports",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNaDNpQmc0SlhGM0F0cjVrUU1PUVBoWGlFeWNjTU12RFlLWGQwN2xnM3JjNGktZ1V4Qi1OWmR6czVEM09TOHdCOFBfeG9OM083MFdwRFFkOEFDckUzTnNYVlJDaExGT09ERzdfR0NKSzkwUXJrbDByZk4tQjV1VFNBSTd6SFJ6TUI4dDdDa0d6OGNIMVJSNnY3QjlYSEJ2UGdlMHkzYXFoNmFLdU5nX2NpR1Nwck9NRDVRRFRfN1NibjhMMjVVWHdINGIwVG5MbFBk?oc=5",
+   "published": "2026-10-13 11:51 KST",
+   "written": "2026-10-13 12:18 KST"
+  },
+  {
    "id": "363c48178dad",
    "kind": "news",
    "headline": "LG CNS, 앤트로픽 클로드 파트너 '프리퍼드' 등급 국내 첫 획득 — 4만여 곳 중 50곳 미만",
@@ -145,5 +161,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-13 11:19 KST"
+ "updated": "2026-10-13 12:18 KST"
 }
