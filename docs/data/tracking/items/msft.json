@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "1ab2dde144f1",
+   "kind": "news",
+   "headline": "마벨·마이크로소프트·오라클, 서버 안에 넣는 보안 칩 표준을 함께 만든다 — 오픈컴퓨트프로젝트 작업반 출범",
+   "bullets": [
+    "세 회사가 데이터센터 하드웨어 개방 표준 단체인 오픈컴퓨트프로젝트(OCP) 보안 분과 아래에 새 작업반을 만들었다고 10월 13일 발표했다.",
+    "목표는 미국 표준기술연구소 보안 인증 FIPS 140-3 3등급을 받는, 서버에 내장하는 하드웨어 보안 모듈(암호 키 보관 장치)의 공개 규격이다.",
+    "첫 규격 초안은 이달 열리는 오픈컴퓨트프로젝트 글로벌 서밋에서 나온다."
+   ],
+   "summary": "마벨, 마이크로소프트, 오라클이 데이터센터 하드웨어 보안 표준을 함께 만든다. 세 회사는 오픈컴퓨트프로젝트 보안 분과 아래에 작업반을 꾸렸다. 서버 안에 직접 넣는 하드웨어 보안 모듈의 공개 규격을 정하는 것이 목표다. 이 모듈은 암호 키를 보관하고, 키를 만들고 폐기하는 전 과정을 서버 안에서 처리한다. 인증 기준은 미국 표준기술연구소의 FIPS 140-3 3등급이다.\n\n지금 클라우드·기업 서버는 대부분 네트워크로 연결된 별도 보안 장비나 소프트웨어로 키를 관리한다. 그래서 암호 키가 네트워크를 오간다. 모듈을 서버 안에 두면 지연이 줄고 확장이 쉬워진다는 설명이다. 마이크로소프트 쪽은 양자컴퓨터 시대에 대비한 암호를 이유로 들었다. 마벨은 공개 규격이라 업계 전체가 쓸 수 있다고 강조했다.\n\n마벨은 이미 '리퀴드시큐리티' 보안 모듈을 마이크로소프트 애저와 오라클 클라우드에 공급하고 있다. 첫 규격 초안은 10월 오픈컴퓨트프로젝트 글로벌 서밋에서 공개된다. 실제 제품과 매출로 이어지는 시점은 아직 나오지 않았다.",
+   "title": "Marvell, Microsoft and Oracle Establish OCP Working Group to Standardize Data Center Hardware Security",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxORlpYZzU5WDlGdHY0OTdVcHZyYjRxZkIzOGVyVm44VE1NVW5KaGI3ZlBPcXVwMDZSM3RoUnZ2RFg1TkVLMXJvQ191TkNocDc3by1IUlRPMVdhWUFUS0MtVHdzWmlxZFhDcHg5SjhaX2xucVprYzBGLTVXdXhPMjZPRWJGMnd4ZVQxeEtEcGNOTGZCc0FlYXJfU1hrRVFaMGR6cGh1TQ?oc=5",
+   "published": "2026-10-13 22:00 KST",
+   "written": "2026-10-14 00:17 KST"
+  },
+  {
    "id": "7721f3c64c6b",
    "kind": "news",
    "headline": "마이크로소프트, 자체 인공지능 칩 '마이아 300' 공개 — TSMC 2나노(N2P)로 만들고 2027년부터 수 기가와트 규모 배치",
@@ -113,5 +129,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-13 11:19 KST"
+ "updated": "2026-10-14 00:17 KST"
 }
