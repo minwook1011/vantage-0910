@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "9b8e348531aa",
+   "kind": "news",
+   "headline": "NTT데이터, 앤트로픽의 일본 첫 전용 데이터센터 오사카에 건설 막바지 협상 — 최대 500메가와트·건설비 최대 1조 엔",
+   "bullets": [
+    "닛케이에 따르면 NTT데이터가 오사카에 앤트로픽 전용 데이터센터를 짓는 막바지 협상을 하고 있다. 앤트로픽의 일본 첫 데이터센터다.",
+    "전력 수용 용량은 최대 500메가와트로 일본 최대급이며, 건설비는 최대 1조 엔(약 63억 달러)으로 추산된다.",
+    "두 회사는 2026회계연도 말(2027년 3월)까지 계약을 맺고, 이르면 2028년 일부 가동을 노린다. 양사는 아직 공식 확인하지 않았다."
+   ],
+   "summary": "NTT데이터가 앤트로픽의 일본 첫 전용 데이터센터를 오사카에 짓는 협상이 막바지에 들어갔다고 닛케이가 13일 보도했다. 로이터 등 외신이 이를 받아 전했다. 일본에서 손꼽히는 처리 능력을 갖춘 시설이 될 전망이다.\n\n보도에 따르면 전력 수용 용량은 최대 500메가와트, 건설비는 최대 1조 엔(약 63억 달러)이다. 1조 엔은 상한 추정치다. 두 회사는 2026회계연도가 끝나는 2027년 3월 말까지 계약 체결을 목표로 하고, 이르면 2028년 일부 가동을 시작한다.\n\n남은 쟁점은 전력이다. 500메가와트를 전력망으로 확보하려면 시간이 걸려 초기에는 자체 발전이나 연료전지 같은 대안을 검토할 가능성이 거론된다. 협상이 진행 중이라 조건이 바뀔 수 있고, NTT는 논평을 거부했다.",
+   "title": "\"앤트로픽-NTT, 오사카에 日 최대 데이터센터 건립 조율\"",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE80V0EtU04tRmxMbWEwd0ZNRmJjU3daenJ0ejFuS2l1Y1FWN2pxNmxaQ2ltR3JCNkMteUVpSlRnQjZ4MGpic01zaHJqRUcyYm5yTUFLMlNDWnBlbnPSAWBBVV95cUxPcy1Hc2Z5TmxDazgwTVVvR05KQkdYMEFHSWlJX1VNQU55WGNBOXFtbHdvekc4ZjNZbXBDWW1BSWJ6dXg2aFI1QlhrWmRPNnlmNmNkUnJOZnhpdGxLeVNqNVg?oc=5",
+   "published": "2026-10-13 13:01 KST",
+   "written": "2026-10-13 13:17 KST"
+  },
+  {
    "id": "8d1e405a626f",
    "kind": "news",
    "headline": "앤트로픽 레드팀 \"값싼 스마트가전 여러 대로 AI 모델 분산 구동 가능\" — 셋톱박스 15대로 260억 매개변수 모델 실행, 해킹 거점 악용 경고",
@@ -177,5 +193,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-13 12:48 KST"
+ "updated": "2026-10-13 13:17 KST"
 }
