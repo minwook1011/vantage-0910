@@ -74,6 +74,7 @@
   "trk:blog-tosoha1:3babcaf32d0f",
   "trk:blog-tosoha1:4eaebe4e5c42",
   "trk:blog-tosoha1:a959256e6c94",
+  "trk:blog-tosoha1:e7417374557c",
   "trk:blog-travelingcompanion:22e63b909540",
   "trk:blog-travelingcompanion:446e081224db",
   "trk:blog-travelingcompanion:89f0c869eb08",
@@ -103,6 +104,7 @@
   "trk:nvda:3f97ba261391",
   "trk:nvda:4dda0bba522d",
   "trk:nvda:5d8d74036761",
+  "trk:nvda:e67abae1c76a",
   "trk:nvda:e9fde1a9cf27",
   "trk:open-ai:29c8973038a2",
   "trk:open-ai:58cd80f1e510",
@@ -163,6 +165,7 @@
   "trk:yt--jklonfa:94142abd3697",
   "trk:yt--jklonfa:a73156b5999f",
   "trk:yt--jklonfa:c548bb219247",
+  "trk:yt--jklonfa:c7847ac9da6b",
   "trk:yt--jklonfa:ddefcf35db74",
   "trk:yt--jklonfa:e0e8fc527c23",
   "trk:yt--jklonfa:e6b87283a1ee",
@@ -656,6 +659,15 @@
   ],
   "pod:2026-10-13-ilb-david-v-lez-building-nubank-and-the-future-of-gl": [
    213
+  ],
+  "trk:blog-tosoha1:e7417374557c": [
+   214
+  ],
+  "trk:yt--jklonfa:c7847ac9da6b": [
+   215
+  ],
+  "trk:nvda:e67abae1c76a": [
+   216
   ]
  }
 }
