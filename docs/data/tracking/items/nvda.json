@@ -1,0 +1,23 @@
+{
+ "schema": 1,
+ "slug": "nvda",
+ "items": [
+  {
+   "id": "e9fde1a9cf27",
+   "kind": "news",
+   "headline": "엔비디아 중국 AI 반도체 점유율 상반기 34%로 하락 — 화웨이 28%로 추격(IDC)",
+   "bullets": [
+    "시장조사업체 IDC 집계로 올해 상반기 중국 데이터센터용 AI 반도체 시장에서 엔비디아 점유율은 34%, 화웨이는 28%였다.",
+    "엔비디아의 중국 출하량은 1~6월 67만 8천 개로 1년 전보다 44% 줄었고, 화웨이는 30만 개 남짓에서 57만 2천 개로 늘었다.",
+    "그래픽처리장치(GPU) 출하는 26% 줄어든 반면, GPU가 아닌 가속기 출하는 80% 가까이 늘어 처음으로 GPU를 앞질렀다."
+   ],
+   "summary": "엔비디아의 중국 AI 반도체 시장 지배력이 빠르게 줄고 있다. 로이터가 인용한 IDC 자료에 따르면 올해 상반기 중국 데이터센터용 AI 반도체 시장에서 엔비디아 점유율은 34%로 내려왔고, 화웨이는 28%까지 올라왔다.\n\n출하량으로 보면 차이가 더 분명하다. 엔비디아는 1~6월 중국에 67만 8천 개를 보내 1년 전보다 44% 줄었다. 화웨이는 30만 개 남짓에서 57만 2천 개로 늘었다. 전체 GPU 출하는 26% 줄어든 99만 1천 개였고, GPU가 아닌 전용 가속기는 80% 가까이 늘어난 101만 6천 개로 처음 GPU를 넘어섰다.\n\n미국 수출 규제로 엔비디아가 중국에 팔 수 있는 제품이 좁아진 데다, 중국 정부가 규제에 맞춘 제품도 수입 승인을 요구하는 일이 잦아진 점이 배경으로 꼽힌다. 다만 지난해 전체 IDC 집계(엔비디아 약 55%)와는 기간·기준이 달라 직접 비교에는 주의가 필요하다.",
+   "title": "Nvidia's China AI-chip share falls as Huawei closes gap, report finds",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZ2lCcTJZLWVsU3NJWjJRV2xZd0RXM1NtbWNnQUtfb1RsSjlNVmFEWnVxYVJ5Y0pXS0lWV284NlVCWkp2Qy1jbm5na2ZFeE5BYmNlWFVaVGttNElacjE1SGlaeVBOc1J5Z042bUlOS3JPbWpHcloxVDF5X3B2NG5hSEdCcHp0SGswU3d5VWNNWE02bE1KS0VyTVROTlJxUTRFUzNQM3hrbERWWWh5X21pSFg2ajBBOG02cXdzS1UyV09MY0k?oc=5",
+   "published": "2026-10-13 11:33 KST",
+   "written": "2026-10-13 11:47 KST"
+  }
+ ],
+ "updated": "2026-10-13 11:47 KST"
+}
