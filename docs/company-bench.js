@@ -561,13 +561,36 @@
       "</article>" +
       (hasFin ? '<div class="fm-kpis">' + [["매출", fmt(fr.revenue, u.unit)], ["영업이익", fmt(fr.operating_income, u.unit)], ["OPM", fmt(fr.opm, "%")], ["매출 성장률", fmt(fr.revenue_yoy, "%")], ["영업이익 성장률", finite(fr.operating_income_yoy) ? fmt(fr.operating_income_yoy, "%") : fr.op_label || "—"]].map(function (kv) { return '<div class="fm-kpi"><span>' + kv[0] + "</span><strong>" + esc(kv[1]) + "</strong><small>" + esc(fr.date ? finLabel(fr.date, p.period) : "—") + (kv[0].indexOf("성장") >= 0 ? " · YoY" : p.period === "annual" ? " · 연간" : " · 분기") + "</small></div>"; }).join("") + "</div>" : "") +
       (hasFin && rows.length ? '<section class="cb-earn"><div class="fm-history-heading"><b>' + (p.period === "annual" ? "연간" : "분기") + ' 실적 추이</b><span>막대 = 매출·영업이익(' + esc(u.unit) + ') · 선 = OPM(%) · 아래 숫자 = 매출 YoY · 빗금 = 컨센서스 추정</span></div><div class="cb-earn-chart" id="cb-earn"></div></section>' : "") +
-      (hasFin && rows.length ? '<div class="fm-history-heading"><b>' + (p.period === "annual" ? "연간" : "분기") + " 실적</b><span>" + esc(finLabel(rows[0].date, p.period) + " – " + finLabel(rows[rows.length - 1].date, p.period)) + " · 단위 " + esc(u.unit) + '</span></div><div class="fm-table-wrap"><table class="fm-table"><thead><tr><th>회계기간</th><th>매출</th><th>영업이익</th><th>OPM</th><th>매출 YoY</th><th>영업이익 YoY</th></tr></thead><tbody>' +
-        rows.slice().reverse().map(function (r) { return "<tr" + (r.est ? ' class="cb-est-row"' : "") + "><td>" + esc(finLabel(r.date, p.period)) + (r.est ? ' <em class="cb-est">E</em>' : "") + "</td><td>" + fmt(r.revenue, "") + "</td><td>" + fmt(r.operating_income, "") + "</td><td>" + fmt(r.opm, "%") + "</td><td>" + fmt(r.revenue_yoy, "%") + "</td><td>" + (finite(r.operating_income_yoy) ? fmt(r.operating_income_yoy, "%") : esc(r.op_label || "—")) + "</td></tr>"; }).join("") + "</tbody></table></div>" : "") +
+      (hasFin && rows.length ? '<div class="fm-history-heading"><b>' + (p.period === "annual" ? "연간" : "분기") + " 실적</b><span>" + esc(finLabel(rows[0].date, p.period) + " – " + finLabel(rows[rows.length - 1].date, p.period)) + " · 단위 " + esc(u.unit) + " · 배경색 = 전년 대비(빨강 +, 파랑 −, ±50%에서 가장 진함)</span></div>" + finGrid(rows, p.period) : "") +
       '<p class="fm-sources">' + (kd
         ? "주가: 네이버 금융 일봉(" + esc(String(kd.checked_at || "—").slice(0, 16).replace("T", " ")) + " 수집) · 실적: DART 정기보고서(연결, 과거 분기) + 네이버 금융/FnGuide(최근 5분기·3년, E = 컨센서스) · 금융사는 매출 대신 영업수익이 표시되어 OPM 해석에 주의 · "
         : "주가: Yahoo Finance 일간 종가(" + esc((AI && AI.generated_at) || "—").slice(0, 16) + " 수집) · 실적: Yahoo Finance 재무제표(financials.json) · ") +
       "관련 지표: 데이터 허브 AI 지표 파일(각 지표의 출처는 목록에 표시) · 즐겨찾기·주요 지표 고정·직접 추가한 자료는 이 브라우저에 저장됩니다.</p>";
     bind(c); applyFilter(); drawChart(c); drawEarnings(c);
+    var fg = document.getElementById("cb-fingrid"); if (fg) fg.scrollLeft = fg.scrollWidth;
+  }
+  /* ── 실적 표(가로형, 2026-10-13 사용자: 일본 기업 재무표처럼 회계기간을 가로로, 전년 대비를 색으로) ──
+     열 = 회계기간(왼쪽 옛날 → 오른쪽 최근), 행 = 매출(직전 대비·전년 대비) · 영업이익(OPM·직전 대비·전년 대비).
+     칸 배경 = 그 칸의 전년 대비 — 플러스는 붉게, 마이너스는 푸르게(±50%에서 가장 진함). E = 컨센서스 추정 */
+  function yoyBg(v) {
+    if (!finite(v)) return "";
+    var a = Math.min(1, Math.abs(v) / 50) * 0.32 + 0.04;
+    return ' style="background:' + (v >= 0 ? "rgba(224,45,60," : "rgba(31,95,214,") + a.toFixed(3) + ')"';
+  }
+  function finGrid(rows, period) {
+    var q = period !== "annual";
+    var pc = function (v) { return finite(v) ? '<b class="' + (v >= 0 ? "up" : "dn") + '">' + (v >= 0 ? "+" : "") + v.toFixed(0) + "%</b>" : '<b class="na">—</b>'; };
+    var head = "<tr><th class=\"cg-l\"></th>" + rows.map(function (r) { return "<th" + (r.est ? ' class="est"' : "") + ">" + esc(finLabel(r.date, period)) + (r.est ? "<i>E</i>" : "") + "</th>"; }).join("") + "</tr>";
+    var rev = '<tr><th class="cg-l">매출</th>' + rows.map(function (r, i) {
+      var pr = rows[i - 1], qoq = q && pr && finite(pr.revenue) && finite(r.revenue) && pr.revenue > 0 ? (r.revenue / pr.revenue - 1) * 100 : null;
+      return "<td" + yoyBg(r.revenue_yoy) + (r.est ? ' class="est"' : "") + "><strong>" + fmt(r.revenue, "") + "</strong>" + (q ? "<small>직전 " + pc(qoq) + "</small>" : "") + "<small>전년 " + pc(r.revenue_yoy) + "</small></td>";
+    }).join("") + "</tr>";
+    var op = '<tr><th class="cg-l">영업이익</th>' + rows.map(function (r, i) {
+      var pr = rows[i - 1], qoq = q && pr && finite(pr.operating_income) && finite(r.operating_income) && pr.operating_income > 0 && r.operating_income > 0 ? (r.operating_income / pr.operating_income - 1) * 100 : null;
+      var yy = finite(r.operating_income_yoy) ? pc(r.operating_income_yoy) : (r.op_label ? '<b class="' + (/흑자|축소/.test(r.op_label) ? "up" : "dn") + '">' + esc(r.op_label) + "</b>" : pc(null));
+      return "<td" + yoyBg(r.operating_income_yoy) + (r.est ? ' class="est"' : "") + "><strong>" + fmt(r.operating_income, "") + "</strong><small>OPM " + (finite(r.opm) ? r.opm.toFixed(1) + "%" : "—") + "</small>" + (q ? "<small>직전 " + pc(qoq) + "</small>" : "") + "<small>전년 " + yy + "</small></td>";
+    }).join("") + "</tr>";
+    return '<div class="cg-wrap" id="cb-fingrid"><table class="cg"><thead>' + head + "</thead><tbody>" + rev + op + "</tbody></table></div>";
   }
   /* ── 실적 막대 차트: 매출·영업이익 막대 + OPM 선 + 매출 YoY 라벨 ── */
   function drawEarnings(c) {

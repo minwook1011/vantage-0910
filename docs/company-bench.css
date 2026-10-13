@@ -194,3 +194,16 @@
 /* 기업 표 접기 버튼(표 위 설명 줄 왼쪽) */
 .cb-list-fold { margin-right:8px; padding:3px 10px; border:1px solid rgba(163,176,196,0.7); border-radius:999px; background:#fff; color:#1a2231; font:inherit; font-size:11.5px; font-weight:600; cursor:pointer; }
 .cb-list-fold:hover { border-color:rgba(126,164,255,.8); }
+/* 실적 표 가로형(2026-10-13) — 회계기간이 가로, 칸 배경 = 전년 대비 */
+.cg-wrap { margin-top:12px; overflow-x:auto; border:1px solid rgba(163,176,196,.55); border-radius:11px; background:#fff; }
+.cg { border-collapse:collapse; font-size:12px; min-width:100%; }
+.cg th, .cg td { padding:8px 11px; text-align:right; white-space:nowrap; border-bottom:1px solid #e3e9f2; }
+.cg thead th { background:#eef2f8; color:#3c5683; font-weight:600; font-family:var(--mono); position:sticky; top:0; }
+.cg thead th.est { color:#8a97ad; }
+.cg thead th i { font-style:normal; font-size:10px; margin-left:2px; color:#b26a00; }
+.cg th.cg-l { text-align:left; position:sticky; left:0; background:#f7f9fc; z-index:2; color:#1a2231; font-family:inherit; font-size:12.5px; }
+.cg thead th.cg-l { z-index:3; background:#eef2f8; }
+.cg td strong { display:block; font-family:var(--mono); font-size:13.5px; color:#1a2231; }
+.cg td small { display:block; font-family:var(--mono); font-size:10.5px; color:#5b6a82; margin-top:1px; }
+.cg td small b.up { color:#d6334a; } .cg td small b.dn { color:#2f6fe4; } .cg td small b.na { color:#9aa6ba; font-weight:500; }
+.cg td.est { opacity:.7; font-style:italic; }
