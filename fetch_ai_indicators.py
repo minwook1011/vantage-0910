@@ -273,11 +273,54 @@ def c_or_chart(ctx):
 
 
 # ── 3. OpenRouter 최근 7일 상세 (지출 · 단가 · 랩 · 모델 순위) ───────────
+# OpenRouter 가 2026-09-18 무렵부터 순위·활동 자료에서 지출(total_usage)을 빼 버렸다(값이 0) — 2026-10-13 사용자: 실효 단가가 0으로 떨어짐.
+# 대신 모델별 실효 가격(effective-pricing: 입력·출력 $/M, 날짜별)으로 지출을 다시 만든다.
+#  지출 ≈ (입력 토큰 − 자기 키(BYOK) 입력) × 입력 실효가 + (출력 토큰 − BYOK 출력) × 출력 실효가.  무료 변형(:free)은 0.
+_PRICE = {}
+
+
+def or_price(permaslug, variant):
+    key = (permaslug, variant or "standard")
+    if key in _PRICE:
+        return _PRICE[key]
+    out = None
+    if (variant or "standard") != "free":
+        try:
+            q = urllib.parse.quote(permaslug, safe="")
+            e = jget(f"{OR}/stats/effective-pricing?permaslug={q}&range=3m&shape=v7&variant={variant or 'standard'}")["data"]
+            day = lambda rows: {r["x"][:10]: statistics.mean([v for v in r["y"].values() if v]) for r in rows or [] if any(v for v in r["y"].values())}
+            out = {"in": e.get("weightedInputPrice") or 0.0, "out": e.get("weightedOutputPrice") or 0.0,
+                   "din": day(e.get("inputChartData")), "dout": day(e.get("outputChartData"))}
+            time.sleep(0.2)
+        except Exception as ex:
+            print(f"  [warn] effective-pricing {permaslug}: {str(ex)[:80]}")
+    _PRICE[key] = out
+    return out
+
+
+def or_usd(r, permaslug, variant, d=None):
+    """한 행(순위·일간 활동)의 지출 $ — total_usage 가 있으면 그대로, 없으면 실효 가격으로 추정"""
+    if r.get("total_usage"):
+        return r["total_usage"]
+    pr = or_price(permaslug, variant)
+    if not pr:
+        return 0.0
+    pin = max(0, (r.get("total_prompt_tokens") or 0) - (r.get("total_byok_prompt_tokens") or 0))
+    pout = max(0, (r.get("total_completion_tokens") or 0) - (r.get("total_byok_completion_tokens") or 0))
+    return (pin * pr["din"].get(d, pr["in"]) + pout * pr["dout"].get(d, pr["out"])) / 1e6
+
+
 @collector("or_spend_7d", "or_avg_price", "or_lab_top10", "or_model_rank")
 def c_or_week(ctx):
     rows = jget(OR + "/rankings/models?view=week")["data"]
     models = {}
+    # 지출이 빠진 뒤로는 토큰 상위 행만 실효 가격으로 지출을 추정한다(나머지는 0 — 표·합계 모두 상위 위주라 영향 작음)
+    no_usd = not any(r.get("total_usage") for r in rows)
+    ranked_rows = sorted(rows, key=lambda r: -((r.get("total_prompt_tokens") or 0) + (r.get("total_completion_tokens") or 0)))
+    est = {id(r) for r in ranked_rows[:ACTIVITY_TOP * 2]} if no_usd else set()
     for r in rows:
+        if id(r) in est:
+            r["total_usage"] = or_usd(r, r["model_permaslug"], r.get("variant"))
         slug = base_slug(r["model_permaslug"])
         m = models.setdefault(slug, {"tokens": 0, "usd": 0.0, "req": 0})
         m["tokens"] += (r.get("total_prompt_tokens") or 0) + (r.get("total_completion_tokens") or 0)
@@ -298,6 +341,8 @@ def c_or_week(ctx):
         usd_by[key] = usd_by.get(key, 0) + (r.get("total_usage") or 0)
     pick = [k for k, _ in sorted(tok_by.items(), key=lambda kv: -kv[1])[:ACTIVITY_TOP]]
     pick += [k for k, _ in sorted(usd_by.items(), key=lambda kv: -kv[1])[:ACTIVITY_TOP] if k not in pick]
+    if no_usd:   # 지출이 없으면 '지출 상위'를 고를 수 없어 토큰 상위만 쓴다
+        pick = [k for k, _ in sorted(tok_by.items(), key=lambda kv: -kv[1])[:ACTIVITY_TOP * 2]]
     top_variants = [(k, tok_by[k]) for k in pick]
     covered = sum(tok_by[k] for k in pick) / max(1, sum(tok_by.values())) * 100
     covered_usd = sum(usd_by[k] for k in pick) / max(1e-9, sum(usd_by.values())) * 100
@@ -314,7 +359,7 @@ def c_or_week(ctx):
             if d >= utc_today:  # 오늘(UTC)은 집계 중이라 제외
                 continue
             daily_tok[d] = daily_tok.get(d, 0) + (a.get("total_prompt_tokens") or 0) + (a.get("total_completion_tokens") or 0)
-            daily_usd[d] = daily_usd.get(d, 0) + (a.get("total_usage") or 0)
+            daily_usd[d] = daily_usd.get(d, 0) + or_usd(a, slug, variant, d)
         time.sleep(0.25)
     days = sorted(daily_tok)
     price_pts = []
@@ -348,7 +393,7 @@ def c_or_week(ctx):
     ctx.put({"id": "or_avg_price", "group": "price", "label": "평균 실효 단가", "unit": "$/M", "type": "line", "kpi": True, "digits": 3,
              "cadence": "매일 · 최근 7일", "source": "OpenRouter (지출 ÷ 토큰)", "source_url": "https://openrouter.ai/rankings", "method": "computed",
              "related": ["NVDA", "MSFT", "GOOGL"], "points": merge_points(old_before("or_avg_price", first_price), price_pts),
-             "caveat": note + " 무료·저가 모델 비중이 늘면 모델별 가격 변화가 없어도 내려갑니다."})
+             "caveat": note + " 무료·저가 모델 비중이 늘면 모델별 가격 변화가 없어도 내려갑니다." + (" 2026-09-18 무렵부터 OpenRouter 가 지출 숫자를 공개하지 않아, 그 뒤는 모델별 실효 가격(입력·출력 $/M) × 토큰(자기 키 결제분 제외)으로 추정합니다." if no_usd else "")})
 
     # 랩 상위 10
     labs = {}
