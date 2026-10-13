@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "5189e3832640",
+   "kind": "news",
+   "headline": "구글 차세대 TPU v9 개발 약 3주 지연 — 출하는 2028년 1분기 전망(GF증권)",
+   "bullets": [
+    "GF증권 제프 푸 분석가는 구글 TPU v9의 핵심 설계 일정이 약 3주 밀렸다고 밝혔다.",
+    "원인은 칩 여러 개를 잇는 기판(EMIB) 수율이 45~50%에 머무는 패키징 문제로 지목됐다.",
+    "양산용 설계 확정은 2027년으로 밀리고, 출하는 2028년 1분기로 예상된다."
+   ],
+   "summary": "구글의 차세대 인공지능 칩 TPU v9 일정이 조금 밀렸다. GF증권 제프 푸 분석가는 코어 A 설계 일정이 약 3주 늦어졌고, 관련 부품까지 바꿔야 하는 재설계 때문일 가능성이 크다고 봤다.\n\n문제의 뿌리는 패키징이다. 여러 칩을 이어 붙이는 내장형 다중 다이 연결 브리지(EMIB) 기판 수율이 45~50% 수준으로 알려졌다. 보도마다 양산 설계 확정 시점은 2027년 1월 또는 2분기로 엇갈리지만, 출하는 2028년 1분기로 같다.\n\n공급망 영향도 거론된다. 시킹알파는 단기적으로 미디어텍에 부담, 장기적으로는 마벨에 유리하다는 시각을 전했다. 푸 분석가는 짧은 지연보다 구글이 외부 고객을 받으면서도 자체 모델용 TPU 물량을 늘리는 수요 흐름이 더 중요하다고 봤다. 남은 쟁점은 패키징 수율이 바뀐 일정을 지킬 만큼 빨리 오르느냐다.",
+   "title": "Google's Next TPU Just Hit a Small Snag",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQdzQ0ZmNYWmNQeV9ob3NHV2h2VnQxMnFhdVE1UDQ4emVyM2MxM3I2Yk9hLWxxRTZxNHA2ZHJmN3ZFVk9oRWZOZGtUNW5pV1RvdW9DV1FhNUdiR0VRT05NTW5uMGM0akdmX2JKeVZIUHlVT2JGMlVVMUZRTldKR0xfYzhfQ3kzaWtiWnBQMklhQUpnM28?oc=5",
+   "published": "2026-10-14 00:25 KST",
+   "written": "2026-10-14 01:16 KST"
+  },
+  {
    "id": "0c8313b28274",
    "kind": "news",
    "headline": "BNP파리바, 알파벳 목표가 420→450달러로 상향 — 자체 AI 칩(TPU) 외부 판매 기대 반영",
@@ -97,5 +113,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-14 00:46 KST"
+ "updated": "2026-10-14 01:16 KST"
 }

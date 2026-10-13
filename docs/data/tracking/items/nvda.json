@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "944c53d6b0eb",
+   "kind": "news",
+   "headline": "엔비디아, 프랑스 의료 예약 플랫폼 독토리브 소수 지분 인수 — 지분 규모는 비공개",
+   "bullets": [
+    "엔비디아가 프랑스 의료 예약 플랫폼 독토리브(Doctolib)의 소수 지분을 사들인다고 10월 13일 독토리브가 파리에서 밝혔다.",
+    "인수 지분 규모와 금액은 공개되지 않았다.",
+    "독토리브는 이번 투자로 인공지능 인재 채용을 앞당기고, 엔비디아 전문가의 도움을 받아 자체 모델 학습을 강화하겠다고 했다."
+   ],
+   "summary": "엔비디아가 프랑스 의료 예약 플랫폼 독토리브의 소수 지분을 인수한다. 스타니슬라스 니옥스샤토 독토리브 최고경영자가 10월 13일 저녁 파리에서 발표했다. 몇 퍼센트를 얼마에 사는지는 밝히지 않았다.\n\n독토리브는 유럽에서 자체 인공지능 서비스와 모델을 넓히려 한다. 이번 투자로 엔비디아 인공지능 전문가의 도움을 받아 모델 학습을 지원받고, 인공지능 인재를 더 빨리 뽑을 수 있을 것으로 기대한다. 주력 제품은 병원이 전화로도 예약을 관리하게 해 주는 인공지능 전화 비서와 진료실 행정·회계 도구이며, 기존 언어모델을 바탕으로 만든다.\n\n의료 데이터 문제도 짚었다. 독토리브는 모든 건강 데이터가 유럽연합과 영국 안 서버에 있고 앞으로도 그렇다며, 인공지능 모델도 마찬가지라고 강조했다. 엔비디아가 유럽 의료 인공지능 기업에 직접 지분을 넣는 사례로, 소프트웨어·서비스 기업 투자를 넓히는 흐름의 하나다.",
+   "title": "Nvidia to buy a minority stake in France's Doctolib",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPem1BSmpvVlh6YW1EbjdzZEV1eC1EM0Jmcm5RS1pnNWdqQTlua19zbWtZVW9UeGJoV2lucjJFajItdWVmSVZ2dHk3YzBRbEFGLVlHZ1U4UnBSWFBhTlJZTnByRjRmcWVGenVkcTB2OXVQeWx3Z19qbTBSdFFleTBpbGlaVWFLZlJVMHdUeE9RNVExX2VlT09EZkI4ekg2SEdhVmlqdW45VGhBbzRadERGZ3AwQlI?oc=5",
+   "published": "2026-10-14 01:08 KST",
+   "written": "2026-10-14 01:16 KST"
+  },
+  {
    "id": "f6cca660f4cc",
    "kind": "news",
    "headline": "IDC, 엔비디아 중국 데이터센터 AI 칩 점유율 34%로 하락 — 상반기 출하 44% 감소, 화웨이 28%로 추격",
@@ -99,5 +115,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-13 22:18 KST"
+ "updated": "2026-10-14 01:16 KST"
 }
