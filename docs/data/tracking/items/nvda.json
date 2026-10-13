@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "f6cca660f4cc",
+   "kind": "news",
+   "headline": "IDC, 엔비디아 중국 데이터센터 AI 칩 점유율 34%로 하락 — 상반기 출하 44% 감소, 화웨이 28%로 추격",
+   "bullets": [
+    "시장조사업체 IDC는 2026년 상반기 중국 데이터센터 AI 칩 시장에서 엔비디아 점유율이 34%로 떨어졌다고 집계했습니다.",
+    "엔비디아 가속기 출하는 67만 8천 개로 1년 전보다 44% 줄었고, 화웨이는 57만 2천 개로 늘며 점유율 28%를 차지했습니다.",
+    "그래픽처리장치(GPU) 출하는 26% 줄어든 반면 그 밖의 AI 가속기는 약 80% 늘어 처음으로 GPU를 앞질렀습니다."
+   ],
+   "summary": "로이터가 전한 IDC 보고서에 따르면 2026년 1~6월 중국 데이터센터 AI 칩 시장에서 엔비디아 점유율은 34%였습니다. 미국 수출 제한과 중국 업체의 추격이 겹친 결과입니다. 엔비디아의 중국 출하량은 67만 8천 개로 전년 같은 기간보다 44% 줄었습니다.\n\n화웨이는 30만 개 남짓에서 57만 2천 개로 출하를 늘려 점유율 28%를 기록했습니다. 알리바바 계열 T-Head 7%, 캠브리콘 5%, 쿤룬신 4%, 하이곤 3% 순입니다. 제품 구성도 바뀌어 GPU 출하는 26% 줄어든 99만 1천 개, 그 밖의 AI 가속기는 약 80% 늘어난 101만 6천 개로 처음 GPU를 넘어섰습니다.\n\nIDC는 34%에 어떤 엔비디아 제품이 들어갔는지, 수출이 막혔지만 밀반입된 B200·B300이 포함됐는지는 밝히지 않았습니다. 젠슨 황 최고경영자는 수출 규제가 약 500억 달러 규모의 중국 AI 칩 시장을 화웨이에 넘겨준 셈이라고 말해 왔습니다.",
+   "title": "U.S. Export Restrictions Drive Nvidia China AI Chip Market Share Down to 34%",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOQUpNWndGWWhqc3pMbkV0SEFkb3N4REVSQmpRZEsxdHlZZTIwVktsLXBjSTBxWDlrSjhNalJmakRzdFlmQm9TQlhhMXVWSjZ6UHNlY2RybldidkRaZHBKNk5NY3ZIUzdYcTVyZ2hpb3loaEkyUldsX2Nsb0xkWk43d3NwVWZkelMxMDRnUUpQaDNyUkxFUGFXY3VHeGFkeUU?oc=5",
+   "published": "2026-10-13 21:43 KST",
+   "written": "2026-10-13 22:18 KST"
+  },
+  {
    "id": "e67abae1c76a",
    "kind": "news",
    "headline": "파이낸셜타임스 \"중국 기업들, 엔비디아 게임·워크스테이션 칩 100만 개 넘게 주문\" — 막힌 인공지능 칩 공백 메우기",
@@ -83,5 +99,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-13 17:49 KST"
+ "updated": "2026-10-13 22:18 KST"
 }
