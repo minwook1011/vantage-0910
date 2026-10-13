@@ -3,6 +3,22 @@
  "slug": "cxmt",
  "items": [
   {
+   "id": "4bcf54de2403",
+   "kind": "news",
+   "headline": "미즈호 \"CXMT 신기술, 마이크론·삼성 위협 아냐\" — 일곱 가지 근거 제시",
+   "bullets": [
+    "미즈호 조던 클라인은 CXMT가 발표한 차세대 D램 구조(4F²)가 당장 마이크론·삼성 등의 위협이 되지 않는다며 일곱 가지 이유를 들었다.",
+    "CXMT의 연말 제품 출시와 삼성의 2028년 양산 목표는 단순 비교가 어렵고, 출시가 수율·원가 경쟁력을 뜻하지는 않는다고 봤다.",
+    "해당 제품은 인공지능 가속기용 고대역폭메모리(HBM)가 아닌 일반 서버 D램이며, 같은 구조는 삼성·SK하이닉스도 개발 중이라고 지적했다."
+   ],
+   "summary": "중국 메모리 업체 CXMT(창신메모리)가 차세대 D램 구조 기술을 공개한 뒤 마이크론·샌디스크·SK하이닉스 등 메모리주가 이틀 연속 크게 떨어지자, 미즈호증권의 조던 클라인이 \"과민 반응\"이라는 취지의 일곱 가지 근거를 냈다. 대만 경제일보와 인베스팅닷컴이 13일 전했다.\n\n핵심은 시점과 원가다. CXMT는 셀 크기를 줄인 4F² 구조 서버용 D램을 올해 말 내놓겠다고 했는데, 클라인은 이를 삼성의 2028년 양산 목표와 나란히 놓고 '중국이 앞섰다'고 보기 어렵다고 했다. 제품 출시가 곧 대량 생산 능력·수율·원가 경쟁력을 증명하지 않으며, 셀이 작아진다고 칩 원가가 자동으로 내려가는 것도 아니라고 봤다. 또 이 제품은 인공지능 가속기에 들어가는 고대역폭메모리가 아닌 일반 서버 D램이고, 같은 구조는 삼성과 SK하이닉스도 개발 중인 업계 공통 전환이라고 설명했다. 아직 양산·수율이 검증되지 않아 공급 과잉을 걱정하기는 이르다는 판단이다.\n\n다만 클라인은 CXMT와 낸드 업체 YMTC를 무시해선 안 된다고 덧붙였다. CXMT는 중국 내 고객 공급을 위해 공격적으로 투자하고 있어, 중장기 범용 D램 가격 압박 요인으로는 남아 있다.",
+   "title": "瑞穗分析師：七大理由 長鑫技術不致威脅美光、三星",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPRjcyeHcxYmRQMk51N3FENDBOVU5FMll1blVRN2ZuZ2dIUHpDeDI4UTNURHVGbEZIeTJCcmhhek92Zmh0b1pvTngzdTJ6SzNJdmRZLUhMTmlJNEdLQUxSMS1nVnRLZ3lWUHQ3WjlTRE81RHB3NmhGeEJSU0I1Z3A4NdIBX0FVX3lxTE5BekNBUmdXT1ZHRUFEckVGbzBWeTg1UmJSYlBDUWRVckkxTDY1Q3psbUhaeVNYMWNfektTUEstb3NWbmR5Rzl5VlRpSlNxaXJaR21CSkFUM3pMQjlzSW1z?oc=5",
+   "published": "2026-10-13 23:37 KST",
+   "written": "2026-10-14 01:47 KST"
+  },
+  {
    "id": "2d3a0c6d94d8",
    "kind": "news",
    "headline": "중국 CXMT, 차세대 4F² 구조 서버용 D램 연내 출시 예고 — 마이크론·SK하이닉스 주가 4% 하락",
@@ -19,5 +35,5 @@
    "written": "2026-10-13 08:18 KST"
   }
  ],
- "updated": "2026-10-13 08:18 KST"
+ "updated": "2026-10-14 01:47 KST"
 }
