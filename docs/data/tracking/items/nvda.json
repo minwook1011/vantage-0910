@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "5d8d74036761",
+   "kind": "news",
+   "headline": "엔비디아, 상반기 중국 AI 칩 점유율 34%로 하락 — 화웨이 28%로 추격(IDC)",
+   "bullets": [
+    "시장조사업체 IDC 보고서에 따르면 2026년 상반기 중국 데이터센터용 AI 칩 시장에서 엔비디아 점유율은 34%였다. 출하량은 67만8천 개로 1년 전보다 44% 줄었다.",
+    "화웨이는 57만2천 개를 출하해 28%를 차지했다. 알리바바 T-헤드 7%, 캠브리콘 5%, 바이두 쿤룬신 4%, 하이곤 3% 순이다.",
+    "그래픽처리장치(GPU)가 아닌 AI 가속기 출하가 약 80% 늘어 101만6천 개로 GPU(99만1천 개)를 처음 넘어섰다."
+   ],
+   "summary": "로이터가 입수한 IDC 보고서에 따르면 2026년 상반기 중국 데이터센터용 AI 칩 시장에서 엔비디아 점유율은 34%로 떨어졌다. 중국 내 출하량은 67만8천 개로 1년 전보다 44% 줄었다. 화웨이는 57만2천 개를 출하해 28%까지 올라왔다. IDC가 추적한 중국 반도체 기업 11곳 중 9곳의 출하가 늘었다.\n\n상반기 중국 전체 AI 가속기 출하는 200만8천 개다. 이 중 GPU는 99만1천 개로 26% 줄었다. 중국 본토 판매가 허용된 GPU 공급이 막힌 탓이다. 반면 GPU가 아닌 가속기는 약 80% 늘어 101만6천 개로 GPU를 넘어섰다. 이 시장의 95%는 화웨이·T-헤드·쿤룬신·캠브리콘이 차지했다. IDC는 올해 중국 AI 가속기 출하가 19% 늘고 GPU는 9% 줄 것으로 내다봤다.\n\n남은 쟁점은 집계 범위다. IDC는 엔비디아 점유율에 어떤 제품이 들어갔는지 밝히지 않았다. 수출 금지 품목인 B200·B300이 밀수로 들어간 물량이 포함됐는지도 불분명하다. 엔비디아는 논평 요청에 답하지 않았다.",
+   "title": "路透：輝達上半年的中國 AI 晶片市占下滑 華為版圖擴大",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9mU2hoZU1fSERHbGRvdlhuVGoxaHpGYUVhdjNYV0NwcmZVN1lNU01FTjRLNnhWNDNfOGEtbkRRY0RhcUZ2WUtrMGdha3FrdVFQTWVsZ0Y2WHFtSkJPVktUY1BXMmNqWFZzRlN0enJad001TEF2V0ctZW1DZ9IBX0FVX3lxTE9yS3gyVlhxb0hVSy12TUtCR2N1anhLY29zN205T3RmY2Y0TXYtcjMyM2djajFydzVSVHpDOFM3aHVSNkthYnQ5d2F1Q09uSURTNUhFbU94TTExdkF6Z2hj?oc=5",
+   "published": "2026-10-13 13:31 KST",
+   "written": "2026-10-13 15:17 KST"
+  },
+  {
    "id": "e9fde1a9cf27",
    "kind": "news",
    "headline": "엔비디아 중국 AI 반도체 점유율 상반기 34%로 하락 — 화웨이 28%로 추격(IDC)",
@@ -19,5 +35,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-13 11:47 KST"
+ "updated": "2026-10-13 15:17 KST"
 }
