@@ -11,7 +11,7 @@
   var KR_NAMES = { "005930": "삼성전자", "005935": "삼성전자우", "131760": "파인텍", "441270": "파인엠텍", "356860": "티엘비", "009150": "삼성전기" };
   /* 엑셀에서 가져온 국내 종목은 거래에 종목명(name)이 붙어 온다 → 화면 표시용 이름표에 더한다 */
   var EXTRA_NAMES = {};
-  function learnNames(list) { (list || []).forEach(function (t) { if (t && t.name && t.market === "KR") { var bare = String(t.ticker || "").replace(/\.(KS|KQ)$/i, ""); if (!KR_NAMES[bare]) EXTRA_NAMES[bare] = t.name; } }); }
+  function learnNames(list) { (list || []).forEach(function (t) { if (t && t.name && (t.market === "KR" || t.market === "JP")) { var bare = String(t.ticker || "").replace(/\.(KS|KQ|T)$/i, ""); if (!KR_NAMES[bare]) EXTRA_NAMES[bare] = t.name; } }); }
   function id(prefix) { return prefix + "-" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
   function load() {
     try {
@@ -23,7 +23,7 @@
         transactions: Array.isArray(parsed.transactions) ? parsed.transactions : [],
         buyList: Array.isArray(parsed.buyList) ? parsed.buyList : [],
         watchlist: Array.isArray(parsed.watchlist) ? parsed.watchlist : [],
-        prices: parsed.prices || {}, fx: parsed.fx || null
+        prices: parsed.prices || {}, fx: parsed.fx || null, fxJpy: parsed.fxJpy || null
       };
     } catch (e) { return JSON.parse(JSON.stringify(DEFAULT)); }
   }
@@ -33,6 +33,8 @@
   function usBare(ticker) { return String(ticker || "").replace(/\.(OQ|O|NQ|N|NY|OB|PK|AM)$/i, ""); }
   function tickerFor(ticker, market) {
     ticker = String(ticker || "").trim().toUpperCase();
+    /* 일본(2026-10-13): 7203 · 325A · 7203.T → 7203.T (야후 시세 기호) */
+    if (market === "JP") { var j = ticker.replace(/\.(T|JP|TYO)$/i, ""); return j ? j + ".T" : ""; }
     if (market !== "KR" && !/\.(KS|KQ)$/.test(ticker)) ticker = usBare(ticker);
     var bare = ticker.replace(/\.(KS|KQ)$/i, "");
     if (market === "KR" && KR_TICKERS[bare]) return KR_TICKERS[bare];
@@ -44,19 +46,38 @@
     var t = String(ticker || "").trim().toUpperCase();
     /* 국내 코드: 005930 같은 6자리 숫자, 0091A0·00104K 같은 신형(숫자 4자리 + 숫자·영문 2자리) */
     if (/\.(KS|KQ)$/.test(t) || /^\d{4}[0-9A-Z]{2}$/.test(t) || /[가-힣]/.test(t) || KR_TICKERS[t]) return "KR";
+    /* 일본: 7203.T, 4자리 코드(7203) · 신형(325A), 일본어 종목명 */
+    if (/\.(T|TYO)$/.test(t) || /^\d{3}[0-9A-Z]$/.test(t) || /[\u3040-\u30ff\u4e00-\u9fff]/.test(t)) return "JP";
     return "US";
   }
-  function displayTicker(ticker) { var bare = usBare(String(ticker || "").replace(/\.(KS|KQ)$/i, "")); return KR_NAMES[bare] || EXTRA_NAMES[bare] || bare; }
+  function displayTicker(ticker) { var bare = usBare(String(ticker || "").replace(/\.(KS|KQ|T)$/i, "")); return KR_NAMES[bare] || EXTRA_NAMES[bare] || JP_NAMES[bare] || bare; }
+  /* 일본 종목 한글 이름(스크리너 검색 이름표 data/jp/names-ko.js 의 첫 단어) — 한 번 받아 둔다 */
+  var JP_NAMES = {};
+  try { JP_NAMES = JSON.parse(localStorage.getItem("vantage-jp-names-v1") || "{}") || {}; } catch (e) {}
+  fetch("data/jp/names-ko.js", { cache: "force-cache" }).then(function (r) { return r.ok ? r.text() : ""; }).then(function (t) {
+    var m = /const KO_NAMES = (\{.*?\});/s.exec(t || ""); if (!m) return;
+    var d = JSON.parse(m[1]), o = {}; Object.keys(d).forEach(function (c) { var w = String(d[c]).split(/\s+/)[0]; if (/[가-힣]/.test(w)) o[c] = w; });
+    JP_NAMES = o; try { localStorage.setItem("vantage-jp-names-v1", JSON.stringify(o)); } catch (e) {}
+  }).catch(function () {});
+  /* 시장 이름·통화(2026-10-13 일본 추가) */
+  function marketName(m) { return m === "US" ? "미국" : m === "JP" ? "일본" : "한국"; }
+  function mkt(m) { return m === "KR" ? "KR" : m === "JP" ? "JP" : "US"; }
+  /* 1주 가격 단위(현지 통화)를 원화로 바꾸는 비율: 미국 = 원/달러, 일본 = 원/엔, 한국 = 1 */
+  function fxOf(market, data, t) {
+    if (market === "US") return Number(t && t.fx) || Number(data && data.fx && data.fx.price) || 1350;
+    if (market === "JP") return Number(t && t.fx) || Number(data && data.fxJpy && data.fxJpy.price) || 9.3;
+    return 1;
+  }
   function groupKey(market, ticker) { return market + ":" + tickerFor(ticker, market); }
   function aggregate(data, accountId) {
     var result = {};
     data.transactions.filter(function (t) { return t.accountId === accountId; }).slice().sort(function (a, b) {
       return String(a.date).localeCompare(String(b.date)) || String(a.createdAt || "").localeCompare(String(b.createdAt || ""));
     }).forEach(function (t) {
-      var market = t.market === "KR" ? "KR" : "US", ticker = tickerFor(t.ticker, market), key = groupKey(market, ticker);
+      var market = mkt(t.market), ticker = tickerFor(t.ticker, market), key = groupKey(market, ticker);
       var h = result[key] || (result[key] = { key: key, market: market, ticker: ticker, qty: 0, costLocal: 0, costKrw: 0, realizedKrw: 0 });
       /* fee = 수수료+세금(체결 통화). 엑셀(메리츠) 가져오기에만 있다 — 매수는 원가에 더하고 매도는 받은 돈에서 뺀다 */
-      var qty = Number(t.qty) || 0, price = Number(t.price) || 0, fee = Number(t.fee) || 0, fx = Number(t.fx) || Number(data.fx && data.fx.price) || 1350, f = market === "US" ? fx : 1;
+      var qty = Number(t.qty) || 0, price = Number(t.price) || 0, fee = Number(t.fee) || 0, f = fxOf(market, data, t);
       if (t.side === "sell") {
         var sold = Math.min(qty, h.qty), avgLocal = h.qty ? h.costLocal / h.qty : 0, avgKrw = h.qty ? h.costKrw / h.qty : 0, feeShare = qty ? fee * sold / qty : 0;
         h.realizedKrw += sold * price * f - feeShare * f - sold * avgKrw;
@@ -70,8 +91,8 @@
       var q = h.qty, quote = data.prices[h.key], current = quote && Number(quote.price);
       h.avgLocal = q ? h.costLocal / q : 0; h.avgKrw = q ? h.costKrw / q : 0;
       /* 0원·NaN은 실제 시세가 아니라 이전 조회 실패의 흔적이다. */
-      h.price = isFinite(current) && current > 0 ? current : null; h.fx = Number(data.fx && data.fx.price) || 1350;
-      h.valueKrw = h.price == null ? null : h.price * q * (h.market === "US" ? h.fx : 1);
+      h.price = isFinite(current) && current > 0 ? current : null; h.fx = fxOf(h.market, data);
+      h.valueKrw = h.price == null ? null : h.price * q * h.fx;
       h.pnlKrw = h.valueKrw == null ? null : h.valueKrw - h.costKrw;
       h.returnPct = h.pnlKrw == null || !h.costKrw ? null : h.pnlKrw / h.costKrw * 100;
       h.updated = quote && quote.updated; return h;
@@ -89,7 +110,7 @@
       }
     }
     if (!isFinite(Number(quote)) || Number(quote) <= 0) throw new Error("invalid quote");
-    return { price: Number(quote), currency: meta.currency || (market === "KR" ? "KRW" : "USD"), updated: new Date().toISOString(), quoteAt: quoteAt ? new Date(quoteAt * 1000).toISOString() : null };
+    return { price: Number(quote), currency: meta.currency || (market === "KR" ? "KRW" : market === "JP" ? "JPY" : "USD"), updated: new Date().toISOString(), quoteAt: quoteAt ? new Date(quoteAt * 1000).toISOString() : null };
   }
   async function quoteFor(symbol, market) {
     var source = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodeURIComponent(symbol) + "?range=1mo&interval=1d", response, text;
@@ -130,6 +151,22 @@
     }
     throw new Error("fx unavailable");
   }
+  /* 원/엔(1엔당 원) — 같은 곳에서 달러 기준 환율을 받아 KRW÷JPY 로 만든다 */
+  var FXJ_SOURCES = [
+    ["https://open.er-api.com/v6/latest/USD", function (j) { return j && j.rates && j.rates.KRW / j.rates.JPY; }],
+    ["https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json", function (j) { return j && j.usd && j.usd.krw / j.usd.jpy; }],
+    ["https://api.frankfurter.app/latest?from=JPY&to=KRW", function (j) { return j && j.rates && j.rates.KRW; }]
+  ];
+  async function fxJpyKrw() {
+    for (var i = 0; i < FXJ_SOURCES.length; i++) {
+      try {
+        var response = await fetch(FXJ_SOURCES[i][0], { cache: "no-store" }); if (!response.ok) continue;
+        var quote = Number(FXJ_SOURCES[i][1](await response.json()));
+        if (isFinite(quote) && quote > 3 && quote < 30) return { price: quote, currency: "KRW", updated: new Date().toISOString() };
+      } catch (e) {}
+    }
+    throw new Error("fx unavailable");
+  }
   async function refresh(data) {
     var prices = {}, fx = null, symbols = {}, failed = [];
     data.accounts.forEach(function (a) { aggregate(data, a.id).forEach(function (h) { symbols[h.key] = { market: h.market, ticker: h.ticker }; }); });
@@ -139,6 +176,7 @@
     }));
     window.PortfolioStore.lastFailed = failed;
     try { fx = await fxUsdKrw(); } catch (e) {}
+    var fxJ = null; try { fxJ = await fxJpyKrw(); } catch (e) {}
     /* 시세 조회는 수 초가 걸린다. 그 사이 다른 기기의 기록이 동기화되어 들어왔을 수 있으므로
        조회 시작 시점의 data를 그대로 저장하지 않고, 최신 저장본에 시세·환율만 덮어쓴다. */
     var latest = load();
@@ -148,7 +186,8 @@
     });
     Object.keys(prices).forEach(function (key) { latest.prices[key] = prices[key]; });
     if (fx) latest.fx = fx;
+    if (fxJ) latest.fxJpy = fxJ;
     save(latest); return latest;
   }
-  window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey, marketOf: marketOf, quoteFor: quoteFor };
+  window.PortfolioStore = { load: load, save: save, id: id, aggregate: aggregate, refresh: refresh, tickerFor: tickerFor, displayTicker: displayTicker, groupKey: groupKey, marketOf: marketOf, quoteFor: quoteFor, fxOf: fxOf, marketName: marketName, mkt: mkt };
 })();

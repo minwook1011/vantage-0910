@@ -11,11 +11,12 @@
 (function () {
   "use strict";
   var S = window.PortfolioStore;
-  var BENCH = [["^KS11", "코스피", "#f0b429"], ["^KQ11", "코스닥", "#9b7bff"], ["^GSPC", "S&P500", "#34d399"], ["^IXIC", "나스닥", "#5bc0eb"]];
+  var BENCH = [["^KS11", "코스피", "#f0b429"], ["^KQ11", "코스닥", "#9b7bff"], ["^GSPC", "S&P500", "#34d399"], ["^IXIC", "나스닥", "#5bc0eb"], ["^N225", "닛케이", "#e86f9a"]];
   var CACHE = "vantage-px-hist-v1", BSEL = "vantage-perf-bench", RSEL = "vantage-perf-range", VSEL = "vantage-perf-view";
-  var SEGS = [["all", "총자산"], ["KR", "국내"], ["US", "해외"]];
-  var SEG_BENCH = { KR: ["^KS11", "^KQ11", "^IXIC"], US: ["^GSPC", "^IXIC"] };
-  var SEG_NAME = { all: "내 계좌", KR: "국내 종목", US: "해외 종목" };
+  var SEGS = [["all", "총자산"], ["KR", "국내"], ["US", "미국"], ["JP", "일본"]];
+  var SEG_BENCH = { KR: ["^KS11", "^KQ11", "^IXIC"], US: ["^GSPC", "^IXIC"], JP: ["^N225"] };
+  var SEG_NAME = { all: "내 계좌", KR: "국내 종목", US: "미국 종목", JP: "일본 종목" };
+  var FXJH = null;   // 원/엔 일봉(JPYKRW=X) — 일본 종목 평가액 원화 환산(2026-10-13)
   var RANGES = [["1M", 1], ["3M", 3], ["6M", 6], ["YTD", "ytd"], ["1Y", 12], ["전체", 0]];
   var ACC = "#f0475a";
 
@@ -34,12 +35,13 @@
       return String(a.date).localeCompare(String(b.date)) || String(a.createdAt || "").localeCompare(String(b.createdAt || ""));
     });
   }
-  function keyOf(t) { var m = t.market === "KR" ? "KR" : "US"; return m + ":" + S.tickerFor(t.ticker, m); }
+  function mk(t) { return t.market === "KR" ? "KR" : t.market === "JP" ? "JP" : "US"; }
+  function keyOf(t) { var m = mk(t); return m + ":" + S.tickerFor(t.ticker, m); }
   /* 거래 금액(원화). 수수료·세금(fee, 엑셀 가져오기)이 있으면 매수는 더하고 매도는 뺀다 = 실제로 나가고 들어온 돈 */
   function amtLocal(t) { return (Number(t.qty) || 0) * (Number(t.price) || 0) + (t.side === "sell" ? -1 : 1) * (Number(t.fee) || 0); }
-  function amtKrw(t, state) { var fx = t.market === "US" ? (Number(t.fx) || Number(state.fx && state.fx.price) || 1350) : 1; return amtLocal(t) * fx; }
+  function amtKrw(t, state) { return amtLocal(t) * S.fxOf(mk(t), state, t); }
   /* 입출금·배당(엑셀 가져오기의 account.flows) → 원화 */
-  function flowKrw(f, fxDay) { return (Number(f.amt) || 0) * (f.cur === "USD" ? (Number(f.fx) || fxDay || 1350) : 1); }
+  function flowKrw(f, fxDay) { return (Number(f.amt) || 0) * (f.cur === "USD" ? (Number(f.fx) || fxDay || 1350) : f.cur === "JPY" ? (Number(f.fx) || 9.3) : 1); }
 
   /* 매도마다 평균단가 기준 실현손익(원화) */
   function withRealized(state, txs) {
@@ -79,10 +81,10 @@
         return '<div class="pf-month"><div class="pf-mh"><b>' + m.replace("-", "년 ") + '월</b><span>매수 ' + krw(mb) + " · 매도 " + krw(ms) + (ms ? ' · 실현 <b class="' + cls(mr) + '">' + krw(mr) + "</b>" : "") + " · 순매수 " + krw(mb - ms) + "</span></div>" +
           '<div class="pf-tbl"><table><thead><tr><th>날짜</th><th>종목</th><th>구분</th><th>수량</th><th>잔여</th><th>체결가</th><th>금액(원화)</th><th>실현손익</th><th></th></tr></thead><tbody>' +
           g.map(function (r) {
-            var t = r.t, us = t.market === "US";
+            var t = r.t, us = t.market === "US", jp = t.market === "JP";
             /* 날짜·구분·수량·체결가·환율 칸은 누르면 그 자리에서 고친다 */
             var ed = function (f, v, html) { return '<span class="pf-ed" tabindex="0" title="눌러서 수정" data-ed="' + f + '" data-id="' + esc(t.id) + '" data-v="' + esc(v) + '">' + html + "</span>"; };
-            return "<tr><td>" + ed("date", t.date, esc(t.date)) + '</td><td class="tk">' + esc(S.displayTicker(t.ticker)) + '<small>' + (us ? "미국" : "한국") + '</small></td><td><span class="pf-ed ' + (t.side === "buy" ? "buy" : "sell") + '" tabindex="0" title="눌러서 매수↔매도 바꾸기" data-ed="side" data-id="' + esc(t.id) + '">' + (t.side === "buy" ? "매수" : "매도") + "</span></td><td>" + ed("qty", t.qty, num(t.qty, 4)) + '</td><td class="pf-left' + (r.short ? " short" : "") + '"' + (r.short ? ' title="이 매도 전 보유가 ' + num(t.qty - r.short, 4) + '주뿐 — 앞쪽 매수 기록이 ' + num(r.short, 4) + '주 빠졌습니다"' : "") + ">" + num(r.left, 4) + "주" + (r.short ? "<small>" + num(r.short, 4) + "주 부족</small>" : "") + "</td><td>" + ed("price", t.price, us ? "$" + num(t.price, 2) : "₩" + num(t.price)) + (us ? "<small>" + ed("fx", Number(t.fx) || "", "@" + num(t.fx, 1)) + "</small>" : "") + "</td><td>" + krw(r.amt) + '</td><td class="' + cls(r.realized) + '">' + (r.realized == null ? "" : krw(r.realized)) + '</td><td><button class="icon-btn" data-del="' + esc(t.id) + '" aria-label="기록 삭제">×</button></td></tr>';
+            return "<tr><td>" + ed("date", t.date, esc(t.date)) + '</td><td class="tk">' + esc(S.displayTicker(t.ticker)) + '<small>' + S.marketName(t.market) + '</small></td><td><span class="pf-ed ' + (t.side === "buy" ? "buy" : "sell") + '" tabindex="0" title="눌러서 매수↔매도 바꾸기" data-ed="side" data-id="' + esc(t.id) + '">' + (t.side === "buy" ? "매수" : "매도") + "</span></td><td>" + ed("qty", t.qty, num(t.qty, 4)) + '</td><td class="pf-left' + (r.short ? " short" : "") + '"' + (r.short ? ' title="이 매도 전 보유가 ' + num(t.qty - r.short, 4) + '주뿐 — 앞쪽 매수 기록이 ' + num(r.short, 4) + '주 빠졌습니다"' : "") + ">" + num(r.left, 4) + "주" + (r.short ? "<small>" + num(r.short, 4) + "주 부족</small>" : "") + "</td><td>" + ed("price", t.price, us ? "$" + num(t.price, 2) : jp ? "¥" + num(t.price, 1) : "₩" + num(t.price)) + (us || jp ? "<small>" + ed("fx", Number(t.fx) || "", "@" + num(t.fx, 1)) + "</small>" : "") + "</td><td>" + krw(r.amt) + '</td><td class="' + cls(r.realized) + '">' + (r.realized == null ? "" : krw(r.realized)) + '</td><td><button class="icon-btn" data-del="' + esc(t.id) + '" aria-label="기록 삭제">×</button></td></tr>';
           }).join("") + "</tbody></table></div></div>";
       }).join("") : '<div class="empty-row">매매 기록이 없습니다.</div>');
     el.querySelectorAll("#tr-side button").forEach(function (b) { b.onclick = function () { tf.side = b.dataset.v; trades(el, state, id, onChange, onEdit); }; });
@@ -135,6 +137,13 @@
      ③ 그래도 없으면 '근사': 매매 체결가와 현재가를 이은 계단식 가격(표시해 줌). 절대 계산에서 빼지 않는다. */
   async function siteHist(key) {
     var m = key.split(":")[0], sym = key.split(":")[1], path;
+    if (m === "JP") {
+      try {
+        var rj = await fetch("data/jp/px/" + sym.replace(/\.T$/, "") + ".json", { cache: "no-cache" }); if (!rj.ok) return null;
+        var bj = (await rj.json()).b || []; if (bj.length < 5) return null;
+        return { d: bj.map(function (x) { return new Date(x[0] * 864e5).toISOString().slice(0, 10); }), c: bj.map(function (x) { return +x[1]; }), src: "site" };
+      } catch (e) { return null; }
+    }
     if (m === "KR") { var code = sym.replace(/\.(KS|KQ)$/, ""); if (!/^\d{6}$/.test(code)) return null; path = "data/kr/" + code + ".json"; }
     else path = "data/us/" + sym.replace(/[^A-Z0-9.\-]/g, "") + ".json";
     try {
@@ -222,6 +231,7 @@
      일간 수익률 = (총자산 오늘 − 입출금 오늘) / 총자산 어제 − 1 (시간가중) */
   function compute(state, acct, txs, H, fxH, dates) {
     var fxNow = Number(state.fx && state.fx.price) || 1350, fx = ffill(fxH, dates), px = {};
+    var fxJNow = S.fxOf("JP", state), fxj = ffill(FXJH || { d: [dates[0]], c: [fxJNow] }, dates);
     Object.keys(H).forEach(function (k) { px[k] = H[k] ? ffill(H[k], dates) : null; });
     var cashNow = (Number(acct.cashKrw) || 0) + (Number(acct.cashUsd) || 0) * fxNow;
     /* 엑셀(메리츠)에서 실제 입금·출금·배당을 받았으면 그걸 쓴다 — 입금이 있으면 시드·역산 대신 실제 입금으로 시작 */
@@ -252,7 +262,7 @@
       Object.keys(qty).forEach(function (k) {
         if (!(qty[k] > 1e-9)) return;
         var p = px[k] && px[k][i]; if (p == null) return;
-        V += qty[k] * p * (k.indexOf("US:") === 0 ? (fx[i] || fxNow) : 1);
+        V += qty[k] * p * (k.indexOf("US:") === 0 ? (fx[i] || fxNow) : k.indexOf("JP:") === 0 ? (fxj[i] || fxJNow) : 1);
       });
       var T = V + cash, r = 0;
       if (prevT > 0) r = (T - ext) / prevT - 1; else if (ext > 0) r = T / ext - 1;
@@ -269,9 +279,10 @@
      처음 산 날은 (그날 종가 평가액 / 매수액 − 1) — 체결가에서 종가까지의 손익부터 들어간다.
      해외는 달러 기준(지수와 같은 통화)으로 계산하고, 환율까지 넣은 원화 기준(idxK)도 따로 쌓는다. */
   function segCompute(state, txs, H, fxH, dates, mkt) {
-    var T = txs.filter(function (t) { return (t.market === "KR" ? "KR" : "US") === mkt; });
+    var T = txs.filter(function (t) { return mk(t) === mkt; });
     if (!T.length) return null;
     var fxNow = Number(state.fx && state.fx.price) || 1350, fx = ffill(fxH, dates), px = {};
+    var fxJNow = S.fxOf("JP", state), fxj = ffill(FXJH || { d: [dates[0]], c: [fxJNow] }, dates);
     T.forEach(function (t) { var k = keyOf(t); if (!(k in px)) px[k] = H[k] ? ffill(H[k], dates) : null; });
     var qty = {}, ti = 0, pv = 0, pvk = 0, idx = 1, idxK = 1, out = [], start = -1, inv = 0, invK = 0;
     for (var i = 0; i < dates.length; i++) {
@@ -282,7 +293,7 @@
         else { qty[k] = (qty[k] || 0) + q; nb += a; nbK += aK; }
         dayT.push(t);
       }
-      var V = 0, VK = 0, f = mkt === "US" ? (fx[i] || fxNow) : 1;
+      var V = 0, VK = 0, f = mkt === "US" ? (fx[i] || fxNow) : mkt === "JP" ? (fxj[i] || fxJNow) : 1;
       Object.keys(qty).forEach(function (k) { if (!(qty[k] > 1e-9)) return; var p = px[k] && px[k][i]; if (p == null) return; V += qty[k] * p; VK += qty[k] * p * f; });
       var r = pv > 0 ? (V - nb) / pv - 1 : nb > 0 ? V / nb - 1 : 0;
       var rk = pvk > 0 ? (VK - nbK) / pvk - 1 : nbK > 0 ? VK / nbK - 1 : 0;
@@ -325,6 +336,7 @@
       // 받는 중·실패여도 근사 가격으로 넣는다(빼면 수익률이 틀어짐)
       K.forEach(function (k) { HH[k] = withToday(H[k] || approxHist(k, txs, state), k, state); });
       var fxH = B["KRW=X"] || { d: [from], c: [Number(state.fx && state.fx.price) || 1350] };
+      FXJH = B["JPYKRW=X"] || { d: [from], c: [S.fxOf("JP", state)] };
       var set = {};
       K.forEach(function (k) { if (HH[k]) HH[k].d.forEach(function (d) { if (d >= from) set[d] = 1; }); });
       ["^KS11", "^GSPC"].forEach(function (b) { if (B[b]) B[b].d.forEach(function (d) { if (d >= from) set[d] = 1; }); });
@@ -334,7 +346,8 @@
       var bs = {}; BENCH.forEach(function (b) { bs[b[0]] = B[b[0]] ? ffill(B[b[0]], dates) : null; });
       var keep = P.data && P.data.dates && P.sel ? [P.data.dates[P.sel[0]], P.data.dates[P.sel[1]]] : null;
       P.data = { state: state, acct: acct, txs: txs, dates: dates, s: res.series, bs: bs, res: res, status: status, K: K, fx: ffill(fxH, dates),
-                 segs: { KR: segCompute(state, txs, HH, fxH, dates, "KR"), US: segCompute(state, txs, HH, fxH, dates, "US") } };
+                 fxj: ffill(FXJH, dates),
+                 segs: { KR: segCompute(state, txs, HH, fxH, dates, "KR"), US: segCompute(state, txs, HH, fxH, dates, "US"), JP: segCompute(state, txs, HH, fxH, dates, "JP") } };
       P.sel = keep ? [Math.max(0, dates.indexOf(keep[0])), Math.max(0, dates.indexOf(keep[1]))] : null;
       if (P.sel && (P.sel[1] <= P.sel[0])) P.sel = null;
       draw();
@@ -357,7 +370,7 @@
     if (!force && c && Date.now() - (c.at || 0) < 10 * 60e3) return c;
     if (!S.quoteFor) return c;
     var out = { at: Date.now(), q: {} };
-    await Promise.all(["^KS11", "^KQ11", "^GSPC", "^IXIC", "KRW=X"].map(async function (sym) {
+    await Promise.all(["^KS11", "^KQ11", "^GSPC", "^IXIC", "KRW=X", "^N225", "JPYKRW=X"].map(async function (sym) {
       try { var q = await S.quoteFor(sym, /^\^K/.test(sym) ? "KR" : "US"); out.q[sym] = { d: quoteDay(q, sym === "^GSPC" || sym === "^IXIC"), c: q.price }; } catch (e) {}
     }));
     if (!Object.keys(out.q).length) return c;
@@ -424,7 +437,7 @@
     var V = P.view;
     el.innerHTML =
       '<div class="pf-bar pf-segbar"><div class="pf-seg" id="pf-segs">' + SEGS.map(function (x) { var ok = x[0] === "all" || D.segs[x[0]]; return '<button data-v="' + x[0] + '" class="' + (seg === x[0] ? "on" : "") + '"' + (ok ? "" : " disabled title=\"이 계좌에는 해당 종목이 없습니다\"") + ">" + x[1] + "</button>"; }).join("") + "</div>" +
-      '<span class="pf-hint">' + (seg === "KR" ? "한국 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 코스피·코스닥과 비교" : seg === "US" ? "미국 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 달러 기준으로 S&P500·나스닥과 비교(원화 환산은 카드에)" : "주식 + 예수금 전체") + "</span>" +
+      '<span class="pf-hint">' + (seg === "KR" ? "한국 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 코스피·코스닥과 비교" : seg === "JP" ? "일본 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 엔 기준으로 닛케이와 비교(원화 환산은 카드에)" : seg === "US" ? "미국 종목만 · 처음 산 날(" + dates[SG.start] + ")부터 · 달러 기준으로 S&P500·나스닥과 비교(원화 환산은 카드에)" : "주식 + 예수금 전체") + "</span>" +
       '<div class="pf-seg" id="pf-view">' + [["compare", "지수 비교"], ["asset", "자산"], ["candle", "봉차트"], ["line", "수익률 선"]].map(function (x) { return '<button data-v="' + x[0] + '" class="' + ((V.chart || "asset") === x[0] ? "on" : "") + '">' + x[1] + "</button>"; }).join("") + "</div>" +
       (V.chart === "candle" ? '<div class="pf-seg" id="pf-tf">' + [["D", "일봉"], ["W", "주봉"], ["M", "월봉"]].map(function (x) { return '<button data-v="' + x[0] + '" class="' + ((V.tf || "D") === x[0] ? "on" : "") + '">' + x[1] + "</button>"; }).join("") + "</div>" : "") + "</div>" +
       seedBar(D.acct) +
@@ -482,9 +495,9 @@
     for (var i = a; i <= b; i++) { if (i > a) cum += flow(i); me.push(val(i)); inv.push(Math.max(0, cum)); }
     var lines = [{ c: ACC, v: me, w: 2.6, n: SG ? SEG_NAME[D.seg] : "내 계좌" }, { c: "#94a3b8", v: inv, w: 1.4, dash: "5 4", n: "넣은 돈" }];
     bsel.forEach(function (bb) {
-      var arr = D.bs[bb[0]], us = bb[0] === "^GSPC" || bb[0] === "^IXIC", v = [], units = null;
+      var arr = D.bs[bb[0]], us = bb[0] === "^GSPC" || bb[0] === "^IXIC", jpb = bb[0] === "^N225", v = [], units = null;
       for (var i = a; i <= b; i++) {
-        var px = arr[i] ? arr[i] * (us ? (D.fx[i] || 1350) : 1) : null;
+        var px = arr[i] ? arr[i] * (us ? (D.fx[i] || 1350) : jpb ? ((D.fxj && D.fxj[i]) || 9.3) : 1) : null;
         if (px == null) { v.push(null); continue; }
         if (units == null) units = val(a) / px; else units = Math.max(0, units + flow(i) / px);
         v.push(units * px);
@@ -692,12 +705,12 @@
   }
   /* 국내·해외 탭의 카드 */
   function segCards(SG, s, a, b, acc, main, bm) {
-    var last = s[b], us = SG.mkt === "US", fxNow = Number(P.data.state.fx && P.data.state.fx.price) || 1350;
+    var last = s[b], us = SG.mkt === "US" || SG.mkt === "JP", jpS = SG.mkt === "JP", fxNow = Number(P.data.state.fx && P.data.state.fx.price) || 1350;
     var accK = us ? (s[b].idxK / s[a].idxK - 1) * 100 : null, pnl = last.vk - last.invK;
-    var c = [[(us ? "해외 수익률 · 달러 기준 (" : "국내 수익률 (") + P.range + ")", pct(acc), cls(acc), "주식만 · 매매로 넣고 뺀 돈의 효과 제외(시간가중)"],
+    var c = [[(jpS ? "일본 수익률 · 엔 기준 (" : us ? "미국 수익률 · 달러 기준 (" : "국내 수익률 (") + P.range + ")", pct(acc), cls(acc), "주식만 · 매매로 넣고 뺀 돈의 효과 제외(시간가중)"],
       [main ? main[1] + " 대비 초과" : "지수 대비", bm == null ? "—" : pct(acc - bm), cls(bm == null ? null : acc - bm), main ? main[1] + " " + pct(bm) + " (같은 기간)" : ""]];
     if (us) c.push(["원화 환산 수익률", pct(accK), cls(accK), "환율 효과 " + pct(accK - acc) + "p"]);
-    c.push(["평가액", krw(last.vk), "", (us ? "$" + num(last.v, 0) + " · " : "") + "넣은 돈(순매수) " + krw(last.invK)],
+    c.push(["평가액", krw(last.vk), "", (us ? (jpS ? "¥" : "$") + num(last.v, 0) + " · " : "") + "넣은 돈(순매수) " + krw(last.invK)],
       ["원금 대비 손익", krw(pnl) + (last.invK > 0 ? " · " + pct(pnl / last.invK * 100) : ""), cls(pnl), "평가액 − 순매수 합계(원화, 실현손익 포함)"],
       ["최대 낙폭(MDD)", pct(mdd(s, a, b)), "neg", P.data.dates[a] + " ~ " + P.data.dates[b]]);
     return c;
@@ -784,7 +797,7 @@
     var D = P.data, s = D.cs, dates = D.dates, box = document.getElementById("pf-period");
     var d0 = dates[i0], d1 = dates[i1];
     var first = i0 === 0;   // 전체 기간이면 첫날 매매도 기간 안으로 본다
-    var inSeg = function (t) { return D.seg === "all" || (t.market === "KR" ? "KR" : "US") === D.seg; };
+    var inSeg = function (t) { return D.seg === "all" || mk(t) === D.seg; };
     var tx = D.txs.filter(function (t) { return inSeg(t) && (first ? t.date >= d0 : t.date > d0) && t.date <= d1; });
     var before = {}, after = {}, names = {};
     D.txs.filter(inSeg).forEach(function (t) {
@@ -806,7 +819,7 @@
           var f = flows[k] || { b: 0, s: 0 }, b0 = before[k] || 0, a1 = after[k] || 0;
           return '<tr><td class="tk">' + esc(names[k]) + " " + tag(k) + "</td><td>" + num(b0, 4) + "</td><td>" + num(a1, 4) + '</td><td class="' + cls(a1 - b0) + '">' + (a1 - b0 > 0 ? "+" : "") + num(a1 - b0, 4) + "</td><td>" + (f.b ? krw(f.b) : "") + "</td><td>" + (f.s ? krw(f.s) : "") + "</td><td>" + tkRet(k, i0, i1) + "</td></tr>";
         }).join("") + "</tbody></table></div>" : '<div class="empty-row">이 기간에는 매매가 없었습니다.</div>') +
-      (tx.length ? '<details class="pf-det"><summary>매매 ' + tx.length + "건 자세히</summary>" + tx.slice().reverse().map(function (t) { return '<div class="tx-row"><span class="date">' + esc(t.date) + '</span><span class="market">' + (t.market === "US" ? "미국" : "한국") + "</span><b>" + esc(S.displayTicker(t.ticker)) + '</b><span class="' + (t.side === "buy" ? "buy" : "sell") + '">' + (t.side === "buy" ? "매수" : "매도") + '</span><span class="tx-price">' + num(t.qty, 4) + "주 · " + (t.market === "US" ? "$" + num(t.price, 2) : "₩" + num(t.price)) + "</span></div>"; }).join("") + "</details>" : "") + "</div>";
+      (tx.length ? '<details class="pf-det"><summary>매매 ' + tx.length + "건 자세히</summary>" + tx.slice().reverse().map(function (t) { return '<div class="tx-row"><span class="date">' + esc(t.date) + '</span><span class="market">' + S.marketName(t.market) + "</span><b>" + esc(S.displayTicker(t.ticker)) + '</b><span class="' + (t.side === "buy" ? "buy" : "sell") + '">' + (t.side === "buy" ? "매수" : "매도") + '</span><span class="tx-price">' + num(t.qty, 4) + "주 · " + (t.market === "US" ? "$" + num(t.price, 2) : t.market === "JP" ? "¥" + num(t.price, 1) : "₩" + num(t.price)) + "</span></div>"; }).join("") + "</details>" : "") + "</div>";
     var c = document.getElementById("pf-clear"); if (c) c.onclick = function () { P.sel = null; draw(); };
   }
   function tkRet(k, i0, i1) {   // 그 종목 주가(현지통화)의 기간 등락 — 매매 타이밍과 비교용
@@ -828,7 +841,7 @@
       rows.slice().reverse().map(function (r) {
         var acc = accRet(s, r.i0, r.i1), bb = bsel.map(function (x) { return retBetween(D.bs[x[0]], r.i0, r.i1); }), mp = 0;
         for (var z = r.i0 + 1; z <= r.i1; z++) mp += s[z].pnl || 0;
-        var tx = D.txs.filter(function (t) { return t.date.slice(0, 7) === r.m && (D.seg === "all" || (t.market === "KR" ? "KR" : "US") === D.seg); }), tb = 0, ts = 0, by = {};
+        var tx = D.txs.filter(function (t) { return t.date.slice(0, 7) === r.m && (D.seg === "all" || mk(t) === D.seg); }), tb = 0, ts = 0, by = {};
         tx.forEach(function (t) { var a = amtKrw(t, D.state), k = S.displayTicker(t.ticker); if (t.side === "sell") { ts += a; by[k] = (by[k] || 0) - a; } else { tb += a; by[k] = (by[k] || 0) + a; } });
         var top = Object.keys(by).sort(function (p, q) { return Math.abs(by[q]) - Math.abs(by[p]); }).slice(0, 3).map(function (k) { return '<span class="' + (by[k] >= 0 ? "buy" : "sell") + '">' + esc(k) + (by[k] >= 0 ? " 매수" : " 매도") + "</span>"; }).join(" ");
         return '<tr data-i0="' + r.i0 + '" data-i1="' + r.i1 + '"' + (P.sel && P.sel[0] === r.i0 && P.sel[1] === r.i1 ? ' class="on"' : "") + "><td>" + r.m + '</td><td class="' + cls(acc) + '"><b>' + pct(acc) + '</b></td><td class="' + cls(mp) + '">' + krw(mp) + "</td>" + bb.map(function (v) { return '<td class="' + cls(v) + '">' + pct(v) + "</td>"; }).join("") + (bsel[0] ? '<td class="' + cls(bb[0] == null ? null : acc - bb[0]) + '">' + (bb[0] == null ? "—" : pct(acc - bb[0])) + "</td>" : "") + "<td>" + (tb ? krw(tb) : "") + "</td><td>" + (ts ? krw(ts) : "") + '</td><td class="tops">' + top + "</td></tr>";

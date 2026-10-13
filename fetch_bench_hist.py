@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 fetch_bench_hist.py — 포트폴리오 수익률 평가용 지수·환율 일봉 → docs/data/bench_hist.json
-코스피(^KS11)·코스닥(^KQ11)·S&P500(^GSPC)·나스닥(^IXIC)·원달러(KRW=X) 10년 일봉 종가.
+코스피(^KS11)·코스닥(^KQ11)·S&P500(^GSPC)·나스닥(^IXIC)·원달러(KRW=X)·닛케이(^N225)·원/엔(JPYKRW=X) 10년 일봉 종가.
 브라우저에서 야후를 직접 못 읽어(CORS) 중계를 쓰면 요청이 몰릴 때 막히므로, 사이트에 정적 파일로 둔다.
 표준 라이브러리만 사용. update.yml이 평일마다 실행. 실패한 심볼은 기존 값을 유지한다.
 """
@@ -16,7 +16,7 @@ from datetime import datetime, timedelta, timezone
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(BASE, "docs", "data", "bench_hist.json")
-SYMS = ["^KS11", "^KQ11", "^GSPC", "^IXIC", "KRW=X"]
+SYMS = ["^KS11", "^KQ11", "^GSPC", "^IXIC", "KRW=X", "^N225", "JPYKRW=X"]   # 닛케이·원/엔(2026-10-13 포트폴리오 일본 종목)
 KST = timezone(timedelta(hours=9))
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-bench/1.0"
 

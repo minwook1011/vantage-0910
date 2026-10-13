@@ -102,6 +102,7 @@
   function tickerShape(s) {
     var t = clean(s).toUpperCase().replace(/^A(?=\d{6}$)/, "");          // 국내 코드 'A005930' 형태
     if (/^\d{4}[0-9A-Z]{2}$/.test(t) || /^\d{6}\.(KS|KQ)$/.test(t)) return { t: t, m: "KR" };
+    if (/^\d{3}[0-9A-Z](\.(T|TYO|JP))?$/.test(t)) return { t: t.replace(/\.(T|TYO|JP)$/, ""), m: "JP" };   // 일본 4자리 코드(7203·325A, 2026-10-13)
     t = t.replace(/\.(OQ|O|NQ|N|NY|OB|PK|AM)$/, "");                    // 메리츠 해외 종목코드 'AMZN.OQ'·'ASX.NY' → 거래소 꼬리표 떼기
     if (/^[A-Z][A-Z0-9.\-]{0,6}$/.test(t)) return { t: t, m: "US" };
     return null;
@@ -115,6 +116,7 @@
     var sh = tickerShape(name); if (sh) return sh;
     if (k && US_NAMES[k]) return { t: US_NAMES[k], m: "US" };
     if (k && ctx.krNames && ctx.krNames[k]) return { t: ctx.krNames[k], m: "KR" };
+    if (k && ctx.jpNames && ctx.jpNames[k]) return { t: ctx.jpNames[k], m: "JP" };   // 일본 종목 한글 이름(스크리너 이름표)
     return null;
   }
   function fxOn(ctx, date) {
@@ -127,6 +129,7 @@
   /* 시트 이름으로 국내·해외 구분: '내계좌_해외' → 미국 종목·달러, '내계좌_국내' → 국내 종목·원화. 구분이 없으면 null */
   function sideOf(sheetName) {
     var s = String(sheetName || "");
+    if (/일본|엔화|jpy|(^|[^a-z])jp([^a-z]|$)/i.test(s)) return { market: "JP", cur: "JPY" };
     if (/해외|미국|외화|usd|(^|[^a-z])us([^a-z]|$)/i.test(s)) return { market: "US", cur: "USD" };
     if (/국내|한국|원화|krw|(^|[^a-z])kr([^a-z]|$)/i.test(s)) return { market: "KR", cur: "KRW" };
     return { market: null, cur: null };
@@ -189,26 +192,26 @@
       if (kind === "fx") { out.ignored[typeText] = (out.ignored[typeText] || 0) + 1; continue; }
       if (!out.from || date < out.from) out.from = date;
       if (!out.to || date > out.to) out.to = date;
-      var cur = /USD|달러|\$/.test(curText) ? "USD" : /KRW|원/.test(curText) ? "KRW" : null;
+      var cur = /USD|달러|\$/.test(curText) ? "USD" : /JPY|엔|¥/.test(curText) ? "JPY" : /KRW|원/.test(curText) ? "KRW" : null;
       if (kind === "buy" || kind === "sell") {
         var r = resolve(name, code, ctx);
         if (!r) { var nk = name || code || "(이름 없음)"; out.unresolved[nk] = (out.unresolved[nk] || 0) + 1; continue; }
-        var market = /한국|국내|kr|코스피|코스닥/i.test(mktText) ? "KR" : /미국|해외|us|나스닥|뉴욕|nyse|nasdaq|amex/i.test(mktText) ? "US" : cur === "USD" ? "US" : cur === "KRW" && r.m !== "US" ? "KR" : r.m || mktDefault || "US";
+        var market = /일본|도쿄|tse|tyo|jp/i.test(mktText) || cur === "JPY" || r.m === "JP" ? "JP" : /한국|국내|kr|코스피|코스닥/i.test(mktText) ? "KR" : /미국|해외|us|나스닥|뉴욕|nyse|nasdaq|amex/i.test(mktText) ? "US" : cur === "USD" ? "US" : cur === "KRW" && r.m !== "US" ? "KR" : r.m || mktDefault || "US";
         if (!(qty > 0)) { out.skipped++; continue; }
         if (!(price > 0) && amount > 0) price = amount / qty;
         if (!(price > 0)) { out.skipped++; continue; }
         /* 국내: 이 계좌에 이미 있는 표기(예: 356860.KQ) > 상장시장 표(코스피 .KS·코스닥 .KQ) > 기본 규칙 */
         var bare = r.t.toUpperCase().replace(/\.(KS|KQ)$/, "");
-        var ticker = market === "KR" ? ((ctx.krTick && ctx.krTick[bare]) || window_tickerFor(/\.(KS|KQ)$/.test(r.t) ? r.t.toUpperCase() : bare + ((ctx.krSfx && ctx.krSfx[bare]) || ""), "KR")) : r.t.toUpperCase();
-        var rate = market === "US" ? usdRate(fx, date, i) : 1;
-        out.txs.push({ id: uid([out.sheet, date, ticker, kind, qty, price]), date: date, market: market, ticker: ticker, side: kind, qty: qty, price: price, fee: Math.round((fee + tax) * 10000) / 10000, fx: rate, src: "excel", name: market === "KR" && name && !tickerShape(name) ? name : undefined, createdAt: date + "T00:00:00.000Z-" + ("00000" + i).slice(-6) });
+        var ticker = market === "JP" ? r.t.toUpperCase().replace(/\.(T|TYO|JP)$/, "") + ".T" : market === "KR" ? ((ctx.krTick && ctx.krTick[bare]) || window_tickerFor(/\.(KS|KQ)$/.test(r.t) ? r.t.toUpperCase() : bare + ((ctx.krSfx && ctx.krSfx[bare]) || ""), "KR")) : r.t.toUpperCase();
+        var rate = market === "US" ? usdRate(fx, date, i) : market === "JP" ? (fx > 0 ? (fx > 50 ? fx / 100 : fx) : (ctx.fxJpy || 9.3)) : 1;   // 엔 환율은 100엔당으로 적히기도 함
+        out.txs.push({ id: uid([out.sheet, date, ticker, kind, qty, price]), date: date, market: market, ticker: ticker, side: kind, qty: qty, price: price, fee: Math.round((fee + tax) * 10000) / 10000, fx: rate, src: "excel", name: (market === "KR" || market === "JP") && name && !tickerShape(name) ? name : undefined, createdAt: date + "T00:00:00.000Z-" + ("00000" + i).slice(-6) });
       } else if (kind === "in-stock" || kind === "out-stock") {
         out.ignored[typeText] = (out.ignored[typeText] || 0) + 1;   // 주식 입·출고는 가격을 몰라 수익률에 넣지 않음 — 화면에 알림
       } else {
         var amt = Math.abs(isFinite(settle) && settle ? settle : amount);
         if (!(amt > 0)) { out.skipped++; continue; }
         var fcur = cur || (/[A-Z]/.test(code) && !/^\d/.test(code) ? "USD" : "KRW");
-        out.flows.push({ id: uid([out.sheet, date, kind, fcur, amt]), date: date, kind: kind, cur: fcur, amt: amt, fx: fcur === "USD" ? usdRate(fx, date, i) : 1, memo: (typeText + " " + name).trim() });
+        out.flows.push({ id: uid([out.sheet, date, kind, fcur, amt]), date: date, kind: kind, cur: fcur, amt: amt, fx: fcur === "USD" ? usdRate(fx, date, i) : fcur === "JPY" ? (fx > 0 ? (fx > 50 ? fx / 100 : fx) : (ctx.fxJpy || 9.3)) : 1, memo: (typeText + " " + name).trim() });
       }
     }
     return out;
@@ -238,7 +241,7 @@
     (rows || []).forEach(function (row, i) {
       if (!row || i === 0 && /종목/.test(clean(row[0]))) return;
       var k = nameKey(row[0]), t = clean(row[1]); if (!k || !t) return;
-      var sh = tickerShape(t), m = /한국|국내|kr/i.test(clean(row[2])) ? "KR" : /미국|해외|us/i.test(clean(row[2])) ? "US" : sh ? sh.m : "US";
+      var sh = tickerShape(t), m = /일본|jp/i.test(clean(row[2])) ? "JP" : /한국|국내|kr/i.test(clean(row[2])) ? "KR" : /미국|해외|us/i.test(clean(row[2])) ? "US" : sh ? sh.m : "US";
       map[k] = { t: sh ? sh.t : t.toUpperCase(), m: m };
     });
     return map;
@@ -367,6 +370,12 @@
       if (r.ok) ((await r.json()).companies || []).forEach(function (c) { if (c.name && c.code) { ctx.krNames[nameKey(c.name)] = c.code; ctx.krSfx[c.code] = /KOSDAQ|코스닥/i.test(c.market || "") ? ".KQ" : ".KS"; } });
     } catch (e) {}
     try { var b = await fetch("data/bench_hist.json", { cache: "no-cache" }); if (b.ok) ctx.fx = ((await b.json()).series || {})["KRW=X"] || null; } catch (e) {}
+    /* 일본 종목(2026-10-13): 스크리너 한글 이름표(data/jp/names-ko.js — "코드": "한국어이름 별칭 일본어…")로 이름 → 코드 */
+    ctx.jpNames = {}; ctx.fxJpy = Number(state && state.fxJpy && state.fxJpy.price) || 9.3;
+    try {
+      var jn = await fetch("data/jp/names-ko.js", { cache: "no-cache" });
+      if (jn.ok) { var mm = /const KO_NAMES = (\{.*?\});/s.exec(await jn.text()); if (mm) { var KJ = JSON.parse(mm[1]); Object.keys(KJ).forEach(function (c) { String(KJ[c]).split(/\s+/).forEach(function (w) { var k = nameKey(w); if (k && k.length >= 2 && !ctx.jpNames[k]) ctx.jpNames[k] = c; }); }); } }
+    } catch (e) {}
     /* 화면에 이미 있는 기록의 국내 종목 이름도 쓴다 */
     if (typeof window !== "undefined" && window.PortfolioStore) {
       ((state && state.transactions) || []).forEach(function (t) {
