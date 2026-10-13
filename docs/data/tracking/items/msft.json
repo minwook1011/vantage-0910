@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "7721f3c64c6b",
+   "kind": "news",
+   "headline": "마이크로소프트, 자체 인공지능 칩 '마이아 300' 공개 — TSMC 2나노(N2P)로 만들고 2027년부터 수 기가와트 규모 배치",
+   "bullets": [
+    "마이크로소프트가 10월 12일 3세대 인공지능 추론 칩 마이아 300을 공개했다. 연산 칩렛은 TSMC 2나노급 N2P 공정으로 만든다.",
+    "칩 하나에 고대역폭메모리(HBM4) 8개(288GB, 초당 18TB)를 붙이고, 한 랙에 96개를 넣어 167킬로와트를 쓴다.",
+    "회사는 메가와트당 처리 토큰이 주요 그래픽처리장치(GPU) 시스템보다 약 40% 많다고 주장하며, 2027년부터 실제 서비스에 배치한다."
+   ],
+   "summary": "마이크로소프트가 엔비디아·AMD 의존을 줄이기 위한 3세대 자체 칩 마이아 300을 내놨다. 대만 경제일보는 연산 칩렛 일부가 TSMC 2나노 공정으로 생산된다는 점에 주목했다. 해외 보도를 종합하면 공정은 TSMC N2P다.\n\n칩 하나에 HBM4 8개(288GB, 초당 18TB)를 달고 소비전력은 950와트다. 96개를 한 랙에 넣으면 메모리 27.6TB, 전력 167킬로와트다. 회사 주장으로는 랙 기준 처리량이 전 세대 마이아 200의 최대 7배, 와트당 성능은 2.5배 이상이고, 메가와트당 토큰은 주요 GPU 시스템보다 약 40% 많다. 비교 대상 GPU와 측정 방식은 밝히지 않았다.\n\n마이아 200은 이미 미국·유럽·호주에서 코파일럿 등 자사 서비스에 쓰이고 있다. 마이아 300은 2027년부터 배치하며 '수 기가와트' 규모로 늘린다는 계획이지만 구체적인 규모는 밝히지 않았다. 클라우드 고객에게 칩을 직접 빌려줄 계획은 현재 없고 자사 인공지능 서비스에만 쓴다.",
+   "title": "微軟推新一代AI晶片Maia 300 部分採台積電2奈米製程",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1uTVZQcTBjdElHdmttaUl3WU5yZTdsZHFXbGllekNhM3N3dHJhYml0ekZhZHE2MWZMdEE4dUN0N1hkdlRmTXF4RklvT2k1bHVfMXR3Um5seWFHVHQ2bUpwY1RtSWVtM0tJSXd4WVJjQlhZSTZ3OGhZNmlfdFPSAV9BVV95cUxNa3RqaWo3Vk40azFVQkV0RnlMUzNYNHlPeDF4djFSWmFrTlVBOWxvcDhtVmxxemVsT1pPSGdpS0cycWswNDdkOE4tMWxoVHc0TGE3YUZ3aWdzZmJiMnI2OA?oc=5",
+   "published": "2026-10-13 00:12 KST",
+   "written": "2026-10-13 11:19 KST"
+  },
+  {
    "id": "87b646b01315",
    "kind": "news",
    "headline": "브래드 스미스 마이크로소프트 총재 \"AI 안전 규칙, 우유·세탁기보다 못해\" — 세계 공통 규칙·비상 정지 장치 의무화 요구",
@@ -97,5 +113,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-12 23:47 KST"
+ "updated": "2026-10-13 11:19 KST"
 }
