@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "f0a24c692c9a",
+   "kind": "news",
+   "headline": "마이크로소프트 애저 사업부, 간부들에게 비용 20% 절감안 요구 — 인공지능 인프라 비용 부담",
+   "bullets": [
+    "디 인포메이션에 따르면 마이크로소프트 클라우드 쪽 사장이 사업부 간부들에게 비용을 20% 줄일 방안을 찾으라고 지시했다.",
+    "요구를 받은 곳은 애저(클라우드 서버 임대) 사업부로, 디 인포메이션 요약 기준 직원이 약 1만 1,500명이다.",
+    "절감 대상이 인건비인지 운영비 전체인지는 아직 드러나지 않았다."
+   ],
+   "summary": "마이크로소프트의 애저 사업부가 큰 폭의 비용 절감에 들어간다. 유료 매체 디 인포메이션은 클라우드 사업 사장이 산하 간부들에게 비용을 20% 줄일 방법을 찾으라고 요구했다고 보도했다. 요구를 낸 사람은 애저 사업 사장 기리시 발라니로 전해졌고, 그의 조직은 약 1만 1,500명 규모다. 일부 매체는 클라우드·인공지능 총괄 스콧 거스리로 적어 보도 간 차이가 있다.\n\n배경은 인공지능 인프라 비용이다. 데이터센터·칩 투자가 늘면서 클라우드 이익률이 눌리고 있다. 마이크로소프트는 최근 앤트로픽 클로드 사내 사용 예산도 3분의 1 넘게 줄인 것으로 보도된 바 있다.\n\n남은 쟁점은 20%의 기준이다. 운영비 전체인지, 인력 감축을 포함하는지, 언제까지인지는 공개되지 않았다. 마이크로소프트는 이달 말 분기 실적을 발표한다.",
+   "title": "Microsoft Cloud President Asks Leaders to Find 20% Cost Cuts",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNTzNlcmtQUHRWZzAyWE5wMGlTOFlWSzdBOFhfS256aHg2TEF2d2lhX21rVUhEblpLVFhfSXhtYnJ5OTFqREoxUGpIQjBsaEhXYVJ2b1NtNHFsbXE4MlNXUmhFeW00eWRUbFVFTW10bFhOLWZjYWs3LTViZXhncmwwYUF1cjRWbFktNjV4QVZoNmRSVC1GcmxnME9qUmE?oc=5",
+   "published": "2026-10-14 06:42 KST",
+   "written": "2026-10-14 08:03 KST"
+  },
+  {
    "id": "1ab2dde144f1",
    "kind": "news",
    "headline": "마벨·마이크로소프트·오라클, 서버 안에 넣는 보안 칩 표준을 함께 만든다 — 오픈컴퓨트프로젝트 작업반 출범",
@@ -129,5 +145,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-14 00:17 KST"
+ "updated": "2026-10-14 08:03 KST"
 }
