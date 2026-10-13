@@ -363,7 +363,7 @@ function renderMatrix(){
     const has=!!BY[r[F.CODE]];
     const cells=months.map(m=>{ const v=tsVal(r[F.CODE],metric,m); if(v==null) return `<td class="mtna">·</td>`;
       const d=v-100; return `<td class="hcell" style="background:${kheat(d,12)}" title="${m} ${v}%">${(d>=0?"+":"")+d.toFixed(1)}</td>`; }).join("");
-    return `<tr data-c="${r[F.CODE]}" tabindex="0"><td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}"${favSty(r[F.CODE])} onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td><td class="l tk"><span class="${has?"hasc":"noc"}"></span>${r[F.CODE]}</td><td class="l"><span class="nm jp">${esc(r[F.NAME])}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>${cells}</tr>`;
+    return `<tr data-c="${r[F.CODE]}" tabindex="0"><td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}"${favSty(r[F.CODE])} onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td><td class="l tk"><span class="${has?"hasc":"noc"}"></span>${r[F.CODE]}</td><td class="l"><span class="nm jp">${koEn(r)}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>${cells}</tr>`;
   }).join("");
 }
 let view  = {code:null, tf:"D", range:null, ma:{5:true,10:true,20:true,120:true}, spike:null, fin:"q"};
@@ -591,7 +591,10 @@ const WKD = ["일","월","화","수","목","금","토"];
 const EU_MAX = 12;
 /* 캘린더 이름: 영문 약칭 + (한글 이름) — 한글은 names-ko.js 의 첫 단어 */
 function koFirst(code){ const k=(typeof KO_NAMES!=="undefined"&&KO_NAMES[code])||""; const w=k.split(/\s+/)[0]||""; return /[가-힣]/.test(w)?w:""; }
-function calName(r){ const ko=koFirst(r[F.CODE]); return esc(shortName(r[F.NAME]))+(ko?` <small class="eu-ko">(${esc(ko)})</small>`:""); }
+/* 일본 기업 이름 표기(2026-10-13 사용자): 한국어 이름 (영어) — 한국어 이름이 없으면 영어만 */
+function koEn(r){ const ko=koFirst(r[F.CODE]), en=shortName(r[F.NAME]); return ko?`${esc(ko)} <small class="en">(${esc(en)})</small>`:esc(en); }
+function koEnTxt(code, name){ const ko=koFirst(code), en=shortName(name||""); return ko?`${ko} (${en})`:en; }
+function calName(r){ return koEn(r); }
 function shortName(n){ return n.replace(/,?\s+(Co\.,?\s?Ltd\.?|Company,?\s?Limited|Corporation|Corp\.?|Holdings.*|Inc\.?|Ltd\.?|Limited)$/i,""); }
 const isoAdd = (iso,n) => { const t=new Date(iso+"T00:00:00Z"); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); };
 const dowOf = iso => new Date(iso+"T00:00:00Z").getUTCDay();
@@ -714,7 +717,7 @@ function appendRows(n){
     return `<tr data-c="${r[F.CODE]}" tabindex="0">
       <td class="l rk"><button class="star${FAVS.has(r[F.CODE])?" on":""}"${favSty(r[F.CODE])} onclick="toggleFav('${r[F.CODE]}',event)">★</button>${i+1}</td>
       <td class="l tk"><span class="${has?"hasc":"noc"}"></span>${r[F.CODE]}</td>
-      <td class="l"><span class="nm jp">${esc(r[F.NAME])}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>
+      <td class="l"><span class="nm jp">${koEn(r)}</span><span class="ind">${r[F.CAT]} · ${esc(r[F.IND])}</span></td>
       <td class="mc">${int(mc)}<i style="width:${(mc/maxmc*46).toFixed(1)}px"></i></td>
       <td>${int(r[F.REV])}</td>${dyn}
     </tr>`;
@@ -748,7 +751,7 @@ function renderFoodCompare(){
   const isStore = metric==="점포수";
   const cats = new Set(["외식","라멘"]);
   let items = RAW.filter(r=>cats.has(r[F.CAT]) && KPI[r[F.CODE]])
-    .map(r=>({code:r[F.CODE], name:r[F.NAME], d:fcmpValue(r[F.CODE], metric)}))
+    .map(r=>({code:r[F.CODE], name:koEnTxt(r[F.CODE], r[F.NAME]), d:fcmpValue(r[F.CODE], metric)}))
     .filter(x=>x.d!=null);
   const seg = FCMP_METRICS.map(m=>`<button aria-pressed="${m===metric}" onclick="setFcmpMetric('${m}')">${m}</button>`).join("");
   if(!items.length){
@@ -1433,7 +1436,7 @@ function openDetail(code){
   document.getElementById("pin").innerHTML=`
     <div class="ptop"><div>
       <div class="dtk">TSE : ${code}</div>
-      <div class="dnm jp">${esc(r[F.NAME])}</div>
+      <div class="dnm jp">${koEn(r)}</div>
       <div class="chips"><span class="chip k">${r[F.CAT]}</span><span class="chip">${esc(r[F.IND])}</span>${(()=>{const e=earnInfo(code);return e&&e.days>=0?`<span class="chip earnchip">실적발표 ${earnLabel(e)}</span>`:"";})()}</div>
       ${RES[code]?`<div class="d-res" title="${esc(resTip(RES[code]))}"><span class="d-res-h">최근 실적 ${mdDot(RES[code].date)} · ${RES[code].kind==="FY"?"결산":RES[code].period}</span>${resBadges(RES[code], code)}${repLink(RES[code],"d-rep")}</div>`:""}
     </div><div style="display:flex;gap:7px"><button class="favbtn${FAVS.has(code)?" on":""}" id="dfav" data-c="${code}"${favSty(code)} title="즐겨찾기 그룹">${FAVS.has(code)?"★":"☆"}</button><button class="x" id="dx" aria-label="닫기">×</button></div></div>
