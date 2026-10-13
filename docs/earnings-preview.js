@@ -99,14 +99,17 @@
   function finTable(f, nq, withA) {
     if (!f || !f.q || !(f.q.lb || []).length) return '<div class="ep-nofin">재무 자료 없음</div>';
     var q = f.q, k = q.lb.length, from = Math.max(0, k - nq), cols = [], o = opRow(f);
-    for (var i = from; i < k; i++) cols.push({ lb: q.lb[i], rev: q.rev[i], op: q[o[0]][i], ni: q.ni[i], py: i - 4 >= 0 ? q.rev[i - 4] : null });
-    if (withA && f.a && (f.a.lb || []).length) f.a.lb.forEach(function (l, j) { cols.push({ lb: l + "년", rev: f.a.rev[j], op: f.a[o[0]][j], ni: f.a.ni[j], an: true }); });
+    for (var i = from; i < k; i++) cols.push({ lb: q.lb[i], rev: q.rev[i], op: q[o[0]][i], ni: q.ni[i], py: i - 4 >= 0 ? q.rev[i - 4] : null, po: i - 4 >= 0 ? q[o[0]][i - 4] : null });
+    if (withA && f.a && (f.a.lb || []).length) f.a.lb.forEach(function (l, j) { cols.push({ lb: l + "년", rev: f.a.rev[j], op: f.a[o[0]][j], ni: f.a.ni[j], an: true, py: j ? f.a.rev[j - 1] : null, po: j ? f.a[o[0]][j - 1] : null }); });
     if (withA && f.f) cols.push({ lb: f.f.lb, rev: f.f.rev, op: f.f[o[0]], ni: f.f.ni, an: true, fc: true });
     var row = function (lab, key) { return "<tr><th>" + lab + "</th>" + cols.map(function (c) { return '<td class="' + (c.an ? "an" : "") + (c.fc ? " fc" : "") + '">' + num(c[key]) + "</td>"; }).join("") + "</tr>"; };
-    var yoy = "<tr class=\"yy\"><th>매출 전년 대비</th>" + cols.map(function (c) { var v = c.py ? (c.rev / c.py - 1) * 100 : null; return '<td class="' + pcl(v) + (c.an ? " an" : "") + '">' + (c.an ? "" : pct(v)) + "</td>"; }).join("") + "</tr>";
+    // 전년 대비(분기 = 4분기 전, 연간 = 전년). 직전이 적자면 흑자 전환·적자 지속으로 쓴다
+    var gr = function (a, b) { if (a == null || b == null) return { t: "—", c: "" }; if (b <= 0) return a > 0 ? { t: "흑전", c: "up" } : { t: "적지", c: "dn" }; if (a < 0) return { t: "적전", c: "dn" }; var v = (a / b - 1) * 100; return { t: pct(v), c: pcl(v) }; };
+    var yrow = function (lab, cur, prev) { return '<tr class="yy"><th>' + lab + "</th>" + cols.map(function (c) { var g = c.fc ? { t: "", c: "" } : gr(c[cur], c[prev]); return '<td class="' + g.c + (c.an ? " an" : "") + '">' + g.t + "</td>"; }).join("") + "</tr>"; };
+    var yoy = yrow("매출 전년 대비", "rev", "py"), oyoy = yrow(o[1] + " 전년 대비", "op", "po");
     var mg = "<tr class=\"yy\"><th>" + o[1] + "률</th>" + cols.map(function (c) { var v = c.rev && c.op != null ? c.op / c.rev * 100 : null; return '<td class="' + (c.an ? "an" : "") + '">' + (v == null ? "—" : v.toFixed(1) + "%") + "</td>"; }).join("") + "</tr>";
     return '<table class="ep-fin"><thead><tr><th>' + esc(f.u) + "</th>" + cols.map(function (c) { return '<th class="' + (c.an ? "an" : "") + (c.fc ? " fc" : "") + '">' + esc(c.lb) + "</th>"; }).join("") + "</tr></thead><tbody>" +
-      row("매출", "rev") + row(o[1], "op") + (withA ? row("순이익", "ni") : "") + (withA ? yoy : "") + mg + "</tbody></table>";
+      row("매출", "rev") + yoy + row(o[1], "op") + oyoy + (withA ? row("순이익", "ni") : "") + mg + "</tbody></table>";
   }
   function miniData(x) {
     if (!x.px && !x.fin) return "";
