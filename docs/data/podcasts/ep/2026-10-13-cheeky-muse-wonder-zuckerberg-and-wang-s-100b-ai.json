@@ -1,0 +1,228 @@
+{
+ "id": "2026-10-13-cheeky-muse-wonder-zuckerberg-and-wang-s-100b-ai",
+ "title_ko": "Mark Zuckerberg·Alexandr Wang — Muse Wonder와 1,000억 달러 AI 투자",
+ "guest": {
+  "name": "마크 저커버그(Mark Zuckerberg)·알렉산더 왕(Alexandr Wang)",
+  "role": "Meta 창업자·최고경영자 / Meta Superintelligence Labs 최고 AI 책임자(전 Scale AI 창업자)"
+ },
+ "company": {
+  "name": "Meta Platforms",
+  "sector": "인터넷 플랫폼 · 프런티어 AI 모델 · 개인 AI 에이전트",
+  "what": "Facebook·Instagram·WhatsApp 운영사, 개인 AI 에이전트 Muse와 Muse 모델 계열 개발(나스닥 META)"
+ },
+ "topic": "Meta 첫 프런티어 모델 Muse Wonder 출시와 MSL 1년, 설비투자 회수 계획",
+ "headline": "모델이 나오기 전 1,000억 달러를 건 Meta — Muse Wonder로 프런티어 진입, 수익은 구독·커머스·API로",
+ "tldr": [
+  "Meta 첫 프런티어 모델 Muse Wonder 공개 — 능동 기억·긴 작업 지속·금융·법률 전문성을 앞세운 개인 에이전트용 모델",
+  "Zuckerberg: 모델이 나오기 전 1,000억~2,000억 달러 투자 결정, 1GW 클러스터는 건설 500억~600억·연 운영 150억 달러",
+  "외부 지수로는 Wonder Full 56점으로 Claude Opus 5.5(58점)에 뒤져 — Meta 자체 도표와 차이",
+  "수익원은 구독(Wonder는 유료)·커머스 수수료·API·기업용 플랫폼, 여기에 광고 사업 가속",
+  "에이전트 쇼핑이 없던 수요를 만든다는 주장 — Zuckerberg 본인이 Muse 때문에 Instacart를 주 1~2회 쓰게 됨",
+  "연구 인원 100~200명의 인재 밀도 전략, Llama 4 부진 뒤 전면 재구성 1년 만의 결과"
+ ],
+ "summary_md": "### 1. Muse를 실제로 어떻게 쓰나 — 차 구매와 격투기 코칭\n- Alexandr Wang은 자기 Muse 에이전트에게 대만·일본 농가의 잘 알려지지 않은 차를 매주 찾아 사 오게 한다고 소개했다. Mark Zuckerberg는 체육관에 카메라를 달아 **종합격투기 라운드 사이 1분** 동안 자세 피드백을 받는다. 처음엔 30초씩 걸려 더 빨리 하라고 다그쳤고, 에이전트가 영상에서 정지 화면을 뽑아 처리하는 파이프라인을 스스로 짰다고 한다.\n- Zuckerberg는 이를 두고 앞으로는 모두가 코드를 짜게 되지만 본인이 코드를 짜는 줄도 모르는 세상이 온다고 해석했다. 이 사례는 내부 제품 평가 항목으로도 쓰인다.\n- 두 사람은 **멀티모달(이미지·영상·음성) 능력**을 처음부터 우선했다고 강조했다. 올해 초 업계 공감대가 \"코딩이 전부\"였던 것과 반대 방향이었고, 소비자는 글보다 보고 듣는 경험이 많다는 판단이다. 장기적으로 안경에서는 앱스토어 없이 필요한 화면을 그때그때 만들어 주는 형태를 그린다.\n\n### 2. AI 제품은 결국 비슷해지나 — 진행자와의 논쟁\n- 진행자 John Collison(Stripe 공동창업자)은 AI에서는 승자 제품이 대화형 비서 → 컴퓨터를 가진 상시 에이전트처럼 단순한 형태로 빠르게 수렴한다고 주장했다.\n- Wang은 반대했다. 차별화가 사라진 게 아니라 **모델 설계 안으로 들어갔다**는 것이다. 언제 먼저 나서는지, 어떤 말투인지, 도구를 어떻게 쓰는지가 모두 학습 방법·데이터·평가로 정해진다. Zuckerberg도 모델이 곧 제품이라는 내부 원칙을 소개하며, 제품 작업의 큰 몫은 개인정보·보안 설계(에이전트마다 전용 가상머신)라고 했다.\n- Muse에는 모델 선택 버튼도, 생각 강도 선택 버튼도 없다. 일반 사용자에게 모델 이름 체계는 너무 헷갈린다는 이유다.\n\n### 3. 새 모델 Muse Wonder — 무엇이 달라졌나\n- 첫 모델 계열 Muse Spark는 작년 12월 사전학습을 바탕으로 했고, Wonder는 그보다 **훨씬 큰 다음 급 사전학습**이다. 일반판 Wonder와 고급판 Wonder Full 두 가지로 나온다.\n- 내세운 능력은 네 가지다. ① **능동 기억**: 며칠·몇 주 전 대화를 기억해 다음 일에 쓰는 능력으로, 대화 압축을 바깥 장치가 아니라 모델 자체가 한다. ② 능동 집중: 긴 작업을 끝까지 밀고 가며 막히면 다른 길을 찾는 능력. ③ 금융·법률 등 영역 전문성. ④ 코딩(DeepSWE·SWE-Marathon에서 최고 수준이라고 주장).\n- 서빙 비용이 커서 Muse 앱에서는 **유료 구독자에게 먼저** 주고, 무료 사용자는 Spark를 계속 쓴다. 개발자용 Meta Model API와 OpenRouter에도 풀고, Wonder Full은 코딩 도구 Muse Code 구독자에게만 준다.\n\n### 4. 외부 벤치마크보다 내부 평가\n- 공개 벤치마크는 너무 빨리 포화돼 출시를 거듭할수록 내부 평가 비중을 늘린다고 했다. 공개 지표만 쫓는 것은 바이럴된 벤치마크를 만든 대학원생에게 제품 판단을 맡기는 셈이라는 설명이다.\n- 이번에 새로 수치화한 것이 '큰 모델 느낌'이다. 강화학습으로 연습한 과제와 처음 보는 과제의 성능 차이를 재며, Spark보다 Wonder에서 이 격차가 크게 줄었다고 한다.\n- 개인 비서에 특히 중요한 것으로 **'신중함'**을 꼽았다. 식당 예약에서 알레르기나 임신 사실을 밝히지 않고도 맞는 곳을 고르는 식으로, 많이 알되 바깥에는 최소한만 드러내는 능력이다.\n\n### 5. 모델은 어떻게 만드나 — 작은 팀, 거대한 컴퓨트\n- 연구 인원은 200명 미만으로 100명에 가깝고, 인프라 인력이 따로 있다. 단계마다 수십 명이 맡는데, 다른 연구소는 수백 명이라는 비교도 했다. 핵심은 **인재 밀도와 연구원 1인당 컴퓨트**이며, 여러 경쟁 프로젝트에 컴퓨트를 나눠 바르지 않는다.\n- 내부 코드명은 Spark가 아보카도, Wonder가 수박이었다. 사전학습에는 공개 웹·책에 더해 쇼핑·건강·법률·세무처럼 개인이 묻는 영역 자료를 많이 넣었고, 회사 컴퓨트의 큰 몫을 Wonder 사전학습에 썼다.\n- 사후학습은 지도 미세조정으로 행동을 심고 강화학습으로 그 행동이 나오는 빈도를 끌어올리는 구조다. Spark 1.0→1.3은 사전학습을 바꾸지 않고 강화학습만 더했는데도 체감 차이가 컸다. 강화학습은 오히려 적고 좋은 데이터가 낫고, 나쁜 행동으로만 이길 수 있는 환경을 걸러 내는 것이 안전의 핵심이라고 했다. 이들이 말하는 정렬은 훈계 없이 사용자의 지시와 가치에 맞추는 쪽이다.\n\n### 6. 1,000억 달러짜리 수표 — 돈과 위험\n- Wonder 기획은 작년 8월에 시작됐다. 연구소의 힘은 가장 큰 단일 슈퍼컴퓨터로 잰다는 철학 아래 오하이오 **Prometheus(1GW 이상)**, 루이지애나 Hyperion(5GW)을 2023~2024년부터 계획했다.\n- 작년 말 하와이 임원 회의에서 모델이 나오기도 전에 1,000억~2,000억 달러를 쓰기로 했고, CFO Susan Li가 Wang에게 실패하면 재무적으로 매우 나빠진다고 여러 번 당부했다고 한다.\n- Zuckerberg가 든 어림값은 1GW 클러스터 1년 운영에 약 150억 달러, 건설 설비투자는 500억~600억 달러다. 실험용 비용과 서빙까지 합치면 프런티어 모델 하나에 수백억 달러가 든다는 데 둘 다 동의했다.\n\n[[chart:2]]\n\n- 다만 Zuckerberg는 위험이 생각만큼 크지 않다고 봤다. AI가 성공하면 다른 회사들이 그 컴퓨트를 더 비싸게 사려 할 것이고, 실패해도 내부에 쓸 곳이 많다는 논리다. Muse는 9월 출시 직후 홈런이었고, 오히려 성장 준비가 덜 돼 더 빨리 키우지 못했다고 했다.\n\n### 7. 왜 Meta가 직접 해야 하나\n- Meta는 앱 회사가 아니라 추천 시스템을 세계 최대 규모로 돌리는 기술 회사이며, 그런 규모는 ByteDance 정도뿐이라고 했다. 인터넷 시대에 큰 회사가 5~6곳이었듯, 이번에도 **초지능을 직접 만들 수 있는 소수**가 판을 이끈다고 봤다.\n- 다른 연구소들이 지식노동 자동화에 몰두하는 사이 개인·소비자용 자리가 비어 있었다는 것이 이들의 판단이다.\n\n### 8. 에이전트 커머스 — 수요가 새로 생긴다\n- Muse는 브라우저 조작을 학습해 상대 회사가 아무것도 안 해도 쓸 수 있고, 주요 파트너와는 직접 연결한다. 연동을 요청하는 회사가 많고 막는 곳은 적다고 했다.\n- Zuckerberg는 세 살 딸과 주중에 Muse와 베이킹 메뉴를 정하면 토요일에 맞춰 **Instacart로 재료**가 온다고 했다. 1년에 두 번 쓰던 Instacart를 이제 주 1~2회 쓰며, 이는 전환율 개선이 아니라 **없던 수요**라는 주장이다. Wang은 에이전트가 계정을 갖는 순간 상거래 전체 시장이 커질 수 있다고 덧붙였다.\n- Collison은 Stripe의 에이전트 결제 지표가 9월부터 급증했다고 말했다.\n\n### 9. 음성·기기\n- 음성 비서가 어려웠던 이유로 말 끊기·멈춤 같은 대화 흐름 문제와, 듣는 것보다 보는 쪽이 정보 흡수가 빠르다는 점을 들었다. 음성 입력은 이미 폭발 중이다.\n- 화면 달린 안경, 외부 기기 제조사에 여는 Muse Gadgets, 집 안 기기를 잇는 동전 크기 HomeLink를 소개했고, 휴대폰 제조사들도 연동을 문의했다고 한다.\n\n### 10. 돈은 어떻게 버나\n- 진행자는 빅테크 설비투자 부담을 물었다. Zuckerberg의 답은 무료로 크게 키운 뒤 ① 구독(Wonder는 유료) ② 아껴 주거나 벌어 준 돈의 작은 몫을 받는 **커머스 수수료** ③ 소상공인용 '상자 속 사업' ④ API ⑤ CJ Desai가 이끄는 기업용 플랫폼으로 버는 구조다. 여기에 모델로 기존 광고 사업 성장을 몇 % 더 끌어올리는 효과도 있다.\n- 자체 데이터센터는 감가상각으로 나눠 반영되지만 클라우드를 빌리는 회사는 매년 사용료를 낸다는 회계상 이점도 언급했다. H100 같은 구형 칩도 컴퓨트 부족으로 작년보다 가치가 높다고 했다.\n\n### 11. MSL 1년 — 전면 재구성\n- Llama 4가 2025년 4월 4일 나온 뒤, 20일 무렵 Zuckerberg가 Wang에게 연락했다. 44분 통화 이틀 뒤 Wang이 보낸 계획서 첫 줄은 사람 수보다 인재 밀도가 중요하다는 내용이었다.\n- Collison은 이례적 결정 네 가지를 짚었다. 기존 프로젝트를 사실상 실패로 규정했고, 인재에 막대한 돈을 썼으며(Scale AI 지분 49%), 프런티어 모델을 만들어 본 적 없는 Wang에게 걸었고, CEO가 두 달간 일정을 비웠다. 전면 재시작은 외부 연구자들을 만나며 결정됐다.\n- 비기술 관리자를 두지 않고, 마감 기한도 정하지 않았다. Wang은 기존 리더가 추론 모델은 필요 없다고 해 철렁했던 일화도 꺼냈다. Zuckerberg는 같은 방식으로 CRED 창업자 Kunal Shah를 WhatsApp에 데려왔다고 했다.",
+ "insights_md": "### 투자 관점\n- **Meta(META)**: 이번 대화의 요지는 1,000억 달러대 설비투자를 회수할 길이 광고 외에 구독·커머스 수수료·API·기업용으로 넓어진다는 것이다. 다만 대본에 매출 목표나 수수료율 숫자는 없다. 2분기 잉여현금흐름이 크게 줄어든 상태라, 새 수익원이 숫자로 잡히기 전까지 설비투자 부담 논쟁은 이어질 수 있다.\n- **설비투자 수혜 사슬**: 1GW에 건설 500억~600억 달러, 연 운영 150억 달러라는 어림값은 GPU·네트워크·전력 수요가 길게 이어진다는 뜻이다. 루이지애나 Hyperion 전력은 Entergy가 가스발전소를 짓고 있다. Meta가 설비투자를 올리며 부품 가격 상승을 이유로 든 만큼 메모리(Samsung전자·SK하이닉스) 가격 흐름도 같이 볼 만하다.\n- **에이전트 커머스**: Stripe(비상장)의 결제 지갑 Link가 Muse에 들어갔고, Instacart(CART)·Walmart·Best Buy·Shopify(SHOP)·PayPal(PYPL)이 연결됐다. 반면 Amazon은 Muse를 막은 것으로 보도됐다. 광고로 먹고사는 쇼핑몰은 에이전트가 화면을 건너뛰는 것을 반기지 않을 수 있다.\n- **모델 시장 구도**: Muse Wonder의 API 값은 Claude Opus 5.5와 같은 수준이다. 이로써 프런티어 모델 공급자가 넷으로 늘었다. Stripe의 OpenRouter 인수는 여러 모델을 골라 쓰는 흐름에 거는 것이다.\n\n[[chart:5]]\n\n### 반론·리스크\n- 외부 평가(Artificial Analysis)에서는 Wonder Full이 56점으로 Opus 5.5(58)에 뒤진다. **Meta 자체 도표와 외부 순위가 다르다.**\n- Muse 내려받기는 빨랐지만 매일 쓰는 사람 비율은 낮다는 분석이 있다. 은행권 분석가들은 의미 있는 수익화를 2028년 이후로 본다.\n\n### 체크포인트\n- 3분기 실적(10월 말)의 설비투자·잉여현금흐름과 2027년 설비투자 첫 언급\n- Muse 유료 구독자 수와 커머스 수수료율 공개 여부\n- Muse Spark 공개 가중치 약속 이행",
+ "deep_md": "### 1. 회사·게스트 팩트 체크\n- Muse Wonder 출시: 2026년 10월 12일 Wonder와 Wonder Full이 함께 나왔다(TechCrunch). 둘 다 컨텍스트 100만 토큰이고, 오하이오 Prometheus 데이터센터에서 학습했다. Prometheus는 올해 초 가동했다고 보도됐다. 대본에서 말한 배포 방식(API는 Wonder만, Full은 Muse Code 구독자만)도 보도와 일치한다. Muse Code 요금은 월 5·15·50·200달러이고 Full은 50달러 이상 요금제에서만 된다(Fello AI 정리).\n- 벤치마크: Meta 자체 도표에서 Wonder Full은 14개 항목 중 7개에서 1위였다. 그러나 Meta가 경쟁 모델을 직접 돌린 결과이고, SWE-Marathon 비교는 같은 조건이 아니라고 Meta 스스로 밝혔다. 외부 기관 Artificial Analysis 종합 지수로는 **Opus 5.5 58점, Wonder Full 56점, Wonder 52점**이다. 대본의 \"최고 수준\" 주장은 일부 항목에 한정해 읽어야 한다.\n\n[[chart:1]]\n\n- Muse 앱 성장: 9월 8일 미국·캐나다에서 출시돼 열흘 만에 미국 앱스토어 무료 1위에 올랐다. Apptopia 비교로는 비슷한 시점 미국 모바일 일일 사용자가 **Muse 64.2만 명 대 ChatGPT 23.1만 명**이었다(TechCrunch). 대본의 \"가장 빨리 크는 앱\" 주장과 방향은 같다.\n- MSL·Scale AI: Meta는 2025년 6월 Scale AI 무의결권 지분 49%를 143억 달러에 사며 Wang을 데려왔다(Nasdaq/Reuters 인용). 대본에서 진행자가 말한 49%와 맞는다.\n- Stripe–OpenRouter: Stripe는 2026년 8월 OpenRouter 인수에 합의했다. 인수가는 약 70억~75억 달러로 보도됐고 회사는 공개하지 않았다. 석 달 전 기업가치 약 13억 달러의 다섯 배 이상이다. 하루 10조 토큰 처리는 광고 문구와 보도가 같다(Channel Insider).\n- 진행자의 \"Google 잉여현금흐름 마이너스\" 발언은 이번 조사에서 확인 못 함.\n\n### 2. 밸류체인과 관련 상장사\n- 연산·전력: Hyperion은 2030년까지 2GW, 이후 5GW로 늘리는 계획이다. 전력은 **Entergy(ETR)**의 Entergy Louisiana가 가스발전소를 지어 공급한다(TechCrunch 2025). 대본의 \"루이지애나 5GW\"는 장기 목표치다.\n- 부품: Meta는 1분기에 설비투자 전망을 올리며 부품 가격 상승을 주된 이유로 들었다(AI Weekly). 메모리 같은 부품 값이 Meta 비용과 공급사 실적을 함께 움직이는 고리다.\n- 결제·커머스: Muse는 Stripe Link로 결제하며, Link를 받지 않는 상점에는 **일회용 가상카드**를 쓴다(Stripe 보도자료). 연결 파트너는 Instacart·Walmart·Best Buy·Expedia 등이고 Shopify·PayPal이 뒤이어 붙었다.\n- 경쟁 모델: Anthropic(Claude), OpenAI(GPT-6 Astra)가 직접 경쟁자다. API 출력 가격은 Wonder가 100만 토큰당 20달러로 Opus 5.5와 같고, Fable 5.1·Astra(50달러)보다 싸다.\n\n### 3. 숫자의 맥락\n- 대본의 \"1,000억~2,000억 달러 수표\"는 여러 해 누적 약속으로 읽힌다. 실제 2026년 Meta 설비투자 전망은 2분기 실적 때 **1,300억~1,450억 달러**로 올라갔다. 같은 분기 설비투자는 약 301억 달러로 1년 전(165억)의 두 배에 가깝고, 잉여현금흐름은 85.5억에서 **7.8억 달러**로 91% 줄었다.\n\n[[chart:3]]\n\n- 4대 클라우드·빅테크의 2026년 설비투자 합계는 1분기 기준 **약 7,250억 달러**로 전년보다 77% 많다(1분기 전망 기준). Meta는 4곳 중 규모는 가장 작지만 클라우드 임대 매출이 없어, 투자 회수를 자기 서비스로만 해야 한다.\n\n[[chart:4]]\n\n### 4. 반론과 리스크\n- 수익화 시점: Bank of America·Jefferies는 Muse의 의미 있는 수익화를 **2028년 전에는 어렵다**고 봤다. MoffettNathanson은 거래 수수료로 의미 있는 매출을 내려면 사용자가 매우 커야 하며, 결국 광고 지면이 될 수 있다고 지적했다.\n- 사용 습관: 내려받기 약 500만 건 대비 일일 사용자 약 70만 명이라, 설치한 사람 다수가 매일 쓰지는 않는다는 분석이 있다.\n- 상대방의 저항: **Amazon이 Muse를 막았다**는 보도가 있다. 대본의 \"막는 곳은 적다\"와 달리 최대 쇼핑몰이 빠져 있다.\n- 개방성 후퇴: Llama 계열의 공개 가중치 전략은 사실상 끝났고, 9월에 약속한 Muse Spark 가중치도 아직 나오지 않았다.\n\n### 5. 앞으로 볼 것\n- 10월 말 3분기 실적: 설비투자·잉여현금흐름, 2027년 설비투자 첫 언급\n- Artificial Analysis 등 외부 평가에서 Wonder Full 순위 변화\n- Muse 유료 구독자·일일 사용자 수, 커머스 수수료 구조 공개\n- Stripe–OpenRouter 인수 마무리와 모델별 사용량 통계",
+ "sources": [
+  {
+   "label": "TechCrunch — Muse Wonder 출시일·배포 방식·Prometheus 학습·API 가격",
+   "url": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/"
+  },
+  {
+   "label": "Fello AI — Artificial Analysis 지수, 요금제, Meta 자체 벤치마크와 유의점",
+   "url": "https://felloai.com/muse-wonder/"
+  },
+  {
+   "label": "VentureBeat — Wonder Full은 API 미제공",
+   "url": "https://venturebeat.com/technology/metas-new-muse-wonder-and-muse-wonder-full-models-achieve-frontier-performance-but-only-the-weaker-one-is-available-via-api"
+  },
+  {
+   "label": "TechCrunch — Muse 앱 초기 일일 사용자, ChatGPT 대비(Apptopia)",
+   "url": "https://techcrunch.com/2026/09/21/metas-muse-is-outpacing-chatgpts-early-mobile-launch/"
+  },
+  {
+   "label": "Crypto Briefing — Muse 출시일·앱스토어 순위·사용 습관 분석",
+   "url": "https://cryptobriefing.com/meta-muse-app-store-retention/"
+  },
+  {
+   "label": "Tiger Brokers — Meta 2분기 잉여현금흐름·설비투자",
+   "url": "https://www.itiger.com/news/1107210758"
+  },
+  {
+   "label": "FourWeekMBA — Meta 2026년 2분기 매출·설비투자·잉여현금흐름",
+   "url": "https://fourweekmba.com/ai-meta-q2-2026-capex-free-cash-flow-ai-infrastructure/"
+  },
+  {
+   "label": "AI Weekly — 4대 빅테크 2026년 설비투자 전망 7,250억 달러",
+   "url": "https://aiweekly.co/alerts/amazon-microsoft-alphabet-meta-plan-725b-ai-capex-in-2026"
+  },
+  {
+   "label": "Channel Insider — Stripe의 OpenRouter 인수(보도 가격·처리량)",
+   "url": "https://www.channelinsider.com/ai/news-stripe-openrouter-ai-model-routing-acquisition/"
+  },
+  {
+   "label": "Stripe 보도자료 — Muse에 Link 결제 탑재",
+   "url": "https://stripe.com/es/newsroom/news/stripe-helps-meta-muse-shop-with-link"
+  },
+  {
+   "label": "Runtime Wire — Muse 거래 수수료 수익 모델·분석가 반론",
+   "url": "https://runtimewire.com/article/meta-muse-ai-agent-transaction-fees-free-tokens"
+  },
+  {
+   "label": "Nasdaq — Meta의 Scale AI 지분 49%·143억 달러",
+   "url": "https://www.nasdaq.com/articles/meta-invests-143-bln-scale-ai-taps-ceo-alexandr-wang-lead-superintelligence-push"
+  },
+  {
+   "label": "TechCrunch(2025) — Hyperion 5GW·Prometheus 1GW 계획",
+   "url": "https://techcrunch.com/2025/07/14/mark-zuckerberg-says-meta-is-building-a-5gw-ai-data-center"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "외부 종합 지수로 본 Muse Wonder 위치",
+   "sub": "Artificial Analysis 지능 지수 v4.3.2 · 점수",
+   "type": "hbar",
+   "unit": "점",
+   "labels": [
+    "Claude Opus 5.5",
+    "Claude Sonnet 5.5",
+    "Muse Wonder Full",
+    "Claude Fable 5.1",
+    "GPT-6 Astra",
+    "Muse Wonder"
+   ],
+   "series": [
+    {
+     "name": "지수",
+     "values": [
+      58,
+      56,
+      56,
+      53,
+      53,
+      52
+     ]
+    }
+   ],
+   "note": "Meta 자체 도표와 달리 외부 지수에선 Wonder Full이 공동 2위, 일반판 Wonder는 하위",
+   "source": "Fello AI — Artificial Analysis 지수 정리"
+  },
+  {
+   "at": "summary",
+   "title": "1GW 클러스터에 드는 돈 — Zuckerberg 어림값",
+   "sub": "대본 수치 · 억 달러",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "1년 운영",
+    "건설 설비투자(하단)",
+    "건설 설비투자(상단)"
+   ],
+   "series": [
+    {
+     "name": "금액",
+     "values": [
+      150,
+      500,
+      600
+     ]
+    }
+   ],
+   "note": "건설비가 1년 운영비의 3~4배 — 설비투자를 먼저 걸어야 하는 구조",
+   "source": "대본(Cheeky Pint)"
+  },
+  {
+   "at": "deep",
+   "title": "Meta 2분기 설비투자와 잉여현금흐름",
+   "sub": "2025년 2분기 대 2026년 2분기 · 억 달러",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2025년 2분기",
+    "2026년 2분기"
+   ],
+   "series": [
+    {
+     "name": "설비투자",
+     "values": [
+      165,
+      301
+     ]
+    },
+    {
+     "name": "잉여현금흐름",
+     "values": [
+      85.5,
+      7.8
+     ]
+    }
+   ],
+   "note": "설비투자가 두 배 가까이 늘며 잉여현금흐름이 거의 0으로",
+   "source": "Tiger Brokers·FourWeekMBA — Meta 2분기 실적 정리"
+  },
+  {
+   "at": "deep",
+   "title": "2026년 빅테크 설비투자 전망",
+   "sub": "1분기 실적 시점 가이던스 · 억 달러(범위는 중간값)",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Amazon",
+    "Microsoft",
+    "Alphabet",
+    "Meta"
+   ],
+   "series": [
+    {
+     "name": "2026년 전망",
+     "values": [
+      2000,
+      1900,
+      1850,
+      1350
+     ]
+    }
+   ],
+   "note": "Alphabet 1,800~1,900·Meta 1,250~1,450은 중간값. Meta는 2분기에 1,300~1,450으로 다시 올림",
+   "source": "AI Weekly — 4개사 2026년 설비투자 정리"
+  },
+  {
+   "at": "insights",
+   "title": "API 출력 가격 비교",
+   "sub": "100만 토큰당 출력 가격 · 달러",
+   "type": "hbar",
+   "unit": "달러",
+   "labels": [
+    "Claude Fable 5.1",
+    "GPT-6 Astra",
+    "Muse Wonder",
+    "Claude Opus 5.5",
+    "Claude Sonnet 5.5",
+    "Muse Spark 1.3"
+   ],
+   "series": [
+    {
+     "name": "출력 가격",
+     "values": [
+      50,
+      50,
+      20,
+      20,
+      10,
+      4.25
+     ]
+    }
+   ],
+   "note": "Wonder는 Opus 5.5와 같은 값, Spark 1.3보다 약 4.7배 비쌈",
+   "source": "Fello AI — 모델별 API 가격 정리"
+  }
+ ],
+ "tg": "Meta 첫 프런티어 모델 Muse Wonder 공개 — 능동 기억·긴 작업 지속·금융·법률 전문성을 앞세운 개인 에이전트용 모델\nZuckerberg: 모델이 나오기 전 1,000억~2,000억 달러 투자 결정, 1GW 클러스터는 건설 500억~600억·연 운영 150억 달러\n외부 지수로는 Wonder Full 56점으로 Claude Opus 5.5(58점)에 뒤져 — Meta 자체 도표와 차이",
+ "tg_body": "Meta가 첫 프런티어 모델 Muse Wonder를 내놨다. Zuckerberg와 Alexandr Wang은 개인 에이전트에 맞춰 기억력·긴 작업 지속력·금융과 법률 지식을 키웠다고 설명했다. 일반판은 API로 풀고, 고급판 Wonder Full은 유료 구독자에게만 준다.\n\n두 사람은 차별화가 화면이 아니라 모델 설계 안에 있다고 봤다. 공개 벤치마크보다 내부 평가를 중시하며, 연구 인원은 200명 미만으로 사람 수보다 인재 밀도와 1인당 컴퓨트를 앞세운다.\n\n돈 이야기가 핵심이다. 모델이 나오기도 전에 1,000억~2,000억 달러 투자를 결정했다. 1GW 클러스터는 건설에 500억~600억 달러, 1년 운영에 150억 달러가 든다는 어림값도 내놨다. AI가 성공하면 남들이 컴퓨트를 사 가고, 실패해도 내부에 쓸 데가 있어 위험이 생각보다 작다는 논리다.\n\n수익원으로는 구독, 에이전트 쇼핑 수수료, API, 기업용 플랫폼을 들었다. Zuckerberg는 Muse 때문에 Instacart를 주 1~2회 쓰게 됐다며 에이전트가 새 수요를 만든다고 했다.\n\n외부 지표는 온도 차가 있다. Artificial Analysis 지수에서 Wonder Full은 56점으로 Claude Opus 5.5(58점)에 뒤진다. Meta의 2분기 잉여현금흐름은 7.8억 달러로 91% 줄었고, 분석가들은 의미 있는 수익화를 2028년 이후로 본다.",
+ "youtube": "https://www.youtube.com/watch?v=XfdIhd1g6EI",
+ "image": "https://i.ytimg.com/vi/XfdIhd1g6EI/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-13 11:55 KST"
+}

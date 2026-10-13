@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-13 05:23 KST",
+ "updated": "2026-10-13 11:33 KST",
  "episodes": [
   {
    "id": "2026-10-13-cheeky-muse-wonder-zuckerberg-and-wang-s-100b-ai",
@@ -12,13 +12,20 @@
    "audio": "https://media.transistor.fm/bb7b9a51/b45e8e6f.mp3",
    "duration": "2:14:21",
    "desc": "As Meta scales its AI infrastructure past five gigawatts, Mark Zuckerberg (founder and CEO, Meta) and Alexandr Wang (Chief AI Officer, Meta Superintelligence Labs) join John for a pint to discuss the launch of Muse Wonder and the future of personal AI agents. In this episode, Mark and Alex open up about the creation of Meta Superintelligence Labs (MSL), the decision to execute a complete talent reboot, and what it really feels like to make a $100B+ CapEx commitment before knowing if the model will work. They dive deep into the architecture of Muse Wonder—including active memory, multimodal per…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-13 04:24 KST",
    "image": "https://img.transistorcdn.com/lhLIZ-3_1Fmrjobs4HRPJ-ZOM0-Cz5p0Mciv6z8OomU/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS8yM2Jj/ZjMwZTliNDE4NjMz/ODcyYzZjMzcyNWEw/YmQyMi5qcGVn.jpg",
    "show_image": "https://img.transistorcdn.com/PVZFPauNUFMQ37nXgHHcOEYiAymRHQ7vaa9pV-D2Txg/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS82ZGFk/ODk1OGE5Y2ExZjc5/MGMxNjYwOWQxYjdi/YTlkYy5wbmc.jpg",
    "title_ko": "Mark Zuckerberg·Alexandr Wang — Muse Wonder와 1,000억 달러 AI 투자",
    "desc_ko": "Meta의 AI 인프라가 5기가와트를 넘어서는 가운데, Mark Zuckerberg(Meta 창업자·최고경영자)와 Alexandr Wang(Meta Superintelligence Labs 최고 AI 책임자)이 진행자 John Collison과 함께 Muse Wonder 출시와 개인 AI 에이전트의 미래를 이야기한다. Meta Superintelligence Labs를 만든 과정과 연구 인력을 통째로 다시 꾸린 결정을 털어놓는다. 모델이 제대로 될지 모르는 상태에서 1,000억 달러가 넘는 설비 투자를 약속하는 것이 어떤 느낌인지도 말한다. 능동형 기억, 멀티모달 인식 등 Muse Wonder의 구조도 깊이 다룬다.",
-   "tx_fail": 2
+   "tx_fail": 2,
+   "summary": {
+    "title_ko": "Mark Zuckerberg·Alexandr Wang — Muse Wonder와 1,000억 달러 AI 투자",
+    "headline": "모델이 나오기 전 1,000억 달러를 건 Meta — Muse Wonder로 프런티어 진입, 수익은 구독·커머스·API로",
+    "image": "https://i.ytimg.com/vi/XfdIhd1g6EI/hqdefault.jpg",
+    "guest": "마크 저커버그(Mark Zuckerberg)·알렉산더 왕(Alexandr Wang) — Meta 창업자·최고경영자 / Meta Superintelligence Labs 최고 AI 책임자(전 Scale AI 창업자)",
+    "company": "Meta Platforms (인터넷 플랫폼 · 프런티어 AI 모델 · 개인 AI 에이전트)"
+   }
   },
   {
    "id": "2026-10-12-ca-senior-decision-makers-erlina-yeo-terwelp-columb",
