@@ -96,6 +96,17 @@
   }
   function num(v) { return v == null ? "—" : Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : (Math.round(v * 10) / 10).toLocaleString(); }
   function opRow(f) { var q = f.q || {}; return (q.oi || []).some(function (v) { return v != null; }) ? ["oi", "영업이익"] : ["ni", "순이익"]; }
+  // 분기·연도 라벨 → 실제 기간(일본: 결산월 fm 기준 '26.03~05', 미국: 분기 끝 달 '26.06' → '26.04~06')
+  function period(lb, f) {
+    var yy = function (n) { return String((n % 100 + 100) % 100).padStart(2, "0"); }, mm = function (n) { return String(n).padStart(2, "0"); };
+    var m = /^(\d{2})Q([1-4])$/.exec(lb || "");
+    if (m && f.fm) { var y = 2000 + +m[1], e = f.fm - 3 * (4 - +m[2]); while (e <= 0) { e += 12; y--; } var st = e - 2, sy = y; if (st <= 0) { st += 12; sy--; } return yy(sy) + "." + mm(st) + "~" + (sy === y ? "" : yy(y) + ".") + mm(e); }
+    var u = /^(\d{2})\.(\d{2})$/.exec(lb || "");
+    if (u) { var ey = +u[1], em = +u[2], sm = em - 2, sy2 = ey; if (sm <= 0) { sm += 12; sy2--; } return yy(sy2) + "." + mm(sm) + "~" + (sy2 === ey ? "" : yy(ey) + ".") + mm(em); }
+    var a = /^(\d{4})년$/.exec(lb || "");
+    if (a && f.fm) { var Y = +a[1], s1 = f.fm + 1, sy3 = Y - 1; if (s1 > 12) { s1 -= 12; sy3++; } return yy(sy3) + "." + mm(s1) + "~" + yy(Y) + "." + mm(f.fm); }
+    return "";
+  }
   function finTable(f, nq, withA) {
     if (!f || !f.q || !(f.q.lb || []).length) return '<div class="ep-nofin">재무 자료 없음</div>';
     var q = f.q, k = q.lb.length, from = Math.max(0, k - nq), cols = [], o = opRow(f);
@@ -108,7 +119,7 @@
     var yrow = function (lab, cur, prev) { return '<tr class="yy"><th>' + lab + "</th>" + cols.map(function (c) { var g = c.fc ? { t: "", c: "" } : gr(c[cur], c[prev]); return '<td class="' + g.c + (c.an ? " an" : "") + '">' + g.t + "</td>"; }).join("") + "</tr>"; };
     var yoy = yrow("매출 전년 대비", "rev", "py"), oyoy = yrow(o[1] + " 전년 대비", "op", "po");
     var mg = "<tr class=\"yy\"><th>" + o[1] + "률</th>" + cols.map(function (c) { var v = c.rev && c.op != null ? c.op / c.rev * 100 : null; return '<td class="' + (c.an ? "an" : "") + '">' + (v == null ? "—" : v.toFixed(1) + "%") + "</td>"; }).join("") + "</tr>";
-    return '<table class="ep-fin"><thead><tr><th>' + esc(f.u) + "</th>" + cols.map(function (c) { return '<th class="' + (c.an ? "an" : "") + (c.fc ? " fc" : "") + '">' + esc(c.lb) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+    return '<table class="ep-fin"><thead><tr><th>' + esc(f.u) + "</th>" + cols.map(function (c) { var pd = period(c.lb, f); return '<th class="' + (c.an ? "an" : "") + (c.fc ? " fc" : "") + '">' + esc(c.lb) + (pd ? "<small>" + pd + "</small>" : "") + "</th>"; }).join("") + "</tr></thead><tbody>" +
       row("매출", "rev") + yoy + row(o[1], "op") + oyoy + (withA ? row("순이익", "ni") : "") + mg + "</tbody></table>";
   }
   function miniData(x) {

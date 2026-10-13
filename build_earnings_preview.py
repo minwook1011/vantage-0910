@@ -88,12 +88,14 @@ def _r(v, n=1):
 
 
 PXR = {}
+FYM = {}
 
 
 def attach_data(doc):
     """주 파일의 기업마다 px(최근 약 1년 일봉 종가)·pxd(마지막 날)·fin(분기 8개·연간 4개 매출·영업이익·순이익)을 붙인다"""
     B = None
-    global PXR
+    global PXR, FYM
+    FYM = jd(os.path.join(BASE, "docs", "data", "jp", "fy_months.json"), {}) or {}
     PXR = (jd(os.path.join(BASE, "docs", "data", "jp", "px_recent.json"), {}) or {}).get("bars") or {}
     for L in doc["days"].values():
         for x in L:
@@ -138,6 +140,9 @@ def attach_data(doc):
                     fin["a"] = {k: [((a.get(k) or [None] * 99)[i]) for i in reversed(al)] for k in ("lb", "rev", "oi", "ni")}
                     if f.get("rev") is not None or f.get("oi") is not None:
                         fin["f"] = {"lb": str(f.get("y") or "") + " 회사 예상", "rev": f.get("rev"), "oi": f.get("oi"), "ni": f.get("ni")}
+                    fm = b.get("fm") or FYM.get(x["c"])
+                    if fm:
+                        fin["fm"] = int(fm)            # 결산월 — 화면에서 분기 라벨 아래 '몇 월~몇 월' 표시
                     x["fin"] = fin
                 else:
                     p = os.path.join(BASE, "docs", "data", "us", x["c"] + ".json")

@@ -1338,7 +1338,10 @@ function gtxt(p){
 }
 /* 회계연도 라벨(26Q4·2026)을 실제 달로 — 결산월이 회사마다 달라 헷갈린다(2026-10-07 사용자). 결산월은 JPX 발표 예정일 자료의 fy_end.
    라벨 연도 = 그 회계연도가 끝나는 해(예: 3월 결산 27Q1 = 2026년 4~6월) */
-function fyEndMonth(code){ const b=BY[code]; if(b && b.fm) return +b.fm; const e=EARN[code]; const m=e&&e.fy_end&&/^\d{4}-(\d{2})/.exec(e.fy_end); return m?+m[1]:null; }
+/* 결산월: 묶음 fm → 결산월 표(data/jp/fy_months.json, 2026-10-13 — 모든 종목 기간 표시) → 실적 일정 */
+var FYM={};
+fetch("data/jp/fy_months.json",{cache:"no-cache"}).then(r=>r.ok?r.json():{}).then(d=>{ FYM=d||{}; const fb=document.getElementById("finbox"); if(fb && view && view.code && BY[view.code]) fb.innerHTML=finHTML(BY[view.code]); }).catch(()=>{});
+function fyEndMonth(code){ const b=BY[code]; if(b && b.fm) return +b.fm; if(FYM[code]) return +FYM[code]; const e=EARN[code]; const m=e&&e.fy_end&&/^\d{4}-(\d{2})/.exec(e.fy_end); return m?+m[1]:null; }
 function periodOf(lb, fym, isQ){
   if(!fym || lb==null) return "";
   const yy = n => String((n%100+100)%100).padStart(2,"0"), mm = n => String(n).padStart(2,"0");
