@@ -15,6 +15,9 @@ const CATS = ["리테일·유통","식품·음료","외식","라멘","게임·�
   }
 })();
 const BY = {}; BUNDLE.forEach(b=>BY[b.c]=b);
+/* PER 이 빈 종목(원본 자료 누락) — 시가총액 ÷ 최근 1년 순이익(묶음 a.TTM)으로 채운다. 순이익이 0 이하면 -1(화면에 '적자')(2026-10-14) */
+function fillPer(){ RAW.forEach(r=>{ if(r[F.PER]!=null) return; const a=(BY[r[F.CODE]]||{}).a; if(!a||!a.lb) return; const i=a.lb.indexOf("TTM"); const ni=i>=0&&a.ni?a.ni[i]:null; if(ni==null) return; r[F.PER]= ni>0 ? +(r[F.MCAP]/ni).toFixed(1) : -1; }); }
+fillPer();
 
 /* ===== 유니버스: 소비재 / 주요 기업 =====
    RAW·BUNDLE·CATS는 전역 const 배열 — 유니버스를 바꿀 때 내용만 제자리 교체하고 BY를 다시 만든다.
@@ -52,6 +55,7 @@ function applyUniverse(u){
   swapInPlace(RAW,U.raw); swapInPlace(BUNDLE,U.bundle); swapInPlace(CATS,U.cats);
   for(const k in BY) delete BY[k];
   BUNDLE.forEach(b=>BY[b.c]=b);
+  fillPer();
 }
 function saveUniverse(u){
   try{ localStorage.setItem("jp_screener_universe",u); }catch(e){}
@@ -296,7 +300,7 @@ function colCell(r, key){
     const cls = e.days<=7 ? "earn soon" : "earn";
     return `<td class="${cls}"${e.est?' title="회사 미확정 · 예상일"':''}>${e.date.slice(5).replace("-","/")} <span class="dd">D-${e.days}</span>${e.est?'<span class="est">예상</span>':''}</td>`; }
   if(c.kind==="int") return v==null?`<td class="na">—</td>`:`<td>${int(v)}</td>`;
-  if(c.kind==="per") return (v==null||v<0)?`<td><span class="na">—</span></td>`:`<td>${f1(v)}</td>`;
+  if(c.kind==="per") return v==null?`<td><span class="na">—</span></td>`:v<0?`<td><span class="na" title="최근 1년 순이익 적자">적자</span></td>`:`<td>${f1(v)}</td>`;
   if(c.kind==="f1") return v==null?`<td><span class="na">—</span></td>`:`<td>${f1(v)}</td>`;
   return `<td>${pct(v)}</td>`;
 }
@@ -1432,7 +1436,7 @@ function openDetail(code){
     ["매출성장 YoY",r[F.REVG]===null?"—":(r[F.REVG]>0?"+":"")+f1(r[F.REVG])+"%",r[F.REVG]],
     ["주가 1년",r[F.PY]===null?"—":(r[F.PY]>0?"+":"")+f1(r[F.PY])+"%",r[F.PY]],
     ["주가 YTD",r[F.PYTD]===null?"—":(r[F.PYTD]>0?"+":"")+f1(r[F.PYTD])+"%",r[F.PYTD]],
-    ["PER",r[F.PER]===null||r[F.PER]<0?"—":f1(r[F.PER])+"배"],["ROE",r[F.ROE]===null?"—":f1(r[F.ROE])+"%"],
+    ["PER",r[F.PER]===null?"—":r[F.PER]<0?"적자":f1(r[F.PER])+"배"],["ROE",r[F.ROE]===null?"—":f1(r[F.ROE])+"%"],
     ["영업이익률",r[F.OPM]===null?"—":f1(r[F.OPM])+"%"],
     ["다음 실적 발표",earnLabel(earnInfo(code),true)]];
 
