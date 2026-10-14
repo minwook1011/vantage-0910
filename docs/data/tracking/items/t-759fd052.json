@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "e436c0e814df",
+   "kind": "news",
+   "headline": "앤스로픽, 기밀 AI 보안 스타트업 오페이크와 기술 사용권·인력 영입 계약 — 금액은 비공개",
+   "bullets": [
+    "앤스로픽이 기밀 컴퓨팅·AI 보안 회사 오페이크(Opaque)의 기술 사용권을 얻고 팀 일부를 데려오는 계약을 맺었다.",
+    "오페이크는 시리즈 B에서 2,400만 달러를 모았고 기업가치 3억 달러로 평가받았던 회사다. 엔비디아·인텔·마이크로소프트·구글과 협력해 왔다.",
+    "거래 금액과 영입 인원은 공개되지 않았다. 기존 제품과 고객 계약을 어떻게 할지도 아직 밝히지 않았다."
+   ],
+   "summary": "앤스로픽이 기밀 컴퓨팅(데이터를 처리하는 동안에도 암호화해 보호하는 기술) 전문 스타트업 오페이크와 기술 사용권 계약을 맺고 팀 일부를 영입한다. 회사를 통째로 사는 대신 기술 사용권과 사람만 가져오는 '인재 영입형 인수' 방식이다. 오페이크 최고경영자 에런 풀커슨이 자사 블로그에서 계약 사실을 알렸고, 디 인포메이션도 같은 내용을 보도했다.\n\n오페이크는 시리즈 B에서 2,400만 달러를 조달해 기업가치 3억 달러를 인정받았다. 엔비디아·인텔·마이크로소프트·구글과 기밀 컴퓨팅 분야에서 협력했고, 보안 체계는 유럽과 아랍에미리트에서 도입됐다. 최근에는 자국 데이터센터에서 AI를 돌리는 '주권 AI'와 기업 자체 서버 설치용 개방형 표준을 밀어 왔다.\n\n업계 분석가들은 앤스로픽이 자체 서버 설치·주권 AI를 원하는 기업 고객을 공략하는 흐름과 맞닿아 있다고 본다. 다만 거래 금액·영입 인원은 비공개이고, 오페이크 기존 제품·고객 계약·오픈소스 사업을 어떻게 이어갈지는 아직 밝혀지지 않았다.",
+   "title": "Anthropic Strikes Licensing, Acqui-Hire Deal With AI Security Startup",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPNXc0NG5tdXZ1S0E5OV9CTHhSRzhfVVVrLThaUDJvaExBR1F1VldDWmhud1BPVDJmT1NYSVh0UE9iUXctbDRQbzBRUGFnSEplR3gxSnlMMmlEMFhLNzVObWZWM1l0V1RNZm9EY3dVd2lwN202bmttS25qUFZ6azFSYUg3VEFnN1dXU0JGTjlFaXphVGVsaXRGLXU4bEMyZGFYU2hVVXFCUQ?oc=5",
+   "published": "2026-10-14 16:24 KST",
+   "written": "2026-10-14 16:48 KST"
+  },
+  {
    "id": "cb7b741ae096",
    "kind": "news",
    "headline": "앤스로픽 안전 연구진 \"가전기기 타고 스스로 퍼지는 인공지능, 수개월 안에 가능할 수도\" — 저가 TV 15대로 300억 매개변수 모델 구동",
@@ -401,5 +417,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-14 16:19 KST"
+ "updated": "2026-10-14 16:48 KST"
 }
