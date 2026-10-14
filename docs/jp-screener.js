@@ -615,7 +615,7 @@ function earnRows(){
 }
 function euCo([r,e,x]){
   const tip = esc(r[F.NAME]) + (e.est?" (예상일)":"") + (x?"\n"+esc(resTip(x)):"");
-  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}"${favSty(r[F.CODE])} title="${tip}"><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x, r[F.CODE])}</button>${repLink(x)}`;
+  return `<button class="eu-co${FAVS.has(r[F.CODE])?" fav":""}${e.est?" est":""}${x?" done":""}" data-c="${r[F.CODE]}"${favSty(r[F.CODE])} title="${tip}"><span class="eu-star${FAVS.has(r[F.CODE])?" on":""}" role="button" tabindex="0" title="즐겨찾기 그룹에 넣기·빼기" onclick="toggleFav('${r[F.CODE]}',event)">${FAVS.has(r[F.CODE])?"★":"☆"}</span><b class="mono">${r[F.CODE]}</b><span>${calName(r)}</span>${e.est&&!x?'<i>예상</i>':''}${resBadges(x, r[F.CODE])}</button>${repLink(x)}`;
 }
 let euFold=false; try{ euFold=localStorage.getItem("jp_screener_eu_fold")==="1"; }catch(e){}
 function renderEarnUp(){

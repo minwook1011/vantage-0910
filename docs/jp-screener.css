@@ -407,7 +407,7 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .eu-cal .eu-co span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px}
 .eu-cal .eu-co b{flex:0 0 auto}
 .eu-cal .eu-co.est span{color:var(--ink-mid)}
-.eu-cal .eu-co.fav b::before{content:"★ ";color:var(--fc,var(--ma5))}
+/* 별은 이제 eu-star 로 따로(빈 별 ☆ 을 눌러 바로 즐겨찾기 — 2026-10-14 사용자) */
 .eu-none{color:var(--flat);font-size:12px;padding:8px 6px}
 .eu-more{font:inherit;font-size:11.5px;font-weight:600;color:var(--accent-ink);background:none;border:0;padding:6px;text-align:left;cursor:pointer}
 .eu-more:hover{text-decoration:underline}
@@ -632,3 +632,8 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 /* 기본 정보 맨 위 핵심 지표(2026-10-14) */
 .grid.kgrid{margin:4px 0 18px;grid-template-columns:repeat(5,1fr)}
 @media (max-width:720px){.grid.kgrid{grid-template-columns:repeat(2,1fr)}}
+/* 캘린더 종목 옆 즐겨찾기 별 — 빈 별 ☆ 을 누르면 그룹 고르기, 들어 있으면 그룹 색 ★ */
+.eu-star{flex:0 0 auto;cursor:pointer;color:#b9c3d3;font-size:14px;line-height:1;padding:0 1px;user-select:none}
+.eu-star:hover{color:#e0a020}
+.eu-star.on{color:var(--fc,#e0a020)}
+.eu-co .eu-star{order:-1}
