@@ -1078,6 +1078,9 @@ function chartHTML(b){
 }
 
 /* ================= 사업 구조 ================= */
+/* 사업부문 이름 한국어(2026-10-14 사용자: 일본어 금지) — data/jp/seg_ko.json {일본어 이름: 한국어}. 원문은 마우스를 올리면 */
+var SEGKO={};
+fetch("data/jp/seg_ko.json",{cache:"no-cache"}).then(r=>r.ok?r.json():{}).then(d=>{ SEGKO=d||{}; document.querySelectorAll("td.seg[title]").forEach(td=>{ if(SEGKO[td.title]) td.textContent=SEGKO[td.title]; }); }).catch(()=>{});
 function bmHTML(code){
   const bm = BM[code];
   if(!bm && isMaj()) return "";
@@ -1086,7 +1089,7 @@ function bmHTML(code){
   const segs = (bm.seg||[]).slice().sort((a,b)=>(b.p??-1)-(a.p??-1));
   const maxp = Math.max(...segs.map(s=>s.p??0), 1);
   const rows = segs.map(s=>`<tr>
-      <td class="seg">${esc(s.n)}</td>
+      <td class="seg" title="${esc(s.n)}">${esc(SEGKO[s.n]||s.n)}</td>
       <td class="desc">${esc(s.d||"")}</td>
       <td class="pw">${s.p===null||s.p===undefined ? '<span class="na">—</span>'
         : `<span class="pv">${s.p.toFixed(1)}%</span><span class="pbar"><i style="width:${(s.p/maxp*100).toFixed(1)}%"></i></span>`}</td>
@@ -1444,6 +1447,10 @@ function openDetail(code){
     <div class="dtabs" role="tablist"><button data-dt="info" aria-pressed="true">기본 정보</button><button data-dt="earn" aria-pressed="false">실적발표 <small id="dt-earn-n"></small></button></div>
     <div id="dt-earn" hidden></div>
     <div id="dt-info">
+    <!-- 시가총액·PER 등 핵심 지표를 기본 정보 맨 위로(2026-10-14 사용자) -->
+    <div class="grid kgrid">${cells.map(c=>{
+      const cl=c.length>2&&c[2]!==null?(c[2]>0?"up":c[2]<0?"dn":""):"";
+      return `<div class="cell"><span>${c[0]}</span><b class="${cl}">${c[1]}</b></div>`;}).join("")}</div>
     ${bmHTML(code)}
 
     ${kpiHTML(code)}
@@ -1455,11 +1462,6 @@ function openDetail(code){
     <div class="dsec">실적
       <div class="seg" id="fintg"><button data-v="q" aria-pressed="true">분기</button><button data-v="a" aria-pressed="false">연간</button></div></div>
     <div id="finbox">${b ? finHTML(b) : `<div class="slot">실적 데이터를 수록하지 않은 종목입니다.</div>`}</div>
-
-    <div class="dsec">현재 지표</div>
-    <div class="grid">${cells.map(c=>{
-      const cl=c.length>2&&c[2]!==null?(c[2]>0?"up":c[2]<0?"dn":""):"";
-      return `<div class="cell"><span>${c[0]}</span><b class="${cl}">${c[1]}</b></div>`;}).join("")}</div>
 
     <div class="dsec">1차 자료</div>
     <div class="links">${links.map(l=>`<a class="lk" href="${l[2]}" target="_blank" rel="noopener"><b>${l[0]}</b><span>${l[1]}</span></a>`).join("")}</div>

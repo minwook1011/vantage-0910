@@ -629,3 +629,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 
 /* 일본 기업 이름: 한국어 (영어) — 영어는 작게(2026-10-13) */
 .nm small.en,.dnm small.en{font-weight:400;color:var(--ink-mute);font-size:.84em;margin-left:2px}
+/* 기본 정보 맨 위 핵심 지표(2026-10-14) */
+.grid.kgrid{margin:4px 0 18px;grid-template-columns:repeat(5,1fr)}
+@media (max-width:720px){.grid.kgrid{grid-template-columns:repeat(2,1fr)}}
