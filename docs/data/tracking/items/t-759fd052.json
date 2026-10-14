@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "657dfbee6a64",
+   "kind": "news",
+   "headline": "뱅크오브아메리카, 앤트로픽 '미토스'가 드러낸 소프트웨어 취약점 막으려 외부 인력 1,000명 투입 — 3분기 관련 비용 '수억 달러'",
+   "bullets": [
+    "브라이언 모이니핸 최고경영자가 3분기 실적 발표 뒤 CNBC에 2분기부터 외부 계약직 1,000명을 기존 담당 인력 3,000명에 더해 보안 패치 작업에 투입했다고 밝혔다.",
+    "소프트웨어 보완과 자금세탁방지 규제 대응에 3분기 '2억 달러 이상'을 썼고, 패치가 끝나면 비용은 줄어든다고 설명했다.",
+    "미국 대기업이 미토스 대응에 든 인력·돈을 구체적으로 밝힌 첫 사례 중 하나다. 이날 주가는 장중 최대 8% 떨어졌다."
+   ],
+   "summary": "뱅크오브아메리카가 앤트로픽의 보안 특화 인공지능 모델 '미토스' 같은 최신 모델이 찾아낸 소프트웨어 취약점을 막으려고 외부 계약직 1,000명을 고용했다. 브라이언 모이니핸 최고경영자가 3분기 실적 발표 뒤 CNBC 인터뷰에서 밝혔다. 이 인력은 2분기에 투입돼 지금도 일하고 있고, 해당 분야 내부 인력 3,000명과 함께 자체·외부 업체 코드를 보완하고 있다.\n\n비용도 공개했다. 소프트웨어 보완과 자금세탁방지 규제 대응에 3분기에만 '2억 달러 이상'이 들었다. 모이니핸은 한 번 패치하면 다음엔 덜 해도 된다며 비용이 시간이 지나며 줄어든다고 강조했다. 미토스는 4월 일부 은행·기술기업·정부기관에만 공개됐는데, 미국 대기업이 대응 인력과 비용을 구체적으로 밝힌 건 처음에 가깝다. 이날 주가는 장중 최대 8% 떨어졌다.\n\n인공지능은 비용을 줄이기도 한다. 이 은행은 내부 인공지능 과제 약 130개를 돌리고 있고, 여기서 나오는 절감액이 올해 3억 달러에서 2027년 7억 달러로 늘 것으로 본다. 지난 1년 직원 수는 관리자 약 5% 감축 등으로 약 3,400명 줄었다.",
+   "title": "Bank of America hired 1,000 contractors to patch software flaws exposed by Anthropic's Mythos",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOY1M4VExNMjhEYS1uQmpkLVNTV2wxaFppMXFXZ3FDYXZEZFM4MkpoOGx4OE0tUnZCMmE2d1hqbnhaVkxNVmFlZ0hYQlJjX1BQclBJS2VPN09oVm8xZU94R1d2ejdKLXY5a2FKRTg2aVA0WGx6YnZrNlFFV2dVWW45c19JT3laRVZv0gGOAUFVX3lxTFB6UmVsXzhCWFpMbHotRVBDY3p5WmltQjMwZ2hYc2dRaFR1SHBqTmM2WFhzSHVwVGgxT1U5X1Z0bnprVXFfYkZQWXBOMmI5VTJGbGZoUjBmblFiSW4ySl9OT0tjUUJIRXJyZnBNWF81cXpkNjJwbVZHdkJCeFM5Tlp4WWdNVDYtMlZDRkx2T2c?oc=5",
+   "published": "2026-10-15 03:47 KST",
+   "written": "2026-10-15 04:18 KST"
+  },
+  {
    "id": "e436c0e814df",
    "kind": "news",
    "headline": "앤스로픽, 기밀 AI 보안 스타트업 오페이크와 기술 사용권·인력 영입 계약 — 금액은 비공개",
@@ -417,5 +433,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-14 16:48 KST"
+ "updated": "2026-10-15 04:18 KST"
 }
