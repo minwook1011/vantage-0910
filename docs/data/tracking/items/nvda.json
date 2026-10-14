@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "61fc234353ae",
+   "kind": "news",
+   "headline": "엔비디아·칩에이전츠, 인공지능 칩 설계 능력 평가 공개 — 1위 에이전트도 정답률 16.6%",
+   "bullets": [
+    "엔비디아와 칩 설계 자동화 스타트업 칩에이전츠가 인공지능 모델의 칩 설계 실력을 재는 새 평가를 내놨다(디 인포메이션 단독).",
+    "가장 잘한 에이전트는 앤트로픽 모델 기반이었지만 정답률이 16.6%에 그쳤다.",
+    "칩에이전츠는 기존 평가보다 일부러 어렵게 만들었다고 설명했다. 두 회사는 7월 협력을 넓혔다."
+   ],
+   "summary": "엔비디아와 칩에이전츠가 인공지능 모델이 실제 칩 설계 업무를 얼마나 해내는지 재는 평가를 공개했다. 디 인포메이션 단독 보도다. 칩에이전츠에 따르면 가장 높은 점수를 낸 에이전트는 앤트로픽 모델을 쓴 것이었지만 정답률은 16.6%에 불과했다. 윌리엄 왕 최고경영자는 기존 평가보다 더 어렵게 설계했다고 밝혔다.\n\n엔비디아는 앞서 하드웨어 코드 생성 평가인 베릴로그이밸을 만들었고, 칩에이전츠는 여기서 97% 넘는 통과율을 냈다고 발표한 바 있다. 새 평가는 이런 쉬운 시험이 포화된 상황에서 실제 설계·검증 업무에 가까운 난도를 겨냥한 것으로 보인다.\n\n두 회사는 7월 26일 칩에이전츠의 설계 전용 모델 '르누아르'를 중심으로 협력을 넓혔다. 칩에이전츠는 2024년 설립돼 약 1억3천만 달러를 조달했고, 미디어텍·마이크론 등 120곳 넘는 반도체 회사가 쓰고 있다고 밝혔다. 평가 세부 과제 구성은 유료 기사라 확인하지 못했다.",
+   "title": "Exclusive: Nvidia and ChipAgents Launch Evaluation For AI-Powered Chip Design",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNMVlDaG9fR0pKSnNHYzdxRmUyTXdCbW4wNmk4bGpnbWJsVk9JZDRCTXJ4NUNLMkRXQ3J6WWNwTEZYZnQ4dE5LVWtWZkx0cTdDeVZpRGxXYXU4QnJvOTBNZG5lcGo5UXpZaWFmb3pDY0tpUGtjQVRmTTY2YVN5eFlJZlVobmJPV0FNSE9WSjFzb1E1ZjA1VjR4S2hyTFB1YWNCRFlqNGJfb0t1bzQyUnc?oc=5",
+   "published": "2026-10-15 00:10 KST",
+   "written": "2026-10-15 00:46 KST"
+  },
+  {
    "id": "53129499a9df",
    "kind": "news",
    "headline": "런던증권거래소그룹, 엔비디아와 손잡고 과거 시세 데이터 분석 속도 높인다 — 그래픽처리장치로 '틱 히스토리' 처리",
@@ -227,5 +243,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-14 15:48 KST"
+ "updated": "2026-10-15 00:46 KST"
 }
