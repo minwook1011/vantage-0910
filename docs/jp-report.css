@@ -265,3 +265,9 @@
 /* 관전 포인트 버튼(주차 옆) */
 .jr .cw-pv{display:inline-block;margin-left:6px;padding:4px 11px;border-radius:999px;background:#2f6fe4;color:#fff !important;font-size:12px;font-weight:700;text-decoration:none;vertical-align:middle}
 .jr .cw-pv:hover{background:#1f57c4}
+/* 리포트 안 표는 한 화면에(2026-10-14 사용자: 옆으로 넘기기 불편) — 스크리너 화면에 끼워 넣을 때
+   스크리너의 표 규칙(최소 폭 900px·머리글 따라 붙기)이 새어 들어와 옆으로 밀리고 머리글이 표 중간에 떴다 */
+.jr .mdt table { min-width:0; table-layout:auto; }
+.jr thead th { position:static; text-transform:none; letter-spacing:normal; }
+.jr .mdt th.l, .jr .mdt td.l { white-space:normal; min-width:7em; }
+.jr .mdt th, .jr .mdt td { padding:6px 9px; }
