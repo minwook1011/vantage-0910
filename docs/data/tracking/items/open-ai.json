@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "70231e74ee43",
+   "kind": "news",
+   "headline": "미국 법무부, 오픈에이아이 임원 회의실에 몰래 녹음 장치 단 혐의로 사우디 국적 전 엔지니어 기소",
+   "bullets": [
+    "35세 사우디아라비아 국적 엔지니어 압둘라흐만 알포잔이 10월 9일 연방수사국(FBI)에 체포됐다.",
+    "샌프란시스코 사무실 임원 회의실 텔레비전에 휴지로 감싼 엄지손가락 크기 USB 녹음 장치를 꽂은 혐의다.",
+    "오픈에이아이는 모델 가중치·소스 코드·고객 데이터 유출 흔적은 없다고 밝혔고, 법무부도 간첩 혐의는 걸지 않았다."
+   ],
+   "summary": "미국 법무부가 오픈에이아이 전 엔지니어를 구두 대화 도청 혐의로 기소했다. 피의자는 2025년 7월 입사해 제품 조직에서 일한 35세 사우디아라비아 국적 압둘라흐만 알포잔이다. 10월 9일 연방수사국에 체포됐고, 19일 법원에 출석할 예정이다.\n\n검찰에 따르면 그는 휴지로 감싼 USB 장치를 샌프란시스코 사무실 임원 회의실 텔레비전에 꽂았다. 장치는 엄지손가락 크기로 마이크가 달렸고 카메라를 연결할 수 있으며, 저장 자료는 암호화돼 있었다. 오픈에이아이가 보안 점검 중 장치를 찾아냈고, 자체 모델로 장치와 출처를 분석해 며칠 전 특정 직원이 설치한 사실을 확인한 뒤 연방수사국에 넘겼다. 감시 카메라에는 그가 참석 권한이 없는 이 회의실 주변을 여러 번 오간 모습이 찍혔다.\n\n유죄가 확정되면 최대 징역 5년, 벌금 25만 달러다. 오픈에이아이는 모델 가중치·소스 코드·고객 데이터를 부당하게 빼낸 흔적은 없다고 밝혔다. 법무부는 피의자나 사우디 정부의 간첩 행위는 혐의에 넣지 않았다. 장치를 찾아낸 날짜는 보도마다 9월 30일, 9월 말 등으로 엇갈린다.",
+   "title": "OpenAI辦公室驚見隱藏錄音裝置 沙國工程師被捕",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1QVElpWjJwX0tWMW9aY0JxamhTbjFDbzFYTVBGY0Y4MURFNUNTczJFMTI0ZndjUGhtT19JSWU3eDJOTFotTGVNOHc2YXBpYmZ1aG1TTTdWTHlrQdIBX0FVX3lxTE1tYldubDFWb215TDVHbi1qclBWckZTTG9sY0hyejNBNVp2dGZRdldkVFNjWlRwMWtVRzRDZGpGbUNVdVJjaVdobFREMG44eWNHLUZmZ1BnTkpCdlUzVkhz?oc=5",
+   "published": "2026-10-14 11:46 KST",
+   "written": "2026-10-14 12:17 KST"
+  },
+  {
    "id": "a23ec47e45ed",
    "kind": "news",
    "headline": "미국 법원, 오픈AI에 '애플 출신 지원자 면접자료' 5일 내 제출 명령 — 애플 영업비밀 소송 증거 조기 확보",
@@ -179,5 +195,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-14 10:17 KST"
+ "updated": "2026-10-14 12:17 KST"
 }
