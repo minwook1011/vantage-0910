@@ -3,6 +3,22 @@
  "slug": "cxmt",
  "items": [
   {
+   "id": "c786be2462dc",
+   "kind": "news",
+   "headline": "[후속] 삼성전자 송재혁 기술책임자 \"4F² 우리도 개발 중\" — 창신메모리 연내 출시 선언에 첫 공식 답",
+   "bullets": [
+    "송재혁 삼성전자 반도체부문 최고기술책임자가 14일 반도체대전 현장에서 삼성도 4F² 디램을 개발하고 있다고 확인했다.",
+    "진행 상황을 묻자 '열심히 합니다'라고만 답했고, 양산 시점 등 구체적 일정은 밝히지 않았다.",
+    "4F²는 삼성이 2028년 양산을 목표로 하던 기술인데, 창신메모리(CXMT)가 서버용 제품을 연내 내놓겠다고 해 2년 앞서는 셈이 됐다."
+   ],
+   "summary": "삼성전자가 차세대 디램 구조 4F²를 개발하고 있다고 처음 공식적으로 확인했다. 송재혁 반도체부문 최고기술책임자는 14일 서울 코엑스에서 열린 제28회 반도체대전 부스 투어 중 취재진 질문에 '그렇다'고 답했고, 진행 상황에는 '열심히 합니다'라고만 했다.\n\n4F²는 디램의 데이터 저장 단위인 셀 면적을 줄여 집적도를 높이는 기술이다. 삼성은 2028년 양산을 목표로 개발해 왔는데, 중국 창신메모리가 이 구조를 적용한 서버용 디램을 연내 출시하겠다고 밝히면서 삼성전자·SK하이닉스·마이크론 주가가 급락했다. 국내 두 회사는 일찍부터 4F²를 연구했지만 생산 손실 등을 이유로 양산하지 않은 것으로 전해졌다.\n\n이번 발언은 개발 사실만 확인했을 뿐 양산 시점이나 수율 같은 숫자는 없었다. 창신메모리가 실제로 연내 제품을 내놓을지, 삼성이 2028년 일정을 앞당길지가 남은 쟁점이다.",
+   "title": "[현장] 中창신메모리 '4F²' 기술 충격에…삼성전자 송재혁 사장 \"우리도 열심히 개발 중\"",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1GdV8xcFFfemxtTG5jSHBCTE9QbVlWT09mTGc2VlJwYklidmFLUjFwRnMtcVMxN0J0aWRONHl1MzYzSDV5NDlha0cyR0ZpV2NXNHVXcDJRd052Uk16Z2FfbtIBeEFVX3lxTFBSMkFjT0VncVhoMENlYWt2NmQ4VU9pTFJnNFhOXzJha2dhOUl5b2Q0N05mZmR0UzNXd3gteDVTN3VPQUNoQWFsZzZ1em01MkVIWmR4RnBqN1pLcDJnM0pXSVN3cDVjOU5lOFE5UXd3d0RqdjRXTGFSTQ?oc=5",
+   "published": "2026-10-14 16:58 KST",
+   "written": "2026-10-14 17:21 KST"
+  },
+  {
    "id": "dfc16b1dc575",
    "kind": "news",
    "headline": "CXMT '4F² 서버 D램' 예고 하루 뒤 — 국내 증권가 \"양산 아닌 가이드라인, 삼성과 1.5~2세대 차이\"",
@@ -51,5 +67,5 @@
    "written": "2026-10-13 08:18 KST"
   }
  ],
- "updated": "2026-10-14 11:19 KST"
+ "updated": "2026-10-14 17:21 KST"
 }
