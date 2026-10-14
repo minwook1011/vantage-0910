@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "642ecab5c11f",
+   "kind": "news",
+   "headline": "AEP, 구글 전용 702메가와트 연료전지 발전소에 약 40억 달러 투자 — 블룸에너지 연료전지, 20년 전력구매계약",
+   "bullets": [
+    "미국 전력회사 AEP가 와이오밍주 샤이엔 인근 702메가와트 연료전지 발전소에 약 40억 달러를 투자한다. 구글과 20년 전력구매계약을 맺었다.",
+    "발전소는 블룸에너지 연료전지를 쓰며, 2026년 착공해 2028년 말 전면 가동이 목표다. 탄소 포집 설비도 붙일 계획이다.",
+    "사업 법인은 AEP가 약 92%, 바솔트 인프라스트럭처 파트너스 운용 펀드가 약 8%를 갖는다."
+   ],
+   "summary": "아메리칸 일렉트릭 파워(AEP)가 14일 와이오밍주 샤이엔 인근에 702메가와트 규모 연료전지 발전소를 짓는 데 약 40억 달러를 투자한다고 발표했다. 생산 전력은 구글이 20년 장기 전력구매계약으로 사들인다. 그간 AEP가 '이름 밝히지 않은 투자등급 고객'이라고만 했던 샤이엔 연료전지 사업의 수요처가 구글로 확인된 셈이다. 전날 보도된 메인스프링 소형 발전기 구매(최대 40억 달러)와는 다른 사업이다.\n\n발전 법인 '샤이엔 퓨얼 셀'은 AEP가 약 92%를 갖고 운영하며, 나머지 약 8%는 바솔트 인프라스트럭처 파트너스가 자문하는 펀드가 보유한다. 2026년 착공해 2028년 말 전면 가동이 목표다.\n\n설비는 블룸에너지 연료전지로, 천연가스를 태우지 않고 전기를 만든다. AEP는 탄소 포집 기술을 더해 배출이 거의 없는 전력을 공급하겠다고 했다. 이번 계약은 구글과 블랙힐스가 9월 30일 발효한 계약에 이어 나온 것으로, 샤이엔 일대 구글 전력 수요를 받치기 위한 것이다.",
+   "title": "American Electric Power to invest $4 billion in fuel cell project to power Google",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOMDVWVDNiei1GdWtyUjd1WUIxSlVJVDFLQ2xnazFXVkZBLWRvUmwtTnJ0R0xmRTBscml5UnJVaWJhXzZzakQxbFMwTlE4MDhLUWRBTzVjWjMtcXotbV80aWd4RHJ5WkVhZVpTb2x5MmZpeDhtNG53RzEwcUlPZEdfb0N6VE8xeGpfZC05YUduY1g3c1lvUWF1R2JDQzg0cy12TlZrTGRKWnJfYzNSOXFuMURYVVJyT2ZFcjJ6ejFhaDh3MklF?oc=5",
+   "published": "2026-10-14 21:20 KST",
+   "written": "2026-10-14 21:47 KST"
+  },
+  {
    "id": "109ced22d2b7",
    "kind": "news",
    "headline": "AEP, 구글에 연료전지 702메가와트 전력 공급 — 약 40억 달러 투자, 20년 전력구매계약",
@@ -177,5 +193,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-14 21:19 KST"
+ "updated": "2026-10-14 21:47 KST"
 }
