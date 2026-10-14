@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "6b28032a8a0a",
+   "kind": "news",
+   "headline": "구글 딥마인드·구글 클라우드, 유럽 연구자 최대 200명에 최신 모델 개방 — 컴퓨팅 크레딧 300만 달러",
+   "bullets": [
+    "구글 딥마인드와 구글 클라우드가 유럽 과학 연구자 최대 200명에게 최신 인공지능 모델 직접 사용권과 300만 달러 규모 컴퓨팅 크레딧을 준다.",
+    "대상자는 유럽연합 집행위원회가 '유럽 인공지능 과학 자원(RAISE)' 사업으로 고른다.",
+    "알파폴드3·웨더넥스트·알파게놈·알파이볼브·알파어스 등 과학용 도구가 포함된다."
+   ],
+   "summary": "구글 딥마인드와 구글 클라우드가 10월 14일 유럽 과학 연구자 최대 200명에게 자사 최신 인공지능 모델을 직접 쓸 수 있게 하고, 300만 달러어치 컴퓨팅 크레딧을 제공한다고 발표했다. 로이터가 브뤼셀발로 전했고, 발표는 더블린 인공지능 정상회의에서 나왔다.\n\n연구자는 유럽연합 집행위원회가 '유럽 인공지능 과학 자원(RAISE)' 사업을 통해 선정한다. 제공 도구는 단백질 구조 예측 알파폴드3, 기상 예측 웨더넥스트, 유전체 해석 알파게놈, 알고리즘 탐색 알파이볼브, 지구 관측 알파어스 기초모델 등이다. 구글은 극한 기상 예측부터 분자 구조 분석까지 복잡한 문제를 더 빨리 풀도록 돕고, 유럽의 과학 경쟁력을 높이겠다는 취지라고 밝혔다.\n\n금액 규모는 크지 않지만, 최근 잇단 인공지능 보안 사고로 유럽에서 규제 강화 목소리가 커지는 가운데 나온 발표다. 연구자 선정 시점과 사용 기간은 보도에 나오지 않았다.",
+   "title": "Google DeepMind, Google Cloud to allow European researchers access to frontier models",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQd3Npakc0UFloQXV1TGtRSDRIVDdreGhyV296RFRNb1BOVFAtSFhIc3FGTE1NQWVvSlJSYXNpV3BGODZNS2NtX1J4UnZ6bDc0RjdhOEtSUFNTQlA5TnM0ZjJnQ1VEWmhKTWIxVDl3Rk13OVhoeXRtSVpRZGhaekNnMHJhY2c4bE04bXQ5aThmc1BPVTdZa2tzMlp6QUlFOWQ0anBwd2h4V19ub1U1NUJCUEVNbXFOcWZ4TmRCbG1Odm5ZdVk?oc=5",
+   "published": "2026-10-14 15:01 KST",
+   "written": "2026-10-14 15:22 KST"
+  },
+  {
    "id": "67041977695f",
    "kind": "news",
    "headline": "구글, AI로 만든 '나만의 앱'을 플레이스토어에서 비공개로 실행 허용 — 미국 18세 이상부터",
@@ -145,5 +161,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-14 02:46 KST"
+ "updated": "2026-10-14 15:22 KST"
 }
