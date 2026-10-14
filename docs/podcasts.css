@@ -131,3 +131,11 @@ body.pc-light .pc .note h4:first-child { border-top: 0; padding-top: 0; margin-t
 body.pc-light .pc .note h3 { font-size: 20px; }
 /* 핵심 단어 밑줄(__단어__) — 섹션마다 몇 개만 */
 .pc u.kw { text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; text-decoration-color:#e8a317; font-weight:600; }
+/* 출연자는 누구인가(2026-10-14) */
+.who-sec .who-card{background:var(--card,#fff);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin:0 0 10px}
+.who-sec h3{margin:0 0 8px;font-size:16px}
+.who-sec h3 small{font-size:12.5px;font-weight:500;color:var(--muted)}
+.who-sec dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:6px 12px;margin:0;font-size:13.5px;line-height:1.7}
+.who-sec dt{color:var(--muted);font-weight:700;font-size:12.5px}
+.who-sec dd{margin:0}
+@media (max-width:640px){.who-sec dl{grid-template-columns:1fr}.who-sec dt{margin-top:4px}}

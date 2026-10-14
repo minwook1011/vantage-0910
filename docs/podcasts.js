@@ -19,7 +19,9 @@
     bg2: ["비지투 팟", "#3c4a5e", "인공지능·빅테크 투자자 대담"],
     nopriors: ["노 프라이어스", "#b5446e", "인공지능 창업자·연구자 인터뷰"],
     cheeky: ["치키 파인트", "#6b7a1e", "대기업 최고경영자·창업자 대담"],
-    understanding: ["언더스탠딩", "#d0461c", "산업 전문가 장시간 인터뷰(한국어)"]
+    understanding: ["언더스탠딩", "#d0461c", "산업 전문가 장시간 인터뷰(한국어)"],
+    riskrev: ["리스크리버설 팟", "#0f766e", "월가 트레이더·헤지펀드 출신 시장 대담"],
+    ontape: ["온 더 테이프", "#7c2d12", "대니 모지스의 투자자 인터뷰"]
   };
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function getJSON(p) { return fetch(p, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); }
@@ -145,7 +147,7 @@
     }
     var cnt = {}; eps.forEach(function (e) { cnt[e.show] = (cnt[e.show] || 0) + 1; });
     app.innerHTML = '<div class="kicker">팟캐스트 · 투자·AI 인터뷰 요약</div><h1>팟캐스트</h1>' +
-      '<p class="lede">6개 방송의 새 에피소드를 매시간 확인해 <b>누가 · 어느 회사 · 무슨 이야기</b>인지부터 정리하고, 내용 요약 뒤에 외부 자료로 검증한 딥 리서치를 붙입니다. · 갱신 ' + esc((IX.updated || "").replace(" KST", "")) + "</p>" +
+      '<p class="lede">여러 방송의 새 에피소드를 매시간 확인해 <b>누가 · 어느 회사 · 무슨 이야기</b>인지부터 정리하고, 내용 요약 뒤에 외부 자료로 검증한 딥 리서치를 붙입니다. · 갱신 ' + esc((IX.updated || "").replace(" KST", "")) + "</p>" +
       '<div class="chips" id="chips"><button data-v="all">전체 <small>' + eps.length + "</small></button>" +
       Object.keys(SHOWS).map(function (k) { return '<button data-v="' + k + '" title="' + esc(SHOWS[k][2]) + '"><i style="background:' + SHOWS[k][1] + '"></i>' + esc(SHOWS[k][0]) + " <small>" + (cnt[k] || 0) + "</small></button>"; }).join("") + "</div>" +
       '<div id="list"></div>';
@@ -169,6 +171,16 @@
       (yt ? '<a class="btn" href="' + esc(yt) + '" target="_blank" rel="noopener">📺 유튜브로 보기</a>' : "") +
       (E && E.artifact_url ? '<a class="btn" href="' + esc(E.artifact_url) + '" target="_blank" rel="noopener">📄 요약 분석 <small>아티팩트</small></a>' : "") +
       (row.audio ? '<a class="btn" href="' + esc(row.audio) + '" target="_blank" rel="noopener">🎧 오디오 듣기</a>' : "") + "</div></div></div>";
+    // 출연자는 누구인가(2026-10-14 사용자: 투자자가 많은데 얼마나 대단한 사람인지·뭐 하는 사람인지 정확히)
+    var gp = E && E.guest_profile;
+    if (gp && (gp.length || gp.name)) {
+      var G = Array.isArray(gp) ? gp : [gp];
+      html += '<section class="who-sec"><h2>출연자는 누구인가</h2>' + G.map(function (p) {
+        var row = function (k, v) { return v ? "<dt>" + k + "</dt><dd>" + md(v).replace(/^<p>|<\/p>$/g, "") + "</dd>" : ""; };
+        return '<div class="who-card"><h3>' + esc(p.name || "") + (p.title ? ' <small>' + esc(p.title) + "</small>" : "") + "</h3><dl>" +
+          row("하는 일", p.what) + row("걸어온 길", p.career) + row("투자 성과·평판", p.track) + row("왜 들을 만한가", p.why) + "</dl></div>";
+      }).join("") + "</section>";
+    }
     if (!E) {
       html += '<div class="pending">📝 아직 요약 전입니다. 예약 작업이 하루 3번 새 에피소드를 확인해 요약과 딥 리서치를 씁니다.</div>' +
         (row.desc_ko ? '<section><h2>방송 소개</h2><div class="note"><p>' + esc(row.desc_ko) + "</p></div></section>" : "");
