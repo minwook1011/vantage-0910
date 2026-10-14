@@ -1084,6 +1084,8 @@ function chartHTML(b){
 /* ================= 사업 구조 ================= */
 /* 사업부문 이름 한국어(2026-10-14 사용자: 일본어 금지) — data/jp/seg_ko.json {일본어 이름: 한국어}. 원문은 마우스를 올리면 */
 var SEGKO={};
+/* 기본 정보가 없던 종목(299곳, 2026-10-14 사용자) — data/jp/bm_extra.json 을 BM 에 합친다(이미 있는 종목은 그대로) */
+fetch("data/jp/bm_extra.json",{cache:"no-cache"}).then(r=>r.ok?r.json():{}).then(d=>{ for(const c in (d||{})) if(!BM[c]) BM[c]=d[c]; }).catch(()=>{});
 fetch("data/jp/seg_ko.json",{cache:"no-cache"}).then(r=>r.ok?r.json():{}).then(d=>{ SEGKO=d||{}; document.querySelectorAll("td.seg[title]").forEach(td=>{ if(SEGKO[td.title]) td.textContent=SEGKO[td.title]; }); }).catch(()=>{});
 function bmHTML(code){
   const bm = BM[code];
@@ -1104,7 +1106,8 @@ function bmHTML(code){
       <tbody>${rows}</tbody></table></div>
     ${bm.sum ? `<details class="bmsum" open>
       <summary>핵심 요약 — 뭘 팔고, 성장이 어디서 나오는가<span class="chev">▾</span></summary>
-      <div class="body">${esc(bm.sum)}</div></details>` : ""}`;
+      <div class="body">${esc(bm.sum)}</div></details>` : ""}
+    ${bm.recent&&bm.recent.length ? `<div class="bmrecent"><b>최근 근황</b><ul>${bm.recent.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}`;
 }
 
 /* ================= 운영 지표 ================= */

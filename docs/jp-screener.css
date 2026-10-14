@@ -637,3 +637,6 @@ tbody tr:hover{background:linear-gradient(90deg,rgba(67,98,175,.15),rgba(231,236
 .eu-star:hover{color:#e0a020}
 .eu-star.on{color:var(--fc,#e0a020)}
 .eu-co .eu-star{order:-1}
+/* 최근 근황(기본 정보) */
+.bmrecent{margin:10px 0 4px;padding:10px 14px;border:1px solid var(--line-soft);border-radius:8px;background:var(--surface-2);font-size:13px}
+.bmrecent ul{margin:4px 0 0;padding-left:18px;line-height:1.7}
