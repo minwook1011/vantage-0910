@@ -140,6 +140,7 @@
   "trk:meta:cc86d4669999",
   "trk:msft:06b844a7706d",
   "trk:msft:1ab2dde144f1",
+  "trk:msft:4fc72832a301",
   "trk:msft:63f2e4fcda5c",
   "trk:msft:7721f3c64c6b",
   "trk:msft:87b646b01315",
@@ -158,6 +159,7 @@
   "trk:nvda:4dda0bba522d",
   "trk:nvda:53129499a9df",
   "trk:nvda:5d8d74036761",
+  "trk:nvda:5f47c22935c6",
   "trk:nvda:61fc234353ae",
   "trk:nvda:685205287522",
   "trk:nvda:944c53d6b0eb",
@@ -1214,6 +1216,12 @@
   ],
   "usdkrw:2026-10-15": [
    176
+  ],
+  "trk:msft:4fc72832a301": [
+   340
+  ],
+  "trk:nvda:5f47c22935c6": [
+   341
   ]
  }
 }
