@@ -864,6 +864,7 @@ function setHiView(on){
   const tw=document.querySelector(".tblwrap"), g=document.getElementById("higrid");
   if(tw) tw.hidden=on; if(g) g.hidden=!on;
   ["colsel","mtxnote"].forEach(id=>{ const el=document.getElementById(id); if(el) el.hidden=on; });
+  const eu=document.getElementById("earnup"); if(eu) eu.style.display=on?"none":"";   // 신고가 차트·월차 보드에선 실적 발표 캘린더 숨김(2026-10-14 사용자)
   const mb=document.getElementById("tbmore"); if(mb&&on) mb.hidden=true;
 }
 
