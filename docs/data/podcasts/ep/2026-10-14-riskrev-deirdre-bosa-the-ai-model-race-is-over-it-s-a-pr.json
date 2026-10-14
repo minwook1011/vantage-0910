@@ -1,0 +1,191 @@
+{
+ "id": "2026-10-14-riskrev-deirdre-bosa-the-ai-model-race-is-over-it-s-a-pr",
+ "title_ko": "Deirdre Bosa — AI 모델 경쟁은 끝났다, 이제는 제품 전쟁",
+ "guest": {
+  "name": "디어드리 보사(Deirdre Bosa)",
+  "role": "전 CNBC TechCheck 앵커, 11월 9일 시작하는 Yahoo Finance 매일 AI 생방송 진행자"
+ },
+ "guest_profile": [
+  {
+   "name": "디어드리 보사(Deirdre Bosa)",
+   "title": "AI·기술 전문 앵커 — 'Deirdre Bosa Live'(Yahoo Finance 제휴) 진행",
+   "what": "11월 9일부터 평일 매일 오후 1~2시(미국 서부 시간, 장 마감 직후) AI 전문 생방송을 진행한다(대본). Axios에 따르면 Yahoo Finance가 샌프란시스코 스튜디오와 전담 인력을 대고 광고를 팔며, 보사는 수익을 나눠 갖는 구조다. 첫 인터뷰 상대는 Microsoft CEO Satya Nadella였다(대본).",
+   "career": "CNBC 샌프란시스코 지국에서 기술 전문 코너 'TechCheck' 앵커로 약 10년간 기술 산업을 취재했다(대본·CNBC 프로필). 진행자 Dan Nathan과 RiskReversal의 'OK Computer' 팟캐스트를 함께 해 왔다. 2026년 9월 Yahoo Finance와 제휴한 독립 방송을 발표했다(Axios).",
+   "track": "투자자가 아닌 기자라 공개된 투자 성과는 없다. 대형 기술 기업 경영진 인터뷰 이력(이번 쇼 첫 게스트 Nadella 등)이 평판의 근거다.",
+   "why": "실리콘밸리 현장에서 경영진·투자자를 직접 만나는 기자라, Microsoft·Meta·개인 AI 비서 시장에서 지금 무엇이 먹히는지 사용 경험과 취재로 들려준다."
+  }
+ ],
+ "company": {
+  "name": "Microsoft · Meta · 개인 AI 비서(Instinct·Muse·OpenAI)",
+  "sector": "AI 소프트웨어 · 빅테크 · 맞춤형 AI 칩",
+  "what": "모델 성능보다 제품·비용·유통이 승부를 가르는 AI 시장 재편"
+ },
+ "topic": "AI 경쟁이 모델 성능에서 제품·비용 경쟁으로 넘어갔다는 진단 — Microsoft의 '모델 가리지 않기'와 Maia 300, Meta Muse와 개인 비서, 중국 오픈소스의 가격 압박",
+ "headline": "모델은 상품이 됐다 — 싼 모델로 일을 나눠 주는 Microsoft, 쓰기 쉬운 비서를 낸 Meta가 이기고, 중국 오픈소스가 가격을 끌어내린다",
+ "tldr": [
+  "AI 경쟁은 모델 순위 싸움에서 제품 싸움으로 — 소비자는 어떤 모델인지 신경 쓰지 않는다",
+  "Microsoft는 OpenAI 독점을 버리고 작업마다 가장 싼 모델을 배정, 자체 칩 Maia 300은 수요 불확실성을 줄이는 보험",
+  "개인 AI 비서가 업계 화두 — Meta Muse 출시 후 주가 급등, Instinct는 기업가치 100억 달러로 10억 달러 조달",
+  "중국은 전 세계 토큰 사용의 77%, 지출은 22%(대본, Goldman 보고서 인용) — 싼 오픈소스가 전 세계 가격을 누른다",
+  "Microsoft 주가는 연초 대비 13.5%로 나스닥(21%)에 못 미쳐 — 설비투자·부채 부담 우려가 여전(대본)"
+ ],
+ "summary_md": "### 1. 보사의 새 방송과 이번 편의 주제\n- 진행자 Dan Nathan이 보사의 새 방송을 소개한다. 11월 9일부터 평일 매일 오후 1~2시(서부 시간) Yahoo Finance에서 하는 **AI 전문 생방송**이고, 정식 시작 전 첫 인터뷰로 Microsoft CEO Satya Nadella를 만났다.\n- 보사는 샌프란시스코에 기술·AI만 다루는 한 시간이 필요하다며, 관계·투자·경쟁이 얽힌 지금의 AI 업계를 매일 정리하겠다고 한다.\n- 진행자는 최근 몇 달 사이 흐름을 요약한다. 연초엔 칩·모델·앱을 모두 가진 Google이 가장 뜨거웠지만, 지금은 Meta(실적 후 약 40% 반등)와 Microsoft가 주목받고 있다.\n\n### 2. Microsoft — '모델 일부일처제'를 버리다\n- The Information 보도를 인용해, Microsoft 오피스 책임자 Charles Lamanna가 Copilot을 살린 방법이 **모델을 가리지 않는 전략**이었다고 전한다. OpenAI 중심에서 벗어나 Anthropic, DeepSeek, 오픈소스 모델을 함께 쓰게 했다.\n- 보사의 설명: 초기엔 모델 성능 순위가 중요했지만 지난 1년 사이 모델이 상품처럼 비슷해지고 오픈소스 채택이 폭발했다. Microsoft는 '일만 끝내 주면 되는' 기업 고객 기반을 갖고 있어, 필요에 맞는 모델을 골라 준다.\n- 핵심은 **비용**이다. 연초부터 최상위 모델은 비싼 값을 받았고, 기업과 개발자들은 장 보러 가는 데 고급 스포츠카가 필요 없다는 걸 깨달았다.\n- 진행자는 Stripe가 모델 연결 서비스 OpenRouter를 사들인 것도 같은 흐름이라고 본다(대본에선 130억 달러 안팎이라 했지만 외부 보도와 다름 — 딥 리서치 참고). 기업 AI 도입의 중심이 '가장 싼 모델로 질문을 보내는 일'로 옮겨 갔다는 것이다.\n- 진행자 수치: Microsoft 365 사용자 약 4억 5,000만 명 중 Copilot 유료 기업 사용자는 **3,000만 명**. 보사는 좌석당 요금과 사용량 요금을 메뉴처럼 골라 쓰게 한 판매 방식이 비기술 기업 경영진에게 먹힌다고 본다.\n\n[[chart:1]]\n\n- 그럼에도 Microsoft 주가는 사상 최고가 근처지만 연초 대비 13.5%로, 나스닥(약 21%)과 S&P 500(약 14%)보다 덜 올랐다. 보사는 설비투자 규모와 일부 빅테크의 **부채 조달**에 대한 걱정이 남아 있기 때문이라고 해석한다.\n\n### 3. Maia 300 — 자체 칩은 '불확실성 보험'\n- Microsoft는 하루 전 자체 AI 칩 Maia 300을 발표했다. 보사는 클라우드 책임자 Scott Guthrie와 이야기하며 새로운 관점을 들었다고 한다.\n- 자체 칩은 Nvidia·AMD 의존을 줄여 이익률을 높이는 수단이기도 하지만, 더 중요한 건 수요 예측이 틀릴 위험(Anthropic의 Dario Amodei가 말한 '불확실성의 원뿔')을 줄이는 보험이라는 것이다. 더 효율적인 칩을 가지면 설비를 과하게 지었을 때의 충격이 작아진다.\n- Amazon·Google도 자체 칩을 갖고 있고, Anthropic이 Google 칩(TPU)을 사려고 큰 투자를 받는 등 경쟁사끼리 서로의 칩과 연산력을 빌려 쓰는 '적과의 동침'이 얽혀 있다고 정리한다.\n\n### 4. 개인 AI 비서 — Muse, Instinct, OpenAI\n- 두 사람이 참석한 Imran Khan의 댈러스 콘퍼런스에서 대화 주제를 장악한 건 **개인 AI 비서**였다. 보사가 패널에서 손을 들어 보라고 하자 거의 모두가 쓰고 있었다.\n- 보사의 사용기: Instinct는 메일·일정과 연결해 회의 직전에 링크를 문자로 보내 주는 등 직관적이었다. Meta의 Muse는 중요하지 않은 메일을 골라내는 등 성능이 아쉬워 권한을 거뒀다. 지금은 OpenAI의 비서 제품(보사는 '닷'이라 부름)을 주로 쓰는데, 답장해야 할 메일을 정확히 짚어 준다고 했다.\n- 비서는 항상 켜진 가상 컴퓨터를 클라우드에 하나씩 주는 셈이라 처음엔 시킬 일이 떠오르지 않지만, 쓸수록 **더 똑똑한 모델**을 원하게 된다는 관찰이다. 승자 독식이 아닐 수도 있다고 덧붙인다.\n- 진행자는 일반인이 AI 회사 경영자들을 신뢰하지 않아 카드 결제까지 맡기기엔 시간이 걸린다고 본다. 보사는 신뢰·보안이 핵심이라 결국 유통과 신뢰를 가진 Apple의 비서가 판을 가져갈 수 있다고 하고, 1Password 같은 **신뢰 계층** 기업에 기회가 있다고 본다.\n\n### 5. 모델이 아니라 제품 — 그리고 안전 논쟁\n- 진행자는 이제 모델 경쟁이 아니라 제품 경쟁이고, 소비자는 어떤 모델인지 신경 쓰지 않는다며 Meta Muse의 성공을 근거로 든다.\n- Dario Amodei의 잇단 위험 경고에 대해 보사는 그가 원래 비관론자였고, 해킹 사건 등으로 일반인의 우려가 커지면서 그 말의 무게가 커졌을 뿐이라고 본다. 규제를 유리하게 이용하려는 것인지는 모르겠다고 했다.\n- 진행자는 AI 회의론자 Gary Marcus가 인류 멸망보다 해킹으로 전력망 등이 멈추는 '재앙'과 감시 사회 같은 '디스토피아' 가능성을 더 높게 본다고 소개한다. 보사는 이것이 오픈소스 대 폐쇄형 논쟁과 이어진다고 설명한다.\n\n### 6. 중국 — '중국이 들어오면 이익이 나간다'\n- Goldman Sachs의 'China is Coming' 보고서를 Paul Kedrosky가 정리한 내용: 중국은 전 세계 **토큰 사용의 77%**를 차지하지만 지출은 22%에 그친다. 중국 증시 거래대금의 57%가 AI 관련주이고, DeepSeek 이후 AI 관련 시가총액 약 5조 달러가 생겼다(모두 대본에서 인용한 수치).\n\n[[chart:2]]\n\n- 보사는 숫자에 맥락이 더 필요하다고 본다. 중국 모델도 누군가 서비스해야 하고, Fireworks·Baseten 같은 미국 추론 업체가 빠르게 크고 있다. 싸지면 더 많이 쓰는 **제번스의 역설**로 보면 오히려 AI 인프라 전체엔 호재라는 시각이다.\n- 다만 중국 오픈소스가 미국 밖 세계의 기본 생태계가 되는 '디지털 일대일로'가 위험이고, 그래서 Reflection·Nvidia 같은 미국 기업이 오픈소스 모델을 내놓는다고 정리한다.\n- 진행자는 이것이 수백억 달러를 조달해 최상위 모델을 만드는 회사들엔 악재라고 본다. 보사는 OpenAI·Anthropic이 상장할 때 오픈소스 확산이 이익률에 어떤 영향을 줬는지가 드러날 것이라 했다. 기업들은 엔지니어에겐 최상위 모델, 나머지 직원에겐 싼 모델을 배정하는 식으로 쓰고 있다고 전한다.\n\n### 7. 수요는 언제 확인되나\n- 진행자는 Bain 추정을 인용해 지금의 데이터센터 투자를 정당화하려면 AI 산업이 2031년 연 6조 달러 매출을 내야 한다고 말한다(외부 확인치와 다름 — 딥 리서치 참고).\n- 보사는 개인 비서가 아직 열리지 않은 수요라고 보면서도, 결국 문제는 **타이밍**이라고 강조한다. Instinct 창업자가 미래 수요를 짐작해 수백만 달러어치 연산력을 미리 사야 한다고 말한 것을 예로 든다.\n- 진행자는 Instinct가 무료 제품으로 기업가치 100억 달러에 10억 달러를 조달했지만, 거대 기업과 경쟁하다 결국 인수되거나 방향을 틀 수 있다고 본다.",
+ "insights_md": "### 투자 관점\n- 이 편의 결론은 **'모델은 상품, 유통과 비용이 해자'**다. 기업 고객과 번들을 가진 Microsoft(MSFT), 수십억 사용자 앱에 비서를 얹은 Meta(META)가 유리하고, 모델만 파는 회사는 이익률 압박을 받는다는 구도다.\n- 모델 선택·연결 계층이 새 수혜처로 떠오른다. Stripe의 OpenRouter 인수, 추론 서비스 업체(Fireworks·Baseten, 비상장)가 그 예다. 상장사로는 Cloudflare(NET)처럼 모델 접속을 중개하는 인프라도 같은 흐름에 있지만 대본에서 언급되진 않았다.\n- 맞춤형 칩: Maia 300은 Nvidia(NVDA)·AMD 의존을 일부 줄인다. 설계·생산 협력사는 공개 정보로 확인 못 했지만, 맞춤형 칩 확산은 TSMC(TSM) 첨단 공정과 HBM 공급사 SK hynix(000660)·Samsung Electronics(005930)·Micron(MU)의 수요로 이어진다.\n- 신뢰 계층: 개인 비서가 메일·결제 권한을 갖게 되면서 1Password(비상장), Cisco(CSCO) 같은 보안 업체의 역할이 커진다는 관점이다.\n\n### 반론·리스크\n- **제번스의 역설**이 맞다면 싼 모델은 전체 사용량을 늘려 인프라엔 호재다. 반대로 가격 하락 속도가 사용량 증가보다 빠르면 AI 매출이 투자비를 못 따라간다.\n- 개인 비서는 무료 사용자 비중이 커서 사용자 1명당 연산 비용을 누가 대느냐가 숙제다. 보사 자신도 Muse 권한을 거뒀다고 할 만큼 제품 완성도가 들쭉날쭉하다.\n\n### 체크포인트\n- 10월 말 Microsoft 실적: Copilot 유료 좌석이 3,000만에서 얼마나 늘었는지, 설비투자 안내.\n- Meta 실적에서 Muse 사용자·유료 전환 숫자, Apple의 비서 제품 발표 여부.\n- OpenAI·Anthropic의 상장 준비 서류에서 드러날 **추론 이익률**.",
+ "deep_md": "### 1. 게스트·주제 팩트 체크 (외부 자료)\n- **보사의 새 방송**: Axios(2026년 9월 8일)는 전 CNBC 앵커 보사가 Yahoo Finance와 손잡고 매일 한 시간짜리 AI 생방송을 만든다고 보도했다. Yahoo Finance가 샌프란시스코 스튜디오와 인력을 대고 광고를 팔며, 보사는 수익을 나눈다. 당시엔 이름이 정해지지 않았고, 'Deirdre Bosa Live'라는 이름과 11월 9일 시작일은 이번 대본에서 나왔다.\n- **Copilot 유료 좌석**: 대본의 '3,000만 명'은 외부 자료와 맞다. Microsoft는 1월 1,500만, 4월 2,000만, 7월 30일 실적에서 3,000만 유료 좌석을 넘었다고 밝혔다. 6개월 사이 **두 배**다. 상업용 Microsoft 365 가입자는 약 4억 5,000만 명이라 침투율은 아직 7% 안팎이다.\n\n[[chart:3]]\n\n- **Anthropic 비용**: The Information은 Microsoft가 Copilot용 Anthropic 모델에 연 20억 달러 넘게 낼 것으로 보도했고(익명 소식통 한 명), Lamanna가 이를 밀어붙였다고 전했다. Nadella는 7월 실적 발표에서 모델 목록이 1만 1,000개가 넘는다고 했다. 다만 상업용 잔여 계약의 약 45%가 여전히 OpenAI와 묶여 있다는 분석도 있어, '모델 가리지 않기'가 OpenAI 의존을 없앤 것은 아니다.\n- **Maia 300**: Microsoft는 10월 12일 Maia 300을 발표했고 2027년부터 Copilot 등 자사 서비스의 주력 추론 칩으로 쓴다고 했다. 이전 세대보다 랙 단위 처리량 최대 7배, GPU 시스템 대비 전력 효율 40% 우위를 내세웠지만 모두 회사 예상치다. 학습용으로는 여전히 Nvidia·AMD를 쓴다.\n\n### 2. 대본과 다른 숫자\n- **Stripe–OpenRouter**: 대본에선 약 130억 달러라 했지만, 보도는 75억 달러(New York Times)~80억 달러 이상(Axios)이고 공식 금액은 비공개다. 올해 초 OpenRouter 기업가치는 약 13억 달러였다(Bloomberg). '13'이라는 숫자가 이 기업가치와 섞였을 가능성이 있으나 확인 못 함.\n- **Bain 추정**: 대본의 '2031년 연 6조 달러 매출 필요'는 Bain 원 보고서에서 찾지 못했다. 확인된 Bain 2025년 기술 보고서는 **2030년 연 2조 달러** 새 매출이 필요하고, AI 비용 절감을 감안해도 8,000억 달러가 모자란다고 했다. 진행자가 인용한 6조 달러는 다른 출처(Ben Emmons 정리)로 보이며 확인 못 함.\n- **중국 토큰 77%·지출 22%**: Goldman 보고서 원문은 찾지 못했다. 다만 Goldman의 다른 분석은 중국 모델 가격이 미국의 10~25% 수준이라고 했고, 중국 국가데이터국은 하루 토큰 호출이 2024년 초 약 1,000억 건에서 2026년 3월 140조 건을 넘었다고 밝혀 '사용은 많고 돈은 적다'는 방향은 맞다.\n\n### 3. 개인 비서 시장 숫자\n- **Instinct**: 9월 28일 Sequoia·Benchmark·Coatue가 참여한 10억 달러 시리즈 C, 기업가치 100억 달러(Reuters 보도). 약 한 달 전 시리즈 B 기업가치 25억 달러에서 **4배**다. 사용자는 10만 명 남짓(초대제), 연 거래액 10억 달러에 근접했다는 창업자 발언이 있으나 매출 모델은 공개되지 않았다.\n\n[[chart:4]]\n\n- **Meta Muse**: 9월 8일 출시, 무료와 월 20·100달러 유료 등급. 출시 뒤 주가가 하루 11% 넘게 오르는 등 9월 한 달 약 27% 올랐다는 보도가 있다. 같은 날 Amazon이 승인되지 않은 AI 비서라며 Muse의 쇼핑 접근을 막았고, Mac 앱 보안 결함 수정도 있었다. 대본의 '실적 후 40% 반등'은 시점 기준이 달라 직접 확인 못 함.\n\n### 4. 밸류체인과 관련 상장사\n- 플랫폼: Microsoft(MSFT), Meta(META), Alphabet(GOOGL), Amazon(AMZN), Apple(AAPL).\n- 칩: Nvidia(NVDA), AMD(AMD), 맞춤형 칩 생산 TSMC(TSM). 메모리 SK hynix(000660)·Samsung Electronics(005930)·Micron(MU).\n- 보안·신뢰: Cisco(CSCO). 결제·연결: Stripe(비상장, OpenRouter 인수).\n- 중국 오픈소스 쪽: Alibaba(BABA·9988.HK) — Goldman은 중국 공용 클라우드 점유율 47%를 근거로 유리하다고 봤다.\n\n### 5. 반론과 리스크\n- '모델은 상품' 주장에 대한 반론: 보사 스스로 비서를 쓸수록 더 똑똑한 모델을 원하게 된다고 했다. 최상위 모델의 가격 결정력이 완전히 사라진 것은 아니다.\n- Microsoft의 맞춤형 칩 효율 수치는 모두 회사 예상치이고, 수백만 개 배치 일정도 확정되지 않았다.\n- 개인 비서의 신뢰 문제: Amazon 차단, 보안 결함 같은 사례가 반복되면 결제 권한 위임이 늦어진다.\n\n### 6. 앞으로 볼 것\n- 10월 말 Microsoft·Meta·Alphabet·Amazon 실적: Copilot 좌석, Muse 지표, 설비투자 안내와 부채 조달.\n- 11월 9일 보사의 방송 시작과 첫 게스트들.\n- Maia 300의 GitHub Copilot·Foundry 적용(연내 예정)과 2027년 대량 배치 일정.",
+ "sources": [
+  {
+   "label": "RiskReversal Pod(OK Computer) — 이 편 오디오",
+   "url": "https://traffic.megaphone.fm/RRM3904841413.mp3"
+  },
+  {
+   "label": "Axios — 보사, Yahoo Finance와 AI 생방송 제휴(수익 배분, 샌프란시스코 스튜디오)",
+   "url": "https://www.axios.com/2026/09/08/yahoo-finance-ai-show-deirdre-bosa"
+  },
+  {
+   "label": "The Next Web — Microsoft Maia 300, 2027년부터 자사 AI 서비스 주력 칩",
+   "url": "https://thenextweb.com/news/microsoft-maia-300-ai-chip-2027"
+  },
+  {
+   "label": "UC Today — Microsoft 365 Copilot 유료 좌석 3,000만 돌파(7월 실적)",
+   "url": "https://www.uctoday.com/unified-communications/microsoft-365-copilot-passes-30-million-paid-seats-as-cloud-and-ai-growth-power-record-quarter"
+  },
+  {
+   "label": "No Jitter — Copilot 유료 좌석 1,500만(1월)",
+   "url": "https://www.nojitter.com/ai-automation/microsoft-365-copilot-hits-15-million-paid-seats"
+  },
+  {
+   "label": "No Jitter — Copilot 유료 좌석 2,000만(4월)",
+   "url": "https://nojitter.com/ai-automation/microsoft-365-copilot-hits-20-million-paid-seats"
+  },
+  {
+   "label": "AI Weekly — Microsoft, Copilot용 Anthropic에 연 20억 달러 이상(The Information 인용)",
+   "url": "https://aiweekly.co/alerts/microsoft-on-track-to-pay-anthropic-2b-a-year-for-copilot"
+  },
+  {
+   "label": "The Next Web — Stripe의 OpenRouter 인수 확정, 보도 금액 75억 달러 이상",
+   "url": "https://thenextweb.com/news/stripe-openrouter-acquisition-confirmed"
+  },
+  {
+   "label": "The Next Web — Muse 출시 후 Meta 주가 11% 상승",
+   "url": "https://thenextweb.com/news/meta-jumps-11-as-investors-bet-on-its-muse-agent"
+  },
+  {
+   "label": "RuntimeWire — Instinct 10억 달러 시리즈 C, 기업가치 100억 달러",
+   "url": "https://runtimewire.com/article/instinct-noah-shinn-1-billion-series-c-personal-ai-agent"
+  },
+  {
+   "label": "Bain & Company — 2030년 AI 새 매출 2조 달러 필요, 8,000억 달러 부족",
+   "url": "https://www.bain.com/es-es/about/media-center/press-releases/20252/$2-trillion-in-new-revenue-needed-to-fund-ais-scaling-trend---bain--companys-6th-annual-global-technology-report/"
+  },
+  {
+   "label": "KuCoin 뉴스 — Goldman, 중국 모델 가격 미국의 10~25%",
+   "url": "https://www.kucoin.com/news/flash/goldman-sachs-analyzes-chinese-ai-model-industry-highlights-cost-and-competitive-advantages"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "올해 주가 상승률 — Microsoft vs 지수",
+   "sub": "% · 연초 대비, 방송 시점 진행자 발언",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "나스닥",
+    "S&P 500",
+    "Microsoft"
+   ],
+   "series": [
+    {
+     "name": "연초 대비",
+     "values": [
+      21,
+      14,
+      13.5
+     ]
+    }
+   ],
+   "note": "사상 최고가 근처인데도 지수보다 덜 올랐다 — 설비투자·부채 우려가 남아 있다는 근거",
+   "source": "대본(Dan Nathan 발언)"
+  },
+  {
+   "at": "summary",
+   "title": "중국의 AI 토큰 사용과 지출 비중",
+   "sub": "% · 전 세계 대비",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "토큰 사용량",
+    "토큰 지출액"
+   ],
+   "series": [
+    {
+     "name": "중국 비중",
+     "values": [
+      77,
+      22
+     ]
+    }
+   ],
+   "note": "많이 쓰고 적게 낸다 — 싼 오픈소스가 전 세계 AI 가격을 누르는 통로",
+   "source": "대본(Goldman Sachs 'China is Coming'를 Paul Kedrosky가 정리한 수치 인용, 원문 미확인)"
+  },
+  {
+   "at": "deep",
+   "title": "Microsoft 365 Copilot 유료 좌석",
+   "sub": "백만 석 · 2026년 발표 시점",
+   "type": "line",
+   "unit": "백만 석",
+   "labels": [
+    "1월",
+    "4월",
+    "7월"
+   ],
+   "series": [
+    {
+     "name": "유료 좌석",
+     "values": [
+      15,
+      20,
+      30
+     ]
+    }
+   ],
+   "note": "6개월 만에 두 배 — 그래도 상업용 가입자 4억 5,000만 명의 7% 안팎",
+   "source": "No Jitter·UC Today(Microsoft 실적 발표 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "개인 AI 비서·AI 연결 업체 기업가치 변화",
+   "sub": "억 달러 · 직전 평가 vs 최근 거래",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "Instinct",
+    "OpenRouter"
+   ],
+   "series": [
+    {
+     "name": "직전 평가",
+     "values": [
+      25,
+      13
+     ]
+    },
+    {
+     "name": "최근 거래",
+     "values": [
+      100,
+      75
+     ]
+    }
+   ],
+   "note": "Instinct는 한 달 만에 4배(시리즈 B→C), OpenRouter는 연초 평가의 약 6배에 Stripe가 인수(보도 금액, 공식 비공개)",
+   "source": "RuntimeWire(Reuters 인용)·The Next Web(NYT·Bloomberg 인용)"
+  }
+ ],
+ "tg": "RiskReversal — Deirdre Bosa: AI는 이제 모델이 아니라 제품 싸움. Microsoft는 작업마다 가장 싼 모델을 배정하고 Maia 300으로 수요 불확실성에 대비, Meta Muse·Instinct 등 개인 비서가 화두. 중국은 토큰 사용 77%·지출 22%로 가격을 누른다.",
+ "tg_body": "11월 9일 Yahoo Finance에서 매일 AI 생방송을 시작하는 디어드리 보사는 AI 경쟁이 모델 순위에서 제품과 비용 싸움으로 넘어갔다고 진단했다. 모델이 비슷해지고 오픈소스가 퍼지면서, 기업은 모든 일에 최고급 모델을 쓸 필요가 없다는 걸 알게 됐다.\n\nMicrosoft가 대표 사례다. OpenAI 중심에서 벗어나 Anthropic·오픈소스까지 섞어 작업마다 싼 모델을 배정하면서 Copilot 유료 사용자가 3,000만 명으로 늘었다. 새 자체 칩 Maia 300은 엔비디아 의존을 줄이는 동시에 수요 예측이 틀릴 위험에 대한 보험이라는 설명이다. 다만 주가는 올해 13.5%로 나스닥(21%)에 못 미친다.\n\n업계 화두는 개인 AI 비서다. 보사는 Instinct와 OpenAI 비서를 쓰고, Meta Muse는 성능이 아쉬워 권한을 거뒀다고 했다. 신뢰와 보안이 확산의 열쇠라 Apple과 보안 업체에 기회가 있다고 본다.\n\n중국은 전 세계 토큰 사용의 77%를 차지하지만 지출은 22%다. 싼 중국 오픈소스가 미국 밖의 기본 생태계가 되면 대형 모델 회사의 이익률이 압박받는다.\n\n외부 확인: Copilot 유료 좌석은 1월 1,500만에서 7월 3,000만으로 늘었다. Stripe의 OpenRouter 인수가는 대본의 130억 달러가 아니라 보도 기준 75억~80억 달러이고, Bain이 추정한 필요 매출은 2030년 연 2조 달러다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-10-14 20:05 KST"
+}
