@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "2710184608eb",
+   "kind": "news",
+   "headline": "미국 8개 주, 오픈AI를 각자 주 법원에 제소 — 챗GPT가 아동·취약 사용자 안전을 속였다는 주장",
+   "bullets": [
+    "아이오와·캔자스·네브래스카·웨스트버지니아·아칸소·애리조나·아이다호·몬태나 법무장관이 10월 14일 각 주 법원에 따로 소송을 냈다.",
+    "각 주 소비자보호법을 근거로, 오픈AI가 제품 안전성을 오도했고 아동 보호 장치가 부족해 자해·자살·폭력을 부추겼다고 주장한다.",
+    "아이오와는 위반 1건당 최대 4만 달러 민사 제재금을 청구했고, 아칸소는 안전장치가 갖춰질 때까지 고급 모델 시험을 멈추게 해 달라고 요청했다."
+   ],
+   "summary": "미국 8개 주 법무장관이 10월 14일 오픈AI를 상대로 소송을 냈다. 아이오와·캔자스·네브래스카·웨스트버지니아·아칸소·애리조나·아이다호·몬태나다. 애리조나를 빼면 모두 공화당 소속 법무장관이다. 하나로 묶은 소송이 아니라 각 주 법원에 따로 낸 병행 소송이다. 앞서 6월에는 플로리다가 처음으로 오픈AI를 제소했고, 42개 주 연합은 별도 조사를 진행 중이다.\n\n핵심 주장은 챗GPT가 안전하지 않은 제품인데도 안전하다고 부모와 사용자를 속였다는 것이다. 십대의 자살, 잘못된 의료 정보로 인한 약물 과다복용 사례를 들었고, 아이오와와 네브래스카는 오픈AI 인공지능 에이전트의 오작동 사례까지 근거로 삼았다. 일부 주는 미성년자 데이터 보관 관행도 문제 삼았다.\n\n요구 사항은 주마다 다르다. 아이오와는 91쪽 소장에서 소비자사기법 위반 1건당 최대 4만 달러를 청구했다. 아칸소는 안전장치가 마련될 때까지 고급 모델 시험 중단 명령을 요청했다. 공통적으로 위험 공개, 기만적 관행 중단, 손해배상을 요구한다. 아직 법원 판단은 없고, 오픈AI는 첫 보도 시점까지 공식 입장을 내지 않았다.",
+   "title": "OpenAI sued by 8 states over ChatGPT safety concerns",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSFJIMFZPVi1xNjBnTXdHUjBMSW56OFVoQWxYRjBSUHh2V1cwQ2QzSWhpVm5fSzhWMW9RVUdXV1gxVjdqVUhBb2ZaNFJ0SVlYRXlxeGR4OXRnWGVaUjJVanRzUy10NUxnWTJpc3E0X2VKMTVGazZzME9SUUMwWlB1Tm1fZ2dVYkUwSFhaQ3dxRmxJSGlv0gGaAUFVX3lxTE9lTzhXS0pJaG1NS2dwNU5Ya2JTY0FFZUFBWmlHdFV6akFWME9mejN1MWJoZGFsQXo3YW42eDZua1dPcDNDUDA2SWtNZGduMENsNkh3LWZ5c09WalcwNk1LSkd0Y0xSc2pOOF9GVGtCNnRSN28tZ3JBekJXbURGcmN0X0gxeHk5VWhCNmhoOGtWNUM4eDJ3anpWUkE?oc=5",
+   "published": "2026-10-15 06:09 KST",
+   "written": "2026-10-15 06:47 KST"
+  },
+  {
    "id": "f22f1b3149c8",
    "kind": "news",
    "headline": "[후속] 오픈AI, 애플에 맞불 — \"애플로 돌아간 직원이 미공개 기기 극비 파일 100여 건 빼돌려\", 반소 검토",
@@ -323,5 +339,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-15 05:16 KST"
+ "updated": "2026-10-15 06:47 KST"
 }
