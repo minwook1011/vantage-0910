@@ -5,6 +5,24 @@
   "name": "마크 저커버그(Mark Zuckerberg)·알렉산더 왕(Alexandr Wang)",
   "role": "Meta 창업자·최고경영자 / Meta Superintelligence Labs 최고 AI 책임자(전 Scale AI 창업자)"
  },
+ "guest_profile": [
+  {
+   "name": "마크 저커버그(Mark Zuckerberg)",
+   "title": "Meta Platforms 창업자 · 회장 겸 최고경영자",
+   "what": "Facebook·Instagram·WhatsApp과 개인 인공지능 에이전트 Muse, Muse 모델 계열을 만드는 Meta를 이끈다. 2026년 설비투자 전망은 1,300억~1,450억 달러다. Meta 지분 약 13%를 갖고 있으며 의결권 과반을 쥔다.",
+   "career": "2004년 Harvard University 재학 중 Facebook을 만들고 학교를 그만뒀다. 2012년 상장했고 같은 해 Instagram을 약 10억 달러에, 2014년 WhatsApp을 약 190억 달러에 샀다. 2021년 회사 이름을 Meta로 바꾸고 가상현실에 대규모 투자를 했다. 2025년 Scale AI 지분 49%를 143억 달러에 사며 Alexandr Wang을 데려와 Meta Superintelligence Labs를 세웠다.",
+   "track": "투자자가 아니라 경영자라 공개된 수익률 없음. 대표적 판단으로 꼽히는 Instagram·WhatsApp 인수는 지금 Meta 핵심 사업이 됐다. 반대로 가상현실 부문(Reality Labs)은 누적 적자가 크다. Bloomberg 억만장자 지수 기준 세계 10위 안 부자다(2026년 금액은 시점마다 1,870억~2,290억 달러로 출렁였다).",
+   "why": "모델이 나오기 전부터 연 1,000억 달러 넘는 설비투자를 결정한 당사자다. 그 돈을 구독·커머스·API로 어떻게 회수할지 경영자 본인의 계획을 직접 들을 수 있다."
+  },
+  {
+   "name": "알렉산더 왕(Alexandr Wang)",
+   "title": "Meta 최고 인공지능 책임자 · Meta Superintelligence Labs 이끔 · Scale AI 공동창업자",
+   "what": "2025년 6월부터 Meta의 초지능 연구 조직 Meta Superintelligence Labs를 이끌며 첫 프런티어 모델 Muse Wonder 개발을 맡았다.",
+   "career": "10대에 Quora 등에서 엔지니어로 일했다. MIT에 1년 다니다 2016년 Lucy Guo와 인공지능 학습 데이터 회사 Scale AI를 세우고 학교를 그만뒀다. Scale AI는 자율주행·국방·대형 언어모델 회사에 학습 데이터를 공급하며 커졌다. 2025년 Meta가 Scale AI 무의결권 지분 49%를 143억 달러에 사면서 Meta로 옮겼다.",
+   "track": "투자자가 아니라 창업자라 공개된 수익률 없음. 2021년 Scale AI 기업가치가 73억 달러가 됐을 때 지분 약 15%로 세계 최연소 자수성가 억만장자(당시 25세)로 Forbes가 꼽았다. Muse Wonder는 외부 종합 지수에서 최상위 모델에 조금 못 미친다(Artificial Analysis: Opus 5.5 58점, Wonder Full 56점).",
+   "why": "데이터 회사를 키운 뒤 1년 만에 Meta 첫 프런티어 모델을 내놓은 책임자다. Meta 모델 경쟁력과 다음 단계를 개발 당사자에게서 들을 수 있다."
+  }
+ ],
  "company": {
   "name": "Meta Platforms",
   "sector": "인터넷 플랫폼 · 프런티어 AI 모델 · 개인 AI 에이전트",
@@ -75,6 +93,14 @@
   {
    "label": "TechCrunch(2025) — Hyperion 5GW·Prometheus 1GW 계획",
    "url": "https://techcrunch.com/2025/07/14/mark-zuckerberg-says-meta-is-building-a-5gw-ai-data-center"
+  },
+  {
+   "label": "Bloomberg 억만장자 지수 — Mark Zuckerberg",
+   "url": "https://www.bloomberg.com/billionaires/profiles/mark-e-zuckerberg"
+  },
+  {
+   "label": "The Week — Alexandr Wang: 세계 최연소 자수성가 억만장자(Scale AI 기업가치 73억 달러, 지분 15%)",
+   "url": "https://www.theweek.co.uk/news/technology/961534/alexandr-wang-profile"
   }
  ],
  "charts": [

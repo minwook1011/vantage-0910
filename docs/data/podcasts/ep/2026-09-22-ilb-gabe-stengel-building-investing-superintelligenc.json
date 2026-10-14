@@ -5,6 +5,16 @@
   "name": "게이브 스텐절(Gabe Stengel)",
   "role": "금융 전용 AI 플랫폼 Rogo 공동창업자 겸 CEO — Lazard 투자은행 분석가 출신"
  },
+ "guest_profile": [
+  {
+   "name": "게이브 스텐절(Gabe Stengel)",
+   "title": "Rogo 공동창업자 겸 최고경영자",
+   "what": "투자은행·사모펀드의 자료 작성·실사·모델링을 처리하는 금융 전용 인공지능 플랫폼 Rogo를 이끈다. 2026년 4월 시리즈 D 1억 6천만 달러를 받았고 기업가치는 약 20억 달러로 보도됐다. 사용자 3만 5천 명 이상, 기관 250곳 이상(2026년 4월).",
+   "career": "Princeton University에서 컴퓨터과학을 전공했고 2019년 졸업 논문 주제가 금융용 인공지능 비서였다. 졸업 후 Lazard 투자은행 분석가로 일했다. 2021년 말 Lazard를 나와 Princeton 동창 John Willett, Tumas Rackaitis와 Rogo를 세웠다. 2024년 시리즈 A(Khosla Ventures) → 2025년 시리즈 B(Thrive Capital) → 2026년 1월 시리즈 C(Sequoia, 기업가치 약 7억 5천만 달러) → 4월 시리즈 D(Kleiner Perkins)로 석 달 만에 기업가치가 약 2.7배가 됐다.",
+   "track": "투자자가 아니라 창업자라 공개된 수익률 없음. 사업 성과로는 연간 반복 매출이 2024년 약 200만 달러(Contrary Research)에서 2026년 8월 약 5,300만 달러(Sacra 추정)로 늘었다는 외부 추정이 있다. 회사 공식 수치는 아니다.",
+   "why": "투자은행 말단 업무를 직접 해 본 사람이 그 일을 기계로 바꾸는 회사를 만들었다. 금융 인공지능이 '좌석 단위'에서 '성과 단위' 가격으로 넘어간다는 주장을 고객 수백 곳의 실제 사용 경험에서 듣는다."
+  }
+ ],
  "company": {
   "name": "Rogo",
   "sector": "금융 AI · 투자은행·사모시장용 에이전트 소프트웨어",
@@ -71,6 +81,10 @@
   {
    "label": "Moelis & Company — 공동창업자 겸 CEO Navid Mahmoodzadegan 약력(자막 이름 대조용)",
    "url": "https://www.moelis.com/team/navid-mahmoodzadegan/"
+  },
+  {
+   "label": "Princeton Alumni Weekly — Gabriel Stengel 졸업 논문과 Rogo 창업",
+   "url": "https://paw.princeton.edu/node/5301"
   }
  ],
  "charts": [

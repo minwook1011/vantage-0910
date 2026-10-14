@@ -5,6 +5,24 @@
     "name": "드루 코헨(Drew Cohen) · 알렉스(Alex)",
     "role": "The Synopsis 두 진행자의 대담 — Drew는 Speedwell Research 창업자, Alex의 성·소속은 확인 못 함"
   },
+  "guest_profile": [
+    {
+      "name": "드루 코헨(Drew Cohen)",
+      "title": "Speedwell Research 창업자 · Davidson Kahn Capital Management 상무 겸 포트폴리오 매니저 · 팟캐스트 The Synopsis 진행자",
+      "what": "헤지펀드·자산운용사에 기업 심층 보고서와 재무 모델을 파는 독립 리서치 회사 Speedwell Research를 운영하고, 개인·법인 고객 자금을 일임 운용하는 Davidson Kahn Capital Management에서 포트폴리오를 맡는다. 두 회사 모두 운용 규모는 공개되지 않았다.",
+      "career": "Goldman Sachs 글로벌 투자 리서치 부문에서 일을 시작했다. 이어 Capital Group 투자팀에서 50억 달러가 넘는 자산 운용을 도왔다. 이후 Speedwell Research를 세워 한 회사를 길게 파고드는 보고서를 내고 있고, 2023년부터 팟캐스트 The Synopsis와 유튜브 채널을 진행한다.",
+      "track": "공개된 수익률 없음. 운용 성과나 순위가 외부에 공개된 자료는 찾지 못했다. Speedwell은 보고서를 쓸 때 해당 종목 보유 여부를 밝힌다(예: Copart 보유 공시).",
+      "why": "에이전트가 사용자 앞에 한 층 끼어들 때 Meta·Google·Apple과 여행·쇼핑 중개 회사의 득실을 따진다. 개별 기업 보고서를 쓰는 리서치 회사 운영자라 실적 숫자를 근거로 논지를 편다."
+    },
+    {
+      "name": "알렉스(Alex)",
+      "title": "The Synopsis 공동 진행자 — 성·소속 확인 못 함",
+      "what": "방송 소개에는 '무보수 공동 진행자'로만 나온다. 하는 일과 운용 규모는 확인 못 함.",
+      "career": "방송 목록과 소개 페이지 어디에도 성과 경력이 나오지 않는다. 같은 이름의 다른 리서치 운영자와 같은 사람인지도 확인 못 함.",
+      "track": "공개된 수익률 없음.",
+      "why": "Drew와 번갈아 주장과 반론을 낸다. 경력이 확인되지 않으므로 수치가 붙은 발언 위주로 읽는 편이 낫다."
+    }
+  ],
   "company": {
     "name": "Apple · Google · Meta",
     "sector": "빅테크 · AI 에이전트 · 온라인 중개 플랫폼",
@@ -115,6 +133,14 @@
     {
       "label": "Listen Notes — The Synopsis 진행자 소개(Drew Cohen, 공동 진행자 Alex)",
       "url": "https://www.listennotes.com/podcasts/the-synopsis-drew-cohen-O8w96lxC-sT/"
+    },
+    {
+      "label": "Speedwell Research 소개 — Drew Cohen 경력(Goldman Sachs·Capital Group)",
+      "url": "https://speedwellresearch.com/about/"
+    },
+    {
+      "label": "Warmer 인물 정보 — Drew Cohen: Davidson Kahn Capital Management 상무·포트폴리오 매니저, Capital Group 50억 달러 이상 운용 보조",
+      "url": "https://www.getwarmer.com/advisors/drew-cohen"
     }
   ],
   "charts": [

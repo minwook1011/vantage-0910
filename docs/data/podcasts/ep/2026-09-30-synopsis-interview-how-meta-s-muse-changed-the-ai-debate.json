@@ -5,6 +5,24 @@
     "name": "MBI(Mostly Borrowed Ideas, 본명 Abdullah Al Rezwan)",
     "role": "주식 리서치 뉴스레터 MBI Deep Dives 작성자 — Muse를 써 본 뒤 Airbnb를 팔고 Meta를 늘렸다"
   },
+  "guest_profile": [
+    {
+      "name": "압둘라 알 레즈완(Abdullah Al Rezwan, 필명 MBI)",
+      "title": "주식 리서치 뉴스레터 MBI Deep Dives 작성자",
+      "what": "2020년 9월부터 유료 뉴스레터 MBI Deep Dives에 미국·글로벌 기술·소비 기업 분석과 재무 모델을 쓴다. 자기 포트폴리오 보유 종목을 공개하지만 운용 규모는 밝히지 않는다.",
+      "career": "방글라데시 증권사에서 주식 리서치를 시작했다. 미국 Cornell University에서 경영학 석사를 받고 Madison Investments에서 바이사이드 애널리스트로 일했다. CFA·FRM 자격을 갖고 있다. 2020년 독립해 뉴스레터를 시작했다.",
+      "track": "공개된 수익률 없음. 포트폴리오 페이지는 보유 종목만 공개하고 성과는 싣지 않는다. 외부 집계 TipRanks는 종목 의견 2건만 추적해 표본이 작다.",
+      "why": "Muse를 직접 써 본 뒤 Airbnb를 팔고 Meta를 늘린 사람이 그 판단 근거를 말한다. 회사 하나를 길게 추적해 온 분석가의 시각으로 Booking과 Airbnb가 에이전트에 다르게 노출되는 이유를 들을 수 있다."
+    },
+    {
+      "name": "드루 코헨(Drew Cohen)",
+      "title": "Speedwell Research 창업자 · Davidson Kahn Capital Management 상무 겸 포트폴리오 매니저 · 팟캐스트 The Synopsis 진행자",
+      "what": "헤지펀드·자산운용사에 기업 심층 보고서와 재무 모델을 파는 독립 리서치 회사 Speedwell Research를 운영하고, 개인·법인 고객 자금을 일임 운용하는 Davidson Kahn Capital Management에서 포트폴리오를 맡는다. 두 회사 모두 운용 규모는 공개되지 않았다.",
+      "career": "Goldman Sachs 글로벌 투자 리서치 부문에서 일을 시작했다. 이어 Capital Group 투자팀에서 50억 달러가 넘는 자산 운용을 도왔다. 이후 Speedwell Research를 세워 한 회사를 길게 파고드는 보고서를 내고 있고, 2023년부터 팟캐스트 The Synopsis와 유튜브 채널을 진행한다.",
+      "track": "공개된 수익률 없음. 운용 성과나 순위가 외부에 공개된 자료는 찾지 못했다. Speedwell은 보고서를 쓸 때 해당 종목 보유 여부를 밝힌다(예: Copart 보유 공시).",
+      "why": "인터뷰 진행자로 질문과 반론을 맡는다. 이 편에는 Drew 혼자 진행한다."
+    }
+  ],
   "company": {
     "name": "Meta Platforms (Muse)",
     "sector": "소비자 AI 에이전트 · 온라인 중개 플랫폼",
@@ -95,6 +113,22 @@
     {
       "label": "Yahoo Finance 시세 — 9월 1일~10월 1일 등락률(Meta·Amazon·Uber·Airbnb·Expedia·Booking·DoorDash)",
       "url": "https://finance.yahoo.com/quote/BKNG/"
+    },
+    {
+      "label": "MBI Deep Dives 포트폴리오 페이지 — 보유 종목 공개(성과 미공개)",
+      "url": "https://www.mbi-deepdives.com/portfolio/"
+    },
+    {
+      "label": "TipRanks — Abdullah Al Rezwan 종목 의견 집계(2건)",
+      "url": "https://www.tipranks.com/experts/bloggers/abdullah-al-rezwan"
+    },
+    {
+      "label": "Speedwell Research 소개 — Drew Cohen 경력(Goldman Sachs·Capital Group)",
+      "url": "https://speedwellresearch.com/about/"
+    },
+    {
+      "label": "Warmer 인물 정보 — Drew Cohen: Davidson Kahn Capital Management 상무·포트폴리오 매니저, Capital Group 50억 달러 이상 운용 보조",
+      "url": "https://www.getwarmer.com/advisors/drew-cohen"
     }
   ],
   "charts": [

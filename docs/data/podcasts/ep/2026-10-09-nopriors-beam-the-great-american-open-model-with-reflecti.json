@@ -5,6 +5,16 @@
   "name": "미샤 라스킨(Misha Laskin)",
   "role": "ReflectionAI 공동창업자·최고경영자, 전 구글 딥마인드 Gemini 강화학습 연구자"
  },
+ "guest_profile": [
+  {
+   "name": "미샤 라스킨(Misha Laskin)",
+   "title": "Reflection AI 공동창업자 겸 최고경영자",
+   "what": "기업·국가용 공개 가중치 최전선 모델을 만드는 미국 연구소 Reflection AI를 이끈다(비상장). 2025년 10월 Nvidia가 주도한 20억 달러 투자로 기업가치 80억 달러가 됐고, 2026년 10월 첫 공개 모델 Beam을 냈다.",
+   "career": "Yale University에서 물리학·문학을 전공하고 University of Chicago에서 이론물리(양자 다체계) 박사를 받았다. Y Combinator 지원 스타트업을 세운 뒤 University of California, Berkeley의 Pieter Abbeel 연구실 박사후연구원으로 강화학습 기법 CURL을 내놓았다. 이후 Google DeepMind에서 Gemini의 사람 피드백 강화학습용 보상 모델 훈련을 이끌었다. 2024년 AlphaGo 핵심 개발자 Ioannis Antonoglou와 Reflection AI를 세웠다.",
+   "track": "투자자가 아니라 창업자라 공개된 수익률 없음. 회사 기업가치는 2025년 3월 약 5억 4,500만 달러에서 10월 80억 달러로 올랐다. Beam의 성능은 독립 평가가 아직 없고, 일부 지표에서 중국 상위 공개 모델에 뒤진다는 보도가 있다.",
+   "why": "Gemini 강화학습을 직접 만든 연구자가 미국판 공개 모델을 왜, 어떤 연산 규모로 만드는지 설명한다. 중국 공개 모델과의 경쟁과 국가 단위 수요를 이해하는 데 쓸모 있다."
+  }
+ ],
  "company": {
   "name": "Reflection AI",
   "sector": "인공지능 모델 · 공개 가중치",
@@ -67,6 +77,14 @@
   {
    "label": "FourWeekMBA — 오픈라우터 중국 모델 토큰 비중 46%",
    "url": "https://fourweekmba.com/ai-openrouter-chinese-ai-models-us-token-share-deepseek/"
+  },
+  {
+   "label": "Manifold 81회 — Misha Laskin: 물리학에서 인공지능으로(경력)",
+   "url": "https://www.manifold1.com/episodes/misha-laskin-reflection-ai-from-physics-to-superintelligence"
+  },
+  {
+   "label": "London Tech Week — Misha Laskin 약력(Google DeepMind Gemini 보상 모델)",
+   "url": "https://londontechweek.com/speakers/misha-laskin"
   }
  ],
  "charts": [

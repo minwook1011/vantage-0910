@@ -5,6 +5,16 @@
   "name": "레넨 할락(Renen Hallak)",
   "role": "VAST Data 창업자 겸 CEO — XtremIO 연구개발 책임자 출신"
  },
+ "guest_profile": [
+  {
+   "name": "레넨 할락(Renen Hallak)",
+   "title": "VAST Data 공동창업자 겸 최고경영자",
+   "what": "GPU에 데이터를 대는 저장·데이터베이스 소프트웨어 회사 VAST Data를 이끈다(본사 뉴욕, 비상장). 2026년 4월 기업가치 300억 달러, 누적 수주 40억 달러 이상, 확정 연간 반복 매출 5억 달러 이상이라고 회사가 밝혔다.",
+   "career": "이스라엘 플래시 저장장치 회사 XtremIO에 2009년 첫 엔지니어로 들어가 연구개발 부사장으로 수백 명 규모 조직을 이끌었다. XtremIO는 2012년 EMC에 인수됐다(인수가 약 4억 3천만 달러, Globes 보도). 2015년 회사를 나와 고객 인터뷰를 거쳐 2016년 Shachar Fienblit, Jeff Denworth와 VAST Data를 세웠고, 2019년 8천만 달러 투자와 함께 공개 활동을 시작했다.",
+   "track": "투자자가 아니라 창업자라 공개된 수익률 없음. 회사 기업가치는 2023년 말 91억 달러에서 2026년 4월 300억 달러로 3배 넘게 올랐고, CoreWeave와 11억 7천만 달러 규모 다년 계약을 맺었다(회사 보도자료). 영업이익과 잉여현금흐름이 모두 플러스라고 회사는 밝혔다.",
+   "why": "플래시 저장장치를 한 번 성공시켜 매각한 뒤 같은 분야에서 두 번째로 큰 회사를 만들었다. 인공지능 추론 시대에 저장 수요가 어디서 얼마나 느는지를 고객 계약을 직접 보는 위치에서 말한다."
+  }
+ ],
  "company": {
   "name": "VAST Data",
   "sector": "AI 인프라 · 데이터 플랫폼(스토리지·데이터베이스)",
@@ -71,6 +81,14 @@
   {
    "label": "Wikipedia — VAST Data 설립 연도(2016), 창업자, Hallak의 XtremIO 경력",
    "url": "https://en.wikipedia.org/wiki/VAST_Data"
+  },
+  {
+   "label": "Blocks & Files — VAST Data 사업 현황, Hallak의 XtremIO 경력과 창업 배경",
+   "url": "https://blocksandfiles.com/2019/02/26/vast-datas-business-sitrep/"
+  },
+  {
+   "label": "StorageNewsletter — Renen Hallak 인터뷰(XtremIO 연구개발 책임, 창업 과정)",
+   "url": "https://www.storagenewsletter.com/2021/03/04/exclusive-interview-with-renen-hallak-ceo-vast-data/"
   }
  ],
  "charts": [

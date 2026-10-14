@@ -5,6 +5,16 @@
   "name": "앤디 파블로(Andy Pavlo)",
   "role": "카네기멜런대 데이터베이스 교수 · 2026년 8월 ClickHouse 데이터베이스 연구 부사장으로 합류해 ClickHouse Labs 설립 — 자동 튜닝 스타트업 OtterTune 공동창업자"
  },
+ "guest_profile": [
+  {
+   "name": "앤디 파블로(Andy Pavlo)",
+   "title": "ClickHouse 데이터베이스 연구 부사장 · ClickHouse Labs 책임자",
+   "what": "2026년 8월 ClickHouse에 합류해 ClickHouse와 PostgreSQL 양쪽을 연구하는 ClickHouse Labs를 세우고 있다. ClickHouse는 2026년 1월 기업가치 150억 달러에 4억 달러를 받은 비상장 분석 데이터베이스 회사다.",
+   "career": "Brown University에서 데이터베이스로 박사를 받았다. 2013년부터 Carnegie Mellon University에서 데이터베이스 연구실을 이끌며 스스로 설정과 물리 설계를 바꾸는 '자율 데이터베이스'를 연구했고, 데이터베이스 강의를 유튜브에 공개해 왔다. 2020년 기계학습으로 데이터베이스 설정을 자동 조정하는 OtterTune을 공동 창업해 2024년 6월까지 최고경영자를 지냈다.",
+   "track": "투자자가 아님 — 공개된 수익률 없음. 창업한 OtterTune의 매출·매각 성과는 공개되지 않았고, 그의 최고경영자 재임은 2024년 6월에 끝났다.",
+   "why": "데이터베이스 연구자로 10년 넘게 자동 튜닝을 연구하고 직접 회사까지 운영해 본 사람이다. 에이전트가 데이터베이스 사용량을 10~100배 늘릴 때 무엇이 실제로 바뀌는지, 새 데이터베이스가 필요한지를 냉정하게 가른다."
+  }
+ ],
  "company": {
   "name": "ClickHouse",
   "sector": "데이터베이스 · 실시간 분석 · AI 관찰 도구",
@@ -95,6 +105,14 @@
   {
    "label": "PostgreSQL 커밋 목록 — SQL/PGQ 되돌림",
    "url": "https://www.postgresql.org/message-id/E1x3f62-00000003sxD-0vdk@gemulon.postgresql.org"
+  },
+  {
+   "label": "Andy Pavlo 이력(alphaXiv) — Carnegie Mellon 부교수(2019-07~2026-08), OtterTune 공동창업·최고경영자(2020~2024-06)",
+   "url": "https://www.alphaxiv.org/@andy-pavlo"
+  },
+  {
+   "label": "IT Brief — ClickHouse Labs 출범, Pavlo 데이터베이스 연구 부사장 임명",
+   "url": "https://itbrief.co.uk/story/clickhouse-launches-labs-names-andy-pavlo-research-vp"
   }
  ],
  "charts": [

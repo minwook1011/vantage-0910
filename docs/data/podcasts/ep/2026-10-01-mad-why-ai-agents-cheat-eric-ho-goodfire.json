@@ -5,6 +5,16 @@
     "name": "에릭 호(Eric Ho)",
     "role": "해석 가능성 연구소 Goodfire 공동창업자·CEO — 보상 해킹 탐지 논문을 이끔"
   },
+  "guest_profile": [
+    {
+      "name": "에릭 호(Eric Ho)",
+      "title": "Goodfire 공동창업자 겸 최고경영자",
+      "what": "인공지능 모델 내부 활성값을 읽어 감시·디버깅·설계를 돕는 해석 가능성 연구소 Goodfire를 이끈다(샌프란시스코, 비상장). 2026년 2월 시리즈 B 1억 5천만 달러를 기업가치 12억 5천만 달러에 받았고 누적 투자는 2억 달러 이상이다.",
+      "career": "Yale University에서 컴퓨터과학을 전공했다(2016년 졸업). 재학 중 Andrew Myers와 대학생 채용 연결 서비스 RippleMatch를 함께 세워 2023년 말까지 사장 겸 최고기술책임자를 지냈다. 2024년 Tom McGrath(전 Google DeepMind 해석 팀) 등과 Goodfire를 세웠다. 2025년 4월 시리즈 A 5천만 달러에 Anthropic이 처음으로 외부 스타트업에 투자해 참여했다.",
+      "track": "투자자가 아니라 창업자라 공개된 수익률 없음. 회사 성과: 시리즈 A(2025년 4월)에서 10개월 만에 기업가치 12억 5천만 달러 라운드를 마감했다. 매출·고객 수는 공개되지 않았다.",
+      "why": "앞서 스타트업 하나를 7년 넘게 운영한 창업자가 이번엔 연구소를 이끌며 '모델이 속이는 순간'을 내부 신호로 잡는 논문을 냈다. 에이전트 안전이 비용 문제로 바뀌는 지점을 실험 수치로 설명한다."
+    }
+  ],
   "company": {
     "name": "Goodfire",
     "sector": "AI 안전 · 해석 가능성(모델 내부 분석)",
@@ -64,6 +74,14 @@
     {
       "label": "Bailey 외, 'Obfuscated Activations Bypass LLM Latent-Space Defenses'(ICLR 2026) — 탐침 탐지율 100%→0%, 탈옥 성공 90% 유지",
       "url": "https://arxiv.org/abs/2412.09565"
+    },
+    {
+      "label": "Crunchbase — Eric Ho(Goodfire 공동창업자 겸 최고경영자)",
+      "url": "https://crunchbase.com/person/eric-ho-2"
+    },
+    {
+      "label": "Nextomoro — Eric Ho 약력(Yale 컴퓨터과학, RippleMatch 공동창업·사장 겸 최고기술책임자)",
+      "url": "https://nextomoro.com/eric-ho/"
     }
   ],
   "charts": [
