@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "53129499a9df",
+   "kind": "news",
+   "headline": "런던증권거래소그룹, 엔비디아와 손잡고 과거 시세 데이터 분석 속도 높인다 — 그래픽처리장치로 '틱 히스토리' 처리",
+   "bullets": [
+    "런던증권거래소그룹(LSEG)이 10월 14일 엔비디아와 협력해 과거 체결·호가 데이터인 '틱 히스토리' 분석을 빠르게 하겠다고 발표했다.",
+    "핵심은 엔비디아 그래픽처리장치(GPU)로 방대한 시세 데이터 처리를 가속하는 것이다. 로이터·팁랭크스 등 여러 매체가 같은 시각 보도했다.",
+    "엔비디아로서는 금융 데이터 처리까지 가속 컴퓨팅 고객층을 넓히는 사례다. 계약 금액은 보도에 나오지 않았다."
+   ],
+   "summary": "런던증권거래소그룹(LSEG)이 엔비디아와 협력해 시장 데이터 처리 속도를 높인다고 10월 14일 발표했다. 대상은 이 회사의 과거 시세 데이터 상품인 '틱 히스토리'다. 로이터·팁랭크스·디렉터스토크 등은 런던증권거래소그룹이 엔비디아 그래픽처리장치를 써서 이 거대한 데이터의 분석을 가속한다고 전했다.\n\n틱 히스토리는 1996년 1월부터 쌓인 전 세계 장중 체결·호가·시장 깊이 데이터다. 거래소 원본을 나노초 단위로 담은 별도 데이터는 20페타바이트가 넘는다. 은행·헤지펀드·운용사가 매매 전략 검증과 인공지능 모델 학습에 쓴다. 런던증권거래소그룹은 앞서 구글 클라우드·아마존웹서비스와도 이 데이터의 클라우드 처리 협력을 맺었다.\n\n이번 발표로 엔비디아의 가속 컴퓨팅이 금융 시장 데이터 영역까지 넓어진다. 다만 계약 규모, 도입 일정, 속도 개선 폭 같은 숫자는 보도에 나오지 않았다.",
+   "title": "LSEG teams up with NVIDIA for faster market data processing",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNYy1XWU5PM1RfaklzejU4RG1OOEV6YTkyTms1aGNfbTFiSXJmNkdTbkpSeWo2VElLV2ZCMVlta29aSWlGMHR5c3QyQV9hS0xSaDZCUjZxaU1QeGtaNHgwd0l2Nm9tR2ZaaFBRdFd4TF9Jb0lHdnR2eXI4ZzVjaGhDMDRUU0ZPcVdVb2Q1TlpqT2YxaDdoYjVScFZNVVg1YVdkWkE?oc=5",
+   "published": "2026-10-14 15:21 KST",
+   "written": "2026-10-14 15:48 KST"
+  },
+  {
    "id": "d72ed4298b08",
    "kind": "news",
    "headline": "엔비디아, 영국 인공지능 에이전트 안전 연구에 5년간 2억5천만 달러어치 컴퓨팅 기부",
@@ -211,5 +227,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-14 15:22 KST"
+ "updated": "2026-10-14 15:48 KST"
 }
