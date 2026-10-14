@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "4fc72832a301",
+   "kind": "news",
+   "headline": "마이크로소프트, 애저 클라우드 임대 부문 비용 20% 이상 절감 검토 — 회사는 보도 부인",
+   "bullets": [
+    "미국 정보기술 매체 디인포메이션 보도: 마이크로소프트가 애저(클라우드 서버 임대) 부문에서 큰 폭의 비용 절감을 논의 중이다.",
+    "애저 부문 사장이 약 1만 1,500명 규모 조직의 간부들에게 비용을 최소 20% 줄일 방안을 내라고 요구했다.",
+    "외부 업체 계약 해지가 선택지 중 하나로 거론되며, 감원 여부는 보도에 나오지 않았다. 마이크로소프트는 보도를 부인했다."
+   ],
+   "summary": "보도는 사안을 직접 아는 관계자 한 명을 근거로 한다. 줄일 방법은 아직 정해지지 않았고, 제3자 계약 정리가 후보 중 하나로 언급됐다. 인력 감축까지 갈지는 보도에 나오지 않는다.\n\n마이크로소프트는 \"책임 있는 회사라면 좋은 경우와 나쁜 경우 모두를 대비한다\"는 취지로 보도 내용을 부인했다. 일부 보도는 절감 요구를 한 사람을 클라우드·인공지능 총괄 스콧 거스리로 적어, 누가 지시했는지는 매체마다 엇갈린다.\n\n애저는 인공지능 인프라 투자로 덩치를 키우는 중이라, 이번 절감 논의가 데이터센터 투자 속도나 외주 계약에 영향을 주는지가 남은 쟁점이다. 기준 금액과 대상 예산 범위는 공개되지 않았다.",
+   "title": "Market Chatter: Microsoft Eyeing Cutbacks at Azure Cloud Rental Unit",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNYUhNeG9LMzhqbnNtYzUwaXRhMFBJZVBzaWVWaXJnYWJJaDVvRFFIYXJ6SVFmZDQ4SlZ0V3JiMFVRbFhTY0RHYkxBQXNNTEVvR085Z0VOSEdiQm1RR0l1aTNCeHd2RW9BX2U5Tk9DdkxzQWJwWWljZUQydGU5NmtVZUVhZjU5ZkZDU1g3bTlUQ0Q1Qm1LRWJqZGEyU0ItRm5Ud2k3ZDB5N3c?oc=5",
+   "published": "2026-10-14 18:26 KST",
+   "written": "2026-10-15 08:47 KST"
+  },
+  {
    "id": "9b63a28b18a7",
    "kind": "news",
    "headline": "마이크로소프트 애저 소프트웨어 조직에 '비용 20% 절감' 지시 보도 — 회사는 \"사실 아니다\" 부인",
@@ -177,5 +193,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-15 03:46 KST"
+ "updated": "2026-10-15 08:47 KST"
 }
