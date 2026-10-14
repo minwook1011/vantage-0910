@@ -1,0 +1,223 @@
+{
+ "id": "2026-10-12-riskrev-if-not-now-then-when-will-these-ai-companies-go",
+ "title_ko": "Dan Nathan·Guy Adami — 지금이 아니면 언제? AI 기업들의 상장 시점",
+ "guest": {
+  "name": "댄 네이선(Dan Nathan)·가이 아다미(Guy Adami)",
+  "role": "RiskReversal Media 진행자 — CNBC Fast Money 고정 출연 트레이더 출신 두 사람"
+ },
+ "guest_profile": [
+  {
+   "name": "댄 네이선(Dan Nathan)",
+   "title": "RiskReversal Media 공동창업자, RiskReversal Advisors 대표",
+   "what": "투자은행·자문사·비상장사에 자문하는 RiskReversal Advisors를 이끌고, 팟캐스트(On The Tape, Okay Computer, MRKT Call)를 만드는 RiskReversal Media를 공동 창업했다. CNBC Fast Money에 2011년부터 고정 출연한다.",
+   "career": "University of Pennsylvania를 졸업했다. 헤지펀드 SAC·Cheyne·Exis Capital과 Merrill Lynch 주식파생상품 부서에서 주식·옵션 트레이더로 일했고 개인 트레이더로도 활동했다. 2009~2016년 투자은행 대상 대형 옵션 블록 거래 중개를 맡았다. CNBC Options Action에 2009~2019년 고정 출연했다.",
+   "track": "공개된 운용 수익률 없음. 약 28년 경력의 옵션·주식 트레이더로, 방송에서는 주로 하락 위험을 짚는 신중론으로 알려져 있다.",
+   "why": "옵션과 헤지 거래를 오래 한 사람이라 '무엇이 깨질 수 있나'를 먼저 본다. AI 자금 조달 구조와 상장 시장을 위험 관리 시각에서 해석한다."
+  },
+  {
+   "name": "가이 아다미(Guy Adami)",
+   "title": "Private Advisor Group 자문가 지원 담당 이사, CNBC Fast Money 원년 멤버",
+   "what": "뉴저지 Private Advisor Group에서 자문가 지원(Advisor Advocacy) 책임자로 일하고, CNBC Fast Money의 원년 '패스트 머니 5인' 중 한 명이다.",
+   "career": "1986년 Drexel Burnham Lambert에서 시작해 부사장·금 트레이딩 책임자가 됐다. 1996년 Goldman Sachs(J. Aron 원자재 부문) 금 트레이딩 책임자로 옮겼고, 2000년 미국 주식 부문에서 산업재·소재 그룹을 맡았다. 2003년 CIBC World Markets 상무로 옮겼다.",
+   "track": "공개된 운용 수익률 없음. 대형 증권사 원자재·주식 트레이딩 책임자를 지낸 경력이 확인된다.",
+   "why": "금·원자재 트레이더 출신이라 금리·유가·달러를 묶어 읽는 데 강하다. 이 편의 거시 진단(국채 금리와 부채 문제)이 그의 몫이다."
+  }
+ ],
+ "company": {
+  "name": "OpenAI · 애플 · 네오클라우드",
+  "sector": "AI 인프라 · 금리 · 은행",
+  "what": "OpenAI 매출 숫자 논란과 AI 자금 조달, 애플 감산 보도, 금리·은행 실적을 엮은 주간 시장 점검"
+ },
+ "topic": "OpenAI 매출 논란과 네오클라우드 급락, AI 사모 대출의 위험, 애플 부품 감산, 5%대 국채 금리와 은행 실적",
+ "headline": "시장이 최고치인데 AI 상장은 미뤄진다 — '지금 못 하면 언제 하나'",
+ "tldr": [
+  "OpenAI 연간 환산 매출이 시장이 알던 680억~700억 달러가 아닌 약 500억 달러라는 보도에 AI주 급락(CoreWeave 약 -8%, Oracle 약 -6%) — 차이는 주로 협력사 매출 셈법.",
+  "Nathan의 질문: 지수가 최고치인 지금 AI 기업이 상장을 못 하면 언제 하나. 고객사가 빚을 내 칩을 대는 구조(Broadcom 500억·SpaceX 400억 달러 조달 추진)가 위험 신호.",
+  "Adami: 10년물 5.24%·유가 91달러 — 물가보다 세계 부채 문제가 금리를 밀어 올린다. 금리가 내리는 길은 종전 아니면 주가 급락뿐.",
+  "애플 아이폰 18 Pro 부품 주문 15~20% 축소 보도 — 메모리 값 상승으로 100달러 오른 가격이 수요를 깎았다는 분석.",
+  "은행 실적: 주가가 여름 고점 대비 약 10% 내려 기대는 낮지만, 연체율과 경영진 발언이 관건."
+ ],
+ "summary_md": "### 1. 도입 — 금요일에 미리 보는 다음 주\n- 오랜만에 함께 앉은 Dan Nathan과 Guy Adami가 금요일(10월 9일) 아침에 녹음했다. 다룰 거리는 셋이다. 목요일·금요일에 나온 기술주 소식 두 개(애플 부품 주문 축소 보도, OpenAI 매출 숫자 논란), 다음 주 소비자물가·생산자물가 발표와 금리, 그리고 은행 실적이다.\n- Nathan은 OpenAI 소식 하나로 목요일 나스닥이 한 방향으로 약 1.5% 밀렸다고 전한다.\n\n### 2. OpenAI 매출 숫자 — 700억 달러냐 500억 달러냐\n- 대본에서: 시장이 알고 있던 OpenAI 연말 매출 규모는 약 700억 달러였는데, 보도로는 500억 달러라는 숫자가 나왔다. 회사 쪽은 '연간 환산 매출(지금 매출 속도를 1년으로 늘린 값)'을 어떻게 계산하느냐의 문제라고 해명했다.\n- Adami의 반응은 날카롭다. 회사가 생긴 지 얼마 안 됐는데 벌써 숫자를 부풀리는 듯한 회계 논란이 나오는 것 자체가 문제라는 것이다. 돈을 크게 잃는 회사가 AI 흐름 전체의 한가운데에 있는데, **700억 → 500억** 차이는 작지 않다고 했다.\n- Nathan은 일부는 계산 방식의 차이일 뿐이고 10억 달러에서 500억 달러 수준까지 온 성장 자체는 놀랍다고 인정하면서도, 회사가 투자 유치 중에 숫자를 조금씩 흘려 온 방식이 **신뢰를 깎았다**고 봤다.\n\n[[chart:1]]\n\n### 3. 거시 환경 — 금리 5.24%, 달러 강세, 낮은 변동성, 유가 91달러\n- 대본에서: 10년물 국채 금리 약 5.24%(최고 5.33%), 달러지수 약 102.5, 변동성 지수는 16을 못 넘고, 원유는 배럴당 약 91달러다.\n- Adami는 채권시장이 재무장관 Scott Bessent를 화나게 하고 있을 것이라고 했다. Bessent가 '내가 시장을 이긴다'는 식으로 시장에 맞선 뒤 한 달 반 정도 사이에 **10년물 금리가 약 0.6%포인트** 올랐다는 것이다. 정부는 10년물 금리를 낮추는 것을 목표로 삼았지만, 관세부터 지금까지 거의 모든 조치가 반대로 금리를 밀어 올렸다고 Nathan이 덧붙였다.\n- 금리를 낮출 길은 둘뿐이라고 Adami는 본다. 좋은 길은 중동 전쟁이 끝나 유가가 내려가고 채권이 따라 강해지는 것이고, 나쁜 길은 주식이 급락해 안전자산으로 돈이 몰리는 것이다. 물가 지표가 예상보다 낮게 나와도 금리가 오른 적이 있으니, 물가만이 아니라 **세계적인 국가 부채 문제**를 시장이 받아들이는 중이라는 진단이다.\n- 다만 미국 국채가 '덜 나쁜 피난처'라는 생각도 예전만 못하다고 Nathan은 지적했다. 헤지펀드든 외국인이든 적자와 부채를 보면 누가 **미국 국채**를 사려 하겠느냐는 것이다.\n- 연준: 10월 28일 회의에서 금리를 올릴 확률이 한때 약 70%였는데 지금은 약 25%로 내려왔다고 둘은 말한다. 정치적 이유(선거 직전)도 크다고 봤다.\n\n[[chart:2]]\n\n### 4. 애플 — 아이폰 18 Pro 부품 주문 15~20% 축소 보도\n- 대본에서: 닛케이 보도로 애플이 부품 주문을 15~20% 줄였다는 소식에 주가가 약 2% 내렸다. Nathan은 애플이 다른 빅테크처럼 데이터센터에 수천억 달러를 쓰지 않고, AI를 쓰는 통로가 결국 아이폰이라는 이유로 상대적으로 강했다고 설명한다.\n- 하지만 출시 전마다 '교체 대수요'가 온다는 기대가 반복됐고, 지난 실적 때 가이던스가 약해 다음 날 주가가 약 8% 빠졌던 일을 사람들이 잊었다고 꼬집었다. 이번 실적은 **새 최고경영자가 혼자 맡는 첫 실적 발표**라 가이던스가 관건이다. 접히는 모델도 단기에는 기대에 못 미칠 것이라고 봤다.\n- Adami는 차트로 본다. 봄 저점(약 250달러)부터 이어진 상승 추세선을 아래로 깨면 6월 저점인 **약 275달러**까지 밀릴 수 있다고 했다. 다만 예전처럼 애플이 시장 전체를 끌고 가는 시기는 지났다고 덧붙였다.\n\n### 5. 네오클라우드·사모 대출 — '지금 아니면 언제 상장하나'\n- 대본에서: OpenAI 소식에 AI 관련주가 모두 크게 빠졌다. Oracle이 가장 크게 맞았다가 금요일 아침 약 5% 반등했지만, CoreWeave는 약 7.5% 빠진 뒤 반등이 1% 남짓에 그쳤다.\n- Nathan은 Nvidia가 투자한 네오클라우드 Nscale이 상장을 미뤘다고 말하며 묻는다. S&P 500과 나스닥이 최고치이고 이익 증가가 Nvidia·Micron에 몰려 있는 지금 AI 상장을 못 하면 언제 하느냐는 것이 이 편 제목인 **'지금 아니면 언제'**다. OpenAI는 내년 상반기 상장을 준비하는 것으로 보인다고 했다.\n- Adami는 Blackstone·Apollo·Blue Owl 같은 **사모 대출 회사 주가**가 봄 저점에서 50~75% 반등했다가 그 상당 부분을 되돌렸다고 짚었다(Blackstone 약 113달러, 봄 저점 약 106달러). 이들이 GPU를 담보로 한 대출의 핵심 자금줄이라는 점에서 '탄광의 카나리아'라는 것이다.\n- Nathan은 이번 주 Oracle과 Broadcom이 Apollo·Blackstone에서 OpenAI용 칩을 위해 약 500억 달러를, SpaceX가 400억 달러를 조달하려 한다는 보도를 들며, **고객사가 빚을 내 공급하는 구조**를 문제 삼았다. 목요일의 급락이 2027년 1분기에 볼 일의 예고편일 수 있다고 했다.\n\n### 6. 에너지 — 전쟁 프리미엄과 비중 확대 가능성\n- 대본에서: 이란과 그 대리 세력이 사우디 민간 공항과 카타르를 공격하는 등 긴장이 이어져 유가에 프리미엄이 붙어 있다. Adami는 선거가 지나면 오히려 긴장이 커질 수 있다는 소수 의견도 소개했다.\n- 정유주(Valero·Marathon Petroleum·Phillips 66)와 Chevron·Exxon, 에너지 ETF가 최고치 근처다. Adami는 S&P 500에서 **에너지 비중이 4%도 안 되는데** AI 흐름이 꺾이면 이 비중이 두 배가 될 수도 있지 않느냐는 질문을 던졌다.\n\n### 7. 은행 실적 — 기대는 낮아졌지만 말이 중요\n- 대본에서: 화요일 JPMorgan·Goldman Sachs·Citi·BlackRock, 수요일 Bank of America·Morgan Stanley가 발표한다. 은행주는 여름 고점 이후 약 10% 내렸고, JPMorgan은 8월 최고치 약 366.5달러에서 약 330달러로 내려왔다.\n- Adami는 주가가 빠져 기대가 낮으니 출발 조건은 좋지만, 실적 전 사람들이 몰렸다가 경영진 발언에 실망할 가능성도 크다고 봤다. 소비는 이어지지만 **연체율**이 걱정스럽고, 금리 상승 끝에 신용 사고가 나면 은행에 좋지 않다고 했다.\n- Nathan은 개인 AI 비서가 더 높은 예금 금리를 찾아 돈을 옮기면 은행이 최대 **5,000억 달러**를 잃을 수 있다는 FT 기사를 소개했다. 결론은 주가지수가 최고치여도 선거 전후로 주식·금리 변동성이 커질 수 있다는 것이다.",
+ "insights_md": "### 투자 관점\n- **이 편의 쓸모**: 시장이 최고치인데도 AI 자금 조달의 균열(OpenAI 매출 논란, 사모 대출 주가 되돌림, 상장 지연)을 어떻게 읽을지 두 베테랑 트레이더의 시각을 들을 수 있다. 핵심은 __'좋을 때 못 파는 자산은 나쁠 때 더 못 판다'__는 문제 제기다.\n- **연결되는 상장사·섹터**\n  - AI 인프라 고객 쪽: Oracle(ORCL), CoreWeave(CRWV), Nvidia(NVDA), Broadcom(AVGO). OpenAI의 숫자가 이들의 수주 잔고 신뢰도와 바로 이어진다.\n  - 자금줄: Apollo(APO), Blackstone(BX), Blue Owl(OWL) — GPU 담보 대출과 데이터센터 금융의 **사모 대출** 주체.\n  - 애플 공급망: 메모리(삼성전자·SK하이닉스·Micron), 카메라 모듈(LG이노텍), 조립(Hon Hai). 부품 주문 축소는 10~11월 출하에 먼저 반영된다.\n  - 에너지: Chevron(CVX), Exxon Mobil(XOM), Valero(VLO), Marathon Petroleum(MPC), Phillips 66(PSX).\n  - 은행: JPMorgan(JPM), Bank of America(BAC), Goldman Sachs(GS), Morgan Stanley(MS).\n- **수치 정리**: 10년물 약 5.24%, 원유 약 91달러, 연준 10월 인상 확률 약 70%→25%(대본), OpenAI 연간 환산 매출 약 500억 달러(외부 보도).\n- **반론·리스크**: OpenAI 차이는 상당 부분 **회계 기준 차이**(클라우드 협력사를 통한 매출을 총액으로 셀지 여부)라는 해석이 많다. 수요가 줄었다는 뜻은 아니라는 반론이다. Nscale 상장 연기는 외부 보도로 확인하지 못했다.\n- **체크포인트**: 10월 말 빅테크 실적의 설비투자 가이던스, OpenAI가 말한 연말 700억 달러 달성 여부, Oracle 신용부도스와프(CDS) 수준, 10월 28일 연준 회의, 11월 초 중간선거 전후 금리 변동성.",
+ "deep_md": "### 1. 팩트 체크 — OpenAI 매출 논란 (외부 자료)\n- FT가 10월 8일 보도했고 CNBC가 확인한 내용은 이렇다. OpenAI가 투자자에게 밝힌 9월 말 연간 환산 매출은 **약 500억 달러**로, 9월 말 널리 알려진 680억 달러(일부는 700억 달러)보다 낮다.\n- 차이의 원인은 셈법이다. 680억 달러는 클라우드 협력사를 통한 매출을 총액으로 넣은 숫자로, Anthropic이 AWS·Google Cloud를 통한 판매를 전액 매출로 세는 방식과 맞춘 것이다. OpenAI 자체 기준으로는 협력사 몫을 빼고 센다.\n- OpenAI는 3분기 연간 환산 매출 증가율이 전체 77%, 기업용 107%였다고 밝혔다. Bloomberg에 따르면 자체 기준으로도 연말 700억 달러 이상을 기대한다. 대본의 '700억→500억'은 방향은 맞지만, 같은 기준의 숫자가 깎인 것이 아니라 **기준이 다른 숫자**였다는 점이 빠져 있다.\n\n[[chart:3]]\n\n### 2. 시장 반응과 밸류체인\n- CNBC 집계로 10월 8일 Nvidia 약 -3%, Oracle 약 -6%, CoreWeave 약 -8%였다. 대본의 'Oracle이 가장 크게 맞았다'와 달리 하락률은 CoreWeave가 더 컸다. Oracle은 OpenAI가 최대 고객이라 숫자 하나에 가장 민감한 대형주다.\n- Oracle의 5년 CDS(부도 보험료)는 10월 8일 약 257bp로 2009년 이후 최고라는 보도가 있다(IFR 인용, 한 곳만 확인). S&P는 7월 Oracle 신용등급을 BBB-로 낮췄다.\n- 자금 조달: WSJ 보도로 **Broadcom이 OpenAI 맞춤형 칩 자금 500억 달러 이상**을 Apollo·Blackstone 등과 협의 중이고, SpaceX는 Apollo 주도의 400억 달러를 추진한다. Oracle은 1기가와트 데이터센터 자금을 Apollo·Goldman Sachs와 협의 중이다. 모두 아직 계약 전이다.\n\n[[chart:4]]\n\n### 3. 애플 — 숫자의 맥락\n- 닛케이(10월 9일): 10월 부품 주문이 원래 요청보다 **최소 15%** 적고, 한 관계자는 15~20%라고 했다. 대본 숫자와 맞는다.\n- 이유로 가격이 꼽힌다. AI 수요로 메모리 값이 뛰면서 Pro 모델이 각각 100달러 오른 1,199달러·1,299달러에 나왔다. 기본형 아이폰 18과 새 Air는 2027년 초로 미뤄졌다. 메모리 가격 상승이 한국 메모리 회사에는 이익이지만, 완제품 수요를 깎는 **역풍**이 되는 구조다.\n\n[[chart:5]]\n\n### 4. 반론과 리스크\n- **상장 연기 주장**: 대본은 Nscale이 상장을 미뤘다고 했지만, 찾아본 보도로는 9월 18일 상장 신청 후 '앞으로 몇 주 안에 상장 목표'라는 내용뿐이고 연기는 확인 못 했다. 같은 시기 연기한 곳은 Holtec(원전)과 SoftBank의 SB Energy다. Nscale은 상반기 매출 1억 4,060만 달러에 손실 약 10억 달러였다.\n- **금리**: 연준은 9월 16일 만장일치로 0.25%포인트 올려 3.75~4%가 됐다. 10월 인상 확률은 9일 기준 약 16~18%로, 대본의 25%보다 낮다. 10월 13일 10년물은 약 5.19~5.2%, WTI는 91~94달러, 브렌트는 약 105달러였다.\n- **은행 실적 첫 결과**: 녹음 뒤인 10월 13일 JPMorgan이 실적을 냈다. 한 보도는 주당순이익이 예상에 못 미쳤다고 전했지만 다른 집계와 숫자가 엇갈려, 이 편에서는 확인 못 한 것으로 둔다. 진행자들이 말한 '경영진 발언이 핵심'이라는 기준으로 보면, 이번 주 Bank of America·Morgan Stanley의 소비자 연체율과 투자은행 수수료 전망이 다음 시험대다.\n- **에너지 비중 주장**: Adami가 말한 'S&P 500 내 에너지 비중 4% 미만'은 이번에 따로 확인하지 못했다. 다만 Kitco 보도로 호르무즈 해협 위험이 금속·유가에 계속 반영되고 있어, 전쟁 프리미엄이 쉽게 빠지지 않는다는 진행자들의 진단과 방향은 맞는다.\n- **회의론의 한계**: 두 진행자는 오래전부터 AI 흐름에 신중했다. 같은 숫자를 '수요는 탄탄하다'로 읽는 애널리스트도 많다(77% 성장). 이 편은 **약세 쪽 시각**이 강하다는 점을 감안해야 한다.\n\n### 5. 앞으로 볼 것\n- 10월 말 Microsoft·Alphabet·Amazon·Meta 실적: 설비투자 가이던스를 유지·상향하는지.\n- OpenAI 연말 연간 환산 매출 700억 달러(자체 기준) 달성 여부와 추가 자금 조달 조건.\n- Broadcom·SpaceX 사모 대출이 실제로 계약되는지, 금리 조건은 어떤지.\n- Oracle CDS, Apollo·Blackstone·Blue Owl 주가 — **사모 대출 시장의 체온계**.\n- 애플 실적(새 최고경영자 첫 단독 발표)의 연말 가이던스, 11월 이후 추가 감산 여부.\n- Nscale 상장(NYSE: NSCL) 실제 진행 여부 — 상장이 되면 Nvidia의 약 10억 달러 전환사채 투자도 11월 중순 마무리된다. 상장이 미뤄지면 진행자들의 '좋을 때 못 파는 자산' 우려가 맞아 들어가는 신호가 된다.",
+ "sources": [
+  {
+   "label": "CNBC — 10월 8일 OpenAI 매출 보도 후 Nvidia·Oracle·CoreWeave 하락률, 500억 대 680억 달러",
+   "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html"
+  },
+  {
+   "label": "Yahoo Finance — 680억~700억 달러와 500억 달러 차이는 협력사 매출 셈법 차이",
+   "url": "https://finance.yahoo.com/technology/ai/articles/openai-revenue-appears-20-billion-100435362.html"
+  },
+  {
+   "label": "TechCrunch — OpenAI 매출이 기존 예상보다 200억 달러 적다는 보도 정리",
+   "url": "https://techcrunch.com/2026/10/08/openais-revenue-is-reportedly-20-billion-less-than-previously-projected/"
+  },
+  {
+   "label": "Investing.com(닛케이 인용) — 애플 아이폰 18 Pro 부품 주문 축소",
+   "url": "https://www.investing.com/news/stock-market-news/apple-cuts-iphone18-pro-component-orders-amid-sluggish-demand-nikkei-4940267"
+  },
+  {
+   "label": "Fortune — Pro 모델 100달러 인상(1,199·1,299달러), 메모리 가격 상승",
+   "url": "https://fortune.com/2026/10/10/apple-iphone-18-pro-orders-cut-price-hike-memory-chip-shortage/"
+  },
+  {
+   "label": "investingLive(WSJ 인용) — Broadcom 500억 달러 이상 OpenAI 칩 자금, SpaceX 400억 달러, Oracle 자금 조달",
+   "url": "https://investinglive.com/stocks/wsj-broadcom-seeks-over-50-billion-for-openai-chips-as-oracle-spacex-chase-ai-debt-deals/"
+  },
+  {
+   "label": "Renaissance Capital — Nscale 상장 신청, Holtec 상장 연기",
+   "url": "https://www.renaissancecapital.com/IPO-Center/News/121778/us-ipo-weekly-recap-data-center-developer-nscale-files-while-holtec"
+  },
+  {
+   "label": "CNBC — 9월 16일 연준 0.25%포인트 인상, 3.75~4%",
+   "url": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html"
+  },
+  {
+   "label": "Kitco — 10월 13일 10년물 약 5.2%, WTI·브렌트 가격",
+   "url": "https://www.kitco.com/news/article/2026-10-13/gold-firms-dollar-yields-and-oil-retreat-cpi-kitco-am-report"
+  },
+  {
+   "label": "Yahoo Finance — Oracle CDS 약 200bp, 투자등급 지수 53bp, S&P 신용등급 BBB-",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/oracle-stock-drops-2-3-185300368.html"
+  },
+  {
+   "label": "CNBC — Dan Nathan 소개(경력·출연)",
+   "url": "https://www.cnbc.com/dan-nathan/"
+  },
+  {
+   "label": "CNBC — Guy Adami 소개",
+   "url": "https://www.cnbc.com/guy-adami/"
+  },
+  {
+   "label": "Wikipedia — Guy Adami 경력(Drexel·Goldman Sachs·CIBC)",
+   "url": "https://en.wikipedia.org/wiki/Guy_Adami"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "OpenAI 연간 환산 매출 — 알려진 숫자와 실제 보고",
+   "sub": "억 달러 · 2026년 9월 말 기준",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "9월 말 널리 알려진 숫자",
+    "투자자에게 밝힌 숫자"
+   ],
+   "series": [
+    {
+     "name": "연간 환산 매출",
+     "values": [
+      680,
+      500
+     ]
+    }
+   ],
+   "note": "약 180억 달러 차이 — 수요 감소가 아니라 협력사 매출을 총액으로 셀지의 차이라는 해석이 많다",
+   "source": "CNBC(FT 보도 확인)"
+  },
+  {
+   "at": "summary",
+   "title": "10월 연준 금리 인상 확률 — 진행자들이 본 변화",
+   "sub": "% · 금리선물 기준(대본에서 말한 수치)",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "약 한 달 전",
+    "녹음 시점(10월 9일)"
+   ],
+   "series": [
+    {
+     "name": "10월 인상 확률",
+     "values": [
+      70,
+      25
+     ]
+    }
+   ],
+   "note": "인상 기대가 크게 줄었지만 10년물 금리는 5.2%대에 머문다 — 채권시장이 연준보다 앞서 움직인다는 것이 요지",
+   "source": "대본(Dan Nathan·Guy Adami)"
+  },
+  {
+   "at": "deep",
+   "title": "OpenAI 3분기 연간 환산 매출 증가율",
+   "sub": "% · 2026년 3분기, 회사가 투자자에게 밝힌 수치",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "전체",
+    "기업용"
+   ],
+   "series": [
+    {
+     "name": "증가율",
+     "values": [
+      77,
+      107
+     ]
+    }
+   ],
+   "note": "숫자 논란과 별개로 성장 속도는 빠르다 — 기업용이 두 배 넘게 늘어 연말 700억 달러 기대의 근거가 된다",
+   "source": "CNBC"
+  },
+  {
+   "at": "deep",
+   "title": "10월 8일 AI 관련주 하락률",
+   "sub": "% · OpenAI 매출 보도 당일",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "CoreWeave",
+    "Oracle",
+    "Nvidia"
+   ],
+   "series": [
+    {
+     "name": "하루 등락률",
+     "values": [
+      -8,
+      -6,
+      -3
+     ]
+    }
+   ],
+   "note": "OpenAI 의존도가 높을수록 더 크게 빠졌다 — 근사치(약)",
+   "source": "CNBC"
+  },
+  {
+   "at": "deep",
+   "title": "아이폰 18 Pro 시작 가격 인상",
+   "sub": "달러 · 전작 대비",
+   "type": "bar",
+   "unit": "달러",
+   "labels": [
+    "Pro",
+    "Pro Max"
+   ],
+   "series": [
+    {
+     "name": "전작",
+     "values": [
+      1099,
+      1199
+     ]
+    },
+    {
+     "name": "아이폰 18",
+     "values": [
+      1199,
+      1299
+     ]
+    }
+   ],
+   "note": "두 모델 모두 100달러 인상 — 메모리 값 상승이 가격과 수요에 그대로 옮겨 붙었다",
+   "source": "Fortune"
+  }
+ ],
+ "tg": "[RiskReversal] 지금이 아니면 언제? AI 기업들의 상장 시점\n· OpenAI 연간 환산 매출 약 500억 달러 보도(알려진 680억~700억) — CoreWeave 약 -8%, Oracle 약 -6%\n· 지수 최고치인데 AI 상장은 미뤄진다 — 고객사가 빚 내 칩 공급(Broadcom 500억 달러 조달 추진)\n· 10년물 5.24%·유가 91달러, 애플 아이폰 18 Pro 부품 15~20% 감산 보도\n· 외부: 차이는 주로 셈법, OpenAI는 3분기 77% 성장·연말 700억 달러 기대",
+ "tg_body": "Dan Nathan과 Guy Adami는 OpenAI 연간 환산 매출이 시장이 알던 700억 달러가 아닌 500억 달러라는 보도를 가장 먼저 다뤘다. Adami는 생긴 지 얼마 안 된 회사에서 벌써 숫자 논란이 나온 것이 문제라고 봤고, Nathan은 이 소식에 Oracle·CoreWeave 등 AI주가 일제히 빠졌다고 전했다.\n\n제목의 질문은 지수가 최고치인 지금 AI 기업이 상장을 못 하면 언제 하느냐다. Nathan은 Broadcom이 OpenAI용 칩 자금 500억 달러, SpaceX가 400억 달러를 사모 대출로 조달하려는 구조를 위험 신호로 봤다. Adami는 Blackstone·Apollo 주가가 봄 이후 반등분을 상당 부분 되돌린 것을 경고로 읽었다.\n\n거시로는 10년물 5.24%, 유가 91달러를 짚었다. Adami는 물가보다 세계 부채 문제가 금리를 밀어 올리고, 금리가 내릴 길은 종전 아니면 주가 급락뿐이라고 했다.\n\n애플은 아이폰 18 Pro 부품 주문을 15~20% 줄였다는 보도에 약 2% 내렸다. 은행주는 여름 고점 대비 약 10% 내려 기대가 낮지만 연체율과 경영진 발언이 관건이라고 봤다.\n\n외부 자료로 보면 숫자 차이는 주로 협력사 매출을 총액으로 셀지의 셈법 차이이고, OpenAI는 3분기 77% 성장과 연말 700억 달러를 제시했다. Nscale 상장 연기는 확인되지 않았다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-10-14 16:00 KST"
+}
