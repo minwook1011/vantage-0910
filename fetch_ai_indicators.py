@@ -668,9 +668,12 @@ def c_ornn(ctx):
 CDS_NAMES = [("ALPHINC", "Alphabet", ["GOOGL"]), ("AMZN", "Amazon", ["AMZN"]), ("MSFT", "Microsoft", ["MSFT"]),
              ("METAPL", "Meta", ["META"]), ("NVIDIA", "NVIDIA", ["NVDA"]), ("ORCLE", "Oracle", ["ORCL"]),
              ("COREWEI", "CoreWeave", ["CRWV"]), ("BROINC", "Broadcom", ["AVGO"]), ("APLINC", "Apple", []),
-             ("IBM", "IBM", []), ("INTC", "Intel", []), ("TESLINC", "Tesla", [])]
+             ("IBM", "IBM", []), ("INTC", "Intel", []), ("TESLINC", "Tesla", []),
+             ("AMD", "AMD", ["AMD"]), ("DELLN", "Dell", ["DELL"]), ("EQIX", "Equinix", ["EQIX"])]
 CDS_BIGTECH = ["Alphabet", "Amazon", "Microsoft", "Meta"]
-CDS_AI = ["NVIDIA", "Oracle", "CoreWeave", "Broadcom"]
+# 오라클·네오클라우드·데이터센터 — AI 데이터센터를 빚으로 짓는 쪽. ICE 단일물 CDS 에 있는 네오클라우드는 코어위브뿐(2026-10-15 확인)
+CDS_NEO = ["Oracle", "CoreWeave", "Equinix"]
+CDS_AI = ["NVIDIA", "Broadcom", "AMD", "Intel", "Dell"]
 RECOVERY = 0.4  # 회수율 가정
 RISK_FREE = 0.04
 
@@ -693,7 +696,7 @@ def cds_spread_bp(price, coupon_bp, years):
     return round((lo + hi) / 2 * 10000, 1)
 
 
-@collector("cds_bigtech", "cds_ai", "cds_table", "cds_gap")
+@collector("cds_bigtech", "cds_neocloud", "cds_ai", "cds_table", "cds_gap")
 def c_cds(ctx):
     rows = jget("https://www.ice.com/api/cds-settlement-prices/icc-single-names")
     by_ticker = {}
@@ -744,9 +747,12 @@ def c_cds(ctx):
     ctx.put(dict(common, id="cds_bigtech", group="credit", label="빅테크 CDS 추이", related=["GOOGL", "AMZN", "MSFT", "META"],
                  lines=merge_lines(ctx.old_lines("cds_bigtech"), [line_of(l, lines.get(l)) for l in CDS_BIGTECH if l in spreads]),
                  caveat="CDS는 그 회사 채권의 부도 위험을 사고파는 보험료입니다. 숫자가 오르면 시장이 위험을 더 크게 본다는 뜻. ICE가 과거치를 공개하지 않아 " + obs_date + "부터 매일 쌓습니다."))
-    ctx.put(dict(common, id="cds_ai", group="credit", label="AI 차입 크레딧 CDS", related=["NVDA", "ORCL", "CRWV", "AVGO"],
+    ctx.put(dict(common, id="cds_neocloud", group="credit", label="오라클·네오클라우드 CDS 추이", related=["ORCL", "CRWV", "EQIX"], scale="log",
+                 lines=merge_lines(ctx.old_lines("cds_neocloud"), [line_of(l, lines.get(l)) for l in CDS_NEO if l in spreads]),
+                 caveat="AI 데이터센터를 빚으로 짓는 쪽입니다. 코어위브가 몇 배 높아 세로축은 로그 눈금(같은 간격 = 같은 배율)입니다. 9/22부터 매일 쌓은 결제가격으로 그립니다(에퀴닉스는 10/14 결제분부터). ICE 단일물 CDS에 있는 네오클라우드는 코어위브뿐이라 네비우스·아이렌 등은 없습니다."))
+    ctx.put(dict(common, id="cds_ai", group="credit", label="AI 칩·서버 CDS 추이", related=["NVDA", "AVGO", "AMD", "DELL"],
                  lines=merge_lines(ctx.old_lines("cds_ai"), [line_of(l, lines.get(l)) for l in CDS_AI if l in spreads]),
-                 caveat="AI 투자를 빚으로 키우는 쪽(오라클·코어위브)과 칩을 파는 쪽(엔비디아·브로드컴)의 신용 위험을 비교합니다."))
+                 caveat="AI 장비를 파는 쪽의 신용 위험입니다. 빚으로 짓는 쪽(오라클·코어위브)과 벌어지는지 비교해 봅니다(AMD·델은 10/14 결제분부터)."))
     gap = round(spreads.get("Oracle", 0) - spreads.get("Microsoft", 0), 1) if "Oracle" in spreads and "Microsoft" in spreads else None
     ctx.put({"id": "cds_gap", "group": "credit", "label": "오라클 − 마이크로소프트 CDS 격차", "unit": "bp", "type": "line", "digits": 0,
              "cadence": "매 영업일", "source": src, "source_url": url, "method": "computed", "related": ["ORCL", "MSFT"],
@@ -1110,7 +1116,7 @@ BOARDS = {
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
     "gpu": ["gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
-    "credit": ["cds_bigtech", "cds_ai", "cds_table"],   # 오라클−MS 격차 카드는 뺌(2026-10-07 사용자) — 빅테크 추이를 세로로 길게
+    "credit": ["cds_bigtech", "cds_neocloud", "cds_ai", "cds_table"],   # 2026-10-15: 왼쪽 빅테크·오른쪽 오라클·네오클라우드 둘 다 크게, 아래 칩·표   # 오라클−MS 격차 카드는 뺌(2026-10-07 사용자) — 빅테크 추이를 세로로 길게
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
     "bench": ["arena_agent_rank", "arena_agent_labs", "arena_agent_cost", "arena_text_rank"],
@@ -1136,7 +1142,8 @@ DESCS = {
     "gpu_h100_index": "H100 GPU 1장을 1시간 빌리는 값을 실제 체결 거래로 매일 정산한 지수. AI 연산 자원의 현재 시세.",
     "gpu_index_multi": "같은 체결 기준 지수를 GPU 세대별로 비교. 신형이 오르는 동안 구형이 눌리는지 본다.",
     "cds_bigtech": "빅테크 회사채의 부도 위험을 사고파는 보험료(5년물 CDS, bp). 오르면 시장이 그 회사 빚을 더 위험하게 본다는 뜻.",
-    "cds_ai": "AI 투자를 빚으로 키우는 쪽(오라클·코어위브)과 칩을 파는 쪽(엔비디아·브로드컴)의 신용 위험 비교.",
+    "cds_neocloud": "AI 데이터센터를 빚으로 짓는 오라클·코어위브·에퀴닉스의 5년물 CDS(bp). 빅테크보다 몇 배 높고, 오르면 AI 인프라 차입을 시장이 위험하게 본다는 뜻.",
+    "cds_ai": "AI 칩·서버를 파는 엔비디아·브로드컴·AMD·인텔·델의 신용 위험. 빚으로 짓는 쪽(오라클·코어위브)과 비교.",
     "cds_gap": "오라클 CDS에서 마이크로소프트 CDS를 뺀 값. AI 데이터센터 차입에 시장이 매기는 추가 위험 프리미엄.",
     "cds_table": "추적 중인 빅테크·AI 기업의 오늘 5년물 CDS와 전일 대비 변화.",
     "gpu_cloud_multi": "GPU 세대별 클라우드 임대 중앙가. 신형이 나오며 구형 가격이 얼마나 빨리 내려가는지.",

@@ -79,9 +79,15 @@ def _xaxis(ax, span_days):
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
 
 
-def line(name, title, sub, series, digits=2, unit="", since_days=None, fill=False, bands=None):
-    """series = [(이름, [(날짜문자열, 값), ...]), ...] — 끝 점에 최신값 표시"""
+def line(name, title, sub, series, digits=2, unit="", since_days=None, fill=False, bands=None, log=False):
+    """series = [(이름, [(날짜문자열, 값), ...]), ...] — 끝 점에 최신값 표시. log=True 면 세로축 로그 눈금"""
     fig, ax = _fig(title, sub)
+    if log:
+        from matplotlib.ticker import FuncFormatter, LogLocator
+        ax.set_yscale("log")
+        ax.yaxis.set_major_locator(LogLocator(base=10, subs=(1, 2, 5)))
+        ax.yaxis.set_minor_locator(LogLocator(base=10, subs=()))
+        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:,.0f}"))
     cut = date.today() - timedelta(days=since_days) if since_days else None
     x0, x1 = None, None
     if bands:

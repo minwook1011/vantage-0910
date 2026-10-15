@@ -19,7 +19,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
   python tg_notify.py --due      # 지금 보낼 게 있으면 "yes" — 워크플로가 그래프 도구 설치 여부를 정할 때
-  python tg_notify.py --force all|gpu|openrouter|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
+  python tg_notify.py --force all|gpu|cds|openrouter|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
 """
 import json
 import os
@@ -152,6 +152,35 @@ def gpu():
                "\n<i>1시간 임대 체결가 · 전일 대비</i>")
         return [img], cap
     return (f"gpu:{last}", gate, build)
+
+
+def cds():
+    """빅테크·AI CDS(2026-10-15 사용자) — ICE 결제가격이 들어오는 매일 아침(약 06:20)에 그래프 2장 + 오늘 표.
+    기준일(as_of) 다음 날 06:20 이후, 새 기준일이 들어왔을 때 한 번."""
+    S = ai_series()
+    tab = S.get("cds_table") or {}
+    asof = tab.get("as_of")
+    if not asof or not tab.get("rows"):
+        return None
+    gate = at(date.fromisoformat(asof) + timedelta(days=1), 6, 20)
+
+    def build():
+        from tg_charts import line
+        imgs = []
+        for sid, title, log in (("cds_bigtech", "빅테크 CDS", False), ("cds_neocloud", "오라클·네오클라우드 CDS", True), ("cds_ai", "AI 칩·서버 CDS", False)):
+            ls_ = [l for l in (S.get(sid) or {}).get("lines") or [] if len(l.get("points") or []) > 1]
+            if ls_:
+                imgs.append(line(sid, title, f"5년물 · bp · ICE 결제가격 · {asof} 기준" + (" · 로그 눈금" if log else ""),
+                                 [(l["label"], [(p["date"], p["value"]) for p in l["points"]]) for l in ls_], digits=0, log=log))
+        rows = []
+        for r in tab["rows"]:
+            c = r.get("chg")
+            mark = "▫️" if c is None or abs(c) < 0.05 else ("🔺" if c > 0 else "🔻")
+            rows.append(f"{mark} {esc(r['name'])} <b>{r['bp']:,.1f}</b>" + (f" ({c:+.1f})" if c is not None else ""))
+        cap = (f"🛡 <b>빅테크·AI CDS (5년물)</b> · {asof[5:].replace('-', '/')} 결제 · {stamp(tab.get('updated_at'))} 갱신\n"
+               + "\n".join(rows) + "\n<i>bp · 괄호는 전일 대비 · 오르면 시장이 그 회사 빚을 더 위험하게 본다는 뜻</i>")
+        return imgs, cap
+    return (f"cds:{asof}", gate, build)
 
 
 def span(ws):
@@ -468,7 +497,7 @@ def jp_monthly():
     return out
 
 
-ITEMS = {"gpu": gpu, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
+ITEMS = {"gpu": gpu, "cds": cds, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
 
 
 def collect():
