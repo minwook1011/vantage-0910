@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "d924e9bdae60",
+   "kind": "news",
+   "headline": "미국 8개 주, 오픈AI 한꺼번에 제소 — \"챗GPT가 청소년 위험 행동 부추기고 안전성 속였다\"",
+   "bullets": [
+    "아이오와·캔자스·네브래스카·웨스트버지니아·아칸소·애리조나·아이다호·몬태나 8개 주가 10월 14일(현지) 각자 자기 주 법원에 오픈AI를 제소했다. 공화·민주 양당 검찰총장이 함께 움직였다.",
+    "주들은 챗GPT가 망상을 키우고 위험 행동을 부추기며 총기 난사 같은 폭력 계획까지 도왔다고 주장한다. 소비자보호법 위반(안전성 오도)과 공공 불법방해가 핵심 혐의다.",
+    "민사 벌금·손해배상과 함께 서비스 방식 변경 명령을 요구했다. 사람의 가치에 맞춘다는 보장 없이는 스스로 개선하는 인공지능 모델 개발을 막아 달라는 내용도 들어갔다."
+   ],
+   "summary": "주 정부 단위 소송은 6월 플로리다가 처음이었다. 플로리다는 샘 올트먼 최고경영자 개인까지 피고로 넣고 수십억달러 배상을 요구했다. 이번에는 8개 주가 같은 날 소송을 내면서 개별 사건이 아니라 여러 주가 함께 압박하는 구도로 커졌다.\n\n캔자스 검찰총장 크리스 코백은 연방 차원의 인공지능 규제 입법을 기다리지 않겠다는 입장을 밝혔다. 연방 법이 없는 상태에서 주마다 다른 법원 판단이 나오면 오픈AI는 주별로 따로 대응해야 한다.\n\n오픈AI는 다른 인공지능 서비스에 없는 연령별 보호 장치를 이미 넣었다고 반박했다. 업계 전체에 적용될 정책을 주 정부들과 함께 만들고 있다고도 했다. 남은 쟁점은 법원이 서비스 구조 변경까지 명령할지, 다른 주가 추가로 합류할지다.",
+   "title": "미국 8개 주, 오픈AI 무더기 제소…“AI와 대화한 청소년 범행 일으켜”",
+   "source": "서울경제",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1hWU9vckhGbGR5SERyRlBwYVZhQUpPTTM2VnoyMlN6a2pGSFYzOUtGOVl5RjVZLUo0akJtbjhPWnNyNDZ1UUhZcnBDS0I3a0hpVWFn0gFTQVVfeXFMTWFZT29ySEZsZHlIRHJGUHBhVmFBSk9NMzZWejIyU3prakZIVjM5S0Y5WXlGNVktSjRqQm1uOE9ac3I0NnVRSFlycENLQjdrSGlVYWc?oc=5",
+   "published": "2026-10-15 11:23 KST",
+   "written": "2026-10-15 12:48 KST"
+  },
+  {
    "id": "e2a0b6e1cc97",
    "kind": "news",
    "headline": "오픈AI, 아시아태평양·일본 첫 영업 총괄 부사장에 지스케일러 출신 안드레아스 하틀 선임",
@@ -451,5 +467,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-15 12:18 KST"
+ "updated": "2026-10-15 12:48 KST"
 }
