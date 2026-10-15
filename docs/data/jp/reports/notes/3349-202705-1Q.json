@@ -30,31 +30,97 @@
   "line": "주당순이익이 애널리스트 예상을 1.2% 넘고 회사 계획 진척률도 5년 평균보다 1.3%p 앞서 '부합' — 다만 매출은 예상보다 1.6% 적었다",
   "basis": "컨센서스(야후 집계) + 회사 계획 대비 진척률",
   "checks": [
-   {"item": "분기 주당순이익", "actual": "104.11엔", "base": "컨센서스 102.8엔(2명)", "diff": "+1.2%", "tone": "flat"},
-   {"item": "6~8월 매출", "actual": "2,867억엔", "base": "컨센서스 2,912억엔(7명)", "diff": "−1.6%", "tone": "dn"},
-   {"item": "6~8월 영업이익", "actual": "120억엔", "base": "전년 같은 분기 116.5억엔", "diff": "+3.1%", "tone": "up"},
-   {"item": "경상이익 진척률(6~11월 계획 대비)", "actual": "57.6%", "base": "5년 평균 진척률 56.3%", "diff": "+1.3%p", "tone": "flat"},
-   {"item": "영업이익률", "actual": "4.2%", "base": "전년 같은 분기 4.3%", "diff": "−0.1%p", "tone": "flat"}
+   {
+    "item": "분기 주당순이익",
+    "actual": "104.11엔",
+    "base": "컨센서스 102.8엔(2명)",
+    "diff": "+1.2%",
+    "tone": "flat"
+   },
+   {
+    "item": "6~8월 매출",
+    "actual": "2,867억엔",
+    "base": "컨센서스 2,912억엔(7명)",
+    "diff": "−1.6%",
+    "tone": "dn"
+   },
+   {
+    "item": "6~8월 영업이익",
+    "actual": "120억엔",
+    "base": "전년 같은 분기 116.5억엔",
+    "diff": "+3.1%",
+    "tone": "up"
+   },
+   {
+    "item": "경상이익 진척률(6~11월 계획 대비)",
+    "actual": "57.6%",
+    "base": "5년 평균 진척률 56.3%",
+    "diff": "+1.3%p",
+    "tone": "flat"
+   },
+   {
+    "item": "영업이익률",
+    "actual": "4.2%",
+    "base": "전년 같은 분기 4.3%",
+    "diff": "−0.1%p",
+    "tone": "flat"
+   }
   ],
   "guide": "유지",
   "market": "발표 직후 장외 거래(PTS) 6,250엔으로 종가 6,254엔과 같은 수준, 다음 날 반응은 아직"
  },
  "qa": {
   "items": [],
-  "note": "아직 회사가 공개한 질의응답 없음(2026-10-13 확인). 단신 표지에 애널리스트·기관투자자 설명회 개최로 적혀 있어 요지가 올라오는지 발표 21일(11/3)까지 확인합니다."
+  "note": "아직 회사가 공개한 질의응답 없음(2026-10-15 재확인). 단신 표지에 애널리스트·기관투자자 설명회 개최로 적혀 있어 요지가 올라오는지 발표 21일(11/3)까지 확인합니다."
  },
  "sources": [
-  {"label": "결산단신(2027년 5월기 1분기)", "url": "https://tdnet-pdf.kabutan.jp/20261013/140120260930542768.pdf"},
-  {"label": "결산단신(2026년 5월기 연간, 올해 계획·출점 방침)", "url": "https://www2.jpx.co.jp/disc/33490/140120260625579741.pdf"},
-  {"label": "카부탄 결산 속보 10/13", "url": "https://kabutan.jp/stock/news?code=3349&b=k202610130011"},
-  {"label": "카부탄 10/7 베일리 기퍼드 지분 변동", "url": "https://kabutan.jp/stock/news?code=3349&b=n202610070357"},
-  {"label": "카부탄 7/14 레이팅 일보(골드만삭스 목표가)", "url": "https://kabutan.jp/stock/news?code=2791&b=n202607141014"},
-  {"label": "유통뉴스 10/13 코스모스 약품 6~8월 실적", "url": "https://www.ryutsuu.biz/accounts/s101341.html"},
-  {"label": "유통뉴스 드러그스토어 8월 기존점", "url": "https://www.ryutsuu.biz/sales/s092578.html"},
-  {"label": "유통뉴스 드러그스토어 7월 기존점", "url": "https://www.ryutsuu.biz/sales/s083171.html"},
-  {"label": "유통뉴스 드러그스토어 6월 기존점", "url": "https://www.ryutsuu.biz/sales/s072971.html"},
-  {"label": "회사 공시 8/28 투자 단위 인하 방침(영문)", "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260828/20260826526744.pdf"},
-  {"label": "야후 파이낸스 애널리스트 예상", "url": "https://finance.yahoo.com/quote/3349.T/analysis/"},
-  {"label": "쿠스리노아오키 6~8월 실적(동종사 비교)", "url": "https://kabutan.jp/stock/news?code=3549&b=k202610010008"}
+  {
+   "label": "결산단신(2027년 5월기 1분기)",
+   "url": "https://tdnet-pdf.kabutan.jp/20261013/140120260930542768.pdf"
+  },
+  {
+   "label": "결산단신(2026년 5월기 연간, 올해 계획·출점 방침)",
+   "url": "https://www2.jpx.co.jp/disc/33490/140120260625579741.pdf"
+  },
+  {
+   "label": "카부탄 결산 속보 10/13",
+   "url": "https://kabutan.jp/stock/news?code=3349&b=k202610130011"
+  },
+  {
+   "label": "카부탄 10/7 베일리 기퍼드 지분 변동",
+   "url": "https://kabutan.jp/stock/news?code=3349&b=n202610070357"
+  },
+  {
+   "label": "카부탄 7/14 레이팅 일보(골드만삭스 목표가)",
+   "url": "https://kabutan.jp/stock/news?code=2791&b=n202607141014"
+  },
+  {
+   "label": "유통뉴스 10/13 코스모스 약품 6~8월 실적",
+   "url": "https://www.ryutsuu.biz/accounts/s101341.html"
+  },
+  {
+   "label": "유통뉴스 드러그스토어 8월 기존점",
+   "url": "https://www.ryutsuu.biz/sales/s092578.html"
+  },
+  {
+   "label": "유통뉴스 드러그스토어 7월 기존점",
+   "url": "https://www.ryutsuu.biz/sales/s083171.html"
+  },
+  {
+   "label": "유통뉴스 드러그스토어 6월 기존점",
+   "url": "https://www.ryutsuu.biz/sales/s072971.html"
+  },
+  {
+   "label": "회사 공시 8/28 투자 단위 인하 방침(영문)",
+   "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260828/20260826526744.pdf"
+  },
+  {
+   "label": "야후 파이낸스 애널리스트 예상",
+   "url": "https://finance.yahoo.com/quote/3349.T/analysis/"
+  },
+  {
+   "label": "쿠스리노아오키 6~8월 실적(동종사 비교)",
+   "url": "https://kabutan.jp/stock/news?code=3549&b=k202610010008"
+  }
  ]
 }
