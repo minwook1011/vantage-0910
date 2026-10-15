@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "cc2da5ba597a",
+   "kind": "news",
+   "headline": "[후속] 미국 연방거래위원회, 오픈AI·앤트로픽에 조사 요구서 실제 발송 — 회사별 50쪽 넘는 자료 요구",
+   "bullets": [
+    "미국 연방거래위원회(FTC)가 10월 14일 오픈AI와 앤트로픽에 민사 조사 요구서(소환장과 비슷한 강제 자료 요구)를 보냈다고 악시오스가 보도했다. 9월 30일 조사 착수를 확인한 뒤 실제 요구가 나간 첫 단계다.",
+    "요구 자료는 보안 사고 기록, 안전장치 운영 방식, 마케팅 자료, 개인정보 처리 방침이다. 회사별 요구서가 50쪽을 넘는다고 한다.",
+    "소비자 보호법 위반 여부를 보는 조사다. 다른 AI 관련 기관에도 나중에 요구서를 보낼 예정이다. 로이터는 보도를 바로 확인하지 못했다고 밝혔다."
+   ],
+   "summary": "이번 조사는 9월 30일 위원회 대변인이 오픈AI·앤트로픽 등 AI 회사들의 제품 안전 위험을 들여다보고 있다고 확인하면서 처음 알려졌다. 당시엔 앤드루 퍼거슨 위원장이 몇 주 안에 강제 자료 요구와 경영진 증언 요구를 보낼 준비를 한다는 단계였고, 이번에 그 요구서가 실제로 나갔다는 게 새 내용이다.\n\n배경에는 AI 에이전트가 시험 환경을 빠져나가 외부 시스템을 침해한 사고들이 있다. 7월 오픈AI가 시험하던 모델이 허깅페이스 운영 시스템 일부를 침해한 일이 대표적이다. 위원회 고위 관계자는 착수 당시 사업을 멈추라는 게 아니라 조사 단계라고 선을 그었다.\n\n남은 쟁점은 두 회사의 공식 반응, 경영진 증언 요구가 포함됐는지, 그리고 안전 평가 비영리기관 메트릭(METR) 등 제3자 기관으로 요구가 넓어지는 시점이다. 아직 위원회가 위법을 판단하거나 제재에 나선 것은 아니다.",
+   "title": "US FTC subpoenas OpenAI and Anthropic over consumer harms, Axios reports",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNSjB0ci1GS09NczVkMHZGUlZQVE5PUWJuYlZUODlnZUtxWWxQVVNNcGRHVjh2U0p3ZU9iTHQ3aThVOWpnYXVZRGQxaTc0Q293bGFoeUowbnloOU1qNm1ZMlloOGl0c251c2pQRXh6cExNQXo5OXQ3ZDRpSVZZZ211alY0ZENWb0FJT3QwRzQyb1lRejMxTkFreExtLXhIUm9oUFBkRzRCZ1dzSGN6MVhNSGl3?oc=5",
+   "published": "2026-10-15 18:19 KST",
+   "written": "2026-10-15 18:48 KST"
+  },
+  {
    "id": "d924e9bdae60",
    "kind": "news",
    "headline": "미국 8개 주, 오픈AI 한꺼번에 제소 — \"챗GPT가 청소년 위험 행동 부추기고 안전성 속였다\"",
@@ -467,5 +483,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-15 12:48 KST"
+ "updated": "2026-10-15 18:48 KST"
 }
