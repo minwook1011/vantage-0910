@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "ae0947c1b47d",
+   "kind": "news",
+   "headline": "구글, AI 뉴스 시범 프로그램에 CNN·파이낸셜타임스·액시오스·포브스 추가 — 참여 매체 전 세계 400곳 넘어",
+   "bullets": [
+    "구글이 기사 사용료를 내고 생성형 인공지능 뉴스 기능을 만드는 시범 프로그램에 CNN·파이낸셜타임스·액시오스·포브스가 새로 들어왔다.",
+    "참여 매체는 전 세계 400곳 이상으로 늘었고, 미국 지역 매체(포스트앤드쿠리어·텍사스트리뷴 등)도 합류했다. 계약 금액은 공개되지 않았다.",
+    "구글은 기사를 활용해 'AI 기사 미리보기'와 주제별 맞춤 음성 브리핑을 만들고, 요약마다 원 출처 링크를 단다."
+   ],
+   "summary": "구글이 15일(현지시간) 뉴스 AI 시범 프로그램 확대를 발표했다. 지난해 워싱턴포스트 등과 시작한 프로그램으로, 언론사는 콘텐츠 이용 권한을 넓혀 주고 구글은 그 대가를 지급한다. 매체별 조건과 금액은 공개되지 않았다.\n\nCNN은 구글과 다년 전략 제휴를 맺었다. 파라마운트 스카이댄스가 워너브러더스디스커버리 인수를 마친 뒤 CNN이 내놓은 첫 협력이다. CNN은 지식재산권을 지키면서 사용 대가를 받는 점을 강조했다.\n\n이번 계약은 특정 AI 뉴스 기능용 콘텐츠 공급에 한정된다. 구글 AI 검색 답변 전체나 모델 학습에 기사를 쓸 권리를 포괄적으로 준 것은 아니다. AI 요약 탓에 원문 방문이 줄어드는 문제를 사용료가 얼마나 메울지가 남은 쟁점이다.",
+   "title": "CNN, Axios and other publishers join Google's AI news program",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZnM2QWR6ZVFBcTRKb1MxbGgwXzBYMkt5aldWd2Q0UHRBbklWZTBYQVdEeFE4QnRDY09rR1hnX1BSam41NVRRS0d6dTdaSkU3c3NsbFMyYS1sN1pqRnA1dl94bXRxdk01WTJaNnFWVVJzRk5xUjdTRDBocnlzbkVxZWdNaUwxRExrU1RrVkd3ZXJpM3djTVFBSGZZRE0wRWVKaHpGRER4d2hXUQ?oc=5",
+   "published": "2026-10-16 04:31 KST",
+   "written": "2026-10-16 08:48 KST"
+  },
+  {
    "id": "642ecab5c11f",
    "kind": "news",
    "headline": "AEP, 구글 전용 702메가와트 연료전지 발전소에 약 40억 달러 투자 — 블룸에너지 연료전지, 20년 전력구매계약",
@@ -129,5 +145,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-14 21:47 KST"
+ "updated": "2026-10-16 08:48 KST"
 }

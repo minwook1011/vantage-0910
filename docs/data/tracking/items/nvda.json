@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "dbee4179f51d",
+   "kind": "news",
+   "headline": "독일 정부, 엔비디아와 산업용 인공지능 협력 추진 — 수억 유로 투입 검토(한델스블라트)",
+   "bullets": [
+    "독일 경제지 한델스블라트에 따르면 독일 정부가 엔비디아와 로봇·자율주행차용 물리적 인공지능과 산업용 모델 개발 협력을 추진한다.",
+    "정부 투자액은 '수억 유로(세 자릿수 백만 유로)'로 거론됐고, 정확한 액수는 나오지 않았다. 컴퓨팅 자원 확보와 모델 훈련에 쓴다.",
+    "지멘스·아우디·블랙포레스트랩스 등 독일 기업 약 12곳이 참여할 수 있다. 공식 발표·최종 협약 전 단계다."
+   ],
+   "summary": "한델스블라트 보도로, 대만 경제일보·국내 매체가 이어 전했다. 구상은 두 갈래다. 로봇·자율주행차용 물리적 인공지능 기반을 만드는 것과 산업용 인공지능 모델을 훈련하는 것이다. 엔비디아가 엔지니어 파견 등으로 기여할 수 있다는 내용도 있었지만 규모와 조건은 나오지 않았다. 참여 기업들의 확약과 역할도 공개되지 않았다.\n\n독일의 공개형 기반 모델 프로젝트 '소피(Soofi)'와 연계될 가능성이 거론된다. 소피는 2025년 9월 시작됐고 경제에너지부가 약 2천만 유로를 지원했다. 도이치텔레콤은 2026년 2월 엔비디아와 만든 산업용 AI 클라우드 운영을 시작해 소피에 인프라를 대고 있다.\n\n젠슨 황 최고경영자는 유럽 순방 중이며, 20~22일 베를린에서 'GTC 베를린'이 열린다. 공식 발표가 이 자리에서 나올지가 다음 체크포인트다.",
+   "title": "德國擬與輝達簽合作協議 砸數億歐元加速AI導入工業領域",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOV1IxbEp2R0FGUDNPZUtkeDBkcm1MNjhZVUVZVXFDd05zdFJJa2g2SjAyVE5Nb3Bad3UtcXhjckZNMU13VzBPd1BQNmF5LUFoQzA2bGdta09JZ3J3TlRjcDg1ajNabXFQX3N1UjV6TWNiQjJJWjdhZC1KMnZwZEpaY9IBX0FVX3lxTE55TldKd1FnVkNkTHBJWHpTRjVWNHJTR0pjRldPVXJZNVQ4ZjlMcXdVbWc5dzF2cHhOTlNuMVBwRV9PTzFwOGR6bkVFZjZMX2Fla3d2SVY1dXBBeFB4Y0U0?oc=5",
+   "published": "2026-10-16 04:36 KST",
+   "written": "2026-10-16 08:48 KST"
+  },
+  {
    "id": "98db37b15af7",
    "kind": "news",
    "headline": "워싱턴포스트 \"엔비디아·애플, 트럼프 백악관 연회장에 각각 2,500만 달러 약정\" — 공개 기부자 중 최고액",
@@ -307,5 +323,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-16 08:37 KST"
+ "updated": "2026-10-16 08:48 KST"
 }
