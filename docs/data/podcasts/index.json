@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16 00:20 KST",
+ "updated": "2026-10-16 08:24 KST",
  "episodes": [
   {
    "id": "2026-10-15-understanding-IZkjnbqA-_4",
@@ -32,11 +32,14 @@
    "audio": null,
    "duration": "",
    "desc": "💡내용 요약 전 테슬라 엔지니어 맹성준 작가는 테슬라가 기존 자동차 회사들과 가장 크게 다른 점으로 제품을 개발하는 방식과 엔지니어들의 사고방식을 꼽았습니다. 기존 자동차 회사들이 경쟁사 제품이나 소비자 조사를 바탕으로 성능 목표를 설정한다면, 테슬라는 자신들이 만들고 싶은 제품의 목표를 먼저 정하고 물리학과 공학적 모델링을 통해 이를 구현할 방법을 찾아갑니다. 또한 기존 업계의 기술이나 관행을 무조건 따르기보다 그 방식이 정말 최선인지 질문하고, 필요하다면 자체적인 개발 도구와 시스템을 만들어 사용합니다. 모든 부품을 직접 생산하는 것이 아니라 핵심 기술과 개발 과정에 대한 통제권을 확보하는 수직계열화 전략을 추구한다는 설명입니다. 테슬라의 조직문화 역시 기존 자동차 회사와 상당한 차이를 보였습니다. 젊고 뛰어난 엔지니어들이 위계질서에 얽매이지 않고 자유롭게 문제를 해결하지만, 동시에 업무 강도와 동료들 사이의 경쟁 수준은 매우 높았습니다. 맹 작가는 입사 초기 팀원들과 진행한 레크리에이션이 전기차의 충전 시간과 주행 속도를 최적화하는 고난도 코딩 문제였다는 일화를 소개했습니다. 뛰어난 동료들 사이에서 자신이 업무의 병목이 된다는 압박감에 시달렸지만, 다른…",
-   "status": "new",
+   "status": "skip",
    "found": "2026-10-16 00:20 KST",
    "image": "https://i2.ytimg.com/vi/uwrkPIHtbjw/hqdefault.jpg",
    "show_image": null,
-   "lang": "ko"
+   "lang": "ko",
+   "title_ko": "[전직 테슬라 엔지니어 1부] 현대차가 테슬라를 못 따라잡는 이유 — 맹성준 작가",
+   "desc_ko": "테슬라에서 일했던 엔지니어 맹성준 작가가 테슬라와 기존 완성차 회사의 차이를 이야기합니다. 테슬라는 경쟁사나 소비자 조사가 아니라 만들고 싶은 제품 목표를 먼저 정하고, 물리·공학 모델로 구현 방법을 찾는다고 설명합니다. 업계 관행을 그대로 따르지 않고 필요하면 개발 도구까지 직접 만들며, 부품을 다 만들기보다 핵심 기술의 통제권을 쥐는 방식의 수직계열화를 추구한다고 합니다. 위계 없이 젊은 엔지니어가 문제를 푸는 문화와 그만큼 높은 업무 강도·내부 경쟁도 함께 다룹니다.",
+   "reason": "주제 무관 — 1부는 테슬라 조직문화·개인 경험담 위주, 기술·산업 본론은 다음 편으로 넘어감"
   },
   {
    "id": "2026-10-15-cheeky-the-company-building-underwater-drones-for-50-00",
@@ -52,7 +55,9 @@
    "status": "new",
    "found": "2026-10-16 00:20 KST",
    "image": "https://img.transistorcdn.com/V5ATeV2QdpywLeXi22C8nNtDlp_RLfmyIS7mIUhrWUo/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS8yNDkx/NjY4NWI0ODNhNDMz/ZDZjYTRlY2VlZTI3/NDc0Yy5wbmc.jpg",
-   "show_image": "https://img.transistorcdn.com/PVZFPauNUFMQ37nXgHHcOEYiAymRHQ7vaa9pV-D2Txg/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS82ZGFk/ODk1OGE5Y2ExZjc5/MGMxNjYwOWQxYjdi/YTlkYy5wbmc.jpg"
+   "show_image": "https://img.transistorcdn.com/PVZFPauNUFMQ37nXgHHcOEYiAymRHQ7vaa9pV-D2Txg/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS82ZGFk/ODk1OGE5Y2ExZjc5/MGMxNjYwOWQxYjdi/YTlkYy5wbmc.jpg",
+   "title_ko": "Will O'Brien — 5만 달러짜리 수중 드론을 만드는 회사 Ulysses",
+   "desc_ko": "Ulysses 창업자 겸 최고경영자 Will O'Brien 이 진행자 John Collison, 투자자 Chris Sacca 와 함께 수중 자율 로봇이 바다 문제를 푸는 방식으로 커지고 있다는 이야기를 나눕니다. 기네스 맥주의 기술사(스튜던트 t-검정이 나온 배경)와, 잘 알려지지 않은 탄소 저장원인 해초밭 이야기도 나옵니다. 수천 미터 심해에서 로봇을 움직이는 데 필요한 공학, Ulysses 의 수직계열화 전략, 국방·해상 산업에 하드웨어 기술을 파는 현실을 다룹니다."
   },
   {
    "id": "2026-10-15-mad-95-einstein-5-mr-bean-jev-s-creator-on-why-ai-ca",
@@ -68,7 +73,9 @@
    "status": "new",
    "found": "2026-10-16 00:20 KST",
    "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
-   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg"
+   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
+   "title_ko": "Diogo Almeida — '95% 아인슈타인, 5% 미스터 빈': AI 가 아직 무엇도 믿을 만하게 자동화하지 못하는 이유",
+   "desc_ko": "TypeSafe 의 Jev 는 글을 쓰지 않고 소프트웨어 안에서 빠르고 싸고 보정된 판단을 내리는 '결정 모델'이라는 새 유형의 AI 입니다. 출시 몇 주 만에 OpenAI·Cloudflare·Amazon·Databricks 가 비슷한 모델을 내놓을 만큼 화제가 됐고, TypeSafe 는 기업가치 75억 달러에 8억 7천만 달러 규모 시리즈 A 투자를 받았다고 소개됩니다. OpenAI 에서 사람 피드백 강화학습(RLHF)을 함께 만든 Diogo Almeida 최고경영자가 결정 모델이 무엇인지, 왜 지금의 AI 가 업무를 안정적으로 자동화하지 못하는지 쉽게 설명합니다."
   },
   {
    "id": "2026-10-15-bg2-jensen-huang-does-ai-revenue-justify-capex-27-ai",
@@ -81,10 +88,19 @@
    "audio": "https://anchor.fm/s/f06c2370/podcast/play/127499364/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-15%2F434203331-44100-2-dec3db8a7fb56.mp3",
    "duration": "01:39:52",
    "desc": "Can AI revenues justify the spending? Jensen Huang breaks down the biggest bottlenecks heading into 2027, the path to the singularity, open vs. closed models, and why he’s 99.99% optimistic about the decade ahead. Jensen joins Brad Gerstner and Clark Tang for their third BG2 conversation, recorded days after the Xi State Dinner, the White House Accord on superintelligence, and his receipt of the National Medal of Science. They explore why building technology responsibly also means moving fast, how power constraints could shape AI’s next phase, and whether SpaceX could help put data centers in …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-16 00:20 KST",
    "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40236188/40236188-1706073929930-da002b9be1355.jpg",
-   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40236188/40236188-1706073929930-da002b9be1355.jpg"
+   "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40236188/40236188-1706073929930-da002b9be1355.jpg",
+   "title_ko": "Jensen Huang — AI 매출이 설비투자를 정당화하나, 2027년 AI 병목, 열린 모델 대 닫힌 모델",
+   "desc_ko": "NVIDIA 의 Jensen Huang 이 Brad Gerstner·Clark Tang 과 세 번째 BG2 대담을 나눕니다. AI 매출이 지금의 막대한 설비투자를 감당할 수 있는지, 2027년을 앞두고 가장 큰 병목이 무엇인지 짚습니다. 전력 제약이 AI 의 다음 단계를 어떻게 바꿀지, SpaceX 가 우주에 데이터센터를 올리는 데 역할을 할 수 있을지도 이야기합니다. 열린 모델과 닫힌 모델의 경쟁, 기술을 책임 있게 만들면서도 빨리 움직여야 하는 이유, 향후 10년에 대한 낙관도 다룹니다.",
+   "summary": {
+    "title_ko": "Jensen Huang — AI 매출이 설비투자를 정당화하나, 2027년 AI 병목, 열린 모델 대 닫힌 모델",
+    "headline": "Huang 'AI 투자는 두 연구소 매출에 달린 게 아니다' — 기가와트당 몫 400억 달러, 내년 병목은 땅·전력·건물",
+    "image": "https://i.ytimg.com/vi/eS7qQ3WJSrw/hqdefault.jpg",
+    "guest": "젠슨 황(Jensen Huang) — NVIDIA 공동창업자·최고경영자 — AI 반도체 1위 회사를 33년째 이끈다",
+    "company": "NVIDIA (반도체 · AI 데이터센터 인프라)"
+   }
   },
   {
    "id": "2026-10-15-nopriors-revolutionizing-cybersecurity-and-ai-driven-scie",
@@ -100,7 +116,9 @@
    "status": "new",
    "found": "2026-10-16 00:20 KST",
    "image": "https://megaphone.imgix.net/podcasts/6fed676e-c84d-11f1-a40c-678dc1ca0b76/image/c3b919c7c8436b421af767e3e422b604.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
-   "show_image": "https://megaphone.imgix.net/podcasts/803e0244-9d0f-11ed-923a-4bb54bf77468/image/NO_PRIORS_ALBUM_and_PROFILE_PIC-01.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+   "show_image": "https://megaphone.imgix.net/podcasts/803e0244-9d0f-11ed-923a-4bb54bf77468/image/NO_PRIORS_ALBUM_and_PROFILE_PIC-01.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "Greg Brockman — OpenAI 가 바꾸는 사이버보안과 AI 과학 연구",
+   "desc_ko": "OpenAI 사장이자 공동창업자 Greg Brockman 이 Sarah Guo·Elad Gil 과 함께 최신 모델(GPT-6) 이후 회사의 진전을 이야기합니다. 프런티어 모델, 사이버보안, 과학 발견 세 영역에서 무엇이 달라지고 있는지가 중심입니다. AI 에이전트로 100년 가까이 풀리지 않던 수학 문제 약 400개를 풀었다는 사례와, 바이오 등 다른 분야로 확장할 가능성도 다룹니다."
   },
   {
    "id": "2026-10-15-oddlots-jeff-yan-s-plan-to-bring-the-entire-financial-in",
@@ -331,6 +349,24 @@
    "lang": "ko",
    "title_ko": "전쟁을 계약으로 대행하는 민간군사기업의 정체 — 『전쟁 대행 주식회사』 (남궁민 북칼럼니스트)",
    "reason": "주제 무관 — 민간군사기업을 다룬 책 소개(2023년 방송 재편집), 안보·역사 이야기라 투자 중심 아님"
+  },
+  {
+   "id": "2026-10-13-synopsis-dialogue-will-ai-destroy-the-software-business-m",
+   "show": "synopsis",
+   "show_name": "The Synopsis",
+   "title": "Dialogue. Will AI Destroy the Software Business Model?",
+   "date": "2026-10-13",
+   "published": "2026-10-13 21:14 KST",
+   "link": "https://5f85ab06-2c89-4625-a5f9-f4b3a3300053.libsyn.com/dialogue-ai-software-risks",
+   "audio": "https://traffic.libsyn.com/clean/secure/5f85ab06-2c89-4625-a5f9-f4b3a3300053/Dialogue._Software_AI_Risks.mp4?dest-id=4092573",
+   "duration": "01:07:15",
+   "desc": "In this episode of The Synopsis, Alex capitualtes and let's us talk about AI and software again. We cover a lot of key SaaS risks and speculate on the AI Frontier companies business models. You can become a Speedwell Research member here and get access to the \"AI risk to Software report, as well as over two dozen company deep dives: https://speedwellresearch.com/subscribe/ ~*~ Drew Cohen Capital Learn more about advisory services offered through Davidson Kahn Capital Management here: https://www.drewcohencapital.com/ Speedwell Research For full access to Speedwell Research's in-depth reports a…",
+   "status": "new",
+   "found": "2026-10-16 07:51 KST",
+   "image": "http://assets.libsyn.com/show/481071?height=250&width=250&overlay=true",
+   "show_image": "https://static.libsyn.com/p/assets/5/2/d/7/52d76b8b82d0390516c3140a3186d450/The_Synopsis_Podcast_Logo-20260225-5hcpjhqhg8.png",
+   "title_ko": "대담 — AI 가 소프트웨어 사업 모델을 무너뜨릴까?",
+   "desc_ko": "Speedwell Research 의 Drew Cohen 과 Alex 가 다시 AI 와 소프트웨어를 주제로 이야기합니다. 구독형 소프트웨어(SaaS) 기업이 AI 때문에 마주한 핵심 위험들을 하나씩 짚습니다. OpenAI·Anthropic 같은 프런티어 AI 회사의 사업 모델이 어떻게 굴러갈지도 추측해 봅니다."
   },
   {
    "id": "2026-10-13-understanding-SJqSJALiHlE",
