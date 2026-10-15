@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "d9c783a92b95",
+   "kind": "news",
+   "headline": "메타, 오픈웨이트 모델 '뮤즈 스파크 오픈' 공개 — 애플과 손잡고 맥 스튜디오 2대로 구동",
+   "bullets": [
+    "메타가 15일 매개변수 8,160억 개(토큰당 420억 개 활성) 오픈웨이트 모델 '뮤즈 스파크 오픈'의 가중치를 공개했다. 문맥 길이 100만 토큰, 코딩·장시간 에이전트 작업에 초점을 맞췄다.",
+    "애플과 수개월 협업해 512GB 메모리 M5 울트라 맥 스튜디오 2대를 연결하면 별도 서버 없이 돌아가게 했다. 애플 시험에서 2대는 초당 25토큰, 4대는 37토큰을 생성했다.",
+    "전문 업무 평가(잡벤치) 61.8점, 도구 활용 평가 89.2점으로 중국 GLM 5.3·키미 K3를 앞섰지만, 코딩 평가는 76.4점으로 두 모델(83.9·85점)에 뒤졌다."
+   ],
+   "summary": "메타는 이 모델을 '지금까지 가장 뛰어난 미국 오픈웨이트 모델'로 소개했다. 외부 평가기관 아티피셜 애널리시스 지능지수는 39점으로 미국 오픈 모델 중에선 높지만 GLM 5.3(45점)·키미 K3(44점)·큐원 3.8(40점)보다는 낮다. 응용 프로그램 연결(API)은 투게더AI·파이어웍스·베이스텐·네비우스가 제공하고, 요금은 100만 토큰당 입력 1.25달러, 출력 4.25달러다.\n\n라이선스엔 조건이 붙는다. 모델을 서비스로 파는 사업자 중 계열사 포함 연 매출 2,000만 달러가 넘으면 메타와 별도 계약을 맺어야 한다. 마크 저커버그 메타 최고경영자와 존 터너스 애플 최고경영자가 함께 협업을 알렸다. 개인정보·광고 문제로 맞서 온 두 회사가 손잡았다는 점이 주목받았다. 다만 시연에 쓴 512GB 맥 스튜디오는 이달 말 출시 예정이고 가격은 아직 안 나왔다.",
+   "title": "Meta releases open-weight Muse Spark model for coding, agentic tasks",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQRDgySGFsc1IyeDdOaXR4di1nZWVqa3BrR3hhN3g2S2dHMkoyUUxGS3ZRdG12SlRwY08tWE1EUjRSVjlLTGVuTE5icXhYYjM4Qnd3VGFwc0pnb1FVUFQ2UWlVTk5XTERoYkNYNXZZYldISnJiR0FCVmNJTF94bUp4Y0R3Q2Q1UWg4dHdJdVpWQWRXMEJjcTR3WThFYzFaTmFHcm5tMVVyZVdndFRp?oc=5",
+   "published": "2026-10-16 06:20 KST",
+   "written": "2026-10-16 08:37 KST"
+  },
+  {
    "id": "92c6b29a7d1e",
    "kind": "news",
    "headline": "메타, 왓츠앱 계정 없는 사람도 영상통화 참여 허용 — 최대 32명, 시간 제한 없음",
@@ -161,5 +177,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-15 01:16 KST"
+ "updated": "2026-10-16 08:37 KST"
 }
