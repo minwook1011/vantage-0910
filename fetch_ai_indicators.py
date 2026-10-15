@@ -669,10 +669,11 @@ CDS_NAMES = [("ALPHINC", "Alphabet", ["GOOGL"]), ("AMZN", "Amazon", ["AMZN"]), (
              ("METAPL", "Meta", ["META"]), ("NVIDIA", "NVIDIA", ["NVDA"]), ("ORCLE", "Oracle", ["ORCL"]),
              ("COREWEI", "CoreWeave", ["CRWV"]), ("BROINC", "Broadcom", ["AVGO"]), ("APLINC", "Apple", []),
              ("IBM", "IBM", []), ("INTC", "Intel", []), ("TESLINC", "Tesla", []),
-             ("AMD", "AMD", ["AMD"]), ("DELLN", "Dell", ["DELL"]), ("EQIX", "Equinix", ["EQIX"])]
+             ("AMD", "AMD", ["AMD"]), ("DELLN", "Dell", ["DELL"]), ("EQIX", "Equinix", ["EQIX"]),
+             ("SPACEXP", "SpaceX", [])]
 CDS_BIGTECH = ["Alphabet", "Amazon", "Microsoft", "Meta"]
 # 오라클·네오클라우드·데이터센터 — AI 데이터센터를 빚으로 짓는 쪽. ICE 단일물 CDS 에 있는 네오클라우드는 코어위브뿐(2026-10-15 확인)
-CDS_NEO = ["Oracle", "CoreWeave", "Equinix"]
+CDS_NEO = ["Oracle", "CoreWeave", "SpaceX", "Equinix"]   # 스페이스X(xAI 데이터센터 차입) 2026-10-15 사용자 요청
 CDS_AI = ["NVIDIA", "Broadcom", "AMD", "Intel", "Dell"]
 RECOVERY = 0.4  # 회수율 가정
 RISK_FREE = 0.04
@@ -749,7 +750,7 @@ def c_cds(ctx):
                  caveat="CDS는 그 회사 채권의 부도 위험을 사고파는 보험료입니다. 숫자가 오르면 시장이 위험을 더 크게 본다는 뜻. ICE가 과거치를 공개하지 않아 " + obs_date + "부터 매일 쌓습니다."))
     ctx.put(dict(common, id="cds_neocloud", group="credit", label="오라클·네오클라우드 CDS 추이", related=["ORCL", "CRWV", "EQIX"], scale="log",
                  lines=merge_lines(ctx.old_lines("cds_neocloud"), [line_of(l, lines.get(l)) for l in CDS_NEO if l in spreads]),
-                 caveat="AI 데이터센터를 빚으로 짓는 쪽입니다. 코어위브가 몇 배 높아 세로축은 로그 눈금(같은 간격 = 같은 배율)입니다. 9/22부터 매일 쌓은 결제가격으로 그립니다(에퀴닉스는 10/14 결제분부터). ICE 단일물 CDS에 있는 네오클라우드는 코어위브뿐이라 네비우스·아이렌 등은 없습니다."))
+                 caveat="AI 데이터센터를 빚으로 짓는 쪽입니다. 코어위브가 몇 배 높아 세로축은 로그 눈금(같은 간격 = 같은 배율)입니다. 9/22부터 매일 쌓은 결제가격으로 그립니다(에퀴닉스는 10/14, 스페이스X는 10/15 추가 — 그 결제분부터). ICE 단일물 CDS에 있는 네오클라우드는 코어위브뿐이라 네비우스·아이렌 등은 없습니다."))
     ctx.put(dict(common, id="cds_ai", group="credit", label="AI 칩·서버 CDS 추이", related=["NVDA", "AVGO", "AMD", "DELL"],
                  lines=merge_lines(ctx.old_lines("cds_ai"), [line_of(l, lines.get(l)) for l in CDS_AI if l in spreads]),
                  caveat="AI 장비를 파는 쪽의 신용 위험입니다. 빚으로 짓는 쪽(오라클·코어위브)과 벌어지는지 비교해 봅니다(AMD·델은 10/14 결제분부터)."))
@@ -1142,7 +1143,7 @@ DESCS = {
     "gpu_h100_index": "H100 GPU 1장을 1시간 빌리는 값을 실제 체결 거래로 매일 정산한 지수. AI 연산 자원의 현재 시세.",
     "gpu_index_multi": "같은 체결 기준 지수를 GPU 세대별로 비교. 신형이 오르는 동안 구형이 눌리는지 본다.",
     "cds_bigtech": "빅테크 회사채의 부도 위험을 사고파는 보험료(5년물 CDS, bp). 오르면 시장이 그 회사 빚을 더 위험하게 본다는 뜻.",
-    "cds_neocloud": "AI 데이터센터를 빚으로 짓는 오라클·코어위브·에퀴닉스의 5년물 CDS(bp). 빅테크보다 몇 배 높고, 오르면 AI 인프라 차입을 시장이 위험하게 본다는 뜻.",
+    "cds_neocloud": "AI 데이터센터를 빚으로 짓는 오라클·코어위브·스페이스X(xAI)·에퀴닉스의 5년물 CDS(bp). 빅테크보다 몇 배 높고, 오르면 AI 인프라 차입을 시장이 위험하게 본다는 뜻.",
     "cds_ai": "AI 칩·서버를 파는 엔비디아·브로드컴·AMD·인텔·델의 신용 위험. 빚으로 짓는 쪽(오라클·코어위브)과 비교.",
     "cds_gap": "오라클 CDS에서 마이크로소프트 CDS를 뺀 값. AI 데이터센터 차입에 시장이 매기는 추가 위험 프리미엄.",
     "cds_table": "추적 중인 빅테크·AI 기업의 오늘 5년물 CDS와 전일 대비 변화.",
