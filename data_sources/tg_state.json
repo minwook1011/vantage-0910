@@ -58,6 +58,7 @@
   "pod:2026-10-14-understanding-CGOAb5sTwds",
   "pod:2026-10-14-understanding-S7O-OSoutnc",
   "price:2026-10-06",
+  "trk:009150:3b959b70cbc3",
   "trk:amzn:11e2f839692b",
   "trk:amzn:1dd4d3b49ae5",
   "trk:amzn:1eb3be945139",
@@ -207,6 +208,7 @@
   "trk:open-ai:f6bef284d279",
   "trk:open-ai:fa41575f564d",
   "trk:open-ai:fea4ee1d4e06",
+  "trk:t-0a23e71f:1c65f205d90d",
   "trk:t-0a23e71f:292fb934ae62",
   "trk:t-0a23e71f:69d546ffa025",
   "trk:t-0a23e71f:70937aa15a5c",
@@ -323,6 +325,7 @@
   "trk:yt--jklonfa:d485a96256bb",
   "trk:yt--jklonfa:d89bccce8087",
   "trk:yt--jklonfa:ddefcf35db74",
+  "trk:yt--jklonfa:e0a65f5b9b6a",
   "trk:yt--jklonfa:e0e8fc527c23",
   "trk:yt--jklonfa:e14b533336f9",
   "trk:yt--jklonfa:e53941c08ae0",
@@ -1349,6 +1352,15 @@
   "digest:2026-10-15:asia": [
    185,
    186
+  ],
+  "trk:t-0a23e71f:1c65f205d90d": [
+   370
+  ],
+  "trk:009150:3b959b70cbc3": [
+   371
+  ],
+  "trk:yt--jklonfa:e0a65f5b9b6a": [
+   372
   ]
  }
 }
