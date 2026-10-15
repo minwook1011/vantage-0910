@@ -182,6 +182,18 @@ def telegram_commands(watch, state):
     return changed
 
 
+def url_key(u):
+    """같은 글을 가리키는 주소를 하나로 — 유튜브는 영상 번호, 네이버 블로그는 글 번호, 나머지는 물음표 앞까지"""
+    u = str(u or "")
+    m = re.search(r"(?:youtu\.be/|[?&]v=|/shorts/|/live/)([\w-]{11})", u)
+    if m:
+        return "yt:" + m.group(1)
+    m = re.search(r"blog\.naver\.com/PostView\.\w+\?.*?blogId=([\w-]+).*?logNo=(\d{6,})", u) or         re.search(r"blog\.naver\.com/([\w-]+)/(\d{6,})", u)
+    if m:
+        return f"nb:{m.group(1)}:{m.group(2)}"
+    return re.sub(r"^https?://(www\.|m\.)?", "", u.split("?")[0].split("#")[0]).rstrip("/")
+
+
 def plain_command(text):
     """슬래시·영어 없이 보낸 말을 명령으로 바꾼다. 예: '기판, ABF 추가' · '추가해줘 심텍' · '삼성전기 빼줘' · '목록 보여줘'"""
     t = re.sub(r"\s+", " ", text.strip().lstrip("/")).strip()
@@ -522,14 +534,18 @@ def main():
         if back:
             popped.append(t["term"])
             done_ids = {x["id"] for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", slug + ".json"), {}).get("items", [])}
+        have_urls = {url_key(x.get("url")) for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", slug + ".json"), {}).get("items", [])}
         for n_i, it in enumerate(sorted(items, key=lambda x: x["published"], reverse=True)):
             nt = norm_title(it["title"])
             sid = hashlib.md5((slug + nt).encode("utf-8")).hexdigest()[:12]
-            if back and n_i < back and nt and sid not in done_ids:
+            # 같은 글·영상인데 제목만 고친 경우(유튜브 제목 바꾸기·블로그 제목 수정)도 같은 것으로 본다 — 주소 기준 기록
+            uk = url_key(it["url"])
+            uid = "u" + hashlib.md5((slug + uk).encode("utf-8")).hexdigest()[:11]
+            if back and n_i < back and nt and sid not in done_ids and uk not in have_urls:
                 pass
-            elif not nt or sid in seen or it["published"] < since:
+            elif not nt or sid in seen or uid in seen or uk in have_urls or it["published"] < since:
                 continue
-            seen[sid] = NOW.strftime("%Y-%m-%d")                   # 후보로 올린 건 다시 안 올림(채택·탈락 무관)
+            seen[sid] = seen[uid] = NOW.strftime("%Y-%m-%d")       # 후보로 올린 건 다시 안 올림(채택·탈락 무관)
             blog = t.get("market") in ("blog", "youtube")          # 블로그·유튜브는 거르기 없이 새 글·새 영상 전부
             text = (it["title"] + " " + it["snippet"]).lower()
             if not blog and (JUNK.search(it["title"]) or JUNK_SRC.search(it["source"] + " " + it["url"])):
