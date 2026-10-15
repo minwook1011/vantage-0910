@@ -39,7 +39,7 @@ KST = timezone(timedelta(hours=9))
 NOW = datetime.now(KST)
 
 EN_SITES = ["reuters.com", "bloomberg.com", "cnbc.com", "wsj.com", "barrons.com", "marketwatch.com", "ft.com",
-            "theinformation.com", "apnews.com", "axios.com", "finance.yahoo.com"]
+            "theinformation.com", "apnews.com", "axios.com", "finance.yahoo.com", "gartner.com", "businesswire.com"]
 KO_SITES = ["hankyung.com", "mk.co.kr", "edaily.co.kr", "mt.co.kr", "sedaily.com", "yna.co.kr", "biz.chosun.com",
             "thebell.co.kr", "news.einfomax.co.kr", "news1.kr", "heraldcorp.com",
             # 2026-10-12 추가: 산업·IT 전문지와 주요 경제지(전자부품·반도체 기사가 여기서 먼저 나옴)
@@ -559,7 +559,8 @@ def main():
             cands.append({"id": sid, "term": t["term"], "slug": slug,
                           "kind": "video" if t.get("market") == "youtube" else "blog" if blog else "news",
                           "source": it["source"], "url": it["url"], "title": it["title"], "snippet": it["snippet"],
-                          "published": it["published"].strftime("%Y-%m-%d %H:%M KST")})
+                          "published": it["published"].strftime("%Y-%m-%d %H:%M KST")}
+                         | ({"focus": t["focus"]} if t.get("focus") else {}))      # 단어별 관심 범위(예: 가트너는 AI 관련만)
             kept += 1
         state["started"][slug] = state["started"].get(slug) or NOW.strftime("%Y-%m-%d %H:%M")
         report.append(f"#{hashtag(t['term'])} 원문 {len(items)} → 후보 {kept}" + (f" (실패: {'; '.join(errs)})" if errs else ""))

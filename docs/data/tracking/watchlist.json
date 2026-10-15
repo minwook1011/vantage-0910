@@ -549,6 +549,23 @@
    "name": "NVIDIA",
    "count": 2,
    "last": "2026-10-13 06:45 KST"
+  },
+  {
+   "term": "가트너",
+   "slug": "gartner",
+   "market": "theme",
+   "ticker": "",
+   "name": "Gartner (IT 시장조사)",
+   "aliases": [
+    "Gartner",
+    "가트너",
+    "高德納",
+    "顧能"
+   ],
+   "resolved": true,
+   "added": "2026-10-15 15:00",
+   "by": "claude",
+   "focus": "AI 관련 전망·조사만 — 인공지능 지출·반도체·데이터센터·생성형 AI·AI 서버·PC/스마트폰 AI 탑재 등 숫자가 있는 가트너 발표. AI와 무관한 가트너 발표(일반 IT 지출 외 보안·인사·마케팅 등)나 가트너를 한 줄 인용만 한 기사는 drop"
   }
  ],
  "updated": "2026-10-15 13:46 KST"
