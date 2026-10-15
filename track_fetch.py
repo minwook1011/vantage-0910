@@ -578,7 +578,17 @@ def main():
     state["seen"] = {k: v for k, v in seen.items() if v >= cut}
     save(STATE, state)
     unresolved = [t["term"] for t in watch.get("terms", []) if not t.get("resolved")]
-    save(CAND, {"generated": NOW.strftime("%Y-%m-%d %H:%M KST"), "unresolved": unresolved, "candidates": cands})
+    # 지난 3일 우리가 이미 보낸 뉴스 제목(한국어) — 다른 매체·언어로 다시 나온 같은 사건을 걸러내는 기준(예약 작업 4-1)
+    recent, cut3 = [], (NOW - timedelta(days=3)).strftime("%Y-%m-%d %H:%M")
+    for t in watch.get("terms", []):
+        if t.get("market") in ("blog", "youtube"):
+            continue
+        for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", t["slug"] + ".json"), {}).get("items", []):
+            if (x.get("written") or "") >= cut3:
+                recent.append({"term": t["term"], "written": x["written"][5:16], "headline": x.get("headline", "")})
+    recent.sort(key=lambda r: r["written"], reverse=True)
+    save(CAND, {"generated": NOW.strftime("%Y-%m-%d %H:%M KST"), "unresolved": unresolved, "candidates": cands,
+                "recent_sent": recent})
     for r in report:
         print(r)
     if unresolved:

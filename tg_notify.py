@@ -278,10 +278,11 @@ def tracking():
     cut = (NOW - timedelta(days=2)).strftime("%Y-%m-%d %H:%M")
     out = []
     from track_fetch import url_key
+    # 같은 주소(제목만 바뀐 같은 글·영상, 여러 단어에 걸린 같은 기사)를 이미 보냈으면 다시 안 보낸다 — 단어 전체에서
+    allitems = {t.get("slug"): (load(f"docs/data/tracking/items/{t.get('slug')}.json") or {}).get("items") or [] for t in watch.get("terms") or []}
+    done = {url_key(it.get("url")) for sl, its in allitems.items() for it in its if f"trk:{sl}:{it['id']}" in SENT}
     for t in watch.get("terms") or []:
-        items = (load(f"docs/data/tracking/items/{t.get('slug')}.json") or {}).get("items") or []
-        # 같은 주소(제목만 바뀐 같은 글·영상)를 이미 보냈으면 다시 안 보낸다
-        done = {url_key(it.get("url")) for it in items if f"trk:{t.get('slug')}:{it['id']}" in SENT}
+        items = allitems.get(t.get("slug")) or []
         for it in sorted(items, key=lambda x: x.get("written", "")):
             if (it.get("written") or "") < cut:
                 continue
