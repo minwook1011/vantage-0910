@@ -45,6 +45,14 @@ def fetch(sym):
                     continue
                 d.append(day)
                 c.append(round(float(x), 4))
+            # 야후가 마지막 거래일 종가를 비워 줄 때(예: 서킷브레이커 날) meta 현재가로 보충
+            meta = res.get("meta") or {}
+            px, pt = meta.get("regularMarketPrice"), meta.get("regularMarketTime")
+            if d and px and px > 0 and pt:
+                mday = datetime.fromtimestamp(pt + off, tz=timezone.utc).strftime("%Y-%m-%d")
+                if mday > d[-1]:
+                    d.append(mday)
+                    c.append(round(float(px), 4))
             if len(d) > 100:
                 return {"d": d, "c": c}
         except Exception as e:
