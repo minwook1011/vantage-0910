@@ -3,6 +3,22 @@
  "slug": "ymtc",
  "items": [
   {
+   "id": "2f1a15426f78",
+   "kind": "news",
+   "headline": "카운터포인트 \"YMTC 서버용 기업용 SSD 매출, 2024년 사실상 0에서 2028년 전체의 39% 근접\"",
+   "bullets": [
+    "시장조사업체 카운터포인트리서치는 중국 최대 낸드 업체 양쯔메모리(YMTC)의 최근 매출 성장 상당 부분이 인공지능 데이터센터용 기업용 솔리드스테이트드라이브(eSSD)에서 나왔다고 분석했다.",
+    "2024년 사실상 0이던 서버향 매출이 2028년엔 전체 매출의 39% 가까이 될 것으로 추산했다.",
+    "황민성 카운터포인트 디렉터는 YMTC가 화웨이 등 중국 고객을 넘어 해외 고객까지 확보하면 낸드 1위 삼성전자를 위협할 수 있다고 봤다."
+   ],
+   "summary": "생성형 인공지능 확산으로 학습·추론 데이터가 크게 늘면서, 인공지능 가속기에 데이터를 빠르게 공급하는 기업용 솔리드스테이트드라이브 수요와 가격이 함께 오르고 있다. 중국 안에서도 클라우드 시장이 커지며 YMTC 매출이 급증했다.\n\n카운터포인트 분석의 요지는 YMTC 사업 구성이 2년 만에 바뀌었다는 점이다. 2년 전만 해도 거의 하지 않던 서버용 제품이 성장의 중심이 됐다.\n\n남은 쟁점은 해외 하이퍼스케일러(대형 클라우드 업체) 공급 여부다. 지금은 중국 내수 중심이며, 해외 고객 확보가 삼성전자·SK하이닉스(솔리다임) 등 기존 업체 점유율에 영향을 줄 변수로 꼽힌다. 기사에 실린 분기 매출 숫자는 앞뒤가 맞지 않아 옮기지 않았다.",
+   "title": "\"中 YMTC 서버용 eSSD 매출 급성장…2028년 비중 39%로 확대\"",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5GWDJINkw3aEphcmUtV1B3Z01nQlFYQUZ0NVlhZGxvNDFrNEdhVnVmV3pROVNMeVNrcmlKUFBhdXhlS1I4LWRWRDNtbUhmX1dWZDloT2ZCOVg0Q1ZOek5NMtIBeEFVX3lxTE1uT2laallBWHE1N0poYy1KNlRLX1pJcExtejFHR0wzU0thNGEwV1c0YUkwRVlrU1dvTEZpYlF3Y2NFeFkzWnNNVXBpcy10ck5ucVNlWjk4VGw4X3BhSGhSNXM2bFdyTEFveW1MMlQzQm5tcm5UUURNQg?oc=5",
+   "published": "2026-10-15 14:02 KST",
+   "written": "2026-10-15 14:16 KST"
+  },
+  {
    "id": "d202b8ddead0",
    "kind": "news",
    "headline": "중국 YMTC, 2분기 낸드 출하량 세계 3위 첫 진입 — 점유율 14%로 키옥시아·마이크론 제쳐",
@@ -19,5 +35,5 @@
    "written": "2026-10-14 16:19 KST"
   }
  ],
- "updated": "2026-10-14 16:19 KST"
+ "updated": "2026-10-15 14:16 KST"
 }
