@@ -231,8 +231,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "OpenAI",
-   "count": 27,
-   "last": "2026-10-15 11:26 KST"
+   "count": 28,
+   "last": "2026-10-15 12:00 KST"
   },
   {
    "term": "엔스로픽",
@@ -250,8 +250,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "Anthropic",
-   "count": 30,
-   "last": "2026-10-15 09:03 KST"
+   "count": 32,
+   "last": "2026-10-15 11:55 KST"
   },
   {
    "term": "클로드",
@@ -284,7 +284,7 @@
    "resolved": true,
    "added": "2026-10-10 14:00",
    "by": "claude",
-   "count": 17,
+   "count": 18,
    "last": "2026-10-15 11:44 KST"
   },
   {
@@ -551,5 +551,5 @@
    "last": "2026-10-13 06:45 KST"
   }
  ],
- "updated": "2026-10-15 11:48 KST"
+ "updated": "2026-10-15 12:18 KST"
 }
