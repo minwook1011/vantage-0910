@@ -22,7 +22,8 @@
 .ta-pyr-h b { font-size:15px; } .ta-pyr-h span { color:var(--mut); font-size:12px; }
 .ta-pyr-row { display:block; width:100%; border:0; background:none; padding:1px 0; cursor:pointer; font:inherit; }
 .ta-pyr-row .bar { display:flex; align-items:center; gap:8px; margin:0 auto; width:var(--w); min-width:250px; max-width:100%; height:26px; border-radius:6px; padding:0 10px;
-  background:hsl(calc(220 - var(--i) * 4), calc(80% - var(--i) * 1.5%), calc(52% + var(--i) * 1.6%)); color:#fff; font-size:12.5px; box-shadow:0 1px 2px rgba(20,40,80,.12); transition:transform .12s; }
+  background:var(--bg); color:#fff; font-size:13px; text-shadow:0 1px 1px rgba(10,30,70,.25); box-shadow:0 1px 2px rgba(20,40,80,.12); transition:transform .12s; }
+.ta-pyr-row.lt .bar { color:#0f2550; text-shadow:none; }
 .ta-pyr-row:hover .bar { transform:scale(1.015); }
 .ta-pyr-row .bar em { font-style:normal; font-weight:700; opacity:.85; min-width:16px; }
 .ta-pyr-row .bar b { flex:1; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }

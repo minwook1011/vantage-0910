@@ -72,6 +72,51 @@ def universe(market):
     return out
 
 
+def fetch_adj(tk, rng="2y"):
+    """야후 일봉 + 분할 보정 — 일본 종목은 야후가 분할을 반영 안 한 날것을 주는 경우가 있어(예: 시마무라 1:3) 분할일 앞 가격을 나누고 거래량을 곱한다.
+    이미 보정된 계열이면 분할일에 가격이 실제로 뛰지 않으므로 건드리지 않는다."""
+    raw = FM.http_get(f"https://query1.finance.yahoo.com/v8/finance/chart/{FM.urllib.parse.quote(tk)}?range={rng}&interval=1d&events=split")
+    if not raw:
+        return None
+    try:
+        res = json.loads(raw)["chart"]["result"][0]
+        ts = res.get("timestamp") or []
+        q = res["indicators"]["quote"][0]
+        out = {"dates": [], "o": [], "h": [], "l": [], "c": [], "v": []}
+        tsk = []
+        for i, t in enumerate(ts):
+            c = q["close"][i]
+            if c is None:
+                continue
+            tsk.append(t)
+            out["dates"].append(datetime.fromtimestamp(t, tz=KST).strftime("%Y-%m-%d"))
+            for k, src in (("o", "open"), ("h", "high"), ("l", "low")):
+                out[k].append(float(q[src][i] or c))
+            out["c"].append(float(c))
+            out["v"].append(int(q["volume"][i] or 0))
+        for sp in ((res.get("events") or {}).get("splits") or {}).values():
+            f = (sp.get("numerator") or 0) / (sp.get("denominator") or 1)
+            if f <= 0 or abs(f - 1) < 0.05:
+                continue
+            j = next((k for k, t in enumerate(tsk) if t >= int(sp["date"]) - 43200), None)
+            if not j:
+                continue
+            # 분할일 앞뒤 며칠 안에서 가격이 1/f 만큼 실제로 뛴 날을 찾는다(야후 분할일이 하루쯤 어긋나기도 함). 없으면 이미 보정된 것 → 그대로
+            hit = [k for k in range(max(1, j - 3), min(len(tsk), j + 3)) if out["c"][k - 1] and 0.55 / f <= out["c"][k] / out["c"][k - 1] <= 1.6 / f]
+            if not hit:
+                continue
+            j = hit[0]
+            for k in range(j):
+                for key in ("o", "h", "l", "c"):
+                    out[key][k] = out[key][k] / f
+                out["v"][k] = int(out["v"][k] * f)
+        for key in ("o", "h", "l", "c"):
+            out[key] = [round(x, 4) for x in out[key]]
+        return out if len(out["c"]) >= 2 else None
+    except Exception:
+        return None
+
+
 def pct(a, b):
     return None if not b or a is None else round((a / b - 1) * 100, 2)
 
@@ -145,7 +190,7 @@ def run(market):
     def one(row):
         tk = row[0]
         for a in range(3):
-            px = FM.fetch_chart(tk, "2y")
+            px = fetch_adj(tk, "2y")
             if px:
                 break
             time.sleep(1 + a)

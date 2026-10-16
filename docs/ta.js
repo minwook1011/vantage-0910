@@ -50,7 +50,8 @@
     return '<section class="ta-pyr"><div class="ta-pyr-h"><b>' + esc(label.split(" (")[0]) + "</b><span>" + esc(label.indexOf(" (") > 0 ? label.slice(label.indexOf(" (") + 2, -1) : "") + "</span></div>" +
       top.map(function (s, i) {
         var w = 22 + 78 * ((s[k] - mn) / ((mx - mn) || 1));
-        return '<button type="button" class="ta-pyr-row" data-jump="' + esc(s.code) + '" style="--w:' + w.toFixed(1) + "%;--i:" + i + '"><span class="bar"><em>' + (i + 1) + "</em><b>" + esc(nameTxt(s)) + "</b><i>" + fmtMetric(k, s[k]) + "</i></span></button>";
+        var L = 44 + i * 2.1, dark = L > 66;   /* 위는 진한 파랑·흰 글씨, 아래로 갈수록 옅어지면 글씨를 진하게 — 가독성(2026-10-16 사용자) */
+        return '<button type="button" class="ta-pyr-row' + (dark ? " lt" : "") + '" data-jump="' + esc(s.code) + '" style="--w:' + w.toFixed(1) + "%;--bg:hsl(218,78%," + L.toFixed(0) + '%)"><span class="bar"><em>' + (i + 1) + "</em><b>" + esc(nameTxt(s)) + "</b><i>" + fmtMetric(k, s[k]) + "</i></span></button>";
       }).join("") + "</section>";
   }
 
