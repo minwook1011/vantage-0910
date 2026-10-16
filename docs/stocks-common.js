@@ -805,14 +805,14 @@ function statFinSectionHTML(cfg) {
   var fin = cfg.financials;
   if (!fin || (!(fin.annual && fin.annual.length) && !(fin.quarterly && fin.quarterly.length))) return "";
   var isQ = _statFinMode === "quarterly";
-  var rows = (isQ ? fin.quarterly : fin.annual || []).slice(-(isQ ? 8 : 5));
-  if (!rows || !rows.length) { isQ = !isQ; rows = (isQ ? fin.quarterly : fin.annual || []).slice(-(isQ ? 8 : 5)); }
+  var rows = (isQ ? fin.quarterly : fin.annual || []).slice(-(isQ ? 12 : 5));
+  if (!rows || !rows.length) { isQ = !isQ; rows = (isQ ? fin.quarterly : fin.annual || []).slice(-(isQ ? 12 : 5)); }
   var ccy = (rows && rows[0] && rows[0].ccy) || "USD";
   return '<h4 style="font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin:18px 0 8px;font-weight:800">재무 추이 ' +
     '<span class="muted small" style="text-transform:none;letter-spacing:0;font-weight:400">매출·영업이익·OPM·증가율</span></h4>' +
     '<div class="toggle" style="margin-bottom:8px">' +
     '<button data-sfin="annual" class="' + (!isQ ? "on" : "") + '">연간(최근 5개)</button>' +
-    '<button data-sfin="quarterly" class="' + (isQ ? "on" : "") + '">분기(최근 8개)</button></div>' +
+    '<button data-sfin="quarterly" class="' + (isQ ? "on" : "") + '">분기(최근 12개)</button></div>' +
     '<div id="stat-fin-holder">' + financialsHTML(rows, isQ, ccy) + "</div>";
 }
 function statModalBody(cfg) {
@@ -873,7 +873,7 @@ function wireStatFinToggle() {
       var fin = _statModalCfg && _statModalCfg.financials;
       if (!fin) return;
       var isQ = _statFinMode === "quarterly";
-      var rows = (isQ ? fin.quarterly : fin.annual || []).slice(-(isQ ? 8 : 5));
+      var rows = (isQ ? fin.quarterly : fin.annual || []).slice(-(isQ ? 12 : 5));
       var ccy = (rows && rows[0] && rows[0].ccy) || "USD";
       var holder = document.querySelector("#modal-back #stat-fin-holder");
       if (holder) holder.innerHTML = financialsHTML(rows, isQ, ccy);

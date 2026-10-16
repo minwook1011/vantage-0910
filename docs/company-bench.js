@@ -512,7 +512,7 @@
       (id.indexOf("custom-") === 0 ? '<button class="fm-remove-custom" data-cb-delete="' + esc(id) + '" aria-label="' + esc(m.label) + ' 삭제">×</button>' : "") + "</div>";
   }
   function finLabel(date, period) { return period === "annual" ? date.slice(0, 4) + "년" : date.slice(0, 4) + "." + date.slice(5, 7); }
-  function rangeLabel(r, period) { return r === "ALL" ? "전체" : r === "FIN" ? (period === "annual" ? "최근 5개 연도" : "최근 8개 분기") : r; }
+  function rangeLabel(r, period) { return r === "ALL" ? "전체" : r === "FIN" ? (period === "annual" ? "최근 5개 연도" : "최근 12개 분기") : r; }
   function render(c) {
     var p = cfg(c.ticker), kd = krData(c), u = finUnit(c);
     var opened = ["fin", "ind", "cmp"].filter(function (k) { var el = document.getElementById("cb-select-" + k); return el && el.open; });
@@ -684,8 +684,8 @@
     if (!prices.length) { box.innerHTML = '<div class="fm-chart-empty">주가 자료가 아직 없습니다.</div>'; return; }
     var start = C.rangeStart(prices, p.range === "ALL" ? "ALL" : p.range);
     if (p.range === "FIN") {
-      // 최근 8개 분기(연간이면 5개 연도): 첫 회계기간이 시작하는 달부터
-      var fa = finRows(c, p.period).filter(function (r) { return !r.est && (finite(r.revenue) || finite(r.operating_income)); }), n0 = p.period === "annual" ? 5 : 8;
+      // 최근 12개 분기(연간이면 5개 연도): 첫 회계기간이 시작하는 달부터
+      var fa = finRows(c, p.period).filter(function (r) { return !r.est && (finite(r.revenue) || finite(r.operating_income)); }), n0 = p.period === "annual" ? 5 : 12;
       if (fa.length) { var f0 = new Date(C.timestamp(fa[Math.max(0, fa.length - n0)].date)); start = Date.UTC(f0.getUTCFullYear(), p.period === "annual" ? 0 : f0.getUTCMonth() - 2, 1); }
       else start = C.rangeStart(prices, "2Y");
     }

@@ -84,7 +84,7 @@
 
   /* ── 요약 표: 최근 5개 분기 ── */
   function table(qs) {
-    var cols = qs.slice(-5), last = cols.length - 1;
+    var cols = qs.slice(-12), last = cols.length - 1;   /* 12분기(2026-10-16 사용자) — 표는 옆으로 밀어 봄 */
     function head() {
       return "<thead><tr><th></th>" + cols.map(function (q, i) { return '<th class="' + (i === last ? "cur" : "") + '">' + esc(q.cq) + "<small>" + esc(rng(q.label)) + "</small></th>"; }).join("") + "</tr></thead>";
     }

@@ -137,8 +137,8 @@
       '<div class="ep-ph"><span class="mk ' + x.mk + '">' + (x.mk === "jp" ? "일본" : "미국") + "</span><h3>" + esc(nm(x)) + ' <small>' + esc(x.c) + (x.mk === "jp" && x.ko ? " · " + esc(x.n) : "") + "</small></h3>" + (p.one ? "<p>" + esc(p.one) + "</p>" : "") + "</div>" +
       '<div class="ep-psec"><b>주가 (최근 약 1년' + (x.pxd ? " · " + esc(x.pxd) + " 종가 " + num(x.px[x.px.length - 1]) + (x.mk === "jp" ? "엔" : "달러") : "") + ')</b><span class="ep-pr">1개월 <i class="' + pcl(r1) + '">' + pct(r1) + '</i> · 3개월 <i class="' + pcl(r3) + '">' + pct(r3) + '</i> · 1년 <i class="' + pcl(r12) + '">' + pct(r12) + "</i></span></div>" +
       (x.px ? '<div class="ep-big">' + spark(x.px, 640, 180, true) + "</div>" : '<div class="ep-nofin">주가 자료 없음</div>') +
-      '<div class="ep-psec"><b>재무제표</b><span class="ep-pr">최근 8분기 · 연간 4년' + (x.fin && x.fin.f ? " · 회사 예상" : "") + "</span></div>" +
-      '<div class="ep-ptbl">' + finTable(x.fin, 8, true) + "</div>" +
+      '<div class="ep-psec"><b>재무제표</b><span class="ep-pr">최근 12분기 · 연간 4년' + (x.fin && x.fin.f ? " · 회사 예상" : "") + "</span></div>" +
+      '<div class="ep-ptbl">' + finTable(x.fin, 12, true) + "</div>" +
       ((x.pts || []).length ? '<div class="ep-pts"><b>관전 포인트</b><ul>' + x.pts.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("") + "</ul></div>" : "") +
       (href ? '<a class="ep-more" href="' + href + '" target="_blank" rel="noopener">' + (x.mk === "jp" ? "스크리너에서 전체 보기" : "데이터 허브에서 전체 보기") + " ↗ (새 탭)</a>" : "") + "</div>";
     box.hidden = false; document.body.style.overflow = "hidden";

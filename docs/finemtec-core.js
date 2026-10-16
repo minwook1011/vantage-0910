@@ -31,8 +31,8 @@
     if (!records.length) return [];
     const latest = new Date(timestamp(records.at(-1).date));
     const byDate = new Map(records.map(row => [row.date, row]));
-    return Array.from({length: annual ? 5 : 8}, (_, index) => {
-      const offset = (annual ? 4 : 7) - index;
+    return Array.from({length: annual ? 5 : 12}, (_, index) => {   // 분기 12개(2026-10-16 사용자)
+      const offset = (annual ? 4 : 11) - index;
       const date = new Date(Date.UTC(latest.getUTCFullYear() - (annual ? offset : 0), annual ? 12 : latest.getUTCMonth() + 1 - offset * 3, 0)).toISOString().slice(0, 10);
       const year = Number(date.slice(0, 4));
       const original = byDate.get(date);

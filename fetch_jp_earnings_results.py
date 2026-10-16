@@ -437,6 +437,59 @@ def qseries(fin, n=8):
     return out[-n:]
 
 
+_QHIST = None
+
+
+def _lab_end(lab):
+    """'26.04-06' → (2026, 6) · '24.12-02' → (2025, 2)"""
+    m = re.fullmatch(r"(\d{2})\.(\d{2})-(\d{2})", lab or "")
+    if not m:
+        return None
+    yy, m1, m2 = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    return 2000 + yy + (1 if m2 < m1 else 0), m2
+
+
+def merge_hist(out, code, n=12):
+    """카부탄 8분기 앞에 IR BANK 장기 이력(data_sources/jp_qhist.json, fetch_jp_qhist.py)의 옛 분기를 붙여 n개로(2026-10-16 사용자: 12분기).
+    붙인 분기는 src="irbank"(億 단위 반올림 값). 원래 분기의 YoY·QoQ 가 비어 있으면 붙인 분기로 채운다."""
+    global _QHIST
+    if _QHIST is None:
+        try:
+            _QHIST = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data_sources", "jp_qhist.json"), encoding="utf-8"))
+        except Exception:
+            _QHIST = {}
+    hist = (_QHIST.get(code) or {}).get("q") or []
+    ends = [_lab_end(q.get("label")) for q in out]
+    if not hist or not out or not ends[0]:
+        return out[-n:]
+    first = ends[0][0] * 12 + ends[0][1]
+    add = []
+    for r in hist:
+        y, m2 = int(r["end"][:4]), int(r["end"][5:7])
+        if y * 12 + m2 >= first:
+            continue
+        m1 = (m2 - 3) % 12 + 1
+        sy = y if m1 <= m2 else y - 1
+        rev, op = r.get("rev"), r.get("op")
+        add.append({"label": f"{sy % 100:02d}.{m1:02d}-{m2:02d}", "cq": f"{(m2 - 1) // 3 + 1}Q{y % 100:02d}", "date": None,
+                    "rev": rev, "op": op, "ord": r.get("ord"), "ni": r.get("ni"), "src": "irbank",
+                    "opm": round(op / rev * 100, 1) if op is not None and rev else None, "yoy": None, "qoq": None})
+    allq = add + out
+    key = {i: _lab_end(q["label"]) for i, q in enumerate(allq)}
+    idx = {v[0] * 12 + v[1]: i for i, v in key.items() if v}
+    for i, q in enumerate(allq):
+        e = key[i]
+        if not e:
+            continue
+        k = e[0] * 12 + e[1]
+        py, pq = allq[idx[k - 12]] if (k - 12) in idx else None, allq[idx[k - 3]] if (k - 3) in idx else None
+        if not q.get("yoy") and py:
+            q["yoy"] = {f: pct(q.get(f), py.get(f)) for f in ("rev", "op", "ni")}
+        if not q.get("qoq") and pq:
+            q["qoq"] = {f: pct(q.get(f), pq.get(f)) for f in ("rev", "op", "ni")}
+    return allq[-n:]
+
+
 def aseries(fin):
     """연간 실적(실적 + 회사 예상 予)"""
     return [{"fy": y["fy"], "est": y["est"], **pick(y), "date": y["date"]} for y in fin["year"]]
@@ -533,7 +586,7 @@ def write_report(code, rec, fin, info):
     out = {"rid": rid, "code": code, "name": (info or {}).get("n"), "cat": (info or {}).get("cat"),
            "u": (info or {}).get("u", []), "mcap": (info or {}).get("mcap"),
            "date": rec["date"], "period": rec.get("period"), "fy": rec.get("fy"), "fy_month": fin.get("fy_month"),
-           "unit": "백만엔", "rec": body, "qs": qseries(fin), "ann": aseries(fin), "docs": docs,
+           "unit": "백만엔", "rec": body, "qs": merge_hist(qseries(fin, 99), code), "ann": aseries(fin), "docs": docs,
            "created": old.get("created") or datetime.now(JST).strftime("%Y-%m-%d %H:%M"),
            "updated": datetime.now(JST).strftime("%Y-%m-%d %H:%M")}
     with open(path, "w", encoding="utf-8") as f:

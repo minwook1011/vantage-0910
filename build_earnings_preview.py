@@ -134,8 +134,9 @@ def attach_data(doc):
                         x["px"] = [round(bars[k], 1) for k in ks]
                         x["pxd"] = (date(1970, 1, 1) + timedelta(days=ks[-1])).isoformat()
                     q, a, f = b.get("q") or {}, b.get("a") or {}, b.get("f") or {}
-                    n = min(8, len(q.get("lb") or []))
+                    n = min(16, len(q.get("lb") or []))   # 12분기 표시 + 앞 4분기는 전년 대비 계산용(2026-10-16 사용자)
                     fin = {"u": "억엔", "q": {k: list(reversed((q.get(k) or [])[:n])) for k in ("lb", "rev", "oi", "ni")}}
+                    qh_extend(fin["q"], x["c"], b.get("fm") or FYM.get(x["c"]))
                     al = [i for i, l in enumerate(a.get("lb") or []) if l != "TTM"][:4]
                     fin["a"] = {k: [((a.get(k) or [None] * 99)[i]) for i in reversed(al)] for k in ("lb", "rev", "oi", "ni")}
                     if f.get("rev") is not None or f.get("oi") is not None:
@@ -154,7 +155,7 @@ def attach_data(doc):
                         x["px"] = [_r(pt["value"], 2) for pt in pts]
                         x["pxd"] = pts[-1]["date"]
                     fq = ((u.get("financials") or {}).get("quarterly") or [])
-                    fq = [r for r in fq if not r.get("est")][-8:]
+                    fq = [r for r in fq if not r.get("est")][-16:]
                     fa = [r for r in ((u.get("financials") or {}).get("annual") or []) if not r.get("est")][-4:]
                     lab = lambda r: r["date"][2:4] + "." + r["date"][5:7]
                     x["fin"] = {"u": "백만 달러",
@@ -162,6 +163,45 @@ def attach_data(doc):
                                 "a": {"lb": [r["date"][:4] for r in fa], "rev": [_r(r.get("revenue")) for r in fa], "oi": [_r(r.get("operating_income")) for r in fa], "ni": [_r(r.get("net_income")) for r in fa]}}
             except Exception as e:
                 print("  차트·재무 붙이기 실패", x.get("c"), e)
+
+
+_QH = None
+
+
+def qh_extend(q, code, fym, keep=16):
+    """묶음 분기(오래된 → 최근, 억엔) 앞에 IR BANK 장기 이력(data_sources/jp_qhist.json, 백만엔)의 옛 분기를 붙여 keep 개까지"""
+    global _QH
+    if _QH is None:
+        _QH = jd(os.path.join(BASE, "data_sources", "jp_qhist.json"), {}) or {}
+    H = (_QH.get(code) or {}).get("q") or []
+    if not H or not fym or not q.get("lb") or len(q["lb"]) >= keep:
+        return
+    fym = int(fym)
+    def end(lb):
+        m = re.fullmatch(r"(\d{2})Q([1-4])", str(lb))
+        if not m:
+            return None
+        y, e = 2000 + int(m.group(1)), fym - 3 * (4 - int(m.group(2)))
+        while e <= 0:
+            e += 12; y -= 1
+        return y * 12 + e
+    first = end(q["lb"][0])
+    if first is None:
+        return
+    add = []
+    for r in H:
+        y, mo = int(r["end"][:4]), int(r["end"][5:7])
+        if y * 12 + mo >= first:
+            continue
+        k = (mo - fym) % 12
+        if k % 3:
+            continue
+        qn, fy = (4 if k == 0 else k // 3), (y if mo <= fym else y + 1)
+        cv = lambda v: None if v is None else round(v / 100, 1)
+        add.append((f"{fy % 100:02d}Q{qn}", cv(r.get("rev")), cv(r.get("op") if r.get("op") is not None else r.get("ord")), cv(r.get("ni"))))
+    add = add[-(keep - len(q["lb"])):] if add else []
+    for i, k in enumerate(("lb", "rev", "oi", "ni")):
+        q[k] = [a[i] for a in add] + q[k]
 
 
 def skeleton(mon):

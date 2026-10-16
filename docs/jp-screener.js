@@ -1375,13 +1375,29 @@ function opmTxt(oi, rev){
   const v = (oi==null||!rev||rev<=0) ? null : oi/rev*100;
   return `<span class="opm">OPM <b>${v==null?"—":v.toFixed(1)+"%"}</b></span>`;
 }
+/* 분기 12개(2026-10-16 사용자): 묶음 분기(카부탄 8~10개) 뒤에 IR BANK 장기 이력(data/jp/qhist.json · fetch_jp_qhist.py)의 옛 분기를 붙인다.
+   이력 값은 億 단위 반올림이라 묶음에 있는 분기는 그대로 두고, 그보다 옛날 분기만 더한다. */
+var QHIST=null;
+fetch("data/jp/qhist.json",{cache:"no-cache"}).then(r=>r.ok?r.json():{}).then(d=>{ QHIST=d||{}; const fb=document.getElementById("finbox"); if(fb && view && view.code && BY[view.code]) fb.innerHTML=finHTML(BY[view.code]); }).catch(()=>{ QHIST={}; });
+function qEnd(lb, fym){ const m=/^(\d{2})Q([1-4])$/.exec(String(lb)); if(!m||!fym) return null; let y=2000+(+m[1]), e=fym-3*(4-(+m[2])); while(e<=0){ e+=12; y--; } return y*12+e; }
+function extendQ(b){
+  if(!QHIST || b._qh || !b.q || !b.q.lb || !b.q.lb.length) return; b._qh=1;
+  const H=QHIST[b.c], fym=fyEndMonth(b.c); if(!H||!fym) return;
+  const old=qEnd(b.q.lb[b.q.lb.length-1], fym); if(old==null) return;
+  H.filter(r=>{ const k=+r[0].slice(0,4)*12+(+r[0].slice(5,7)); return k<old; }).reverse().forEach(r=>{
+    const y=+r[0].slice(0,4), mo=+r[0].slice(5,7), k=((mo-fym)%12+12)%12, qn=k===0?4:k/3, fy=mo<=fym?y:y+1;
+    if(!Number.isInteger(qn)) return;
+    b.q.lb.push(String(fy%100).padStart(2,"0")+"Q"+qn); b.q.rev.push(r[1]); (b.q.oi||(b.q.oi=[])).push(r[2]!=null?r[2]:r[3]); (b.q.ni||(b.q.ni=[])).push(r[4]);
+  });
+}
 function finHTML(b){
+  if(view.fin==="q") extendQ(b);
   const src = view.fin==="q" ? b.q : b.a;
   const isQ = view.fin==="q";
   if(!src || !src.lb || !src.lb.length) return `<div class="slot">이 종목은 실적 데이터를 불러오지 못했습니다.</div>`;
   // 연간 표는 TTM을 빼고 확정 회계연도 5개만 쓴다
   const off = (!isQ && src.lb[0]==="TTM") ? 1 : 0;
-  const n=Math.min(5, src.lb.length-off);
+  const n=Math.min(isQ?12:5, src.lb.length-off);   // 분기 12개(2026-10-16 사용자)
   const rows=[["매출액","rev"],["영업이익","oi"],["당기순이익","ni"]];
   // 연간에서만, 그리고 예상 연도가 최신 확정 연도보다 뒤일 때만 컨센서스 칸을 붙인다
   const latest = (!isQ && src.lb[off]!=null) ? String(src.lb[off]) : null;

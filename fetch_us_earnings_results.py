@@ -3,7 +3,7 @@
   docs/data/us/earnings_dates.json (fetch_us_earnings_dates.py, 나스닥 거래소 캘린더)
 → 발표 예정일이 지났거나 오늘인 종목 → SEC EDGAR 제출 목록에서 그 무렵 8-K Item 2.02(실적 발표) 찾기
 → docs/data/us/reports/<rid>.json  (일본 리포트 jp-report 와 같은 틀)
-   qs: 최근 8개 분기(데이터 허브 docs/data/us/<티커>.json 의 SEC XBRL 분기 실적, 백만 달러)
+   qs: 최근 12개 분기(데이터 허브 docs/data/us/<티커>.json 의 SEC XBRL 분기 실적, 백만 달러)
        막 발표한 분기가 XBRL 에 아직 없으면(10-Q 전) 보도자료(EX-99.1) 손익표에서 바로 읽어 src:"release",
        그것도 못 읽으면 야후 분기 손익으로 채우고 src:"yahoo" 표시. 숫자 대기(q_ready:false) 리포트는 실행 때마다 다시 시도
    rec: 발표일·장전/장후·EPS 컨센서스 대비(docs/earnings_calendar.json, 야후)·주가 반응(발표 전 종가 대비, 장중이면 현재가)
@@ -276,7 +276,7 @@ def build_qs(fin_q, extra):
     if extra and not any(abs((datetime.fromisoformat(q["date"]) - datetime.fromisoformat(extra["date"])).days) < 20 for q in rows):
         rows.append(dict(extra, src=extra.get("src") or "yahoo"))
     rows.sort(key=lambda q: q["date"])
-    rows = rows[-12:]
+    rows = rows[-16:]   # 12분기 표시 + 앞 4분기는 YoY 계산용(2026-10-16 사용자: 12분기)
     out = []
     for i, q in enumerate(rows):
         e = {"label": qlabel(q["date"]), "cq": cq(q["date"]), "date": q["date"],
@@ -289,7 +289,7 @@ def build_qs(fin_q, extra):
         e["yoy"] = {k: pct(e[k], yago[k]) for k in ("rev", "op", "ni")} if yago else {}
         e["qoq"] = {k: pct(e[k], prev[k]) for k in ("rev", "op", "ni")} if prev else {}
         out.append(e)
-    return out[-8:]
+    return out[-12:]
 
 
 def cons_of(cal, fq_end):

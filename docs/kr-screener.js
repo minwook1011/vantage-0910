@@ -1376,7 +1376,7 @@ function finHTML(b){
   if(!src || !src.lb || !src.lb.length) return `<div class="slot">이 종목은 실적 데이터를 불러오지 못했습니다.</div>`;
   // 연간 표는 TTM을 빼고 확정 회계연도 5개만 쓴다
   const off = (!isQ && src.lb[0]==="TTM") ? 1 : 0;
-  const n=Math.min(5, src.lb.length-off);
+  const n=Math.min(isQ?12:5, src.lb.length-off);   // 분기 12개(2026-10-16 사용자)
   const rows=[["매출액","rev"],["영업이익","oi"],["당기순이익","ni"]];
   // 연간에서만, 그리고 예상 연도가 최신 확정 연도보다 뒤일 때만 컨센서스 칸을 붙인다
   const latest = (!isQ && src.lb[off]!=null) ? String(src.lb[off]) : null;
