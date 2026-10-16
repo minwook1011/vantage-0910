@@ -30,3 +30,7 @@
 .mr-t.in { font-size:12px; } .mr-t.in th { position:static; background:#fff; }
 .mr-more { display:block; margin:12px auto 0; font:inherit; font-size:13px; border:1px solid #cfd8e6; background:#fff; border-radius:8px; padding:7px 16px; cursor:pointer; color:#2f6fe4; }
 @media (max-width:720px) { .mr-bar .mr-hint { display:none; } .mr-box { padding:12px 10px; } }
+.mr-star { font:inherit; font-size:15px; line-height:1; border:0; background:none; color:#b8c3d4; cursor:pointer; padding:0 6px 0 0; vertical-align:-1px; }
+.mr-star:hover { color:#e0a800; } .mr-star.on { color:#e0a800; }
+.mr-bar button[data-mk="fav"] { color:#b07d00; } .mr-bar button[data-mk="fav"][aria-pressed="true"] { background:#e0a800; color:#fff; }
+.mr-idx .asof b { color:#1a2231; font-weight:600; }

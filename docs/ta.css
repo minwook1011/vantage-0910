@@ -22,10 +22,11 @@
 .ta-pyr-h b { font-size:15px; } .ta-pyr-h span { color:var(--mut); font-size:12px; }
 .ta-pyr-row { display:block; width:100%; border:0; background:none; padding:1px 0; cursor:pointer; font:inherit; }
 .ta-pyr-row .bar { display:flex; align-items:center; gap:8px; margin:0 auto; width:var(--w); min-width:250px; max-width:100%; height:26px; border-radius:6px; padding:0 10px;
-  background:var(--bg); color:#fff; font-size:13px; text-shadow:0 1px 1px rgba(10,30,70,.25); box-shadow:0 1px 2px rgba(20,40,80,.12); transition:transform .12s; }
-.ta-pyr-row.lt .bar { color:#0f2550; text-shadow:none; }
+  background:var(--bg); color:#1a2231; font-size:13px; border:1px solid hsl(352,70%,78%); box-shadow:0 1px 2px rgba(120,20,40,.08); transition:transform .12s; }
+.ta-pyr-row .bar em { color:#8a1f2e; } .ta-pyr-row .bar b { font-weight:700; } .ta-pyr-row .bar i { color:#c0283c; }
+.ta-pyr-row:nth-child(-n+4) .bar { border-color:#e6576a; }
 .ta-pyr-row:hover .bar { transform:scale(1.015); }
-.ta-pyr-row .bar em { font-style:normal; font-weight:700; opacity:.85; min-width:16px; }
+.ta-pyr-row .bar em { font-style:normal; font-weight:700; min-width:16px; }
 .ta-pyr-row .bar b { flex:1; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .ta-pyr-row .bar i { font-style:normal; font-weight:700; font-variant-numeric:tabular-nums; }
 /* 조절 줄 */
@@ -63,3 +64,11 @@
   .ta-mk button { padding:7px 14px; } .ta-pyr-row .bar { min-width:0; width:100%; } .ta-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
   .ta-ctl .cnt { margin-left:0; }
 }
+.ta-card[data-code] { cursor:pointer; transition:border-color .12s, box-shadow .12s; }
+.ta-card[data-code]:hover { border-color:#2f6fe4; box-shadow:0 4px 14px rgba(47,111,228,.12); }
+.ta-idx .asof b { color:#1a2231; font-weight:600; }
+.ta-info-link { margin:0 0 10px; font-size:13px; } .ta-info-link a { color:#0045d6; font-weight:600; } .ta-info-link small { color:#8a97ab; }
+.ta-star { font:inherit; font-size:15px; line-height:1; border:0; background:none; color:#b8c3d4; cursor:pointer; padding:0 5px 0 0; vertical-align:-1px; }
+.ta-star:hover, .ta-star.on { color:#e0a800; }
+.ta-mk button[data-m="fav"] { color:#b07d00; } .ta-mk button[data-m="fav"][aria-pressed="true"] { background:#e0a800; color:#fff; box-shadow:0 2px 8px rgba(224,168,0,.3); }
+.ta-favh { margin:18px 0 8px; font-size:16px; } .ta-favh small { color:#5b6576; font-weight:500; font-size:12px; }

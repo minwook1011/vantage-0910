@@ -117,6 +117,56 @@ def fetch_adj(tk, rng="2y"):
         return None
 
 
+def about_map(market):
+    """종목 창(누르면 뜨는 기업 정보)에 쓸 한두 줄 소개"""
+    out = {}
+    try:
+        if market == "us":
+            pr = json.load(open(os.path.join(BASE, "docs", "megacap_profiles.json"), encoding="utf-8")).get("profiles", {})
+            for tk, v in pr.items():
+                if v.get("biz"):
+                    out[tk] = {"about": v["biz"]}
+        elif market == "jp":
+            t = open(os.path.join(BASE, "docs", "data", "jp", "screener-data.js"), encoding="utf-8").read()
+            m = re.search(r"const\s+BM\s*=\s*(\{.*?\});?\s*(?:\n|$)", t, re.S)
+            bm = json.loads(m.group(1)) if m else {}
+            try:
+                for k, v in json.load(open(os.path.join(BASE, "docs", "data", "jp", "bm_extra.json"), encoding="utf-8")).items():
+                    bm.setdefault(k, v)
+            except Exception:
+                pass
+            for code, b in bm.items():
+                o = {}
+                if b.get("sum"):
+                    o["about"] = b["sum"][:220]
+                if b.get("seg"):
+                    o["seg"] = [{"n": x.get("n"), "p": x.get("p")} for x in b["seg"][:5] if x.get("n")]
+                if b.get("recent"):
+                    o["recent"] = [str(x)[:90] for x in b["recent"][:3]]
+                if o:
+                    out[code] = o
+    except Exception as e:
+        print("  소개글 읽기 실패", e)
+    return out
+
+
+def kr_fin(code):
+    """한국 종목 재무(억원) → 종목 창 재무표 형식(백만원 단위)"""
+    try:
+        f = json.load(open(os.path.join(BASE, "docs", "data", "kr", code + ".json"), encoding="utf-8")).get("financials") or {}
+    except Exception:
+        return None
+    def rows(L, n):
+        out = []
+        for r in (L or [])[-n:]:
+            rev, op = r.get("revenue"), r.get("operating_income")
+            out.append({"date": r["date"], "ccy": "KRW", "rev": rev * 100 if rev is not None else None, "op": op * 100 if op is not None else None,   # 억원 → 백만원(공용 재무표 단위)
+                        "opm": r.get("opm"), "rev_yoy": r.get("revenue_yoy"), "op_yoy": r.get("operating_income_yoy"), "rev_qoq": r.get("revenue_qoq"), "est": r.get("est")})
+        return out
+    q, a = rows(f.get("quarterly"), 8), rows(f.get("annual"), 5)
+    return {"quarterly": q, "annual": a} if q or a else None
+
+
 def pct(a, b):
     return None if not b or a is None else round((a / b - 1) * 100, 2)
 
@@ -202,6 +252,7 @@ def run(market):
         if not m:
             return None
         m.update({"tk": tk, "code": row[1], "name": row[2], "en": row[3], "sector": row[4], "mcap": row[5], "sub": row[7]})
+        m["_px"] = px
         return m
     with ThreadPoolExecutor(max_workers=8) as ex:
         res = [r for r in ex.map(one, uni) if r]
@@ -209,6 +260,40 @@ def run(market):
     ranked = sorted([r for r in res if r["rs_raw"] is not None], key=lambda r: r["rs_raw"])
     for i, r in enumerate(ranked):
         r["rs"] = max(1, min(99, round((i + 1) / len(ranked) * 99)))
+    # 종목 창용 일봉 파일 — 화면 목록(5일 안 신고가 · 거래량 1.5배 이상/상위 · RS 90 이상)과 시가총액 상위 60개만(저장소 크기 때문)
+    cdir = os.path.join(OUT_DIR, "c", market)
+    os.makedirs(cdir, exist_ok=True)
+    vq = sorted([r for r in res if r.get("vr") is not None], key=lambda r: -r["vr"])
+    listed = {r["code"] for r in res if r.get("nh5") or (r.get("rs") or 0) >= 90}
+    listed |= {r["code"] for r in vq if r["vr"] >= 1.5} | {r["code"] for r in vq[:40]}
+    listed |= {r["code"] for r in sorted(res, key=lambda r: -(r["mcap"] or 0))[:60]}
+    ab = about_map(market)
+    keep = set()
+    for r in res:
+        a = ab.get(r["tk"]) or ab.get(r["code"])
+        if a:
+            r["about"] = a.get("about")
+            if a.get("recent"):
+                r["recent"] = a["recent"]
+            if a.get("seg"):
+                r["seg"] = a["seg"]
+        px = r.pop("_px", None)
+        if r["code"] not in listed or not px:
+            continue
+        n = len(px["c"])
+        cs = [{"d": px["dates"][i], "o": px["o"][i], "h": px["h"][i], "l": px["l"][i], "c": px["c"][i], "v": px["v"][i]} for i in range(max(0, n - 260), n)]
+        doc = {"tk": r["tk"], "candles": cs}
+        if market == "kr":
+            fin = kr_fin(r["code"])
+            if fin:
+                doc["fin"] = fin
+        fn = re.sub(r"[^A-Za-z0-9._-]", "_", r["code"]) + ".json"
+        json.dump(doc, open(os.path.join(cdir, fn), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+        keep.add(fn)
+        r["cf"] = 1   # 일봉 파일 있음
+    for fn in os.listdir(cdir):
+        if fn not in keep:
+            os.remove(os.path.join(cdir, fn))
     as_of = max((r["date"] for r in res), default=None)
     stale = [r for r in res if r["date"] != as_of]
     for r in res:

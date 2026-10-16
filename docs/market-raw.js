@@ -6,11 +6,15 @@
   "use strict";
   var me = document.currentScript, MODE = (me && me.dataset.mode) || "stocks";
   var main = document.querySelector("main") || document.querySelector("body > .container") || document.body;
-  var KEY = "vantage-mraw-" + MODE, MK = [["", "글로벌 (기존 화면)"], ["us", "미국"], ["kr", "한국"], ["jp", "일본"]];
+  var KEY = "vantage-mraw-" + MODE, MK = [["", "글로벌 (기존 화면)"], ["us", "미국"], ["kr", "한국"], ["jp", "일본"], ["fav", "★ 즐겨찾기"]];
   var st = {m: "", sort: MODE === "sector" ? "w1m" : "mcap", dir: -1, sec: "", q: "", open: {}, limit: 100};
   try { Object.assign(st, JSON.parse(localStorage.getItem(KEY) || "{}")); st.open = {}; st.limit = 100; } catch (e) {}
-  var hm = /(?:^|[#&])mk=(us|kr|jp|all)/.exec(location.hash); if (hm) st.m = hm[1] === "all" ? "" : hm[1];
+  var hm = /(?:^|[#&])mk=(us|kr|jp|fav|all)/.exec(location.hash); if (hm) st.m = hm[1] === "all" ? "" : hm[1];
   var CACHE = {};
+  var FKEY = "etf_favs_v1";
+  function favs() { try { return JSON.parse(localStorage.getItem(FKEY)) || {}; } catch (e) { return {}; } }
+  function favToggleTk(tk, name) { var m = favs(); if (m[tk]) delete m[tk]; else m[tk] = {name: name || tk, ts: Date.now()}; try { localStorage.setItem(FKEY, JSON.stringify(m)); } catch (e) {} }
+  function star(s) { var on = !!favs()[s.tk]; return '<button type="button" class="mr-star' + (on ? " on" : "") + '" data-fav="' + esc(s.tk) + '" data-fn="' + esc(s.name) + '" title="' + (on ? "즐겨찾기 빼기" : "즐겨찾기에 넣기") + '">' + (on ? "★" : "☆") + "</button>"; }
   var bar = document.createElement("nav"); bar.className = "mr-bar"; bar.setAttribute("aria-label", "시장 선택");
   var box = document.createElement("section"); box.className = "mr-box"; box.hidden = true;
   main.insertBefore(box, main.firstChild); main.insertBefore(bar, box);
@@ -47,10 +51,12 @@
   var SCOL = [["sector", "업종", 0], ["n", "종목", 1], ["mcap", "시가총액", 1], ["w1d", "1일", 1], ["w5d", "5일", 1], ["w1m", "1개월", 1], ["w3m", "3개월", 1], ["w6m", "6개월", 1], ["w12m", "12개월", 1], ["nh", "5일 안 신고가", 1], ["rs", "평균 RS", 1], ["vr", "거래량 배수(중앙)", 1]];
   var TCOL = [["name", "종목", 0], ["sector", "업종", 0], ["mcap", "시가총액", 1], ["price", "가격", 1], ["chg1d", "1일", 1], ["chg5d", "5일", 1], ["chg1m", "1개월", 1], ["r3", "3개월", 1], ["r6", "6개월", 1], ["r12", "12개월", 1], ["from_hi", "52주 고점 대비", 1], ["vr", "거래량 배수", 1], ["rs", "RS", 1], ["c", "6개월 추이", 2], ["ex3", "지수 대비 3개월", 1]];   /* 지수 대비는 맨 오른쪽(2026-10-16 사용자) */
   function stockRow(m, s, cols) {
+    m = s._m || m;
     return "<tr>" + cols.map(function (c) {
       var k = c[0], v = s[k];
-      if (k === "name") return '<td class="l nm">' + nm(m, s) + "<em>" + esc(s.code) + (s.sub && m === "kr" ? " · " + esc(s.sub) : "") + "</em></td>";
+      if (k === "name") return '<td class="l nm">' + star(s) + nm(m, s) + "<em>" + esc(s.code) + (s.sub && m === "kr" ? " · " + esc(s.sub) : "") + "</em></td>";
       if (k === "sector") return '<td class="l sec">' + esc(s.sector) + "</td>";
+      if (k === "_mk") return '<td class="l sec">' + ({us: "미국", kr: "한국", jp: "일본"}[s._m] || "") + "</td>";
       if (k === "mcap") return "<td>" + cap(m, v) + "</td>";
       if (k === "price") return "<td>" + px(m, v) + "</td>";
       if (k === "vr") return '<td class="' + (v >= 2 ? "hot" : "") + '">' + (v == null ? "—" : Number(v).toFixed(1) + "배") + "</td>";
@@ -71,11 +77,12 @@
     others().forEach(function (el) { if (showOrig) { if (el.dataset.mrHid) { el.hidden = false; delete el.dataset.mrHid; } } else if (!el.hidden) { el.hidden = true; el.dataset.mrHid = "1"; } });
     box.hidden = showOrig;
     if (showOrig) { window.dispatchEvent(new Event("resize")); return; }
+    if (st.m === "fav") return renderFav();
     var D = CACHE[st.m];
     if (!D) { box.innerHTML = '<div class="mr-empty">' + (D === null ? "자료를 불러오지 못했습니다." : "불러오는 중…") + "</div>"; return; }
     var title = (MK.find(function (x) { return x[0] === st.m; }) || [])[1];
     var idx = (D.index || []).map(function (i) { return "<span><b>" + esc(i.name) + "</b> " + num(i.price, 2) + " " + sg(i.chg1d, 2) + "</span>"; }).join("");
-    var top = '<div class="mr-head"><h2>' + esc(title) + (MODE === "sector" ? " 업종별 흐름" : " 전체 종목") + '</h2><div class="mr-idx">' + idx + '<span class="asof">기준 ' + esc(D.as_of) + " · " + D.count + '종목 · <a href="ta.html#' + st.m + '-nh">기술적 분석에서 보기 →</a></span></div></div>';
+    var top = '<div class="mr-head"><h2>' + esc(title) + (MODE === "sector" ? " 업종별 흐름" : " 전체 종목") + '</h2><div class="mr-idx">' + idx + '<span class="asof">기준 ' + esc(D.as_of) + " · " + D.count + "종목 · <b>업데이트 " + esc((D.generated_at || "").replace("T", " ").slice(0, 16)) + '</b> · <a href="ta.html#' + st.m + '-nh">기술적 분석에서 보기 →</a></span></div></div>';
     if (MODE === "sector") {
       var S = sectors(D).sort(cmp(st.sort));
       box.innerHTML = top + '<p class="mr-note">수익률은 업종 안 종목의 시가총액 가중 평균입니다. 줄을 누르면 그 업종 종목이 펼쳐집니다.</p><div class="mr-scroll"><table class="mr-t">' + head(SCOL, true) + "<tbody>" +
@@ -94,18 +101,39 @@
         '<div class="mr-scroll"><table class="mr-t">' + head(TCOL, true) + "<tbody>" + L.slice(0, st.limit).map(function (s) { return stockRow(st.m, s, TCOL); }).join("") + "</tbody></table></div>" +
         (L.length > st.limit ? '<button type="button" class="mr-more" data-more>' + (L.length - st.limit) + "종목 더 보기</button>" : "");
     }
-    box.querySelectorAll("[data-sort]").forEach(function (th) { th.onclick = function () { var k = th.dataset.sort; if (st.sort === k) st.dir = -st.dir; else { st.sort = k; st.dir = (k === "name" || k === "sector") ? 1 : -1; } save(); render(); }; });
+    wire();
     box.querySelectorAll("[data-open]").forEach(function (tr) { tr.onclick = function () { var k = tr.dataset.open; st.open[k] = !st.open[k]; render(); }; });
     var se = box.querySelector("[data-sec]"); if (se) se.onchange = function () { st.sec = se.value; st.limit = 100; save(); render(); };
     var q = box.querySelector("[data-q]"); if (q) q.oninput = function () { st.q = q.value; clearTimeout(q._t); q._t = setTimeout(function () { render(); var n = box.querySelector("[data-q]"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 250); };
     var mo = box.querySelector("[data-more]"); if (mo) mo.onclick = function () { st.limit += 200; render(); };
   }
+  function renderFav() {
+    var ms = ["us", "kr", "jp"], miss = ms.filter(function (m) { return CACHE[m] === undefined; });
+    if (miss.length) { box.innerHTML = '<div class="mr-empty">불러오는 중…</div>'; return; }
+    var F = favs(), L = [];
+    ms.forEach(function (m) { ((CACHE[m] || {}).stocks || []).forEach(function (s) { if (F[s.tk]) { s._m = m; L.push(s); } }); });
+    var cols = [TCOL[0], ["_mk", "시장", 0]].concat(TCOL.slice(1));
+    L.sort(cmp(st.sort));
+    var others = Object.keys(F).filter(function (tk) { return !L.some(function (s) { return s.tk === tk; }); });
+    box.innerHTML = '<div class="mr-head"><h2>★ 즐겨찾기</h2><div class="mr-idx"><span>표에서 종목 이름 앞 ☆를 누르면 여기에 모입니다 · 종목 창의 ☆, 섹터 대시보드 즐겨찾기와 같은 목록(기기 간 동기화)</span></div></div>' +
+      (L.length ? '<div class="mr-scroll"><table class="mr-t">' + head(cols, true) + "<tbody>" + L.map(function (s) { return stockRow(s._m, s, cols); }).join("") + "</tbody></table></div>"
+                : '<div class="mr-empty">아직 즐겨찾기한 종목이 없습니다. 미국·한국·일본 표에서 ☆를 눌러 보세요.</div>') +
+      (others.length ? '<p class="mr-note">이 표에 없는 즐겨찾기(ETF·글로벌 메가캡 등) ' + others.length + "개: " + others.map(function (tk) { return esc((F[tk] && F[tk].name) || tk); }).join(" · ") + "</p>" : "");
+    wire();
+  }
+  function wire() {
+    box.querySelectorAll("[data-fav]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); favToggleTk(b.dataset.fav, b.dataset.fn); render(); }; });
+    box.querySelectorAll("[data-sort]").forEach(function (th) { th.onclick = function () { var k = th.dataset.sort; if (st.sort === k) st.dir = -st.dir; else { st.sort = k; st.dir = (k === "name" || k === "sector" || k === "_mk") ? 1 : -1; } save(); render(); }; });
+  }
   function go() {
-    if (!st.m || CACHE[st.m]) return render();
+    var need = st.m === "fav" ? ["us", "kr", "jp"] : st.m ? [st.m] : [];
+    need = need.filter(function (m) { return CACHE[m] === undefined; });
     render();
-    var m = st.m;
-    fetch("data/ta/" + m + ".json?v=" + Date.now()).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (d) { CACHE[m] = d; render(); }).catch(function () { CACHE[m] = null; render(); });
+    need.forEach(function (m) {
+      CACHE[m] = undefined;
+      fetch("data/ta/" + m + ".json?v=" + Date.now()).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function (d) { CACHE[m] = d; render(); }).catch(function () { CACHE[m] = null; render(); });
+    });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
 })();
