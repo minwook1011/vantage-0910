@@ -145,6 +145,7 @@ vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐�
 | `update.yml` daily-data-update | 평일 20:00 | 섹터 ETF(data.json) · 메가캡 시세 · **기술점수 국면별 백테스트·학습**(10년 일봉, 주 1회 캐시) · 차트 패턴 · 메가캡 재무 · 투자자 포트폴리오 · 미국 실적 캘린더 · **포트폴리오 비교용 지수·환율(bench_hist)** · 공포탐욕·매크로 · 밸류에이션 · 텔레그램 뉴스 |
 | `universe.yml` | 월 06:00 | 메가캡 TOP300 명단 재산정 |
 | `kr-companies.yml` | 평일 16:40 · 08:10 | 데이터 허브 한국 기업 654개 주가·실적 |
+| `kr-screener.yml` | 토 09:00 전체 · 평일 16:25 주가 | 한국 기업 스크리너(kr-screener.html) 소비재 354 · 주요 기업 300 — build_kr_screener.py |
 | `us-companies.yml` | 화~토 06:30 · 월 07:00 | 데이터 허브 미국·해외 401개 주가·실적(월요일 편입 점검) |
 | ~~`jp-earnings.yml`~~ · ~~`jp-major.yml`~~ | **자동 실행 끔(2026-09-30)** | 카부탄이 GitHub 서버 요청을 막아 실패만 반복 → 회사 PC 예약 작업 ③·⑧로 옮김 |
 | `macro-dash.yml` | 평일 미국 지표 발표 직후 + 매일 07:00 | 매크로 대시보드(CPI·고용·금리·FOMC 등) |
