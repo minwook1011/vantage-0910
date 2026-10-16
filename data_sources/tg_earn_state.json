@@ -30,12 +30,14 @@
   "alert:us:C:2026-10-13",
   "alert:us:GS:2026-10-13",
   "alert:us:JNJ:2026-10-13",
+  "alert:us:KMB:2026-10-15",
   "alert:us:MRSH:2026-10-15",
   "alert:us:PLD:2026-10-15",
   "alert:us:PNC:2026-10-15",
   "alert:us:RF:2026-10-16",
   "alert:us:STZ:2026-10-06",
   "alert:us:TFC:2026-10-16",
+  "alert:us:TRV:2026-10-16",
   "alert:us:UNH:2026-10-13",
   "alert:us:USB:2026-10-15",
   "day:2026-10-12",
@@ -84,6 +86,7 @@
   "sum:us:RF:2026-10-16",
   "sum:us:STZ:2026-10-06",
   "sum:us:TFC:2026-10-16",
+  "sum:us:TRV:2026-10-16",
   "sum:us:UNH:2026-10-13",
   "sum:us:USB:2026-10-15",
   "week:2026-10-12",
@@ -126,7 +129,9 @@
   "alert:us:PNC:2026-10-15": 95,
   "alert:us:TFC:2026-10-16": 96,
   "alert:us:RF:2026-10-16": 97,
-  "alert:us:PLD:2026-10-15": 99
+  "alert:us:PLD:2026-10-15": 99,
+  "alert:us:TRV:2026-10-16": 104,
+  "alert:us:KMB:2026-10-15": 105
  },
  "topics": {
   "sched": 4,
