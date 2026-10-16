@@ -37,8 +37,8 @@
    "resolved": true,
    "added": "2026-10-10 13:30",
    "by": "telegram",
-   "count": 6,
-   "last": "2026-10-15 17:35 KST"
+   "count": 7,
+   "last": "2026-10-16 04:00 KST"
   },
   {
    "term": "티엘비",
@@ -231,8 +231,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "OpenAI",
-   "count": 31,
-   "last": "2026-10-16 08:45 KST"
+   "count": 32,
+   "last": "2026-10-16 10:03 KST"
   },
   {
    "term": "엔스로픽",
@@ -382,8 +382,8 @@
    "resolved": true,
    "added": "2026-10-12 09:30",
    "by": "claude",
-   "count": 70,
-   "last": "2026-10-16 09:09 KST"
+   "count": 71,
+   "last": "2026-10-16 10:04 KST"
   },
   {
    "term": "ABF",
@@ -568,7 +568,154 @@
    "focus": "AI 관련 전망·조사만 — 인공지능 지출·반도체·데이터센터·생성형 AI·AI 서버·PC/스마트폰 AI 탑재 등 숫자가 있는 가트너 발표. AI와 무관한 가트너 발표(일반 IT 지출 외 보안·인사·마케팅 등)나 가트너를 한 줄 인용만 한 기사는 drop",
    "count": 1,
    "last": "2026-10-15 11:21 KST"
+  },
+  {
+   "term": "캐시우드",
+   "slug": "cathie-wood",
+   "market": "theme",
+   "ticker": "",
+   "name": "캐시 우드 (ARK 인베스트)",
+   "aliases": [
+    "Cathie Wood",
+    "ARK Invest",
+    "ARK Investment",
+    "ARKK",
+    "캐시 우드",
+    "캐시우드",
+    "아크인베스트",
+    "木頭姐"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "워렌버핏",
+   "slug": "warren-buffett",
+   "market": "theme",
+   "ticker": "",
+   "name": "워런 버핏 (버크셔 해서웨이)",
+   "aliases": [
+    "Warren Buffett",
+    "Berkshire Hathaway",
+    "Buffett",
+    "워런 버핏",
+    "워렌 버핏",
+    "버크셔 해서웨이",
+    "巴菲特",
+    "波克夏"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "레오폴드",
+   "slug": "leopold-aschenbrenner",
+   "market": "theme",
+   "ticker": "",
+   "name": "레오폴드 아셴브레너 (시추에이셔널 어웨어니스)",
+   "aliases": [
+    "Leopold Aschenbrenner",
+    "Situational Awareness LP",
+    "Situational Awareness fund",
+    "레오폴드 아셴브레너",
+    "레오폴드"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "드러켄밀러",
+   "slug": "druckenmiller",
+   "market": "theme",
+   "ticker": "",
+   "name": "스탠리 드러켄밀러 (듀케인 패밀리 오피스)",
+   "aliases": [
+    "Stanley Druckenmiller",
+    "Druckenmiller",
+    "Duquesne Family Office",
+    "드러켄밀러",
+    "드러큰밀러",
+    "德鲁肯米勒"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "마이클버리",
+   "slug": "michael-burry",
+   "market": "theme",
+   "ticker": "",
+   "name": "마이클 버리 (사이언 자산운용)",
+   "aliases": [
+    "Michael Burry",
+    "Scion Asset Management",
+    "마이클 버리",
+    "빅쇼트 버리",
+    "貝瑞"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "빌애크먼",
+   "slug": "bill-ackman",
+   "market": "theme",
+   "ticker": "",
+   "name": "빌 애크먼 (퍼싱 스퀘어)",
+   "aliases": [
+    "Bill Ackman",
+    "Pershing Square",
+    "William Ackman",
+    "빌 애크먼",
+    "퍼싱스퀘어"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
+  },
+  {
+   "term": "하워드막스",
+   "slug": "howard-marks",
+   "market": "theme",
+   "ticker": "",
+   "name": "하워드 막스 (오크트리 캐피털)",
+   "aliases": [
+    "Howard Marks",
+    "Oaktree Capital",
+    "Oaktree memo",
+    "하워드 막스",
+    "오크트리"
+   ],
+   "resolved": true,
+   "added": "2026-10-16 16:40",
+   "by": "claude",
+   "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
+   "count": 0,
+   "last": ""
   }
  ],
- "updated": "2026-10-16 09:48 KST"
+ "updated": "2026-10-16 16:40 KST"
 }
