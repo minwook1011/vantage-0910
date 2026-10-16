@@ -38,8 +38,9 @@
 /* 카드 */
 .ta-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(225px,1fr)); gap:10px; }
 .ta-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:10px 11px 9px; display:flex; flex-direction:column; gap:6px; min-width:0; }
-.ta-card.flash { animation:taflash 1.6s ease-out; }
-@keyframes taflash { 0% { box-shadow:0 0 0 3px #2f6fe4; } 100% { box-shadow:0 0 0 0 transparent; } }
+/* 피라미드에서 눌러 이동한 카드 — 다른 카드를 누를 때까지 굵은 빨간 테두리를 유지하고, 처음 몇 번 깜빡여 눈에 띄게(2026-10-16 사용자: 표시가 너무 약함) */
+.ta-card.flash { border:2px solid #d6334a; box-shadow:0 0 0 4px rgba(214,51,74,.18), 0 8px 22px rgba(214,51,74,.18); background:#fff7f8; animation:taflash 0.7s ease-in-out 4; }
+@keyframes taflash { 0%,100% { box-shadow:0 0 0 4px rgba(214,51,74,.18), 0 8px 22px rgba(214,51,74,.18); } 50% { box-shadow:0 0 0 9px rgba(214,51,74,.35), 0 8px 22px rgba(214,51,74,.25); } }
 .ta-card header { display:flex; justify-content:space-between; gap:6px; align-items:flex-start; }
 .ta-card .nm { min-width:0; }
 .ta-card .nm b { display:block; font-size:14px; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }

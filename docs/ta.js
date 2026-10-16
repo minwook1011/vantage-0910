@@ -135,7 +135,7 @@
     var jb = host.querySelector("[data-jpbig]"); if (jb) jb.onchange = function () { st.jpBig = jb.checked; save(); render(); };
     host.querySelectorAll(".ta-card[data-code]").forEach(function (el) { el.onclick = function () { openInfo(el.dataset.code, el.dataset.mk); }; });
     host.querySelectorAll("[data-fav]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); favToggleTk(b.dataset.fav, b.dataset.fn); var on = !!favs()[b.dataset.fav]; b.classList.toggle("on", on); b.textContent = on ? "★" : "☆"; if (st.m === "fav") render(); }; });
-    host.querySelectorAll("[data-jump]").forEach(function (b) { b.onclick = function () { var el = document.getElementById("c-" + b.dataset.jump); if (!el) { st.sec = ""; st.q = ""; render(); el = document.getElementById("c-" + b.dataset.jump); } if (el) { el.scrollIntoView({behavior: "smooth", block: "center"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); } }; });
+    host.querySelectorAll("[data-jump]").forEach(function (b) { b.onclick = function () { var el = document.getElementById("c-" + b.dataset.jump); if (!el) { st.sec = ""; st.q = ""; render(); el = document.getElementById("c-" + b.dataset.jump); } if (el) { el.scrollIntoView({behavior: "smooth", block: "center"}); host.querySelectorAll(".ta-card.flash").forEach(function (x) { x.classList.remove("flash"); }); void el.offsetWidth; el.classList.add("flash"); } }; });
   }
   /* ── 기업 정보 창(카드를 누르면) — 미국 주식 창(stocks-common.js openStatModal)과 같은 모양 ──
      일봉: data/ta/c/{시장}/{코드}.json(화면 목록 종목) · 없으면 최근 6개월 종가로 대신 · 재무: 미국 메가캡 financials.json, 한국 종목 파일 fin
