@@ -242,6 +242,35 @@ def fav_sets(f):
 
 
 # ── 링크 ─────────────────────────────────────────────────────
+def kabutan(m, code):
+    """카부탄 종목 페이지 — 일본 kabutan.jp, 미국 us.kabutan.jp(2026-10-16 사용자)"""
+    return f"https://kabutan.jp/stock/?code={code}" if m == "jp" else f"https://us.kabutan.jp/stocks/{code}"
+
+
+def live_quote(m, code):
+    """보내는 순간의 주가(야후 차트 — 일본 약 20분·미국 실시간에 가까움): '💹 현재가 1,337엔 (+106 · +8.61%) · 10/16 09:12' """
+    sym = f"{code}.T" if m == "jp" else code
+    try:
+        r = requests.get(f"https://query1.finance.yahoo.com/v8/finance/chart/{urllib.parse.quote(sym)}?range=1d&interval=5m",
+                         headers={"User-Agent": "Mozilla/5.0"}, timeout=12)
+        meta = r.json()["chart"]["result"][0]["meta"]
+        px, prev = meta.get("regularMarketPrice"), meta.get("chartPreviousClose") or meta.get("previousClose")
+        if px is None or not prev:
+            return ""
+        t = datetime.fromtimestamp(meta.get("regularMarketTime") or time.time(), KST)
+        ch = px - prev
+        if m == "jp":
+            v, c = f"{px:,.0f}엔", f"{ch:+,.0f}"
+        else:
+            v, c = f"${px:,.2f}", f"{ch:+,.2f}"
+        live = (NOW - t).total_seconds() < 40 * 60
+        return (f"💹 {'현재가' if live else '최근 종가'} <b>{v}</b> ({c} · {ch / prev * 100:+.2f}%) · "
+                f"{t.strftime('%m/%d %H:%M')} KST · <a href=\"{kabutan(m, code)}\">카부탄</a>")
+    except Exception as e:
+        print("  주가 확인 실패:", sym, e)
+        return f'💹 <a href="{kabutan(m, code)}">카부탄에서 주가 보기</a>'
+
+
 def link(m, rid, sec=""):
     return f"{SITE}{PAGE[m]}?id={urllib.parse.quote(rid)}" + (f"#{sec}" if sec else "")
 
@@ -657,7 +686,7 @@ def alerts(st, seed=False, sample=None, only=None):
             continue
         title = f"{FLAG[m]} <b>{esc(name)}({esc(code)})</b>"
         N = load(f"docs/data/{m}/reports/notes/{rid}.json") if rid else None
-        kb = [[{"text": "🔍 분석", "url": link(m, rid, "ana")}]] if rid else None   # 버튼은 하나로
+        kb = [([{"text": "🔍 분석", "url": link(m, rid, "ana")}] if rid else []) + [{"text": "📈 카부탄", "url": kabutan(m, code)}]]
         tags = [TAGS[(m, code)]] if TAGS.get((m, code)) else []
         if (ak not in st["sent"] or DRY) and not sample and (m, code, d) in NOPX and d >= (NOW - timedelta(days=1)).strftime("%Y-%m-%d"):
             print("주가 반응 기다림:", ak)
@@ -669,15 +698,16 @@ def alerts(st, seed=False, sample=None, only=None):
                 favs = favorites()
             png = tg_shots.fin_pic(kind, code, rid, favs) if rid else None
             num = " · ".join(esc(x) for x in nums[:2])
+            q = live_quote(m, code)              # 보내는 순간 주가 + 카부탄 링크(2026-10-16 사용자)
             body = brief(N) if N else []
-            cap = "\n".join([f"{title} · {d[5:].replace('-', '.')} 발표", " · ".join(why)] +
+            cap = "\n".join([f"{title} · {d[5:].replace('-', '.')} 발표", " · ".join(why)] + ([q] if q else []) +
                             ([num] if num else []) +
                             (["🧪 시험 발송"] if sample else []) +
                             ([""] + body if body else []) +
                             ([""] + tags if tags else []))
             while len(re.sub(r"<[^>]+>", "", cap)) > 1000 and body:
                 body.pop()
-                cap = "\n".join([f"{title} · {d[5:].replace('-', '.')} 발표", " · ".join(why)] +
+                cap = "\n".join([f"{title} · {d[5:].replace('-', '.')} 발표", " · ".join(why)] + ([q] if q else []) +
                                 ([num] if num else []) + (["🧪 시험 발송"] if sample else []) +
                                 ([""] + body if body else []) + ([""] + tags if tags else []))
             try:
