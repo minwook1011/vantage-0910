@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="firebase-sync.js?v=20261004K"></script>
+<script src="gate.js?v=20261003L"></script>
+<title>한국 기업 스크리너 — 100억</title>
+<link rel="stylesheet" href="theme.css?v=20261004B">
+<link rel="stylesheet" href="jp-screener.css?v=20261014B">
+</head>
+<body>
+<header id="topnav"></header>
+<header class="jhd">
+  <div class="hd">
+    <div class="jbrand">
+      <div class="eyebrow" id="eyebrow">Korea Exchange · Consumer</div>
+      <h1><span class="kanji" id="kanji">소</span>한국 기업 스크리너</h1>
+      <div class="sub"><span id="subkind">카테고리별</span> 랭킹 · 주가 차트 · 분기/연 실적 &nbsp;|&nbsp; 주가 <span id="asof" class="mono"></span> · 실적 <span id="finasof" class="mono">…</span></div>
+      <div class="useg" id="useg" role="group" aria-label="종목 유니버스">
+        <button data-u="con" aria-pressed="true"><b>소비재</b><span>카테고리별</span></button>
+        <button data-u="maj" aria-pressed="false"><b>주요 기업</b><span>코스피 200 + 코스닥 100</span></button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="s-n"></b><span>종목</span></div>
+      <div class="stat"><b id="s-ch"></b><span>차트·실적 수록</span></div>
+      <div class="stat"><b id="s-m"></b><span>합산 시총(조원)</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="rail"><div class="rail-in" id="rail"></div></nav>
+
+<div class="wrap">
+  <div id="earnup"></div>
+
+  <div id="foodcmp"></div>
+
+  <!-- 정렬·시총·차트·즐겨찾기·검색 + 조건 검색: 실적 발표 캘린더 아래, 외식 지표 바로 위(2026-10-12 사용자) -->
+  <div class="ctl">
+    <div class="fld">
+      <label for="sort">정렬 기준</label>
+      <select id="sort">
+        <option value="mc">시가총액</option>
+        <option value="rev">매출</option>
+        <option value="REVG">매출성장률 (최근 4분기, 전년 대비)</option>
+        <option value="PY">주가수익률 (1년)</option>
+        <option value="PYTD">주가수익률 (YTD)</option>
+        <option value="ROE">ROE</option>
+        <option value="OPM">영업이익률</option>
+        <option value="PER">PER (낮은 순)</option>
+      </select>
+    </div>
+    <div class="fld">
+      <label>최소 시총</label>
+      <div class="seg" id="minmc">
+        <button data-v="0" aria-pressed="true">전체</button>
+        <button data-v="1000">1천억↑</button>
+        <button data-v="5000">5천억↑</button>
+        <button data-v="10000">1조↑</button>
+        <button data-v="50000">5조↑</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label>차트</label>
+      <div class="seg" id="onlych">
+        <button data-v="0" aria-pressed="true">전체</button>
+        <button data-v="1">일봉·급등분석만</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label>즐겨찾기</label>
+      <div class="seg" id="favflt">
+        <button data-v="0" aria-pressed="true">전체</button>
+        <button data-v="1">★만</button>
+      </div>
+    </div>
+    <div class="fld">
+      <label for="q">검색</label>
+      <input type="search" id="q" placeholder="종목명 · 코드 · 업종">
+    </div>
+    <div class="count"><b id="cnt"></b>개 종목</div>
+  </div>
+
+  <div class="smart">
+    <div class="smart-in">
+      <span class="smart-ic">⌕</span>
+      <input type="text" id="sq" placeholder='조건으로 검색 — 예: 시총 1조 이상, 매출성장 10% 이상, 주가 상승률 30% 이상, 3개월 주가 10% 이상, 영업이익률 15% 이상 순'>
+      <button id="sqgo">검색</button>
+      <button id="sqclear" hidden>해제</button>
+    </div>
+    <div class="smart-hint" id="sqhint">시총·매출(규모)·매출성장·주가 상승률(1·3·6개월·1년·YTD)·PER·ROE·영업이익률 조건과 <b>성장 가속</b>·<b>거래량 N배</b>를 알아듣습니다. “~순”을 붙이면 그 기준으로 정렬합니다.</div>
+    <div class="smart-chips" id="sqchips"></div>
+  </div>
+
+  <!-- 외식 지표·월별 펼치기: 실적 발표 캘린더 아래, 종목표 바로 위(2026-10-11 사용자) -->
+  <div class="colsel" id="colsel"></div>
+  <div class="mtxnote" id="mtxnote"></div>
+
+  <div id="higrid" hidden></div>
+  <div class="tblwrap">
+    <table>
+      <thead id="thead"></thead>
+      <tbody id="tb"></tbody>
+    </table>
+  </div>
+  <div class="empty" id="empty" hidden>조건에 맞는 종목이 없습니다.</div>
+
+  <div class="note" id="unote">
+    <b>모든 종목을 클릭하면 주가 차트(10년)와 분기·연간 실적이 열립니다.</b>
+    소비재는 네이버 금융 업종(화장품·식품·음료·담배·소매·의류·가정용품·호텔레저·게임·엔터·교육)의 보통주 중 시가총액 300억원 이상에
+    미용 의료기기·톡신 회사와 외식·급식 회사를 더해 카테고리로 나눴습니다.
+    코드 앞의 점이 채워진 종목(시총 상위 + 카테고리별 상위)은 <b>일봉</b>과 거래량 급등 분석까지, 나머지는 <b>주봉·월봉</b>으로 수록했습니다.
+    일봉 종목 차트에는 거래량이 평소(직전 60거래일 중앙값)의 5배를 넘으면서 주가도 5% 넘게 움직인 날을 노란 띠로 표시했습니다.
+    매출·영업이익·순이익은 최근 4분기 합, 연간 표의 <b>E</b> 칸은 증권사 컨센서스, PER은 시가총액 ÷ 최근 4분기 순이익입니다.
+    주가는 평일 장 마감 뒤, 실적·목록은 매주 토요일 자동 갱신. 등락 색상은 상승 적색 / 하락 청색입니다.
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="panel" id="panel" role="dialog" aria-modal="true" tabindex="-1"><div class="pin" id="pin"></div></aside>
+<script>window.KR_SCR_V="20261016A";</script>
+<script src="data/kr/screener-con.js?v=20261016A"></script>
+<script src="kr-screener.js?v=20261016A"></script>
+<script src="theme.js?v=20261016B"></script>
+</body>
+</html>

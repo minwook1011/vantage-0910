@@ -31,6 +31,7 @@ window.vantageJSON = function (path, fresh) {
     ["coverage.html", "Coverage"],
     ["research-summary.html", "리서치 요약"],
     ["jp-screener.html", "일본 기업"],
+    ["kr-screener.html", "한국 기업"],
     ["us-report.html", "미국 실적"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";

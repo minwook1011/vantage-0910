@@ -1,0 +1,60 @@
+name: kr-screener
+
+# 한국 기업 스크리너(kr-screener.html) — 2026-10-16.
+# 토요일: 소비재·주요 기업 묶음 전부 다시(실적·목록·10년 주가) / 평일 장 마감 뒤: 묶음 이후 일봉만 px_recent.json 으로
+on:
+  schedule:
+    - cron: "0 0 * * 6"      # 토 09:00 KST — 전부 다시
+    - cron: "25 7 * * 1-5"   # 평일 16:25 KST — 최근 일봉
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full | recent"
+        required: false
+        default: "recent"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: kr-screener
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 수집
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "${{ github.event.schedule }}" = "0 0 * * 6" ]; then MODE=full; else MODE=recent; fi
+          fi
+          if [ "$MODE" = "full" ]; then python build_kr_screener.py; else python build_kr_screener.py --recent; fi
+      - name: 데이터 저장
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/kr/screener-con.js docs/data/kr/screener-maj.js docs/data/kr/screener-meta.json docs/data/kr/px_recent.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data: 한국 기업 스크리너 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M') KST"
+            for attempt in 1 2 3; do
+              git pull --rebase --autostash origin main || exit 1
+              if git push; then exit 0; fi
+            done
+            exit 1
+          fi
+      - name: 사이트 미게시 변경 복구
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python publish_pages.py
