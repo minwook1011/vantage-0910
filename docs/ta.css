@@ -1,0 +1,64 @@
+/* ta.css — 기술적 분석(2026-10-16 개편) · 밝은 색감 · 신고가/거래량/상대강도 */
+.ta { --up:#d6334a; --dn:#2f6fe4; --ink:#1a2231; --mut:#5b6576; --line:#e1e7f0; padding-bottom:40px; }
+.ta .up { color:var(--up); font-weight:700; } .ta .dn { color:var(--dn); font-weight:700; } .ta .na { color:#9aa7ba; }
+.ta-empty { color:var(--mut); padding:40px 0; text-align:center; }
+.ta-top { display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:12px; margin:18px 0 12px; }
+.ta-top h1 { margin:0; font-size:26px; letter-spacing:-.02em; }
+.ta-sub { margin:4px 0 0; color:var(--mut); font-size:13px; }
+.ta-mk { display:inline-flex; background:#fff; border:1px solid var(--line); border-radius:12px; padding:4px; gap:4px; }
+.ta-mk button { font:inherit; font-size:15px; font-weight:700; border:0; border-radius:9px; padding:8px 22px; background:transparent; color:var(--mut); cursor:pointer; }
+.ta-mk button[aria-pressed="true"] { background:#2f6fe4; color:#fff; box-shadow:0 2px 8px rgba(47,111,228,.25); }
+.ta-views { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-bottom:12px; }
+.ta-views button { text-align:left; font:inherit; background:#fff; border:1px solid var(--line); border-radius:12px; padding:11px 14px; cursor:pointer; color:var(--ink); }
+.ta-views button b { display:flex; align-items:center; gap:8px; font-size:16px; }
+.ta-views button b i { font-style:normal; font-size:12px; font-weight:700; color:#2f6fe4; background:#eaf1fd; border-radius:999px; padding:1px 8px; }
+.ta-views button small { color:var(--mut); font-size:12px; }
+.ta-views button[aria-pressed="true"] { border-color:#2f6fe4; background:linear-gradient(135deg,#eef4ff,#fff); box-shadow:0 0 0 1px #2f6fe4 inset; }
+.ta-idx { display:flex; flex-wrap:wrap; gap:6px 18px; align-items:baseline; font-size:13px; color:var(--ink); margin:2px 0 14px; }
+.ta-idx small { color:var(--mut); } .ta-idx .asof { margin-left:auto; color:var(--mut); font-size:12px; }
+/* 피라미드 */
+.ta-pyr { background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px 16px 12px; margin-bottom:16px; }
+.ta-pyr-h { display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline; margin-bottom:10px; }
+.ta-pyr-h b { font-size:15px; } .ta-pyr-h span { color:var(--mut); font-size:12px; }
+.ta-pyr-row { display:block; width:100%; border:0; background:none; padding:1px 0; cursor:pointer; font:inherit; }
+.ta-pyr-row .bar { display:flex; align-items:center; gap:8px; margin:0 auto; width:var(--w); min-width:250px; max-width:100%; height:26px; border-radius:6px; padding:0 10px;
+  background:hsl(calc(220 - var(--i) * 4), calc(80% - var(--i) * 1.5%), calc(52% + var(--i) * 1.6%)); color:#fff; font-size:12.5px; box-shadow:0 1px 2px rgba(20,40,80,.12); transition:transform .12s; }
+.ta-pyr-row:hover .bar { transform:scale(1.015); }
+.ta-pyr-row .bar em { font-style:normal; font-weight:700; opacity:.85; min-width:16px; }
+.ta-pyr-row .bar b { flex:1; text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ta-pyr-row .bar i { font-style:normal; font-weight:700; font-variant-numeric:tabular-nums; }
+/* 조절 줄 */
+.ta-ctl { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 12px; }
+.ta-ctl select, .ta-ctl input[type=search] { font:inherit; font-size:13px; border:1px solid var(--line); border-radius:8px; padding:7px 10px; background:#fff; color:var(--ink); }
+.ta-ctl input[type=search] { min-width:170px; }
+.ta-ctl label { font-size:13px; color:var(--mut); display:inline-flex; gap:5px; align-items:center; cursor:pointer; }
+.ta-ctl .cnt { margin-left:auto; color:var(--mut); font-size:13px; }
+/* 카드 */
+.ta-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(225px,1fr)); gap:10px; }
+.ta-card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:10px 11px 9px; display:flex; flex-direction:column; gap:6px; min-width:0; }
+.ta-card.flash { animation:taflash 1.6s ease-out; }
+@keyframes taflash { 0% { box-shadow:0 0 0 3px #2f6fe4; } 100% { box-shadow:0 0 0 0 transparent; } }
+.ta-card header { display:flex; justify-content:space-between; gap:6px; align-items:flex-start; }
+.ta-card .nm { min-width:0; }
+.ta-card .nm b { display:block; font-size:14px; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ta-card .nm b small.en { font-weight:500; color:var(--mut); font-size:11px; }
+.ta-card .nm > small { display:block; color:var(--mut); font-size:11px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ta-card .px { text-align:right; font-size:12px; white-space:nowrap; }
+.ta-card .px b { display:block; font-size:13.5px; font-variant-numeric:tabular-nums; }
+.ta-card .ch svg { display:block; width:100%; height:70px; }
+.ta-card .ch path { fill:none; stroke-width:1.6; vector-effect:non-scaling-stroke; }
+.ta-card .ch path.up { stroke:#d6334a; } .ta-card .ch path.dn { stroke:#2f6fe4; }
+.ta-card .ch line.hi { stroke:#c9801f; stroke-width:1; stroke-dasharray:3 3; vector-effect:non-scaling-stroke; }
+.ta-card .ch .vb rect { fill:#cfd8e6; } .ta-card .ch .vb rect.last { fill:#2f6fe4; }
+.ta-card .tg { display:flex; flex-wrap:wrap; gap:4px; }
+.ta-card .tg em { font-style:normal; font-size:11px; font-weight:600; color:var(--mut); background:#f1f4f9; border-radius:5px; padding:1px 6px; }
+.ta-card .tg em.t-nh { color:#fff; background:#d6334a; } .ta-card .tg em.t-nh2 { color:#b4242f; background:#fde8eb; }
+.ta-card .tg em.t-v2 { color:#1d51b9; background:#e3ecfd; } .ta-card .tg em.t-v3 { color:#fff; background:#2f6fe4; }
+.ta-card .tg em.t-rs { color:#127a5c; background:#dff3ec; }
+.ta-card .rt { display:flex; flex-wrap:wrap; gap:2px 9px; font-size:11px; color:var(--mut); }
+.ta-foot { margin-top:16px; color:var(--mut); font-size:12px; line-height:1.7; }
+@media (max-width:720px) {
+  .ta-views { grid-template-columns:repeat(3,minmax(0,1fr)); } .ta-views button small { display:none; } .ta-views button { padding:9px 10px; }
+  .ta-mk button { padding:7px 14px; } .ta-pyr-row .bar { min-width:0; width:100%; } .ta-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .ta-ctl .cnt { margin-left:0; }
+}

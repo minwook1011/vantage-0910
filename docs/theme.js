@@ -20,7 +20,7 @@ window.vantageJSON = function (path, fresh) {
     ["portfolio.html", "포트폴리오"],
     ["dashboard.html", "섹터 대시보드"],
     ["megacap.html", "글로벌 메가캡"],
-    ["bottomup.html", "기술적 분석"],
+    ["ta.html", "기술적 분석"],
     ["worldflow.html", "세상 흐름 파악"],
     ["news.html", "실시간 뉴스"],
     ["tracking.html", "트래킹"], ["trends.html", "검색 트렌드"],
@@ -34,7 +34,7 @@ window.vantageJSON = function (path, fresh) {
     ["us-report.html", "미국 실적"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";
-  if (here === "ta-lab.html" || here === "backtest.html") here = "bottomup.html";
+  if (here === "ta-lab.html" || here === "backtest.html" || here === "bottomup.html") here = "ta.html";   // 2026-10-16 기술적 분석 개편 — 옛 화면(bottomup)은 주소로만 남김
   if (here === "jp-report.html") here = "jp-screener.html";
   if (here === "research-report.html") here = "research-summary.html";
   var nav = document.getElementById("topnav");

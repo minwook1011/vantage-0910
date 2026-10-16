@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+fetch_ta_core.py — 새 '기술적 분석' 화면 자료: 신고가 · 거래량 · 상대강도 (미국 · 한국 · 일본)
+2026-10-16 사용자: "기술적 분석 전면 개편 — 나머지 다 빼고 신고가·거래량·상대강도만. 미국·일본·한국 나눠서."
+
+  python fetch_ta_core.py              # 세 시장 모두
+  python fetch_ta_core.py --market us  # 하나만 (us | kr | jp)
+
+결과: docs/data/ta/{us,kr,jp}.json
+  종목마다 — 기본 정보(이름·업종·시가총액) · 52주 신고가(오늘·5일 안·신고가까지 거리) · 거래량(평소 50일 평균 대비 배수)
+           · 상대강도(3·6·9·12개월 수익률 가중 → 시장 안 백분위 1~99, 지수 대비 초과수익) · 작은 차트용 최근 130일 종가·거래량
+가격: 야후 일봉(2년) — 미국 ^GSPC · 한국 ^KS11/^KQ11 · 일본 ^N225 와 비교.
+"""
+import argparse
+import json
+import os
+import re
+import sys
+import time
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timedelta, timezone
+
+import fetch_megacap as FM
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR = os.path.join(BASE, "docs", "data", "ta")
+KST = timezone(timedelta(hours=9))
+CHART_DAYS = 130          # 작은 차트에 싣는 최근 거래일 수(약 6개월)
+VOL_BASE = 50             # 평소 거래량 = 직전 50거래일 평균
+
+GICS_KO = {"Information Technology": "정보기술", "Health Care": "헬스케어", "Financials": "금융", "Consumer Discretionary": "경기소비재",
+           "Communication Services": "커뮤니케이션", "Industrials": "산업재", "Consumer Staples": "필수소비재", "Energy": "에너지",
+           "Utilities": "유틸리티", "Real Estate": "부동산", "Materials": "소재"}
+INDEX = {"us": [("^GSPC", "S&P 500")], "kr": [("^KS11", "코스피"), ("^KQ11", "코스닥")], "jp": [("^N225", "닛케이 225")]}
+
+
+def load_js_array(path, var):
+    t = open(path, encoding="utf-8").read()
+    m = re.search(r"const\s+" + var + r"\s*=\s*(\[.*?\]);?\s*(?:\n|$)", t, re.S)
+    return json.loads(m.group(1)) if m else []
+
+
+def universe(market):
+    """[(야후 티커, 코드, 표시 이름, 영문 이름, 업종, 시가총액(표시용 숫자), 시총 단위, 세부 시장)]"""
+    out = []
+    if market == "us":
+        ko = {s["ticker"]: s["name"] for s in json.load(open(os.path.join(BASE, "docs", "megacap_universe.json"), encoding="utf-8"))["stocks"]}
+        for c in json.load(open(os.path.join(BASE, "docs", "data", "us_companies.json"), encoding="utf-8"))["companies"]:
+            code = c["code"]
+            mc = float(c.get("mcap") or 0) / 1e9
+            name = ko.get(code) or c["name"]
+            out.append((code.replace(".", "-"), code, name, c["name"], GICS_KO.get(c.get("sector"), c.get("sector") or ""), round(mc, 1), "십억달러", "미국"))
+    elif market == "kr":
+        for c in json.load(open(os.path.join(BASE, "docs", "data", "kr_companies.json"), encoding="utf-8"))["companies"]:
+            suf = ".KQ" if c.get("market") == "KOSDAQ" else ".KS"
+            mc = float(c.get("mcap_eok") or 0)
+            out.append((c["code"] + suf, c["code"], c["name"], "", c.get("sector") or "", round(mc / 10000, 2), "조원", c.get("market") or ""))
+    else:
+        names = json.load(open(os.path.join(BASE, "data_sources", "jp_names_ko.json"), encoding="utf-8"))
+        seen = {}
+        for f, var in (("screener-data.js", "RAW"), ("consumer-extra.js", "RAW_EXT"), ("major-data.js", "RAW_MAJ")):
+            for r in load_js_array(os.path.join(BASE, "docs", "data", "jp", f), var):
+                code = str(r[0])
+                if code in seen:
+                    continue
+                en = re.sub(r",?\s+(Co\.,?\s?Ltd\.?|Company,?\s?Limited|Corporation|Corp\.?|Holdings.*|Inc\.?|Ltd\.?|Limited)$", "", r[1] or "", flags=re.I)
+                w = (names.get(code) or "").split()
+                ko = w[0] if w and re.search(r"[가-힣]", w[0]) else ""
+                seen[code] = (code + ".T", code, ko or en, en, r[2] or "", r[5] or 0, "억엔", "도쿄")
+        out = list(seen.values())
+    return out
+
+
+def pct(a, b):
+    return None if not b or a is None else round((a / b - 1) * 100, 2)
+
+
+def metrics(px, idx):
+    c, h, v, d = px["c"], px["h"], px["v"], px["dates"]
+    n = len(c)
+    if n < 60:
+        return None
+    last = c[-1]
+    w = min(252, n)
+    hi_close = max(c[-w:])
+    hi52 = max(h[-w:])
+    # 신고가: 그날 종가가 그 전 52주(252거래일) 종가 최고를 넘은 날
+    nh_days = [i for i in range(max(1, n - 5), n) if c[i] >= max(c[max(0, i - 251):i])]
+    since = None
+    for i in range(n - 1, max(0, n - 252) - 1, -1):
+        if i > 0 and c[i] >= max(c[max(0, i - 251):i]):
+            since = n - 1 - i
+            break
+    vb = v[-1 - VOL_BASE:-1]
+    vavg = sum(vb) / len(vb) if vb else 0
+    r = lambda k: pct(last, c[-1 - k]) if n > k else None
+    r3, r6, r9, r12 = r(63), r(126), r(189), r(252)
+    parts = [(0.4, r3), (0.2, r6), (0.2, r9), (0.2, r12)]
+    have = [(wt, x) for wt, x in parts if x is not None]
+    rs_raw = sum(wt * x for wt, x in have) / sum(wt for wt, _ in have) if have else None
+    ex3 = None
+    if idx and r3 is not None:
+        im = dict(zip(idx["dates"], idx["c"]))
+        i0 = im.get(d[-64]) if n > 64 else None
+        i1 = im.get(d[-1]) or idx["c"][-1]
+        if i0:
+            ex3 = round(r3 - (i1 / i0 - 1) * 100, 2)
+    tail = slice(-CHART_DAYS, None)
+    vt = v[tail]
+    vmax = max(vt) or 1
+    val20 = sum(cc * vv for cc, vv in zip(c[-20:], v[-20:])) / 20
+    return {
+        "date": d[-1], "price": round(last, 4), "chg1d": pct(last, c[-2]), "chg5d": r(5), "chg1m": r(21),
+        "nh": bool(nh_days and nh_days[-1] == n - 1), "nh5": bool(nh_days), "nh_since": since,
+        "from_hi": pct(last, hi_close), "hi52": round(hi_close, 4),
+        "vr": round(v[-1] / vavg, 2) if vavg else None, "vr5": round((sum(v[-5:]) / 5) / vavg, 2) if vavg else None,
+        "vol": v[-1], "val20": round(val20),
+        "r3": r3, "r6": r6, "r12": r12, "rs_raw": round(rs_raw, 2) if rs_raw is not None else None, "ex3": ex3,
+        "cd": d[tail][0], "c": [round(x, 4) for x in c[tail]], "v": [round(x / vmax * 99) for x in vt],
+    }
+
+
+CLOSE_KST = {"kr": (15, 50), "jp": (15, 50)}   # 장 마감(15:30) 뒤 여유
+
+
+def drop_partial(px, market):
+    """장중에 돌리면 오늘 봉은 거래 중이라 거래량이 덜 찬다 → 빼고 계산(미국은 한국 날짜로 오늘 봉이면 진행 중)"""
+    if not px or not px["dates"]:
+        return px
+    now = datetime.now(KST)
+    today = now.strftime("%Y-%m-%d")
+    last = px["dates"][-1]
+    partial = (market == "us" and last == today) or (market in CLOSE_KST and last == today and (now.hour, now.minute) < CLOSE_KST[market])
+    if partial and len(px["c"]) > 60:
+        px = {k: v[:-1] for k, v in px.items()}
+    return px
+
+
+def run(market):
+    uni = universe(market)
+    idx = {}
+    for tk, label in INDEX[market]:
+        idx[tk] = drop_partial(FM.fetch_chart(tk, "2y"), market)
+    def one(row):
+        tk = row[0]
+        for a in range(3):
+            px = FM.fetch_chart(tk, "2y")
+            if px:
+                break
+            time.sleep(1 + a)
+        if not px:
+            return None
+        px = drop_partial(px, market)
+        ix = idx.get("^KQ11" if tk.endswith(".KQ") else "^KS11") if market == "kr" else idx.get(INDEX[market][0][0])
+        m = metrics(px, ix)
+        if not m:
+            return None
+        m.update({"tk": tk, "code": row[1], "name": row[2], "en": row[3], "sector": row[4], "mcap": row[5], "sub": row[7]})
+        return m
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        res = [r for r in ex.map(one, uni) if r]
+    # 상대강도 점수 = 시장 안 백분위(1~99)
+    ranked = sorted([r for r in res if r["rs_raw"] is not None], key=lambda r: r["rs_raw"])
+    for i, r in enumerate(ranked):
+        r["rs"] = max(1, min(99, round((i + 1) / len(ranked) * 99)))
+    as_of = max((r["date"] for r in res), default=None)
+    stale = [r for r in res if r["date"] != as_of]
+    for r in res:
+        r.pop("rs_raw", None)
+    ind = []
+    for tk, label in INDEX[market]:
+        p = idx.get(tk)
+        if p:
+            cc = p["c"]
+            ind.append({"tk": tk, "name": label, "date": p["dates"][-1], "price": round(cc[-1], 2), "chg1d": pct(cc[-1], cc[-2]),
+                        "r3": pct(cc[-1], cc[-64]) if len(cc) > 64 else None, "from_hi": pct(cc[-1], max(cc[-252:]))})
+    doc = {"schema_version": 1, "market": market, "generated_at": datetime.now(KST).isoformat(timespec="minutes"), "as_of": as_of,
+           "count": len(res), "universe": len(uni), "stale": len(stale), "index": ind, "mcap_unit": uni[0][6] if uni else "",
+           "chart_days": CHART_DAYS, "vol_base": VOL_BASE, "stocks": sorted(res, key=lambda r: -(r["mcap"] or 0))}
+    os.makedirs(OUT_DIR, exist_ok=True)
+    json.dump(doc, open(os.path.join(OUT_DIR, market + ".json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    print(f"[{market}] {len(res)}/{len(uni)} 종목 · 기준일 {as_of} · 신고가 {sum(r['nh'] for r in res)} · 5일 안 신고가 {sum(r['nh5'] for r in res)} · 늦은 자료 {len(stale)}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--market", choices=["us", "kr", "jp"])
+    a = ap.parse_args()
+    sys.stdout.reconfigure(encoding="utf-8")
+    for m in ([a.market] if a.market else ["us", "kr", "jp"]):
+        t = time.time()
+        run(m)
+        print(f"  {time.time() - t:.0f}초")
+
+
+if __name__ == "__main__":
+    main()
