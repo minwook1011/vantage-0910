@@ -3,6 +3,38 @@
  "slug": "googl",
  "items": [
   {
+   "id": "e68b30408349",
+   "kind": "news",
+   "headline": "구글, 윌로우 칩에서 '매직 상태 배양' 첫 실증 — 오류 40배 줄이고 논리 충실도 99.99%",
+   "bullets": [
+    "구글 퀀텀 AI는 15일 윌로우 양자 프로세서에서 매직 상태 배양을 실제 하드웨어로 처음 구현했다고 밝혔다.",
+    "배양하지 않은 경우보다 오류를 약 40배 줄였고, T 상태에서 논리 충실도 99.99%를 달성했다.",
+    "매직 상태 생성은 일부 추정으로 양자컴퓨터 처리 용량의 최대 95%를 잡아먹는 병목이었다."
+   ],
+   "summary": "매직 상태는 범용 양자 연산(비클리퍼드 연산)에 꼭 필요하지만 한 번 쓰면 재사용할 수 없고, 고품질로 만들려면 자원이 많이 든다. 구글은 처음부터 완벽한 상태를 만드는 대신 작은 영역에서 만든 잡음 섞인 상태를 측정으로 검증하고 실패한 시도를 걸러내는 방식을 썼다. 순다르 피차이 최고경영자도 엑스(X)에 성과를 직접 알렸다.\n\n연구진은 실험실 장비 드리프트·온도 변화가 측정을 왜곡하는 문제를 찾아내 새 검증 기법을 만들었고, 거리 3 컬러 코드 상태를 거리 5 표면 코드로 옮기는 연결도 시연했다. 다만 오류 40배 감소가 전체 연산 비용이나 하드웨어 규모가 같은 비율로 준다는 뜻은 아니어서, 필요한 큐비트 수와 대규모 확장성 검증이 남았다.",
+   "title": "Google 攻克量子運算關鍵瓶頸 有望加速推進發展",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5OcDNhTzFzWmZHTTVEaktwMnA4aFJMREwtclpqelRIeGZ1VEgtb29qWTRRVzFERzFtSnFDajAxTGxiTWJsZTVZSENoa0NjOHdYX1JnWk5Sb2xIQdIBX0FVX3lxTFAzRVh4NVh3ZmJxbGM5REk1R2Qxc28yUEJLcEJxM0NDNGdoeEI3a3pUMUNGYnYyS2dEM2MwUEtBd0U3UDJTME5PcngxdTQ4N3N3UlFFY2YxdG1IelRBNC0w?oc=5",
+   "published": "2026-10-16 17:49 KST",
+   "written": "2026-10-17 03:48 KST"
+  },
+  {
+   "id": "d6179f5d78ec",
+   "kind": "news",
+   "headline": "지리자동차, 구글과 글로벌 제휴 — 2027년 하반기부터 해외 판매 차량에 제미나이·구글 지도·플레이 기본 탑재",
+   "bullets": [
+    "지리홀딩그룹은 16일 구글과 글로벌 전략 제휴를 맺고, 해외 시장용 승용차 브랜드에 구글 차량용 서비스를 넣는다고 밝혔다(로이터).",
+    "인공지능 비서 제미나이, 구글 지도, 구글 플레이를 묶은 디지털 조종석을 구축하며 첫 적용 신차는 2027년 하반기 출시 예정이다.",
+    "구글 서비스가 지원되는 국가가 대상으로 미국·중국 시장은 빠진다."
+   ],
+   "summary": "발표는 지리홀딩그룹 션 위안 최고기술책임자가 했다. 첫 적용 차종 이름은 아직 공개되지 않았다. 지리는 메뉴가 복잡하고 주행 중 터치 조작이 많던 기존 불편을 줄이는 데 초점을 맞추겠다고 했다.\n\n중국 완성차 업체들은 미국의 견제 이후 화웨이 하모니 기반 생태계로 대응해 왔는데, 내수에선 통했지만 해외에선 구글 서비스 부재가 약점으로 꼽혔다. 이번 제휴로 지리 산하 해외 브랜드는 그 약점을 덜게 되고, 구글은 중국 대형 완성차 그룹의 수출 차량으로 차량용 서비스 탑재처를 넓힌다.",
+   "title": "Vehicles from Geely brands to come with Google built-in services outside China",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOTkdKYUg3TkNueTRZR0NTZ3p1ZTNEUlg4R3QtdFFDOEFwSERqZlRheGtHdERFM2NKekZoYXdUMEJDRnBjRkVJdk5QR2JxNThYWnlPbWZJT0YwNF9Va2JqRzJLNFlDcXFsTTUzd1BNcFZlWWFrb0F3cWxtT0M5Rm85bjdkSnpTUEVhaWx1aFNIUVE4cUQydEtnUm1XalJlcTlCOUN6TkZCVE82OS1BUU9YQTBINk9yaS1helE?oc=5",
+   "published": "2026-10-16 16:51 KST",
+   "written": "2026-10-17 03:48 KST"
+  },
+  {
    "id": "287d82e4cee5",
    "kind": "news",
    "headline": "미국 법원, 구글 플레이 독점 소송 소비자 측 변호사 보수 8,500만 달러 요청 일단 기각 — \"무슨 일을 했는지 기록이 없다\"",
@@ -177,5 +209,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-17 01:51 KST"
+ "updated": "2026-10-17 03:48 KST"
 }
