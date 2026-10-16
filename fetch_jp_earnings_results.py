@@ -458,6 +458,16 @@ def merge_hist(out, code, n=12):
             _QHIST = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data_sources", "jp_qhist.json"), encoding="utf-8"))
         except Exception:
             _QHIST = {}
+    if code not in _QHIST:   # 처음 보는 종목: IR BANK 에서 한 번 받아 저장(20초쯤)
+        try:
+            import fetch_jp_qhist as QH
+            _c, rec = QH.one(code, None)
+            if rec:
+                _QHIST[code] = rec
+                json.dump(_QHIST, open(QH.STORE, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+                QH.publish(_QHIST)
+        except Exception as e:
+            print("  IR BANK 분기 이력 실패", code, e)
     hist = (_QHIST.get(code) or {}).get("q") or []
     ends = [_lab_end(q.get("label")) for q in out]
     if not hist or not out or not ends[0]:

@@ -1387,7 +1387,8 @@ function extendQ(b){
   H.filter(r=>{ const k=+r[0].slice(0,4)*12+(+r[0].slice(5,7)); return k<old; }).reverse().forEach(r=>{
     const y=+r[0].slice(0,4), mo=+r[0].slice(5,7), k=((mo-fym)%12+12)%12, qn=k===0?4:k/3, fy=mo<=fym?y:y+1;
     if(!Number.isInteger(qn)) return;
-    b.q.lb.push(String(fy%100).padStart(2,"0")+"Q"+qn); b.q.rev.push(r[1]); (b.q.oi||(b.q.oi=[])).push(r[2]!=null?r[2]:r[3]); (b.q.ni||(b.q.ni=[])).push(r[4]);
+    const ok=v=>v==null?null:Math.round(v)/100;   /* 이력은 백만엔, 묶음은 억엔 */
+    b.q.lb.push(String(fy%100).padStart(2,"0")+"Q"+qn); b.q.rev.push(ok(r[1])); (b.q.oi||(b.q.oi=[])).push(ok(r[2]!=null?r[2]:r[3])); (b.q.ni||(b.q.ni=[])).push(ok(r[4]));
   });
 }
 function finHTML(b){
