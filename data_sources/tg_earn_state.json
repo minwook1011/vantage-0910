@@ -32,7 +32,9 @@
   "alert:us:JNJ:2026-10-13",
   "alert:us:MRSH:2026-10-15",
   "alert:us:PNC:2026-10-15",
+  "alert:us:RF:2026-10-16",
   "alert:us:STZ:2026-10-06",
+  "alert:us:TFC:2026-10-16",
   "alert:us:UNH:2026-10-13",
   "alert:us:USB:2026-10-15",
   "day:2026-10-12",
@@ -77,6 +79,7 @@
   "sum:us:JNJ:2026-10-13",
   "sum:us:MRSH:2026-10-15",
   "sum:us:PNC:2026-10-15",
+  "sum:us:RF:2026-10-16",
   "sum:us:STZ:2026-10-06",
   "sum:us:UNH:2026-10-13",
   "sum:us:USB:2026-10-15",
@@ -116,7 +119,9 @@
   "alert:jp:7818:2026-10-15": 91,
   "alert:jp:9628:2026-10-15": 92,
   "alert:jp:3697:2026-10-15": 94,
-  "alert:us:PNC:2026-10-15": 95
+  "alert:us:PNC:2026-10-15": 95,
+  "alert:us:TFC:2026-10-16": 96,
+  "alert:us:RF:2026-10-16": 97
  },
  "topics": {
   "sched": 4,
