@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="company-bench.css?v=20261013G">
 <link rel="stylesheet" href="ryohin.css?v=20261012B">
 <link rel="stylesheet" href="jp-macro.css?v=20261015A">
+<link rel="stylesheet" href="memory-prices.css?v=20261016A">
 </head>
 <body>
 <header id="topnav"></header>
@@ -28,6 +29,7 @@
   <nav class="dh-views" id="dh-views" aria-label="데이터 모음 선택">
     <button type="button" data-view="ai"><b>AI 관련 데이터 모음</b><small>토큰 · 가격 · GPU · TSMC · 메모리 · 캐팩스</small></button>
     <button type="button" data-view="trade"><b>수출입 데이터 모음</b><small>TRASS 순별 수출 · 메모리 가격</small></button>
+    <button type="button" data-view="mem"><b>메모리 가격</b><small>DDR5·DDR4 현물 · 서버 모듈 · 낸드 · 중국 채널가 · 고정거래가</small></button>
     <button type="button" data-view="company"><b>기업별 데이터 모음</b><small>기업 선택 · 주가 × 실적 × 지표</small></button>
     <button type="button" data-view="jpm"><b>일본 소비재 월차</b><small>기존점·전점 매출 · 객수 · 객단가 원본</small></button>
     <button type="button" data-view="macro"><b>매크로 × 섹터</b><small>엔화 · 기온 · 방일객 · 주가 ↔ 기업 · 업계 · 지수</small></button>
@@ -40,6 +42,10 @@
   <div class="dh-view" data-view-panel="trade" hidden>
     <section id="trass-workspace" aria-label="TRASS 순별 수출"></section>
     <section id="memory-workspace" class="md-workspace" aria-label="메모리 가격과 한국 수출 데이터"></section>
+  </div>
+
+  <div class="dh-view" data-view-panel="mem" hidden>
+    <section id="mem-workspace" aria-label="메모리 가격"></section>
   </div>
 
   <div class="dh-view" data-view-panel="company" hidden>
@@ -69,7 +75,7 @@
 <script>
 /* 데이터 허브 탭 — 주소 #ai / #trade / #company / #jpm(일본 월차) / #macro(매크로 × 섹터) 로 기억한다. 숨겨진 패널은 폭이 0이라 열릴 때 다시 그리도록 알린다. */
 (function () {
-  var nav = document.getElementById("dh-views"), VIEWS = ["ai", "trade", "company", "jpm", "macro"];
+  var nav = document.getElementById("dh-views"), VIEWS = ["ai", "trade", "mem", "company", "jpm", "macro"];
   function show(v, push) {
     if (VIEWS.indexOf(v) < 0) v = "ai";
     nav.querySelectorAll("[data-view]").forEach(function (b) { var on = b.dataset.view === v; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); });
@@ -90,6 +96,7 @@
 <script src="datahub.js?v=20261003L"></script>
 <script src="trass-exports.js?v=20261003L"></script>
 <script src="ai-indicators.js?v=20261016B"></script>
+<script src="memory-prices.js?v=20261016A"></script>
 <script src="zeta.js?v=20261003L"></script>
 <script src="ryohin.js?v=20261012B"></script>
 <script src="jp-monthly.js?v=20261013S"></script>

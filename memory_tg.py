@@ -5,7 +5,8 @@ memory_tg.py — 메모리 가격(현물·모듈·낸드·중국 채널가·계�
 
 데이터는 Claude 커넥터 market_series 에서만 받을 수 있어, 예약 작업(vantage-memory-daily)이
 dram · cfm · dram_contract 세 계열을 받아 JSON 파일로 두고 이 스크립트를 부른다.
-  python memory_tg.py --dram <dram.json> --cfm <cfm.json> --contract <contract.json> [--dry]
+  python build_memory_prices.py --dram … --cfm … --contract …  (이력 합치기)
+  python memory_tg.py [--dry]   (합친 이력 docs/data/memory_prices.json 을 읽어 발송)
 보낸 기록: 자료/메모리/sent.json (같은 기준일을 두 번 보내지 않음, --force 로 무시)
 """
 import argparse
@@ -61,16 +62,17 @@ def row(name, pts, digits, spans):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dram", required=True)
-    ap.add_argument("--cfm", required=True)
-    ap.add_argument("--contract", required=True)
+    ap.add_argument("--dram")       # 예전 호환용(무시) — 이제 docs/data/memory_prices.json 을 읽는다
+    ap.add_argument("--cfm")
+    ap.add_argument("--contract")
     ap.add_argument("--dry", action="store_true")
     ap.add_argument("--force", action="store_true")
     a = ap.parse_args()
     sys.stdout.reconfigure(encoding="utf-8")
-    dram, _ = load(a.dram)
-    cfm, _ = load(a.cfm)
-    ct, _ = load(a.contract)
+    # 2026-10-16: 매일 받는 자료는 최근 며칠뿐이라, 사이트용으로 합쳐 둔 이력(docs/data/memory_prices.json)을 읽는다
+    store = json.load(open(os.path.join(BASE, "docs", "data", "memory_prices.json"), encoding="utf-8"))["store"]
+    conv = lambda src: {k: [{"date": d, "value": v} for d, v in pts] for k, pts in (store.get(src) or {}).items()}
+    dram, cfm, ct = conv("dram"), conv("cfm"), conv("contract")
 
     spot = dram.get("ddr5_16g") or []
     if not spot:
