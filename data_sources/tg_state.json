@@ -46,6 +46,7 @@
   "or:2026-10-12",
   "or:2026-10-13",
   "or:2026-10-14",
+  "or:2026-10-15",
   "pod:2026-10-05-ca-building-the-total-portfolio-at-ontario-teachers",
   "pod:2026-10-06-ilb-andrew-huberman-the-frontier-of-neurotechnology",
   "pod:2026-10-08-ca-real-estate-credit-over-yield-at-invesco-charlie",
@@ -195,6 +196,7 @@
   "trk:nvda:e67abae1c76a",
   "trk:nvda:e7dd7289e820",
   "trk:nvda:e9fde1a9cf27",
+  "trk:nvda:efb4099d0a4f",
   "trk:nvda:f6cca660f4cc",
   "trk:open-ai:00fc72a34dc1",
   "trk:open-ai:14ffe347a100",
@@ -337,6 +339,7 @@
   "trk:yt--jklonfa:94142abd3697",
   "trk:yt--jklonfa:96bc1908858a",
   "trk:yt--jklonfa:9840fd66ce24",
+  "trk:yt--jklonfa:9a2e77ccfba8",
   "trk:yt--jklonfa:9ca120551f12",
   "trk:yt--jklonfa:9ce408bc9f1e",
   "trk:yt--jklonfa:9d37a221a5e7",
@@ -1498,6 +1501,15 @@
   ],
   "trk:t-62bbe9b6:26b445bdac06": [
    400
+  ],
+  "or:2026-10-15": [
+   202
+  ],
+  "trk:yt--jklonfa:9a2e77ccfba8": [
+   401
+  ],
+  "trk:nvda:efb4099d0a4f": [
+   402
   ]
  }
 }
