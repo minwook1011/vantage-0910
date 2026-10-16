@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "aded76a3da7f",
+   "kind": "news",
+   "headline": "영국 경쟁당국, 마이크로소프트 업무용 소프트웨어에 '전략적 시장 지위' 지정 추진 — 최종 결정은 2027년 2월까지",
+   "bullets": [
+    "영국 경쟁시장청(CMA)이 16일 마이크로소프트를 업무용 소프트웨어 생태계의 '전략적 시장 지위' 사업자로 지정하겠다는 안을 내고 의견 수렴에 들어갔다.",
+    "대상은 워드·엑셀·아웃룩·팀즈·코파일럿과 보안·서버·운영체제 제품이다. 영국 기업·공공기관 100만 곳 넘게, 월 2,000만 명가량이 쓴다.",
+    "같은 날 아마존웹서비스·마이크로소프트 클라우드에는 '갈아타기 장벽이 아직 남았다'며 추가 조치를 합의했고, 정식 조사 가능성도 열어 뒀다."
+   ],
+   "summary": "경쟁시장청은 마이크로소프트가 PC 운영체제, 사무용 소프트웨어 묶음, 보안 소프트웨어, 서버 운영체제, 데이터베이스 다섯 분야 모두에서 강한 위치에 있다고 잠정 판단했다. 고객이 다른 회사로 옮기기 어렵고, 제품끼리 묶어 쓰는 이점을 경쟁사가 따라가기 힘들다는 게 근거다. 지정이 위법 판정은 아니라고 선을 그었다.\n\n앞으로 손볼 수 있는 분야로는 고객이 인공지능 도구를 자유롭게 고를 수 있는지(코파일럿과의 공정 경쟁), 보안 제품 끼워팔기, 소프트웨어 사용권을 어느 클라우드에서 쓸지 고를 수 있는지와 마이크로소프트의 사용권 정책이 꼽혔다. 지정되면 행위 요건이나 경쟁 촉진 조치가 붙을 수 있다. 최종 결정은 법정 시한인 2027년 2월, 후속 발표는 2027년 봄이다.\n\n클라우드 쪽은 두 회사가 경쟁사(구글부터)와 데이터센터 연결, 갈아탈 때 데이터 전송료 면제, 여러 클라우드 동시 사용 요금 인하 등을 했지만 장벽이 남았다고 봤다. 다음 단계로 클라우드 간 신원·접근 관리 개선과 이식 쉬운 구조 보급을 합의했다.",
+   "title": "UK competition regulator targets Microsoft's business software grip",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQbmFGbmFMbzg4cDVFbFJUN1E3bUlGb0VBaGxBMVFMRG11eE13dlM0Y2lhZmJiSjg4NGg3cHY2REV4MnM5ZkZKNWJjQmJ2RnZhSzk3MEhXbVhRSDRNWWlabU1IV3Z2OXJNYjZ2dWd0emNIbi02ejBiR25iWEs5UkJmcTh5WnlaNEMwaU9GWGdWN2Vrcm1aMmMtVUJ4NTJ6RE80MG1DazZJQ0RtbzdWT2htQVhKbHFydlhxQm1Z?oc=5",
+   "published": "2026-10-16 23:58 KST",
+   "written": "2026-10-17 01:41 KST"
+  },
+  {
    "id": "4fc72832a301",
    "kind": "news",
    "headline": "마이크로소프트, 애저 클라우드 임대 부문 비용 20% 이상 절감 검토 — 회사는 보도 부인",
@@ -193,5 +209,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-15 08:47 KST"
+ "updated": "2026-10-17 01:41 KST"
 }

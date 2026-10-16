@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "aca50a466dfb",
+   "kind": "news",
+   "headline": "엔비디아 고위 관계자, 'RTX 5090 단종설' 반박 — \"계속 공급한다\"",
+   "bullets": [
+    "엔비디아 고위 관계자가 최고급 게임용 그래픽카드 RTX 5090이 단종된다는 소문을 부인하고 계속 공급하겠다고 밝혔다(경제일보).",
+    "앞서 12일 해외 매체들은 RTX 5090에 쓰는 GB202 칩을 전문가용 RTX 프로 카드로만 돌려 인공지능용 물량을 늘린다고 보도했다.",
+    "소문에는 게임용 대체품으로 RTX 5080 24기가 판이 나온다는 내용도 있었다."
+   ],
+   "summary": "GB202 칩은 게임용으로는 32기가 메모리의 RTX 5090에, 전문가용으로는 RTX 프로 6000(96기가)·5500(84기가)·5000(72·48기가)에 쓰인다. 전문가용이 값이 훨씬 비싸 칩을 그쪽으로 몰아줄 수 있다는 게 단종설의 논리였다. RTX 5090은 2025년 1월 RTX 50 시리즈 최상위 제품으로 나왔고, 올해 내내 단종·감산 소문이 돌았다.\n\n이번 반박은 공식 공지가 아니라 회사 고위 관계자 발언이고, 기사 본문은 확인하지 못해 누가 어떤 자리에서 말했는지는 제목 수준에서만 확인된다. 대만 그래픽카드 업체(에이수스·MSI 등)의 이번 분기 가격 인상과 맞물려, 실제 시장 공급량이 늘어나는지가 남은 확인 사항이다.",
+   "title": "傳旗艦顯卡 RTX 5090停產 輝達高層駁斥：將持續供貨",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE96OXJqcGdLenNRNHJXcU12U0FtQXd0MnVpdFZkOENjRFNuTGFfYWl1VlBHaGhpdnRlWWtoSFdYTk1MdmZQb2tMZGZHRngzclBQcENLWW5YbFRyTXdqLWp1VU85TFBZcGxvMEZrbFduWE8tSlFXdkw3eTVYVdIBX0FVX3lxTE0yTTZLM25XdWRnVGpFMi02cVVrSVpoOXJTVTM2akp4a193TWROdmt2UXpQSVFnbGpUUnZvc0gyVVJNa01aYW53b0pVWXlyeGhnQkt3MHB4ZzBjVFhKVG9j?oc=5",
+   "published": "2026-10-16 23:01 KST",
+   "written": "2026-10-17 01:41 KST"
+  },
+  {
    "id": "efb4099d0a4f",
    "kind": "news",
    "headline": "젠슨 황, 코어위브 주가 급락에 \"낙관한다\" — 엔비디아 추가 지원(백스톱) 없어도 된다는 입장",
@@ -339,5 +355,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-16 09:48 KST"
+ "updated": "2026-10-17 01:41 KST"
 }
