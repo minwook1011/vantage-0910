@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "844a0168e5fd",
+   "kind": "news",
+   "headline": "오픈AI, 챗GPT 음성 대화에 새 음성 모델 'GPT-라이브-1.1' 적용 — 한국어 목소리 '한울'·'햇살' 추가",
+   "bullets": [
+    "오픈AI가 16일 챗GPT 음성 대화 기능 '보이스'를 새 음성 모델 'GPT-라이브-1.1'로 업데이트했다.",
+    "한국어 이용자용으로 남성 목소리 '한울', 여성 목소리 '햇살'을 새로 넣었다. 이용자가 고를 수 있다.",
+    "말 중간에 끊어도 대화가 이어지고, 정보를 검색하는 중에도 대화가 매끄럽게 유지되도록 바꿨다. 무료 이용자에게도 순차 제공한다."
+   ],
+   "summary": "이번 업데이트의 초점은 한국어 대화의 자연스러움이다. 오픈AI는 이용자가 말을 끊고 끼어들어도 흐름을 놓치지 않고, 검색을 하는 동안에도 다양한 표현으로 대화를 이어가게 했다고 설명했다. 생각을 말로 정리하거나 궁금한 것을 묻고 외국어를 연습하는 용도를 예로 들었다.\n\n국내 챗GPT 월 이용자는 9월 2,470만 명으로 역대 최대를 기록했다. 한국어 전용 목소리를 따로 만든 것은 이 시장을 그만큼 크게 본다는 뜻이다. 오픈AI는 22일 서울에서 개발자 행사도 연다. 유료·무료 이용자별 적용 시점과 사용 한도는 기사에 구체적으로 나오지 않았다.",
+   "title": "오픈AI, '챗GPT 보이스' 업데이트…\"한국어 더 자연스럽게\"",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93azFlSnlnSkxoX21zTHd2aGF1VlVGU2ZSalAzWjRQWTNGYVZEcXpJZ09yRGo4aDExMkdXN3kyRWMxZGllVDZWOTRSZkVnclpmTzVGYWo5M0VlZzDSAWBBVV95cUxQRFROOHU4eThma1NlN0o5Rmp6OVFBYUpaQXozS0tUcUZkNVlEcGZpZG1yRk52SlJ1cmZ0N0lTQmQxZzdncHZpOXZTWTM5V2JNcXFHZWR2bWdXUlpMVTEwV1A?oc=5",
+   "published": "2026-10-16 08:45 KST",
+   "written": "2026-10-16 09:19 KST"
+  },
+  {
    "id": "cc2da5ba597a",
    "kind": "news",
    "headline": "[후속] 미국 연방거래위원회, 오픈AI·앤트로픽에 조사 요구서 실제 발송 — 회사별 50쪽 넘는 자료 요구",
@@ -483,5 +499,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-15 18:48 KST"
+ "updated": "2026-10-16 09:19 KST"
 }
