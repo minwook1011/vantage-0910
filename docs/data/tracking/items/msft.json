@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "7a1b49f2d515",
+   "kind": "news",
+   "headline": "니소스, 마이크로소프트와 20년 전력 공급 계약 — 인디애나 데이터센터에 2028년부터 1,100메가와트",
+   "bullets": [
+    "미국 인디애나 전력회사 니소스가 마이크로소프트 인디애나 북서부 데이터센터 단지에 2028년부터 20년간(2048년까지) 새 발전설비 약 1,100메가와트를 공급한다.",
+    "발전·송전 설비 비용은 마이크로소프트가 전부 댄다. 기존 가정·기업 고객에게 비용을 떠넘기지 않는 구조다.",
+    "이 계약으로 니소스 자회사 NIPSCO 고객이 데이터센터 계약 기간 동안 아낄 것으로 보는 전기요금이 14억 달러에서 약 17억5천만 달러로 늘었다."
+   ],
+   "summary": "전력은 니소스의 발전 자회사(GenCo)를 거쳐 마이크로소프트에 공급된다. 니소스는 4월 알파벳과 장기 전력 계약을 맺고 아마존 계약도 늘렸다. 이번 계약으로 같은 인디애나 전력회사 한 곳에 대형 클라우드 3곳이 모두 묶였다.\n\n데이터센터 전력 수요가 송전망 확충 속도를 앞지르면서, 빅테크가 설비 비용을 직접 내고 장기 계약으로 전력을 확보하는 흐름이 이어지고 있다. 일부 매체는 마이크로소프트가 600메가와트 규모 배터리 저장설비 비용도 낸다고 전했지만 다른 보도에선 확인되지 않는다.\n\n니소스는 10월 28일 실적 발표 때 이번 계약의 재무 세부 내용을 더 밝히겠다고 했다.",
+   "title": "NiSource Signs 20-Year Microsoft Power Agreement for 1,100 MW Indiana Data Centre Campus",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQTzctTkkyU1ByMHVlLTV6VWxxZVFiU3dndGdOMzBSZjNRa0dHaFczbmlUdU9jc0dmdmVEcGlMSkl4SV9WYkZRS3FacFJLRlBaNWZ6U1VRYUJLdXdIQVdZWlkxV2ZaSVVOMmxkYUNhUmRJSmlqUzBDbzNIdjg2VHdud1ViVHBkMWJsOE1YLUhVbXc1QUNR?oc=5",
+   "published": "2026-10-16 21:43 KST",
+   "written": "2026-10-17 02:18 KST"
+  },
+  {
    "id": "991db743ddfa",
    "kind": "news",
    "headline": "영국 경쟁당국, 클라우드 이전 장벽 점검 — \"아마존웹서비스·마이크로소프트, 더 해야 한다\"…정식 조사는 보류, 2027년 봄 재점검",
@@ -225,5 +241,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-17 01:51 KST"
+ "updated": "2026-10-17 02:18 KST"
 }
