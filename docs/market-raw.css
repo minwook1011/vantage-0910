@@ -1,0 +1,32 @@
+/* market-raw.css — 섹터 대시보드·글로벌 메가캡 '미국 · 한국 · 일본' 원자료 보기 (2026-10-16) */
+.mr-bar { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:14px 0 12px; padding:5px; background:#fff; border:1px solid var(--border,#e1e7f0); border-radius:12px; }
+.mr-bar button { font:inherit; font-size:14px; font-weight:700; border:0; border-radius:9px; padding:7px 16px; background:transparent; color:#5b6576; cursor:pointer; }
+.mr-bar button[aria-pressed="true"] { background:#2f6fe4; color:#fff; }
+.mr-bar .mr-hint { margin-left:auto; color:#8a97ab; font-size:12px; padding-right:6px; }
+.mr-box { --up:#d6334a; --dn:#2f6fe4; background:#fff; border:1px solid var(--border,#e1e7f0); border-radius:14px; padding:16px 18px; margin-bottom:24px; }
+.mr-box .up { color:var(--up); font-weight:700; } .mr-box .dn { color:var(--dn); font-weight:700; } .mr-box .na { color:#9aa7ba; }
+.mr-empty { color:#5b6576; padding:30px 0; text-align:center; }
+.mr-head h2 { margin:0 0 6px; font-size:20px; }
+.mr-idx { display:flex; flex-wrap:wrap; gap:4px 16px; font-size:13px; align-items:baseline; }
+.mr-idx .asof { margin-left:auto; color:#5b6576; font-size:12px; } .mr-idx a { color:#0045d6; }
+.mr-note { color:#5b6576; font-size:12px; margin:8px 0; }
+.mr-ctl { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:12px 0 8px; font-size:12.5px; color:#5b6576; }
+.mr-ctl select, .mr-ctl input { font:inherit; font-size:13px; border:1px solid var(--border,#e1e7f0); border-radius:8px; padding:6px 10px; background:#fff; color:#1a2231; }
+.mr-scroll { overflow-x:auto; }
+.mr-t { border-collapse:collapse; width:100%; font-size:12.5px; }
+.mr-t th { position:sticky; top:0; background:#f6f8fc; color:#5b6576; font-weight:600; text-align:right; padding:7px 8px; border-bottom:1px solid #cfd8e6; white-space:nowrap; z-index:1; }
+.mr-t th[data-sort] { cursor:pointer; } .mr-t th[data-sort]:hover { color:#2f6fe4; }
+.mr-t td { text-align:right; padding:6px 8px; border-bottom:1px solid #edf1f7; white-space:nowrap; font-variant-numeric:tabular-nums; }
+.mr-t .l { text-align:left; }
+.mr-t td.nm { max-width:240px; overflow:hidden; text-overflow:ellipsis; } .mr-t td.nm small { color:#8a97ab; font-size:11px; } .mr-t td.nm em { display:block; font-style:normal; color:#9aa7ba; font-size:10.5px; }
+.mr-t td.sec { color:#5b6576; font-size:12px; }
+.mr-t td.hot { color:#1d51b9; font-weight:700; }
+.mr-t .nhb { color:#fff; background:#d6334a; border-radius:4px; padding:0 5px; font-size:11px; }
+.mr-t td.sp svg { width:62px; height:18px; display:block; margin-left:auto; } .mr-t td.sp path { fill:none; stroke-width:1.3; vector-effect:non-scaling-stroke; }
+.mr-t td.sp path.up { stroke:#d6334a; } .mr-t td.sp path.dn { stroke:#2f6fe4; }
+.mr-t tr.grp { cursor:pointer; } .mr-t tr.grp:hover { background:rgba(47,111,228,.05); } .mr-t tr.grp.open { background:rgba(47,111,228,.07); }
+.mr-t tr.grp i { font-style:normal; color:#2f6fe4; }
+.mr-t tr.sub > td { padding:4px 0 12px 18px; background:#fbfcfe; }
+.mr-t.in { font-size:12px; } .mr-t.in th { position:static; background:#fff; }
+.mr-more { display:block; margin:12px auto 0; font:inherit; font-size:13px; border:1px solid #cfd8e6; background:#fff; border-radius:8px; padding:7px 16px; cursor:pointer; color:#2f6fe4; }
+@media (max-width:720px) { .mr-bar .mr-hint { display:none; } .mr-box { padding:12px 10px; } }
