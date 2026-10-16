@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "991db743ddfa",
+   "kind": "news",
+   "headline": "영국 경쟁당국, 클라우드 이전 장벽 점검 — \"아마존웹서비스·마이크로소프트, 더 해야 한다\"…정식 조사는 보류, 2027년 봄 재점검",
+   "bullets": [
+    "영국 경쟁시장청이 16일 아마존웹서비스와 마이크로소프트의 클라우드 이전 장벽 해소 진척을 처음 점검하고, 개선됐지만 남은 과제가 있다고 밝혔다.",
+    "두 회사는 데이터를 다른 업체로 옮길 때 내던 수수료를 없앴고, 구글부터 경쟁사 데이터센터와 직접 연결했다.",
+    "당국은 여러 클라우드에 걸친 로그인·접근 관리와 시스템 이식성 개선을 요구했다. 다음 점검은 2027년 봄이다."
+   ],
+   "summary": "이번 점검은 3월 경쟁시장청이 정식 시장 조사 대신 두 회사의 자발적 약속을 받아들이면서 6개월 뒤 다시 보겠다고 한 데 따른 것이다. 두 회사는 고객과 경쟁사가 서비스 간 연동 개선을 요청할 수 있는 창구를 열었고, 이전을 돕는 인공지능 도구도 내놨다.\n\n당국은 새 디지털시장 권한으로 정식 클라우드 조사에 나설 가능성은 열어 뒀다. 마이크로소프트는 자사 클라우드 지위가 별도 지정 대상이 아니라는 판단을 환영했고, 아마존웹서비스도 결과를 반겼다.\n\n같은 날 나온 마이크로소프트 업무용 소프트웨어 '전략적 시장 지위' 지정 추진과는 별개 절차다. 클라우드 쪽은 당장 강제 조치 없이 자율 개선을 지켜보는 단계에 머물렀다.",
+   "title": "AWS, Microsoft can do more to address cloud services barriers, UK competition watchdog says",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQV25lSTFVcDY5d3dzS1hqN2gxVjhUQVo3cDJfNm5RcmU1VXZJRDVHb3ctbVh4b1pIQVRocVhEUFdIWnFhQnZtM0dkVDBGR0N4Y0Z2QVdKZGlES0NwUmM0VUxJRmVvSlMxRW5vNGtVYjlHMnRHR2pkcURic29PZmpZaGhNdlA4Mm9vUVdLNlFMNHJOdE4yeXNKRG50b2k0RTVtNnVOdzZXZFVZSjA0Q2M2Yjk3MlRMZDJWXzBYQ3V6NlFndXc?oc=5",
+   "published": "2026-10-17 00:00 KST",
+   "written": "2026-10-17 01:51 KST"
+  },
+  {
    "id": "aded76a3da7f",
    "kind": "news",
    "headline": "영국 경쟁당국, 마이크로소프트 업무용 소프트웨어에 '전략적 시장 지위' 지정 추진 — 최종 결정은 2027년 2월까지",
@@ -209,5 +225,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-17 01:41 KST"
+ "updated": "2026-10-17 01:51 KST"
 }
