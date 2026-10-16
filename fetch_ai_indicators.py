@@ -15,6 +15,8 @@ docs/data/ai_indicators_state.json 에 둔다(화면에서는 읽지 않음).
     python fetch_ai_indicators.py --only gpu # 한 묶음만 (디버그)
 """
 import argparse
+import csv
+import io
 import email.utils
 import gzip
 import html
@@ -766,6 +768,151 @@ def c_cds(ctx):
              "caveat": f"ICE Clear Credit 결제가격을 스프레드로 환산했습니다(회수율 {RECOVERY:.0%}, 무위험금리 {RISK_FREE:.0%} 가정). 기준일 {obs_date}."})
 
 
+# ── 네오클라우드·빅테크 회사채 수익률 (FINRA TRACE 장 마감 가격·수익률) ──────────────
+# 2026-10-16 사용자: "코어위브뿐 아니라 네오클라우드 채권 수익률(네비우스·코어위브·빅테크 등) 추이, 국채와 겹쳐 보고 스프레드도"
+# 네비우스·아이렌은 전환사채뿐이라 수익률 비교가 안 돼 뺐다(FINRA 검색 확인). 수익률이 나오는 144A CUSIP 을 쓴다(Reg S 는 수익률 칸이 비어 있음).
+BONDS_NEO = [("21873SAB4", "코어위브 2030 (9.25%)", "2030-06-01"), ("21873SAC2", "코어위브 2031.2 (9.00%)", "2031-02-01"),
+             ("21873SAG3", "코어위브 2031.10 (9.75%)", "2031-10-01"), ("21873SAK4", "코어위브 2032 (9.625%)", "2032-07-15"),
+             ("00202DAA5", "어플라이드 디지털 2030 (9.25% 담보)", "2030-12-15"), ("982911AA7", "테라울프 2030 (7.75% 담보)", "2030-10-15"),
+             ("17253NAA5", "사이퍼 마이닝 2030 (7.125% 담보)", "2030-11-15")]
+BONDS_BIG = [("68389XDZ5", "오라클 2036 (5.70%)", "2036-02-04"), ("68389XCK9", "오라클 2052 (6.90%)", "2052-11-09"),
+             ("076912AA2", "메타 하이페리온 2049 (6.581%)", "2049-05-30"), ("30303MAE2", "메타 2055 (5.625%)", "2055-11-15"),
+             ("02079KAM9", "알파벳 2055 (5.25%)", "2055-05-15"), ("023135CW4", "아마존 2055 (5.45%)", "2055-11-20"),
+             ("594918CC6", "마이크로소프트 2050 (2.525%)", "2050-06-01")]
+BOND_SPREAD = ["코어위브 2030 (9.25%)", "코어위브 2032 (9.625%)", "어플라이드 디지털 2030 (9.25% 담보)", "테라울프 2030 (7.75% 담보)",
+               "오라클 2052 (6.90%)", "메타 2055 (5.625%)", "마이크로소프트 2050 (2.525%)"]
+BOND_SINCE = "2025-05-01"
+FINRA = "https://services-dynarep.ddwa.finra.org/public/reporting/v2/"
+UST_TENORS = [("1 Yr", 1), ("2 Yr", 2), ("3 Yr", 3), ("5 Yr", 5), ("7 Yr", 7), ("10 Yr", 10), ("20 Yr", 20), ("30 Yr", 30)]
+
+
+def _finra_session():
+    import http.cookiejar
+    cj = http.cookiejar.CookieJar()
+    op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+    op.open(urllib.request.Request(FINRA + "group/Firm/name/ActiveIndividual/dynamiclookup/examCode", headers={"User-Agent": UA}), timeout=30).read()
+    xsrf = next(c.value for c in cj if c.name == "XSRF-TOKEN")
+
+    def eod(cusip):
+        body = {"fields": ["cusip", "tradeDate", "lastSalePrice", "lastSaleYield"],
+                "compareFilters": [{"fieldName": "cusip", "fieldValue": cusip, "compareType": "EQUAL"}],
+                "sortFields": ["tradeDate"], "offset": 0, "limit": 5000}
+        req = urllib.request.Request(FINRA + "data/group/FixedIncomeMarket/name/EndOfDayPriceYield", data=json.dumps(body).encode(), method="POST",
+                                     headers={"User-Agent": UA, "Content-Type": "application/json", "Accept": "application/json",
+                                              "X-XSRF-TOKEN": xsrf, "Origin": "https://www.finra.org", "Referer": "https://www.finra.org/"})
+        rb = json.loads(op.open(req, timeout=120).read())["returnBody"]
+        return sorted(json.loads(rb.get("data") or "[]"), key=lambda x: x["tradeDate"])
+    return eod
+
+
+def _ust_curve():
+    """미 재무부 일별 국채 수익률 곡선 CSV(올해·작년) → {날짜: {만기(년): 수익률}}"""
+    curve = {}
+    y1 = NOW.year
+    for y in range(int(BOND_SINCE[:4]), y1 + 1):
+        t = http(f"https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/{y}/all"
+                 f"?type=daily_treasury_yield_curve&field_tdr_date_value={y}&page&_format=csv", timeout=60).decode("utf-8", "replace")
+        rows = list(csv.DictReader(io.StringIO(t)))
+        for r in rows:
+            m, d, yy = r["Date"].split("/")
+            day = f"{yy}-{m}-{d}"
+            pts = {n: float(r[c]) for c, n in UST_TENORS if r.get(c) not in (None, "", "N/A")}
+            if pts:
+                curve[day] = pts
+    return curve
+
+
+def _ust_at(curve, day, years):
+    """그날(없으면 그 전 가장 가까운 날) 국채 곡선을 만기 years 에 선형 보간"""
+    ks = [k for k in curve if k <= day]
+    if not ks:
+        return None
+    c = curve[max(ks)]
+    xs = sorted(c)
+    if years <= xs[0]:
+        return c[xs[0]]
+    if years >= xs[-1]:
+        return c[xs[-1]]
+    for a, b in zip(xs, xs[1:]):
+        if a <= years <= b:
+            return c[a] + (c[b] - c[a]) * (years - a) / (b - a)
+
+
+@collector("bond_neocloud", "bond_bigtech", "bond_spread", "bond_table")
+def c_bonds(ctx):
+    # 30분마다 도는 작업이라 하루 한 번만 받는다(채권 14개 × 약 13초). 이미 오늘 받았으면 기존 값 유지.
+    if ctx.state.get("bond_day") == TODAY and all(sid in ctx.prev for sid in ("bond_neocloud", "bond_bigtech", "bond_spread", "bond_table")):
+        print("  채권: 오늘 이미 받음 — 건너뜀")
+        return
+    eod = _finra_session()
+    curve = _ust_curve()
+    if not curve:
+        raise ValueError("국채 수익률 곡선 없음")
+    data = {}
+    for cusip, label, mat in BONDS_NEO + BONDS_BIG:
+        try:
+            rows = eod(cusip)
+        except Exception as e:
+            print(f"  [skip] {label}: {e}")
+            continue
+        pts = [{"date": r["tradeDate"][:10], "value": round(float(r["lastSaleYield"]), 2), "price": r.get("lastSalePrice")}
+               for r in rows if r.get("lastSaleYield") not in (None, "") and r["tradeDate"][:10] >= BOND_SINCE
+               and 0 < float(r["lastSaleYield"]) < 60]
+        if pts:
+            data[label] = {"pts": pts, "mat": mat}
+        time.sleep(0.5)
+    if not data:
+        raise ValueError("FINRA 채권 수익률을 하나도 받지 못함")
+    ust_days = sorted(d for d in curve if d >= BOND_SINCE)
+    ust_line = lambda yrs, name: {"label": name, "points": [{"date": d, "value": round(_ust_at(curve, d, yrs), 2)} for d in ust_days]}
+    yrs_left = lambda day, mat: (date.fromisoformat(mat) - date.fromisoformat(day)).days / 365.25
+    lines = lambda group: [{"label": lab, "points": [{"date": p["date"], "value": p["value"]} for p in data[lab]["pts"]]}
+                           for _, lab, _ in group if lab in data]
+    src, url = "FINRA TRACE 장 마감 가격·수익률 · 미 재무부 국채 수익률 곡선", "https://www.finra.org/finra-data/fixed-income/corp-and-agency"
+    common = {"unit": "%", "type": "share_abs", "digits": 2, "cadence": "매 영업일 (미국 장 마감 후, 하루 늦게 확정)", "source": src,
+              "source_url": url, "method": "api"}
+    ctx.put(dict(common, id="bond_neocloud", group="bond", label="네오클라우드 채권 수익률", related=["CRWV", "APLD", "WULF", "CIFR"],
+                 lines=lines(BONDS_NEO) + [ust_line(5, "미국 국채 5년")],
+                 caveat="회사채를 지금 시장 가격에 사면 만기까지 받는 연 수익률(만기수익률)입니다. 오르면 시장이 그 회사 빚을 더 위험하게 본다는 뜻이고, 새로 빌릴 때 금리도 그만큼 비싸집니다. "
+                        "코어위브는 무담보, 어플라이드 디지털·테라울프·사이퍼는 데이터센터·고객 계약을 담보로 잡은 채권입니다. 네비우스·아이렌은 일반 회사채 없이 전환사채만 있어 뺐습니다."))
+    ctx.put(dict(common, id="bond_bigtech", group="bond", label="빅테크·오라클 장기채 수익률", related=["ORCL", "META", "MSFT", "GOOGL", "AMZN"],
+                 lines=lines(BONDS_BIG) + [ust_line(30, "미국 국채 30년")],
+                 caveat="빅테크가 AI 투자 자금을 마련하려고 낸 장기 회사채입니다. 메타 하이페리온은 메타의 루이지애나 데이터센터를 짓는 특수목적회사(블루아울 합작) 채권입니다. 국채 30년과 겹쳐 금리 탓인지 신용 탓인지 가릅니다."))
+    spread_lines = []
+    for lab in BOND_SPREAD:
+        if lab not in data:
+            continue
+        mat = data[lab]["mat"]
+        sp = []
+        for p in data[lab]["pts"]:
+            u = _ust_at(curve, p["date"], yrs_left(p["date"], mat))
+            if u is not None:
+                sp.append({"date": p["date"], "value": round(p["value"] - u, 2)})
+        spread_lines.append({"label": lab, "points": sp})
+    ctx.put(dict(common, id="bond_spread", group="bond", label="국채 대비 스프레드", unit="%p", scale="log", related=["CRWV", "APLD", "ORCL", "META"],
+                 lines=spread_lines,
+                 caveat="회사채 수익률에서 만기가 같은 미국 국채 수익률(재무부 곡선을 만기에 맞춰 보간)을 뺀 값입니다. 금리 전체가 움직인 부분을 빼고 그 회사 신용 위험만 봅니다. 차이가 커서 세로축은 로그 눈금입니다."))
+    rows = []
+    for _, lab, mat in BONDS_NEO + BONDS_BIG:
+        if lab not in data:
+            continue
+        pts = data[lab]["pts"]
+        last = pts[-1]
+        wk = [p for p in pts if p["date"] <= (date.fromisoformat(last["date"]) - timedelta(days=7)).isoformat()]
+        u = _ust_at(curve, last["date"], yrs_left(last["date"], mat))
+        rows.append({"name": lab, "price": rnd(last.get("price"), 2), "ytm": last["value"],
+                     "spread": rnd(last["value"] - u, 2) if u is not None else None,
+                     "chg": rnd((last["value"] - wk[-1]["value"]) * 100, 0) if wk else None, "date": last["date"][5:].replace("-", "/")})
+    ctx.put({"id": "bond_table", "group": "bond", "label": "오늘의 회사채 수익률", "unit": "%", "type": "table", "cadence": "매 영업일",
+             "source": src, "source_url": url, "method": "api", "related": ["CRWV", "ORCL"],
+             "as_of": max(p["pts"][-1]["date"] for p in data.values()),
+             "columns": [{"key": "name", "label": "채권", "align": "l"}, {"key": "price", "label": "가격"}, {"key": "ytm", "label": "수익률(%)"},
+                         {"key": "spread", "label": "국채 대비(%p)"}, {"key": "chg", "label": "1주 변화(bp)"}, {"key": "date", "label": "기준일"}],
+             "rows": sorted(rows, key=lambda r: -(r["ytm"] or 0)),
+             "caveat": "가격은 액면 100 기준(80 아래면 보통 부실 채권으로 봄). 수익률은 그날 마지막 체결 기준이라 거래가 적은 날은 튈 수 있습니다. 1bp = 0.01%포인트."})
+    ctx.state["bond_day"] = TODAY
+
+
 GD_GPUS = [("Nvidia H100", "H100"), ("Nvidia H200", "H200"), ("Nvidia B200", "B200"), ("Nvidia B300", "B300"),
            ("Nvidia A100", "A100"), ("AMD MI300X", "MI300X")]
 
@@ -1107,6 +1254,7 @@ GROUPS = [
     {"id": "price", "label": "토큰 가격 · 속도", "desc": "단가가 얼마나 빠지나"},
     {"id": "gpu", "label": "GPU 렌탈가", "desc": "하드웨어 수급"},
     {"id": "credit", "label": "빅테크 CDS", "desc": "AI 투자의 신용 위험"},
+    {"id": "bond", "label": "네오클라우드 채권 수익률", "desc": "빚으로 짓는 AI 인프라의 조달 금리"},
     {"id": "memory", "label": "메모리 수출", "desc": "TRASS 잠정치"},
     {"id": "money", "label": "TSMC · 캐팩스 · AI 랩", "desc": "만드는 쪽 · 쓰는 쪽 · 버는 쪽"},
     {"id": "bench", "label": "모델 성능 순위", "desc": "Arena 실사용 평가"},
@@ -1118,6 +1266,7 @@ BOARDS = {
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
     "gpu": ["gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
     "credit": ["cds_bigtech", "cds_neocloud", "cds_ai", "cds_table"],   # 2026-10-15: 왼쪽 빅테크·오른쪽 오라클·네오클라우드 둘 다 크게, 아래 칩·표   # 오라클−MS 격차 카드는 뺌(2026-10-07 사용자) — 빅테크 추이를 세로로 길게
+    "bond": ["bond_neocloud", "bond_bigtech", "bond_spread", "bond_table"],   # 2026-10-16 사용자 요청
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
     "bench": ["arena_agent_rank", "arena_agent_labs", "arena_agent_cost", "arena_text_rank"],
@@ -1146,6 +1295,10 @@ DESCS = {
     "cds_neocloud": "AI 데이터센터를 빚으로 짓는 오라클·코어위브·스페이스X(xAI)·에퀴닉스의 5년물 CDS(bp). 빅테크보다 몇 배 높고, 오르면 AI 인프라 차입을 시장이 위험하게 본다는 뜻.",
     "cds_ai": "AI 칩·서버를 파는 엔비디아·브로드컴·AMD·인텔·델의 신용 위험. 빚으로 짓는 쪽(오라클·코어위브)과 비교.",
     "cds_gap": "오라클 CDS에서 마이크로소프트 CDS를 뺀 값. AI 데이터센터 차입에 시장이 매기는 추가 위험 프리미엄.",
+    "bond_neocloud": "코어위브·어플라이드 디지털·테라울프·사이퍼처럼 GPU 데이터센터를 빚으로 짓는 회사의 회사채 만기수익률(%). 미국 국채 5년과 겹쳐 본다.",
+    "bond_bigtech": "오라클·메타·알파벳·아마존·마이크로소프트가 낸 장기 회사채 수익률(%). 미국 국채 30년과 겹쳐 금리 탓인지 신용 탓인지 가른다.",
+    "bond_spread": "회사채 수익률 − 만기가 같은 미국 국채 수익률(%p). 금리 움직임을 빼고 그 회사 신용 위험만 본 값.",
+    "bond_table": "추적 중인 회사채의 오늘 가격·수익률·국채 대비 스프레드와 1주 변화.",
     "cds_table": "추적 중인 빅테크·AI 기업의 오늘 5년물 CDS와 전일 대비 변화.",
     "gpu_cloud_multi": "GPU 세대별 클라우드 임대 중앙가. 신형이 나오며 구형 가격이 얼마나 빨리 내려가는지.",
     "gpu_h100_spread": "같은 H100을 AWS·Azure 같은 대형 클라우드와 CoreWeave 같은 GPU 전문 클라우드가 파는 가격 차이.",
@@ -1161,7 +1314,7 @@ DESCS = {
 }
 KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_index", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
 COLLECTORS = {"or_models": c_or_models, "or_chart": c_or_chart, "or_week": c_or_week, "or_apps": c_or_apps, "frontier": c_frontier,
-              "hf": c_hf, "ornn": c_ornn, "cds": c_cds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "arena": c_arena, "prices": c_prices}
+              "hf": c_hf, "ornn": c_ornn, "cds": c_cds, "bonds": c_bonds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "arena": c_arena, "prices": c_prices}
 
 
 def load(path, default):
