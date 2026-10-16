@@ -167,6 +167,47 @@ def kr_fin(code):
     return {"quarterly": q, "annual": a} if q or a else None
 
 
+def ttm_ni(path):
+    """최근 4분기(실적, 추정 제외) 순이익 합 — 4분기가 다 없으면 None"""
+    try:
+        q = [r for r in (json.load(open(path, encoding="utf-8")).get("financials") or {}).get("quarterly") or [] if not r.get("est")]
+    except Exception:
+        return None
+    q = q[-4:]
+    if len(q) < 4 or any(r.get("net_income") is None for r in q):
+        return None
+    return sum(r["net_income"] for r in q)
+
+
+def per_map(market):
+    """PER(시가총액 ÷ 최근 4분기 순이익) — {코드: (기준 주가 시점 PER, 기준 주가)}. 적자는 -1.
+    화면에서는 오늘 주가에 맞춰 PER × 오늘 주가 ÷ 기준 주가로 다시 맞춘다."""
+    out = {}
+    try:
+        if market == "us":
+            for c in json.load(open(os.path.join(BASE, "docs", "data", "us_companies.json"), encoding="utf-8"))["companies"]:
+                ni = ttm_ni(os.path.join(BASE, "docs", "data", "us", c["code"] + ".json"))   # 백만달러
+                if ni is None or not c.get("mcap") or not c.get("close"):
+                    continue
+                out[c["code"]] = (c["mcap"] / 1e6 / ni if ni > 0 else -1, c["close"])
+        elif market == "kr":
+            for c in json.load(open(os.path.join(BASE, "docs", "data", "kr_companies.json"), encoding="utf-8"))["companies"]:
+                ni = ttm_ni(os.path.join(BASE, "docs", "data", "kr", c["code"] + ".json"))   # 억원
+                if ni is None or not c.get("mcap_eok") or not c.get("close"):
+                    continue
+                out[c["code"]] = (c["mcap_eok"] / ni if ni > 0 else -1, c["close"])
+        else:   # 일본: 일본 기업 화면 표의 PER(그 표의 종가 기준)
+            for f, var in (("screener-data.js", "RAW"), ("consumer-extra.js", "RAW_EXT"), ("major-data.js", "RAW_MAJ")):
+                for r in load_js_array(os.path.join(BASE, "docs", "data", "jp", f), var):
+                    code = str(r[0])
+                    if code in out or len(r) < 10 or r[9] is None or not r[4]:
+                        continue
+                    out[code] = (r[9] if r[9] > 0 else -1, r[4])
+    except Exception as e:
+        print("  PER 읽기 실패", e)
+    return out
+
+
 def pct(a, b):
     return None if not b or a is None else round((a / b - 1) * 100, 2)
 
@@ -294,6 +335,12 @@ def run(market):
     for fn in os.listdir(cdir):
         if fn not in keep:
             os.remove(os.path.join(cdir, fn))
+    pm = per_map(market)
+    for r in res:
+        v = pm.get(r["code"])
+        if v and r.get("price"):
+            r["per"] = -1 if v[0] < 0 else round(v[0] * r["price"] / v[1], 1)
+    print("  PER", sum(1 for r in res if r.get("per") is not None), "/", len(res))
     as_of = max((r["date"] for r in res), default=None)
     stale = [r for r in res if r["date"] != as_of]
     for r in res:

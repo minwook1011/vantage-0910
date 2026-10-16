@@ -7,8 +7,10 @@
   var MARKETS = [["us", "미국"], ["kr", "한국"], ["jp", "일본"], ["fav", "★ 즐겨찾기"]];
   var VIEWS = [["nh", "신고가", "52주 종가 최고를 넘은 종목"], ["vol", "거래량", "평소(직전 50일 평균)보다 거래가 몰린 종목"], ["rs", "상대강도", "3·6·9·12개월 수익률로 시장 안 상위 종목"]];
   var KEY = "vantage-ta-v3";
-  var st = {m: "us", v: "nh", sec: "", sort: "", q: "", liq: true, nhOnlyToday: false, jpBig: true};
+  var st = {m: "us", v: "nh", sec: "", sort: "", q: "", liq: true, nhOnlyToday: false, cap: {us: "", kr: "", jp: 300}, per: {us: "", kr: "", jp: ""}};
   try { Object.assign(st, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+  if (st.jpBig === false) st.cap.jp = "";   /* 예전 '시총 300억엔 이상' 체크를 끈 사람 */
+  delete st.jpBig;
   var h0 = (location.hash || "").slice(1).split("-");   /* #us-nh · #fav */
   if (MARKETS.some(function (x) { return x[0] === h0[0]; })) st.m = h0[0];
   if (VIEWS.some(function (x) { return x[0] === h0[1]; })) st.v = h0[1];
@@ -30,6 +32,14 @@
   function nameHTML(s) { var M = s._m || st.m; return esc(s.name) + (M === "jp" && s.en && s.en !== s.name ? ' <small class="en">(' + esc(s.en) + ")</small>" : M === "us" && s.en && s.en !== s.name ? ' <small class="en">' + esc(s.en) + "</small>" : ""); }
   function nameTxt(s) { return s.name; }
 
+  /* ── 시총 하한 · PER 상한 — 시장마다 사용자가 숫자를 정함(일본 시총 기본 300억엔). 단위: 미국 억달러 · 한국 억원 · 일본 억엔 ── */
+  var CAPU = {us: "억달러", kr: "억원", jp: "억엔"};
+  function cap100m(s, M) { var v = s.mcap || 0; return M === "us" ? v * 10 : M === "kr" ? v * 10000 : v; }
+  function filt(L) {
+    var M = st.m, c = parseFloat(st.cap[M]), pe = parseFloat(st.per[M]);
+    return L.filter(function (s) { return (!(c > 0) || cap100m(s, M) >= c) && (!(pe > 0) || (s.per != null && s.per > 0 && s.per < pe)); });
+  }
+
   /* ── 보기별 목록·피라미드 기준 ── */
   function liquid(list) {   // 거래가 너무 적은 종목(20일 평균 거래대금 하위 30%) 빼기 — 거래량 배수가 튀기 쉬움
     if (!st.liq) return list;
@@ -41,8 +51,8 @@
     vol: {pick: function (L) { var q = liquid(L).filter(function (s) { return s.vr != null; }).sort(function (a, b) { return b.vr - a.vr; }); var hot = q.filter(function (s) { return s.vr >= 1.5; }); return hot.length >= 30 ? hot : q.slice(0, 30); },   /* 1.5배 넘는 종목, 적으면 상위 30개 */ pyr: "vr", pyrLabel: "오늘 거래량이 평소(직전 50거래일 평균)의 몇 배인지 순서", sort: "vr"},
     rs: {pick: function (L) { return L.filter(function (s) { return (s.rs || 0) >= 90; }); }, pyr: "ex3", pyrLabel: "상대강도 상위 종목 중 최근 3개월 지수 대비 초과수익 순서", sort: "rs"},
   };
-  var SORTS = [["rs", "상대강도"], ["vr", "거래량 배수"], ["chg1d", "오늘 등락"], ["from_hi", "신고가 근접"], ["ex3", "3개월 지수 대비"], ["mcap", "시가총액"]];
-  function sval(s, k) { return k === "from_hi" ? (s.from_hi == null ? -999 : s.from_hi) : s[k] == null ? -1e9 : s[k]; }
+  var SORTS = [["rs", "상대강도"], ["vr", "거래량 배수"], ["chg1d", "오늘 등락"], ["from_hi", "신고가 근접"], ["ex3", "3개월 지수 대비"], ["mcap", "시가총액"], ["per", "PER 낮은"]];
+  function sval(s, k) { if (k === "per") return s.per > 0 ? -s.per : -1e9; return k === "from_hi" ? (s.from_hi == null ? -999 : s.from_hi) : s[k] == null ? -1e9 : s[k]; }
   function fmtMetric(k, v) { return v == null ? "—" : k === "vr" ? Number(v).toFixed(1) + "배" : k === "rs" ? "RS " + v : (v > 0 ? "+" : "") + Number(v).toFixed(1) + "%"; }
 
   /* ── 피라미드 ── */
@@ -77,6 +87,7 @@
     if (s.nh) tags.push('<em class="t-nh">신고가 오늘</em>'); else if (s.nh5) tags.push('<em class="t-nh2">' + s.nh_since + "일 전 신고가</em>"); else if (s.from_hi != null) tags.push("<em>신고가까지 " + Number(-s.from_hi).toFixed(1) + "%</em>");
     if (s.vr != null) tags.push('<em class="' + (s.vr >= 3 ? "t-v3" : s.vr >= 2 ? "t-v2" : "") + '">거래량 ' + Number(s.vr).toFixed(1) + "배</em>");
     if (s.rs != null) tags.push('<em class="' + (s.rs >= 90 ? "t-rs" : "") + '">RS ' + s.rs + "</em>");
+    if (s.per != null) tags.push("<em>" + (s.per < 0 ? "적자" : "PER " + Number(s.per).toFixed(1) + "배") + "</em>");
     return '<article class="ta-card" id="c-' + esc(s.code) + '" data-code="' + esc(s.code) + '" data-mk="' + esc(s._m || st.m) + '" title="눌러서 기업 정보 보기"><header><div class="nm"><b><button type="button" class="ta-star' + (favs()[s.tk] ? " on" : "") + '" data-fav="' + esc(s.tk) + '" data-fn="' + esc(s.name) + '" title="즐겨찾기">' + (favs()[s.tk] ? "★" : "☆") + "</button>" + nameHTML(s) + '</b><small>' + esc(s.code) + " · " + esc(s.sector) + " · " + mcap(s) + '</small></div><div class="px"><b>' + price(s) + "</b>" + sgn(s.chg1d, 2) + "</div></header>" +
       '<div class="ch">' + mini(s) + '</div><div class="tg">' + tags.join("") + '</div><div class="rt"><span>1개월 ' + sgn(s.chg1m) + "</span><span>3개월 " + sgn(s.r3) + "</span><span>지수 대비 " + sgn(s.ex3) + "</span></div></article>";
   }
@@ -87,9 +98,9 @@
     var D = CACHE[st.m];
     var head = '<div class="ta-top"><div><h1>기술적 분석</h1><p class="ta-sub">신고가 · 거래량 · 상대강도만 봅니다. 장 마감 자료로 매일 갱신.</p></div>' +
       '<nav class="ta-mk" aria-label="시장">' + MARKETS.map(function (m) { return '<button type="button" data-m="' + m[0] + '" aria-pressed="' + (st.m === m[0]) + '">' + m[1] + "</button>"; }).join("") + "</nav></div>" +
-      '<nav class="ta-views" aria-label="보기">' + VIEWS.map(function (v) { var n = D ? SPEC[v[0]].pick(st.m === "jp" && st.jpBig ? D.stocks.filter(function (s) { return (s.mcap || 0) >= 300; }) : D.stocks).length : ""; return '<button type="button" data-v="' + v[0] + '" aria-pressed="' + (st.v === v[0]) + '"><b>' + v[1] + (n !== "" ? "<i>" + n + "</i>" : "") + "</b><small>" + v[2] + "</small></button>"; }).join("") + "</nav>";
+      '<nav class="ta-views" aria-label="보기">' + VIEWS.map(function (v) { var n = D ? SPEC[v[0]].pick(filt(D.stocks)).length : ""; return '<button type="button" data-v="' + v[0] + '" aria-pressed="' + (st.v === v[0]) + '"><b>' + v[1] + (n !== "" ? "<i>" + n + "</i>" : "") + "</b><small>" + v[2] + "</small></button>"; }).join("") + "</nav>";
     if (!D) { host.innerHTML = head + '<div class="ta-empty">' + (D === null ? "자료를 불러오지 못했습니다." : "불러오는 중…") + "</div>"; bind(); return; }
-    var pool = st.m === "jp" && st.jpBig ? D.stocks.filter(function (s) { return (s.mcap || 0) >= 300; }) : D.stocks;   /* 일본: 시총 300억엔 이상만(2026-10-16 사용자) */
+    var pool = filt(D.stocks);   /* 시총 하한 · PER 상한 먼저 거른 뒤 보기별 목록(피라미드도 같이) */
     var spec = SPEC[st.v], base = spec.pick(pool);
     var secs = {}; base.forEach(function (s) { secs[s.sector] = (secs[s.sector] || 0) + 1; });
     var list = base.filter(function (s) { return (!st.sec || s.sector === st.sec) && (!st.q || (s.name + " " + (s.en || "") + " " + s.code).toLowerCase().indexOf(st.q.toLowerCase()) >= 0); });
@@ -106,10 +117,11 @@
       '<input type="search" placeholder="이름·코드 검색" value="' + esc(st.q) + '" data-q>' +
       (st.v === "nh" ? '<label><input type="checkbox" data-today ' + (st.nhOnlyToday ? "checked" : "") + "> 오늘 신고가만</label>" : "") +
       (st.v === "vol" ? '<label><input type="checkbox" data-liq ' + (st.liq ? "checked" : "") + "> 거래 적은 종목 빼기</label>" : "") +
-      (st.m === "jp" ? '<label><input type="checkbox" data-jpbig ' + (st.jpBig ? "checked" : "") + "> 시총 300억엔 이상</label>" : "") +
+      '<label class="num">시총 <input type="number" min="0" step="any" inputmode="decimal" placeholder="제한 없음" value="' + esc(st.cap[st.m]) + '" data-cap> ' + CAPU[st.m] + " 이상</label>" +
+      '<label class="num">PER <input type="number" min="0" step="any" inputmode="decimal" placeholder="제한 없음" value="' + esc(st.per[st.m]) + '" data-per> 배 미만</label>' +
       '<span class="cnt">' + list.length + "종목</span></div>" +
       (list.length ? '<div class="ta-grid">' + list.map(card).join("") + "</div>" : '<div class="ta-empty">조건에 맞는 종목이 없습니다.</div>') +
-      '<p class="ta-foot">신고가 = 그날 종가가 직전 52주(252거래일) 종가 최고를 넘은 것 · 거래량 배수 = 그날 거래량 ÷ 직전 50거래일 평균 · RS(상대강도) = 3개월 40%·6·9·12개월 각 20% 가중 수익률을 시장 안에서 1~99로 줄 세운 값 · 차트는 최근 6개월 종가(점선 = 52주 종가 최고), 아래 막대는 거래량. 자료: 야후 일봉.</p>';
+      '<p class="ta-foot">신고가 = 그날 종가가 직전 52주(252거래일) 종가 최고를 넘은 것 · 거래량 배수 = 그날 거래량 ÷ 직전 50거래일 평균 · RS(상대강도) = 3개월 40%·6·9·12개월 각 20% 가중 수익률을 시장 안에서 1~99로 줄 세운 값 · PER = 시가총액 ÷ 최근 4분기 순이익(일본은 일본 기업 화면의 PER을 오늘 주가로 맞춤, 적자·자료 없는 종목은 PER 조건을 넣으면 빠짐) · 차트는 최근 6개월 종가(점선 = 52주 종가 최고), 아래 막대는 거래량. 자료: 야후 일봉.</p>';
     bind();
   }
   function renderFav() {
@@ -132,7 +144,7 @@
     var q = host.querySelector("[data-q]"); if (q) q.oninput = function () { st.q = q.value; clearTimeout(q._t); q._t = setTimeout(function () { render(); var n = host.querySelector("[data-q]"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 250); };
     var td = host.querySelector("[data-today]"); if (td) td.onchange = function () { st.nhOnlyToday = td.checked; save(); render(); };
     var lq = host.querySelector("[data-liq]"); if (lq) lq.onchange = function () { st.liq = lq.checked; save(); render(); };
-    var jb = host.querySelector("[data-jpbig]"); if (jb) jb.onchange = function () { st.jpBig = jb.checked; save(); render(); };
+    [["cap", "[data-cap]"], ["per", "[data-per]"]].forEach(function (x) { var el = host.querySelector(x[1]); if (el) el.onchange = function () { var v = el.value.trim(); st[x[0]][st.m] = v === "" ? "" : Math.max(0, parseFloat(v)) || ""; save(); render(); }; });
     host.querySelectorAll(".ta-card[data-code]").forEach(function (el) { el.onclick = function () { openInfo(el.dataset.code, el.dataset.mk); }; });
     host.querySelectorAll("[data-fav]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); favToggleTk(b.dataset.fav, b.dataset.fn); var on = !!favs()[b.dataset.fav]; b.classList.toggle("on", on); b.textContent = on ? "★" : "☆"; if (st.m === "fav") render(); }; });
     host.querySelectorAll("[data-jump]").forEach(function (b) { b.onclick = function () { var el = document.getElementById("c-" + b.dataset.jump); if (!el) { st.sec = ""; st.q = ""; render(); el = document.getElementById("c-" + b.dataset.jump); } if (el) { el.scrollIntoView({behavior: "smooth", block: "center"}); host.querySelectorAll(".ta-card.flash").forEach(function (x) { x.classList.remove("flash"); }); void el.offsetWidth; el.classList.add("flash"); } }; });
@@ -167,7 +179,8 @@
         {label: "1개월", value: s.chg1m == null ? "—" : (s.chg1m > 0 ? "+" : "") + s.chg1m.toFixed(1) + "%", cls: s.chg1m > 0 ? "up" : s.chg1m < 0 ? "down" : ""},
         {label: "3개월", value: s.r3 == null ? "—" : (s.r3 > 0 ? "+" : "") + s.r3.toFixed(1) + "%", cls: s.r3 > 0 ? "up" : s.r3 < 0 ? "down" : ""},
         {label: "12개월", value: s.r12 == null ? "—" : (s.r12 > 0 ? "+" : "") + s.r12.toFixed(1) + "%", cls: s.r12 > 0 ? "up" : s.r12 < 0 ? "down" : ""},
-        {label: "시총", value: mcap(s), cls: ""}
+        {label: "시총", value: mcap(s), cls: ""},
+        {label: "PER(최근 4분기)", value: s.per == null ? "—" : s.per < 0 ? "적자" : Number(s.per).toFixed(1) + "배", cls: ""}
       ];
       if (mg && (mg.pe_now != null || mg.pe_next != null)) chips.push({label: "선행PER", per: true, cls: "", value: (mg.pe_now != null ? "올해 " + mg.pe_now : "") + (mg.pe_now != null && mg.pe_next != null ? " → " : "") + (mg.pe_next != null ? "내년 " + mg.pe_next : "")});
       var intro = [s.about || (mg && mg.biz) || ""].concat(s.seg ? ["사업 비중: " + s.seg.map(function (x) { return x.n + (x.p != null ? " " + x.p + "%" : ""); }).join(" · ")] : []).concat((s.recent || []).map(function (x) { return "· " + x; })).filter(Boolean).join("\n");

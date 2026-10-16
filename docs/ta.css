@@ -73,3 +73,6 @@
 .ta-star:hover, .ta-star.on { color:#e0a800; }
 .ta-mk button[data-m="fav"] { color:#b07d00; } .ta-mk button[data-m="fav"][aria-pressed="true"] { background:#e0a800; color:#fff; box-shadow:0 2px 8px rgba(224,168,0,.3); }
 .ta-favh { margin:18px 0 8px; font-size:16px; } .ta-favh small { color:#5b6576; font-weight:500; font-size:12px; }
+.ta-ctl label.num { display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
+.ta-ctl label.num input { width:92px; padding:6px 8px; border:1px solid #cfd8e6; border-radius:8px; font:inherit; background:#fff; color:#1a2231; text-align:right; }
+.ta-ctl label.num input:focus { outline:2px solid #2f6fe4; outline-offset:0; }
