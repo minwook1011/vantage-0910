@@ -288,3 +288,14 @@ body.ai-modal-open { overflow:hidden; }
 @media (max-width:860px) { .ai-cards,.co-grid { grid-template-columns:1fr; } .ai-cards.n3 > :first-child { grid-column:auto; } .ai-workspace { padding:18px; } .ai-header { flex-direction:column; } .ai-header-tools { justify-content:flex-start; } }
 @media (max-width:640px) { .dh-views { gap:4px; padding:5px; } .dh-views button { padding:9px 8px; } .dh-views button b { font-size:13px; } .dh-views button small { display:none; } }
 @media (max-width:520px) { .ai-boardtabs small { display:none; } .ai-workspace { padding:14px; border-radius:14px; } .ai-header h2 { font-size:23px; } .ai-kpis { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .ai-rank-row { grid-template-columns:minmax(0,100px) 1fr auto; } .ai-modal-box { padding:16px; } .ai-card > header { flex-wrap:wrap; } .ai-card-num { text-align:left; } }
+
+/* 범례 토글(2026-10-16) — 눌러서 선 켜기·끄기, 두 개만 켜면 차이선 */
+.ai-legend.tog button { display:inline-flex; align-items:center; gap:5px; font:inherit; color:inherit; background:#fff; border:1px solid #d6e0ee; border-radius:999px; padding:2px 9px 2px 7px; cursor:pointer; }
+.ai-legend.tog button::before { content:"✓"; font-size:10px; color:#2f6fe4; font-weight:700; }
+.ai-legend.tog button.off { background:#f3f6fa; border-style:dashed; }
+.ai-legend.tog button.off::before { content:""; width:8px; }
+.ai-legend.tog button.off b, .ai-legend.tog button.off em { color:#9aa7ba; text-decoration:line-through; }
+.ai-legend.tog button.off i { opacity:.3; }
+.ai-legend.tog button:hover { border-color:#2f6fe4; }
+.ai-legend span.diff i { background:repeating-linear-gradient(90deg,var(--c) 0 4px,transparent 4px 7px); }
+.ai-legend-hint { flex-basis:100%; color:#8a97ab; font-size:10.5px; }

@@ -8,7 +8,7 @@
   if (!host && !companyHost) return;
 
   // 다크 표면(#ffffff) 기준 명도·채도·색약 분리 검증을 통과한 고정 순서 팔레트. 순서를 바꾸거나 돌려쓰지 않는다.
-  var COLORS = ["#5b8cff", "#22a886", "#a070e6", "#c9801f", "#dc5573", "#3399c2"];
+  var COLORS = ["#5b8cff", "#22a886", "#a070e6", "#c9801f", "#dc5573", "#3399c2", "#7c8a1f", "#e06c2b", "#3d4a63"];   // 선이 7개 넘는 카드(채권 수익률)에서 색이 겹치지 않게 3색 추가(2026-10-16)
   var PRICE_COLOR = "#c9d6ea";
   var METHOD = {api: "API", scrape: "수집", manual: "수동", computed: "계산", linked: "연결"};
   var RANGES = ["3M", "6M", "1Y", "2Y", "ALL"];
@@ -20,6 +20,11 @@
 
   try { var saved = JSON.parse(localStorage.getItem(STORE) || "{}"); overlay = saved.overlay || {}; company = saved.company || null; customLinks = saved.customLinks || {}; companyRange = saved.companyRange || companyRange; board = saved.board || board; } catch (e) {}
   function persist() { try { localStorage.setItem(STORE, JSON.stringify({overlay: overlay, company: company, customLinks: customLinks, companyRange: companyRange, board: board})); } catch (e) {} }
+  /* 범례를 눌러 선 켜기·끄기(2026-10-16 사용자: "클릭해서 두 지표만 비교, 체크 해제할 수 있게") — 카드별로 꺼 둔 선 이름을 기억. 두 선만 켜면 차이선을 함께 그린다 */
+  var HIDE_KEY = STORE + "-hide", hidden = {};
+  try { hidden = JSON.parse(localStorage.getItem(HIDE_KEY) || "{}") || {}; } catch (e) {}
+  function saveHidden() { try { localStorage.setItem(HIDE_KEY, JSON.stringify(hidden)); } catch (e) {} }
+  function isOff(sid, label) { return (hidden[sid] || []).indexOf(label) >= 0; }
 
   /* ── 유틸 ─────────────────────────────────────────────── */
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]; }); }
@@ -251,7 +256,14 @@
     });
     svg.addEventListener("mouseleave", function () { cross.style.display = "none"; tip.style.display = "none"; });
   }
-  function legend(rows) { return rows && rows.length > 1 ? '<div class="ai-legend">' + rows.map(function (r) { var last = r.points && r.points.length ? r.points[r.points.length - 1].value : null; return '<span><i style="--c:' + r.color + '"></i><b>' + esc(r.label) + "</b>" + (finite(last) ? "<em>" + fmt(last, 2) + "</em>" : "") + "</span>"; }).join("") + "</div>" : ""; }
+  function legend(rows, sid) {
+    if (!rows || rows.length < 2) return "";
+    var tog = sid && rows.some(function (r) { return r.toggle; });
+    return '<div class="ai-legend' + (tog ? " tog" : "") + '">' + rows.map(function (r) {
+      var last = r.points && r.points.length ? r.points[r.points.length - 1].value : null, inner = '<i style="--c:' + r.color + '"></i><b>' + esc(r.label) + "</b>" + (finite(last) ? "<em>" + fmt(last, 2) + "</em>" : "");
+      return r.toggle ? '<button type="button" class="' + (r.off ? "off" : "") + '" data-tog="' + esc(r.label) + '" aria-pressed="' + !r.off + '" title="눌러서 이 선 켜기·끄기">' + inner + "</button>" : '<span class="' + (r.diff ? "diff" : "") + '">' + inner + "</span>";
+    }).join("") + (tog ? '<small class="ai-legend-hint">이름을 눌러 켜고 끄기 · 두 개만 켜면 차이선(회색)</small>' : "") + "</div>";
+  }
 
   /* ── 카드 본문 (타입별) ───────────────────────────────── */
   function accumulating(s, rows) {
@@ -263,15 +275,48 @@
   /* 추이를 볼 수 있는 지표는 꺾은선으로 그린다. 여러 기업을 쌓아 보는 캐팩스(stack)만 막대. */
   function plot(s, width, height, range) {
     if (s.type === "stack") { var st = stackChart(s, width, height); return st ? {html: st.svg, hover: st.hover, legendRows: (s.lines || []).map(function (l, k) { return {label: l.label, color: COLORS[k % COLORS.length], points: good(l.points)}; })} : {html: empty(s)}; }
-    var rows = lines(s).map(function (l, k) { return {label: l.label, color: COLORS[k % COLORS.length], thick: true, points: clip(l.points, range || "ALL")}; }).filter(function (r) { return r.points.length; });
-    if (!rows.length) return {html: empty(s)};
+    var all = lines(s).map(function (l, k) { return {label: l.label, color: COLORS[k % COLORS.length], thick: true, points: clip(l.points, range || "ALL")}; }).filter(function (r) { return r.points.length; });
+    if (!all.length) return {html: empty(s)};
+    var tog = s.type === "share_abs" && all.length > 1;
+    if (tog) all.forEach(function (r) { r.toggle = true; r.off = isOff(s.id, r.label); });
+    var rows = tog ? all.filter(function (r) { return !r.off; }) : all;
+    if (!rows.length) { rows = all; all.forEach(function (r) { r.off = false; }); }
+    var diffRow = null;
+    if (tog && rows.length === 2) {   // 두 선만 켜면 차이(높은 쪽 − 낮은 쪽)를 같은 단위로 겹쳐 그린다 — 예: 코어위브 수익률 − 국채 5년 = 스프레드
+      var a = rows[0], b = rows[1];
+      if (b.points[b.points.length - 1].value > a.points[a.points.length - 1].value) { var t = a; a = b; b = t; }
+      var bm = {}; b.points.forEach(function (p) { bm[p.date] = p.value; });
+      var bd = b.points.map(function (p) { return p.date; });
+      var dp = a.points.map(function (p) {
+        var v = bm[p.date];
+        if (v == null) { for (var i = bd.length - 1; i >= 0; i--) if (bd[i] < p.date) { if (ts(p.date) - ts(bd[i]) <= 5 * 864e5) v = bm[bd[i]]; break; } }
+        return v == null ? null : {date: p.date, value: +(p.value - v).toFixed(4)};
+      }).filter(Boolean);
+      if (dp.length > 1) diffRow = {label: "차이 (" + a.label + " − " + b.label + ")", color: "#8a94a6", thick: false, diff: true, points: dp};
+    }
+    if (diffRow) rows = rows.concat([diffRow]);
     if (rows.every(function (r) { return r.points.length < 2; })) return {html: accumulating(s, rows)};
     // 로그 눈금(scale: "log") — 코어위브 1,000bp 와 오라클 300bp 처럼 몇 배씩 차이 나는 선을 한 그래프에서 같이 읽게
     var logy = s.scale === "log", draw = logy ? rows.map(function (r) { return Object.assign({}, r, {points: r.points.filter(function (p) { return p.value > 0; }).map(function (p) { return Object.assign({}, p, {value: Math.log10(p.value)}); })}); }) : rows;
     var unLog = function (v) { var n = Math.pow(10, v); return fmt(n, n < 10 ? 1 : 0); };
     var ch = lineChart({width: width, height: height, rows: draw, unit: s.unit, digits: s.digits, aria: s.label, area: rows.length === 1, zero: !logy && (s.type === "share" || s.type === "bars"), compact: true, unitShort: SHORT_UNIT[s.unit] || "",
       fmtY: logy ? unLog : undefined, fmtTip: logy ? function (v) { return unLog(v) + " " + (s.unit || ""); } : undefined});
-    return {html: ch.svg, hover: ch.hover, legendRows: rows.length > 1 ? rows : null};
+    return {html: ch.svg, hover: ch.hover, legendRows: tog ? all.concat(diffRow ? [diffRow] : []) : rows.length > 1 ? rows : null};
+  }
+  /* 그래프 상자 하나를 그리고, 범례 토글을 누르면 그 상자만 다시 그린다 */
+  function paintPlot(box, s, w, h, range) {
+    var p = plot(s, w, h, range);
+    box.innerHTML = legend(p.legendRows, s.id) + '<div class="ai-plot-svg">' + p.html + "</div>";
+    if (p.hover) attachHover(box.querySelector(".ai-plot-svg"), p.hover);
+    box.querySelectorAll("[data-tog]").forEach(function (b) {
+      b.onclick = function (e) {
+        e.stopPropagation();
+        var l = (hidden[s.id] || []).slice(), k = l.indexOf(b.dataset.tog);
+        if (k >= 0) l.splice(k, 1); else l.push(b.dataset.tog);
+        if (lines(s).every(function (x) { return l.indexOf(x.label) >= 0; })) return;   // 전부 끄는 건 막는다
+        hidden[s.id] = l; saveHidden(); paintPlot(box, s, w, h, range);
+      };
+    });
   }
   function empty(s) {
     return '<div class="ai-empty"><span aria-hidden="true">∿</span><b>' + esc(s.status_note || (s.method === "manual" ? "발표가 나오면 입력하는 지표예요" : "아직 표시할 관측값이 없어요")) + "</b><p>빈 값을 0이나 예시 숫자로 채우지 않습니다.</p></div>";
@@ -365,9 +410,7 @@
       '<p class="ai-footnote">' + (isSample ? "지금 숫자는 화면 설계용 가상 수치입니다." : "GitHub Actions가 소스마다 발표 시각에 맞춰 수집합니다 — 렌탈지수 05:30 · CDS 08:00 · OpenRouter 09:00 · 클라우드 공시가 화 06:00 · 대만 월매출 10~16일 18:00 · 전체점검 07:00 (KST). 실패한 소스는 이전 값을 유지하고 카드에 표시합니다.") + ' <a href="https://github.com/minwook1011/vantage-0910/actions/workflows/ai-indicators.yml" target="_blank" rel="noopener">실행 이력 ↗</a></p>';
     host.querySelectorAll(".ai-plot").forEach(function (box) {
       var s = seriesById(box.dataset.plot); if (!s) return;
-      var p = plot(s, Math.max(260, box.clientWidth), box.closest(".ai-cards.tall > :first-child") ? (box.closest(".ai-cards.n4") ? 700 : 470) : box.closest(".ai-cards.duo > :nth-child(-n+2)") ? 430 : 156);   // 세로로 긴 카드는 그래프도 크게
-      box.innerHTML = legend(p.legendRows) + '<div class="ai-plot-svg">' + p.html + "</div>";
-      if (p.hover) attachHover(box.querySelector(".ai-plot-svg"), p.hover);
+      paintPlot(box, s, Math.max(260, box.clientWidth), box.closest(".ai-cards.tall > :first-child") ? (box.closest(".ai-cards.n4") ? 700 : 470) : box.closest(".ai-cards.duo > :nth-child(-n+2)") ? 430 : 156);   // 세로로 긴 카드는 그래프도 크게
     });
     host.querySelectorAll("[data-open]").forEach(function (b) { b.onclick = function () { openModal(b.dataset.open); }; });
     host.querySelectorAll("[data-board],[data-jump]").forEach(function (b) { b.onclick = function () { var id = b.dataset.board || b.dataset.jump; if (id === board) fitBoard(); else switchBoard(id); }; });
@@ -422,9 +465,9 @@
         tickers.forEach(function (t, i) { idx(DATA.companies[t].points, tickerLabel(t), COLORS[(i + 1) % COLORS.length], t, false); });
         var ch = rows.length && lineChart({width: w, height: 300, rows: rows, digits: 1, endLabels: true, baseline: 100, fmtY: function (v) { return v.toFixed(0); }, fmtTip: function (v) { return v.toFixed(1); }});
         p = ch ? {html: ch.svg, hover: ch.hover, legendRows: rows} : {html: empty(s)};
-      } else p = plot(s, w, 300, modalRange);
-      box.innerHTML = legend(p.legendRows) + '<div class="ai-plot-svg">' + p.html + "</div>";
-      if (p.hover) attachHover(box.querySelector(".ai-plot-svg"), p.hover);
+        box.innerHTML = legend(p.legendRows) + '<div class="ai-plot-svg">' + p.html + "</div>";
+        if (p.hover) attachHover(box.querySelector(".ai-plot-svg"), p.hover);
+      } else paintPlot(box, s, w, 300, modalRange);
     }
     m.querySelectorAll("[data-close]").forEach(function (b) { b.onclick = closeModal; });
     m.querySelectorAll("[data-range]").forEach(function (b) { b.onclick = function () { modalRange = b.dataset.range; renderModal(); }; });

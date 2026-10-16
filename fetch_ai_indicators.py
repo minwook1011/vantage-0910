@@ -837,10 +837,10 @@ def _ust_at(curve, day, years):
             return c[a] + (c[b] - c[a]) * (years - a) / (b - a)
 
 
-@collector("bond_neocloud", "bond_bigtech", "bond_spread", "bond_table")
+@collector("bond_neocloud", "bond_bigtech", "bond_table")
 def c_bonds(ctx):
     # 30분마다 도는 작업이라 하루 한 번만 받는다(채권 14개 × 약 13초). 이미 오늘 받았으면 기존 값 유지.
-    if ctx.state.get("bond_day") == TODAY and all(sid in ctx.prev for sid in ("bond_neocloud", "bond_bigtech", "bond_spread", "bond_table")):
+    if ctx.state.get("bond_day") == TODAY and all(sid in ctx.prev for sid in ("bond_neocloud", "bond_bigtech", "bond_table")):
         print("  채권: 오늘 이미 받음 — 건너뜀")
         return
     eod = _finra_session()
@@ -877,20 +877,6 @@ def c_bonds(ctx):
     ctx.put(dict(common, id="bond_bigtech", group="bond", label="빅테크·오라클 장기채 수익률", related=["ORCL", "META", "MSFT", "GOOGL", "AMZN"],
                  lines=lines(BONDS_BIG) + [ust_line(30, "미국 국채 30년")],
                  caveat="빅테크가 AI 투자 자금을 마련하려고 낸 장기 회사채입니다. 메타 하이페리온은 메타의 루이지애나 데이터센터를 짓는 특수목적회사(블루아울 합작) 채권입니다. 국채 30년과 겹쳐 금리 탓인지 신용 탓인지 가릅니다."))
-    spread_lines = []
-    for lab in BOND_SPREAD:
-        if lab not in data:
-            continue
-        mat = data[lab]["mat"]
-        sp = []
-        for p in data[lab]["pts"]:
-            u = _ust_at(curve, p["date"], yrs_left(p["date"], mat))
-            if u is not None:
-                sp.append({"date": p["date"], "value": round(p["value"] - u, 2)})
-        spread_lines.append({"label": lab, "points": sp})
-    ctx.put(dict(common, id="bond_spread", group="bond", label="국채 대비 스프레드", unit="%p", scale="log", related=["CRWV", "NBIS", "IREN", "ORCL"],
-                 lines=spread_lines,
-                 caveat="회사채 수익률에서 만기가 같은 미국 국채 수익률(재무부 곡선을 만기에 맞춰 보간)을 뺀 값입니다. 금리 전체가 움직인 부분을 빼고 그 회사 신용 위험만 봅니다. 차이가 커서 세로축은 로그 눈금입니다."))
     rows = []
     for _, lab, mat in BONDS_NEO + BONDS_BIG:
         if lab not in data:
@@ -1265,7 +1251,7 @@ BOARDS = {
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
     "gpu": ["gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
     "credit": ["cds_bigtech", "cds_neocloud", "cds_ai", "cds_table"],   # 2026-10-15: 왼쪽 빅테크·오른쪽 오라클·네오클라우드 둘 다 크게, 아래 칩·표   # 오라클−MS 격차 카드는 뺌(2026-10-07 사용자) — 빅테크 추이를 세로로 길게
-    "bond": ["bond_neocloud", "bond_bigtech", "bond_spread", "bond_table"],   # 2026-10-16 사용자 요청
+    "bond": ["bond_neocloud", "bond_bigtech", "bond_table"],   # 2026-10-16 사용자 요청 — 스프레드 카드는 보기 어렵다고 빼고, 범례에서 두 선만 켜면 차이선이 나오게 함
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
     "money": ["tsmc_monthly_rev", "tsmc_capa", "hyperscaler_capex", "ai_lab_arr"],
     "bench": ["arena_agent_rank", "arena_agent_labs", "arena_agent_cost", "arena_text_rank"],
