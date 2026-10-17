@@ -44,6 +44,7 @@
   "macro:2026-10-15",
   "macro:2026-10-16",
   "macro:2026-10-17",
+  "macro:2026-10-18",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -120,6 +121,7 @@
   "trk:blog-ranto28:e44af80ee32f",
   "trk:blog-ranto28:ec5870e4dcd4",
   "trk:blog-ranto28:f3ab7e879ed0",
+  "trk:blog-ranto28:fe500feb8f2a",
   "trk:blog-ssh-fedinsight:029cab3ca8e2",
   "trk:blog-ssh-fedinsight:0301fac5f6f1",
   "trk:blog-ssh-fedinsight:0760a0131972",
@@ -345,6 +347,7 @@
   "trk:t-759fd052:e436c0e814df",
   "trk:t-759fd052:ec76740297b1",
   "trk:t-759fd052:ec9b2ce4dc8b",
+  "trk:t-759fd052:ed56ed5eaff5",
   "trk:t-759fd052:f19b7f6450a0",
   "trk:t-759fd052:f6b9ffca71d2",
   "trk:t-c3c842c3:4e876d2614e6",
@@ -359,6 +362,7 @@
   "trk:yt--jklonfa:0a1ebb632526",
   "trk:yt--jklonfa:17030502403d",
   "trk:yt--jklonfa:1723dbb8c2c6",
+  "trk:yt--jklonfa:17373e3a6206",
   "trk:yt--jklonfa:18b398ad7f18",
   "trk:yt--jklonfa:1b3a4cba1129",
   "trk:yt--jklonfa:1dea17155b99",
@@ -474,6 +478,7 @@
   "usdkrw:2026-10-15",
   "usdkrw:2026-10-16",
   "usdkrw:2026-10-17",
+  "usdkrw:2026-10-18",
   "weekly:2026-09-28",
   "weekly:2026-10-05"
  ],
@@ -1840,6 +1845,23 @@
   ],
   "gpu:2026-10-17": [
    215
+  ],
+  "macro:2026-10-18": [
+   216,
+   217,
+   218
+  ],
+  "usdkrw:2026-10-18": [
+   219
+  ],
+  "trk:t-759fd052:ed56ed5eaff5": [
+   477
+  ],
+  "trk:blog-ranto28:fe500feb8f2a": [
+   478
+  ],
+  "trk:yt--jklonfa:17373e3a6206": [
+   479
   ]
  }
 }
