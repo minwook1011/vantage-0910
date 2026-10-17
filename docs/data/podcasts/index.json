@@ -1,6 +1,26 @@
 {
- "updated": "2026-10-17 14:48 KST",
+ "updated": "2026-10-17 15:37 KST",
  "episodes": [
+  {
+   "id": "2026-10-17-understanding-_EsS-zgxSuQ",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "AI 안경으로 커닝하다 대입시험 적발 파장...각종 국가시험 구멍 ‘이대로 괜찮나‘(언더스탠딩 백종훈 기자)",
+   "date": "2026-10-17",
+   "published": "2026-10-17 14:55 KST",
+   "link": "https://www.youtube.com/watch?v=_EsS-zgxSuQ",
+   "youtube": "https://www.youtube.com/watch?v=_EsS-zgxSuQ",
+   "audio": null,
+   "duration": "",
+   "desc": "💡내용 요약 최근 대학 입시와 각종 자격시험에서 AI 안경을 이용한 부정행위가 적발되면서 새로운 시험 관리 문제가 떠오르고 있습니다. 지난 10월 서울시립대와 연세대에서 AI 안경을 활용한 부정행위 사례가 알려졌으며, 기존의 일반 안경과 외관상 큰 차이가 없어 감독관이 쉽게 구별하기 어렵다는 점이 문제로 지적됩니다. 언더스탠딩 취재진은 약 100만 원 상당의 로키드 AI 안경을 직접 사용해 수능 모의평가 문제를 풀어봤고, 고난도 문항을 제외한 대부분의 문제에서 불과 몇 초 만에 정답을 확인할 수 있었습니다. AI 안경의 가장 큰 특징은 음성 명령 없이도 사전에 설정한 기능을 실행할 수 있다는 점입니다. 안경을 가볍게 터치하는 것만으로 눈앞의 문제를 인식하고 정답을 표시할 수 있어 부정행위에 악용될 가능성이 큽니다. 이에 교육당국은 수능을 앞두고 감독관 교육과 안경 검사, 전파탐지기 도입 등을 검토하고 있지만 모든 시험장에서 완벽하게 적발하기는 쉽지 않은 상황입니다. 특히 AI가 실시간으로 정보를 제공하는 시대에 기존의 암기 중심 시험과 평가 방식을 유지하는 것이 적절한지에 대한 논의도 필요해지고 있습니다. 한편 AI 안경은 부정행위뿐 아니라 일상생활에서도 다…",
+   "status": "skip",
+   "found": "2026-10-17 15:23 KST",
+   "image": "https://i4.ytimg.com/vi/_EsS-zgxSuQ/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "AI 안경으로 커닝하다 대입시험서 적발 — 국가시험 관리에 생긴 구멍 (백종훈 기자)",
+   "reason": "주제 무관 — 시험 부정행위·교육 제도 이야기로 기업·산업 분석이 중심이 아님"
+  },
   {
    "id": "2026-10-16-understanding-zx_RICymbLM",
    "show": "understanding",
@@ -33,13 +53,20 @@
    "audio": null,
    "duration": "",
    "desc": "💡내용 요약 전 테슬라 엔지니어 맹성준 작가는 테슬라의 로보택시 ‘사이버캡’을 통해 자율주행 시대에 자동차 설계의 기준이 어떻게 달라지는지 설명한다. 사이버캡에 적용된 간접식 공조 시스템은 기존 자동차보다 냉매 배관을 짧게 만들고 부품을 하나의 모듈로 통합해 생산 자동화와 유지보수 측면에서 이점을 가진다. 다만 냉방 초기 성능이 상대적으로 떨어지는 한계가 있는데, 지속적으로 운행하는 로보택시는 일반 승용차와 달리 순간적인 냉방 성능에 크게 의존하지 않기 때문에 이러한 설계가 가능하다는 것이다. 이는 자동차의 모든 성능을 극대화하기보다 실제 운행 목적에 맞춰 필요한 성능을 최적화하는 새로운 접근 방식이다. 맹 작가는 이러한 변화의 핵심으로 \"수직계열화(버티컬 인테그레이션)\"를 꼽는다. 테슬라는 부품과 시스템을 외부 업체에 의존하기보다 직접 설계하고 통합하면서 기존 자동차 산업의 관행을 뛰어넘는 시도를 이어가고 있다. 이러한 전략은 리튬 정제와 반도체 생산, AI 인프라 구축으로까지 확대되고 있으며, AI의 발전은 기업과 산업 사이의 경계를 더욱 빠르게 허물 수 있다는 분석이다. 특히 AI를 활용하면 엔지니어가 소프트웨어 개발이나 설계 등 기존 전문 영역 밖의 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-17 00:01 KST",
    "image": "https://i3.ytimg.com/vi/ZP-48IeHXNo/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "전 테슬라 엔지니어 2부 — 사이버캡에 효율 낮은 에어컨을 넣은 이유 (맹성준 작가)",
-   "desc_ko": "테슬라에서 일했던 맹성준 작가가 로보택시 사이버캡의 설계를 통해 자율주행 시대에 자동차 설계 기준이 어떻게 바뀌는지 설명합니다. 사이버캡의 간접식 공조 장치는 냉매 배관을 줄이고 부품을 한 덩어리로 묶어 생산 자동화와 정비에 유리한 대신, 처음 냉방 속도는 느립니다. 쉬지 않고 달리는 로보택시라면 이 약점이 크지 않다는 것이 핵심입니다. 그는 이런 선택의 바탕에 수직계열화가 있고, 이 전략이 리튬 정제·반도체·AI 인프라로까지 넓어지고 있다고 봅니다."
+   "desc_ko": "테슬라에서 일했던 맹성준 작가가 로보택시 사이버캡의 설계를 통해 자율주행 시대에 자동차 설계 기준이 어떻게 바뀌는지 설명합니다. 사이버캡의 간접식 공조 장치는 냉매 배관을 줄이고 부품을 한 덩어리로 묶어 생산 자동화와 정비에 유리한 대신, 처음 냉방 속도는 느립니다. 쉬지 않고 달리는 로보택시라면 이 약점이 크지 않다는 것이 핵심입니다. 그는 이런 선택의 바탕에 수직계열화가 있고, 이 전략이 리튬 정제·반도체·AI 인프라로까지 넓어지고 있다고 봅니다.",
+   "summary": {
+    "title_ko": "전 테슬라 엔지니어 2부 — 사이버캡에 효율 낮은 에어컨을 넣은 이유 (맹성준 작가)",
+    "headline": "사람이 안 모는 차라서 '타자마자 찬바람'을 버렸다 — 간접식 에어컨은 수직계열화가 낳은 설계라는 주장",
+    "image": "https://i.ytimg.com/vi/ZP-48IeHXNo/hqdefault.jpg",
+    "guest": "맹성준 — 작가 · 전 Tesla 파워트레인 성능 검증 엔지니어(2022년 입사), 『모빌리티, 큰 파도』 저자",
+    "company": "Tesla (전기차 · 로보택시 · 반도체 · 열관리)"
+   }
   },
   {
    "id": "2026-10-16-oddlots-the-french-political-crisis-that-s-turning-into",
@@ -52,12 +79,19 @@
    "audio": "https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/9eaa512a-78cf-4f3a-b125-b4e401078052/audio.mp3?utm_source=Podcast&in_playlist=982f5071-765c-403d-969d-ae27003a8d83",
    "duration": "47:34",
    "desc": "Just about everyone is worried about what is going on in France right now: the country's public finances are in sorry shape and there are fears that the French bond selloff, and the country's growing debt crisis, might spillover into the rest of Europe. On top of that, the 2027 elections have investors worried: The two leading candidates, Marine Le Pen and Jean-Luc Mélenchon, aren't seen to be up to the task of taming France's fiscal turmoil. Shahin Vallée was an advisor to Emmanuel Macron when he was an economic minister and during his first presidential election campaign. Since then, he's pa…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-17 00:01 KST",
    "image": "https://omny.fm/shows/odd-lots/the-french-political-crisis-thats-turning-into-a-debt-crisis/image.jpg?t=1681324767&size=wideShare",
    "show_image": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/982f5071-765c-403d-969d-ae27003a8d83/image.jpg?t=1681322812&size=Large",
    "title_ko": "Shahin Vallée — 정치 위기에서 국가부채 위기로 번지는 프랑스",
-   "desc_ko": "프랑스 재정이 나빠지면서 국채 매도세와 부채 위기가 유럽 전체로 번질 수 있다는 걱정이 커지고 있습니다. 2027년 대선의 유력 후보인 Marine Le Pen 과 Jean-Luc Mélenchon 모두 재정을 바로잡을 적임자로 보이지 않는다는 점도 투자자들을 불안하게 합니다. Emmanuel Macron 이 경제장관이던 시절과 첫 대선 때 자문을 맡았던 Shahin Vallée 가 프랑스 정치 구조와 국채 시장이 어떻게 맞물려 있는지 설명합니다."
+   "desc_ko": "프랑스 재정이 나빠지면서 국채 매도세와 부채 위기가 유럽 전체로 번질 수 있다는 걱정이 커지고 있습니다. 2027년 대선의 유력 후보인 Marine Le Pen 과 Jean-Luc Mélenchon 모두 재정을 바로잡을 적임자로 보이지 않는다는 점도 투자자들을 불안하게 합니다. Emmanuel Macron 이 경제장관이던 시절과 첫 대선 때 자문을 맡았던 Shahin Vallée 가 프랑스 정치 구조와 국채 시장이 어떻게 맞물려 있는지 설명합니다.",
+   "summary": {
+    "title_ko": "Shahin Vallée — 정치 위기에서 국가부채 위기로 번지는 프랑스",
+    "headline": "Shahin Vallée '문제는 예산이 아니라 정치' — 중도 붕괴로 Le Pen 대 Mélenchon 구도, 유럽중앙은행 안전망은 재정 약속 없인 못 쓴다",
+    "image": "https://i.ytimg.com/vi/JmM0sC1FKwU/hqdefault.jpg",
+    "guest": "샤힌 발레(Shahin Vallée) — 독일외교협회(DGAP) 연구원 · 전 Macron 경제장관 자문역 — 유로 위기 실무를 겪은 정책 이코노미스트",
+    "company": "프랑스 국채(OAT) 시장 (유로 국채 · 프랑스 은행)"
+   }
   },
   {
    "id": "2026-10-16-riskrev-david-rosenberg-the-ai-mania-is-more-extreme-tha",
@@ -89,13 +123,20 @@
    "audio": null,
    "duration": "",
    "desc": "📢 가을옷 기왕 살 거 여기서 사세요 🔗 https://www.musinsa.com/curator/shop/GyVEuRcF ※본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공받습니다 💡내용 요약 범용인공지능(AGI)이 등장하면서 해킹 등 안전성 문제가 부각되고 있다. 김학주 교수는 승자독식 경쟁 구조에서 개발을 멈추기 어렵고, 목표 달성에 치중한 AI가 중단 명령을 따르지 않는 사례도 나온다고 짚는다. 이를 견제할 수단으로 양자컴퓨터, 차세대 노광장비, 양자컴퓨터와 AI를 연결하는 엔비디아의 플랫폼을 꼽는다. 극자외선(EUV) 노광장비는 주석 방울에 레이저를 쏘아 13.5나노미터 광원을 얻고 다층 반사경으로 모으는 정밀 공정에 의존한다. 핵심 부품 업체가 대부분 비상장이고 ASML에만 납품하는 구조여서, 투자 가능한 곳은 사실상 ASML뿐이라는 설명이다. 차세대 장비 가격이 기존의 두 배 수준이라 반도체 업체에서 장비 업체로 이익이 이동할 수 있다는 전망도 제시된다. 후반부에서는 금리 하락 가능성을 전제로 한 미국 30년물 국채 투자를 다룬다. 채권 가격 구조와 장기채의 시세차익 구조를 사례로 설명하고, 스테이블코…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-16 17:31 KST",
    "image": "https://i4.ytimg.com/vi/W7yms_5Spic/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "폭락장에도 안 무너지는 채권 같은 AI 주식 (한동대 AI융합학부 김학주 교수)",
-   "desc_ko": "김학주 교수가 범용 인공지능 시대의 안전성 문제와 이를 견제할 기술로 양자컴퓨터, 차세대 노광장비, 엔비디아의 양자-AI 연결 플랫폼을 꼽습니다. 극자외선 노광장비의 광원·반사경 공정을 설명하며, 핵심 부품사 대부분이 비상장이라 투자할 수 있는 곳은 사실상 ASML 뿐이라고 말합니다. 차세대 장비 가격이 기존의 두 배 수준이라 이익이 반도체 회사에서 장비 회사로 옮겨갈 수 있다는 전망도 나옵니다. 후반부는 금리 하락을 전제로 한 미국 30년 국채 투자를 다룹니다."
+   "desc_ko": "김학주 교수가 범용 인공지능 시대의 안전성 문제와 이를 견제할 기술로 양자컴퓨터, 차세대 노광장비, 엔비디아의 양자-AI 연결 플랫폼을 꼽습니다. 극자외선 노광장비의 광원·반사경 공정을 설명하며, 핵심 부품사 대부분이 비상장이라 투자할 수 있는 곳은 사실상 ASML 뿐이라고 말합니다. 차세대 장비 가격이 기존의 두 배 수준이라 이익이 반도체 회사에서 장비 회사로 옮겨갈 수 있다는 전망도 나옵니다. 후반부는 금리 하락을 전제로 한 미국 30년 국채 투자를 다룹니다.",
+   "summary": {
+    "title_ko": "폭락장에도 안 무너지는 채권 같은 AI 주식 (한동대 AI융합학부 김학주 교수)",
+    "headline": "ASML은 독점·수주잔고·업그레이드 매출로 '채권 같은 주식' — 2027년 이익 두 배면 PER 25배 아래, 미국 30년물은 금리 3%p 하락 시 63% 차익",
+    "image": "https://i.ytimg.com/vi/W7yms_5Spic/hqdefault.jpg",
+    "guest": "김학주 — 한동대 AI융합학부 교수 — 전 삼성증권 리서치센터장",
+    "company": "ASML (그리고 엔비디아·AMD·미국 30년 국채) (반도체 장비 · AI 인프라 · 장기 채권)"
+   }
   },
   {
    "id": "2026-10-15-understanding-IZkjnbqA-_4",
