@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "ef2624c0c655",
+   "kind": "news",
+   "headline": "삼성전자, 엔비디아 맞춤형 HBM 'NVHBM' 베이스다이를 TSMC 3나노로 만든다 — 자체 턴키 방식 포기, 양사가 HBM 제조 단계에서 처음 협력(서울경제 단독, 로이터 인용)",
+   "bullets": [
+    "엔비디아가 8월 공개한 맞춤형 고대역폭메모리 NVHBM은 공급사 셋(삼성·SK하이닉스·마이크론) 모두 베이스다이를 TSMC 3나노로, 코어다이는 1c D램으로 통일하라고 요구했고, 삼성이 내부 검토 뒤 이를 받아들였다.",
+    "삼성은 그동안 HBM4·HBM4E 베이스다이를 자사 파운드리 4나노로 만들어 왔다. 이번에 NVHBM만 TSMC로 바꾸고, AMD 등 다른 고객 맞춤형 HBM은 자체 턴키 방식을 유지한다.",
+    "TSMC 3나노 물량이 모자랄 경우에 대비해 삼성 파운드리 2나노에서도 NVHBM 베이스다이를 만들 수 있는지 검증 중이다. 생산 물량·일정·가격은 보도에 없고, 회사 공식 입장도 아직 없다."
+   ],
+   "summary": "서울경제가 18일 단독 보도하고 로이터가 같은 날 인용했다. 삼성전자가 엔비디아 차세대 맞춤형 고대역폭메모리 NVHBM의 베이스다이를 TSMC 3나노 공정으로 생산한다. 삼성은 지금까지 HBM 전 제품의 코어다이·베이스다이를 모두 자체 생산했는데, 이 제품만 엔비디아 기술 요구에 맞춰 방식을 바꿨다. 두 회사가 HBM 제조 단계에서 손잡는 것은 처음이고, 4년 전 첨단 패키징(CoWoS) 호환 협력 이후 두 번째 협력이다.\n\n엔비디아가 공정을 통일하려는 이유는 공급사마다 제조 방식이 다르면 같은 설계로 일정한 성능을 내기 어렵고, 공급사별 검증 작업도 늘어나기 때문이다. NVHBM은 HBM4E 구조를 바탕으로 GPU에 있던 메모리 컨트롤러 기능을 베이스다이로 옮기고, 외부 신호 회로(PHY) 면적을 표준 HBM보다 60% 줄였다. 표준 HBM4E 대비 대역폭은 최대 30% 늘고 전력은 15% 준다는 설명이다. 기능이 늘어난 베이스다이를 작은 면적에 담으려면 3나노급 공정이 필요하고, 업계는 TSMC 3나노 수율을 90% 이상, 삼성 2나노(SF2)를 60% 안팎으로 본다.\n\n공급 측면도 배경이다. UBS는 내년 HBM 수요를 약 615억 기가비트(올해보다 91% 증가)로, 신규 출하는 약 546억 기가비트로 봐 약 10% 부족을 예상한다. 삼성의 4나노 베이스다이 라인은 화성 17라인과 평택 P3 일부에만 있어 맞춤형 물량을 감당하기 빠듯하다. TSMC는 타이난 팹18에 3나노 라인 2곳을 추가(내년 상반기·내후년 상반기 양산)하고 애리조나 2공장(내년 3분기)·구마모토 2공장(2028년)도 3나노를 준비한다. 남은 쟁점은 TSMC 3나노가 고성능컴퓨팅·스마트폰 칩과 라인을 나눠 쓰는 만큼 베이스다이 배정 물량이 충분할지, 삼성 2나노 수율이 양산 기준을 넘을지다. 수율·수요 숫자는 모두 업계·투자은행 추정이다.",
+   "title": "Samsung to use TSMC technology for Nvidia's next-generation memory chips, Seoul newspaper reports",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQLVd3RU5QdzNwZHd0cUNCbUQxM3B6M2JOTXZZbEE4b3Y4czkxSjBuNklIRXU2S1VyRld6WTlRQUdlZkN3TGNRcng5cjR6ZEViNXNqcHh2RnlRU2hWVXRPUVFjVXRvd2FaaTVkd002aUk4WHlEQ2wxTGk3alF5S0FUTGNMUXF2dV9QUjk4eThjcWVPaVBLYzc2c0NUaUN4UUVMcVZTSERiMDE5VXp0NDdoVFpuS2E0TGZoUnBrRTExcnZDRlJia1VNcU40SUxQcE1y?oc=5",
+   "published": "2026-10-18 21:09 KST",
+   "written": "2026-10-18 21:48 KST"
+  },
+  {
    "id": "a1828143d241",
    "kind": "news",
    "headline": "엔비디아 GTC 베를린 20~22일 개막 — 젠슨 황 기조연설 21일 오후 6시(한국시간), 유럽 주권 인공지능이 핵심 주제",
@@ -435,5 +451,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-18 21:18 KST"
+ "updated": "2026-10-18 21:48 KST"
 }
