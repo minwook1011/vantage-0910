@@ -6,15 +6,15 @@ tg_notify.py — 사이트(origin/main) 데이터를 읽어 텔레그램 '돈벌
 GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 직후와 15분마다 돌린다 — PC 가 꺼져 있어도 된다.
 데이터는 사이트 수집기가 이미 모아 둔 파일만 읽는다(새 API 없음). 메시지에 사이트(깃허브) 주소는 넣지 않는다(사용자 지시). 보낸 기록은 data_sources/tg_state.json(커밋됨).
 
-보내는 것(2026-10-07 사용자 지정) — 각 데이터가 실제로 갱신되는 시각 직후에 한 번씩
+보내는 것 — 2026-10-19 사용자: 정해 둔 시각이 아니라 각 데이터가 새로 들어오는 즉시 한 번씩(워크플로가 데이터 푸시 직후·15분마다 확인)
   1) AI 지표(그래프)
-     · GPU별 렌탈 지수(H100·H200·B200·A100) — 매일 06:00 (Ornn 이 미 동부 16:00 정산 → 서머타임 해제 뒤엔 07:00)
-     · OpenRouter 지표 — 매일 09:30 평균 실효 단가, 월요일 09:30에만 주간 토큰 총량·주간 지출 그래프를 함께(앨범)
-       (하루는 UTC 자정 = 09:00 KST 에 닫히고, 주간 값은 월 09:00 KST 에 새 주로 바뀜)
+     · GPU별 렌탈 지수(H100·H200·B200·A100) — 새 정산일이 들어오면(Ornn 미 동부 16:00 정산 → 보통 한국 05~07시)
+     · 빅테크·AI CDS — 새 결제일이 들어오면
+     · OpenRouter 지표 — 새 날짜(세계 표준시 하루 = 09:00 KST 마감)가 들어오면, 월요일엔 주간 토큰 총량·주간 지출 그래프를 함께(앨범)
   ·) 일본 소비재 월차 — 새 달 월차가 들어오면 확인 회차마다 한 통(데이터 허브 일본 소비재 월차)
   2) 팟캐스트 — 새 편 요약이 올라오면: 제목 · 핵심 3줄 · 내용 정리(tg_body, 1,000자 이내 단락)
   3) 오늘 시황 요약 — 매일 06:30 예약 작업이 쓰고 올리면 바로(본문 그대로)
-  4) 매크로 요약 — 매일 08:20: 공포·탐욕 · 미 국채 2·10·30년 · WTI 그래프 묶음 + 원/달러 환율 그래프
+  4) 매크로 요약 — 미국 국채 새 종가가 들어오면: 공포·탐욕 · 미 국채 2·10·30년 · WTI 그래프 묶음 / 원/달러 환율 그래프는 새 환율 날짜가 들어오면
 
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
@@ -135,7 +135,7 @@ def gpu():
         return None
     last = max(l["points"][-1]["date"] for l in lines)
     d = date.fromisoformat(last)
-    gate = at(d + timedelta(days=1), 6 if us_dst(d) else 7, 0)
+    gate = READY   # 새 정산일이 들어오는 즉시(2026-10-19 사용자: 정해진 시각 말고 데이터가 갱신될 때)
 
     def build():
         from tg_charts import line
@@ -162,7 +162,7 @@ def cds():
     asof = tab.get("as_of")
     if not asof or not tab.get("rows"):
         return None
-    gate = at(date.fromisoformat(asof) + timedelta(days=1), 6, 20)
+    gate = READY   # 새 결제일이 들어오는 즉시
 
     def build():
         from tg_charts import line
@@ -198,7 +198,7 @@ def openrouter():
     if len(p) < 2:
         return None
     last = p[-1]["date"]
-    gate = at(date.fromisoformat(last) + timedelta(days=1), 9, 30)
+    gate = READY   # 새 날짜 값이 들어오는 즉시(주간 값은 아래 규칙대로 월요일에 붙임)
     # 주간 값(토큰·지출)은 OpenRouter 가 지난주를 확정하는 월 09:00 KST(세계 표준시 월 0시) 이후, 둘 다 같은 새 주로
     # 바뀐 날의 메시지에만 한 번 붙인다(2026-10-10·12 사용자 지시). 월요일엔 주간 값이 들어올 때까지 12:00 까지 기다린다.
     wk = (NOW.date() - timedelta(days=NOW.weekday() + 7)).isoformat()      # 마지막으로 끝난 주(월요일)
@@ -457,10 +457,20 @@ def macro():
         c = chg(p[-2][1], p[-1][1]) if len(p) > 1 else 0
         return [img], f"💱 <b>원/달러 환율</b> {p[-1][1]:,.1f}원 ({c:+.2f}%)\n<i>{t_k}</i>"
 
-    gate = at(today, 8, 20)
-    return [(f"macro:{today}", gate, build), (f"usdkrw:{today}", gate, build_krw)]
+    # 정해진 08:20 대신 새 종가가 들어오면 바로(2026-10-19 사용자) — 국채 10년물(미국 종가)·원/달러 마지막 날짜가 바뀔 때 한 번씩
+    def lastd(k):
+        x = ((load("docs/macro_dash.json") or {}).get("indicators") or {}).get(k) or {}
+        dd = [d for d, v in zip(x.get("dates") or [], x.get("values") or []) if v is not None]
+        return dd[-1] if dd else None
+    out = []
+    if lastd("y10"):
+        out.append((f"macro:{lastd('y10')}", READY, build))
+    if lastd("usdkrw"):
+        out.append((f"usdkrw:{lastd('usdkrw')}", READY, build_krw))
+    return out
 
 
+READY = datetime(2000, 1, 1, tzinfo=KST)   # '때가 됨' — 새 데이터가 있으면 바로 보냄
 SENT = set()   # 이미 보낸 키(항목 함수가 '주간 값을 붙일지' 정할 때 씀)
 
 
