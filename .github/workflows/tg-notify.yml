@@ -2,7 +2,7 @@ name: telegram-notify
 
 # 사이트 데이터를 읽어 텔레그램 '돈벌레' 채널로 보낸다 — tg_notify.py (무엇을 언제 보내는지는 그 파일 맨 위)
 # PC 가 꺼져 있어도 돈다. 봇 토큰·채널 번호는 저장소 Settings → Secrets 의 TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID.
-# 각 항목은 '데이터 갱신 + 정해진 시각'이 모두 되면 한 번만 나간다(보낸 기록 data_sources/tg_state.json).
+# 각 항목은 새 데이터가 들어오는 즉시 한 번만 나간다(2026-10-19부터 · 보낸 기록 data_sources/tg_state.json).
 on:
   push:                     # PC 예약 작업이 글·데이터를 올리면 바로(시황 요약·팟캐스트·AI 지표·공포탐욕)
     branches: [main]
