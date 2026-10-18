@@ -39,7 +39,7 @@
 
   <div class="controls">
     <div class="toggle" id="period-toggle"></div>
-    <div class="uni-wrap"><span class="lbl">범위</span><div class="toggle" id="universe-toggle"></div></div>
+    <div class="uni-wrap" style="display:none"><span class="lbl">범위</span><div class="toggle" id="universe-toggle"></div></div>
   </div>
 
   <div class="section">
@@ -92,7 +92,7 @@ var FIN = {};
 var PERIODS = [["1W","r1w"],["1M","r1m"],["3M","r3m"],["YTD","ytd"]];
 var curPeriod = "r1m";
 var curSector = "전체";
-var UNIVERSES = [100, 300];
+var UNIVERSES = [300];   /* 2026-10-18 사용자: 늘 300개 전부 — TOP 100 선택은 뺐다(예전에 저장된 100도 무시) */
 var universeN = 300;
 try { var _v = parseInt(localStorage.getItem("megacapN"), 10); if (UNIVERSES.indexOf(_v) >= 0) universeN = _v; } catch (e) {}
 
