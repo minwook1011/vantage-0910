@@ -555,14 +555,12 @@
   "usdkrw:2026-10-17",
   "usdkrw:2026-10-18",
   "usdkrw:2026-10-19",
+  "usdkrw:2026-10-20",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-egzion:36398881cd63": [
-   33
-  ],
   "trk:blog-egzion:d2fb145cffff": [
    34
   ],
@@ -2096,8 +2094,11 @@
   ],
   "trk:open-ai:bdbc67fd9f01": [
    559
+  ],
+  "usdkrw:2026-10-20": [
+   230
   ]
  },
  "topics": {},
- "topic_fail_at": 1792432210.227385
+ "topic_fail_at": 1792435929.427327
 }
