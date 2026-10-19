@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "528f67e065b6",
+   "kind": "news",
+   "headline": "[후속] 독일 정부·엔비디아, 산업용 인공지능 협력 공식 발표 — 베를린 투자 정상회의에서 의향서 서명, 독일이 수억 유로 투입",
+   "bullets": [
+    "독일 정부와 엔비디아가 19일 베를린 '인베스트 인 저머니' 정상회의에서 산업용 인공지능 협력을 발표하고 의향서에 서명했다.",
+    "독일은 수억 유로를 주로 컴퓨팅 구매와 모델 학습에 쓰고, 엔비디아는 엔지니어 인력을 보탠다.",
+    "지멘스·아우디·블랙포레스트랩스 등 약 12개 기업이 참여한다. 연산은 도이치텔레콤 산업용 인공지능 클라우드에서 돌린다."
+   ],
+   "summary": "16일 한델스블라트가 계획 단계로 보도했던 협력이 정부 발표와 서명으로 확정됐다. 목표는 로봇·자율주행 학습에 쓰는 물리 인공지능 기반을 만들고, 제조업에 쓸 고성능 인공지능 모델을 개발하는 것이다.\n\n젠슨 황 최고경영자는 독일 제조업체들에 인공지능 도입을 서두르라고 했다. 디지털 기술이 중공업을 대체하는 게 아니라는 점도 강조했다. 정확한 투자액과 기간은 아직 공개되지 않았다. 엔비디아 GTC 베를린은 20~22일 열리고 황의 기조연설은 21일이다. 황이 예고한 유럽 20억 달러 추가 투자 가운데 독일 몫이 얼마인지도 남은 쟁점이다.",
+   "title": "德國宣布攜手輝達 加速AI工業應用發展",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPVDhTQ3FBbFVTUkw4QjltVUtnRm9CQ0xCbUhCSU5WR1Q1UVAwRFN4TTcyYVVDMzlFd0taVFFXNy1jV0RDeUdPLUxhT1luYnBEdV9IRi0yYkRPTUFNZTlXU2ZKRGFWa1lHN2N2LWFFNzlBVDJpd2JuSDR5NS1HRWlnVm8zeXI5RU9BWngzbXpLMjLSAV9BVV95cUxOZzJhaUl1UXowQ3lGbjRmZkRDTmQzdlloS25BNzZUZXF5YWdhZERLYkFlVXhqV2lEbkVIRUNNTWo2dlFSSGJBV2hITUFDU29wVmFHTm5IcFpRT1hUd2Vfdw?oc=5",
+   "published": "2026-10-20 04:21 KST",
+   "written": "2026-10-20 04:46 KST"
+  },
+  {
    "id": "72090d9cfbe9",
    "kind": "news",
    "headline": "디인포메이션 \"딥시크, 화웨이와 자사 모델 맞춤 인공지능 칩 공동 설계\" — 2026년 말 어센드 950DT로 학습 시작, 2027년 1분기 960DT 물량 우선 배정",
@@ -515,5 +531,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-20 04:16 KST"
+ "updated": "2026-10-20 04:46 KST"
 }
