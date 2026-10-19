@@ -9,7 +9,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
 보내는 것 — 2026-10-19 사용자: 정해 둔 시각이 아니라 각 데이터가 새로 들어오는 즉시 한 번씩(워크플로가 데이터 푸시 직후·15분마다 확인)
   1) AI 지표(그래프)
      · GPU별 렌탈 지수(H100·H200·B200·A100) — 새 정산일이 들어오면(Ornn 미 동부 16:00 정산 → 보통 한국 05~07시)
-     · 네비우스 GPU 스팟 가격 카드 — 하루 한 번(세계 표준시 새 날 값이 처음 들어오면, 보통 09시대)
+     · 네비우스 GPU 스팟 가격 카드 — 하루 한 번, 09:00(세계 표준시 하루 마감) 이후 첫 확인 때
      · 빅테크·AI CDS — 새 결제일이 들어오면
      · OpenRouter 지표 — 새 날짜(세계 표준시 하루 = 09:00 KST 마감)가 들어오면, 월요일엔 주간 토큰 총량·주간 지출 그래프를 함께(앨범)
   ·) 일본 소비재 월차 — 새 달 월차가 들어오면 확인 회차마다 한 통(데이터 허브 일본 소비재 월차)
@@ -163,7 +163,6 @@ def nebius():
     if not pts or not seen:
         return None
     last = max(seen.values())
-    day = last[:10]
 
     def build():
         from tg_charts import spot_cards
@@ -206,7 +205,8 @@ def nebius():
         cap = (f"🟣 <b>네비우스 GPU 스팟 가격</b> · {stamp(st.get('updated'))} 기준" + NL + NL.join(rows) +
                NL + "<i>가장 싼 지역 기준 · 괄호는 7일 전 대비 · 네비우스는 7일만 공개해 우리가 계속 쌓는 중</i>")
         return [img], cap
-    return (f"nebius:{day}", READY, build)
+    # 15분마다 바뀌는 가격이라 하루 한 번 — 한국 날짜마다 09:00(세계 표준시 하루가 닫힌 뒤) 이후 첫 확인 때
+    return (f"nebius:{NOW.date().isoformat()}", at(NOW.date(), 9, 0), build)
 
 
 def cds():
