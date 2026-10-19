@@ -183,6 +183,38 @@ def cds():
     return (f"cds:{asof}", gate, build)
 
 
+CO_REF = {"6532": "docs/data/baycurrent.json"}  # 회사 공시 분기 인원·전망이 있는 기업 (데이터 허브 워크벤치 파일)
+
+
+def company_ref(cur):
+    """연금 가입자 합계를 직전 분기 회사 공시 총사원·다음 분기 회사 전망과 비교하는 줄(2026-10-19 사용자). 자료가 없으면 빈 목록."""
+    p = CO_REF.get(cur.get("code"))
+    d = load(p) if p else None
+    if not d:
+        return []
+    md = lambda s: s[5:].replace("-", "/")
+    hc = [h for h in d.get("headcount") or [] if isinstance(h.get("total"), (int, float))]
+    out = []
+    if hc:
+        h = hc[-1]
+        ch = cur["total"] - h["total"]
+        out.append(f"직전 분기 회사 공시 총사원 {h['total']:,}명 ({md(h['date'])} 말"
+                   + (f", {md(h['announced'])} 발표" if h.get("announced") else "") + f") → 연금 합계 {ch:+,}명 · {ch / h['total'] * 100:+.1f}%"
+                   + (f" · 컨설턴트 {h['consultants']:,}명" if h.get("consultants") else ""))
+    sr = {s["id"]: s for s in d.get("series") or []}
+    gt = [p for p in (sr.get("gd_total") or {}).get("points") or [] if p["date"] >= (hc[-1]["date"] if hc else "")]
+    gc = {p["date"]: p for p in (sr.get("gd_consultants") or {}).get("points") or []}
+    if gt:
+        g = gt[0]
+        rest = g["value"] - cur["total"]
+        rng = gc.get(g["date"], {}).get("range")
+        out.append(f"다음 분기 회사 전망 총사원 약 {g['value']:,.0f}명 ({md(g['date'])} 말) → 남은 {rest:+,.0f}명"
+                   + (f" · 컨설턴트 전망 {rng[0]:,}~{rng[1]:,}명" if rng else ""))
+    if out:
+        out.append("<i>※ 회사 공시와 연금 가입자는 기준(임원·파견·기준일)이 달라 수준보다 변화로 볼 것</i>")
+    return out
+
+
 def headcount():
     """일본 기업 인력 수(후생연금 가입자, 2026-10-19 사용자) — 연금기구 데이터 갱신일마다 fetch_headcount.py 가 기록하면 바로 뉴스방으로"""
     d = load("docs/data/tracking/headcount.json") or {}
@@ -206,6 +238,7 @@ def headcount():
             pr = {r["houjin"]: r["n"] for r in (prev or {}).get("rows") or []}
             lines.append(" · ".join(f"{esc(labels.get(r['houjin']) or r['name'])} {r['n']:,}" + (f"({r['n'] - pr[r['houjin']]:+,})" if r["houjin"] in pr else "")
                                     for r in cur["rows"]))
+            lines += company_ref(cur)
             lines += ["", f"<i>일본연금기구 적용사업소 검색 · 한 달에 한 번 갱신 · 직원 수의 대리 지표(파견·임원 등 빠짐)</i>", f"#{hashtag(cur['name'])}"]
             dest = route("news")
             return (None, "\n".join(lines), dest) if dest else (None, None)
