@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "81608e2d4900",
+   "kind": "news",
+   "headline": "[후속] 오픈AI 도청 혐의 전 직원, 검찰 \"사우디 정부 상당한 지원 받은 정황\" — 사우디 왕족과 왓츠앱 수시 연락, 이직 시점 물어",
+   "bullets": [
+    "검찰이 낸 법원 문서에 따르면 오픈AI 회의실에 녹음기를 숨긴 혐의로 기소된 압둘라흐만 알포잔은 사우디 정부의 상당한 지원을 받은 것으로 보인다(로이터).",
+    "그는 2025~2026년 사우디 왕족 한 명과 왓츠앱으로 자주 연락했고, 이 왕족은 여러 번 영입을 시도하며 언제 오픈AI를 그만두는지 물었다.",
+    "다만 문서는 왕족이 녹음기 설치나 정보 탈취를 지시했다고는 쓰지 않았다."
+   ],
+   "summary": "문서에는 사우디 군인이 그의 아내와 아들의 도하행 비즈니스석 항공권을 대신 결제했다는 내용도 들어 있다. 검찰은 보석 없는 구금을 요구하고 있다. 변호인은 주샌프란시스코 사우디 총영사관의 서면 보증을 붙여 자택 구금과 위치추적 조건 석방을 요청했다.\n\n오픈AI는 그를 해고했고, 모델 가중치·소스코드·고객 데이터에 접근하거나 빼낸 흔적은 없다고 밝혔다. 이번 문서로 사건이 개인 범행에서 국가 연루 의혹으로 커졌다. 다음 쟁점은 구금 결정과 지시 관계를 보여 줄 추가 증거가 나오느냐다.",
+   "title": "Ex-OpenAI employee accused of planting device appears to have Saudi backing, court filing shows",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNN1EyODdFMHdNVDVJVW5YVW1rWE5YX042MFNLWldLeVJ1UFlydXJYQnB5YlNldDhNdURMRlRGYVZicEp3SkhEaEZ0eXQ2VUhkanA5QVhZeUIyRVg4dW4wbzhmblZvU01PX0hlUUp5YzJZZHBzT0FSemhVN2k1eXVycG1PcnR6TXBUSDZSUERsc3pEamlDR1FCUnRXZk5vaWJVZDVGd2VmNEd6MThaZ3FvcS13MXRIYlo5d1p4S2JYOA?oc=5",
+   "published": "2026-10-19 23:21 KST",
+   "written": "2026-10-19 23:47 KST"
+  },
+  {
    "id": "1f713b361cf7",
    "kind": "news",
    "headline": "어도비, 챗GPT 안 플러그인에 이미지·PDF 직접 편집기 넣어 — 대화로 시키고 옆 창에서 바로 손봐",
@@ -595,5 +611,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-19 08:48 KST"
+ "updated": "2026-10-19 23:47 KST"
 }

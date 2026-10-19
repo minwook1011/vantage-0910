@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "69b4a57785de",
+   "kind": "news",
+   "headline": "엔비디아, 인공지능 클라우드 스타트업 모달을 새 중앙처리장치 '베라' 고객으로 확보 — 인텔·AMD만 쓰던 곳, 내부 시험에서 에이전트 처리량 약 2배",
+   "bullets": [
+    "모달은 지금까지 중앙처리장치(CPU) 작업을 인텔·AMD 칩으로만 돌렸는데, 인공지능 에이전트를 돌리는 데 엔비디아 베라를 쓰기로 했다(로이터).",
+    "모달 내부 초기 시험에서 엔비디아 칩이 에이전트 작업 처리 능력을 약 2배로 늘렸다.",
+    "모달은 최근 기업가치 157억5천만 달러에 7억5천만 달러를 조달했고, 앞으로 1년 매출 약 10억 달러를 예상한다."
+   ],
+   "summary": "모달은 기존 공급사를 끊지 않는다. 인텔·AMD 칩 옆에 엔비디아 칩을 함께 두고, 작업마다 가장 효율적인 칩으로 보내는 방식이다. 베라는 사용자 대신 긴 작업을 수행하는 인공지능 에이전트를 돌리는 데 쓰인다.\n\n성능 비교는 지금 시장에 나와 있는 칩끼리 한 것이다. 인텔·AMD도 새 제품을 준비하고 있어 엔비디아의 우위는 줄어들 수 있다. 엔비디아는 이번 회계연도 베라 판매로 최소 200억 달러 매출을 예상해 왔다. 남은 쟁점은 그래픽처리장치 고객이 아닌 순수 중앙처리장치 수요처를 얼마나 더 끌어올 수 있느냐다.",
+   "title": "Nvidia wins fast-growing AI startup Modal for new central processors",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNUklvMHh4T2thUkdNSndrQ3BVOTZjalQwRnJ2ZFdhb3Q4aC1NT2k2LTBLX1AxZmlHdTdheHp1ZDF1ZGVSd2JLc3VFUU1ycWRndnRmS2ZyYVpGeU52OU9IQU5qVHdJb1BXNjJ1MlN4MF9aajQ5QXhmQnhYTXowWEFUa29BQkYySzBxeG1CU0Z0MHB6U3psLU1EcTB4Z3N2dkVYSFM3cEgtNlQ4Uk5VTlE?oc=5",
+   "published": "2026-10-19 23:12 KST",
+   "written": "2026-10-19 23:47 KST"
+  },
+  {
    "id": "ef2624c0c655",
    "kind": "news",
    "headline": "삼성전자, 엔비디아 맞춤형 HBM 'NVHBM' 베이스다이를 TSMC 3나노로 만든다 — 자체 턴키 방식 포기, 양사가 HBM 제조 단계에서 처음 협력(서울경제 단독, 로이터 인용)",
@@ -451,5 +467,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-18 21:48 KST"
+ "updated": "2026-10-19 23:47 KST"
 }

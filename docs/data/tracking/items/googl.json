@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "cb1aa23ede5b",
+   "kind": "news",
+   "headline": "구글·액센츄어, 미국 연방기관용 '제미나이 런치패드' 출범 — 현장 투입 엔지니어 1,000명 목표, 인사·재무·공급망 에이전트 미리 만들어 제공",
+   "bullets": [
+    "액센츄어 페더럴 서비스와 구글 퍼블릭섹터가 19일 연방기관의 인공지능 에이전트를 시범 단계에서 실제 업무로 넓히는 프로그램을 발표했다.",
+    "액센츄어는 구글 클라우드에 능숙한 현장 투입 엔지니어를 첫 기수부터 키워 1,000명 규모로 늘릴 계획이다.",
+    "인사·재무·공급망용 에이전트를 미리 만들어 제미나이 안에서 돌게 하고, 계약 규모와 고객 기관은 밝히지 않았다."
+   ],
+   "summary": "기관은 한 곳의 관리 화면에서 제미나이를 정부 데이터에 연결하고, 쓸 곳을 찾고, 배포를 관리하고, 직원 교육까지 할 수 있다. 워싱턴의 액센츄어 시설에서 실습 워크숍과 시연도 연다.\n\n구글은 지난해 8월 연방조달청 일괄 구매 프로그램에 '정부용 제미나이'를 넣으면서 연방 시장에 들어왔다. 액센츄어 페더럴은 5월 오픈AI와도 비슷한 협력을 맺었다. 정부 인공지능 도입을 놓고 구글과 오픈AI가 같은 협력사를 두고 경쟁하는 구도다. 실제 계약 금액과 참여 기관이 나와야 매출 영향을 판단할 수 있다.",
+   "title": "Accenture and Google Launch Gemini AI Agent Programme for US Federal Agencies",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOTDFPMjNtUHVFbUZtUWJiN3VxNVJfYk0yY1VOYmZSN3NXbHR3SUZwNy1VcWxoZnJWdG93Mko3b254REp2REMwcFhydjExZEhZTTAtWGZUV1BmOUpJZWZ4SXFyZUR2d3k5U05uc0diRVJzNjVlN1JHNWVKM21wZ2xkYW43UWNTWVZ5ZHpaUnhwV09lcTZhN1dZV1hISU93Zw?oc=5",
+   "published": "2026-10-19 22:49 KST",
+   "written": "2026-10-19 23:47 KST"
+  },
+  {
    "id": "12f8811f5553",
    "kind": "news",
    "headline": "미국 대법원, 특허청 '심판 청구 거절' 정책에 대한 구글 상고 안 받기로 — 오래된 특허는 무효 다툼 막는 특허청 방침 유지",
@@ -225,5 +241,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-19 23:16 KST"
+ "updated": "2026-10-19 23:47 KST"
 }
