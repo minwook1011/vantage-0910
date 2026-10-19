@@ -358,19 +358,32 @@
 
   /* ── 목록 ── */
   var LS = IS_US ? "us-report-list" : "jp-report-list";
+  // 텔레그램 '실적 서프' 알림 기준(tg_earnings.py UP·BEAT·FRESH_DAYS 와 같게 유지) — 접었다 펼치기(2026-10-19 사용자)
+  function surfRule() {
+    var mv = IS_US ? "발표 후 첫 거래일 종가 기준" : "발표 10분 뒤 PTS(야간 거래) 또는 다음 거래일 종가(장 마감 후 발표) · 그날 종가(장중 발표)";
+    return '<details class="rulebox"><summary>🚀 텔레그램 <b>실적 서프</b> 알림 기준</summary><div class="rb">' +
+      "<p><b>아래 둘 중 하나만 맞아도</b> 실적발표 그룹의 '실적 서프' 방으로 알림이 갑니다.</p><ol>" +
+      "<li><b>주가 +2% 이상</b> — " + mv + "</li>" +
+      "<li><b>EPS 컨센서스 대비 +5% 이상</b> — 야후 예상치 기준" + (IS_US ? "" : "(컨센서스가 없는 기업은 주가 기준만)") + "</li></ol>" +
+      "<p><b>대상</b> " + (IS_US ? "이 미국 실적 리포트 목록에 오르는 기업 전부" : "이 일본 실적 리포트 목록 기업(소비재 · 주요 기업)") +
+      " · 발표일이 오늘~이틀 전인 것만 · 주가 반응이 아직 없으면 최대 하루 기다렸다가 보냅니다.</p>" +
+      "<p><b>알림 내용</b> 재무제표 사진 · 주가 반응과 컨센서스 · 보내는 순간 주가와 카부탄 링크 · 실적 평가와 5줄 요약 · 버튼(🔍 분석 · 📈 카부탄). 요약이 나중에 나오면 그 알림에 답글로 붙습니다.</p>" +
+      "<p><b>확인 주기</b> 매시 15분 · 45분(깃허브 자동 실행이라 PC가 꺼져 있어도 갑니다). 같은 방 '실적 일정'에는 평일 07:30 오늘 발표 예정, 토요일 05:00 다음 주 예정과 주의 깊게 볼 종목이 갑니다.</p>" +
+      "</div></details>";
+  }
   function renderList(IX) {
     var st = { u: "all", q: "", note: false, n: 60 };
     try { var sv = JSON.parse(localStorage.getItem(LS) || "null"); if (sv) { st.u = sv.u || "all"; st.note = !!sv.note; } } catch (e) {}
     var qp = new URLSearchParams(location.search); if (qp.get("u")) st.u = qp.get("u");
     app.innerHTML = (IS_US
       ? '<div class="kicker"><a href="datahub.html">데이터 허브</a> · 실적 리포트</div><h1>미국 실적 리포트</h1>' +
-        '<div class="sub">데이터 허브 미국·해외 기업의 실적 발표마다 <b>분기 표 · 핵심 수치 · 그래프 · SEC 보도자료 원문</b>을 한 장에 모읍니다. 발표 예정일은 나스닥 거래소 캘린더(하루 2번 갱신), 실제 발표는 SEC 8-K(실적 공시)로 확인해 바로 만들고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" +
+        '<div class="sub">데이터 허브 미국·해외 기업의 실적 발표마다 <b>분기 표 · 핵심 수치 · 그래프 · SEC 보도자료 원문</b>을 한 장에 모읍니다. 발표 예정일은 나스닥 거래소 캘린더(하루 2번 갱신), 실제 발표는 SEC 8-K(실적 공시)로 확인해 바로 만들고, 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" + surfRule() +
         '<div class="addreq" id="addreq"><div class="ar-h"><b>추가할 종목</b><span>매일 0시에 확인해 미국 기업 명단에 넣습니다</span></div>' +
         '<div class="ar-in"><input type="text" id="ar-q" placeholder="티커나 이름 — 예: PLTR, 코인베이스" maxlength="200"><button id="ar-go">보내기</button></div><div class="ar-list" id="ar-list"></div></div>' +
         '<section class="cal" id="cal"><div class="empty">발표 예정 불러오는 중…</div></section>' +
         '<section class="uco" id="uco"><div class="empty">기업 목록 불러오는 중…</div></section>'
       : '<div class="kicker"><a href="jp-screener.html">일본 기업 스크리너</a> · 실적 리포트</div><h1>일본 실적 리포트</h1>' +
-        '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 발표 예정일은 도쿄증권거래소(JPX) 공식 목록, 실적 시즌 평일에는 하루 6번 수집하고 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>") +
+        '<div class="sub">발표된 실적마다 <b>분기 표 · 핵심 수치 · 그래프 · 결산단신 원문</b>을 한 장에 모읍니다. 발표 예정일은 도쿄증권거래소(JPX) 공식 목록, 실적 시즌 평일에는 하루 6번 수집하고 요약 글은 그 뒤에 붙습니다. · 갱신 ' + esc(IX.updated || "") + "</div>" + surfRule()) +
       '<div class="ctl">' + (IS_US ? "" : '<div class="seg" id="u"><button data-v="all">전체</button><button data-v="cons">소비재</button><button data-v="major">주요 기업</button></div>') +
       '<div class="seg" id="nt"><button data-v="0">전부</button><button data-v="1">요약 완료만</button></div>' +
       '<input type="search" id="q" placeholder="기업명 · 코드"><span class="sub" id="cnt"></span></div><div class="list" id="list"></div><button class="btn more" id="more" hidden>더 보기</button>';

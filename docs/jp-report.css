@@ -271,3 +271,10 @@
 .jr thead th { position:static; text-transform:none; letter-spacing:normal; }
 .jr .mdt th.l, .jr .mdt td.l { white-space:normal; min-width:7em; }
 .jr .mdt th, .jr .mdt td { padding:6px 9px; }
+
+/* 실적 서프 알림 기준(목록 위, 접었다 펼치기) */
+.jr .rulebox { margin:10px 0 12px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:9px 14px; font-size:13px; }
+.jr .rulebox summary { cursor:pointer; color:#17357f; font-weight:600; }
+.jr .rulebox .rb { margin-top:8px; color:#1b2433; line-height:1.75; }
+.jr .rulebox .rb p { margin:6px 0; }
+.jr .rulebox .rb ol { margin:4px 0 6px; padding-left:20px; }
