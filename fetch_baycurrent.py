@@ -206,6 +206,48 @@ def next_event():
     return {}
 
 
+def fin_series():
+    """분기 실적(2026-10-19 사용자: 매출·영업이익·각 전년 대비를 선으로 겹쳐 보기) — 억엔, 분기 말 날짜.
+    최근 분기는 일본 실적 리포트(docs/data/jp/reports/6532-*.json, 카부탄 정확한 값), 그 앞은 IR BANK 이력(data_sources/jp_qhist.json, 億 단위 반올림)."""
+    by = {}
+    try:
+        for r in (json.loads((ROOT / "data_sources" / "jp_qhist.json").read_text(encoding="utf-8")).get(CODE) or {}).get("q") or []:
+            by[r["end"]] = {"rev": r.get("rev"), "op": r.get("op"), "src": "irbank"}
+    except Exception:  # noqa: BLE001
+        pass
+    reps = sorted((ROOT / "docs" / "data" / "jp" / "reports").glob(f"{CODE}-*.json"))
+    for rp in reps:   # 오래된 리포트부터 → 새 리포트 값이 덮는다
+        try:
+            for q in json.loads(rp.read_text(encoding="utf-8")).get("qs") or []:
+                mm = re.fullmatch(r"(\d{2})\.(\d{2})-(\d{2})", q.get("label") or "")
+                if not mm or q.get("src") == "irbank":
+                    continue
+                y = 2000 + int(mm.group(1)) + (1 if int(mm.group(3)) < int(mm.group(2)) else 0)
+                by[f"{y}-{int(mm.group(3)):02d}"] = {"rev": q.get("rev"), "op": q.get("op"), "src": "kabutan", "announced": q.get("date")}
+        except Exception:  # noqa: BLE001
+            pass
+    ends = sorted(by)
+    def day(e):
+        y, mo = int(e[:4]), int(e[5:7])
+        return f"{e}-{calendar.monthrange(y, mo)[1]:02d}"
+    def pts(k):
+        return [{"date": day(e), "value": round(by[e][k] / 100, 1), **({"announced": by[e]["announced"]} if by[e].get("announced") else {})}
+                for e in ends if isinstance(by[e].get(k), (int, float))]
+    def yoy(k):
+        out = []
+        for e in ends:
+            p = f"{int(e[:4]) - 1}{e[4:]}"
+            a, b = by[e].get(k), (by.get(p) or {}).get(k)
+            if isinstance(a, (int, float)) and isinstance(b, (int, float)) and b > 0:
+                out.append({"date": day(e), "value": round((a / b - 1) * 100, 1)})
+        return out
+    src, note = "카부탄 결산(최근) · IR BANK(이전 분기)", "분기 단독 · IFRS · 이전 분기는 億 단위 반올림 값"
+    return [series("fin_rev", "fin", "매출(매출수익)", "억엔", pts("rev"), src, "", "분기", note, quarterly=True),
+            series("fin_op", "fin", "영업이익", "억엔", pts("op"), src, "", "분기", note, quarterly=True),
+            series("fin_rev_yoy", "fin", "매출 전년 대비", "%", yoy("rev"), src, "", "분기", "같은 분기 1년 전 대비", quarterly=True),
+            series("fin_op_yoy", "fin", "영업이익 전년 대비", "%", yoy("op"), src, "", "분기", "같은 분기 1년 전 대비", quarterly=True)]
+
+
 def build_series(m, rows):
     out = []
     ent = {e["id"]: e for e in m["entities"]}
@@ -279,11 +321,11 @@ def main():
     rows = merge_headcount(manual.get("company_headcount", []), auto)
     out = {"schema_version": 1, "generated_at": dt.datetime.now(KST).isoformat(timespec="seconds"),
            "company": manual["company"], "next_event": next_event(), "entities": manual["entities"], "sites": manual["sites"],
-           "groups": [{"id": "company", "label": "회사 공시 인원 (분기)"}, {"id": "guidance", "label": "회사 전망"},
+           "groups": [{"id": "fin", "label": "실적 (분기)"}, {"id": "company", "label": "회사 공시 인원 (분기)"}, {"id": "guidance", "label": "회사 전망"},
                       {"id": "pension", "label": "연금 피보험자 (월간)"}, {"id": "jobs", "label": "채용 활동 (공식 사이트·구인 공고)"}],
            "headcount": rows, "nenkin": manual.get("nenkin", []), "doda": manual.get("doda", []),
            "careers": {"latest": careers[-1] if careers else None, "changes": cr_changes},
-           "price": price, "series": build_series(manual, rows) + cr_series, "errors": errors}
+           "price": price, "series": fin_series() + build_series(manual, rows) + cr_series, "errors": errors}
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"saved {OUT} · series {len(out['series'])} · 분기 인원 {len(rows)} · price {len((price or {}).get('points', []))}")
 
