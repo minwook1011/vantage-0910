@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "685039c54a98",
+   "kind": "news",
+   "headline": "지멘스·엔비디아, 독일 에를랑겐 공장을 '인공지능이 굴리는 공장' 첫 모델로 — 지멘스, 공장 자동화율 30~40%→최대 80% 목표·5억 유로 투자",
+   "bullets": [
+    "지멘스가 10월 19일 엔비디아와 손잡고 독일 에를랑겐 전자 공장을 인공지능 기반 자율 공장의 첫 본보기로 만든다고 발표했다.",
+    "지멘스 이사 체드릭 나이케는 지금 30~40% 수준인 공장 자동화율을 인공지능으로 70~80%까지 올리겠다고 밝혔다.",
+    "지멘스는 에를랑겐 공장에 5억 유로(약 5억6천만 달러)를 들여 2030년까지 인공지능 제조 시범 공장으로 키운다."
+   ],
+   "summary": "두 회사가 말하는 방식은 '물리 인공지능'이다. 공장을 가상 복제본(디지털 트윈)으로 만들어 엔비디아 옴니버스와 인공지능 모델로 먼저 시험하고, 검증된 개선만 실제 생산 라인에 반영한다. 지멘스는 이 방식으로 설계·엔지니어링 작업을 최대 85% 줄이고 출시 기간을 최대 40% 줄일 수 있다고 주장한다(회사 주장, 외부 검증 아님).\n\n나이케 이사는 제조업체가 경쟁력을 지키려면 해마다 생산성을 7~9% 올려야 한다며, 인공지능이 독일 같은 고임금 국가에 공장을 남길 수단이라고 설명했다. 에를랑겐 공장은 올해 4월 엔비디아 기술로 만든 휴머노이드 로봇의 물류 작업 시험도 했던 곳이다.\n\n발표는 엔비디아가 독일 정부와 산업용 인공지능 협력을 맺는 시점과 맞물렸다. 다만 80% 목표는 임원 발언 수준이고, 2030년 공장 투자 외에 달성 시점은 밝히지 않았다.",
+   "title": "輝達攜西門子打造全AI驅動工廠 德國搶攻智慧製造",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB2ZTNDZTh5QkJxa2tHWm1IaDZueHkyZGdPNVdrZDh4ZEdfV2xLVFR6X2lPNE5lc3I0SXhYeDJWNTZUbkZGclBqek1zRzdqd19nTEJMNVZyaERKMklaQTlqQ3JIbFozNXBhcGJ4NzR3b2dyVFBEZkN2WWVtMNIBX0FVX3lxTFA2eU4tVWpqRTdBRGdXRlNFNDhGbkxZczg3aGZNSjlacF9GVHQ1aVpBREVpWGowbHZMbktfaTFpMEZQY0N2WFR1bWNfdTlwMWVmUlJkeHFoV3dKVWRRSGZz?oc=5",
+   "published": "2026-10-20 00:12 KST",
+   "written": "2026-10-20 05:17 KST"
+  },
+  {
    "id": "528f67e065b6",
    "kind": "news",
    "headline": "[후속] 독일 정부·엔비디아, 산업용 인공지능 협력 공식 발표 — 베를린 투자 정상회의에서 의향서 서명, 독일이 수억 유로 투입",
@@ -531,5 +547,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-20 04:46 KST"
+ "updated": "2026-10-20 05:17 KST"
 }
