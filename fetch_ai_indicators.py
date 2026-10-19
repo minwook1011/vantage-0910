@@ -666,6 +666,110 @@ def c_ornn(ctx):
              "caveat": "같은 체결 기준 지수의 GPU별 비교입니다. 신형(B200)이 비싸지는 동안 구형(A100)이 눌리는지 보면 세대 교체 속도를 알 수 있습니다."})
 
 
+# ── 네비우스 GPU 스팟(선점형) 가격 — 2026-10-20 사용자: 데이터 허브에 넣고, 네비우스가 7일만 보여 주니 우리가 계속 쌓는다 ──
+NEB_API = "https://api.nebius.cloud/billing/v1alpha1/spot-price"
+NEB_STORE = os.path.join(BASE, "docs", "data", "nebius_spot.json")
+NEB_GPU = {"gpu-b300-sxm": "B300", "gpu-b200-sxm": "B200", "gpu-b200-sxm-a": "B200", "gpu-h200-sxm": "H200", "gpu-h100-sxm": "H100",
+           "gpu-rtx6000": "RTX PRO 6000", "gpu-rtx6000-a": "RTX PRO 6000"}
+NEB_ORDER = ["B300", "B200", "H200", "H100", "RTX PRO 6000"]
+
+
+def neb_price_at(pts, t):
+    """변동 시점 목록 [[시각, 가격], …] 에서 시각 t 의 가격(그 전 마지막 변동)"""
+    v = None
+    for ts_, p in pts:
+        if ts_ > t:
+            break
+        v = p
+    return v
+
+
+@collector("nebius_spot_multi")
+def c_nebius(ctx):
+    """공개 API(nebius.com/spot-prices 가 쓰는 것) — 지금 가격 목록 + 최근 7일 15분 단위 이력. 이력은 가격이 바뀐 시점만 모아 docs/data/nebius_spot.json 에 쌓는다."""
+    H = {"Origin": "https://nebius.com", "Referer": "https://nebius.com/spot-prices"}
+    items, tok = [], ""
+    for _ in range(5):
+        d = jget(NEB_API + "?pageSize=100" + (f"&pageToken={urllib.parse.quote(tok)}" if tok else ""), headers=H)
+        items += d.get("items") or []
+        tok = d.get("nextPageToken") or ""
+        if not tok:
+            break
+    if not items:
+        raise ValueError("네비우스 스팟 가격 목록이 비었음")
+    store = load(NEB_STORE, {}) or {}
+    skus, pts, seen = store.get("skus") or {}, store.get("pts") or {}, store.get("seen") or {}
+    now_utc = datetime.now(timezone.utc)
+    start = (now_utc - timedelta(days=6, hours=23)).strftime("%Y-%m-%dT%H:%M:00.000Z")
+    for x in items:
+        plat = (x.get("computeInstance") or {}).get("platform") or ""
+        skus[x["skuId"]] = {"gpu": NEB_GPU.get(plat, plat), "platform": plat, "region": x.get("region"), "title": x.get("productTitle")}
+    ids = [x["skuId"] for x in items]
+    for i in range(0, len(ids), 3):
+        q = [("filters.startTime", start), ("aggregation.granularity", "GRANULARITY_MINUTE_15"), ("aggregation.method", "METHOD_LAST_PRICE")]
+        q += [("filters.skuIds", k) for k in ids[i:i + 3]]
+        r = jget(NEB_API + "/list-series?" + urllib.parse.urlencode(q), headers=H)
+        for it in r.get("items") or []:
+            new = [[p["timestamp"][:16], float(p["value"])] for p in it.get("points") or [] if p.get("value") not in (None, "")]
+            if not new:
+                continue
+            allp = sorted({t: v for t, v in (pts.get(it["skuId"]) or []) + new}.items())
+            comp = []
+            for t, v in allp:
+                if not comp or comp[-1][1] != v:
+                    comp.append([t, v])
+            pts[it["skuId"]] = comp
+            seen[it["skuId"]] = max(seen.get(it["skuId"], ""), new[-1][0])
+        time.sleep(0.3)
+    # 지금 가격(목록)도 변동 시점으로
+    for x in items:
+        t, v = (x.get("effectiveTime") or now_utc.isoformat())[:16], float(x["price"]["value"])
+        L = pts.setdefault(x["skuId"], [])
+        if not L or L[-1][1] != v:
+            L.append([max(t, L[-1][0] if L else t), v])
+        seen[x["skuId"]] = max(seen.get(x["skuId"], ""), now_utc.strftime("%Y-%m-%dT%H:%M"))
+    store = {"updated": NOW.isoformat(timespec="minutes"), "since": store.get("since") or min((L[0][0] for L in pts.values() if L), default=None),
+             "skus": skus, "pts": pts, "seen": seen}
+    json.dump(store, open(NEB_STORE, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    # 사이트 카드: GPU별 그날(세계 표준시) 마감 시점의 가장 싼 지역 가격
+    first = min((L[0][0][:10] for L in pts.values() if L), default=TODAY)
+    days, d = [], datetime.fromisoformat(first).date()
+    while d <= now_utc.date():
+        days.append(d); d += timedelta(days=1)
+    lines = []
+    for g in NEB_ORDER:
+        mine = [k for k, m in skus.items() if m["gpu"] == g and pts.get(k)]
+        if not mine:
+            continue
+        P = []
+        for dd in days:
+            t = min(f"{dd.isoformat()}T23:59", now_utc.strftime("%Y-%m-%dT%H:%M"))
+            vals = [neb_price_at(pts[k], t) for k in mine if pts[k][0][0] <= t]
+            vals = [v for v in vals if v is not None]
+            if vals:
+                P.append({"date": dd.isoformat(), "value": round(min(vals), 3)})
+        if P:
+            lines.append({"label": g, "points": P})
+    t7 = (now_utc - timedelta(days=7)).strftime("%Y-%m-%dT%H:%M")
+    rows = []
+    for g in NEB_ORDER:
+        for k, m in sorted(skus.items(), key=lambda kv: kv[1]["region"] or ""):
+            if m["gpu"] != g or not pts.get(k):
+                continue
+            # 7일 전 값 — 그 시각 기록이 아직 없으면(수집 첫 주) 12시간 안의 가장 이른 기록으로
+            old = neb_price_at(pts[k], t7)
+            if old is None and pts[k][0][0] <= (now_utc - timedelta(days=6, hours=12)).strftime("%Y-%m-%dT%H:%M"):
+                old = pts[k][0][1]
+            cur = pts[k][-1][1]
+            rows.append({"gpu": g, "region": m["region"], "now": cur, "w1": old, "chg": round((cur / old - 1) * 100, 1) if old else None})
+    ctx.put({"id": "nebius_spot_multi", "group": "gpu", "label": "네비우스 GPU 스팟 가격 (가장 싼 지역)", "unit": "$/GPU·h", "type": "share_abs", "digits": 2,
+             "cadence": "15분마다 바뀜 · 30분마다 수집", "source": "Nebius 스팟(선점형) 가격", "source_url": "https://nebius.com/spot-prices",
+             "method": "api", "related": ["NBIS", "NVDA"], "lines": lines,
+             "table": {"columns": [{"key": "gpu", "label": "GPU", "align": "l"}, {"key": "region", "label": "지역", "align": "l"},
+                                   {"key": "now", "label": "지금"}, {"key": "w1", "label": "7일 전"}, {"key": "chg", "label": "7일 변화 %"}], "rows": rows},
+             "caveat": f"네비우스가 남는 GPU를 싸게 빌려주는 선점형(언제든 회수될 수 있는) 가격입니다. 수요가 몰리면 오르고 남으면 내립니다. 네비우스는 최근 7일만 공개해서 {store['since'][:10] if store.get('since') else '수집 시작일'}부터 우리가 쌓고 있습니다. 하루 값은 세계 표준시 자정 기준, 지역 중 가장 싼 값."})
+
+
 # ── ICE Clear Credit 단일물 CDS (5년) ────────────────────────────────
 CDS_NAMES = [("ALPHINC", "Alphabet", ["GOOGL"]), ("AMZN", "Amazon", ["AMZN"]), ("MSFT", "Microsoft", ["MSFT"]),
              ("METAPL", "Meta", ["META"]), ("NVIDIA", "NVIDIA", ["NVDA"]), ("ORCLE", "Oracle", ["ORCL"]),
@@ -1249,7 +1353,7 @@ BOARDS = {
     "demand": ["or_tokens_weekly", "or_spend_7d", "or_lab_top10", "or_lab_trend"],
     "ecosystem": ["or_model_rank", "or_app_rank", "hf_downloads", "or_new_models"],
     "price": ["or_avg_price", "frontier_price_index", "frontier_speed", "price_cuts"],
-    "gpu": ["gpu_index_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
+    "gpu": ["gpu_index_multi", "nebius_spot_multi", "gpu_cloud_multi", "gpu_h100_spread"],   # H100 지수 카드는 GPU별 추이에 이미 있어 뺌(2026-10-07) — KPI 에는 남김
     "credit": ["cds_bigtech", "cds_neocloud", "cds_ai", "cds_table"],   # 2026-10-15: 왼쪽 빅테크·오른쪽 오라클·네오클라우드 둘 다 크게, 아래 칩·표   # 오라클−MS 격차 카드는 뺌(2026-10-07 사용자) — 빅테크 추이를 세로로 길게
     "bond": ["bond_neocloud", "bond_bigtech", "bond_table"],   # 2026-10-16 사용자 요청 — 스프레드 카드는 보기 어렵다고 빼고, 범례에서 두 선만 켜면 차이선이 나오게 함
     "memory": ["trass_dram", "trass_mcp", "trass_flash", "trass_dram_module"],
@@ -1285,6 +1389,7 @@ DESCS = {
     "bond_spread": "회사채 수익률 − 만기가 같은 미국 국채 수익률(%p). 금리 움직임을 빼고 그 회사 신용 위험만 본 값.",
     "bond_table": "추적 중인 회사채의 오늘 가격·수익률·국채 대비 스프레드와 1주 변화.",
     "cds_table": "추적 중인 빅테크·AI 기업의 오늘 5년물 CDS와 전일 대비 변화.",
+    "nebius_spot_multi": "네비우스(NBIS)가 공개하는 GPU 스팟 임대가. 실시간 수급이 가장 빨리 드러나는 가격.",
     "gpu_cloud_multi": "GPU 세대별 클라우드 임대 중앙가. 신형이 나오며 구형 가격이 얼마나 빨리 내려가는지.",
     "gpu_h100_spread": "같은 H100을 AWS·Azure 같은 대형 클라우드와 CoreWeave 같은 GPU 전문 클라우드가 파는 가격 차이.",
     "gpu_cloud_multi": "GPU 세대별 클라우드 공시가 중앙값(80여 개 클라우드). 정가는 체결가보다 늦게 움직인다.",
@@ -1299,7 +1404,7 @@ DESCS = {
 }
 KPI_ORDER = ["or_tokens_weekly", "or_avg_price", "gpu_h100_index", "tsmc_monthly_rev", "hyperscaler_capex", "trass_dram"]
 COLLECTORS = {"or_models": c_or_models, "or_chart": c_or_chart, "or_week": c_or_week, "or_apps": c_or_apps, "frontier": c_frontier,
-              "hf": c_hf, "ornn": c_ornn, "cds": c_cds, "bonds": c_bonds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "arena": c_arena, "prices": c_prices}
+              "hf": c_hf, "ornn": c_ornn, "nebius": c_nebius, "cds": c_cds, "bonds": c_bonds, "gpu_hist": c_gpu_history, "gpu": c_gpu, "tsmc": c_tsmc_rev, "capa": c_tsmc_capa, "capex": c_capex, "arr": c_arr, "trass": c_trass, "arena": c_arena, "prices": c_prices}
 
 
 def load(path, default):

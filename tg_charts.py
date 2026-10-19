@@ -210,3 +210,38 @@ def gauge(name, score, rating, prev=None, title="공포·탐욕 지수", sub="")
                      color=INK, family=MONO)
             fig.text(x + 0.03 + 0.065, 0.068, zone(float(v))[3], ha="left", va="center", fontsize=8.5, color=c)
     return _save(fig, name)
+
+
+def spot_cards(name, title, sub, cards):
+    """네비우스 스팟 가격 카드(2026-10-20 사용자: 네비우스 화면처럼) — cards = [(GPU, 지역, 지금 가격, 7일 변화 %, [(datetime, 값), ...]), ...]"""
+    import matplotlib.dates as mdates
+    n = len(cards)
+    cols = 3
+    rows = (n + cols - 1) // cols
+    fig = plt.figure(figsize=(9, 2.6 * rows + 0.9), dpi=150)
+    fig.text(0.04, 1 - 0.32 / (2.6 * rows + 0.9), title, fontsize=15, fontweight="bold", color=INK)
+    fig.text(0.04, 1 - 0.62 / (2.6 * rows + 0.9), sub, fontsize=9.5, color=MUTED)
+    top = 1 - 0.95 / (2.6 * rows + 0.9)
+    for i, (gpu, region, price, pct, pts) in enumerate(cards):
+        r, c = divmod(i, cols)
+        h = top / rows
+        x0, y0 = 0.04 + c * 0.32, top - (r + 1) * h
+        ax = fig.add_axes([x0 + 0.005, y0 + 0.08 * h, 0.29, 0.42 * h])
+        fig.text(x0 + 0.005, y0 + 0.86 * h, gpu, fontsize=12, fontweight="bold", color=INK)
+        fig.text(x0 + 0.005, y0 + 0.76 * h, region, fontsize=8.5, color=MUTED)
+        fig.text(x0 + 0.005, y0 + 0.58 * h, f"${price:,.2f}", fontsize=17, fontweight="bold", color=INK)
+        col = "#d33f5b" if (pct or 0) > 0 else "#2f6fe4" if (pct or 0) < 0 else MUTED
+        fig.text(x0 + 0.295, y0 + 0.62 * h, ("—" if pct is None else f"{pct:+.1f}%") + "\n7일 전 대비", fontsize=8.5, color=col, ha="right", fontweight="bold")
+        if pts:
+            xs, ys = zip(*pts)
+            ax.step(xs, ys, where="post", color="#5b5bd6", lw=1.3)
+            ax.fill_between(xs, ys, min(ys), step="post", color="#5b5bd6", alpha=0.08)
+            ax.scatter([xs[-1]], [ys[-1]], color="#5b5bd6", s=12, zorder=5)
+        ax.set_facecolor(BG)
+        ax.grid(axis="y", color=GRID, lw=0.6)
+        ax.tick_params(labelsize=7, length=0, colors=MUTED)
+        ax.xaxis.set_major_locator(mdates.DayLocator(interval=2))
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
+        for sp in ax.spines.values():
+            sp.set_visible(False)
+    return _save(fig, name)
