@@ -715,6 +715,22 @@
    "focus": "이 사람 본인이 한 말·인터뷰·서한·메모·보고서, 이 사람(또는 운용사)의 매수·매도·지분 공시(13F 등)와 포트폴리오 변화만. 이름만 스치듯 나오는 기사(예: 다른 사람 이야기 속 인용 한 줄)는 drop.",
    "count": 0,
    "last": ""
+  },
+  {
+   "term": "세미애널리시스",
+   "slug": "blog-semianalysis",
+   "market": "blog",
+   "ticker": "",
+   "name": "SemiAnalysis",
+   "feed": "https://newsletter.semianalysis.com/feed",
+   "aliases": [
+    "SemiAnalysis",
+    "세미애널리시스"
+   ],
+   "resolved": true,
+   "added": "2026-10-19 15:30",
+   "by": "claude",
+   "backfill": 3
   }
  ],
  "updated": "2026-10-19 15:15 KST"

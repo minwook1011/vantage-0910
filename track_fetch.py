@@ -308,10 +308,10 @@ def fetch_term(t):
             return parse_yt(http(f"https://www.youtube.com/feeds/videos.xml?channel_id={cid}"), t.get("name") or t["term"]), [], []
         except Exception as e:
             return [], [f"youtube {cid}: {str(e)[:80]}"], []
-    if t.get("market") == "blog":                            # 네이버 블로그: 새 글 목록(RSS) 그대로
+    if t.get("market") == "blog":                            # 네이버 블로그(blog_id) 또는 일반 RSS(feed — 서브스택 등): 새 글 전부
         bid = t.get("blog_id") or ""
         try:
-            items = parse_rss(http(f"https://rss.blog.naver.com/{bid}.xml"), t.get("name") or t["term"])
+            items = parse_rss(http(t.get("feed") or f"https://rss.blog.naver.com/{bid}.xml"), t.get("name") or t["term"])
             for it in items:
                 it["url"] = re.sub(r"\?fromRss.*$", "", it["url"])
                 it["source"] = t.get("name") or t["term"]
