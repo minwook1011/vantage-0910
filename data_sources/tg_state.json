@@ -152,6 +152,7 @@
   "trk:blog-ssh-fedinsight:66b12c095fd0",
   "trk:blog-ssh-fedinsight:814f48c410d2",
   "trk:blog-ssh-fedinsight:986bbf0136b8",
+  "trk:blog-ssh-fedinsight:9c35d6818a0c",
   "trk:blog-ssh-fedinsight:abc2ed4e84cf",
   "trk:blog-ssh-fedinsight:af39742b1c5c",
   "trk:blog-ssh-fedinsight:b2927e36f691",
@@ -207,6 +208,7 @@
   "trk:googl:73428e28701a",
   "trk:googl:ae0947c1b47d",
   "trk:googl:ae943b7879d4",
+  "trk:googl:cb1aa23ede5b",
   "trk:googl:d6179f5d78ec",
   "trk:googl:e68b30408349",
   "trk:meta:0231f8cdde23",
@@ -255,6 +257,7 @@
   "trk:nvda:5f47c22935c6",
   "trk:nvda:61fc234353ae",
   "trk:nvda:685205287522",
+  "trk:nvda:69b4a57785de",
   "trk:nvda:944c53d6b0eb",
   "trk:nvda:98db37b15af7",
   "trk:nvda:a1828143d241",
@@ -291,6 +294,7 @@
   "trk:open-ai:6b76263b9736",
   "trk:open-ai:70231e74ee43",
   "trk:open-ai:7521108539a7",
+  "trk:open-ai:81608e2d4900",
   "trk:open-ai:844a0168e5fd",
   "trk:open-ai:8500e779ca3f",
   "trk:open-ai:8afd3fd83cfc",
@@ -549,18 +553,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-ranto28:21ba86c93b68": [
-   22
-  ],
-  "trk:blog-ssh-fedinsight:5ef4729a4a58": [
-   23
-  ],
-  "trk:blog-ssh-fedinsight:1ef1273a3f6b": [
-   24
-  ],
-  "trk:blog-ssh-fedinsight:986bbf0136b8": [
-   25
-  ],
   "trk:blog-ssh-fedinsight:1c4f5d4a9d22": [
    26
   ],
@@ -2085,8 +2077,20 @@
   ],
   "trk:t-759fd052:5edd7e17df49": [
    548
+  ],
+  "trk:googl:cb1aa23ede5b": [
+   549
+  ],
+  "trk:open-ai:81608e2d4900": [
+   550
+  ],
+  "trk:blog-ssh-fedinsight:9c35d6818a0c": [
+   551
+  ],
+  "trk:nvda:69b4a57785de": [
+   552
   ]
  },
  "topics": {},
- "topic_fail_at": 1792417670.211356
+ "topic_fail_at": 1792421358.167428
 }
