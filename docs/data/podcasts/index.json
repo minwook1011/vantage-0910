@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20 02:10 KST",
+ "updated": "2026-10-20 07:38 KST",
  "episodes": [
   {
    "id": "2026-10-19-understanding-15FRu2MjlcU",
@@ -32,11 +32,13 @@
    "audio": null,
    "duration": "",
    "desc": "본 영상에서 소개된 수출통제·제재 정보 솔루션은 생크션랩의 '쇼메르(Chomer)'입니다. 도입 문의: sanction.lab.solution@gmail.com 💡내용 요약 이번 영상은 러시아의 경제 제재를 우회하는 ‘그림자 선단’이 한국 항구를 통해 대규모 경유를 확보한 사건을 중심으로, 국제 제재가 한국 기업과 외교·안보에 미치는 영향을 설명합니다. 영국 가디언 보도에 따르면 러시아 그림자 선단으로 분류된 유조선 7척이 한국에서 약 17만 6천 톤의 경유를 실어 갔으며, 이는 러시아가 약 이틀 동안 사용할 수 있는 양입니다. 한국은 최종 목적지를 알 수 없었다는 입장이지만, 유럽과 우크라이나는 한국이 제재 선박의 움직임을 충분히 파악하고 대응했어야 한다고 보고 있습니다. 특히 그림자 선단의 국내 입항 기록이 일본보다 약 2~3배 많다는 분석이 소개됩니다. 이러한 선박들은 단순히 석유를 운송하는 것을 넘어 정보 수집이나 군사적 활동에 활용될 가능성도 제기돼 안보상 우려를 낳고 있습니다. 국제 제재는 법적인 수출입 금지에만 그치지 않습니다. 제재 대상과 거래한 기업은 금융거래 차단, 보험료 상승, 거래처 이탈 등 심각한 경제적 피해를 입을 수 있습니다. 실제…",
-   "status": "new",
+   "status": "skip",
    "found": "2026-10-20 02:10 KST",
    "image": "https://i1.ytimg.com/vi/4VDb1n8lrLQ/hqdefault.jpg",
    "show_image": null,
-   "lang": "ko"
+   "lang": "ko",
+   "title_ko": "러시아 유령선은 왜 부산항에 몰려들까? (생크션랩 조의준 대표)",
+   "reason": "주제 무관 — 러시아 그림자 선단·대러 제재와 외교·안보 문제가 중심이고 특정 기업·산업·시장 투자 판단이 중심이 아님"
   },
   {
    "id": "2026-10-19-riskrev-nothing-matters-in-the-market-until-it-does-with",
@@ -49,10 +51,19 @@
    "audio": "https://traffic.megaphone.fm/RRM6456256714.mp3",
    "duration": "28:32",
    "desc": "Learn more about Astraeus Wealth Management: ⁠http://astraeuswealth.com/partner-with-us⁠ Guy Adami welcomes Mike Tracey, Vice President of Risk at Apex Fintech Solutions, to discuss how credit and debt markets are increasingly driving equity action, with bond volatility and elevated yields pressuring the AI CapEx trade now funded more by debt. They examine revenue-whisper risk around OpenAI and Anthropic and describe Oracle as a tracking stock for OpenAI expectations, given its dependence on data-center buildouts. Despite the S&P 500 near highs and a VIX around 16, they argue dispersion and ro…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-19 18:19 KST",
    "image": "https://megaphone.imgix.net/podcasts/f95b5010-c96f-11f1-b2a8-87bc56ddb3ef/image/a475fac6853e7a64ff46a1b1413dec80.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
-   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "Mike Tracey — 시장은 아무 일 없다가 한순간에 무너진다",
+   "desc_ko": "Guy Adami 가 Apex Fintech Solutions 리스크 담당 부사장 Mike Tracey 를 불러, 요즘 주식시장을 움직이는 힘이 채권·신용시장에서 온다는 점을 짚는다. 채권 변동성과 높은 금리가 빚으로 돈을 대는 비중이 커진 AI 설비투자 거래를 누르고 있다는 진단이다. OpenAI·Anthropic 매출이 기대에 못 미칠 위험, 데이터센터 구축에 기대는 Oracle 이 사실상 OpenAI 기대치를 따라가는 종목이 됐다는 이야기도 나온다. S&P 500 이 최고치 부근이고 변동성지수(VIX)가 16 안팎으로 잔잔하지만, 종목 간 차별화와 순환매 속에 위험이 쌓이고 있다고 본다.",
+   "summary": {
+    "title_ko": "Mike Tracey — 시장은 아무 일 없다가 한순간에 무너진다",
+    "headline": "VIX 16의 착시 — 종목은 흩어져 지수를 받치지만, 상관관계가 되돌아오면 회사채가 투매 시점을 정한다",
+    "image": null,
+    "guest": "마이크 트레이시(Mike Tracey) — Apex Fintech Solutions 리스크 담당 부사장(방송 소개 기준)",
+    "company": "Oracle · AI 인프라 · 미국 채권시장 (거시 · 채권·신용 · AI 설비투자 · 변동성)"
+   }
   },
   {
    "id": "2026-10-19-ca-building-a-berkshire-for-the-middle-market-tracy",
@@ -65,12 +76,19 @@
    "audio": "https://traffic.libsyn.com/secure/tedseides/CA_-_EP.521_Tracy_Britt_Cool_-_AUDIO_V1.mp3?dest-id=482814",
    "duration": "52:19",
    "desc": "My guest on today's show is Tracy Britt Cool, co-founder of Kanbrick, a long-term investment partnership that provides owners of family-owned, midsized businesses with a differentiated option from traditional private equity. Tracy launched the business after spending ten years at Berkshire Hathaway as one of Warren Buffett's few deputies. She started out of business school as a financial assistant to Buffett, served as Chair of several Berkshire portfolio companies, and later became CEO of Pampered Chef. Our conversation covers Tracy's journey, including lessons from Buffett and the value of o…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-19 17:17 KST",
    "image": "https://static.libsyn.com/p/assets/7/9/d/5/79d5327103ef7b485f2e77a3093c12a1/Tracy_Britt_Cool_Apple_Artwork-20261018-3dvkhsmxow.jpg",
    "show_image": "https://static.libsyn.com/p/assets/f/b/7/6/fb76e1c8bfb69e8dd959afa2a1bf1c87/CA_Square_logo_light_background_6.26.24.jpg",
    "title_ko": "Tracy Britt Cool — 중견기업을 위한 작은 Berkshire 만들기 (521회)",
-   "desc_ko": "Warren Buffett 곁에서 10년을 일한 Tracy Britt Cool 이 세운 Kanbrick 이야기다. Kanbrick 은 가족이 키운 중견기업에 사모펀드와 다른 선택지, 곧 오래 들고 가는 장기 투자 파트너십을 내세운다. Tracy 는 경영대학원을 마치고 Buffett 의 재무 보좌로 시작해 Berkshire 자회사 몇 곳의 이사회 의장을 맡았고, 이후 Pampered Chef 최고경영자를 지냈다. 대화는 Buffett 에게 배운 것, 오래 보유하는 자본의 가치, 중견기업 인수와 경영 방식을 다룬다."
+   "desc_ko": "Warren Buffett 곁에서 10년을 일한 Tracy Britt Cool 이 세운 Kanbrick 이야기다. Kanbrick 은 가족이 키운 중견기업에 사모펀드와 다른 선택지, 곧 오래 들고 가는 장기 투자 파트너십을 내세운다. Tracy 는 경영대학원을 마치고 Buffett 의 재무 보좌로 시작해 Berkshire 자회사 몇 곳의 이사회 의장을 맡았고, 이후 Pampered Chef 최고경영자를 지냈다. 대화는 Buffett 에게 배운 것, 오래 보유하는 자본의 가치, 중견기업 인수와 경영 방식을 다룬다.",
+   "summary": {
+    "title_ko": "Tracy Britt Cool — 중견기업을 위한 작은 Berkshire 만들기 (521회)",
+    "headline": "Berkshire 엔 작고 사모펀드는 싫은 가족기업 — Kanbrick 은 15년 넘게 들고 가는 '작은 Berkshire' 를 만든다",
+    "image": "https://i.ytimg.com/vi/lpSoW1elHGw/hqdefault.jpg",
+    "guest": "트레이시 브릿 쿨(Tracy Britt Cool) — Kanbrick 공동창업자, 전 Berkshire Hathaway·Buffett 재무 보좌, 전 Pampered Chef 최고경영자",
+    "company": "Kanbrick (사모 투자 · 장기 보유 지주회사 · 가족기업 승계)"
+   }
   },
   {
    "id": "2026-10-19-oddlots-don-wilson-on-the-gpu-market-s-trillion-dollar-q",

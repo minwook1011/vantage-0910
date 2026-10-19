@@ -1,0 +1,219 @@
+{
+ "id": "2026-10-19-riskrev-nothing-matters-in-the-market-until-it-does-with",
+ "title_ko": "Mike Tracey — 시장은 아무 일 없다가 한순간에 무너진다",
+ "guest": {
+  "name": "마이크 트레이시(Mike Tracey)",
+  "role": "Apex Fintech Solutions 리스크 담당 부사장(방송 소개 기준)"
+ },
+ "guest_profile": [
+  {
+   "name": "마이크 트레이시(Mike Tracey)",
+   "title": "Apex Fintech Solutions 리스크 담당 부사장(방송 소개)",
+   "what": "개인 투자 앱들의 주식·옵션 청산과 보관을 맡는 Apex Fintech Solutions 에서 위험 관리를 맡는다고 소개됐다. Apex 는 PEAK6 Investments 가 간접 소유한 회사로 Webull 의 미국 주식 청산을 맡는다(Webull 연차보고서). 회사용 분기 보고서와 주간 사내 보고서를 쓰고, 연말엔 2027년 전망을 낼 예정이라고 했다.",
+   "career": "공개 자료로 학력·이전 경력은 확인 못 함. 방송에서는 시장에 몰두해 온 사람이라는 소개만 나왔다.",
+   "track": "운용역이 아니라 청산회사의 위험 관리자라 공개된 투자 성과·수익률은 없다.",
+   "why": "개인 투자자 계좌의 증거금·옵션 위험을 매일 보는 자리라, 지수보다 변동성·상관관계·옵션 매도 같은 '속의 위험'을 먼저 짚는다. 진행자 Guy Adami(CNBC 'Fast Money' 출연자)와 AI 쏠림 장세의 약한 고리를 점검한다."
+  }
+ ],
+ "company": {
+  "name": "Oracle · AI 인프라 · 미국 채권시장",
+  "sector": "거시 · 채권·신용 · AI 설비투자 · 변동성",
+  "what": "빚으로 굴러가는 AI 투자, OpenAI 기대치를 따라가는 Oracle, 낮은 VIX 아래 숨은 위험"
+ },
+ "topic": "채권 변동성과 회사채가 AI 설비투자 거래를 흔드는 구조, Oracle 의 OpenAI 의존, VIX 가 못 보는 분산 장세의 위험",
+ "headline": "VIX 16의 착시 — 종목은 흩어져 지수를 받치지만, 상관관계가 되돌아오면 회사채가 투매 시점을 정한다",
+ "tldr": [
+  "AI 설비투자는 현금에서 빚·순환 투자로 넘어갔다 — 채권 변동성이 주식을 끌고 다닌다",
+  "Oracle 은 고점 310달러 안팎에서 132달러 — OpenAI 매출 기사 하나에 오르내리는 'OpenAI 추종 종목'",
+  "VIX 16은 착시: 종목 간 상관관계가 25년 최저라 방어주가 지수를 받친다 — 상관관계 복귀가 최대 위험",
+  "대형 클라우드 하나가 설비투자를 줄이면 나머지도 무리 지어 따라갈 수 있다",
+  "선거 뒤 이란 확전 → 유가 → 국채 → 회사채, 지수의 항복 시점은 회사채가 정한다",
+  "외부 자료: OpenAI 매출 하향은 계산 방식 차이가 컸지만, 방송 뒤 10월 16일 VIX 19.99로 급등"
+ ],
+ "summary_md": "### 1. 주식을 끌고 다니는 건 채권·신용시장\n- 진행자 Guy Adami 는 요즘 주가를 움직이는 게 신용·채권시장이라며 말을 꺼낸다. 10년물 국채 금리는 5.3%를 넘었다가 5.04%까지 내려왔고 방송 시점엔 5.1% 언저리다. 금리 수준보다 **채권 변동성**이 사람들을 겁먹게 한다는 진단이다.\n- Mike Tracey 는 걱정을 두 갈래로 정리한다. 하나는 신용시장, 다른 하나는 OpenAI·Anthropic 상장을 앞두고 도는 '귓속말 매출'이다. Micron·CoreWeave 같은 회사는 계약상 받을 돈(잔여 이행 의무)이 장부에 잡혀 있지만, 금리가 높게 버티면 고객이 그 돈을 실제로 낼 수 있을지 장담할 수 없다고 본다.\n- 그는 AI 설비투자가 처음엔 현금으로 돌았지만 지금은 **빚과 순환 투자**로 굴러간다고 말한다. 바퀴살 하나만 빠져도 전체가 무너질 수 있다는 공포가 시장에 깔려 있다는 것이다.\n\n[[chart:2]]\n\n### 2. Oracle — 사실상 'OpenAI 추종 종목'\n- Oracle 은 2025년 가을 발표 하나로 40% 급등해 310달러 안팎의 최고가를 찍었다. 방송 시점엔 132달러다. Adami 는 Larry Ellison 이 판돈을 다 걸었지만 시장은 \"믿지 않는다\"고 답하고 있다고 표현한다.\n- Tracey 는 Oracle 이 데이터센터 완공에 **100% 기대는** 회사라고 본다. 데이터센터 하나에도 인허가 등 넘어야 할 산이 많다. 그래서 OpenAI 매출이 시장 기대보다 200억 달러 낮다는 기사가 나오면 Oracle 부터 빠지고, 다음 날 해명 기사가 나오면 Oracle 이 오른다.\n- 둘은 OpenAI 매출이 700억에서 500억 달러로 낮아졌다는 보도(회계 기준 문제라는 해명이 뒤따름)와 Anthropic 의 비슷한 소식을 짚는다. 사이클 초입이라는데 벌써 **매출 하향 조정**이 나오는 건 좋은 신호가 아니라는 데 뜻을 같이한다.\n\n[[chart:1]]\n\n### 3. 지수는 왜 멀쩡한가 — 흩어지는 장세\n- S&P 500 최고치는 7,844 안팎이고 방송 시점은 7,735로 1.5% 안쪽이다. Tracey 는 AI 쏠림을 다들 아는 위험으로 보기 때문에 지수 전체로 번지지 않는다고 설명한다.\n- 그는 2000년보다 **2006~2007년**과 더 닮았다고 본다. 지수 이익은 아직 건강하고 경제도 자라지만 빚으로 떠받친 성장이라, 음악이 멈출 때까지 춤추는 국면이라는 것이다.\n- 하루는 Nebius·Oracle·Nvidia 가 빠지자 Walmart·Dollar General·Waste Management 가 2~3% 올랐다. 이런 엇갈림이 지수와 변동성지수(VIX)를 낮게 누른다. 그래서 VIX 16은 실제 위험을 못 보여 주고, 나스닥 변동성(VXN)이나 반도체 상장지수펀드(SMH) 변동성을 봐야 한다고 말한다. 개별 종목은 며칠 새 20~30%씩 움직이기 때문이다.\n\n### 4. 사이버보안 — 가장 큰 '모르는 위험'\n- CrowdStrike·Zscaler·Palo Alto 는 비싸도 계속 오른다. Tracey 는 2027년에 악성 AI 에이전트와 사이버 공격이 늘어나는 것이 시장의 **가장 큰 미지수**라고 본다. 큰 사고가 나면 AI 와 맞닿을 테고, 그때 OpenAI·Anthropic·Nvidia 가 어떻게 반응할지가 질문이다.\n- Palo Alto 는 몇 주 전 432달러 최고가에서 350달러로 내려왔다. 올해는 주가가 오를 때 변동성도 같이 오르는 **'주가 상승·변동성 상승'** 현상이 이어져, 공매도하는 쪽은 급등에 크게 당한다고 말한다.\n\n### 5. 설비투자는 정말 줄지 않을까\n- Tracey 의 가장 큰 질문은 대형 클라우드 하나가 설비투자를 줄이면 어떻게 되느냐다. 2022년 Twitter 감원 뒤 Meta·Amazon·Google 이 줄줄이 따라 했고, 2023~2024년 AI 투자도 무리 지어 늘렸다. Microsoft 가 먼저 줄이면 다른 곳도 따라갈 수 있다.\n- Adami 가 말하는 **'설비투자의 신성함'**은 생각만큼 단단하지 않다는 것이다. Meta 가 가상현실 기기에 몰두했을 때 주가가 90달러대까지 빠지자 결국 투자를 줄였다. 지금은 시장이 오히려 \"더 쓰라\"고 하지만, 시장이 손을 들게 만들 때까지 줄일 시점은 예측하기 어렵다.\n\n### 6. 금과 비트코인\n- 미국은 어느 당이든 돈을 더 쓰는 **큰 재정의 시대**이고 다른 나라도 같다. 그래서 적자가 계속되면 기댈 곳은 금뿐이라고 Tracey 는 본다. Adami 도 중앙은행 금 매입이 줄지 않는다는 점을 짚는다.\n- 비트코인은 63,000달러에서 87,500달러 근처까지 반등했다가 82,000달러다. Tracey 는 투기 자금이 레버리지 상장지수펀드·신흥 클라우드 같은 AI 쪽으로 옮겨 간 수급 문제로 본다. Adami 는 지난 반년 일어난 일을 생각하면 비트코인이 훨씬 높아야 했다며 '기대에 못 미친다'고 평한다.\n\n### 7. 위험 담당자가 걱정하는 것\n- 그는 종목들이 따로 노는 흐름이 되돌아오는 순간을 가장 경계한다. 실현 상관관계가 **25년 만의 최저**인데, 이것이 오르며 종목이 같이 움직이기 시작하면 지수 투매가 올 수 있다고 본다. 시장이 매일 S&P 단기 옵션을 팔아 대는 것도 걱정이다.\n- 옵션의 80% 가량이 가치 없이 만기를 맞아 변동성 매도는 자주 이기지만, 지는 날 그동안 번 것을 다 잃을 수 있다. 많은 이가 가격 하락만 넣고 **변동성 급등**은 위험 계산에 넣지 않는다. 2024년 8월 5일 S&P 하락은 2.5%였지만 VIX 는 한때 60을 찍었다.\n\n### 8. 중간선거·이란 — 그리고 회사채\n- 선거는 예상 밖 결과가 나올 때 크게 움직인다. Tracey 는 예측시장의 '블루 웨이브' 확률을 62%로 들며, 시장이 이 변수에 충분히 신경 쓰지 않는다고 본다.\n- 그는 오히려 선거 뒤 **이란 확전**을 걱정한다. 전쟁이 길어질수록 민주당 승리 확률이 올라온 만큼, 선거가 끝나면 정부가 부담 없이 강하게 나설 수 있다는 것이다. 유가가 오르면 국채 금리가 오르고, 이는 회사채로 번진다. 결국 지수의 항복 시점은 **회사채**가 정할 것이라는 게 그의 결론이다.",
+ "insights_md": "### 투자 관점\n- 이 편의 요지는 **'지수는 조용해도 속은 흔들린다'**는 것이다. 위험은 VIX 가 아니라 채권 변동성·회사채·종목 간 상관관계에서 먼저 보인다고 본다.\n- 직접 거론된 종목: Oracle·Nvidia·CoreWeave·Micron·Nebius(AI 인프라), Walmart·Dollar General·Waste Management(방어주), CrowdStrike·Zscaler·Palo Alto(사이버보안). 한국 SK hynix·삼성전자, 일본 SoftBank Group(OpenAI·Stargate 투자자)·Advantest 도 OpenAI 매출 기대와 대형 클라우드 설비투자에 묶여 있다(대본 밖 연결).\n- 이 편에서 Oracle 은 **OpenAI 기대치의 대리 지표**로 다뤄진다. OpenAI 관련 보도 하나에 Oracle·CoreWeave 가 크게 움직이는 구조라, 이들 주가가 곧 비상장 AI 회사들의 체온계라는 시각이다.\n\n### 숫자로 보는 핵심\n- 대본: Oracle 고점 310달러 안팎 → 132달러, S&P 500 7,735(최고 7,844), VIX 16, 10년물 5.3% → 5.1%, 비트코인 82,000달러.\n- 외부 자료: Oracle 52주 최고가는 313달러, 고점 대비 57% 하락. 10년물 52주 최고는 10월 5일 **5.31%**. 6개월 실현 상관관계는 0.01로 2001년 이후 최저였다.\n\n### 반론·리스크\n- 이 경고는 방송 직후 일부 맞았다. 10월 16일 나스닥100이 2.5% 빠지고 VIX 가 19.99로 21% 뛰었으며 내재 상관관계가 60거래일 최고로 올랐다(외부 자료).\n- 반대로 OpenAI 매출 하향은 상당 부분 계산 방식 차이였고, 3분기 연환산 매출 증가율은 77%였다. 대형 클라우드 4곳은 올해 설비투자 가이던스를 오히려 **7,200억 달러 이상**으로 올렸다.\n\n### 체크포인트\n- 10월 28일 연준 결정, 대형 클라우드 3분기 실적의 설비투자 숫자, 회사채 가산금리, 11월 중간선거 결과와 이란 정세.",
+ "deep_md": "### 1. 게스트·회사 팩트 체크 (외부 자료)\n- 게스트: 방송은 Mike Tracey 를 Apex Fintech Solutions 리스크 담당 부사장으로 소개했다. 공개 자료로는 이 사람의 경력·직함을 확인 못 함. Apex 는 PEAK6 Investments 가 간접 소유한 청산·보관 회사이고, Webull 의 미국 주식 청산을 맡는다(Webull 연차보고서). 개인 투자 앱의 증거금·옵션 위험을 관리하는 자리라 **개인 투자자 포지션**이 그의 시야에 들어온다.\n- OpenAI 매출 보도: 10월 8일 보도에 따르면 9월 말 OpenAI 연환산 매출은 약 **500억 달러**로, 앞서 알려진 700억 달러(일부 보도 680억 달러)보다 낮았다. 차이 대부분은 협력사 총매출을 넣느냐의 계산 방식이었다. 같은 날 Oracle 은 약 6%, Nvidia 3%, CoreWeave 8% 가까이 빠졌다. 대본의 '해명 기사 뒤 반등'과 흐름이 맞는다.\n\n[[chart:3]]\n\n[[chart:4]]\n\n- Oracle: OpenAI 와 약 3,000억 달러 규모 컴퓨팅 계약(5,000억 달러 Stargate 의 일부)을 맺었다. 최근 분기 설비투자는 285억 달러, 잉여현금흐름은 **마이너스 54억 달러**였다. 52주 최고가 313달러 대비 57% 낮아, 대본의 132달러와 맞는다.\n\n### 2. 밸류체인과 관련 상장사\n- AI 인프라 사슬: OpenAI·Anthropic(비상장) → Oracle·CoreWeave·Nebius(클라우드 임대) → Nvidia·AMD(칩) → Micron·SK hynix·삼성전자(메모리). 일본 SoftBank Group 은 OpenAI 와 Stargate 의 주요 투자자다. 대본이 말한 '순환 투자'는 이 사슬 안에서 돈이 돌며 매출과 투자가 겹치는 구조를 가리킨다. 칩 회사가 고객사에 투자하고, 그 돈이 다시 칩 구매로 돌아오면 매출은 늘어 보여도 **바깥에서 들어온 돈**은 그만큼 늘지 않는다. 한국 메모리 회사들의 고대역폭 메모리 주문도 결국 이 사슬 끝의 클라우드 투자에 달려 있다.\n- 돈줄: FactSet 은 대형 클라우드의 설비투자 대비 신규 차입 비중이 2024 회계연도 9%에서 최근 12개월 **32%**로 올랐고 총부채가 약 7,000억 달러라고 집계했다. Bank of America 는 올해 이들이 영업현금흐름의 약 90%를 설비투자에 쓸 것으로 본다. '현금에서 빚으로'라는 대본 설명과 맞다.\n\n[[chart:5]]\n\n### 3. 숫자의 맥락\n- 금리: 외부 자료로 10년물은 9월 15일 5.04%, 9월 29일 5.27%를 거쳐 10월 5일 5.31%로 52주 최고였다. 10월 16일엔 5.085%였다. BMO 는 유가와 10년물의 한 달 상관계수가 0.96이라고 했다. **유가 → 국채 → 회사채**라는 대본의 고리와 같은 방향이다.\n- 상관관계: Saxo 집계로 S&P 500 종목의 6개월 실현 상관관계는 0.01, **2001년 이후 최저**다. 대본의 '25년 최저'와 맞는다. 그런데 방송 직후인 10월 16일 S&P 500 은 1.09% 내린 7,659, VIX 는 19.99, 3개월 내재 상관관계는 60거래일 최고로 뛰었다.\n- 2024년 8월 5일: S&P Dow Jones Indices 에 따르면 VIX 는 장중 65.7로 사상 최대 하루 상승을 기록하고 38.57에 마감했다. S&P 500 은 3%, 닛케이는 12% 빠졌다. 대본의 '2.5% 하락에 VIX 60'은 대략 맞다.\n- 선거: Kalshi 는 10월 16일 민주당 하원 장악 확률 90%, 상원 63%를 보였다. 양원 '블루 웨이브'는 Kalshi 82%·Polymarket 86%(10월 15일)였다. 대본의 62%는 **상원 확률**에 가까워, 정의가 다른 숫자로 보인다.\n\n### 4. 반론과 리스크\n- 설비투자 축소 우려: 대형 클라우드 4곳은 7월 실적에서 2026년 설비투자 가이던스를 합계 7,200억~7,450억 달러로 올렸다. '먼저 줄이는 곳'은 아직 없다.\n- OpenAI 매출: 하향 보도의 상당 부분이 계산 기준 차이였고, OpenAI 는 3분기 연환산 매출 77%, 기업 부문 107% 성장을 내세웠다. 수요 자체가 꺾였다는 증거로 보기는 이르다.\n- 2006~2007년 비유: 그때는 주택담보대출이라는 가계 부채가 문제였고, 지금 빚은 신용도가 높은 대형 기술회사에 몰려 있다. 같은 결말을 단정하기 어렵다.\n- 변동성 지표: VIX 가 쓸모없어졌다는 주장도 과장일 수 있다. 방송 일주일 만에 VIX 가 14.84에서 19.99로 오르며 지수 위험을 다시 반영했다. 다만 개별 종목 변동성 중간값은 거의 그대로여서, **지수만 다시 값이 매겨진** 모양새였다(Saxo).\n- 지수 하락: Oracle 은 고점 대비 57% 빠졌지만 S&P 500 은 최고치 근처다. '언제 중요해지나'는 대본도 답하지 못한다.\n\n### 5. 앞으로 볼 것\n- 10월 28일 연준 회의와 **10년물 5.3% 재돌파** 여부, Microsoft·Alphabet·Amazon·Meta 3분기 실적의 설비투자 숫자, Oracle 추가 자금 조달, 회사채 가산금리, 종목 간 상관관계가 계속 오르는지, 11월 중간선거 뒤 이란 정세와 유가.",
+ "sources": [
+  {
+   "label": "RiskReversal Pod — 이 편 오디오(Megaphone)",
+   "url": "https://traffic.megaphone.fm/RRM6456256714.mp3"
+  },
+  {
+   "label": "CNBC — OpenAI 매출 보도에 Nvidia·Oracle·CoreWeave 하락(2026년 10월 8일)",
+   "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html"
+  },
+  {
+   "label": "Yahoo Finance — Oracle 추가 차입·OpenAI 매출 공개와 주가",
+   "url": "https://finance.yahoo.com/technology/article/oracle-stock-falls-on-more-debt-to-fund-ai-chip-buying-openai-revenue-disclosure-180233070.html"
+  },
+  {
+   "label": "CoinCentral — Oracle 52주 최고 313달러·연초 대비 −31%",
+   "url": "https://coincentral.com/oracle-orcl-stock-drops-6-as-openai-revenue-numbers-come-up-short"
+  },
+  {
+   "label": "Crestwood Advisors — 10월 경제·시장: 10년물 5.27%, 유가와 상관 0.96",
+   "url": "https://www.crestwoodadvisors.com/october-2026-economic-and-market-update-higher-and-higher-bond-yields-rise-to-levels-not-seen-in-nearly-two-decades/"
+  },
+  {
+   "label": "Forbes — 국채 금리 현황(10년물 52주 최고 5.31%)",
+   "url": "https://www.forbes.com/advisor/investing/treasury-rates/"
+  },
+  {
+   "label": "CNBC — 10월 16일 국채 금리(10년물 5.085%)",
+   "url": "https://www.cnbc.com/2026/10/16/us-treasury-yields-investors-hot-inflation-data-.html"
+  },
+  {
+   "label": "Saxo — 옵션 브리프 10월 19일: 실현 상관 0.01, VIX 19.99, S&P 7,659",
+   "url": "https://www.home.saxo/content/articles/options/correlation-returns-the-index-follows---options-brief---19-october-2026-19102026"
+  },
+  {
+   "label": "FactSet — 대형 클라우드 설비투자 대비 차입 비중 32%·총부채 약 7,000억 달러",
+   "url": "https://insight.factset.com/hyperscalers-tap-external-financing-as-ai-capex-outruns-cash-flow"
+  },
+  {
+   "label": "Analysis Atlas — 대형 클라우드 4곳 2026년 설비투자 가이던스",
+   "url": "https://analysis-atlas.com/research/hyperscaler-ai-capex-2026/"
+  },
+  {
+   "label": "S&P Dow Jones Indices — 2024년 8월 VIX 장중 65.7·S&P −3%",
+   "url": "https://www.spglobal.com/spdji/en/commentary/article/iboxx-usd-emerging-markets-monthly-commentary-august-2024"
+  },
+  {
+   "label": "Kalshi — 2026 중간선거 예측(하원 90%·상원 63%)",
+   "url": "https://news.kalshi.com/p/2026-midterm-predictions"
+  },
+  {
+   "label": "DeFi Rate — 블루 웨이브 확률(Kalshi 82%·Polymarket 86%)",
+   "url": "https://defirate.com/odds/blue-wave/"
+  },
+  {
+   "label": "SEC — Webull 연차보고서(Apex Clearing 청산·PEAK6 소유)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001866364/000121390026041653/ea0283691-20f_webull.htm"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Oracle 주가 — 고점과 방송 시점",
+   "sub": "달러 · 대본에서 든 숫자",
+   "type": "bar",
+   "unit": "달러",
+   "labels": [
+    "2025년 가을 최고가(안팎)",
+    "방송 시점"
+   ],
+   "series": [
+    {
+     "name": "주가",
+     "values": [
+      310,
+      132
+     ]
+    }
+   ],
+   "note": "1년 새 절반 넘게 빠졌다 — Oracle 이 OpenAI 기대치를 따라 움직인다는 근거",
+   "source": "대본(Guy Adami)"
+  },
+  {
+   "at": "summary",
+   "title": "10년물 국채 금리 흐름",
+   "sub": "% · 대본에서 든 숫자(최근 몇 주)",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "최근 고점",
+    "되돌림 저점",
+    "방송 시점"
+   ],
+   "series": [
+    {
+     "name": "10년물",
+     "values": [
+      5.3,
+      5.04,
+      5.1
+     ]
+    }
+   ],
+   "note": "수준은 내려왔지만 몇 주 사이 0.3%포인트 가까이 오르내린 변동성이 문제",
+   "source": "대본(Guy Adami)"
+  },
+  {
+   "at": "deep",
+   "title": "OpenAI 연환산 매출 — 보도 전후",
+   "sub": "십억 달러 · 2026년 9월 말 기준",
+   "type": "bar",
+   "unit": "십억 달러",
+   "labels": [
+    "앞서 알려진 숫자",
+    "10월 8일 보도"
+   ],
+   "series": [
+    {
+     "name": "연환산 매출",
+     "values": [
+      70,
+      50
+     ]
+    }
+   ],
+   "note": "차이 대부분은 협력사 총매출을 넣느냐의 계산 방식 — 앞선 숫자를 680억 달러로 쓴 보도도 있음",
+   "source": "CNBC(Financial Times 보도 인용, 2026년 10월 8일)"
+  },
+  {
+   "at": "deep",
+   "title": "OpenAI 매출 보도 당일 주가",
+   "sub": "% · 2026년 10월 8일 하루 등락(근사치)",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "CoreWeave",
+    "Oracle",
+    "Nvidia"
+   ],
+   "series": [
+    {
+     "name": "등락률",
+     "values": [
+      -8,
+      -6,
+      -3
+     ]
+    }
+   ],
+   "note": "OpenAI 에 매출이 직접 묶인 회사일수록 더 빠졌다",
+   "source": "CNBC(2026년 10월 8일)"
+  },
+  {
+   "at": "deep",
+   "title": "대형 클라우드 2026년 설비투자 가이던스",
+   "sub": "십억 달러 · 7월 실적 발표 기준(범위는 가운데값)",
+   "type": "hbar",
+   "unit": "십억 달러",
+   "labels": [
+    "Amazon",
+    "Alphabet",
+    "Microsoft",
+    "Meta"
+   ],
+   "series": [
+    {
+     "name": "설비투자",
+     "values": [
+      220,
+      200,
+      175,
+      137.5
+     ]
+    }
+   ],
+   "note": "합계 7,000억 달러 이상 — 아직 '먼저 줄이는 곳'은 없다. Microsoft 는 리스 회계 변경 뒤 숫자",
+   "source": "Analysis Atlas(2026년 7월 30일 집계)"
+  }
+ ],
+ "tg": "RiskReversal — Mike Tracey: AI 설비투자가 빚으로 굴러가며 채권 변동성이 주식을 끈다. Oracle 은 OpenAI 추종 종목이 됐고, VIX 16은 종목 간 상관관계 최저가 만든 착시. 지수 투매 시점은 회사채가 정한다.",
+ "tg_body": "Apex Fintech Solutions 의 Mike Tracey 는 요즘 주식을 움직이는 게 채권·신용시장이라고 본다. 10년물은 5.3%를 찍고 5.1% 언저리로 내려왔지만 변동성이 문제다. AI 설비투자가 현금에서 빚과 순환 투자로 굴러가면서, 하나만 삐끗해도 전체가 흔들릴 수 있다는 공포가 깔려 있다.\n\nOracle 은 고점 310달러 안팎에서 132달러로 빠졌다. 데이터센터 완공에 전부 기대는 탓에 OpenAI 매출 기사 하나에 오르내리는, 사실상 OpenAI 추종 종목이 됐다는 진단이다.\n\nS&P 500 은 최고치 1.5% 안쪽이고 VIX 는 16이다. AI 주가 빠지는 날 Walmart 같은 방어주가 올라 지수를 받친다. 그래서 VIX 대신 나스닥·반도체 변동성을 보라고 하고, 종목 간 상관관계가 25년 최저에서 다시 오르는 순간을 가장 경계한다.\n\n선거 뒤 이란 확전으로 유가가 오르면 국채와 회사채 금리가 따라 오른다. 그는 지수가 무너질 때를 회사채가 정할 것으로 본다.\n\n외부 자료로 OpenAI 매출 하향은 계산 방식 차이가 컸다. 다만 방송 뒤인 10월 16일 VIX 는 19.99로 뛰었고 종목 간 상관관계도 올랐다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-10-20 07:38 KST"
+}
