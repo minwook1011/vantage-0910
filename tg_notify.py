@@ -230,12 +230,12 @@ def headcount():
             # 회사 공시(총사원 = 연금 가입자와 같은 기준)와 다음 분기 회사 전망
             k, g = co_kpi(cur["code"], c)
             if k:
-                lines += ["", f"📌 직전 분기 실적 ({k['q']} · {mon(k['end'])})",
+                lines += ["", f"📌 직전 분기 실적 ({mon(k['end'])} · 회사 공시)",
                           f"   총사원 {k['total']:,}명 → 지금 <b>{n - k['total']:+,}</b> ({pct(n, k['total'])})"]
             if g:
                 left = round(g["total"] - n)
                 prog = f" · 진척 {(n - k['total']) / (g['total'] - k['total']) * 100:.0f}%" if k and g["total"] != k["total"] else ""
-                lines += [f"🎯 다음 분기 회사 전망 ({g['q']} · {mon(g['end'])})",
+                lines += [f"🎯 다음 분기 회사 전망 ({mon(g['end'])})",
                           f"   총사원 약 {g['total']:,.0f}명 → " + (f"<b>남은 {left:+,}명</b>{prog}" if left > 0 else f"<b>이미 넘음 ({-left:+,}명)</b>")]
             if k and g and k.get("consultants") and g.get("consultants"):
                 lines.append(f"   (컨설턴트 {k['consultants']:,} → 전망 {g['consultants']}명)")
