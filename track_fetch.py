@@ -136,14 +136,20 @@ def telegram_commands(watch, state):
         thread = m.get("message_thread_id") if m.get("is_topic_message") else None
         if cmd in ("연결", "link"):
             # 트래킹 전용 그룹의 토픽에서 '/연결 뉴스' · '/연결 블로그' → 그 토픽으로 보낸다(채널엔 안 올림)
-            kind = "blog" if re.search(r"블로그|인터뷰|blog|팟캐", arg, re.I) else "news" if re.search(r"뉴스|news", arg, re.I) else ""
+            kind = ("blog" if re.search(r"블로그|인터뷰|blog|팟캐", arg, re.I) else "news" if re.search(r"뉴스|news", arg, re.I)
+                    else "company" if re.search(r"기업|종목|회사|company", arg, re.I) else "")
             if not kind:
-                reply = "어느 쪽을 연결할까요? 이 토픽에서 '/연결 뉴스' 또는 '/연결 블로그'를 보내 주세요."
+                reply = "어느 쪽을 연결할까요? '연결 기업'(기업별 토픽 그룹) · '연결 뉴스' · '연결 블로그' 중 하나를 보내 주세요."
             else:
                 state.setdefault("route", {})[kind] = {"chat": chat.get("id"), "thread": thread}
                 changed = True
-                reply = ("✅ 이 " + ("토픽" if thread else "대화방") + "에 " + ("트래킹 뉴스" if kind == "news" else "블로그·인터뷰(팟캐스트)") +
-                         "를 보냅니다. 채널(돈벌레)에는 더 이상 올리지 않습니다.")
+                if kind == "company":   # 기업별 토픽 그룹 — 토픽은 그룹 전체에 만들므로 thread 는 안 씀
+                    state["route"][kind] = {"chat": chat.get("id"), "thread": None}
+                    reply = ("✅ 이 그룹을 '기업별 트래킹'으로 연결했습니다.\n기업·섹터마다 토픽을 자동으로 만들고, 기사는 그 토픽과 📋 종합 두 곳에 올립니다. "
+                             "기업을 추가하면 토픽도 자동으로 생깁니다(최대 15분).")
+                else:
+                    reply = ("✅ 이 " + ("토픽" if thread else "대화방") + "에 " + ("트래킹 뉴스" if kind == "news" else "블로그·인터뷰(팟캐스트)") +
+                             "를 보냅니다. 채널(돈벌레)에는 더 이상 올리지 않습니다.")
         elif cmd in ("추가", "add") and arg:
             new, dup = [], []
             for term, tk in split_terms(arg):          # 쉼표로 여러 개 보내도 하나씩 따로

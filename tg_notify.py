@@ -300,6 +300,52 @@ def hashtag(term):
     return re.sub(r"[^\w가-힣]", "", (term or "").replace(" ", "_"))
 
 
+STATE = {}   # main 이 채움 — 기업별 토픽 번호(topics)를 여기서 읽고 쓴다
+
+
+def topic_name(t):
+    """토픽 이름: 기업 '티엘비 · 356860' · '아마존 · AMZN', 섹터·주제는 단어 그대로"""
+    return (f"{t['term']} · {t['ticker']}" if t.get("ticker") and t.get("market") in ("us", "kr") else t["term"])[:120]
+
+
+def company_topic(t, renew=False):
+    """'트래킹 기업' 그룹(토픽 켬)에서 이 단어의 토픽 번호 — 없으면 봇이 만든다(봇에 '토픽 관리' 권한 필요)"""
+    r = route("company")
+    if not r:
+        return None
+    tops = STATE.setdefault("topics", {})
+    if t["slug"] in tops and not renew:
+        return tops[t["slug"]]
+    res = tg.api("createForumTopic", {"chat_id": r["chat"], "name": topic_name(t),
+                                      "icon_color": 0x6FB9F0 if t.get("market") == "us" else 0xFF93B2 if t.get("market") == "kr" else 0x8EEE98})
+    tops[t["slug"]] = res["message_thread_id"]
+    print("토픽 만듦:", topic_name(t), res["message_thread_id"])
+    return tops[t["slug"]]
+
+
+def sync_topics():
+    """새로 추가한 기업·섹터는 기사가 없어도 토픽부터 만들어 둔다. 종합(General) 이름은 '📋 종합'으로 한 번만."""
+    r = route("company")
+    if not r:
+        return False
+    before = dict(STATE.get("topics") or {})
+    for t in (load("docs/data/tracking/watchlist.json") or {}).get("terms") or []:
+        if t.get("market") in ("blog", "youtube") or not t.get("resolved") or t["slug"] in before:
+            continue
+        try:
+            company_topic(t)
+        except Exception as e:
+            print("토픽 만들기 실패:", t["term"], e)
+            break
+    if not STATE.get("general_named"):
+        try:
+            tg.api("editGeneralForumTopic", {"chat_id": r["chat"], "name": "📋 종합"})
+            STATE["general_named"] = True
+        except Exception as e:
+            print("종합 이름 바꾸기 실패:", e)
+    return STATE.get("topics") != before
+
+
 def tracking():
     """트래킹 단어 뉴스(2026-10-10~) — 예약 작업 vantage-tracking 이 30분마다 걸러 요약해 올린 기사를 #단어 로 바로 보낸다.
     형식: #단어 → 제목(결론) → 3줄 요약 → 내용 요약 → 원문 링크"""
@@ -332,6 +378,9 @@ def tracking():
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
                 dest = route("blog" if t.get("market") in ("blog", "youtube") else "news")   # 유튜브도 블로그·인터뷰 쪽
+                comp = route("company") if t.get("market") not in ("blog", "youtube") else {}
+                if comp:   # 기업별 토픽 그룹이 연결돼 있으면: 그 기업 토픽 + 📋 종합(General) 두 곳으로(2026-10-19 사용자)
+                    dest = {"chat": comp["chat"], "thread": company_topic(t), "also": [{"chat": comp["chat"], "thread": None}], "term": t}
                 return (None, "\n".join(lines), dest) if dest else (None, None)   # 그룹 연결 전엔 대기
             out.append((f"trk:{t.get('slug')}:{it['id']}", NOW, build))
     return out
@@ -536,11 +585,20 @@ def main():
     sent = set(state.get("sent") or [])
     SENT.update(sent)
     before = set(sent)
+    STATE.update(state)
+    topics_changed = False
+    if not dry and not due_only:
+        try:
+            topics_changed = sync_topics()
+        except SystemExit:
+            pass
 
     todo = [(key, build) for name, key, gate, build in collect()
             if ((force == "all" or name == force) if force else (key not in sent and NOW >= gate))]
-    if due_only:
-        print("yes" if todo else "no")
+    if due_only:   # 기업별 토픽 그룹에 아직 토픽이 없는 기업이 있어도 돌린다
+        need = route("company") and any(t.get("market") not in ("blog", "youtube") and t.get("resolved") and t["slug"] not in (state.get("topics") or {})
+                                        for t in (load("docs/data/tracking/watchlist.json") or {}).get("terms") or [])
+        print("yes" if todo or need else "no")
         return
 
     silent = NOW.hour < 7
@@ -560,7 +618,14 @@ def main():
                 r = tg.send_photos(imgs, text if len(text) <= 1024 else text[:1000] + "…", silent=silent)
                 ids = [m.get("message_id") for m in (r if isinstance(r, list) else [r]) if isinstance(m, dict)]
             else:
-                ids = tg.send(text, silent=silent, chat=dest.get("chat"), thread=dest.get("thread"))
+                try:
+                    ids = tg.send(text, silent=silent, chat=dest.get("chat"), thread=dest.get("thread"))
+                except RuntimeError as e:   # 사용자가 토픽을 지웠으면 다시 만들어 한 번 더
+                    if not dest.get("term") or "thread" not in str(e).lower():
+                        raise
+                    ids = tg.send(text, silent=silent, chat=dest["chat"], thread=company_topic(dest["term"], renew=True))
+                for o in dest.get("also") or []:
+                    tg.send(text, silent=True, chat=o["chat"], thread=o.get("thread"))
             sent.update(key.split("|"))
             # 채널 메시지 번호 기록(나중에 고치거나 지울 때 씀) — 최근 500건만
             msgs = state.setdefault("msg", {})
@@ -575,7 +640,11 @@ def main():
         except Exception as e:
             print("전송 실패:", key, e)
 
-    if not dry and sent != before:   # 보낸 게 있을 때만 쓴다(GitHub 에서 불필요한 커밋 방지)
+    for k in ("topics", "general_named"):
+        if k in STATE and STATE[k] != state.get(k):
+            state[k] = STATE[k]
+            topics_changed = True
+    if not dry and (sent != before or topics_changed):   # 보낸 게 있을 때만 쓴다(GitHub 에서 불필요한 커밋 방지)
         state["sent"] = sorted(sent)
         os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
         with open(STATE_PATH, "w", encoding="utf-8") as f:
