@@ -20,7 +20,8 @@
     selected: Array.isArray(saved.selected) ? saved.selected.filter(function (x) { return typeof x === "string"; }).slice(0, MAX) : DEFAULT_SEL.slice(),
     range: RANGES.some(function (r) { return r[0] === saved.range; }) ? saved.range : "3Y",
     mode: saved.mode === "normalized" ? "normalized" : "units",
-    open: Array.isArray(saved.open) ? saved.open : ["company", "pension"]
+    open: Array.isArray(saved.open) ? saved.open : ["company", "pension"],
+    picker: saved.picker === true
   };
   var DATA = null, BY = {}, active = false, loading = false, error = "", renderId = 0;
   function store() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
@@ -177,29 +178,54 @@
   /* ── 표 ── */
   function n(v) { return finite(v) ? v.toLocaleString("ko-KR") : "—"; }
   function pct(a, b) { if (!finite(a) || !finite(b) || !b) return ""; var v = (a / b - 1) * 100; return (v >= 0 ? "+" : "") + v.toFixed(1) + "%"; }
+  // 분기 말 날짜 → 회사 결산기 표기(2월 결산, 결산연도 기준): 2026-08-31 → FY27.2Q
+  function fyLabel(d) { var y = +d.slice(0, 4), m = +d.slice(5, 7), q = {5: 1, 8: 2, 11: 3, 2: 4}[m]; if (!q) return d.slice(0, 7); return "FY" + String(q === 4 ? y : y + 1).slice(2) + "." + q + "Q"; }
+  // 기간을 가로(왼쪽→오른쪽 = 과거→최근)로 놓는 표. cols: [{head, sub, cls}], rows: [{label, cells:[html], cls}]
+  function wideTable(cols, rows, id) {
+    return '<div class="fm-table-wrap rk-wrap bc-wide-wrap" id="' + id + '"><table class="fm-table bc-wide"><thead><tr><th>구분</th>' +
+      cols.map(function (c) { return '<th class="' + (c.cls || "") + '">' + esc(c.head) + (c.sub ? "<small>" + esc(c.sub) + "</small>" : "") + "</th>"; }).join("") + "</tr></thead><tbody>" +
+      rows.map(function (r) { return '<tr class="' + (r.cls || "") + '"><td>' + esc(r.label) + "</td>" + r.cells.map(function (c, i) { return '<td class="' + (cols[i].cls || "") + '">' + c + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody></table></div>";
+  }
+  function scrollRight() { host.querySelectorAll(".bc-wide-wrap").forEach(function (w) { w.scrollLeft = w.scrollWidth; }); }
   function headcountTable() {
-    var rows = (DATA.headcount || []).slice().reverse(), byd = {};
-    (DATA.headcount || []).forEach(function (r) { byd[r.date] = r; });
-    var g = (DATA.series || []).filter(function (s) { return s.id === "gd_consultants"; })[0], gp = g ? good(g.points) : [], gt = (DATA.series || []).filter(function (s) { return s.id === "gd_total"; })[0];
-    var gtv = gt ? good(gt.points) : [];
-    var guideRows = gp.map(function (p) { var tt = gtv.filter(function (q) { return q.date === p.date; })[0]; return '<tr class="bc-guide"><td>' + esc(p.date) + ' <small>전망</small></td><td class="rk-num">' + (p.range ? n(p.range[0]) + "~" + n(p.range[1]) : n(p.value)) + '</td><td class="rk-num">' + (tt ? "약 " + n(tt.value) : "—") + '</td><td class="rk-num">—</td><td class="rk-num">—</td><td class="rk-num">—</td><td>' + esc(p.announced || "") + "</td><td>회사 전망</td></tr>"; }).join("");
-    var body = rows.map(function (r) {
-      var y = r.date.split("-"), ly = (+y[0] - 1) + "-" + y[1] + "-", prev = Object.keys(byd).filter(function (k) { return k.indexOf(ly) === 0; })[0];
-      var non = finite(r.total) && finite(r.consultants) ? r.total - r.consultants : null;
-      return "<tr><td>" + esc(r.date) + '</td><td class="rk-num">' + n(r.consultants) + '</td><td class="rk-num">' + n(r.total) + '</td><td class="rk-num">' + n(non) + '</td><td class="rk-num">' + (finite(non) && r.total ? (non / r.total * 100).toFixed(1) + "%" : "—") + '</td><td class="rk-num">' + esc(prev ? pct(r.consultants, byd[prev].consultants) : "") + "</td><td>" + esc(r.announced || "") + "</td><td>" + esc((r.basis || "") + (r.auto ? " · 자동 판독" : "")) + "</td></tr>";
-    }).join("");
-    return '<div class="fm-history-heading"><b>회사 공시 인원 (분기 말)</b><span>결산 보충자료 · 실적 발표 때 같이 나옴 · 새 발표는 자동 반영</span></div><div class="fm-table-wrap rk-wrap rk-scroll"><table class="fm-table rk-table"><thead><tr><th>분기 말</th><th>컨설턴트</th><th>총사원</th><th>비컨설턴트</th><th>비컨 비중</th><th>컨설턴트 YoY</th><th>발표일</th><th>기준</th></tr></thead><tbody>' + guideRows + body + "</tbody></table></div>";
+    var hc = DATA.headcount || [], byd = {};
+    hc.forEach(function (r) { byd[r.date] = r; });
+    var g = (DATA.series || []).filter(function (s) { return s.id === "gd_consultants"; })[0], gp = g ? good(g.points) : [];
+    var gt = (DATA.series || []).filter(function (s) { return s.id === "gd_total"; })[0], gtv = gt ? good(gt.points) : [];
+    var cols = hc.map(function (r) { return {head: fyLabel(r.date), sub: r.date}; }).concat(gp.map(function (p) { return {head: fyLabel(p.date) + " 전망", sub: p.date, cls: "bc-guide"}; }));
+    var yoyOf = function (r) { var y = r.date.split("-"), ly = (+y[0] - 1) + "-" + y[1] + "-", k = Object.keys(byd).filter(function (x) { return x.indexOf(ly) === 0; })[0]; return k ? pct(r.consultants, byd[k].consultants) : ""; };
+    var non = function (r) { return finite(r.total) && finite(r.consultants) ? r.total - r.consultants : null; };
+    var gTot = function (p) { var tt = gtv.filter(function (q) { return q.date === p.date; })[0]; return tt ? "약 " + n(tt.value) : "—"; };
+    var dash = function () { return "—"; };
+    var rows = [
+      {label: "컨설턴트(명)", cls: "bc-strong", cells: hc.map(function (r) { return n(r.consultants); }).concat(gp.map(function (p) { return p.range ? n(p.range[0]) + "~" + n(p.range[1]) : n(p.value); }))},
+      {label: "컨설턴트 YoY", cells: hc.map(function (r) { return esc(yoyOf(r)) || "—"; }).concat(gp.map(dash))},
+      {label: "총사원(명)", cells: hc.map(function (r) { return n(r.total); }).concat(gp.map(gTot))},
+      {label: "비컨설턴트(명)", cells: hc.map(function (r) { return n(non(r)); }).concat(gp.map(dash))},
+      {label: "비컨설턴트 비중", cells: hc.map(function (r) { var x = non(r); return finite(x) && r.total ? (x / r.total * 100).toFixed(1) + "%" : "—"; }).concat(gp.map(dash))},
+      {label: "발표일", cls: "bc-meta", cells: hc.map(function (r) { return esc(r.announced || "—"); }).concat(gp.map(function (p) { return esc(p.announced || "—"); }))},
+      {label: "기준", cls: "bc-meta", cells: hc.map(function (r) { return esc((r.basis || "") + (r.auto ? " · 자동" : "")); }).concat(gp.map(function () { return "회사 전망"; }))}
+    ];
+    return '<div class="fm-history-heading"><b>회사 공시 인원 (분기 말)</b><span>결산 보충자료 · 왼쪽이 과거, 오른쪽이 최근 · 새 발표는 자동 반영</span></div>' + wideTable(cols, rows, "bc-hc-table");
   }
   function pensionTable() {
-    var ent = DATA.entities || [], rows = (DATA.nenkin || []).slice().reverse();
-    var head = "<tr><th>기준일</th><th>사이트 갱신</th>" + ent.map(function (e) { return "<th>" + esc(e.name.replace("株式会社", "").replace(/\s*\(.*\)/, "")) + "<br><small>" + esc(e.corp_no) + "</small></th>"; }).join("") + "<th>합계</th><th>직전 대비</th></tr>";
-    var all = DATA.nenkin || [];
-    var body = rows.map(function (r) {
-      var tot = ent.reduce(function (a, e) { return finite(r[e.id]) ? a + r[e.id] : a; }, 0), i = all.indexOf(r), pr = i > 0 ? all[i - 1] : null;
-      var ptot = pr ? ent.reduce(function (a, e) { return finite(pr[e.id]) ? a + pr[e.id] : a; }, 0) : null;
-      return "<tr><td>" + esc(r.date) + "</td><td>" + esc(r.updated || "") + "</td>" + ent.map(function (e) { return '<td class="rk-num">' + n(r[e.id]) + "</td>"; }).join("") + '<td class="rk-num"><b>' + n(tot) + '</b></td><td class="rk-num">' + (ptot ? (tot - ptot >= 0 ? "+" : "") + n(tot - ptot) + "명" : "—") + "</td></tr>";
-    }).join("");
-    return '<div class="fm-history-heading"><b>연금 피보험자 (법인별)</b><span>일본연금기구 · 매달 기록 · 회사 공시 총사원과 기준이 달라 변화를 볼 것</span></div><div class="fm-table-wrap rk-wrap"><table class="fm-table rk-table"><thead>' + head + "</thead><tbody>" + body + "</tbody></table></div>";
+    var ent = DATA.entities || [], all = DATA.nenkin || [];
+    var totOf = function (r) { return ent.reduce(function (a, e) { return finite(r[e.id]) ? a + r[e.id] : a; }, 0); };
+    var cols = all.map(function (r) { return {head: r.date.slice(0, 7), sub: r.date + " 기준"}; });
+    var rows = ent.map(function (e) { return {label: e.name.replace("株式会社", "").replace(/\s*\(.*\)/, "") + " (" + e.corp_no + ")", cells: all.map(function (r) { return n(r[e.id]); })}; });
+    rows.push({label: "합계(명)", cls: "bc-strong", cells: all.map(function (r) { return n(totOf(r)); })});
+    rows.push({label: "직전 대비", cells: all.map(function (r, i) { if (!i) return "—"; var d = totOf(r) - totOf(all[i - 1]); return (d >= 0 ? "+" : "") + n(d); })});
+    rows.push({label: "사이트 갱신일", cls: "bc-meta", cells: all.map(function (r) { return esc(r.updated || "—"); })});
+    return '<div class="fm-history-heading"><b>연금 피보험자 (법인별)</b><span>일본연금기구 · 매달 기록 · 회사 공시 총사원과 기준이 달라 변화를 볼 것</span></div>' + wideTable(cols, rows, "bc-nk-table");
+  }
+  function dodaTable() {
+    var all = DATA.doda || [];
+    if (!all.length) return "";
+    var cols = all.map(function (r) { return {head: r.date.slice(0, 7), sub: r.date}; });
+    var rows = [{label: "구인 공고(건)", cls: "bc-strong", cells: all.map(function (r) { return n(r.count); })},
+      {label: "직전 대비", cells: all.map(function (r, i) { return i ? pct(r.count, all[i - 1].count) || "—" : "—"; })},
+      {label: "키워드", cls: "bc-meta", cells: all.map(function (r) { return esc(r.keyword || ""); })}];
+    return '<div class="fm-history-heading"><b>doda 구인 공고</b><span>매달 기록 · 공고 수(채용 인원 아님)</span></div>' + wideTable(cols, rows, "bc-doda-table");
   }
   function sitesTable() {
     var latest = {"일본연금기구 適用事業所検索": (function () { var r = (DATA.nenkin || []).slice(-1)[0]; if (!r) return "—"; var t = (DATA.entities || []).reduce(function (a, e) { return finite(r[e.id]) ? a + r[e.id] : a; }, 0); return n(t) + "명 (" + r.date + ")"; })(),
@@ -234,20 +260,23 @@
         "</div>" +
         '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 주가 매일 자동, 회사 공시 인원은 실적 발표 뒤 자동, 연금·구인은 월 1회 수동</span>" +
           (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="bc-refresh">새 데이터 확인 ↻</button></div>' +
-        '<div class="fm-selectors rk-selectors">' + (DATA.groups || []).map(selectorBlock).join("") + "</div>" +
         '<div class="fm-toolbar"><div class="fm-segment" aria-label="차트 기간">' + RANGES.map(function (r) { return '<button type="button" data-bc-range="' + r[0] + '" class="' + (state.range === r[0] ? "on" : "") + '">' + (r[0] === "ALL" ? "전체" : r[0]) + "</button>"; }).join("") + "</div>" +
           '<label class="fm-view-options">비교 방식<select id="bc-mode"><option value="units"' + (state.mode === "units" ? " selected" : "") + '>실제 단위 · 같은 단위는 한 축</option><option value="normalized"' + (state.mode === "normalized" ? " selected" : "") + ">흐름 비교 · 0–100</option></select></label></div>" +
         '<div class="fm-chart rk-chart" id="bc-chart"></div><div class="fm-legend" id="bc-legend"></div>' +
+        '<details class="bc-picker" id="bc-picker"' + (state.picker ? " open" : "") + '><summary><b>지표 고르기</b><small>' + DATA.series.filter(function (s) { return good(s.points).length; }).length + "개 중 " + selected().length + '개 표시 중 · 눌러서 ' + (state.picker ? "접기" : "펼치기") + '</small><svg class="fm-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary>' +
+          '<div class="fm-selectors rk-selectors">' + (DATA.groups || []).map(selectorBlock).join("") + "</div></details>" +
         '<p class="fm-note">파란 선이 주가(왼쪽 축, 엔)입니다. 인원 지표는 같은 단위(명)끼리 오른쪽 축 하나를 같이 써서 크기를 바로 비교할 수 있어요. 회사 공시 인원은 분기 말에 점을 찍었고, 옅은 세로 점선은 그 숫자를 발표한 실적 발표일입니다. 회사 전망은 마지막 실적에서 점선으로 이었고 범위는 세로 막대로 표시했습니다. 회사 컨설턴트 수는 1Q·2Q에 연수 중인 신입을 빼고, 3Q·4Q에 넣어서 셉니다.</p>' +
-        headcountTable() + pensionTable() + sitesTable() +
+        headcountTable() + pensionTable() + dodaTable() + sitesTable() +
         '<p class="fm-sources">수집: fetch_baycurrent.py — 주가(Yahoo Finance 6532.T) 매일 자동. 회사 공시 인원은 일본 실적 수집기가 만든 실적 리포트의 결산 보충자료 PDF(TDnet)를 읽어 자동 추가합니다. 연금기구 피보험자 수와 doda 구인 건수는 data_sources/baycurrent_manual.json 에 매달 손으로 추가합니다(연금기구 검색은 결과 전재·2차 이용 금지).</p>' +
       "</article>";
     host.querySelectorAll("[data-bc-toggle]").forEach(function (c) { c.onchange = function () { toggle(c.dataset.bcToggle); }; });
     host.querySelectorAll("[data-bc-range]").forEach(function (b) { b.onclick = function () { state.range = b.dataset.bcRange; store(); render(); }; });
     host.querySelectorAll("details[data-bc-group]").forEach(function (d) { d.ontoggle = function () { var g = d.dataset.bcGroup, i = state.open.indexOf(g); if (d.open && i < 0) state.open.push(g); if (!d.open && i >= 0) state.open.splice(i, 1); store(); }; });
+    var pk = document.getElementById("bc-picker"); if (pk) pk.ontoggle = function () { state.picker = pk.open; store(); var sm = pk.querySelector("summary small"); if (sm) sm.textContent = sm.textContent.replace(/눌러서 (접기|펼치기)/, "눌러서 " + (pk.open ? "접기" : "펼치기")); };
     var mode = document.getElementById("bc-mode"); if (mode) mode.onchange = function () { state.mode = mode.value; store(); render(); };
     var b = document.getElementById("bc-refresh"); if (b) b.onclick = function () { load(true); };
     drawChart();
+    scrollRight(); requestAnimationFrame(scrollRight); setTimeout(scrollRight, 400);
   }
   function load(manual) {
     if (loading) return; loading = true;
