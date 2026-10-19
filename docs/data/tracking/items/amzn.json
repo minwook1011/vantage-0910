@@ -3,6 +3,22 @@
  "slug": "amzn",
  "items": [
   {
+   "id": "ab47943ddaeb",
+   "kind": "news",
+   "headline": "아마존, 자체 인공지능 칩 트레이니엄에서 파이토치 코드를 고치지 않고 돌리는 '토치뉴런' 무료 공개 — 엔비디아 쿠다의 소프트웨어 우위 겨냥",
+   "bullets": [
+    "아마존 칩 설계 자회사 안나푸르나랩스가 트레이니엄용 파이토치 실행 도구 '토치뉴런'을 무료 오픈소스로 공개한다. 설정 한 줄만 바꾸면 기존 코드를 다시 쓰지 않고 돌릴 수 있다.",
+    "지난해 말부터 비공개 시험 중이었고 이번에 모든 개발자에게 공개 시험판으로 연다. 로봇·월드모델·음성 인공지능 등 초기 고객 30곳 넘게 쓰고 있다고 회사가 밝혔다.",
+    "파이토치는 대부분의 인공지능 개발자가 쓰는 메타 주도 오픈소스 틀이다. 엔비디아는 10년 넘게 쿠다로 파이토치를 자사 칩에서 잘 돌게 만들어 왔다."
+   ],
+   "summary": "엔비디아가 인공지능 칩 시장을 쥔 핵심 이유 중 하나는 하드웨어보다 소프트웨어다. 개발자 대부분이 파이토치로 모델을 짜고, 그 코드를 가장 잘 돌리는 게 엔비디아 칩과 쿠다 조합이라 다른 칩으로 옮기려면 코드를 손봐야 했다. 아마존은 이 전환 비용을 없애 트레이니엄으로 고객을 끌어오려는 것이다.\n\n아마존은 바꿔 타면 비용을 크게 아낄 수 있다고 주장하지만, 구체적인 절감 폭이나 성능 비교 숫자는 이번 발표에 나오지 않았다. 초기 고객 30여 곳도 회사 측 설명이다.\n\n남은 쟁점은 실제 성능과 호환 범위다. 공개 시험판 단계라 대형 모델 학습에서 쿠다 수준의 안정성과 속도를 내는지는 개발자들 평가가 나와야 확인된다.",
+   "title": "Amazon says its AI chips will work with popular coding language, challenging Nvidia",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOUGVNVWtyU1BHU0pGZFJTZk9RV3NHOXBoSHVqaHVEeXN1TEJveTNIVzQ4eGkxZ2RWbER1clItSk16ODNaVnBFbWhKamR1RURGdG90X3F0ZEF2bko3SW5mUGxjZzBKVm50UFI5eUp2ampsV08ySWlMUEZyQmRUd1M1NF91UGJoZWxiVmR5NGRCMmNNM0V2R3pLMVhBT05EbmRjY0dxMXlSNklIVE9xeG5DQWNPcjVXY1ZBRTBrVU9RMTNPaVJOUHpjS2RrZ3huLXlZa2c?oc=5",
+   "published": "2026-10-19 22:03 KST",
+   "written": "2026-10-19 22:46 KST"
+  },
+  {
    "id": "f091ef1b9757",
    "kind": "news",
    "headline": "아마존, 인디애나 소형모듈원전 960메가와트 개발에 자금 댄다 — AEP·엑스에너지와 공동개발 계약, 완공되면 전력 전량 장기 구매",
@@ -114,5 +130,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-19 21:46 KST"
+ "updated": "2026-10-19 22:46 KST"
 }
