@@ -186,39 +186,30 @@ def cds():
 CO_REF = {"6532": "docs/data/baycurrent.json"}  # 회사 공시 분기 인원·전망이 있는 기업 (데이터 허브 워크벤치 파일)
 
 
-def company_ref(cur):
-    """연금 가입자 합계를 직전 분기 회사 공시 총사원·다음 분기 회사 전망과 비교하는 줄(2026-10-19 사용자). 자료가 없으면 빈 목록."""
-    p = CO_REF.get(cur.get("code"))
-    d = load(p) if p else None
-    if not d:
-        return []
-    md = lambda s: s[5:].replace("-", "/")
-    hc = [h for h in d.get("headcount") or [] if isinstance(h.get("total"), (int, float))]
-    out = []
-    if hc:
-        h = hc[-1]
-        ch = cur["total"] - h["total"]
-        out.append(f"직전 분기 회사 공시 총사원 {h['total']:,}명 ({md(h['date'])} 말"
-                   + (f", {md(h['announced'])} 발표" if h.get("announced") else "") + f") → 연금 합계 {ch:+,}명 · {ch / h['total'] * 100:+.1f}%"
-                   + (f" · 컨설턴트 {h['consultants']:,}명" if h.get("consultants") else ""))
-    sr = {s["id"]: s for s in d.get("series") or []}
-    gt = [p for p in (sr.get("gd_total") or {}).get("points") or [] if p["date"] >= (hc[-1]["date"] if hc else "")]
-    gc = {p["date"]: p for p in (sr.get("gd_consultants") or {}).get("points") or []}
-    if gt:
-        g = gt[0]
-        rest = g["value"] - cur["total"]
-        rng = gc.get(g["date"], {}).get("range")
-        out.append(f"다음 분기 회사 전망 총사원 약 {g['value']:,.0f}명 ({md(g['date'])} 말) → 남은 {rest:+,.0f}명"
-                   + (f" · 컨설턴트 전망 {rng[0]:,}~{rng[1]:,}명" if rng else ""))
-    if out:
-        out.append("<i>※ 회사 공시와 연금 가입자는 기준(임원·파견·기준일)이 달라 수준보다 변화로 볼 것</i>")
-    return out
+def co_kpi(code, c):
+    """직전 분기 회사 공시 인원(k)·다음 분기 회사 전망(g) — 데이터 허브 워크벤치 파일(CO_REF, 결산 때 자동 갱신)이 있으면 그걸,
+    없으면 data_sources/headcount_watch.json 의 kpi·guide 를 쓴다. k={q,end,total,consultants} g={q,end,total,consultants}"""
+    d = load(CO_REF[code]) if code in CO_REF else None
+    if d:
+        hc = [h for h in d.get("headcount") or [] if isinstance(h.get("total"), (int, float))]
+        sr = {x["id"]: x for x in d.get("series") or []}
+        k = {"q": "직전 분기", "end": hc[-1]["date"], "total": hc[-1]["total"], "consultants": hc[-1].get("consultants")} if hc else None
+        gt = [x for x in (sr.get("gd_total") or {}).get("points") or [] if not k or x["date"] > k["end"]]
+        gc = {x["date"]: x for x in (sr.get("gd_consultants") or {}).get("points") or []}
+        g = None
+        if gt:
+            rng = gc.get(gt[0]["date"], {}).get("range")
+            g = {"q": "다음 분기", "end": gt[0]["date"], "total": gt[0]["value"],
+                 "consultants": f"{rng[0]:,}~{rng[1]:,}" if rng else (f"{gc[gt[0]['date']]['value']:,.0f}" if gt[0]["date"] in gc else None)}
+        if k or g:
+            return k, g
+    return ((c.get("kpi") or [None])[-1], c.get("guide"))
 
 
 def headcount():
     """일본 기업 인력 수(후생연금 가입자, 2026-10-19 사용자) — 연금기구 데이터 갱신일마다 fetch_headcount.py 가 기록하면 바로 뉴스방으로"""
     d = load("docs/data/tracking/headcount.json") or {}
-    labels = {h: lab for c in d.get("companies") or [] for h, lab in (c.get("labels") or {}).items()}
+    comps = {c["code"]: c for c in (load("data_sources/headcount_watch.json") or {}).get("companies") or []}   # 공시 인원·회사 전망
     hist = d.get("history") or []
     out = []
     for code in sorted({h["code"] for h in hist}):
@@ -227,19 +218,33 @@ def headcount():
         prev = hs[-2] if len(hs) > 1 else None
         yago = next((h for h in reversed(hs) if h["date"] <= f"{int(cur['date'][:4]) - 1}{cur['date'][4:]}"), None)
 
-        def build(cur=cur, prev=prev, yago=yago):
-            def diff(a):
-                ch = cur["total"] - a["total"]
-                return f"{ch:+,}명 · {ch / a['total'] * 100:+.1f}%"
-            lines = [f"👥 <b>{esc(cur['name'])}({cur['code']}) 인력</b> · 후생연금 가입자 · {cur['date'][5:].replace('-', '/')} 갱신",
-                     f"합계 <b>{cur['total']:,}명</b>" + (f" (전월 {diff(prev)})" if prev else " (첫 기록 — 다음 갱신부터 전월 비교)")]
+        def build(cur=cur, prev=prev, yago=yago, c=comps.get(code) or {}):
+            n = cur["total"]
+            pct = lambda a, b: f"{(a - b) / b * 100:+.1f}%"
+            mon = lambda e: f"{int(e[5:7])}월 말"
+            lines = [f"👥 <b>{esc(cur['name'])}({cur['code']}) 인력 · 후생연금 가입자</b>",
+                     f"<i>일본연금기구 {cur['date'][5:].replace('-', '/')} 갱신</i>", "",
+                     f"<b>지금 {n:,}명</b>" + (f"  전월 {n - prev['total']:+,} ({pct(n, prev['total'])})" if prev else "  (첫 기록 — 다음 갱신부터 전월 비교)")]
             if yago:
-                lines.append(f"1년 전 대비 {diff(yago)}")
+                lines.append(f"1년 전 대비 {n - yago['total']:+,} ({pct(n, yago['total'])})")
+            # 회사 공시(총사원 = 연금 가입자와 같은 기준)와 다음 분기 회사 전망
+            k, g = co_kpi(cur["code"], c)
+            if k:
+                lines += ["", f"📌 직전 분기 실적 ({k['q']} · {mon(k['end'])})",
+                          f"   총사원 {k['total']:,}명 → 지금 <b>{n - k['total']:+,}</b> ({pct(n, k['total'])})"]
+            if g:
+                left = round(g["total"] - n)
+                prog = f" · 진척 {(n - k['total']) / (g['total'] - k['total']) * 100:.0f}%" if k and g["total"] != k["total"] else ""
+                lines += [f"🎯 다음 분기 회사 전망 ({g['q']} · {mon(g['end'])})",
+                          f"   총사원 약 {g['total']:,.0f}명 → " + (f"<b>남은 {left:+,}명</b>{prog}" if left > 0 else f"<b>이미 넘음 ({-left:+,}명)</b>")]
+            if k and g and k.get("consultants") and g.get("consultants"):
+                lines.append(f"   (컨설턴트 {k['consultants']:,} → 전망 {g['consultants']}명)")
             pr = {r["houjin"]: r["n"] for r in (prev or {}).get("rows") or []}
-            lines.append(" · ".join(f"{esc(labels.get(r['houjin']) or r['name'])} {r['n']:,}" + (f"({r['n'] - pr[r['houjin']]:+,})" if r["houjin"] in pr else "")
-                                    for r in cur["rows"]))
-            lines += company_ref(cur)
-            lines += ["", f"<i>일본연금기구 적용사업소 검색 · 한 달에 한 번 갱신 · 직원 수의 대리 지표(파견·임원 등 빠짐)</i>", f"#{hashtag(cur['name'])}"]
+            labels = c.get("labels") or {}
+            lines += ["", "🏢 " + " · ".join(f"{esc(labels.get(r['houjin']) or r['name'])} {r['n']:,}" + (f"({r['n'] - pr[r['houjin']]:+,})" if r["houjin"] in pr else "")
+                                             for r in cur["rows"]),
+                      "", "<i>연금 가입자 ≈ 총사원(본사·연수 중 신입 포함, 파견·임원 제외) · 결산보다 먼저 채용 속도를 보는 지표</i>",
+                      f"#{hashtag(cur['name'])}"]
             dest = route("news")
             return (None, "\n".join(lines), dest) if dest else (None, None)
         out.append((f"hc:{code}:{cur['date']}", NOW, build))
