@@ -3,6 +3,22 @@
  "slug": "gartner",
  "items": [
   {
+   "id": "0cd126e4da80",
+   "kind": "news",
+   "headline": "가트너 \"인공지능으로 큰 성과 봤다는 최고정보책임자 13%뿐\" — 사례 성공 확률은 여전히 5분의 1",
+   "bullets": [
+    "가트너가 최고정보책임자와 기술 임원 2,002명을 조사했다(2026년 5~7월). 인공지능으로 큰 가치나 사업 전환을 이뤘다는 답은 13%에 그쳤다.",
+    "인공지능 활용 사례는 지난 2년 새 빠르게 늘었다. 하지만 하나가 성공할 확률은 여전히 5번에 1번꼴이다.",
+    "58%는 인공지능 비용을 줄이라는 압박이 커졌다고 답했다."
+   ],
+   "summary": "올랜도에서 열린 가트너 행사에서 발표된 2027년 최고정보책임자 조사 결과다. 가트너는 숫자를 늘리는 게 가치는 아니라고 정리했다. 성과를 내는 쪽은 안 되는 사업을 언제 멈출지 기준을 세워 둔 기업이라는 분석이다.\n\n실제로 시험 사업을 실제 운영으로 넘기기 전에 멈추는 기준이 있는 곳은 31%뿐이다. 이미 운영 중인 저효율 인공지능을 접는 기준이 있는 곳은 17%에 그쳤다. 기업 인공지능 지출이 계속 늘어날지 볼 때, 투자 대비 효과를 따지는 목소리가 커지고 있다는 신호다.",
+   "title": "Gartner Survey Finds Only 13% of CIOs Say Their Enterprise Has Realized Significant or Transformational Value from AI",
+   "source": "Financial Times",
+   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNYmUtOGhkUmRNTHp1UGxEUU1mWi1FLXBvQWlEeFphQkRoRWdoR0FPUjdFVUFXaXBwd3VzVVIyOUF3ZzZUNC13dk1VNnY2TVdtMG9kaXZSbnNpMV9nUVp5aTBmTmU0WUFQeGQ2RmlSbGExZnV2bFllQjgzeURfMzRmanBHTlhZR29FeUVIeHFQclBKc3ZZa2hmY3I2ZDJONXFoRlVPUFJ3?oc=5",
+   "published": "2026-10-20 01:00 KST",
+   "written": "2026-10-20 01:17 KST"
+  },
+  {
    "id": "3dfbaffaf156",
    "kind": "news",
    "headline": "가트너 \"메모리 공급난 2028년까지 간다\" — 서버 값 1년 새 2~4배, 2030년엔 비인공지능 서버 원가의 3분의 2가 메모리",
@@ -35,5 +51,5 @@
    "written": "2026-10-15 14:49 KST"
   }
  ],
- "updated": "2026-10-17 03:48 KST"
+ "updated": "2026-10-20 01:17 KST"
 }
