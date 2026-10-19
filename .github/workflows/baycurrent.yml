@@ -1,12 +1,12 @@
 name: baycurrent-daily
 
 # 베이커런트(6532) 워크벤치 → docs/data/baycurrent.json (cron 은 UTC, 괄호는 한국시간)
-#   07:45 UTC (16:45 KST) 평일  도쿄 장 마감 뒤 주가
+#   07:45 UTC (16:45 KST) 매일  주가(평일) + 공식 채용 사이트 직무·설명회 수(매일 쌓음)
 #   12:45 UTC (21:45 KST) 평일  15:30 실적 발표 → PC 일본 실적 수집기가 리포트를 올린 뒤, 결산 보충자료에서 회사 공시 인원 자동 판독
 # 연금기구 피보험자 수·doda 구인 건수는 data_sources/baycurrent_manual.json 에 매달 손으로 추가한다.
 on:
   schedule:
-    - cron: "45 7 * * 1-5"
+    - cron: "45 7 * * *"
     - cron: "45 12 * * 1-5"
   push:
     branches: [main]
@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       only:
-        description: "수집기만 골라 실행 (비우면 전체). 예: price,deck"
+        description: "수집기만 골라 실행 (비우면 전체). 예: price,deck,careers"
         required: false
         default: ""
 permissions:
@@ -48,7 +48,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/baycurrent.json data_sources/baycurrent_auto.json
+          git add docs/data/baycurrent.json data_sources/baycurrent_auto.json data_sources/baycurrent_careers.json
           if ! git diff --cached --quiet; then
             git commit -m "data: 베이커런트 인력·주가 갱신 $(TZ=Asia/Seoul date +'%Y-%m-%d %H:%M') KST"
             for attempt in 1 2 3; do

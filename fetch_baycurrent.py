@@ -5,11 +5,12 @@
 자동(매일): 주가(야후 6532.T 일간).
 자동(실적 발표 뒤): 회사 공시 인원 — 일본 실적 수집기가 만든 docs/data/jp/reports/6532-*.json 의 결산 보충자료(deck) PDF를
                    TDnet·JPX 아카이브에서 받아 컨설턴트 수·총사원 수를 읽는다. 한 번 읽은 문서는 data_sources/baycurrent_auto.json 에 남겨 다시 받지 않는다.
+자동(매일): 회사 공식 채용 사이트 사이트맵 → 경력 채용 직무 수·채용 설명회 수 (data_sources/baycurrent_careers.json 에 날짜별로 쌓음).
 수동(월 1회): 일본연금기구 피보험자 수(법인 3곳), doda 구인 건수 → data_sources/baycurrent_manual.json.
               연금기구 검색은 결과 전재·2차 이용 금지라 자동 수집하지 않는다.
 빈 값은 0으로 채우지 않는다. 한 소스가 실패하면 직전 값을 그대로 둔다.
 
-사용: python fetch_baycurrent.py [--only price,deck]
+사용: python fetch_baycurrent.py [--only price,deck,careers]
 """
 import argparse
 import calendar
@@ -154,6 +155,47 @@ def merge_headcount(manual_rows, auto_rows):
     return clean
 
 
+CAREERS = ROOT / "data_sources" / "baycurrent_careers.json"
+
+
+def fetch_careers():
+    """회사 공식 채용 사이트(robots.txt 허용)의 사이트맵으로 경력 채용 직무 수와 채용 설명회 수를 하루 한 번 기록한다.
+    doda 등 구인 사이트는 robots.txt 가 검색 결과 페이지를 막아 자동 수집하지 않는다."""
+    from urllib.parse import unquote  # noqa: PLC0415
+    locs = lambda name: re.findall(r"<loc>([^<]+)</loc>", get(f"https://www.baycurrent.co.jp/{name}-sitemap.xml").decode("utf-8", "replace"))
+    roles = sorted({unquote(u).rstrip("/").split("/mid-career/")[-1] for u in locs("recruit-list") if "/mid-career/" in u})
+    events = [unquote(u).rstrip("/").split("/career-event/")[-1] for u in locs("career-event") if "/career-event/" in unquote(u).rstrip("/") + "/x"]
+    events = [e for e in events if e and not e.startswith("http")]
+    today = dt.datetime.now(KST).strftime("%Y-%m-%d")
+    dated = [e for e in events if re.match(r"\d{8}", e)]
+    upcoming = [e for e in dated if f"{e[:4]}-{e[4:6]}-{e[6:8]}" >= today]
+    month = today[:7].replace("-", "")
+    snap = {"date": today, "roles": len(roles), "events": len(events), "events_upcoming": len(upcoming),
+            "events_this_month": sum(1 for e in dated if e[:6] == month), "role_list": roles}
+    hist = json.loads(CAREERS.read_text(encoding="utf-8")) if CAREERS.exists() else []
+    hist = [h for h in hist if h["date"] != today] + [snap]
+    hist.sort(key=lambda h: h["date"])
+    CAREERS.write_text(json.dumps(hist, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"[careers] 직무 {len(roles)} · 설명회 {len(events)} (예정 {len(upcoming)})")
+    return hist
+
+
+def careers_series(hist):
+    url = "https://www.baycurrent.co.jp/careers/"
+    s = lambda id, label, key, unit, note="": series(id, "jobs", label, unit, [{"date": h["date"], "value": h[key]} for h in hist if isinstance(h.get(key), (int, float))],
+                                                     "베이커런트 채용 사이트", url, "매일 1회", note)
+    out = [s("cr_roles", "공식 경력 채용 직무 수", "roles", "개", "직무·업계별 모집 페이지 수 (사이트맵)"),
+           s("cr_events_upcoming", "예정된 채용 설명회 수", "events_upcoming", "건", "오늘 이후 날짜의 설명회"),
+           s("cr_events", "채용 설명회 페이지 누적", "events", "건", "지난 설명회 포함")]
+    # 직무 목록이 바뀐 날을 기록(새로 생긴·없어진 직무)
+    changes = []
+    for a, b in zip(hist, hist[1:]):
+        add, rem = sorted(set(b["role_list"]) - set(a["role_list"])), sorted(set(a["role_list"]) - set(b["role_list"]))
+        if add or rem:
+            changes.append({"date": b["date"], "added": add, "removed": rem})
+    return out, changes
+
+
 def next_event():
     try:
         d = json.loads(DATES.read_text(encoding="utf-8"))["dates"].get(CODE)
@@ -226,13 +268,22 @@ def main():
         except Exception as e:  # noqa: BLE001
             errors.append(f"deck: {e}")
             print(f"[fail] deck: {e}", file=sys.stderr)
+    careers = json.loads(CAREERS.read_text(encoding="utf-8")) if CAREERS.exists() else []
+    if not only or "careers" in only:
+        try:
+            careers = fetch_careers()
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"careers: {e}")
+            print(f"[fail] careers: {e}", file=sys.stderr)
+    cr_series, cr_changes = careers_series(careers)
     rows = merge_headcount(manual.get("company_headcount", []), auto)
     out = {"schema_version": 1, "generated_at": dt.datetime.now(KST).isoformat(timespec="seconds"),
            "company": manual["company"], "next_event": next_event(), "entities": manual["entities"], "sites": manual["sites"],
            "groups": [{"id": "company", "label": "회사 공시 인원 (분기)"}, {"id": "guidance", "label": "회사 전망"},
-                      {"id": "pension", "label": "연금 피보험자 (월간)"}, {"id": "jobs", "label": "구인 공고"}],
+                      {"id": "pension", "label": "연금 피보험자 (월간)"}, {"id": "jobs", "label": "채용 활동 (공식 사이트·구인 공고)"}],
            "headcount": rows, "nenkin": manual.get("nenkin", []), "doda": manual.get("doda", []),
-           "price": price, "series": build_series(manual, rows), "errors": errors}
+           "careers": {"latest": careers[-1] if careers else None, "changes": cr_changes},
+           "price": price, "series": build_series(manual, rows) + cr_series, "errors": errors}
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"saved {OUT} · series {len(out['series'])} · 분기 인원 {len(rows)} · price {len((price or {}).get('points', []))}")
 

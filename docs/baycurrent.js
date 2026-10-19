@@ -218,6 +218,18 @@
     rows.push({label: "사이트 갱신일", cls: "bc-meta", cells: all.map(function (r) { return esc(r.updated || "—"); })});
     return '<div class="fm-history-heading"><b>연금 피보험자 (법인별)</b><span>일본연금기구 · 매달 기록 · 회사 공시 총사원과 기준이 달라 변화를 볼 것</span></div>' + wideTable(cols, rows, "bc-nk-table");
   }
+  function careersTable() {
+    var c = (DATA.careers || {}).latest, ch = (DATA.careers || {}).changes || [];
+    if (!c) return "";
+    var hist = (DATA.series || []).filter(function (s) { return s.id === "cr_roles"; })[0], pts = hist ? good(hist.points) : [];
+    var up = (DATA.series || []).filter(function (s) { return s.id === "cr_events_upcoming"; })[0], upts = up ? good(up.points) : [];
+    var cols = pts.map(function (p) { return {head: p.date.slice(5), sub: p.date.slice(0, 4)}; });
+    var wide = pts.length ? wideTable(cols, [{label: "경력 채용 직무(개)", cls: "bc-strong", cells: pts.map(function (p) { return n(p.value); })},
+      {label: "예정 설명회(건)", cells: pts.map(function (p) { var q = upts.filter(function (x) { return x.date === p.date; })[0]; return q ? n(q.value) : "—"; })}], "bc-cr-table") : "";
+    var log = ch.length ? '<ul class="bc-cr-log">' + ch.slice(-12).reverse().map(function (x) { return "<li><b>" + esc(x.date) + "</b>" + (x.added.length ? ' <span class="rk-up">+ ' + esc(x.added.join(", ")) + "</span>" : "") + (x.removed.length ? ' <span class="rk-down">− ' + esc(x.removed.join(", ")) + "</span>" : "") + "</li>"; }).join("") + "</ul>" : '<p class="fm-note">직무 목록 변화는 매일 비교해 여기에 쌓입니다. 아직 바뀐 날이 없어요.</p>';
+    return '<div class="fm-history-heading"><b>공식 채용 사이트 (매일 기록)</b><span>baycurrent.co.jp 채용 페이지 사이트맵 · 직무가 새로 생기거나 없어지면 아래에 기록</span></div>' + wide +
+      '<div class="bc-roles">' + (c.role_list || []).map(function (r) { return "<span>" + esc(r) + "</span>"; }).join("") + "</div>" + log;
+  }
   function dodaTable() {
     var all = DATA.doda || [];
     if (!all.length) return "";
@@ -257,8 +269,9 @@
           kpi("총사원 (회사 공시)", finite(hc.total) ? fmt(hc.total, "명") : "—", hc.announced ? "발표 " + hc.announced : "") +
           kpi("연금 피보험자 (3개 법인)", finite(nkTot) ? fmt(nkTot, "명") : "—", nk ? nk.date + " 기준 · " + (nk.updated || "") + " 갱신" : "") +
           kpi("doda 구인 공고", (DATA.doda || []).length ? fmt(DATA.doda.slice(-1)[0].count, "건") : "—", (DATA.doda || []).length ? DATA.doda.slice(-1)[0].date : "") +
+          (function () { var c = (DATA.careers || {}).latest; return kpi("공식 채용 직무 (매일)", c ? fmt(c.roles, "") + "개" : "—", c ? "예정 설명회 " + c.events_upcoming + "건 · " + c.date : ""); })() +
         "</div>" +
-        '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 주가 매일 자동, 회사 공시 인원은 실적 발표 뒤 자동, 연금·구인은 월 1회 수동</span>" +
+        '<div class="fm-head-tools"><span class="fm-status"><i></i>' + esc(String(DATA.generated_at || "—").slice(0, 16).replace("T", " ")) + " 수집 · 주가 매일 자동, 회사 공시 인원은 실적 발표 뒤 자동, 공식 채용 사이트 매일 자동, 연금·doda는 월 1회 수동</span>" +
           (DATA.errors && DATA.errors.length ? '<span class="fm-divider"></span><span class="fm-status pending"><i></i>일부 소스 지연 ' + DATA.errors.length + "건 · 마지막 값 유지</span>" : "") + '<button type="button" id="bc-refresh">새 데이터 확인 ↻</button></div>' +
         '<div class="fm-toolbar"><div class="fm-segment" aria-label="차트 기간">' + RANGES.map(function (r) { return '<button type="button" data-bc-range="' + r[0] + '" class="' + (state.range === r[0] ? "on" : "") + '">' + (r[0] === "ALL" ? "전체" : r[0]) + "</button>"; }).join("") + "</div>" +
           '<label class="fm-view-options">비교 방식<select id="bc-mode"><option value="units"' + (state.mode === "units" ? " selected" : "") + '>실제 단위 · 같은 단위는 한 축</option><option value="normalized"' + (state.mode === "normalized" ? " selected" : "") + ">흐름 비교 · 0–100</option></select></label></div>" +
@@ -266,7 +279,7 @@
         '<details class="bc-picker" id="bc-picker"' + (state.picker ? " open" : "") + '><summary><b>지표 고르기</b><small>' + DATA.series.filter(function (s) { return good(s.points).length; }).length + "개 중 " + selected().length + '개 표시 중 · 눌러서 ' + (state.picker ? "접기" : "펼치기") + '</small><svg class="fm-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m4 7 6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></summary>' +
           '<div class="fm-selectors rk-selectors">' + (DATA.groups || []).map(selectorBlock).join("") + "</div></details>" +
         '<p class="fm-note">파란 선이 주가(왼쪽 축, 엔)입니다. 인원 지표는 같은 단위(명)끼리 오른쪽 축 하나를 같이 써서 크기를 바로 비교할 수 있어요. 회사 공시 인원은 분기 말에 점을 찍었고, 옅은 세로 점선은 그 숫자를 발표한 실적 발표일입니다. 회사 전망은 마지막 실적에서 점선으로 이었고 범위는 세로 막대로 표시했습니다. 회사 컨설턴트 수는 1Q·2Q에 연수 중인 신입을 빼고, 3Q·4Q에 넣어서 셉니다.</p>' +
-        headcountTable() + pensionTable() + dodaTable() + sitesTable() +
+        headcountTable() + pensionTable() + careersTable() + dodaTable() + sitesTable() +
         '<p class="fm-sources">수집: fetch_baycurrent.py — 주가(Yahoo Finance 6532.T) 매일 자동. 회사 공시 인원은 일본 실적 수집기가 만든 실적 리포트의 결산 보충자료 PDF(TDnet)를 읽어 자동 추가합니다. 연금기구 피보험자 수와 doda 구인 건수는 data_sources/baycurrent_manual.json 에 매달 손으로 추가합니다(연금기구 검색은 결과 전재·2차 이용 금지).</p>' +
       "</article>";
     host.querySelectorAll("[data-bc-toggle]").forEach(function (c) { c.onchange = function () { toggle(c.dataset.bcToggle); }; });
