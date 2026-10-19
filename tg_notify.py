@@ -183,6 +183,36 @@ def cds():
     return (f"cds:{asof}", gate, build)
 
 
+def headcount():
+    """일본 기업 인력 수(후생연금 가입자, 2026-10-19 사용자) — 연금기구 데이터 갱신일마다 fetch_headcount.py 가 기록하면 바로 뉴스방으로"""
+    d = load("docs/data/tracking/headcount.json") or {}
+    labels = {h: lab for c in d.get("companies") or [] for h, lab in (c.get("labels") or {}).items()}
+    hist = d.get("history") or []
+    out = []
+    for code in sorted({h["code"] for h in hist}):
+        hs = [h for h in hist if h["code"] == code]
+        cur = hs[-1]
+        prev = hs[-2] if len(hs) > 1 else None
+        yago = next((h for h in reversed(hs) if h["date"] <= f"{int(cur['date'][:4]) - 1}{cur['date'][4:]}"), None)
+
+        def build(cur=cur, prev=prev, yago=yago):
+            def diff(a):
+                ch = cur["total"] - a["total"]
+                return f"{ch:+,}명 · {ch / a['total'] * 100:+.1f}%"
+            lines = [f"👥 <b>{esc(cur['name'])}({cur['code']}) 인력</b> · 후생연금 가입자 · {cur['date'][5:].replace('-', '/')} 갱신",
+                     f"합계 <b>{cur['total']:,}명</b>" + (f" (전월 {diff(prev)})" if prev else " (첫 기록 — 다음 갱신부터 전월 비교)")]
+            if yago:
+                lines.append(f"1년 전 대비 {diff(yago)}")
+            pr = {r["houjin"]: r["n"] for r in (prev or {}).get("rows") or []}
+            lines.append(" · ".join(f"{esc(labels.get(r['houjin']) or r['name'])} {r['n']:,}" + (f"({r['n'] - pr[r['houjin']]:+,})" if r["houjin"] in pr else "")
+                                    for r in cur["rows"]))
+            lines += ["", f"<i>일본연금기구 적용사업소 검색 · 한 달에 한 번 갱신 · 직원 수의 대리 지표(파견·임원 등 빠짐)</i>", f"#{hashtag(cur['name'])}"]
+            dest = route("news")
+            return (None, "\n".join(lines), dest) if dest else (None, None)
+        out.append((f"hc:{code}:{cur['date']}", NOW, build))
+    return out
+
+
 def span(ws):
     """주 시작일 → '10.05~10.11'"""
     d = date.fromisoformat(ws)
@@ -563,7 +593,7 @@ def jp_monthly():
     return out
 
 
-ITEMS = {"gpu": gpu, "cds": cds, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
+ITEMS = {"gpu": gpu, "cds": cds, "headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
 
 
 def collect():
