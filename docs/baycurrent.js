@@ -208,6 +208,23 @@
     ];
     return '<div class="fm-history-heading"><b>회사 공시 인원 (분기 말)</b><span>결산 보충자료 · 왼쪽이 과거, 오른쪽이 최근 · 새 발표는 자동 반영</span></div>' + wideTable(cols, rows, "bc-hc-table");
   }
+  // 일본연금기구 適用事業所検索: 매달 20일쯤 기준 숫자를 다음 달 둘째 영업일에 갱신(공식 안내). 토·일과 월초에 걸리는 일본 공휴일·연말연시 휴무를 뺀다.
+  var JP_OFF = ["2026-11-03", "2027-01-01", "2027-01-02", "2027-01-03", "2027-05-03", "2027-05-04", "2027-05-05", "2027-11-03", "2028-01-01", "2028-01-02", "2028-01-03", "2028-05-03", "2028-05-04", "2028-05-05", "2028-11-03"];
+  function secondBizDay(y, m) {
+    var cnt = 0;
+    for (var d = 1; d <= 10; d++) {
+      var dt = new Date(Date.UTC(y, m, d)), iso = dt.toISOString().slice(0, 10), wd = dt.getUTCDay();
+      if (wd === 0 || wd === 6 || JP_OFF.indexOf(iso) >= 0) continue;
+      if (++cnt === 2) return iso;
+    }
+    return "";
+  }
+  function nextNenkinUpdate() {
+    var now = new Date(Date.now() + 9 * 36e5), y = now.getUTCFullYear(), m = now.getUTCMonth(), today = now.toISOString().slice(0, 10);
+    var d = secondBizDay(y, m); if (!d || d < today) { m++; if (m > 11) { m = 0; y++; } d = secondBizDay(y, m); }
+    var wd = "일월화수목금토"[new Date(d + "T00:00:00Z").getUTCDay()];
+    return d + "(" + wd + ")" + (d === today ? " 오늘" : "");
+  }
   function pensionTable() {
     var ent = DATA.entities || [], all = DATA.nenkin || [];
     var totOf = function (r) { return ent.reduce(function (a, e) { return finite(r[e.id]) ? a + r[e.id] : a; }, 0); };
@@ -216,7 +233,9 @@
     rows.push({label: "합계(명)", cls: "bc-strong", cells: all.map(function (r) { return n(totOf(r)); })});
     rows.push({label: "직전 대비", cells: all.map(function (r, i) { if (!i) return "—"; var d = totOf(r) - totOf(all[i - 1]); return (d >= 0 ? "+" : "") + n(d); })});
     rows.push({label: "사이트 갱신일", cls: "bc-meta", cells: all.map(function (r) { return esc(r.updated || "—"); })});
-    return '<div class="fm-history-heading"><b>연금 피보험자 (법인별)</b><span>일본연금기구 · 매달 기록 · 회사 공시 총사원과 기준이 달라 변화를 볼 것</span></div>' + wideTable(cols, rows, "bc-nk-table");
+    var last = all[all.length - 1] || {}, nx = nextNenkinUpdate();
+    var sched = '<span class="bc-key">갱신 매월 둘째 영업일 · 전월 20일쯤 기준 · 시각 미공개 · 마지막 ' + esc(last.updated || "—") + ' · 다음 <b>' + esc(nx) + '</b> <em>(key data)</em></span>';
+    return '<div class="fm-history-heading bc-key-head"><b>연금 피보험자 (법인별)</b>' + sched + '</div><p class="bc-key-note">일본연금기구 · 매달 기록 · 회사 공시 총사원과 기준이 달라 변화를 볼 것. 갱신 시각은 공식 안내가 없어 갱신일 오후에 확인하는 것이 안전합니다.</p>' + wideTable(cols, rows, "bc-nk-table");
   }
   function careersTable() {
     var c = (DATA.careers || {}).latest, ch = (DATA.careers || {}).changes || [];
