@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "12f8811f5553",
+   "kind": "news",
+   "headline": "미국 대법원, 특허청 '심판 청구 거절' 정책에 대한 구글 상고 안 받기로 — 오래된 특허는 무효 다툼 막는 특허청 방침 유지",
+   "bullets": [
+    "미국 대법원이 19일 특허청의 무효심판 청구 거절 정책에 맞선 구글의 상고를 받아들이지 않았다(로이터).",
+    "문제의 정책은 특허 존속기간 20년 중 6년 넘게 지난 특허에 대해 '이미 굳은 기대'를 이유로 무효심판 청구를 잘라내는 방침이다.",
+    "구글처럼 특허 소송을 많이 당하는 대형 기술 기업은 특허청 무효심판이라는 싼 방어 수단이 계속 좁아진 상태로 남는다."
+   ],
+   "summary": "사건은 구글과 버츄어무브의 특허 침해 분쟁에서 시작됐다. 존 스콰이어스 특허청장이 오래된 특허에 대한 무효심판 청구를 잇달아 기각하자, 구글은 이 정책이 법이 정한 심판 제도를 무력화한다며 대법원까지 갔다. 대법원은 앞서 정부와 버츄어무브에 답변을 요구했고, 정부는 상고를 기각해 달라고 요청했다.\n\n이번 결정으로 대법원은 정책이 옳은지에 대한 판단 없이 사건을 끝냈다. 같은 쟁점으로 인텔이 낸 별도 상고, 시스코 등이 준비 중인 상고도 남아 있어 특허청 정책을 둘러싼 법정 다툼은 이어질 수 있다.",
+   "title": "Supreme Court rejects Google challenge to US patent agency review policy",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxONHRGNUJZNWxGa0dtWEZsRUpLOEdtdzVMZEhYbnFnX0lVeHhWWWRkT1BYQkRycTVSUk9jTlRyNE9hMUFFWU81Y1lkdC1WNG1yQzY5WjRTMWtWSTBpYXV6WEc1NEtOcVFwZ240TGs3d3NyeVQ0cE5xbHZLeGNTWTRhdllDQ3h3dEs3aU9GejRNclNudTNyTmhha2pBSk4zTFRfOHprYkJwdmRQN0ZHZ01ocl9wbVE?oc=5",
+   "published": "2026-10-19 22:54 KST",
+   "written": "2026-10-19 23:16 KST"
+  },
+  {
    "id": "e68b30408349",
    "kind": "news",
    "headline": "구글, 윌로우 칩에서 '매직 상태 배양' 첫 실증 — 오류 40배 줄이고 논리 충실도 99.99%",
@@ -209,5 +225,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-17 03:48 KST"
+ "updated": "2026-10-19 23:16 KST"
 }
