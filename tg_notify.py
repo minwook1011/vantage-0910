@@ -329,6 +329,8 @@ def sync_topics():
     if not r:
         return False
     before = dict(STATE.get("topics") or {})
+    if STATE.get("topic_fail_at") and NOW.timestamp() - STATE["topic_fail_at"] < 3600:   # 실패하면 1시간 쉬었다 다시
+        return False
     for t in (load("docs/data/tracking/watchlist.json") or {}).get("terms") or []:
         if t.get("market") in ("blog", "youtube") or not t.get("resolved") or t["slug"] in before:
             continue
@@ -336,6 +338,7 @@ def sync_topics():
             company_topic(t)
         except Exception as e:
             print("토픽 만들기 실패:", t["term"], e)
+            STATE["topic_fail_at"] = NOW.timestamp()
             break
     if not STATE.get("general_named"):
         try:
@@ -380,7 +383,10 @@ def tracking():
                 dest = route("blog" if t.get("market") in ("blog", "youtube") else "news")   # 유튜브도 블로그·인터뷰 쪽
                 comp = route("company") if t.get("market") not in ("blog", "youtube") else {}
                 if comp:   # 기업별 토픽 그룹이 연결돼 있으면: 그 기업 토픽 + 📋 종합(General) 두 곳으로(2026-10-19 사용자)
-                    dest = {"chat": comp["chat"], "thread": company_topic(t), "also": [{"chat": comp["chat"], "thread": None}], "term": t}
+                    try:
+                        dest = {"chat": comp["chat"], "thread": company_topic(t), "also": [{"chat": comp["chat"], "thread": None}], "term": t}
+                    except Exception as e:   # 토픽이 안 켜졌거나 권한이 없으면 뉴스방으로 계속 보낸다(뉴스가 멈추지 않게)
+                        print("기업 토픽 실패 → 뉴스방으로:", t["term"], str(e)[:120])
                 return (None, "\n".join(lines), dest) if dest else (None, None)   # 그룹 연결 전엔 대기
             out.append((f"trk:{t.get('slug')}:{it['id']}", NOW, build))
     return out
@@ -640,7 +646,7 @@ def main():
         except Exception as e:
             print("전송 실패:", key, e)
 
-    for k in ("topics", "general_named"):
+    for k in ("topics", "general_named", "topic_fail_at"):
         if k in STATE and STATE[k] != state.get(k):
             state[k] = STATE[k]
             topics_changed = True
