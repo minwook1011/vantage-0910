@@ -309,6 +309,7 @@
   "trk:open-ai:aa781aa0a3b3",
   "trk:open-ai:b42a8fedfb8e",
   "trk:open-ai:b8cc7b24c7fe",
+  "trk:open-ai:bdbc67fd9f01",
   "trk:open-ai:cc2da5ba597a",
   "trk:open-ai:d6b19e07901b",
   "trk:open-ai:d924e9bdae60",
@@ -559,9 +560,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-egzion:ecfaad854cad": [
-   32
-  ],
   "trk:blog-egzion:36398881cd63": [
    33
   ],
@@ -2095,6 +2093,9 @@
   ],
   "trk:nvda:9951fa564f7f": [
    558
+  ],
+  "trk:open-ai:bdbc67fd9f01": [
+   559
   ]
  },
  "topics": {},
