@@ -49,6 +49,7 @@
   "macro:2026-10-16",
   "macro:2026-10-17",
   "macro:2026-10-18",
+  "macro:2026-10-19",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -564,9 +565,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-travelingcompanion:22e63b909540": [
-   37
-  ],
   "trk:blog-travelingcompanion:efeecc19e09e": [
    38
   ],
@@ -2100,6 +2098,11 @@
   ],
   "trk:nvda:528f67e065b6": [
    562
+  ],
+  "macro:2026-10-19": [
+   231,
+   232,
+   233
   ]
  },
  "topics": {},
