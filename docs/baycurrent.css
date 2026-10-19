@@ -1,0 +1,9 @@
+/* 베이커런트 워크벤치 — 표·차트는 ryohin.css 의 rk-* 를 같이 쓰고, 여기엔 인력 요약 카드만 둔다 */
+.bc-kpis { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; margin:12px 0 4px; }
+.bc-kpi { padding:10px 12px; border:1px solid rgba(124,148,186,.28); border-radius:10px; background:rgba(124,148,186,.06); }
+.bc-kpi small { display:block; font-size:11px; color:#566987; }
+.bc-kpi b { display:block; margin-top:2px; font-family:var(--mono); font-size:19px; }
+.bc-kpi span { display:block; margin-top:2px; font-size:10.5px; color:#7b8aa3; }
+.rk-table tr.bc-guide td { color:#7b8aa3; font-style:italic; }
+.rk-table tr.bc-guide td small { font-style:normal; font-size:10px; padding:1px 5px; border-radius:6px; background:rgba(124,148,186,.15); }
+@media (max-width:720px) { .bc-kpis { grid-template-columns:repeat(2, minmax(0, 1fr)); } }

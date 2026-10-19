@@ -18,7 +18,7 @@
   var KR_DEFAULT = ["fin:revenue", "fin:operating_income", "fin:revenue_yoy", "fin:opm"];
   var DEFAULT_FAVS = ["441270", "000660", "005930", "NVDA", "TSM", "비상장", "7453"];
   // 전용 화면이 있는 기업: module → 화면 section id · vantage-company-change 로 보낼 이름
-  var MODULES = {finemtec: ["finemtec-workspace", "파인엠텍"], zeta: ["zeta-workspace", "스캐터랩"], ryohin: ["ryohin-workspace", "료힌케이카쿠"]};
+  var MODULES = {finemtec: ["finemtec-workspace", "파인엠텍"], zeta: ["zeta-workspace", "스캐터랩"], ryohin: ["ryohin-workspace", "료힌케이카쿠"], baycurrent: ["baycurrent-workspace", "베이커런트"]};
   var FIN = {
     revenue: {label: "매출", pct: false}, operating_income: {label: "영업이익", pct: false}, opm: {label: "OPM · 영업이익률", pct: true},
     revenue_yoy: {label: "매출 성장률 · YoY", pct: true}, operating_income_yoy: {label: "영업이익 성장률 · YoY", pct: true}
@@ -30,7 +30,8 @@
     {ticker: "TSM", name: "TSMC", market: "US", financials: "TSM", fin_unit: "NT$ 십억", fin_div: 1000, indicators: ["tsmc_monthly_rev", "hyperscaler_capex::합계", "gpu_h100_index", "or_tokens_weekly"]},
     {ticker: "441270", name: "파인엠텍", market: "KR", module: "finemtec"},
     {ticker: "비상장", name: "스캐터랩 (제타)", market: "PRIVATE", module: "zeta"},
-    {ticker: "7453", name: "료힌케이카쿠 (무지)", market: "JP", module: "ryohin"}
+    {ticker: "7453", name: "료힌케이카쿠 (무지)", market: "JP", module: "ryohin"},
+    {ticker: "6532", name: "베이커런트", market: "JP", module: "baycurrent"}
   ];
 
   var esc = function (v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[ch]; }); };
@@ -44,6 +45,8 @@
     listOpen: saved.listOpen !== false, sort: saved.sort && typeof saved.sort === "object" && typeof saved.sort.key === "string" ? saved.sort : {key: "mcap", dir: -1}};
   if (!saved.rk7453 && state.favs.indexOf("7453") < 0) state.favs.push("7453");
   state.rk7453 = true;
+  if (!saved.bc6532 && state.favs.indexOf("6532") < 0) state.favs.push("6532");
+  state.bc6532 = true;
   var customs = read(CUSTOM_KEY, {}); if (!customs || typeof customs !== "object" || Array.isArray(customs)) customs = {};
   var COMPANIES = FALLBACK, AI = null, FINS = {}, FM = null, KRX = null, KR = {}, krLoading = {}, loaded = false, loadError = "", catalog = {}, renderId = 0;
   var query = "", sector = "", mkt = "";
@@ -466,7 +469,7 @@
     var status = document.getElementById("workbench-status");
     if (status) status.textContent = (c.name || c.label) + " · 주가 × 실적 × 관련 지표";
     if (c.module) {
-      // 전용 화면이 있는 기업: finemtec.js(파인엠텍) · zeta.js(스캐터랩) · ryohin.js(료힌케이카쿠)가 이 이벤트를 받아 스스로 그린다
+      // 전용 화면이 있는 기업: finemtec.js(파인엠텍) · zeta.js(스캐터랩) · ryohin.js(료힌케이카쿠) · baycurrent.js(베이커런트)가 이 이벤트를 받아 스스로 그린다
       host.hidden = true; host.innerHTML = "";
       document.dispatchEvent(new CustomEvent("vantage-company-change", {detail: {company: (MODULES[c.module] || MODULES.finemtec)[1]}}));
       return;

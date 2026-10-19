@@ -150,6 +150,7 @@ vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐�
 | ~~`jp-earnings.yml`~~ · ~~`jp-major.yml`~~ | **자동 실행 끔(2026-09-30)** | 카부탄이 GitHub 서버 요청을 막아 실패만 반복 → 회사 PC 예약 작업 ③·⑧로 옮김 |
 | `macro-dash.yml` | 평일 미국 지표 발표 직후 + 매일 07:00 | 매크로 대시보드(CPI·고용·금리·FOMC 등) |
 | `ai-indicators.yml` | 매일 여러 번 | AI 지표(토큰·GPU·메모리·CDS 등) |
+| `baycurrent.yml` | 평일 16:45 · 21:45 + 수동 자료·실적 리포트 push 때 | 베이커런트(6532) 워크벤치: 주가, 결산 보충자료에서 회사 공시 인원 자동 판독 (`fetch_baycurrent.py`) |
 | `memory-prices.yml` / `memory-exports.yml` | 발표 시간대 | 메모리 가격·수출 |
 | `zeta.yml` | 매일 08:30 | 제타 트래픽 |
 | `finemtec.yml` | 10분마다 | 파인엠텍 |
@@ -198,3 +199,15 @@ vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐�
 | 일본 실적 발표가 아예 안 잡힘 | ③(평일)·⑧(일요일 전체 스캔)이 회사 PC에서 돌았는지 — GitHub에서는 더 이상 안 돈다 |
 | 팟캐스트 텔레그램이 안 옴 | `python send_telegram.py --test`, `data_sources/podcast_pipeline.md` C |
 | 사이트에 반영이 안 됨 | 1~2분 기다린 뒤 Ctrl+Shift+R(강력 새로고침) |
+
+## 베이커런트 인력 수동 기록 — 매달 둘째 영업일 이후 한 번 (2026-10-19 추가)
+
+데이터 허브 → 기업별 데이터 모음 → 베이커런트. 컨설턴트 수가 매출로 바로 이어져 인력을 주가 위에 겹쳐 본다.
+
+| 자료 | 어디서 | 어디에 적나 |
+|---|---|---|
+| 연금 피보험자 수 (법인 3곳) | https://www.nenkin.go.jp/do/search_section/ → 「法人番号で検索する」 → 7010401111553(지주사) · 2010401180207(컨설팅) · 1010401180208(테크놀로지) | `data_sources/baycurrent_manual.json` 의 `nenkin` 끝에 `{"date": 기준일(전월 20일쯤), "updated": 사이트 갱신일, "hold", "consult", "tech"}` |
+| doda 구인 건수 | doda 구인 검색, 키워드 「ベイカレント」 | 같은 파일 `doda` 끝에 `{"date", "count", "keyword"}` |
+| 회사 공시 인원 (분기) | 자동 — 일본 실적 수집기가 만든 `docs/data/jp/reports/6532-*.json` 의 결산 보충자료 PDF | 판독 실패 때만 `company_headcount` 에 손으로 추가(수동이 우선) |
+
+- 연금기구 검색은 결과 전재·2차 이용 금지라 자동 수집하지 않는다. push 하면 `baycurrent.yml` 이 바로 돌아 화면에 반영된다.

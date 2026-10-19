@@ -16,6 +16,7 @@
      "indicators": ["tsmc_monthly_rev", "hyperscaler_capex::합계", "gpu_h100_index", "or_tokens_weekly"]},
     {"ticker": "441270", "label": "파인엠텍", "name": "파인엠텍", "market": "KR", "desc": "폴더블 부품 · 베트남 납품", "module": "finemtec"},
     {"ticker": "비상장", "label": "스캐터랩", "name": "스캐터랩 (제타)", "market": "PRIVATE", "desc": "AI 캐릭터 채팅 · 트래픽 대리 지표", "module": "zeta"},
-    {"ticker": "7453", "label": "료힌케이카쿠", "name": "료힌케이카쿠 (무지)", "market": "JP", "desc": "무인양품 · 선행지표 모음", "module": "ryohin"}
+    {"ticker": "7453", "label": "료힌케이카쿠", "name": "료힌케이카쿠 (무지)", "market": "JP", "desc": "무인양품 · 선행지표 모음", "module": "ryohin"},
+    {"ticker": "6532", "label": "베이커런트", "name": "베이커런트", "market": "JP", "desc": "종합 컨설팅 · 인력(연금 피보험자·공시 인원) 추적", "module": "baycurrent"}
   ]
 }
