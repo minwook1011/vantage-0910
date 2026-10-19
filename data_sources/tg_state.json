@@ -165,6 +165,7 @@
   "trk:blog-travelingcompanion:efeecc19e09e",
   "trk:cathie-wood:01ee389feff5",
   "trk:cathie-wood:803bffad254c",
+  "trk:cathie-wood:94ca33bdda3d",
   "trk:cathie-wood:a5e8d81e64b8",
   "trk:cathie-wood:c4dae11c1b2d",
   "trk:cxmt-yxmt:2307204886d8",
@@ -296,6 +297,7 @@
   "trk:open-ai:fea4ee1d4e06",
   "trk:t-0a23e71f:1c65f205d90d",
   "trk:t-0a23e71f:1f75295e9508",
+  "trk:t-0a23e71f:249f1f776e34",
   "trk:t-0a23e71f:26fe38c33e53",
   "trk:t-0a23e71f:292fb934ae62",
   "trk:t-0a23e71f:69d546ffa025",
@@ -337,6 +339,7 @@
   "trk:t-759fd052:0bde20c42958",
   "trk:t-759fd052:1da9742bfe9e",
   "trk:t-759fd052:1dc261f489f1",
+  "trk:t-759fd052:35e7600f6e97",
   "trk:t-759fd052:363c48178dad",
   "trk:t-759fd052:3dbe20494b1d",
   "trk:t-759fd052:478ff2ae9979",
@@ -2018,7 +2021,17 @@
   ],
   "trk:yt--jklonfa:1ed94e9c1e57": [
    519
+  ],
+  "trk:t-0a23e71f:249f1f776e34": [
+   520
+  ],
+  "trk:t-759fd052:35e7600f6e97": [
+   521
+  ],
+  "trk:cathie-wood:94ca33bdda3d": [
+   522
   ]
  },
- "topics": {}
+ "topics": {},
+ "topic_fail_at": 1792390651.940542
 }
