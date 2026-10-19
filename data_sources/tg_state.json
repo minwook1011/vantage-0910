@@ -96,6 +96,7 @@
   "pod:2026-10-19-understanding-PD3J7O5FvFA",
   "price:2026-10-06",
   "trk:009150:3b959b70cbc3",
+  "trk:009150:c960c7b4e0c2",
   "trk:amzn:11e2f839692b",
   "trk:amzn:1dd4d3b49ae5",
   "trk:amzn:1eb3be945139",
@@ -535,6 +536,7 @@
   "trk:yt--jklonfa:f0b8539198ae",
   "trk:yt--jklonfa:f0f79f307602",
   "trk:yt--jklonfa:f3c98d92df63",
+  "trk:yt--jklonfa:f5c2d84bdedf",
   "trk:yt--jklonfa:f768d0d4fe77",
   "trk:yt--jklonfa:f91439cd3200",
   "trk:yt--jklonfa:fa5723060bfb",
@@ -574,12 +576,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt-wy-8burq:d837091bc2f8": [
-   79
-  ],
-  "trk:yt-wy-8burq:9f393f6902bf": [
-   80
-  ],
   "trk:yt-wy-8burq:9ce530cbc7a5": [
    81
   ],
@@ -2113,8 +2109,14 @@
   ],
   "trk:blog-ranto28:4fb2a82d64ee": [
    570
+  ],
+  "trk:009150:c960c7b4e0c2": [
+   571
+  ],
+  "trk:yt--jklonfa:f5c2d84bdedf": [
+   572
   ]
  },
  "topics": {},
- "topic_fail_at": 1792448265.100544
+ "topic_fail_at": 1792451951.057392
 }
