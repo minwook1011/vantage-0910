@@ -105,6 +105,7 @@
   "trk:amzn:ab47943ddaeb",
   "trk:amzn:b4bbc44cab36",
   "trk:amzn:e0a5e8769f47",
+  "trk:amzn:e12bd02ce29b",
   "trk:amzn:f091ef1b9757",
   "trk:amzn:f728a1519228",
   "trk:blog-egzion:1a92542fb28d",
@@ -569,9 +570,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "gpu:2026-10-10": [
-   117
-  ],
   "macro:2026-10-11": [
    118,
    119,
@@ -2110,6 +2108,9 @@
   "digest:2026-10-20:us": [
    564,
    565
+  ],
+  "trk:amzn:e12bd02ce29b": [
+   566
   ]
  },
  "topics": {},
