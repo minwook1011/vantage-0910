@@ -262,6 +262,7 @@
   "trk:nvda:5d8d74036761",
   "trk:nvda:5f47c22935c6",
   "trk:nvda:61fc234353ae",
+  "trk:nvda:685039c54a98",
   "trk:nvda:685205287522",
   "trk:nvda:69b4a57785de",
   "trk:nvda:72090d9cfbe9",
@@ -565,9 +566,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-travelingcompanion:efeecc19e09e": [
-   38
-  ],
   "trk:blog-travelingcompanion:446e081224db": [
    39
   ],
@@ -2103,6 +2101,9 @@
    231,
    232,
    233
+  ],
+  "trk:nvda:685039c54a98": [
+   563
   ]
  },
  "topics": {},
