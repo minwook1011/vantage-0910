@@ -560,6 +560,7 @@
   "trk:yt--jklonfa:f768d0d4fe77",
   "trk:yt--jklonfa:f91439cd3200",
   "trk:yt--jklonfa:fa5723060bfb",
+  "trk:yt--jklonfa:fc9ed95ad405",
   "trk:yt-kyrxne0q:4fdaea80a66e",
   "trk:yt-kyrxne0q:67892a4c10ad",
   "trk:yt-kyrxne0q:76a8b7e27ad7",
@@ -596,9 +597,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-ranto28:0e9b8e6cb074": [
-   115
-  ],
   "trk:blog-ssh-fedinsight:af39742b1c5c": [
    116
   ],
@@ -2129,8 +2127,11 @@
   ],
   "trk:open-ai:fb26970d5fb5": [
    591
+  ],
+  "trk:yt--jklonfa:fc9ed95ad405": [
+   592
   ]
  },
  "topics": {},
- "topic_fail_at": 1792470898.723108
+ "topic_fail_at": 1792475308.128815
 }
