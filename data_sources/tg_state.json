@@ -109,6 +109,7 @@
   "trk:009150:3b959b70cbc3",
   "trk:009150:c960c7b4e0c2",
   "trk:amzn:11e2f839692b",
+  "trk:amzn:19e39e0079d4",
   "trk:amzn:1dd4d3b49ae5",
   "trk:amzn:1eb3be945139",
   "trk:amzn:32bc35a6bf9a",
@@ -124,6 +125,7 @@
   "trk:amzn:e12bd02ce29b",
   "trk:amzn:f091ef1b9757",
   "trk:amzn:f728a1519228",
+  "trk:aws:132be39d0d0f",
   "trk:blog-egzion:1a92542fb28d",
   "trk:blog-egzion:36398881cd63",
   "trk:blog-egzion:4249c7e05721",
@@ -261,6 +263,7 @@
   "trk:meta:cc12a444557f",
   "trk:meta:cc86d4669999",
   "trk:meta:d9c783a92b95",
+  "trk:meta:dc0370c3a5df",
   "trk:michael-burry:c7b74a05c780",
   "trk:msft:06b844a7706d",
   "trk:msft:1ab2dde144f1",
@@ -636,15 +639,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:nbis:41874701b44e": [
-   155
-  ],
-  "trk:t-3f524a5b:7b27e7e63245": [
-   156
-  ],
-  "trk:meta:06b5b0b5a7a1": [
-   157
-  ],
   "gpu:2026-10-12": [
    140
   ],
@@ -2170,6 +2164,15 @@
   ],
   "trk:googl:697b00e8aa9e": [
    630
+  ],
+  "trk:amzn:19e39e0079d4": [
+   631
+  ],
+  "trk:meta:dc0370c3a5df": [
+   632
+  ],
+  "trk:aws:132be39d0d0f": [
+   633
   ]
  },
  "topics": {},
