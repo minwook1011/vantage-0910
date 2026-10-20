@@ -3,6 +3,22 @@
  "slug": "t-3f524a5b",
  "items": [
   {
+   "id": "390ae7817e3e",
+   "kind": "news",
+   "headline": "캐나다 1위 은행 RBC 최고경영자 \"메타 '뮤즈' 접근 차단 검토\" — 미국 JP모건·슈왑·씨티에 이어 은행권 확산",
+   "bullets": [
+    "데이브 매케이 RBC 최고경영자가 블룸버그 방송에서 메타의 인공지능 비서 '뮤즈'가 고객 정보에 접근하지 못하게 막는 방안을 검토 중이라고 밝혔다.",
+    "이유는 고객 보호와 책임 문제다. 비서가 돈을 옮기다 사고가 나면 은행이 조직으로서 책임을 떠안는다는 것이다. 아직 확정된 결정은 아니다.",
+    "미국에선 JP모건·찰스슈왑·씨티가 이미 외부 인공지능 비서의 계좌 직접 접근을 막았고, 아마존은 9월부터 뮤즈를 차단했다."
+   ],
+   "summary": "뮤즈는 메타가 9월 8일 내놓은 개인 인공지능 비서로, 이메일·결제·양식 작성 같은 일을 앱을 넘나들며 대신 처리한다. 무료 요금제와 월 20달러·100달러 유료 요금제가 있다.\n\n은행들이 막는 이유는 크게 두 가지다. 비서가 고객 비밀번호로 로그인해 돈을 움직일 때 사고 책임이 누구에게 있는지 불분명하고, 비서가 예금을 금리가 더 높은 곳으로 옮겨 예금 이탈이 생길 수 있다는 걱정이다. 슈왑 최고경영자는 지난주 뮤즈 같은 비서의 송금 시도를 매주 막고 있다고 했다. 현재 은행들은 플래드 연결을 통한 잔액 조회 같은 '읽기 전용' 접근만 허용하는 쪽이다.\n\n남은 쟁점은 RBC가 실제로 차단을 확정할지, 다른 캐나다 은행이 따라갈지, 그리고 은행·감독당국이 비서 책임 규칙을 만들지다. 금융 기능이 막힐수록 뮤즈 상위 요금제의 쓸모가 줄어든다.",
+   "title": "RBC Considers Blocking Meta’s Muse AI Agent, CEO Dave McKay Says",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPZmltV1F1RmFVQTFmbjNURzlUOG5xMnFjMlp4bFJrSTNVQi1KT2NoRXFUbEpWc2VvUHN1M3JqSjBXS1hmNnBtaUozZ0lYS1FWd2VsbFBJc1A4cXZRcVd6MkNub0FFQ2lkay1jR0VmQldQRGhsRVFYUVJsTEdUSzNGd2poLUVKTnVWaGFQejBZZEU1YW1NT1Z2WU5mQURpcXF3MHpVM0pady1wYzEtUHVXX1k5Z3U?oc=5",
+   "published": "2026-10-20 21:46 KST",
+   "written": "2026-10-20 22:19 KST"
+  },
+  {
    "id": "348b0c7490ee",
    "kind": "news",
    "headline": "가상자산 결제업체 우빗, 메타 '뮤즈'에 계정 연결 — 뮤즈가 쇼핑하면 테더 등 스테이블코인으로 결제, 건마다 이용자 승인",
@@ -99,5 +115,5 @@
    "written": "2026-10-13 04:16 KST"
   }
  ],
- "updated": "2026-10-18 22:17 KST"
+ "updated": "2026-10-20 22:19 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "t-dbe684bf",
  "items": [
   {
+   "id": "63a173bf189c",
+   "kind": "news",
+   "headline": "딥시크, 자사 서비스를 돌리는 추론 엔진 '딥인퍼' 무료 공개 — 엔비디아에 더해 화웨이 어센드 950도 지원",
+   "bullets": [
+    "딥시크가 실제 서비스에 쓰는 대규모 추론(모델 실행) 프레임워크 '딥인퍼'를 아파치 2.0 공개 라이선스로 내놨다. 첫 적용 모델은 V4.1-플래시다.",
+    "엔비디아 SM100(블랙웰 계열) 그래픽처리장치와 화웨이 어센드 950 신경망처리장치를 모두 지원한다.",
+    "블룸버그는 기업들이 인공지능을 돌리는 비용을 낮추는 데 도움이 될 수 있다고 전했다."
+   ],
+   "summary": "모델 가중치를 공개해도 그것만으로는 싸게 돌리기 어렵다. 실제 비용은 서버에서 모델을 얼마나 효율적으로 실행하느냐에 달려 있는데, 딥시크가 그 노하우를 담은 엔진을 통째로 연 것이다.\n\n딥인퍼는 공개 추론 엔진 vLLM을 바탕으로 SGLang·텐서RT-LLM을 참고해 만들었다. 전문가 혼합(MoE) 모델 분산 처리, 추측 디코딩, 비동기 배치 스케줄링, 결과가 매번 같게 나오는 결정적 추론 같은 기능이 들어 있다. 공식 API와 같은 방식으로 입력을 처리하는 도구 'deepseek-recipe'도 함께 공개했다. 다만 완전한 서비스를 하려면 외부 캐시 저장 시스템, 처리 단계 분리, 복제 서버 간 부하 분산은 따로 갖춰야 한다.\n\n화웨이 어센드 950 지원이 눈에 띈다. 딥시크가 화웨이와 맞춤 칩을 함께 설계한다는 보도가 나온 상황이라, 중국산 칩으로도 딥시크 모델을 효율적으로 돌릴 수 있는 기반이 넓어진다는 뜻이다.",
+   "title": "DeepSeek Unveils Open-Source Tool to Help Cut AI Operating Costs",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNaTNwMlNFRlZ6SkZCMWtZaEJfUWdXbGxlQVBnSEZOZ0dVM1dLc240NTVQdnZTbjJqd2pRWVNpUUZVYldWZDlzdF8waFlUVlRRaW1uYllNRjdVNFZZSW9aeFhGQmRzS1p1VmhFUG9HbTMzaE5hTm1mOGFwSHp5VzlEbTEtc2ZsQTJ3amdCVjhkZUU5bkY3UDM2ajNRcGY4aDJBWjhFbGljNjlZaXI1X3gyX1gyYTV4QQ?oc=5",
+   "published": "2026-10-20 21:45 KST",
+   "written": "2026-10-20 22:19 KST"
+  },
+  {
    "id": "4bc20c6f97f4",
    "kind": "news",
    "headline": "딥시크 새 모델 'V4.1-플래시-1017', 아레나 웹 개발 코딩 평가에서 공개형 모델 1위 — 출력 100만 토큰당 0.6달러로 클로드 오퍼스 5의 42분의 1",
@@ -35,5 +51,5 @@
    "written": "2026-10-20 09:18 KST"
   }
  ],
- "updated": "2026-10-20 19:48 KST"
+ "updated": "2026-10-20 22:19 KST"
 }

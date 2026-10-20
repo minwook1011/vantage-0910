@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "42e0183b803d",
+   "kind": "news",
+   "headline": "엔비디아, 독일 스타트업 4곳 투자 — 애자일로보츠·아벨리오스·미렐로·리플렉스에어로스페이스, 유럽 투자 약 100억달러 계획의 일부",
+   "bullets": [
+    "엔비디아가 베를린 '인베스트 인 저머니' 정상회의에서 독일 스타트업 4곳에 투자한다고 밝혔다. 회사별 투자액은 공개하지 않았다.",
+    "대상은 산업용 로봇 애자일로보츠, 병원 관리 소프트웨어 아벨리오스메디컬, 영상용 소리 생성 모델 미렐로, 위성 제조 리플렉스에어로스페이스다.",
+    "유럽 기업·대학·연구기관에 약 100억달러를 넣는 계획의 일부로, 지난주엔 프랑스 스타트업 4곳 투자도 발표했다."
+   ],
+   "summary": "같은 행사에서 엔비디아는 독일 정부와 산업용 인공지능 모델 개발을 위한 공동 선언에 서명했고, 독일 '인더스트리 4.0 플랫폼'과도 협력한다. 메르츠 총리는 중소기업들에 갖고 있는 데이터를 인공지능에 활용하라며 문을 열라고 촉구했다. 젠슨 황은 인공지능이 독일 제조업 강점을 대체하는 게 아니라 키운다고 말했다.\n\n지멘스는 엔비디아와 만든 인공지능 도구로 생산 준비 설계 작업을 최대 85%, 생산 계획 비용을 최대 20% 줄일 수 있다고 밝혔다. 젠슨 황의 GTC 베를린 기조연설은 21일(현지시간 수요일)이다. 투자 규모 자체는 엔비디아 전체 사업에 비해 작아, 주가는 여전히 인공지능 수요와 공급 제약이 좌우한다는 평가가 따른다.",
+   "title": "Nvidia Pledges Millions To German Startups Under $10 Billion European AI Initiative",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPbFhsTHk0TkJVVWJRYWVvcldEYkgxeTJOVlh6ZkJ3OGVOWG8zU3ZELVdTRTNRTkxMUHFHdXNCZ1lsRjVSS3l1VnF6WW54Sm51MnFtVXI5QzJXNjF6MzBUM2lQdXlUbHFpSWk5U2k4NDZkcDJBYzlTYUlBUldsa3ZaRXJOYnlUalhOQjdPeGZ3VFFwQ0FzNXZHRUlBUWVPUlgwQ3VGdDlB?oc=5",
+   "published": "2026-10-20 21:23 KST",
+   "written": "2026-10-20 22:19 KST"
+  },
+  {
    "id": "8ca37388610d",
    "kind": "news",
    "headline": "바이트댄스·알리바바·텐센트, 엔비디아 'RTX PRO 5500' 300만 장 넘게 주문 — 정가 기준 350억달러 이상(로이터 단독)",
@@ -563,5 +579,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-20 18:17 KST"
+ "updated": "2026-10-20 22:19 KST"
 }
