@@ -214,6 +214,7 @@
   "trk:cxmt:f14693d74aec",
   "trk:gartner:0cd126e4da80",
   "trk:gartner:3dfbaffaf156",
+  "trk:gartner:58a1b33cd911",
   "trk:gartner:8096a43c5395",
   "trk:gartner:e15fc3194e8b",
   "trk:googl:04dde661a787",
@@ -507,6 +508,7 @@
   "trk:yt--jklonfa:5f55ea845a46",
   "trk:yt--jklonfa:5ff9e6bb95de",
   "trk:yt--jklonfa:64180e971f76",
+  "trk:yt--jklonfa:648dd06d0ab6",
   "trk:yt--jklonfa:67dffd890599",
   "trk:yt--jklonfa:696e0c533cb2",
   "trk:yt--jklonfa:6cf3c302706f",
@@ -616,12 +618,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:t-759fd052:7d78b722dcc2": [
-   135
-  ],
-  "trk:yt--jklonfa:9197ae29d827": [
-   136
-  ],
   "trk:t-759fd052:782b2444c387": [
    137
   ],
@@ -2150,6 +2146,12 @@
   ],
   "trk:t-62bbe9b6:cc78ca886c14": [
    611
+  ],
+  "trk:yt--jklonfa:648dd06d0ab6": [
+   612
+  ],
+  "trk:gartner:58a1b33cd911": [
+   613
   ]
  },
  "topics": {},
