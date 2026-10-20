@@ -206,6 +206,7 @@
   "trk:cxmt:f14693d74aec",
   "trk:gartner:0cd126e4da80",
   "trk:gartner:3dfbaffaf156",
+  "trk:gartner:8096a43c5395",
   "trk:gartner:e15fc3194e8b",
   "trk:googl:04dde661a787",
   "trk:googl:0c8313b28274",
@@ -437,6 +438,7 @@
   "trk:yt--jklonfa:17030502403d",
   "trk:yt--jklonfa:1723dbb8c2c6",
   "trk:yt--jklonfa:17373e3a6206",
+  "trk:yt--jklonfa:17dbb860e7d9",
   "trk:yt--jklonfa:18b398ad7f18",
   "trk:yt--jklonfa:1a71adcd58b5",
   "trk:yt--jklonfa:1b3a4cba1129",
@@ -457,6 +459,7 @@
   "trk:yt--jklonfa:37164c272f34",
   "trk:yt--jklonfa:3c9c516cda1a",
   "trk:yt--jklonfa:3fe62d0f6fbf",
+  "trk:yt--jklonfa:4121c58ebc71",
   "trk:yt--jklonfa:4152ef911934",
   "trk:yt--jklonfa:41ec270ba7b9",
   "trk:yt--jklonfa:42dcf18207d3",
@@ -585,19 +588,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "usdkrw:2026-10-12": [
-   128
-  ],
-  "or:2026-10-10|weekly:2026-10-05": [
-   129,
-   130,
-   131
-  ],
-  "or:2026-10-11|weekly:2026-10-05": [
-   132,
-   133,
-   134
-  ],
   "pod:2026-10-09-nopriors-beam-the-great-american-open-model-with-reflecti": [
    108
   ],
@@ -2122,6 +2112,15 @@
   ],
   "or:2026-10-19": [
    244
+  ],
+  "trk:yt--jklonfa:4121c58ebc71": [
+   581
+  ],
+  "trk:yt--jklonfa:17dbb860e7d9": [
+   582
+  ],
+  "trk:gartner:8096a43c5395": [
+   583
   ]
  },
  "topics": {},
