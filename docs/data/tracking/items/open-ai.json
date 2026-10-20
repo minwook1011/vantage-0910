@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "48891f42538a",
+   "kind": "news",
+   "headline": "오픈AI, 신약 개발용 인공지능 에이전트 스타트업 '오케스트라 바이오' 인수 — 생명과학 도구 '로절린드'에 합친다(악시오스 단독)",
+   "bullets": [
+    "오픈AI가 제약사 신약 개발을 돕는 인공지능 에이전트를 만드는 바이오 스타트업 오케스트라 바이오를 인수했다. 인수 금액은 공개하지 않았다.",
+    "오케스트라 바이오 팀과 기술은 오픈AI의 생명과학 연구자용 모델·도구 묶음 '로절린드'로 들어간다.",
+    "오케스트라 바이오의 투자사인 벤처캐피털 a16z도 인수 사실을 확인했다."
+   ],
+   "summary": "오케스트라 바이오 플랫폼은 인공지능 에이전트에게 실무를 맡기는 방식이다. 연구 동향을 따라가고, 신약 개발 일정을 관리하고, 지연될 만한 지점을 미리 찾아낸다. 오픈AI는 연구 결과를 다음 개발 단계의 결정으로 잇는 도구를 함께 만들겠다는 입장이다.\n\n오픈AI는 지난 4월 생물·화학·신약 탐색용 특화 모델 'GPT-로절린드'를 내놨고, 노보 노디스크·모더나와 연구개발에 인공지능을 넣는 협업도 하고 있다. 회사는 신약 하나를 만드는 데 보통 10~15년이 걸리며, 인공지능으로 이 기간을 줄일 수 있다고 본다.\n\n경쟁사 앤트로픽도 같은 방향이다. 4월 바이오 스타트업 코이피션트 바이오를 약 4억 달러에 샀고(디 인포메이션 보도), 6월 연구 플랫폼 '클로드 사이언스'를 출시했다. 인공지능 회사 간 경쟁이 모델 성능에서 의료 같은 산업 적용으로 옮겨 가는 흐름이다.",
+   "title": "Exclusive: OpenAI has acquired Orchestra Bio",
+   "source": "Axios",
+   "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMkpaOUNKeWsxZVN1WXZhZkFCMkxUSnpCUWJtTTdKdDYtd2tycEdxU0RJbmgyR3QzQ2FfS1o2dVJqQ090VE9vZFJ5RVZyZ1loYTljWnVZalBTNEJuWlFCb0MycGFtcFZXeUNUTTFwYlBpQzVyRkZjclR2UzJDVDVsNVVTcGVCSTJidEE?oc=5",
+   "published": "2026-10-21 02:54 KST",
+   "written": "2026-10-21 03:16 KST"
+  },
+  {
    "id": "628bd45d43ab",
    "kind": "news",
    "headline": "미국 법원, 올트먼 여동생 앤 올트먼의 성적 학대 소송 기각(로이터)",
@@ -675,5 +691,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-20 22:48 KST"
+ "updated": "2026-10-21 03:16 KST"
 }
