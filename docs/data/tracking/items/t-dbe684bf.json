@@ -3,6 +3,22 @@
  "slug": "t-dbe684bf",
  "items": [
   {
+   "id": "4bc20c6f97f4",
+   "kind": "news",
+   "headline": "딥시크 새 모델 'V4.1-플래시-1017', 아레나 웹 개발 코딩 평가에서 공개형 모델 1위 — 출력 100만 토큰당 0.6달러로 클로드 오퍼스 5의 42분의 1",
+   "bullets": [
+    "딥시크가 17일 내놓은 'V4.1-플래시-1017'이 인공지능 평가 플랫폼 아레나의 웹 개발 코딩 평가에서 문샷AI '키미 K3'를 제치고 공개형(오픈소스) 모델 1위에 올랐다.",
+    "오픈AI 'GPT-6 아스트라', 앤트로픽 '클로드 오퍼스 5', xAI '그록 4.7' 등 미국 폐쇄형 모델 일부도 이 항목에서 앞섰다.",
+    "한가한 시간대 출력 100만 토큰당 0.6달러로 'GPT-5.6 솔'(20달러)의 33분의 1, 클로드 오퍼스 5(25달러)의 42분의 1이다."
+   ],
+   "summary": "중국 매체 즈둥시 보도를 서울경제가 전했다. 종합 성능은 여전히 미국 최상위 폐쇄형 모델이 앞서지만, 특정 코딩 과제에서는 공개형 모델이 일부 앞선 셈이다. 아레나는 이 모델이 '파레토 프런티어', 즉 성능은 더 높고 값은 더 싼 다른 모델이 없는 위치에 들어갔다고 평가했다.\n\n모델 크기는 매개변수 7,630억 개의 초대형이라 개인 컴퓨터로는 돌리기 어렵고 딥시크 공식 응용프로그램 인터페이스(API)나 외부 업체를 써야 한다. 올라마가 이미 미국 서버에서 이 모델을 외부 서비스로 제공하고 있다. 요금이 비싼 피크 시간대는 한국 시각 평일 오전 10시~오후 1시, 오후 3시~7시다.",
+   "title": "딥시크, 웹 개발 성능 오픈소스 1위…키미 K3·GPT-6 아스트라 제쳐",
+   "source": "서울경제",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE42YVVNQ2VZNDF2OXFSeVdTX0hKb1d0UTFUNEFGRHhzT2NhNDQ0cjVraUJPekdkVUFra1ZxNkRFLUFmRlFQd1JOMlpnVS00TWFsb3fSAVNBVV95cUxNME14UVk5YTBWci1jc2xiWWl3TTVMZGNNN0g2SmNFNWhnNDUybWR3ZEY4eDlJbGVGQjVYemZUSkJ3bE1GZzBxYzFYd3gtbUswV09uWQ?oc=5",
+   "published": "2026-10-20 18:07 KST",
+   "written": "2026-10-20 19:48 KST"
+  },
+  {
    "id": "e5cbac0a0716",
    "kind": "news",
    "headline": "미국 국토안보부, 연방 민간기관 IT 시스템에서 딥시크 전면 퇴출 — 딥시크 기술 쓴 외부 서비스도 구매 금지",
@@ -19,5 +35,5 @@
    "written": "2026-10-20 09:18 KST"
   }
  ],
- "updated": "2026-10-20 09:18 KST"
+ "updated": "2026-10-20 19:48 KST"
 }
