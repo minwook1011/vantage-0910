@@ -457,6 +457,7 @@
   "trk:yt--jklonfa:35035e4a0617",
   "trk:yt--jklonfa:35573a492c8a",
   "trk:yt--jklonfa:37164c272f34",
+  "trk:yt--jklonfa:3b85813eb256",
   "trk:yt--jklonfa:3c9c516cda1a",
   "trk:yt--jklonfa:3fe62d0f6fbf",
   "trk:yt--jklonfa:4121c58ebc71",
@@ -588,9 +589,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "pod:2026-10-09-nopriors-beam-the-great-american-open-model-with-reflecti": [
-   108
-  ],
   "digest:2026-10-12:asia": [
    139
   ],
@@ -2121,6 +2119,9 @@
   ],
   "trk:gartner:8096a43c5395": [
    583
+  ],
+  "trk:yt--jklonfa:3b85813eb256": [
+   584
   ]
  },
  "topics": {},
