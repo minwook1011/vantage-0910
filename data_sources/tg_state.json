@@ -54,6 +54,7 @@
   "macro:2026-10-18",
   "macro:2026-10-19",
   "nebius:2026-10-19",
+  "nebius:2026-10-20",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -96,6 +97,7 @@
   "pod:2026-10-19-riskrev-nothing-matters-in-the-market-until-it-does-with",
   "pod:2026-10-19-understanding-PD3J7O5FvFA",
   "price:2026-10-06",
+  "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
   "trk:009150:c960c7b4e0c2",
   "trk:amzn:11e2f839692b",
@@ -295,6 +297,7 @@
   "trk:nvda:f6cca660f4cc",
   "trk:nvda:fdead944cb2a",
   "trk:open-ai:00fc72a34dc1",
+  "trk:open-ai:1104ef13905d",
   "trk:open-ai:14ffe347a100",
   "trk:open-ai:180776a97670",
   "trk:open-ai:1f713b361cf7",
@@ -421,6 +424,7 @@
   "trk:t-c3c842c3:4e876d2614e6",
   "trk:t-c3c842c3:868ad36f8bea",
   "trk:t-c3c842c3:b4247b8fc218",
+  "trk:t-dbe684bf:e5cbac0a0716",
   "trk:ymtc:2f1a15426f78",
   "trk:ymtc:d202b8ddead0",
   "trk:yt--jklonfa:014f22179b86",
@@ -579,18 +583,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt-kyrxne0q:76a8b7e27ad7": [
-   84
-  ],
-  "trk:blog-ssh-fedinsight:235c9b7f956c": [
-   85
-  ],
-  "digest:2026-10-11": [
-   123
-  ],
-  "trk:blog-ranto28:969d2a51c182": [
-   86
-  ],
   "gpu:2026-10-11": [
    124
   ],
@@ -2118,8 +2110,20 @@
   ],
   "trk:yt--jklonfa:42dcf18207d3": [
    575
+  ],
+  "nebius:2026-10-20": [
+   243
+  ],
+  "trk:007810:bcca56c701f9": [
+   577
+  ],
+  "trk:open-ai:1104ef13905d": [
+   578
+  ],
+  "trk:t-dbe684bf:e5cbac0a0716": [
+   579
   ]
  },
  "topics": {},
- "topic_fail_at": 1792451951.057392
+ "topic_fail_at": 1792455620.818217
 }
