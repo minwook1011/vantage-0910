@@ -3,6 +3,22 @@
  "slug": "gartner",
  "items": [
   {
+   "id": "00d231f4d4a6",
+   "kind": "news",
+   "headline": "가트너, 2027년 10대 전략 기술 발표 — 키워드는 '자율의 시대', 텍스트 너머 인공지능과 에이전트 통제",
+   "bullets": [
+    "가트너가 최고정보책임자가 알아야 할 2027년 10대 전략 기술 트렌드를 내놨다.",
+    "큰 축은 셋: 텍스트가 아닌 데이터를 다루는 인공지능, 자율 에이전트 플랫폼의 통제, 오래 가는 조직 민첩성.",
+    "세부로는 기업용 특화 모델(정량·음성·월드 모델), 인공지능 맥락 플랫폼, 인공지능 대응 신원 보안, 자동 취약점 조치, 기술 주권 전략 등이 꼽혔다."
+   ],
+   "summary": "가트너는 2027년을 기업이 '자율의 시대'로 들어가는 해로 규정했다. 사람이 일일이 지시하지 않아도 인공지능 에이전트가 일을 처리하는 단계로 넘어간다는 뜻이다. 그래서 기술 목록도 모델 성능보다 에이전트를 어떻게 관리·통제하느냐에 무게가 실렸다.\n\n인공지능 쪽에서는 글이 아닌 숫자·음성·물리 세계를 다루는 특화 모델(정량 모델, 음성 모델, 월드 모델)과, 에이전트가 회사 데이터를 제대로 이해하도록 돕는 '맥락 플랫폼'이 들어갔다. 보안 쪽은 인공지능 에이전트까지 신원을 관리하는 체계와 취약점을 자동으로 고치는 기술, 지정학 위험에 대비한 기술 주권 전략이 포함됐다.\n\n전체 10개 목록과 숫자 전망은 유료 보고서라 확인되지 않았다. 가트너는 11월 16일 무료 웨비나로 내용을 공개할 예정이다.",
+   "title": "Gartner Identifies the Top Strategic Technology Trends for 2027",
+   "source": "Gartner",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX2VEUDl4ZVlRVWhrWXdkeWZyd3VJOTkxRlJvalRRTHpGYnV0ekM5NTFITXpXVk9pcFB4NlFUWGZ2cElXYTdSa1NEQ0pCZ2V0LVNEZWlWWjVDNXhBU3hPbUxiclZ3WEw0VlZxaEdhSUJ1dEdMRW5KMHRWN2dYZnBSbzhGU2liM0drX1dzOGQ5Vzh3aTFpZ2ludE5RSmZNV0pWSVYxZ3hNNEQyVGFWdkVOVjJ5SUplY2RUeGNBMmlicDRzcGM?oc=5",
+   "published": "2026-10-21 00:04 KST",
+   "written": "2026-10-21 00:17 KST"
+  },
+  {
    "id": "58a1b33cd911",
    "kind": "news",
    "headline": "가트너 \"최고경영자 44%가 인공지능으로 돈 번 걸 주주에게 못 보여 준다\" — 그래도 75%는 기술 투자 늘린다",
@@ -83,5 +99,5 @@
    "written": "2026-10-15 14:49 KST"
   }
  ],
- "updated": "2026-10-20 21:48 KST"
+ "updated": "2026-10-21 00:17 KST"
 }
