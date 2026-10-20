@@ -115,6 +115,7 @@
   "trk:amzn:515865eecad0",
   "trk:amzn:63f2e4fcda5c",
   "trk:amzn:792da524fecc",
+  "trk:amzn:9750255b0d68",
   "trk:amzn:ab47943ddaeb",
   "trk:amzn:b4bbc44cab36",
   "trk:amzn:e0a5e8769f47",
@@ -278,6 +279,7 @@
   "trk:nvda:39274e573872",
   "trk:nvda:3d3c76ccd67d",
   "trk:nvda:3f97ba261391",
+  "trk:nvda:42e0183b803d",
   "trk:nvda:4523c59ca9b9",
   "trk:nvda:4dda0bba522d",
   "trk:nvda:528f67e065b6",
@@ -365,8 +367,10 @@
   "trk:t-0a23e71f:c9c8b29d8089",
   "trk:t-0a23e71f:e2ee8d226104",
   "trk:t-0a23e71f:f4b796799f6c",
+  "trk:t-31ce370d:3cb3798ba07c",
   "trk:t-31ce370d:d968293030c7",
   "trk:t-3f524a5b:348b0c7490ee",
+  "trk:t-3f524a5b:390ae7817e3e",
   "trk:t-3f524a5b:3d578f6594f1",
   "trk:t-3f524a5b:7b27e7e63245",
   "trk:t-3f524a5b:7c949b57af14",
@@ -444,6 +448,7 @@
   "trk:t-c3c842c3:868ad36f8bea",
   "trk:t-c3c842c3:b4247b8fc218",
   "trk:t-dbe684bf:4bc20c6f97f4",
+  "trk:t-dbe684bf:63a173bf189c",
   "trk:t-dbe684bf:e5cbac0a0716",
   "trk:ymtc:2f1a15426f78",
   "trk:ymtc:d202b8ddead0",
@@ -618,21 +623,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:t-759fd052:782b2444c387": [
-   137
-  ],
-  "trk:yt--jklonfa:c548bb219247": [
-   138
-  ],
-  "trk:yt--jklonfa:4d81bc61e935": [
-   139
-  ],
-  "trk:msft:8e59f5dd69e7": [
-   140
-  ],
-  "trk:googl:433f0086cb3b": [
-   141
-  ],
   "trk:msft:9483459fa930": [
    142
   ],
@@ -2152,8 +2142,23 @@
   ],
   "trk:gartner:58a1b33cd911": [
    613
+  ],
+  "trk:amzn:9750255b0d68": [
+   614
+  ],
+  "trk:t-3f524a5b:390ae7817e3e": [
+   615
+  ],
+  "trk:t-31ce370d:3cb3798ba07c": [
+   616
+  ],
+  "trk:nvda:42e0183b803d": [
+   617
+  ],
+  "trk:t-dbe684bf:63a173bf189c": [
+   618
   ]
  },
  "topics": {},
- "topic_fail_at": 1792498774.918933
+ "topic_fail_at": 1792502420.986041
 }
