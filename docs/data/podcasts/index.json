@@ -1,6 +1,26 @@
 {
- "updated": "2026-10-20 18:26 KST",
+ "updated": "2026-10-20 19:45 KST",
  "episodes": [
+  {
+   "id": "2026-10-20-understanding-VBJl4botEvw",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "10/20(화) 중국 믿은 유럽 기업, 줄줄이 망해갑니다 (손진석 기자 / '부자 미국 가난한 유럽' 저자)",
+   "date": "2026-10-20",
+   "published": "2026-10-20 17:57 KST",
+   "link": "https://www.youtube.com/watch?v=VBJl4botEvw",
+   "youtube": "https://www.youtube.com/watch?v=VBJl4botEvw",
+   "audio": null,
+   "duration": "",
+   "desc": "제작 지원 (주) 고래사 / 듀오 주식회사 / 어슈런스(주) / 한화자산운용(주) ▶ https://www.musinsa.com/curator/shop/GyVEuRcF *본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공 받습니다",
+   "status": "new",
+   "found": "2026-10-20 19:18 KST",
+   "image": "https://i3.ytimg.com/vi/VBJl4botEvw/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "중국을 믿은 유럽 기업들, 줄줄이 무너지다 (손진석 기자)",
+   "desc_ko": "『부자 미국 가난한 유럽』을 쓴 손진석 기자가 나와 중국 시장에 기대 온 유럽 기업들이 왜 잇따라 흔들리는지 이야기한다. 중국 업체의 추격과 값싼 제품 공세로 유럽 제조업의 설 자리가 좁아지는 흐름을 짚는다. 미국과 유럽의 경제 격차가 어디서 벌어졌는지도 함께 다룬다."
+  },
   {
    "id": "2026-10-20-oddlots-cme-s-terry-duffy-on-the-disconcerting-state-of",
    "show": "oddlots",
@@ -64,12 +84,19 @@
    "audio": "https://traffic.megaphone.fm/CLS1049065818.mp3",
    "duration": "57:29",
    "desc": "My guest today is Christina Cacioppo, founder and CEO of Vanta, which helps more than 16,000 companies manage security and compliance. Five years after our first conversation, we discuss how Vanta became a category leader, what it takes to reinvent a successful software business in the age of AI, and why Christina is betting on agents to do the work rather than simply assist users. We also explore the changing economics of software, the war for exceptional talent, AI's impact on cybersecurity, and what it takes to build an enduring company in Silicon Valley's rapidly changing environment. Plea…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-20 17:17 KST",
    "image": "https://megaphone.imgix.net/podcasts/5d4b6646-cc2c-11f1-b83e-6fbc19058151/image/f7350483606c56dfad30fd2e8868ae00.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "title_ko": "Christina Cacioppo — AI 시대에 오래가는 소프트웨어 회사 만들기 (496회)",
-   "desc_ko": "보안·컴플라이언스 관리 회사 Vanta의 창업자이자 최고경영자 Christina Cacioppo가 5년 만에 다시 나왔다. Vanta는 1만 6천 곳이 넘는 기업이 쓰는 이 분야 선두 업체가 됐다. 잘되던 소프트웨어 사업을 AI 시대에 다시 짜는 법, 사용자를 돕는 데서 그치지 않고 에이전트가 직접 일을 하게 만드는 쪽에 거는 이유를 이야기한다. 소프트웨어 사업의 수익 구조 변화, 뛰어난 인재 쟁탈전, AI가 사이버보안에 미치는 영향도 다룬다."
+   "desc_ko": "보안·컴플라이언스 관리 회사 Vanta의 창업자이자 최고경영자 Christina Cacioppo가 5년 만에 다시 나왔다. Vanta는 1만 6천 곳이 넘는 기업이 쓰는 이 분야 선두 업체가 됐다. 잘되던 소프트웨어 사업을 AI 시대에 다시 짜는 법, 사용자를 돕는 데서 그치지 않고 에이전트가 직접 일을 하게 만드는 쪽에 거는 이유를 이야기한다. 소프트웨어 사업의 수익 구조 변화, 뛰어난 인재 쟁탈전, AI가 사이버보안에 미치는 영향도 다룬다.",
+   "summary": {
+    "title_ko": "Christina Cacioppo — AI 시대에 오래가는 소프트웨어 회사 만들기 (496회)",
+    "headline": "Vanta 대표 \"토큰 비용은 우리가 떠안는다\" — 고객 25%가 에이전트 사용, 목표 75%",
+    "image": null,
+    "guest": "크리스티나 카치오포(Christina Cacioppo) — Vanta 공동창업자 겸 최고경영자 — 보안·컴플라이언스 자동화",
+    "company": "Vanta (보안 · 컴플라이언스 자동화)"
+   }
   },
   {
    "id": "2026-10-19-understanding-15FRu2MjlcU",
