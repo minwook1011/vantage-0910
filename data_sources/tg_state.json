@@ -156,6 +156,7 @@
   "trk:blog-ranto28:a53b42ec5972",
   "trk:blog-ranto28:b2ad82da6365",
   "trk:blog-ranto28:c3cde40df3d3",
+  "trk:blog-ranto28:d53b4d40c8e5",
   "trk:blog-ranto28:e28ef17622e9",
   "trk:blog-ranto28:e44af80ee32f",
   "trk:blog-ranto28:ec5870e4dcd4",
@@ -216,6 +217,7 @@
   "trk:cxmt:c786be2462dc",
   "trk:cxmt:dfc16b1dc575",
   "trk:cxmt:f14693d74aec",
+  "trk:gartner:00d231f4d4a6",
   "trk:gartner:0cd126e4da80",
   "trk:gartner:3dfbaffaf156",
   "trk:gartner:58a1b33cd911",
@@ -269,6 +271,7 @@
   "trk:msft:8e59f5dd69e7",
   "trk:msft:9483459fa930",
   "trk:msft:991db743ddfa",
+  "trk:msft:9b58029d2107",
   "trk:msft:9b63a28b18a7",
   "trk:msft:aded76a3da7f",
   "trk:msft:c709f112fd1c",
@@ -627,15 +630,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:meta:2dd6fc72bd1c": [
-   146
-  ],
-  "trk:blog-ranto28:8190856355f7": [
-   147
-  ],
-  "trk:t-62bbe9b6:7ce485c6013d": [
-   148
-  ],
   "trk:amzn:11e2f839692b": [
    149
   ],
@@ -2161,6 +2155,15 @@
   ],
   "trk:blog-ssh-fedinsight:a20593e75b92": [
    622
+  ],
+  "trk:msft:9b58029d2107": [
+   623
+  ],
+  "trk:blog-ranto28:d53b4d40c8e5": [
+   624
+  ],
+  "trk:gartner:00d231f4d4a6": [
+   625
   ]
  },
  "topics": {},
