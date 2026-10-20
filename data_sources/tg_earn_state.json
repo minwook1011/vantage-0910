@@ -42,6 +42,7 @@
   "alert:us:PLD:2026-10-15",
   "alert:us:PNC:2026-10-15",
   "alert:us:RF:2026-10-16",
+  "alert:us:RTX:2026-10-20",
   "alert:us:STZ:2026-10-06",
   "alert:us:TFC:2026-10-16",
   "alert:us:TRV:2026-10-16",
@@ -100,6 +101,7 @@
   "sum:us:PLD:2026-10-15",
   "sum:us:PNC:2026-10-15",
   "sum:us:RF:2026-10-16",
+  "sum:us:RTX:2026-10-20",
   "sum:us:STZ:2026-10-06",
   "sum:us:TFC:2026-10-16",
   "sum:us:TRV:2026-10-16",
@@ -154,7 +156,8 @@
   "alert:us:MSCI:2026-10-20": 112,
   "alert:us:KEY:2026-10-20": 113,
   "alert:us:EFX:2026-10-20": 114,
-  "alert:us:HAS:2026-10-20": 115
+  "alert:us:HAS:2026-10-20": 115,
+  "alert:us:RTX:2026-10-20": 116
  },
  "topics": {
   "sched": 4,
