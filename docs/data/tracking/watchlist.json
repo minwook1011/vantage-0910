@@ -101,8 +101,8 @@
    "resolved": true,
    "added": "2026-10-10 13:30",
    "by": "telegram",
-   "count": 0,
-   "last": ""
+   "count": 1,
+   "last": "2026-10-20 09:01 KST"
   },
   {
    "term": "아마존",
@@ -231,8 +231,8 @@
    "added": "2026-10-10 13:44",
    "by": "telegram",
    "name": "OpenAI",
-   "count": 39,
-   "last": "2026-10-20 03:14 KST"
+   "count": 40,
+   "last": "2026-10-20 08:22 KST"
   },
   {
    "term": "엔스로픽",
@@ -732,7 +732,25 @@
    "by": "claude",
    "count": 3,
    "last": "2026-10-19 14:39 KST"
+  },
+  {
+   "term": "딥시크",
+   "slug": "t-dbe684bf",
+   "market": "theme",
+   "ticker": "",
+   "aliases": [
+    "DeepSeek",
+    "DeepSeek AI",
+    "딥시크",
+    "深度求索"
+   ],
+   "resolved": true,
+   "added": "2026-10-20 09:14",
+   "by": "telegram",
+   "name": "DeepSeek (딥시크)",
+   "count": 1,
+   "last": "2026-10-20 00:28 KST"
   }
  ],
- "updated": "2026-10-20 08:47 KST"
+ "updated": "2026-10-20 09:19 KST"
 }
