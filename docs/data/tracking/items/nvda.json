@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "8ca37388610d",
+   "kind": "news",
+   "headline": "바이트댄스·알리바바·텐센트, 엔비디아 'RTX PRO 5500' 300만 장 넘게 주문 — 정가 기준 350억달러 이상(로이터 단독)",
+   "bullets": [
+    "중국 빅테크 3곳이 엔비디아 새 그래픽카드 RTX PRO 5500을 300만 장 넘게 주문했다. 장당 약 1만1,400달러로, 합치면 350억달러가 넘는다.",
+    "공급이 문제다. 엔비디아는 협력사에 요청 물량의 5~10%만 받을 수 있다고 알렸고, 2027년 전 세계 생산도 300만 장을 넘기 어렵다고 했다.",
+    "중국 전체 고객 주문은 600만 장을 넘었다. 주로 인공지능 추론(학습이 끝난 모델을 돌리는 일)에 쓸 계획이다."
+   ],
+   "summary": "로이터가 소식통 2명을 인용해 단독 보도했다. RTX PRO 5500은 H200·B300보다 성능이 낮지만, 수출 규제 속에서 중국 기업이 아직 살 수 있는 엔비디아 칩 가운데 가장 강력한 축에 든다.\n\n주문 규모와 실제 공급의 차이가 크다. 요청 물량의 5~10%만 배정되면 실제 납품은 300만 장 중 15만~30만 장 수준에 그친다. 2027년 전 세계 생산 한도가 300만 장이라는 점을 보면 중국 주문만으로 1년치 생산을 다 채우는 셈이다.\n\n남은 쟁점은 미국 정부의 추가 규제 여부와 중국 당국의 엔비디아 구매 견제, 그리고 엔비디아가 중국 몫을 얼마나 배정할지다. 엔비디아와 해당 기업들의 공식 확인은 아직 나오지 않았다.",
+   "title": "EXCLUSIVE: ByteDance, Alibaba, Tencent place over $35 billion worth of Nvidia chip orders",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQOXBuUld1bXhxNWlQNktuUmYxOWpVRFlnN0dialpvZlhYM1JLVzE1N0VBSUVNbUlCNmwtN2RVWXRkd1VUV3BRSV9aMGJGMkpxQUk4VWZ1dUt5YjZpdmthQVZ3REFHUzBmV3B0SFJwOFFsMl9fb3l0Y3F0Z1FXbDAxSFhTbV9peVVDQ3FKRnp3NjVDdEpRVHdIOG04SjctLWRRTzN2bDM1a2QxaGdZMHlJV0hGS1FObHFKTVNiS3hvXzZsUzdvMktteFBvSGNEZw?oc=5",
+   "published": "2026-10-20 18:06 KST",
+   "written": "2026-10-20 18:17 KST"
+  },
+  {
    "id": "685039c54a98",
    "kind": "news",
    "headline": "지멘스·엔비디아, 독일 에를랑겐 공장을 '인공지능이 굴리는 공장' 첫 모델로 — 지멘스, 공장 자동화율 30~40%→최대 80% 목표·5억 유로 투자",
@@ -547,5 +563,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-20 05:17 KST"
+ "updated": "2026-10-20 18:17 KST"
 }
