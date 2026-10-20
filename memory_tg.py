@@ -118,22 +118,29 @@ def main():
     L += ["", "괄호 안은 품목별 기준일(모듈·낸드는 주 1회 갱신)"]
     text = "\n".join(L)
 
-    def ser(items, k):
-        return [(p["date"], p["value"]) for p in items.get(k) or []]
-    charts = [
-        C.line("mem_ddr5", "DDR5 16Gb 현물 vs 고정거래가", ("DRAMeXchange 현물 · TrendForce 고정거래가 · 달러 · 기준 ", key),
-               [("현물", ser(dram, "ddr5_16g")), ("고정거래가", ser(ct, "ct_ddr5_16g"))], digits=2, since_days=400),
-        C.line("mem_rdimm", "서버 모듈 가격", ("DRAMeXchange DDR5 32GB · 중국 계약가 DDR5 64GB · 달러 · 기준 ", key),
-               [("DDR5 32GB", ser(dram, "ddr5_rdimm_32g")), ("중국 계약 64GB", ser(cfm, "100263"))], digits=0, since_days=400),
-        C.line("mem_nand", "낸드 웨이퍼 (TLC)", ("DRAMeXchange · 달러 · 기준 ", (dram.get("nand_512g_tlc") or [{}])[-1].get("date", "")),
-               [("512Gb", ser(dram, "nand_512g_tlc")), ("256Gb", ser(dram, "nand_256g_tlc")), ("128Gb", ser(dram, "nand_128g_tlc"))],
-               digits=2, since_days=400),
-    ]
+    # 2026-10-21 사용자: 큰 그래프 하나에 선 여러 개는 보기 어렵다 → 선 하나짜리 작은 그래프 9개를 한 장에
+    since = (date.fromisoformat(key) - timedelta(days=400)).isoformat()
+
+    def panel(title, items, k, dg, unit="$"):
+        pts = [(p["date"], p["value"]) for p in items.get(k) or [] if p["date"] >= since]
+        if not pts:
+            return None
+        v = pts[-1][1]
+        m = at(items.get(k) or [], 30)
+        ch = pct(v, m) if m else None
+        return (title, date.fromisoformat(pts[-1][0]).strftime("%m/%d"), f"{unit}{v:,.{dg}f}", ch, pts)
+    P = [panel("DDR5 16Gb 현물", dram, "ddr5_16g", 2), panel("DDR5 16Gb 고정거래가", ct, "ct_ddr5_16g", 2),
+         panel("DDR4 16Gb 현물", dram, "ddr4_16g", 2), panel("DDR4 8Gb 현물", dram, "ddr4_8g", 2),
+         panel("서버 모듈 DDR5 32GB", dram, "ddr5_rdimm_32g", 0), panel("중국 서버 계약가 DDR5 64GB", cfm, "100263", 0),
+         panel("GDDR6 8Gb (그래픽)", dram, "gddr6_8g", 2), panel("낸드 웨이퍼 512Gb TLC", dram, "nand_512g_tlc", 2),
+         panel("낸드 웨이퍼 256Gb TLC", dram, "nand_256g_tlc", 2)]
+    charts = [C.mini_grid("mem_grid", "메모리 가격", f"DRAMeXchange 현물·모듈·낸드 · TrendForce 고정거래가 · 중국 계약가(CFM) · 달러 · 최근 1년 · {key} 기준",
+                          [p for p in P if p])]
     if a.dry:
         print(text)
         print(charts)
         return
-    T.send_photos(charts, caption=f"💾 메모리 가격 그래프 · {key}")
+    T.send_photos(charts, caption=f"💾 메모리 가격 · {key}")
     T.send(text)
     os.makedirs(os.path.dirname(STATE), exist_ok=True)
     json.dump({"last": key}, open(STATE, "w", encoding="utf-8"))

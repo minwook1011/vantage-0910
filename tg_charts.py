@@ -245,3 +245,44 @@ def spot_cards(name, title, sub, cards):
         for sp in ax.spines.values():
             sp.set_visible(False)
     return _save(fig, name)
+
+
+def mini_grid(name, title, sub, panels, cols=3):
+    """작은 그래프 여러 개(한 칸에 선 하나) — 2026-10-21 사용자: 메모리 가격을 하나씩 작게.
+    panels = [(제목, 기준일 표시, 최근값 문자열, 1개월 변화 %, [(날짜문자열, 값), ...]), ...]"""
+    import matplotlib.dates as mdates
+    n = len(panels)
+    rows = (n + cols - 1) // cols
+    H = 2.15 * rows + 0.85
+    fig = plt.figure(figsize=(9, H), dpi=150)
+    fig.text(0.035, 1 - 0.3 / H, title, fontsize=15, fontweight="bold", color=INK)
+    fig.text(0.035, 1 - 0.58 / H, sub, fontsize=9, color=MUTED)
+    top = 1 - 0.85 / H
+    w = 0.93 / cols
+    for i, (t, d, val, pct, pts) in enumerate(panels):
+        r, c = divmod(i, cols)
+        h = top / rows
+        x0, y0 = 0.035 + c * w, top - (r + 1) * h
+        col = "#d33f5b" if (pct or 0) > 0 else "#2f6fe4" if (pct or 0) < 0 else MUTED
+        fig.text(x0 + 0.005, y0 + 0.88 * h, t, fontsize=9.5, fontweight="bold", color=INK)
+        fig.text(x0 + 0.005, y0 + 0.73 * h, val, fontsize=13, fontweight="bold", color=INK)
+        fig.text(x0 + w - 0.03, y0 + 0.75 * h, ("" if pct is None else f"{pct:+.1f}%") + "\n1개월", fontsize=8, color=col, ha="right", fontweight="bold")
+        fig.text(x0 + w - 0.03, y0 + 0.88 * h, d, fontsize=7.5, color=MUTED, ha="right")
+        ax = fig.add_axes([x0 + 0.005, y0 + 0.1 * h, w - 0.035, 0.55 * h])
+        pts = [(_d(a), b) for a, b in pts if b is not None]
+        if pts:
+            xs, ys = zip(*pts)
+            ax.plot(xs, ys, color="#4b6fd8", lw=1.5)
+            ax.fill_between(xs, ys, min(ys) - (max(ys) - min(ys)) * 0.05, color="#4b6fd8", alpha=0.08)
+            ax.scatter([xs[-1]], [ys[-1]], color="#4b6fd8", s=10, zorder=5)
+            span = (xs[-1] - xs[0]).days
+            ax.xaxis.set_major_locator(mdates.MonthLocator(interval=4 if span > 300 else 2 if span > 120 else 1))
+            ax.xaxis.set_major_formatter(mdates.DateFormatter("%y/%m"))
+        ax.set_facecolor(BG)
+        ax.grid(axis="y", color=GRID, lw=0.6)
+        ax.grid(axis="x", visible=False)
+        ax.tick_params(labelsize=6.5, length=0, colors=MUTED)
+        ax.yaxis.set_major_locator(plt.MaxNLocator(3))
+        for sp in ax.spines.values():
+            sp.set_visible(False)
+    return _save(fig, name)
