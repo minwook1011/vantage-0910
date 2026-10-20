@@ -30,6 +30,7 @@
   "alert:us:C:2026-10-13",
   "alert:us:EFX:2026-10-20",
   "alert:us:FITB:2026-10-19",
+  "alert:us:GE:2026-10-20",
   "alert:us:GS:2026-10-13",
   "alert:us:HAL:2026-10-20",
   "alert:us:HAS:2026-10-20",
@@ -45,6 +46,7 @@
   "alert:us:RF:2026-10-16",
   "alert:us:RTX:2026-10-20",
   "alert:us:STZ:2026-10-06",
+  "alert:us:SYF:2026-10-20",
   "alert:us:TFC:2026-10-16",
   "alert:us:TRV:2026-10-16",
   "alert:us:UNH:2026-10-13",
@@ -91,6 +93,7 @@
   "sum:us:C:2026-10-13",
   "sum:us:EFX:2026-10-20",
   "sum:us:FITB:2026-10-19",
+  "sum:us:GE:2026-10-20",
   "sum:us:GS:2026-10-13",
   "sum:us:HAL:2026-10-20",
   "sum:us:HAS:2026-10-20",
@@ -105,6 +108,7 @@
   "sum:us:RF:2026-10-16",
   "sum:us:RTX:2026-10-20",
   "sum:us:STZ:2026-10-06",
+  "sum:us:SYF:2026-10-20",
   "sum:us:TFC:2026-10-16",
   "sum:us:TRV:2026-10-16",
   "sum:us:UNH:2026-10-13",
@@ -160,7 +164,9 @@
   "alert:us:EFX:2026-10-20": 114,
   "alert:us:HAS:2026-10-20": 115,
   "alert:us:RTX:2026-10-20": 116,
-  "alert:us:HAL:2026-10-20": 117
+  "alert:us:HAL:2026-10-20": 117,
+  "alert:us:GE:2026-10-20": 118,
+  "alert:us:SYF:2026-10-20": 119
  },
  "topics": {
   "sched": 4,
