@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "628bd45d43ab",
+   "kind": "news",
+   "headline": "미국 법원, 올트먼 여동생 앤 올트먼의 성적 학대 소송 기각(로이터)",
+   "bullets": [
+    "로이터가 10월 20일 미국 판사가 샘 올트먼 오픈AI 최고경영자를 상대로 여동생 앤 올트먼이 낸 성적 학대 손해배상 소송을 기각했다고 보도했다.",
+    "이 소송은 3월에 한 번 시효 문제로 기각됐다가, 미주리주 아동 성학대 법에 따라 4월 1일 수정 소장이 다시 제출된 사건이다.",
+    "올트먼은 혐의를 부인해 왔고, 여동생을 상대로 명예훼손 맞소송도 낸 상태다."
+   ],
+   "summary": "로이터 보도 본문은 아직 확인하지 못해 이번 기각의 이유와 재소송 가능 여부는 확인되지 않았다.\n\n배경: 3월 세인트루이스 연방법원 재커리 블루스톤 판사는 1997~2006년 일로 주장된 성폭행·성적 폭행 청구는 2008년에 시효가 끝났다며 기각했지만, 미주리주 아동 성학대 법에 따른 청구로 다시 낼 길은 열어 줬다. 같은 결정에서 올트먼의 명예훼손 맞소송도 허용됐다. 앤 올트먼은 4월 1일 수정 소장을 냈고, 4월 말에는 대리 로펌들이 사임을 신청했다는 보도가 나왔다. 하루 전에는 올트먼 쪽이 여동생이 소송을 자신의 소셜미디어·팟캐스트 홍보에 쓰고 있다고 주장한 서면이 보도됐다.\n\n남은 쟁점은 이번 기각이 최종인지, 그리고 올트먼의 명예훼손 맞소송이 계속 진행되는지다.",
+   "title": "US judge dismisses Sam Altman's sister's sexual abuse lawsuit",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNQVJnQzNVSG9xLUh4YjJRTXRpLU5xMnlLTkhXWjJtc2YtYVdMcE1IYVV6cmx5Snp3WGZraHlCSXhteWQzNjlKSW5XRUZCVTMza3N6NE43el9kODgxTG1fc19NM2xxVmNTRVl4ZjN4T0tHT1FvNVdUd0ZwR3JabGNCNkFxbWM4ZURfdmpFeDZwVng5ZWU1RmxmeWR5ZWVCZlVXY0hr?oc=5",
+   "published": "2026-10-20 22:33 KST",
+   "written": "2026-10-20 22:48 KST"
+  },
+  {
    "id": "fb26970d5fb5",
    "kind": "news",
    "headline": "올트먼 \"인공지능 안전 통제는 국제원자력기구 같은 국제기구가 1순위\" — 사내 회의서 3가지 방안 제시, 한 회사 독점은 '끔찍한 발상'(디인포메이션)",
@@ -659,5 +675,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-20 14:19 KST"
+ "updated": "2026-10-20 22:48 KST"
 }
