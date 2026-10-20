@@ -21,6 +21,7 @@
   "digest:2026-10-17:us",
   "digest:2026-10-18",
   "digest:2026-10-19:asia",
+  "digest:2026-10-20:asia",
   "digest:2026-10-20:us",
   "gpu:2026-10-06",
   "gpu:2026-10-07",
@@ -600,9 +601,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt--jklonfa:e0e8fc527c23": [
-   119
-  ],
   "trk:yt--jklonfa:5dc04253f2db": [
    120
   ],
@@ -2133,6 +2131,10 @@
   ],
   "trk:yt--jklonfa:b47ede697ab4": [
    595
+  ],
+  "digest:2026-10-20:asia": [
+   596,
+   597
   ]
  },
  "topics": {},
