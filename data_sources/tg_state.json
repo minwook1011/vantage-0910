@@ -195,8 +195,10 @@
   "trk:cathie-wood:94ca33bdda3d",
   "trk:cathie-wood:a5e8d81e64b8",
   "trk:cathie-wood:c4dae11c1b2d",
+  "trk:cathie-wood:feb3c1feeb91",
   "trk:cxmt-yxmt:2307204886d8",
   "trk:cxmt:2d3a0c6d94d8",
+  "trk:cxmt:2e2040484cb0",
   "trk:cxmt:33e0a3d72ae5",
   "trk:cxmt:4bcf54de2403",
   "trk:cxmt:6e14f32073c5",
@@ -454,6 +456,7 @@
   "trk:yt--jklonfa:305b0bf09569",
   "trk:yt--jklonfa:306a119e4306",
   "trk:yt--jklonfa:318e7157d540",
+  "trk:yt--jklonfa:319a04baf487",
   "trk:yt--jklonfa:35035e4a0617",
   "trk:yt--jklonfa:35573a492c8a",
   "trk:yt--jklonfa:37164c272f34",
@@ -590,15 +593,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "pod:2026-10-12-ca-senior-decision-makers-erlina-yeo-terwelp-columb": [
-   109
-  ],
-  "trk:t-0a23e71f:9fcb31e3da60": [
-   110
-  ],
-  "trk:amzn:1eb3be945139": [
-   111
-  ],
   "trk:meta:cc12a444557f": [
    112
   ],
@@ -2123,6 +2117,15 @@
   ],
   "trk:yt--jklonfa:50970c75a267": [
    585
+  ],
+  "trk:yt--jklonfa:319a04baf487": [
+   586
+  ],
+  "trk:cxmt:2e2040484cb0": [
+   587
+  ],
+  "trk:cathie-wood:feb3c1feeb91": [
+   588
   ]
  },
  "topics": {},
