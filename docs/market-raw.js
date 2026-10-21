@@ -85,7 +85,7 @@
     var top = '<div class="mr-head"><h2>' + esc(title) + (MODE === "sector" ? " 업종별 흐름" : " 전체 종목") + '</h2><div class="mr-idx">' + idx + '<span class="asof">기준 ' + esc(D.as_of) + " · " + D.count + "종목 · <b>업데이트 " + esc((D.generated_at || "").replace("T", " ").slice(0, 16)) + '</b> · <a href="ta.html#' + st.m + '-nh">기술적 분석에서 보기 →</a></span></div></div>';
     if (MODE === "sector") {
       var S = sectors(D).sort(cmp(st.sort));
-      box.innerHTML = top + '<p class="mr-note">수익률은 업종 안 종목의 시가총액 가중 평균입니다. 줄을 누르면 그 업종 종목이 펼쳐집니다.</p><div class="mr-scroll"><table class="mr-t">' + head(SCOL, true) + "<tbody>" +
+      box.innerHTML = top + briefHTML(st.m) + '<p class="mr-note">수익률은 업종 안 종목의 시가총액 가중 평균입니다. 줄을 누르면 그 업종 종목이 펼쳐집니다.</p><div class="mr-scroll"><table class="mr-t">' + head(SCOL, true) + "<tbody>" +
         S.map(function (g) {
           var o = st.open[g.sector];
           var row = '<tr class="grp' + (o ? " open" : "") + '" data-open="' + esc(g.sector) + '"><td class="l"><i>' + (o ? "▾" : "▸") + "</i> <b>" + esc(g.sector) + "</b></td><td>" + g.n + "</td><td>" + cap(st.m, g.mcap) + "</td>" +
@@ -107,6 +107,28 @@
     var q = box.querySelector("[data-q]"); if (q) q.oninput = function () { st.q = q.value; clearTimeout(q._t); q._t = setTimeout(function () { render(); var n = box.querySelector("[data-q]"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 250); };
     var mo = box.querySelector("[data-more]"); if (mo) mo.onclick = function () { st.limit += 200; render(); };
   }
+  /* 시장 해석 글(예약 작업 vantage-market-brief-us 06:30 · -asia 16:00 → data/market_brief.json) — 업종표 위에 접기 카드 */
+  var BRIEF;
+  function mdLite(md) {
+    return String(md || "").split(/\n{2,}/).map(function (blk) {
+      var L = blk.split("\n"), h = /^#{2,4}\s+(.*)/.exec(L[0]);
+      var inl = function (t) { return esc(t).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>"); };
+      if (h) return "<h4>" + inl(h[1]) + "</h4>" + (L.length > 1 ? mdLite(L.slice(1).join("\n")) : "");
+      if (L.every(function (l) { return /^\s*[-•]\s/.test(l); })) return "<ul>" + L.map(function (l) { return "<li>" + inl(l.replace(/^\s*[-•]\s*/, "")) + "</li>"; }).join("") + "</ul>";
+      return "<p>" + L.map(inl).join("<br>") + "</p>";
+    }).join("");
+  }
+  function briefHTML(m) {
+    if (MODE !== "sector" || !BRIEF) return "";
+    var ses = m === "us" ? "us" : "asia";
+    var b = (BRIEF.briefs || []).filter(function (x) { return x.session === ses; })[0];
+    if (!b) return "";
+    return '<details class="mr-brief"' + (b.date === (BRIEF.briefs[0] || {}).date ? " open" : "") + '><summary><span class="mr-bk">' + (ses === "us" ? "🇺🇸 미국 마감" : "🇰🇷🇯🇵 한국·일본 마감") +
+      " 시장 해석</span> <b>" + esc(b.title || "") + '</b><em>' + esc(b.date || "") + " · " + esc((b.generated || "").slice(11, 16)) + " 작성</em></summary>" +
+      (b.summary && b.summary.length ? '<ol class="mr-bs">' + b.summary.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ol>" : "") +
+      '<details class="mr-bfull"><summary>전체 해석 펼치기</summary>' + mdLite(b.markdown) + "</details></details>";
+  }
+  fetch("data/market_brief.json?v=" + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) { BRIEF = d; if (st.m) render(); }).catch(function () {});
   function renderFav() {
     var ms = ["us", "kr", "jp"], miss = ms.filter(function (m) { return CACHE[m] === undefined; });
     if (miss.length) { box.innerHTML = '<div class="mr-empty">불러오는 중…</div>'; return; }
