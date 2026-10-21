@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21 20:24 KST",
+ "updated": "2026-10-21 21:31 KST",
  "episodes": [
   {
    "id": "2026-10-21-ontape-james-aitken-it-pays-to-shave-with-occam-s-razor",
@@ -45,7 +45,7 @@
    "lang": "ko",
    "title_ko": "[라이브] 주식시장 긴급 점검 — 떠날 때인가, 버틸 때인가 (이선엽 대표 / AFW파트너스)",
    "desc_ko": "10월 21일 수요일 언더스탠딩 생방송. AFW파트너스 이선엽 대표가 출연해 최근 흔들리는 주식시장을 점검한다. 지금 시장에서 빠져나와야 할 때인지, 아니면 버티며 기다려야 할 때인지를 주제로 이야기를 나눈다.",
-   "tx_fail": 1,
+   "tx_fail": 2,
    "tx_note": "유튜브 회원 전용 라이브 — 자막 받기 불가(방송 직후 다시보기 처리 중)"
   },
   {
@@ -92,6 +92,31 @@
     "image": "https://i.ytimg.com/vi/y0wQdI1ej_8/hqdefault.jpg",
     "guest": "손진석 — 조선일보 기자 · 전 파리 유럽특파원 · 『부자 미국 가난한 유럽』 공저자",
     "company": "유럽 기업의 중국 의존 (명품 · 자동차 · 화학 · 풍력 · 대중 교역)"
+   }
+  },
+  {
+   "id": "2026-10-21-riskrev-the-real-ai-threat-is-two-dudes-and-a-gpu-with-d",
+   "show": "riskrev",
+   "show_name": "RiskReversal Pod",
+   "title": "The Real AI Threat Is Two Dudes and a GPU with Damien Lewke, CEO & Founder of Nebulock",
+   "date": "2026-10-21",
+   "published": "2026-10-21 12:00 KST",
+   "link": "",
+   "audio": "https://traffic.megaphone.fm/RRM7302607281.mp3",
+   "duration": "37:36",
+   "desc": "Dan Nathan hosts Damien Lewke, CEO and founder of AI-native cybersecurity company Nebulock. Lewke recounts his career from nation-state defense at Northrop Grumman to CrowdStrike, Palo Alto Networks, MIT research in NLP, and leading AI detections at Arctic Wolf. They discuss how the threat surface has expanded with distributed environments and how the ChatGPT moment accelerated both defensive usability and offensive capability. Lewke explains Nebulock’s “hunt-first” mission to give any team machine-speed detection and response, positioning it across converging markets like SIEM, MDR, AI SOC, a…",
+   "status": "done",
+   "found": "2026-10-21 21:16 KST",
+   "image": "https://megaphone.imgix.net/podcasts/2bd29fe8-ccc8-11f1-bc43-ff77bddbef09/image/2373212d5e66ed3cad21fcff932f07cb.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "Damien Lewke — 진짜 AI 위협은 \"GPU 한 대와 두 사람\": Nebulock 창업자가 본 AI 보안",
+   "desc_ko": "Dan Nathan이 AI 기반 사이버보안 스타트업 Nebulock의 창업자 겸 최고경영자 Damien Lewke를 만났다. Lewke는 Northrop Grumman의 국가 단위 방어 업무에서 시작해 CrowdStrike, Palo Alto Networks를 거쳐 MIT에서 자연어 처리를 연구하고 Arctic Wolf에서 AI 탐지를 이끈 경력을 소개한다. 분산된 업무 환경으로 공격 받을 곳이 넓어진 점, 챗GPT 이후 방어 도구는 쓰기 쉬워졌지만 공격 능력도 함께 커진 점을 짚는다. Nebulock이 내세우는 \"먼저 사냥하는\" 방식, 즉 어느 보안팀이든 기계 속도로 위협을 찾아 대응하게 하겠다는 목표와 보안 관제·관리형 탐지·AI 관제센터 시장이 합쳐지는 흐름도 다룬다.",
+   "summary": {
+    "title_ko": "Damien Lewke — 진짜 AI 위협은 \"GPU 한 대와 두 사람\": Nebulock 창업자가 본 AI 보안",
+    "headline": "진짜 위험은 최첨단 모델이 아니라 안전장치 없는 모델을 GPU 한 대로 돌리는 공격자 — 그래서 보안 투자는 AI 경기와 따로 간다",
+    "image": null,
+    "guest": "데미언 루키(Damien Lewke) — AI 기반 위협 사냥 보안 스타트업 Nebulock 창업자 겸 최고경영자",
+    "company": "Nebulock · 사이버보안 · AI 관제 (사이버보안 · 위협 탐지·대응 · AI 보안관제)"
    }
   },
   {
