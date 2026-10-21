@@ -82,13 +82,23 @@
     var hy = y(s.hi52);
     return '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none" aria-hidden="true"><g class="vb">' + bars + '</g><line x1="0" x2="' + W + '" y1="' + hy.toFixed(1) + '" y2="' + hy.toFixed(1) + '" class="hi"/><path d="' + d + '" class="' + (up ? "up" : "dn") + '"/></svg>';
   }
+  // 트레이딩뷰 차트 바로가기(2026-10-22 사용자) — 미국은 티커, 한국 KRX:코드, 일본 TSE:코드
+  function tvSym(s) {
+    var m = s._m || st.m;
+    if (m === "kr" || /\.(KS|KQ)$/.test(s.tk || "")) return "KRX:" + s.code;
+    if (m === "jp" || /\.T$/.test(s.tk || "")) return "TSE:" + s.code;
+    return String(s.tk || s.code).replace("-", ".");
+  }
+  function tvBtn(s) {
+    return '<a class="ta-tv" href="https://www.tradingview.com/chart/?symbol=' + encodeURIComponent(tvSym(s)) + '" target="_blank" rel="noopener" title="트레이딩뷰에서 차트 열기" data-tv>T</a>';
+  }
   function card(s) {
     var tags = [];
     if (s.nh) tags.push('<em class="t-nh">신고가 오늘</em>'); else if (s.nh5) tags.push('<em class="t-nh2">' + s.nh_since + "일 전 신고가</em>"); else if (s.from_hi != null) tags.push("<em>신고가까지 " + Number(-s.from_hi).toFixed(1) + "%</em>");
     if (s.vr != null) tags.push('<em class="' + (s.vr >= 3 ? "t-v3" : s.vr >= 2 ? "t-v2" : "") + '">거래량 ' + Number(s.vr).toFixed(1) + "배</em>");
     if (s.rs != null) tags.push('<em class="' + (s.rs >= 90 ? "t-rs" : "") + '">RS ' + s.rs + "</em>");
     if (s.per != null) tags.push("<em>" + (s.per < 0 ? "적자" : "PER " + Number(s.per).toFixed(1) + "배") + "</em>");
-    return '<article class="ta-card" id="c-' + esc(s.code) + '" data-code="' + esc(s.code) + '" data-mk="' + esc(s._m || st.m) + '" title="눌러서 기업 정보 보기"><header><div class="nm"><b><button type="button" class="ta-star' + (favs()[s.tk] ? " on" : "") + '" data-fav="' + esc(s.tk) + '" data-fn="' + esc(s.name) + '" title="즐겨찾기">' + (favs()[s.tk] ? "★" : "☆") + "</button>" + nameHTML(s) + '</b><small>' + esc(s.code) + " · " + esc(s.sector) + " · " + mcap(s) + '</small></div><div class="px"><b>' + price(s) + "</b>" + sgn(s.chg1d, 2) + "</div></header>" +
+    return '<article class="ta-card" id="c-' + esc(s.code) + '" data-code="' + esc(s.code) + '" data-mk="' + esc(s._m || st.m) + '" title="눌러서 기업 정보 보기"><header><div class="nm"><b><button type="button" class="ta-star' + (favs()[s.tk] ? " on" : "") + '" data-fav="' + esc(s.tk) + '" data-fn="' + esc(s.name) + '" title="즐겨찾기">' + (favs()[s.tk] ? "★" : "☆") + "</button>" + tvBtn(s) + nameHTML(s) + '</b><small>' + esc(s.code) + " · " + esc(s.sector) + " · " + mcap(s) + '</small></div><div class="px"><b>' + price(s) + "</b>" + sgn(s.chg1d, 2) + "</div></header>" +
       '<div class="ch">' + mini(s) + '</div><div class="tg">' + tags.join("") + '</div><div class="rt"><span>1개월 ' + sgn(s.chg1m) + "</span><span>3개월 " + sgn(s.r3) + "</span><span>지수 대비 " + sgn(s.ex3) + "</span></div></article>";
   }
 
@@ -146,6 +156,7 @@
     var lq = host.querySelector("[data-liq]"); if (lq) lq.onchange = function () { st.liq = lq.checked; save(); render(); };
     [["cap", "[data-cap]"], ["per", "[data-per]"]].forEach(function (x) { var el = host.querySelector(x[1]); if (el) el.onchange = function () { var v = el.value.trim(); st[x[0]][st.m] = v === "" ? "" : Math.max(0, parseFloat(v)) || ""; save(); render(); }; });
     host.querySelectorAll(".ta-card[data-code]").forEach(function (el) { el.onclick = function () { openInfo(el.dataset.code, el.dataset.mk); }; });
+    host.querySelectorAll("[data-tv]").forEach(function (a) { a.onclick = function (e) { e.stopPropagation(); }; });   // 카드 클릭(기업 정보)과 겹치지 않게
     host.querySelectorAll("[data-fav]").forEach(function (b) { b.onclick = function (e) { e.stopPropagation(); favToggleTk(b.dataset.fav, b.dataset.fn); var on = !!favs()[b.dataset.fav]; b.classList.toggle("on", on); b.textContent = on ? "★" : "☆"; if (st.m === "fav") render(); }; });
     host.querySelectorAll("[data-jump]").forEach(function (b) { b.onclick = function () { var el = document.getElementById("c-" + b.dataset.jump); if (!el) { st.sec = ""; st.q = ""; render(); el = document.getElementById("c-" + b.dataset.jump); } if (el) { el.scrollIntoView({behavior: "smooth", block: "center"}); host.querySelectorAll(".ta-card.flash").forEach(function (x) { x.classList.remove("flash"); }); void el.offsetWidth; el.classList.add("flash"); } }; });
   }

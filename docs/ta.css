@@ -76,3 +76,7 @@
 .ta-ctl label.num { display:inline-flex; align-items:center; gap:5px; white-space:nowrap; }
 .ta-ctl label.num input { width:92px; padding:6px 8px; border:1px solid #cfd8e6; border-radius:8px; font:inherit; background:#fff; color:#1a2231; text-align:right; }
 .ta-ctl label.num input:focus { outline:2px solid #2f6fe4; outline-offset:0; }
+
+/* 트레이딩뷰 바로가기 T */
+.ta-tv { display:inline-grid; place-items:center; width:20px; height:20px; margin-right:6px; border-radius:6px; background:#131722; color:#fff !important; font:800 12px/1 var(--sans, sans-serif); text-decoration:none !important; vertical-align:1px; transition:transform .12s, background .12s; }
+.ta-tv:hover { background:#2962ff; transform:scale(1.12); }
