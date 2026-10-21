@@ -503,7 +503,7 @@ def tracking():
                 lines += [f"{i}. {esc(b)}" for i, b in enumerate(it.get("bullets") or [], 1)]
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
-                dest = route("blog" if t.get("market") in ("blog", "youtube") else "news")   # 유튜브도 블로그·인터뷰 쪽
+                dest = route(t.get("dest") or ("blog" if t.get("market") in ("blog", "youtube") else "news"))   # 유튜브도 블로그·인터뷰 쪽, dest 로 바꿀 수 있음(테크크런치 → 뉴스방)
                 comp = route("company") if t.get("market") not in ("blog", "youtube") else {}
                 if comp:   # 기업별 토픽 그룹이 연결돼 있으면: 그 기업 토픽 + 📋 종합(General) 두 곳으로(2026-10-19 사용자)
                     try:

@@ -750,6 +750,22 @@
    "name": "DeepSeek (딥시크)",
    "count": 3,
    "last": "2026-10-20 21:45 KST"
+  },
+  {
+   "term": "테크크런치",
+   "slug": "blog-techcrunch",
+   "market": "blog",
+   "ticker": "",
+   "name": "TechCrunch",
+   "feed": "https://techcrunch.com/feed/",
+   "dest": "news",
+   "aliases": [
+    "TechCrunch",
+    "테크크런치"
+   ],
+   "resolved": true,
+   "added": "2026-10-21 09:00",
+   "by": "claude"
   }
  ],
  "updated": "2026-10-21 07:17 KST"
