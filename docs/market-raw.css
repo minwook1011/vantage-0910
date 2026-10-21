@@ -46,3 +46,6 @@
 .mr-bfull > summary { cursor:pointer; color:#2f5fd6; font-weight:600; font-size:13px; }
 .mr-bfull h4 { margin:14px 0 4px; font-size:14.5px; color:#17357f; }
 .mr-bfull p { margin:6px 0; } .mr-bfull ul { margin:6px 0; padding-left:20px; }
+
+/* 시장 탭을 고르면 기존 ETF 화면은 통째로 숨김 — display:flex 인 제목 줄·기간 버튼도(2026-10-22) */
+[data-mr-hid] { display:none !important; }
