@@ -650,14 +650,12 @@
   "usdkrw:2026-10-19",
   "usdkrw:2026-10-20",
   "usdkrw:2026-10-21",
+  "usdkrw:2026-10-22",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt--jklonfa:228a7cda9737": [
-   182
-  ],
   "trk:t-759fd052:e004ce282e0c": [
    183
   ],
@@ -2192,8 +2190,11 @@
   ],
   "pod:2026-10-21-understanding-wiLNKyXIAWs": [
    645
+  ],
+  "usdkrw:2026-10-22": [
+   261
   ]
  },
  "topics": {},
- "topic_fail_at": 1792596153.776425
+ "topic_fail_at": 1792604534.508537
 }
