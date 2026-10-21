@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-21",
+  "updated": "2026-10-22",
   "people": [
     {
       "id": "musk",
@@ -966,6 +966,46 @@
     {
       "week": "2026-W43",
       "statements": [
+        {
+          "person_id": "musk",
+          "date": "2026-10-21",
+          "source": "테슬라 3분기 실적 발표 컨퍼런스콜 (인베스팅닷컴 녹취·CNBC·블룸버그 보도)",
+          "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-tesla-beats-q3-2026-estimates-as-stock-slips-after-hours-93CH-4964365",
+          "statement": "일론 머스크 테슬라 CEO는 10월 21일 3분기 실적 발표(매출 280.5억 달러, 조정 주당순이익 0.48달러로 예상치 상회)에서 차량 수요가 빠르게 늘어 생산량을 크게 웃돌고 있으며 자율주행(FSD)이 수요를 이끈다고 말했다. 올해 설비투자 전망은 약 200억 달러로 낮췄다. 옵티머스 로봇은 외부 고객 인도까지 1년가량 걸린다고 했고, 자체 반도체 공장 테라팹은 첫 시험 칩을 내년 5~6월 목표로, 장기적으로 1,000억 달러 넘게 들 것이라고 했다. 주가는 시간외에서 약 2% 내렸다.",
+          "added": "2026-10-22"
+        },
+        {
+          "person_id": "mark-zuckerberg",
+          "date": "2026-10-21",
+          "source": "메타 3분기 실적 발표 컨퍼런스콜 (인베스팅닷컴 녹취·CNBC 보도)",
+          "link": "https://www.investing.com/news/transcripts/earnings-call-transcript-meta-beats-q3-2026-estimates-as-ai-push-lifts-shares-93CH-4964260",
+          "statement": "마크 저커버그 메타 CEO는 10월 21일 3분기 실적 발표(매출 646억 달러, 전년 대비 26% 증가)에서 AI 비서 '뮤즈'가 약 6주 만에 미국·캐나다 이용자 1,000만 명을 넘었다며 수십억 명이 쓰게 키우겠다고 말했다. 성장의 걸림돌은 수요가 아니라 연산 효율이라며 1년 안에 비용 효율을 10배 넘게 높이겠다고 했다. 올해 설비투자 전망은 1,350억~1,450억 달러로 좁혔고, 2대1 주식분할(무의결권 신주)도 발표했다. 주가는 시간외에서 약 4% 올랐다.",
+          "added": "2026-10-22"
+        },
+        {
+          "person_id": "jensen-huang",
+          "date": "2026-10-21",
+          "source": "GTC 베를린 기조연설·CNBC 디어드리 보사 인터뷰 (야후파이낸스·AP 보도)",
+          "link": "https://finance.yahoo.com/technology/article/people-are-now-recognizing-nvidias-compute-has-a-great-deal-of-residual-value-ceo-jensen-huang-tells-deirdre-bosa-115435002.html",
+          "statement": "젠슨 황 엔비디아 CEO는 10월 21일 GTC 베를린에서 엔비디아 연산 장비의 잔존 가치가 크다는 점을 시장이 알아보기 시작했다며, 예전에 4년으로 보던 수명이 실제로는 8년 이상일 수 있다고 말했다. 칩이 생산적이고 다른 곳에 쓸 수 있으며 오래가기 때문에 대출 기관이 장비 자체를 담보로 돈을 빌려줄 수 있다고 했다. 기조연설에서는 유럽 AI 산업에 속도를 내라고 주문하며 현장 구축 기간을 6개월에서 14일로 줄이는 조립식 데이터센터 설계를 소개했다.",
+          "added": "2026-10-22"
+        },
+        {
+          "person_id": "satya-nadella",
+          "date": "2026-10-21",
+          "source": "세마포 인터뷰 기사 (레드먼드 본사에서 전주 진행, 10/21 게재)",
+          "link": "https://semafor.com/article/10/21/2026/microsofts-nadella-is-back-in-business",
+          "statement": "사티아 나델라 마이크로소프트 CEO는 10월 21일 게재된 세마포 인터뷰에서 AI는 반짝이는 것을 좇거나 뒤처질까 조급해하는 문제가 아니라며 업계가 정신을 차려야 한다고 말했다. 최전선 AI 연구소들을 '마법 같은 사업'이라고 부르면서도, 이 산업에서는 초기의 성공이 아무 의미가 없다고 했다. 2023년 구글을 흔들겠다던 공세 대신 AI가 예측 가능하고 믿을 수 있게 작동하도록 만드는 데 집중하고 있다는 취지다.",
+          "added": "2026-10-22"
+        },
+        {
+          "person_id": "ken-griffin",
+          "date": "2026-10-20",
+          "source": "시타델 '글로벌 시장의 미래' 컨퍼런스, 뉴욕 (야후파이낸스 보도)",
+          "link": "https://finance.yahoo.com/technology/ai/articles/ken-griffin-says-ai-almost-213102019.html",
+          "statement": "켄 그리핀 시타델 창업자는 10월 20일 뉴욕 컨퍼런스에서 투자자들이 거의 확실히 AI 거품 속에 있다고 말했다. 다만 경제의 큰 전환은 대개 거품과 함께 오며 살아남은 기업이 수십 년 시장을 이끈다고 덧붙였다. 그래픽처리장치(GPU)를 한계비용이 낮은 항공 좌석에 빗대 공급이 수요를 넘으면 가격이 무너질 수 있다고 했고, 5~6년 된 칩이 지금의 높은 임대료를 앞으로 5~6년 더 받을지는 의문이라고 했다. 시타델에서는 AI 에이전트가 일부 리서치 기간을 몇 주에서 몇 시간으로 줄였다고 밝혔다.",
+          "added": "2026-10-22"
+        },
         {
           "person_id": "musk",
           "date": "2026-10-20",
