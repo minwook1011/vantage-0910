@@ -75,6 +75,7 @@
   "alert:us:TDY:2026-10-21",
   "alert:us:TFC:2026-10-16",
   "alert:us:TRV:2026-10-16",
+  "alert:us:TSCO:2026-10-22",
   "alert:us:TSLA:2026-10-21",
   "alert:us:TXN:2026-10-21",
   "alert:us:UAL:2026-10-20",
@@ -171,6 +172,7 @@
   "sum:us:TDY:2026-10-21",
   "sum:us:TFC:2026-10-16",
   "sum:us:TRV:2026-10-16",
+  "sum:us:TSCO:2026-10-22",
   "sum:us:TSLA:2026-10-21",
   "sum:us:TXN:2026-10-21",
   "sum:us:UAL:2026-10-20",
@@ -264,7 +266,8 @@
   "alert:us:IBM:2026-10-21": 150,
   "alert:us:NEE:2026-10-21": 151,
   "alert:us:MCO:2026-10-21": 152,
-  "alert:us:GPC:2026-10-20": 153
+  "alert:us:GPC:2026-10-20": 153,
+  "alert:us:TSCO:2026-10-22": 154
  },
  "topics": {
   "sched": 4,
