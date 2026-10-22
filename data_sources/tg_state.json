@@ -152,6 +152,7 @@
   "trk:aws:132be39d0d0f",
   "trk:aws:be35ae71db44",
   "trk:bill-ackman:8b5c4c18c150",
+  "trk:bill-ackman:a1b8ad155758",
   "trk:blog-egzion:1a92542fb28d",
   "trk:blog-egzion:36398881cd63",
   "trk:blog-egzion:4249c7e05721",
@@ -242,6 +243,7 @@
   "trk:blog-techcrunch:9cb90d5f017f",
   "trk:blog-techcrunch:a6e9e3330ba6",
   "trk:blog-techcrunch:aabe400f6606",
+  "trk:blog-techcrunch:b226aec7f34b",
   "trk:blog-techcrunch:c6cf8c65ac85",
   "trk:blog-techcrunch:ca13c1c565cb",
   "trk:blog-techcrunch:cc663e2995a4",
@@ -784,12 +786,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt--jklonfa:55059d934eec": [
-   302
-  ],
-  "trk:googl:109ced22d2b7": [
-   303
-  ],
   "trk:yt--jklonfa:a71065c46fb7": [
    304
   ],
@@ -2323,6 +2319,12 @@
   ],
   "trk:bill-ackman:8b5c4c18c150": [
    768
+  ],
+  "trk:bill-ackman:a1b8ad155758": [
+   769
+  ],
+  "trk:blog-techcrunch:b226aec7f34b": [
+   770
   ]
  },
  "topics": {},
