@@ -1,0 +1,24 @@
+#!/bin/sh
+# 공개 저장소 보호 — 진짜 비밀(토큰·로그인 파일·키 파일)이 섞인 커밋만 막는다.
+# 예약 작업이 수시로 커밋하므로 데이터 파일을 잘못 막지 않게 좁게 잡는다.
+# 파이어베이스 웹 키(AIza…)는 공개용이라 검사하지 않는다(보안은 파이어베이스 규칙이 맡음).
+fail=0
+files=$(git diff --cached --name-only --diff-filter=ACMR)
+[ -z "$files" ] && exit 0
+
+for f in $files; do
+  case "$f" in
+    private/*|telegram_bot.json|telegram_secret.json|*.session|*.session-journal|.env|*.env|*.pem|*.key|*pf_key*)
+      echo "막음: 올리면 안 되는 파일 — $f"; fail=1 ;;
+  esac
+done
+
+# 텔레 봇 토큰 · 깃허브 토큰 · 클로드 키 · 텔레 API 설정
+pat='[0-9]{8,10}:AA[A-Za-z0-9_-]{33}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|sk-ant-[A-Za-z0-9_-]{20,}|"api_hash"[[:space:]]*:'
+hits=$(git diff --cached -U0 --diff-filter=ACMR -- . ':!.githooks/*' | grep '^+' | grep -v '^+++' | grep -E -n "$pat")
+if [ -n "$hits" ]; then
+  echo "막음: 토큰·키로 보이는 줄"; echo "$hits" | cut -c1-160; fail=1
+fi
+
+[ $fail -ne 0 ] && { echo "커밋을 멈췄습니다. 위 내용을 빼고 다시 커밋하세요."; exit 1; }
+exit 0

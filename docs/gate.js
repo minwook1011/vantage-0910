@@ -15,7 +15,7 @@
 (function () {
   "use strict";
 
-  // 현재 비밀번호: 1011  (반드시 원하는 값으로 교체하세요)
+  // 비밀번호 평문은 공개 저장소이므로 여기 적지 않는다(해시만).
   var GATE_HASH = "3dd9c0995d54c0abd51a90f1d57b1ce77bc885fc8a7cea52dcad3c2540dda5ee";
   var GATE_VER  = "3"; // 값을 바꾸면 모든 사용자가 재입력
   var STORE_KEY = "etf_gate_ok_v" + GATE_VER;
