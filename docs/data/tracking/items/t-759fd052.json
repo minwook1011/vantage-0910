@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "ac982908a542",
+   "kind": "news",
+   "headline": "앤트로픽, 먼저 알아서 일하는 개인 비서 '클로드 듀엣' 미리보기 공개 — 월 20달러 프로 요금제에 추가 비용 없이 포함",
+   "bullets": [
+    "메타 실적 발표일에 맞춰 공개했다. 미국 클로드 유료 구독자 중 대기명단 등록자부터 순서대로 쓸 수 있다.",
+    "지시하지 않아도 연결된 앱을 살펴 매일 아침 할 일을 정리해 주고, 대시보드·재무 예측·웹앱 제작까지 백그라운드에서 처리한다. 중요한 작업 전엔 승인을 받는다.",
+    "오픈AI '닷츠'는 월 100달러부터인 프로 요금제 전용인데, 듀엣은 월 20달러 프로·맥스 요금제에 포함된다."
+   ],
+   "summary": "듀엣은 클로드 오퍼스 5.5를 기반으로 자체 가상 머신과 클라우드 브라우저에서 돌아간다. 웹과 안드로이드·iOS 전용 앱에서 쓸 수 있고, 결과는 보고서·재무 모델·발표 자료·대시보드 파일로 준다. 스트라이프와 연결해 미납 청구서를 찾아 독촉 메시지를 쓰거나, 링크·쇼피파이 결제로 사용자 승인 뒤 물건을 사는 기능도 있다.\n\n제약도 있다. 다른 클로드 도구와 사용량 한도를 같이 써서 백그라운드 작업이 한도를 빨리 깎는다. 그래서 연결 계정은 몇 시간마다 확인한다. 비밀번호·로그인 토큰은 보지 않고, 건강·개인 금융 정보는 사용자가 허락할 때만 넘긴다. 팀·기업 요금제엔 아직 없다.\n\n개발은 7월까지 메타 슈퍼인텔리전스 랩스에 있다가 8월 앤트로픽으로 옮긴 카란 아후자가 이끌었다. 데이터업체 앱토피아는 메타 뮤즈 설치 수가 21일 기준 1,400만 건을 넘었다고 추산했다.",
+   "title": "Anthropic announces preview of Claude Duet, a personal AI agent to take on Muse, Dots",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNSFZYTW81ai1KaU91ZGZUV1VlUkFrRkVfWVpraWlRMl9rWXJnUXV2cnZ3dlFBUUtCeldidHR0MVhJdmY3MGVzSzZDYnYxODNQNXdxS1Z5ZVNIcHd4bklybjBOR3hQeEhwUkFBVW1WdVA1Q0V2WTZfbFAwSVdPcVRKdG5jc3dhYzZiYm01X1hqbDR2ZlVtblF6NmZUWVV0TFlVSkZJWHJUeG_SAa4BQVVfeXFMUDZ1eGN2Uncyczl3by1yNFAxQlJfd2JmSDBaX05QaEpFb0tGY3FJWGY4R2RzcXBRMXRYdzFhTWFIVEluT0I5MExZZG9hX3U0MXliVFJYS3hxN0FtME5obUdWOW9CZTBYdkpsVXFHN2d1VXp2VVI2NG5BNFF4MkEwLTlmZkVWZ016RkRtRHNsUi1RSEVERG1SNzB2aFlVLXFNSF80dEtDUnNZN05RSlh3?oc=5",
+   "published": "2026-10-22 06:42 KST",
+   "written": "2026-10-22 09:00 KST"
+  },
+  {
    "id": "4fdce6855dc5",
    "kind": "news",
    "headline": "앤트로픽 상장 신청서 초안 공개 — 상반기 매출 163억 달러(작년 11억), 순손실 807억 달러는 대부분 회계상 손실(월스트리트저널)",
@@ -785,5 +801,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-21 05:17 KST"
+ "updated": "2026-10-22 09:00 KST"
 }
