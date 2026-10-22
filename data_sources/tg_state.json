@@ -126,6 +126,7 @@
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
+  "trk:009150:c82248f53471",
   "trk:009150:c960c7b4e0c2",
   "trk:amzn:11e2f839692b",
   "trk:amzn:19e39e0079d4",
@@ -595,6 +596,7 @@
   "trk:yt--jklonfa:3b02426dfdab",
   "trk:yt--jklonfa:3b85813eb256",
   "trk:yt--jklonfa:3c9c516cda1a",
+  "trk:yt--jklonfa:3cccd49b1ff7",
   "trk:yt--jklonfa:3fe62d0f6fbf",
   "trk:yt--jklonfa:4121c58ebc71",
   "trk:yt--jklonfa:4152ef911934",
@@ -754,12 +756,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt--jklonfa:fa5723060bfb": [
-   274
-  ],
-  "trk:blog-travelingcompanion:a81606da2908": [
-   275
-  ],
   "trk:yt--jklonfa:a21577282993": [
    276
   ],
@@ -2293,8 +2289,14 @@
   ],
   "trk:yt--jklonfa:ca9eaa4a24da": [
    739
+  ],
+  "trk:009150:c82248f53471": [
+   740
+  ],
+  "trk:yt--jklonfa:3cccd49b1ff7": [
+   741
   ]
  },
  "topics": {},
- "topic_fail_at": 1792656785.139586
+ "topic_fail_at": 1792660810.860065
 }
