@@ -335,6 +335,7 @@
   "trk:msft:9b58029d2107",
   "trk:msft:9b63a28b18a7",
   "trk:msft:aded76a3da7f",
+  "trk:msft:c12f3dda3b29",
   "trk:msft:c709f112fd1c",
   "trk:msft:ddfdfdd3d528",
   "trk:msft:f0a24c692c9a",
@@ -672,6 +673,7 @@
   "trk:yt--jklonfa:dcab74887522",
   "trk:yt--jklonfa:dce4340d5d32",
   "trk:yt--jklonfa:ddefcf35db74",
+  "trk:yt--jklonfa:df91664e567c",
   "trk:yt--jklonfa:dff8916ae295",
   "trk:yt--jklonfa:e058e4d39073",
   "trk:yt--jklonfa:e0a65f5b9b6a",
@@ -730,14 +732,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:nvda:00e209bf3cf0": [
-   253
-  ],
-  "macro:2026-10-14": [
-   153,
-   154,
-   155
-  ],
   "usdkrw:2026-10-14": [
    156
   ],
@@ -2270,6 +2264,12 @@
   ],
   "trk:nvda:a456d903b106": [
    714
+  ],
+  "trk:msft:c12f3dda3b29": [
+   715
+  ],
+  "trk:yt--jklonfa:df91664e567c": [
+   716
   ]
  },
  "topics": {},
