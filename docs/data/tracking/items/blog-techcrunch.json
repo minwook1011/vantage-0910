@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "b226aec7f34b",
+   "kind": "blog",
+   "headline": "중국 연계 해커, 커넥트와이즈 클라우드 백업 뚫고 고객사 약 2,250곳 몰래 들여다봤다 — 인공지능 에이전트로 분당 3천 번 로그인 시도(마이크로소프트)",
+   "bullets": [
+    "마이크로소프트 보안팀에 따르면 중국 정부 연계 해커가 원격관리 업체 커넥트와이즈의 클라우드 백업 서비스에 침입해 고객사 연결용 인증 정보를 훔쳤다.",
+    "이 정보로 고객사의 마이크로소프트 환경에 정상 사용자처럼 들어가 이메일·파일을 열람했고, 약 2,250개 조직을 분당 3천 번 가까운 로그인 시도로 빠르게 털었다.",
+    "커넥트와이즈는 클라우드 백업 접속을 멈추고 조사 중이며, 목요일 기준 서비스 복구 작업을 하고 있다."
+   ],
+   "summary": "공격 속도는 공개 인공지능 프레임워크 'ARTEX'를 쓴 에이전트 덕분이었다. 원래 방어 체계를 시험하려고 만든 도구인데, 최근 한국 금융권 정보 유출 사건에도 같은 도구가 쓰였다. 당시 피해 기관 상당수는 보안이 약하고 2단계 인증이 없었다.\n\n마이크로소프트는 이 속도라면 방어하는 쪽이 탐지하고 대응할 시간이 거의 없다고 경고했다. 인공지능 에이전트가 해킹을 대량·자동으로 만드는 첫 대형 사례 가운데 하나로 꼽힌다. 커넥트와이즈 고객사 피해 범위와 복구 시점이 다음 확인할 부분이다.",
+   "title": "Chinese hackers spied on thousands of companies after breaching IT giant ConnectWise",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/",
+   "published": "2026-10-23 01:47 KST",
+   "written": "2026-10-23 02:17 KST"
+  },
+  {
    "id": "ca13c1c565cb",
    "kind": "blog",
    "headline": "우버, 전 직원 3만 명에 오픈AI '챗GPT 워크' 도입 — 1,000명 시범 뒤 회사 전체로",
@@ -499,5 +515,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-10-23 01:18 KST"
+ "updated": "2026-10-23 02:17 KST"
 }
