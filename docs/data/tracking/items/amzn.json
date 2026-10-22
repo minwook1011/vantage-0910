@@ -3,6 +3,38 @@
  "slug": "amzn",
  "items": [
   {
+   "id": "f085d3f75f79",
+   "kind": "news",
+   "headline": "PHP 치명적 취약점 'PHP2Shell' 2개 발견 — 아마존 \"공개 전부터 공격 시도 포착\", 구글·오픈AI는 인공지능으로 찾아내 패치 검증",
+   "bullets": [
+    "전 세계 웹사이트가 쓰는 PHP에서 서버에 원격으로 악성 코드를 심을 수 있는 취약점 2개가 나왔다. 파일·데이터베이스까지 털릴 수 있다.",
+    "아마존은 자체 위협 탐지 시스템 '매드팟'으로 취약점이 공개되기 전부터 악용 시도를 잡았다. 공격자가 정보를 어디서 얻었는지는 모른다.",
+    "미국 국가안보국·연방수사국은 즉시 업데이트를 촉구했고, 국가안보국은 당장 못 고치면 해당 시스템 가동을 멈추라고 권고했다."
+   ],
+   "summary": "구글 사이버보안 부문 위즈는 인공지능 모델로 취약점을 찾아 조사했고, 제미나이로 공격 가능성 시험과 패치 검증까지 했다. 오픈AI도 자사 모델을 쓴 연구원들이 발견에 참여했고, 지난 두 달간 개발자·보안업체와 수정 작업을 조율해 왔다. 오픈AI는 최근 가장 중대한 보안 문제 가운데 하나라고 했다.\n\nPHP 개발팀은 패치를 배포했고 클라우드플레어도 공격 차단 조치를 적용했다. 한국인터넷진흥원도 위험성을 경고했다. 인공지능이 취약점을 찾는 데 쓰이지만 같은 기술이 공격자에게도 넘어간다는 점이 다시 확인됐다(파이낸셜타임스·CNBC·뉴시스).",
+   "title": "Amazon warns new cyber flaws detected using AI are being ‘broadly exploited’",
+   "source": "Financial Times",
+   "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNRWlTVjlfV0ZBcl9tcjZ3b0VhTGd1UFNkNEVNY244akVyV2RxZTBNOG53LVB0bkJzdF9jWVZsOEN3LTBtNkoyWXBfbWdPS3c5dmZyLXdqTVEzQW5Bd0Y4U3JjX1ZQOG5RdTdOVXZ4c29WcndYdUdsN1VzU2lYYkdlUTZkY28?oc=5",
+   "published": "2026-10-22 03:46 KST",
+   "written": "2026-10-22 12:54 KST"
+  },
+  {
+   "id": "2e26ad6a5ae3",
+   "kind": "news",
+   "headline": "아마존, 4억2,700만 달러에 산 미국 애시번 부지에 데이터센터 안 짓는다 — 주민 반발에 주거 복합단지로, 6,500만 달러어치 땅 기부",
+   "bullets": [
+    "아마존이 2월 조지워싱턴대에서 4억2,700만 달러에 산 버지니아 애시번 120에이커 부지의 데이터센터 계획을 접었다.",
+    "부지는 데이터센터 금지 조건으로 주거 중심 복합개발로 바뀌고, 아마존은 25에이커(6,500만 달러어치)를 카운티에 기부하고 주택기금에 500만 달러를 낸다.",
+    "세계 인터넷 트래픽 요충지인 라우던 카운티는 데이터센터 인허가를 1년간 멈추는 조치를 다음 달 최종 표결한다."
+   ],
+   "summary": "라우던 카운티 의장이 20일(현지시간) 합의를 발표했다. 부지 용도를 두고 다툼이 커지자 9월부터 아마존과 만나 계획을 다시 짰다. 합의에 따라 아마존은 이 부지에서 데이터센터를 지으려고 카운티에 소송을 걸 수 없다.\n\n아마존 데이터센터 담당 부사장은 법적 개발 가능성은 카운티와 다르게 보지만 비싼 소송보다 함께 가는 쪽을 택했다고 했다. 라우던은 작년 데이터센터 자동 허가를 없앴고, 이제 인허가 자체를 1년 멈추려 한다. 미국 최대 데이터센터 밀집지에서 새 부지 확보가 점점 어려워진다는 신호다(비즈나우).",
+   "title": "Amazon Ditches Ashburn Data Center Plan, Shifts To Mixed-Use Vision",
+   "source": "Yahoo Finance",
+   "url": "https://www.bisnow.com/news/national/data-center-development/amazon-ditches-ashburn-data-center-plans-mixed-use-development?.tsrc=rss",
+   "published": "2026-10-22 03:15 KST",
+   "written": "2026-10-22 12:54 KST"
+  },
+  {
    "id": "19e39e0079d4",
    "kind": "news",
    "headline": "아마존, 전기 못 켜는 엔비디아 서버랙 수십억 달러어치 먼저 들여 창고에 쌓는다 — 8월 50억 달러, 이후 매달 30억 달러(비즈니스인사이더)",
@@ -210,5 +242,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-21 04:48 KST"
+ "updated": "2026-10-22 12:54 KST"
 }

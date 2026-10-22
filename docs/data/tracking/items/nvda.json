@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "a456d903b106",
+   "kind": "news",
+   "headline": "엔비디아, GTC 베를린서 '공장에서 다 짜 오는' 데이터센터 'DSX POD' 공개 — 설치 6개월→최단 14일, 2027년 초 인도",
+   "bullets": [
+    "베라 루빈 랙 7대를 선적 컨테이너 크기 상자 하나에 담아 배선·액체냉각까지 공장에서 끝내고 트럭으로 실어 나른다. 무게 약 2만8천kg.",
+    "젠슨 황은 \"1기가와트 데이터센터에 약 500억 달러가 들고, 가동이 3개월 늦으면 매출 100억 달러를 놓친다\"며 구축 속도를 강조했다.",
+    "엔비디아가 직접 파는 완제품이 아니라 참조 설계로, 폭스콘·레노버·HPE·콴타·페가트론 등 제조 협력사가 출하한다. 가격은 비공개."
+   ],
+   "summary": "엔비디아 젠슨 황 최고경영자가 21일(현지시간) 독일 베를린 GTC 기조연설에서 컨테이너형 인공지능 데이터센터 'DSX POD'를 공개했다. 서버·배선·냉각 설비를 공장에서 미리 조립·검증한 뒤 현장에서는 자리에 놓고 다른 컨테이너와 연결해 시험만 하면 된다. 기반 시설이 있는 곳에서는 서비스 개시까지 6개월 걸리던 것을 14일로 줄인다는 설명이다.\n\n황 최고경영자는 최근 기가와트당 엔비디아 공급 금액이 약 180억 달러에서 400억 달러 이상으로 커졌다고 말했다. 칩에서 서버, 랙, 이제 컨테이너 단위로 파는 단위가 커지는 흐름이다. 애널리스트들은 베라 루빈 랙 한 대 값을 700만 달러 이상으로 본다. 같은 날 구글 클라우드는 베라 루빈 인프라를 전면 쓸 수 있게 됐다고 발표했다.\n\n엔비디아는 삼성전기·이비덴·유니마이크론과 함께 3년간 패키지 기판 생산능력을 2.5배로, 첨단 패키징 역량은 2028년 말까지 4배로 늘린다고 밝혔다. 다만 전력 확보와 자금 조달은 구축 기간 단축과 별개의 숙제로 남는다(배런스·CNBC·서울신문).",
+   "title": "Nvidia’s Jensen Huang Reveals AI Data Center Quick-Fix. These Stocks Are Winners.",
+   "source": "Barron's",
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBmUDhYeUJnWWhob3owVVl0czY4VWFJck5oTk84ZHpJa2tFaEd5TElmdGJRUnl5bEcxVTZ1S21QcEUtY2QwZ2pDaUdmemNzdlgwRnY4QnBIVG95dTkzOHRaaXFaX3ZRdE45RTJQb0FiVWhZdE5UbE15elNvTWpPWFE?oc=5",
+   "published": "2026-10-22 02:37 KST",
+   "written": "2026-10-22 12:54 KST"
+  },
+  {
    "id": "bea09dde4603",
    "kind": "news",
    "headline": "엔비디아, 대만 협력사 세 곳 증설 직접 지원 — 京元電(킹위안) 테스트 설비에 선급금 11억 달러, 矽品(SPIL) 광엔진 생산능력 내년 15배",
@@ -595,5 +611,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-22 12:17 KST"
+ "updated": "2026-10-22 12:54 KST"
 }
