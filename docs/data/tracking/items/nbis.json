@@ -3,6 +3,22 @@
  "slug": "nbis",
  "items": [
   {
+   "id": "b80e18503959",
+   "kind": "news",
+   "headline": "네비우스, 씨티은행에서 35억 달러 담보 대출 한도 확보 — 364일 만기, 금리는 기준금리(SOFR)+2.75%부터",
+   "bullets": [
+    "네비우스가 씨티은행 단독 주관으로 35억 달러 규모 선순위 담보 대출 한도를 받았다. 만기는 364일이다.",
+    "금리는 처음엔 기준금리(SOFR)+2.75%, 조건에 따라 최대 3.50%까지 오른다. 돈은 데이터센터·그래픽처리장치(GPU) 구매·일반 운영에 쓴다.",
+    "7월 첫 담보 대출(약 7억7,500만 달러)에 이은 두 번째로, 규모가 4배 넘게 커졌다."
+   ],
+   "summary": "네비우스는 10월 22일 씨티은행과 35억 달러 선순위 담보 대출 계약을 발표했다. 씨티가 주관사·대리은행·담보관리 은행을 모두 맡았다. 만기가 1년이 안 되는 단기 한도라 장기 자금이 들어오기 전 다리 역할로 보인다.\n\n네비우스 최고운영책임자 오피르 나베는 신용등급 높은 고객과 맺은 장기 계약이 400억 달러가 넘어, 이를 담보로 한 자산 기반 차입 여력이 아직 남아 있다고 밝혔다. 7월 첫 담보 대출은 이미 깔린 그래픽처리장치와 고객 계약 현금흐름을 담보로 했다.\n\n로이터는 지난주 경쟁사 코어위브 채권값 급락으로 인공지능 인프라주가 크게 빠진 직후 나온 발표라고 전했다. 네오클라우드(인공지능 전용 클라우드) 업체들의 자금 조달 창구가 여전히 열려 있는지가 쟁점이다.",
+   "title": "Nebius secures $3.5 billion financing facility with Citi",
+   "source": "Business Wire",
+   "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQMWNFMWd1RzBuMkJlX0RxR3RKMjZJOUdqOV8xSS1xNDZibzJaa1p3OThLS2NZMVpPdml6cDRfVnk0QThQSF92emxlckxXZmtWRm43XzdrQndBSlVrdHFlR0Zra0ZET2pDbGhtb0xrNWk4eHp2OFZ0dDR6Y0JmV1lBYnZaY2QtMHYxV1pwV2FCbnUwT0NKblVDU0lLNWV2ejBIaW9tVG5odTMtNDFobERVR05jZUdjdw?oc=5",
+   "published": "2026-10-22 20:00 KST",
+   "written": "2026-10-22 20:53 KST"
+  },
+  {
    "id": "f434348f97c9",
    "kind": "news",
    "headline": "네비우스, 그래픽처리장치(GPU) 스팟 가격 실시간 공개 — 유럽 인공지능 개발사 지원금 1,000만 달러 추가",
@@ -50,5 +66,5 @@
    "written": "2026-10-10 13:00 KST"
   }
  ],
- "updated": "2026-10-22 15:16 KST"
+ "updated": "2026-10-22 20:53 KST"
 }

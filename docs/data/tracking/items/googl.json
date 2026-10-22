@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "8a09d6248fe9",
+   "kind": "news",
+   "headline": "구글, 볼터스와 미국 동부 전력망(PJM)에 1기가와트 가상발전소 — 6월 첫 계약 100메가와트의 10배",
+   "bullets": [
+    "구글과 분산전원 업체 볼터스가 PJM 전력망에 1,070메가와트를 더하는 가상발전소 계약을 발표했다.",
+    "6월 첫 계약(100메가와트)보다 10배 넘게 커졌고, 하이퍼스케일러(초대형 클라우드)가 깐 분산 전력 용량으로는 알려진 것 중 최대급이다.",
+    "전력망이 빠듯할 때 기업·가정이 배터리·온도조절기·공정 조정으로 전기를 덜 쓰고, 구글이 그 비용을 대 참여자에게 요금 절감·현금을 준다."
+   ],
+   "summary": "PJM은 미국 13개 주와 워싱턴DC, 6,700만 명에게 전기를 공급하는 미국 최대 전력망이다. 데이터센터가 몰리면서 용량 부족과 요금 상승이 정치 쟁점이 된 곳이다.\n\n구글은 이번 계약을 '쓸 용량은 직접 가져온다(Bring Your Own Capacity)'는 원칙의 연장으로 설명했다. 새 발전소를 짓는 대신 지역 기업·가정의 남는 유연성을 모아 데이터센터 수요를 상쇄하는 방식이다. 볼터스는 이를 묶어 전력시장에 내놓고 참여자에게 돈을 나눈다.\n\n남은 쟁점은 계약 금액과 가동 시점이 공개되지 않았다는 점이다. 보도자료는 볼터스 측 유료 배포 자료다.",
+   "title": "Google and Voltus Announce One Gigawatt Bring Your Own Capacity Agreement in PJM",
+   "source": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/energy/articles/google-voltus-announce-one-gigawatt-113000908.html?.tsrc=rss",
+   "published": "2026-10-22 20:30 KST",
+   "written": "2026-10-22 20:53 KST"
+  },
+  {
    "id": "832ad1f152d2",
    "kind": "news",
    "headline": "미국, 구글 인공지능 기밀 유출 사건 연루 중국 창업투자사 '치지촹탄(미러클플러스)' 제재(공상시보)",
@@ -401,5 +417,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-22 17:08 KST"
+ "updated": "2026-10-22 20:53 KST"
 }

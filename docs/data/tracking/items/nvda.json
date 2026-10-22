@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "ffa52746106e",
+   "kind": "news",
+   "headline": "젠슨 황 \"네오클라우드 수요는 폭발적인데 돈이 모자란다\" — 인공지능 칩을 '대출 담보가 되는 자산'으로 만들겠다(CNBC)",
+   "bullets": [
+    "엔비디아 젠슨 황 최고경영자가 GTC 베를린에서 CNBC에 네오클라우드(인공지능 전용 클라우드) 수요가 차트를 뚫을 만큼 강하다고 말했다.",
+    "다만 필요한 운영 자금이 들어오는 자본보다 훨씬 많다며 자금 부족을 짚었고, 결국 해결될 문제라고 했다.",
+    "엔비디아는 연산 장비가 담보로 인정받는 금융 자산이 되길 원하며, 칩의 잔존가치가 하나의 자산군이 되고 있다고 밝혔다."
+   ],
+   "summary": "발언은 코어위브 채권 금리와 신용부도스와프(부도 위험 보험료)가 높은 수준에 머무르며 네오클라우드 주식이 흔들리는 가운데 나왔다. 이날 코어위브는 4% 가까이 빠졌다.\n\n황 최고경영자는 유럽은 전기요금이 비싸 전력 배분이 성장의 최대 제약이라며, 네비우스·미스트랄 같은 회사에 전력이 얼마나 돌아가느냐가 중요하다고 했다. 같은 날 네비우스는 씨티은행에서 35억 달러 담보 대출을 받았다.\n\n쟁점은 그래픽처리장치(GPU)를 담보로 한 대출 시장이 얼마나 커질지, 그리고 칩의 중고 가치가 실제로 담보 가치를 버텨 줄지다.",
+   "title": "Nvidia CEO Jensen Huang says neocloud demand is 'off the charts' but capital is scarce",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOeFpCR0VMTzFlRUJkdkNibEY3eFhBT1lxSkVFckRzUkFsRE1lcFRHNjVqWnB6TnYzcFROUDNLUnRCOWFLM01WbEdDRV9sN1B6cDZuSXFqT3FiSEpVLWhWMzlrYTNPTFhHU054bC1oM1FKRmY3QUtEOEFmNGZCTWxlVVR1S0g2NGfSAYwBQVVfeXFMTmlvdTlxcGJUOS1aTDdYbzRvSU8wTHZZTERSTXRaZFA3VDVfSkoxN3JBRFA5aVkwSFFkS1dLZW1pdlJWRzRldy1FN1IyT0xxVW9jRTh5ZVhyaFRSYWZYNzZ5d1hicGhKVC1wWHFwdFItOHlpeGZGLTVJcXZoWHFoRUJOWjNTZXI0dGVwNWk?oc=5",
+   "published": "2026-10-22 19:01 KST",
+   "written": "2026-10-22 20:53 KST"
+  },
+  {
    "id": "a456d903b106",
    "kind": "news",
    "headline": "엔비디아, GTC 베를린서 '공장에서 다 짜 오는' 데이터센터 'DSX POD' 공개 — 설치 6개월→최단 14일, 2027년 초 인도",
@@ -611,5 +627,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-22 12:54 KST"
+ "updated": "2026-10-22 20:53 KST"
 }
