@@ -36,6 +36,7 @@
   "alert:us:COF:2026-10-20",
   "alert:us:CSX:2026-10-21",
   "alert:us:DHR:2026-10-21",
+  "alert:us:DOW:2026-10-22",
   "alert:us:EFX:2026-10-20",
   "alert:us:ELV:2026-10-21",
   "alert:us:FITB:2026-10-19",
@@ -134,6 +135,7 @@
   "sum:us:COF:2026-10-20",
   "sum:us:CSX:2026-10-21",
   "sum:us:DHR:2026-10-21",
+  "sum:us:DOW:2026-10-22",
   "sum:us:EFX:2026-10-20",
   "sum:us:ELV:2026-10-21",
   "sum:us:FITB:2026-10-19",
@@ -267,7 +269,8 @@
   "alert:us:NEE:2026-10-21": 151,
   "alert:us:MCO:2026-10-21": 152,
   "alert:us:GPC:2026-10-20": 153,
-  "alert:us:TSCO:2026-10-22": 154
+  "alert:us:TSCO:2026-10-22": 154,
+  "alert:us:DOW:2026-10-22": 155
  },
  "topics": {
   "sched": 4,
