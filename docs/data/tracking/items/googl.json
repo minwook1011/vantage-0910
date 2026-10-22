@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "854326a52590",
+   "kind": "news",
+   "headline": "구글, 데이터센터 부지 협상 때 비밀유지계약 더는 안 쓴다 — 마이크로소프트·아마존에 이어(디인포메이션)",
+   "bullets": [
+    "디인포메이션은 구글이 데이터센터 관련 협상에서 비밀유지계약(NDA) 사용을 멈췄다고 보도했다.",
+    "마이크로소프트가 3월 지방정부와의 데이터센터 계약에서 비밀유지계약을 끝내겠다고 했고, 아마존웹서비스도 10월 2일 같은 방침을 발표했다.",
+    "구글은 그동안 메타와 함께 이런 약속을 하지 않은 회사로 꼽혀 왔다."
+   ],
+   "summary": "빅테크들은 데이터센터를 지을 때 지방정부 공무원에게까지 비밀유지계약을 요구해, 주민들이 전력·물 사용량이나 세금 혜택을 모른 채 공장이 들어선다는 비판을 받아 왔다. 구글은 2019년에도 도시들에 세부 내용 공개를 막는 계약을 요구한 사실이 보도된 적이 있다.\n\n압박은 의회에서 커졌다. 9월 30일 제이미 래스킨 하원의원이 아마존·구글·메타의 공무원 대상 비밀유지계약 사용을 조사하겠다고 나섰고, 상원 조사에서도 4대 클라우드 업체 모두가 이런 계약을 일상적으로 요구한다는 지적이 나왔다. 그 뒤 아마존이 먼저 손을 들었고 이번에 구글이 따라간 셈이다.\n\n기사 본문은 유료라 적용 범위(지방정부만인지, 전력회사·토지주까지인지)와 시행 시점은 확인하지 못했다. 이제 메타만 남았다.",
+   "title": "Google Stops Using Nondisclosure Agreements for Data Centers",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQUDhsaVA5aUZFOVNwM2Jsa1F3N3ljN0o4aWxSanlZNEE2N3lWeUkxU1Y4Ty1uN0VhakNMUHpZbVkxTU9WTXhHamFKTnVTSC04bW0zOEpHek1iRjc1VE9XOUJPTHJLZ2VFNVQxWjJWYkY0amFHZW1IcmlubHNvZlVsWURtSE9VRGdjNFpPRk02TnlWZHROaWZWQlV6cEI0Zw?oc=5",
+   "published": "2026-10-22 05:47 KST",
+   "written": "2026-10-22 11:49 KST"
+  },
+  {
    "id": "255d2eb70000",
    "kind": "news",
    "headline": "오픈AI, 구글 클라우드에서도 최신 모델·코덱스 판매 — 마이크로소프트·아마존에 이어 미국 3대 클라우드 모두 진출",
@@ -337,5 +353,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-22 09:00 KST"
+ "updated": "2026-10-22 11:49 KST"
 }
