@@ -151,6 +151,7 @@
   "trk:amzn:f728a1519228",
   "trk:aws:132be39d0d0f",
   "trk:aws:be35ae71db44",
+  "trk:bill-ackman:8b5c4c18c150",
   "trk:blog-egzion:1a92542fb28d",
   "trk:blog-egzion:36398881cd63",
   "trk:blog-egzion:4249c7e05721",
@@ -783,9 +784,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "jpm:2026-10-14 19:53 KST": [
-   166
-  ],
   "trk:yt--jklonfa:55059d934eec": [
    302
   ],
@@ -2322,8 +2320,11 @@
   ],
   "trk:blog-techcrunch:f33e8822d1e0": [
    767
+  ],
+  "trk:bill-ackman:8b5c4c18c150": [
+   768
   ]
  },
  "topics": {},
- "topic_fail_at": 1792683593.466008
+ "topic_fail_at": 1792687787.979554
 }
