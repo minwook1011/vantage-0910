@@ -3,6 +3,38 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "00c760d9a9f9",
+   "kind": "blog",
+   "headline": "마이크로소프트 진단 인공지능 'MAI-DxO', 어려운 증례 정답률 83% — 일반 의사 36%의 두 배 넘어(사이언스 논문)",
+   "bullets": [
+    "마이크로소프트 인공지능 조직이 여러 인공지능 에이전트를 '의사 협의체'처럼 묶은 진단 시스템 결과를 사이언스에 실었다. 뉴잉글랜드의학저널 복잡 증례에서 83% 정답, 일차진료·내과 의사는 36%였다.",
+    "성능 대부분은 바탕 모델에서 나왔다. 오픈AI GPT-5.5 단독 72%가 이 시스템을 얹으면 약 87%로 올랐지만, 응급실 증례에선 두 경우 모두 약 85%로 차이가 없었다.",
+    "무스타파 술레이만 대표는 메이요클리닉과 의료 전용 기반 모델을 만들어 내년 내놓겠다고 했다. 보스턴 베스 이스라엘 병원과 실제 병원 평가도 시작한다."
+   ],
+   "summary": "비교 대상에 한계가 있다. 이 정도로 복잡한 증례는 보통 전문의나 의사 팀이 맡는데, 이번 비교엔 들어가지 않았다. 의사들은 혼자 참고자료만 쓰고 풀었다.\n\n비용도 따졌다. GPT-5 단독은 증례당 약 8,400달러(추정 실행비)에 78.9%였고, 이 시스템을 얹으면 비용은 약 3,000달러 줄었지만 정확도는 4%포인트 정도만 올랐다. 약한 모델일수록 효과가 컸다. 구글 제미나이 2.5 플래시는 46.4%에서 약 69%로 뛰었다. 시험한 모델은 오픈AI·구글·앤트로픽·메타·딥시크 것이고, 가장 좋은 결과는 오픈AI 모델에서 나왔다.\n\n술레이만은 의료 인공지능 성능이 24~36개월 안에 한 자릿수 배 좋아지고, 2027년엔 진료기록 예측에서 코딩 같은 급의 도약이 올 거라고 했다. 마이크로소프트는 이로써 구글·오픈AI에 이어 '의사만큼 또는 그 이상'을 주장한 회사가 됐다.",
+   "title": "Microsoft’s Mustafa Suleyman says its AI outperforms doctors on hard cases as he chases ‘medical superintelligence’",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/",
+   "published": "2026-10-23 03:43 KST",
+   "written": "2026-10-23 03:47 KST"
+  },
+  {
+   "id": "81820bea9903",
+   "kind": "blog",
+   "headline": "전 오픈AI 과학 총괄 케빈 웨일, 신약 실험실 자동화 로봇 스타트업 '워프 사이언스' — 2억1,500만 달러 유치, 기업가치 8억6,500만 달러",
+   "bullets": [
+    "케빈 웨일이 신약 후보 물질을 로봇이 직접 합성·시험하는 스타트업을 세우고 X로 투자 유치를 알렸다.",
+    "라이트스피드가 이끌고 IVP·프렘지인베스트·럭스캐피털이 참여했다.",
+    "지금 중국 우시앱텍 같은 위탁업체가 맡는 분자 합성 작업을 미국으로 되가져와 공급망 위험을 줄이는 게 목표다."
+   ],
+   "summary": "방식은 사람 화학자가 카메라와 센서 장갑을 끼고 실험을 하면, 그 동작으로 로봇을 학습시키는 것이다. 로봇은 24시간 돌릴 수 있어 신약 발굴 속도를 높인다는 계산이다.\n\n제약·바이오 업계는 수천 가지 분자 변형을 만드는 노동집약적 작업을 오래 중국 위탁업체에 맡겨 왔다. 미국의 중국 바이오 기업 견제가 커지면서 이 작업을 자동화해 국내로 옮기려는 시도가 늘고 있고, 워프 사이언스도 그 흐름에 있다.",
+   "title": "Former OpenAI science lead launches Warp Science to automate wet labs with robots",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/22/former-openai-science-lead-launches-warp-science-to-automate-wet-labs-with-robots/",
+   "published": "2026-10-23 03:38 KST",
+   "written": "2026-10-23 03:47 KST"
+  },
+  {
    "id": "2940e35ec368",
    "kind": "blog",
    "headline": "일론 머스크, 파라마운트·워너 합친 스카이댄스에 약 10억 달러 투자(세마포)",
@@ -531,5 +563,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-10-23 02:47 KST"
+ "updated": "2026-10-23 03:47 KST"
 }
