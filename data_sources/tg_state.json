@@ -225,6 +225,7 @@
   "trk:blog-techcrunch:00fe9b4be002",
   "trk:blog-techcrunch:125851f53afb",
   "trk:blog-techcrunch:18d250356a9d",
+  "trk:blog-techcrunch:2940e35ec368",
   "trk:blog-techcrunch:2aef46f1ccca",
   "trk:blog-techcrunch:387d4012e6b7",
   "trk:blog-techcrunch:3ab8d8671f65",
@@ -335,6 +336,7 @@
   "trk:meta:3cc83ed833c7",
   "trk:meta:55a95c1592b9",
   "trk:meta:56c1402cf127",
+  "trk:meta:60cefc033103",
   "trk:meta:92c6b29a7d1e",
   "trk:meta:9a9028f6cf8c",
   "trk:meta:b0291d90af13",
@@ -421,6 +423,7 @@
   "trk:open-ai:258ac49c822b",
   "trk:open-ai:2710184608eb",
   "trk:open-ai:29c8973038a2",
+  "trk:open-ai:2f0ce8608471",
   "trk:open-ai:327639015781",
   "trk:open-ai:34ffd42f637f",
   "trk:open-ai:3e626678fceb",
@@ -787,15 +790,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:t-3f524a5b:7c949b57af14": [
-   305
-  ],
-  "trk:googl:642ecab5c11f": [
-   306
-  ],
-  "trk:yt--jklonfa:e14b533336f9": [
-   307
-  ],
   "pod:2026-10-14-understanding-CGOAb5sTwds": [
    308
   ],
@@ -2326,6 +2320,15 @@
   ],
   "usdkrw:2026-10-23": [
    274
+  ],
+  "trk:meta:60cefc033103": [
+   771
+  ],
+  "trk:open-ai:2f0ce8608471": [
+   772
+  ],
+  "trk:blog-techcrunch:2940e35ec368": [
+   773
   ]
  },
  "topics": {},
