@@ -187,6 +187,7 @@
   "trk:blog-ranto28:b2ad82da6365",
   "trk:blog-ranto28:c3cde40df3d3",
   "trk:blog-ranto28:cd7f365c60a1",
+  "trk:blog-ranto28:d1bde61905a3",
   "trk:blog-ranto28:d53b4d40c8e5",
   "trk:blog-ranto28:e28ef17622e9",
   "trk:blog-ranto28:e44af80ee32f",
@@ -219,8 +220,10 @@
   "trk:blog-ssh-fedinsight:d14ccba0dba1",
   "trk:blog-ssh-fedinsight:f97e5baed7d2",
   "trk:blog-techcrunch:00fe9b4be002",
+  "trk:blog-techcrunch:125851f53afb",
   "trk:blog-techcrunch:18d250356a9d",
   "trk:blog-techcrunch:2aef46f1ccca",
+  "trk:blog-techcrunch:387d4012e6b7",
   "trk:blog-techcrunch:3ab8d8671f65",
   "trk:blog-techcrunch:4353faf62b9a",
   "trk:blog-techcrunch:48f80c636f26",
@@ -239,6 +242,7 @@
   "trk:blog-techcrunch:cc663e2995a4",
   "trk:blog-techcrunch:daec0d20e7db",
   "trk:blog-techcrunch:ec4b5b074c1b",
+  "trk:blog-techcrunch:f5f85f1296e7",
   "trk:blog-techcrunch:f8f5109f865a",
   "trk:blog-techcrunch:fd5edf2507af",
   "trk:blog-techcrunch:ffca221d42a2",
@@ -772,18 +776,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:cxmt:c786be2462dc": [
-   291
-  ],
-  "trk:yt--jklonfa:06611246c724": [
-   292
-  ],
-  "trk:yt--jklonfa:e53941c08ae0": [
-   293
-  ],
-  "trk:yt--jklonfa:74e36a144fc6": [
-   294
-  ],
   "pod:2026-10-14-understanding-S7O-OSoutnc": [
    295
   ],
@@ -2311,6 +2303,18 @@
   ],
   "trk:blog-techcrunch:daec0d20e7db": [
    756
+  ],
+  "trk:blog-ranto28:d1bde61905a3": [
+   757
+  ],
+  "trk:blog-techcrunch:387d4012e6b7": [
+   758
+  ],
+  "trk:blog-techcrunch:125851f53afb": [
+   759
+  ],
+  "trk:blog-techcrunch:f5f85f1296e7": [
+   760
   ]
  },
  "topics": {},
