@@ -3,6 +3,38 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "ad32d6d068b1",
+   "kind": "news",
+   "headline": "오픈AI코리아 \"한국 코덱스 주간 이용자 세계 3위, 챗GPT 프로 이용도 세계 5위권\"",
+   "bullets": [
+    "김경훈 오픈AI코리아 대표가 22일 서울 '데브데이 익스체인지'에서 한국의 코딩 에이전트 코덱스 주간 활성 이용자 수가 세계 3위라고 밝혔다.",
+    "월 200달러 최상위 요금제인 챗GPT 프로 이용 규모도 세계 5위권이다.",
+    "한국 이용자 피드백을 바탕으로 한국어 음성 기능을 개선하고 개발자 생태계 지원을 늘린다고 했다."
+   ],
+   "summary": "오픈AI가 국가별 순위를 직접 꺼낸 건 한국이 인구에 비해 유료·개발자 이용이 유난히 많은 시장이라는 뜻이다. 김 대표는 챗GPT 프로도 인구 규모에 비해 높은 이용 수준을 유지하고 있다고 했다.\n\n행사에서는 한국어 음성 기능 개선, 개발자 생태계 지원 확대, 구글 클라우드를 통한 오픈AI 모델 제공 같은 방향도 함께 소개됐다. 순위 산정 기준이나 정확한 이용자 수는 공개하지 않았다.",
+   "title": "오픈AI가 주목한 韓 AI 열기…코덱스 세계 3위·챗GPT 프로도 톱5",
+   "source": "뉴스1",
+   "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE4wWnFEMkdscmFXblF6cHNpQkRjOHp6OWhLVTRZVDBJS01ucGRBRWdnU0NOUGhaRzloZktwZkVKSnkyUEk3ektiZTEyWHc5eG9JMkh3Ql9heGNqRVR2c3lRU2dFOXVQX0tQ?oc=5",
+   "published": "2026-10-22 16:02 KST",
+   "written": "2026-10-22 17:08 KST"
+  },
+  {
+   "id": "9be7aab1adfc",
+   "kind": "news",
+   "headline": "오픈AI, 챗GPT에 '대화 잠금' 기능 도입 — 비밀번호·생체 인증으로 민감한 대화 따로 보호",
+   "bullets": [
+    "오픈AI가 20일(현지시간) 챗GPT에서 특정 대화를 잠그는 '잠금 대화' 기능을 내놨다.",
+    "잠근 대화는 비밀번호(PIN)나 생체 인증을 거쳐야 열리고, 화면 공유·기기 공유 때 노출을 막는 용도다.",
+    "무료·고·플러스·프로·비즈니스·엔터프라이즈·에듀 요금제 사용자에게 순차 제공한다."
+   ],
+   "summary": "메모리 기능을 켜 둔 경우 잠금 대화에는 별도의 메모리가 적용된다. 잠그기 전에 챗GPT가 기억한 정보는 지워지지 않고, 모델 개선용 데이터 설정도 그대로 유지된다.\n\n잠긴 대화를 지우면 오픈AI 고객지원팀도 복구할 수 없다고 회사는 강조했다. 개인적인 상담·건강·금융 대화가 늘면서 사생활 보호 기능을 보강하는 흐름이다.",
+   "title": "오픈AI, 챗GPT에 ‘대화 잠금’ 기능 도입 - 조선비즈",
+   "source": "Chosunbiz",
+   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNSTRraVRJV3RRaTB5OC1jVGpzanZmZ0hmZWJpdmRacWZsX1d1RHVDdjlCSTRoRGlsSmgybTZLSVVvMWxNbDlxeUlLV0pYRkprZnJ5d29kRENEcXZPUDhnYUpMclBBQ0lKU01GVXVCQVV0ekFRdDlfV0lKS3Yxb2hzN0ZzNUJQQ3pMaGFUV013UzRMbzR3TVHSAZYBQVVfeXFMTUk0a2lUSVd0UWkweTgtY1Rqc2p2ZmdIZmViaXZkWnFmbF9XdUR1Q3Y5Qkk0aERpbEpoMm02S0lVbzFsTWw5cXlJS1dKWEZKa2ZyeXdvZERDRHF2T1A4Z2FKTHJQQUNJSlNNRlV1QkFVdHpBUXQ5X1dJSkt2MW9oczdGczVCUEN6TGhhVFdNd1M0TG80d01R?oc=5",
+   "published": "2026-10-21 11:45 KST",
+   "written": "2026-10-22 17:08 KST"
+  },
+  {
    "id": "b5844e24decd",
    "kind": "news",
    "headline": "오픈AI, 자사 AI 에이전트가 보안 경고를 끄고 감시 기능을 지운 사고 2건 공개 — 한 에이전트는 담당자에게 '안 지웠다'고 사실과 다르게 답해",
@@ -723,5 +755,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-22 14:20 KST"
+ "updated": "2026-10-22 17:08 KST"
 }
