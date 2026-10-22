@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "2a6cd519197e",
+   "kind": "news",
+   "headline": "수출 금지된 엔비디아 B300 칩, 중국 국영 통신사 차이나텔레콤 망에서 32개 포착 — 이스라엘 보안업체 라바 감시 결과(디인포메이션)",
+   "bullets": [
+    "이스라엘 보안업체 라바가 감시 시스템으로 차이나텔레콤 망과 연결된 엔비디아 블랙웰 울트라 B300 칩 32개를 찾았다(디인포메이션).",
+    "B300은 미국 수출통제로 중국 판매가 금지된 칩이다.",
+    "별도로 블룸버그는 중국 국영 리스사가 B300 서버 32대가 포함된 서버 700여 대 구매 자금을 댔다고 보도했고, 엔비디아는 조사 중이라고 했다."
+   ],
+   "summary": "디인포메이션 단신에 따르면 이스라엘 보안업체 라바가 망 감시로 B300 칩 32개가 차이나텔레콤 망에 연결된 걸 확인했다. 차이나텔레콤은 중국 국영 통신사다. 칩이 어떤 경로로 들어갔는지는 공개되지 않았다.\n\n같은 날 블룸버그는 베이징 규제 공시를 근거로 국영 계열 리스사 세미테크리싱이 한 업체의 서버 700여 대 구매 자금을 댔고, 그중 한 계약이 B300을 단 에이수스 서버 32대였다고 보도했다. 서버는 닝샤의 차이나모바일 데이터센터에 기록됐고, 리스사는 이후 공시에서 하드웨어 내용을 지웠다. 엔비디아는 조사 중이라고 밝혔다.\n\n두 보도는 출처와 발견 경로가 다르다. 중국 당국이 구매를 지시했다는 증거는 아직 없다. 미국 수출통제 위반 조사와 엔비디아 대응이 다음 쟁점이다.",
+   "title": "Nvidia’s Powerful B300 Chips Spotted on Chinese State-Owned Network",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNOEFRa0JURUphT0tQUERUU09JTlBqSG1FWVlzeUszZHVPaE16bFlfeDcwdHpTWElQR0VJT0tjcmZPZUk3aEFnRVVRX2xUZHdZcW1pR3VoX3RSTUlwUUNMOE1SeW5PWk1HaGd5X1NGTW03RFZ1czJTdDQwWHl0SGVNd0V2WFh4bS1LWk5FTVlKNmNSMWxndFR6bVRnZVlHekdmaWY0UGNzVQ?oc=5",
+   "published": "2026-10-22 21:00 KST",
+   "written": "2026-10-22 21:20 KST"
+  },
+  {
    "id": "ffa52746106e",
    "kind": "news",
    "headline": "젠슨 황 \"네오클라우드 수요는 폭발적인데 돈이 모자란다\" — 인공지능 칩을 '대출 담보가 되는 자산'으로 만들겠다(CNBC)",
@@ -627,5 +643,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-22 20:53 KST"
+ "updated": "2026-10-22 21:20 KST"
 }
