@@ -3,6 +3,22 @@
  "slug": "t-0a23e71f",
  "items": [
   {
+   "id": "f1a3cb1e68f9",
+   "kind": "news",
+   "headline": "대한광통신, 극자외선 노광용 포토마스크 유리기판(LTEM) 제조 기술 특허 등록 — 시제품 개발 마치고 국내 블랭크마스크 업체와 협업 논의",
+   "bullets": [
+    "대한광통신이 극자외선(EUV) 노광 공정 포토마스크의 바탕 소재인 저열팽창 소재(LTEM) 유리기판 제조 기술 특허 등록을 마쳤다고 22일 밝혔다.",
+    "이 기술로 EUV 포토마스크용 LTEM 기판 시제품 개발도 끝냈고, 회사는 국내에서 유일하게 이 기판을 공급할 기술을 확보했다고 설명했다.",
+    "지금은 국내 블랭크마스크 업체와 후속 개발 협업을 논의 중이며, 품질 검증 뒤 양산 투자·생산 체계를 구체화한다."
+   ],
+   "summary": "LTEM 기판은 극자외선 노광 장비가 회로 패턴을 웨이퍼에 옮길 때 쓰는 포토마스크의 밑판이다. 열을 받아도 크기·모양이 거의 안 변해야 하고, 표면에 반사막 같은 막을 입히면 블랭크마스크, 여기에 회로를 새기면 포토마스크가 된다.\n\n특허는 이산화티타늄과 이산화규소로 된 미세 유리 입자를 쌓는 기상축부착법과 후속 열처리를 쓰고, 불소 없이 공정 조건을 조절해 기포 없는 저열팽창 평판 유리를 만드는 방식이다. 광섬유용 합성유리를 만들던 기술을 반도체 소재로 넓힌 것이다.\n\n아직 고객사 검증 전 단계라 매출로 이어지는 시점·규모는 나오지 않았다. 양산 투자 규모와 블랭크마스크 업체 검증 결과가 다음 확인 지점이다.",
+   "title": "대한광통신, LTEM 기반 유리기판 제조 기술 특허 등록",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1zbWJoTWYtQnVsU3ZvNXBaT3hYNXpLdjlhNjJVWXhGQm9FWnlsUzF5M3dVQzk1ZlZBb1h6dF9PeG8ya0p5SURBeXZNS0pyWktQS1hsdUhJNXZaZVlOTGlVZGV2Z3ZBZmhwUWw1ZUxsdENUN0FtMkJaSdIBeEFVX3lxTE1zbWJoTWYtQnVsU3ZvNXBaT3hYNXpLdjlhNjJVWXhGQm9FWnlsUzF5M3dVQzk1ZlZBb1h6dF9PeG8ya0p5SURBeXZNS0pyWktQS1hsdUhJNXZaZVlOTGlVZGV2Z3ZBZmhwUWw1ZUxsdENUN0FtMkJaSQ?oc=5",
+   "published": "2026-10-22 09:39 KST",
+   "written": "2026-10-22 10:51 KST"
+  },
+  {
    "id": "9b92298ccce9",
    "kind": "news",
    "headline": "삼성전기, 엔비디아와 인공지능 반도체 기판 장기 공급 파트너십 — 세종·부산에 엔비디아 전용 라인 공동 투자",
@@ -259,5 +275,5 @@
    "written": "2026-10-12 19:12 KST"
   }
  ],
- "updated": "2026-10-22 09:00 KST"
+ "updated": "2026-10-22 10:51 KST"
 }
