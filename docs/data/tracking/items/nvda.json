@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "bea09dde4603",
+   "kind": "news",
+   "headline": "엔비디아, 대만 협력사 세 곳 증설 직접 지원 — 京元電(킹위안) 테스트 설비에 선급금 11억 달러, 矽品(SPIL) 광엔진 생산능력 내년 15배",
+   "bullets": [
+    "엔비디아가 베를린 GTC에서 공급망 증설 계획을 내놓으며 대만의 欣興(유니마이크론)·京元電(킹위안)·矽品(SPIL)을 콕 집었다(경제일보).",
+    "킹위안에는 미국 테스트 공장·장비용으로 생산능력 예약 선급금 11억 달러를 주고, 2027년까지 테스트 능력을 두 배로 늘린다.",
+    "SPIL의 광전 일체 패키징(CPO) 광엔진 생산능력은 내년 15배, 2028년 30배로 키우고, 유니마이크론의 기판 증설분은 2027년 2분기 가동·2028년 중반 풀가동 예정이다."
+   ],
+   "summary": "엔비디아가 인공지능 인프라 수요에 맞추려고 대만 협력사 증설에 직접 돈을 대기로 했다. 대만 경제일보에 따르면 세 회사가 맡는 영역은 기판(유니마이크론), 칩 테스트(킹위안), 광엔진 패키징(SPIL)이다.\n\n기판은 일본 이비덴·한국 삼성전기와 함께 유니마이크론이 앞으로 3년 증설 수요를 나눠 맡는다. 엔비디아는 협약을 통해 유니마이크론의 대만 기판 증설을 지원한다. 킹위안은 엔비디아 선급금 11억 달러로 미국에 새 테스트 시설을 짓는다. 증설 폭이 가장 큰 건 SPIL의 광엔진으로, 광신호와 칩을 한 패키지에 묶는 CPO 스위치 수요에 맞춘 것이다.\n\n경제일보는 엔비디아 인증을 받은 대만 광통신 부품업체 波若威(포르위), 上詮(FOCI) 등도 주문이 크게 늘 것으로 봤다. 다만 이건 언론·기관의 해석이고 엔비디아 공식 발표에 들어간 내용은 아니다.",
+   "title": "輝達揪台灣夥伴大擴產搶市 光通訊族群訂單將爆發",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE4zUjVhLVlWOVhPTl90eXZTNkxaVGVsZlpJOXpSanhENUIwNUJaUnQwMVU1c2hSZXlOOUJITTlhWTNCT2xncHV5azRhUGJGY19ocHdFYUVhc0hXZ9IBX0FVX3lxTE5mTDZCcWRNX3RudTFNN3IyWnRJU3cyOTQzRk5tWjBsejBvbnp3Zk9NTVlIX3dVeHByUmxmNVFUX1RPbWhLNlM5WXg2Y0JNTGpWaHhRUzJSUkgweWVrYm9J?oc=5",
+   "published": "2026-10-22 04:06 KST",
+   "written": "2026-10-22 12:17 KST"
+  },
+  {
    "id": "42e0183b803d",
    "kind": "news",
    "headline": "엔비디아, 독일 스타트업 4곳 투자 — 애자일로보츠·아벨리오스·미렐로·리플렉스에어로스페이스, 유럽 투자 약 100억달러 계획의 일부",
@@ -579,5 +595,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-20 22:19 KST"
+ "updated": "2026-10-22 12:17 KST"
 }

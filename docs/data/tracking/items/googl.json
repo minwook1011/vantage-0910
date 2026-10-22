@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "e0909f2ba801",
+   "kind": "news",
+   "headline": "[후속] 유럽은행감독청·영국 금융감독청, 구글에 클라우드 장애 경위 질의 — 유럽 새 디지털 복원력 규정 첫 시험대(로이터)",
+   "bullets": [
+    "유럽은행감독청(EBA)은 구글 클라우드와 접촉해 20일 장애에 대한 추가 정보를 요구했고, 영국 금융행위감독청(FCA)도 구글과 협의 중이라고 밝혔다.",
+    "구글은 런던 네트워크의 ‘전력 이상’이 원인이었고 서비스는 복구됐으며 분석 보고서를 상태 게시판에 올리겠다고 했다.",
+    "이번 장애는 은행이 기대는 클라우드 업체를 직접 감독하는 유럽·영국 새 규정이 시행된 뒤 첫 대형 사고다."
+   ],
+   "summary": "20일 서유럽 구글 클라우드 장애로 레볼루트·로이즈·HSBC 고객 수백만 명이 몇 시간 동안 로그인·카드 결제·현금 인출을 못 했다. 영국 중앙은행 조사에 이어 이번엔 유럽연합 쪽 은행 감독기구인 유럽은행감독청이 구글에 직접 경위를 물었다.\n\n구글 클라우드는 유럽연합의 디지털 운영 복원력법(DORA)과 영국의 핵심 제3자 감독 제도 양쪽에서 금융권 핵심 기술업체로 지정돼 있다. 이 규정은 감독기구가 은행이 아니라 클라우드 업체를 직접 들여다볼 수 있게 한 것으로, 이번이 첫 실전 사례다. 영국 하원 재무위원회도 영국 중앙은행과 금융행위감독청에 대응 내용을 보고하라고 요구했다.\n\n남은 쟁점은 구글이 내놓을 사고 분석 내용과, 감독기구가 시정 요구나 제재로까지 나아갈지다.",
+   "title": "Europe's financial regulators query Google over cloud outage that hit banks",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOUzllb1hMZlRLZ3ZfSFFIOGpJQXR1bG0ycmt2dElIZ25fck94R08tWmxRaXlGVUUwWXNjUF9wNEREWU00dEtEZnBMcV8tVmhZb3JnUmlvVE9icm13azlSZWRmTm1oMFBBa3BvQVNTNzh3ZUxoUDBpN09ZclN0Z0pRdEExWEdSdXBSRGNsbVBJSEx5OE9QLVVySll5MXZ5M0VMcFI1VWZKcExhWWVVY0NpRE1sOWJ2LWgzaWN6eHFhRVJzalE1Mmc?oc=5",
+   "published": "2026-10-22 05:20 KST",
+   "written": "2026-10-22 12:17 KST"
+  },
+  {
    "id": "854326a52590",
    "kind": "news",
    "headline": "구글, 데이터센터 부지 협상 때 비밀유지계약 더는 안 쓴다 — 마이크로소프트·아마존에 이어(디인포메이션)",
@@ -353,5 +369,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-22 11:49 KST"
+ "updated": "2026-10-22 12:17 KST"
 }

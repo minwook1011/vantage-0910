@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "12613c76496a",
+   "kind": "news",
+   "headline": "폭스바겐그룹, 직원 33만 명 넘게 마이크로소프트 코파일럿 도입 — 지난 한 달 사내 인공지능 에이전트 2만6천 개 가동",
+   "bullets": [
+    "마이크로소프트는 10월 21일 폭스바겐그룹이 직원 33만 명 이상에게 코파일럿을 깔았다고 발표했다.",
+    "처음엔 대화형 ‘코파일럿 챗’으로 시작해 월 이용자 30만 명을 넘겼고, 이제 업무 데이터와 연결된 ‘워크 IQ’ 기능으로 설계·생산·구매·영업까지 넓혔다.",
+    "지난 한 달 동안 그룹 안에서 돌아간 인공지능 에이전트는 2만6천 개가 넘는다."
+   ],
+   "summary": "폭스바겐그룹이 마이크로소프트의 업무용 인공지능 비서 코파일럿을 직원 33만 명 이상에게 배포했다. 마이크로소프트가 21일 공식 발표했다. 폭스바겐 전체 직원(약 65만 명)의 절반 정도 규모다.\n\n도입은 단계적으로 진행됐다. 먼저 대화형 코파일럿 챗을 풀어 월간 이용자가 30만 명을 넘었고, 이후 사내 문서·메일·회의 데이터를 묶어 쓰는 기능으로 설계부터 생산, 구매, 영업 업무까지 쓰임새를 넓혔다. 직원들이 만든 에이전트도 지난 한 달에만 2만6천 개 넘게 돌아갔다.\n\n다만 마이크로소프트는 유료 라이선스가 몇 개인지, 생산성이 얼마나 올랐는지 같은 숫자는 내놓지 않았다. 두 회사는 22일 독일 쾰른에서 열리는 마이크로소프트 인공지능 투어에서 도입 사례를 직접 발표한다. 4월 액센츄어(74만3천 명)에 이은 대형 기업 고객 사례다.",
+   "title": "Microsoft Stocks Slip as Volkswagen Scales Copilot to 330,000 Workers",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQT0p6ZkNUaWxwM0psRHRmY0lHdXNTcVNVeERVX0toRW1pUUFZYUhVczYzTmc4dXNyLWx0MjVpSEtTelJxZHRKTUduVzNfRklVVE04eG1mTV9FYXlvWS1hT3RXem5KcW1vSHFQTEppWVN4aEYyRHpHbWNlUEF3OGQxRlBTUzNIdWRFZW0wUTJJLTVacjh5UnVZc2VBR2RIbHZ0X2ZEYXFpSQ?oc=5",
+   "published": "2026-10-22 07:26 KST",
+   "written": "2026-10-22 12:17 KST"
+  },
+  {
    "id": "728ccc2dfc27",
    "kind": "news",
    "headline": "마이크로소프트 \"중국 연계 해킹조직, 인공지능 침투 도구로 미국 IT 관리업체 커넥트와이즈 뚫었다\" — 한국 금융사 정보 유출에 쓰인 도구",
@@ -321,5 +337,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-22 10:51 KST"
+ "updated": "2026-10-22 12:17 KST"
 }
