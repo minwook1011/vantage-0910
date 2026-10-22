@@ -1133,17 +1133,38 @@ function heatMonthly(ts){
     rows.push({name, cells: arr.map(v=> v==null?null:{d:v-100,cap:12,txt:(v-100>=0?"+":"")+(v-100).toFixed(1),title:name+" "+v+"%"})}); }
   return rows.length? heatTable(labels, rows):"";
 }
-// 분기 실적 성장(전년동기비) 히트맵
+// 분기 실적 그래프(2026-10-22 사용자): 매출·영업이익 각각 최근 10분기 막대(금액, 억엔) + 전년동기비 꺾은선(오른쪽 축, %)
 function finGrowthHeat(b){
-  const q=b&&b.q; if(!q||!q.lb||q.lb.length<5) return "";
-  const lb=q.lb,n=lb.length;
-  const yoyOf=key=>{ const a=q[key]||[],out=[]; for(let i=0;i<n;i++){ const cur=a[i],prev=a[i+4]; out.push((cur==null||prev==null||prev<=0)?null:(cur/prev-1)*100); } return out; };
-  const rev=yoyOf("rev"),oi=yoyOf("oi");
-  const idx=[]; for(let i=0;i<n;i++) if(i+4<n) idx.push(i); idx.reverse();
-  if(!idx.length) return "";
-  const labels=idx.map(i=>lb[i]);
-  const mk=(name,arr)=>({name, cells: idx.map(i=> arr[i]==null?null:{d:arr[i],cap:40,txt:(arr[i]>0?"+":"")+arr[i].toFixed(0),title:lb[i]+" "+(arr[i]>0?"+":"")+arr[i].toFixed(1)+"%"})});
-  return heatTable(labels, [mk("매출 성장",rev), mk("영업이익 성장",oi)]);
+  const q=b&&b.q; if(!q||!q.lb||q.lb.length<2) return "";
+  if(typeof extendQ==="function") extendQ(b);
+  const lb=q.lb, N=Math.min(10, lb.length), idx=[]; for(let i=N-1;i>=0;i--) idx.push(i);   // 왼쪽=과거
+  const one=(title,key,color)=>{
+    const a=q[key]||[]; if(!idx.some(i=>a[i]!=null)) return "";
+    const v=idx.map(i=>a[i]), y=idx.map(i=>{ const c=a[i],p=a[i+4]; return (c==null||p==null||p<=0)?null:(c/p-1)*100; });
+    const W=560,H=230,L=46,R=44,T=22,B=30, pw=W-L-R, ph=H-T-B, n=idx.length, bw=pw/n;
+    const vs=v.filter(x=>x!=null), vmax=Math.max(0,...vs), vmin=Math.min(0,...vs), vr=(vmax-vmin)||1;
+    const yv=x=>T+(vmax-x)/vr*ph;
+    const ys=y.filter(x=>x!=null), gmax=Math.max(10,...ys), gmin=Math.min(-10,...ys), gr=gmax-gmin;
+    const yg=x=>T+(gmax-x)/gr*ph;
+    const fmt=x=>Math.abs(x)>=100?Math.round(x).toLocaleString("ko-KR"):x.toFixed(1);
+    let g=`<line x1="${L}" x2="${W-R}" y1="${yv(0).toFixed(1)}" y2="${yv(0).toFixed(1)}" class="fgz"/>`;
+    g+=`<line x1="${L}" x2="${W-R}" y1="${yg(0).toFixed(1)}" y2="${yg(0).toFixed(1)}" class="fgz0"/>`;
+    [vmax, (vmax+vmin)/2, vmin].forEach(t=>{ g+=`<text x="${L-6}" y="${(yv(t)+3).toFixed(1)}" class="fgax" text-anchor="end">${fmt(t)}</text>`; });
+    [gmax, 0, gmin].forEach(t=>{ g+=`<text x="${W-R+6}" y="${(yg(t)+3).toFixed(1)}" class="fgax gr">${(t>0?"+":"")+t.toFixed(0)}%</text>`; });
+    idx.forEach((i,k)=>{ const x=L+k*bw, val=v[k];
+      if(val!=null){ const y0=yv(0), y1=yv(val), top=Math.min(y0,y1), h=Math.max(1,Math.abs(y1-y0));
+        g+=`<rect x="${(x+bw*0.18).toFixed(1)}" y="${top.toFixed(1)}" width="${(bw*0.64).toFixed(1)}" height="${h.toFixed(1)}" rx="2" fill="${color}" opacity="${k===n-1?1:0.55}"><title>${esc(lb[i])} ${fmt(val)}억엔${y[k]!=null?` · 전년동기비 ${(y[k]>0?"+":"")+y[k].toFixed(1)}%`:""}</title></rect>`;
+        if(k===n-1) g+=`<text x="${(x+bw/2).toFixed(1)}" y="${(h>16?top+13:top-5).toFixed(1)}" class="fgval${h>16?" in":""}" text-anchor="middle">${fmt(val)}</text>`; }
+      g+=`<text x="${(x+bw/2).toFixed(1)}" y="${H-10}" class="fgax${k===n-1?" cur":""}" text-anchor="middle">${esc(lb[i])}</text>`; });
+    const pts=idx.map((i,k)=>y[k]==null?null:[L+k*bw+bw/2, yg(y[k]), y[k]]);
+    let d="", pen=false; pts.forEach(pt=>{ if(!pt){pen=false;return;} d+=(pen?"L":"M")+pt[0].toFixed(1)+" "+pt[1].toFixed(1); pen=true; });
+    g+=`<path d="${d}" class="fgln"/>`;
+    pts.forEach((pt,k)=>{ if(!pt) return; g+=`<circle cx="${pt[0].toFixed(1)}" cy="${pt[1].toFixed(1)}" r="${k===n-1?4:3}" class="fgdot ${pt[2]>=0?"up":"dn"}"/>`;
+      if(k===n-1||k===n-2) g+=`<text x="${pt[0].toFixed(1)}" y="${(pt[1]-8).toFixed(1)}" class="fggv ${pt[2]>=0?"up":"dn"}" text-anchor="middle">${(pt[2]>0?"+":"")+pt[2].toFixed(0)}%</text>`; });
+    return `<figure class="fgc"><figcaption><b>${title}</b><span><i class="sw" style="background:${color}"></i>금액(억엔) <i class="ln"></i>전년동기비</span></figcaption><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title} 최근 ${n}분기">${g}</svg></figure>`;
+  };
+  const html=one("매출","rev","#7f9fd6")+one("영업이익","oi","#5a7fc4");
+  return html?`<div class="fgwrap">${html}</div>`:"";
 }
 const isYoYname = n => /성장|기존점|객수|객단|전점|증가|월매출|매출성장/.test(n);
 // 비-외식: k 데이터를 지표 성격에 맞게(증감률=히트맵, 비율/수준=값)
@@ -1180,7 +1201,7 @@ function kpiBodyHTML(code, mode){
     if(mode==="heat"){
       const mon=heatMonthly(kpi.ts), fin=finGrowthHeat(b);
       return `${mon?`<div class="hmsub">기존점·전점 (월별 · 전년동월비 %p)</div>${mon}`:""}
-        ${fin?`<div class="hmsub" style="margin-top:16px">전사 실적 성장 (분기 · 전년동기비 %)</div>${fin}`:""}
+        ${fin?`<div class="hmsub" style="margin-top:16px">전사 실적 (최근 10분기 · 막대 = 금액, 선 = 전년동기비)</div>${fin}`:""}
         <div class="kpicap"><b style="color:var(--up)">빨강=증가</b> · <b style="color:var(--down)">파랑=감소</b>, 진할수록 변동 폭이 큽니다. 숫자는 전년 대비 증감입니다.</div>`;
     }
     return `<div class="kpichart"><div class="kpileg" id="kpileg"></div><canvas id="kpicv"></canvas><div class="ktip" id="ktip"></div></div>
@@ -1189,7 +1210,7 @@ function kpiBodyHTML(code, mode){
   // 비-외식
   const body = kpiKBlock(kpi.k||[]);
   const fin = finGrowthHeat(b);
-  return `${body}${fin?`<div class="hmsub" style="margin-top:16px">전사 실적 성장 (분기 · 전년동기비 %)</div>${fin}`:""}`;
+  return `${body}${fin?`<div class="hmsub" style="margin-top:16px">전사 실적 (최근 10분기 · 막대 = 금액, 선 = 전년동기비)</div>${fin}`:""}`;
 }
 function setKpiMode(m){
   view.kpiMode=m;
