@@ -137,6 +137,7 @@
   "trk:amzn:32bc35a6bf9a",
   "trk:amzn:3718be1bee93",
   "trk:amzn:41d4f47c8644",
+  "trk:amzn:4af9b25c9b60",
   "trk:amzn:515865eecad0",
   "trk:amzn:63f2e4fcda5c",
   "trk:amzn:792da524fecc",
@@ -241,9 +242,11 @@
   "trk:blog-techcrunch:a6e9e3330ba6",
   "trk:blog-techcrunch:aabe400f6606",
   "trk:blog-techcrunch:c6cf8c65ac85",
+  "trk:blog-techcrunch:ca13c1c565cb",
   "trk:blog-techcrunch:cc663e2995a4",
   "trk:blog-techcrunch:daec0d20e7db",
   "trk:blog-techcrunch:ec4b5b074c1b",
+  "trk:blog-techcrunch:f33e8822d1e0",
   "trk:blog-techcrunch:f5f85f1296e7",
   "trk:blog-techcrunch:f8f5109f865a",
   "trk:blog-techcrunch:fd5edf2507af",
@@ -448,6 +451,7 @@
   "trk:open-ai:d6b19e07901b",
   "trk:open-ai:d924e9bdae60",
   "trk:open-ai:db1647bf15ba",
+  "trk:open-ai:dc01c4a11cec",
   "trk:open-ai:e2a0b6e1cc97",
   "trk:open-ai:e7e02b8dc0c3",
   "trk:open-ai:f22f1b3149c8",
@@ -779,18 +783,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "pod:2026-10-14-riskrev-deirdre-bosa-the-ai-model-race-is-over-it-s-a-pr": [
-   298
-  ],
-  "pod:2026-10-14-ontape-jeff-degraaf-erase-chips-from-your-memory": [
-   299
-  ],
-  "trk:t-0a23e71f:69d546ffa025": [
-   300
-  ],
-  "trk:t-62bbe9b6:91169c901655": [
-   301
-  ],
   "jpm:2026-10-14 19:53 KST": [
    166
   ],
@@ -2318,6 +2310,18 @@
   ],
   "trk:blog-techcrunch:aabe400f6606": [
    763
+  ],
+  "trk:amzn:4af9b25c9b60": [
+   764
+  ],
+  "trk:open-ai:dc01c4a11cec": [
+   765
+  ],
+  "trk:blog-techcrunch:ca13c1c565cb": [
+   766
+  ],
+  "trk:blog-techcrunch:f33e8822d1e0": [
+   767
   ]
  },
  "topics": {},
