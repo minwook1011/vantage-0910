@@ -44,13 +44,24 @@ def tidy():
             pass
 
 
+def stuck():
+    """빈 리베이스 폴더가 보호 권한(샌드박스 거부 권한)으로 안 지워지면 리베이스가 아예 시작을 못 한다(2026-10-23) → 병합으로"""
+    return any(os.path.isdir(os.path.join(GITDIR, d)) for d in ("rebase-merge", "rebase-apply"))
+
+
 def pull():
     for i in range(3):
         tidy()
-        c, out = git("pull", "--rebase", "--autostash", "origin", "main")
+        if stuck():
+            c, out = git("pull", "--no-rebase", "--no-edit", "--autostash", "origin", "main")
+        else:
+            c, out = git("pull", "--rebase", "--autostash", "origin", "main")
         if c == 0:
             return True, out[-200:]
-        git("rebase", "--abort")
+        if not stuck():
+            git("rebase", "--abort")
+        else:
+            git("merge", "--abort")
         time.sleep(3 + 3 * i)
     tidy()
     return False, out[-300:]
