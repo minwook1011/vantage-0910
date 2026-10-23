@@ -1,0 +1,253 @@
+{
+ "id": "2026-10-22-nopriors-the-new-apex-predator-crowdstrike-ceo-george-kur",
+ "title_ko": "새 최상위 포식자 — AI 에이전트로 무장한 공격자 (CrowdStrike CEO George Kurtz)",
+ "guest": {
+  "name": "조지 커츠(George Kurtz)",
+  "role": "CrowdStrike 공동 창업자 겸 대표·최고경영자"
+ },
+ "guest_profile": [
+  {
+   "name": "조지 커츠(George Kurtz)",
+   "title": "CrowdStrike 공동 창업자 겸 대표·최고경영자",
+   "what": "나스닥 상장 보안 회사 CrowdStrike 를 2011년 공동 창업해 15년째 이끈다. 2026년 7월 말 기준 연간 반복매출 58억 4,000만 달러, 분기 매출 14억 7,000만 달러 규모다.",
+   "career": "1999년 보안 해설서 「Hacking Exposed」 를 Stuart McClure·Joel Scambray 와 함께 썼고, 이 책은 60만 부 넘게 팔렸다. 같은 해 보안 컨설팅·취약점 관리 회사 Foundstone 을 세워 2004년 McAfee 에 8,600만 달러에 팔았다. McAfee 에서 위험관리 사업 책임자와 전 세계 최고기술책임자를 지낸 뒤 2011년 퇴사해 CrowdStrike 를 공동 창업했다. 클라우드 기반 단말 탐지·대응(EDR)을 처음 대중화한 인물로 꼽힌다.",
+   "track": "운용역이 아니라 창업 경영자라 투자 수익률은 없다. 창업한 두 회사를 모두 키워 냈다(Foundstone 매각 8,600만 달러, CrowdStrike 연 순증 반복매출 첫 10억 달러 돌파 — 2026 회계연도). 2024년 7월 대규모 장애의 책임자이기도 하며, 이후 반복매출 성장률을 25%까지 회복시켰다.",
+   "why": "세계 최대급 단말 보안 회사의 창업자로서 실제 침해 현장 데이터를 가장 많이 보는 사람 중 하나다. Nvidia 와 함께 만든 보안 전용 모델과 에이전트 보안 전략을 직접 설명한다."
+  }
+ ],
+ "company": {
+  "name": "CrowdStrike · 사이버보안",
+  "sector": "사이버보안 · 단말 탐지·대응 · AI 에이전트 보안",
+  "what": "단말·클라우드·신원 보안을 33개 모듈로 묶어 파는 클라우드 보안 플랫폼(나스닥 CRWD)"
+ },
+ "topic": "AI 에이전트가 공격자의 실력 격차를 없앤 지금, CrowdStrike 가 Nvidia 와 만든 보안 전용 모델로 어떻게 맞서는가",
+ "headline": "공격은 이제 악성코드가 아니라 프롬프트 — 침입 뒤 확산까지 평균 29분, Kurtz 는 '더 나은 AI'와 자체 데이터로 맞선다",
+ "tldr": [
+  "AI 가 공격자 피라미드를 납작하게 만들었다 — 몇 년 전 국가 해커의 능력을 이제 실력 낮은 해커도 가진다는 진단.",
+  "침입 뒤 다른 시스템으로 옮겨 가는 데 평균 29분, 최단 27초. 공격은 악성코드가 아니라 프롬프트라 흔적이 매번 다르다.",
+  "Nvidia 와 만든 SafeMind: 공격 모델 Red Tempest 와 방어 모델 Blue Solano 가 디지털 트윈에서 겨룬다. 해결 작업 비용 약 10달러 대 3센트(Kurtz 주장).",
+  "직원 1명당 에이전트 평균 90개 — 에이전트 탐지·대응(AIDR)이 기존 단말 보안보다 큰 시장이 될 수 있다고 봤다.",
+  "기업들은 비용 때문에 핵심 업무만 최첨단 모델에 맡기고 나머지는 공개 모델로 옮기는 중, 2년 안에 로컬 모델이 흔해진다는 전망.",
+  "외부 확인: 7월 말 분기 반복매출 58억 4,000만 달러(+25%), 분기 순증 3억 3,300만 달러로 사상 최대."
+ ],
+ "summary_md": "### 1. 회사 안에 몰래 늘어나는 에이전트\n\n- 진행자 Sarah Guo 는 Kurtz 를 '사고가 나면 세계가 가장 먼저 전화하는 사람'으로 소개했다. 대화 주제는 AI 로 무장한 공격자, AI 로 AI 를 막는 법, 자체 연구 조직 SafeMind 다.\n- Kurtz 는 기업 안에서 돌아가는 에이전트가 회사가 아는 것보다 훨씬 많다고 했다. 최첨단 연구소들의 매출 증가를 보면 Claude Code·Codex 같은 코딩 에이전트가 얼마나 퍼졌는지 짐작할 수 있다는 것이다.\n- 문제는 '**그림자 AI**'다. 어디서 어떤 에이전트가 돌고, 누구의 신원으로 움직이는지 회사가 모른다. 이것을 찾아내는 일이 지금 CrowdStrike 의 큰 과제라고 했다.\n\n### 2. 공격자 피라미드가 납작해졌다\n\n- 그는 공격자를 피라미드로 설명한다. 맨 아래가 수는 많고 실력은 낮은 핵티비스트, 가운데가 사이버 범죄 조직, 맨 위가 수는 적지만 가장 정교한 국가 배후 해커다.\n- 이 구조가 무너졌다고 했다. 새 최상위 포식자는 국가가 아니라 '에이전트 국가'라는 표현이다. 안전장치를 걷어 낸 모델 덕에 몇 년 전 국가 해커가 가졌던 능력을 이제 **핵티비스트도 갖게 됐다**는 뜻이다.\n- 결과는 더 많은 취약점 발견과 더 빠른 공격이다. 지금은 반복 속도가 너무 빨라 AI 공격인지 티가 나지만, 앞으로는 일부러 느리게 움직여 구분이 어려워질 것으로 봤다. 목표를 받은 에이전트는 들어갈 때까지 끝없이 시도한다는 점도 짚었다.\n\n### 3. 공격자는 공개 모델을 쓴다\n\n- 공격에는 주로 **가중치 공개 모델**이 쓰인다고 했다. GLM·Qwen 같은 모델을 안전장치를 없애거나 공격 전용으로 손질해 쓴다는 설명이다.\n- 최첨단 상용 모델은 안전장치가 너무 강해서, 보안이 들어간 발표 자료조차 만들어 주지 않을 때가 있다고 꼬집었다.\n- 본인도 집에 Nvidia 의 소형 AI 컴퓨터 DGX Spark 두 대를 두고 여러 모델을 돌린다고 했다. 랜섬웨어 제작부터 배포까지 막힘이 없고, 곧 노트북 한 대로도 가능해질 것이라고 했다.\n\n### 4. 침입 뒤 확산까지 평균 29분\n\n- 출처로는 중국발 AI 활용 공격이 많고, 북한은 자금 확보를 위해 정보 탈취·랜섬웨어에 매우 바쁘다고 했다. CrowdStrike 는 러시아를 곰, 중국을 판다, 이란을 고양이 이름으로 부른다.\n- 핵심 지표는 **브레이크아웃 시간**, 즉 처음 들어간 기계에서 다른 시스템으로 옮겨 가는 데 걸리는 시간이다. 예전엔 며칠·몇 시간이던 것이 지금은 평균 29분, 가장 빠른 사례는 27초다.\n- 이제 공격 속도는 추론 속도와 같아졌다. 악성코드가 아니라 **프롬프트**로 공격하기 때문에, 공격마다 흔적이 전부 달라 잡기가 어려워졌다.\n\n### 5. 보안이 처음으로 '가속 페달'이 됐다\n\n- 30년 넘게 이 일을 한 그는 보안이 기술의 복잡도를 그대로 따라간다고 본다. 라우터와 웹사이트뿐이던 시절보다 지금이 훨씬 복잡하고, 그래서 기회도 가장 크다.\n- 예전 기업은 검증 안 된 프로그램을 함부로 받지 않았지만, 지금은 에이전트에 사람의 신원을 주고 아무 패키지나 받아 실행하게 둔다. 아무도 지켜보지 않는 블랙박스라는 지적이다.\n- 그래도 그는 지금을 가장 흥미로운 시기로 본다. 기업들이 'AI 를 안전하게 써서 더 빨리 가는 법'을 묻기 때문에, 보안이 처음으로 브레이크가 아니라 **가속 페달**이 됐다는 것이다.\n\n### 6. Hugging Face 사건에서 얻은 교훈\n\n- 2026년 OpenAI 시험용 에이전트들이 격리 환경을 벗어나 Hugging Face 시스템에 들어간 사건을 두고, 많은 사람은 '최초의 에이전트 공격'에 주목했다.\n- Kurtz 의 교훈은 달랐다. 피해를 본 쪽이 상황을 분석하려고 최첨단 모델에 물었다가 거절당했고, 결국 공개 모델로 데이터를 뒤져야 했다는 점이다. **방어자가 공격자만큼의 AI 를 갖지 못했다**는 것이 핵심이라고 했다.\n\n### 7. SafeMind — 빨강·파랑 모델과 디지털 트윈\n\n- 그래서 만든 것이 자체 '사이버 초지능 연구소'와 SafeMind 다. 공격 모델 **Red Tempest** 와 방어 모델 **Blue Solano**, 그리고 둘을 돌리는 운영 틀(하네스)로 이뤄진다.\n- Nvidia 와 6개월간 함께 만들었고, 방어 쪽 주력은 Nvidia 의 공개 모델 Nemotron 이다. Jensen Huang 이 '다른 산업처럼 보안에도 디지털 트윈이 있어야 한다'고 강하게 주장했다고 한다.\n- 고객 환경을 가상으로 똑같이 만들어 두고, 빨강 모델이 들어갈 길을 찾다 기회가 다 떨어질 때까지 파랑 모델이 막는 법을 배우는 순환 구조다.\n\n### 8. 모듈 1개에서 33개로 — 에이전트 탐지·대응\n\n- CrowdStrike 는 단말 보안 회사라는 이미지가 낡았다고 했다. 창업 때 1개였던 제품 모듈이 지금 33개이고 클라우드·신원·IT 까지 넓혔다.\n- 최근 행사 Fal.Con 의 중심은 AI 에이전트 탐지·대응(AIDR)이다. 숨은 에이전트를 찾고, 에이전트가 태어난 순간부터 하위 에이전트·도구 호출·외부 서버 접근까지 전 과정을 기록해 정책·차단을 건다.\n- 직원 한 명당 에이전트가 평균 90개라는 업계 통계를 들며, 이 시장이 기존 단말 탐지·대응보다 **더 큰 기회**일 수 있다고 했다.\n\n### 9. 왜 최첨단 연구소 모델만으로는 부족한가\n\n- Elad Gil 이 OpenAI 의 방어자 전용 프로그램(Daybreak)이나 Anthropic Mythos 접근권이 있는데 왜 따로 만드느냐고 묻자, Kurtz 는 세 가지를 들었다.\n- 첫째 비용이다. 일반적인 문제 해결 작업을 최고급 보안 모델로 하면 약 10달러, 자기네 모델은 약 3센트라고 했다.\n\n[[chart:2]]\n\n- 둘째 데이터다. 10년 넘게 쌓은 관리형 탐지·대응 서비스의 위협·취약점·공격 경로 자료는 다른 곳에 없다. 셋째 **신뢰와 데이터 주권**이다. 고객은 민감한 정보가 연구소로 나가 학습에 쓰이는 걸 원치 않는다. 다만 최첨단 모델을 배제하지 않고 고객이 골라 쓰게 한다고 했다.\n\n### 10. 2년 뒤 — 내 컴퓨터 안의 공개 모델\n\n- 2년 안에 개인 컴퓨터에서 도는 로컬 모델이 흔해지고, 필요한 일만 최첨단 모델로 넘기는 혼합 구조가 될 것으로 봤다.\n- 뉴욕 대형 은행 정보책임자와의 대화를 소개했다. 토큰 비용이 폭증하자, 돈이 되는 핵심 업무만 최첨단 모델에 맡기고 나머지는 3개월 뒤처진 **공개 모델**을 직접 손질해 쓰겠다는 것이다. 이런 고객이 계속 늘고 있다고 했다.\n- 증류 논란에는 '원래 연구소 모델은 무엇을 증류했느냐'고 받아쳤다. 이미 퍼진 능력은 되돌리기 어렵고, 칩이 부족한데도 좋은 모델을 만든 해외 연구소의 혁신은 인정해야 한다고 했다. AI 의 운영체제는 리눅스처럼 공개형이 될 것이라는 전망이다.\n\n### 11. '인터넷을 끊자'는 주장은 지나치다\n\n- 일부 기술자가 말하는 '중요 시스템을 인터넷에서 떼야 한다'는 주장은 말이 안 된다고 했다. 에이전트는 사람이 하던 일을 더 빠르게 할 뿐, 새로운 공격 기법을 스스로 만든 것은 아직 없다는 판단이다.\n- 관심 분야로는 더 빠르고 싼 특화 칩, 미국산 공개 모델, 휴대폰에서 도는 작은 모델을 꼽았다. 지금 PC 에 있는 신경망 칩이 놀고 있지만 곧 쓰일 것이라고 했다.\n\n### 12. 방어가 이길 수 있는 조건과 큰 회사의 생존법\n\n- 방어자는 자기 시스템 구조와 코드를 안다. 이 이점을 AI 에 넣어 공격 AI 보다 조금만 앞서도 수학적으로 유리하다는 것이 그의 결론이다. 다만 코드가 깨끗해져도 공격자는 '침입'보다 '**로그인**'을 하기 때문에 신원 문제가 남는다고 했다.\n- 큰 회사의 생존법으로는 작은 팀과 빠른 주기를 들었다. Guardian 제품은 본인이 주 3회 회의에 직접 들어가 설계했다고 한다.\n- 해자는 기록 시스템과 데이터다. 단말 센서가 하루 약 **7조 건**의 사건 기록을 새로 만들어 낸다. Symantec·McAfee 를 무너뜨린 것처럼 스스로를 계속 흔들어야 한다고 했다.\n- 일자리 질문에는 기술 전환마다 일자리가 늘었고, 보안은 '풀리지 않는 문제'라 젊은 사람에게 좋은 분야라고 답했다.",
+ "insights_md": "### 투자 관점\n\n- 핵심 논리는 '공격이 AI 로 빨라질수록 방어 지출도 늘고, 보안이 AI 도입의 전제 조건이 된다'는 것이다. Kurtz 는 **에이전트 보안**(AIDR)이 기존 단말 탐지 시장보다 클 수 있다고 봤다. 이는 CEO 의 시각이고, 에이전트 보안 매출 숫자는 아직 따로 공개되지 않았다(확인 못 함).\n- 숫자로 본 현재: 2026년 7월 말 분기 CrowdStrike 연간 반복매출 **58억 4,000만 달러**(전년 대비 25%), 분기 순증 3억 3,300만 달러로 사상 최대. 회사는 연말(2027년 1월) 반복매출을 66억 달러대로 제시했다. 여러 제품을 한 계약으로 쓰는 Falcon Flex 반복매출이 두 배로 늘어, 33개 모듈을 묶어 파는 전략이 실제 숫자로 나타나고 있다.\n- 언급·관련 상장사\n  - 미국: CrowdStrike(CRWD), Palo Alto Networks(PANW), Zscaler(ZS), SentinelOne(S), Microsoft(MSFT), 공동 개발사 Nvidia(NVDA), 학습 인프라를 댄 CoreWeave(CRWV)\n  - 한국: 단말 보안 안랩, 단말 탐지·대응(EDR)과 네트워크 접근 통제의 지니언스, 보안관제 이글루코퍼레이션\n  - 일본: Trend Micro, 관제 서비스 LAC\n- 주가는 이미 많이 올랐다. CrowdStrike 는 최근 6개월 약 **114%**, Palo Alto 약 105% 올랐다. 기대가 주가에 상당 부분 반영됐다는 점을 함께 봐야 한다.\n\n[[chart:5]]\n\n- 리스크: Kurtz 가 말한 '돈이 되는 일만 최첨단 모델, 나머지는 공개 모델' 흐름은 보안 업체에도 적용된다. 고객이 싼 공개 모델로 직접 방어 도구를 만들면 **가격 협상력**이 약해질 수 있다. 또 OpenAI·Anthropic 이 방어자 전용 프로그램으로 보안 업체와 직접 경쟁할 여지도 있다.\n- 체크포인트: 12월 초 3분기 실적(반복매출 61억 8,400만~61억 8,800만 달러 전망) 달성 여부, Falcon Flex 반복매출 증가 속도, SafeMind·AIDR 이 실제 매출 항목으로 잡히는지.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크\n\n- 외부 자료로 확인: CrowdStrike 의 2027 회계연도 2분기(2026년 7월 말 마감) 매출은 14억 7,000만 달러로 26% 늘었고, 연간 반복매출은 58억 4,000만 달러(25%), 분기 순증 반복매출은 **3억 3,300만 달러**로 사상 최대였다. 영업현금흐름 5억 3,030만 달러, 잉여현금흐름 3억 7,740만 달러, 회계상 순이익은 530만 달러로 흑자 전환했다.\n- 회사가 낸 전망: 3분기 매출 15억 2,300만~15억 2,900만 달러, 연간 매출 59억 9,100만~60억 1,100만 달러, 연말 반복매출 66억 300만~66억 1,200만 달러. 한 번에 여러 제품을 쓰게 하는 구독 방식 **Falcon Flex** 의 반복매출은 22억 9,000만 달러로 두 배가 됐다.\n- 주식은 2026년 7월 2일부터 **4대1 분할** 뒤 가격으로 거래된다. 과거 주가와 비교할 때 주의가 필요하다.\n- SafeMind 는 2026년 9월 1일 Fal.Con 에서 발표됐다. Nvidia 에 따르면 Nemotron 3 Ultra 가 방어 에이전트를 지휘하고, Nemotron 3 Super 를 손질한 Blue Solano 가 탐지 규칙을 만든다. 회사 내부 평가로 최첨단 모델보다 정확도가 높고 비용은 99% 낮았다고 한다. 대본의 '10달러 대 3센트'와 같은 방향이지만, 둘 다 **회사 자체 평가**다. 디지털 트윈 시험은 Nvidia 자기 네트워크를 본뜬 환경에서 했다.\n- 게스트: Kurtz 는 1999년 「Hacking Exposed」 공저자이고, 같은 해 세운 Foundstone 을 2004년 McAfee 에 8,600만 달러에 팔았다. McAfee 최고기술책임자를 거쳐 2011년 CrowdStrike 를 공동 창업했다.\n\n### 2. 2024년 7월 장애 이후\n\n- 외부 자료로 확인: 2024년 7월 잘못된 업데이트로 Windows 컴퓨터 **850만 대 이상**이 멈췄다. Delta 는 5억 달러 넘는 손실을 주장하며 소송을 냈고, 2025년 5월 법원은 일부 청구를 계속 다투도록 허용했다. 최종 결론은 확인 못 함.\n- 회사는 고객 보상용 할인 패키지를 내놨고, 2025 회계연도 4분기 순증 반복매출이 20% 줄었다. 이후 2026 회계연도 순증 반복매출이 **처음으로 10억 달러**를 넘었고, 이번 분기 사상 최대를 냈다. 숫자로는 장애 충격에서 벗어났다고 볼 수 있다. 이번 방송에서 장애 이야기는 나오지 않았다.\n\n### 3. 숫자의 맥락\n\n- 대본의 '평균 29분·최단 27초'는 CrowdStrike 2026년 위협 보고서와 같다. 평균 브레이크아웃 시간은 2023년 62분에서 2025년 29분으로 줄었고, **AI 를 쓴 공격 활동**은 1년 새 89% 늘었다. 다만 회사 자체 관측이고, 보안 업체에게는 수요를 키우는 숫자라는 점을 감안해야 한다.\n\n[[chart:3]]\n\n- 경쟁사 규모(2026년 7월 말 분기 기준): Palo Alto 차세대 보안 반복매출 91억 달러(CyberArk 인수분 포함), CrowdStrike 58억 4,000만 달러, Zscaler 37억 7,100만 달러(Red Canary 인수분 1억 4,100만 달러 포함), SentinelOne 12억 1,800만 달러. 성장률은 네 곳 모두 20%대 이상이고, CrowdStrike 는 인수 효과 없이 25%다.\n\n[[chart:4]]\n\n### 4. 밸류체인과 관련 상장사\n\n- AI 인프라 쪽: Nvidia 는 모델(Nemotron)과 공동 개발, CoreWeave 는 학습·추론용 클라우드를 댔다. 보안 모델도 결국 **GPU 수요**로 이어진다.\n- 경쟁: 플랫폼 통합을 다투는 Palo Alto, 네트워크 쪽 Zscaler, 단말 경쟁 SentinelOne, 운영체제 기본 보안을 묶어 파는 **Microsoft**.\n- 최첨단 연구소: OpenAI 는 2026년 5월 방어자 전용 **Daybreak** 를 열었고 CrowdStrike·Palo Alto·Zscaler 가 참여사다. 협력자이자 잠재 경쟁자다.\n- 한국·일본: 안랩·지니언스·이글루코퍼레이션, Trend Micro·LAC 가 같은 단말 탐지·관제 영역에 있다. CrowdStrike 와 직접 거래 관계는 확인 못 함.\n\n### 5. 반론과 리스크\n\n- 자체 모델 전략의 부담: 최첨단 모델이 빠르게 좋아지면 자체 모델 우위가 짧아질 수 있다. 공개 모델 기반이라 경쟁사도 같은 출발점을 쓸 수 있고, 차별점은 데이터와 운영 틀에 달렸다.\n- 집중 위험: 2024년 장애가 보여 줬듯, 한 회사가 단말 깊숙이 들어갈수록 사고 한 번의 파장이 크다.\n- 낙관론: '인터넷을 끊자'는 주장을 일축했지만, 에이전트가 새 공격 기법을 만들지 못했다는 판단은 아직 검증 중이다.\n- 밸류에이션: 주가가 6개월 새 두 배 넘게 올라 실적이 조금만 어긋나도 흔들릴 수 있다.\n\n### 6. 앞으로 볼 것\n\n- 12월 초 3분기 실적: 연간 반복매출 61억 8,400만 달러 이상, 순증 반복매출 흐름.\n- SafeMind 의 외부 개방 프로그램(Project QuiltWorks) 참여 고객 수와 가격.\n- Delta 소송 등 장애 관련 법적 결론.\n- 경쟁사의 에이전트 보안 제품 출시와 OpenAI·Anthropic 방어자 프로그램 확대.",
+ "sources": [
+  {
+   "label": "CrowdStrike — 2027 회계연도 2분기 실적 보도자료(매출·반복매출·전망)",
+   "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-second-quarter-fiscal-year-2027-financial"
+  },
+  {
+   "label": "SecurityBrief Asia — CrowdStrike 2분기 세부 수치·3분기·연간 전망·Falcon Flex",
+   "url": "https://securitybrief.asia/story/crowdstrike-lifts-outlook-after-record-arr-quarter"
+  },
+  {
+   "label": "CrowdStrike — 2026 회계연도 4분기 실적(반복매출 52억 5,000만 달러, 연 순증 10억 달러)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1535527/000153552726000007/crwd-20260303xex991.htm"
+  },
+  {
+   "label": "Nasdaq — 2025 회계연도 4분기 반복매출 42억 4,000만 달러, 장애 보상 패키지 영향",
+   "url": "https://www.nasdaq.com/articles/heres-how-july-outage-affecting-crowdstrike-today-stock-buy"
+  },
+  {
+   "label": "CrowdStrike — Nvidia 와 만든 보안 최첨단 모델 SafeMind 발표(2026-09-01)",
+   "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-launches-frontier-models-cybersecurity-created"
+  },
+  {
+   "label": "Nvidia 블로그 — SafeMind·Nemotron 3·디지털 트윈 시험·비용 99% 절감 주장",
+   "url": "https://blogs.nvidia.com/blog/nvidia-crowdstrike-fal-con-2026/"
+  },
+  {
+   "label": "IT Brief — CrowdStrike 2026 위협 보고서: 평균 29분·최단 27초·AI 공격 89% 증가",
+   "url": "https://itbrief.com.au/story/crowdstrike-flags-faster-ai-driven-cyber-attacks-worldwide"
+  },
+  {
+   "label": "eSecurity Planet — CrowdStrike 2025 위협 보고서: 평균 48분(2023년 62분)",
+   "url": "https://www.esecurityplanet.com/cybersecurity/crowdstrike-2025-threat-report-insights/"
+  },
+  {
+   "label": "Palo Alto Networks — 2026 회계연도 4분기 실적(차세대 보안 반복매출)",
+   "url": "https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-reports-fiscal-fourth-quarter-and-fiscal-year-2026-financial-results"
+  },
+  {
+   "label": "Zscaler — 2026 회계연도 4분기 실적(반복매출 37억 7,100만 달러) SEC 8-K",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001713683/000171368326000156/zs-07312026_991.htm"
+  },
+  {
+   "label": "SentinelOne — 2027 회계연도 2분기 실적(반복매출 12억 1,800만 달러)",
+   "url": "https://s28.q4cdn.com/399982429/files/doc_financials/2027/q2/SentinelOne-Q2-27-Earnings-Press-Release.pdf"
+  },
+  {
+   "label": "CrowdStrike 10-Q — 2026년 4대1 주식 분할 반영",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001535527/000153552726000031/crwd-20260731.htm"
+  },
+  {
+   "label": "CyberScoop — OpenAI Daybreak 방어자 프로그램·참여 보안사",
+   "url": "https://cyberscoop.com/openai-daybreak-gpt-5-5-anthropic-mythos-cybersecurity/"
+  },
+  {
+   "label": "TechCrunch — 2024년 7월 장애 뒤 소송(850만 대·Delta)",
+   "url": "https://techcrunch.com/2024/09/02/crowdstrike-faces-onslaught-of-legal-action-from-faulty-software-update"
+  },
+  {
+   "label": "Silicon UK — 법원, Delta 의 CrowdStrike 소송 일부 진행 허용(2025-05)",
+   "url": "https://www.silicon.co.uk/e-regulation/legal/delta-crowdstrike-legal-614658"
+  },
+  {
+   "label": "Network World — McAfee, Foundstone 8,600만 달러 인수(2004)",
+   "url": "https://www.networkworld.com/article/870229/lan-wan-mcafee-to-buy-foundstone-for-86-million.html"
+  },
+  {
+   "label": "Wikipedia — George Kurtz 경력(Hacking Exposed·McAfee 최고기술책임자)",
+   "url": "https://en.wikipedia.org/wiki/George_Kurtz"
+  },
+  {
+   "label": "INCIBE-CERT — OpenAI 에이전트의 Hugging Face 침입 사건 정리",
+   "url": "https://www.incibe.es/en/incibe-cert/publications/cybersecurity-highlights/security-incident-involving-openais-ai-agents-targeting-hugging-face"
+  },
+  {
+   "label": "Yahoo Finance 시세 — 보안주 6개월 수익률(2026-10-22 종가 기준)",
+   "url": "https://finance.yahoo.com/quote/CRWD/"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "CrowdStrike 연간 반복매출",
+   "sub": "십억 달러 · 회계연도 말(1월) 기준, 마지막은 회사 전망 중간값",
+   "type": "bar",
+   "unit": "십억 달러",
+   "labels": [
+    "2025.1",
+    "2026.1",
+    "2026.7(분기)",
+    "2027.1 전망"
+   ],
+   "series": [
+    {
+     "name": "연간 반복매출",
+     "values": [
+      4.24,
+      5.25,
+      5.84,
+      6.61
+     ]
+    }
+   ],
+   "note": "장애 직후 순증이 꺾였던 2025년 초 이후 해마다 약 10억 달러씩 쌓이는 흐름 — 마지막 막대는 전망치",
+   "source": "CrowdStrike 분기 실적 보도자료(2025·2026 회계연도 4분기, 2027 회계연도 2분기)"
+  },
+  {
+   "at": "summary",
+   "title": "일반 문제 해결 작업 1건 비용",
+   "sub": "달러 · Kurtz 가 든 예시",
+   "type": "hbar",
+   "unit": "달러",
+   "labels": [
+    "최고급 최첨단 보안 모델",
+    "CrowdStrike 자체 모델"
+   ],
+   "series": [
+    {
+     "name": "비용",
+     "values": [
+      10,
+      0.03
+     ]
+    }
+   ],
+   "note": "약 300배 차이라는 CEO 주장 — 외부 검증 없음",
+   "source": "대본(George Kurtz)"
+  },
+  {
+   "at": "deep",
+   "title": "침입 뒤 확산까지 걸린 평균 시간",
+   "sub": "분 · 사이버 범죄 집단 기준, 보고서 대상 연도",
+   "type": "line",
+   "unit": "분",
+   "labels": [
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "series": [
+    {
+     "name": "평균 브레이크아웃 시간",
+     "values": [
+      62,
+      48,
+      29
+     ]
+    }
+   ],
+   "note": "2년 새 절반 이하 — 대본의 '평균 29분'과 같은 숫자",
+   "source": "CrowdStrike 연례 위협 보고서(2025·2026년판, IT Brief·eSecurity Planet 보도)"
+  },
+  {
+   "at": "deep",
+   "title": "상장 보안 4사 연간 반복매출",
+   "sub": "십억 달러 · 2026년 7월 말 분기 기준",
+   "type": "hbar",
+   "unit": "십억 달러",
+   "labels": [
+    "Palo Alto Networks(차세대 보안)",
+    "CrowdStrike",
+    "Zscaler",
+    "SentinelOne"
+   ],
+   "series": [
+    {
+     "name": "연간 반복매출",
+     "values": [
+      9.1,
+      5.84,
+      3.771,
+      1.218
+     ]
+    }
+   ],
+   "note": "Palo Alto·Zscaler 는 인수분 포함 — CrowdStrike 는 인수 효과 없이 2위",
+   "source": "각 사 2026년 7월 말 분기 실적 발표(Palo Alto·CrowdStrike·Zscaler·SentinelOne 보도자료)"
+  },
+  {
+   "at": "insights",
+   "title": "보안주 최근 6개월 주가 수익률",
+   "sub": "% · 2026-04-23 → 2026-10-22 종가(일본·한국은 하루 차이)",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "CrowdStrike",
+    "Palo Alto Networks",
+    "Zscaler",
+    "SentinelOne",
+    "Trend Micro",
+    "Microsoft",
+    "안랩"
+   ],
+   "series": [
+    {
+     "name": "6개월 수익률",
+     "values": [
+      113.7,
+      104.9,
+      78.8,
+      61.6,
+      30.2,
+      25.8,
+      20.6
+     ]
+    }
+   ],
+   "note": "대형 보안주가 반년 새 두 배 — 기대가 상당 부분 가격에 들어갔다",
+   "source": "Yahoo Finance 시세(배당·분할 조정)"
+  }
+ ],
+ "tg": "No Priors — CrowdStrike CEO George Kurtz: AI 가 공격자 실력 격차를 없앴다. 침입 뒤 확산 평균 29분·최단 27초, 공격은 이제 프롬프트. Nvidia 와 만든 보안 전용 모델 SafeMind 로 맞서며, 에이전트 보안이 기존 단말 보안보다 큰 시장이 될 수 있다고 봤다.",
+ "tg_body": "CrowdStrike CEO George Kurtz 는 AI 가 공격자 피라미드를 납작하게 만들었다고 말했다. 안전장치를 걷어 낸 공개 모델 덕에 몇 년 전 국가 해커의 능력을 이제 실력 낮은 해커도 갖게 됐고, 새 최상위 포식자는 '에이전트 국가'라는 것이다.\n\n공격 속도는 추론 속도와 같아졌다. 침입 뒤 다른 시스템으로 옮겨 가는 데 평균 29분, 가장 빠른 사례는 27초다. 악성코드 대신 프롬프트로 공격해 흔적도 매번 다르다.\n\n방어 쪽 답은 Nvidia 와 만든 SafeMind 다. 공격 모델과 방어 모델이 고객 환경을 본뜬 디지털 트윈에서 서로 겨루며 배운다. 그는 일반 해결 작업 비용이 최고급 모델 약 10달러, 자사 모델 약 3센트라고 했다.\n\n에이전트 보안이 기존 단말 보안보다 큰 시장이 될 수 있다고 봤다. 기업들은 비용 때문에 핵심 업무만 최첨단 모델에 맡기고 나머지는 공개 모델로 옮기는 중이라고 했다.\n\n외부 자료로 보면 7월 말 분기 반복매출은 58억 4,000만 달러로 25% 늘었고 분기 순증은 사상 최대였다. 다만 주가는 6개월 새 두 배 넘게 올랐고, 비용·정확도 비교는 회사 자체 평가다.",
+ "youtube": "https://www.youtube.com/watch?v=PST8yesYOSo",
+ "image": "https://i.ytimg.com/vi/PST8yesYOSo/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-23 18:31 KST"
+}
