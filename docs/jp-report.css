@@ -278,3 +278,7 @@
 .jr .rulebox .rb { margin-top:8px; color:#1b2433; line-height:1.75; }
 .jr .rulebox .rb p { margin:6px 0; }
 .jr .rulebox .rb ol { margin:4px 0 6px; padding-left:20px; }
+/* 미국 ② 컨퍼런스콜 — 발표 요지 카드 + 질의응답 카드(2026-10-23) */
+.jr .note.call .qa-src { font-size:12px; color:var(--muted); margin-bottom:8px; }
+.jr section[data-sec="call"] .note.qa { margin-top:14px; }
+.jr section[data-sec="call"] .note h3 { margin:2px 0 10px; }
