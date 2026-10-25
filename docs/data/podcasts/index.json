@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25 23:34 KST",
+ "updated": "2026-10-25 23:36 KST",
  "episodes": [
   {
    "id": "2026-10-25-understanding-PI2nTCDhZV8",
@@ -419,13 +419,20 @@
    "audio": null,
    "duration": "",
    "desc": "사티아 나델라 마이크로소프트 CEO가 AI 모델을 '믿을 수 없는 내부자'로 다루자고 한 이유와, 그 판단이 일부러 6개월 늦은 모델을 20% 비용으로 만드는 마이크로소프트의 투자 방식과 어떻게 이어지는지 짚었습니다. 스케일링 법칙이 무엇이고 업계가 연산을 더 쓰는 세 자리(사전학습·사후학습·추론)를 어떻게 나눠 보는지도 논문과 엔비디아 기조연설로 정리했고, 나델라의 글과 마이크로소프트·오픈AI 공식 자료, 같은 주 메타의 설비투자 숫자를 함께 놓고 봤습니다. [목차] 00:00 AI를 믿을 수 없는 내부자로 본다 00:49 얼라인먼트는 아직 안 풀렸다 02:53 스케일링 법칙이란, 연산을 더 쓰는 세 자리 04:29 모델은 '내부자'처럼 다룬다 10:00 모델은 원자재가 되는가 13:41 일부러 6개월 뒤에 선다 16:27 MS 실적에서 볼 것 [원본] (1) Semafor 「Satya Nadella on Chasing Frontier Labs, Security, \"SI,\" & Succession At Microsoft | Future Proof」 2026.10.21 https://www.youtube.com/watch?v=CUgS4y4XiNY (2) NV…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-24 00:29 KST",
    "image": "https://i4.ytimg.com/vi/gq2VpE22uQk/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "나델라가 AI 경쟁에서 일부러 6개월 늦게 가는 이유 — MS 실적 전에 들어 둘 말",
-   "desc_ko": "사티아 나델라 마이크로소프트 CEO가 AI 모델을 '믿을 수 없는 내부자'처럼 다루자고 한 이유와, 일부러 6개월 늦은 모델을 20% 비용으로 만드는 투자 방식을 연결해 짚습니다. 스케일링 법칙과 연산을 더 쓰는 세 자리(사전학습·사후학습·추론), 같은 주 메타의 설비투자 숫자, 마이크로소프트 실적에서 볼 것을 함께 정리했습니다."
+   "desc_ko": "사티아 나델라 마이크로소프트 CEO가 AI 모델을 '믿을 수 없는 내부자'처럼 다루자고 한 이유와, 일부러 6개월 늦은 모델을 20% 비용으로 만드는 투자 방식을 연결해 짚습니다. 스케일링 법칙과 연산을 더 쓰는 세 자리(사전학습·사후학습·추론), 같은 주 메타의 설비투자 숫자, 마이크로소프트 실적에서 볼 것을 함께 정리했습니다.",
+   "summary": {
+    "title_ko": "나델라가 AI 경쟁에서 일부러 6개월 늦게 가는 이유, MS 실적 전에 들어 둘 말",
+    "headline": "최첨단을 쫓기보다 반년 뒤에서 싸게 따라간다 — 나델라는 모델보다 통제 장치와 제품에서 돈이 난다고 본다",
+    "image": "https://i.ytimg.com/vi/gq2VpE22uQk/hqdefault.jpg",
+    "guest": "사티아 나델라(Satya Nadella) — 마이크로소프트 회장 겸 최고경영자의 세마포 인터뷰를 식스시그마가 해설과 함께 정리",
+    "company": "마이크로소프트(Microsoft) (클라우드 · AI 모델 · 기업용 소프트웨어)"
+   }
   },
   {
    "id": "2026-10-23-nopriors-democratizing-security-for-the-agentic-web-with",
@@ -504,13 +511,20 @@
    "audio": null,
    "duration": "",
    "desc": "네오클라우드 빚 걱정에 젠슨 황이 'GPU는 8년 가는 담보'라고 답한 대목을, 하루 앞서 'GPU 값이 광섬유처럼 무너질 수 있다'고 한 켄 그리핀의 경고와 맞대 보고, 돈이 묶이는 몇 달과 2029년 메모리 과잉 질문까지 짚었습니다. [목차] 00:00 GPU는 8년 간다 00:35 빚 걱정에 수요부터 꺼냈다 03:33 하루 전, 그리핀은 정반대로 말했다 05:23 젠슨의 답: 4년이 아니라 8년 08:42 진짜 문제는 묶이는 몇 달 11:42 병목은 옮겨 다닌다 12:46 메모리가 남아돌 거라는 질문 13:59 누가 맞는지 보여 줄 숫자 [원본] (1) Yahoo Finance 「Nvidia's CEO on the AI debt scare, China, and jobs | Full interview」 2026.10.21 https://www.youtube.com/watch?v=sH5qyeHSdVs (2) Bloomberg Television 「Ken Griffin on AI, Midterm Elections and Fiscal Policy」 2026.10.20 https://www.youtube.com/watch?v=mV1V0FXixDE (3) CNBC…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 17:51 KST",
    "image": "https://i1.ytimg.com/vi/T6C21-B3bUc/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "네오클라우드가 빚에 무너질까, 젠슨 황이 꺼낸 GPU의 진짜 수명",
-   "desc_ko": "네오클라우드 빚 걱정에 젠슨 황이 'GPU는 8년 가는 담보'라고 답한 대목을, 하루 앞서 'GPU 값이 광섬유처럼 무너질 수 있다'고 한 켄 그리핀의 경고와 맞대 보고, 돈이 묶이는 몇 달과 2029년 메모리 과잉 질문까지 짚었습니다."
+   "desc_ko": "네오클라우드 빚 걱정에 젠슨 황이 'GPU는 8년 가는 담보'라고 답한 대목을, 하루 앞서 'GPU 값이 광섬유처럼 무너질 수 있다'고 한 켄 그리핀의 경고와 맞대 보고, 돈이 묶이는 몇 달과 2029년 메모리 과잉 질문까지 짚었습니다.",
+   "summary": {
+    "title_ko": "네오클라우드가 빚에 무너질까, 젠슨 황이 꺼낸 GPU의 진짜 수명",
+    "headline": "젠슨 황은 GPU가 8년 가는 담보라 했고 그리핀은 남는 순간 값이 무너진다고 했다 — 판정은 임대료와 회사채 금리가 낸다",
+    "image": "https://i.ytimg.com/vi/T6C21-B3bUc/hqdefault.jpg",
+    "guest": "젠슨 황(Jensen Huang) vs 켄 그리핀(Ken Griffin) — 엔비디아 최고경영자의 야후 파이낸스 인터뷰와 하루 앞선 시타델 창업자의 경고를 식스시그마가 맞세워 정리",
+    "company": "엔비디아(NVIDIA)·코어위브(CoreWeave) (AI 인프라 · 네오클라우드 금융)"
+   }
   },
   {
    "id": "2026-10-23-sixsigma-y9KC2qH_twQ",
@@ -524,13 +538,20 @@
    "audio": null,
    "duration": "",
    "desc": "램리서치 9월 분기 실적 콜에서 경영진이 처음 꺼낸 2027년 반도체 장비 시장 전망(2,000억 달러 이상, 성장률 1위 D램)을 IR 실적 자료 숫자와 함께 짚었습니다. 재무책임자는 이 숫자도 클린룸과 부품이 모자라 눌린 숫자이고 제약이 없으면 더 높다고 했습니다. 한국 매출 비중과 D램 공정 투자, 같은 데이터를 담는 데 웨이퍼가 더 드는 SLC 낸드 이야기, 4F²·3D D램 질문에 대한 최고경영자의 답도 함께 담았습니다. [목차] 00:00 인트로 00:52 1장 처음 꺼낸 2027년 숫자 02:47 2장 클린룸이 모자라 눌린 숫자 06:54 3장 D램, 그리고 한국 11:00 4장 낸드가 웨이퍼를 더 먹는 이유 14:19 엔딩 [원본] 1. Lam Research Corporation's September 2026 Earnings Conference Call 웹캐스트 · Lam Research(edge.media-server.com) · 2026.10.21 · https://edge.media-server.com/mmc/p/mrffr7fs 2. 행사 페이지(Events & Presentations) · 램리서치 투자자 정보 · 2026.10.21 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i2.ytimg.com/vi/y9KC2qH_twQ/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "내년 장비 시장 2,000억 달러, 램리서치 매출 절반이 메모리인 이유 (램리서치 3분기 컨콜)",
-   "desc_ko": "램리서치 9월 분기 실적 콜에서 경영진이 처음 꺼낸 2027년 반도체 장비 시장 전망(2,000억 달러 이상, 성장률 1위 D램)을 IR 실적 자료 숫자와 함께 짚었습니다. 재무책임자는 이 숫자도 클린룸과 부품이 모자라 눌린 숫자이고 제약이 없으면 더 높다고 했습니다. 한국 매출 비중과 D램 공정 투자, 같은 데이터를 담는 데 웨이퍼가 더 드는 SLC 낸드 이야기, 4F²·3D D램 질문에 대한 최고경영자의 답도 함께 담았습니다."
+   "desc_ko": "램리서치 9월 분기 실적 콜에서 경영진이 처음 꺼낸 2027년 반도체 장비 시장 전망(2,000억 달러 이상, 성장률 1위 D램)을 IR 실적 자료 숫자와 함께 짚었습니다. 재무책임자는 이 숫자도 클린룸과 부품이 모자라 눌린 숫자이고 제약이 없으면 더 높다고 했습니다. 한국 매출 비중과 D램 공정 투자, 같은 데이터를 담는 데 웨이퍼가 더 드는 SLC 낸드 이야기, 4F²·3D D램 질문에 대한 최고경영자의 답도 함께 담았습니다.",
+   "summary": {
+    "title_ko": "내년 장비 시장 2,000억 달러, 램리서치 매출 절반이 메모리인 이유 (램리서치 3분기 컨콜)",
+    "headline": "내년 장비 시장 2,000억 달러 이상도 눌린 숫자 — 상단을 정하는 건 수요가 아니라 클린룸",
+    "image": "https://i.ytimg.com/vi/y9KC2qH_twQ/hqdefault.jpg",
+    "guest": "팀 아처(Tim Archer)·더그 베팅거(Doug Bettinger) — 램리서치 최고경영자·최고재무책임자의 9월 분기 실적 콜을 식스시그마가 IR 자료 숫자와 함께 정리",
+    "company": "램리서치(Lam Research) (반도체 장비 · 식각·증착)"
+   }
   },
   {
    "id": "2026-10-23-dwarkesh-what-will-computer-chips-look-like-in-2045",
@@ -569,13 +590,20 @@
    "audio": null,
    "duration": "",
    "desc": "IBM 3분기 실적 컨퍼런스콜에서 아빈드 크리슈나 CEO가 짚은 기업 AI의 다음 단계, '비용과 통제'를 따라갔습니다. 오픈웨이트 모델이 최고 모델 성능의 90%를 훨씬 싼 값에 내고, 데이터를 밖에 내보낼 수 없는 기업들이 AI를 회사 서버로 들이면서(소버린 AI) 인프라·반도체에 순풍이 분다는 설명과, 그 흐름이 IBM 실적(분산 인프라 32%, 오픈시프트 30%+ 성장)에 어떻게 보이는지를 IR 자료와 함께 정리했습니다. [목차] 00:00 인트로 00:37 1장 기업이 AI에 묻는 두 가지 02:09 2장 성과는 진짜, 일하는 방식을 다시 짜야 04:08 3장 성능은 90%, 값은 10분의 1 08:37 4장 소버린 AI, 올해 붙었다 11:31 5장 IBM 숫자에 찍힌 것 14:14 엔딩 [원본] 1. IBM 3Q 2026 Earnings Announcement 웹캐스트(공식, Chorus Call) · IBM · 2026.10.21 · https://event.choruscall.com/mediaframe/webcast.html?webcastid=LQHB2b39 2. IBM 3Q 2026 Earnings 행사 페이지(IR) · IBM · http…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i2.ytimg.com/vi/9iFsbTYe_wI/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "AI가 10배 싸지는데 IBM CEO는 왜 반도체에 순풍이라 했나 (IBM 3분기 컨콜)",
-   "desc_ko": "IBM 3분기 실적 컨퍼런스콜에서 아빈드 크리슈나 CEO가 짚은 기업 AI의 다음 단계, '비용과 통제'를 따라갔습니다. 오픈웨이트 모델이 최고 모델 성능의 90%를 훨씬 싼 값에 내고, 데이터를 밖에 내보낼 수 없는 기업들이 AI를 회사 서버로 들이면서(소버린 AI) 인프라·반도체에 순풍이 분다는 설명과, 그 흐름이 IBM 실적(분산 인프라 32%, 오픈시프트 30%+ 성장)에 어떻게 보이는지를 IR 자료와 함께 정리했습니다."
+   "desc_ko": "IBM 3분기 실적 컨퍼런스콜에서 아빈드 크리슈나 CEO가 짚은 기업 AI의 다음 단계, '비용과 통제'를 따라갔습니다. 오픈웨이트 모델이 최고 모델 성능의 90%를 훨씬 싼 값에 내고, 데이터를 밖에 내보낼 수 없는 기업들이 AI를 회사 서버로 들이면서(소버린 AI) 인프라·반도체에 순풍이 분다는 설명과, 그 흐름이 IBM 실적(분산 인프라 32%, 오픈시프트 30%+ 성장)에 어떻게 보이는지를 IR 자료와 함께 정리했습니다.",
+   "summary": {
+    "title_ko": "AI가 10배 싸지는데 IBM CEO는 왜 반도체에 순풍이라 했나 (IBM 3분기 컨콜)",
+    "headline": "같은 값 따지기를 IBM은 둔화가 아니라 확산으로 읽었다 — AI가 빅테크 데이터센터 밖, 기업 서버 안으로 들어온다",
+    "image": "https://i.ytimg.com/vi/9iFsbTYe_wI/hqdefault.jpg",
+    "guest": "아빈드 크리슈나(Arvind Krishna) — IBM 회장·최고경영자 — 3분기 실적 콘퍼런스콜 발언을 식스시그마가 한국어로 해설",
+    "company": "IBM(International Business Machines) (하이브리드 클라우드 · 기업 AI 소프트웨어 · 인프라)"
+   }
   },
   {
    "id": "2026-10-22-understanding-o6AUubgX5VI",
