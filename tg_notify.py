@@ -15,12 +15,13 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
   ·) 일본 소비재 월차 — 새 달 월차가 들어오면 확인 회차마다 한 통(데이터 허브 일본 소비재 월차)
   2) 팟캐스트 — 새 편 요약이 올라오면: 제목 · 핵심 3줄 · 내용 정리(tg_body, 1,000자 이내 단락)
   3) 오늘 시황 요약 — 매일 06:30 예약 작업이 쓰고 올리면 바로(본문 그대로)
+  ·) 세상 흐름 딥 인사이트 — 인물 발언 1건당 1편이 insights.json 에 새로 들어오면: 인물 · 발단 · 제목 · 요약 · 출처(뉴스방, 2026-10-26 사용자)
   4) 매크로 요약 — 미국 국채 새 종가가 들어오면: 공포·탐욕 · 미 국채 2·10·30년 · WTI 그래프 묶음 / 원/달러 환율 그래프는 새 환율 날짜가 들어오면
 
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
   python tg_notify.py --due      # 지금 보낼 게 있으면 "yes" — 워크플로가 그래프 도구 설치 여부를 정할 때
-  python tg_notify.py --force all|gpu|cds|openrouter|macro|digest|podcast   # 기록 무시하고 그 항목을 지금 보냄(시험용)
+  python tg_notify.py --force all|gpu|cds|openrouter|macro|digest|podcast|insight   # 기록 무시하고 그 항목을 지금 보냄(시험용)
 """
 import json
 import os
@@ -515,6 +516,37 @@ def tracking():
     return out
 
 
+def insights():
+    """세상 흐름 파악 — 주차별 인물 발언마다 쓰는 딥 인사이트(insights.json)를 새로 들어오는 즉시 뉴스방으로(2026-10-26 사용자).
+    added 가 최근 3일 안인 것만(옛 365편을 한꺼번에 보내지 않게). 뉴스방 연결 전엔 대기."""
+    since = (NOW - timedelta(days=3)).strftime("%Y-%m-%d")
+    names = {p.get("id"): p for p in (load("docs/people.json") or {}).get("people") or []}
+    out = []
+    for ins in (load("docs/insights.json") or {}).get("insights") or []:
+        if (ins.get("added") or "") < since or not ins.get("id"):
+            continue
+
+        def build(ins=ins):
+            pid = ((ins.get("linked_statement_keys") or [""])[0]).split("::")[0]
+            who = names.get(pid) or {}
+            lines = ["💡 <b>딥 인사이트</b>" + (f" · {esc(who['name'])}" if who.get("name") else "")
+                     + (f" <i>({esc(who['affil'])})</i>" if who.get("affil") else "")]
+            if ins.get("trigger"):
+                lines.append(f"🗣 {esc(ins['trigger'])}")
+            lines += ["", f"<b>{esc(ins.get('title'))}</b>"]
+            if ins.get("summary"):
+                lines += ["", esc(ins["summary"])]
+            if ins.get("linked_tickers"):
+                lines += ["", "관련: " + " · ".join(esc(t) for t in ins["linked_tickers"][:6])]
+            src = [s for s in ins.get("sources") or [] if s.get("url")][:3]
+            if src:
+                lines += ["", "<b>출처</b>"] + [f'· <a href="{esc(s["url"])}">{esc(s.get("label") or "원문")}</a>' for s in src]
+            dest = route("news")
+            return (None, "\n".join(lines), dest) if dest else (None, None)
+        out.append((f"ins:{ins['id']}", NOW, build))
+    return out
+
+
 SESSION_NAME = {"asia": "아시아 마감", "us": "미국 마감"}
 
 
@@ -686,7 +718,7 @@ def jp_monthly():
     return out
 
 
-ITEMS = {"gpu": gpu, "nebius": nebius, "cds": cds, "headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
+ITEMS = {"gpu": gpu, "nebius": nebius, "cds": cds, "headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "insight": insights, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
 
 
 def collect():
