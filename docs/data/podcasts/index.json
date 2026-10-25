@@ -1,6 +1,26 @@
 {
- "updated": "2026-10-25 20:06 KST",
+ "updated": "2026-10-25 20:48 KST",
  "episodes": [
+  {
+   "id": "2026-10-25-sixsigma-LiOL_50TBcc",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "스페이스X는 어떻게 세계 발사의 절반을 쏘는 회사가 됐나",
+   "date": "2026-10-25",
+   "published": "2026-10-25 20:00 KST",
+   "link": "https://www.youtube.com/watch?v=LiOL_50TBcc",
+   "youtube": "https://www.youtube.com/watch?v=LiOL_50TBcc",
+   "audio": null,
+   "duration": "",
+   "desc": "예비 로켓 한 대로 버티던 2008년부터 세계 발사의 절반을 쏘는 지금까지, 스페이스X를 키운 결정이 무엇이었는지 당사자들의 육성과 발사 기록으로 짚었습니다. [목차] 00:00 시작 00:37 1. 로켓을 살 수 없어서 02:05 2. 세 발 다 실패 03:34 3. 네 번째 발사, 그리고 의심 05:55 4. 로켓을 버리지 않기로 10:09 5. 버리지 않자 생긴 일 12:24 6. 이제는 로켓 전체를 14:00 엔딩 [원본] 1. 2012: SpaceX: Elon Musk's race to space · CBS 60 Minutes · 2012.03.18 방송(60 Minutes Rewind) · https://www.youtube.com/watch?v=23GzpbNUyI4 2. Making Humans a Multiplanetary Species · SpaceX · 2016.09.27 · https://www.youtube.com/watch?v=H7Uyfqi_TE8 3. Falcon 1, Flight 4 · SpaceX · 2023.11.11 · https://www.youtube.com/watch?v=mq2hymWPN1I 4. SpaceX reache…",
+   "status": "new",
+   "found": "2026-10-25 20:24 KST",
+   "image": "https://i1.ytimg.com/vi/LiOL_50TBcc/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "스페이스X는 어떻게 세계 발사의 절반을 쏘는 회사가 됐나",
+   "desc_ko": "예비 로켓 한 대로 버티던 2008년부터 세계 궤도 발사의 절반을 맡게 된 지금까지, 스페이스X의 성장을 이끈 결정을 되짚는 편입니다. 팰컨 1의 세 번 연속 실패와 네 번째 발사 성공, 로켓을 버리지 않고 재사용하기로 한 선택이 발사 비용과 횟수를 어떻게 바꿨는지 당사자들의 인터뷰와 발사 기록으로 정리합니다. 마지막으로 로켓 전체를 재사용하려는 스타십 계획까지 다룹니다."
+  },
   {
    "id": "2026-10-25-sixsigma-ZCTN0urfack",
    "show": "sixsigma",
@@ -1057,13 +1077,20 @@
    "audio": null,
    "duration": "",
    "desc": "헌 H100까지 새것일 때보다 비싸게 빌려 나가는 이유를 스페이스X 3분기 실적 콜에서 머스크가 직접 설명했습니다. 모델이 좋아질수록 1와트당 쓸모 있는 지능이 늘어 컴퓨트 값이 오르고, 그래서 내년엔 투자금 회수가 6개월이 되는 것도 불가능하지 않다는 발언까지 콜 원음과 IR 숫자로 짚었습니다. 이 회수 속도로 보면 빚과 이자 때문에 걱정받던 코어위브를 어떻게 봐야 하는지도 정리했습니다. 실적 발표 직후 이어지는 스페이스X 보호예수 해제 일정도 함께 적었습니다. [목차] 00:00 인트로 01:17 1장 헌 칩 값이 오르는 이유 04:22 2장 숫자로 보면: AI 부문 76억 달러, 1년이면 본전 06:48 3장 그래서 최대한 빨리 짓는다: 매달 GB300 20만 개, 내년 말 13기가와트 09:08 4장 걸림돌은 칩이 아니라 전기 12:12 5장 지은 컴퓨트로 무엇을 하나: 베라 루빈 44만 개 학습 클러스터와 그록봇 14:06 6장 AI가 늘리는 또 하나의 수요: 스타링크 대역폭 100배 16:09 7장 칩 공장, 그리고 테슬라 합병 19:47 엔딩 [원본] 1. SpaceX Q3 2026 Earnings Webcast · SpaceX(X @SpaceX…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i4.ytimg.com/vi/3Kvf_het4ic/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "\"컴퓨트 부족은 한참 오래 간다\", 6개월 만에 본전 뽑는 장사 (스페이스X 3분기 컨콜)",
-   "desc_ko": "헌 H100까지 새것일 때보다 비싸게 빌려 나가는 이유를 스페이스X 3분기 실적 콜에서 머스크가 직접 설명했습니다. 모델이 좋아질수록 1와트당 쓸모 있는 지능이 늘어 컴퓨트 값이 오르고, 그래서 내년엔 투자금 회수가 6개월이 되는 것도 불가능하지 않다는 발언까지 콜 원음과 IR 숫자로 짚었습니다. 이 회수 속도로 보면 빚과 이자 때문에 걱정받던 코어위브를 어떻게 봐야 하는지도 정리했습니다. 실적 발표 직후 이어지는 스페이스X 보호예수 해제 일정도 함께 적었습니다."
+   "desc_ko": "헌 H100까지 새것일 때보다 비싸게 빌려 나가는 이유를 스페이스X 3분기 실적 콜에서 머스크가 직접 설명했습니다. 모델이 좋아질수록 1와트당 쓸모 있는 지능이 늘어 컴퓨트 값이 오르고, 그래서 내년엔 투자금 회수가 6개월이 되는 것도 불가능하지 않다는 발언까지 콜 원음과 IR 숫자로 짚었습니다. 이 회수 속도로 보면 빚과 이자 때문에 걱정받던 코어위브를 어떻게 봐야 하는지도 정리했습니다. 실적 발표 직후 이어지는 스페이스X 보호예수 해제 일정도 함께 적었습니다.",
+   "summary": {
+    "title_ko": "\"컴퓨트 부족은 한참 오래 간다\", 6개월 만에 본전 뽑는 장사 (스페이스X 3분기 컨콜)",
+    "headline": "AI 매출 76억 달러로 스타링크를 넘었다 — 머스크는 컴퓨트 부족이 오래 가고 회수는 6개월도 된다고 봤다",
+    "image": "https://i.ytimg.com/vi/3Kvf_het4ic/hqdefault.jpg",
+    "guest": "일론 머스크(Elon Musk) — 스페이스X 최고경영자 — 3분기 실적 콜 발언을 식스시그마가 장별로 정리",
+    "company": "스페이스X(SpaceX) (발사 · 위성통신 · AI 컴퓨트)"
+   }
   },
   {
    "id": "2026-10-21-sixsigma-_q_HBppl4Q8",
@@ -1263,13 +1290,20 @@
    "audio": null,
    "duration": "",
    "desc": "「빅쇼트」 스티브 아이스먼이 꼽은 AI의 급소, 오픈AI·앤트로픽 두 회사에 몰린 돈의 사슬을 따라가고 지금 두 회사 매출이 어디까지 왔는지 숫자로 확인했습니다. [목차] 00:00 오픈AI가 망하면 미국은 바로 침체? 00:31 1장 돈이 두 회사로 몰려 있다 02:13 하이퍼스케일러 AI 매출 70%, 오라클 수주잔고 절반 02:47 엔비디아 매출채권 70%가 고객 5곳 04:03 2장 두 회사를 멈추게 할 수 있는 건 가격 경쟁 05:49 가격 전쟁 시나리오와 오라클 -61% 07:27 중간 고리가 빠지면? 엔스케일 사례 09:13 3장 두 회사는 지금 한창 크고 있다 11:24 합산 매출 1,270억 달러와 AI 전체 매출 4,140억 달러 12:44 아이스먼이 찍은 트리거 단 하나 [원본] 1. The Compound and Friends #264 「How OpenAI Could Cause a US Recession」 (2026.10.16) https://www.youtube.com/watch?v=Og-sV0vbLg4 2. CNBC Halftime Report, 브래드 거스너 (2026.10.15) https://www.youtube.com/watc…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i4.ytimg.com/vi/gYFjg199i50/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "「빅쇼트」 아이스먼이 \"오픈AI가 망하면 미국은 바로 침체\"라고 한 이유",
-   "desc_ko": "「빅쇼트」 스티브 아이스먼이 꼽은 AI의 급소, 오픈AI·앤트로픽 두 회사에 몰린 돈의 사슬을 따라가고 지금 두 회사 매출이 어디까지 왔는지 숫자로 확인했습니다."
+   "desc_ko": "「빅쇼트」 스티브 아이스먼이 꼽은 AI의 급소, 오픈AI·앤트로픽 두 회사에 몰린 돈의 사슬을 따라가고 지금 두 회사 매출이 어디까지 왔는지 숫자로 확인했습니다.",
+   "summary": {
+    "title_ko": "「빅쇼트」 아이스먼이 \"오픈AI가 망하면 미국은 바로 침체\"라고 한 이유",
+    "headline": "트리거는 하나, 두 회사 매출 — 아직 늘고 있지만 속도는 꺾였다",
+    "image": "https://i.ytimg.com/vi/gYFjg199i50/hqdefault.jpg",
+    "guest": "스티브 아이스먼(Steve Eisman) — 「빅쇼트」 실제 모델 투자자 — The Compound and Friends 발언을 식스시그마가 숫자로 재구성",
+    "company": "오픈AI(OpenAI) · 앤트로픽(Anthropic) (AI 모델 · 클라우드 · GPU · HBM 밸류체인)"
+   }
   },
   {
    "id": "2026-10-20-ilb-christina-cacioppo-building-an-enduring-software",
@@ -1328,13 +1362,20 @@
    "audio": null,
    "duration": "",
    "desc": "AI 칩 원가의 절반 넘게가 HBM이 되면서, 메모리는 사서 꽂는 커머디티에서 고객과 같이 설계하는 맞춤 부품으로 바뀌고 있습니다. 삼성전자·SK하이닉스가 OCP 2026에서 꺼낸 다음 메모리 넷과, 창신메모리가 그 자리에 없는 이유를 원본 발언으로 짚었습니다. 본 영상은 특정 종목의 매수·매도를 권유하지 않으며, 공개된 발표·보도·공시를 인용한 산업 분석 해설입니다. 투자 판단과 책임은 본인에게 있습니다. 해설은 자체 대본을 AI 음성으로 읽은 것이고, 원본 영상·문서는 비평·보도 목적으로 인용했습니다. 회사들이 발표한 수치는 각 사 자체 측정·목표치입니다. [원본] 1. OCP 2026 심호준 삼성전자 부사장 'Highly Scalable Memory' https://www.youtube.com/watch?v=dwSIrjBBenQ 2. OCP 2026 마벨 'Custom HBM as a System' https://www.youtube.com/watch?v=DRcJ3XUfPOc 3. 블룸버그 TV 2026.05.18 젠슨 황·마이클 델 https://www.youtube.com/watch?v=oE5lNDhz9oo 4. CNBC 2026.10.13 마이클 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i3.ytimg.com/vi/fE5O6A_mWRc/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "메모리가 더 이상 커머디티가 아닌 이유, 삼성전자·SK하이닉스가 OCP에서 꺼낸 답",
-   "desc_ko": "AI 칩 원가의 절반 넘게가 HBM이 되면서, 메모리는 사서 꽂는 커머디티에서 고객과 같이 설계하는 맞춤 부품으로 바뀌고 있습니다. 삼성전자·SK하이닉스가 OCP 2026에서 꺼낸 다음 메모리 넷과, 창신메모리가 그 자리에 없는 이유를 원본 발언으로 짚었습니다. 본 영상은 특정 종목의 매수·매도를 권유하지 않으며, 공개된 발표·보도·공시를 인용한 산업 분석 해설입니다. 투자 판단과 책임은 본인에게 있습니다. 해설은 자체 대본을 AI 음성으로 읽은 것이고, 원본 영상·문서는 비평·보도 목적으로 인용했습니다. 회사들이 발표한 수치는 각 사 자체 측정·목표치입니다. [원본] 1. OCP 2026 심호준 삼성전자 부사장 'Highly Scalable Memory' https://www.youtube.com/watch?v=dwSIrjBBenQ 2. OCP 2026 마벨 'Custom HBM as a System' https://www.youtube.com/watch?v=DRcJ3XUfPOc 3. 블룸버그 TV 2026.05.18 젠슨 황·마이클 델 https://www.youtube.com/watch?v=oE5lNDhz9oo 4. CNBC 2026.10.13 마이클 …"
+   "desc_ko": "AI 칩 원가의 절반 넘게가 HBM이 되면서, 메모리는 사서 꽂는 커머디티에서 고객과 같이 설계하는 맞춤 부품으로 바뀌고 있습니다. 삼성전자·SK하이닉스가 OCP 2026에서 꺼낸 다음 메모리 넷과, 창신메모리가 그 자리에 없는 이유를 원본 발언으로 짚었습니다. 본 영상은 특정 종목의 매수·매도를 권유하지 않으며, 공개된 발표·보도·공시를 인용한 산업 분석 해설입니다. 투자 판단과 책임은 본인에게 있습니다. 해설은 자체 대본을 AI 음성으로 읽은 것이고, 원본 영상·문서는 비평·보도 목적으로 인용했습니다. 회사들이 발표한 수치는 각 사 자체 측정·목표치입니다. [원본] 1. OCP 2026 심호준 삼성전자 부사장 'Highly Scalable Memory' https://www.youtube.com/watch?v=dwSIrjBBenQ 2. OCP 2026 마벨 'Custom HBM as a System' https://www.youtube.com/watch?v=DRcJ3XUfPOc 3. 블룸버그 TV 2026.05.18 젠슨 황·마이클 델 https://www.youtube.com/watch?v=oE5lNDhz9oo 4. CNBC 2026.10.13 마이클 …",
+   "summary": {
+    "title_ko": "메모리가 더 이상 커머디티가 아닌 이유, 삼성전자·SK하이닉스가 OCP에서 꺼낸 답",
+    "headline": "원가 절반이 HBM — 메모리는 같이 설계하는 부품이 됐고, 창신은 아직 그 자리에 없다",
+    "image": "https://i.ytimg.com/vi/fE5O6A_mWRc/hqdefault.jpg",
+    "guest": "식스시그마(Six Sigma) — 산업 분석 유튜브 채널 — OCP 2026 삼성전자·SK하이닉스·마벨 발표와 마이클 델 발언을 엮은 해설",
+    "company": "삼성전자 · SK하이닉스 · 창신메모리(CXMT) (메모리 반도체 · HBM · CXL)"
+   }
   },
   {
    "id": "2026-10-19-understanding-4VDb1n8lrLQ",
@@ -1529,13 +1570,20 @@
    "audio": null,
    "duration": "",
    "desc": "코어위브 회사채 수익률이 15%를 넘고 주가가 일주일 새 25% 빠졌습니다. AI 버블이 터진 걸까요, 아니면 변동성일까요. 올인 팟캐스트의 데이비드 색스·벤 호로위츠·차마스 팔리하피티야, 마이클 인트레이터 코어위브 CEO, 젠슨 황 엔비디아 CEO, 앤디 재시 아마존 CEO의 원음으로 수요·공급·시공·돈의 구조를 차례로 짚고, 반대 의견과 앞으로 볼 지표까지 정리했습니다. [원본] (1) 2026.10.16 All-In Podcast 「CoreWeave Crash, AI Trade Cracks, Anthropic IPO Red Flags, Bill Gates Doomer」 https://youtu.be/_b3LfMflIGs (2) 2026.03.23 All-In Podcast 「Four CEOs on the Future of AI: CoreWeave, Perplexity, Mistral, and IREN」 https://youtu.be/-JBhTBu9ZbA (3) 2026.10.15 Bloomberg Television 「CoreWeave Shares Plunge as CEO Expresses Confidence」 https://youtu.be/2d1WpP…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i2.ytimg.com/vi/5fIQA9nv9a8/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "코어위브 회사채 15%, AI 버블 붕괴가 아니라 지나가는 변동성인 이유",
-   "desc_ko": "코어위브 회사채 수익률이 15%를 넘고 주가가 일주일 새 25% 빠졌습니다. AI 버블이 터진 걸까요, 아니면 변동성일까요. 올인 팟캐스트의 데이비드 색스·벤 호로위츠·차마스 팔리하피티야, 마이클 인트레이터 코어위브 CEO, 젠슨 황 엔비디아 CEO, 앤디 재시 아마존 CEO의 원음으로 수요·공급·시공·돈의 구조를 차례로 짚고, 반대 의견과 앞으로 볼 지표까지 정리했습니다. [원본] (1) 2026.10.16 All-In Podcast 「CoreWeave Crash, AI Trade Cracks, Anthropic IPO Red Flags, Bill Gates Doomer」 https://youtu.be/_b3LfMflIGs (2) 2026.03.23 All-In Podcast 「Four CEOs on the Future of AI: CoreWeave, Perplexity, Mistral, and IREN」 https://youtu.be/-JBhTBu9ZbA (3) 2026.10.15 Bloomberg Television 「CoreWeave Shares Plunge as CEO Expresses Confidence」 https://youtu.be/2d1WpP…"
+   "desc_ko": "코어위브 회사채 수익률이 15%를 넘고 주가가 일주일 새 25% 빠졌습니다. AI 버블이 터진 걸까요, 아니면 변동성일까요. 올인 팟캐스트의 데이비드 색스·벤 호로위츠·차마스 팔리하피티야, 마이클 인트레이터 코어위브 CEO, 젠슨 황 엔비디아 CEO, 앤디 재시 아마존 CEO의 원음으로 수요·공급·시공·돈의 구조를 차례로 짚고, 반대 의견과 앞으로 볼 지표까지 정리했습니다. [원본] (1) 2026.10.16 All-In Podcast 「CoreWeave Crash, AI Trade Cracks, Anthropic IPO Red Flags, Bill Gates Doomer」 https://youtu.be/_b3LfMflIGs (2) 2026.03.23 All-In Podcast 「Four CEOs on the Future of AI: CoreWeave, Perplexity, Mistral, and IREN」 https://youtu.be/-JBhTBu9ZbA (3) 2026.10.15 Bloomberg Television 「CoreWeave Shares Plunge as CEO Expresses Confidence」 https://youtu.be/2d1WpP…",
+   "summary": {
+    "title_ko": "코어위브 회사채 15%, AI 버블 붕괴가 아니라 지나가는 변동성인 이유",
+    "headline": "채권은 80%로 깎였지만 수요는 멀쩡하다 — 색스는 회수 기간 2.5년과 10년물을 보라고 했다",
+    "image": "https://i.ytimg.com/vi/5fIQA9nv9a8/hqdefault.jpg",
+    "guest": "데이비드 색스(David Sacks) — 올인 팟캐스트 공동 진행자·PCAST 공동의장 — 식스시그마가 올인·블룸버그 원음을 엮어 코어위브 사태를 정리",
+    "company": "코어위브(CoreWeave, CRWV) (AI 클라우드 · GPU 임대(네오클라우드))"
+   }
   },
   {
    "id": "2026-10-18-understanding-dUzYaIv6IVc",
