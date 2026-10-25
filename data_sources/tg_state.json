@@ -52,6 +52,18 @@
   "gpu:2026-10-24",
   "gpu:2026-10-25",
   "hc:6532:2026-10-02",
+  "ins:ins-20261026-chamath-stranded-compute-2027-grid-queue",
+  "ins:ins-20261026-hassett-canada-deal-section338-layers",
+  "ins:ins-20261026-huang-memory-glut-2029-cxmt-lpddr",
+  "ins:ins-20261026-jassy-aws-sold-out-backlog-duration-payback",
+  "ins:ins-20261026-lee-hyungil-production-tax-credit-ev",
+  "ins:ins-20261026-musk-spacex-40b-gpu-debt-credit-bifurcation",
+  "ins:ins-20261026-musk-starlink-ukraine-throttle-sovereign-satcom",
+  "ins:ins-20261026-nasser-east-west-pipeline-port-bottleneck",
+  "ins:ins-20261026-shin-hyunsong-hold-3pct-tightening-bias-november",
+  "ins:ins-20261026-tom-lee-consensus-short-ai-selloff-endgame",
+  "ins:ins-20261026-trump-auto-tariff-50pct-audi-georgia",
+  "ins:ins-20261026-trump-epic-fury-again-brent-116-hormuz",
   "jpm:2026-10-13 19:53 KST",
   "jpm:2026-10-14 19:53 KST",
   "jpm:2026-10-16 19:53 KST",
@@ -900,42 +912,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:t-0a23e71f:1f75295e9508": [
-   403
-  ],
-  "trk:msft:aded76a3da7f": [
-   404
-  ],
-  "trk:googl:5858697a4b7f": [
-   405
-  ],
-  "trk:open-ai:3e626678fceb": [
-   406
-  ],
-  "trk:blog-ranto28:c3cde40df3d3": [
-   407
-  ],
-  "trk:blog-travelingcompanion:11d0b3822643": [
-   408
-  ],
-  "trk:blog-travelingcompanion:947a91b5014a": [
-   409
-  ],
-  "trk:yt-kyrxne0q:67892a4c10ad": [
-   410
-  ],
-  "trk:yt--jklonfa:f0f79f307602": [
-   411
-  ],
-  "trk:yt--jklonfa:257298bb5634": [
-   412
-  ],
-  "trk:yt--jklonfa:98a011359a50": [
-   413
-  ],
-  "trk:yt--jklonfa:d5d4de6e1d3f": [
-   414
-  ],
   "trk:yt--jklonfa:c3d23f041c44": [
    415
   ],
@@ -2436,6 +2412,42 @@
   ],
   "usdkrw:2026-10-26": [
    302
+  ],
+  "ins:ins-20261026-hassett-canada-deal-section338-layers": [
+   869
+  ],
+  "ins:ins-20261026-huang-memory-glut-2029-cxmt-lpddr": [
+   870
+  ],
+  "ins:ins-20261026-jassy-aws-sold-out-backlog-duration-payback": [
+   871
+  ],
+  "ins:ins-20261026-lee-hyungil-production-tax-credit-ev": [
+   872
+  ],
+  "ins:ins-20261026-nasser-east-west-pipeline-port-bottleneck": [
+   873
+  ],
+  "ins:ins-20261026-trump-auto-tariff-50pct-audi-georgia": [
+   874
+  ],
+  "ins:ins-20261026-chamath-stranded-compute-2027-grid-queue": [
+   875
+  ],
+  "ins:ins-20261026-musk-spacex-40b-gpu-debt-credit-bifurcation": [
+   876
+  ],
+  "ins:ins-20261026-musk-starlink-ukraine-throttle-sovereign-satcom": [
+   877
+  ],
+  "ins:ins-20261026-shin-hyunsong-hold-3pct-tightening-bias-november": [
+   878
+  ],
+  "ins:ins-20261026-tom-lee-consensus-short-ai-selloff-endgame": [
+   879
+  ],
+  "ins:ins-20261026-trump-epic-fury-again-brent-116-hormuz": [
+   880
   ]
  },
  "topics": {},
