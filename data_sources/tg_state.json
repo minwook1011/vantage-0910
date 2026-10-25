@@ -324,6 +324,7 @@
   "trk:blog-travelingcompanion:d636765a82cc",
   "trk:blog-travelingcompanion:efeecc19e09e",
   "trk:cathie-wood:01ee389feff5",
+  "trk:cathie-wood:703c561bb7af",
   "trk:cathie-wood:803bffad254c",
   "trk:cathie-wood:94ca33bdda3d",
   "trk:cathie-wood:a5e8d81e64b8",
@@ -632,6 +633,7 @@
   "trk:t-c3c842c3:b4247b8fc218",
   "trk:t-dbe684bf:4a74927085d7",
   "trk:t-dbe684bf:4bc20c6f97f4",
+  "trk:t-dbe684bf:4c709989a407",
   "trk:t-dbe684bf:63a173bf189c",
   "trk:t-dbe684bf:c1be5e05fc6e",
   "trk:t-dbe684bf:e5cbac0a0716",
@@ -819,6 +821,7 @@
   "trk:yt-kyrxne0q:e8ffbacacd1b",
   "trk:yt-wy-8burq:1c17319dfd84",
   "trk:yt-wy-8burq:26ce90cced2e",
+  "trk:yt-wy-8burq:29f62a72bcd5",
   "trk:yt-wy-8burq:2cd6819447bb",
   "trk:yt-wy-8burq:6b85e4260b4c",
   "trk:yt-wy-8burq:726543ddfa3d",
@@ -851,17 +854,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt--jklonfa:f3c98d92df63": [
-   364
-  ],
-  "trk:gartner:e15fc3194e8b": [
-   365
-  ],
-  "cds:2026-10-14": [
-   182,
-   183,
-   184
-  ],
   "trk:t-62bbe9b6:a444d1f294b3": [
    366
   ],
@@ -2396,8 +2388,17 @@
   ],
   "trk:yt--jklonfa:8d4b8801cdeb": [
    821
+  ],
+  "trk:yt-wy-8burq:29f62a72bcd5": [
+   822
+  ],
+  "trk:cathie-wood:703c561bb7af": [
+   823
+  ],
+  "trk:t-dbe684bf:4c709989a407": [
+   824
   ]
  },
  "topics": {},
- "topic_fail_at": 1792905744.505204
+ "topic_fail_at": 1792911032.703634
 }
