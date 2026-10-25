@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25 22:07 KST",
+ "updated": "2026-10-25 22:34 KST",
  "episodes": [
   {
    "id": "2026-10-25-understanding-gqaUxASNgbY",
@@ -636,13 +636,20 @@
    "audio": null,
    "duration": "",
    "desc": "브래드 거스트너(알티미터 캐피털)는 2027년 AI 데이터센터 증설을 25GW로 깎았고, 세미애널리시스는 43GW였던 전망을 51.2GW로 올렸습니다. 두 숫자를 가르는 것이 수요가 아니라 짓는 속도라는 점, 모라토리엄 400여 건의 실제 영향, 착공·사전 임대라는 선행 지표, 지금은 칩이 남는다는 반전과 2028년 위험까지 두 쪽 육성으로 맞세워 짚었습니다. [목차] 00:00 25GW냐 51GW냐 00:44 거스트너가 깎은 이유 02:44 세미애널리시스가 올린 이유 07:18 승부처는 짓는 속도 08:51 반전: 지금은 칩이 남는다 10:31 판정과 볼 숫자 두 개 [원본] (1) All-In Podcast 「Brad Gerstner: No AI Bubble, Semis Eat the Nasdaq & AI's Take Off Problem」 2026.09.16 · All-In 서밋 https://www.youtube.com/watch?v=PJrntzMA4iQ (2) SemiAnalysis 「Ep.039 [EMERGENCY] Brad Gerstner Cut Our 2027 Forecast in Half. We Raised It. (Datacenters)」 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i1.ytimg.com/vi/87rfAPUyCVs/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "거스트너 \"43GW는 너무 공격적\" vs 세미애널리시스 \"오히려 올린다\"",
-   "desc_ko": "브래드 거스트너(알티미터 캐피털)는 2027년 AI 데이터센터 증설을 25GW로 깎았고, 세미애널리시스는 43GW였던 전망을 51.2GW로 올렸습니다. 두 숫자를 가르는 것이 수요가 아니라 짓는 속도라는 점, 모라토리엄 400여 건의 실제 영향, 착공·사전 임대라는 선행 지표, 지금은 칩이 남는다는 반전과 2028년 위험까지 두 쪽 육성으로 맞세워 짚었습니다."
+   "desc_ko": "브래드 거스트너(알티미터 캐피털)는 2027년 AI 데이터센터 증설을 25GW로 깎았고, 세미애널리시스는 43GW였던 전망을 51.2GW로 올렸습니다. 두 숫자를 가르는 것이 수요가 아니라 짓는 속도라는 점, 모라토리엄 400여 건의 실제 영향, 착공·사전 임대라는 선행 지표, 지금은 칩이 남는다는 반전과 2028년 위험까지 두 쪽 육성으로 맞세워 짚었습니다.",
+   "summary": {
+    "title_ko": "거스트너 \"43GW는 너무 공격적\" vs 세미애널리시스 \"오히려 올린다\"",
+    "headline": "수요가 아니라 짓는 속도의 싸움 — 거스트너는 25GW로 깎았고 세미애널리시스는 건물 단위 추적으로 오히려 올렸다",
+    "image": "https://i.ytimg.com/vi/87rfAPUyCVs/hqdefault.jpg",
+    "guest": "브래드 거스트너(Brad Gerstner) vs 세미애널리시스(SemiAnalysis) — 알티미터 캐피털 최고경영자의 All-In 서밋 발언과 세미애널리시스 반박 에피소드를 식스시그마가 맞세워 정리",
+    "company": "세미애널리시스(SemiAnalysis) (AI 데이터센터 · 전력 인프라)"
+   }
   },
   {
    "id": "2026-10-22-nopriors-the-new-apex-predator-crowdstrike-ceo-george-kur",
@@ -795,13 +802,20 @@
    "audio": null,
    "duration": "",
    "desc": "마이크론 기술 웨비나를 장별로 다시 묶고, HBM에서 버티컬 HBM으로 갈수록 같은 비트에 웨이퍼가 더 든다는 교환비 이야기와 D램·낸드 로드맵, 애널리스트 질의응답 7개를 용어 풀이와 슬라이드 숫자로 짚었습니다. 스콧 드보어 마이크론 사장 겸 최고기술·제품책임자는 \"앞으로 2년 동안 메모리가 모자라지 않은 때는 없고, 균형을 찾는 때는 아예 보이지 않는다\"고 했습니다. 영상은 그 말의 이유를 수요(AI의 파도, 메모리 병목), HBM 제품 경로(커스텀 HBM, 버티컬 HBM, 하이브리드 본딩), 교환비, 미세화(1감마·1델타, 4F² 대신 3D D램), 낸드(G11), 마이크론이 일하는 방식 순서로 따라갑니다. [목차] 0:00 인트로: 균형이 오는 때가 보이지 않는다 0:36 1장 AI 수요는 어디서 커지나 14:50 2장 HBM이 얼마나 센가 17:24 3장 HBM에서 커스텀, 그리고 버티컬 HBM으로 29:44 4장 같은 비트에 웨이퍼가 더 든다 37:06 5장 D램 미세화에 지름길은 없다 58:40 6장 낸드 1:05:27 7장 마이크론이 일하는 방식 1:14:20 엔딩 [원본] 1. Technology and Product Webinar · Mic…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i3.ytimg.com/vi/zXG7EusdCrA/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "\"메모리 공급, 균형 맞는 시점이 안 보인다\", 마이크론 메모리 로드맵",
-   "desc_ko": "마이크론 기술 웨비나를 장별로 다시 묶고, HBM에서 버티컬 HBM으로 갈수록 같은 비트에 웨이퍼가 더 든다는 교환비 이야기와 D램·낸드 로드맵, 애널리스트 질의응답 7개를 용어 풀이와 슬라이드 숫자로 짚었습니다. 스콧 드보어 마이크론 사장 겸 최고기술·제품책임자는 \"앞으로 2년 동안 메모리가 모자라지 않은 때는 없고, 균형을 찾는 때는 아예 보이지 않는다\"고 했습니다. 영상은 그 말의 이유를 수요(AI의 파도, 메모리 병목), HBM 제품 경로(커스텀 HBM, 버티컬 HBM, 하이브리드 본딩), 교환비, 미세화(1감마·1델타, 4F² 대신 3D D램), 낸드(G11), 마이크론이 일하는 방식 순서로 따라갑니다."
+   "desc_ko": "마이크론 기술 웨비나를 장별로 다시 묶고, HBM에서 버티컬 HBM으로 갈수록 같은 비트에 웨이퍼가 더 든다는 교환비 이야기와 D램·낸드 로드맵, 애널리스트 질의응답 7개를 용어 풀이와 슬라이드 숫자로 짚었습니다. 스콧 드보어 마이크론 사장 겸 최고기술·제품책임자는 \"앞으로 2년 동안 메모리가 모자라지 않은 때는 없고, 균형을 찾는 때는 아예 보이지 않는다\"고 했습니다. 영상은 그 말의 이유를 수요(AI의 파도, 메모리 병목), HBM 제품 경로(커스텀 HBM, 버티컬 HBM, 하이브리드 본딩), 교환비, 미세화(1감마·1델타, 4F² 대신 3D D램), 낸드(G11), 마이크론이 일하는 방식 순서로 따라갑니다.",
+   "summary": {
+    "title_ko": "\"메모리 공급, 균형 맞는 시점이 안 보인다\", 마이크론 메모리 로드맵",
+    "headline": "제품이 버티컬 HBM으로 갈수록 같은 비트에 웨이퍼가 더 든다 — 드보어 사장은 그래서 균형이 보이지 않는다고 했다",
+    "image": "https://i.ytimg.com/vi/zXG7EusdCrA/hqdefault.jpg",
+    "guest": "스콧 드보어(Scott DeBoer) — 마이크론 사장 겸 최고기술·제품책임자 — 10월 21일 기술 웨비나와 애널리스트 질의응답을 식스시그마가 장별로 정리",
+    "company": "마이크론(Micron Technology) (메모리 반도체 · 디램·HBM·낸드)"
+   }
   },
   {
    "id": "2026-10-22-sixsigma-WFKjTh2Zu6U",
@@ -815,13 +829,20 @@
    "audio": null,
    "duration": "",
    "desc": "메타 3분기 실적 컨퍼런스콜에서 경영진이 새로 만든 의결권 없는 C주식과 AI 컴퓨트 투자를 어떻게 설명했는지, IR 자료 숫자와 함께 짚었습니다. 3분기 설비투자는 349억 달러로 잉여현금흐름이 마이너스로 돌아섰고, 올해 들어 자사주 매입 대신 회사채 249억 달러를 조달했습니다. 경영진은 뮤즈를 10억 명 넘게 쓰게 할 컴퓨트를 짓고 있고, 내년에도 공격적으로 투자하겠다고 말했습니다. [목차] 00:00 인트로 00:42 1장 뮤즈 1천만 명, 막는 건 컴퓨트 02:14 2장 10억 명분 컴퓨트, 비용은 10분의 1로 04:15 3장 번 돈보다 많이 쓴 분기 05:55 4장 의결권 없는 C주식 07:19 5장 이 돈을 대는 광고 09:07 엔딩 [원본] 1. Meta Q3 2026 Earnings Call 웹캐스트 · Meta Investor Relations · 2026.10.21 · https://events.q4inc.com/attendee/132342320 2. Q3 2026 Earnings Call 행사 페이지 · Meta Investor Relations · 2026.10.21 · https://investor.atmeta.com/investo…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i4.ytimg.com/vi/WFKjTh2Zu6U/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "메타가 의결권 없는 주식까지 만든 이유 (메타 3분기 컨콜)",
-   "desc_ko": "메타 3분기 실적 컨퍼런스콜에서 경영진이 새로 만든 의결권 없는 C주식과 AI 컴퓨트 투자를 어떻게 설명했는지, IR 자료 숫자와 함께 짚었습니다. 3분기 설비투자는 349억 달러로 잉여현금흐름이 마이너스로 돌아섰고, 올해 들어 자사주 매입 대신 회사채 249억 달러를 조달했습니다. 경영진은 뮤즈를 10억 명 넘게 쓰게 할 컴퓨트를 짓고 있고, 내년에도 공격적으로 투자하겠다고 말했습니다."
+   "desc_ko": "메타 3분기 실적 컨퍼런스콜에서 경영진이 새로 만든 의결권 없는 C주식과 AI 컴퓨트 투자를 어떻게 설명했는지, IR 자료 숫자와 함께 짚었습니다. 3분기 설비투자는 349억 달러로 잉여현금흐름이 마이너스로 돌아섰고, 올해 들어 자사주 매입 대신 회사채 249억 달러를 조달했습니다. 경영진은 뮤즈를 10억 명 넘게 쓰게 할 컴퓨트를 짓고 있고, 내년에도 공격적으로 투자하겠다고 말했습니다.",
+   "summary": {
+    "title_ko": "메타가 의결권 없는 주식까지 만든 이유 (메타 3분기 컨콜)",
+    "headline": "메타는 자사주 대신 설비를 샀다 — 잉여현금흐름이 마이너스로 돌아선 분기, 의결권 없는 C주식으로 조달 수단을 넓혔다",
+    "image": "https://i.ytimg.com/vi/WFKjTh2Zu6U/hqdefault.jpg",
+    "guest": "마크 저커버그(Mark Zuckerberg)·수전 리(Susan Li) — 메타 최고경영자·최고재무책임자 — 3분기 실적 컨퍼런스콜 발언을 식스시그마가 장별로 정리",
+    "company": "메타 플랫폼스(Meta Platforms) (소셜미디어·디지털 광고·AI 에이전트)"
+   }
   },
   {
    "id": "2026-10-22-synopsis-interview-eric-seufert-on-whether-ai-will-destro",
@@ -860,13 +881,20 @@
    "audio": null,
    "duration": "",
    "desc": "시타델 창업자 켄 그리핀이 본 AI 거품의 약한 고리를 GPU 가격, GPU 사용 연수, 기업들의 AI 비용 점검 순서로 정리하고, 2002년 광섬유와 지금 GPU 임대료 숫자를 붙였습니다. [목차] 00:00 인트로 00:42 1. 1년 만에 바뀐 생각 01:59 2. 다 사던 시장에서 가려 사는 시장으로 04:10 3. 남으면 가격은 자유낙하한다 06:17 4. GPU는 몇 년을 버티나 07:20 5. 기업들은 AI 사용료를 따지기 시작했다 10:16 6. 거품은 거의 확실하다, 그래도 남는 회사 [원본] (1) Ken Griffin on AI, Midterm Elections and Fiscal Policy · Bloomberg Television · 2026년 10월 20일 · https://www.youtube.com/watch?v=mV1V0FXixDE [자료] 월스트리트저널 「Wildly Optimistic Data Drove Telecoms to Build Fiber Glut」(2002.9.26, 텔레지오그래피 집계) / getdeploying.com GPU 임대료 추이(2026.10.19 기준) / 알파벳·마이크로소프트·메타·아마존 연차보고서(…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i4.ytimg.com/vi/C32GF3ztkJQ/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "남는 GPU는 2000년 광케이블처럼 가격이 무너진다, 시타델 켄 그리핀의 경고",
-   "desc_ko": "시타델 창업자 켄 그리핀이 본 AI 거품의 약한 고리를 GPU 가격, GPU 사용 연수, 기업들의 AI 비용 점검 순서로 정리하고, 2002년 광섬유와 지금 GPU 임대료 숫자를 붙였습니다."
+   "desc_ko": "시타델 창업자 켄 그리핀이 본 AI 거품의 약한 고리를 GPU 가격, GPU 사용 연수, 기업들의 AI 비용 점검 순서로 정리하고, 2002년 광섬유와 지금 GPU 임대료 숫자를 붙였습니다.",
+   "summary": {
+    "title_ko": "남는 GPU는 2000년 광케이블처럼 가격이 무너진다, 시타델 켄 그리핀의 경고",
+    "headline": "그리핀: GPU는 항공 좌석처럼 남으면 가격이 무너진다 — 지금은 모자라 오르지만, 따질 것은 공급이 따라잡은 다음",
+    "image": "https://i.ytimg.com/vi/C32GF3ztkJQ/hqdefault.jpg",
+    "guest": "켄 그리핀(Ken Griffin) — 시타델 창업자·최고경영자 — 블룸버그 TV 인터뷰를 식스시그마가 장별로 정리",
+    "company": "시타델(Citadel) (헤지펀드 · 시장조성)"
+   }
   },
   {
    "id": "2026-10-22-sixsigma-9Pu7Y8WWFoo",
@@ -880,13 +908,20 @@
    "audio": null,
    "duration": "",
    "desc": "엔비디아 GTC 베를린 키노트에서 젠슨 황이 꺼낸 AI 공장 계산(1GW 500억 달러, 석 달 지연 100억 달러)과, 같은 날 발표한 협력사 생산능력 증설 계획에서 삼성전기·앰코 한국 공장이 맡은 부분을 정리했습니다. [목차] 00:00 인트로 00:58 1. 조립 2시간이 5분으로 02:29 2. 늦게 켜는 만큼 돈이 샌다 07:02 3. 생산능력을 미리 사는 엔비디아 [원본] (1) NVIDIA GTC Berlin 2026 Keynote With CEO Jensen Huang · NVIDIA · 2026년 10월 21일 · https://www.youtube.com/watch?v=PvFjbPYEOZI [자료] 엔비디아 보도자료 「NVIDIA and Supply Chain Partners Expand Capacity to Accelerate AI Infrastructure Buildout」(2026.10.21) / 엔비디아 보도자료 「NVIDIA Introduces DSX POD AI Factories」(2026.10.21) / 엔비디아 블로그 「Google Cloud and NVIDIA Announce General Availability of NVI…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:28 KST",
    "image": "https://i2.ytimg.com/vi/9Pu7Y8WWFoo/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "엔비디아가 협력사 생산능력을 미리 사들이는 이유, 삼성전기·앰코 한국 공장이 들어갔다",
-   "desc_ko": "엔비디아 GTC 베를린 키노트에서 젠슨 황이 꺼낸 AI 공장 계산(1GW 500억 달러, 석 달 지연 100억 달러)과, 같은 날 발표한 협력사 생산능력 증설 계획에서 삼성전기·앰코 한국 공장이 맡은 부분을 정리했습니다."
+   "desc_ko": "엔비디아 GTC 베를린 키노트에서 젠슨 황이 꺼낸 AI 공장 계산(1GW 500억 달러, 석 달 지연 100억 달러)과, 같은 날 발표한 협력사 생산능력 증설 계획에서 삼성전기·앰코 한국 공장이 맡은 부분을 정리했습니다.",
+   "summary": {
+    "title_ko": "엔비디아가 협력사 생산능력을 미리 사들이는 이유, 삼성전기·앰코 한국 공장이 들어갔다",
+    "headline": "1GW 공장이 석 달 늦으면 100억 달러가 밀린다 — 엔비디아는 선급금으로 기판·패키징·테스트 설비를 미리 잡고, 삼성전기·앰코 한국 공장이 들어갔다",
+    "image": "https://i.ytimg.com/vi/9Pu7Y8WWFoo/hqdefault.jpg",
+    "guest": "젠슨 황(Jensen Huang) — 엔비디아 창업자·최고경영자 — GTC 베를린 2026 키노트 장면을 식스시그마가 장별로 정리",
+    "company": "엔비디아(NVIDIA) (AI 반도체 · 공급망)"
+   }
   },
   {
    "id": "2026-10-21-understanding-eaFtc4OGu_k",
@@ -1722,13 +1757,20 @@
    "audio": null,
    "duration": "11:20",
    "desc": "한때 인텔을 앞서던 AMD는 2015년 주가 1.62달러까지 무너졌습니다. 2014년 CEO가 된 리사 수가 그 바닥에서 무엇을 버리고 무엇에 걸었는지, 그 베팅이 AMD를 어떻게 다시 엔비디아와 싸우는 회사로 만들었는지 짚었습니다. CNN·블룸버그·스탠퍼드·MIT 인터뷰와 AMD 공식 발표 원음으로 정리했습니다. [원본] (1) 2020.03.31 CNN Business 「She brought AMD back from the brink of bankruptcy | Risk Takers」 https://youtu.be/lHT5MRky9SA (2) 2024.12.06 Bloomberg Originals 「AMD's CEO Wants to Chip Away at Nvidia's Lead | The Circuit with Emily Chang」 https://youtu.be/8Ve5SAFPYZ8 (3) 2025.02.26 Stanford Graduate School of Business 「View From The Top with Lisa Su: Chair and CEO of AMD」 https://youtu.be/C4GM7_Cf0N4 (4) 2026.05.28 M…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/l2XsNVbqkm0/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "주가 1.62달러까지 무너진 AMD, 바닥에서 내린 결정",
-   "desc_ko": "한때 인텔을 앞서던 AMD는 2015년 주가 1.62달러까지 무너졌습니다. 2014년 CEO가 된 리사 수가 그 바닥에서 무엇을 버리고 무엇에 걸었는지, 그 베팅이 AMD를 어떻게 다시 엔비디아와 싸우는 회사로 만들었는지 짚었습니다. CNN·블룸버그·스탠퍼드·MIT 인터뷰와 AMD 공식 발표 원음으로 정리했습니다. [원본] (1) 2020.03.31 CNN Business 「She brought AMD back from the brink of bankruptcy | Risk Takers」 https://youtu.be/lHT5MRky9SA (2) 2024.12.06 Bloomberg Originals 「AMD's CEO Wants to Chip Away at Nvidia's Lead | The Circuit with Emily Chang」 https://youtu.be/8Ve5SAFPYZ8 (3) 2025.02.26 Stanford Graduate School of Business 「View From The Top with Lisa Su: Chair and CEO of AMD」 https://youtu.be/C4GM7_Cf0N4 (4) 2026.05.28 M…"
+   "desc_ko": "한때 인텔을 앞서던 AMD는 2015년 주가 1.62달러까지 무너졌습니다. 2014년 CEO가 된 리사 수가 그 바닥에서 무엇을 버리고 무엇에 걸었는지, 그 베팅이 AMD를 어떻게 다시 엔비디아와 싸우는 회사로 만들었는지 짚었습니다. CNN·블룸버그·스탠퍼드·MIT 인터뷰와 AMD 공식 발표 원음으로 정리했습니다. [원본] (1) 2020.03.31 CNN Business 「She brought AMD back from the brink of bankruptcy | Risk Takers」 https://youtu.be/lHT5MRky9SA (2) 2024.12.06 Bloomberg Originals 「AMD's CEO Wants to Chip Away at Nvidia's Lead | The Circuit with Emily Chang」 https://youtu.be/8Ve5SAFPYZ8 (3) 2025.02.26 Stanford Graduate School of Business 「View From The Top with Lisa Su: Chair and CEO of AMD」 https://youtu.be/C4GM7_Cf0N4 (4) 2026.05.28 M…",
+   "summary": {
+    "title_ko": "주가 1.62달러까지 무너진 AMD, 바닥에서 내린 결정",
+    "headline": "1.62달러 바닥의 AMD를 살린 건 '하지 않을 것'을 정한 결정이었다 — 이제 수는 2030년 AI 가속기 1.4조 달러 시장을 말한다",
+    "image": "https://i.ytimg.com/vi/l2XsNVbqkm0/hqdefault.jpg",
+    "guest": "리사 수(Lisa Su) — AMD 회장 겸 최고경영자 — CNN·블룸버그·스탠퍼드·MIT 인터뷰와 AMD 기조연설을 식스시그마가 엮어 해설",
+    "company": "AMD(Advanced Micro Devices) (반도체 설계 · CPU·GPU·AI 가속기)"
+   }
   },
   {
    "id": "2026-10-17-oddlots-david-byrne-explains-how-forgotten-ideas-come-ba",
