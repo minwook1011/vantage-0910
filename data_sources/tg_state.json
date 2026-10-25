@@ -156,6 +156,12 @@
   "pod:2026-10-23-sixsigma-gq2VpE22uQk",
   "pod:2026-10-23-sixsigma-y9KC2qH_twQ",
   "pod:2026-10-24-riskrev-cameron-dawson-americans-have-never-been-this-al",
+  "pod:2026-10-24-sixsigma-88Mj0GUcCFw",
+  "pod:2026-10-24-sixsigma-EwWAYbY7jpk",
+  "pod:2026-10-24-sixsigma-SntoDQv3KYQ",
+  "pod:2026-10-24-sixsigma-T5CYx9j9vIM",
+  "pod:2026-10-24-sixsigma-fQaOSKRoWI8",
+  "pod:2026-10-25-sixsigma-B1U7BGwIPBg",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
@@ -878,24 +884,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:blog-ranto28:3e438dd2f2a0": [
-   384
-  ],
-  "trk:blog-ssh-fedinsight:bc0f9450c017": [
-   385
-  ],
-  "trk:blog-travelingcompanion:3c8370accb38": [
-   386
-  ],
-  "trk:yt-wy-8burq:854bc744c22b": [
-   387
-  ],
-  "trk:yt--jklonfa:9ca120551f12": [
-   388
-  ],
-  "trk:yt--jklonfa:a979f564e8d4": [
-   389
-  ],
   "trk:yt--jklonfa:306a119e4306": [
    390
   ],
@@ -2415,8 +2403,26 @@
   ],
   "trk:blog-ranto28:689006ac5b24": [
    848
+  ],
+  "pod:2026-10-25-sixsigma-B1U7BGwIPBg": [
+   849
+  ],
+  "pod:2026-10-24-sixsigma-fQaOSKRoWI8": [
+   850
+  ],
+  "pod:2026-10-24-sixsigma-T5CYx9j9vIM": [
+   851
+  ],
+  "pod:2026-10-24-sixsigma-EwWAYbY7jpk": [
+   852
+  ],
+  "pod:2026-10-24-sixsigma-SntoDQv3KYQ": [
+   853
+  ],
+  "pod:2026-10-24-sixsigma-88Mj0GUcCFw": [
+   854
   ]
  },
  "topics": {},
- "topic_fail_at": 1792938835.437579
+ "topic_fail_at": 1792942917.49856
 }
