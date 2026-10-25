@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22",
+ "updated": "2026-10-25",
  "events": [
   {
    "id": "ces-2026",
@@ -1078,12 +1078,26 @@
    "date_start": "2026-10-20",
    "date_end": "2026-10-22",
    "month": "2026-10",
-   "status": "upcoming",
+   "status": "done",
    "preview": "유럽의 소버린 AI 투자가 실제 엔비디아 매출로 전환되는 규모를 확인하는 자리다. 독일·프랑스·영국 등 각국 정부와 도이체텔레콤·슈바르츠그룹(슈바르츠 디지츠) 같은 현지 사업자의 AI 팩토리 구축 발표가 핵심으로, GPU 물량이 공개되면 엔비디아의 비(非)미국 수요축이 얼마나 두터워졌는지 정량 확인이 가능하다. 유럽은 전력·부지 제약과 데이터 주권 규제가 강해 AI 데이터센터 구축 방식이 미국과 다르며, 이 차이가 전력기기·냉각 밸류체인의 스펙 요구로 이어진다. 국내에서는 HBM을 공급하는 SK하이닉스·삼성전자가 간접 수혜이며, 유럽 향 전력기기 수출이 큰 HD현대일렉트릭·LS일렉트릭·효성중공업의 수주 파이프라인 확인 포인트이기도 하다. 자동차(메르세데스·BMW)와 산업 자동화(지멘스) 분야의 피지컬 AI·디지털 트윈 사례 발표는 옴니버스 생태계 확장을 보여준다. 산호세 GTC 대비 규모는 작지만 지역 수요의 질을 확인하는 데 의미가 있다.",
-   "summary": "GTC Berlin은 엔비디아가 유럽에서 여는 지역 GTC 행사로, 유럽 기업·정부·연구기관을 대상으로 AI 인프라와 산업 적용 사례를 다룬다. 소버린 AI, AI 팩토리 구축, 자동차·제조·헬스케어 산업 AI, 로보틱스가 주요 세션 주제다. 2026년에는 10월 20~22일 베를린에서 열리며 젠슨 황 CEO의 기조연설이 예정돼 있다.",
+   "summary": "10월 21일 베를린 기조연설에서 젠슨 황 CEO는 AI 팩토리·AI 에이전트·피지컬 AI를 아우르는 전략과 유럽 AI 생태계 확장 계획을 제시했다. 컨테이너형 AI 팩토리 'DSX POD'를 공개하며 데이터센터 구축 기간을 6개월에서 14일로 줄일 수 있다고 밝혔고, 무대에는 베라 루빈 NVL72와 베라 MGX 컴퓨트 노드가 전시됐다. 유럽 각국 정부와의 소버린 AI 협력과 모든 산업의 빠른 AI 도입을 강조했으며, 휴머노이드·로봇 파트너십도 대거 공개됐다(허깅페이스·폴렌 로보틱스의 오픈소스 미니 로봇 시연 포함). 국내에서는 엔비디아가 기조연설 뒤 삼성전기와의 전략적 비즈니스 파트너십을 발표했고, 스타트업 넘즈에이아이의 정형 데이터 AI 모델이 기조연설에 소개됐다. 황 CEO는 22일 현장 CNBC 인터뷰에서 메모리 공급과잉 우려를 일축했다.",
    "full": "",
    "added": "2026-07-04",
-   "updated": "2026-08-26"
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "베타뉴스 — 젠슨 황, GTC 베를린서 'DSX POD' 공개",
+     "url": "https://www.betanews.net/article/view/beta202610220151"
+    },
+    {
+     "label": "한국경제TV — 엔비디아 핵심 공급사 된 삼성전기",
+     "url": "http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202610210191&t=NN"
+    },
+    {
+     "label": "파이낸셜뉴스 — 젠슨 황, 메모리 공급 과잉 우려에 \"많으면 좋다\"",
+     "url": "https://www.fnnews.com/news/202610230727184230"
+    }
+   ]
   },
   {
    "id": "oracle-ai-world-2026",
@@ -2677,15 +2691,23 @@
    "date_start": "2026-10-22",
    "date_end": "2026-10-22",
    "month": "2026-10",
-   "status": "upcoming",
-   "summary": "한국은행 금융통화위원회가 기준금리를 결정하는 통화정책방향 결정회의다. 2026년 연간 일정에 따라 10월 22일 열린다.",
+   "status": "done",
+   "summary": "한국은행 금통위는 10월 22일 기준금리를 연 3.00%로 동결했다. 7·8월 두 차례 연속 인상(2.50%→3.00%) 뒤 숨 고르기로, 신현송 총재 취임 후 첫 금통위였으며 위원 7명 전원이 동결에 찬성했다. 통화정책방향 결정문은 성장률이 당초 전망을 상당폭 웃돌고 물가가 3% 안팎으로 높다고 평가했고, 3분기 GDP와 10월 물가 등 추가 지표로 인상 효과를 더 확인하겠다고 밝혔다. 한미 금리차는 상단 기준 1.00%p로 유지됐으며, 증권가에서는 11월 26일 금통위에서 추가 인상 가능성을 거론하고 있다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-04",
+   "updated": "2026-10-25",
    "sources": [
     {
      "label": "뉴시스 — 한은, 2026년 금통위 일정 발표",
      "url": "https://www.newsis.com/view/NISX20251030_0003383692"
+    },
+    {
+     "label": "아이뉴스24 — 한은 금통위 10월 통화정책방향 전문",
+     "url": "http://www.inews24.com/view/2017755"
+    },
+    {
+     "label": "이투데이 — 10월 금통위 통방문 분석",
+     "url": "https://www.etoday.co.kr/news/view/2638810"
     }
    ]
   },
@@ -3462,6 +3484,246 @@
     {
      "label": "ASH — Meetings",
      "url": "https://www.hematology.org/Meetings"
+    }
+   ]
+  },
+  {
+   "id": "euronaval-2026",
+   "name": "유로나발 2026 (EURONAVAL, 제30회 국제 해군방산 전시회)",
+   "org": "SOGENA(프랑스 해양산업협회 GICAN 자회사)",
+   "desc": "격년 개최 세계 최대급 해군·해양 방산 전시회, 파리",
+   "date_start": "2026-11-03",
+   "date_end": "2026-11-06",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "함정·잠수함·해양 무인체계·해군 전자장비를 다루는 격년제 해군 방산 전시회로 11월 3~6일 파리에서 열린다. 유럽 재무장 국면에서 함정 발주와 해양 무인체계 흐름을 확인하는 자리로, 국내 조선·방산 업체의 유럽 해군 시장 진출과도 연결된다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "Flying Engineer — Euronaval 2026",
+     "url": "https://theflyingengineer.com/aviation-events/euronaval-2026/"
+    },
+    {
+     "label": "Neventum — Euronaval",
+     "url": "https://www.neventum.com/tradeshows/euronaval"
+    }
+   ]
+  },
+  {
+   "id": "sitc-2026",
+   "name": "SITC 2026 (제41회 미국면역항암학회 연례 학술대회)",
+   "org": "미국면역항암학회(SITC)",
+   "desc": "면역항암 분야 대표 학회, 미국 피닉스 컨벤션센터",
+   "date_start": "2026-11-04",
+   "date_end": "2026-11-08",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "면역항암제·세포치료·항암 백신의 임상·전임상 데이터가 발표되는 학회로 11월 4~8일 피닉스에서 열린다. 초록 공개와 발표 일정에 맞춰 면역항암 관련 바이오 기업의 데이터가 주가 재료가 되는 경우가 많다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "SITC — 41st Annual Meeting",
+     "url": "https://sitcancer.org/edu/41st-annual-meeting"
+    }
+   ]
+  },
+  {
+   "id": "boe-2026-11",
+   "name": "영란은행 11월 통화정책위원회 (통화정책보고서 동반)",
+   "org": "영란은행(BoE)",
+   "desc": "기준금리 결정 및 11월 통화정책보고서 발표, 영국 시간 12시",
+   "date_start": "2026-11-05",
+   "date_end": "2026-11-05",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "영란은행 통화정책위원회(MPC)가 11월 5일 기준금리를 결정하고 분기 통화정책보고서를 함께 낸다. 성장·물가 전망 수정이 동반되는 회의라 파운드화·영국 국채 금리에 영향이 크다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "Bank of England — Monetary Policy Committee dates for 2026",
+     "url": "https://www.bankofengland.co.uk/news/2024/december/mpc-dates-for-2026"
+    }
+   ]
+  },
+  {
+   "id": "eicma-2026",
+   "name": "EICMA 2026 (밀라노 국제 모터사이클 전시회, 제83회)",
+   "org": "EICMA",
+   "desc": "세계 최대 이륜차 전시회, 피에라 밀라노 로. 11월 3~4일은 업계·언론 전용",
+   "date_start": "2026-11-05",
+   "date_end": "2026-11-08",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "세계 최대 이륜차 전시회로 11월 3~4일 업계·언론 사전 공개 뒤 5~8일 일반에 공개된다. 주요 이륜차 제조사의 신모델과 전기 이륜차 전략이 공개돼 이륜차 업황과 부품 공급망 흐름을 가늠하는 자리다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "motorcycles.news — EICMA 2026",
+     "url": "https://www.motorcycles.news/en/event/eicma-2026/"
+    },
+    {
+     "label": "Motorrad & Reisen — EICMA 2026",
+     "url": "https://www.motorradundreisen.de/szene/eicma-2026-wichtige-neuheitenschau-mailand/11581/"
+    }
+   ]
+  },
+  {
+   "id": "bio-europe-2026",
+   "name": "BIO-Europe 2026",
+   "org": "EBD Group",
+   "desc": "유럽 최대 바이오 파트너링(기술이전·라이선싱) 행사, 독일 쾰른 쾰른메세",
+   "date_start": "2026-11-09",
+   "date_end": "2026-11-11",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "제약·바이오 기업 간 기술이전·공동개발 협상이 집중되는 유럽 최대 파트너링 행사로 11월 9~11일 쾰른에서 열리고, 11월 17~18일 온라인 파트너링이 이어진다. 국내 바이오 기업의 기술수출 미팅 창구로도 활용된다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "BEAM Alliance — BIO-Europe 2026",
+     "url": "https://beam-alliance.eu/bio-europe-2026/"
+    },
+    {
+     "label": "Eurofins — BIO-Europe 2026",
+     "url": "https://www.eurofins.com/en/biopharma-services/biopharma-central-laboratory/events/bio-europe-2026/"
+    }
+   ]
+  },
+  {
+   "id": "asean-summit-2026",
+   "name": "제49차 아세안(ASEAN) 정상회의 및 관련 회의",
+   "org": "아세안(2026 의장국 필리핀)",
+   "desc": "마닐라 필리핀국제컨벤션센터(PICC), 미국 대통령 참석 확인 보도",
+   "date_start": "2026-11-16",
+   "date_end": "2026-11-18",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "2026년 의장국 필리핀이 마닐라에서 여는 아세안 정상회의와 관련 회의로, 필리핀 정부는 11월 16~18일을 수도권 특별 휴무일로 지정했다. 미국 대통령 참석이 확인됐다는 보도가 있어 남중국해·무역·공급망 의제가 주목된다. 일부 자료는 11월 13~15일로 적고 있어 최종 일정 확인이 필요하다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "Bernama — 49th ASEAN Summit in Manila",
+     "url": "https://bernama.com/en/news.php?id=2620278"
+    },
+    {
+     "label": "PhilSTAR L!fe — Nov. 16 to 18 special non-working days",
+     "url": "https://philstarlife.com/news-and-views/968280-palace-announces-nov-16-to-18-as-special-non-working-days-asean-summit"
+    }
+   ]
+  },
+  {
+   "id": "sabcs-2026",
+   "name": "SABCS 2026 (샌안토니오 유방암 심포지엄)",
+   "org": "UT Health San Antonio·미국암연구학회(AACR)",
+   "desc": "유방암 분야 최대 학회, 미국 샌안토니오 헨리 B. 곤잘레스 컨벤션센터",
+   "date_start": "2026-12-08",
+   "date_end": "2026-12-11",
+   "month": "2026-12",
+   "status": "upcoming",
+   "summary": "유방암 신약·진단의 주요 임상 결과가 공개되는 학회로 12월 8~11일 샌안토니오에서 열리며, 9~11일 기자회견이 예정돼 있다. 항체약물접합체(ADC)·호르몬 치료제 등 유방암 파이프라인을 가진 제약·바이오 기업의 데이터 발표 무대다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "AACR — SABCS 2026, December 8-11",
+     "url": "https://www.aacr.org/about-the-aacr/newsroom/media-advisories/reserve-housing-and-register-today-san-antonio-breast-cancer-symposium-2026-december-8-11/"
+    }
+   ]
+  },
+  {
+   "id": "g20-miami-2026",
+   "name": "G20 정상회의 2026 (미국 마이애미)",
+   "org": "G20(2026 의장국 미국)",
+   "desc": "제21차 G20 정상회의, 플로리다 도럴 트럼프 내셔널 도럴 마이애미",
+   "date_start": "2026-12-14",
+   "date_end": "2026-12-15",
+   "month": "2026-12",
+   "status": "upcoming",
+   "summary": "미국이 의장국으로 여는 제21차 G20 정상회의로 12월 14~15일 플로리다 도럴에서 열린다. 관세·무역, 공급망, 에너지 등 주요국 정상 간 경제 의제가 다뤄지며, 이에 앞서 10월 30~31일 애틀랜타에서 외교장관회의가 열린다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "Wikipedia — 2026 G20 Miami summit",
+     "url": "https://en.wikipedia.org/wiki/2026_G20_Miami_summit"
+    },
+    {
+     "label": "CBS News — Trump G20 summit 2026 Doral",
+     "url": "https://www.cbsnews.com/amp/miami/news/trump-g20-summit-2026-doral-resort-florida"
+    }
+   ]
+  },
+  {
+   "id": "ecb-2026-12",
+   "name": "ECB 12월 통화정책회의",
+   "org": "유럽중앙은행(ECB)",
+   "desc": "통화정책회의, 12월 17일 결정·기자회견",
+   "date_start": "2026-12-16",
+   "date_end": "2026-12-17",
+   "month": "2026-12",
+   "status": "upcoming",
+   "summary": "유럽중앙은행 정책위원회의 2026년 마지막 통화정책회의로 12월 16~17일 열리고, 17일 결정 발표 뒤 기자회견이 이어진다. 12월 회의에는 통상 직원 경제전망이 함께 나와 이듬해 정책 경로를 가늠하는 자리다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "ECB — Meeting calendars for the Governing Council",
+     "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+    }
+   ]
+  },
+  {
+   "id": "boe-2026-12",
+   "name": "영란은행 12월 통화정책위원회",
+   "org": "영란은행(BoE)",
+   "desc": "기준금리 결정, 의사록 동반(보고서 없음), 영국 시간 12시",
+   "date_start": "2026-12-17",
+   "date_end": "2026-12-17",
+   "month": "2026-12",
+   "status": "upcoming",
+   "summary": "영란은행 통화정책위원회의 2026년 마지막 기준금리 결정으로 12월 17일 발표된다. 통화정책보고서 없이 결정과 의사록만 공개된다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "Bank of England — Monetary Policy Committee dates for 2026",
+     "url": "https://www.bankofengland.co.uk/news/2024/december/mpc-dates-for-2026"
+    }
+   ]
+  },
+  {
+   "id": "boj-2026-12",
+   "name": "일본은행 12월 금융정책결정회의",
+   "org": "일본은행(BOJ)",
+   "desc": "금융정책결정회의, 12월 17~18일 (전망 보고서 없음)",
+   "date_start": "2026-12-17",
+   "date_end": "2026-12-18",
+   "month": "2026-12",
+   "status": "upcoming",
+   "summary": "일본은행의 2026년 마지막 금융정책결정회의로 12월 17~18일 열리며, 의견 요지는 12월 28일 공개된다. 엔화와 일본 국채 금리, 글로벌 엔캐리 흐름에 영향을 주는 회의다.",
+   "full": "",
+   "added": "2026-10-25",
+   "updated": "2026-10-25",
+   "sources": [
+    {
+     "label": "Bank of Japan — Monetary Policy Meetings schedule",
+     "url": "https://www.boj.or.jp/en/mopo/mpmsche_minu/index.htm"
     }
    ]
   }
