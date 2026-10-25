@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25 18:25 KST",
+ "updated": "2026-10-25 18:55 KST",
  "episodes": [
   {
    "id": "2026-10-25-sixsigma-ZCTN0urfack",
@@ -469,12 +469,19 @@
    "audio": "https://api.substack.com/feed/podcast/221632772/30c38515d3ea0554c60350beead67f42.mp3",
    "duration": "1:09:00",
    "desc": "Demand for AI compute has grown 3x a year for the last decade, but according to Intel’s CTO, there are only enough chipmaking tools in the world to roughly double leading-edge production. I wanted to understand what innovations are coming out of the fabs, and what they mean for the future of computers, so I spent two days at Intel talking to the people working on them – from the head of process development to the research lab, the packaging group, and the CTO. A lot of what’s coming next – gate-all-around transistors, backside power, CFET, hybrid bonding – is hard to follow without seeing it, …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 00:40 KST",
    "image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/c3Vic3RhY2s6cG9zdDoyMjE2MzI3NzI.jpg",
    "show_image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/show.jpg",
    "title_ko": "2045년의 컴퓨터 칩은 어떤 모습일까 (Intel 현장 취재)",
-   "desc_ko": "AI 연산 수요는 10년간 해마다 3배씩 늘었지만 Intel CTO에 따르면 세계 장비로는 최첨단 생산을 두 배 정도밖에 못 늘린다. Dwarkesh Patel이 Intel에서 이틀간 공정 개발·연구소·패키징·CTO를 만나 게이트올어라운드, 후면 전력, CFET, 하이브리드 본딩 등 다음 기술을 짚는다."
+   "desc_ko": "AI 연산 수요는 10년간 해마다 3배씩 늘었지만 Intel CTO에 따르면 세계 장비로는 최첨단 생산을 두 배 정도밖에 못 늘린다. Dwarkesh Patel이 Intel에서 이틀간 공정 개발·연구소·패키징·CTO를 만나 게이트올어라운드, 후면 전력, CFET, 하이브리드 본딩 등 다음 기술을 짚는다.",
+   "summary": {
+    "title_ko": "2045년의 컴퓨터 칩은 어떤 모습일까 (Intel 현장 취재)",
+    "headline": "수요는 해마다 3배, 장비로는 두 배까지 — 인텔이 본 칩의 다음 20년과 생산 상한",
+    "image": "https://i.ytimg.com/vi/frYSOKvNiiE/hqdefault.jpg",
+    "guest": "푸시카르 라나데(Pushkar Ranade) 외 인텔 엔지니어 — 인텔 최고기술책임자와 공정·연구·패키징 책임자 — 드와르케시 파텔의 인텔 공장 이틀 취재",
+    "company": "인텔(Intel) (반도체 · 파운드리 · 반도체 장비)"
+   }
   },
   {
    "id": "2026-10-23-sixsigma-9iFsbTYe_wI",
@@ -674,13 +681,20 @@
    "audio": null,
    "duration": "",
    "desc": "📢 가을옷 기왕 살 거 여기서 사세요 🔗 https://www.musinsa.com/curator/shop/GyVEuRcF ※본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공받습니다 💡내용 요약 이선엽 대표가 최근 2~3주간 이어진 한국 증시 급락의 원인을 두 국면으로 나눠 짚습니다. 첫 주는 미국 소비자물가 지표에서 주거비가 예상보다 높게 나오면서 금리 상승 우려가 커진 매크로 요인이었고, 일부 매크로 펀드가 프로그램에 따라 위험자산을 줄이며 낙폭을 키웠다는 설명입니다. 이후 일주일은 비관적 보도와 영상이 공포를 증폭시켰으나, 수급을 보면 같은 기간 외국인은 삼성전자를 사들였고 개인이 물량을 던졌다는 점이 확인됩니다. 한국과 미국 반도체 주가의 격차도 핵심 쟁점입니다. 마이크론 테크놀로지 주가는 우려를 일부 반영하는 수준에 그친 반면, 삼성전자와 SK하이닉스는 이익 전망이 오르는데도 주가가 4월 수준으로 내려와 있습니다. 출연자는 기관과 개인의 연합이 약해지고 연기금이 제 역할을 하지 못해 시장의 가격 조정 기능이 약해졌다고 진단하며, 11월 3일 미국 중간선거와 미·이란 협상에 따른 유가 흐름을 향후 변수로 꼽…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-22 17:56 KST",
    "image": "https://i3.ytimg.com/vi/fpTch4A9erE/hqdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "\"반도체 끝났다\" 뉴스에 개인이 팔 때 외국인이 삼성전자를 산 이유 (AFW파트너스 이선엽 대표)",
-   "desc_ko": "AFW파트너스 이선엽 대표가 최근 2~3주 한국 증시 급락을 두 국면으로 나눠 설명합니다. 첫 주는 미국 물가 지표에서 주거비가 높게 나오며 금리 우려가 커진 매크로 충격이었고, 다음 주는 비관적 보도가 공포를 키웠지만 그사이 외국인은 삼성전자를 샀고 개인이 팔았다는 분석입니다. 마이크론과 달리 삼성전자·SK하이닉스는 이익 전망이 오르는데도 주가가 4월 수준이라는 점, 연기금 역할, 11월 3일 미국 중간선거와 유가를 다음 변수로 짚습니다."
+   "desc_ko": "AFW파트너스 이선엽 대표가 최근 2~3주 한국 증시 급락을 두 국면으로 나눠 설명합니다. 첫 주는 미국 물가 지표에서 주거비가 높게 나오며 금리 우려가 커진 매크로 충격이었고, 다음 주는 비관적 보도가 공포를 키웠지만 그사이 외국인은 삼성전자를 샀고 개인이 팔았다는 분석입니다. 마이크론과 달리 삼성전자·SK하이닉스는 이익 전망이 오르는데도 주가가 4월 수준이라는 점, 연기금 역할, 11월 3일 미국 중간선거와 유가를 다음 변수로 짚습니다.",
+   "summary": {
+    "title_ko": "\"반도체 끝났다\" 뉴스에 개인이 팔 때 외국인이 삼성전자를 산 이유 (AFW파트너스 이선엽 대표)",
+    "headline": "개인이 던진 나흘, 외국인은 삼성전자를 샀다 — 하락의 절반은 물가 충격, 절반은 공포와 수급 왜곡",
+    "image": "https://i.ytimg.com/vi/fpTch4A9erE/hqdefault.jpg",
+    "guest": "이선엽 — AFW파트너스 대표, 신한투자증권 투자전략팀장 출신 — 한국 증시 급락과 외국인 수급 진단",
+    "company": "삼성전자 · SK하이닉스 · 마이크론 · 한국 증시 (반도체 · 메모리 · 한국 증시 수급)"
+   }
   },
   {
    "id": "2026-10-22-ca-replay-dealcloud-ben-harrison-dealcloud-s3-spons",
@@ -2065,13 +2079,20 @@
    "audio": null,
    "duration": "12:24",
    "desc": "[원본] 난야 테크놀로지(Nanya Technology) IR 투자자 컨퍼런스 · Third Quarter 2026 Earnings Conference 다시보기 · 2026.10.12 발표·답변: 리페이잉(Pei-Ing Lee) 사장 겸 대변인 출처: 난야 IR Investor Calendar https://www.nanya.com/en/IR/13 (Webcast Link) [목차] 0:00 같은 날, 정반대의 두 말 0:36 2027년 출하는? '창피한 질문' 1:06 3분기 실적: 덜 팔고 더 벌었다 1:41 값은 왜 60% 올랐나 (JP모건 질문) 3:09 장기계약 비중과 하한가 (KGI증권 질문) 4:05 계약 밖 주문은 얼마나 채우나 5:00 4분기와 내년 가격 (BofA 질문) 5:53 부족은 언제까지 가나 (캐피털증권 질문) 7:26 DDR4 수요와 매출 구성 8:33 공장 하나에 160억 달러 9:28 AI 매출 비중 40~50% 목표 10:31 부족이 끝나는 조건 (KGI증권 질문) 11:45 정리 [참고 자료] - Focus Taiwan(CNA), Nanya Technology expects DRAM prices, margins to ris…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/zf0aGUndtsM/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "영업이익률 80% 찍은 난야테크, 사장이 직접 말한 디램 부족의 끝",
-   "desc_ko": "[원본] 난야 테크놀로지(Nanya Technology) IR 투자자 컨퍼런스 · Third Quarter 2026 Earnings Conference 다시보기 · 2026.10.12 발표·답변: 리페이잉(Pei-Ing Lee) 사장 겸 대변인 출처: 난야 IR Investor Calendar https://www.nanya.com/en/IR/13 (Webcast Link)"
+   "desc_ko": "[원본] 난야 테크놀로지(Nanya Technology) IR 투자자 컨퍼런스 · Third Quarter 2026 Earnings Conference 다시보기 · 2026.10.12 발표·답변: 리페이잉(Pei-Ing Lee) 사장 겸 대변인 출처: 난야 IR Investor Calendar https://www.nanya.com/en/IR/13 (Webcast Link)",
+   "summary": {
+    "title_ko": "영업이익률 80% 찍은 난야테크, 사장이 직접 말한 디램 부족의 끝",
+    "headline": "덜 팔고 더 번 난야 — 사장은 부족이 2028년 초까지 간다고 봤고, 끝나는 조건은 AI 투자 수익",
+    "image": "https://i.ytimg.com/vi/zf0aGUndtsM/hqdefault.jpg",
+    "guest": "리페이잉(Pei-Ing Lee) — 난야 테크놀로지 사장 겸 대변인 — 3분기 2026 실적 발표회 답변을 식스시그마가 해설",
+    "company": "난야 테크놀로지(Nanya Technology, 2408.TW) (반도체 · D램 · 구형 DDR4)"
+   }
   },
   {
    "id": "2026-10-14-understanding-mx66QIgCeZc",
@@ -2202,13 +2223,20 @@
    "audio": null,
    "duration": "13:28",
    "desc": "[원본] (1) Microsoft Unveils Maia 300 | Cloud Chief Scott Guthrie Live · Deirdre Bosa · 2026년 10월 12일 (2) Why Microsoft Is Relying Less on Nvidia's AI Chips · The Information · 2026년 10월 12일 (3) Microsoft, Musk Race to Reinvent the AI Chip · Bloomberg Tech · 2026년 10월 12일 (4) Microsoft Build 2026 | Satya Nadella Opening Keynote · Microsoft · 2026년 6월 2일 (5) Microsoft Azure Maia 200: Scott Guthrie EVP · Microsoft Azure · 2026년 1월 26일 [참고 자료] · Microsoft Azure 블로그 'Deep dive into Azure Maia 300 architecture' · 2026년 10월 12일 · SiliconANGLE, 마이아 300 보도(288GB, 엔비디아 루빈과 같은 용량) · 비즈니스코리아 · 2026년 1월 27일…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/f-Fhb7zFj2g/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "마이크로소프트가 엔비디아 GPU를 자체 칩으로 대체하면 생기는 일 (마이아 300)",
-   "desc_ko": "[원본] (1) Microsoft Unveils Maia 300 | Cloud Chief Scott Guthrie Live · Deirdre Bosa · 2026년 10월 12일 (2) Why Microsoft Is Relying Less on Nvidia's AI Chips · The Information · 2026년 10월 12일 (3) Microsoft, Musk Race to Reinvent the AI Chip · Bloomberg Tech · 2026년 10월 12일 (4) Microsoft Build 2026 | Satya Nadella Opening Keynote · Microsoft · 2026년 6월 2일 (5) Microsoft Azure Maia 200: Scott Guthrie EVP · Microsoft Azure · 2026년 1월 26일 [참고 자료] · Microsoft Azure 블로그 'Deep dive into Azure Maia 300 architecture' · 2026년 10월 12일 · SiliconANGLE, 마이아 300 보도(288GB, 엔비디아 루빈과 같은 용량) · 비즈니스코리아 · 2026년 1월 27일…"
+   "desc_ko": "[원본] (1) Microsoft Unveils Maia 300 | Cloud Chief Scott Guthrie Live · Deirdre Bosa · 2026년 10월 12일 (2) Why Microsoft Is Relying Less on Nvidia's AI Chips · The Information · 2026년 10월 12일 (3) Microsoft, Musk Race to Reinvent the AI Chip · Bloomberg Tech · 2026년 10월 12일 (4) Microsoft Build 2026 | Satya Nadella Opening Keynote · Microsoft · 2026년 6월 2일 (5) Microsoft Azure Maia 200: Scott Guthrie EVP · Microsoft Azure · 2026년 1월 26일 [참고 자료] · Microsoft Azure 블로그 'Deep dive into Azure Maia 300 architecture' · 2026년 10월 12일 · SiliconANGLE, 마이아 300 보도(288GB, 엔비디아 루빈과 같은 용량) · 비즈니스코리아 · 2026년 1월 27일…",
+   "summary": {
+    "title_ko": "마이크로소프트가 엔비디아 GPU를 자체 칩으로 대체하면 생기는 일 (마이아 300)",
+    "headline": "엔비디아 최대 고객이 추론부터 자기 칩으로 — 그래도 HBM은 들어간다",
+    "image": "https://i.ytimg.com/vi/f-Fhb7zFj2g/hqdefault.jpg",
+    "guest": "스콧 거스리(Scott Guthrie) — 마이크로소프트 클라우드·AI 총괄 부사장 — CNBC 인터뷰·빌드 기조연설 등 발언을 식스시그마가 해설",
+    "company": "마이크로소프트(Microsoft) · 엔비디아(Nvidia) · HBM 3사 (반도체 · AI 가속기 · 클라우드)"
+   }
   },
   {
    "id": "2026-10-14-understanding-CGOAb5sTwds",
@@ -2376,13 +2404,20 @@
    "audio": null,
    "duration": "10:28",
    "desc": "[원본] (1) Palantir CEO Alex Karp: Why the West is Destroying Itself, Data Empire, Skeptics, How to Win · All-In Podcast · 2025년 9월 9일 (2) Trump, Gawker, and Leaving Silicon Valley (Peter Thiel) · The Rubin Report · 2018년 9월 12일 (3) Charlie Rose · Alexander Karp, CEO of Palantir · 2009년 8월 11일 (4) \"The CIA Had To Fund Us\" · Valuetainment (PBD Podcast) · 2026년 3월 3일 (5) Palantir CTO: military innovation and reforming the Pentagon · The Merge · 2024년 6월 16일 (6) Stream 1: Warsaw Security Forum 2022 · Warsaw Security Forum · 2022년 10월 4일 (7) Palantir CEO Alex Karp on the decision to take the company…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/LLuONzPau7k/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "팔란티어가 펜타곤을 고객으로 만든 방법",
-   "desc_ko": "[원본] (1) Palantir CEO Alex Karp: Why the West is Destroying Itself, Data Empire, Skeptics, How to Win · All-In Podcast · 2025년 9월 9일 (2) Trump, Gawker, and Leaving Silicon Valley (Peter Thiel) · The Rubin Report · 2018년 9월 12일 (3) Charlie Rose · Alexander Karp, CEO of Palantir · 2009년 8월 11일 (4) \"The CIA Had To Fund Us\" · Valuetainment (PBD Podcast) · 2026년 3월 3일 (5) Palantir CTO: military innovation and reforming the Pentagon · The Merge · 2024년 6월 16일 (6) Stream 1: Warsaw Security Forum 2022 · Warsaw Security Forum · 2022년 10월 4일 (7) Palantir CEO Alex Karp on the decision to take the company…"
+   "desc_ko": "[원본] (1) Palantir CEO Alex Karp: Why the West is Destroying Itself, Data Empire, Skeptics, How to Win · All-In Podcast · 2025년 9월 9일 (2) Trump, Gawker, and Leaving Silicon Valley (Peter Thiel) · The Rubin Report · 2018년 9월 12일 (3) Charlie Rose · Alexander Karp, CEO of Palantir · 2009년 8월 11일 (4) \"The CIA Had To Fund Us\" · Valuetainment (PBD Podcast) · 2026년 3월 3일 (5) Palantir CTO: military innovation and reforming the Pentagon · The Merge · 2024년 6월 16일 (6) Stream 1: Warsaw Security Forum 2022 · Warsaw Security Forum · 2022년 10월 4일 (7) Palantir CEO Alex Karp on the decision to take the company…",
+   "summary": {
+    "title_ko": "팔란티어가 펜타곤을 고객으로 만든 방법",
+    "headline": "먼저 만들고, 안 사면 법정으로 — 육군을 고소한 회사가 분기 10억 달러를 버는 회사가 됐다",
+    "image": "https://i.ytimg.com/vi/LLuONzPau7k/hqdefault.jpg",
+    "guest": "알렉스 카프(Alex Karp) — 팔란티어 공동 창업자 겸 최고경영자 — 여러 인터뷰 발언을 식스시그마가 엮어 해설",
+    "company": "팔란티어(Palantir Technologies) (소프트웨어 · 국방 AI · 데이터 플랫폼)"
+   }
   },
   {
    "id": "2026-10-13-riskrev-shaking-the-leaves-off-the-money-tree-investoped",
@@ -2472,13 +2507,20 @@
    "audio": null,
    "duration": "7:18",
    "desc": "[원본] (1) New Hands for Atlas · Boston Dynamics · 2026년 10월 1일 (2) Form & Function of Enterprise Humanoid Design | Boston Dynamics Tech Talk · Boston Dynamics · 2026년 3월 18일 (3) Inside the Robotics Race | Boston Dynamics x Hyundai Motor Group x Bloomberg Media Studios · Boston Dynamics · 2026년 9월 30일 ※ 원본 발언을 한국어로 옮기고 해설한 영상입니다. 특정 종목의 매수·매도 권유가 아니며, 투자 판단과 책임은 투자자 본인에게 있습니다. [목차] 0:00 \"새끼손가락이 정말 필요할까?\" 0:19 해설: 손가락이 네 개인 이유 0:34 대량 생산을 위한 손, 새끼손가락을 뺀 이유 1:01 해설: 모터 18만 개 차이 1:18 엉덩이와 발목에 같은 모터, 모터는 두 종류 2:13 해설: 모터 두 종류와 현대모비스 2:32 오른다리 = 왼다리 2:57 해설: 줄어드는 부품 목록 3:08 배터리를 드러낸 이유 3:44 해설: 24시간 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/_sZNKfd5Tu4/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "현대차 로보틱스 전략의 비밀",
-   "desc_ko": "[원본] (1) New Hands for Atlas · Boston Dynamics · 2026년 10월 1일 (2) Form & Function of Enterprise Humanoid Design | Boston Dynamics Tech Talk · Boston Dynamics · 2026년 3월 18일 (3) Inside the Robotics Race | Boston Dynamics x Hyundai Motor Group x Bloomberg Media Studios · Boston Dynamics · 2026년 9월 30일 ※ 원본 발언을 한국어로 옮기고 해설한 영상입니다. 특정 종목의 매수·매도 권유가 아니며, 투자 판단과 책임은 투자자 본인에게 있습니다."
+   "desc_ko": "[원본] (1) New Hands for Atlas · Boston Dynamics · 2026년 10월 1일 (2) Form & Function of Enterprise Humanoid Design | Boston Dynamics Tech Talk · Boston Dynamics · 2026년 3월 18일 (3) Inside the Robotics Race | Boston Dynamics x Hyundai Motor Group x Bloomberg Media Studios · Boston Dynamics · 2026년 9월 30일 ※ 원본 발언을 한국어로 옮기고 해설한 영상입니다. 특정 종목의 매수·매도 권유가 아니며, 투자 판단과 책임은 투자자 본인에게 있습니다.",
+   "summary": {
+    "title_ko": "현대차 로보틱스 전략의 비밀",
+    "headline": "새끼손가락을 뺀 이유는 3만 대 — 아틀라스는 가장 잘하는 로봇이 아니라 가장 많이 만들고 빨리 고치는 로봇",
+    "image": "https://i.ytimg.com/vi/_sZNKfd5Tu4/hqdefault.jpg",
+    "guest": "보스턴 다이내믹스(Boston Dynamics) 아틀라스 개발진 — 현대차그룹 휴머노이드 아틀라스(Atlas) 설계진 — 홍보·기술 영상 세 편 발언을 식스시그마가 해설",
+    "company": "현대차그룹 · 보스턴 다이내믹스 · 현대모비스 (로보틱스 · 휴머노이드 · 자동차 부품)"
+   }
   },
   {
    "id": "2026-10-12-ca-senior-decision-makers-erlina-yeo-terwelp-columb",
