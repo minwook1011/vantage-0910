@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>비자스크와 지식 플랫폼의 흐름</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<script src="../gate.js?v=20261003L"></script>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 왼쪽 고정 목차 + 오른쪽 본문(65자 폭). 표·차트는 본문 폭을 넘지 않고 자체 스크롤 */
+:root{
+  --paper:#f5f6f8; --card:#ffffff; --ink:#17202b; --muted:#5b6674; --line:#d8dde4;
+  --accent:#1f4e8c; --accent-soft:#e3ebf6; --accent2:#a8771f; --accent2-soft:#f4ead7;
+  --good:#2c7a4c; --good-soft:#e2f1e8; --warn:#9a6a12; --warn-soft:#f6ecd6; --bad:#b03f3f; --bad-soft:#f7e3e3;
+  --f-display:"Noto Serif KR","Nanum Myeongjo",Georgia,serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0f141b; --card:#161d27; --ink:#e5eaf0; --muted:#98a3b0; --line:#2b3542;
+  --accent:#86aee6; --accent-soft:#1c2a3d; --accent2:#d8a94f; --accent2-soft:#2e2616;
+  --good:#63c08a; --good-soft:#15291e; --warn:#e2b456; --warn-soft:#2d2512; --bad:#e58080; --bad-soft:#2f1a1a;
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0f141b; --card:#161d27; --ink:#e5eaf0; --muted:#98a3b0; --line:#2b3542;
+  --accent:#86aee6; --accent-soft:#1c2a3d; --accent2:#d8a94f; --accent2-soft:#2e2616;
+  --good:#63c08a; --good-soft:#15291e; --warn:#e2b456; --warn-soft:#2d2512; --bad:#e58080; --bad-soft:#2f1a1a;
+  color-scheme:dark;}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
+@media (max-width:960px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-top:40px;font-size:13.5px;max-height:100vh;overflow:auto}
+.toc b{display:block;font-size:11px;letter-spacing:.12em;color:var(--muted);margin-bottom:8px}
+.toc a{display:block;color:var(--muted);text-decoration:none;padding:4px 0 4px 10px;border-left:2px solid var(--line)}
+.toc a:hover,.toc a:focus-visible{color:var(--accent);border-left-color:var(--accent);outline:none}
+main{min-width:0;max-width:760px}
+header.hero{padding:48px 0 24px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--accent2);text-transform:uppercase}
+h1{font-family:var(--f-display);font-size:clamp(28px,4.4vw,42px);line-height:1.25;margin:10px 0 12px;text-wrap:balance}
+.lede{color:var(--muted);font-size:17px;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:18px;font-size:13px;color:var(--muted);font-family:var(--f-mono)}
+h2{font-family:var(--f-display);font-size:26px;line-height:1.35;margin:56px 0 8px;text-wrap:balance;scroll-margin-top:16px}
+h2 .no{font-family:var(--f-mono);font-size:14px;color:var(--accent2);display:block;letter-spacing:.1em}
+h3{font-size:18.5px;margin:32px 0 6px;font-weight:600}
+h4{font-size:16px;margin:22px 0 4px;font-weight:600}
+p{margin:10px 0}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:3px 0}
+.verdict{margin:28px 0 8px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px}
+.verdict .v{font-family:var(--f-display);font-size:21px;line-height:1.45}
+.verdict .v em{font-style:normal;color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-size:12.5px;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--paper)}
+.summary{background:var(--accent-soft);border-radius:8px;padding:14px 18px;margin:18px 0}
+.summary b.t{display:block;font-size:12px;letter-spacing:.1em;color:var(--accent);margin-bottom:4px}
+.summary ul{margin:0}
+.q{background:var(--accent2-soft);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:15px}
+.q b.t{display:block;font-size:12px;letter-spacing:.08em;color:var(--accent2);margin-bottom:2px}
+.tbl{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.55}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;background:var(--paper);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 16px 10px;margin:18px 0}
+.fig .cap{font-size:13px;font-weight:600;margin-bottom:8px}
+.fig .see{font-size:13px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+.chart{position:relative;height:280px;width:100%}
+.chart.tall{height:340px}
+.fig pre.mermaid{background:transparent;margin:0;overflow-x:auto;text-align:center}
+.src{font-family:var(--f-mono);font-size:10.5px;padding:0 5px;border-radius:4px;vertical-align:1px;white-space:nowrap;border:1px solid var(--line);color:var(--muted)}
+.src.calc{color:var(--accent2);border-color:var(--accent2)}
+.src.co{color:var(--accent);border-color:var(--accent)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:0}
+.g{background:var(--good)}.y{background:var(--warn)}.r{background:var(--bad)}
+.pill{font-size:12px;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.pill.g{background:var(--good-soft);color:var(--good)}.pill.y{background:var(--warn-soft);color:var(--warn)}.pill.r{background:var(--bad-soft);color:var(--bad)}
+.co-card{border-top:1px solid var(--line);padding-top:6px;margin-top:22px}
+.co-card h4{margin-top:10px}
+.co-card .def{color:var(--muted);font-size:14px;margin:0}
+details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0}
+details summary{cursor:pointer;font-weight:600}
+details[open] summary{margin-bottom:6px}
+.note{font-size:13px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+@media (max-width:620px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi .v{font-family:var(--f-mono);font-size:21px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:12px;color:var(--muted)}
+footer{margin-top:56px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="목차">
+  <b>목차</b>
+  <a href="#sum">3분 요약</a>
+  <a href="#scope">범위</a>
+  <a href="#s1">1. 지금 무슨 일</a>
+  <a href="#s2">2. 산업 1부터</a>
+  <a href="#s3">3. 국내는 왜 잘되나</a>
+  <a href="#s4">4. 해외는 고쳐지나</a>
+  <a href="#s5">5. 기업 지도</a>
+  <a href="#s6">6. 시장의 시각</a>
+  <a href="#s7">7. 판정</a>
+  <a href="#s8">8. 반론과 리스크</a>
+  <a href="#s9">9. 앞으로 볼 것</a>
+  <a href="#s10">10. 복습 노트</a>
+  <a href="#log">리서치 루프 로그</a>
+  <a href="#check">검증 노트</a>
+  <a href="#refs">출처</a>
+</nav>
+
+<main>
+<header class="hero">
+  <div class="eyebrow">거대한 흐름의 시작인가 · 4490 VisasQ</div>
+  <h1>비자스크와 지식 플랫폼, 지금 흐름의 어디쯤인가</h1>
+  <p class="lede">국내는 왜 잘되는지, 해외(Coleman)는 어떻게 고치고 있고 고쳐질 수 있는지를 따라가며 전문가 네트워크(ENS) 산업 전체의 흐름을 판정합니다.</p>
+  <div class="meta"><span>작성 2026-10-23</span><span>주가 기준 10/23 장중</span><span>최신 확정 분기: 27/2기 2Q(6~8월)</span></div>
+
+  <div class="verdict" id="sum">
+    <div class="v">판정: 글로벌 ENS는 <em>성숙 산업의 재편기</em>, 비자스크의 일본 국내 사업은 <em>초기 확산</em> (확신도 하~중)</div>
+    <div class="chips">
+      <span class="chip">③ 이익 확인 🟢</span><span class="chip">⑤ 시장 인지 🟢</span><span class="chip">① 수요 🟡</span><span class="chip">② 해자 🟡</span><span class="chip">⑥ 촉매 🟡</span><span class="chip">④ 확산 범위 🔴</span>
+    </div>
+  </div>
+  <div class="summary">
+    <b class="t">3분 요약</b>
+    <ul>
+      <li><b>무슨 일:</b> 10/15 상반기 실적에서 국내 2개 사업 취급고가 +20%, +25%(2분기 단독 +24%, +34%)로 가속했고, 조정 EBITDA는 +94%였습니다. 주가는 4거래일 +24%, 연초 대비 +62%입니다. 그래도 2021년 고점보다 -86% 낮습니다.</li>
+      <li><b>국내가 잘되는 이유:</b> ① 일본 컨설팅 호황(베이커런트 매출 +41.5%) ② 일본 고객이 해외 전문가를 찾는 수요(+45%) ③ 기업 고객에게 리포트·프로젝트를 함께 파는 크로스셀(+50%) ④ AI Scout와 Eight 제휴로 매칭 속도와 전문가 풀이 커진 것.</li>
+      <li><b>해외(Coleman):</b> 달러 기준 취급고가 3년 새 약 -23%(제 계산). 미국 인터뷰 건수는 두 자릿수 성장이지만 미국 외 지역과 설문이 약합니다. AI 생산성 개선(+20%), 미국 VP 영입, 남미 거점으로 '마진·생산성'은 고칠 수 있습니다. 반면 업계 흐름이 투자자 대상 1:1 통화에서 녹취록 라이브러리·AI 인터뷰로 옮겨 가고 있어서 '점유율 회복'은 어렵다고 봅니다.</li>
+      <li><b>산업 전체:</b> 시장은 연 11~12%로 다시 자라고(Inex One) AI로 상품 형태가 바뀌는 중입니다. 다만 새로운 수요가 폭발하는 초입은 아닙니다.</li>
+      <li><b>시장의 시각:</b> 셀사이드 커버리지가 없습니다. 개인투자자는 저평가와 가이던스 상향 여지를 보고, 비관론은 우선주(약 89억 엔 + 누적배당)를 봅니다.</li>
+      <li><b>볼 것:</b> 3분기 국내 컨설·금융 취급고 +20% 이상 유지 여부(2027년 1월), 우선주 처리 공시, 해외 달러 취급고가 바닥을 찍는지.</li>
+    </ul>
+  </div>
+</header>
+
+<section id="scope">
+<h2><span class="no">SCOPE</span>이 리포트가 다루는 범위</h2>
+<ul>
+  <li><b>핵심 질문:</b> 비자스크 국내 사업의 가속은 일본 '지식 플랫폼' 수요가 구조적으로 커지는 초입인가? 그리고 해외(Coleman)는 회복할 수 있는가?</li>
+  <li><b>포함:</b> 비자스크 3개 사업, 글로벌 ENS 업체(GLG·AlphaSights·Guidepoint·Third Bridge·AlphaSense 등), 일본 상장 관련주(컨설팅·전문인력 매칭).</li>
+  <li><b>제외·변경:</b> 일본 소형주라 '국내(한국) 애널리스트' 절은 의미가 없습니다. 그래서 '일본 현지 셀사이드·개인투자자 시각'으로 바꿨습니다. 글로벌 ENS는 대부분 비상장이라 숫자가 추정치입니다.</li>
+  <li><b>회계연도 표기:</b> 비자스크는 2월 결산입니다. 회사가 'FY2026'이라 부르는 기간을 여기서는 <b>27/2기</b>(2026년 3월~2027년 2월)로 씁니다.</li>
+  <li><b>표시:</b> <span class="src co">회사</span> 회사 공시·IR, <span class="src">보도</span> 언론·업계, <span class="src">추정</span> 외부 추정, <span class="src calc">제 계산</span> 제가 계산하거나 해석한 값.</li>
+  <li>이 글은 흐름의 단계에 대한 판단입니다. 매수·매도 권유가 아니며 투자 결정은 독자의 몫입니다.</li>
+</ul>
+</section>
+
+<section id="s1">
+<h2><span class="no">01</span>지금 무슨 일이 일어나고 있나</h2>
+<p>최근 7개월 동안 회사 안에서는 AI 기능 출시와 제휴가 이어졌고, 숫자는 국내에서 먼저 바뀌었습니다. 회사 밖에서는 글로벌 ENS 업계가 AI 인터뷰와 녹취록 라이브러리 쪽으로 빠르게 움직였습니다.</p>
+
+<div class="fig">
+<div class="cap">그림 1. 2026년 비자스크와 글로벌 ENS 타임라인</div>
+<pre class="mermaid">
+timeline
+  title 비자스크와 ENS 업계 2026
+  2026-03 : 비자스크 AI Scout 출시
+          : Eight 독점 제휴
+          : Third Bridge MCP 출시
+  2026-04 : 비자스크 통기 결산과 하쿠호도 제휴
+          : 주가 상한가
+  2026-05 : Guidepoint AI 인사이트 플랫폼으로 재정의
+          : Ethos a16z 투자
+  2026-06 : AlphaSense 기업가치 75억 달러
+  2026-07 : 비자스크 1Q 영업이익 +52%
+          : GLG MCP 커넥터
+  2026-08 : 비자스크 남미 보고타 거점
+          : GLG AI 진행 통화 10개 언어
+  2026-10 : 비자스크 상반기 실적과 compass 출시
+          : 주가 4거래일 +24%
+</pre>
+<div class="see">이 그림에서 볼 것: 비자스크의 AI·제휴 이벤트(3~4월)가 숫자로 확인되기까지 두 분기가 걸렸습니다. 같은 기간 글로벌 대형사는 모두 'AI로 전문가 지식을 파는 방식'을 바꿨습니다.</div>
+</div>
+
+<div class="tbl"><table>
+<thead><tr><th>날짜</th><th>사건</th><th>숫자</th><th>출처</th></tr></thead>
+<tbody>
+<tr><td class="n">2026-03</td><td>AI Scout 출시. AI가 약 5분 만에 후보 전문가 목록을 제시합니다(이전에는 수 시간~2~3일)</td><td>24시간 365일</td><td><span class="src co">회사</span> 통기 설명자료 p.43</td></tr>
+<tr><td class="n">2026-03</td><td>명함 앱 Eight(산산)과 ENS 업계 독점 제휴</td><td>Eight 사용자 400만 명 이상에게 의뢰 가능</td><td><span class="src">보도</span> voix.jp</td></tr>
+<tr><td class="n">2026-04-14</td><td>26/2기 결산. 국내 2개 사업 4분기 취급고 +15.1%. 하쿠호도와 자본·업무 제휴, 경영진 자사주 매입 프로그램 발표</td><td>27/2기 취급고 계획 159.9억 엔(+10%)</td><td><span class="src co">회사</span></td></tr>
+<tr><td class="n">2026-04-15</td><td>주가 상한가(+17%), 4/24에도 +15%</td><td>3월 500엔 → 4월 692엔</td><td><span class="src">보도</span> X, 주가</td></tr>
+<tr><td class="n">2026-06-03</td><td>AlphaSense 3.5억 달러 조달</td><td>기업가치 75억 달러, ARR 6억 달러 초과</td><td><span class="src co">AlphaSense</span> 보도자료</td></tr>
+<tr><td class="n">2026-07-15</td><td>27/2기 1Q 실적</td><td>영업수익 27.6억 엔(+12.6%), 영업이익 4.2억 엔(+52%)</td><td><span class="src co">회사</span> 결산단신</td></tr>
+<tr><td class="n">2026-08</td><td>남미 첫 거점(보고타) 개설. 미국 사업 강화 목적</td><td>—</td><td><span class="src co">회사</span> 2Q 설명자료 p.27</td></tr>
+<tr><td class="n">2026-10-15</td><td>상반기 실적. 국내 2개 사업이 가속하고 해외는 정체. 하쿠호도와 공동 개발한 리서치 AI 'compass' 출시</td><td>취급고 80.2억 엔(+14.1%), 조정 EBITDA 7.6억 엔(+93.7%)</td><td><span class="src co">회사</span></td></tr>
+<tr><td class="n">2026-10-16~21</td><td>주가 670엔 → 830엔. 이후 764엔으로 일부 되돌림</td><td>4거래일 +23.9%</td><td><span class="src">주가</span> 야후</td></tr>
+<tr><td class="n">2026-10</td><td>글로벌 M&amp;A 1~9월 4.44조 달러(+27%). 다만 3분기는 2분기 대비 -28~-41%, 9월 사모펀드 거래액은 최근 13개월 최저</td><td>ENS 수요의 선행지표</td><td><span class="src">보도</span> Mergermarket, Ropes &amp; Gray</td></tr>
+</tbody></table></div>
+
+<div class="fig">
+<div class="cap">그림 2. 비자스크 월말 주가 (2021-11 ~ 2026-10, 엔)</div>
+<div class="chart tall"><canvas id="cPrice5y" aria-label="비자스크 5년 월말 주가"></canvas></div>
+<div class="see">이 그림에서 볼 것: 2021년 11월 Coleman 인수 시점이 주가 고점(5,480엔)이었습니다. 2025년 12월 바닥(472엔) 이후의 반등은 국내 실적 가속과 겹칩니다. 2024년 7월 급등은 손상차손 처리 뒤 첫 분기에 영업이익이 3.9억 엔으로 흑자 전환한 실적 발표(7/12)와 시점이 겹칩니다 <span class="src calc">제 해석</span>.</div>
+</div>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>회사의 AI·제휴 조치(3~4월)가 2분기 숫자로 처음 확인됐습니다(10/15).</li>
+<li>주가는 반응했지만 2021년 고점의 14% 수준이고, 셀사이드 커버리지는 없습니다.</li>
+<li>글로벌 업계는 AI와 녹취록 라이브러리로 상품을 다시 짜고 있고, 거래 시장(M&amp;A)은 3분기에 식었습니다.</li></ul></div>
+</section>
+
+<section id="s2">
+<h2><span class="no">02</span>산업 1부터: 전문가 네트워크(ENS)란</h2>
+<h3>2.1 이 산업은 무엇을 하나</h3>
+<p>전문가 네트워크(Expert Network Service, ENS)는 <b>"이 업계를 실제로 해 본 사람과 1시간 통화"</b>를 파는 사업입니다. 컨설턴트가 인수합병 실사 중에 "이 부품 시장의 실제 단가는?"을 묻거나, 헤지펀드가 "이 회사 고객사 구매 담당자의 체감은?"을 확인할 때 씁니다. 비유하면 <b>'경험을 시간 단위로 빌려주는 중개소'</b>입니다. 책이나 AI 검색으로는 얻기 어려운 현장의 1차 정보가 상품입니다.</p>
+
+<h3>2.2 밸류체인</h3>
+<div class="fig">
+<div class="cap">그림 3. ENS의 돈과 정보 흐름</div>
+<pre class="mermaid">
+flowchart LR
+  A["고객<br/>컨설팅 · 헤지펀드·PE · 기업"] -->|"질문과 비용<br/>1시간 1,000~1,400달러"| B["ENS 업체<br/>검색 · 섭외 · 컴플라이언스"]
+  B -->|"사례비<br/>200~500달러"| C["전문가<br/>전·현직 실무자"]
+  C -->|"1시간 인터뷰"| A
+  B --> D["파생 상품<br/>설문 · 녹취록 라이브러리 · AI 인터뷰"]
+  D --> A
+  B --> E["AI 도구 연결<br/>MCP · Bloomberg"]
+</pre>
+<div class="see">이 그림에서 볼 것: 이익은 '전문가를 빨리 찾아 확인해 주는' ENS 단계에 남습니다. 가격에서 사례비를 뺀 몫이 큰 사업입니다(GLG 사례 약 80%대, 2020년 경쟁사 발언 기준) <span class="src">추정</span>. 최근 새 이익원은 녹취록 라이브러리와 AI 연결입니다.</div>
+</div>
+
+<h3>2.3 용어 사전</h3>
+<div class="tbl"><table>
+<thead><tr><th>용어</th><th>쉬운 정의</th><th>왜 중요한가</th></tr></thead>
+<tbody>
+<tr><td>ENS</td><td>전문가와 1시간 인터뷰를 연결하는 사업</td><td>이 리포트의 산업</td></tr>
+<tr><td>취급고(GMV)</td><td>고객이 낸 총액. 전문가 사례비 포함</td><td>거래 규모. 매출은 이보다 작음</td></tr>
+<tr><td>영업수익</td><td>취급고에서 사례비 등을 뺀 회사 몫(순액 매출)</td><td>회사가 실제로 버는 돈</td></tr>
+<tr><td>취급고 대비 영업수익률</td><td>영업수익 ÷ 취급고. 사실상 수수료율</td><td>상품 구성이 좋아지면 오름</td></tr>
+<tr><td>풀서포트형</td><td>회사 직원이 전문가를 찾아 일정까지 잡아 주는 방식</td><td>비자스크 핵심 KPI의 기준</td></tr>
+<tr><td>셀프매칭</td><td>고객이 직접 검색해 연락하는 방식</td><td>값싸고 확장성이 큼. 마진은 낮을 수 있음</td></tr>
+<tr><td>녹취록 라이브러리</td><td>과거 인터뷰 기록을 구독으로 파는 상품(Tegus·Third Bridge)</td><td>1:1 통화를 잠식하는 경쟁 상품</td></tr>
+<tr><td>AI 진행 인터뷰</td><td>AI가 질문하고 받아 적는 인터뷰</td><td>가격을 1/3까지 낮춘다는 주장이 있음</td></tr>
+<tr><td>MCP</td><td>AI 모델이 외부 데이터에 붙는 표준 연결 방식</td><td>전문가 콘텐츠의 새 유통로</td></tr>
+<tr><td>컴플라이언스(MNPI)</td><td>전문가가 미공개 중요정보를 흘리지 않게 막는 장치</td><td>헤지펀드 고객의 필수 조건이자 진입장벽</td></tr>
+<tr><td>CDD</td><td>인수 전 상업 실사. 컨설팅사·PE가 수행</td><td>ENS 수요가 M&amp;A 사이클을 타는 이유</td></tr>
+<tr><td>조정 EBITDA</td><td>비자스크가 Coleman 소프트웨어 개발비를 비용으로 본 이익 지표</td><td>회사가 실제로 중시하는 이익</td></tr>
+</tbody></table></div>
+
+<h3>2.4 돈 버는 구조</h3>
+<ul>
+  <li><b>가격 결정:</b> 건당 가격이 크레딧(선불)으로 정해집니다. 연 5~10만 달러 크레딧, 프리미엄 전문가는 1.5~2.5크레딧입니다 <span class="src">보도</span> Inex One.</li>
+  <li><b>반복 매출에 가까운 건별 거래:</b> 계약잔고가 없고 매달 새로 의뢰를 받습니다. 그래서 고객 업황(M&amp;A·헤지펀드 리서치)에 민감합니다.</li>
+  <li><b>설비투자가 거의 없습니다.</b> 비용 대부분이 매칭 인력(인건비)입니다. 그래서 AI로 인당 생산성을 올리는 것이 곧 마진입니다.</li>
+  <li><b>비자스크의 특징:</b> 국내 사업법인은 상품이 7개로 수수료율이 제각각이고, 컨설·금융은 인터뷰 중심(영업수익률 약 72~73%)입니다 <span class="src co">회사</span>.</li>
+</ul>
+
+<h3>2.5 시장 규모</h3>
+<div class="fig">
+<div class="cap">그림 4. 글로벌 ENS 시장 규모 추정 (억 달러)</div>
+<div class="chart"><canvas id="cMarket" aria-label="ENS 시장 규모"></canvas></div>
+<div class="see">이 그림에서 볼 것: 10년 동안 약 5배가 됐습니다(2012→2022 연평균 18%). 2022년에는 +3.9%로 꺾였다가 2024~25년 9~12%로 회복했습니다. 출처가 Integrity Research와 Inex One 계열 하나뿐이고, Inex One은 ENS 마켓플레이스를 운영하는 이해관계자입니다 <span class="src">추정</span>. QYResearch는 범위를 넓게 잡아 2024년 37.7억 달러로 봅니다.</div>
+</div>
+<p>규모를 맞춰 보면 이렇습니다. 비자스크 연결 취급고 145억 엔은 약 9,700만 달러이고, 글로벌 시장(약 30억 달러)의 3% 수준입니다. 해외(Coleman) 3,800만 달러는 약 1.3%입니다 <span class="src calc">제 계산</span>. 세계적으로는 중소형 업체이지만, <b>일본에서는 사실상 유일한 상장 ENS이자 국내 1위</b>입니다. 회사는 국내 점유율을 '압도적'으로 추정합니다 <span class="src co">회사</span>.</p>
+
+<h3>2.6 사이클과 고객 구성</h3>
+<div class="fig">
+<div class="cap">그림 5. ENS 지출 비중과 고객 수 비중 (Inex One 2026, %)</div>
+<div class="chart"><canvas id="cMix" aria-label="고객 구성"></canvas></div>
+<div class="see">이 그림에서 볼 것: <b>기업 고객은 수로는 약 45%로 가장 많은데 지출은 약 10%</b>에 그칩니다. 비자스크 국내 사업법인이 노리는 곳이 바로 이 '아직 덜 쓰는' 고객층입니다. 컨설팅 '약 절반', 기업 '약 10%'는 원문이 대략값이라 그대로 옮겼습니다 <span class="src">추정</span>.</div>
+</div>
+<p>사이클: 2020~21년 저금리·거래 붐 → 2022년 성장 +3.9%로 둔화, 업계 채용공고는 고점 대비 -50% → 2022~23년 PE와 실사 정체 → 2024~25년 회복. 비자스크 주가가 2021년에 고점을 찍은 것도 이 사이클의 정점과 같습니다.</p>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>ENS는 '경험 1시간'을 중개해 사례비를 뺀 큰 몫을 남기는 인력 중심 사업입니다.</li>
+<li>시장은 약 30억 달러로 연 11~12% 성장 중이지만 M&amp;A·투자 사이클을 탑니다.</li>
+<li>기업 고객은 수는 많은데 아직 덜 쓰는 영역이고, 비자스크가 여기서 강합니다.</li></ul></div>
+</section>
+
+<section id="s3">
+<h2><span class="no">03</span>국내는 왜 잘되나</h2>
+
+<div class="kpis">
+  <div class="kpi"><div class="l">국내 사업법인 취급고</div><div class="v">+20.1%</div><div class="s">상반기 (2Q +23.7%)</div></div>
+  <div class="kpi"><div class="l">컨설·금융(국내 고객)</div><div class="v">+25.4%</div><div class="s">상반기 (2Q +34.1%)</div></div>
+  <div class="kpi"><div class="l">해외(Coleman)</div><div class="v">+2.4%</div><div class="s">엔 기준 (2Q +0.8%)</div></div>
+  <div class="kpi"><div class="l">조정 EBITDA</div><div class="v">7.6억</div><div class="s">상반기 +93.7%</div></div>
+</div>
+
+<div class="fig">
+<div class="cap">그림 6. 사업별 연간 취급고 (억 엔) — 23/2기 ~ 26/2기</div>
+<div class="chart"><canvas id="cSeg" aria-label="사업별 취급고"></canvas></div>
+<div class="see">이 그림에서 볼 것: 23/2기에는 해외가 전체의 52%였습니다. 26/2기에는 국내 2개 사업이 61%로 역전했습니다 <span class="src calc">제 계산</span>. 지금 비자스크의 성장 엔진은 국내입니다.</div>
+</div>
+
+<h3>3.1 이유 ① 일본 컨설팅 호황: 컨설·금융(국내 고객)</h3>
+<p>컨설팅사는 프로젝트마다 업계 인터뷰를 수십 건씩 돌립니다. 그래서 컨설팅 매출이 늘면 ENS 이용도 따라 늘어납니다. 일본 컨설팅 대장주 <b>베이커런트의 6~8월 매출은 483억 엔으로 +41.5%</b>였습니다 <span class="src co">결산단신</span>. IDC Japan은 국내 비즈니스 컨설팅 시장이 2024년 7,987억 엔에서 2029년 1조 2,832억 엔으로 연 9.9% 성장한다고 봅니다 <span class="src co">회사 인용</span>. AI 도입과 DX(디지털 전환) 지원 수요가 이 성장을 끌고 있습니다.</p>
+<p>이 부문 2분기 사업이익률은 40.2%로 3개 사업 중 가장 높습니다. 컨설팅 고객은 속도가 생명이라 매칭이 빠르면 바로 건수로 이어집니다.</p>
+
+<h3>3.2 이유 ② 일본 고객의 해외 전문가 수요(+45%)</h3>
+<p>일본 컨설팅사와 기업이 "미국 데이터센터 전력 기기 구매 담당자", "유럽 배터리 재활용 업체 전직자"처럼 <b>해외 현장의 목소리</b>를 찾는 건수가 상반기 +45%였습니다(계획 +27%) <span class="src co">회사</span>. 회사가 꼽은 원인은 네 가지입니다.</p>
+<ul>
+  <li><b>Coleman이 가져온 해외 전문가 DB(약 59만 명).</b> 인수 자체는 실패했지만 이 자산이 국내 매출로 돌아오고 있습니다.</li>
+  <li><b>AI Scout:</b> 초기 후보 목록을 약 5분 만에 냅니다. 속도가 경쟁력인 컨설팅 고객에게 바로 통합니다.</li>
+  <li><b>3개 거점 24시간 체계:</b> 도쿄·뉴욕·런던(+보고타) 순환 근무로 밤사이에 섭외가 이뤄집니다.</li>
+  <li><b>AI 인터뷰 기능:</b> 언어·시차 장벽을 낮춥니다.</li>
+</ul>
+<div class="q"><b class="t">왜 이렇게 되지?</b> 왜 일본 고객은 GLG 같은 글로벌 업체 대신 비자스크에 해외 전문가를 맡기나? → 일본어로 요건을 정리하고, 일본어 통역·요약까지 붙여 주는 쪽이 편하기 때문이라는 것이 회사 설명입니다. 회사는 국내 컨설턴트의 해외 인터뷰 건수가 국내 인터뷰와 "대략 같은 규모"라고 추정하고, 여기서 점유율을 넓히겠다고 밝혔습니다 <span class="src co">회사</span>. 실제 점유율 숫자는 공개되지 않았습니다.</div>
+
+<h3>3.3 이유 ③ 기업 고객 크로스셀(+50%)</h3>
+<p>국내 사업법인은 대기업 신규사업 부서가 주 고객입니다. 프라임 상장사 4곳 중 1곳이 쓰고 있습니다. 인터뷰로 들어온 고객에게 설문, 24시간 답변(now), 리포트, 프로젝트 수탁, 업무위탁 소개, 채용 중개를 함께 팝니다. 신규 상품 영업수익은 상반기 +50%(계획 +17%)였습니다 <span class="src co">회사</span>.</p>
+
+<div class="fig">
+<div class="cap">그림 7. 국내 사업법인의 취급고 대비 영업수익률 (분기, %)</div>
+<div class="chart"><canvas id="cTake" aria-label="취급고 대비 영업수익률"></canvas></div>
+<div class="see">이 그림에서 볼 것: 2년에 걸쳐 59%에서 64~65%로 천천히 올랐습니다. 가격을 올린 것이 아니라 회사 몫이 큰 상품(리포트·프로젝트) 비중이 늘어난 결과로 보입니다 <span class="src calc">제 해석</span>. 그래서 2분기 영업수익(+31.6%)이 취급고(+23.7%)보다 빨리 늘었습니다.</div>
+</div>
+
+<h3>3.4 이유 ④ 전문가 풀 확대: Eight 독점 제휴</h3>
+<p>2026년 3월 산산의 명함 앱 Eight과 ENS 업계 독점 제휴를 맺었습니다. 기존 등록 전문가 75만 명 이상에 더해, <b>Eight 사용자 400만 명 이상에게 인터뷰를 제안할 수 있게 됐습니다</b> <span class="src">보도</span>. 국내 인터뷰의 병목은 '희귀한 전문가를 찾는 것'이라 공급 측 확대에 해당합니다.</p>
+
+<div class="fig">
+<div class="cap">그림 8. 27/2기 KPI: 회사 계획 vs 상반기 실적 (전년 대비 %)</div>
+<div class="chart"><canvas id="cKpi" aria-label="KPI 계획 대비 실적"></canvas></div>
+<div class="see">이 그림에서 볼 것: 해외 전문가 인터뷰(+45%)와 신규 상품(+50%)이 계획을 크게 넘었습니다. 반면 <b>핵심 상품인 국내 전문가 인터뷰는 +5%로 계획(+8%)에 못 미쳤습니다.</b> 성장이 '새로운 쪽'에서 나오고, 본업 인터뷰는 느리다는 점이 반론의 근거가 됩니다(8장).</div>
+</div>
+
+<div class="fig">
+<div class="cap">그림 9. 국내 성장 동력 지도</div>
+<pre class="mermaid">
+mindmap
+  root((국내 성장))
+    수요
+      컨설팅 호황
+      신규사업 조사
+      해외 진출 조사
+    공급
+      Eight 400만 명
+      해외 DB 59만 명
+      AI Scout 5분
+    상품
+      설문과 now
+      리포트와 프로젝트
+      업무위탁과 채용
+      compass AI
+</pre>
+<div class="see">이 그림에서 볼 것: 수요(컨설팅 호황)는 회사가 바꿀 수 없는 외부 요인이고, 공급·상품은 회사가 만든 요인입니다. 외부 요인이 꺾여도 회사가 만든 요인이 남는지가 지속성의 관건입니다.</div>
+</div>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>국내 컨설·금융은 일본 컨설팅 호황과 해외 전문가 수요(+45%)를 동시에 탔습니다.</li>
+<li>국내 기업 고객은 크로스셀로 신규 상품 +50%, 수수료율도 오르는 중입니다.</li>
+<li>단, 본업인 국내 인터뷰 건수는 +5%로 느립니다. 성장이 신규 영역에 몰려 있습니다.</li></ul></div>
+</section>
+
+<section id="s4">
+<h2><span class="no">04</span>해외(Coleman)는 고쳐지나</h2>
+<h3>4.1 현재 상태: 엔화 착시를 걷어내면 감소</h3>
+<div class="fig">
+<div class="cap">그림 10. 해외 사업 취급고 — 엔 vs 달러 환산</div>
+<div class="chart"><canvas id="cOverseas" aria-label="해외 취급고 엔과 달러"></canvas></div>
+<div class="see">이 그림에서 볼 것: 엔 기준으로는 횡보처럼 보이지만, 달러로 바꾸면 23/2기 4,940만 달러 → 26/2기 3,800만 달러로 약 -23%입니다. 상반기도 달러 기준 약 -3%입니다 <span class="src calc">제 계산</span>(회사 공시 엔화 값 ÷ 회사 공시 평균환율). 같은 기간 시장은 연 9~12% 컸으니 점유율이 줄어든 것입니다.</div>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>해외 사업</th><th class="n">23/2기</th><th class="n">24/2기</th><th class="n">25/2기</th><th class="n">26/2기</th><th class="n">27/2기 상반기</th></tr></thead>
+<tbody>
+<tr><td>취급고(백만 엔)</td><td class="n">6,471</td><td class="n">5,743</td><td class="n">6,248</td><td class="n">5,693</td><td class="n">2,998</td></tr>
+<tr><td>평균환율(엔/달러)</td><td class="n">131</td><td class="n">140</td><td class="n">151</td><td class="n">150</td><td class="n">158</td></tr>
+<tr><td>달러 환산(백만 달러) <span class="src calc">제 계산</span></td><td class="n">49.4</td><td class="n">41.0</td><td class="n">41.4</td><td class="n">38.0</td><td class="n">19.0</td></tr>
+<tr><td>사업이익률</td><td class="n">—</td><td class="n">—</td><td class="n">약 20%</td><td class="n">22%</td><td class="n">14.7%</td></tr>
+</tbody></table></div>
+
+<h3>4.2 회사가 하는 일</h3>
+<div class="tbl"><table>
+<thead><tr><th>조치</th><th>시점</th><th>무엇을 고치나</th><th>효과 확인</th></tr></thead>
+<tbody>
+<tr><td>사내 AI 매칭(DB 검색 자동화)</td><td>22~25년 전면 도입</td><td>인당 생산성</td><td><span class="pill g">확인</span> 해외 인당 취급고 약 +20%(22→25년) <span class="src co">회사</span></td></tr>
+<tr><td>일본·미국 공통 플랫폼 이전</td><td>25년~</td><td>DB 공유, 컴플라이언스</td><td><span class="pill g">확인</span> 국내 고객의 해외 인터뷰 +45%로 연결</td></tr>
+<tr><td>미국 컨설·기업 담당 VP 영입</td><td>26년 3월</td><td>영업력</td><td><span class="pill y">부분</span> 미국 인터뷰 두 자릿수 성장</td></tr>
+<tr><td>남미 보고타 거점</td><td>26년 8월</td><td>저비용 리서치 인력, 미주 시간대 대응</td><td><span class="pill y">미확인</span> 하반기부터 반영</td></tr>
+<tr><td>AI Scout 해외 적용</td><td>26년~</td><td>섭외 속도</td><td><span class="pill y">미확인</span></td></tr>
+<tr><td>미국 외 지역·설문 재강화</td><td>26년 하반기</td><td>작년 잘됐던 설문의 부진</td><td><span class="pill r">미진</span> 2Q 사업이익 -30%</td></tr>
+</tbody></table></div>
+<p>회사는 해외 사업이익 감소(-16%)를 "잘 되는 미국에 계획대로 투자한 결과"라고 설명합니다. 27/2기 해외 계획 자체가 취급고 +5%, 사업이익률 15% 전후로 낮게 잡혀 있었습니다 <span class="src co">회사</span>.</p>
+
+<h3>4.3 고쳐질 수 있나: 업계 흐름과 맞춰 보기</h3>
+<div class="fig">
+<div class="cap">그림 11. ENS 업체 포지셔닝 (제 판단)</div>
+<pre class="mermaid">
+quadrantChart
+  title AI 전환 대응 vs 성장 탄력
+  x-axis AI·콘텐츠 대응 낮음 --> AI·콘텐츠 대응 높음
+  y-axis 성장 정체 --> 성장 탄력
+  quadrant-1 재편의 승자
+  quadrant-2 수요는 있으나 방어 필요
+  quadrant-3 밀려나는 쪽
+  quadrant-4 전환 중
+  AlphaSense: [0.88, 0.85]
+  Dialectica: [0.45, 0.78]
+  Guidepoint: [0.72, 0.6]
+  Third Bridge: [0.75, 0.58]
+  GLG: [0.7, 0.35]
+  비자스크 국내: [0.55, 0.72]
+  Coleman: [0.3, 0.25]
+</pre>
+<div class="see">이 그림에서 볼 것: 좌표는 공개 정보(성장률·AI 제품 출시)를 바탕으로 한 제 판단이며 측정값이 아닙니다 <span class="src calc">제 판단</span>. Coleman은 '투자자 대상 1:1 통화'에 무게가 실린 1세대 뉴욕 업체입니다. Inex One이 성장이 느리다고 지목한 유형과 겹칩니다.</div>
+</div>
+<p><b>고쳐질 수 있는 것:</b> 마진과 생산성입니다. AI 매칭으로 인당 취급고가 이미 20% 올랐고, 보고타 같은 저비용 거점과 AI Scout가 붙으면 같은 매출로 더 많은 이익을 낼 수 있습니다. 미국 인터뷰 건수가 두 자릿수로 늘고 있다는 점도 '수요가 사라진 것은 아니다'라는 증거입니다.</p>
+<p><b>고치기 어려운 것:</b> 점유율입니다. 업계의 돈이 녹취록 라이브러리(AlphaSense·Tegus 20만 건 이상, Third Bridge·Guidepoint 각 10만 건 이상)와 AI 진행 인터뷰, MCP 연결로 옮겨 가고 있습니다. Coleman은 이 영역에서 공개된 대형 제품이 없습니다(검색으로 확인되지 않음). 이 경쟁을 따라잡으려면 Coleman 규모로는 감당하기 어려운 투자가 필요합니다 <span class="src calc">제 판단</span>.</p>
+<p><b>현실적인 결론:</b> 해외는 '성장 엔진'보다는 <b>국내에 해외 전문가를 공급하는 글로벌 DB이자, 마진을 지키는 사업</b>으로 자리 잡는 것이 가장 그럴듯한 경로입니다. 회사 전략(Global ENS 통합 운영)도 이 방향과 일치합니다.</p>
+<div class="q"><b class="t">왜 이렇게 되지?</b> 왜 미국 인터뷰 건수는 두 자릿수로 느는데 해외 취급고는 제자리일까? → 회사는 미국 외 지역과 설문(서베이)이 부진했고, 26/2기 4분기에는 "일부 대형 고객의 수요 감소"가 있었다고 밝혔습니다. 건당 단가 변화는 공개되지 않았습니다. AI 인터뷰 확산에 따른 가격 압박이 섞여 있는지는 확인되지 않습니다.</div>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>해외 취급고는 달러 기준 3년간 약 -23%, 상반기도 약 -3%로 점유율을 잃고 있습니다.</li>
+<li>AI·저비용 거점으로 마진과 생산성은 개선할 수 있습니다(인당 +20% 실적 있음).</li>
+<li>업계가 라이브러리·AI로 재편되는 중이라 점유율 회복은 어렵다고 봅니다. 해외는 국내를 받치는 DB 역할이 현실적입니다.</li></ul></div>
+</section>
+
+<section id="s5">
+<h2><span class="no">05</span>기업 지도</h2>
+<h3>5.1 일본 상장 관련 기업</h3>
+<div class="tbl"><table>
+<thead><tr><th>기업(코드)</th><th>연결고리</th><th>노출도</th><th class="n">시총</th><th class="n">1M</th><th class="n">3M</th><th class="n">YTD</th><th>최근 분기</th></tr></thead>
+<tbody>
+<tr><td><b>비자스크(4490)</b></td><td>일본 1위 ENS, Coleman 보유</td><td>높음</td><td class="n">71억 엔</td><td class="n">+16%</td><td class="n">+22%</td><td class="n">+62%</td><td>2Q 영업수익 +18%, 조정 EBITDA +118%</td></tr>
+<tr><td>베이커런트(6532)</td><td>국내 컨설팅 수요 지표</td><td>간접</td><td class="n">1.70조 엔</td><td class="n">+46%</td><td class="n">+79%</td><td class="n">+81%</td><td>6~8월 매출 +41.5%, 영업이익 +39.3%</td></tr>
+<tr><td>산산(4443)</td><td>Eight 운영, 비자스크와 독점 제휴</td><td>간접</td><td class="n">2,637억 엔</td><td class="n">-2%</td><td class="n">+18%</td><td class="n">+22%</td><td>6~8월 매출 +20.1%</td></tr>
+<tr><td>하쿠호도DY(2433)</td><td>비자스크 지분 0.43%, compass 공동 개발</td><td>낮음</td><td class="n">5,233억 엔</td><td class="n">+14%</td><td class="n">+19%</td><td class="n">+28%</td><td>4~6월 영업이익 +19.4%</td></tr>
+<tr><td>INTLOOP(9556)</td><td>프리 컨설턴트 매칭</td><td>중간</td><td class="n">197억 엔</td><td class="n">-13%</td><td class="n">+14%</td><td class="n">-47%</td><td>5~7월 매출 +19.3%</td></tr>
+<tr><td>미라이웍스(6563)</td><td>프리 컨설턴트 매칭</td><td>중간</td><td class="n">23억 엔</td><td class="n">-2%</td><td class="n">-11%</td><td class="n">-29%</td><td>8월 통기 예상 하향</td></tr>
+<tr><td>랜서스(4484)</td><td>전문 인력 플랫폼</td><td>낮음</td><td class="n">45억 엔</td><td class="n">-6%</td><td class="n">-2%</td><td class="n">-5%</td><td>4~6월 매출 +15.5%</td></tr>
+<tr><td>크라우드웍스(3900)</td><td>크라우드소싱</td><td>낮음</td><td class="n">110억 엔</td><td class="n">+3%</td><td class="n">+1%</td><td class="n">-16%</td><td>4~6월 매출 -9.0%</td></tr>
+<tr><td>인테지HD(4326)</td><td>시장조사·설문(비자스크 survey와 겹침)</td><td>낮음</td><td class="n">733억 엔</td><td class="n">-4%</td><td class="n">-2%</td><td class="n">+10%</td><td>4~6월 매출 +4.1%</td></tr>
+</tbody></table></div>
+<p class="note">주가는 2026-10-23 장중 기준, 등락률은 총수익 기준(야후)입니다. 비자스크 시총은 보통주 기준이며, 우선주 등을 포함한 희석 후 주식 수(1,270만 주)로는 약 97억 엔입니다 <span class="src calc">제 계산</span>. 유저베이스(MIMIR·스피다 엑스퍼트 리서치 운영, 국내 경쟁사)와 마크로밀은 상장폐지됐습니다.</p>
+
+<h3>5.2 글로벌 업체 (대부분 비상장)</h3>
+<div class="tbl"><table>
+<thead><tr><th>업체</th><th>위치</th><th>규모·최근 동향</th></tr></thead>
+<tbody>
+<tr><td>GLG</td><td>업계 1위급</td><td>점유율 10년간 51%→24%(Inex One). 2026년 7~8월 MCP 커넥터, 10개 언어 AI 진행 통화</td></tr>
+<tr><td>AlphaSights</td><td>1위급</td><td>직원 2,000명 이상. 매출 추정치는 편차가 커서 미검증</td></tr>
+<tr><td>Guidepoint</td><td>대형</td><td>2026-05 'AI 기반 전문가 인사이트 플랫폼'으로 재정의, 녹취록 10만 건 이상</td></tr>
+<tr><td>Third Bridge</td><td>대형</td><td>녹취록 라이브러리가 매출의 약 25%, 이익의 대부분(업계 전언). 2026-03 MCP</td></tr>
+<tr><td><b>AlphaSense</b></td><td>콘텐츠·AI 플랫폼</td><td>2024-07 Tegus 9.3억 달러 인수. 2026-06 기업가치 75억 달러, ARR 6억 달러 초과</td></tr>
+<tr><td>Dialectica</td><td>고성장</td><td>2024년 매출 약 1.2억 달러(+39%) 추정</td></tr>
+<tr><td>Qualitate·Ethos</td><td>AI 신생</td><td>AI 진행자로 "비용 1/3" 주장(Qualitate 700만 달러), a16z 투자(Ethos 2,275만 달러)</td></tr>
+</tbody></table></div>
+
+<h3>5.3 지금 가장 주목받는 기업</h3>
+<div class="co-card"><h4>비자스크(4490) — 일본 유일의 상장 ENS</h4>
+<p class="def">인터뷰 중개에서 출발해 설문·리포트·업무위탁·채용으로 넓힌 '지식 플랫폼'. 매출 구성(상반기 취급고): 국내 사업법인 33%, 컨설·금융 국내 30%, 해외 37% <span class="src calc">제 계산</span>.</p>
+<ul>
+  <li><b>왜 지금:</b> ① 10/15 상반기 영업이익 +70%, 통기 진척률 61% ② 국내 2분기 가속(+24%, +34%) ③ 10/15 compass 출시 ④ 4/14 하쿠호도 제휴와 경영진 자사주 매입.</li>
+  <li><b>숫자:</b> 27/2기 회사 계획 취급고 159.9억 엔, 영업이익 14.0억 엔, 순이익 7.5억 엔, EPS 52.53엔 → PER 약 14.5배 <span class="src calc">제 계산</span>. 2029년 목표 취급고 300억 엔(연평균 약 20% 필요).</li>
+  <li><b>기대:</b> 가이던스 상향 여지(하반기 영업이익을 -34%로 잡은 셈).</li>
+  <li><b>걱정:</b> 우선주(8장), 해외 정체, 얇은 거래량, 커버리지 부재.</li>
+</ul></div>
+<div class="co-card"><h4>베이커런트(6532) — 국내 수요의 온도계</h4>
+<p class="def">일본 독립계 컨설팅 대형사. 비자스크 컨설·금융 국내 부문의 고객 업황을 대신 보여 줍니다.</p>
+<ul><li><b>왜 지금:</b> 6~8월 매출 483억 엔(+41.5%), 발표 다음 날 +17%로 상장 이래 최고가입니다. 컨설팅 호황이 꺾이지 않았다는 신호입니다.</li>
+<li><b>확인할 것:</b> 컨설팅사 채용 속도. 컨설턴트 수가 ENS 이용 건수를 좌우합니다.</li></ul></div>
+<div class="co-card"><h4>AlphaSense(비상장) — 업계 재편의 기준점</h4>
+<p class="def">시장 정보 검색 플랫폼. Tegus를 인수해 전문가 녹취록 라이브러리 최대 보유사가 됐습니다.</p>
+<ul><li><b>왜 지금:</b> 2026-06 기업가치 75억 달러(직전의 약 2배), ARR 6억 달러 초과, 액센츄어가 전략 채널 파트너가 됐습니다. 시장이 'ENS의 가치는 AI에 붙는 콘텐츠에 있다'고 값을 매긴 사례입니다.</li>
+<li><b>비자스크와의 관계:</b> 해외에서는 직접적인 위협입니다. 일본어 콘텐츠와 국내 기업 고객 쪽은 아직 비어 있습니다.</li></ul></div>
+<div class="co-card"><h4>산산(4443)·하쿠호도DY(2433) — 비자스크의 제휴 상대</h4>
+<ul><li>산산의 Eight은 국내 전문가 공급을, 하쿠호도는 기업 마케팅 고객과 AI 개발 역량을 보탭니다. 둘 다 비자스크 매출 비중은 미미해서 '노출도'는 낮습니다.</li></ul></div>
+
+<h3>5.4 덜 주목받은 연결고리 <span class="src calc">가설</span></h3>
+<ul>
+  <li><b>'ENS·컨설팅은 강하고 프리랜서 매칭은 약하다'</b>: 같은 '외부 인재' 테마인데 미라이웍스·크라우드웍스는 부진합니다. 고객이 사람을 오래 쓰는 것보다 짧고 깊게 묻는 쪽에 돈을 쓰고 있다는 해석이 가능합니다.</li>
+  <li><b>AI 연구소의 전문가 수요</b>(Mercor 등): AI 학습용 전문가 라벨링이 커지고 있습니다. 비자스크의 80만 명 DB가 이 시장에 들어갈 여지가 있지만, 회사는 아직 언급한 적이 없습니다.</li>
+</ul>
+<div class="fig">
+<div class="cap">그림 12. 비자스크 분기 영업수익과 영업이익 (억 엔)</div>
+<div class="chart tall"><canvas id="cQ" aria-label="분기 영업수익과 영업이익"></canvas></div>
+<div class="see">이 그림에서 볼 것: 24/2기까지는 영업적자였습니다. 25/2기부터 흑자가 정착했고, 27/2기 들어 분기 영업이익 4억 엔대가 이어집니다. 분기 영업수익은 4분기 연속 전년 대비 증가입니다.</div>
+</div>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>순수 ENS 상장사는 세계적으로 비자스크가 사실상 유일해 직접 비교할 피어가 없습니다.</li>
+<li>국내 수요 지표(베이커런트)는 매우 강하고, 프리랜서 매칭주는 약합니다.</li>
+<li>글로벌 기준점은 AlphaSense(콘텐츠+AI)로, 1:1 중개만으로는 가치를 인정받기 어렵다는 신호입니다.</li></ul></div>
+</section>
+
+<section id="s6">
+<h2><span class="no">06</span>시장은 어떻게 보나</h2>
+<h3>6.1 글로벌 기관·업계</h3>
+<div class="tbl"><table>
+<thead><tr><th>기관</th><th>날짜</th><th>견해</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>Inex One</td><td>2025-04, 2026</td><td><span class="pill g">강세</span> 업계 두 자릿수 성장 복귀</td><td>PE 회복, 설문 성장. 다만 투자자 대상 1:1 통화는 라이브러리에 잠식</td></tr>
+<tr><td>Integrity Research</td><td>2026-10-19</td><td><span class="pill y">중립</span> 셀프서브 모델의 위협은 "실재하지만 존망 수준은 아님"</td><td>Inex One 셀프서브 요금제 출시</td></tr>
+<tr><td>AlphaSense 투자자(Vitruvian·JPM AM 등)</td><td>2026-06</td><td><span class="pill g">강세</span> 콘텐츠+AI 플랫폼에 높은 가치</td><td>75억 달러, ARR 6억 달러 초과</td></tr>
+<tr><td>AlphaSense·Qualitate</td><td>2026</td><td><span class="pill r">기존 ENS에 약세</span> AI 인터뷰로 비용 1/3~70% 절감 주장</td><td>회사 자체 주장</td></tr>
+<tr><td>NewtonX</td><td>2026</td><td><span class="pill y">중립</span> 합성 페르소나는 1차 조사의 "보완재이지 대체재가 아님"</td><td>B2B 데이터 부족</td></tr>
+</tbody></table></div>
+<p class="note">Bain·McKinsey·PitchBook·Bloomberg의 ENS 분석은 검색으로 찾지 못했습니다.</p>
+
+<h3>6.2 일본 현지 셀사이드와 개인투자자</h3>
+<ul>
+  <li><b>커버리지 없음:</b> 야후 컨센서스와 株予報 모두 추정치·목표주가·투자의견이 없습니다. 스폰서드 리서치도 찾지 못했습니다. 집계 사이트 목표가(776~1,079엔)는 근거가 확인되지 않아 쓰지 않습니다.</li>
+  <li><b>개인투자자 강세론:</b> "영업이익 +70%로 부활, 국내 GMV 가속, 저평가". 10/20~21에 이틀 연속 연초 이후 최고가를 냈습니다 <span class="src">X</span>.</li>
+  <li><b>개인투자자 약세론:</b> "우선주 현금 매입 부담이 사실상 장부 밖 부채", "AI가 인터뷰를 대체하는 리스크를 중기계획이 다루지 않는다", "호가가 얇다" <span class="src">X</span>.</li>
+</ul>
+<div class="fig">
+<div class="cap">그림 13. 상반기 실적 발표 전후 주가 (엔, 2026-09-01 ~ 10-23)</div>
+<div class="chart"><canvas id="cPriceNear" aria-label="실적 전후 주가"></canvas></div>
+<div class="see">이 그림에서 볼 것: 발표 당일 670엔에서 4거래일 만에 830엔까지 올랐다가 764엔으로 일부 되돌렸습니다. 가격을 받쳐 주는 기관 기준점이 없어 개인 수급에 따라 크게 출렁입니다.</div>
+</div>
+
+<h3>6.3 시각 차이와 그 의미</h3>
+<ol>
+  <li><b>AI는 위협인가 수혜인가:</b> 글로벌 신생사는 '대체'를, 비자스크 경영진은 "미국 인터뷰 두 자릿수 성장이 답"이라고 말합니다. 국내 인터뷰 +5%(계획 미달)는 어느 쪽으로도 읽힐 수 있습니다.</li>
+  <li><b>가이던스:</b> 회사는 하반기 투자로 "예상 수준 착지"를 말하고, 개인투자자는 상향을 기대합니다.</li>
+  <li><b>무엇에 값을 매기나:</b> 글로벌 시장은 '콘텐츠+AI'에 값을 매기고, 일본 개인투자자는 '이익 회복'에 값을 매기고 있습니다.</li>
+</ol>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>글로벌에서는 AI가 ENS의 상품 형태를 바꾼다는 데 이견이 없고, 승자는 콘텐츠·AI를 가진 쪽입니다.</li>
+<li>비자스크는 셀사이드 기준점이 없어 개인 수급으로 가격이 정해집니다.</li>
+<li>가장 큰 시각 차는 우선주 문제를 얼마나 무겁게 보느냐입니다.</li></ul></div>
+</section>
+
+<section id="s7">
+<h2><span class="no">07</span>판정: 거대한 흐름의 시작인가?</h2>
+<div class="tbl"><table>
+<thead><tr><th>기준</th><th>판정</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>① 수요의 성격</td><td><span class="dot y"></span> 🟡</td><td>국내 컨설팅 시장(연 9.9% 전망)과 기업 신규사업 조사는 구조적입니다. 반면 컨설·금융 수요는 M&amp;A 사이클을 타고(3분기 둔화), AI 대체 압력도 있습니다.</td></tr>
+<tr><td>② 공급 병목·해자</td><td><span class="dot y"></span> 🟡</td><td>국내 23만 명 DB, 일본어, Eight 독점은 해자입니다. 그러나 ENS는 진입장벽이 낮고(업계 분절화), 해외에서는 해자가 없습니다.</td></tr>
+<tr><td>③ 이익으로 확인</td><td><span class="dot g"></span> 🟢</td><td>상반기 조정 EBITDA +94%, 국내 2개 사업 사업이익 +46%·+34%, 수수료율 상승. 4분기 연속 영업수익 증가.</td></tr>
+<tr><td>④ 확산 범위</td><td><span class="dot r"></span> 🔴</td><td>강한 곳은 비자스크 국내와 컨설팅뿐입니다. 프리랜서 매칭주는 부진하고, 해외 ENS(Coleman)는 역성장, 글로벌 1위권(GLG)도 점유율 하락 중입니다.</td></tr>
+<tr><td>⑤ 시장 인지 단계</td><td><span class="dot g"></span> 🟢</td><td>커버리지 0, PER 약 14.5배, 2021년 고점 대비 -86%. 다만 우선주 때문에 '싸다'는 계산이 단순하지 않습니다.</td></tr>
+<tr><td>⑥ 촉매와 지속성</td><td><span class="dot y"></span> 🟡</td><td>3분기 실적(1월), 통기·새 가이던스(4월), compass 성과. 우선주 처리 방향은 불확실합니다.</td></tr>
+</tbody></table></div>
+<div class="fig">
+<div class="cap">그림 14. 6개 기준 점수 (0~3, 제 판단)</div>
+<div class="chart tall"><canvas id="cRadar" aria-label="판정 레이더"></canvas></div>
+<div class="see">이 그림에서 볼 것: '이익'과 '덜 알려짐'은 강하고 '확산'이 약합니다. 전형적인 <b>개별 기업의 턴어라운드</b> 모양이고, 산업 전체가 함께 오르는 '거대한 흐름'의 모양은 아닙니다.</div>
+</div>
+<div class="verdict">
+<div class="v">판정: <em>초기 확산 — 일본 국내 지식 플랫폼에 한정</em> (확신도 하~중)</div>
+<p style="margin:10px 0 0">③⑤가 🟢, ①②⑥이 🟡, ④가 🔴입니다. 글로벌 ENS 산업 전체로 보면 '거대한 흐름의 시작'이 아니라 <b>성숙 산업이 AI로 재편되는 단계</b>입니다. 비자스크 국내 사업은 수요·실적이 처음 확인된 '초기 확산'에 가깝습니다.</p>
+<ul>
+  <li><b>올릴 조건:</b> 3·4분기에도 국내 2개 사업 취급고 +20% 이상 유지, 국내 인터뷰 건수 회복(+8% 이상), 우선주 해결안 공시.</li>
+  <li><b>낮출 조건:</b> 국내 컨설·금융 성장률 +15% 미만으로 둔화, 수수료율 하락 반전, 우선주가 대규모 보통주 희석으로 처리.</li>
+</ul>
+</div>
+
+<h3>7.1 과거 흐름과 비교</h3>
+<div class="tbl"><table>
+<thead><tr><th>항목</th><th>비자스크 1차 붐 (2020~21)</th><th>지금 (2026)</th></tr></thead>
+<tbody>
+<tr><td>처음 나온 신호</td><td>2020년 3월 상장, 코로나 이후 원격 인터뷰 수요</td><td>26/2기 4분기(25.12~26.2) 국내 2개 사업 +15%</td></tr>
+<tr><td>숫자로 확인</td><td>21/2기 취급고 급증</td><td>2026-07 1Q, 2026-10 2Q</td></tr>
+<tr><td>성장 동력</td><td>저금리·M&amp;A 붐(외부 사이클) + 해외 인수</td><td>국내 컨설팅 호황(외부) + 크로스셀·AI(내부)</td></tr>
+<tr><td>주가</td><td>2021-11 인수 발표 시점에 5,480엔 고점</td><td>2025-12 472엔 바닥 → 764엔</td></tr>
+<tr><td>흐름을 꺾은 요인</td><td>2022년 금리 인상·M&amp;A 급감, Coleman 손상 144억 엔</td><td>(미정) M&amp;A 둔화, AI 대체, 우선주</td></tr>
+</tbody></table></div>
+<p><b>그때 이 신호를 봤다면:</b> 2021년의 성장은 '외부 사이클(M&amp;A)'과 '인수'로 만든 것이었고, 사이클이 꺾이자 함께 무너졌습니다. 이번에는 내부에서 만든 요인(크로스셀 +50%, 수수료율 상승, AI 매칭)이 섞여 있다는 점이 다릅니다. 다만 국내 컨설·금융은 여전히 컨설팅 경기를 따라갑니다. <b>2010~11년 PGR 내부자거래 사태</b>도 참고할 만합니다. 당시 "산업 존폐 위기"였지만 컴플라이언스가 진입장벽이 되면서 산업은 이후 10년간 5배로 컸습니다. AI도 '전문가 풀과 콘텐츠를 가진 업체'에게는 비슷하게 작용할 수 있습니다. 다만 이것은 비유일 뿐 증거는 아닙니다.</p>
+</section>
+
+<section id="s8">
+<h2><span class="no">08</span>반론과 리스크</h2>
+<div class="tbl"><table>
+<thead><tr><th>가장 강한 반론</th><th>증거</th><th>판단</th></tr></thead>
+<tbody>
+<tr><td><b>우선주가 보통주 가치를 누른다</b></td><td>A종 75,000주(75억 엔, IXGS), B종 13,817주(13.8억 엔, Coleman 매도자). 연 3% 누적 우선배당. 정관상 A종은 <b>언제든 금전 대가 취득(현금 상환)을 청구할 수 있지만, 분배가능액이 한도</b>입니다. 이익잉여금은 약 -109억 엔이고, 주주자본도 -11.6억 엔입니다. 당초 전환가는 3,724엔으로 현재 주가의 약 5배입니다.</td><td><span class="pill r">강함 → 리스크로 명시</span> 현금 상환은 당분간 법적으로 막혀 있지만, 이익이 쌓일수록 그 돈이 우선주 상환에 먼저 쓰일 수 있습니다. 보통주 배당·환원은 그 뒤입니다. 판정 확신도를 '하~중'으로 둔 가장 큰 이유입니다.</td></tr>
+<tr><td><b>AI가 인터뷰를 대체한다</b></td><td>Qualitate "비용 1/3", AlphaSense "70% 절감" 주장. 합성 페르소나 업체 Simile 기업가치 20억 달러. 비자스크 국내 인터뷰 건수 +5%로 계획 미달.</td><td><span class="pill y">일부 맞음 → 조건부</span> 가격 압박은 투자자 대상 해외 시장에서 먼저 나타납니다. 국내 기업 고객과 해외 전문가 수요(+45%)는 아직 늘고 있습니다. 국내 인터뷰 건수를 계속 지켜봐야 합니다.</td></tr>
+<tr><td><b>국내 호조는 컨설팅 경기일 뿐이다</b></td><td>베이커런트 +41.5% 호황, 글로벌 M&amp;A 3분기 급감, 9월 PE 거래 13개월 최저.</td><td><span class="pill y">일부 맞음</span> 컨설·금융(국내)은 경기를 탑니다. 기업 고객 부문(+20%)과 신규 상품은 상대적으로 덜 탑니다.</td></tr>
+<tr><td><b>해외는 구조적으로 회복할 수 없다</b></td><td>달러 취급고 3년 -23%, 업계의 라이브러리·AI 이동, Coleman에 라이브러리 제품 없음.</td><td><span class="pill r">대체로 맞음</span> 해외는 '성장'이 아니라 '마진·DB 역할'로 기대치를 낮춥니다(4장 반영).</td></tr>
+<tr><td><b>가이던스 미상향은 하반기 둔화 신호다</b></td><td>상반기 진척률 61%인데 유지. 하반기 영업이익 552백만 엔(-34%)을 의미합니다.</td><td><span class="pill y">판단 보류</span> 회사는 투자(인력·거점·AI)라고 설명합니다. 3분기 비용 내역으로 확인합니다.</td></tr>
+</tbody></table></div>
+<div class="fig">
+<div class="cap">그림 15. 리스크 지도: 영향 × 가능성 (제 판단)</div>
+<pre class="mermaid">
+quadrantChart
+  title 리스크 영향과 가능성
+  x-axis 가능성 낮음 --> 가능성 높음
+  y-axis 영향 작음 --> 영향 큼
+  quadrant-1 최우선 관리
+  quadrant-2 드물지만 치명적
+  quadrant-3 관찰
+  quadrant-4 자주 오지만 작음
+  우선주 희석·상환: [0.55, 0.85]
+  AI 인터뷰 가격 압박: [0.6, 0.6]
+  컨설팅 경기 둔화: [0.45, 0.65]
+  해외 추가 역성장: [0.7, 0.35]
+  컴플라이언스 사고: [0.15, 0.8]
+  유동성 부족: [0.8, 0.3]
+</pre>
+<div class="see">이 그림에서 볼 것: 가장 무거운 것은 우선주 처리 방식입니다. 컨설팅 경기와 AI 가격 압박은 국내 성장의 지속성을 직접 흔듭니다.</div>
+</div>
+<div class="summary"><b class="t">핵심 3줄</b><ul>
+<li>우선주(원금 약 89억 엔 + 누적배당)가 보통주 시총(71억 엔)보다 큽니다. 가장 강한 반론입니다.</li>
+<li>AI 대체와 컨설팅 경기 둔화는 '일부 맞는' 반론이라 조건으로 남깁니다.</li>
+<li>해외 회복 기대는 마진·DB 역할로 낮춰 잡는 것이 맞습니다.</li></ul></div>
+</section>
+
+<section id="s9">
+<h2><span class="no">09</span>앞으로 볼 것</h2>
+<div class="tbl"><table>
+<thead><tr><th>선행 지표</th><th>현재 값</th><th>주기</th><th>어디서</th></tr></thead>
+<tbody>
+<tr><td>컨설·금융(국내) 취급고 증가율</td><td class="n">2Q +34.1%</td><td>분기</td><td>결산설명자료</td></tr>
+<tr><td>국내 사업법인 영업수익 증가율 / 수익률</td><td class="n">+31.6% / 64%</td><td>분기</td><td>결산설명자료</td></tr>
+<tr><td>국내 전문가 인터뷰 건수</td><td class="n">+5% (계획 +8%)</td><td>분기</td><td>KPI 하이라이트</td></tr>
+<tr><td>해외 취급고(달러 환산)</td><td class="n">약 -3%</td><td>분기</td><td>설명자료 ÷ 환율</td></tr>
+<tr><td>베이커런트 매출 증가율</td><td class="n">+41.5%</td><td>분기</td><td>결산단신</td></tr>
+<tr><td>글로벌 M&amp;A·PE 거래액</td><td>3분기 급감</td><td>월</td><td>Mergermarket, LSEG</td></tr>
+</tbody></table></div>
+<p><b>반증 지표:</b> 국내 컨설·금융 +15% 미만, 국내 사업법인 수익률 하락 반전, 국내 인터뷰 건수 마이너스 전환, 우선주의 대규모 보통주 전환 공시. 이 중 하나가 나오면 판정을 '태동'으로 낮춥니다.</p>
+<div class="fig">
+<div class="cap">그림 16. 이벤트 캘린더</div>
+<pre class="mermaid">
+timeline
+  title 다음 확인 지점
+  2026-11 : 14회 신주예약권 행사기간 종료 11-01
+          : 하쿠호도DY 2Q 실적 11-10
+  2027-01 : 비자스크 3Q 실적
+          : 베이커런트 3Q 실적
+  2027-04 : 비자스크 통기 결산과 28/2기 가이던스
+          : Inex One 연간 업계 보고서
+  2027-05 : 우선주 관련 조항 시점 도래 가능성
+</pre>
+<div class="see">이 그림에서 볼 것: 가장 중요한 것은 2027년 4월 결산입니다. 2029년 300억 엔 목표로 가는 경로(연 약 20% 성장)를 새 가이던스가 보여 주는지 확인해야 합니다. 2027-05 항목은 2021년 공시상 회사의 현금 상환(콜) 가능 시점에 근거한 것으로, 현행 정관에서 다시 확인이 필요합니다.</div>
+</div>
+</section>
+
+<section id="s10">
+<h2><span class="no">10</span>복습 노트</h2>
+<h3>핵심 개념 10개</h3>
+<ol>
+  <li>ENS는 '현장 경험 1시간'을 중개해 사례비를 뺀 몫을 버는 사업입니다.</li>
+  <li>취급고는 고객이 낸 총액, 영업수익은 회사 몫입니다.</li>
+  <li>비자스크의 성장 엔진은 해외에서 국내로 옮겨 왔습니다(국내 비중 61%).</li>
+  <li>국내 컨설·금융은 컨설팅 경기와 해외 전문가 수요를 탑니다.</li>
+  <li>국내 기업 고객은 크로스셀로 상품 구성이 좋아지면서 수수료율이 오르고 있습니다.</li>
+  <li>Coleman은 달러 기준으로 3년간 약 -23% 줄었습니다.</li>
+  <li>업계는 1:1 통화에서 녹취록 라이브러리·AI 인터뷰·MCP로 재편 중입니다.</li>
+  <li>AlphaSense 75억 달러는 '콘텐츠+AI'에 붙는 가치를 보여 줍니다.</li>
+  <li>우선주는 보통주보다 먼저 돈을 받는 구조이며, 원금만 약 89억 엔입니다.</li>
+  <li>판정은 개별 기업 턴어라운드형 '초기 확산'이고, 산업 전체의 거대한 흐름은 아닙니다.</li>
+</ol>
+<h3>스스로 답해 볼 질문</h3>
+<details><summary>Q1. 국내 사업법인 영업수익이 취급고보다 빨리 느는 이유는?</summary><p>회사 몫이 큰 리포트·프로젝트 같은 상품 비중이 늘어서입니다. 수수료율 자체를 올렸다는 증거는 없습니다.</p></details>
+<details><summary>Q2. 해외 취급고가 엔화로는 +2.4%인데 왜 '감소'라고 하나?</summary><p>환율이 150엔에서 158엔으로 올랐기 때문입니다. 달러로 환산하면 약 -3%입니다.</p></details>
+<details><summary>Q3. Coleman 인수는 실패인데 왜 국내 성장에 도움이 되나?</summary><p>Coleman이 가져온 해외 전문가 DB(약 59만 명)와 24시간 거점을 일본 고객이 쓰고 있기 때문입니다. 국내 고객의 해외 전문가 인터뷰가 +45% 늘었습니다.</p></details>
+<details><summary>Q4. 우선주가 왜 보통주 주주에게 부담인가?</summary><p>누적 우선배당과 현금 상환 청구권이 보통주보다 앞섭니다. 이익이 쌓이면 상환 재원이 먼저 생기고, 전환되면 희석이 생깁니다. 지금은 분배가능액이 부족해 현금 상환이 막혀 있는 것으로 보입니다.</p></details>
+<details><summary>Q5. 이 흐름이 '거대한 흐름'이 아니라고 보는 결정적 이유는?</summary><p>확산 범위가 좁기 때문입니다. 강한 곳이 비자스크 국내와 컨설팅뿐이고, 같은 테마의 프리랜서 매칭주와 해외 ENS는 약합니다.</p></details>
+</section>
+
+<section id="log">
+<h2><span class="no">LOG</span>리서치 루프 로그</h2>
+<h3>1차 — "왜 이렇게 되지?" (산업 원리와 숫자)</h3>
+<ul>
+  <li>해외 취급고는 엔 기준이 맞나? → 공시 평균환율로 달러 환산. 3년 -23%, 상반기 -3%. 4장 표와 그림 10을 추가했습니다.</li>
+  <li>시장 규모 × 점유율 검산 → 비자스크 9,700만 달러는 글로벌 약 30억 달러의 3%, Coleman은 1.3%. 2.5절에 반영했습니다.</li>
+  <li>2024년 7월 주가 급등의 원인? → 7/12 1Q 영업이익 3.85억 엔(전년 -0.82억 엔) 발표와 시점이 겹칩니다. 기사로 확인하지는 못했습니다.</li>
+  <li>국내 점유율이 정말 압도적인가? → 회사 추정뿐입니다. 2022년 기사에 "국내에 눈에 띄는 경쟁사가 없다"는 표현이 있고, 유저베이스 계열 MIMIR(스피다 엑스퍼트 리서치)가 경쟁합니다. 수치는 확인 불가로 남겼습니다.</li>
+  <li>인터뷰 단가 → 비교 기사의 참고 사례비(1시간 5만 엔)뿐이라 본문 숫자로 쓰지 않았습니다.</li>
+  <li>본문 수정: 2.5 검산 문단, 4.1 달러 환산 표, 그림 2 해설.</li>
+</ul>
+<h3>2차 — "왜 이렇게 되지?" (기업과 시장)</h3>
+<ul>
+  <li>컨설·금융 +34%의 실체? → 베이커런트 6~8월 매출 +41.5%를 결산단신 XBRL로 확인했습니다(483.4억 엔 vs 341.6억 엔).</li>
+  <li>Eight 제휴는 무엇인가? → 2026년 3월, ENS 업계 독점, Eight 사용자 400만 명 이상. 3.4절을 추가했습니다.</li>
+  <li>하쿠호도 제휴의 크기? → 신주가 아니라 CEO 보유주 4만 주(0.43%) 양도이고, 통기 영향은 "경미"합니다. 노출도를 '낮음'으로 낮췄습니다.</li>
+  <li>글로벌 피어 기준점? → AlphaSense 3.5억 달러 조달, 기업가치 75억 달러, ARR 6억 달러 초과(회사 보도자료와 로이터 일치).</li>
+  <li>이미 주가에 반영됐나? → 커버리지 0, 회사 EPS 기준 PER 약 14.5배. 희석 후 시총은 약 97억 엔.</li>
+  <li>본문 수정: 핫한 기업에 산산·하쿠호도를 '제휴 상대'로 묶어 낮게 배치. '프리랜서 매칭은 약함'을 5.4에 가설로 추가.</li>
+</ul>
+<h3>3차 — 검토와 반박</h3>
+<ul>
+  <li>사실 검증 14개 → ✅ 10 · ✏️ 2 · ⚠️ 2. 세부는 검증 노트에 있습니다.</li>
+  <li>✏️ 우선주 현금 상환 시점: 조사 단계에서는 "2026년 11월부터"로 정리됐습니다. 그러나 현행 유가증권보고서 정관에는 <b>"발행일 이후 언제든, 분배가능액 한도 안에서"</b>로 되어 있어 정관 기준으로 고쳤습니다.</li>
+  <li>❌ 삭제: X의 "EV/EBITDA 3.6배" 주장(검증 불가), 집계 사이트 목표주가.</li>
+  <li>반론 "우선주가 보통주 가치를 누른다"가 가장 강했습니다 → 판정 확신도를 '중'에서 '하~중'으로 낮췄습니다.</li>
+  <li>반론 "해외는 회복 불가"가 대체로 맞다고 봤습니다 → 4장 결론을 '점유율 회복'에서 '마진·DB 역할'로 바꿨습니다.</li>
+</ul>
+<h3>남은 질문</h3>
+<ul>
+  <li>logmi 질의응답 전문(회원 전용): 가이던스 미상향의 비용 내역, 우선주 대응.</li>
+  <li>우선주 전환가 조정 조항과 현재 분배가능액(반기보고서에서 확인).</li>
+  <li>Coleman의 녹취록 라이브러리·AI 인터뷰 제품 유무(회사 확인 필요).</li>
+</ul>
+</section>
+
+<section id="check">
+<h2><span class="no">CHECK</span>검증 노트</h2>
+<div class="tbl"><table>
+<thead><tr><th>주장</th><th>상태</th><th>근거</th></tr></thead>
+<tbody>
+<tr><td>상반기 취급고 80.2억 엔(+14.1%), 조정 EBITDA 7.56억 엔(+93.7%)</td><td>🟢</td><td>2Q 설명자료 p.26</td></tr>
+<tr><td>국내 2개 사업 +20.1%·+25.4%, 해외 +2.4%</td><td>🟢</td><td>2Q 설명자료 p.29</td></tr>
+<tr><td>해외 연간 취급고와 평균환율</td><td>🟢</td><td>26/2기 통기 설명자료 p.33</td></tr>
+<tr><td>해외 달러 환산 -23%, 상반기 -3%</td><td>🟡</td><td>제 계산(공시값 ÷ 공시 환율)</td></tr>
+<tr><td>AI Scout 2026-03 출시, 약 5분</td><td>🟢</td><td>통기 설명자료 p.43</td></tr>
+<tr><td>해외 인당 생산성 약 +20%(22→25년)</td><td>🟢</td><td>통기 설명자료 p.42</td></tr>
+<tr><td>2029년 취급고 300억 엔 목표</td><td>🟢</td><td>통기 설명자료 p.41</td></tr>
+<tr><td>하쿠호도 4만 주(0.43%), CEO 보유주 양도</td><td>🟢</td><td>2026-04-14 공시</td></tr>
+<tr><td>Eight 독점 제휴, 400만 명 이상</td><td>🟡</td><td>보도(voix.jp)와 유가증권보고서 연혁</td></tr>
+<tr><td>베이커런트 6~8월 매출 +41.5%</td><td>🟢</td><td>결산단신 XBRL</td></tr>
+<tr><td>AlphaSense 75억 달러, ARR 6억 달러 초과</td><td>🟢</td><td>회사 보도자료, 로이터</td></tr>
+<tr><td>A종 우선주 금전 대가 취득 청구: 언제든, 분배가능액 한도</td><td>🟢</td><td>유가증권보고서(2026-05-29) 정관</td></tr>
+<tr><td>ENS 시장 약 30억 달러, 연 11~12%</td><td>🟡</td><td>Inex One 단일 출처군(이해관계자)</td></tr>
+<tr><td>고객 구성(기업 수 45%, 지출 약 10%)</td><td>🟡</td><td>Inex One 단일 출처</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="refs">
+<h2><span class="no">REF</span>출처</h2>
+<ul class="note">
+<li><a href="https://www.release.tdnet.info/inbs/140120261015551344.pdf">비자스크, 27/2기 2분기 결산설명자료 (2026-10-15)</a></li>
+<li><a href="https://www2.jpx.co.jp/disc/44900/140120260414503732.pdf">비자스크, 26/2기 통기 결산설명자료·사업계획 (2026-04-14)</a></li>
+<li><a href="https://www2.jpx.co.jp/disc/44900/140120260414503795.pdf">비자스크, 하쿠호도 자본·업무 제휴 공시 (2026-04-14)</a></li>
+<li><a href="https://www2.jpx.co.jp/disc/44900/140120210818487761.pdf">비자스크, Coleman 인수·종류주식 발행 공시 (2021-08-18)</a></li>
+<li><a href="https://www.release.tdnet.info/inbs/140120261015551308.pdf">비자스크, 27/2기 2분기 결산단신 (2026-10-15)</a></li>
+<li>비자스크 유가증권보고서 제14기 (EDINET S100Y7OP, 2026-05-29)</li>
+<li><a href="https://www.release.tdnet.info/inbs/140120261009548418.pdf">베이커런트, 27/2기 2분기 결산단신</a></li>
+<li><a href="https://voix.jp/?p=75598">voix.jp, 비자스크·Eight 제휴</a></li>
+<li><a href="https://www.alpha-sense.com/press/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue/">AlphaSense 보도자료 (2026-06)</a></li>
+<li><a href="https://inex.one/blog/expert-network-market-size">Inex One, Expert network market size</a> · <a href="https://www.prnewswire.com/news-releases/inex-one-the-expert-network-industry-exceeds-2-5-billion-302429073.html">Inex One 2025-04</a></li>
+<li><a href="https://www.integrity-research.com/expert-network-industry-tops-2-billion-despite-2022-slowdown/">Integrity Research, 2022 업계 규모</a> · <a href="https://www.integrity-research.com/inex-one-launches-a-self-serve-plan-for-expert-access/">셀프서브 (2026-10)</a></li>
+<li><a href="https://inex.one/blog/expert-network-pricing-what-does-an-expert-network-interview-cost-">Inex One, 인터뷰 가격</a></li>
+<li><a href="https://inex.one/expert-network-directory/third-bridge">Inex One, Third Bridge</a> · <a href="https://inex.one/expert-network-directory/glg-expert-network">GLG</a> · <a href="https://inex.one/expert-network-directory/guidepoint">Guidepoint</a></li>
+<li><a href="https://kyodonewsprwire.jp/release/202605189238">Guidepoint 사업 재정의 (2026-05-18)</a></li>
+<li><a href="https://www.streetinsider.com/PRNewswire/GLGs+AI-Moderated+Calls+Unlock+Expert+Insights+at+New+Speed+and+Scale/26880991.html">GLG AI 진행 통화</a></li>
+<li><a href="https://www.alleywatch.com/2026/04/qualitate-ai-moderator-primary-research-ai-expert-intelligence-network-alternative-platform-sagar-kadakia/">AlleyWatch, Qualitate (2026-04)</a> · <a href="https://techcrunch.com/2026/05/06/ethos-raises-22-75m-from-a16z-for-its-expert-network-with-voice-onboarding/">TechCrunch, Ethos (2026-05)</a></li>
+<li><a href="https://ionanalytics.com/insights/mergermarket/ma-highlights-9m26/">Mergermarket, 9M26 M&amp;A</a> · <a href="https://www.ropesgray.com/en/insights/alerts/2026/10/dealmakers-digest-october-2026">Ropes &amp; Gray (2026-10)</a></li>
+<li><a href="https://www.sec.gov/news/press/2011/2011-38.htm">SEC, PGR 사건 (2011)</a> · <a href="https://www.mrweb.com/drno/news40005.htm">NewtonX 합성 페르소나</a></li>
+<li><a href="https://finance.logmi.jp/articles/385949">logmi, 2Q 설명회 書き起こし</a> · <a href="https://kabutan.jp/stock/news?code=4490&amp;b=k202610150066">株探, 2Q 실적 기사</a></li>
+<li>주가: 야후 파이낸스(4490.T 등, 2026-10-23 장중), 실적 이력: TDnet XBRL</li>
+</ul>
+</section>
+
+<footer>이 리포트는 흐름의 단계에 대한 판단이며 매수·매도 권유가 아닙니다. 투자 결정은 독자의 몫입니다. 제 계산·판단 표시가 붙은 값은 공시값을 가공한 것입니다.</footer>
+</main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function(){
+  if(!window.Chart) return;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const C = {ink:css('--ink'),muted:css('--muted'),line:css('--line'),acc:css('--accent'),acc2:css('--accent2'),good:css('--good'),bad:css('--bad'),warn:css('--warn'),card:css('--card')};
+  Chart.defaults.color = C.muted;
+  Chart.defaults.borderColor = C.line;
+  Chart.defaults.font.family = '"IBM Plex Sans KR","Malgun Gothic",sans-serif';
+  Chart.defaults.font.size = 12;
+  Chart.defaults.maintainAspectRatio = false;
+  Chart.defaults.plugins.legend.labels.boxWidth = 12;
+  const mk = (id,cfg)=>{const el=document.getElementById(id); if(el) new Chart(el,cfg);};
+
+  // 그림 2: 5년 월말 주가
+  const p5 = [["21-11",5480],["21-12",5240],["22-01",4080],["22-02",3410],["22-03",4065],["22-04",3150],["22-05",2522],["22-06",2083],["22-07",2108],["22-08",2185],["22-09",2026],["22-10",1902],["22-11",1860],["22-12",1327],["23-01",1802],["23-02",1645],["23-03",1612],["23-04",1342],["23-05",1387],["23-06",1408],["23-07",1235],["23-08",1187],["23-09",1133],["23-10",901],["23-11",1010],["23-12",951],["24-01",926],["24-02",925],["24-03",905],["24-04",738],["24-05",942],["24-06",950],["24-07",1524],["24-08",1659],["24-09",1772],["24-10",1164],["24-11",1200],["24-12",1061],["25-01",1139],["25-02",1124],["25-03",1007],["25-04",835],["25-05",810],["25-06",814],["25-07",765],["25-08",749],["25-09",757],["25-10",596],["25-11",485],["25-12",472],["26-01",586],["26-02",548],["26-03",500],["26-04",692],["26-05",669],["26-06",590],["26-07",665],["26-08",657],["26-09",677],["26-10",764]];
+  mk('cPrice5y',{type:'line',data:{labels:p5.map(x=>x[0]),datasets:[{label:'월말 종가(엔)',data:p5.map(x=>x[1]),borderColor:C.acc,backgroundColor:C.acc+'22',fill:true,pointRadius:0,tension:.2,borderWidth:2}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toLocaleString()+'엔'}}},scales:{y:{type:'logarithmic',ticks:{callback:v=>[500,1000,2000,5000].includes(v)?v.toLocaleString():''}},x:{ticks:{maxTicksLimit:10}}}}});
+
+  // 그림 4: 시장 규모
+  mk('cMarket',{type:'bar',data:{labels:['2012','2022','2024','2025'],datasets:[{label:'억 달러',data:[4.09,21.4,25,30],backgroundColor:[C.line,C.acc2,C.acc,C.acc]}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'억 달러'}}},scales:{y:{beginAtZero:true,title:{display:true,text:'억 달러'}}}}});
+
+  // 그림 5: 고객 구성
+  mk('cMix',{type:'bar',data:{labels:['컨설팅','자본시장(헤지펀드·운용사·PE)','기업'],datasets:[{label:'지출 비중',data:[50,42,10],backgroundColor:C.acc},{label:'고객 수 비중',data:[null,44,45],backgroundColor:C.acc2}]},
+    options:{indexAxis:'y',plugins:{tooltip:{callbacks:{label:c=>c.dataset.label+' 약 '+c.parsed.x+'%'}}},scales:{x:{beginAtZero:true,max:60,ticks:{callback:v=>v+'%'}}}}});
+
+  // 그림 6: 사업별 취급고
+  mk('cSeg',{type:'bar',data:{labels:['23/2기','24/2기','25/2기','26/2기'],datasets:[
+    {label:'국내 사업법인',data:[31.4,40.3,44.8,47.9],backgroundColor:C.acc},
+    {label:'컨설·금융(국내 고객)',data:[27.7,33.3,36.5,40.5],backgroundColor:C.acc2},
+    {label:'컨설·금융(해외, Coleman)',data:[64.7,57.4,62.5,56.9],backgroundColor:C.line}]},
+    options:{plugins:{tooltip:{callbacks:{label:c=>c.dataset.label+' '+c.parsed.y+'억 엔'}}},scales:{x:{stacked:true},y:{stacked:true,title:{display:true,text:'억 엔'}}}}});
+
+  // 그림 7: 수수료율
+  mk('cTake',{type:'line',data:{labels:['25/2 1Q','2Q','3Q','4Q','26/2 1Q','2Q','3Q','4Q','27/2 1Q','2Q'],datasets:[{label:'영업수익 ÷ 취급고',data:[59,60,60,61,61,60,63,65,65,64],borderColor:C.acc2,backgroundColor:C.acc2,pointRadius:3,tension:.2}]},
+    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'%'}}},scales:{y:{min:55,max:68,ticks:{callback:v=>v+'%'}}}}});
+
+  // 그림 8: KPI
+  mk('cKpi',{type:'bar',data:{labels:['연결 취급고','국내 전문가 인터뷰 건수','국내 고객의 해외 전문가 인터뷰','기업 고객 신규 상품 영업수익'],datasets:[
+    {label:'회사 계획',data:[10,8,27,17],backgroundColor:C.line},{label:'상반기 실적',data:[14,5,45,50],backgroundColor:C.acc}]},
+    options:{indexAxis:'y',plugins:{tooltip:{callbacks:{label:c=>c.dataset.label+' +'+c.parsed.x+'%'}}},scales:{x:{beginAtZero:true,ticks:{callback:v=>'+'+v+'%'}}}}});
+
+  // 그림 10: 해외 엔 vs 달러
+  mk('cOverseas',{type:'bar',data:{labels:['23/2기','24/2기','25/2기','26/2기'],datasets:[
+    {type:'bar',label:'취급고(억 엔)',data:[64.7,57.4,62.5,56.9],backgroundColor:C.line,yAxisID:'y'},
+    {type:'line',label:'달러 환산(백만 달러, 제 계산)',data:[49.4,41.0,41.4,38.0],borderColor:C.bad,backgroundColor:C.bad,pointRadius:4,yAxisID:'y1'}]},
+    options:{scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'억 엔'}},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'백만 달러'}}}}});
+
+  // 그림 12: 분기 실적
+  const q=[["23/2 1Q",19.62,0.45],["2Q",21.80,1.00],["3Q",21.62,-0.57],["4Q",20.76,-0.84],["24/2 1Q",21.34,-0.82],["2Q",21.83,-0.47],["3Q",23.14,-0.29],["4Q",23.36,0.99],["25/2 1Q",25.20,3.85],["2Q",24.15,1.97],["3Q",23.73,2.38],["4Q",24.72,4.07],["26/2 1Q",24.46,2.79],["2Q",23.28,2.20],["3Q",25.14,3.71],["4Q",26.86,4.71],["27/2 1Q",27.55,4.24],["2Q",28.07,4.24]];
+  mk('cQ',{type:'bar',data:{labels:q.map(x=>x[0]),datasets:[
+    {type:'bar',label:'영업수익(억 엔)',data:q.map(x=>x[1]),backgroundColor:C.acc+'aa',yAxisID:'y'},
+    {type:'line',label:'영업이익(억 엔)',data:q.map(x=>x[2]),borderColor:C.acc2,backgroundColor:C.acc2,pointRadius:3,yAxisID:'y1'}]},
+    options:{scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'영업수익'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'영업이익'}},x:{ticks:{maxRotation:0,autoSkip:true}}}}});
+
+  // 그림 13: 실적 전후 주가
+  const pn=[["09-01",665],["09-02",679],["09-03",671],["09-04",671],["09-07",659],["09-08",642],["09-09",637],["09-10",647],["09-11",632],["09-14",650],["09-15",655],["09-16",657],["09-17",660],["09-18",657],["09-24",674],["09-25",675],["09-28",675],["09-29",674],["09-30",677],["10-01",680],["10-02",672],["10-05",660],["10-06",666],["10-07",689],["10-08",677],["10-09",688],["10-13",682],["10-14",673],["10-15",670],["10-16",720],["10-19",760],["10-20",799],["10-21",830],["10-22",771],["10-23",764]];
+  mk('cPriceNear',{type:'line',data:{labels:pn.map(x=>x[0]),datasets:[{label:'종가(엔)',data:pn.map(x=>x[1]),borderColor:C.acc,backgroundColor:C.acc,pointRadius:pn.map(x=>x[0]==='10-15'?5:0),pointBackgroundColor:C.acc2,tension:.15,borderWidth:2}]},
+    options:{plugins:{legend:{display:false}},scales:{y:{suggestedMin:600}}}});
+
+  // 그림 14: 레이더
+  mk('cRadar',{type:'radar',data:{labels:['① 수요','② 해자','③ 이익 확인','④ 확산 범위','⑤ 시장 인지','⑥ 촉매'],datasets:[{label:'점수(0~3)',data:[2,2,3,1,3,2],borderColor:C.acc,backgroundColor:C.acc+'33',pointBackgroundColor:C.acc2}]},
+    options:{plugins:{legend:{display:false}},scales:{r:{min:0,max:3,ticks:{stepSize:1,backdropColor:'transparent'},grid:{color:C.line},angleLines:{color:C.line},pointLabels:{color:C.ink,font:{size:12}}}}}});
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,securityLevel:'loose',theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'default')});</script>
+<a href="../indepth-archive.html" style="position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;padding:7px 12px;border-radius:999px;background:#10151f;color:#e9eef8;border:1px solid #3a4560;font:600 12px/1.2 system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">← 인뎁스 아카이브</a>
+</body>
+</html>
