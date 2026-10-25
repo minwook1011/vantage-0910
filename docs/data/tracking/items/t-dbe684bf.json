@@ -3,6 +3,22 @@
  "slug": "t-dbe684bf",
  "items": [
   {
+   "id": "4c709989a407",
+   "kind": "news",
+   "headline": "딥시크·미니맥스, 중국 새 AI 기술 수출 규정에 맞춘 '해외 출시 등록' 첫 완료 — 오픈소스 공개·해외 사용 허가까지 마쳐(중국 관영매체)",
+   "bullets": [
+    "중국 관영 중앙방송 계열 매체 '위위안탄톈'은 23일 딥시크와 미니맥스가 등록 절차를 마치고 모델 오픈소스 공개·해외 사용 허가를 끝냈다고 전했다.",
+    "중국 상무부·과학기술부는 16일 수출 금지·제한 기술 목록 개정안을 내고 모델·AI 에이전트·컴퓨팅 클러스터 등 AI 기술 23개를 수출 통제하겠다고 했다.",
+    "상무부는 API·웹·구독형 소프트웨어 방식의 해외 서비스는 통제 대상이 아니라며, 이번 목록은 '막기'보다 '경계 긋기'라고 설명했다."
+   ],
+   "summary": "중국이 AI 기술 수출 통제 목록을 고치기로 한 뒤, 대형 모델 회사가 그 절차를 통과했다는 첫 사례가 나왔다. 관영 매체 위위안탄톈은 정책 발표 이후 딥시크와 미니맥스가 등록 절차를 순조롭게 마치고, 모델 오픈소스 공개와 해외 사용 허가까지 끝냈다고 23일 전했다. 중국 과기판일보는 미니맥스 등록에 최근 내놓은 모델과 곧 내놓을 모델 일부가 들어 있다고 보도했다.\n\n배경은 10월 16일 상무부·과학기술부가 공개한 '중국 수출 금지·제한 기술 목록' 개정 의견 수렴안이다. 모델, AI 에이전트, 컴퓨팅 클러스터 관련 기술 23개를 통제하고, 통제 기술이 들어간 AI 모델을 해외에 배포하는 것도 대상에 넣었다. 다만 상무부는 대부분 AI 기술은 그대로 수출할 수 있고, 오픈소스 기술 수출과 중국 기업의 해외 자체 컴퓨팅센터 운영 허가 절차는 간소화하겠다고 했다.\n\n관영 매체는 이번 사례가 중국 오픈소스 모델의 해외 수요가 크다는 증거라고 했다. 등록된 모델 목록이나 심사 기준 같은 정부 공식 세부 내용은 아직 나오지 않았다.(경제일보·공상시보)",
+   "title": "DeepSeek 和 MiniMax 完成 AI 模型出海登記",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1wdV8wcFZNYWg3X21FblV5em9hU3prM0sydFlmLXo0ZlZGelpFUi03YTNVdVhUVWUtejNZVm1GLVJDZDdGNVp1UUdIallST2N0c3JlYjY1NEp0bG4wZjZKdVJjai1TTFNmMERsWTZ6N2dxMGpoX19j0gFfQVVfeXFMT1Jzc0VUeG9tRWh2S0hyZzI1dm53S0dfc2wxbkI2Wk1EWVhob09XVjZpNVVlMC1mczlzLWlxaGtPVjFCZmpQWF83RmM1TVNxeDhxX1BZQzlkYkVUbkhLNUk?oc=5",
+   "published": "2026-10-24 18:59 KST",
+   "written": "2026-10-25 15:49 KST"
+  },
+  {
    "id": "4a74927085d7",
    "kind": "news",
    "headline": "중국 당국 거래 제한받던 퀀트펀드 링쥔, 2년 만에 해외에서 3억 달러 넘게 유치 — 지난해 수익률 70% 넘어(로이터)",
@@ -83,5 +99,5 @@
    "written": "2026-10-20 09:18 KST"
   }
  ],
- "updated": "2026-10-22 17:08 KST"
+ "updated": "2026-10-25 15:49 KST"
 }
