@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "aec099fc5779",
+   "kind": "news",
+   "headline": "영국, 세계 첫 '인공지능 생물안보 연구소' 세운다 — 정부 1억 파운드, 오픈AI·앤트로픽이 각각 최대 1억 파운드어치 컴퓨팅·모델 이용권 지원",
+   "bullets": [
+    "영국 내각부가 24일 비영리 독립기관 'AI 생물안보 연구소(AIBL)' 설립을 발표했다. 정부 1억 파운드에 기업 약정 최대 2억 파운드를 더해 최대 3억 파운드 규모다.",
+    "오픈AI는 컴퓨팅·모델 이용권 1억 파운드어치와 생물방어 프로그램을 통한 최상위 모델 접근을, 앤트로픽은 최대 1억 파운드어치 모델 이용권과 기술 지원을 내놓는다. 구글 딥마인드도 연구 협력으로 참여한다.",
+    "첫 과제는 새 생물학적 위협(감염병 등)을 빨리 찾아내는 것과 백신·치료제 개발을 앞당기는 것이다."
+   ],
+   "summary": "연구소는 영국 생물안보 전략을 바탕으로 생물학적 위협을 이해·예방·탐지·대응하는 기술을 만든다. 보건안전청, 동식물보건청, 국방과학기술연구소, 의약품규제청 등이 함께하고, 의약품규제청은 인공지능이 설계한 의약품을 어떻게 규제할지도 준비한다. 생물학 인공지능 회사 베이스캠프 리서치도 모델과 전문 인력을 지원한다.\n\n구글 딥마인드는 금액 없이 과학자 협력과 제미나이·과학 특화 모델 접근을 검토하기로 했다. 앞으로 공공·자선 자금도 더 받을 계획이다.\n\n출범 날짜와 세부 일정, 과학자문위원회 구성은 아직 나오지 않았다. 기업 지원이 현금이 아니라 이용권 형태라는 점도 눈여겨볼 부분이다.",
+   "title": "UK Vows £100 Million for Biosecurity Lab With OpenAI, Anthropic",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxObEgtSy0yTlpneW1Oa2l0NkVTV29zRjdpNXZ5eXBiSmt1dWRwMWV2bU90UE0xZU84T0NLUF9UNFNyRl9GaUZvS0xVRVhxNkgyT0hUSEFmeDJ1eXNIeHFzZnkyeVR3WjJCRDdKZ3lyNFV0eFAwSndyNlljNnQ4NzZpYnJybzZlUVF2Yzhqdm9EV0didDBLZ3B2RWVKczRuY05QY2ZaRUhPQ2praDFGeGNUTWx3?oc=5",
+   "published": "2026-10-24 08:01 KST",
+   "written": "2026-10-25 16:19 KST"
+  },
+  {
    "id": "ec15db40a2e0",
    "kind": "news",
    "headline": "미국 연방수사국(FBI), '오픈AI 회의실 도청' 사우디 국적 전 직원에 경제스파이 혐의 추가 검토 — 사우디 정부에 기밀 넘기려 했는지 조사(월스트리트저널)",
@@ -835,5 +851,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-25 14:36 KST"
+ "updated": "2026-10-25 16:19 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "amzn",
  "items": [
   {
+   "id": "342cd3cb5409",
+   "kind": "news",
+   "headline": "앤디 재시 아마존 최고경영자 \"아마존웹서비스 용량 2026년 매진, 2027년도 대부분 팔렸고 2028년도 상당 부분 계약\"(로이터)",
+   "bullets": [
+    "재시는 23일 공개된 앤드리슨 호로위츠 영상 팟캐스트에서 인공지능 연구소·기업 수요를 따라가기 벅차다고 말했다.",
+    "2026년 용량은 이미 다 팔렸고, 2027년은 수시 사용분과 생성형 인공지능 서비스 '베드록'·클라우드 서버 'EC2' 몫을 빼면 큰 덩어리는 거의 다 팔렸다. 2028년도 '상당 부분' 계약됐다.",
+    "올해 설비투자 약 2,200억 달러를 두고 \"훨씬 더 투자해도 나쁜 자본 사용이 아닐 것\"이라고 했다. 3분기 실적은 10월 29일 발표한다."
+   ],
+   "summary": "제목들은 '2028년까지 매진'이라고 쓰지만 재시의 말은 2027년 '대부분', 2028년 '상당 부분'이다. 일부 용량은 언제든 빌려 쓰는 고객과 자체 인공지능 서비스용으로 늘 남겨 둔다고 밝혔다.\n\n아마존은 올해 설비투자를 약 2,200억 달러로 잡았는데도 수요를 다 받지 못하고 있다. 메모리 같은 부품 공급 부족도 몇 년은 이어질 것으로 봤다. 기존 오랜 고객 몫을 줄여 인공지능 연구소에 몰아주지는 않겠다는 말도 했다.\n\n29일 3분기 실적에서 아마존웹서비스 매출 증가율, 남은 계약 잔고, 내년 설비투자 계획이 이 발언을 숫자로 뒷받침하는지가 관건이다.",
+   "title": "Amazon cloud capacity sold out through 2027, CEO Jassy says",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOeDBNbTdvV2F5U2tSX1NQWmZ2bnRGUXJMRE4xT1V3V0dIcnlFd3g0WkZ6aWdYNmNzNWxIQXNOcWxMdFlqbFNmN3lWekFUOGJVQzN5aElzeVlveVh4RzZ5aC03b3pSLUNQQ21lQ29jNVkwdmF4V2YwYUlkd0dPdkJQT1VwWF9lZUdhZnBrNWppME81Y2Q2ZzFYOWcwWFozajYyME9BQkpSZHNOTTdQX3hTcXF3RkVSS2s3OU1F?oc=5",
+   "published": "2026-10-24 08:07 KST",
+   "written": "2026-10-25 16:19 KST"
+  },
+  {
    "id": "4af9b25c9b60",
    "kind": "news",
    "headline": "아마존웹서비스, 3M 광 커넥터(EBO) 데이터센터에 깐다 — 3M은 아마존에 7년간 자사주 약 320만 주(주당 164.89달러) 살 권리 부여",
@@ -258,5 +274,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-23 01:18 KST"
+ "updated": "2026-10-25 16:19 KST"
 }
