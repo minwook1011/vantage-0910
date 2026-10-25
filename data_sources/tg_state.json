@@ -143,8 +143,10 @@
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
+  "trk:009150:7aedc5d54677",
   "trk:009150:c82248f53471",
   "trk:009150:c960c7b4e0c2",
+  "trk:009150:d5335931d84f",
   "trk:amzn:11e2f839692b",
   "trk:amzn:19e39e0079d4",
   "trk:amzn:1dd4d3b49ae5",
@@ -179,20 +181,25 @@
   "trk:blog-egzion:d2fb145cffff",
   "trk:blog-egzion:ecfaad854cad",
   "trk:blog-pillion21:7c05d4b9b9f9",
+  "trk:blog-pillion21:824b2c53616f",
   "trk:blog-pillion21:caf11a33e761",
   "trk:blog-ranto28:02a57e1d3b20",
   "trk:blog-ranto28:080e0c381328",
   "trk:blog-ranto28:0e9b8e6cb074",
   "trk:blog-ranto28:19b80743b18d",
+  "trk:blog-ranto28:1f1b856206c9",
   "trk:blog-ranto28:21ba86c93b68",
   "trk:blog-ranto28:24996ec1e626",
   "trk:blog-ranto28:2517e6308f19",
+  "trk:blog-ranto28:259a5674320a",
   "trk:blog-ranto28:3cdffccd5e4d",
   "trk:blog-ranto28:3e438dd2f2a0",
   "trk:blog-ranto28:473ca54043b0",
   "trk:blog-ranto28:4749bceb4b02",
+  "trk:blog-ranto28:47685b3a93d3",
   "trk:blog-ranto28:4e68d313f6ba",
   "trk:blog-ranto28:4fb2a82d64ee",
+  "trk:blog-ranto28:599eae228172",
   "trk:blog-ranto28:615114b3709f",
   "trk:blog-ranto28:66d275f30282",
   "trk:blog-ranto28:72b8ecdc0405",
@@ -215,6 +222,7 @@
   "trk:blog-ranto28:fe500feb8f2a",
   "trk:blog-semianalysis:0fcfcbc692f8",
   "trk:blog-semianalysis:3fd25aa5f7e6",
+  "trk:blog-semianalysis:8db88878295e",
   "trk:blog-semianalysis:bb237709ef90",
   "trk:blog-semianalysis:c1152dc026ac",
   "trk:blog-ssh-fedinsight:029cab3ca8e2",
@@ -227,6 +235,7 @@
   "trk:blog-ssh-fedinsight:4b835b0d2166",
   "trk:blog-ssh-fedinsight:5ef4729a4a58",
   "trk:blog-ssh-fedinsight:66b12c095fd0",
+  "trk:blog-ssh-fedinsight:7c0cde6a5c87",
   "trk:blog-ssh-fedinsight:814f48c410d2",
   "trk:blog-ssh-fedinsight:986bbf0136b8",
   "trk:blog-ssh-fedinsight:9c35d6818a0c",
@@ -240,32 +249,48 @@
   "trk:blog-ssh-fedinsight:f97e5baed7d2",
   "trk:blog-techcrunch:00c760d9a9f9",
   "trk:blog-techcrunch:00fe9b4be002",
+  "trk:blog-techcrunch:03b0a2d9058c",
   "trk:blog-techcrunch:125851f53afb",
   "trk:blog-techcrunch:18d250356a9d",
   "trk:blog-techcrunch:1f6f524e1cdc",
+  "trk:blog-techcrunch:233647f1db0e",
+  "trk:blog-techcrunch:26bb5195df50",
   "trk:blog-techcrunch:2940e35ec368",
+  "trk:blog-techcrunch:29755f9d065b",
   "trk:blog-techcrunch:2aef46f1ccca",
+  "trk:blog-techcrunch:2b3647dfd3e5",
+  "trk:blog-techcrunch:33e6efc37afb",
   "trk:blog-techcrunch:387d4012e6b7",
   "trk:blog-techcrunch:3ab8d8671f65",
+  "trk:blog-techcrunch:3abf48378b69",
   "trk:blog-techcrunch:4353faf62b9a",
   "trk:blog-techcrunch:48f80c636f26",
+  "trk:blog-techcrunch:4f0baf7bdfed",
   "trk:blog-techcrunch:507a157e73f5",
   "trk:blog-techcrunch:5e7679b00d16",
   "trk:blog-techcrunch:68eea636ab38",
+  "trk:blog-techcrunch:6a7e731924fd",
   "trk:blog-techcrunch:6c5eb92e7eaf",
+  "trk:blog-techcrunch:6cac479102f4",
   "trk:blog-techcrunch:703d5e21df4a",
   "trk:blog-techcrunch:7571015a89bd",
   "trk:blog-techcrunch:77792c4e3686",
+  "trk:blog-techcrunch:779f6b04dd41",
+  "trk:blog-techcrunch:8025937a0b02",
   "trk:blog-techcrunch:81820bea9903",
   "trk:blog-techcrunch:8216b1f735fe",
   "trk:blog-techcrunch:85549ee847dd",
+  "trk:blog-techcrunch:881d220f6023",
   "trk:blog-techcrunch:8a5da784385a",
+  "trk:blog-techcrunch:91c52da1f105",
   "trk:blog-techcrunch:98df72e2f673",
   "trk:blog-techcrunch:98ff1ee76c7b",
+  "trk:blog-techcrunch:996aae51c765",
   "trk:blog-techcrunch:9cb90d5f017f",
   "trk:blog-techcrunch:a6e9e3330ba6",
   "trk:blog-techcrunch:a8b86062b1eb",
   "trk:blog-techcrunch:aabe400f6606",
+  "trk:blog-techcrunch:b0cc00e8971c",
   "trk:blog-techcrunch:b226aec7f34b",
   "trk:blog-techcrunch:c6cf8c65ac85",
   "trk:blog-techcrunch:ca13c1c565cb",
@@ -273,6 +298,7 @@
   "trk:blog-techcrunch:daec0d20e7db",
   "trk:blog-techcrunch:ec4b5b074c1b",
   "trk:blog-techcrunch:f33e8822d1e0",
+  "trk:blog-techcrunch:f52391f9e243",
   "trk:blog-techcrunch:f58745076ef4",
   "trk:blog-techcrunch:f5f85f1296e7",
   "trk:blog-techcrunch:f8f5109f865a",
@@ -294,6 +320,7 @@
   "trk:blog-travelingcompanion:a81606da2908",
   "trk:blog-travelingcompanion:b64dbe9cbbb6",
   "trk:blog-travelingcompanion:ca310e442659",
+  "trk:blog-travelingcompanion:d39f083ba032",
   "trk:blog-travelingcompanion:d636765a82cc",
   "trk:blog-travelingcompanion:efeecc19e09e",
   "trk:cathie-wood:01ee389feff5",
@@ -484,6 +511,7 @@
   "trk:open-ai:dc01c4a11cec",
   "trk:open-ai:e2a0b6e1cc97",
   "trk:open-ai:e7e02b8dc0c3",
+  "trk:open-ai:ec15db40a2e0",
   "trk:open-ai:f22f1b3149c8",
   "trk:open-ai:f6bef284d279",
   "trk:open-ai:fa41575f564d",
@@ -529,6 +557,7 @@
   "trk:t-62bbe9b6:2fe9fa83fffd",
   "trk:t-62bbe9b6:32ae2825eef8",
   "trk:t-62bbe9b6:330d323d1668",
+  "trk:t-62bbe9b6:5b1fc1b7c1a6",
   "trk:t-62bbe9b6:5cecf1e0217d",
   "trk:t-62bbe9b6:7ce485c6013d",
   "trk:t-62bbe9b6:8076ffd00b2a",
@@ -619,6 +648,7 @@
   "trk:yt--jklonfa:0a1ebb632526",
   "trk:yt--jklonfa:0d9777bdf6d9",
   "trk:yt--jklonfa:0e5afb32d5a5",
+  "trk:yt--jklonfa:1132906d09b8",
   "trk:yt--jklonfa:17030502403d",
   "trk:yt--jklonfa:1723dbb8c2c6",
   "trk:yt--jklonfa:17373e3a6206",
@@ -651,6 +681,7 @@
   "trk:yt--jklonfa:3b85813eb256",
   "trk:yt--jklonfa:3c9c516cda1a",
   "trk:yt--jklonfa:3cccd49b1ff7",
+  "trk:yt--jklonfa:3ce46a108f7d",
   "trk:yt--jklonfa:3fe62d0f6fbf",
   "trk:yt--jklonfa:4121c58ebc71",
   "trk:yt--jklonfa:4152ef911934",
@@ -677,6 +708,7 @@
   "trk:yt--jklonfa:5b967680cb58",
   "trk:yt--jklonfa:5da5608fabc7",
   "trk:yt--jklonfa:5dc04253f2db",
+  "trk:yt--jklonfa:5f294b920aff",
   "trk:yt--jklonfa:5f55ea845a46",
   "trk:yt--jklonfa:5ff9e6bb95de",
   "trk:yt--jklonfa:64180e971f76",
@@ -700,6 +732,7 @@
   "trk:yt--jklonfa:89ad2bbbc25c",
   "trk:yt--jklonfa:8f257d625ae9",
   "trk:yt--jklonfa:9197ae29d827",
+  "trk:yt--jklonfa:93cfcf5746bf",
   "trk:yt--jklonfa:94142abd3697",
   "trk:yt--jklonfa:9698b87788a4",
   "trk:yt--jklonfa:96bc1908858a",
@@ -726,8 +759,10 @@
   "trk:yt--jklonfa:b4e9c0b9a637",
   "trk:yt--jklonfa:b8cf68ff13ed",
   "trk:yt--jklonfa:b9425eddc4fd",
+  "trk:yt--jklonfa:bbfba3d69664",
   "trk:yt--jklonfa:bd1400115a93",
   "trk:yt--jklonfa:beab1677be34",
+  "trk:yt--jklonfa:c08238303ee0",
   "trk:yt--jklonfa:c23ef9243a81",
   "trk:yt--jklonfa:c3d23f041c44",
   "trk:yt--jklonfa:c548bb219247",
@@ -815,113 +850,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:nvda:39274e573872": [
-   331
-  ],
-  "trk:open-ai:34ffd42f637f": [
-   332
-  ],
-  "trk:blog-ranto28:4e68d313f6ba": [
-   333
-  ],
-  "trk:blog-ssh-fedinsight:0301fac5f6f1": [
-   334
-  ],
-  "trk:yt--jklonfa:b3e92f98d940": [
-   335
-  ],
-  "trk:t-62bbe9b6:32ae2825eef8": [
-   336
-  ],
-  "trk:open-ai:44740bbe7f83": [
-   337
-  ],
-  "trk:yt--jklonfa:4d5def818d77": [
-   338
-  ],
-  "trk:cxmt:f14693d74aec": [
-   339
-  ],
-  "macro:2026-10-15": [
-   173,
-   174,
-   175
-  ],
-  "usdkrw:2026-10-15": [
-   176
-  ],
-  "trk:msft:4fc72832a301": [
-   340
-  ],
-  "trk:nvda:5f47c22935c6": [
-   341
-  ],
-  "trk:yt--jklonfa:d485a96256bb": [
-   342
-  ],
-  "or:2026-10-14": [
-   179
-  ],
-  "trk:open-ai:00fc72a34dc1": [
-   343
-  ],
-  "trk:t-759fd052:ec9b2ce4dc8b": [
-   344
-  ],
-  "trk:yt--jklonfa:2c5914c6195c": [
-   345
-  ],
-  "trk:open-ai:8500e779ca3f": [
-   346
-  ],
-  "trk:blog-egzion:bbab8b7939f2": [
-   347
-  ],
-  "trk:yt--jklonfa:8f257d625ae9": [
-   348
-  ],
-  "trk:open-ai:44b43cdaeec8": [
-   349
-  ],
-  "trk:yt--jklonfa:d89bccce8087": [
-   350
-  ],
-  "trk:yt--jklonfa:9840fd66ce24": [
-   351
-  ],
-  "trk:t-62bbe9b6:a1eddd27ae76": [
-   352
-  ],
-  "trk:open-ai:978220cdb36e": [
-   353
-  ],
-  "trk:blog-ranto28:4749bceb4b02": [
-   354
-  ],
-  "trk:yt--jklonfa:f768d0d4fe77": [
-   355
-  ],
-  "trk:open-ai:e2a0b6e1cc97": [
-   356
-  ],
-  "trk:t-759fd052:7520e0267c50": [
-   357
-  ],
-  "trk:t-759fd052:74866cb6c129": [
-   358
-  ],
-  "trk:blog-ranto28:f3ab7e879ed0": [
-   359
-  ],
-  "trk:open-ai:d924e9bdae60": [
-   360
-  ],
-  "trk:yt--jklonfa:89ad2bbbc25c": [
-   361
-  ],
-  "trk:yt--jklonfa:1723dbb8c2c6": [
-   362
-  ],
   "trk:ymtc:2f1a15426f78": [
    363
   ],
@@ -2362,6 +2290,111 @@
   "digest:2026-10-25:us": [
    784,
    785
+  ],
+  "trk:009150:d5335931d84f": [
+   786
+  ],
+  "trk:009150:7aedc5d54677": [
+   787
+  ],
+  "trk:open-ai:ec15db40a2e0": [
+   788
+  ],
+  "trk:blog-ranto28:599eae228172": [
+   789
+  ],
+  "trk:blog-ranto28:47685b3a93d3": [
+   790
+  ],
+  "trk:blog-ranto28:1f1b856206c9": [
+   791
+  ],
+  "trk:blog-ranto28:259a5674320a": [
+   792
+  ],
+  "trk:blog-ssh-fedinsight:7c0cde6a5c87": [
+   793
+  ],
+  "trk:blog-travelingcompanion:d39f083ba032": [
+   794
+  ],
+  "trk:yt--jklonfa:5f294b920aff": [
+   795
+  ],
+  "trk:yt--jklonfa:c08238303ee0": [
+   796
+  ],
+  "trk:yt--jklonfa:93cfcf5746bf": [
+   797
+  ],
+  "trk:yt--jklonfa:1132906d09b8": [
+   798
+  ],
+  "trk:yt--jklonfa:bbfba3d69664": [
+   799
+  ],
+  "trk:yt--jklonfa:3ce46a108f7d": [
+   800
+  ],
+  "trk:t-62bbe9b6:5b1fc1b7c1a6": [
+   801
+  ],
+  "trk:blog-pillion21:824b2c53616f": [
+   802
+  ],
+  "trk:blog-semianalysis:8db88878295e": [
+   803
+  ],
+  "trk:blog-techcrunch:26bb5195df50": [
+   804
+  ],
+  "trk:blog-techcrunch:233647f1db0e": [
+   805
+  ],
+  "trk:blog-techcrunch:29755f9d065b": [
+   806
+  ],
+  "trk:blog-techcrunch:8025937a0b02": [
+   807
+  ],
+  "trk:blog-techcrunch:33e6efc37afb": [
+   808
+  ],
+  "trk:blog-techcrunch:6cac479102f4": [
+   809
+  ],
+  "trk:blog-techcrunch:779f6b04dd41": [
+   810
+  ],
+  "trk:blog-techcrunch:91c52da1f105": [
+   811
+  ],
+  "trk:blog-techcrunch:03b0a2d9058c": [
+   812
+  ],
+  "trk:blog-techcrunch:996aae51c765": [
+   813
+  ],
+  "trk:blog-techcrunch:881d220f6023": [
+   814
+  ],
+  "trk:blog-techcrunch:2b3647dfd3e5": [
+   815
+  ],
+  "trk:blog-techcrunch:4f0baf7bdfed": [
+   816
+  ],
+  "trk:blog-techcrunch:f52391f9e243": [
+   817
+  ],
+  "trk:blog-techcrunch:3abf48378b69": [
+   818
+  ],
+  "trk:blog-techcrunch:b0cc00e8971c": [
+   819
+  ],
+  "trk:blog-techcrunch:6a7e731924fd": [
+   820
   ]
  },
  "topics": {},
