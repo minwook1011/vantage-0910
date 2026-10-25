@@ -49,7 +49,7 @@
       render();
     });
   });
-  fetch("archive-data.json", { cache:"no-cache" }).then(function (response) {
+  fetch(document.body.getAttribute("data-archive-src") || "archive-data.json", { cache:"no-cache" }).then(function (response) {
     if (!response.ok) throw new Error("archive unavailable"); return response.json();
   }).then(function (data) {
     items = Array.isArray(data.items) ? data.items.slice().sort(function (a,b) { return String(b.date).localeCompare(String(a.date)) || String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")); }) : [];

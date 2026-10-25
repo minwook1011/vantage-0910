@@ -32,6 +32,8 @@
 .archive-type[data-type="공부글"] { color:#2da988; border-color:#a0d9cc; background:rgba(46,115,99,.12); }
 .archive-type[data-type="정리글"] { color:#b8881f; border-color:#d9c6a1; background:rgba(126,101,51,.11); }
 .archive-type[data-type="인터뷰"] { color:#1e2739; border-color:#bca7d2; background:rgba(105,72,141,.12); }
+.archive-type[data-type="산업 흐름"] { color:#c2410c; border-color:#e8b896; background:rgba(194,65,12,.11); }
+.archive-type[data-type="기업 인뎁스"] { color:#0043d6; border-color:#9eb4db; background:rgba(54,88,147,.13); }
 .archive-copy h3 { color:#121721; font-size:17px; letter-spacing:-.02em; }
 .archive-copy p { margin-top:7px; color:#444f65; font-size:13px; line-height:1.65; }
 .archive-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
