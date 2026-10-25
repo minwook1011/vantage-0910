@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25 18:55 KST",
+ "updated": "2026-10-25 20:06 KST",
  "episodes": [
   {
    "id": "2026-10-25-sixsigma-ZCTN0urfack",
@@ -625,12 +625,19 @@
    "audio": "https://traffic.libsyn.com/secure/tedseides/CA_-_EP.522_Intapp_Sponsored_Ben_Harrison_-_AUDIO_V1.mp3?dest-id=482814",
    "duration": "39:56",
    "desc": "Ben Harrison is President of Industries at Intapp, a leading provider of software solutions to professional and financial services firms. Ben first joined me three years ago to discuss DealCloud, Intapp's platform serving the private capital community. Since then, Intapp has nearly tripled in size, and the rapid development of AI has created an entirely new opportunity for the business. Our conversation explores what Ben calls \"firm AI\" — moving beyond using AI to conduct research, build models, or create presentations to deploying agents that draw on a firm's institutional memory and execute …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-22 17:56 KST",
    "image": "http://assets.libsyn.com/show/94820?height=250&width=250&overlay=true",
    "show_image": "https://static.libsyn.com/p/assets/f/b/7/6/fb76e1c8bfb69e8dd959afa2a1bf1c87/CA_Square_logo_light_background_6.26.24.jpg",
    "title_ko": "투자회사 안의 AI — Ben Harrison (522회)",
-   "desc_ko": "Intapp 산업 부문 사장 Ben Harrison이 3년 만에 다시 나왔다. 그사이 Intapp은 규모가 세 배 가까이 됐고, AI가 새 기회를 열었다. 그가 말하는 '회사 AI'는 리서치·모델링 보조를 넘어, 회사의 축적된 기억을 읽고 일을 실행하는 에이전트다. 사모시장 운용사가 이를 어떻게 쓰는지 다룬다."
+   "desc_ko": "Intapp 산업 부문 사장 Ben Harrison이 3년 만에 다시 나왔다. 그사이 Intapp은 규모가 세 배 가까이 됐고, AI가 새 기회를 열었다. 그가 말하는 '회사 AI'는 리서치·모델링 보조를 넘어, 회사의 축적된 기억을 읽고 일을 실행하는 에이전트다. 사모시장 운용사가 이를 어떻게 쓰는지 다룬다.",
+   "summary": {
+    "title_ko": "투자회사 안의 AI — Ben Harrison (522회)",
+    "headline": "분석은 Claude 가, 회사 운영은 우리가 — Intapp 은 정보 차단벽을 지키는 '회사 AI'로 사모펀드의 절차를 자동화하겠다고 한다",
+    "image": "https://i.ytimg.com/vi/8Czl7P72z64/hqdefault.jpg",
+    "guest": "벤 해리슨(Ben Harrison) — Intapp 산업 부문 사장, DealCloud 창업자",
+    "company": "Intapp (전문직·금융 산업 특화 소프트웨어 · 에이전트형 AI)"
+   }
   },
   {
    "id": "2026-10-22-bb-affirm-the-internet-s-american-express-business",
@@ -643,12 +650,19 @@
    "audio": "https://www.podtrac.com/pts/redirect.mp3/traffic.megaphone.fm/CLS7299533905.mp3",
    "duration": "1:19:15",
    "desc": "Today we're breaking down Affirm, the buy now, pay later company founded by PayPal co-founder Max Levchin. Affirm processes more than $50 billion in annual purchase volume and is growing over 30%, even after its stock fell more than 90% following its IPO. Joining me is Fraser, an investor who has spent time with Max and studied the business closely. We explore how Affirm makes money, why its transaction-level underwriting is different from traditional credit cards, and how its merchant relationships create powerful network effects. We also discuss the company's resilience through rising intere…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-22 17:56 KST",
    "image": "https://megaphone.imgix.net/podcasts/e72c1768-cdba-11f1-8240-b3cccf45dcda/image/d7a2c7590a12d1c5715e0b1a20a2634c.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "show_image": "https://megaphone.imgix.net/podcasts/5a391928-ccce-11ed-863b-7bdbc773faf2/image/55364bb6a294c4be08365a4dccb94c73.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
    "title_ko": "Affirm — 인터넷의 아메리칸 익스프레스 (Business Breakdowns 249회)",
-   "desc_ko": "PayPal 공동창업자 Max Levchin이 세운 선구매 후결제 회사 Affirm을 해부한다. 연간 결제액 500억 달러 이상, 30%대 성장을 이어 가지만 상장 뒤 주가가 90% 넘게 빠졌던 회사다. 거래 단위 심사가 신용카드와 어떻게 다른지, 가맹점 관계가 만드는 네트워크 효과, 금리 상승기를 버틴 힘을 다룬다."
+   "desc_ko": "PayPal 공동창업자 Max Levchin이 세운 선구매 후결제 회사 Affirm을 해부한다. 연간 결제액 500억 달러 이상, 30%대 성장을 이어 가지만 상장 뒤 주가가 90% 넘게 빠졌던 회사다. 거래 단위 심사가 신용카드와 어떻게 다른지, 가맹점 관계가 만드는 네트워크 효과, 금리 상승기를 버틴 힘을 다룬다.",
+   "summary": {
+    "title_ko": "Affirm — 인터넷의 아메리칸 익스프레스 (Business Breakdowns 249회)",
+    "headline": "Affirm 주주 \"대출업체가 아닌 인터넷의 Amex\" — GMV 502억 달러, 1인당 거래 7회, 고객 확보비는 마이너스",
+    "image": null,
+    "guest": "프레이저 크리스티(Fraser Christie) — Sandstone Global Investment 창업자 겸 최고투자책임자 — Affirm 장기 주주",
+    "company": "Affirm Holdings (NASDAQ: AFRM) (핀테크 · 선구매 후결제(BNPL) · 소비자 신용)"
+   }
   },
   {
    "id": "2026-10-22-oddlots-bhaskar-sunkara-thinks-the-market-has-a-place-un",
@@ -765,12 +779,19 @@
    "audio": "https://traffic.libsyn.com/clean/secure/5f85ab06-2c89-4625-a5f9-f4b3a3300053/Podcast._Eric_Interview.mp4?dest-id=4092573",
    "duration": "01:20:39",
    "desc": "In this episode of The Synopsis, we talk to ad tech expert Eric Seufert of Mobile Dev Memo on Google's transition with AI, Agentic Shopping, and AppLovin. ~*~* ~*~ Drew Cohen Capital Learn more about advisory services offered through Davidson Kahn Capital Management here: https://www.drewcohencapital.com/ Speedwell Research For full access to Speedwell Research's in-depth reports and stock updates, become a member here: https://speedwellresearch.com/subscribe/ Fiscal.AI Free trial and *15% off* of a Fiscal.AI subscription through this link here: https://fiscal.ai/drewcohen/ -*-*-*-*-*-*-*-*-*-…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 09:12 KST",
    "image": "http://assets.libsyn.com/show/481071?height=250&width=250&overlay=true",
    "show_image": "https://static.libsyn.com/p/assets/5/2/d/7/52d76b8b82d0390516c3140a3186d450/The_Synopsis_Podcast_Logo-20260225-5hcpjhqhg8.png",
    "title_ko": "Eric Seufert — AI가 구글 검색 독점을 무너뜨릴까",
-   "desc_ko": "광고 기술 전문가 Eric Seufert(Mobile Dev Memo)와 구글의 AI 전환, 에이전트 쇼핑, AppLovin을 이야기한다. AI 답변이 검색 광고 사업에 어떤 압력을 주는지, 광고 시장의 힘이 어디로 옮겨 가는지 짚는다."
+   "desc_ko": "광고 기술 전문가 Eric Seufert(Mobile Dev Memo)와 구글의 AI 전환, 에이전트 쇼핑, AppLovin을 이야기한다. AI 답변이 검색 광고 사업에 어떤 압력을 주는지, 광고 시장의 힘이 어디로 옮겨 가는지 짚는다.",
+   "summary": {
+    "title_ko": "Eric Seufert — AI가 구글 검색 독점을 무너뜨릴까",
+    "headline": "Seufert '검색 630억 달러 +17%가 침식이면 나도 깎이고 싶다' — 구글은 AI로 검색을 다시 만들었고, 에이전트도 결국 광고로 돈 번다",
+    "image": "https://i.ytimg.com/vi/iSfLL-eN13Q/hqdefault.jpg",
+    "guest": "에릭 수퍼트(Eric Seufert) — Mobile Dev Memo 운영자 · Heracles Capital 제너럴 파트너 — 모바일 광고·광고 기술 분석가",
+    "company": "Alphabet(Google)·Meta·Amazon·OpenAI (검색 광고 · AI 챗봇 · 에이전트 쇼핑)"
+   }
   },
   {
    "id": "2026-10-22-sixsigma-C32GF3ztkJQ",
@@ -1716,13 +1737,20 @@
    "audio": null,
    "duration": "7:27",
    "desc": "1년 전 케빈 워시는 그린스펀처럼 AI 생산성을 믿고 금리 인상을 참아야 한다고 했습니다. 의장이 된 그는 9월에 금리를 올렸고, 2026년 10월 16일 방콕 IMF 연차총회 대담에서는 AI가 공급보다 수요를 먼저 친다고 말했습니다. AI가 결국 물가를 낮춘다는 믿음은 그대로지만, 그게 지금은 아니라고 순서를 바꾼 것입니다. 두 원본을 나란히 놓고 무엇이 바뀌었는지 짚었습니다. [원본] (1) IMF 「Managing Director's Fireside Chat with Federal Reserve Chairman Kevin Warsh」 2026.10.16 방콕 IMF·세계은행 연차총회 https://www.youtube.com/watch?v=T20jWBJ66X0 (2) Aven 「AI & the U.S. Productivity Wave with Kevin Warsh and Sadi Khan」 2025.12.04 https://www.youtube.com/watch?v=6LtRcC-JgBI [목차] 00:00 AI를 믿고 참자던 워시, 의장이 되자 금리를 올렸다 01:03 1. 1년 전 워시: 기술이 닿는 건 다 싸진다 02:19 2. 의장 워시: 금리를 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/Z1HNevc97Sg/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "연준 의장 워시가 말한 AI의 순서, 물가가 먼저고 생산성은 나중이다",
-   "desc_ko": "1년 전 케빈 워시는 그린스펀처럼 AI 생산성을 믿고 금리 인상을 참아야 한다고 했습니다. 의장이 된 그는 9월에 금리를 올렸고, 2026년 10월 16일 방콕 IMF 연차총회 대담에서는 AI가 공급보다 수요를 먼저 친다고 말했습니다. AI가 결국 물가를 낮춘다는 믿음은 그대로지만, 그게 지금은 아니라고 순서를 바꾼 것입니다. 두 원본을 나란히 놓고 무엇이 바뀌었는지 짚었습니다. [원본] (1) IMF 「Managing Director's Fireside Chat with Federal Reserve Chairman Kevin Warsh」 2026.10.16 방콕 IMF·세계은행 연차총회 https://www.youtube.com/watch?v=T20jWBJ66X0 (2) Aven 「AI & the U.S. Productivity Wave with Kevin Warsh and Sadi Khan」 2025.12.04 https://www.youtube.com/watch?v=6LtRcC-JgBI"
+   "desc_ko": "1년 전 케빈 워시는 그린스펀처럼 AI 생산성을 믿고 금리 인상을 참아야 한다고 했습니다. 의장이 된 그는 9월에 금리를 올렸고, 2026년 10월 16일 방콕 IMF 연차총회 대담에서는 AI가 공급보다 수요를 먼저 친다고 말했습니다. AI가 결국 물가를 낮춘다는 믿음은 그대로지만, 그게 지금은 아니라고 순서를 바꾼 것입니다. 두 원본을 나란히 놓고 무엇이 바뀌었는지 짚었습니다. [원본] (1) IMF 「Managing Director's Fireside Chat with Federal Reserve Chairman Kevin Warsh」 2026.10.16 방콕 IMF·세계은행 연차총회 https://www.youtube.com/watch?v=T20jWBJ66X0 (2) Aven 「AI & the U.S. Productivity Wave with Kevin Warsh and Sadi Khan」 2025.12.04 https://www.youtube.com/watch?v=6LtRcC-JgBI",
+   "summary": {
+    "title_ko": "연준 의장 워시가 말한 AI의 순서, 물가가 먼저고 생산성은 나중이다",
+    "headline": "AI가 결국 물가를 낮춘다는 믿음은 그대로, 다만 지금은 수요가 먼저 — 그래서 9월에 금리를 올렸다",
+    "image": "https://i.ytimg.com/vi/Z1HNevc97Sg/hqdefault.jpg",
+    "guest": "케빈 워시(Kevin Warsh) — 미국 연방준비제도(연준) 의장 — 2025년 12월 대담과 2026년 10월 IMF 대담을 식스시그마가 나란히 해설",
+    "company": "미국 연방준비제도(Federal Reserve) (통화정책 · 금리 · AI 거시경제)"
+   }
   },
   {
    "id": "2026-10-16-oddlots-the-french-political-crisis-that-s-turning-into",
@@ -1813,13 +1841,20 @@
    "audio": null,
    "duration": "6:53",
    "desc": "메타 초지능 연구소를 이끄는 알렉산드르 왕은 올해 2월 앤트로픽이 코딩 AI를 장악하자 업계 전체가 코딩 에이전트로 몰렸다고 말했습니다. 메타는 그 싸움에 끼어드는 대신 매일 메타 앱을 쓰는 35억 명을 위한 개인 에이전트에 승부를 걸었고, 7개월 뒤 뮤즈를 내놓았습니다. 앞세운 건 더 똑똑한 AI보다 믿을 수 있는 AI였습니다. 2026년 10월 11일 데이비드 센라 대담과 10월 7일 클리오 에이브럼 대담에서 알렉산드르 왕이 뮤즈를 만든 과정에 대해 한 말을 메타 실적 자료와 맞춰 보고, 이 결정이 주주에게 무엇을 뜻하는지 짚었습니다. [원본] (1) 데이비드 센라 대담 2026.10.11 https://www.youtube.com/watch?v=S6l3aRsecuE (2) 클리오 에이브럼 대담 2026.10.07 https://www.youtube.com/watch?v=1LRvMRC_pfY [목차] 00:00 돈만 태운다던 메타 00:47 1. 앤트로픽이 무서웠던 2월 01:53 2. 코딩을 모르는 35억 명 02:51 3. 7개월을 버티다 05:21 4. 지능보다 신뢰 06:17 5. 주주가 볼 두 가지 [화자] 알렉산드르 왕 · 메타 초지능 연구소장…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/qsQGXlI-ePE/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "자기가 제일 유리한 판에서만 싸우겠다는 메타",
-   "desc_ko": "메타 초지능 연구소를 이끄는 알렉산드르 왕은 올해 2월 앤트로픽이 코딩 AI를 장악하자 업계 전체가 코딩 에이전트로 몰렸다고 말했습니다. 메타는 그 싸움에 끼어드는 대신 매일 메타 앱을 쓰는 35억 명을 위한 개인 에이전트에 승부를 걸었고, 7개월 뒤 뮤즈를 내놓았습니다. 앞세운 건 더 똑똑한 AI보다 믿을 수 있는 AI였습니다. 2026년 10월 11일 데이비드 센라 대담과 10월 7일 클리오 에이브럼 대담에서 알렉산드르 왕이 뮤즈를 만든 과정에 대해 한 말을 메타 실적 자료와 맞춰 보고, 이 결정이 주주에게 무엇을 뜻하는지 짚었습니다. [원본] (1) 데이비드 센라 대담 2026.10.11 https://www.youtube.com/watch?v=S6l3aRsecuE (2) 클리오 에이브럼 대담 2026.10.07 https://www.youtube.com/watch?v=1LRvMRC_pfY"
+   "desc_ko": "메타 초지능 연구소를 이끄는 알렉산드르 왕은 올해 2월 앤트로픽이 코딩 AI를 장악하자 업계 전체가 코딩 에이전트로 몰렸다고 말했습니다. 메타는 그 싸움에 끼어드는 대신 매일 메타 앱을 쓰는 35억 명을 위한 개인 에이전트에 승부를 걸었고, 7개월 뒤 뮤즈를 내놓았습니다. 앞세운 건 더 똑똑한 AI보다 믿을 수 있는 AI였습니다. 2026년 10월 11일 데이비드 센라 대담과 10월 7일 클리오 에이브럼 대담에서 알렉산드르 왕이 뮤즈를 만든 과정에 대해 한 말을 메타 실적 자료와 맞춰 보고, 이 결정이 주주에게 무엇을 뜻하는지 짚었습니다. [원본] (1) 데이비드 센라 대담 2026.10.11 https://www.youtube.com/watch?v=S6l3aRsecuE (2) 클리오 에이브럼 대담 2026.10.07 https://www.youtube.com/watch?v=1LRvMRC_pfY",
+   "summary": {
+    "title_ko": "자기가 제일 유리한 판에서만 싸우겠다는 메타",
+    "headline": "코딩 싸움을 피한 메타 — 하루 36억 명 앱 위에 개인 에이전트 뮤즈, 미국 1,000만 다운로드까지 40일",
+    "image": "https://i.ytimg.com/vi/qsQGXlI-ePE/hqdefault.jpg",
+    "guest": "알렉산드르 왕(Alexandr Wang) — 메타 최고AI책임자 겸 초지능 연구소(MSL) 수장 — 데이비드 센라·클리오 에이브럼 대담 발언을 식스시그마가 해설",
+    "company": "메타 플랫폼스(Meta Platforms, META) (AI 에이전트 · 소비자 AI · 소셜 미디어)"
+   }
   },
   {
    "id": "2026-10-16-sixsigma-u6HZyXPeTr4",
@@ -1833,13 +1868,20 @@
    "audio": null,
    "duration": "5:57",
    "desc": "엔비디아는 매주 공급을 늘리고 있지만 수요가 더 빨리 커서, 고객이 원한 것보다 훨씬 적게 배정할 수밖에 없다고 젠슨 황 최고경영자는 말했습니다. 땅과 전력, 기판까지 전부 공급이 모자라고, 그 격차는 몇 년 동안 메우기 어렵다고 했습니다. 2026년 10월 15일 공개된 BG2 대담에서 브래드 거스너가 묻고 젠슨 황이 답한 내용 가운데, 수요와 공급의 격차에 관한 답을 골라, 왜 공급을 못 늘리는지와 그 격차가 몇 년 가는지 순서대로 짚었습니다. [원본] BG2 대담 2026.10.15 https://www.youtube.com/watch?v=eS7qQ3WJSrw [목차] 00:00 고객이 원한 것보다 훨씬 적게 00:31 1. 수요가 얼마나 큰가 01:05 2. 그래서 매일 출근한다 02:23 3. 그런데 왜 못 늘리나 03:57 4. 고객은 얼마나 줄 서 있나 05:45 5. 격차는 몇 년 간다 [화자] 젠슨 황 · 엔비디아 창업자 겸 최고경영자 브래드 거스너 · 알티미터 캐피털 창업자 겸 최고경영자(진행) [이해관계] AI 칩을 공급하는 회사의 최고경영자의 발언이며, 진행자가 이끄는 알티미터 캐피털은 원본 영상 설명란에서 일부 펀드가 대담에서 언급된 …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/u6HZyXPeTr4/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "최선을 다해도 고객을 실망시킬 수밖에 없는 회사, 엔비디아",
-   "desc_ko": "엔비디아는 매주 공급을 늘리고 있지만 수요가 더 빨리 커서, 고객이 원한 것보다 훨씬 적게 배정할 수밖에 없다고 젠슨 황 최고경영자는 말했습니다. 땅과 전력, 기판까지 전부 공급이 모자라고, 그 격차는 몇 년 동안 메우기 어렵다고 했습니다. 2026년 10월 15일 공개된 BG2 대담에서 브래드 거스너가 묻고 젠슨 황이 답한 내용 가운데, 수요와 공급의 격차에 관한 답을 골라, 왜 공급을 못 늘리는지와 그 격차가 몇 년 가는지 순서대로 짚었습니다. [원본] BG2 대담 2026.10.15 https://www.youtube.com/watch?v=eS7qQ3WJSrw"
+   "desc_ko": "엔비디아는 매주 공급을 늘리고 있지만 수요가 더 빨리 커서, 고객이 원한 것보다 훨씬 적게 배정할 수밖에 없다고 젠슨 황 최고경영자는 말했습니다. 땅과 전력, 기판까지 전부 공급이 모자라고, 그 격차는 몇 년 동안 메우기 어렵다고 했습니다. 2026년 10월 15일 공개된 BG2 대담에서 브래드 거스너가 묻고 젠슨 황이 답한 내용 가운데, 수요와 공급의 격차에 관한 답을 골라, 왜 공급을 못 늘리는지와 그 격차가 몇 년 가는지 순서대로 짚었습니다. [원본] BG2 대담 2026.10.15 https://www.youtube.com/watch?v=eS7qQ3WJSrw",
+   "summary": {
+    "title_ko": "최선을 다해도 고객을 실망시킬 수밖에 없는 회사, 엔비디아",
+    "headline": "주문은 넘치는데 기판·광·전력이 막혔다 — 황은 격차가 몇 년 간다고 봤다",
+    "image": "https://i.ytimg.com/vi/u6HZyXPeTr4/hqdefault.jpg",
+    "guest": "젠슨 황(Jensen Huang) — 엔비디아 최고경영자 — BG2 대담(진행 브래드 거스너) 중 수요·공급 격차 답변을 식스시그마가 발췌",
+    "company": "엔비디아(NVIDIA, NVDA) (반도체 · AI 가속기 · 데이터센터)"
+   }
   },
   {
    "id": "2026-10-15-understanding-IZkjnbqA-_4",
@@ -1873,13 +1915,20 @@
    "audio": null,
    "duration": "11:55",
    "desc": "TSMC는 전 세계에서 공장 25개 가까이를 짓고 있는데도 수요가 공급보다 크다고 했습니다. 그 수요가 진짜인지 확인하려고 미국 데이터센터 공사 현장과 전력 사정까지 직원을 보내 확인했고, 답은 '지금까지 순조롭다'였습니다. 2026년 10월 15일 3분기 투자자 컨콜에서 애널리스트들이 묻고 웨이저자 회장 겸 CEO와 웬델 황 CFO가 답한 내용을 주제별로 다시 묶고, 칩 수요가 메모리 수요로 어떻게 이어지는지 짚었습니다. [원본] TSMC 3분기 투자자 컨콜 2026.10.15 - 컨콜 다시듣기·IR 자료: https://investor.tsmc.com/english/quarterly-results/2026/q3 [사진] 인물 사진: TSMC 2분기 투자자 컨콜 영상(2026.07.16) [목차] 00:00 공장 25개를 더 지어도 모자란다 00:41 1. 수요가 공급보다 크다 03:26 2. 수요가 진짜인지 다녀왔다 05:33 3. 그래서 25개를 더 짓는다 08:58 4. 칩이 커지면 메모리도 는다 10:39 5. 다만 소비자 쪽은 11:10 정리 [같이 보면 좋은 영상] 이번 주 반도체 공급망 3분기 컨콜 - 난야 테크놀로지(메모리): https://…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/P0y3Liidz3I/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "수요가 진짜인지 파견까지 보내는 TSMC, 3분기 컨콜 Q&A",
-   "desc_ko": "TSMC는 전 세계에서 공장 25개 가까이를 짓고 있는데도 수요가 공급보다 크다고 했습니다. 그 수요가 진짜인지 확인하려고 미국 데이터센터 공사 현장과 전력 사정까지 직원을 보내 확인했고, 답은 '지금까지 순조롭다'였습니다. 2026년 10월 15일 3분기 투자자 컨콜에서 애널리스트들이 묻고 웨이저자 회장 겸 CEO와 웬델 황 CFO가 답한 내용을 주제별로 다시 묶고, 칩 수요가 메모리 수요로 어떻게 이어지는지 짚었습니다. [원본] TSMC 3분기 투자자 컨콜 2026.10.15 - 컨콜 다시듣기·IR 자료: https://investor.tsmc.com/english/quarterly-results/2026/q3 [사진] 인물 사진: TSMC 2분기 투자자 컨콜 영상(2026.07.16)"
+   "desc_ko": "TSMC는 전 세계에서 공장 25개 가까이를 짓고 있는데도 수요가 공급보다 크다고 했습니다. 그 수요가 진짜인지 확인하려고 미국 데이터센터 공사 현장과 전력 사정까지 직원을 보내 확인했고, 답은 '지금까지 순조롭다'였습니다. 2026년 10월 15일 3분기 투자자 컨콜에서 애널리스트들이 묻고 웨이저자 회장 겸 CEO와 웬델 황 CFO가 답한 내용을 주제별로 다시 묶고, 칩 수요가 메모리 수요로 어떻게 이어지는지 짚었습니다. [원본] TSMC 3분기 투자자 컨콜 2026.10.15 - 컨콜 다시듣기·IR 자료: https://investor.tsmc.com/english/quarterly-results/2026/q3 [사진] 인물 사진: TSMC 2분기 투자자 컨콜 영상(2026.07.16)",
+   "summary": {
+    "title_ko": "수요가 진짜인지 파견까지 보내는 TSMC, 3분기 컨콜 Q&A",
+    "headline": "직원을 보내 확인해도 수요가 더 크다 — TSMC는 2나노 두 배·3나노 공장 추가로 답했고, 소비자 쪽만 신중",
+    "image": "https://i.ytimg.com/vi/P0y3Liidz3I/hqdefault.jpg",
+    "guest": "웨이저자(C.C. Wei) — TSMC 회장 겸 최고경영자 — 3분기 2026 실적 발표회 답변을 식스시그마가 해설",
+    "company": "TSMC(Taiwan Semiconductor Manufacturing, 2330.TW·TSM) (반도체 · 파운드리 · 첨단 패키징)"
+   }
   },
   {
    "id": "2026-10-15-understanding-uwrkPIHtbjw",
@@ -2059,13 +2108,20 @@
    "audio": null,
    "duration": "12:19",
    "desc": "ASML은 석 달 전 2027년 생산능력을 30% 늘리고, 2028년에도 30% 더 늘리는 방안을 검토한다고 했습니다. 이번 3분기 실적 발표에서 크리스토프 푸케 CEO는 그렇게 늘려도 고객 수요를 맞출 수 없다고 했습니다. 고객은 2029·2030년 주문까지 넣으려 하고, 증설에 가장 공격적인 쪽은 디램입니다. 장비가 모자라면 디램 공급도 늘릴 수 없습니다. 투자자 컨콜에서 애널리스트들이 묻고 경영진이 답한 내용을 주제별로 다시 묶고, 장비 부족이 디램 공급에 어떻게 이어지는지 짚었습니다. [원본] ASML 3분기 실적 영상·투자자 컨콜 2026.10.14 - 실적 영상(CEO·CFO 인터뷰)·IR 자료: https://investor.asml.com/quarterly-results - 투자자 컨콜 다시보기: https://edge.media-server.com/mmc/p/84zr87n8 [목차] 00:00 30% 늘려도 모자랍니다 00:37 3분기 숫자 세 개 00:54 1. 얼마나 모자라나 02:56 2. 진짜 수요인가 05:00 3. 누가 사나 07:36 4. 공장이 따라오나 08:27 5. 가격 10:10 6. 위험: 중국 11:50 정리 [화자] …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/wspvtTiCg4o/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "ASML 3분기 컨콜로 본 디램 공급이 쉽게 늘지 않는 이유",
-   "desc_ko": "ASML은 석 달 전 2027년 생산능력을 30% 늘리고, 2028년에도 30% 더 늘리는 방안을 검토한다고 했습니다. 이번 3분기 실적 발표에서 크리스토프 푸케 CEO는 그렇게 늘려도 고객 수요를 맞출 수 없다고 했습니다. 고객은 2029·2030년 주문까지 넣으려 하고, 증설에 가장 공격적인 쪽은 디램입니다. 장비가 모자라면 디램 공급도 늘릴 수 없습니다. 투자자 컨콜에서 애널리스트들이 묻고 경영진이 답한 내용을 주제별로 다시 묶고, 장비 부족이 디램 공급에 어떻게 이어지는지 짚었습니다. [원본] ASML 3분기 실적 영상·투자자 컨콜 2026.10.14 - 실적 영상(CEO·CFO 인터뷰)·IR 자료: https://investor.asml.com/quarterly-results - 투자자 컨콜 다시보기: https://edge.media-server.com/mmc/p/84zr87n8"
+   "desc_ko": "ASML은 석 달 전 2027년 생산능력을 30% 늘리고, 2028년에도 30% 더 늘리는 방안을 검토한다고 했습니다. 이번 3분기 실적 발표에서 크리스토프 푸케 CEO는 그렇게 늘려도 고객 수요를 맞출 수 없다고 했습니다. 고객은 2029·2030년 주문까지 넣으려 하고, 증설에 가장 공격적인 쪽은 디램입니다. 장비가 모자라면 디램 공급도 늘릴 수 없습니다. 투자자 컨콜에서 애널리스트들이 묻고 경영진이 답한 내용을 주제별로 다시 묶고, 장비 부족이 디램 공급에 어떻게 이어지는지 짚었습니다. [원본] ASML 3분기 실적 영상·투자자 컨콜 2026.10.14 - 실적 영상(CEO·CFO 인터뷰)·IR 자료: https://investor.asml.com/quarterly-results - 투자자 컨콜 다시보기: https://edge.media-server.com/mmc/p/84zr87n8",
+   "summary": {
+    "title_ko": "ASML 3분기 컨콜로 본 디램 공급이 쉽게 늘지 않는 이유",
+    "headline": "30%씩 늘려도 모자란 EUV — 고객은 2030년 주문까지 넣으려 하고, 앞장선 쪽은 디램",
+    "image": "https://i.ytimg.com/vi/wspvtTiCg4o/hqdefault.jpg",
+    "guest": "크리스토프 푸케(Christophe Fouquet)·로저 다센(Roger Dassen) — ASML 최고경영자·최고재무책임자 — 3분기 2026 실적 컨콜 답변을 식스시그마가 주제별로 해설",
+    "company": "ASML(ASML, 암스테르담·나스닥 상장) (반도체 장비 · 노광(EUV·DUV))"
+   }
   },
   {
    "id": "2026-10-15-sixsigma-zf0aGUndtsM",
@@ -2344,13 +2400,20 @@
    "audio": null,
    "duration": "13:46",
    "desc": "[원본] (1) Announcement of the 2026 Nobel Prize in Physiology or Medicine · Nobel Prize · 2026년 10월 5일 (2) Karl Deisseroth (Stanford / HHMI): Development of Optogenetics · iBiology · 2016년 9월 21일 (3) First reactions: Peter Hegemann · Nobel Prize · 2026년 10월 5일 (4) First reactions: Georg Nagel · Nobel Prize · 2026년 10월 5일 (5) 2026 Stanford Nobel Prize Press Conference: Karl Deisseroth · Stanford · 2026년 10월 5일 (6) Nobel Laureate Karl Deisseroth Explains How Light Can Unlock the Brain's Secrets · CRUX · 2026년 10월 10일 (7) Karl Deisseroth tells his family he won the Nobel Prize in medicine · Associa…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-23 10:29 KST",
    "image": "https://i.ytimg.com/vi/5N8xGeb7WJM/maxresdefault.jpg",
    "show_image": null,
    "lang": "ko",
    "title_ko": "뇌를 켜고 끄는 스위치로 노벨상을 받았다",
-   "desc_ko": "[원본] (1) Announcement of the 2026 Nobel Prize in Physiology or Medicine · Nobel Prize · 2026년 10월 5일 (2) Karl Deisseroth (Stanford / HHMI): Development of Optogenetics · iBiology · 2016년 9월 21일 (3) First reactions: Peter Hegemann · Nobel Prize · 2026년 10월 5일 (4) First reactions: Georg Nagel · Nobel Prize · 2026년 10월 5일 (5) 2026 Stanford Nobel Prize Press Conference: Karl Deisseroth · Stanford · 2026년 10월 5일 (6) Nobel Laureate Karl Deisseroth Explains How Light Can Unlock the Brain's Secrets · CRUX · 2026년 10월 10일 (7) Karl Deisseroth tells his family he won the Nobel Prize in medicine · Associa…"
+   "desc_ko": "[원본] (1) Announcement of the 2026 Nobel Prize in Physiology or Medicine · Nobel Prize · 2026년 10월 5일 (2) Karl Deisseroth (Stanford / HHMI): Development of Optogenetics · iBiology · 2016년 9월 21일 (3) First reactions: Peter Hegemann · Nobel Prize · 2026년 10월 5일 (4) First reactions: Georg Nagel · Nobel Prize · 2026년 10월 5일 (5) 2026 Stanford Nobel Prize Press Conference: Karl Deisseroth · Stanford · 2026년 10월 5일 (6) Nobel Laureate Karl Deisseroth Explains How Light Can Unlock the Brain's Secrets · CRUX · 2026년 10월 10일 (7) Karl Deisseroth tells his family he won the Nobel Prize in medicine · Associa…",
+   "summary": {
+    "title_ko": "뇌를 켜고 끄는 스위치로 노벨상을 받았다",
+    "headline": "노벨상은 받았지만 환자 치료는 이제 시작 — 첫 상업 치료제 결정은 2027년 상반기, 수상자 회사 주가는 고점 대비 80% 아래",
+    "image": "https://i.ytimg.com/vi/5N8xGeb7WJM/hqdefault.jpg",
+    "guest": "칼 다이서로스(Karl Deisseroth) 외 2026 노벨 생리의학상 수상자 — 광유전학 개척자 3인(다이서로스·헤게만·나겔)의 수상 발표·회고·첫 반응을 식스시그마가 엮은 편",
+    "company": "광유전학 관련 기업(Nanoscope·GenSight Biologics·MapLight Therapeutics) (바이오 · 유전자 치료 · 신경정신 신약)"
+   }
   },
   {
    "id": "2026-10-13-understanding-SJqSJALiHlE",

@@ -1,0 +1,210 @@
+{
+ "id": "2026-10-22-synopsis-interview-eric-seufert-on-whether-ai-will-destro",
+ "title_ko": "Eric Seufert — AI가 구글 검색 독점을 무너뜨릴까",
+ "guest": {
+  "name": "에릭 수퍼트(Eric Seufert)",
+  "role": "Mobile Dev Memo 운영자 · Heracles Capital 제너럴 파트너 — 모바일 광고·광고 기술 분석가"
+ },
+ "guest_profile": [
+  {
+   "name": "에릭 수퍼트(Eric Seufert)",
+   "title": "Mobile Dev Memo 운영자 · Heracles Capital 제너럴 파트너",
+   "what": "모바일 광고·수익화·광고 기술을 다루는 블로그·팟캐스트·뉴스레터 Mobile Dev Memo(mdm.co)를 운영한다. Heracles Capital 제너럴 파트너이자 Heracles Media 애널리스트이며, Unity·Discord에 모바일 광고·플랫폼 전략을 자문한다. 펀드 운용 규모는 공개 자료로 확인 못 함.",
+   "career": "Skype·Digital Chocolate·Wooga를 거쳐 'Angry Birds' 개발사 Rovio에서 이용자 확보·참여 담당 부사장을 지냈다. 모바일 마케팅 분석 플랫폼 Agamemnon을 창업해 N3TWORK에 매각했고, 마케팅 코호트 분석용 오픈소스 Theseus를 만들었다. 2014년 Elsevier에서 『Freemium Economics』를 냈다.",
+   "track": "공개된 투자 수익률은 없음. 진행자 Drew Cohen은 Capital Group 재직 시절 광고 기술 동향을 물을 때 자주 찾던 전문가라고 소개했다.",
+   "why": "구글 비관론이 절정이던 2024~2025년부터 'Google's Gambit' 연재로 구글의 AI 검색 전환을 추적해 왔고, 광고 경매·측정 실무를 아는 사람이 챗봇 광고와 에이전트 쇼핑의 경제성을 따진다."
+  }
+ ],
+ "company": {
+  "name": "Alphabet(Google)·Meta·Amazon·OpenAI",
+  "sector": "검색 광고 · AI 챗봇 · 에이전트 쇼핑",
+  "what": "AI 챗봇·에이전트 시대에 구글 검색 광고가 버틸 수 있는지, 챗봇·에이전트는 어떻게 돈을 벌지"
+ },
+ "topic": "AI가 구글 검색을 무너뜨리나 — '붙잡아 두는 검색', 챗봇 광고, 수수료 대 경매, 여행과 전자상거래",
+ "headline": "Seufert '검색 630억 달러 +17%가 침식이면 나도 깎이고 싶다' — 구글은 AI로 검색을 다시 만들었고, 에이전트도 결국 광고로 돈 번다",
+ "tldr": [
+  "Seufert: 구글은 AI Overviews·AI Mode로 검색을 '내보내는 곳'에서 '붙잡아 두는 곳'으로 바꿨다 — 월 25억·10억 명",
+  "검색 매출 630억 달러 +17%(2분기) — '이게 침식이면 나도 깎이고 싶다', 외부 자료와 일치",
+  "챗봇 광고는 신뢰를 깎지 않는다, 설계 문제 — ChatGPT 광고 200일 만에 연환산 10억 달러",
+  "에이전트 쇼핑은 수수료가 아니라 경매(광고)로 수익화된다 — 여행은 맞고 전자상거래는 안 맞는다",
+  "Cohen의 반론: 브랜드 검색·역대 최고 사업 대체의 어려움 — 외부 자료로 반독점 데이터 공유·챗봇 시장 분화도 변수"
+ ],
+ "summary_md": "### 1. 들어가며: 광고 기술 전문가에게 묻는 구글 검색의 앞날\n\n- 진행자 Drew Cohen은 Capital Group에서 일하던 시절 광고 기술 동향을 물을 때 자주 찾던 전문가라며 Eric Seufert를 소개했다. 지난 방송에서 구글 검색이 받는 도전을 다뤘는데, Seufert가 다른 의견을 내서 마련된 자리다.\n- Cohen이 던진 논점은 두 가지다. ChatGPT 같은 새 화면으로 검색 수요가 옮겨 갈 위험, 그리고 검색이 대화형으로 바뀌면서 광고를 끼워 넣기가 어려워질 위험이다.\n\n### 2. '구글의 수': 내보내는 검색에서 붙잡아 두는 검색으로\n\n- Seufert는 구글 비관론이 절정이던 2024~2025년에 'Google's Gambit' 연재를 썼다. 구글은 느리고 굳은 조직이라는 평을 듣지만, AI Overviews로 검색 화면 윗부분을 AI 요약으로 바꾸는 큰 전환을 해낼 자격이 충분하다고 봤고 실제로 해냈다고 평가했다.\n- 옛 검색의 목표는 첫 링크를 눌러 빨리 떠나게 하는 것이었다. 첫 링크가 가장 알맞은 곳이면서 광고이기도 하면 모두가 이긴다. 새 검색은 사용자를 **붙잡아 두는 곳**이다. 후속 질문을 하고 질의를 다듬는 동안 광고를 보여 줄 기회가 여러 번 생긴다.\n- 그가 든 숫자는 **AI Overviews 월 25억 명**, AI Mode 월 10억 명이다. 두 화면 모두 이미 광고를 붙였고, 최근엔 여러 쇼핑몰 장바구니를 묶는 **Universal Cart**도 내놓았다. 그는 이것이 Meta Muse가 말하는 방식보다 나은 에이전트 쇼핑 모델이라고 했다.\n\n[[chart:1]]\n\n### 3. '침식'이라는 말에 대한 반박\n\n- Cohen은 구글이 검색량 사상 최대라고만 할 뿐 AI 질의를 포함했는지 밝히지 않는다고 짚었다. 2025년 반독점 재판에서 Apple의 Eddy Cue가 Safari 안 구글 검색이 줄었다고 증언한 점도 들었다(구글은 부인).\n- Seufert는 지난 분기 검색 매출이 **630억 달러, 17% 성장**이라며 \"이게 침식이면 나도 깎이고 싶다\"고 받아쳤다. AI Overviews·AI Mode·기존 검색을 한 바구니로 보면 되고, 구글은 AI 검색 수익화가 기존과 같은 수준이라고 밝혔다. 침식이 있다면 외부 챗봇 때문이 아니라 구글 스스로 검색을 다시 만든 결과라는 해석이다.\n- 단독 챗봇이 위협이라면 구글에도 Gemini가 있고, **Muse** 같은 에이전트가 검색을 대신하더라도 구글이 에이전트를 내지 못할 이유는 없다고 봤다.\n\n### 4. 챗봇 광고는 신뢰를 깎는가\n\n- Cohen은 건강 상담 중 광고가 뜨면 답 자체를 의심하게 된다고 했다. Gemini 대화엔 아직 광고가 없고, 자기 아버지도 몇 달 전에야 ChatGPT를 쓰기 시작했다며 아직 확산 초입이라고 봤다.\n- Seufert는 ChatGPT가 주간 10억 명, 출시 4년째라 초입이 아니라 S곡선 한가운데라고 맞섰다. 신뢰 문제는 **설계의 문제**라고 했다. 소비자는 광고가 아니라 나쁜 광고를 싫어하고, 민감한 주제엔 이미 플랫폼 규칙과 법으로 광고를 못 붙인다. ChatGPT 광고는 약 200일 만에 연환산 10억 달러에 이르렀다.\n- 구글은 검색 중 수익화할 수 있는 건 약 20%라고 말해 왔다. 챗봇은 대화 맥락에 더해 픽셀·전환 API로 모은 바깥 행동 정보로, 상업 의도가 없는 대화에도 광고를 붙일 수 있다. 그래서 **검색보다 더 좋은 사업**일 수 있다는 주장이다.\n- 여러 번 오가는 대화에서 구매 의도가 좁혀지면 '더 적지만 더 정확한 광고'가 가능하다. 광고가 늘면 참여가 떨어지므로 이상적인 결과라고 했다.\n\n### 5. 브랜드 검색은 얼마나 큰 구멍인가\n\n- Cohen은 검색 광고의 4분의 1~3분의 1이 자기·경쟁사 이름에 방어적으로 입찰하는 것이라는 연구가 있다며, AI가 사이트로 바로 데려가면 이 몫이 빠진다고 했다.\n- Seufert는 그런 자료를 본 적이 없고 공개 자료도 없다고 했다. 경험상 **브랜드 검색**은 광고 예산의 아주 작은 몫이고, 광고주는 돈을 안 썼을 때와 비교하는 증분 효과 시험을 잘한다. 에이전트 안에서도 남의 브랜드 옆에 입찰하는 기회는 남고, 발견을 수익화하면 결국 광고로 귀결된다고 봤다.\n- Cohen은 역대 최고의 사업을 같은 수준으로 대체하긴 어렵다는 회의를 거두지 않았다. Seufert는 구글이 반드시 이긴다는 게 아니라 못할 거라고 단정할 수 없다는 뜻이라고 정리했다.\n\n### 6. 에이전트 쇼핑: 수수료냐 경매냐\n\n- Cohen은 스테이크 나이프 추천을 구할 때 광고가 끼면 결과를 믿기 어렵다며, Muse가 거래 수수료를 말하는 이유를 이해한다고 했다.\n- Seufert는 임의로 정한 수수료율은 감당 못 하는 판매자를 내쫓고, 더 낼 수 있는 판매자에게서는 덜 받는다고 반박했다. 판매자마다 낼 값을 부르는 **경매, 즉 광고**가 답이라는 것이다. 에이전트가 많아지면 수수료를 소비자에게 떠넘기는 쪽이 밀려 '바닥으로의 경쟁'이 된다고 봤다. Amazon은 이미 가장 편한 쇼핑이고 지금 Muse에선 쓸 수 없다.\n- Amazon의 **Rufus**는 작년 증분 연환산 거래액 120억 달러를 냈고 광고도 붙였다. 개인 체험보다 보통 소비자와 경제적 유인으로 봐야 한다고 했다.\n- 그는 Walmart 광고 64억 달러, Amazon 690억 달러를 비교하며 광고가 순이익에서 차지하는 비중이 Amazon 88%, Walmart 29%라고 말했다. Walmart는 Muse와 손잡았지만 OpenAI 즉시결제에서는 빠졌다. 회사 성격이 달라 Walmart를 잣대로 삼기 어렵다고 했다.\n- 구독 모델에도 회의적이었다. Meta의 EU 구독 가입률은 1% 미만이었고, 구독은 시장의 90%를 잘라 낸다. 에이전트에 삶을 맡기고 돈까지 내는 층은 미국 해안 대도시 사용자처럼 작은 집단이라고 봤다. Netflix가 광고 요금제로 간 것도 같은 이유로 들었다.\n\n### 7. 여행은 에이전트에 잘 맞는 업종\n\n- 온라인 여행사 자체가 에이전트이고, 재고 조회·구매 인프라가 이미 있다. 호텔·항공사는 손님이 직접 오고 멤버십 번호를 주니 고객 관계를 잃지 않으며, 물류 부담도 없다. 호텔 예약 수수료는 최대 15%라 에이전트가 발견을 대신하면 그만큼이 소비자나 호텔에 돌아간다고 봤다.\n- Cohen은 Booking이 객실을 대량 확보해 더 싸게 팔기도 한다며, 왜 검색 시대엔 이런 일이 안 일어났는지 물었다. Seufert는 조건을 길게 말로 넣을 수 있는 **자연어 질의**가 '왜 지금'의 답이라면서도, 브랜드와 습관은 쉽게 바뀌지 않는다고 덧붙였다.\n- 반면 전자상거래는 판매자가 고객 정보·광고 사업·물류 경쟁력을 지켜야 해 에이전트 쇼핑과 맞지 않는다고 봤다.\n\n### 8. Siri, 앱 생태계, Apple의 광고\n\n- Apple이 App Intents를 넓히면 Siri가 차량 호출 같은 실용 앱 사용 시간을 흡수할 것이라고 봤다. 게임·Netflix는 예외다. Uber는 Muse·Siri와 연동하는데, 안 하면 경쟁사가 할 것이기 때문이다.\n- Siri에 광고를 붙이진 않겠지만 Apple의 광고 야심은 커졌다고 봤다. Siri 구독, 검색처럼 기본 모델 공급자 지위로 받는 몫, **Private Cloud Compute** 유료화를 가능한 경로로 꼽았다.\n- 사람들이 혈액검사·계약서를 무료 챗봇에 올리고 Muse가 2주 넘게 앱 순위 1위를 하는 걸 보면 **프라이버시 마케팅**의 힘은 약해졌다. Cohen은 AppLovin 보고서를 썼다며 Apple이 마음먹으면 모바일 앱 광고를 장악할 수 있다고 했고, Seufert(Unity 자문)는 설치 앱·결제 정보를 쥔 Apple의 구조적 우위를 인정했다.\n\n### 9. 광고 모델 개선은 언제 멈추나\n\n- Meta·Google은 광고 운영자이면서 AI 연구 최전선에 있고, 광고 순위 모델이 **스케일링 법칙**을 타고 있어 끝이 안 보인다고 했다. 멈춤 신호는 큰 광고 플랫폼이 거시 경제·인구 탓을 하기 시작할 때다.\n- Cohen이 AppLovin의 지난 분기 실망을 묻자, Seufert는 핵심 엔진은 여전히 게임이고 전자상거래 단기 효과가 과장됐다고 했다. 2024년 11월 글에서 이미 시범 사업이 측정·소재 제작 역량이 큰 광고주만 받았다는 점을 약점으로 짚었다. 전자상거래는 작은 광고주가 길게 늘어선 시장이고, 새 지면용 영상 소재를 만드는 도구는 ByteDance만큼 투자해야 한다고 덧붙였다.",
+ "insights_md": "### 투자 관점\n\n- 이 편의 질문은 구글 검색 '질의 수'가 줄었느냐가 아니라 **AI 화면의 수익화율**이다. Seufert는 AI Overviews·AI Mode가 기존 검색과 같은 수준으로 돈을 벌고, 대화형 광고가 오히려 더 좋은 사업이 될 수 있다고 본다.\n- 관련 상장사: Alphabet(검색·Gemini·Universal Cart), Meta(Muse·광고 모델), Amazon(Rufus·광고), Walmart, Apple(Siri·App Intents), Booking·Expedia(여행 에이전트), Uber, AppLovin·Unity(모바일 광고). 한국에선 대화에 나오지 않았지만 같은 구조의 **Naver**가 AI 브리핑 광고를 7월 말 정식 출시했다(외부 자료). 일본 회사는 대화에 나오지 않았다.\n- 숫자: 대본의 **검색 매출 630억 달러 +17%**는 Alphabet 2분기 실적(632.7억 달러)과 맞는다. ChatGPT 광고 연환산 10억 달러, Rufus 120억 달러도 회사 발표로 확인된다. 반면 Cohen이 든 '브랜드 검색이 4분의 1~3분의 1' 수치와 Seufert가 든 Amazon·Walmart 순이익 대비 광고 비중은 이번 조사에서 확인 못 함.\n- 업종별로 갈리는 논리: Seufert는 에이전트 쇼핑의 승패를 업종 구조로 나눈다. 손님이 직접 오고 멤버십으로 관계가 유지되는 호텔·항공은 에이전트에 맞고, 이 경우 중개 수수료를 받는 **온라인 여행사**가 압박을 받는다. 광고·물류로 고객 접점을 지켜야 하는 Amazon 같은 판매자는 외부 에이전트를 막을 유인이 크다.\n- 반론·리스크: 구글 **검색 점유율은 약 90%**로 여전하지만, AI 챗봇 유입 시장에서는 ChatGPT가 4분의 3을 쥐고 있다. 반독점 판결로 경쟁사에 **검색 데이터 공유**가 의무화됐고 양측이 항소 중이다. AI 화면은 기존 검색보다 연산 비용이 커 **마진 희석** 위험도 있다. 에이전트 쇼핑은 Amazon이 Muse를 막았듯 판매자 반발이 걸림돌이다.\n- 체크포인트: 10월 28일 Alphabet 3분기 실적의 검색 성장률, AI Mode 광고·Universal Cart 실적 언급, ChatGPT 광고 매출 목표(연 23억~25억 달러) 달성 여부, Muse의 수익 모델 발표, D.C. 항소법원 일정.",
+ "deep_md": "### 1. 게스트·대본 팩트 체크\n\n- Eric Seufert는 광고·수익화 블로그 Mobile Dev Memo(mdm.co)를 운영하고, Heracles Capital 제너럴 파트너·Heracles Media 애널리스트로 소개된다. Unity·Discord 자문을 맡고 있다(Law & Economics Center 소개). **Rovio**에서 이용자 확보 담당 부사장을 지냈고 『Freemium Economics』를 썼다(Crunchbase).\n- 자동 자막은 이름을 'Suffort'로 받아 적었으나 방송 소개글로 Seufert임을 확인했다. Cohen이 말한 Capital Group 경력은 Davidson Kahn 소개 자료와 맞는다.\n- 대본의 AppLovin '가이던스 미달'은 외부 자료와 다소 다르다. 2분기 매출 19.2억 달러는 시장 예상(19.4억)을 조금 밑돌았지만 3분기 전망을 20.6억~20.8억 달러로 올렸다(Benzinga). 주가 압박은 7월 중순 **전자상거래 둔화**를 시사한 외부 데이터에서 먼저 나왔다.\n\n### 2. 숫자의 맥락: 검색 매출은 아직 가속 중\n\n- Alphabet 2분기 검색·기타 매출은 632.7억 달러로 1년 전 541.9억 달러보다 17% 늘었다. 1분기(604억 달러)엔 19% 성장했다(PPC Land). 대본의 '630억 달러, 17%'와 일치한다. 같은 분기 YouTube 광고는 110.6억 달러(+13%), 외부 사이트에 광고를 붙이는 **Network 매출**은 73억 달러로 1% 줄었다. 사용자가 구글 안에 더 머무르는 만큼 바깥 사이트로 가는 몫이 줄어드는 그림으로, Seufert의 '붙잡아 두는 검색' 설명과 방향이 같다.\n- 회사는 AI Mode 월간 이용자 **10억 명 돌파**를 밝혔고, AI Overviews와 AI Mode를 하나의 검색 경험으로 합쳤다(Nasdaq 콜 요약). AI Overviews 25억 명은 대본 수치이며 이번 조회에서 2분기 공식 수치는 확인 못 함.\n\n[[chart:2]]\n\n### 3. 챗봇 광고와 에이전트 쇼핑의 현재\n\n- OpenAI는 8월 31일 ChatGPT 광고가 출시 200일 안에 **연환산 10억 달러**를 넘었다고 밝혔다. 주간 이용자 10억 명 이상, 40여 개국, 광고주 수만 곳이다. 올해 목표로 알려진 23억 달러에는 아직 못 미친다(Adweek).\n- Google Universal Cart는 I/O 2026에서 발표됐고 Nike·Sephora·Target·Walmart 등이 참여한다. 결제는 Universal Commerce Protocol로 처리한다(eMarketer). 대본의 '지난주 출시' 날짜는 확인 못 함.\n- Amazon 광고 매출은 2025년 **686억 달러**로 22% 늘었다. Walmart 광고는 2026 회계연도 약 64억 달러(46% 성장, VIZIO 포함)다(Marketplace Pulse·Walmart 8-K). 대본의 690억·64억 달러와 맞다. 광고가 순이익에서 차지하는 비중(88%·29%)은 확인 못 함. Rufus는 2025년 증분 연환산 매출 약 120억 달러를 냈다(PPC Land).\n\n[[chart:3]]\n\n### 4. 밸류체인과 관련 상장사\n\n- 검색·AI 화면: Alphabet, Microsoft(Bing), 비상장 OpenAI. 에이전트: Meta Muse(9월 8일 미국 출시 후 앱 순위 1위, Amazon은 접속 차단), Apple Siri.\n- 리테일 미디어: Amazon·Walmart. 여행: Booking·Expedia. 모바일 앱 광고: AppLovin·Unity.\n- 한국 **Naver**는 2분기 매출 3조3888억원(+16.2%), 광고 매출 1조4472억원(+7.5%)을 냈다. 7월 말 출시한 AI 브리핑 광고가 기존 검색광고보다 클릭 전환율이 30% 이상 높다고 회사가 밝혔다(아이뉴스24). Seufert의 '대화형 광고가 더 좋은 사업' 논리를 국내에서 시험하는 사례다. 다만 영업이익은 AI 인프라 투자로 0.2% 줄어, **AI 비용 부담**이 숫자로 드러났다.\n\n### 5. 반론과 리스크\n\n- 점유율: StatCounter 기준 구글 검색 점유율은 약 90%로 버티지만, AI 챗봇 유입 시장에선 ChatGPT가 76.85%(2026년 4월)를 차지한다. 1년 새 84.21%에서 내려왔고 2위 Gemini는 9%다. 챗봇 쪽 판이 갈리는 건 구글에 유리한 신호다.\n\n[[chart:4]]\n\n- 규제: Mehta 판사의 2025년 9월 시정 명령은 6년간 배타적 기본 검색 계약을 금지하고, 자격을 갖춘 경쟁사에 **검색 색인·사용자 데이터** 공유를 의무화했다. 구글은 2026년 5월 항소했고 법무부는 처벌이 약하다며 맞항소했다(MediaPost·PYMNTS). Apple에 주는 **기본 검색 대가**는 아직 허용된다. 데이터 공유가 집행되면 OpenAI 같은 경쟁사가 구글 색인으로 검색 품질을 끌어올릴 수 있다.\n- 반대 시각: Cohen의 지적처럼 AI 질의를 포함한 검색량 정의가 공개되지 않았고, AI 화면은 연산 비용이 더 든다. **수익화 동등성**은 회사 주장이라 외부 검증이 어렵다.\n\n### 6. 앞으로 볼 것\n\n- 10월 28일 Alphabet 3분기 실적: 검색 성장률이 두 자릿수 중후반을 유지하는지, AI Mode 광고·Universal Cart 성과 언급.\n- ChatGPT 광고의 연간 목표 달성 여부, Muse가 수수료와 광고 중 무엇을 고르는지.\n- D.C. 항소법원 일정과 데이터 공유 명령 집행 정지 여부, Naver AI 브리핑 광고의 3분기 매출 기여.",
+ "sources": [
+  {
+   "label": "YouTube — The Synopsis 'Does AI Wreck Google Search?'(대본)",
+   "url": "https://www.youtube.com/watch?v=iSfLL-eN13Q"
+  },
+  {
+   "label": "The Synopsis 에피소드 페이지(Libsyn)",
+   "url": "https://5f85ab06-2c89-4625-a5f9-f4b3a3300053.libsyn.com/interview-eric-seufert-on-whether-ai-will-destroy-googles-search-monopoly"
+  },
+  {
+   "label": "Law & Economics Center — Eric Seufert 소개(Heracles Capital·Unity·Discord 자문)",
+   "url": "https://laweconcenter.org/author/eseufert/"
+  },
+  {
+   "label": "Crunchbase — Eric Seufert 경력(Rovio·Wooga·Freemium Economics·Agamemnon)",
+   "url": "https://crunchbase.com/person/eric-seufert"
+  },
+  {
+   "label": "PPC Land — Alphabet 2026년 2분기 검색 매출 632.7억 달러(+17%)",
+   "url": "https://ppc.land/google-search-ads-gain-17-to-63-3-billion-while-network-drops-1/"
+  },
+  {
+   "label": "Nasdaq — Alphabet 2분기 콜 요약(AI Mode 월 10억 명)",
+   "url": "https://www.nasdaq.com/articles/alphabet-q2-earnings-call-highlights"
+  },
+  {
+   "label": "Adweek — ChatGPT 광고 연환산 10억 달러 돌파",
+   "url": "https://www.adweek.com/programmatic/chatgpt-openai-billion-advertising-revenue/"
+  },
+  {
+   "label": "eMarketer — Google Universal Cart 발표와 참여 판매자",
+   "url": "https://www.emarketer.com/content/google-expands-push-agentic-shopping-with-universal-cart"
+  },
+  {
+   "label": "Marketplace Pulse — Amazon 2025년 광고 686억 달러, Walmart 광고 성장",
+   "url": "https://www.marketplacepulse.com/articles/walmarts-advertising-revenue-is-outpacing-amazons"
+  },
+  {
+   "label": "Walmart 8-K — 2026 회계연도 광고 약 64억 달러(+46%)",
+   "url": "https://www.sec.gov/Archives/edgar/data/104169/000010416926000032/earningsreleasefy26q4.htm"
+  },
+  {
+   "label": "PPC Land — Amazon Rufus 2025년 증분 연환산 매출 약 120억 달러",
+   "url": "https://ppc.land/amazons-ai-shopping-assistant-drove-12-billion-in-sales-for-2025/"
+  },
+  {
+   "label": "StatCounter — AI 챗봇 유입 중 ChatGPT 점유율 76.85%(2026년 4월)",
+   "url": "https://gs.statcounter.com/press/chatgpt-falls-to-all-time-low-as-ai-chatbot-referral-market-continues-to-fragment"
+  },
+  {
+   "label": "MediaPost — 법무부, 구글 검색 시정 조치 약하다며 항소",
+   "url": "https://www.mediapost.com/publications/article/416888/google-search-remedies-too-weak-feds-tell-appeals.html"
+  },
+  {
+   "label": "PYMNTS — 구글, 데이터 공유 명령 집행 정지 요청",
+   "url": "https://www.pymnts.com/cpi-posts/google-asks-judge-to-pause-data-sharing-order-while-appealing-antitrust-ruling/"
+  },
+  {
+   "label": "Benzinga — AppLovin 2분기 실적과 3분기 전망",
+   "url": "https://www.benzinga.com/quote/APP/earnings"
+  },
+  {
+   "label": "Crypto Briefing — Meta Muse 앱스토어 1위",
+   "url": "https://cryptobriefing.com/meta-muse-app-number-one-app-store/"
+  },
+  {
+   "label": "아이뉴스24 — 네이버 2026년 2분기 실적·AI 브리핑 광고",
+   "url": "https://www.inews24.com/view/1992775"
+  },
+  {
+   "label": "Forex.com — Alphabet 3분기 실적 발표 일정(10월 28일)",
+   "url": "https://www.forex.com/en-au/news-and-analysis/where-next-for-alphabet-stock-ahead-of-q3-earnings/?amp=true"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "대본 속 AI 검색·챗봇 이용자 규모",
+   "sub": "억 명 · Seufert 언급(AI Overviews·AI Mode는 월간, ChatGPT는 주간)",
+   "type": "hbar",
+   "unit": "억 명",
+   "labels": [
+    "AI Overviews(월간)",
+    "AI Mode(월간)",
+    "ChatGPT(주간)"
+   ],
+   "series": [
+    {
+     "name": "이용자",
+     "values": [
+      25,
+      10,
+      10
+     ]
+    }
+   ],
+   "note": "구글은 자기 AI 화면으로 이미 ChatGPT 이상의 이용자를 붙잡고 있다는 게 Seufert 논리의 출발점(월간·주간 기준이 다름)",
+   "source": "The Synopsis 대본"
+  },
+  {
+   "at": "deep",
+   "title": "Google 검색·기타 분기 매출",
+   "sub": "억 달러 · 분기",
+   "type": "line",
+   "unit": "억 달러",
+   "labels": [
+    "2025년 2분기",
+    "2026년 1분기",
+    "2026년 2분기"
+   ],
+   "series": [
+    {
+     "name": "검색·기타",
+     "values": [
+      541.9,
+      604,
+      632.7
+     ]
+    }
+   ],
+   "note": "ChatGPT 출시 4년째에도 검색 매출은 17~19%씩 늘고 있다 — 대본 수치와 일치",
+   "source": "PPC Land(Alphabet 2026년 2분기 실적)"
+  },
+  {
+   "at": "deep",
+   "title": "리테일 광고 매출 비교",
+   "sub": "억 달러 · Amazon 2025년, Walmart 2026 회계연도",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Amazon",
+    "Walmart"
+   ],
+   "series": [
+    {
+     "name": "광고 매출",
+     "values": [
+      686,
+      64
+     ]
+    }
+   ],
+   "note": "광고 비중이 큰 Amazon일수록 외부 에이전트에 고객 접점을 내주기 어렵다는 대본 논리의 근거",
+   "source": "Marketplace Pulse(Amazon·Walmart 실적 기준)"
+  },
+  {
+   "at": "deep",
+   "title": "AI 챗봇 웹사이트 유입 중 ChatGPT 점유율",
+   "sub": "% · 전 세계, 매년 4월",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "2025년 4월",
+    "2026년 4월"
+   ],
+   "series": [
+    {
+     "name": "ChatGPT",
+     "values": [
+      84.21,
+      76.85
+     ]
+    }
+   ],
+   "note": "챗봇 시장이 여러 갈래로 나뉘는 중 — 같은 시점 Gemini는 9%로 2위",
+   "source": "StatCounter"
+  }
+ ],
+ "tg": "Seufert: 구글은 AI Overviews·AI Mode로 검색을 '내보내는 곳'에서 '붙잡아 두는 곳'으로 바꿨다 — 월 25억·10억 명\n검색 매출 630억 달러 +17%(2분기) — '이게 침식이면 나도 깎이고 싶다', 외부 자료와 일치\n챗봇 광고는 신뢰를 깎지 않는다, 설계 문제 — ChatGPT 광고 200일 만에 연환산 10억 달러",
+ "tg_body": "The Synopsis에서 광고 기술 분석가 Eric Seufert는 구글이 AI로 검색을 망치기는커녕 다시 만들었다고 주장했다. AI Overviews·AI Mode로 사용자를 밖으로 내보내던 검색을 붙잡아 두는 곳으로 바꿨고, 후속 질문마다 광고 기회가 생긴다는 것이다.\n\n진행자 Drew Cohen이 사파리 검색 감소 증언 등 침식 신호를 들자, 그는 지난 분기 검색 매출 630억 달러, 17% 성장을 반박 근거로 댔다. 챗봇 광고가 신뢰를 깎는다는 우려도 설계 문제일 뿐이라며, ChatGPT 광고가 200일 만에 연환산 10억 달러를 넘었다고 했다.\n\n에이전트 쇼핑은 수수료가 아니라 판매자가 값을 부르는 경매, 즉 광고로 수익화될 것이라고 봤다. 고객 관계를 잃지 않는 여행은 에이전트에 맞지만, 광고·물류를 지켜야 하는 전자상거래 판매자는 맞지 않는다고 했다.\n\n외부 자료로 보면 Alphabet 2분기 검색 매출은 632.7억 달러로 대본과 맞다. 다만 반독점 판결로 경쟁사에 검색 데이터를 넘겨야 하고 양측이 항소 중이다. AI 챗봇 유입 시장에서 ChatGPT 점유율은 1년 새 84%에서 77%로 내려와 판이 갈리고 있다. 10월 28일 3분기 실적이 다음 확인 지점이다.",
+ "youtube": "https://www.youtube.com/watch?v=iSfLL-eN13Q",
+ "image": "https://i.ytimg.com/vi/iSfLL-eN13Q/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-25 19:43 KST"
+}
