@@ -30,6 +30,7 @@
   "digest:2026-10-21:asia",
   "digest:2026-10-21:us",
   "digest:2026-10-22:asia",
+  "digest:2026-10-25:us",
   "gpu:2026-10-06",
   "gpu:2026-10-07",
   "gpu:2026-10-08",
@@ -137,6 +138,8 @@
   "pod:2026-10-21-understanding-FLpdD66BKRU",
   "pod:2026-10-21-understanding-wiLNKyXIAWs",
   "pod:2026-10-21-understanding-y0wQdI1ej_8",
+  "pod:2026-10-22-mad-mistral-is-so-back-inside-le-chonk-the-west-s-bi",
+  "pod:2026-10-22-nopriors-the-new-apex-predator-crowdstrike-ceo-george-kur",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
@@ -812,16 +815,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "digest:2026-10-15:us": [
-   171,
-   172
-  ],
-  "trk:open-ai:2710184608eb": [
-   329
-  ],
-  "trk:t-759fd052:0b58a51e6efb": [
-   330
-  ],
   "trk:nvda:39274e573872": [
    331
   ],
@@ -2359,6 +2352,16 @@
   ],
   "or:2026-10-24": [
    296
+  ],
+  "pod:2026-10-22-mad-mistral-is-so-back-inside-le-chonk-the-west-s-bi": [
+   782
+  ],
+  "pod:2026-10-22-nopriors-the-new-apex-predator-crowdstrike-ceo-george-kur": [
+   783
+  ],
+  "digest:2026-10-25:us": [
+   784,
+   785
   ]
  },
  "topics": {},
