@@ -10,6 +10,180 @@
 </head>
 <body>
 
+<!--FIN:CSS:BEGIN--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"><style id="finx-css">.finx{--bg:#f9fbfe;--paper:#ffffff;--ink:#16181d;--fg:#23262d;--muted:#6c6f77;--faint:#9a9ca3;--rule:#d6dfe9;--rule2:#e6edf4;
+--pa:#e8590c;--pb:#1c6dd0;--pc:#2b8a3e;--pd:#9c36b5;--pe:#c2255c;--resi:#2f4f7f;--resi2:#7f9cc4;--cni:#c06a12;--oth:#a7a49b;--grn:#2f7a4c;--pos:#b0352a;--neg:#2f5f9f;--band:rgba(47,79,127,.09);
+--tipbg:#16181d;--tipfg:#f9fbfe;--kbg:#eff4fa;
+--serif:"Noto Serif KR","Nanum Myeongjo",Georgia,serif;--sans:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+color-scheme:light;display:block;background:var(--bg);color:var(--fg);font:15.5px/1.7 var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere;
+text-align:left;letter-spacing:normal;text-transform:none;max-width:100%;min-width:0;margin:16px 0;padding:14px 16px;border-radius:4px}
+.finx *{box-sizing:border-box}
+.finx [hidden]{display:none!important}
+.finx p{margin:1em 0}
+.finx details,.finx summary{display:block}
+.finx table{border-spacing:0;border:0}
+.finx th,.finx td{background:transparent;color:inherit;border:0;box-shadow:none;text-transform:none;letter-spacing:normal}
+.finx tr{background:transparent}
+.finx svg text{letter-spacing:normal}
+.finx a{color:var(--resi)}
+.finx h4{font:700 16.5px/1.4 var(--serif);color:var(--ink);margin:2px 0;letter-spacing:normal;text-transform:none}
+.finx .tag{font:500 11px var(--mono);color:var(--muted);white-space:nowrap;margin-left:2px}
+.finx .ej{font-size:12px;color:var(--cni);white-space:nowrap}
+.finx .pos{color:var(--pos)}
+.finx .neg{color:var(--neg)}
+.finx .note{font-size:13px;color:var(--muted);margin:6px 0 10px;max-width:80ch}
+.finx .fig{margin:0;padding:16px 0 4px;border:0;border-top:1px solid var(--ink);border-radius:0;background:transparent;box-shadow:none;min-width:0}
+.finx .fn{font:600 11px var(--mono);color:var(--cni);letter-spacing:.06em}
+.finx .sub{margin:0;font-size:12.5px;color:var(--muted);white-space:normal}
+.finx .src{display:block;font:11.5px/1.6 var(--sans);color:var(--muted);margin:4px 0 6px;padding:0;border:0;border-radius:0;background:transparent;vertical-align:baseline;white-space:normal}
+.finx .note{white-space:normal;padding:0;border:0;background:transparent}
+.finx .chart{width:100%;height:auto;min-height:0;max-height:none;position:relative;background:transparent;border:0;padding:0}
+.finx .chart svg{display:block;overflow:visible;max-width:none}
+.finx .lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin:6px 0}
+.finx .lg i{display:inline-block;width:12px;height:10px;margin-right:5px;vertical-align:-1px;border-radius:1px}
+.finx .lg i.dash{height:2px;vertical-align:3px}
+.finx .lg i.est{background:var(--resi);opacity:.3;outline:1px dashed var(--resi)}
+.finx .lg i.mk-c{width:10px;height:10px;background:var(--cni);transform:rotate(45deg)}
+.finx .lg i.mk-e{width:10px;height:10px;border-radius:50%;border:1.3px solid var(--ink);background:var(--paper)}
+.finx .ax text{fill:var(--muted);font:11.5px var(--sans);font-variant-numeric:tabular-nums}
+.finx .ax .domain{stroke:var(--rule)}
+.finx .ax line{stroke:var(--rule)}
+.finx .grid line{stroke:var(--rule2)}
+.finx .zero{stroke:var(--faint)}
+.finx .alab{fill:var(--muted);font:11px var(--sans)}
+.finx .ln{fill:none;stroke-width:2;stroke-linejoin:round}
+.finx .xh{stroke:var(--faint);stroke-dasharray:2 2}
+.finx .fit{stroke:var(--cni);stroke-width:1.6;stroke-dasharray:5 3}
+.finx .dl{font:600 11px var(--sans)}
+.finx .evo{fill:var(--paper);stroke:var(--ink);stroke-width:1.3}
+.finx .evc{fill:var(--cni)}
+.finx .evn{font:600 8.5px var(--mono);fill:var(--ink);pointer-events:none}
+.finx .evn.c{fill:var(--paper)}
+#finx-tip{position:fixed;z-index:2147483000;max-width:300px;background:#16181d;color:#f9fbfe;font:12.5px/1.5 "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;padding:8px 10px;border-radius:3px;pointer-events:none;box-shadow:0 4px 18px rgba(0,0,0,.18);display:none;text-align:left;word-break:keep-all}
+#finx-tip .tn{opacity:.8;font-size:11.5px}
+.finx .tw{overflow-x:auto;margin:8px 0 4px;max-width:100%;-webkit-overflow-scrolling:touch}
+.finx table{border-collapse:collapse;width:100%;font-size:13px;margin:0;color:inherit;background:transparent}
+.finx th{font:600 11.5px var(--sans);color:var(--muted);text-align:left;border-bottom:1.5px solid var(--ink);padding:6px 8px;white-space:nowrap;letter-spacing:normal;text-transform:none}
+.finx td{border-bottom:1px solid var(--rule2);padding:6px 8px;vertical-align:top}
+.finx td.n{font-family:var(--mono);font-size:12.5px;text-align:right;white-space:nowrap}
+.finx tbody tr:hover{background:var(--kbg)}
+.finx ol.ev{list-style:none;padding:0;margin:8px 0;display:grid;gap:7px;font-size:14px}
+.finx ol.ev li{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start}
+.finx .en{font:700 11px/22px var(--mono);text-align:center;width:24px;height:24px;border:1.3px solid var(--ink);border-radius:50%;color:var(--ink)}
+.finx ol.ev li.call .en{border:none;width:26px;height:26px;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);background:var(--cni);color:var(--paper);display:flex;align-items:center;justify-content:center}
+.finx .cn{font-size:12.5px;color:var(--muted);margin-top:2px}
+.finx .sn{font:600 13px var(--mono);color:var(--cni);flex:none;padding-top:4px}
+.finx .pper{display:block;font:500 11.5px var(--mono);color:var(--muted);margin:2px 0 4px}
+.finx .phl{font:700 11px var(--sans)}
+.finx .fsinfo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:6px 0 10px}
+.finx .fsinfo div{background:var(--paper);padding:10px 12px;min-width:0}
+.finx .fsinfo dt{font-size:11.5px;color:var(--muted)}
+.finx .fsinfo dd{margin:2px 0 0;font:700 16px var(--sans);color:var(--ink)}
+.finx .fsinfo small{display:block;font-size:11.5px;color:var(--muted);line-height:1.5}
+.finx .fsinfo.k7{grid-template-columns:repeat(auto-fit,minmax(128px,1fr));margin:0}
+.finx.finx-head{container-type:inline-size}
+.finx.finx-fs{container-type:inline-size}
+@container (max-width:900px){.finx table.fst{font-size:12.5px}
+.finx table.fst th,.finx table.fst td,.finx table.fst tr.cy th,.finx table.fst tr.curl th{padding-left:5px;padding-right:5px}
+.finx table.fst td.hl span{margin-right:-5px;padding:0 4px}}
+@container (min-width:760px){.finx .fsinfo.k7{grid-template-columns:repeat(7,minmax(0,1fr))}}
+@container (min-width:440px) and (max-width:759.98px){.finx .fsinfo.k7{grid-template-columns:repeat(4,minmax(0,1fr))}
+.finx .fsinfo.k7>div:last-child{grid-column:span 2}}
+@container (max-width:439.98px){.finx .fsinfo.k7{grid-template-columns:repeat(2,minmax(0,1fr))}
+.finx .fsinfo.k7>div:last-child{grid-column:span 2}}
+.finx .fsunit{font-size:12px;color:var(--muted);text-align:right;margin:4px 0 0}
+.finx .tgh{font:700 12.5px var(--sans);color:var(--resi);margin:12px 0 2px}
+.finx .tgh.fsq,.finx .tgh.fsy{font-size:15px;padding-left:9px;border-left:4px solid var(--resi);margin:14px 0 8px}
+.finx .tgh.fsy{margin-top:44px;padding-top:0;position:relative}
+.finx .tgh.fsy::before{content:'';position:absolute;left:-4px;right:0;top:-22px;border-top:2px solid var(--line, #d5dbe3)}
+.finx table.fst{font-size:13px;background:var(--paper)}
+.finx table.fst th{background:#e7ebf0;color:var(--ink);text-align:right;font:700 12.5px var(--sans);border-bottom:0;padding:7px 8px}
+.finx table.fst th:first-child,.finx table.fst td:first-child{text-align:left;white-space:nowrap}
+.finx table.fst tr.cy th{background:transparent;font:500 10.5px var(--mono);color:var(--muted);padding:2px 8px 0}
+.finx table.fst th small{display:block;font:500 10px var(--sans);opacity:.85}
+.finx table.fst th small.qs{font:700 11px var(--mono);color:#d4a106;opacity:1;margin-top:2px}
+.finx table.fst th small.qp{font:500 10px var(--mono);color:var(--muted);opacity:1}
+.finx table.fst tr.curl th{background:transparent;padding:0 8px 3px;border:0}
+.finx table.fst th.curt{color:#e03131;font:800 12px var(--sans);text-align:center;white-space:nowrap}
+.finx table.fst .cur{box-shadow:inset 2.5px 0 #e03131,inset -2.5px 0 #e03131}
+.finx table.fst tr.cy th.cur,.finx table.fst thead tr:first-child+tr th.cur{box-shadow:inset 2.5px 0 #e03131,inset -2.5px 0 #e03131,inset 0 2.5px #e03131}
+.finx table.fst tbody tr:not([hidden]):last-child td.cur{box-shadow:inset 2.5px 0 #e03131,inset -2.5px 0 #e03131,inset 0 -2.5px #e03131}
+.finx td.hl span{display:inline-block;border:2px solid #e03131;border-radius:999px;padding:0 6px;margin:-2px -8px -2px 0}
+.finx table.fst th.kc{background:#4472c4;color:#fff}
+.finx table.fst th.kg{background:#fff2cc;color:#5a4a12}
+.finx table.fst tr.cy th.kc,.finx table.fst tr.cy th.kg{background:transparent;color:var(--muted)}
+.finx table.fst td{border-bottom:0;padding:6px 8px}
+.finx table.fst td.kc{background:#eef3fb;font-weight:700}
+.finx table.fst td.kg{background:#fffaeb;font-weight:700}
+.finx table.fst tr.mj td{font-weight:700;color:var(--ink);font-size:13.5px}
+.finx table.fst tr.mj td:first-child{font-size:14px}
+.finx table.fst tr.g td{color:var(--muted)}
+.finx table.fst tr.g td:first-child{padding-left:22px;font-weight:400}
+.finx table.fst tr.sep td{border-top:1px dotted var(--faint)}
+.finx table.fst.sub th{background:#eef1f5}
+.finx details.tg{margin:12px 0;border:1px solid var(--rule);background:var(--paper)}
+.finx details.tg>summary{cursor:pointer;list-style:none;padding:11px 14px;display:flex;gap:10px;align-items:baseline;background:#f1f5fa}
+.finx details.tg>summary::-webkit-details-marker{display:none}
+.finx details.tg>summary::before{content:'▸';color:var(--resi);font-weight:700}
+.finx details.tg[open]>summary::before{content:'▾'}
+.finx details.tg>summary b{font:800 15px var(--sans);color:var(--ink)}
+.finx details.tg>summary small{color:var(--muted);font-size:12px}
+.finx .tgb{padding:6px 14px 12px}
+.finx .foldx{display:block;margin:10px 0 4px auto;font:700 12.5px var(--sans);color:var(--resi);background:#f1f5fa;border:1px solid var(--rule);padding:5px 12px;cursor:pointer;border-radius:0;text-transform:none;letter-spacing:normal;width:auto;height:auto;line-height:normal}
+.finx tr.segend .segbtn{color:var(--muted)}
+.finx .tgx{display:block;margin:14px 0 2px auto;font:700 12.5px var(--sans);color:var(--resi);background:#f1f5fa;border:1px solid var(--rule);padding:6px 12px;cursor:pointer;border-radius:0;text-transform:none;letter-spacing:normal;width:auto;height:auto;line-height:normal}
+.finx .phx{margin:0;border-top:1px solid var(--rule);padding:4px 0}
+.finx .phx:last-child{border-bottom:1px solid var(--rule)}
+.finx .phx>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:8px 0}
+.finx .phx>summary::-webkit-details-marker{display:none}
+.finx .phx>summary::before{content:'▸';color:var(--muted);font-size:13px}
+.finx .phx[open]>summary::before{content:'▾'}
+.finx .phx>summary:hover h4{text-decoration:underline}
+.finx .phxs{margin-top:14px}
+.finx .phx h4{font:800 16.5px/1.45 var(--sans);margin:0}
+.finx .phx .pper{display:inline;font:500 12px var(--mono);color:var(--muted);margin:0}
+.finx .phx.rise h4{color:var(--pos)}
+.finx .phx.fall h4{color:var(--neg)}
+.finx .phx p{margin:4px 0 8px;max-width:80ch}
+.finx tr.segtog td{padding:0!important;background:#f7f8fa;border-top:1px dotted var(--faint)}
+.finx .segbtn{all:unset;cursor:pointer;display:block;padding:6px 8px;font:700 12.5px var(--sans);color:var(--resi)}
+.finx .segbtn small{font-weight:500;color:var(--muted);margin-left:6px}
+.finx table.fst tr.segr td{background:#fff!important;font-size:12.5px;color:#4c5463;border-bottom:1px dashed #e3e7ec;font-weight:400}
+.finx table.fst tr.segr td:first-child{box-shadow:inset 3px 0 0 #9aa5b4;padding-left:16px;white-space:normal;min-width:7em;max-width:13em;line-height:1.35}
+.finx table.fst tr.segr.segh td{font-weight:700;color:var(--ink);border-top:1px solid #c9d0da}
+.finx table.fst tr.segr.gseg.bi0 td{background:#eaf2fc!important}
+.finx table.fst tr.segr.gseg.bi1 td{background:#f5f9fe!important}
+.finx table.fst tr.segr.gseg td:first-child{box-shadow:inset 4px 0 0 #3b7dd8}
+.finx table.fst tr.segr.gsga td{background:#f1f8ee!important}
+.finx table.fst tr.segr.gsga.segh td{background:#e1f0da!important}
+.finx table.fst tr.segr.gsga td:first-child{box-shadow:inset 4px 0 0 #3f9b4b}
+.finx table.fst tr.segr.gno td{background:#f6f2fb!important}
+.finx table.fst tr.segr.gno.segh td,.finx table.fst tr.segr.gno.segs td{background:#ece4f7!important}
+.finx table.fst tr.segr.gno td:first-child{box-shadow:inset 4px 0 0 #8358c4}
+.finx table.fst tr.segr.segs td{font-weight:600;color:var(--ink)}
+.finx table.fst tr.segr.segd td{font-size:12px;color:#5a6270}
+.finx table.fst tr.segr.segv td{font-size:13px;color:var(--ink);font-weight:600;border-top:1px solid #d7e8cf}
+.finx table.fst tr.segr.segp td{font-size:11.5px;color:#7a828e;padding-top:0}
+.finx table.fst tr.segr.segend td{background:#fff!important}
+.finx table.fst th:first-child,.finx table.fst td:first-child{position:sticky;left:0;z-index:1;background:var(--paper)}
+.finx table.fst thead tr:not(.cy):not(.curl) th:first-child{background:#e7ebf0}
+.finx table.fst tr.segtog td:first-child{position:static;background:#f7f8fa}
+.finx table.fst tr.segtog .segbtn{position:sticky;left:0;width:max-content;max-width:calc(100vw - 48px)}
+.finx table.fst .segbtn[data-g=gseg]{color:#2f6cc0}
+.finx table.fst .segbtn[data-g=gsga]{color:#2f8a3c}
+.finx table.fst .segbtn[data-g=gno]{color:#7046b3}
+.finx .mkl{font:600 10.5px var(--sans);fill:var(--cni)}
+.finx .mkt{stroke:var(--cni);stroke-width:1.2}
+.finx .pr{display:grid;grid-template-columns:minmax(0,74ch) minmax(0,1fr);column-gap:28px;align-items:start}
+.finx .pr>p,.finx .pr>ul{margin-top:6px}
+.finx sup.cn{font:600 9.5px var(--mono);color:var(--resi);margin-left:1px;vertical-align:super;line-height:0}
+.finx aside.sn{font-size:11.5px;line-height:1.5;color:var(--muted);border-left:1px solid var(--rule);padding:6px 0 6px 10px;margin-top:6px;display:grid;gap:4px;min-width:0;overflow-wrap:anywhere}
+.finx aside.sn b{font:700 10px var(--mono);color:var(--resi);margin-right:5px}
+.finx aside.sn a{color:var(--muted);text-decoration:underline dotted}
+@media (max-width:900px){.finx .pr{grid-template-columns:1fr}
+.finx aside.sn{border-left:0;border-top:1px dashed var(--rule);padding:4px 0 0;margin:0 0 10px}}
+.finx .mkleg{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12px;color:var(--muted);margin:2px 0 6px}
+.finx .mkleg b{color:var(--cni);margin-right:2px}
+@media (max-width:560px){.finx{padding:10px 10px;font-size:15px}}</style><!--FIN:CSS:END-->
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -77,7 +251,7 @@ td.n,th.n{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabula
 .fig .see{font-size:13px;color:var(--muted);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
 .chart{position:relative;height:280px;width:100%}
 .chart.tall{height:340px}
-.fig pre.mermaid{background:transparent;margin:0;overflow-x:auto;text-align:center}
+.fig pre.mmd{background:transparent;margin:0;overflow-x:auto;text-align:center}
 .src{font-family:var(--f-mono);font-size:10.5px;padding:0 5px;border-radius:4px;vertical-align:1px;white-space:nowrap;border:1px solid var(--line);color:var(--muted)}
 .src.calc{color:var(--accent2);border-color:var(--accent2)}
 .src.co{color:var(--accent);border-color:var(--accent)}
@@ -127,7 +301,7 @@ footer{margin-top:56px;font-size:13px;color:var(--muted);border-top:1px solid va
   <div class="eyebrow">거대한 흐름의 시작인가 · 4490 VisasQ</div>
   <h1>비자스크와 지식 플랫폼, 지금 흐름의 어디쯤인가</h1>
   <p class="lede">국내는 왜 잘되는지, 해외(Coleman)는 어떻게 고치고 있고 고쳐질 수 있는지를 따라가며 전문가 네트워크(ENS) 산업 전체의 흐름을 판정합니다.</p>
-  <div class="meta"><span>작성 2026-10-23</span><span>주가 기준 10/23 장중</span><span>최신 확정 분기: 27/2기 2Q(6~8월)</span></div>
+  <div class="meta"><span>작성 2026-10-23</span><span>주가 기준 10/23 종가</span><span>최신 확정 분기: 27/2기 2Q(6~8월)</span></div>
 
   <div class="verdict" id="sum">
     <div class="v">판정: 글로벌 ENS는 <em>성숙 산업의 재편기</em>, 비자스크의 일본 국내 사업은 <em>초기 확산</em> (확신도 하~중)</div>
@@ -135,6 +309,7 @@ footer{margin-top:56px;font-size:13px;color:var(--muted);border-top:1px solid va
       <span class="chip">③ 이익 확인 🟢</span><span class="chip">⑤ 시장 인지 🟢</span><span class="chip">① 수요 🟡</span><span class="chip">② 해자 🟡</span><span class="chip">⑥ 촉매 🟡</span><span class="chip">④ 확산 범위 🔴</span>
     </div>
   </div>
+  <!--FIN:HEAD:BEGIN--><section class="finx finx-head"><dl class="fsinfo k7"><div><dt>시가총액</dt><dd>약 70.8억 엔</dd><small>보통주 기준 · 2026-10-23 주가</small></div><div><dt>현재 주가</dt><dd>764엔</dd><small>2026-10-23 기준</small></div><div><dt>최근 4분기 매출액</dt><dd>107.6억 엔</dd><small>최근 4분기 25.9~26.8 · 분기 실적 합(제 계산)</small></div><div><dt>최근 4분기 영업이익</dt><dd>16.9억 엔</dd><small>최근 4분기 25.9~26.8 · 분기 실적 합(제 계산)</small></div><div><dt>최근 4분기 당기순이익</dt><dd>12.0억 엔</dd><small>최근 4분기 25.9~26.8 · 분기 실적 합(제 계산)</small></div><div><dt>배당수익률</dt><dd>무배당</dd><small>누적 미지급 우선배당을 먼저 갚아야 함</small></div><div><dt>PER (가이던스 기준)</dt><dd>14.5배</dd><small>회사 가이던스 EPS 52.53엔</small></div></dl></section><!--FIN:HEAD:END-->
   <div class="summary">
     <b class="t">3분 요약</b>
     <ul>
@@ -166,7 +341,7 @@ footer{margin-top:56px;font-size:13px;color:var(--muted);border-top:1px solid va
 
 <div class="fig">
 <div class="cap">그림 1. 2026년 비자스크와 글로벌 ENS 타임라인</div>
-<pre class="mermaid">
+<pre class="mmd">
 timeline
   title 비자스크와 ENS 업계 2026
   2026-03 : 비자스크 AI Scout 출시
@@ -202,11 +377,7 @@ timeline
 <tr><td class="n">2026-10</td><td>글로벌 M&amp;A 1~9월 4.44조 달러(+27%). 다만 3분기는 2분기 대비 -28~-41%, 9월 사모펀드 거래액은 최근 13개월 최저</td><td>ENS 수요의 선행지표</td><td><span class="src">보도</span> Mergermarket, Ropes &amp; Gray</td></tr>
 </tbody></table></div>
 
-<div class="fig">
-<div class="cap">그림 2. 비자스크 월말 주가 (2021-11 ~ 2026-10, 엔)</div>
-<div class="chart tall"><canvas id="cPrice5y" aria-label="비자스크 5년 월말 주가"></canvas></div>
-<div class="see">이 그림에서 볼 것: 2021년 11월 Coleman 인수 시점이 주가 고점(5,480엔)이었습니다. 2025년 12월 바닥(472엔) 이후의 반등은 국내 실적 가속과 겹칩니다. 2024년 7월 급등은 손상차손 처리 뒤 첫 분기에 영업이익이 3.9억 엔으로 흑자 전환한 실적 발표(7/12)와 시점이 겹칩니다 <span class="src calc">제 해석</span>.</div>
-</div>
+<!--FIN:PRICE:BEGIN--><section class="finx finx-price"><figure class="fig"><figcaption><span class=fn>그림 2</span><h4>5년 −88% 뒤 25.12 저점에서 +71% — 회복은 이익이 끌었음</h4><p class="sub">주간 종가, 엔, 로그 축, 21.10.25~26.10.23</p></figcaption><div class="lg"><span><i class="" style="background:var(--resi)"></i>주가</span></div><div class="chart" id="finx-c1" style="height:360px"></div><div class="phxs"><details class="phx fall"><summary><h4>1. 인수 후 적자·감손</h4><span class="pper">2021-10-25 → 2024-04-29 · −88%</span></summary><div class="pr"><p>21.11.1 미국 Coleman 인수를 마치고 같은 날 A종 우선주 75억 엔을 발행함<sup class="cn">1</sup>. 매출은 FY2/22 37.0억 엔 → FY2/23 83.8억 엔으로 커졌지만, 영업이익은 −1.1억·0.04억 엔으로 사라짐. 인수 전 FY2/22 계획은 영업이익 2.3억 엔이었음<sup class="cn">2</sup>.</p><aside class="sn"><span><b>1</b>공시 유가증권보고서</span><span><b>2</b>공시 결산단신</span></aside></div><div class="pr"><p>미국은 금융 환경이 불안해 컨설팅·헤지펀드 수요가 줄었고, 영업권 등 무형자산 상각까지 겹쳐 적자였음<sup class="cn">3</sup>. 22년 금리 상승기 성장주 급락도 겹쳤음 <span class="ej">(편집 판단)</span>.</p><aside class="sn"><span><b>3</b>공시 결산단신</span></aside></div><div class="pr"><p>24.4.12 FY2/24 결산에서 Coleman 고정자산을 감손해 순손실 126.4억 엔을 냄. 순자산이 120.8억 → 3.0억 엔으로 줄고 보통주 1주당 순자산은 −1,008엔이 됨<sup class="cn">4</sup>. 주가는 24.4.29 주 731엔으로 고점 대비 −88%.</p><aside class="sn"><span><b>4</b>공시 결산단신</span></aside></div></details><details class="phx rise"><summary><h4>2. 흑자 가이던스 첫 공표</h4><span class="pper">2024-04-29 → 2024-09-16 · +146%</span></summary><div class="pr"><p>24.7.12 그때까지 &#x27;미정&#x27;이던 FY2/25 영업이익 예상을 6.0억 엔으로 처음 냈음<sup class="cn">5</sup>. 같은 날 1Q 영업이익 3.85억 엔으로 전년 −0.82억 엔에서 흑자 전환함. 그 주 1,002엔 → 다음 주 1,240엔(+24%)<sup class="cn">6</sup>.</p><aside class="sn"><span><b>5</b>공시 결산단신</span><span><b>6</b>시세</span></aside></div><div class="pr"><p>흑자 이유는 감손으로 상각할 자산이 사라졌고, 본사비를 줄였기 때문임 <span class="ej">(편집 판단)</span>. 국내 기업 고객 거래액도 FY2/25 +11%로 이어졌음<sup class="cn">7</sup>. 주가는 24.9.16 주 1,796엔까지 올랐음.</p><aside class="sn"><span><b>7</b>설명회</span></aside></div></details><details class="phx fall"><summary><h4>3. 성장 정체·감익 가이던스</h4><span class="pper">2024-09-16 → 2025-12-15 · −75%</span></summary><div class="pr"><p>24.10.15 2Q 영업이익이 1.97억 엔으로 1Q의 절반에 그치자 2주 새 1,543엔 → 1,044엔(−32%)<sup class="cn">8</sup>. 25.4.11엔 FY2/25 실적(영업이익 12.3억 엔)보다 낮은 FY2/26 영업이익 10.3억 엔(−16%)을 예상함<sup class="cn">9</sup>.</p><aside class="sn"><span><b>8</b>시세</span><span><b>9</b>공시 결산단신</span></aside></div><div class="pr"><p>25.10.15 상반기 영업수익 −3.3%, 영업이익 −14.2%를 냈음. 미국 금융·통상 정책 불확실성으로 해외 거래액이 −11%였고, 국내도 +4~5%에 그침<sup class="cn">10</sup>. 주가는 25.12.15 주 446엔으로 5년 최저<sup class="cn">11</sup>.</p><aside class="sn"><span><b>10</b>공시 결산단신</span><span><b>11</b>시세</span></aside></div></details><details class="phx rise"><summary><h4>4. 국내 성장·레버리지 확인</h4><span class="pper">2025-12-15 → 2026-10-19 · +71%</span></summary><div class="pr"><p>26.1.14 3Q 영업이익 3.71억 엔(+56%)으로 반등<sup class="cn">12</sup>. 26.4.14 FY2/26 영업이익 13.4억 엔(기초 예상의 130%)과 FY2/27 영업이익 14.0억 엔 예상을 냄<sup class="cn">13</sup>. 같은 날 하쿠호도 제휴와 경영진·직원 1.3억 엔 자사주 매입을 발표해 2주 새 525엔 → 755엔(+44%)<sup class="cn">14</sup><sup class="cn">15</sup>.</p><aside class="sn"><span><b>12</b>공시 결산단신</span><span><b>13</b>설명회</span><span><b>14</b>공시 하쿠호도 제휴</span><span><b>15</b>시세</span></aside></div><div class="pr"><p>5~6월엔 570엔까지 되밀렸음 — 뚜렷한 공시 사유는 못 찾음. 26.7.15 1Q 영업이익 4.24억 엔(+52%), 26.10.15 2Q 영업이익 4.24억 엔(+93%)으로 상반기 진척률 61%(전년 37%)를 확인함<sup class="cn">16</sup>.</p><aside class="sn"><span><b>16</b>공시 결산단신</span></aside></div><div class="pr"><p>성장을 끈 건 국내 두 사업임. 26.6~8 영업수익은 국내 기업 +31.6%, 컨설·금융 국내 +34.8%, 해외는 제자리였음<sup class="cn">17</sup>. 10.23 종가 764엔<sup class="cn">18</sup>.</p><aside class="sn"><span><b>17</b>설명회</span><span><b>18</b>시세</span></aside></div></details></div><p class=note>마지막 주(26.10.19 주)는 10.23 종가 764엔. 5년 고점 6,380엔(21.11.1 주), 저점 446엔(25.12.15 주).</p><p class="src">출처: 주가: 야후 주간 시세(4490_data.json). 사유: 결산단신·설명회·적시공시</p></figure><script>window.__FINX_CH=(window.__FINX_CH||[]).concat([{"kind": "price", "labels": ["2021-10-25", "2021-11-01", "2021-11-08", "2021-11-15", "2021-11-22", "2021-11-29", "2021-12-06", "2021-12-13", "2021-12-20", "2021-12-27", "2022-01-03", "2022-01-10", "2022-01-17", "2022-01-24", "2022-01-31", "2022-02-07", "2022-02-14", "2022-02-21", "2022-02-28", "2022-03-07", "2022-03-14", "2022-03-21", "2022-03-28", "2022-04-04", "2022-04-11", "2022-04-18", "2022-04-25", "2022-05-02", "2022-05-09", "2022-05-16", "2022-05-23", "2022-05-30", "2022-06-06", "2022-06-13", "2022-06-20", "2022-06-27", "2022-07-04", "2022-07-11", "2022-07-18", "2022-07-25", "2022-08-01", "2022-08-08", "2022-08-15", "2022-08-22", "2022-08-29", "2022-09-05", "2022-09-12", "2022-09-19", "2022-09-26", "2022-10-03", "2022-10-10", "2022-10-17", "2022-10-24", "2022-10-31", "2022-11-07", "2022-11-14", "2022-11-21", "2022-11-28", "2022-12-05", "2022-12-12", "2022-12-19", "2022-12-26", "2023-01-02", "2023-01-09", "2023-01-16", "2023-01-23", "2023-01-30", "2023-02-06", "2023-02-13", "2023-02-20", "2023-02-27", "2023-03-06", "2023-03-13", "2023-03-20", "2023-03-27", "2023-04-03", "2023-04-10", "2023-04-17", "2023-04-24", "2023-05-01", "2023-05-08", "2023-05-15", "2023-05-22", "2023-05-29", "2023-06-05", "2023-06-12", "2023-06-19", "2023-06-26", "2023-07-03", "2023-07-10", "2023-07-17", "2023-07-24", "2023-07-31", "2023-08-07", "2023-08-14", "2023-08-21", "2023-08-28", "2023-09-04", "2023-09-11", "2023-09-18", "2023-09-25", "2023-10-02", "2023-10-09", "2023-10-16", "2023-10-23", "2023-10-30", "2023-11-06", "2023-11-13", "2023-11-20", "2023-11-27", "2023-12-04", "2023-12-11", "2023-12-18", "2023-12-25", "2024-01-01", "2024-01-08", "2024-01-15", "2024-01-22", "2024-01-29", "2024-02-05", "2024-02-12", "2024-02-19", "2024-02-26", "2024-03-04", "2024-03-11", "2024-03-18", "2024-03-25", "2024-04-01", "2024-04-08", "2024-04-15", "2024-04-22", "2024-04-29", "2024-05-06", "2024-05-13", "2024-05-20", "2024-05-27", "2024-06-03", "2024-06-10", "2024-06-17", "2024-06-24", "2024-07-01", "2024-07-08", "2024-07-15", "2024-07-22", "2024-07-29", "2024-08-05", "2024-08-12", "2024-08-19", "2024-08-26", "2024-09-02", "2024-09-09", "2024-09-16", "2024-09-23", "2024-09-30", "2024-10-07", "2024-10-14", "2024-10-21", "2024-10-28", "2024-11-04", "2024-11-11", "2024-11-18", "2024-11-25", "2024-12-02", "2024-12-09", "2024-12-16", "2024-12-23", "2024-12-30", "2025-01-06", "2025-01-13", "2025-01-20", "2025-01-27", "2025-02-03", "2025-02-10", "2025-02-17", "2025-02-24", "2025-03-03", "2025-03-10", "2025-03-17", "2025-03-24", "2025-03-31", "2025-04-07", "2025-04-14", "2025-04-21", "2025-04-28", "2025-05-05", "2025-05-12", "2025-05-19", "2025-05-26", "2025-06-02", "2025-06-09", "2025-06-16", "2025-06-23", "2025-06-30", "2025-07-07", "2025-07-14", "2025-07-21", "2025-07-28", "2025-08-04", "2025-08-11", "2025-08-18", "2025-08-25", "2025-09-01", "2025-09-08", "2025-09-15", "2025-09-22", "2025-09-29", "2025-10-06", "2025-10-13", "2025-10-20", "2025-10-27", "2025-11-03", "2025-11-10", "2025-11-17", "2025-11-24", "2025-12-01", "2025-12-08", "2025-12-15", "2025-12-22", "2025-12-29", "2026-01-05", "2026-01-12", "2026-01-19", "2026-01-26", "2026-02-02", "2026-02-09", "2026-02-16", "2026-02-23", "2026-03-02", "2026-03-09", "2026-03-16", "2026-03-23", "2026-03-30", "2026-04-06", "2026-04-13", "2026-04-20", "2026-04-27", "2026-05-04", "2026-05-11", "2026-05-18", "2026-05-25", "2026-06-01", "2026-06-08", "2026-06-15", "2026-06-22", "2026-06-29", "2026-07-06", "2026-07-13", "2026-07-20", "2026-07-27", "2026-08-03", "2026-08-10", "2026-08-17", "2026-08-24", "2026-08-31", "2026-09-07", "2026-09-14", "2026-09-21", "2026-09-28", "2026-10-05", "2026-10-12", "2026-10-19"], "series": [{"name": "주가", "data": [6250, 6380, 6340, 5900, 5700, 5520, 5460, 4910, 5260, 5240, 4455, 4325, 4390, 3775, 4260, 4120, 3465, 3335, 3325, 2889, 3420, 3670, 3975, 4225, 3750, 3180, 3150, 2913, 2223, 2491, 2376, 2386, 2414, 1979, 2114, 2032, 2253, 2234, 2269, 2108, 2404, 2448, 2412, 2270, 2040, 2134, 2076, 2045, 2026, 2120, 2160, 1813, 1976, 1823, 1945, 1967, 1990, 2030, 1944, 1883, 1319, 1327, 1316, 1368, 1681, 1836, 1845, 1854, 1688, 1659, 1700, 1705, 1642, 1604, 1612, 1521, 1625, 1350, 1342, 1334, 1291, 1415, 1341, 1385, 1450, 1516, 1455, 1408, 1412, 1506, 1249, 1240, 1211, 1210, 1068, 1167, 1183, 1101, 1104, 1089, 1133, 1076, 1086, 814, 902, 979, 1028, 981, 1019, 987, 907, 851, 928, 951, 998, 999, 926, 1026, 924, 879, 935, 912, 917, 906, 916, 942, 905, 865, 865, 811, 761, 731, 808, 869, 1099, 942, 948, 970, 939, 950, 933, 1002, 1240, 1297, 1365, 1305, 1490, 1600, 1659, 1693, 1727, 1796, 1786, 1606, 1543, 1240, 1044, 1099, 1209, 1211, 1200, 1200, 1153, 1202, 1091, 1059, 1061, 1097, 1000, 1038, 1139, 1270, 1207, 1169, 1124, 999, 998, 1033, 1045, 900, 860, 821, 828, 828, 810, 824, 810, 810, 785, 787, 781, 795, 793, 801, 706, 733, 752, 761, 749, 747, 749, 732, 741, 738, 768, 716, 715, 633, 601, 596, 561, 554, 494, 485, 453, 463, 446, 494, 472, 499, 571, 615, 586, 548, 556, 554, 548, 549, 528, 523, 508, 520, 525, 631, 755, 703, 710, 682, 681, 669, 605, 570, 587, 588, 595, 615, 656, 624, 665, 644, 680, 665, 660, 671, 632, 657, 675, 672, 688, 720, 764], "color": "resi"}], "unit": "엔", "y2_unit": null, "events": null, "log": true, "zero": null, "points": null, "reg": null, "x_title": null, "y_title": null, "stacked": null, "end_labels": null, "height": 360, "bands": null, "phases": [{"from": 0, "to": 131, "kind": "fall", "label": "① 인수 후 적자·감손", "chg": "−88%", "text": "Coleman 인수 뒤 이익이 사라지고 24.4 감손 126억 엔", "body": ["21.11.1 미국 Coleman 인수를 마치고 같은 날 A종 우선주 75억 엔을 발행함 [공시 유가증권보고서]. 매출은 FY2/22 37.0억 엔 → FY2/23 83.8억 엔으로 커졌지만, 영업이익은 −1.1억·0.04억 엔으로 사라짐. 인수 전 FY2/22 계획은 영업이익 2.3억 엔이었음 [공시 결산단신].", "미국은 금융 환경이 불안해 컨설팅·헤지펀드 수요가 줄었고, 영업권 등 무형자산 상각까지 겹쳐 적자였음 [공시 결산단신]. 22년 금리 상승기 성장주 급락도 겹쳤음 (편집 판단).", "24.4.12 FY2/24 결산에서 Coleman 고정자산을 감손해 순손실 126.4억 엔을 냄. 순자산이 120.8억 → 3.0억 엔으로 줄고 보통주 1주당 순자산은 −1,008엔이 됨 [공시 결산단신]. 주가는 24.4.29 주 731엔으로 고점 대비 −88%."]}, {"from": 131, "to": 151, "kind": "rise", "label": "② 흑자 가이던스 첫 공표", "chg": "+146%", "text": "24.7 영업이익 6.0억 엔 예상 첫 공표, 1Q 흑자", "body": ["24.7.12 그때까지 '미정'이던 FY2/25 영업이익 예상을 6.0억 엔으로 처음 냈음 [공시 결산단신]. 같은 날 1Q 영업이익 3.85억 엔으로 전년 −0.82억 엔에서 흑자 전환함. 그 주 1,002엔 → 다음 주 1,240엔(+24%) [시세].", "흑자 이유는 감손으로 상각할 자산이 사라졌고, 본사비를 줄였기 때문임 (편집 판단). 국내 기업 고객 거래액도 FY2/25 +11%로 이어졌음 [설명회]. 주가는 24.9.16 주 1,796엔까지 올랐음."]}, {"from": 151, "to": 216, "kind": "fall", "label": "③ 성장 정체·감익 가이던스", "chg": "−75%", "text": "2Q 이익 반토막, FY2/26 감익 예상, 해외 거래액 −11%", "body": ["24.10.15 2Q 영업이익이 1.97억 엔으로 1Q의 절반에 그치자 2주 새 1,543엔 → 1,044엔(−32%) [시세]. 25.4.11엔 FY2/25 실적(영업이익 12.3억 엔)보다 낮은 FY2/26 영업이익 10.3억 엔(−16%)을 예상함 [공시 결산단신].", "25.10.15 상반기 영업수익 −3.3%, 영업이익 −14.2%를 냈음. 미국 금융·통상 정책 불확실성으로 해외 거래액이 −11%였고, 국내도 +4~5%에 그침 [공시 결산단신]. 주가는 25.12.15 주 446엔으로 5년 최저 [시세]."]}, {"from": 216, "to": 260, "kind": "rise", "label": "④ 국내 성장·레버리지 확인", "chg": "+71%", "text": "26.1 3Q 반등, 26.4 가이던스·하쿠호도·경영진 매입, 26.10 2Q 영업이익 +93%", "body": ["26.1.14 3Q 영업이익 3.71억 엔(+56%)으로 반등 [공시 결산단신]. 26.4.14 FY2/26 영업이익 13.4억 엔(기초 예상의 130%)과 FY2/27 영업이익 14.0억 엔 예상을 냄 [설명회]. 같은 날 하쿠호도 제휴와 경영진·직원 1.3억 엔 자사주 매입을 발표해 2주 새 525엔 → 755엔(+44%) [공시 하쿠호도 제휴] [시세].", "5~6월엔 570엔까지 되밀렸음 — 뚜렷한 공시 사유는 못 찾음. 26.7.15 1Q 영업이익 4.24억 엔(+52%), 26.10.15 2Q 영업이익 4.24억 엔(+93%)으로 상반기 진척률 61%(전년 37%)를 확인함 [공시 결산단신].", "성장을 끈 건 국내 두 사업임. 26.6~8 영업수익은 국내 기업 +31.6%, 컨설·금융 국내 +34.8%, 해외는 제자리였음 [설명회]. 10.23 종가 764엔 [시세]."]}], "marks": [{"i": 1, "text": "Coleman 인수·A종 발행"}, {"i": 128, "text": "FY2/24 결산·감손"}, {"i": 141, "text": "첫 이익 예상"}, {"i": 155, "text": "2Q FY2/25"}, {"i": 168, "text": "3Q FY2/25 실적"}, {"i": 180, "text": "FY2/26 감익 예상"}, {"i": 194, "text": "1Q FY2/26 실적"}, {"i": 207, "text": "2Q FY2/26"}, {"i": 220, "text": "3Q FY2/26 실적"}, {"i": 233, "text": "FY2/27 예상·하쿠호도"}, {"i": 246, "text": "1Q FY2/27 실적"}, {"i": 259, "text": "2Q FY2/27"}], "id": "finx-c1"}]);</script></section><!--FIN:PRICE:END-->
 <div class="summary"><b class="t">핵심 3줄</b><ul>
 <li>회사의 AI·제휴 조치(3~4월)가 2분기 숫자로 처음 확인됐습니다(10/15).</li>
 <li>주가는 반응했지만 2021년 고점의 14% 수준이고, 셀사이드 커버리지는 없습니다.</li>
@@ -221,7 +392,7 @@ timeline
 <h3>2.2 밸류체인</h3>
 <div class="fig">
 <div class="cap">그림 3. ENS의 돈과 정보 흐름</div>
-<pre class="mermaid">
+<pre class="mmd">
 flowchart LR
   A["고객<br/>컨설팅 · 헤지펀드·PE · 기업"] -->|"질문과 비용<br/>1시간 1,000~1,400달러"| B["ENS 업체<br/>검색 · 섭외 · 컴플라이언스"]
   B -->|"사례비<br/>200~500달러"| C["전문가<br/>전·현직 실무자"]
@@ -330,7 +501,7 @@ flowchart LR
 
 <div class="fig">
 <div class="cap">그림 9. 국내 성장 동력 지도</div>
-<pre class="mermaid">
+<pre class="mmd">
 mindmap
   root((국내 성장))
     수요
@@ -388,22 +559,22 @@ mindmap
 <h3>4.3 고쳐질 수 있나: 업계 흐름과 맞춰 보기</h3>
 <div class="fig">
 <div class="cap">그림 11. ENS 업체 포지셔닝 (제 판단)</div>
-<pre class="mermaid">
+<pre class="mmd">
 quadrantChart
   title AI 전환 대응 vs 성장 탄력
-  x-axis AI·콘텐츠 대응 낮음 --> AI·콘텐츠 대응 높음
-  y-axis 성장 정체 --> 성장 탄력
-  quadrant-1 재편의 승자
-  quadrant-2 수요는 있으나 방어 필요
-  quadrant-3 밀려나는 쪽
-  quadrant-4 전환 중
-  AlphaSense: [0.88, 0.85]
-  Dialectica: [0.45, 0.78]
-  Guidepoint: [0.72, 0.6]
-  Third Bridge: [0.75, 0.58]
-  GLG: [0.7, 0.35]
-  비자스크 국내: [0.55, 0.72]
-  Coleman: [0.3, 0.25]
+  x-axis "AI·콘텐츠 대응 낮음" --> "AI·콘텐츠 대응 높음"
+  y-axis "성장 정체" --> "성장 탄력"
+  quadrant-1 "재편의 승자"
+  quadrant-2 "수요는 있으나 방어 필요"
+  quadrant-3 "밀려나는 쪽"
+  quadrant-4 "전환 중"
+  "AlphaSense": [0.88, 0.85]
+  "Dialectica": [0.45, 0.78]
+  "Guidepoint": [0.72, 0.6]
+  "Third Bridge": [0.75, 0.58]
+  "GLG": [0.7, 0.35]
+  "비자스크 국내": [0.55, 0.72]
+  "Coleman": [0.3, 0.25]
 </pre>
 <div class="see">이 그림에서 볼 것: 좌표는 공개 정보(성장률·AI 제품 출시)를 바탕으로 한 제 판단이며 측정값이 아닙니다 <span class="src calc">제 판단</span>. Coleman은 '투자자 대상 1:1 통화'에 무게가 실린 1세대 뉴욕 업체입니다. Inex One이 성장이 느리다고 지목한 유형과 겹칩니다.</div>
 </div>
@@ -473,11 +644,9 @@ quadrantChart
   <li><b>'ENS·컨설팅은 강하고 프리랜서 매칭은 약하다'</b>: 같은 '외부 인재' 테마인데 미라이웍스·크라우드웍스는 부진합니다. 고객이 사람을 오래 쓰는 것보다 짧고 깊게 묻는 쪽에 돈을 쓰고 있다는 해석이 가능합니다.</li>
   <li><b>AI 연구소의 전문가 수요</b>(Mercor 등): AI 학습용 전문가 라벨링이 커지고 있습니다. 비자스크의 80만 명 DB가 이 시장에 들어갈 여지가 있지만, 회사는 아직 언급한 적이 없습니다.</li>
 </ul>
-<div class="fig">
-<div class="cap">그림 12. 비자스크 분기 영업수익과 영업이익 (억 엔)</div>
-<div class="chart tall"><canvas id="cQ" aria-label="분기 영업수익과 영업이익"></canvas></div>
-<div class="see">이 그림에서 볼 것: 24/2기까지는 영업적자였습니다. 25/2기부터 흑자가 정착했고, 27/2기 들어 분기 영업이익 4억 엔대가 이어집니다. 분기 영업수익은 4분기 연속 전년 대비 증가입니다.</div>
-</div>
+<h3>5.5 비자스크 재무제표</h3>
+<p>분기 8개와 연간 실적에 회사 가이던스 열을 붙였습니다. 줄 머리의 ▸를 누르면 사업별 매출·이익, 영업비용, 업종 핵심 지표(거래액)가 펼쳐집니다. 연간은 상장(2020) 전 자료가 없어 2/20부터 7개년입니다.</p>
+<!--FIN:FS:BEGIN--><section class="finx finx-fs"><p class="fsunit">단위: 억 엔 · 마진·증감률 % · 2월 결산(1Q=3~5월) — 분기 위 작은 글씨는 달력(CY) 기준 · 매출 = 영업수익(전문가 사례 차감 후 순액)</p><p class="tgh fsq">분기 실적</p><div class="tw"><table class="fst"><thead><tr class="curl"><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th class="curt">이번 실적(26.10.15)</th><th></th></tr><tr class="cy"><th></th><th class="">CY4Q24</th><th class="">CY1Q25</th><th class="">CY2Q25</th><th class="">CY3Q25</th><th class="">CY4Q25</th><th class="">CY1Q26</th><th class="">CY2Q26</th><th class=" cur">CY3Q26</th><th class="kg">CY4Q26~1Q27</th></tr><tr><th>억 엔</th><th class="">2/25 3Q<small class=qs>24.9~11</small><small class=qp>발표 25.1.14</small></th><th class="">2/25 4Q<small class=qs>24.12~25.2</small><small class=qp>발표 25.4.11</small></th><th class="">2/26 1Q<small class=qs>25.3~5</small><small class=qp>발표 25.7.15</small></th><th class="">2/26 2Q<small class=qs>25.6~8</small><small class=qp>발표 25.10.15</small></th><th class="">2/26 3Q<small class=qs>25.9~11</small><small class=qp>발표 26.1.14</small></th><th class="">2/26 4Q<small class=qs>25.12~26.2</small><small class=qp>발표 26.4.14</small></th><th class="">2/27 1Q<small class=qs>26.3~5</small><small class=qp>발표 26.7.15</small></th><th class=" cur">2/27 2Q<small class=qs>26.6~8</small><small class=qp>발표 26.10.15</small></th><th class="kg">2/27 하반기<small>가이던스</small><small class=qs>26.9~27.2</small></th></tr></thead><tbody><tr class="mj"><td>매출액</td><td class="n ">23.7</td><td class="n ">24.7</td><td class="n ">24.5</td><td class="n ">23.3</td><td class="n ">25.1</td><td class="n ">26.9</td><td class="n ">27.6</td><td class="n  cur">28.1</td><td class="n kg">54.1</td></tr><tr class="g"><td>YoY</td><td class="n ">+2.5%</td><td class="n ">+5.8%</td><td class="n ">−2.9%</td><td class="n ">−3.6%</td><td class="n ">+5.9%</td><td class="n ">+8.7%</td><td class="n ">+12.6%</td><td class="n  hl cur"><span>+20.6%</span></td><td class="n kg">+4.0%</td></tr><tr class="segtog"><td colspan="8"><button type="button" class="segbtn" data-g="gseg" data-l="BM별 매출·이익">▸ BM별 매출·이익 보기 <small>3개 사업 · 눌러서 펼치기</small></button></td><td class="cur"></td><td colspan="1"></td></tr><tr class="segr gseg bi0 segh" hidden><td>· 국내 기업 고객</td><td class="n ">6.39</td><td class="n ">7.72</td><td class="n ">7.23</td><td class="n ">6.12</td><td class="n ">7.20</td><td class="n ">9.33</td><td class="n ">8.98</td><td class="n  cur">8.06</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+3.6%</td><td class="n ">+7.6%</td><td class="n ">+12.7%</td><td class="n ">+20.9%</td><td class="n ">+24.2%</td><td class="n  cur">+31.7%</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　사업이익(공통비 전)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">2.82</td><td class="n ">1.72</td><td class="n ">2.39</td><td class="n ">4.26</td><td class="n ">3.76</td><td class="n  cur">2.87</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+33.3%</td><td class="n  cur">+66.9%</td><td class="n kg">–</td></tr><tr class="segr gseg bi1 segh" hidden><td>· 컨설·금융(국내 고객)</td><td class="n ">6.65</td><td class="n ">6.78</td><td class="n ">6.94</td><td class="n ">6.81</td><td class="n ">7.59</td><td class="n ">7.98</td><td class="n ">8.08</td><td class="n  cur">9.19</td><td class="n kg">–</td></tr><tr class="segr gseg bi1" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+6.0%</td><td class="n ">+9.3%</td><td class="n ">+14.1%</td><td class="n ">+17.7%</td><td class="n ">+16.4%</td><td class="n  cur">+34.9%</td><td class="n kg">–</td></tr><tr class="segr gseg bi1" hidden><td>　사업이익(공통비 전)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">3.64</td><td class="n ">3.16</td><td class="n ">3.99</td><td class="n ">4.34</td><td class="n ">4.03</td><td class="n  cur">5.08</td><td class="n kg">–</td></tr><tr class="segr gseg bi1" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+10.7%</td><td class="n  cur">+60.8%</td><td class="n kg">–</td></tr><tr class="segr gseg bi0 segh" hidden><td>· 컨설·금융(해외 고객)</td><td class="n ">10.7</td><td class="n ">10.1</td><td class="n ">10.1</td><td class="n ">10.7</td><td class="n ">10.5</td><td class="n ">9.24</td><td class="n ">10.6</td><td class="n  cur">10.7</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">−13.4%</td><td class="n ">−9.9%</td><td class="n ">−1.8%</td><td class="n ">−8.3%</td><td class="n ">+5.0%</td><td class="n  cur">−0.3%</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　사업이익(공통비 전)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">2.02</td><td class="n ">3.26</td><td class="n ">3.11</td><td class="n ">2.44</td><td class="n ">2.14</td><td class="n  cur">2.28</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+5.9%</td><td class="n  cur">−30.1%</td><td class="n kg">–</td></tr><tr class="segtog"><td colspan="8"><button type="button" class="segbtn" data-g="gsga" data-l="판관비">▸ 판관비 보기 <small>매출 대비 비중 · 눌러서 펼치기</small></button></td><td class="cur"></td><td colspan="1"></td></tr><tr class="segr gsga segd segv" hidden><td>　· 전사 공통비(본사·관리, 감가상각·주식보상 제외)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">6.33</td><td class="n ">6.39</td><td class="n ">6.04</td><td class="n ">6.78</td><td class="n ">6.20</td><td class="n  cur">6.39</td><td class="n kg">–</td></tr><tr class="segr gsga segd segp" hidden><td>　　매출 대비</td><td class="n ">–</td><td class="n ">–</td><td class="n ">25.9%</td><td class="n ">27.4%</td><td class="n ">24.0%</td><td class="n ">25.2%</td><td class="n ">22.5%</td><td class="n  cur">22.8%</td><td class="n kg">–</td></tr><tr class="segr gsga segh" hidden><td>영업비용 합계(영업수익 − 영업이익)</td><td class="n ">21.4</td><td class="n ">20.6</td><td class="n ">21.7</td><td class="n ">21.1</td><td class="n ">21.4</td><td class="n ">22.1</td><td class="n ">23.3</td><td class="n  cur">23.8</td><td class="n kg">–</td></tr><tr class="segr gsga segs" hidden><td>　매출 대비</td><td class="n ">90.0%</td><td class="n ">83.5%</td><td class="n ">88.6%</td><td class="n ">90.5%</td><td class="n ">85.2%</td><td class="n ">82.5%</td><td class="n ">84.6%</td><td class="n  cur">84.9%</td><td class="n kg">–</td></tr><tr class="mj sep"><td>영업이익</td><td class="n ">2.38</td><td class="n ">4.07</td><td class="n ">2.79</td><td class="n ">2.20</td><td class="n ">3.71</td><td class="n ">4.71</td><td class="n ">4.24</td><td class="n  cur">4.24</td><td class="n kg">5.52</td></tr><tr class="g"><td>OPM</td><td class="n ">10.0%</td><td class="n ">16.5%</td><td class="n ">11.4%</td><td class="n ">9.5%</td><td class="n ">14.8%</td><td class="n ">17.5%</td><td class="n ">15.4%</td><td class="n  cur">15.1%</td><td class="n kg">10.2%</td></tr><tr class="g"><td>YoY</td><td class="n ">흑전</td><td class="n ">+311.1%</td><td class="n ">−27.5%</td><td class="n ">+11.7%</td><td class="n ">+55.9%</td><td class="n ">+15.7%</td><td class="n ">+52.0%</td><td class="n  hl cur"><span>+92.7%</span></td><td class="n kg">−34.4%</td></tr><tr class="mj sep"><td>순이익</td><td class="n ">0.89</td><td class="n ">2.81</td><td class="n ">0.81</td><td class="n ">1.00</td><td class="n ">3.22</td><td class="n ">3.88</td><td class="n ">2.26</td><td class="n  cur">2.63</td><td class="n kg">2.61</td></tr><tr class="g"><td>YoY</td><td class="n ">+229.6%</td><td class="n ">흑전</td><td class="n ">+35.0%</td><td class="n ">+112.8%</td><td class="n ">+261.8%</td><td class="n ">+38.1%</td><td class="n ">+179.0%</td><td class="n  cur">+163.0%</td><td class="n kg">−63.2%</td></tr></tbody></table></div><p class="tgh fsy">연간 실적</p><div class="tw"><table class="fst"><thead><tr><th>억 엔</th><th class="">2/20(단독)</th><th class="">2/21</th><th class="">2/22</th><th class="">2/23</th><th class="">2/24</th><th class="">2/25</th><th class="">2/26</th><th class="kg">2/27<small>가이던스</small></th></tr></thead><tbody><tr class="mj"><td>매출액</td><td class="n ">9.83</td><td class="n ">16.0</td><td class="n ">37.0</td><td class="n ">83.8</td><td class="n ">89.7</td><td class="n ">97.8</td><td class="n ">99.7</td><td class="n kg">110</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">+63.2%</td><td class="n ">+130.8%</td><td class="n ">+126.4%</td><td class="n ">+7.0%</td><td class="n ">+9.1%</td><td class="n ">+2.0%</td><td class="n kg">+10.0%</td></tr><tr class="segtog"><td colspan="9"><button type="button" class="segbtn" data-g="gseg" data-l="BM별 매출·이익">▸ BM별 매출·이익 보기 <small>3개 사업 · 눌러서 펼치기</small></button></td></tr><tr class="segr gseg bi0 segh" hidden><td>· 국내 기업 고객</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">23.5</td><td class="n ">26.8</td><td class="n ">29.9</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+14.0%</td><td class="n ">+11.6%</td><td class="n kg">–</td></tr><tr class="segr gseg bi1 segh" hidden><td>· 컨설·금융(국내 고객)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">24.0</td><td class="n ">26.2</td><td class="n ">29.3</td><td class="n kg">–</td></tr><tr class="segr gseg bi1" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+9.2%</td><td class="n ">+11.9%</td><td class="n kg">–</td></tr><tr class="segr gseg bi0 segh" hidden><td>· 컨설·금융(해외 고객)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">42.1</td><td class="n ">44.4</td><td class="n ">40.6</td><td class="n kg">–</td></tr><tr class="segr gseg bi0" hidden><td>　YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+5.2%</td><td class="n ">−8.5%</td><td class="n kg">–</td></tr><tr class="segtog"><td colspan="9"><button type="button" class="segbtn" data-g="gsga" data-l="판관비">▸ 판관비 보기 <small>매출 대비 비중 · 눌러서 펼치기</small></button></td></tr><tr class="segr gsga segh" hidden><td>영업비용 합계(영업수익 − 영업이익)</td><td class="n ">9.12</td><td class="n ">14.0</td><td class="n ">38.1</td><td class="n ">83.8</td><td class="n ">90.3</td><td class="n ">85.5</td><td class="n ">86.3</td><td class="n kg">–</td></tr><tr class="segr gsga segs" hidden><td>　매출 대비</td><td class="n ">92.8%</td><td class="n ">87.0%</td><td class="n ">103.0%</td><td class="n ">100.0%</td><td class="n ">100.7%</td><td class="n ">87.5%</td><td class="n ">86.6%</td><td class="n kg">–</td></tr><tr class="mj sep"><td>영업이익</td><td class="n ">0.71</td><td class="n ">2.08</td><td class="n ">−1.12</td><td class="n ">0.04</td><td class="n ">−0.59</td><td class="n ">12.3</td><td class="n ">13.4</td><td class="n kg">14.0</td></tr><tr class="g"><td>OPM</td><td class="n ">7.2%</td><td class="n ">13.0%</td><td class="n ">−3.0%</td><td class="n ">0.0%</td><td class="n ">−0.7%</td><td class="n ">12.5%</td><td class="n ">13.4%</td><td class="n kg">12.8%</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">+193.0%</td><td class="n ">적전</td><td class="n ">흑전</td><td class="n ">적전</td><td class="n ">흑전</td><td class="n ">+9.3%</td><td class="n kg">+4.4%</td></tr><tr class="mj sep"><td>순이익</td><td class="n ">0.52</td><td class="n ">2.01</td><td class="n ">−4.75</td><td class="n ">0.75</td><td class="n ">−126</td><td class="n ">4.77</td><td class="n ">8.91</td><td class="n kg">7.50</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">+286.5%</td><td class="n ">적전</td><td class="n ">흑전</td><td class="n ">적전</td><td class="n ">흑전</td><td class="n ">+86.8%</td><td class="n kg">−15.8%</td></tr></tbody></table></div><p class="note"><b>BM별:</b> 공시상 단일 세그먼트. 사업영역 3개는 설명회 관리 숫자(감사 대상 아님). 사업이익 = 사업별 영업이익 + 감가상각 + 주식보상 − 소프트웨어 감액, 전사 공통비(분기 약 6.0~6.8억) 전 — 2/26 1Q부터 공시. 해외는 콜먼 달러 실적을 기중 평균 환율로 환산(2/27 실적 약 158엔).</p><p class="note"><b>판관비:</b> 결산단신 손익계산서는 영업비용을 항목별로 나누지 않음. 전사 공통비는 설명회 34쪽(조정 EBITDA 기준), 영업비용 합계는 영업수익 − 영업이익(계산). 매출 대비 %.</p><details class="tg "><summary><b>업종 핵심 지표 — 거래액(고객 결제 총액)</b><small>거래액 합계 · 국내 기업 고객 거래액 · 컨설·금융(국내 고객) 거래액 · 컨설·금융(해외 고객) 거래액 · 눌러서 펼치기</small></summary><div class="tgb"><p class="tgh fsq">분기 실적</p><div class="tw"><table class="fst sub"><thead><tr><th></th><th class="">2/25 3Q<small class=qs>24.9~11</small><small class=qp>발표 25.1.14</small></th><th class="">2/25 4Q<small class=qs>24.12~25.2</small><small class=qp>발표 25.4.11</small></th><th class="">2/26 1Q<small class=qs>25.3~5</small><small class=qp>발표 25.7.15</small></th><th class="">2/26 2Q<small class=qs>25.6~8</small><small class=qp>발표 25.10.15</small></th><th class="">2/26 3Q<small class=qs>25.9~11</small><small class=qp>발표 26.1.14</small></th><th class="">2/26 4Q<small class=qs>25.12~26.2</small><small class=qp>발표 26.4.14</small></th><th class="">2/27 1Q<small class=qs>26.3~5</small><small class=qp>발표 26.7.15</small></th><th class="">2/27 2Q<small class=qs>26.6~8</small><small class=qp>발표 26.10.15</small></th></tr></thead><tbody><tr class="mj sep"><td>거래액 합계 (억 엔)</td><td class="n ">34.6</td><td class="n ">37.0</td><td class="n ">35.6</td><td class="n ">34.7</td><td class="n ">36.6</td><td class="n ">38.4</td><td class="n ">39.8</td><td class="n ">40.5</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">−5.0%</td><td class="n ">+0.2%</td><td class="n ">+5.7%</td><td class="n ">+3.9%</td><td class="n ">+11.8%</td><td class="n ">+16.6%</td></tr><tr class="mj sep"><td>국내 기업 고객 거래액 (억 엔)</td><td class="n ">10.7</td><td class="n ">12.7</td><td class="n ">11.9</td><td class="n ">10.2</td><td class="n ">11.4</td><td class="n ">14.4</td><td class="n ">13.9</td><td class="n ">12.6</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">−0.2%</td><td class="n ">+7.8%</td><td class="n ">+6.7%</td><td class="n ">+13.5%</td><td class="n ">+17.0%</td><td class="n ">+23.7%</td></tr><tr class="mj sep"><td>컨설·금융(국내 고객) 거래액 (억 엔)</td><td class="n ">9.18</td><td class="n ">9.42</td><td class="n ">9.53</td><td class="n ">9.42</td><td class="n ">10.5</td><td class="n ">11.1</td><td class="n ">11.1</td><td class="n ">12.6</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+3.1%</td><td class="n ">+8.7%</td><td class="n ">+14.3%</td><td class="n ">+17.4%</td><td class="n ">+16.8%</td><td class="n ">+34.1%</td></tr><tr class="mj sep"><td>컨설·금융(해외 고객) 거래액 (억 엔)</td><td class="n ">14.7</td><td class="n ">14.9</td><td class="n ">14.2</td><td class="n ">15.1</td><td class="n ">14.7</td><td class="n ">13.0</td><td class="n ">14.8</td><td class="n ">15.2</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">−13.1%</td><td class="n ">−8.5%</td><td class="n ">−0.5%</td><td class="n ">−12.9%</td><td class="n ">+4.0%</td><td class="n ">+0.8%</td></tr></tbody></table></div><p class="tgh fsy">연간 실적</p><div class="tw"><table class="fst sub"><thead><tr><th></th><th class="">2/20(단독)</th><th class="">2/21</th><th class="">2/22</th><th class="">2/23</th><th class="">2/24</th><th class="">2/25</th><th class="">2/26</th></tr></thead><tbody><tr class="mj sep"><td>거래액 합계 (억 엔)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">131</td><td class="n ">143</td><td class="n ">145</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+9.4%</td><td class="n ">+1.3%</td></tr><tr class="mj sep"><td>국내 기업 고객 거래액 (억 엔)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">40.3</td><td class="n ">44.8</td><td class="n ">47.9</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+11.0%</td><td class="n ">+7.0%</td></tr><tr class="mj sep"><td>컨설·금융(국내 고객) 거래액 (억 엔)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">33.3</td><td class="n ">36.5</td><td class="n ">40.5</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+9.6%</td><td class="n ">+11.0%</td></tr><tr class="mj sep"><td>컨설·금융(해외 고객) 거래액 (억 엔)</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">57.4</td><td class="n ">62.5</td><td class="n ">56.9</td></tr><tr class="g"><td>YoY</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">–</td><td class="n ">+8.8%</td><td class="n ">−8.9%</td></tr></tbody></table></div><p class="note">거래액 = 전문가 사례 포함 고객 결제 총액. 분기는 사업영역 합계(연결 조정 전 — 연간 합계와 0.3억 안팎 차이), 연도는 연결 수치. 거래액 대비 영업수익률은 약 68~69%(2/26 68.6%). 등록 전문가 80만 명 이상(국내 약 23만·해외 약 59만, 26.8) <span class="tag">[설명회]</span>.</p><button type="button" class="tgx">▴ 접기 — 업종 핵심 지표 — 거래액(고객 결제 총액)</button></div></details><p class="note">2/27 하반기 열 = 연간 가이던스(영업수익 109.72억·영업이익 14.0억·순이익 7.5억) − 상반기 실적(계산). 분기 가이던스·컨센서스(야후 집계 커버 애널리스트 0명, 26.10.23)는 없음. 2/20은 단독, 2/24 순손실은 콜먼 영업권·무형자산 감액.</p><p class="src">출처: 결산단신(분기는 누계 차분) · 설명회(26.10.15) · 유가증권보고서(2/26)</p></section><!--FIN:FS:END-->
 <div class="summary"><b class="t">핵심 3줄</b><ul>
 <li>순수 ENS 상장사는 세계적으로 비자스크가 사실상 유일해 직접 비교할 피어가 없습니다.</li>
 <li>국내 수요 지표(베이커런트)는 매우 강하고, 프리랜서 매칭주는 약합니다.</li>
@@ -574,21 +743,21 @@ quadrantChart
 </tbody></table></div>
 <div class="fig">
 <div class="cap">그림 15. 리스크 지도: 영향 × 가능성 (제 판단)</div>
-<pre class="mermaid">
+<pre class="mmd">
 quadrantChart
   title 리스크 영향과 가능성
-  x-axis 가능성 낮음 --> 가능성 높음
-  y-axis 영향 작음 --> 영향 큼
-  quadrant-1 최우선 관리
-  quadrant-2 드물지만 치명적
-  quadrant-3 관찰
-  quadrant-4 자주 오지만 작음
-  우선주 희석·상환: [0.55, 0.85]
-  AI 인터뷰 가격 압박: [0.6, 0.6]
-  컨설팅 경기 둔화: [0.45, 0.65]
-  해외 추가 역성장: [0.7, 0.35]
-  컴플라이언스 사고: [0.15, 0.8]
-  유동성 부족: [0.8, 0.3]
+  x-axis "가능성 낮음" --> "가능성 높음"
+  y-axis "영향 작음" --> "영향 큼"
+  quadrant-1 "최우선 관리"
+  quadrant-2 "드물지만 치명적"
+  quadrant-3 "관찰"
+  quadrant-4 "자주 오지만 작음"
+  "우선주 희석·상환": [0.55, 0.85]
+  "AI 인터뷰 가격 압박": [0.6, 0.6]
+  "컨설팅 경기 둔화": [0.45, 0.65]
+  "해외 추가 역성장": [0.7, 0.35]
+  "컴플라이언스 사고": [0.15, 0.8]
+  "유동성 부족": [0.8, 0.3]
 </pre>
 <div class="see">이 그림에서 볼 것: 가장 무거운 것은 우선주 처리 방식입니다. 컨설팅 경기와 AI 가격 압박은 국내 성장의 지속성을 직접 흔듭니다.</div>
 </div>
@@ -613,7 +782,7 @@ quadrantChart
 <p><b>반증 지표:</b> 국내 컨설·금융 +15% 미만, 국내 사업법인 수익률 하락 반전, 국내 인터뷰 건수 마이너스 전환, 우선주의 대규모 보통주 전환 공시. 이 중 하나가 나오면 판정을 '태동'으로 낮춥니다.</p>
 <div class="fig">
 <div class="cap">그림 16. 이벤트 캘린더</div>
-<pre class="mermaid">
+<pre class="mmd">
 timeline
   title 다음 확인 지점
   2026-11 : 14회 신주예약권 행사기간 종료 11-01
@@ -753,10 +922,6 @@ timeline
   Chart.defaults.plugins.legend.labels.boxWidth = 12;
   const mk = (id,cfg)=>{const el=document.getElementById(id); if(el) new Chart(el,cfg);};
 
-  // 그림 2: 5년 월말 주가
-  const p5 = [["21-11",5480],["21-12",5240],["22-01",4080],["22-02",3410],["22-03",4065],["22-04",3150],["22-05",2522],["22-06",2083],["22-07",2108],["22-08",2185],["22-09",2026],["22-10",1902],["22-11",1860],["22-12",1327],["23-01",1802],["23-02",1645],["23-03",1612],["23-04",1342],["23-05",1387],["23-06",1408],["23-07",1235],["23-08",1187],["23-09",1133],["23-10",901],["23-11",1010],["23-12",951],["24-01",926],["24-02",925],["24-03",905],["24-04",738],["24-05",942],["24-06",950],["24-07",1524],["24-08",1659],["24-09",1772],["24-10",1164],["24-11",1200],["24-12",1061],["25-01",1139],["25-02",1124],["25-03",1007],["25-04",835],["25-05",810],["25-06",814],["25-07",765],["25-08",749],["25-09",757],["25-10",596],["25-11",485],["25-12",472],["26-01",586],["26-02",548],["26-03",500],["26-04",692],["26-05",669],["26-06",590],["26-07",665],["26-08",657],["26-09",677],["26-10",764]];
-  mk('cPrice5y',{type:'line',data:{labels:p5.map(x=>x[0]),datasets:[{label:'월말 종가(엔)',data:p5.map(x=>x[1]),borderColor:C.acc,backgroundColor:C.acc+'22',fill:true,pointRadius:0,tension:.2,borderWidth:2}]},
-    options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y.toLocaleString()+'엔'}}},scales:{y:{type:'logarithmic',ticks:{callback:v=>[500,1000,2000,5000].includes(v)?v.toLocaleString():''}},x:{ticks:{maxTicksLimit:10}}}}});
 
   // 그림 4: 시장 규모
   mk('cMarket',{type:'bar',data:{labels:['2012','2022','2024','2025'],datasets:[{label:'억 달러',data:[4.09,21.4,25,30],backgroundColor:[C.line,C.acc2,C.acc,C.acc]}]},
@@ -788,12 +953,6 @@ timeline
     {type:'line',label:'달러 환산(백만 달러, 제 계산)',data:[49.4,41.0,41.4,38.0],borderColor:C.bad,backgroundColor:C.bad,pointRadius:4,yAxisID:'y1'}]},
     options:{scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'억 엔'}},y1:{beginAtZero:true,position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'백만 달러'}}}}});
 
-  // 그림 12: 분기 실적
-  const q=[["23/2 1Q",19.62,0.45],["2Q",21.80,1.00],["3Q",21.62,-0.57],["4Q",20.76,-0.84],["24/2 1Q",21.34,-0.82],["2Q",21.83,-0.47],["3Q",23.14,-0.29],["4Q",23.36,0.99],["25/2 1Q",25.20,3.85],["2Q",24.15,1.97],["3Q",23.73,2.38],["4Q",24.72,4.07],["26/2 1Q",24.46,2.79],["2Q",23.28,2.20],["3Q",25.14,3.71],["4Q",26.86,4.71],["27/2 1Q",27.55,4.24],["2Q",28.07,4.24]];
-  mk('cQ',{type:'bar',data:{labels:q.map(x=>x[0]),datasets:[
-    {type:'bar',label:'영업수익(억 엔)',data:q.map(x=>x[1]),backgroundColor:C.acc+'aa',yAxisID:'y'},
-    {type:'line',label:'영업이익(억 엔)',data:q.map(x=>x[2]),borderColor:C.acc2,backgroundColor:C.acc2,pointRadius:3,yAxisID:'y1'}]},
-    options:{scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'영업수익'}},y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'영업이익'}},x:{ticks:{maxRotation:0,autoSkip:true}}}}});
 
   // 그림 13: 실적 전후 주가
   const pn=[["09-01",665],["09-02",679],["09-03",671],["09-04",671],["09-07",659],["09-08",642],["09-09",637],["09-10",647],["09-11",632],["09-14",650],["09-15",655],["09-16",657],["09-17",660],["09-18",657],["09-24",674],["09-25",675],["09-28",675],["09-29",674],["09-30",677],["10-01",680],["10-02",672],["10-05",660],["10-06",666],["10-07",689],["10-08",677],["10-09",688],["10-13",682],["10-14",673],["10-15",670],["10-16",720],["10-19",760],["10-20",799],["10-21",830],["10-22",771],["10-23",764]];
@@ -805,9 +964,115 @@ timeline
     options:{plugins:{legend:{display:false}},scales:{r:{min:0,max:3,ticks:{stepSize:1,backdropColor:'transparent'},grid:{color:C.line},angleLines:{color:C.line},pointLabels:{color:C.ink,font:{size:12}}}}}});
 })();
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true,securityLevel:'loose',theme:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'default')});</script>
+<script>mermaid.initialize({startOnLoad:false,securityLevel:'loose',theme:(document.documentElement.dataset.theme==='dark'||(!document.documentElement.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches))?'dark':'default'});
+mermaid.run({querySelector:'pre.mmd'});</script>
+<!--FIN:JS:BEGIN--><div id="finx-tip"></div><script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script><script>
+(function(){
+if(window.__FINX_INIT)return;window.__FINX_INIT=1;
+let ROOT=document.documentElement;
+const css=n=>getComputedStyle(ROOT).getPropertyValue(n).trim();
+const tip=document.getElementById('finx-tip');
+const fmt=(v,u)=>{if(v==null||isNaN(v))return '–';const a=Math.abs(v);let s=a>=100?Math.round(v).toLocaleString('ko-KR'):a>=10?v.toFixed(1):v.toFixed(2);if(s.includes('.'))s=s.replace(/0+$/,'').replace(/\.$/,'');return s.replace('-','−')+(u||'')};
+const show=(e,h)=>{tip.innerHTML=h;tip.style.display='block';const w=tip.offsetWidth;let x=e.clientX+14;if(x+w>innerWidth-8)x=e.clientX-w-14;tip.style.left=Math.max(4,x)+'px';tip.style.top=(e.clientY+14)+'px'};
+const hide=()=>{tip.style.display='none'};
+function draw(s){
+ const el=document.getElementById(s.id);if(!el||!window.d3)return;el.innerHTML='';ROOT=el.closest('.finx')||document.documentElement;
+ const W=el.clientWidth,H=el.clientHeight;if(!W)return;const ser=s.series||[];const hasY2=ser.some(d=>d.axis==='y2');
+ const m={t:(s.phases&&s.phases.length?34:14),r:(hasY2?54:16)+(s.end_labels?120:0),b:30+((s.marks&&s.marks.length)?(s.marks.length>5?80:52):0),l:56+(ser.some(d=>d.axis!=='y2'&&(d.data||[]).some(v=>v!=null&&Math.abs(v)>=1000))?14:0)};
+ const svg=d3.select(el).append('svg').attr('width',W).attr('height',H);
+ const col=c=>css('--'+(c||'resi'))||c;
+ const L=s.labels||[];const n=L.length;const bars=ser.filter(d=>(d.type||(s.kind==='bar'||s.kind==='stacked'||(s.kind==='combo'&&d.axis!=='y2')?'bar':'line'))==='bar');
+ const isBar=d=>(d.type||(s.kind==='bar'||s.kind==='stacked'||(s.kind==='combo'&&d.axis!=='y2')?'bar':'line'))==='bar';
+ const x=d3.scaleBand().domain(d3.range(n)).range([m.l,W-m.r]).padding(bars.length?0.22:0);const cx=i=>x(i)+x.bandwidth()/2;
+ const y1s=ser.filter(d=>d.axis!=='y2');let vals=[];
+ if(s.stacked){for(let i=0;i<n;i++){let p=0,q=0;y1s.forEach(d=>{const v=d.data[i]||0;v>=0?p+=v:q+=v});vals.push(p,q)}}else y1s.forEach(d=>d.data.forEach(v=>v!=null&&vals.push(v)));
+ (s.bands||[]).forEach(b=>b.data.forEach(v=>v!=null&&vals.push(v)));
+ let ext=d3.extent(vals);if(s.zero!==false&&!s.log){ext=[Math.min(0,ext[0]),Math.max(0,ext[1])]}
+ const y=(s.log?d3.scaleLog().domain([Math.max(ext[0]*0.9,1e-6),ext[1]*1.08]):d3.scaleLinear().domain(ext).nice()).range([H-m.b,m.t]);
+ let y2=null;if(hasY2){const v2=[];ser.filter(d=>d.axis==='y2').forEach(d=>d.data.forEach(v=>v!=null&&v2.push(v)));let e2=d3.extent(v2);y2=d3.scaleLinear().domain(e2).nice().range([H-m.b,m.t]);}
+ svg.append('g').attr('class','grid').attr('transform',`translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickSize(-(W-m.l-m.r)).tickFormat('')).select('.domain').remove();
+ if(!s.log&&y.domain()[0]<0)svg.append('line').attr('class','zero').attr('x1',m.l).attr('x2',W-m.r).attr('y1',y(0)).attr('y2',y(0));
+ const lw=Math.max(...L.map(t=>String(t).length))*6.6+18,step=Math.max(1,Math.ceil(n/Math.max(2,Math.min(W<560?6:11,Math.floor((W-m.l-m.r)/lw)))));
+ svg.append('g').attr('class','ax').attr('transform',`translate(0,${H-m.b})`).call(d3.axisBottom(x).tickValues(d3.range(0,n,step)).tickFormat(i=>L[i]));
+ svg.append('g').attr('class','ax').attr('transform',`translate(${m.l},0)`).call(s.log?d3.axisLeft(y).tickValues(y.domain()[1]/y.domain()[0]<10?(()=>{const [d0,d1]=y.domain(),C=[1,1.2,1.5,2,2.5,3,4,5,6,7,8,9],T=[];for(let e=Math.floor(Math.log10(d0));e<=Math.ceil(Math.log10(d1));e++)C.forEach(c=>{const v=c*Math.pow(10,e);if(v>=d0&&v<=d1)T.push(v)});return T.length>9?T.filter((v,i)=>i%2===0):T})():y.ticks(6).filter(v=>{const k=Math.round(v/Math.pow(10,Math.floor(Math.log10(v))));return k===1||k===2||k===5})).tickFormat(v=>fmt(v,s.unit||'')):d3.axisLeft(y).ticks(5).tickFormat(v=>fmt(v,s.unit||'')));
+ if(y2)svg.append('g').attr('class','ax').attr('transform',`translate(${W-m.r},0)`).call(d3.axisRight(y2).ticks(5).tickFormat(v=>fmt(v,s.y2_unit||'')));
+ if(s.y_title)svg.append('text').attr('class','alab').attr('x',m.l).attr('y',m.t-3).text(s.y_title);
+ (s.bands||[]).forEach(b=>{svg.append('path').attr('class','ln').attr('stroke',col(b.color||'oth')).attr('stroke-dasharray','4 3').attr('stroke-width',1.2)
+   .attr('d',d3.line().defined(v=>v!=null).x((v,i)=>cx(i)).y(v=>y(v)).curve(d3.curveStepAfter)(b.data));});
+ (s.phases||[]).forEach((p,pi)=>{const x0=x(p.from),x1=x(Math.min(p.to,n-1))+x.bandwidth();const c=p.kind==='rise'?col('pos'):p.kind==='fall'?col('neg'):col('oth');
+   svg.append('rect').attr('x',x0).attr('width',Math.max(1,x1-x0)).attr('y',m.t).attr('height',H-m.t-m.b).attr('fill',c).attr('opacity',.07);
+   const full=p.label||'';const num=(full.match(/^[①-⑩\d]+/)||[String(pi+1)])[0];const wd=x1-x0;const est=full.length*11;
+   svg.append('text').attr('class','phl').attr('x',x0+4).attr('y',m.t-20+(pi%2)*13).attr('fill',c).text(est<wd-6?full:num);});
+ if(s.marks&&s.marks.length){const R=s.marks.length>5?4:2;const spans=Array.from({length:R},()=>[]);const lines=[];const plan=[];let ok=true;
+  const wd=t=>[...(t||'')].reduce((a,ch)=>a+(ch.charCodeAt(0)>12000?11:6.5),0)+14;
+  const hit=(a0,a1,sp)=>sp.some(([b0,b1])=>a0<b1&&b0<a1);
+  const MK=s.marks.filter(mk=>mk.i!=null&&mk.i<n).slice().sort((a,b)=>a.i-b.i);
+  MK.forEach(mk=>{const X=cx(mk.i),w=wd(mk.text),a0=X-w/2,a1=X+w/2;let r=-1;
+   for(let k=0;k<R;k++){if(hit(a0,a1,spans[k]))continue;if(spans.slice(0,k).some(sp=>hit(X-2,X+2,sp)))continue;if(lines.some(l=>l.r>k&&l.x>a0&&l.x<a1))continue;r=k;break;}
+   if(r<0){ok=false;return;}spans[r].push([a0,a1]);lines.push({x:X,r});plan.push({X,r,t:mk.text||''});});
+  let lg=el.parentNode.querySelector('.mkleg');
+  if(ok){if(lg)lg.remove();plan.forEach(q=>{svg.append('line').attr('class','mkt').attr('x1',q.X).attr('x2',q.X).attr('y1',H-m.b+20).attr('y2',H-m.b+30+q.r*13);
+    svg.append('text').attr('class','mkl').attr('x',q.X).attr('y',H-m.b+41+q.r*13).attr('text-anchor','middle').text(q.t);});}
+  else{ // 너무 몰려 있으면 축 아래엔 번호만, 이름은 차트 아래 목록으로
+   let last=[-1e9,-1e9];const nums='①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮';const items=[];
+   MK.forEach((mk,k)=>{const X=cx(mk.i);let r=X-last[0]>=16?0:1;last[r]=X;
+    svg.append('line').attr('class','mkt').attr('x1',X).attr('x2',X).attr('y1',H-m.b+20).attr('y2',H-m.b+28+r*14);
+    svg.append('text').attr('class','mkl').attr('x',X).attr('y',H-m.b+40+r*14).attr('text-anchor','middle').text(nums[k]||String(k+1));
+    items.push(`<span><b>${nums[k]||k+1}</b> ${L[mk.i]||''} ${mk.text||''}</span>`);});
+   if(!lg){lg=document.createElement('div');lg.className='mkleg';el.after(lg);}lg.innerHTML=items.join('');}
+ }
+ const bw=s.stacked?x.bandwidth():x.bandwidth()/Math.max(1,bars.length);
+ const base=d3.range(n).map(()=>[0,0]);
+ bars.forEach((d,k)=>{d.data.forEach((v,i)=>{if(v==null)return;const est=d.est_from!=null&&i>=d.est_from;let y0,y1;
+   const yy=d.axis==='y2'?y2:y;const yb=Math.max(0,yy.domain()[0]);
+   if(s.stacked){const b=base[i];if(v>=0){y0=b[0];y1=b[0]+v;b[0]=y1}else{y0=b[1];y1=b[1]+v;b[1]=y1}}else{y0=yb;y1=v}const xx=s.stacked?x(i):x(i)+k*bw;
+   svg.append('rect').attr('x',xx).attr('width',Math.max(1,bw-1)).attr('y',yy(Math.max(y0,y1))).attr('height',Math.abs(yy(y0)-yy(y1))).attr('fill',col(d.color)).attr('opacity',est?.32:1)
+    .attr('stroke',est?col(d.color):'none').attr('stroke-dasharray',est?'3 2':null);});});
+ ser.filter(d=>!isBar(d)).forEach(d=>{const yy=d.axis==='y2'?y2:y;const e=d.est_from;const pts=d.data.map((v,i)=>[i,v]);
+   const line=d3.line().defined(p=>p[1]!=null).x(p=>cx(p[0])).y(p=>yy(p[1]));
+   const act=e!=null?pts.slice(0,e):pts;svg.append('path').attr('class','ln').attr('stroke',col(d.color)).attr('stroke-width',d.width||(d.thin?1.3:2)).attr('stroke-dasharray',d.dash?'5 4':null).attr('d',line(act));
+   if(e!=null){svg.append('path').attr('class','ln').attr('stroke',col(d.color)).attr('stroke-dasharray','5 4').attr('opacity',.7).attr('d',line(pts.slice(Math.max(0,e-1))));}
+   if(s.kind!=='price'&&n<=40)pts.forEach(p=>{if(p[1]==null)return;svg.append('circle').attr('cx',cx(p[0])).attr('cy',yy(p[1])).attr('r',2.6).attr('fill',e!=null&&p[0]>=e?css('--paper'):col(d.color)).attr('stroke',col(d.color))});});
+ if(s.end_labels){const E=[];ser.filter(d=>!isBar(d)).forEach(d=>{let k=d.data.length-1;while(k>=0&&d.data[k]==null)k--;if(k<0)return;const yy=d.axis==='y2'?y2:y;E.push({y:yy(d.data[k]),x:cx(k),c:col(d.color),t:d.name+' '+fmt(d.data[k],d.unit||s.unit||'')})});
+   E.sort((a,b)=>a.y-b.y);for(let i=1;i<E.length;i++)if(E[i].y-E[i-1].y<14)E[i].y=E[i-1].y+14;E.forEach(l=>svg.append('text').attr('class','dl').attr('x',l.x+8).attr('y',l.y+4).attr('fill',l.c).text(l.t));}
+ const evAt={};(s.events||[]).forEach(e=>{evAt[e.i]=(evAt[e.i]||[]).concat(e)});
+ if(s.events&&ser[0]){const d=ser[0];(s.events||[]).forEach(e=>{const v=d.data[e.i];if(v==null)return;const X=cx(e.i),Y=y(v);const g=svg.append('g');
+   if(e.kind==='call'){g.append('path').attr('class','evc').attr('d',d3.symbol(d3.symbolDiamond,150)()).attr('transform',`translate(${X},${Y-12})`);g.append('text').attr('class','evn c').attr('x',X).attr('y',Y-9).attr('text-anchor','middle').text(e.n)}
+   else{g.append('circle').attr('class','evo').attr('cx',X).attr('cy',Y-12).attr('r',7);g.append('text').attr('class','evn').attr('x',X).attr('y',Y-9).attr('text-anchor','middle').text(e.n)}});}
+ const xh=svg.append('line').attr('class','xh').attr('y1',m.t).attr('y2',H-m.b).style('display','none');
+ svg.append('rect').attr('x',m.l).attr('y',m.t).attr('width',W-m.l-m.r).attr('height',H-m.t-m.b).attr('fill','transparent')
+  .on('mousemove',ev=>{const [mx]=d3.pointer(ev);let i=Math.round((mx-m.l)/((W-m.l-m.r)/n)-0.5);i=Math.max(0,Math.min(n-1,i));xh.attr('x1',cx(i)).attr('x2',cx(i)).style('display',null);
+   let h=`<b>${L[i]}</b>`;ser.forEach(d=>{const v=d.data[i];if(v!=null)h+=`<br>${d.name}: ${fmt(v,d.unit||(d.axis==='y2'?s.y2_unit:s.unit)||'')}${d.est_from!=null&&i>=d.est_from?' ('+(d.est_tag||'추정')+')':''}`});
+   (s.bands||[]).forEach(b=>{const v=b.data[i];if(v!=null)h+=`<br><span class=tn>${b.name}: ${fmt(v,s.unit||'')}</span>`});
+   (s.phases||[]).forEach(p=>{if(i>=p.from&&i<=p.to)h+=`<div class=tn>${p.label||''}${p.chg?' · '+p.chg:''}</div>`});
+   (evAt[i]||[]).forEach(e=>{h+=`<div class=tn>${e.kind==='call'?'◆':'●'} ${e.n} · ${e.tip||''}</div>`});show(ev,h)})
+  .on('mouseleave',()=>{hide();xh.style('display','none')});
+}
+const all=()=>(window.__FINX_CH||[]).forEach(draw);
+/* 재무제표 펼침 줄 — 묶음(data-g)마다 따로: BM별·판관비·영업외 */
+const segRows=bt=>bt.closest('tbody').querySelectorAll('tr.segr.'+(bt.dataset.g||'gseg'));
+const wire=()=>{
+document.querySelectorAll('.finx .segbtn:not(.segx)').forEach(bt=>bt.addEventListener('click',()=>{const rs=segRows(bt);const op=rs.length&&rs[0].hidden;rs.forEach(r=>r.hidden=!op);const l=bt.dataset.l||'BM별 매출·이익';bt.firstChild.textContent=(op?'▾ '+l+' 접기 ':'▸ '+l+' 보기 ');}));
+document.querySelectorAll('.finx details.tg').forEach(dt=>{dt.addEventListener('toggle',()=>{if(dt.open)dt.querySelectorAll('.chart').forEach(c=>{const s=(window.__FINX_CH||[]).find(z=>z.id===c.id);if(s)draw(s)})});
+ const b=dt.querySelector(':scope > .tgb > .tgx');if(b)b.addEventListener('click',()=>{dt.open=false;dt.scrollIntoView({block:'start'})});});
+/* 모든 접이식 맨 아래에도 접기 버튼 */
+document.querySelectorAll('.finx details').forEach(dt=>{if(dt.querySelector(':scope > .tgb > .tgx, :scope > .foldx'))return;
+ const s=dt.querySelector(':scope > summary');let t='';if(s){const c=s.cloneNode(true);c.querySelectorAll('small,.pper').forEach(x=>x.remove());t=c.textContent.replace(/^[▸▾]\s*/,'').trim().slice(0,28);}
+ const b=document.createElement('button');b.type='button';b.className='foldx';b.textContent='▴ 접기'+(t?' — '+t:'');dt.appendChild(b);
+ b.addEventListener('click',()=>{dt.open=false;dt.scrollIntoView({block:'start'})});});
+document.querySelectorAll('.finx .segbtn:not(.segx)').forEach(bt=>{const tr=bt.closest('tr'),tb=bt.closest('tbody'),g=bt.dataset.g||'gseg';const rs=segRows(bt);if(!rs.length||tb.querySelector('tr.segend.'+g))return;
+ const e=tr.cloneNode(true);e.classList.add('segr','segend',g);e.hidden=true;const x=e.querySelector('.segbtn');x.className='segbtn segx';
+ x.textContent='▴ '+(bt.dataset.l||'BM별 매출·이익')+' 접기';rs[rs.length-1].after(e);
+ x.addEventListener('click',()=>{bt.click();tr.scrollIntoView({block:'center'})});});
+let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(all,150)});
+/* 표가 상자보다 넓으면 처음부터 오른쪽 끝(최신 분기·가이던스)을 보여 준다 */
+document.querySelectorAll('.finx .tw').forEach(w=>{if(w.scrollWidth>w.clientWidth+2)w.scrollLeft=w.scrollWidth;});
+all();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(all);};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wire);else wire();
+})();
+</script><!--FIN:JS:END-->
+
 <a href="../indepth-archive.html" style="position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;padding:7px 12px;border-radius:999px;background:#10151f;color:#e9eef8;border:1px solid #3a4560;font:600 12px/1.2 system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">← 인뎁스 아카이브</a>
 </body>
 </html>
