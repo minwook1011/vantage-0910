@@ -1,0 +1,1332 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>스페이스X 연산 인뎁스</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* layout: sky-gradient page; desktop = analysis column (left, flowing) + data column (right, sticky, own scroll); phone = stacked */
+:root{
+  --sky-top:#eaf4ff; --sky-mid:#f6fbff; --sky-bot:#fff7f0; --bg:#f3f8fe;
+  --panel:rgba(255,255,255,0.72); --panel-solid:#ffffff; --line:rgba(30,60,110,0.12); --line-strong:rgba(30,60,110,0.24);
+  --fg:#152238; --sub:#4a5a73; --muted:#7c8aa0;
+  --blue:#2b6fd6; --blue-soft:rgba(43,111,214,0.10); --teal:#139c86; --teal-soft:rgba(19,156,134,0.12);
+  --amber:#d9891b; --amber-soft:rgba(217,137,27,0.13); --rose:#d14c5e; --rose-soft:rgba(209,76,94,0.12);
+  --violet:#6f5bd8; --violet-soft:rgba(111,91,216,0.12); --cloud:rgba(255,255,255,0.55);
+  --grid:#dfe7f2; --tick:#7c8aa0;
+  --font-body:"Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;
+  --font-num:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --sky-top:#0f1a2e; --sky-mid:#121c2d; --sky-bot:#1a1a24; --bg:#121a28;
+  --panel:rgba(22,31,48,0.72); --panel-solid:#19233a; --line:rgba(170,195,235,0.14); --line-strong:rgba(170,195,235,0.28);
+  --fg:#e9eef8; --sub:#b3bed2; --muted:#8793a8;
+  --blue:#6fa3f0; --blue-soft:rgba(111,163,240,0.16); --teal:#4fd0b9; --teal-soft:rgba(79,208,185,0.16);
+  --amber:#f0b35a; --amber-soft:rgba(240,179,90,0.16); --rose:#f08596; --rose-soft:rgba(240,133,150,0.16);
+  --violet:#a697f5; --violet-soft:rgba(166,151,245,0.16); --cloud:rgba(255,255,255,0.05);
+  --grid:#2a3550; --tick:#8793a8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --sky-top:#0f1a2e; --sky-mid:#121c2d; --sky-bot:#1a1a24; --bg:#121a28;
+  --panel:rgba(22,31,48,0.72); --panel-solid:#19233a; --line:rgba(170,195,235,0.14); --line-strong:rgba(170,195,235,0.28);
+  --fg:#e9eef8; --sub:#b3bed2; --muted:#8793a8;
+  --blue:#6fa3f0; --blue-soft:rgba(111,163,240,0.16); --teal:#4fd0b9; --teal-soft:rgba(79,208,185,0.16);
+  --amber:#f0b35a; --amber-soft:rgba(240,179,90,0.16); --rose:#f08596; --rose-soft:rgba(240,133,150,0.16);
+  --violet:#a697f5; --violet-soft:rgba(166,151,245,0.16); --cloud:rgba(255,255,255,0.05);
+  --grid:#2a3550; --tick:#8793a8; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:15.5px;line-height:1.75;-webkit-font-smoothing:antialiased}
+.sky{position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 45%,var(--sky-bot) 100%)}
+.cloud{position:fixed;z-index:-1;border-radius:50%;background:var(--cloud);filter:blur(40px);pointer-events:none;animation:drift 38s ease-in-out infinite alternate}
+.cloud.c1{width:52vw;height:30vh;top:6vh;left:-10vw}
+.cloud.c2{width:40vw;height:26vh;top:38vh;right:-8vw;animation-duration:46s;animation-delay:-12s}
+.cloud.c3{width:46vw;height:24vh;bottom:4vh;left:18vw;animation-duration:54s;animation-delay:-25s}
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(6vw,3vh,0)}}
+@media (prefers-reduced-motion:reduce){.cloud{animation:none}*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+
+.wrap{max-width:1480px;margin:0 auto;padding-block:22px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+h1{font-size:clamp(26px,3.2vw,40px);line-height:1.22;margin:0;font-weight:900;letter-spacing:-.01em;text-wrap:balance}
+.lede{color:var(--sub);font-size:16px;max-width:70ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12.5px;color:var(--muted)}
+.meta b{color:var(--sub);font-weight:500}
+
+nav.toc{position:sticky;top:0;z-index:5;display:flex;gap:6px;flex-wrap:wrap;padding:8px 0;margin:4px 0 16px;background:linear-gradient(180deg,var(--bg) 70%,transparent)}
+nav.toc a{font-size:12.5px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--sub);text-decoration:none;backdrop-filter:blur(8px);white-space:nowrap}
+nav.toc a:hover,nav.toc a:focus-visible{border-color:var(--blue);color:var(--blue);outline:none}
+nav.toc a.data-link{margin-left:auto;background:var(--blue);color:#fff;border-color:var(--blue)}
+@media (max-width:640px){nav.toc{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-right:16px}nav.toc::-webkit-scrollbar{display:none}nav.toc a.data-link{margin-left:0}}
+
+.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:22px;align-items:start}
+.col-analysis{min-width:0}
+.col-data{min-width:0;position:sticky;top:54px;max-height:calc(100vh - 64px);overflow-y:auto;padding-right:4px;scrollbar-width:thin}
+@media (max-width:1080px){.grid{grid-template-columns:1fr}.col-data{position:static;max-height:none;overflow:visible}}
+
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:20px 22px;margin-bottom:18px;min-width:0}
+.panel.tight{padding:14px 16px}
+section.sec{scroll-margin-top:60px}
+.sec h2{font-size:22px;font-weight:900;margin:0 0 6px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.sec h2 .num{font-family:var(--font-num);font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-soft);padding:3px 8px;border-radius:6px}
+.sec h3{font-size:17px;font-weight:700;margin:22px 0 8px;color:var(--fg)}
+.sec h4{font-size:15px;font-weight:700;margin:16px 0 6px;color:var(--sub)}
+.sec p{margin:0 0 12px;max-width:78ch}
+.sec ul,.sec ol{margin:0 0 12px;padding-left:22px}
+.sec li{margin:4px 0}
+.sec strong{font-weight:700;color:var(--fg)}
+.lead{font-size:16.5px;color:var(--fg);font-weight:500}
+.src{font-size:12px;color:var(--muted);margin-top:6px}
+.src a{color:var(--muted)}
+.n{font-family:var(--font-num);font-variant-numeric:tabular-nums;font-weight:500}
+.up{color:var(--teal)}.dn{color:var(--rose)}
+
+.callout{border-radius:12px;padding:14px 16px;margin:12px 0 16px;border:1px solid var(--line);background:var(--panel-solid)}
+.callout .t{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.callout.insight{border-left:4px solid var(--blue)}.callout.insight .t{color:var(--blue)}
+.callout.warn{border-left:4px solid var(--amber)}.callout.warn .t{color:var(--amber)}
+.callout.risk{border-left:4px solid var(--rose)}.callout.risk .t{color:var(--rose)}
+.callout.good{border-left:4px solid var(--teal)}.callout.good .t{color:var(--teal)}
+.callout p:last-child{margin-bottom:0}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0 16px}
+.kpi{background:var(--panel-solid);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+.kpi .l{font-size:12px;color:var(--muted);font-weight:500}
+.kpi .v{font-family:var(--font-num);font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2;margin-top:2px}
+.kpi .d{font-size:12px;margin-top:3px;color:var(--sub)}
+.kpi.hero .v{font-size:30px;color:var(--blue)}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0 14px}
+.tbl th,.tbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+.tbl th{font-weight:700;color:var(--sub);font-size:12.5px;background:var(--blue-soft)}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+.tbl td:first-child{font-family:var(--font-body)}
+.tbl tr.hl td{background:var(--teal-soft);font-weight:600}
+.tbl tr.sum td{border-top:2px solid var(--line-strong);font-weight:600}
+.tblwrap{overflow-x:auto;margin:0 -4px;padding:0 4px}
+.tbl .note{font-family:var(--font-body);font-size:12px;color:var(--muted);text-align:left}
+.tbl td.txt{font-family:var(--font-body);text-align:left}
+
+.chart{margin:14px 0 18px}
+.chart .cap{font-size:13.5px;font-weight:700;margin-bottom:6px}
+.chart .box{position:relative;width:100%;height:280px}
+.chart .box.tall{height:340px}.chart .box.short{height:220px}
+.chart .lg{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--sub);margin:4px 0 6px}
+.chart .lg i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.chart .fn{font-size:12px;color:var(--muted);margin-top:4px}
+
+.bars{display:flex;flex-direction:column;gap:8px;margin:10px 0 14px}
+.bar{display:grid;grid-template-columns:minmax(90px,160px) 1fr minmax(60px,auto);gap:10px;align-items:center;font-size:13px}
+.bar .lab{color:var(--sub);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .trk{height:10px;border-radius:999px;background:var(--blue-soft);overflow:hidden}
+.bar .fil{height:100%;border-radius:999px;background:var(--blue);width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.bar.teal .fil{background:var(--teal)}.bar.amber .fil{background:var(--amber)}.bar.rose .fil{background:var(--rose)}.bar.violet .fil{background:var(--violet)}
+.bar .val{font-family:var(--font-num);font-variant-numeric:tabular-nums;text-align:right}
+
+.timeline{position:relative;margin:12px 0 16px;padding-left:22px;border-left:2px solid var(--line-strong)}
+.tl{position:relative;margin-bottom:14px}
+.tl::before{content:"";position:absolute;left:-28px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--blue-soft)}
+.tl.amber::before{background:var(--amber);box-shadow:0 0 0 4px var(--amber-soft)}
+.tl.rose::before{background:var(--rose);box-shadow:0 0 0 4px var(--rose-soft)}
+.tl.teal::before{background:var(--teal);box-shadow:0 0 0 4px var(--teal-soft)}
+.tl .d{font-family:var(--font-num);font-size:12px;color:var(--blue);font-weight:600}
+.tl .h{font-weight:700}
+.tl .b{font-size:13.5px;color:var(--sub)}
+
+.debate{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0 16px}
+.ag{border-radius:12px;padding:12px 14px;border:1px solid var(--line);background:var(--panel-solid);font-size:13.5px}
+.ag .who{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.ag.a{border-left:4px solid var(--violet)}.ag.a .who{color:var(--violet)}
+.ag.b{border-left:4px solid var(--teal)}.ag.b .who{color:var(--teal)}
+.ag.c{border-left:4px solid var(--amber)}.ag.c .who{color:var(--amber)}
+.ag.d{border-left:4px solid var(--blue)}.ag.d .who{color:var(--blue)}
+.ag p{margin:0 0 6px}.ag p:last-child{margin:0}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-weight:600}
+.tag.teal{background:var(--teal-soft);color:var(--teal)}.tag.amber{background:var(--amber-soft);color:var(--amber)}.tag.rose{background:var(--rose-soft);color:var(--rose)}.tag.violet{background:var(--violet-soft);color:var(--violet)}
+
+details.fold{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:10px 0 14px;background:var(--panel-solid)}
+details.fold summary{cursor:pointer;font-weight:700;font-size:14px}
+details.fold[open] summary{margin-bottom:8px}
+
+.data-tabs{display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:0;z-index:3;padding:6px 0 8px;background:var(--bg)}
+.data-tabs a{font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--sub);text-decoration:none}
+.data-tabs a:hover{border-color:var(--blue);color:var(--blue)}
+.col-data .panel{padding:16px 18px}
+.col-data h2{font-size:17px;margin:0 0 8px;font-weight:900}
+.col-data h3{font-size:14px;margin:14px 0 6px;font-weight:700;color:var(--sub)}
+.col-data .tbl{font-size:12.5px}
+.col-data .tbl th,.col-data .tbl td{padding:6px 8px}
+.col-data .chart .box{height:220px}
+.col-data section{scroll-margin-top:44px}
+.col-data .fn{font-size:12px;color:var(--muted);margin:2px 0 8px}
+
+.reveal{transform:translateY(14px);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{transform:none}
+.counter{font-family:var(--font-num);font-variant-numeric:tabular-nums}
+footer.foot{margin-top:30px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+footer.foot a{color:var(--muted)}
+</style>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<script src="../gate.js?v=20261003L"></script>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="cloud c1" aria-hidden="true"></div><div class="cloud c2" aria-hidden="true"></div><div class="cloud c3" aria-hidden="true"></div>
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">인뎁스 · 스페이스X(SPCX) · 연산 사업 · 2026-10-25</div>
+  <h1>스페이스X 연산(SI 컴퓨트) 인뎁스 — 단기 계약으로 13GW를 짓는 돈의 구조</h1>
+  <p class="lede">3분기 SI 매출 <span class="n">$7.56B</span>, 네임플레이트 <span class="n">1.7GW</span>, 외부 계약 연 <span class="n">$41.1B</span>, 유동성 <span class="n">$89.9B</span>. 이 네 숫자가 "2027년 말 13GW, ARR $500B~1조"라는 회사 목표와 어떻게 이어지고 어디서 끊어지는지를, 단기 계약 단가·비중·현금 유입 시점·자금 구조·진행 중 GW 순서로 따라갑니다. 왼쪽은 분석, 오른쪽은 근거 데이터입니다.</p>
+  <div class="meta"><span>주가 기준 <b>2026-10-23 종가 $147.49</b></span><span>실적 기준 <b>3Q26(7~9월) 10-Q · 콜 2026-10-20</b></span><span>통화 <b>달러 · 본문 $B(십억) · 표 $M 또는 $B 명시</b></span><span>방법 <b>1차 자료 도시에 + 질문 에이전트 2(A·B) · 검증 1(C) · 정리 1(D)</b></span><span>범위 <b>우주(발사·스타십) 미분석</b></span></div>
+</header>
+
+<nav class="toc" aria-label="목차"><a href="#s0">00 요약</a><a href="#s1">01 3Q 해부</a><a href="#s2">02 GW 궤적</a><a href="#s3">03 계약 단가</a><a href="#s4">04 단기 비중·백로그</a><a href="#s5">05 단기 전략 논리</a><a href="#s6">06 토론①</a><a href="#s7">07 현금 유입</a><a href="#s8">08 고객 집중</a><a href="#s9">09 자금·부채</a><a href="#s10">10 진행 GW</a><a href="#s11">11 13·20GW 시나리오</a><a href="#s12">12 수익화 시점</a><a href="#s13">13 ARR 검산</a><a href="#s14">14 토론②</a><a href="#s15">15 결론</a><a href="#s16">16 한계</a><a class="data-link" href="#data">데이터 칸 →</a></nav>
+<div class="grid">
+  <div class="col-analysis">
+
+<section class="sec panel reveal" id="s0">
+<h2><span class="num">00</span>핵심 요약 — 네 숫자와 일곱 질문</h2>
+<p class="lead">스페이스X의 연산 사업(SI 세그먼트 안의 클라우드 서비스)은 3분기에 매출 <span class="n">$7,560M</span>, 조정 EBITDA <span class="n">$4,953M</span>(마진 65.5%)을 냈고, 네임플레이트 컴퓨트는 9월 말 <span class="n">1.7GW</span>에서 10월 말 약 2GW, 연말 <span class="n">2.5~3.0GW</span>, 2027년 말 <span class="n">13GW</span>로 가는 궤적을 회사가 제시했습니다. 외부에 빌려준 컴퓨트는 공개 4건(Anthropic·Google·Reflection·미공개 1건) 합계 월 <span class="n">$3.43B</span>, 연 <span class="n">$41.1B</span>인데, 네 건이 전부 "최초 3개월 뒤 90일 통지로 해지" 구조입니다. 자금은 현금·단기증권 <span class="n">$89.9B</span>에 총차입 <span class="n">$38.0B</span>, 순현금 <span class="n">+$51.9B</span>로 넉넉하지만, 4분기 capex 가이던스 <span class="n">$35~40B</span>와 2027년 13GW 증설(GW당 <span class="n">$35B</span> 가정 시 연 capex 약 <span class="n">$372B</span>)을 놓고 보면 2027년 중 <span class="n">$172~175B</span>를 새로 빌려야 하는 구조(추정)입니다. 이 글은 그 구조가 어디까지 공개 자료로 확인되고 어디부터 가정인지를 가르는 데 집중했습니다.</p>
+
+<div class="kpis">
+<div class="kpi hero"><div class="l">3Q26 SI 세그먼트 매출</div><div class="v counter" data-to="7560" data-pre="$" data-suf="M">$7,560M</div><div class="d up">YoY 9.3배 · 조정 EBITDA 4,953 · 마진 65.5%</div></div>
+<div class="kpi"><div class="l">네임플레이트 컴퓨트</div><div class="v">1.7 → 2.5~3.0GW</div><div class="d">9/30 공시 → 12월 말 가이던스 · 2027말 13GW</div></div>
+<div class="kpi"><div class="l">공개 외부 계약 4건</div><div class="v counter" data-to="41.1" data-dec="1" data-pre="$" data-suf="B">$41.1B</div><div class="d">연환산 · 월 $3.43B · 전부 90일 해지 구조</div></div>
+<div class="kpi hero"><div class="l">유동성(현금+단기증권)</div><div class="v counter" data-to="89.9" data-dec="1" data-pre="$" data-suf="B">$89.9B</div><div class="d up">총차입 $38.0B · 순현금 +$51.9B</div></div>
+<div class="kpi"><div class="l">4Q26 capex 가이던스</div><div class="v">$35~40B</div><div class="d">3Q 연결 $19.6B의 약 2배</div></div>
+<div class="kpi"><div class="l">2027 13GW 추가 차입(추정)</div><div class="v">$172~175B</div><div class="d">GW당 $35B·외부 50%·$50/W · $40B 반영 후</div></div>
+</div>
+
+<h3>세 줄 결론</h3>
+<ol>
+<li><strong>단가는 비싼 게 아니라 "묶이지 않는 가격"입니다.</strong> 구글 계약을 GB300 2.0kW 기준으로 환산하면 W당 연 <span class="n">$50.2</span>, GPU-시간당 <span class="n">$11.46</span>(추정)으로 GB300 온디맨드 중앙값(W당 약 $79, 2차)보다 35% 싸고 60개월 예약 최저가(약 $14/W, 2차)보다 3.6배 높습니다. 스페이스X는 장기 구속을 포기한 대가로 예약가 대신 스팟 하단가를 받고, 고객(구글 "브리지 용량")도 같은 이유로 단기를 택했습니다. 이 구조는 시장이 타이트한 2026년에는 최선이고, 느슨해지면 가장 먼저 깎입니다.</li>
+<li><strong>현금은 가동 다음 달에 들어오고, 그 속도로는 1Q27 가이던스가 설명되지 않습니다.</strong> 매출채권 집중 27.7%(<span class="n">$1.32B</span>)가 Anthropic 한 달치와 같아 월 후불 수금이 확인됩니다. 공개 4건만으로 외부 컴퓨트 매출은 4Q26 <span class="n">$8.1~9.1B</span>, 1Q27 <span class="n">$10.3B</span>(추정)인데, 회사의 1Q27 연결 가이던스 <span class="n">$33~37B</span>에 내재된 SI 매출 <span class="n">$25~29B</span>와는 분기 <span class="n">$10~14B</span>가 비어 있습니다. 가이던스가 맞으려면 1Q27에 외부 과금 용량이 <span class="n">1.7~2.0GW</span>, 즉 지금 계약의 두 배가 돌아가야 합니다.</li>
+<li><strong>13GW는 돈이 아니라 발행 소화와 전력이 제약이고, 20GW는 지분 조달 없이는 성립하지 않습니다.</strong> 13GW 기본 모델(추정)의 2027년 말 총부채는 <span class="n">$250~253B</span>, 2027 연결 EBITDA <span class="n">$122~125B</span> 대비 레버리지 약 2배, 이자보상 6~7배로 산술상 IG 범위입니다. 그러나 분기 <span class="n">$75~80B</span>를 채권시장에서 뽑아야 하고, 공개 자료로 식별되는 사이트는 엄격 합산 <span class="n">2.3~2.7GW</span>(13GW의 17~21%)뿐이어서 증분 약 9GW는 아직 발표되지 않은 사이트에 달려 있습니다. 20GW는 2027 차입 <span class="n">약 $390~400B</span>·이자보상 약 4배로 "어렵다"는 머스크 본인 평가가 자금 면에서도 맞습니다.</li>
+</ol>
+
+<h3>사용자 질문 7개에 대한 한 줄 답</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>질문</th><th>한 줄 답</th><th>근거·신뢰도</th></tr>
+<tr><td class="txt">① 단기 계약 단가</td><td class="txt">GB300 기준 W당 연 약 $50(구글 $50.2, 4번째 $50~55 가정), GPU-시간당 $11~12. Anthropic은 구형 혼합이라 W당 $30~43·$5.27/h. 온디맨드 하단, 장기 예약가의 3.6배</td><td class="txt">파생(kW 가정) · 시장가는 2차</td></tr>
+<tr><td class="txt">② 단기 계약 비중</td><td class="txt">외부 클라우드 매출의 사실상 100%가 "3개월+90일 ≈ 6개월 커밋". 장기 take-or-pay 0건. 백로그 $63.0B 중 클라우드 몫은 비해지 기간만 약 $16.4B(1년 내 $42.2B의 33~40%)</td><td class="txt">1차(CFO·10-Q) + 추정</td></tr>
+<tr><td class="txt">③ 자금·부채 우위</td><td class="txt">유동성 $89.9B·순현금 +$51.9B·IG 노트 5.855%·2031년까지 원금 상환 없음. CoreWeave(DDTL 9~15%, 순부채 $30B)와 금리 3~9%p 차이. 우위의 본질은 금리가 아니라 "계약 담보 없이 기업 신용으로 빌릴 수 있다"는 점</td><td class="txt">1차(10-Q) · 동종업체 2차 혼재</td></tr>
+<tr><td class="txt">④ 현금 유입 시점</td><td class="txt">월 고정 수수료·월 후불, 가동 다음 달 수금. 월 외부 매출 2026-10 $2.32B → 12월 $3.43B. 분기 외부 매출 4Q26 $8.1~9.1B, 1Q27 $10.3B(+Customer B 런레이트 1.3). 1Q27 가이던스와 $10~14B 갭</td><td class="txt">파생(램프 가정)</td></tr>
+<tr><td class="txt">⑤ 수익화 시점</td><td class="txt">SI GAAP 영업이익은 이미 3Q26 +$431M(Cursor SBC 제외 $1.6B). 연결 FCF는 13GW 기본에서 2027 −$255~258B, 2028 −$68~78B, 2029 전환 추정. 13GW에서 증설을 멈추면 2028 플러스. 전환 연도는 예측이 아니라 증설 속도의 선택</td><td class="txt">모델(추정)</td></tr>
+<tr><td class="txt">⑥ 13~20GW 차입 구조</td><td class="txt">13GW: 2027 추가 차입 $172~175B(2Q27부터 분기 17→76→82), 2027말 총부채 $250~253B, 레버리지 약 2배, 이자 약 $19B. 20GW: 차입 약 $390~400B·총부채 약 $465~476B·이자보상 약 4배 → 지분 조달 없이 불성립. 제약은 커버넌트가 아니라 발행 소화·담보 여력</td><td class="txt">모델(추정) · $40B 금리는 2차·미확정</td></tr>
+<tr><td class="txt">⑦ 진행 중 GW</td><td class="txt">식별 사이트 엄격 합산 2.3~2.7GW(콜로서스1 0.3, 콜로서스2 완공 1.53, 매크로하드rr 0.44~0.5), 느슨 3.6~4.0GW(텍사스·테라팹 가정 포함). 13GW까지 미식별 증분 약 9.0~9.4GW ≈ 콜로서스2급 6곳, 터빈 455기 상당</td><td class="txt">2차+추정 · 미니하드 중복 제거</td></tr>
+</table></div>
+
+<div class="debate">
+<div class="ag a"><div class="who">에이전트 A · 왜 이런 구조인가</div><p>단기 계약은 공급자 선택입니다. CFO "자사 제품 확신이 커서 컴퓨트를 영원히 넘기고 싶지 않다", 머스크 "W당 가치는 오른다"는 베팅이 계약 구조에 그대로 드러납니다. 그 대가로 예약가의 3배가 넘는 스팟 하단가를 받지만, 2027 하반기 공급이 늘면 6개월마다 재가격되는 매출입니다.</p></div>
+<div class="ag b"><div class="who">에이전트 B · 얼마나 커지나</div><p>13GW 기본 모델은 2027 capex $372B, 영업CF $114~117B, 추가 차입 $172~175B. 차입 규모를 결정하는 것은 단가가 아니라 GW당 비용과 증설 속도입니다. 20GW는 $387B 차입으로 지분 조달 없이는 성립하지 않습니다.</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>백로그는 비해지 기간만 포함(A 채택), 3Q 외부 클라우드 매출은 $5.8~6.3B(A 5.03·B 4.2 모두 교체), B의 내부 매출 가정은 과대(4Q26 $4.5B → $3.0B), 사이트 합산은 0.44GW 이중계산(2.71 → 2.3~2.7GW). 산술 오류는 없고 전제가 틀린 곳만 고쳤습니다.</p></div>
+<div class="ag d"><div class="who">정리 D · 결론</div><p>첫 검증점은 2027년 2월 4Q26 실적입니다. 외부 컴퓨트 매출이 $9.5B를 넘는지, 네임플레이트가 2.5~3.0GW에 닿는지, 백로그 1년 내 구간이 $42.2B에서 얼마나 뛰는지, 그리고 $40B 차입의 최종 금리입니다. 넷 중 둘이 빗나가면 1Q27 가이던스와 13GW 경로 둘 다 다시 써야 합니다.</p></div>
+</div>
+<div class="src">출처: SpaceX 10-Q 3Q26(Note 3 백로그·고객집중, Note 16 약정, Note 18 세그먼트, MD&amp;A), 10-Q 2Q26, S-1/A, 3Q 실적 콜(2026-10-20), 2Q 콜(2026-08-04), GS 컨퍼런스 CFO 발언(2026-09-10). 시장 GPU 가격·애널리스트 수치는 2차(원문 미확인). 모델 수치는 에이전트 B 계산·C 재검산·수정값.</div>
+</section>
+
+<section class="sec panel reveal" id="s1">
+<h2><span class="num">01</span>3분기 실적 해부 — SI 세그먼트 중심</h2>
+<p>3분기(7~9월) 연결 매출은 <span class="n">$14,575M</span>(YoY +161.4%), 영업이익 <span class="n">$2,791M</span>, 순이익 <span class="n">$4,404M</span>, 조정 EBITDA <span class="n">$8,809M</span>입니다. 2분기 매출 $7,814M에서 한 분기 만에 1.87배가 됐고, 그 증분 $6.8B 중 약 $5.0B가 SI 세그먼트에서 나왔습니다. SI 세그먼트 매출은 2분기 약 <span class="n">$2.6B</span>(콜 "+213% QoQ")에서 3분기 <span class="n">$7,560M</span>으로 2.9배, 세그먼트 영업이익은 2분기 <span class="n">−$1,257M</span>에서 <span class="n">+$431M</span>으로 처음 플러스가 됐습니다. 회사는 영업이익에 Cursor 인수 관련 주식보상 <span class="n">$1,217M</span>이 들어 있으므로 이를 제외하면 약 <span class="n">$1.6B</span>라고 설명했습니다. <span class="src">[10-Q 3Q26 Note 18] [콜 3Q]</span></p>
+
+<h3>연결에서 SI로 — 숫자의 층</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>$M</th><th>연결 3Q26</th><th>연결 3Q25</th><th>SI 3Q26</th><th>SI 3Q25</th><th>SI 2Q26</th></tr>
+<tr><td>매출</td><td>14,575</td><td>5,576</td><td class="hl"><b>7,560</b></td><td>813</td><td>≈2,550~2,600</td></tr>
+<tr><td>매출원가</td><td>5,478</td><td>2,705</td><td>2,675</td><td>571</td><td>—</td></tr>
+<tr><td>R&amp;D</td><td>4,596</td><td>2,291</td><td>3,183</td><td>1,301</td><td>—</td></tr>
+<tr><td>SG&amp;A</td><td>1,707</td><td>575</td><td>1,268</td><td>385</td><td>—</td></tr>
+<tr><td>영업이익</td><td>2,791</td><td>(273)</td><td><b>431</b></td><td>(1,722)</td><td>(1,257)</td></tr>
+<tr><td>D&amp;A</td><td>3,644</td><td>—</td><td>2,473</td><td>922</td><td>—</td></tr>
+<tr><td>주식보상(일반 / 인수 관련)</td><td>1,146 / 1,217</td><td>—</td><td>821 / 1,217</td><td>94 / —</td><td>—</td></tr>
+<tr class="sum"><td>조정 EBITDA</td><td>8,809</td><td>2,169</td><td><b>4,953</b></td><td>(428)</td><td>≈1,100</td></tr>
+<tr><td>capex</td><td>19,593[파생]</td><td>—</td><td><b>16,444</b></td><td>4,760</td><td>≈15,800</td></tr>
+<tr><td colspan="6" class="note">SI 2Q26 매출은 콜 발언("$2.6B, +213% QoQ")에서 역산한 범위. 연결 3Q capex 19,593은 9M 48,069 − 6M 28,476. 조정 EBITDA는 비GAAP(D&amp;A·주식보상·일회성 가산).</td></tr>
+</table></div>
+
+<p>SI 매출 <span class="n">$7,560M</span>의 구성은 콜 설명으로 두 층까지만 갈립니다. SI 솔루션·인프라가 <span class="n">$7.0B</span>(이 중 8월 14일 인수한 Cursor가 <span class="n">$608M</span>), 광고(X 플랫폼)가 나머지 약 <span class="n">$0.5~0.6B</span>(광고 +19% YoY)입니다. Cursor를 제외한 솔루션·인프라는 <span class="n">+192% QoQ</span>이고 회사는 "신규 클라우드 서비스 계약 가동이 주동력"이라고 했습니다. 여기서 더 쪼개면 공시가 없으므로 추정이 됩니다. 10-Q Note 3의 Customer B(SI 세그먼트 단일 고객) 비중 34.5%를 연결 매출에 곱하면 <span class="n">$5,028M</span>이고, 검증 결과 이 고객은 Anthropic으로 보는 것이 가장 정합합니다(08절). 그러면 외부 클라우드 매출은 Anthropic 5.03 + Reflection 0.45 + 구글 램프(8~9월 감액, 금액 미공시) 0.3~0.8 = <span class="n">$5.8~6.3B</span>, Grok 구독·API·데이터 등 내부 제품은 약 <span class="n">$0.6B</span> 안팎(추정)이 됩니다. 에이전트 A는 처음에 외부 5.03·Grok 등 1.37로 나눴고 B는 외부 4.2로 봤지만, Customer B 수치와 양립하는 분해는 외부 5.8~6.3 쪽이라는 것이 검증 C의 판정입니다. <span class="src">[콜 3Q] [10-Q 3Q26 Note 3] 분해는 추정</span></p>
+
+<h3>매출원가와 R&amp;D — 컴퓨트 비용이 어디로 가는가</h3>
+<p>SI 매출원가는 3Q25 <span class="n">$571M</span>에서 <span class="n">$2,675M</span>으로 <span class="n">+$2,104M</span> 늘었습니다. MD&amp;A는 이 중 <span class="n">+$1,847M</span>을 "인프라·클라우드 컴퓨팅 비용"으로 설명합니다. SI 인프라 매출이 생기면서 컴퓨트 비용(전력·감가상각 일부·운영)을 R&amp;D가 아닌 매출원가로 배분하기 시작했다는 뜻이고, Cursor 원가도 여기 들어갑니다. 무형자산 상각 +143, 결제수수료 +49가 나머지입니다. R&amp;D는 <span class="n">+$1,882M</span> 늘었는데 인수 관련 주식보상 <span class="n">+$1,022M</span>이 절반 이상이고 인프라·클라우드 비용이 +350입니다. 즉 3분기 SI의 비용 구조는 "컴퓨트가 매출원가로 이동 + Cursor 인수 회계"의 두 효과가 겹친 첫 분기여서, 매출총이익률(1 − 2,675/7,560 = 64.6%)을 그대로 다음 분기에 연장하기는 이릅니다. 조정 EBITDA 마진 65.5%도 같은 이유로 "외부 임대 매출이 급증한 첫 분기의 숫자"입니다. <span class="src">[10-Q 3Q26 MD&amp;A]</span></p>
+
+<h3>순이익 $4.4B의 비영업 분해</h3>
+<p>연결 순이익 <span class="n">$4,404M</span>은 영업이익 <span class="n">$2,791M</span>보다 $1.6B 큽니다. 차이는 셋입니다. 이자수익 <span class="n">$873M</span>(IPO·채권 자금 약 $90B의 운용 수익, 연환산 약 3.9%), 기타손익 <span class="n">+$1,025M</span>(보링컴퍼니 지분 평가이익 561 포함), 법인세 환입 <span class="n">$390M</span>(Cursor 인수로 생긴 이연법인세부채 때문에 평가충당금 일부를 되돌림)입니다. 셋 다 연산 사업의 실력이 아니라 자본 구조와 인수 회계의 결과입니다. 이자비용은 <span class="n">$675M</span>(관계사 세일앤리스백 이자 351 포함)으로, 이자수익이 이자비용을 <span class="n">$198M</span> 넘습니다. "부채가 공짜"인 상태는 현금 $90B가 유지되는 동안만 성립하며, 4분기 capex $35~40B가 집행되면 이자수익은 분기마다 줄어듭니다. <span class="src">[10-Q 3Q26]</span></p>
+
+<div class="chart"><div class="cap">SI 세그먼트 매출·조정 EBITDA — 3Q26에 매출 2.9배, EBITDA 4.5배 점프</div><div class="lg"><span><i style="background:var(--blue)"></i>SI 매출($M)</span><span><i style="background:var(--amber)"></i>SI 조정 EBITDA($M)</span></div><div class="box"><canvas id="c_si_q" role="img" aria-label="SI 분기 매출 3Q25 813, 4Q25 약 922, 1Q26 약 825, 2Q26 약 2,575, 3Q26 7,560. 조정 EBITDA 3Q25 마이너스 428, 4Q25 약 마이너스 424, 1Q26 마이너스 609, 2Q26 약 1,100, 3Q26 4,953"></canvas></div><div class="fn">4Q25 매출은 2025 AI 매출 $3.2B(2차) − 9M25 2,278로 파생, 4Q25 EBITDA는 2025 연간 (1,237) − 9M25 (813)으로 파생. 1Q26 매출은 9M26 − 3Q − 2Q 범위의 중간값. 1Q25·2Q25는 분기 분리 수치가 없어 제외.</div></div>
+
+<h3>가이던스 — 4분기는 capex만, 1분기는 매출만</h3>
+<p>회사는 4분기 매출 가이던스를 내지 않았고 capex만 <span class="n">$35~40B</span>(연결)로 제시했습니다. 3분기 $19.6B의 약 2배이며 이유는 "이번 분기 추가 가동 용량"입니다. 반면 1Q27 매출 가이던스는 <span class="n">$33~37B</span>로 3분기 $14.6B의 2.3~2.5배입니다. 연말 ARR(12월 월매출×12) <span class="n">$100B</span> 목표는 유지됐습니다. 이 두 숫자는 서로를 설명합니다. 4분기에 $35~40B를 쓰면 1~2월 설치분까지 선지급하는 셈이고, 그 용량이 1분기에 과금되어야 $33~37B가 나옵니다. 그러나 07절에서 보듯 공개 계약으로 설명되는 1Q27 SI 매출은 <span class="n">$14~16B</span>에 그치고, 가이던스가 내재하는 SI 매출 <span class="n">$25~29B</span>와 분기 $10~14B의 차이가 있습니다. 이 리포트의 질문 대부분은 결국 이 갭을 무엇으로 채우느냐로 모입니다. <span class="src">[콜 3Q]</span></p>
+<div class="callout insight"><div class="t">읽는 법</div><p>3분기 SI 숫자에서 확인되는 사실은 세 가지입니다. ① 외부 클라우드 매출이 분기 $6B 안팎으로 올라섰다. ② 그 매출의 대부분(최소 $5.03B)이 한 고객에서 나온다. ③ 세그먼트 영업이익이 처음 플러스가 됐지만 Cursor 인수 회계와 컴퓨트 비용 재분류가 겹친 첫 분기라 마진의 기준선은 아직 없다. 나머지(Grok 등 내부 제품 매출, 구글 램프 금액)는 전부 추정입니다.</p></div>
+<div class="src">출처: 10-Q 3Q26(연결 손익·Note 18 세그먼트·MD&amp;A 비용 설명), 10-Q 2Q26(6M 수치), 콜 3Q(2026-10-20: 매출 구성·가이던스), 2차: Fortune(2025 AI 매출 $3.2B). 분해 수치는 추정(검증 C 판정값).</div>
+</section>
+
+<section class="sec panel reveal" id="s2">
+<h2><span class="num">02</span>네임플레이트 궤적과 설치 속도</h2>
+<p>회사가 쓰는 핵심 KPI "네임플레이트 컴퓨트"는 기말 설치 GPU 수에 GPU별 올인(all-in) 전력을 곱한 값입니다. 실제 소비 전력도 가동률도 아니고, 냉각·배전손실 같은 시설 오버헤드도 들어 있지 않습니다. 이 정의를 먼저 적어 두는 이유는, 뒤에 나오는 단가 환산(03절)·설치속도(이 절)·사이트 합산(10절)이 전부 이 숫자를 분모로 쓰기 때문입니다. 공시 궤적은 2024년 12월 <span class="n">0.3GW</span> → 2025년 12월 <span class="n">0.8GW</span> → 2026년 6월 <span class="n">1.4GW</span> → 9월 <span class="n">1.7GW</span>입니다. 2025년 한 해에 +0.5GW, 2026년 9개월에 +0.9GW가 붙었습니다. <span class="src">[10-Q 3Q26 KPI 정의] [S-1] [10-Q 2Q26]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>시점</th><th>GW</th><th>성격</th><th>출처</th></tr>
+<tr><td>2024-12</td><td>0.3</td><td class="txt">공시</td><td class="txt">S-1</td></tr>
+<tr><td>2025-06</td><td>0.4</td><td class="txt">공시</td><td class="txt">10-Q 2Q26</td></tr>
+<tr><td>2025-09</td><td>0.6</td><td class="txt">공시</td><td class="txt">10-Q 3Q26</td></tr>
+<tr><td>2025-12</td><td>0.8</td><td class="txt">공시</td><td class="txt">S-1</td></tr>
+<tr><td>2026-03</td><td>1.0</td><td class="txt">공시</td><td class="txt">S-1</td></tr>
+<tr><td>2026-06</td><td>1.4</td><td class="txt">공시</td><td class="txt">10-Q 2Q26</td></tr>
+<tr class="hl"><td>2026-09</td><td>1.7</td><td class="txt">공시</td><td class="txt">10-Q 3Q26</td></tr>
+<tr><td>2026-10말</td><td>≈2.0 / 2.2</td><td class="txt">CFO "거의 2GW" / JPM(2차)</td><td class="txt">콜 3Q / 2차</td></tr>
+<tr><td>2026-12말</td><td>2.5~3.0</td><td class="txt">가이던스(CFO·머스크)</td><td class="txt">콜 3Q</td></tr>
+<tr><td>2027-12말</td><td>13 (JPM 10 · MS 4.9)</td><td class="txt">머스크 "증분 10GW 매우 자신, 13 미만이면 놀랄 것"</td><td class="txt">콜 3Q / 2차</td></tr>
+<tr><td>전력·냉각 계획</td><td>+20 (총 약 23)</td><td class="txt">"모든 게 잘 되면", "20은 어렵지만 불가능하지 않음"</td><td class="txt">콜 3Q</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">네임플레이트 GW — 공시 1.7에서 가이던스 13까지, 2027년에 7.6배가 필요</div><div class="lg"><span><i style="background:var(--blue)"></i>공시 실적</span><span><i style="background:var(--muted)"></i>회사 가이던스·발언(점선)</span><span><i style="background:var(--amber)"></i>JPM(2차)</span><span><i style="background:var(--rose)"></i>MS(2차)</span></div><div class="box tall"><canvas id="c_gw" role="img" aria-label="네임플레이트 GW 공시 2024-12 0.3, 2025-06 0.4, 2025-09 0.6, 2025-12 0.8, 2026-03 1.0, 2026-06 1.4, 2026-09 1.7. 가이던스 2026-10 2.0, 2026-12 2.75, 2027-12 13. JPM 2026-10 2.2, 2026-12 2.8, 2027-12 10. MS 2027-12 4.9"></canvas></div><div class="fn">가이던스 점선은 연말 2.5~3.0의 중간 2.75, 2027말 13GW. JPM·MS는 2차(원문 미확인). 로그 축이 아니라 선형 축이므로 2027년 기울기가 그대로 "난이도"입니다.</div></div>
+
+<h3>설치 속도 검산 — 월 200~220k GB300이면 연말 2.9~3.0GW</h3>
+<p>머스크는 콜에서 "매월 약 200,000개의 GB300이 온라인", Q&amp;A에서는 "월 220,000개"라고 했습니다. GPU 하나의 올인 전력은 S-1의 클러스터 수치로 역산할 수 있습니다. 콜로서스1 1차 클러스터 H100 100,000개 = 130MW → <span class="n">1.3kW/GPU</span>, 콜로서스2 1차 GB200 110,000개 = 210MW → <span class="n">1.9kW</span>, 2차 GB300 110,000개 = 220MW → <span class="n">2.0kW/GPU</span>입니다. 그러면 월 200~220k GB300은 월 <span class="n">+0.40~0.44GW</span>이고, 9월 말 1.7GW에 세 달을 더하면 <span class="n">2.9~3.0GW</span>로 가이던스 2.5~3.0GW의 상단과 맞습니다. 하단 2.5GW는 세 달 중 약 1.8개월분만 가동되는 경우, 즉 12월 웨이브(머스크 9월 X 게시물 "12월 220k는 운이 좋으면", 2차)가 미달하는 경우입니다. 반대로 3분기 실제 증가는 <span class="n">+0.3GW</span>(1.4→1.7)로 월 0.1GW에 그쳤습니다. 월 200k 체제가 9월 하순에야 시작됐다는 보도와는 맞지만, 4분기가 "속도 3~4배 점프"의 첫 검증 분기라는 뜻입니다. 4Q capex $35~40B가 이를 뒷받침하며, $37.5B를 증분 1.05~1.3GW로 나누면 GW당 <span class="n">$29~36B</span>입니다. 단 4Q capex는 1~2월 설치분 선지급을 포함하므로 실효 단가는 이보다 높을 수 있습니다(11절에서 기본 $35B). <span class="src">[콜 3Q] [S-1 역산, 파생] [2차: 머스크 X 게시물 재인용]</span></p>
+
+<h3>2027년 — 월 0.85GW, Rubin 세대의 kW가 "GW 목표"를 쉽게 만든다</h3>
+<p>2027년 증분 10.25GW(2.75→13)를 12개월로 나누면 월 <span class="n">0.85GW</span>입니다. 2027년 설치 주력은 Vera Rubin이고 GPU당 전력은 공시가 없습니다. 세대마다 올라온 추세(1.3→1.9→2.0kW)를 감안해 2.0/2.5/3.0kW 세 경우를 두면 월 <span class="n">427k / 342k / 285k</span> GPU가 필요합니다. 지금의 200~220k보다 <span class="n">1.3~2.1배</span>를 12개월 내내 유지해야 합니다. 함의는 둘입니다. kW/GPU가 높을수록 같은 칩 수로 GW가 빨리 오르므로 "13GW"는 Rubin이 2.5kW라면 월 342k, 지금의 1.6배입니다. 반대로 머스크가 말한 "2Q27 말 Rubin 440,000개 세계 최대 훈련 클러스터"는 2.5kW면 <span class="n">1.1GW</span>로 2분기 증분 2.5GW(기본 모델)의 절반을 혼자 차지하며, 이 클러스터는 내부(Grok 훈련)용이어서 외부 임대 비중을 누릅니다(04절). <span class="src">[콜 3Q] 2027 kW는 추정</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>경로(2027 증분)</th><th>월 평균 GW</th><th>Rubin 2.0kW</th><th>Rubin 2.5kW</th><th>Rubin 3.0kW</th><th>현재 대비(2.5kW)</th></tr>
+<tr><td>하단 10GW(7.25)</td><td>0.60</td><td>302k/월</td><td>242k/월</td><td>201k/월</td><td>1.1~1.2배</td></tr>
+<tr class="hl"><td>기본 13GW(10.25)</td><td>0.85</td><td>427k/월</td><td>342k/월</td><td>285k/월</td><td>1.6배</td></tr>
+<tr><td>상단 20GW(17.25)</td><td>1.44</td><td>719k/월</td><td>575k/월</td><td>479k/월</td><td>2.6~2.9배</td></tr>
+<tr><td>현재(GB300 2.0kW)</td><td>0.40~0.44</td><td>200~220k/월</td><td>—</td><td>—</td><td>기준</td></tr>
+<tr><td colspan="6" class="note">추정. Rubin GPU당 전력은 공시 없음. 네임플레이트는 전력·냉각이 따라오지 못한 GPU도 포함될 수 있어(Epoch 콜로서스2 IT 전력 946MW vs 9월 말 네임플레이트 1.7GW, 2차) 매출 인식(가용 용량 기준)과 어긋날 수 있음.</td></tr>
+</table></div>
+
+<h3>capex와 GW의 대응</h3>
+<p>SI capex 누적과 GW 증분을 같은 기간으로 맞추면 2025년 9개월 <span class="n">$8.1B</span>에 +0.3GW(0.3→0.6), 2026년 9개월 <span class="n">$40.0B</span>에 +0.9GW(0.8→1.7)입니다. 무시차로 나누면 GW당 $27B와 $44B로 널뛰는데, 이는 capex가 다음 분기 네임플레이트에 선행하기 때문입니다. 건설중자산 <span class="n">$12.55B</span>(6/30, "미가동 서버·네트워크·DC 인프라")과 미지급 capex <span class="n">$11.8B</span>(9/30)가 그 증거입니다. 검증 C는 여러 역산(무시차 $38~44B, 1분기 선행 $20~27B, 단위원가 적산 $34~37B, JPM "$30B 초" 2차)을 놓고 기본 <span class="n">$35B/GW</span>, 범위 <span class="n">$30~40B</span>로 확정했습니다. 2027년은 Rubin 단가 상승·텍사스 그린필드·자가 발전소 자본화 때문에 상단 쪽 위험이 있습니다. <span class="src">[10-Q 3Q26·2Q26] [검증 C 2-4]</span></p>
+<div class="src">출처: 10-Q 3Q26(KPI 정의·1.7GW·capex), 10-Q 2Q26(1.4GW·건설중자산), S-1/A(클러스터 GPU 수·MW), 콜 3Q(설치속도·13GW·440k Rubin·4Q capex), 콜 2Q(2027 "5보다 10에 가까움"). JPM·MS·Epoch·머스크 X 게시물은 2차.</div>
+</section>
+
+<section class="sec panel reveal" id="s3">
+<h2><span class="num">03</span>단기 계약 단가 — 공개 4건의 환산</h2>
+<p>공개된 외부 컴퓨트 계약은 네 건입니다. Anthropic 월 <span class="n">$1.25B</span>(약 325,000 GPU, 콜로서스1 전체 + 콜로서스2 일부, H100/H200/GB200 혼합, 2026년 5~6월 감액 램프 뒤 7월부터 전액), Google Cloud 월 <span class="n">$920M</span>(약 110,000 GPU + CPU·메모리, 9월까지 감액 램프, 10월부터 전액, 공시 2026-06-05), Reflection AI 월 <span class="n">$150M</span>(GB300, 7월 1일부터), 미공개 AI 고객 월 <span class="n">$1.11B</span>(7월 체결, 9월 10일 GS 컨퍼런스에서 공개, 12월 1일 전액). 합계 월 <span class="n">$3.43B</span>, 연 <span class="n">$41.1B</span>로 CFO가 말한 합계와 일치합니다. 단가로 바꾸려면 전력 가정이 필요합니다. 02절의 S-1 역산값(H100 1.3kW, GB200 1.9kW, GB300 2.0kW)과 월 730시간·가동률 100%(stand-ready 계약이라 사용 여부와 무관하게 고정 수수료)를 씁니다. <span class="src">[S-1/A] [GS 컨퍼런스 9/10] [2차: TechCrunch·CNBC·DCD]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>계약</th><th>월 수수료</th><th>연환산</th><th>GPU 수</th><th>전력 가정</th><th>$/W-년</th><th>$/GPU-월</th><th>$/GPU-h</th></tr>
+<tr class="hl"><td>Google Cloud</td><td>$920M</td><td>$11.04B</td><td>110,000</td><td class="txt">GB300 2.0kW → 220MW</td><td><b>50.2</b></td><td><b>8,364</b></td><td><b>11.46</b></td></tr>
+<tr><td>〃 (GB200 가정)</td><td>〃</td><td>〃</td><td>〃</td><td class="txt">1.9kW → 209MW</td><td>52.8</td><td>〃</td><td>〃</td></tr>
+<tr><td>Anthropic (하한 전력)</td><td>$1,250M</td><td>$15.0B</td><td>325,000</td><td class="txt">전부 H100급 1.3kW → 423MW</td><td>35.5</td><td>3,846</td><td>5.27</td></tr>
+<tr><td>Anthropic (공시 근접)</td><td>〃</td><td>〃</td><td>〃</td><td class="txt">콜로서스1 300MW/220k + 105k GB200 → 500MW</td><td><b>30.0</b></td><td>〃</td><td>〃</td></tr>
+<tr><td>Anthropic (상한)</td><td>〃</td><td>〃</td><td>〃</td><td class="txt">350MW</td><td>42.9</td><td>〃</td><td>〃</td></tr>
+<tr><td>Reflection AI</td><td>$150M</td><td>$1.8B</td><td class="txt">미공시</td><td class="txt">GB300, $50/W 가정 → 36MW ≈ 18,000 GPU</td><td class="txt">(50 가정)</td><td>8,333</td><td>11.4</td></tr>
+<tr><td>미공개 4번째</td><td>$1,110M</td><td>$13.32B</td><td class="txt">미공시</td><td class="txt">GB300, $50/W → 266MW ≈ 133k / $55 → 242MW</td><td class="txt">50~55 가정</td><td>8,350~9,170</td><td>11.4~12.6</td></tr>
+<tr class="sum"><td>합계</td><td>$3,430M</td><td>$41.1B</td><td></td><td class="txt">W당 $45~50 → 0.82~0.91GW</td><td></td><td></td><td></td></tr>
+<tr><td colspan="8" class="note">파생. 식: 구글 $/W-년 = 11,040M ÷ 220,000,000W = 50.18; $/GPU-월 = 920M ÷ 110,000 = 8,364; $/GPU-h = 8,364 ÷ 730 = 11.46. Reflection·4번째는 GPU 수가 단가 가정에서 역산되므로 순환 — 참고용. 네임플레이트는 냉각·배전 오버헤드 미포함이라 시설 전력 기준으로는 20~30% 낮게 보임.</td></tr>
+</table></div>
+
+<p>회사가 제시한 단가 지표와 맞춰 봅니다. 2분기 콜에서 머스크는 "W당 연 $30~50"(Rubin 기준 추측)이라 했고, 3분기 콜에서 CFO는 "현재 가격은 $30~50 범위 상단을 약간 상회", "현 가격에서 신규 컴퓨트 회수기간 1년 미만"이라 했습니다. 구글 $50.2/W, 4번째 계약 $50~55(가정)는 이 발언과 정합합니다. Anthropic은 구형 혼합이라 W당 $30~43으로 가장 싸고, 이는 전력 가정 폭(350~500MW)에 전부 의존합니다. JPM(2차)의 "단기 신규 클라우드 계약 가격 W당 $50 초과"도 같은 자리입니다. <span class="src">[콜 2Q] [콜 3Q] [2차: JPM]</span></p>
+
+<h3>시장 가격과의 비교 — 온디맨드 하단, 장기 예약의 3.6배</h3>
+<p>비교 대상은 전부 2차 자료(공개 GPU 가격 비교 사이트·지수, 원문 미확인)입니다. 2026년 10월 GB300 NVL72 온디맨드 시간당 중앙값 <span class="n">$18.0</span>(7월 $15.36에서 +17%), 최저 <span class="n">$11.06</span>, 60개월 예약 최저 <span class="n">$3.13</span>입니다. 2.0kW 가정으로 W당 연환산하면 중앙값 <span class="n">$79</span>, 최저 <span class="n">$48</span>, 장기 예약 <span class="n">$14</span>입니다. 스페이스X의 구글 단가 $50.2/W는 온디맨드 중앙값의 63%, 온디맨드 최저가와 같은 수준, 60개월 예약 최저가의 3.6배입니다. H100 SXM은 게시가 지수 $3.35/h·실거래 지수 $3.02/h(1.3kW → W당 $20~23)이고, Anthropic 혼합 블렌드를 온디맨드 하단(H100 $3.3 + H200 $6.2 + GB200 $10)으로 짜면 약 $6.5/h인데 Anthropic은 $5.27/h를 내므로 약 19% 할인된 대량 가격입니다. 장기 예약가 수준으로 내려가지는 않았습니다. <span class="src">[2차: GetDeploying·IntuitionLabs 등 공개 비교 복수] 환산은 파생</span></p>
+
+<div class="chart"><div class="cap">W당 연간 단가 비교 — 스페이스X는 온디맨드 하단, 60개월 예약가의 3.6배</div><div class="lg"><span><i style="background:var(--muted)"></i>시장(2차)</span><span><i style="background:var(--blue)"></i>스페이스X 계약(파생)</span><span><i style="background:var(--rose)"></i>MS 가정 경로(2차)</span></div><div class="box"><canvas id="c_price" role="img" aria-label="W당 연 단가. GB300 온디맨드 중앙값 79달러, GB300 온디맨드 최저 48달러, 스페이스X 구글 50.2달러, 스페이스X Anthropic 30~43달러 중간 36, 60개월 예약 최저 14달러, MS 4Q27 가정 17달러"></canvas></div><div class="fn">GB300 2.0kW·연 8,760시간 가정. 시장가는 2026-10 공개 비교 사이트 집계(2차). Anthropic은 전력 가정 폭의 중간값. MS $17/W는 2027년 4분기 가중평균 압축 가정(2차).</div></div>
+
+<h3>회수기간 검산 — $35B/GW면 1.0년, CFO "1년 미만"의 경계선</h3>
+<p>GW당 capex를 기본 <span class="n">$35B</span>(범위 30~40), 임대 단가 <span class="n">$50/W-년</span>으로 두면 GW당 연 매출은 $50B, 매출/capex는 1.43배입니다. EBITDA 마진 70%(MS 가정, 2차)를 적용하면 연 $35B → 회수 <span class="n">1.0년</span>(범위 0.9~1.1년)입니다. CFO의 "1년 미만"은 GW당 $30B 쪽일 때만 여유 있게 성립하고, $35B면 경계선입니다. 머스크가 말한 "내년 회수기간 6개월도 불가능하지 않다"는 W당 $70 이상 또는 GW당 $25B 이하가 필요한 숫자입니다. 또 이 검산은 전량을 외부에 임대할 때이고, 회사 목표인 50:50이면 외부 현금만으로는 <span class="n">1.7~2.0년</span>이며 나머지 절반은 Grok·Cursor 매출로 회수해야 합니다(04절). <span class="src">[콜 2Q·3Q] 검산은 파생</span></p>
+
+<div class="callout good"><div class="t">판정</div><p>스페이스X의 단가는 "비싼 가격"이 아니라 "묶이지 않는 가격"입니다. 높아 보이는 이유는 비교 대상이 장기 예약가이기 때문이고, 온디맨드와 비교하면 하단입니다. 고객이 이 가격을 내는 이유는 ① 10만 GPU 단위 블록을 수개월 리드타임 없이 즉시 받고, ② 90일 해지권이 고객에게도 옵션 가치(Anthropic은 Amazon New Carlisle 1,037MW 등 자체 용량이 2027년에 들어옴, 2차)이며, ③ 콜로서스2 건설비가 "업계 벤치마크보다 MW당 상당히 낮다"(S-1)는 공급자 원가 우위가 하단가 수용을 가능케 하기 때문입니다. 2026년처럼 시장이 타이트하면 최선의 구조이고, 느슨해지면 가장 먼저 깎이는 구조입니다(05절).</p></div>
+<div class="src">출처: S-1/A(Anthropic 계약 조건·클러스터 전력), 콜 2Q·3Q(단가 지표·회수기간), GS 컨퍼런스(계약 구조·4번째 공개), 2차: TechCrunch(구글 8-K 인용)·CNBC·DCD(Reflection·4번째), GetDeploying·IntuitionLabs 등(GB300·H100 시장가), MS(70% 마진·$17/W). 환산 전부 파생(kW 가정 명시).</div>
+</section>
+
+<section class="sec panel reveal" id="s4">
+<h2><span class="num">04</span>단기 계약 비중과 백로그 분해</h2>
+<p>회계 설명과 CFO 발언을 겹치면 계약 구조는 이렇게 정리됩니다. 10-Q는 클라우드 서비스 계약을 "고정 월 서비스 수수료 기반, 예약된 컴퓨트 용량에 대한 stand-ready 단일 이행의무, 램프 기간엔 단계적 가용 용량에 맞춰, 그 뒤 정액 인식, 계약기간 통상 3년, 양측 모두 90일 통지로 해지 가능"이라고 씁니다. CFO는 9월 10일에 "거의 모든 계약이 90일 + 90일 해지통지 = 약 6개월 커밋, 9월 신규 계약도 같은 구조"라고 했고 이유를 "자사 제품(Grok·Cursor·Grok Bot)에 대한 확신이 커서 컴퓨트를 영원히 넘기고 싶지 않다"고 설명했습니다. 공개 4건 전부 "최초 3개월 뒤 양측 90일 통지"(구글은 2026-12-31 이후 90일 통지)이므로, 외부 클라우드 매출의 <span class="n">95~100%</span>가 6개월 커밋·그 뒤 90일 단기입니다. 장기 take-or-pay 계약은 0건입니다. <span class="src">[10-Q 3Q26 MD&amp;A 수익인식] [GS 컨퍼런스 9/10] [S-1/A]</span></p>
+
+<h3>백로그 $63.0B — 1년 내 67%는 "가시성"이 아니라 "짧음"</h3>
+<p>9월 30일 백로그는 <span class="n">$62,959M</span>(이 중 이연수익 17,520)이고 인식 시기는 1년 내 <span class="n">67%(≈$42.2B)</span>, 1~3년 27%, 이후 6%입니다. 6월 30일에는 <span class="n">$47,461M</span>, 1년 내 56%였습니다. 한 분기에 $15.5B가 늘었고 그 증가분이 거의 전부 1년 내 구간에 들어왔습니다. 백로그 정의는 "집행가능 계약의 거래가격 중 미이행분, 변동대가·옵션 제외"입니다. 90일 통지로 사라지는 금액은 집행가능하지 않으므로 클라우드 계약은 <strong>해지불능 기간만</strong> 백로그에 들어갑니다. 이 해석에는 세 근거가 더 있습니다. ① 2분기 실적 릴리스가 "2Q 체결 클라우드 계약 $14.1B 계약매출"을 비해지 기간 기준으로 정의했다고 보도됐습니다(2차: Motley Fool). ② 명목 3년을 넣으면 Anthropic 잔여 32개월 $40B + 구글 33개월 $30B = $70B로 총백로그 $63B를 넘어 불가능합니다. ③ 1년 내 백로그에는 Space·Connectivity의 1년 내 인식분이 들어 있어 "12개월치 클라우드"로 읽을 근거가 없습니다. 에이전트 B가 처음 세운 "1년 내 $42.2B ≈ 4건×12개월 $41.2B → 추가 계약 없음"은 우연의 일치로 삭제됐습니다(06절 쟁점 4). <span class="src">[10-Q 3Q26 Note 3] [2차: 2Q 릴리스·Motley Fool] [검증 C 2-1]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>$B</th><th>2026-06-30</th><th>2026-09-30</th><th>증감</th><th>해석</th></tr>
+<tr><td>1년 내 — 클라우드(비해지 기간, 추정)</td><td>12.5</td><td><b>16.4</b> (14~17)</td><td>+3.9</td><td class="txt">6/30 = 2Q 계약매출 14.1 − 2Q 인식 1.6. 9/30 = Anthropic 90일 3.75 + 구글 ~2027-03 5.52 + Reflection 90일 0.45 + 4번째 6개월 6.7</td></tr>
+<tr><td>1년 내 — 비클라우드(추정)</td><td>14.1</td><td>25.8</td><td><b>+11.7</b></td><td class="txt">Space·Connectivity. 한 분기 +$12B의 정체는 10-Q 미설명(정부·스타링크 선수금 가능)</td></tr>
+<tr class="sum"><td>1년 내 합계(공시)</td><td>26.6 (56%)</td><td>42.2 (67%)</td><td>+15.6</td><td class="txt">공시 비율 × 총액</td></tr>
+<tr><td>1~3년(공시)</td><td>16.1 (34%)</td><td>17.0 (27%)</td><td>+0.9</td><td class="txt">거의 불변 → 클라우드가 여기 없음</td></tr>
+<tr><td>3년 초과(공시)</td><td>4.7 (10%)</td><td>3.8 (6%)</td><td>−0.9</td><td class="txt"></td></tr>
+<tr class="sum"><td>총백로그(공시)</td><td>47.5</td><td>63.0</td><td>+15.5</td><td class="txt">이연수익 17.5 포함</td></tr>
+<tr><td colspan="5" class="note">클라우드·비클라우드 분해는 추정. 구글의 집행가능 창을 12/31까지로 보면 클라우드 13.7, 4번째의 램프 감액을 더하면 17 → 범위 14~17. 1년 내 $42.2B의 33~40%, 총백로그의 22~27%.</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">백로그 분해 — 3Q 1년 내 +$15.6B의 주역은 클라우드(+3.9)가 아니라 비클라우드(+11.7)</div><div class="lg"><span><i style="background:var(--blue)"></i>1년 내 클라우드(추정)</span><span><i style="background:var(--teal)"></i>1년 내 비클라우드(추정)</span><span><i style="background:var(--amber)"></i>1~3년</span><span><i style="background:var(--muted)"></i>3년 초과</span></div><div class="box short"><canvas id="c_backlog" role="img" aria-label="백로그 분해 십억 달러. 6월 30일: 클라우드 12.5, 비클라우드 1년 내 14.1, 1~3년 16.1, 3년 초과 4.7. 9월 30일: 클라우드 16.4, 비클라우드 1년 내 25.8, 1~3년 17.0, 3년 초과 3.8"></canvas></div><div class="fn">공시는 총액과 구간 비율만. 클라우드 몫은 비해지 기간 기준 추정(검증 C). 백로그가 짧아진 것은 사실이나 그 주역은 클라우드가 아니라는 점이 A의 초기 서술과 다른 부분입니다.</div></div>
+
+<p>함의는 분명합니다. 백로그 1년 내 67%는 "가시성이 높다"가 아니라 "계약이 짧다"는 뜻입니다. CoreWeave RPO <span class="n">$103.7B</span>(take-or-pay, 2028년까지 41%)와 Oracle RPO <span class="n">$664B</span>(12개월 내 13%)는 "길게 묶인 매출"이고, 스페이스X 클라우드 백로그 $16.4B는 "6개월 안에 재가격되거나 사라질 수 있는 매출"입니다. 2027년 하반기 이후 매출을 백로그가 거의 보증하지 않으며, 컨센서스 FY27 매출 $177B가 최저 $72B에서 최고 $290B까지 퍼진 것은 이 가시성 부재의 반영입니다. 한편 9/30 백로그에 4번째 계약 $6.7B가 들어 있다는 것은 확인되지만, 그 밖의 미공개 클라우드 계약은 백로그에서 식별되지 않습니다. <span class="src">[2차: CoreWeave·Oracle 10-Q] [야후 컨센서스 10/24]</span></p>
+
+<h3>외부 계약 GW와 네임플레이트 — 50:50의 세 가지 읽기</h3>
+<p>외부 계약 합계 $41.1B/년을 W당 $45~50로 나누면 <span class="n">0.82~0.91GW</span>입니다. 이것을 네임플레이트에 대면 9월 말 1.7GW의 48~54%, 10월 말 약 2GW의 <span class="n">41~46%</span>, 연말 2.5GW의 33~36%, 3.0GW의 <span class="n">27~30%</span>입니다. 회사는 내부(Grok 훈련·추론) : 외부 임대를 "약 50:50 목표, 60:40 양방향 변동, 매월 바뀜"이라고 했습니다. 연말 3GW·50:50이면 외부 0.6~0.7GW가 비어 있고, 이는 월 $2.5~2.9B의 신규 계약 여지 또는 내부 몫 확대를 뜻합니다. <span class="src">[콜 3Q] 환산은 파생</span></p>
+<div class="tblwrap"><table class="tbl">
+<tr><th>시점</th><th>네임플레이트</th><th>외부 계약분(0.82~0.91GW) 비중</th><th>50:50 대비 외부 여유</th><th>여유분 연매출($50/W)</th></tr>
+<tr><td>2026-09(공시)</td><td>1.7GW</td><td>48~54%</td><td>≈0</td><td>—</td></tr>
+<tr><td>2026-10말</td><td>≈2.0GW</td><td><b>41~46%</b></td><td>0.1~0.2GW</td><td>$5~9B</td></tr>
+<tr><td>2026-12 하단</td><td>2.5GW</td><td>33~36%</td><td>0.3~0.4GW</td><td>$17~22B</td></tr>
+<tr><td>2026-12 상단</td><td>3.0GW</td><td><b>27~30%</b></td><td>0.6~0.7GW</td><td>$30~34B</td></tr>
+</table></div>
+<p>세 가지 읽기가 가능합니다. 첫째, <strong>기회비용</strong>. 내부 50%(연말 1.25~1.5GW)를 외부에 임대하면 연 $62~75B입니다. 지금 Grok 등 내부 제품 매출은 분기 약 $0.6B(추정)이고, 내부 0.85GW(1.7GW의 절반)에 대해 연 약 $2.4B → W당 약 <span class="n">$3~5</span>로 외부 임대($50)의 1/10 수준입니다. 50:50은 수익 극대화가 아니라 자체 모델에 대한 전략적 선택입니다. 둘째, <strong>추가 계약 여지</strong>. 연말 외부 비중 27~36%는 1Q27 가이던스 갭(07절)의 일부를 신규 계약으로 채울 공간이 있다는 뜻입니다. 셋째, <strong>변동성</strong>. "60:40 양방향, 매월 바뀜"은 외부 매출이 Grok 훈련 일정에 종속됨을 뜻하며, 2Q27 Rubin 440k 훈련 클러스터(약 1.1GW, 추정)가 내부로 가면 외부 비중은 다시 눌립니다. <span class="src">추정(검증 C 수정값: A의 W당 $6.6 → $3~5)</span></p>
+<div class="src">출처: 10-Q 3Q26(수익인식·Note 3 백로그 정의와 구간), 10-Q 2Q26(6/30 백로그), GS 컨퍼런스(90+90일 구조), 콜 3Q(50:50), 2차: SpaceX 2Q26 릴리스·Motley Fool(비해지 기간 정의), CoreWeave·Oracle RPO, 야후 컨센서스. 분해·환산은 추정.</div>
+</section>
+
+<section class="sec panel reveal" id="s5">
+<h2><span class="num">05</span>단기 전략의 논리와 위험</h2>
+<p>왜 단기인가에 대한 회사의 답은 일관됩니다. 공급자가 선택했다는 것입니다. 그 논리를 발언 그대로 늘어놓고, 각 발언이 데이터와 맞는지를 따로 적습니다. 결론부터 말하면 "W당 가치는 오른다"는 명제는 2026년 데이터로는 지지되지만, "H100이 신품 때보다 높게 임대된다"는 주장은 틀렸고, 같은 데이터는 20개월에 −68%도 가능하다는 것을 보여 줍니다. <span class="src">[GS 컨퍼런스] [콜 3Q]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>발언자·시점</th><th>요지(한국어 번역)</th><th>해석·검증</th></tr>
+<tr><td class="txt">CFO, GS 컨퍼런스 9/10</td><td class="txt">"거의 모든 계약이 6개월 커밋. 자사 제품에 대한 확신이 커서 컴퓨트를 영원히 넘기고 싶지 않다"</td><td class="txt">외부 임대는 Grok 가동 전까지의 임시 수익화. 계약 구조가 전략을 드러냄</td></tr>
+<tr><td class="txt">머스크, 3Q 콜 10/20</td><td class="txt">"장기 계약 대신 스팟에 가까운 가격으로 임대. W당 컴퓨트 가치는 시간이 갈수록 오른다(모델 개선 → W당 유용한 지능 증가)"</td><td class="txt">토큰당 가치 상승이 GPU 임대료로 전이된다는 가설. 2026년엔 맞고 있음(아래 차트)</td></tr>
+<tr><td class="txt">머스크, 3Q 콜</td><td class="txt">"H100도 신품 때보다 높은 가격에 임대되고 있다"</td><td class="txt"><b>데이터와 불일치</b>(아래). 2025 저점 대비 반등만 사실</td></tr>
+<tr><td class="txt">머스크, 3Q 콜</td><td class="txt">"단기 계약 갱신은 W당 더 높은 가격으로. 모든 요청을 받으면 컴퓨트를 몇 배로 임대 가능"</td><td class="txt">수요 초과 상태. Customer B 3Q 초과분 $1.28B(08절)가 갱신가 인상의 간접 증거일 수 있음</td></tr>
+<tr><td class="txt">CFO 2Q·3Q 콜 / 머스크</td><td class="txt">"현 가격에서 회수 1년 미만" / "내년 6개월 회수도 불가능하지 않다"</td><td class="txt">03절 검산 1.0년(GW당 $35B). 6개월은 W당 $70 이상 또는 GW당 $25B 이하 필요</td></tr>
+<tr><td class="txt">구글(2차)</td><td class="txt">"단기 브리지 용량"</td><td class="txt">고객 측도 단기를 원함 → "양측 선택"(14절 쟁점 6)</td></tr>
+</table></div>
+
+<h3>반대 논리 다섯 — 스윙 공급자의 구조</h3>
+<p>첫째, <strong>고객 해지권은 매출 소멸 옵션</strong>입니다. 공개 4건 $41.1B/년 전부가 최악의 경우 6개월 안에 사라질 수 있습니다. 고객들은 모두 자체·대체 용량을 짓고 있습니다(Anthropic–Amazon New Carlisle 1,037MW 가동 중, 구글 TPU, 2차). 스페이스X는 구조적으로 스윙 공급자(swing supplier)이며, 스윙 공급자는 타이트한 시장에서 스팟 프리미엄을 받고 느슨한 시장에서 가장 먼저 잘립니다. 둘째, <strong>가격 하락 시 매출이 즉시 재조정</strong>됩니다. take-or-pay는 가격이 떨어져도 3~5년 고정 현금이 들어오지만 스페이스X는 6개월마다 시장가에 노출됩니다. 2023년 10월 → 2025년 6월 H100 하락폭(−68%)이 재현되면 같은 GW에서 매출이 1/3로 줄 수 있습니다. 셋째, <strong>백로그 가시성</strong>이 2027년 하반기 이후를 거의 보증하지 않습니다(04절). 넷째, <strong>CoreWeave식 금융과의 차이</strong>입니다. CoreWeave는 take-or-pay 계약을 담보로 DDTL(자산담보 지연인출 텀론)을 일으키지만 스페이스X는 계약이 짧아 계약담보 금융이 불가능하고, IG 무담보 회사채와 장비 세일앤리스백에 의존합니다. 지금은 IG 신용과 $90B 현금이 있어 문제가 없지만, 신규 $40B에 "칩 담보 트랜치"가 붙었다는 보도(2차·미확정)는 무담보 IG에서 자산담보로 조달 구조가 이동하기 시작했다는 신호입니다. 기존 노트 시가가 장부가 대비 할인(22,932 vs 24,855) 거래 중인 점도 같은 방향입니다. 다섯째, <strong>회계적 매출 변동성</strong>입니다. stand-ready 의무는 가동 시 정액 인식이라 매출이 안정적으로 보이지만, 해지 통지 90일 뒤 그 매출은 0이 됩니다. 분기 매출이 계단식으로 꺾일 수 있는 구조입니다. <span class="src">[10-Q 3Q26] [2차: Epoch·Semafor·CoreWeave 공시]</span></p>
+
+<h3>"H100이 신품 때보다 높다" 검증</h3>
+<p>공개 GPU 가격 비교 사이트와 지수(2차·원문 미확인)로 H100 SXM 시간당 임대료를 늘어놓으면, 2023년 10월 <span class="n">$8.73</span>(출시 직후 "신품" 시기) → 2024년 1월 $5.74 → 2024년 7~9월(콜로서스1 건설 시점) $4.35~4.51 → 2025년 6월 저점 <span class="n">$2.77</span> → 2026년 4월 $2.88(실거래 지수 $1.85) → 2026년 10월 <span class="n">$3.35</span>(실거래 $3.02)입니다. 현재 가격은 2024년 1월 대비 −42%, 2023년 10월 대비 −62%, 콜로서스1 건설 시점 대비 −25%입니다. 따라서 "신품 때보다 높다"는 거짓이고, "2025년 저점 대비 +21~63% 반등 중"은 사실입니다. 신형은 더 강합니다. B200 실거래 $4.85 → $9.57(+97%), GB300 중앙값 7월 $15.4 → 10월 $18.0(+17%). 보조 데이터로 1년 약정 H100 단가 2025-10 $1.70 → 2026-03 $2.35(+38%), Nebius 온디맨드 $3.85 → $4.50, AWS 용량 블록 $5.19 → $5.97이 있습니다. 머스크가 자사 H100 블록의 Anthropic 임대 단가(혼합 $5.27/GPU-h)를 염두에 둔 발언일 가능성은 있으나 공개 지수로는 검증할 수 없습니다. <span class="src">[2차: IntuitionLabs·Spheron·CloudZero·Akash 등 공개 비교 복수]</span></p>
+
+<div class="chart"><div class="cap">H100 임대료 — 신품 시기 $8.73 → 저점 $2.77 → $3.35, "신품보다 높다"는 틀렸고 "저점 반등"은 맞다</div><div class="lg"><span><i style="background:var(--blue)"></i>H100 SXM 게시가 지수($/h, 2차)</span><span><i style="background:var(--amber)"></i>실거래 지수($/h, 2차)</span><span><i style="background:var(--muted)"></i>Anthropic 혼합 유효 단가 $5.27(파생)</span></div><div class="box"><canvas id="c_h100" role="img" aria-label="H100 시간당 임대료 2023-10 8.73, 2024-01 5.74, 2024-07 4.51, 2024-09 4.35, 2025-06 2.77, 2026-04 2.88, 2026-10 3.35. 실거래 2026-04 1.85, 2026-10 3.02. Anthropic 혼합 5.27 수평선"></canvas></div><div class="fn">게시가 지수는 하이퍼스케일러 가중, 실거래 지수는 2026-04부터. 2차(원문 미확인). Anthropic 수평선은 H100/H200/GB200 혼합 325k GPU 기준 유효 단가라 H100 단독가와 직접 비교는 불가.</div></div>
+
+<p>투자 함의는 양방향입니다. 머스크의 "W당 가치 상승" 명제는 2026년에 한해 지지되고, 그래서 지금의 단기 구조는 수익을 극대화합니다. 그러나 2027년에는 스페이스X 단독 10GW 증분 외에 하이퍼스케일러 capex(Alphabet 2026 $180B+, 2차)로 공급이 함께 늘어납니다. 단기 계약 구조에서 핵심 리스크는 2027년 하반기 GB300·Rubin 공급 과잉 시 갱신가 하락이며, 그래서 11절 시나리오는 "W당 $50 유지" 하나가 아니라 "갱신 시점별 가격 경로" 세 개(50 유지 / 50→35 / MS 31→17)로 짰습니다. Morgan Stanley는 이미 가중평균 컴퓨트 가격이 4Q26 $31/W에서 4Q27 $17/W로 압축된다는 가정을 기본 경로로 쓰고 있습니다(2차). <span class="src">[2차: MS·TechCrunch]</span></p>
+<div class="src">출처: GS 컨퍼런스(CFO 9/10), 콜 2Q·3Q(머스크·CFO 발언, 한국어 번역), 10-Q 3Q26(노트 시가·장부가), 2차: 공개 GPU 가격 비교 사이트 복수(IntuitionLabs·Spheron·CloudZero·Akash·GetDeploying), Epoch(Anthropic–Amazon 1,037MW), Semafor(칩 담보 트랜치), MS 가격 경로. 내부 지수는 외부 인용 금지라 "공개 비교 복수"로만 표기.</div>
+</section>
+
+<section class="sec panel reveal" id="s6">
+<h2><span class="num">06</span>토론 ① — 가격 경로·가이던스 갭·자금 갭</h2>
+<p>질문 에이전트 A(왜 이런 구조인가)와 B(얼마나 커지나)가 서로에게 보낸 반박 세 개와 검증 C의 판정을 그대로 싣습니다. 쟁점 1~3은 A가 B의 시나리오에 던진 것이고, 쟁점 4~6(14절)은 B가 A의 계약·부채 해석에 던진 것입니다. 판정은 어느 한쪽을 택하되 상대의 유효한 부분을 남기는 방식이며, 본문의 숫자는 전부 이 판정값으로 통일했습니다.</p>
+
+<h3>쟁점 1 — "W당 $50 유지를 전제로 13GW × $50 계산을 하지 말라"</h3>
+<div class="debate">
+<div class="ag a"><div class="who">A → B · 반박</div><p>모든 외부 계약이 6개월마다 시장가에 재노출됩니다. H100은 20개월에 −68%를 겪었고, 2027년에는 스페이스X 10GW 증분 외에 하이퍼스케일러 공급도 함께 쏟아집니다. 시나리오는 "갱신 시점별 W당 가격 경로"와 "외부 임대 비중"의 2축이어야 합니다. 2027년 하반기 GB300·Rubin 온디맨드가 W당 $35로 내려오면 ARR $500B~1조 목표는 어떤 가정으로 살아남습니까?</p></div>
+<div class="ag b"><div class="who">B · 답</div><p>모델은 $30/40/50/55 매트릭스를 뒀고 기본만 $50입니다. 2027년은 설치 직후라 단가 민감도가 작습니다($30→$55 이동 시 13GW 차입 −$48B). 차입을 결정하는 것은 단가가 아니라 GW당 비용과 증설 속도입니다.</p></div>
+<div class="ag a"><div class="who">A · 재반박</div><p>민감도가 작은 것은 2027 차입 얘기이고, 2027말 ARR과 2028 FCF는 단가에 정비례합니다. 외부 계약 100%가 6개월마다 재가격되므로 "경로"가 필요합니다.</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>A 채택. MS가 이미 "$31/W(4Q26) → $17/W(4Q27)"를 기본 경로로 씁니다(2차). 이를 하단으로 넣으면 13GW 기본의 2027 외부 매출은 $142B → $62B, 외부 ARR $325B → $111B, 2028 FCF −$68B → −$269B입니다. "50 유지 / 50→35(하반기) / MS 31→17" 세 경로를 본문에 싣습니다. 단 B의 "2027 차입 규모는 단가에 둔감"도 맞으므로 함께 적습니다(11절).</p></div>
+</div>
+
+<h3>쟁점 2 — "1Q27 가이던스에 든 미공개 계약을 명시하라 / 내부 사용분 수익은 무엇으로 재나"</h3>
+<div class="debate">
+<div class="ag a"><div class="who">A → B · 반박</div><p>공개 4건으로는 SI 1Q27 매출이 $14B 안팎이고, 가이던스 내재치 $25~29B와 분기 $10~14B 차이가 납니다. 이 갭을 채우는 것이 미공개 외부 계약인지, Grok·Cursor 매출인지, 외부 비중 60%+ 전환인지에 따라 2027년 이후 마진·집중도·해지 리스크가 완전히 다릅니다. 내부 사용분(연말 1.25~1.5GW, 기회비용 연 $62~75B)의 수익은 무엇으로 측정합니까?</p></div>
+<div class="ag b"><div class="who">B · 답</div><p>모델은 "연말 2.75GW의 50%가 1월부터 $50/W 과금"을 전제하며, 그래도 1Q27 SI $23B로 가이던스 하단에 $2B 모자랍니다. 내부 50%는 Grok·Cursor·X 매출(2027 $36B)로만 계상했고, 내부에 외부 단가를 매기는 것은 기회비용이라 매출로 넣지 않았습니다.</p></div>
+<div class="ag a"><div class="who">A · 재반박</div><p>그 "50%"는 공개 계약(0.9GW)의 두 배입니다. 미공개 계약 0.5GW를 이미 전제한 셈입니다. 내부 매출 $36B도 3Q Grok 등 매출(1.37B, 실제는 더 낮음)에서 출발하면 과대입니다.</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>A 채택, 숫자 수정. Customer B = Anthropic이면 3Q 외부는 $5.8~6.3B, 내부(Cursor 포함)는 $1.3~1.7B → 4Q26 내부 $3.0B가 정합. 모델 내부 매출 $36B → $19~24B, 1Q27 SI $23.0B → $20.8B. 가이던스가 맞으려면 1Q27 외부 과금 1.7~2.0GW(계약 2배)가 필요하다는 점을 본문 결론으로 못 박습니다. 내부 사용분의 수익성은 공개 자료로 측정 불가(현재 W당 약 $3~5, 외부의 1/10 수준).</p></div>
+</div>
+
+<h3>쟁점 3 — "2027 capex $300B는 자금 갭 $110~140B를 동반한다. 조달 수단·이자·등급을 반영하라"</h3>
+<div class="debate">
+<div class="ag a"><div class="who">A → B · 반박</div><p>연말 유동성 약 $62B + 신규 $40B + 2027 영업CF로는 부족합니다. 단기 계약은 고객 선수금 조달에 불리하고, 신규 차입이 "칩 담보"로 가기 시작했습니다. 13GW 시나리오에서 조달 수단과 이자비용(프로포마 연 $5.5B → 13GW 시 $15B+), IG 등급 유지 가능성, 레버리지 3.75배 약정과의 거리를 계산해 달라.</p></div>
+<div class="ag b"><div class="who">B · 답</div><p>13GW 기본(GW당 $35B)은 2027 추가 차입 $164B(2Q27부터 분기 $13→73→78B), 총부채 $242B, 이자 $18.8B, 이자보상 7.1배, 허용 순부채 $498B의 45%입니다. 구성은 IG 채권·칩 담보·세일앤리스백·벤더 파이낸싱 혼합. 20GW는 $387B로 지분 조달 없이 불성립.</p></div>
+<div class="ag a"><div class="who">A · 재반박</div><p>커버넌트 여유보다 "단기 계약 EBITDA에 하이퍼스케일러급 레버리지를 허용할 근거"와 담보제한(총자산 7.5% ≈ $19B)이 문제입니다. 신규 $40B에 칩 담보가 붙은 것이 그 신호입니다.</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>양쪽 다 맞고 보완. ① B의 커버넌트는 미인출 리볼버 약정이라 구속력이 약하고, 노트에는 리엔 한도만 있습니다 — 제약은 "발행 소화·등급"이라는 B의 결론 유지. ② 내부 매출 수정 후 2027 차입은 $172~175B, GW당 $40B면 $228B. ③ $40B 금리(7.75~8.3%)는 미확정 예상치. ④ A가 요구한 "약정과의 거리"는 2027 EBITDA $122~133B 기준 순부채 $222~253B → 1.7~2.1배로 답합니다.</p></div>
+</div>
+<div class="src">근거: 에이전트A_왜.md 7절(반박·질문 3개), 에이전트B_얼마나.md 3절(모델)·답변, 에이전트C_검증.md 3절(토론 로그 쟁점 1~3). 숫자는 C 판정값.</div>
+</section>
+
+<section class="sec panel reveal" id="s7">
+<h2><span class="num">07</span>현금 유입 시점 — 월 후불, 가동 다음 달</h2>
+<p>클라우드 계약의 현금은 언제 들어오는가. 10-Q에서 세 가지가 확인됩니다. ① 회계는 "고정 월 서비스 수수료, 용량 가동 시 정액 인식"입니다. ② 이연수익 증가(+4,518, 영업CF 설명)는 "Space·Connectivity 고객 선수금"이라고 10-Q가 명시합니다 — 클라우드는 선수금이 아닙니다. ③ 매출채권 <span class="n">$4,772M</span>(12/25 1,579) 중 한 고객이 27.7% = <span class="n">$1,322M</span>이고, 이는 Anthropic 월 $1,250M과 거의 같습니다. 즉 9월 서비스분이 9월 30일에 미수금으로 남아 있고, 클라우드는 <strong>월 후불·다음 달 수금</strong>(DSO 약 30일)입니다. 선수금을 받지 않는다는 것은 조달 측면에서 불리하지만(Oracle은 1Q FY27 영업CF $23.1B 중 고객 선수금 $11.4B, 2차), 90일 해지 구조와 선수금은 양립하기 어렵습니다. 선수금을 받으려면 장기 커밋을 줘야 합니다. <span class="src">[10-Q 3Q26 Note 3·현금흐름 설명] 판단은 파생</span></p>
+
+<h3>월별 외부 컴퓨트 매출·수금 램프(추정)</h3>
+<p>가정을 먼저 적습니다. Anthropic 2026-05 50%·06 75%·07부터 100%(S-1 "5~6월 감액" → 비율은 가정), Reflection 07부터 100%, 구글 08 30%·09 60%·10부터 100%("9월까지 감액 램프"), 4번째 12/1부터 100%(기본) 또는 10월 30%·11월 60%·12월 100%(2Q 콜 "10월 램프" 대안), 신규 계약·해지 없음, 수금은 전월 매출. 이 표는 공개 4건만의 <strong>하한</strong>입니다. Customer B 3Q $5.03B가 보여 주듯 미공개 증설·갱신가 인상이 이미 있을 수 있습니다. <span class="src">가정은 A 5-2, 4번째 램프 대안은 검증 C 지시</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>월</th><th>Anthropic</th><th>Reflection</th><th>Google</th><th>4번째(기본 / 램프안)</th><th>월 매출(인식)</th><th>월 수금(전월분)</th></tr>
+<tr><td>2026-05</td><td>625</td><td>–</td><td>–</td><td>–</td><td>625</td><td>0</td></tr>
+<tr><td>2026-06</td><td>938</td><td>–</td><td>–</td><td>–</td><td>938</td><td>625</td></tr>
+<tr><td>2026-07</td><td>1,250</td><td>150</td><td>–</td><td>–</td><td>1,400</td><td>938</td></tr>
+<tr><td>2026-08</td><td>1,250</td><td>150</td><td>276</td><td>–</td><td>1,676</td><td>1,400</td></tr>
+<tr><td>2026-09</td><td>1,250</td><td>150</td><td>552</td><td>–</td><td>1,952</td><td>1,676</td></tr>
+<tr><td>2026-10</td><td>1,250</td><td>150</td><td>920</td><td>– / 333</td><td>2,320 / 2,653</td><td>1,952</td></tr>
+<tr><td>2026-11</td><td>1,250</td><td>150</td><td>920</td><td>– / 666</td><td>2,320 / 2,986</td><td>2,320 / 2,653</td></tr>
+<tr class="hl"><td>2026-12</td><td>1,250</td><td>150</td><td>920</td><td>1,110</td><td><b>3,430</b></td><td>2,320 / 2,986</td></tr>
+<tr><td>2027-01~06</td><td>1,250</td><td>150</td><td>920</td><td>1,110</td><td>3,430</td><td>3,430</td></tr>
+<tr><td colspan="7" class="note">단위 $M. 추정. 연 런레이트 2026-12 $41.1B. 4번째 램프안은 2Q 콜 "10월 램프" 발언 기준이며 9/10 공개된 "12/1 시작"과 일정이 다름(미확정).</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">월별 외부 컴퓨트 매출 — 2026-05 $0.6B에서 12월 $3.43B, 공개 4건만의 하한</div><div class="lg"><span><i style="background:var(--blue)"></i>Anthropic</span><span><i style="background:var(--teal)"></i>Reflection</span><span><i style="background:var(--amber)"></i>Google</span><span><i style="background:var(--violet)"></i>4번째(12/1 기본)</span></div><div class="box"><canvas id="c_ramp" role="img" aria-label="월별 외부 컴퓨트 매출 백만 달러 누적 막대. 2026년 5월 625, 6월 938, 7월 1,400, 8월 1,676, 9월 1,952, 10월 2,320, 11월 2,320, 12월 3,430, 2027년 1월부터 3월 3,430"></canvas></div><div class="fn">고객별 램프 가정은 위 표. 4번째 계약을 10월부터 램프하면 10·11월이 각 +333·+666. Customer B 초과분(월 약 $0.43B)은 미반영.</div></div>
+
+<h3>분기 집계와 1Q27 가이던스 갭</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>분기</th><th>외부 컴퓨트 매출(공개 기준)</th><th>수금</th><th>비고</th></tr>
+<tr><td>2Q26</td><td>1.56</td><td>0.63</td><td class="txt">Customer B 2Q $1.52B·릴리스 "2Q AI 인프라 증분 매출 $1.6B"와 정합</td></tr>
+<tr><td>3Q26</td><td>5.03 → 실제 5.8~6.3</td><td>4.01</td><td class="txt">공개 램프 합계 5.03은 Customer B(=Anthropic) 단독 5.03과 우연히 일치. Reflection·구글 램프를 더한 정합값은 5.8~6.3</td></tr>
+<tr class="hl"><td>4Q26</td><td><b>8.1~9.1</b></td><td>6.6~7.6</td><td class="txt">4번째 12월만 8.07 / 10~11월 램프 포함 9.07. 검증 임계 $9.5B</td></tr>
+<tr><td>1Q27</td><td><b>10.3</b> (+Customer B 런레이트 1.3 = 11.6)</td><td>10.3</td><td class="txt">정상 상태, 신규·해지 없음</td></tr>
+<tr><td colspan="4" class="note">단위 $B. 추정.</td></tr>
+</table></div>
+
+<p>회사의 1Q27 연결 가이던스는 <span class="n">$33~37B</span>입니다. Space+Connectivity를 3Q $7.0B(14,575 − 7,560)에서 1Q27 <span class="n">$8B(±1)</span>로 두면 SI 내재 매출은 <span class="n">$25~29B</span>입니다(A는 $24~29B, B는 $25~29B로 썼고 검증 결과 S+C $8B 기준 $25~29B로 통일). 공개 정보로 쌓을 수 있는 1Q27 SI 매출은 외부 클라우드 10.3(+Customer B 초과 런레이트 1.3) + Cursor 1.4 + 광고 0.6 + Grok 등 0.7~1.0 = <span class="n">$14~16B</span>입니다. 갭은 분기 <span class="n">$10~14B</span>, 월 $3.3~4.7B입니다. Customer B 초과분은 갭의 10% 정도만 설명합니다. 나머지는 ① 4Q26~1Q27 신규 외부 계약 약 0.8~1.1GW(머스크 "요청 전부 받으면 몇 배"), ② 램프 없는 즉시 과금, ③ 내부 매출 급증 중 하나 이상이어야 합니다. 가이던스가 내재하는 1Q27 외부 과금 용량은 내부 $3.6~4.0B·$50/W 가정에서 <span class="n">1.7~2.0GW</span>이며, 이는 1Q27 평균 네임플레이트 약 3.3~3.6GW(연말 2.5~3.0 + 월 0.4)의 50%와 맞습니다. 즉 <strong>가이던스는 "1Q27 평균 3.5GW·50:50·$50/W·램프 없음"을 전제한 숫자</strong>이고, 그러려면 지금 계약(0.9~1.0GW)이 한 분기 안에 두 배가 돼야 합니다. <span class="src">[콜 3Q] [검증 C 2-2·2-3]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>항목</th><th>A</th><th>B</th><th>C 판정(본문 채택)</th></tr>
+<tr><td class="txt">Space+Connectivity 1Q27</td><td class="txt">$8~9B</td><td class="txt">$8B</td><td class="txt"><b>$8B(±1)</b> → SI 내재 $25~29B</td></tr>
+<tr><td class="txt">외부 클라우드 1Q27</td><td class="txt">공개 4건 $10.3B</td><td class="txt">모델 2.75GW×50%×$50/4 = $17.2B</td><td class="txt">공개 기준 $10.3B(+1.3 = 11.6). B의 17.2는 0.5GW 추가 계약 내재</td></tr>
+<tr><td class="txt">내부 제품(Grok·Cursor·광고)</td><td class="txt">$3.5~4.0B</td><td class="txt">$5.9B</td><td class="txt"><b>$3.6~4.0B</b>. B 과대</td></tr>
+<tr><td class="txt">SI 1Q27</td><td class="txt">$13.8~14.3B</td><td class="txt">$23.0B</td><td class="txt">공개 기준 <b>$14~16B</b>; B 모델 수정 시 $20.8B</td></tr>
+<tr><td class="txt">갭(가이던스 대비)</td><td class="txt">$10~15B</td><td class="txt">$2B(모델) / $7B(공개)</td><td class="txt"><b>$10~14B</b>(공개 대비). B 모델 대비 $4~8B</td></tr>
+<tr><td class="txt">갭 해소 조건</td><td class="txt">외부 +0.8~1.2GW 또는 외부 비중 60~65%</td><td class="txt">외부 60%·$50 / $55·50% / 연말 3.0GW</td><td class="txt">1Q27 외부 과금 <b>1.7~2.0GW</b> 필요 = 계약 2배</td></tr>
+</table></div>
+<div class="callout warn"><div class="t">첫 검증점</div><p>4Q26 실적(2027년 2월)에서 외부 컴퓨트 매출이 <span class="n">$9.5B</span>를 넘는지(공개 기준 하한 $8.1~9.1B), 그리고 4Q 10-Q 백로그의 1년 내 구간이 $42.2B에서 얼마나 뛰는지입니다. 둘 다 못 넘으면 1Q27 가이던스는 신규 계약 없이는 닿지 않는 숫자가 됩니다.</p></div>
+<div class="src">출처: 10-Q 3Q26(수익인식·매출채권 집중·이연수익 설명), S-1/A(Anthropic 램프), 콜 2Q(4번째 "10월 램프"), GS 컨퍼런스(12/1 시작), 콜 3Q(1Q27 가이던스), 2차: Oracle 선수금. 램프표·갭 계산은 추정(A 5-3·검증 C 2-2 수정값).</div>
+</section>
+
+<section class="sec panel reveal" id="s8">
+<h2><span class="num">08</span>고객 집중 — Customer B는 Anthropic인가</h2>
+<p>10-Q Note 3는 두 고객을 적습니다. Customer A는 세 세그먼트 전부에서 매출이 있고 3Q 연결 매출의 16.6%(미국 정부로 추정, 파생), Customer B는 SI 세그먼트 단일 고객으로 3Q <span class="n">34.5%</span>, 9M 24.2%, 2Q 19.5%입니다. 연결 매출에 곱하면 Customer B는 1Q26 ≈ 0(9M 6,554 − 3Q 5,028 − 2Q 1,524 = 2), 2Q26 <span class="n">$1,524M</span>, 3Q26 <span class="n">$5,028M</span>입니다. 이 고객은 2026년 5월에 시작했고, Anthropic 계약(5~6월 감액 램프)과 시작 시점이 정확히 일치합니다. 2Q $1,524M은 "5월 50%·6월 75%" 램프(1,563)와 맞고, 2분기 릴리스의 "2Q 클라우드 계약으로 AI 인프라 증분 매출 $1.6B"와도 거의 같습니다. 구글(8~9월 램프)·Reflection(7/1)·4번째(12/1)는 2분기 매출이 없으므로 <strong>2Q Customer B = Anthropic</strong>은 거의 확정적이고, 3Q도 같은 고객으로 보는 것이 가장 정합합니다. <span class="src">[10-Q 3Q26 Note 3] [2차: 2Q 릴리스] 귀속은 강한 추정</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>기간</th><th>Customer B 비중</th><th>연결 매출($M)</th><th>Customer B($M)</th><th>Anthropic 공시 계약($M)</th><th>초과</th></tr>
+<tr><td>1Q26</td><td>—</td><td>4,694</td><td>≈0</td><td>0</td><td>—</td></tr>
+<tr><td>2Q26</td><td>19.5%</td><td>7,814</td><td>1,524</td><td>≈1,563(램프 가정)</td><td>≈0</td></tr>
+<tr class="hl"><td>3Q26</td><td>34.5%</td><td>14,575</td><td><b>5,028</b></td><td>3,750</td><td><b>+1,278 (+34%)</b></td></tr>
+<tr><td>9M26</td><td>24.2%</td><td>27,083</td><td>6,554</td><td>≈5,313</td><td>+1,241</td></tr>
+<tr><td>Customer A (3세그먼트)</td><td>16.6%</td><td>14,575</td><td>≈2,419</td><td class="txt">미국 정부 추정</td><td>—</td></tr>
+<tr><td colspan="6" class="note">파생. Anthropic 공시 계약은 월 $1,250M × 3 = $3,750M(7월부터 전액).</td></tr>
+</table></div>
+
+<h3>초과 $1.28B의 해석 세 가지와 함의</h3>
+<p>3Q Customer B $5,028M은 공시 계약 $3,750M보다 <span class="n">$1,278M</span> 많습니다. 공시 계약으로 설명되지 않는 이 금액 자체가 미공개 증설 또는 갱신가 인상의 증거입니다. 가설은 셋입니다. <strong>H1 Anthropic 추가 용량</strong>: 공시 325k GPU 외에 콜로서스2 GB300 등을 추가 임대(월 약 $0.43B ≈ $50/W로 약 100MW·5만 GB300). CFO가 말한 "9월 신규 계약"이 이것일 수 있고, 머스크 "요청 전부 받으면 몇 배"와 맞습니다. 정합성 높음. <strong>H2 갱신가 인상</strong>: 최초 3개월(5~7월) 뒤 8월부터 W당 가격 인상. 7월 1.25 + 8·9월 각 1.89 = 5.03이면 +51% 인상입니다. 머스크 "갱신은 W당 더 높은 가격" 발언과 맞지만 폭이 큽니다. 정합성 중간. <strong>H3 4번째 미공개 고객 = Anthropic</strong>: 2Q 콜(8/4)의 "3Q 첫 몇 주에 $6.7B·6개월 계약, 10월 램프"는 월 $1.117B로 9/10 공개된 $1.11B/월과 같고, CFO 합계 $41.1B는 정확히 4건의 합이므로 같은 계약입니다. 이 고객이 Anthropic이고 8~9월 감액 선사용이 있었다면 3Q 초과분이 설명됩니다. 다만 회사는 고객명을 비공개로 했고 Anthropic 계약은 S-1에 공개했던 전례가 있어 확률은 중간 이하입니다. 네 번째 가능성(일회성·변동대가)은 stand-ready 고정 수수료 구조와 어긋나 낮게 봅니다. <span class="src">[콜 2Q] [GS 컨퍼런스] [검증 C 2-2]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>가설</th><th>내용</th><th>정합성</th><th>Anthropic 의존도(외부 월매출 대비)</th></tr>
+<tr><td class="txt">H1 추가 용량</td><td class="txt">공시 외 GB300 증설 월 약 $0.43B(≈100MW)</td><td class="txt">높음</td><td>(1.25+0.43)/3.43 = <b>49%</b></td></tr>
+<tr><td class="txt">H2 갱신가 인상</td><td class="txt">8월부터 월 $1.89B(+51%)</td><td class="txt">중간</td><td>약 49% · 외부 ARR $48B+</td></tr>
+<tr><td class="txt">H3 4번째 고객 = Anthropic</td><td class="txt">2Q 콜 $6.7B 7월 체결, 8~9월 선사용</td><td class="txt">중간 이하</td><td>(1.25+1.11)/3.43 = <b>69%</b></td></tr>
+<tr><td class="txt">공개 수치만</td><td class="txt">1.25/3.43</td><td class="txt">—</td><td>36%(과소)</td></tr>
+</table></div>
+
+<p>어느 가설이든 함의는 같습니다. 공개 자료로 계산한 "외부 매출 중 Anthropic 36%"는 과소이고 실제는 <strong>최소 49%, H3면 69%</strong>입니다. 이것은 (a) 4Q·1Q27 외부 매출 추정을 분기 +$1.3B 올리는 상향 요인이면서, (b) Anthropic의 대체 용량(Amazon New Carlisle 1,037MW 가동 중, 구글 TPU, 2차)이 2027년에 늘어나면 단일 고객 이탈로 외부 매출의 절반이 90일 안에 사라질 수 있는 하향 요인입니다. 경쟁 모델 회사 한 곳에 외부 매출의 절반이 걸려 있다는 점은, 스페이스X가 Grok으로 Anthropic과 경쟁하는 회사라는 사실과 겹쳐 2027년 계약 갱신의 가장 큰 변수입니다. 4Q 10-Q에서 Customer B 비중이 외부 매출 증가와 함께 움직이는지로 H3를 판별할 수 있습니다. <span class="src">[2차: Epoch] 판단은 파생</span></p>
+<div class="callout risk"><div class="t">집중 리스크</div><p>외부 매출의 49~69%가 한 고객, 그 고객은 자체 용량을 2027년에 늘리는 경쟁 모델 회사, 계약은 90일 통지로 해지 가능. 세 조건이 동시에 성립하는 매출 $5B/분기가 지금 SI 세그먼트 매출의 2/3입니다. 매출채권 27.7%가 이 한 고객에 몰려 있다는 점도 같은 리스크의 다른 얼굴입니다.</p></div>
+<div class="src">출처: 10-Q 3Q26 Note 3(고객 집중·매출채권 집중), 10-Q 2Q26, S-1/A(Anthropic 계약), 콜 2Q($6.7B 발언), GS 컨퍼런스(4번째 공개), 2차: SpaceX 2Q26 릴리스($1.6B), Epoch. Customer B 귀속·초과분 가설은 추정(검증 C 판정).</div>
+</section>
+
+<section class="sec panel reveal" id="s9">
+<h2><span class="num">09</span>자금과 부채 — 순현금 회사가 빌리는 법</h2>
+<p>9월 30일 기준 현금성자산 <span class="n">$51,294M</span> + 단기 시장성증권 <span class="n">$38,561M</span> = 유동성 <span class="n">$89,855M</span>입니다. 6월 30일 현금 93,522 + 증권 6,487 = 100,009에서 한 분기에 <span class="n">−$10.15B</span>이고, 이는 3Q 단독 FCF(영업CF 9,631 − capex 19,593 = −9,962)와 거의 일치합니다. 총자산 <span class="n">$254,045M</span>(12/25 92,079), PP&amp;E 89,483, 영업권 48,423(Cursor), 총부채 77,277, 자본 176,768입니다. 차입은 원금 기준 <span class="n">$38,006M</span>: IG 선순위 무담보 노트 <span class="n">$25,000M</span>(2026-06 발행, 5.35~6.65%, 가중평균 5.855%·유효 6.072%, 2031/2033/2036/2046/2056 5개 트랜치, 가중평균 만기 11.7년, 브리지론 $20B 상환에 사용), 장비담보·세일앤리스백 <span class="n">$12,979M</span>(가중평균 고정 6.3%, 이 중 SI 인프라 세일앤리스백 3건 12,897은 관계사), X 노트 27. 가중평균 금리는 (25,000×5.855% + 12,979×6.3%) ÷ 38,006 = <span class="n">6.0%</span>, 연이자 약 <span class="n">$2.28B</span>입니다. 순현금 <span class="n">+$51.9B</span>. 미인출 신용시설 $5,000M(2031-05 만기, 레버리지 3.75배 이하 조건) + xAI 리볼버 $250M. <span class="src">[10-Q 3Q26 B/S·부채 Note]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>항목($M)</th><th>원금</th><th>금리</th><th>만기</th><th>비고</th></tr>
+<tr class="hl"><td>SpaceX 노트(선순위 무담보, IG)</td><td>25,000</td><td class="txt">5.35~6.65%, 가중 5.855%(유효 6.072%)</td><td class="txt">2031/33/36/46/56 · 평균 11.7년</td><td class="txt">리엔 한도 총자산 7.5% 초과 금지. 시가 22,932(장부 24,855) → 할인 거래, 만기수익률 약 6.7~6.9%(파생)</td></tr>
+<tr><td>장비담보 + 실패한 세일앤리스백</td><td>12,979</td><td class="txt">가중 고정 6.3%(12/25 5.5%)</td><td class="txt">월 원리금</td><td class="txt">SI 인프라 세일앤리스백 3건 12,897(유동 2,181+비유동 10,716), 관계사</td></tr>
+<tr><td>X 2027/2030 노트</td><td>27</td><td class="txt">3.875%/5.0%</td><td class="txt"></td><td class="txt"></td></tr>
+<tr class="sum"><td>총차입</td><td>38,006</td><td class="txt">가중 약 6.0% → 연이자 ≈ 2,280</td><td class="txt"></td><td class="txt">금융리스 983 별도</td></tr>
+<tr><td>만기 사다리</td><td colspan="4" class="txt">2026 잔여 495 / 2027 2,425 / 2028 2,867 / 2029 3,422 / 2030 3,597 / 이후 25,200. 노트 원금은 2031-07-15까지 상환 없음</td></tr>
+</table></div>
+
+<h3>순이자수익과 xAI 시절 12.5% 부채의 리파이낸싱</h3>
+<p>3Q 이자비용 <span class="n">$675M</span>(관계사 세일앤리스백 351 포함) vs 이자수익 <span class="n">$873M</span> → 순이자수익 <span class="n">+$198M</span>. 현금 $90B의 운용수익(연환산 약 3.9%)이 부채 이자를 덮는 "부채가 공짜"인 상태이며, capex가 현금을 소진하는 속도만큼 이 상태는 끝납니다. 과거 구조를 보면 지금 금리의 의미가 분명해집니다. 2025년 말 xAI·X 부채는 X B-1 텀론 6,504(SOFR+6.5%), X B-3 5,966(고정 9.5%), xAI 고정 텀론 995(12.5%), xAI 변동 995(SOFR+7.25%), xAI 12.5% 담보 선순위 노트 3,000으로 합계 <span class="n">$17,460M</span>이었고, 2026년 3월 2~5일에 전액 상환(조기상환 수수료 $1,163M, 채무소멸손실 1,545)했습니다. SOFR 4.0% 가정 시 연이자는 683+567+124+112+375 = <span class="n">$1,861M</span>(평균 10.66%)이고, 같은 금액을 5.855%로 바꾸면 $1,022M → 연 절감 약 <span class="n">$839M</span>(SOFR 3.5%면 약 $770M). 수수료 $1.16B는 1.4년이면 회수됩니다. 12.5% 트랜치 $4.0B만 보면 연 $500M → $234M, 절감 $266M입니다. <span class="src">[10-Q 3Q26] 절감액은 파생(SOFR 가정)</span></p>
+
+<h3>신규 $40B — 예상 금리 7.75~8.3%, 최종 조건 미확정</h3>
+<p>2026년 10월 22일 보도(2차: Semafor 원문 확인·Benzinga)에 따르면 Apollo·Goldman이 주선하는 <span class="n">$40B</span> 부채 조달이 마무리 단계이고, <strong>예상치</strong>(가격 결정 전, "변경 가능")로 최저등급 트랜치 약 <span class="n">8.3%</span>, 칩 담보 트랜치 약 <span class="n">7.75%</span>, 기존 채권 거래금리 대비 +1%p 이상입니다. 10월 초 FT는 "은행대출 $10B + IG 채권 $30B, 2027 클로징"으로 보도했고 CNBC는 GPU 담보 가능성을 썼습니다. 기존 노트 시가 할인(만기수익률 약 6.7~6.9%) + 1%p ≈ 7.75%와 정합합니다. 이 금리로 $40B를 더하면 프로포마 총차입 <span class="n">$78B</span>, 가중평균 약 <span class="n">7.0%</span>, 연이자 약 <span class="n">$5.5B</span>입니다. 10-Q에는 반영되지 않았습니다. 10월 22일 주가가 −9.1%($144.75)였던 것이 이 보도 때문이며, 시장이 "금리가 아니라 담보가 붙었다"는 신호를 읽은 것으로 보입니다. CFO의 자금조달 우선순위는 ① 영업현금흐름 ② IG 등급 기반 다수의 부채 풀 ③ 벤더·고객 밸류체인 파트너십이고, 지분 조달은 고려하지 않는다고 했습니다(JPM 2차 인용). <span class="src">[2차: Semafor 10/22·FT 10/7·CNBC·Benzinga] [콜 3Q]</span></p>
+
+<h3>금리 차이의 효과 — GW당 연 $1.2B, 단가의 2.4%</h3>
+<p>GW당 건설비 $30B를 전액 차입하고 임대 단가 $50/W-년이라 하면, 금리 6%와 10%의 연이자 차이는 GW당 <span class="n">$1.2B</span>, W당 $1.2/년으로 임대 단가의 2.4%입니다. 외부 임대 50%(연 $25B)에 대해선 4.8%p의 마진 차이입니다. 작지 않지만 가동률 10%p 변화(연 $5B)의 1/4에 불과합니다. 컴퓨트 경제학에서 GW당 손익의 1차 변수는 금리가 아니라 가동률과 단가입니다. 다만 13GW로 가면 차입 $390B(전액 차입 가정) × 4%p = 연 <span class="n">$15.6B</span>로 금리가 1차 변수가 됩니다. 따라서 IG 등급 유지의 의미는 손익보다 <strong>조달 가능 총량</strong>입니다. "싼 자본으로 경쟁자보다 많이 짓는다"는 규모 경쟁에서 금리 우위가 의미를 갖습니다. <span class="src">파생</span></p>
+<div class="tblwrap"><table class="tbl">
+<tr><th>차입 금리</th><th>GW당 연이자($B)</th><th>W당 연이자($)</th><th>임대 단가 $50 대비</th><th>6% 대비 차이</th></tr>
+<tr><td>5.855% (기존 노트)</td><td>1.76</td><td>1.76</td><td>3.5%</td><td>—</td></tr>
+<tr class="hl"><td>6.0% (현 가중평균)</td><td>1.80</td><td>1.80</td><td>3.6%</td><td>기준</td></tr>
+<tr><td>8.0% (신규 $40B 예상, 2차)</td><td>2.40</td><td>2.40</td><td>4.8%</td><td>+0.60</td></tr>
+<tr><td>10.0% (CoreWeave 중간)</td><td>3.00</td><td>3.00</td><td>6.0%</td><td><b>+1.20</b></td></tr>
+<tr><td>12.5% (xAI 2025 노트)</td><td>3.75</td><td>3.75</td><td>7.5%</td><td>+1.95</td></tr>
+<tr><td colspan="5" class="note">가정: GW당 $30B 전액 차입. 13GW·$390B 차입이면 4%p = 연 $15.6B.</td></tr>
+</table></div>
+
+<h3>동종업체 — 금리가 아니라 담보 구조가 다르다</h3>
+<p>기준 시점이 다르고 2차가 섞여 있다는 전제로 비교합니다. CoreWeave(26-06)는 현금 $5.5B(+제한 1.4B), 총차입 <span class="n">$35.6B</span> + 운용리스 16.3B, DDTL 9~15%·선순위노트 9~10%, RPO $103.7B take-or-pay. Oracle(26-05/08)은 현금 $31~39B, 총차입 <span class="n">$129.5B</span>(5월) → 약 $169B(8월, 2차), RPO $664B, ATM 증자 $20B 소진. Meta 현금 11.2B·장기부채 80.9B, Alphabet 55.9B·98.2B(2026 capex $180B+, $80B 증자 발표 2차), Amazon 78.2B·133.0B. 스페이스X는 네오클라우드 대비 금리가 3~9%p 낮고 순현금이며 GPU 담보가 아닌 무담보 IG 채권 중심이지만, 계약은 가장 짧습니다. 하이퍼스케일러 대비는 capex 규모(분기 20→35~40B)가 이미 Meta·Amazon 분기 수준입니다. 영업CF/capex는 9M 0.27배로 CoreWeave(0.25배)와 같고 Oracle(0.81배)·하이퍼스케일러(0.3~1.0배)보다 낮습니다. 즉 스페이스X는 "하이퍼스케일러 규모의 capex를 네오클라우드 수준의 영업CF로" 집행하고 그 갭을 IPO 현금과 IG 부채로 메우는 회사입니다. CoreWeave는 고객 계약을 담보로 빌리고(계약이 길어야 함), 스페이스X는 기업 신용으로 빌립니다(계약이 짧아도 됨). 단기 계약 전략은 IG 신용이 있어야 가능한 전략이고, 둘은 한 쌍입니다. <span class="src">[10-Q 3Q26] [2차: 각사 공시·TIKR·TechCrunch]</span></p>
+
+<div class="chart"><div class="cap">현금 vs 총차입 — 스페이스X만 순현금, 담보·계약 길이는 정반대</div><div class="lg"><span><i style="background:var(--blue)"></i>현금(+단기증권)</span><span><i style="background:var(--rose)"></i>총차입(장기부채)</span></div><div class="box"><canvas id="c_peer" role="img" aria-label="현금 대 총차입 십억 달러. 스페이스X 89.9 대 38.0, 프로포마 스페이스X 89.9 대 78, CoreWeave 5.5 대 35.6, Oracle 38.9 대 169, Meta 11.2 대 80.9, Alphabet 55.9 대 98.2, Amazon 78.2 대 133.0"></canvas></div><div class="fn">기준 시점 다름(SpaceX 26-09, CoreWeave 26-06, Oracle 26-08, Meta 26-09, Alphabet·Amazon 26-06). Oracle 169B·프로포마 78B는 2차·미확정. 하이퍼스케일러는 장기부채만.</div></div>
+
+<h3>담보 제한과 약정 — 제약은 커버넌트가 아니라 등급·발행 소화</h3>
+<p>IG 노트의 담보 제한은 "총자산 7.5% 초과 리엔 금지"로, 총자산 $254B 기준 약 <span class="n">$19B</span>입니다. 세일앤리스백 $12.9B는 "실패한 세일앤리스백"(금융부채 회계)이라 리엔인지, 통상 IG 인덴처가 두는 구매자금 담보·장비금융 바스켓의 예외인지는 10-Q로는 알 수 없습니다. 2026-06 노트 발행 8-K 부속서(인덴처)를 봐야 하며, 이것이 2027년 담보부 조달 여력을 정하는 핵심 실사 항목입니다(14절 쟁점 5). 레버리지 3.75배 약정은 미인출 $5B 신용시설의 것(인수 후 4.25배 일시 허용)이고 노트에는 레버리지 약정이 없습니다. 비해지 약정은 <span class="n">$37,840M</span>(2026 잔여 2,309 / 2027 25,569 / 2028 4,637 / 2029 2,071 / 2030 1,221 / 이후 2,033)이며 내용은 SI 인프라 투자, 제3자 클라우드 용량, 서비스 계약, EchoStar 스펙트럼 대금(총 $19.6B, 2027-11 클로징)입니다. 2027년 25.6B의 상당 부분이 스펙트럼일 가능성이 높아(추정) 컴퓨트 약정 자체는 이보다 작습니다. 4Q capex $35~40B를 유동성 $89.9B에서 빼고 4Q 영업CF 약 $10B를 더하면 2026년 말 유동성은 약 <span class="n">$60~65B</span>(추정, 신규 $40B 제외)입니다. <span class="src">[10-Q 3Q26 Note 16·부채 Note] [S-1]</span></p>
+<div class="callout insight"><div class="t">읽는 법</div><p>자금 우위는 세 겹입니다. ① 순현금 $51.9B와 2031년까지 원금 상환 없음(시간), ② IG 무담보 5.855%(가격), ③ 계약 담보 없이 기업 신용으로 빌릴 수 있어 단기 계약 전략이 가능(구조). 그러나 ③은 IG 등급이 유지될 때만 성립하고, 신규 $40B에 칩 담보가 붙었다는 보도는 ③이 흔들리기 시작했을 가능성입니다. 11절의 2027년 추가 차입 $172~175B가 어떤 담보로 나오는지가 2027년의 핵심 질문입니다.</p></div>
+<div class="src">출처: 10-Q 3Q26(B/S·부채·이자·약정·리엔 한도·신용시설), 10-Q 2Q26(6/30 유동성), S-1(EchoStar), 콜 3Q(조달 우선순위), 2차: Semafor(10/22 예상 금리)·FT·CNBC·Benzinga($40B 구조), CoreWeave·Oracle·Meta·Alphabet·Amazon 공시 및 TIKR·TechCrunch. 리파이낸싱 절감·프로포마·금리 효과는 파생.</div>
+</section>
+
+<section class="sec panel reveal" id="s10">
+<h2><span class="num">10</span>진행 중 프로젝트 GW — 식별되는 것은 13GW의 1/5</h2>
+<p>2027년 말 13GW가 어디서 나오는지를 공개 자료로 셀 수 있는 만큼 셉니다. 회사가 사이트별 MW를 공시하는 것은 S-1의 콜로서스 클러스터 수치뿐이고, 나머지는 보도·위성사진·허가 서류(2차)입니다. 미니하드(5414 Tulane)와 DCD가 "네 번째 멤피스 데이터센터"라 부른 건물은 같은 건물이며, S-1의 "콜로서스2 다음 단계 220k GB300/400MW+"도 같은 건물로 해석됩니다. 에이전트 B가 이를 별도로 더해 0.44GW를 이중계산한 것을 검증 C가 바로잡았고, 그 결과 식별 합산은 더 작아졌습니다. <span class="src">[S-1] [2차: DCD·Daily Memphian·Epoch]</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>사이트</th><th>상태</th><th>IT 전력(GW)</th><th>근거</th></tr>
+<tr><td class="txt">콜로서스1(멤피스 Paul R. Lowry Rd, 구 일렉트로룩스 공장)</td><td class="txt">가동(2024-07~09). H100 100k=130MW 1차, 이후 H200/B200 증설. Anthropic 전량 임대</td><td>0.30</td><td class="txt">S-1 / 2차 약 300MW</td></tr>
+<tr><td class="txt">콜로서스2(멤피스 5420 Tulane Rd + 사우스헤이븐 전력)</td><td class="txt">가동·확장. 1차 GB200 110k=210MW(91일), 2차 GB300 110k=220MW(64일). 9월 말 GB300 440k 가동, 연말 660k 추가 예정(2차)</td><td>0.946 → 1.531(완공)</td><td class="txt">S-1 / Epoch(2차)</td></tr>
+<tr><td class="txt">미니하드(5414 Tulane, 단지 내 신축) = DCD "네 번째 멤피스 DC"</td><td class="txt">220k GB300·800G NIC, 4층 312,000ft²·건축비 $659M. 400MW+ 전력 확보 불명확(1월 위성사진 냉각 350MW)</td><td>(0.44, 콜로서스2 완공치에 포함)</td><td class="txt">2차: DCD·Daily Memphian 7/30</td></tr>
+<tr><td class="txt">매크로하드rr / "콜로서스3"(2400 Stateline Rd W, 사우스헤이븐)</td><td class="txt">2025-12 취득, 전환 중</td><td>0.44~0.50</td><td class="txt">2차 추정(220k GB300·~500MW)</td></tr>
+<tr><td class="txt">텍사스 대형 DC(검토)</td><td class="txt">복수 후보지(오스틴·배스트롭·콘로 채용), 결정·착공 아님, MW·금액 없음</td><td class="txt">느슨 1.0 가정</td><td class="txt">2차: DCD(The Information 인용)</td></tr>
+<tr><td class="txt">테라팹(Gibbons Creek, TX) 병설 클러스터</td><td class="txt">머스크 "테라팹 슈퍼컴퓨트 클러스터에 주 4일 투입". 규모 미공시</td><td class="txt">느슨 0.3 가정</td><td class="txt">콜 3Q</td></tr>
+<tr><td class="txt">사우스헤이븐 가스발전소(구 Duke 부지)</td><td class="txt">임시 터빈 69기(MDEQ 합의로 2027-07까지 철거) → 영구 단순사이클 1.2GW(41기) 2026-03 허가. 솔라리스/Stateline Power JV 900MW(500→900 상향), 2027 초 "1GW 초"</td><td class="txt">전력 1.2GW(IT 아님)</td><td class="txt">2차: DCD·MDEQ·솔라리스 공시</td></tr>
+<tr><td class="txt">궤도 컴퓨트(AI 위성)</td><td class="txt">2027 첫 발사 목표, 2028부터 대량 배치. V3 버스 + 대형 태양전지</td><td>2027 기여 0</td><td class="txt">GS 컨퍼런스 · 콜 2Q</td></tr>
+<tr class="sum"><td class="txt">엄격 합산(존재 확인 사이트만)</td><td class="txt">0.30 + 1.531 + 0.44~0.50</td><td><b>2.3~2.7</b> (13GW의 17~21%)</td><td class="txt">검증 C 수정값</td></tr>
+<tr class="sum"><td class="txt">느슨 합산(텍사스 1.0·테라팹 0.3 가정 포함)</td><td class="txt"></td><td><b>3.6~4.0</b> (27~31%)</td><td class="txt">검증 C 수정값</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">13GW까지의 갭 — 식별 사이트 2.3~2.7GW, 가정 포함 3.6~4.0GW, 미식별 약 9GW</div><div class="lg"><span><i style="background:var(--blue)"></i>엄격 식별</span><span><i style="background:var(--teal)"></i>느슨 가정(텍사스·테라팹)</span><span><i style="background:var(--rose)"></i>미식별 증분</span></div><div class="box short"><canvas id="c_sites" role="img" aria-label="13GW 대비 식별 GW 누적 막대. 2026말 가이던스 2.75: 식별 2.5. 2027말 13GW: 엄격 식별 2.5, 느슨 가정 1.3, 미식별 9.2. JPM 10GW: 식별 2.5, 가정 1.3, 미식별 6.2. MS 4.9GW: 식별 2.5, 가정 1.3, 미식별 1.1"></canvas></div><div class="fn">엄격·느슨은 범위의 중간값. 2026년 말 가이던스 2.5~3.0GW와 엄격 합산 2.3~2.7GW가 거의 같아, 공개된 멤피스 캠퍼스는 2026년 말~2027년 초 용량을 설명할 뿐입니다.</div></div>
+
+<h3>갭을 메우려면 — 콜로서스2급 6곳, 터빈 455기</h3>
+<p>2027년 증분 10.25GW(2.75→13) 중 느슨 합산의 식별 증분(3.8 − 2.75 ≈ 1.0GW)을 빼면 미식별 증분은 약 <span class="n">9.0~9.4GW</span>입니다. 콜로서스2 완공치(1.5GW)로 나누면 신규 캠퍼스 <span class="n">6곳</span>이 각각 2025년 3월 착공 → 2026년 2월 1GW 전력 수준의 속도로 지어져야 합니다. 시설 전력은 PUE 1.3 가정으로 10.25 × 1.3 = <span class="n">13.3GW</span>이고, 사우스헤이븐 비율(1.2GW = 41기 → 29.3MW/기)로 환산하면 가스터빈 <span class="n">455기</span>(전력 100% 가스) 또는 <span class="n">228기</span>(절반 가스, 나머지 그리드·태양광·메가팩)가 15개월 안에 필요합니다. 식별된 발전 자원(사우스헤이븐 1.2GW, 솔라리스 JV 900MW→1GW 초, TVA 증분 +150MW, 머스크 개인 인수 APR Energy 이동식 플릿 약 1.1GW — 스페이스X 귀속 여부 미확인, 전부 2차·중복 가능)은 합쳐도 3GW 안팎입니다. 회사가 내세우는 돌파구는 ① 로켓엔진 주조 역량으로 터빈 블레이드·베인을 자체 주조해 납기 12~18개월 단축, ② 태양광·풍력, ③ 테라팹 부지 전력, ④ 공장조립형 모듈 추론 클러스터, ⑤ 테슬라 메가팩(9M26 $480M 구매, 관계사)입니다. 머스크는 "20GW 전력 계획은 독점적이라 비공개"라고 했습니다. 그러나 2026년 9~10월 보도에서 신규 사이트·전력 계약으로 확인된 것은 "텍사스 후보지 탐색"뿐이고, 금액·MW가 붙은 신규 PPA·터빈 발주 공시는 찾지 못했습니다(S-1의 터빈 구매약정 $805M은 기존). 이 부재가 13GW 경로의 가장 큰 공개정보 공백입니다. <span class="src">[콜 3Q] [S-1] [2차: DCD·Mississippi Free Press·Engadget] 환산은 추정</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>항목</th><th>계산</th><th>결과</th></tr>
+<tr><td class="txt">2027 증분 네임플레이트</td><td class="txt">13.0 − 2.75</td><td>10.25GW</td></tr>
+<tr><td class="txt">미식별 증분(느슨 합산 기준)</td><td class="txt">10.25 − (3.6~4.0 − 2.75)</td><td><b>9.0~9.4GW</b></td></tr>
+<tr><td class="txt">콜로서스2급(1.5GW) 캠퍼스 환산</td><td class="txt">9.2 ÷ 1.5</td><td><b>6곳</b></td></tr>
+<tr><td class="txt">시설 전력(PUE 1.3)</td><td class="txt">10.25 × 1.3</td><td>13.3GW</td></tr>
+<tr><td class="txt">터빈 환산(29.3MW/기)</td><td class="txt">13.3GW ÷ 29.3MW</td><td><b>455기</b> / 절반 가스 228기</td></tr>
+<tr><td class="txt">13GW 전체를 가스로</td><td class="txt">16.9GW ÷ 29.3MW</td><td>577기</td></tr>
+<tr><td colspan="3" class="note">추정. 네임플레이트는 냉각·배전손실 미포함이라 PUE를 곱해 시설 전력로 환산.</td></tr>
+</table></div>
+
+<h3>네임플레이트와 실제 가동 전력의 괴리</h3>
+<p>9월 말 네임플레이트 1.7GW인데, Epoch(2차)는 콜로서스2 IT 전력을 946MW로 추정하고 콜로서스1 약 300MW를 더하면 약 1.25GW입니다. 1월 위성사진 기준 냉각용량 350MW 지적(2차: Tom's HW)도 있습니다. 네임플레이트는 "설치된 GPU 수 × kW"라 전력·냉각이 따라오지 못한 GPU도 포함될 수 있고, 매출 인식(stand-ready, 가용 용량 기준)은 가용한 용량만 세므로 둘 사이에 시차가 생깁니다. 에이전트 B의 시나리오 모델이 "외부 매출 = 전분기 말 GW × 비중 × 단가 / 4"로 1분기 시차를 둔 이유가 이것이고, 3Q26 실제 외부 매출($5.8~6.3B)이 6월 말 1.4GW × 50% × $50 / 4 = $8.75B의 2/3 수준이었다는 점이 시차가 1분기보다 길거나 가용률이 70% 안팎일 가능성을 시사합니다. 11절 모델에서 이 시차가 2분기이거나 가용률이 70%면 2027 외부 매출은 $142B가 아니라 $90~110B로 떨어지고 추가 차입은 $190~220B로 늘어납니다. <span class="src">[10-Q 3Q26 KPI 정의] [2차: Epoch·Tom's HW] 판단은 추정</span></p>
+<div class="callout warn"><div class="t">공개정보 공백</div><p>2027년 증분 10GW 중 약 9GW의 사이트·전력이 공개되지 않았습니다. 이것은 "불가능하다"는 뜻이 아니라 "공개 자료로 검증할 수 없다"는 뜻입니다. 전력 계약·터빈 발주·부지 매입 공시가 2026년 4분기~2027년 1분기에 나오는지가 13GW 경로의 선행 지표이며, 그것이 없는 상태에서 1Q27 가이던스와 13GW를 함께 믿는 것은 두 개의 미공개 사실(0.8~1.1GW 신규 계약, 9GW 신규 사이트)을 동시에 전제하는 일입니다.</p></div>
+<div class="src">출처: S-1/A(클러스터 GPU·MW, 터빈 약정), 콜 3Q(테라팹·전력 전략·"비공개"), 콜 2Q·GS 컨퍼런스(궤도), 2차: DCD(미니하드·텍사스·솔라리스), Daily Memphian, Epoch, Tom's HW, MDEQ, Mississippi Free Press, Engadget(APR). 합산·환산은 추정(검증 C 수정값).</div>
+</section>
+
+<section class="sec panel reveal" id="s11">
+<h2><span class="num">11</span>13GW·20GW 시나리오 — 얼마를 어디서 빌려야 하나</h2>
+<p>에이전트 B의 재현 모델(검증 C가 실행해 B 표의 수치와 일치 확인)에 C의 수정(내부 제품 매출 4Q26 $4.5B → $3.0B, 분기 +20~30%)을 반영한 결과를 싣습니다. 모델은 단순합니다. 외부 임대 매출(t) = 단가 × 외부비중 × 전분기 말 GW ÷ 4(1분기 시차), capex(t) = 분기 증분 GW × GW당 비용 + 비SI capex $3.2B, 영업CF = 연결 EBITDA − 현금이자 + 이자수익 − $0.5B(세금·운전자본), 필요 차입 = 유동성이 $20B 아래로 떨어지는 만큼. 모든 숫자는 추정이며 가정은 표 머리에 적었습니다. <span class="src">[에이전트 B 3절] [검증 C 5-2 수정]</span></p>
+
+<h3>공통 가정</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>구분</th><th>가정</th><th>근거</th></tr>
+<tr><td class="txt">2026말 네임플레이트</td><td class="txt">2.75GW</td><td class="txt">가이던스 2.5~3.0 중간</td></tr>
+<tr><td class="txt">2027 분기말 경로</td><td class="txt">하단 10GW: 3.75/5.5/7.5/10.0 · <b>기본 13GW: 4.0/6.5/9.5/13.0</b> · 상단 20GW: 4.5/8.5/13.5/20.0. 2028은 2027 분기평균 증분 유지</td><td class="txt">Rubin 램프 후반 집중</td></tr>
+<tr><td class="txt">GW당 capex</td><td class="txt"><b>$35B</b>(범위 30~40) + 비SI capex 분기 $3.2B</td><td class="txt">검증 C 2-4: 2026 역산 38 상한, JPM 30 하단</td></tr>
+<tr><td class="txt">외부 임대 매출</td><td class="txt">$50/W-년 × 외부 50% × 전분기말 GW ÷ 4</td><td class="txt">1분기 수익화 시차. 가격 경로 3종 별도</td></tr>
+<tr><td class="txt">내부 제품 매출(Grok·Cursor·광고)</td><td class="txt"><b>4Q26 $3.0B</b>(Cursor 1.3 + 광고 0.65 + Grok 등 0.7~1.0), 2027 분기 +20%(상단 +30%)</td><td class="txt">3Q 외부 5.8~6.3 → 내부 1.3~1.7. B의 4.5는 과대(C)</td></tr>
+<tr><td class="txt">SI 조정 EBITDA 마진</td><td class="txt">65.5% 고정(3Q26). 민감도 55/70%</td><td class="txt">외부 증분 마진 70%(MS)와 내부 R&amp;D 부담 상쇄 가정</td></tr>
+<tr><td class="txt">Space+Connectivity EBITDA</td><td class="txt">분기 $4.0B 고정</td><td class="txt">3Q26 8,809 − 4,953. 우주 미분석</td></tr>
+<tr><td class="txt">이자·운용</td><td class="txt">기존 $38B × 6.5%, 신규 8%, 이자수익 유동성 × 3.5%, D&amp;A 누적 SI capex ÷ 5년, SBC 일반 0.9 + Cursor 1.5/분기</td><td class="txt">3Q26 순이자 +198, D&amp;A 2,473</td></tr>
+<tr><td class="txt">자금</td><td class="txt">2026말 유동성 $62.5B + 신규 $40B 전액 2027초 유입(8%), 최소 운영현금 $20B, 부족분은 그 분기 차입</td><td class="txt">도시에 5-2·5-3. $40B 금리는 2차·미확정</td></tr>
+</table></div>
+
+<h3>capex 매트릭스 — 2027 연결($B)</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>경로(2027 증분)</th><th>GW당 $30B</th><th>GW당 $35B</th><th>GW당 $40B</th><th>비교</th></tr>
+<tr><td class="txt">하단 10GW(7.25)</td><td>230</td><td><b>267</b></td><td>303</td><td class="txt">JPM 2027 capex 약 $300B(2차·단일 출처)</td></tr>
+<tr class="hl"><td class="txt">기본 13GW(10.25)</td><td>320</td><td><b>372</b></td><td>423</td><td class="txt">분기 47 → 91 → 108 → 126</td></tr>
+<tr><td class="txt">상단 20GW(17.25)</td><td>530</td><td><b>617</b></td><td>703</td><td class="txt"></td></tr>
+<tr><td colspan="5" class="note">추정. 분기 $100B 이상의 capex는 Alphabet 분기 capex($82B, 2Q26)를 넘는 규모. JPM $300B는 10GW 하단~13GW의 $30B 하단에 해당 — JPM은 13GW를 $30B/GW 미만으로 짓거나 2027 설치의 상당 부분이 2028로 밀리는 것으로 봄.</td></tr>
+</table></div>
+
+<h3>2027 외부 임대 매출 / 2027말 외부 ARR — 13GW 기본($B)</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>외부비중</th><th>$20/W</th><th>$30/W</th><th>$40/W</th><th>$50/W</th><th>$55/W</th></tr>
+<tr><td>40%</td><td>45 / 104</td><td>68 / 156</td><td>91 / 208</td><td>114 / 260</td><td>125 / 286</td></tr>
+<tr class="hl"><td>50%</td><td>57 / 130</td><td>85 / 195</td><td>114 / 260</td><td><b>142 / 325</b></td><td>156 / 358</td></tr>
+<tr><td>60%</td><td>68 / 156</td><td>102 / 234</td><td>136 / 312</td><td>171 / 390</td><td>188 / 429</td></tr>
+<tr><td colspan="6" class="note">추정. $20/W 열은 MS 4Q27 $17/W 가정(2차) 근거로 추가(검증 C 지시). 하단 10GW 50%·$50 → 122 / 250. 상단 20GW → 183 / 500.</td></tr>
+</table></div>
+
+<h3>13GW 기본 분기표(수정본 · GW당 $35B · 외부 50% · $50/W · 마진 65.5% · 내부 4Q26 $3.0B +20% · $40B 반영 · $B)</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>분기</th><th>기말GW</th><th>capex</th><th>외부매출</th><th>내부매출</th><th>SI매출</th><th>SI EBITDA</th><th>연결 EBITDA</th><th>영업CF</th><th>FCF</th><th>필요 차입</th><th>부채잔액</th><th>유동성</th></tr>
+<tr><td>1Q27</td><td>4.0</td><td>47.0</td><td>17.2</td><td>3.6</td><td>20.8</td><td>13.6</td><td>17.6</td><td>16.6</td><td>−30.4</td><td>0</td><td>78</td><td>72.1</td></tr>
+<tr><td>2Q27</td><td>6.5</td><td>90.7</td><td>25.0</td><td>4.3</td><td>29.3</td><td>19.2</td><td>23.2</td><td>21.9</td><td>−68.8</td><td><b>16.7</b></td><td>95</td><td>20.0</td></tr>
+<tr><td>3Q27</td><td>9.5</td><td>108.2</td><td>40.6</td><td>5.2</td><td>45.8</td><td>30.0</td><td>34.0</td><td>32.0</td><td>−76.2</td><td><b>76.2</b></td><td>171</td><td>20.0</td></tr>
+<tr><td>4Q27</td><td>13.0</td><td>125.7</td><td>59.4</td><td>6.2</td><td>65.6</td><td>43.0</td><td>47.0</td><td>43.5</td><td>−82.2</td><td><b>82.2</b></td><td>253</td><td>20.0</td></tr>
+<tr class="sum"><td>2027 합계</td><td>+10.25</td><td><b>372</b></td><td><b>142</b></td><td>19</td><td><b>162</b></td><td>106</td><td><b>122</b></td><td><b>114</b></td><td><b>−258</b></td><td><b>175</b></td><td></td><td></td></tr>
+<tr><td>2028 합계(증설 2027 분기평균 유지)</td><td>23.2</td><td>372</td><td>421</td><td>40</td><td>461</td><td>302</td><td>318</td><td>≈295</td><td><b>≈−76</b></td><td>≈76</td><td>≈329</td><td></td></tr>
+<tr><td colspan="13" class="note">추정. 내부 +30%면 내부 24·SI 166·연결 EBITDA 125·영업CF 117·FCF −255·차입 172·부채 250. SI 영업이익(GAAP, Cursor SBC 포함)은 1Q27 약 6.9 → 4Q27 약 24.5로 전 분기 플러스. 2028 FCF −68~78(+30%/+20%). B 원표(내부 4.5·+30%)는 FCF −246·차입 164·부채 242였음.</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">13GW 기본 — 2027 영업CF $114B는 capex $372B의 1/3, 2Q27부터 분기 $17→76→82B 신규 차입</div><div class="lg"><span><i style="background:var(--blue)"></i>연결 capex</span><span><i style="background:var(--teal)"></i>영업CF</span><span><i style="background:var(--rose)"></i>필요 차입(선)</span></div><div class="box tall"><canvas id="c_model" role="img" aria-label="분기별 십억 달러. 1Q27 capex 47 영업CF 16.6 차입 0, 2Q27 90.7 21.9 16.7, 3Q27 108.2 32.0 76.2, 4Q27 125.7 43.5 82.2, 1Q28 92.9 약 57 약 36, 2Q28 92.9 약 68 약 25, 3Q28 92.9 약 79 약 14, 4Q28 92.9 약 91 약 2"></canvas></div><div class="fn">추정(13GW 기본, 내부 +20%). 2028 분기값은 2027 분기평균 증설 유지 가정의 근사. 유동성이 2Q27에 바닥($20B)에 닿은 뒤 세 분기 연속 $75~80B를 새로 빌려야 합니다.</div></div>
+
+<h3>필요 차입 민감도 — 2027 추가 차입($B, $40B 반영 후, 외부 50%)</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>경로</th><th>GW당</th><th>$20/W</th><th>$30/W</th><th>$40/W</th><th>$50/W</th><th>$55/W</th></tr>
+<tr><td>하단 10GW</td><td>30</td><td>82</td><td>66</td><td>50</td><td>34</td><td>26</td></tr>
+<tr><td>하단 10GW</td><td>35</td><td>120</td><td>103</td><td>87</td><td><b>70</b></td><td>62</td></tr>
+<tr><td>하단 10GW</td><td>40</td><td>156</td><td>140</td><td>124</td><td>107</td><td>99</td></tr>
+<tr><td>기본 13GW</td><td>30</td><td>169</td><td>150</td><td>131</td><td>112</td><td>102</td></tr>
+<tr class="hl"><td>기본 13GW</td><td>35</td><td>221</td><td>202</td><td>183</td><td><b>164 → 175(수정)</b></td><td>154</td></tr>
+<tr><td>기본 13GW</td><td>40</td><td>273</td><td>254</td><td>235</td><td>216 → 228(수정)</td><td>207</td></tr>
+<tr><td>상단 20GW</td><td>30</td><td>371</td><td>347</td><td>323</td><td>299</td><td>286</td></tr>
+<tr><td>상단 20GW</td><td>35</td><td>459</td><td>435</td><td>411</td><td><b>387</b></td><td>374</td></tr>
+<tr><td>상단 20GW</td><td>40</td><td>547</td><td>523</td><td>499</td><td>474</td><td>462</td></tr>
+<tr><td colspan="7" class="note">추정. B 3-4 원표(내부 매출 수정 전)에 $20/W 열을 선형 보간으로 추가. 내부 매출 수정은 전 셀에 약 +8~12를 더함(기본 셀 164 → 175). $40B 미반영 시 13GW 기본 약 $215B. 단가 민감도가 작은 이유: 2027은 설치 직후라 임대 매출이 capex를 따라오지 못함 — 차입 규모를 결정하는 것은 단가가 아니라 GW당 비용과 증설 속도.</td></tr>
+</table></div>
+
+<h3>가격 경로 3종 — 2027 차입은 둔감, 2028 FCF는 정비례</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>경로(13GW 기본)</th><th>2027 외부 매출</th><th>2027 추가 차입</th><th>2027말 총부채</th><th>2027말 외부 ARR</th><th>2028 FCF</th></tr>
+<tr class="hl"><td class="txt">① $50/W 유지</td><td>142</td><td>175</td><td>253</td><td>325</td><td>−78</td></tr>
+<tr><td class="txt">② $50 → 하반기 $35</td><td>113</td><td>195</td><td>273</td><td>228</td><td>−165</td></tr>
+<tr><td class="txt">③ MS 경로 $31 → $17(2차)</td><td>62</td><td>229</td><td>307</td><td>111</td><td>−269</td></tr>
+<tr><td colspan="6" class="note">단위 $B, 추정. 2027 차입 차이 $54B에 그치는 반면 2028 FCF 차이는 $191B. 외부 계약 100%가 6개월마다 재가격되므로 "경로"가 필요하다는 A의 요구(쟁점 1)에 따라 추가.</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">2027년 말 총부채 — 경로에 따라 $148B에서 $465B, 13GW 기본은 $253B</div><div class="lg"><span><i style="background:var(--blue)"></i>총부채($B, 추정)</span></div><div class="box"><canvas id="c_debt_path" role="img" aria-label="2027년 말 총부채 십억 달러. 현재 38, 프로포마 40B 반영 78, 하단 10GW 148, 기본 13GW 50달러 유지 253, 13GW 50에서 35 273, 13GW MS 경로 307, 상단 20GW 465"></canvas></div><div class="fn">추정. 하단 10GW는 B 원표(내부 수정 전) 148. 20GW는 2028에도 FCF −$157B로 차입이 멈추지 않음(2028말 부채 약 $620B).</div></div>
+
+<h3>레버리지·이자·이자보상 — 산술은 통과, 소화는 전례 없음</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>경로</th><th>2027 연결 EBITDA</th><th>허용 순부채(3.75×)</th><th>2027말 총부채 / 순부채</th><th>레버리지</th><th>연 이자(기존 6.5%·신규 8%)</th><th>이자보상</th></tr>
+<tr><td>하단 10GW</td><td>≈115</td><td>≈430</td><td>148 / 128</td><td>1.1×</td><td>11.3</td><td>≈10×</td></tr>
+<tr class="hl"><td>기본 13GW(수정)</td><td><b>122~125</b></td><td><b>458~469</b></td><td><b>250~253 / 230~233</b></td><td><b>약 1.9×</b></td><td><b>약 19</b></td><td><b>6~7×</b></td></tr>
+<tr><td>상단 20GW</td><td>≈155</td><td>≈580</td><td>465 / 445</td><td>2.9×</td><td>36.6</td><td>4.4×</td></tr>
+<tr><td colspan="7" class="note">추정. 3.75배 약정은 미인출 $5B 신용시설의 것(인수 후 4.25배 일시 허용), 노트에는 레버리지 약정 없음(리엔 한도 총자산 7.5%만). 10GW·20GW EBITDA는 내부 매출 수정 전 B값에서 약 −5~8 조정한 근사.</td></tr>
+</table></div>
+<p>세 결론입니다. 첫째, <strong>13GW는 2027년에 $172~175B(GW당 $35B 기준; $30B면 약 $120B, $40B면 약 $228B)를 2Q27부터 분기 $17→76→82B씩 빌려야 가능한 구조</strong>입니다. 레버리지 약 2배·이자보상 6~7배로 산술상 IG 범위이고, 커버넌트는 제약이 아닙니다. 제약은 발행 속도와 담보 여력입니다. 2026년 미국 IG 발행 총량(약 $1.5~2조, 2차 통념) 대비 연 $160~175B는 약 10%로 한 발행자가 가져간 전례가 없고, 10월 $40B도 칩 담보 트랜치가 붙었다는 보도(미확정)가 있습니다. 구성은 IG 무담보 채권(연 $60~80B, 리엔 한도 안에서) + 칩·장비 담보·세일앤리스백($40~60B) + 벤더 파이낸싱·고객 선수금($30~50B)의 조합이 될 것으로 추정합니다. 둘째, <strong>20GW는 2027 추가 차입 $387B, 총부채 $465B, 이자 $37B, 이자보상 4.4배</strong>로 분기 $140~170B 조달은 전례가 없고 2028에도 FCF −$157B로 차입이 멈추지 않으며, 2027 EBITDA가 10%만 빗나가도 이자보상 4배 아래로 떨어집니다. 지분 조달 배제(CFO)를 유지하는 한 20GW는 자금 면에서 성립하지 않습니다. 머스크 본인도 "20은 어렵다"고 했는데, 전력뿐 아니라 돈도 그렇습니다. 셋째, <strong>GAAP 손익이 좋아 보이는 구조 자체가 레버리지 확대의 명분</strong>이 됩니다. 매출이 설치 다음 분기부터 붙고 D&amp;A는 5년 정액이어서 GW당 $35B의 연 20%($7B/GW)만 비용화되는 반면 외부 매출만 GW당 연 $25B이기 때문입니다. GPU 수명을 4년, 단가를 $40로 바꾸면 2027 SI 영업이익은 절반 아래로 떨어집니다. <span class="src">추정(B 3-5·3-6, C 수정)</span></p>
+<div class="callout risk"><div class="t">모델의 약점</div><p>① 매출 시차·램프를 1분기로 단순화했습니다. 3Q26 실제는 공식의 2/3였고, 시차 2분기 또는 가용률 70%면 2027 외부 매출 $90~110B·차입 $190~220B. ② SI 마진 65.5%를 매출 2.4배 성장 구간에 그대로 적용했습니다. 55%면 차입 +$19B, 2028 FCF 전환이 2029 이후로. ③ GW당 $35B와 2028 증설 속도가 결론을 좌우하는데 둘 다 근거가 얇습니다. Rubin·그린필드·자가 발전소 자본화를 반영하면 $40B 쪽일 수 있습니다.</p></div>
+<div class="src">출처: 모델 입력은 10-Q 3Q26(마진·D&amp;A·이자·유동성), 콜 3Q(가이던스·13GW·20GW 발언), 2차: JPM($300B·10GW)·MS($31→$17/W)·Alphabet capex. 전부 추정(에이전트 B spcx_model.py, 검증 C 재현·수정).</div>
+</section>
+
+<section class="sec panel reveal" id="s12">
+<h2><span class="num">12</span>수익화 시점 — 영업이익은 이미, FCF는 선택의 문제</h2>
+<p>"언제 돈을 버나"는 세 층으로 답이 다릅니다. SI 세그먼트 GAAP 영업이익은 <strong>이미 3Q26 +$431M</strong>(Cursor 인수 SBC $1.2B 포함; 제외 시 $1.6B)으로 플러스이고, 13GW 기본 모델에서 2027년 내내 플러스(1Q27 약 $6.9B → 4Q27 약 $24.5B, 추정)입니다. 분기 영업CF가 분기 capex를 넘는 "자가 조달" 시점은 증설 속도에 종속되어, 2028 증설을 2027의 절반(분기 +1.3GW)으로 늦추면 1Q28, 같은 속도(+2.6GW)에 내부 매출 +30%면 4Q28, +20%면 2028 내 없음(4Q28 FCF 약 −$2B)입니다. 연결 FCF(영업CF − capex)의 연간 전환은 13GW 기본에서 2027 <span class="n">−$255~258B</span>, 2028 <span class="n">−$68~78B</span>, 2029 전환 추정이며, <strong>13GW에서 증설을 멈추면 2028 FCF는 큰 플러스</strong>(B 원표 +$253B, 내부 수정 후 약 +$220B 안팎)로 바로 돌아섭니다. <span class="src">추정(B 4절, C 수정)</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>지표</th><th>하단 10GW</th><th>기본 13GW(수정)</th><th>상단 20GW</th><th>비교(2차)</th></tr>
+<tr><td class="txt">SI 영업이익 GAAP 플러스</td><td class="txt">이미 3Q26 +$0.43B</td><td class="txt">같음. 2027 전 분기 플러스</td><td class="txt">같음</td><td class="txt">—</td></tr>
+<tr><td class="txt">분기 영업CF ≥ 분기 capex</td><td class="txt">3Q28</td><td class="txt"><b>내부 +30%면 4Q28, +20%면 2028 내 없음</b>(2028 증설 절반이면 1Q28)</td><td class="txt">2028 내 없음</td><td class="txt">—</td></tr>
+<tr><td class="txt">연결 FCF 연간 플러스</td><td class="txt">2029 추정</td><td class="txt"><b>2029</b>(2028 −68~78); 증설 중단 시 <b>2028</b></td><td class="txt">2029 이후(2028 −157)</td><td class="txt">JPM 2031 · GS 4Q30 · MS 2035</td></tr>
+<tr><td class="txt">2026~2028 누적 FCF</td><td class="txt">약 −290</td><td class="txt"><b>약 −395</b>(2026 −63 + 2027 −258 + 2028 −76)</td><td class="txt">약 −700</td><td class="txt">JPM 2026~30 누적 −300 · GS 2026~30 부채 약 270</td></tr>
+<tr><td colspan="5" class="note">단위 $B, 추정. 2026 FCF −63은 9M −35.0 + 4Q(영업CF 약 10 − capex 37.5).</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">연간 FCF — 2027은 어느 경로든 −$250B대, 2028은 가격 경로에 따라 −$78B에서 −$269B</div><div class="lg"><span><i style="background:var(--blue)"></i>① $50 유지</span><span><i style="background:var(--amber)"></i>② $50→35</span><span><i style="background:var(--rose)"></i>③ MS $31→17</span><span><i style="background:var(--teal)"></i>13GW 증설 중단(2028)</span></div><div class="box"><canvas id="c_fcf" role="img" aria-label="연간 FCF 십억 달러. 2026 마이너스 63. 2027: 경로1 마이너스 258, 경로2 약 마이너스 278, 경로3 약 마이너스 312. 2028: 경로1 마이너스 78, 경로2 마이너스 165, 경로3 마이너스 269, 증설 중단 약 플러스 220"></canvas></div><div class="fn">추정. 경로 ②③의 2027 FCF는 차입 차이(+20·+54)에서 근사. 흑자 전환 연도는 예측이 아니라 경영진이 증설을 늦출지의 선택 변수입니다.</div></div>
+
+<p>애널리스트(2차)와의 차이를 적어 둡니다. JPM은 2026~2030 5년 누적 FCF −$300B·2031 전환, GS는 FCF 플러스 4Q30·2026~2030 부채 약 $270B, MS는 FCF 플러스 2035 이전 없음·2027~2034 연 $84B 외부조달입니다. 이 모델은 3년에 −$395B로 적자 폭이 더 크고 전환은 더 빠른 그림입니다. 차이는 ① JPM이 2027 capex를 $300B(모델 $372B)로 보고, ② 2028~2030 증설을 모델보다 느리게 보며(2028말 19.8GW는 모델의 2028 증설 0.5× 경로에 가까움, 단 JPM 귀속 불명확), ③ 2031 전환은 "증설이 영업CF 아래로 내려오는 해"를 2031로 잡았기 때문입니다. 모델에서 그 전환은 증설 속도를 2027 수준의 절반으로 낮추는 순간 옵니다. 2028일 수도 2031일 수도 있고, 결국 흑자 전환 연도는 예측이 아니라 경영진의 선택 변수입니다. 마진 민감도도 같은 크기입니다. SI 마진 55%면 2027 추가 차입 +$19B·2028 FCF −$104B(전환 2029 이후), 70%면 −$8B·2028 −$24B(3Q28 분기 플러스). 마진 10%p가 연 $20B 차입 차이입니다. <span class="src">[2차: JPM·GS·MS(Axios·TechFlow·itiger 재인용)] 추정</span></p>
+<div class="callout insight"><div class="t">읽는 법</div><p>"회수기간 1년 미만"(CFO)은 개별 GW 단위로는 맞을 수 있습니다(03절 검산 1.0년). 그러나 회사 전체가 자가 조달로 전환하는 것은 증설을 늦추는 결정을 할 때이고, 20GW를 노리는 한 그 시점은 오지 않습니다. 투자자가 볼 지표는 "언제 흑자인가"가 아니라 "분기 capex가 분기 영업CF의 몇 배인가"이며, 3Q26은 2.0배(19.6/9.6), 4Q26 가이던스는 약 3.5~4배, 13GW 기본 2027은 3.3배입니다.</p></div>
+<div class="src">출처: 10-Q 3Q26(SI 영업이익·영업CF·capex), 콜 2Q·3Q(회수기간 발언), 2차: JPM·GS·MS(Axios 2026-07-08, TechFlow, itiger). 시나리오 수치는 추정(B 모델·C 수정).</div>
+</section>
+
+<section class="sec panel reveal" id="s13">
+<h2><span class="num">13</span>ARR $500B~1조 검산 — 13GW 전량을 외부 단가로 쳐야 나오는 숫자</h2>
+<p>머스크는 3Q 콜에서 2027년 말 ARR <span class="n">$500B~1조</span>를 말했습니다. 13GW·외부 50%·$50/W면 외부 임대 ARR은 13 × 0.5 × 50 = <span class="n">$325B</span>입니다. 내부 제품(4Q27 분기 $6.2~8.6B × 4 = $25~34B)과 Connectivity·Space 연환산(3Q26 비SI 매출 $7.0B × 4 ≈ $28B → 2027말 약 $35B 가정)을 더하면 모델 기본의 2027말 연결 ARR은 약 <span class="n">$385~395B</span>, 반올림해 약 $400B입니다. $500B가 되려면 13GW 전량을 <span class="n">$35.8/W</span>로 과금한 셈이어야 하고(내부 50%를 외부 단가로 평가), 외부 임대만으로 만들려면 <span class="n">$72/W</span>가 필요하며, 20GW면 50%·$46/W입니다. $1조는 20GW 전량 $48/W 또는 13GW 전량 $74/W입니다. 즉 <strong>$500B는 "13GW 전부가 외부 단가로 수익화된다"고 볼 때만 나오는 숫자</strong>이고, $1조는 머스크 자신이 "어렵다"고 한 20GW 전력 계획을 전량 수익화하는 경우입니다. 내부 50%는 매출이 아니라 비용 절감이거나 Grok·Cursor 구독 매출로 간접 회수되고, 그 내부 매출은 모델에서 2027말 연환산 $25~34B입니다. 머스크의 ARR은 내부 컴퓨트를 "임대했다면 받았을 금액"으로 평가한 기회비용 ARR이거나, 외부 비중 60% 이상·단가 $70/W대를 가정한 것입니다. <span class="src">[콜 3Q] 검산은 파생</span></p>
+
+<div class="tblwrap"><table class="tbl">
+<tr><th>계산</th><th>결과</th></tr>
+<tr><td class="txt">13GW × 외부 50% × $50/W</td><td><b>$325B</b>(외부 임대 ARR)</td></tr>
+<tr><td class="txt">+ 내부 제품(4Q27 분기 6.2~8.6 × 4) + Connectivity·Space 약 35</td><td><b>약 $385~395B</b> = 모델 기본 연결 ARR</td></tr>
+<tr><td class="txt">13GW 전량을 $50/W로 평가 + 비SI 35</td><td>$685B</td></tr>
+<tr><td class="txt">$500B에 필요한 조건</td><td class="txt">13GW 전량 <b>$35.8/W</b> 또는 외부 50%만 <b>$72/W</b> 또는 20GW × 50% × $46/W</td></tr>
+<tr><td class="txt">$1조에 필요한 조건</td><td class="txt">20GW 전량 <b>$48/W</b> 또는 13GW 전량 $74/W 또는 20GW × 60% × $80/W</td></tr>
+<tr><td class="txt">JPM ARR 약 $400B(2차)</td><td class="txt">13GW 전량 $28/W all-in — 모델 기본과 거의 일치. 머스크 하단을 20% 할인한 숫자</td></tr>
+<tr><td class="txt">컨센 FY27 매출 $177.3B(야후 10/24, n=35)</td><td class="txt">모델 13GW 기본 2027 연결 매출 ≈ SI 162 + 비SI 약 30 = <b>$192B</b>보다 낮음. 10GW 하단(SI 약 143 + 30 = $173B)에 가까움 → 컨센은 10GW 이하 경로·$40/W대</td></tr>
+<tr><td class="txt">MS 가격 경로 $17/W(4Q27)</td><td class="txt">13GW × 50% × $17 = 외부 ARR $111B. 머스크 하단의 1/4.5</td></tr>
+<tr><td colspan="2" class="note">추정. 외부 ARR = 연말 네임플레이트 × 외부 비중 × W당 연 단가.</td></tr>
+</table></div>
+
+<div class="chart"><div class="cap">2027 매출·ARR 자리 — 컨센 $177B에서 머스크 상단 $1조까지 5.6배 차이</div><div class="lg"><span><i style="background:var(--muted)"></i>컨센·애널리스트(2차)</span><span><i style="background:var(--blue)"></i>모델(추정)</span><span><i style="background:var(--rose)"></i>머스크 목표</span></div><div class="box tall"><canvas id="c_arr" role="img" aria-label="가로 막대 십억 달러. 컨센 FY27 매출 177, MS 경로 외부 ARR 111, 모델 외부 ARR 325, 모델 연결 ARR 약 390, JPM ARR 400, 머스크 하단 500, 머스크 상단 1000"></canvas></div><div class="fn">컨센은 2027 연간 매출, 나머지는 2027년 말 ARR(월매출×12)이라 정의가 다름 — 자릿수 비교용.</div></div>
+
+<p>검증 가능한 부분을 분리합니다. "W당 가치가 시간이 갈수록 오른다"가 맞으면 $50 → $55~60/W 상향은 가능하지만, 외부 임대만으로 $500B에 닿는 $72/W는 2026년 10월 GB300 온디맨드 최저가(W당 약 $48, 2차) 대비 50% 높습니다. 스팟이 그만큼 오르려면 2027년에도 컴퓨트 공급이 수요에 못 미쳐야 하며, 이것이 외부 임대 ARR의 진짜 전제입니다. 05절에서 본 H100 추이(신품 대비 −62%)와 MS의 $17/W 경로는 반대 방향의 선례입니다. Customer B 3Q 초과분(갱신가 인상 가설)이 단기 갱신가 상승의 간접 증거일 수는 있지만, 머스크의 "H100이 신품보다 높다"는 틀린 주장이었습니다. 연결 ARR $400B 안팎(모델 기본·JPM)과 $500B 사이의 차이는 "내부 컴퓨트를 어떻게 평가하느냐"의 차이이고, $500B와 $1조 사이의 차이는 "13GW냐 20GW냐"의 차이입니다. <span class="src">[2차: GetDeploying·MS·JPM] 추정</span></p>
+<div class="src">출처: 콜 3Q(ARR 발언·13GW·20GW), 2차: JPM(ARR $400B·2027 매출 $254B), MS($17/W), 야후 컨센서스(10/24), GetDeploying(GB300 최저가). 검산은 파생(B 5절·C 재검산).</div>
+</section>
+
+<section class="sec panel reveal" id="s14">
+<h2><span class="num">14</span>토론 ② — 백로그 역산·담보 여력·단기 계약과 레버리지의 모순</h2>
+<p>B(얼마나)가 A(왜)의 계약·부채 해석에 던진 반박 세 개와 C의 판정입니다. 쟁점 4는 본문 04절의 백로그 분해를, 쟁점 5는 09절의 담보 제한을, 쟁점 6은 03·05절의 단가·단기 전략 판정을 각각 결정했습니다.</p>
+
+<h3>쟁점 4 — "가이던스 내재 외부 계약 규모를 백로그로 역산하라 — $42.2B ≈ 4건×12개월이면 추가 계약은 없다"</h3>
+<div class="debate">
+<div class="ag b"><div class="who">B → A · 반박</div><p>1Q27 가이던스가 내재하는 분기 $7~10B(연 $30~40B, 약 0.6~0.8GW)의 계약이 이미 체결됐는데 미공시인지, 램프 없이 전액 인식되는 회계인지, 내부 매출 폭증 가정인지를 10-Q 수익인식 문구와 백로그 1년 내 67%($42.2B)로 역산해 달라. 백로그 $42.2B ≈ 4건 월 $3.43B × 12개월 = $41.2B라면 추가 계약은 9월 말 기준 없다는 뜻이다.</p></div>
+<div class="ag a"><div class="who">A · 답</div><p>백로그는 해지불능 기간만 포함한다. 명목기간이면 Anthropic·구글만 $70B로 총백로그를 넘는다. 12개월 기준은 어느 회계 개념에도 없고, 1년 내 $42.2B에는 Space·Connectivity 1년 내 인식분이 들어 있다.</p></div>
+<div class="ag b"><div class="who">B · 재반박</div><p>그렇다면 1년 내 구간이 56%→67%로 뛴 이유가 클라우드가 아니란 말인가? 클라우드 백로그가 $16B라면 1년 내 $42B 중 $26B가 우주·통신인데 한 분기에 $12B가 늘 수 있나?</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>A 채택, B의 반문은 유효한 미해결 과제로 남긴다. 2Q 릴리스의 "$14.1B 계약매출 = 비해지 기간"(2차 보도)이 A의 해석을 뒷받침한다. 9/30 클라우드 백로그 $14~17B(1년 내의 33~40%). 비클라우드 1년 내 +$12B는 10-Q에 설명이 없다(정부·스타링크 선수금 가능) → 남는 불확실성에 기록. B의 "추가 계약 없음" 문장은 삭제. 대신 "9/30 백로그에는 4번째 계약 $6.7B가 들어 있으나 그 밖의 미공개 계약은 식별되지 않는다"로 쓴다. 단 A의 정합성 검사에도 사실 오류가 있었다 — 구글 계약은 8월이 아니라 2026-06-05 공시로 2Q 체결이며, 6/30 클라우드 백로그는 $4.6B가 아니라 $12.5B다.</p></div>
+</div>
+
+<h3>쟁점 5 — "담보제한 7.5%($19B)·세일앤리스백 $12.9B·칩 담보 트랜치의 관계, 무담보 IG로 연 $160B가 소화되나"</h3>
+<div class="debate">
+<div class="ag b"><div class="who">B → A · 반박</div><p>내 결론은 "2027에 추가 $160~200B가 필요하고 상당 부분이 담보부"인데, 담보제한 때문에 무담보 IG로만 가야 한다면 연 $160B 발행이 시장에서 소화되나? 반대로 세일앤리스백이 '실패한 세일앤리스백'(금융부채)으로 회계 처리되는 구조라면 리엔 제한을 우회하는 것인지, 그 상한은 얼마인지.</p></div>
+<div class="ag a"><div class="who">A · 답</div><p>단기 계약은 계약담보 금융(CoreWeave식 DDTL)을 불가능하게 하므로 IG 무담보 + 장비 세일앤리스백에 의존한다. 칩 담보 트랜치 보도는 무담보에서 자산담보로 이동하는 신호다. 리엔 한도 $19B 안에서 담보부는 제한된다.</p></div>
+<div class="ag b"><div class="who">B · 재반박</div><p>그러면 $40B 중 칩 담보 트랜치만으로도 한도에 걸릴 수 있다. '실패한 세일앤리스백'은 소유권 이전이라 리엔이 아니지 않나? 그 상한은?</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>10-Q·도시에로는 답할 수 없다 — 인덴처(2026-06 노트 발행 8-K 부속서) 확인 필요. 통상 IG 인덴처는 구매자금 담보·장비금융·세일앤리스백에 별도 바스켓과 예외를 두므로 칩 담보 트랜치가 "구매자금 담보"로 분류되면 7.5% 한도 밖일 수 있다. 결론은 "담보 여력은 공개 자료로 확정 불가, 2027 조달의 핵심 실사 항목"으로 양쪽 모두 반영. 발행 소화는 2026 미국 IG 발행 총량(약 $1.5~2조, 2차 통념) 대비 연 $160B면 약 10%로 전례 없음 — B 서술 유지.</p></div>
+</div>
+
+<h3>쟁점 6 — "90일 해지 계약과 레버리지의 모순 — 단기 계약은 '선택'인가 '고객이 장기 커밋을 안 해준 결과'인가, 장기 계약이면 단가는 얼마인가"</h3>
+<div class="debate">
+<div class="ag b"><div class="who">B → A · 반박</div><p>내 모델의 EBITDA $133B는 전부 6개월 커밋·90일 해지 가능한 매출에서 나온다. 신용평가사가 "장기 take-or-pay 없는 EBITDA"에 하이퍼스케일러 수준 레버리지를 허용할 근거가 있는가? 머스크 논리가 틀리면(2027 하반기 공급 과잉) 2026-12 월 $3.43B 매출이 6개월 뒤 사라질 수 있는 구조다. 단기 계약이 선택인지 결과인지, 장기 계약이면 $50/W가 얼마로 떨어질지 — 그 숫자가 내 매출 하단($30~40/W)의 현실성을 결정한다.</p></div>
+<div class="ag a"><div class="who">A · 답</div><p>공급자 선택이다(CFO "자사 제품 확신", 머스크 "W당 가치 상승 베팅"). 장기 예약가는 GB300 60개월 최저 $3.13/h ≈ $14/W(2차)로 스팟 하단($50/W)의 1/3.6. 즉 스페이스X는 구속을 포기한 대가로 3배 이상의 단가를 받는다.</p></div>
+<div class="ag b"><div class="who">B · 재반박</div><p>고객 쪽(구글 "브리지 용량", Anthropic의 Amazon 1,037MW 자체 용량)도 단기를 원했다. 양측 선택이면 2027 하반기 공급 과잉 시 먼저 잘리는 구조라는 A 자신의 논리가 더 강해진다. 그러면 하단 $30~40/W는 낙관이 아닌가?</p></div>
+<div class="ag c"><div class="who">검증 C · 판정</div><p>"양측 선택"으로 정리. 구글이 공식적으로 "단기 브리지 용량"이라 밝혔으므로(2차) 고객 측 동기도 명시. 하단은 MS의 $17/W(4Q27)를 채택해 B의 매트릭스에 $20/W 열을 추가한다. 장기 계약 전환 시 단가는 $14~25/W(예약가~CoreWeave식 추정)로 쓰되 2차·추정 표기.</p></div>
+</div>
+<div class="callout insight"><div class="t">토론이 바꾼 것</div><p>여섯 쟁점 가운데 산술 오류는 없었고 전제가 틀린 곳만 고쳐졌습니다. 구글 체결 시점(8월 → 6/5), 2Q 콜 $6.7B의 귀속(구글+Reflection → 4번째 고객), 3Q 매출 분해(외부 5.03/4.2 → 5.8~6.3), 내부 매출 기저(4.5 → 3.0), 사이트 중복(2.71 → 2.3~2.7)입니다. 그 결과 13GW 기본의 2027 차입은 $164B → $172~175B, 2028 FCF는 −$48B → −$68~78B로 나빠졌고, 가격 경로 세 개와 $20/W 열이 추가됐습니다.</p></div>
+<div class="src">근거: 에이전트B_얼마나.md "A에게 보내는 반박·질문 3개", 에이전트A_왜.md 답변, 에이전트C_검증.md 3절(쟁점 4~6)·2-1·2-5.</div>
+</section>
+
+<section class="sec panel reveal" id="s15">
+<h2><span class="num">15</span>결론과 체크포인트</h2>
+<p class="lead">스페이스X의 연산 사업은 "단기 계약으로 스팟 하단가를 받고, 기업 신용으로 빌려, 하이퍼스케일러 규모로 짓는" 구조입니다. 세 요소는 서로를 전제합니다. 단기 계약은 IG 신용이 있어야 가능하고(계약 담보가 없으므로), IG 신용은 레버리지가 통제될 때 유지되며, 레버리지는 단기 계약 매출이 6개월마다 재가격되지 않을 때만 안전합니다. 2026년 4분기는 이 셋이 처음으로 동시에 시험받는 분기입니다. 설치 속도는 월 0.1GW에서 0.4GW로 3~4배 점프해야 하고, capex는 분기 $20B에서 $35~40B로 뛰며, 외부 매출은 $9.5B를 넘어야 1Q27 가이던스가 설명되고, $40B 차입의 최종 금리·담보가 결정됩니다.</p>
+
+<h3>사용자 질문 7개 — 최종 답</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>질문</th><th>최종 답</th><th>확인된 것 / 추정인 것</th></tr>
+<tr><td class="txt">① 단기 계약 단가</td><td class="txt">GB300 기준 W당 연 <b>약 $50</b>(구글 $50.2·GPU-시간 $11.46), Anthropic 구형 혼합 $30~43·$5.27/h. 온디맨드 중앙값의 63%, 최저가 수준, 60개월 예약가의 3.6배. 회수 1.0년(GW당 $35B·70% 마진·전량 임대)</td><td class="txt">월 수수료·GPU 수는 1차. kW·시장가는 가정·2차</td></tr>
+<tr><td class="txt">② 단기 계약 비중</td><td class="txt">외부 클라우드 매출의 <b>사실상 100%</b>가 3개월+90일 ≈ 6개월 커밋. 백로그 $63.0B 중 클라우드는 비해지 기간만 약 $16.4B(14~17), 1년 내 $42.2B의 33~40%. 외부 계약 0.82~0.91GW = 10월 말 2GW의 41~46%, 연말 2.5~3.0GW의 27~36%</td><td class="txt">계약 구조는 1차(CFO·10-Q). 백로그 분해는 추정</td></tr>
+<tr><td class="txt">③ 자금·부채 우위</td><td class="txt">유동성 $89.9B·순현금 +$51.9B·IG 5.855%·2031까지 원금 상환 없음·3Q 순이자수익 +$198M. CoreWeave 대비 금리 3~9%p 낮지만 본질은 <b>계약 담보 없이 기업 신용으로 빌리는 구조</b>. 금리 효과는 GW당 연 $1.2B(단가의 2.4%)로 2차 변수, 13GW면 $15.6B로 1차 변수</td><td class="txt">1차(10-Q). 동종업체는 2차 혼재</td></tr>
+<tr><td class="txt">④ 현금 유입 시점</td><td class="txt">월 후불·가동 다음 달 수금(매출채권 27.7% = Anthropic 1개월). 월 외부 매출 10월 $2.32B → 12월 $3.43B. 분기 외부 매출 <b>4Q26 $8.1~9.1B, 1Q27 $10.3B</b>(+Customer B 1.3). 1Q27 가이던스 내재 SI $25~29B와 <b>갭 $10~14B</b> → 외부 과금 1.7~2.0GW 필요</td><td class="txt">수금 구조는 1차. 램프·갭은 추정</td></tr>
+<tr><td class="txt">⑤ 수익화 시점</td><td class="txt">SI GAAP 영업이익 <b>이미 3Q26 +$431M</b>. 자가 조달(분기 영업CF ≥ capex)은 13GW 기본에서 내부 +30%면 4Q28, +20%면 2028 내 없음. 연결 FCF 2027 −$255~258B, 2028 −$68~78B, 2029 전환; 13GW에서 증설 중단 시 2028 플러스. 애널리스트 2차: JPM 2031·GS 4Q30·MS 2035</td><td class="txt">3Q 영업이익은 1차. 나머지 모델 추정</td></tr>
+<tr><td class="txt">⑥ 13~20GW 차입 구조</td><td class="txt">13GW: 2027 추가 차입 <b>$172~175B</b>(2Q27부터 분기 17→76→82), 2027말 총부채 $250~253B, 레버리지 약 1.9배, 이자 약 $19B, 이자보상 6~7배. IG 무담보 + 칩·장비 담보·세일앤리스백 + 벤더·선수금 조합 추정. 20GW: 차입 약 $390~400B·총부채 약 $465~476B·이자보상 약 4배 → <b>지분 조달 없이 불성립</b>. 제약은 커버넌트가 아니라 발행 소화(연 IG 발행의 약 10%)·담보 여력(인덴처 미확인)</td><td class="txt">전부 추정. $40B 금리 7.75~8.3%는 2차·미확정</td></tr>
+<tr><td class="txt">⑦ 진행 중 GW</td><td class="txt">식별 엄격 <b>2.3~2.7GW</b>(13GW의 17~21%), 느슨 3.6~4.0GW(27~31%). 미식별 증분 약 9.0~9.4GW ≈ 콜로서스2급 6곳·시설전력 13GW·터빈 455기(절반 가스 228기). 2026 9~10월 신규 PPA·터빈 발주 공시 없음. 네임플레이트 1.7GW vs Epoch 실가동 약 1.25GW 괴리</td><td class="txt">S-1 클러스터만 1차. 나머지 2차·추정</td></tr>
+</table></div>
+
+<h3>2027년 2월 4Q26 실적에서 확인할 지표 8개</h3>
+<div class="tblwrap"><table class="tbl">
+<tr><th>#</th><th>지표</th><th>기준선</th><th>의미</th></tr>
+<tr><td>1</td><td class="txt">4Q26 외부 컴퓨트 매출(SI 솔루션·인프라 − Cursor − 광고 − Grok 등)</td><td class="txt"><b>$9.5B 초과</b> 여부(공개 기준 하한 8.1~9.1)</td><td class="txt">넘으면 미공개 계약·갱신가 인상 존재 → 1Q27 가이던스 신뢰. 못 넘으면 가이던스는 1Q 신규 계약에 전부 의존</td></tr>
+<tr><td>2</td><td class="txt">네임플레이트 12월 말</td><td class="txt">2.5~3.0GW(월 0.4GW 체제 검증)</td><td class="txt">2.5 미달이면 2027 월 0.85GW는 더 멀어짐</td></tr>
+<tr><td>3</td><td class="txt">4Q26 연결 capex</td><td class="txt">$35~40B</td><td class="txt">GW 증분과 대비해 GW당 비용($30~40B) 범위 재확인</td></tr>
+<tr><td>4</td><td class="txt">신규 외부 계약 공시(고객·월액·구조)</td><td class="txt">0.8~1.1GW 상당(월 $3.3~4.7B)</td><td class="txt">가이던스 갭의 주 설명 후보. 90일 구조 유지인지도</td></tr>
+<tr><td>5</td><td class="txt">Customer B 비중</td><td class="txt">3Q 34.5%($5.03B)</td><td class="txt">외부 매출 증가와 함께 움직이면 H3(4번째=Anthropic) 쪽. 분기 $5B 유지면 H1/H2</td></tr>
+<tr><td>6</td><td class="txt">$40B 차입 최종 조건</td><td class="txt">예상 7.75%(칩 담보)/8.3%</td><td class="txt">담보 유무·금리·트랜치 구성. 리엔 한도 7.5%와의 관계</td></tr>
+<tr><td>7</td><td class="txt">백로그 1년 내 구간</td><td class="txt">9/30 $42.2B(67%)</td><td class="txt">클라우드 비해지 기간이 늘면 신규 계약, 비클라우드만 늘면 3Q +$12B의 재현</td></tr>
+<tr><td>8</td><td class="txt">1Q27 가이던스 유지 여부</td><td class="txt">$33~37B</td><td class="txt">하향이면 외부 과금 1.7~2.0GW 전제가 무너진 것</td></tr>
+</table></div>
+
+<h3>시나리오별 함의</h3>
+<p><strong>8개 중 1·2·4가 맞으면</strong>(외부 매출 $9.5B+, 네임플레이트 2.5+, 신규 계약 공시) 1Q27 가이던스는 설명되고 13GW 경로의 수요 측은 입증됩니다. 남는 질문은 공급 측(9GW 사이트·전력)과 조달(분기 $75~80B)이며, 그때 주가의 변수는 매출이 아니라 2027년 하반기 갱신가입니다. <strong>1·4가 틀리고 2·3이 맞으면</strong> 회사는 짓고 있지만 빌려줄 곳이 공개 4건에 머물러 있다는 뜻이고, 외부 비중 27~36%에서 내부 Grok이 나머지를 써야 합니다. 이 경우 1Q27 가이던스는 하향될 것이고, 모델의 2027 외부 매출 $142B는 $90~110B 쪽으로 내려오며 차입은 $190~220B로 늘어납니다. <strong>6에서 담보부 비중이 크면</strong> 무담보 IG → 자산담보로의 이동이 확인되는 것이고, 09절에서 본 "단기 계약 전략은 IG 신용이 있어야 가능"하다는 한 쌍이 느슨해지기 시작한 것입니다. 어느 경우든 백로그 1년 내 67%는 2027년 하반기 매출을 보증하지 않으므로, 이 회사의 연산 사업은 분기마다 다시 계약되는 사업으로 봐야 합니다.</p>
+<div class="callout good"><div class="t">한 문장</div><p>스페이스X 연산 사업의 2027년은 "13GW를 지을 수 있나"보다 "지은 13GW를 누가 얼마에, 몇 달 단위로 빌리나"의 문제이고, 그 답의 첫 조각은 2027년 2월 4Q26 실적의 외부 컴퓨트 매출 한 줄에 있습니다.</p></div>
+<div class="src">출처: 본문 01~14절 종합. 기준선 수치는 10-Q 3Q26·콜 3Q(1차), 추정·2차는 각 절 표기대로.</div>
+</section>
+
+<section class="sec panel reveal" id="s16">
+<h2><span class="num">16</span>한계와 미확인</h2>
+<p>검증 에이전트 C가 "남는 불확실성"으로 적은 여덟 항목을 그대로 싣습니다. 이 리포트의 결론 중 어느 것이 어느 미확인 사실에 걸려 있는지를 함께 적었습니다.</p>
+<ol>
+<li><strong>비클라우드 1년 내 백로그 +$12B(3Q)의 정체.</strong> 클라우드 백로그를 비해지 기간으로 잡으면 Space·Connectivity 1년 내 백로그가 한 분기에 $14B → $26B로 뜁니다. 정부(Customer A 16.6%)·스타링크 기업 계약 유입으로 설명 가능하지만 10-Q에 분해가 없습니다. 역으로 이 숫자가 비현실적이면 클라우드 백로그가 $16B보다 크다는 뜻(= 미공개 계약 존재)이므로, 4Q 10-Q 백로그 분해가 핵심 확인점입니다. → 04절 백로그 분해, 07절 가이던스 갭.</li>
+<li><strong>Customer B 초과 $1.28B의 원천</strong>(증설/갱신가/4번째 고객 동일성). 10-Q Note 3는 "SI 세그먼트 고객"만 밝힙니다. 4Q에 Customer B 비중이 외부 매출 증가와 함께 움직이는지로 H3를 판별할 수 있습니다. → 08절, Anthropic 의존도 49~69%.</li>
+<li><strong>구글 8~9월 램프 금액.</strong> "감액"만 공시. 3Q 분해의 Grok 등 매출 $0.6B 추정은 이 값에 ±$0.5B 흔들립니다. → 01절 매출 분해, 11절 내부 매출 기저 $3.0B.</li>
+<li><strong>GPU당 kW(특히 Rubin)와 네임플레이트–실가동 괴리</strong>(Epoch 946MW vs 1.7GW, 냉각 350MW). 단가 환산·설치속도·매출 인식 시차 전부에 걸친 1차 변수. GB300 2.0kW가 1.6kW면 구글 단가는 $63/W, 2.4kW면 $42/W. 공개 자료로 해소 불가. → 02·03·10·11절.</li>
+<li><strong>인덴처 담보 바스켓.</strong> 리엔 7.5% 한도의 예외(구매자금·장비금융·세일앤리스백) 범위를 모르면 2027 담보부 조달 여력을 말할 수 없습니다. 2026-06 노트 8-K 부속서 확인 필요. → 09절, 14절 쟁점 5.</li>
+<li><strong>$40B 최종 조건</strong>(10월 마지막 주 가격 결정 예정)과 <strong>2Q 콜 $6.7B의 "10월 램프" vs 9/10 "12/1 시작"의 일정 차이</strong>(같은 계약으로 판정했지만 램프 시작월은 미확정). → 07절 4Q26 외부 매출 8.1~9.1 범위, 09절 프로포마.</li>
+<li><strong>JPM 2027 capex $300B·GW당 $30B·2028말 19.8GW는 단일 2차 출처</strong>(TechFlow). 원 리포트 미확인. 19.8GW와 FCF −$300B는 JPM 귀속 자체가 불명확. → 11·12절 비교.</li>
+<li><strong>2027 가격 경로.</strong> MS $17/W(4Q27)와 회사 "$50 상단 초과·갱신가 상승" 사이의 간극이 2028 FCF를 −$68B에서 −$269B까지 움직입니다. 이 리포트가 답할 수 없는 가장 큰 변수. → 05·11·12·13절.</li>
+</ol>
+<h3>이 리포트가 쓰지 않은 것</h3>
+<p>우주(발사·스타십) 사업과 Connectivity(스타링크)는 분석하지 않았고, 모델에서 Space+Connectivity EBITDA를 분기 $4.0B로 고정했습니다. 스타링크 성장이 더 빠르면 차입 소요가 줄 수 있으나 반영하지 않았습니다. 궤도 컴퓨트는 2027 첫 발사·2028 대량 배치라는 일정만 적고 2027 기여를 0으로 두었습니다. 테슬라와의 결합 검토(특별위원회 구성, 합의 없음)는 자본 구조를 바꿀 수 있는 사건이지만 공개 정보가 없어 다루지 않았습니다. 내부 GPU 렌탈 지수 2종은 내부 리서치용으로만 썼고 본문에서는 "공개 비교 사이트 복수"로 표기했습니다. 모든 시장 GPU 가격·애널리스트 수치·사이트 MW는 2차(원문 미확인)이며, 모델 수치는 전부 추정입니다.</p>
+<details class="fold"><summary>세 에이전트 결론의 약점(자기 평가)</summary>
+<p><strong>A(왜).</strong> ① GPU당 kW 가정이 단가 환산 전체를 좌우한다(H200을 H100과 같은 1.3kW로 둔 것은 Anthropic 환산을 과대할 수 있음). ② 백로그 분해와 월별 수금표는 "공개 4건·램프 비율 가정·해지 없음"에 전부 의존하며, 4Q26 $8.1B·1Q27 $10.3B는 하한. ③ 시장 가격 비교가 전부 2차·지수이고 10만 GPU 도매 가격은 지수에 잡히지 않는다.</p>
+<p><strong>B(얼마나).</strong> ① 매출 시차·램프를 1분기로 단순화했다(3Q26 실제는 공식의 2/3). ② SI 마진 65.5%를 매출 2.4배 성장 구간에 그대로 적용했다. ③ GW당 $35B와 2028 증설 속도가 결론을 좌우하는데 둘 다 근거가 얇고, FCF 전환 시점이 이 한 변수로 1년 이상 움직인다.</p>
+<p><strong>C(검증).</strong> 재검산은 모델·산술에 한정됐고 1차 자료의 재독은 도시에에 의존했다. 웹 재확인은 전부 2차이며, Customer B = Anthropic 귀속은 "강한 추정"으로 확정이 아니다. 사이트 중복 판정(미니하드 = "네 번째")은 DCD 원문 해석이며 회사 확인은 없다.</p>
+</details>
+<div class="src">근거: 에이전트C_검증.md 6절(남는 불확실성 1~8)·4절(웹 재확인), 에이전트A_왜.md 8절, 에이전트B_얼마나.md "약점 3개", 원자료_도시에.md 10절.</div>
+</section>
+
+  </div>
+
+  <aside class="col-data" id="data" aria-label="데이터">
+<div class="data-tabs" role="navigation" aria-label="데이터 탭">
+  <a href="#d-sum">요약</a><a href="#d-pl">손익</a><a href="#d-si">SI</a><a href="#d-gw">GW</a><a href="#d-ct">계약</a><a href="#d-bl">백로그·고객</a><a href="#d-bs">B/S</a><a href="#d-debt">부채</a><a href="#d-cf">현금흐름</a><a href="#d-peer">동종</a><a href="#d-site">사이트</a><a href="#d-model">시나리오</a><a href="#d-mkt">GPU 가격</a><a href="#d-px">주가</a><a href="#d-src">출처</a>
+</div>
+
+<section id="d-sum" class="panel">
+  <h2>요약 숫자 · 한눈에</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>항목</th><th>값</th><th>기준·출처</th></tr>
+    <tr><td>3Q26 연결 매출 / 순이익 / 조정 EBITDA</td><td>$14,575M / $4,404M / $8,809M</td><td class="txt">10-Q 3Q26</td></tr>
+    <tr><td>3Q26 SI 매출 / 영업이익 / 조정 EBITDA</td><td>$7,560M / $431M / $4,953M(65.5%)</td><td class="txt">10-Q Note 18</td></tr>
+    <tr><td>3Q26 SI capex / 연결 capex</td><td>$16,444M / $19,593M</td><td class="txt">10-Q · 연결은 파생</td></tr>
+    <tr><td>네임플레이트 9/30 → 12월 말 → 2027말</td><td>1.7 → 2.5~3.0 → 13GW</td><td class="txt">10-Q · 콜 3Q</td></tr>
+    <tr><td>공개 외부 계약</td><td>4건 · 월 $3.43B · 연 $41.1B</td><td class="txt">S-1 · GS 컨퍼런스 · 2차</td></tr>
+    <tr><td>외부 계약 환산</td><td>W당 약 $50 · 0.82~0.91GW</td><td class="txt">파생</td></tr>
+    <tr><td>백로그 9/30</td><td>$62,959M · 1년 내 67%</td><td class="txt">10-Q Note 3</td></tr>
+    <tr><td>클라우드 백로그(비해지 기간)</td><td>약 $16.4B(14~17)</td><td class="txt">추정(검증 C)</td></tr>
+    <tr><td>Customer B 3Q</td><td>34.5% = $5,028M</td><td class="txt">10-Q · 금액 파생</td></tr>
+    <tr><td>유동성 / 총차입 / 순현금</td><td>$89,855M / $38,006M / +$51.9B</td><td class="txt">10-Q</td></tr>
+    <tr><td>4Q26 capex 가이던스 / 1Q27 매출 가이던스</td><td>$35~40B / $33~37B</td><td class="txt">콜 3Q</td></tr>
+    <tr><td>신규 $40B 예상 금리</td><td>7.75%(칩 담보) / 8.3%(최저등급)</td><td class="txt">2차 Semafor 10/22 · 미확정</td></tr>
+    <tr><td>13GW 기본 2027 capex / 추가 차입 / 총부채</td><td>$372B / $172~175B / $250~253B</td><td class="txt">추정(모델 수정본)</td></tr>
+    <tr><td>주가 10/23 / 시총 / 목표가 평균</td><td>$147.49 / $2.00조 / $257</td><td class="txt">야후 10/24</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26, 콜 3Q, S-1/A, GS 컨퍼런스, 야후 파이낸스(10/24), Semafor(10/22, 2차). 추정은 에이전트 B·C.</div>
+</section>
+
+<section id="d-pl" class="panel">
+  <h2>연결 손익 · 3Q·9M·2Q·1Q</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>$M</th><th>3Q26</th><th>3Q25</th><th>9M26</th><th>9M25</th><th>2Q26</th><th>1Q26[파생]</th></tr>
+    <tr><td>매출</td><td>14,575</td><td>5,576</td><td>27,083</td><td>13,714</td><td>7,814</td><td>4,694</td></tr>
+    <tr><td>매출원가</td><td>5,478</td><td>2,705</td><td>11,361</td><td>6,949</td><td>—</td><td>—</td></tr>
+    <tr><td>R&amp;D</td><td>4,596</td><td>2,291</td><td>11,658</td><td>5,806</td><td>—</td><td>—</td></tr>
+    <tr><td>SG&amp;A</td><td>1,707</td><td>575</td><td>3,365</td><td>1,674</td><td>—</td><td>—</td></tr>
+    <tr><td>영업이익</td><td>2,791</td><td>(273)</td><td>705</td><td>(1,216)</td><td>—</td><td>—</td></tr>
+    <tr><td>이자비용</td><td>(675)</td><td>(514)</td><td>(1,968)</td><td>(1,372)</td><td>—</td><td>—</td></tr>
+    <tr><td>이자수익</td><td>873</td><td>155</td><td>1,426</td><td>370</td><td>—</td><td>—</td></tr>
+    <tr><td>기타손익</td><td>1,025</td><td>140</td><td>(937)</td><td>342</td><td>—</td><td>—</td></tr>
+    <tr><td>법인세(환입)</td><td>(390)</td><td>562</td><td>(361)</td><td>714</td><td>—</td><td>—</td></tr>
+    <tr class="hl"><td>순이익</td><td>4,404</td><td>(1,054)</td><td>(413)</td><td>(2,590)</td><td>(541)</td><td>≈(4,276)</td></tr>
+    <tr><td>조정 EBITDA</td><td>8,809</td><td>2,169</td><td>13,474</td><td>5,113</td><td>≈3,500</td><td>≈1,165</td></tr>
+    <tr><td colspan="7" class="note">3Q 조정 EBITDA 가산: D&amp;A 3,644, 주식보상 1,146 + 인수 관련 1,217. 3Q 비영업: 이자수익 873, 기타 1,025(보링컴퍼니 평가익 561), 세금 환입 390. 1Q26 = 9M − 3Q − 2Q. 6M26 순손실 (4,817) → 1Q26 ≈ (4,276).</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26 연결 손익계산서·비GAAP 조정표, 10-Q 2Q26, 콜 2Q(2Q 조정 EBITDA $3.5B).</div>
+</section>
+
+<section id="d-si" class="panel">
+  <h2>SI 세그먼트 · 분기</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>$M</th><th>3Q26</th><th>3Q25</th><th>2Q26</th><th>1Q26</th><th>9M26</th><th>9M25</th></tr>
+    <tr><td>매출</td><td><b>7,560</b></td><td>813</td><td>≈2,550~2,600</td><td>≈800~850</td><td>10,939</td><td>2,278</td></tr>
+    <tr><td>매출원가</td><td>2,675</td><td>571</td><td>—</td><td>—</td><td>4,237</td><td>1,574</td></tr>
+    <tr><td>R&amp;D</td><td>3,183</td><td>1,301</td><td>—</td><td>—</td><td>7,740</td><td>3,331</td></tr>
+    <tr><td>SG&amp;A</td><td>1,268</td><td>385</td><td>—</td><td>—</td><td>2,263</td><td>1,083</td></tr>
+    <tr class="hl"><td>영업이익</td><td>431</td><td>(1,722)</td><td>(1,257)</td><td>(2,469)</td><td>(3,295)</td><td>(4,182)</td></tr>
+    <tr><td>D&amp;A</td><td>2,473</td><td>922</td><td>—</td><td>—</td><td>5,851</td><td>2,506</td></tr>
+    <tr><td>주식보상 일반 / 인수(Cursor)</td><td>821 / 1,217</td><td>94 / —</td><td>—</td><td>—</td><td>1,715 / 1,217</td><td>391 / —</td></tr>
+    <tr><td>조정 EBITDA</td><td><b>4,953</b></td><td>(428)</td><td>≈1,100</td><td>(609)</td><td>5,490</td><td>(813)</td></tr>
+    <tr><td>capex</td><td><b>16,444</b></td><td>4,760</td><td>≈15,800</td><td>≈7,750</td><td>39,995</td><td>8,077</td></tr>
+  </table></div>
+  <h3>3Q26 매출 구성(콜 + 추정)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>구성</th><th>$M</th><th>성격</th></tr>
+    <tr><td>SI 솔루션·인프라(Cursor 포함)</td><td>≈7,000</td><td class="txt">콜 3Q</td></tr>
+    <tr><td>└ Cursor(8/14~)</td><td>608</td><td class="txt">콜 3Q</td></tr>
+    <tr><td>└ 외부 클라우드</td><td>5,800~6,300</td><td class="txt">추정: Anthropic 5,028 + Reflection 450 + 구글 램프 300~800</td></tr>
+    <tr><td>└ Grok 구독·API·데이터 등</td><td>≈600</td><td class="txt">추정(잔여)</td></tr>
+    <tr><td>광고(X)</td><td>≈500~600</td><td class="txt">콜 3Q(+19% YoY)</td></tr>
+    <tr><td colspan="3" class="note">연간(S-1): AI 세그먼트 영업손실 2023 (3,973) → 2024 (1,561) → 2025 (6,355); 조정 EBITDA 2023 1,222 / 2024 347 / 2025 (1,237); 2025 AI 매출 $3.2B(2차: Fortune). 세그먼트 자산은 비공시.</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26 Note 18·MD&amp;A, 10-Q 2Q26, S-1/A, 콜 2Q·3Q. 분해는 추정(검증 C 판정값).</div>
+</section>
+
+<section id="d-gw" class="panel">
+  <h2>네임플레이트 컴퓨트 · GW</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>시점</th><th>GW</th><th>출처</th></tr>
+    <tr><td>2024-12</td><td>0.3</td><td class="txt">S-1</td></tr>
+    <tr><td>2025-03</td><td>0.3</td><td class="txt">S-1</td></tr>
+    <tr><td>2025-06</td><td>0.4</td><td class="txt">10-Q 2Q26</td></tr>
+    <tr><td>2025-09</td><td>0.6</td><td class="txt">10-Q 3Q26</td></tr>
+    <tr><td>2025-12</td><td>0.8</td><td class="txt">S-1</td></tr>
+    <tr><td>2026-03</td><td>1.0</td><td class="txt">S-1</td></tr>
+    <tr><td>2026-06</td><td>1.4</td><td class="txt">10-Q 2Q26</td></tr>
+    <tr class="hl"><td>2026-09</td><td>1.7</td><td class="txt">10-Q 3Q26</td></tr>
+    <tr><td>2026-10말</td><td>≈2.0 / 2.2</td><td class="txt">CFO / JPM(2차)</td></tr>
+    <tr><td>2026-12말</td><td>2.5~3.0</td><td class="txt">콜 3Q 가이던스</td></tr>
+    <tr><td>2027-12말</td><td>13 / 10 / 4.9</td><td class="txt">머스크 / JPM / MS(2차)</td></tr>
+    <tr><td>2028-12말</td><td>19.8</td><td class="txt">2차 TechFlow, JPM 귀속 불명확</td></tr>
+    <tr><td>전력·냉각 계획</td><td>증분 20(총 약 23)</td><td class="txt">콜 3Q</td></tr>
+  </table></div>
+  <h3>GPU당 올인 전력 역산(S-1)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>클러스터</th><th>GPU</th><th>MW</th><th>kW/GPU</th><th>구축 기간</th></tr>
+    <tr><td>콜로서스1 1차 H100</td><td>100,000</td><td>130</td><td>1.3</td><td class="txt">2024-07~09</td></tr>
+    <tr><td>콜로서스2 1차 GB200</td><td>110,000</td><td>210</td><td>1.9</td><td class="txt">91일</td></tr>
+    <tr><td>콜로서스2 2차 GB300</td><td>110,000</td><td>220</td><td>2.0</td><td class="txt">64일</td></tr>
+    <tr><td>콜로서스2 다음 단계 GB300(=미니하드)</td><td>220,000+</td><td>400+</td><td>≈1.8~2.0</td><td class="txt">건설 중</td></tr>
+    <tr><td colspan="5" class="note">설치속도: 월 200~220k GB300 × 2.0kW = 0.40~0.44GW/월. 2Q27말 Vera Rubin 440k 훈련 클러스터(콜 3Q). capex 대 GW: 2025 9M $8.1B/+0.3GW, 2026 9M $40.0B/+0.9GW.</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26(KPI 정의·1.7GW), 10-Q 2Q26, S-1/A, 콜 2Q·3Q, 2차: JPM·MS·TechFlow.</div>
+</section>
+
+<section id="d-ct" class="panel">
+  <h2>외부 컴퓨트 계약 4건 · 원표</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>고객</th><th>월 수수료</th><th>연환산</th><th>시작</th><th>명목 종료</th><th>규모</th><th>해지</th><th>출처</th></tr>
+    <tr><td>Anthropic</td><td>$1.25B</td><td>$15.0B</td><td class="txt">2026-05/06 램프(감액), 7월 전액</td><td class="txt">2029-05</td><td class="txt">약 325,000 GPU(콜로서스1 전체 + 콜로서스2 일부; H100/H200/GB200 혼합)</td><td class="txt">최초 3개월 후 양측 90일 통지</td><td class="txt">S-1/A</td></tr>
+    <tr><td>Google Cloud</td><td>$920M</td><td>$11.04B</td><td class="txt">2026-10 전액(9월까지 감액 램프), 공시 2026-06-05</td><td class="txt">2029-06</td><td class="txt">약 110,000 GPU + CPU·메모리</td><td class="txt">2026-12-31 이후 양측 90일 통지. 110k 미달 시 구글 해지·감액 가능</td><td class="txt">2차: TechCrunch(8-K 인용)·Reuters</td></tr>
+    <tr><td>Reflection AI</td><td>$150M</td><td>$1.8B</td><td class="txt">2026-07-01(체결 6/22)</td><td class="txt">~2029(총 최대 $6.3B)</td><td class="txt">GB300, 콜로서스2</td><td class="txt">최초 3개월 후 90일</td><td class="txt">2차: CNBC·DCD·Axios</td></tr>
+    <tr><td>미공개 AI 고객(호스팅)</td><td>$1.11B</td><td>$13.3B</td><td class="txt">2026-12-01 전액(2Q 콜 "10월 램프"), 체결 7월, 공개 9/10</td><td class="txt">—</td><td class="txt">—</td><td class="txt">같은 90일 구조(CFO), 6개월 커밋 $6.7B</td><td class="txt">GS 컨퍼런스 · 콜 2Q · 2차: DCD·Pulse2</td></tr>
+    <tr class="sum"><td>합계</td><td>$3.43B</td><td>$41.1B</td><td colspan="5" class="txt">CFO 발언 합계와 일치. 국방부 계약(2026-07 WSJ "수십억 달러 협상 중")은 체결 미확인·10-Q 미기재</td></tr>
+  </table></div>
+  <h3>회계·구조</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>항목</th><th>내용</th><th>출처</th></tr>
+    <tr><td>수익인식</td><td class="txt">고정 월 서비스 수수료, 예약 용량 stand-ready 단일 이행의무, 램프 기간 단계적, 그 뒤 정액. 계약기간 통상 3년, 양측 90일 통지 해지</td><td class="txt">10-Q 3Q26 MD&amp;A</td></tr>
+    <tr><td>CFO 9/10</td><td class="txt">"거의 모든 계약이 90일+90일 ≈ 6개월 커밋. 9월 신규 계약도 같은 구조. 자사 제품 확신이 커서 컴퓨트를 영원히 넘기고 싶지 않다"</td><td class="txt">GS 컨퍼런스</td></tr>
+    <tr><td>단가 지표</td><td class="txt">머스크 2Q "W당 $30~50"; CFO 3Q "현재 $30~50 상단 약간 상회, 회수 1년 미만"; JPM "W당 $50 초과"(2차)</td><td class="txt">콜 2Q·3Q · 2차</td></tr>
+    <tr><td>내부:외부 배분</td><td class="txt">약 50:50 목표, 60:40 양방향 변동, 매월 바뀜</td><td class="txt">콜 3Q</td></tr>
+    <tr><td>2Q 릴리스</td><td class="txt">2Q 체결 클라우드 계약 $14.1B 계약매출(비해지 기간 기준; Anthropic·구글·Reflection) → 2Q AI 인프라 증분 매출 $1.6B</td><td class="txt">2차: 릴리스 원문·Motley Fool</td></tr>
+  </table></div>
+  <div class="src">출처: S-1/A, 10-Q 3Q26, GS 컨퍼런스(2026-09-10), 콜 2Q·3Q, 2차: TechCrunch·Reuters·CNBC·DCD·Axios·Pulse2·Motley Fool·Interesting Engineering(구글 6/5).</div>
+</section>
+
+<section id="d-bl" class="panel">
+  <h2>백로그 · 고객 집중 · 매출채권</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>$M</th><th>2026-06-30</th><th>2026-09-30</th></tr>
+    <tr><td>백로그 총액</td><td>47,461</td><td><b>62,959</b></td></tr>
+    <tr><td>└ 1년 내</td><td>56% (26,578)</td><td><b>67% (42,183)</b></td></tr>
+    <tr><td>└ 1~3년</td><td>34% (16,137)</td><td>27% (16,999)</td></tr>
+    <tr><td>└ 3년 초과</td><td>10% (4,746)</td><td>6% (3,778)</td></tr>
+    <tr><td>이연수익(백로그 포함분)</td><td>—</td><td>17,520</td></tr>
+    <tr><td>클라우드 몫(비해지 기간, 추정)</td><td>≈12,500</td><td>≈16,400 (14,000~17,000)</td></tr>
+    <tr><td colspan="3" class="note">정의: 집행가능 계약의 거래가격 중 미이행분, 변동대가·옵션 제외. 클라우드 9/30 = Anthropic 90일 3,750 + 구글 ~2027-03 5,520 + Reflection 90일 450 + 4번째 6개월 6,660. 비교: CoreWeave RPO $103.7B(take-or-pay, 2028까지 41%), Oracle RPO $664B(12개월 내 13%) — 2차.</td></tr>
+  </table></div>
+  <h3>고객 집중(10-Q Note 3)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>고객</th><th>2Q26</th><th>3Q26</th><th>9M26</th><th>금액 3Q($M, 파생)</th></tr>
+    <tr><td>Customer A(3세그먼트, 미국 정부 추정)</td><td>—</td><td>16.6%</td><td>—</td><td>≈2,419</td></tr>
+    <tr class="hl"><td>Customer B(SI 세그먼트 단일 고객)</td><td>19.5% (1,524)</td><td><b>34.5%</b></td><td>24.2% (6,554)</td><td><b>5,028</b></td></tr>
+    <tr><td>매출채권 1개 고객</td><td>—</td><td>27.7%</td><td>—</td><td>≈1,322(≈Anthropic 1개월)</td></tr>
+    <tr><td colspan="5" class="note">매출채권 4,772(12/25 1,579). 이연수익 유동 10,784(6,111)·비유동 6,736(6,005), "주로 Space·Connectivity 선수금". 영업CF 이연수익 증가 +4,518은 Space·Connectivity.</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26 Note 3(백로그·고객 집중·매출채권), 10-Q 2Q26. 클라우드 몫·금액은 추정(검증 C).</div>
+</section>
+
+<section id="d-bs" class="panel">
+  <h2>대차대조표 · 2026-09-30</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>$M</th><th>2026-09-30</th><th>2025-12-31</th></tr>
+    <tr><td>현금성자산</td><td>51,294</td><td>24,747</td></tr>
+    <tr><td>단기 시장성증권</td><td>38,561</td><td>0</td></tr>
+    <tr class="hl"><td>유동성 합계</td><td><b>89,855</b></td><td>24,747</td></tr>
+    <tr><td>매출채권</td><td>4,772</td><td>1,579</td></tr>
+    <tr><td>PP&amp;E(순)</td><td>89,483</td><td>42,602</td></tr>
+    <tr><td>영업권(Cursor 포함)</td><td>48,423</td><td>11,809</td></tr>
+    <tr><td>무형자산</td><td>6,354</td><td>—</td></tr>
+    <tr class="sum"><td>총자산</td><td>254,045</td><td>92,079</td></tr>
+    <tr><td>매입채무</td><td>13,259</td><td>—</td></tr>
+    <tr><td>이연수익(유동+비유동)</td><td>17,520</td><td>12,116</td></tr>
+    <tr><td>부채·금융리스(유동 2,698 + 비유동 36,146)</td><td>38,844</td><td>—</td></tr>
+    <tr class="sum"><td>총부채</td><td>77,277</td><td>—</td></tr>
+    <tr class="sum"><td>자본</td><td>176,768</td><td>—</td></tr>
+    <tr><td colspan="3" class="note">6/30 유동성: 현금 93,522 + 증권 6,487 = 100,009 → 3Q 중 −10,154. PP&amp;E 구성(6/30): 서버·네트워크 34,771(12/25 22,694), 위성 13,788, 기계장치 9,453, DC 인프라 3,991, 발사장 3,118, 건설중자산 12,554. 미인출: 신용시설 5,000(2031-05, SOFR+0.75~1.25%, 레버리지 3.75× 조건), xAI 리볼버 250. 발행주식 13,579M(A 8,240 + B 5,339).</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26 대차대조표·Note, 10-Q 2Q26(PP&amp;E 구성·6/30 유동성).</div>
+</section>
+
+<section id="d-debt" class="panel">
+  <h2>부채 · 만기 · 약정</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>항목</th><th>원금($M)</th><th>금리</th><th>만기·비고</th></tr>
+    <tr><td>SpaceX 노트(선순위 무담보 IG)</td><td>25,000</td><td class="txt">5.35~6.65%, 가중 5.855%(유효 6.072%)</td><td class="txt">2031/2033/2036/2046/2056, 평균 11.7년. 2026-06 발행, 브리지론 $20B 상환. 리엔 한도 총자산 7.5%. 시가 22,932 / 장부 24,855</td></tr>
+    <tr><td>장비담보 + 실패한 세일앤리스백</td><td>12,979</td><td class="txt">가중 고정 6.3%(12/25 5.5%)</td><td class="txt">월 원리금. SI 인프라 세일앤리스백 3건 12,897(유동 2,181 + 비유동 10,716), 관계사</td></tr>
+    <tr><td>X 2027/2030 노트</td><td>27</td><td class="txt">3.875% / 5.0%</td><td class="txt"></td></tr>
+    <tr class="sum"><td>총차입</td><td>38,006</td><td class="txt">가중 ≈6.0% · 연이자 ≈2,280</td><td class="txt">금융리스 983 별도</td></tr>
+  </table></div>
+  <h3>만기 사다리($M)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>2026 잔여</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th><th>이후</th></tr>
+    <tr><td>495</td><td>2,425</td><td>2,867</td><td>3,422</td><td>3,597</td><td>25,200</td></tr>
+  </table></div>
+  <h3>2025년 말 고금리 부채(2026-03 전액 상환)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>항목</th><th>$M</th><th>금리</th><th>연이자(SOFR 4% 가정)</th></tr>
+    <tr><td>X B-1 텀론</td><td>6,504</td><td>SOFR+6.5%</td><td>683</td></tr>
+    <tr><td>X B-3</td><td>5,966</td><td>고정 9.5%</td><td>567</td></tr>
+    <tr><td>xAI 고정 텀론</td><td>995</td><td>12.5%</td><td>124</td></tr>
+    <tr><td>xAI 변동</td><td>995</td><td>SOFR+7.25%</td><td>112</td></tr>
+    <tr><td>xAI 담보 선순위 노트</td><td>3,000</td><td>12.5%</td><td>375</td></tr>
+    <tr class="sum"><td>합계</td><td>17,460</td><td>평균 10.66%</td><td>1,861 → 5.855%면 1,022(절감 839)</td></tr>
+    <tr><td colspan="4" class="note">조기상환 수수료 1,163, 채무소멸손실 1,545(비현금). 기타 4,562도 상환. 수수료 회수 1.4년.</td></tr>
+  </table></div>
+  <h3>비해지 약정(Note 16, $M)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>2026 잔여</th><th>2027</th><th>2028</th><th>2029</th><th>2030</th><th>이후</th><th>합계</th></tr>
+    <tr><td>2,309</td><td><b>25,569</b></td><td>4,637</td><td>2,071</td><td>1,221</td><td>2,033</td><td>37,840</td></tr>
+    <tr><td colspan="7" class="note">내용: SI 인프라 투자, 제3자 클라우드 용량, 서비스 계약, EchoStar 스펙트럼 대금(총 $19.6B, 주식 약 $11.1B + 현금, 2027-11 클로징). 2025말 동표: 2026 2,720 / 2027 21,476 / 2028 1,250. 터빈 구매계약 $805M(2029까지, S-1). 신용장 1,470, 보증보험 470. 신규 $40B(2차, 미확정): Apollo·Goldman 주선, 예상 7.75%(칩 담보)/8.3%(최저등급), FT 보도 구조 은행 $10B + IG $30B.</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26 부채 Note·Note 16, S-1(EchoStar·터빈), 2차: Semafor(10/22)·FT(10/7)·CNBC·Benzinga·Octus(브리지론).</div>
+</section>
+
+<section id="d-cf" class="panel">
+  <h2>현금흐름 · 9M·6M·3Q 파생</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>$M</th><th>9M26</th><th>9M25</th><th>6M26</th><th>3Q26[파생]</th></tr>
+    <tr><td>영업CF</td><td>13,097</td><td>4,120</td><td>3,466</td><td><b>9,631</b></td></tr>
+    <tr><td>PP&amp;E 취득(capex)</td><td>(48,069)</td><td>—</td><td>(28,476)</td><td>(19,593)</td></tr>
+    <tr><td>└ SI capex</td><td>(39,995)</td><td>(8,077)</td><td>≈(23,550)</td><td>(16,444)</td></tr>
+    <tr class="hl"><td>FCF(영업CF − capex)</td><td>(34,972)</td><td>—</td><td>(25,010)</td><td><b>(9,962)</b></td></tr>
+    <tr><td>시장성증권 순매입</td><td>≈(37,600)</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>투자CF</td><td>(84,611)</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>재무CF</td><td>99,819</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td colspan="5" class="note">영업CF 조정(9M): D&amp;A 8,934, 주식보상 3,833, 채무소멸손실 1,545; 매출채권 (2,882), 이연수익 +4,922, 매입채무 (970). 재무CF: IPO 85,675, 차입 51,834 − 상환 39,845 − 수수료 1,277, 우선주 8,319, 자사주 (4,426). 비현금: 미지급 capex 11,827, 기타 금융 조달 PP&amp;E 3,921, 주식 발행 인수 42,723, 제품 리베이트 +1,372. 2026말 유동성 추정 약 $60~65B(4Q capex 35~40, 영업CF ≈10, $40B 제외).</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26 현금흐름표, 10-Q 2Q26(6M). 3Q 단독은 파생.</div>
+</section>
+
+<section id="d-peer" class="panel">
+  <h2>동종업체 · 부채·현금(기준 시점 다름)</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>회사</th><th>기준</th><th>현금(+단기증권)</th><th>총차입</th><th>조달금리</th><th>영업CF</th><th>capex</th><th>비고</th></tr>
+    <tr class="hl"><td>SpaceX</td><td>26-09</td><td>$89.9B</td><td>$38.0B</td><td class="txt">5.35~6.65% IG / 신규 7.75~8.3%(2차·예상)</td><td>9M 13.1B</td><td>9M 48.1B</td><td class="txt">순현금 +51.9B. 백로그 63B, 90일 해지</td></tr>
+    <tr><td>CoreWeave</td><td>26-06</td><td>5.5B(+제한 1.4B)</td><td>35.6B + 운용리스 16.3B</td><td class="txt">DDTL 9~15%, 노트 9~10%, 전환사채 2%</td><td>6M ≈3.7B</td><td>6M ≈14.9B</td><td class="txt">RPO 103.7B take-or-pay. 시총 $30B</td></tr>
+    <tr><td>Oracle</td><td>26-05 / 08</td><td>31.3B / 38.9B</td><td>129.5B → ≈169B(2차)</td><td class="txt">IG(하향 우려, 2차)</td><td>1Q FY27 23.1B(선수금 11.4B)</td><td>28.5B</td><td class="txt">RPO 664B. ATM 증자 $20B 소진. 시총 $382B</td></tr>
+    <tr><td>Nebius</td><td>25-12</td><td>3.7B</td><td>4.1B</td><td class="txt">전환사채 등</td><td>FY25 0.4B</td><td>FY25 4.2B</td><td class="txt">시총 $43B</td></tr>
+    <tr><td>Meta</td><td>26-09</td><td>11.2B(현금만)</td><td>장기부채 80.9B</td><td class="txt">IG</td><td>3Q 32.8B</td><td>≈31B</td><td class="txt"></td></tr>
+    <tr><td>Alphabet</td><td>26-06</td><td>55.9B(현금만)</td><td>장기부채 98.2B</td><td class="txt">IG</td><td>2Q 39.1B</td><td>2Q 82.4B</td><td class="txt">2026 capex $180B+, $80B 증자(2차)</td></tr>
+    <tr><td>Amazon</td><td>26-06</td><td>78.2B</td><td>장기부채 133.0B</td><td class="txt">IG</td><td>2Q 12.9B</td><td>2Q 39.8B</td><td class="txt"></td></tr>
+    <tr><td colspan="8" class="note">CoreWeave 보조(2차): 신규 $2.6B SOFR+5.5%, $8.5B 건은 6% 미만(Anthropic·Jane Street 계약 담보). 영업CF/capex: SpaceX 0.27, CoreWeave 0.25, Oracle 0.81, Meta ≈1.0, Alphabet 0.47, Amazon 0.32.</td></tr>
+  </table></div>
+  <div class="src">출처: 10-Q 3Q26; 2차: CoreWeave 10-Q 2Q26, Oracle 10-K·10-Q·TIKR, Meta·Alphabet·Amazon 10-Q, TechCrunch(Alphabet 증자), DCD·The Energy Mag·Bloomberg Law(CoreWeave 대출).</div>
+</section>
+
+<section id="d-site" class="panel">
+  <h2>사이트 파이프라인</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>사이트</th><th>상태</th><th>규모</th><th>출처</th></tr>
+    <tr><td>콜로서스1(멤피스 Paul R. Lowry Rd)</td><td class="txt">가동 2024-07~09. H100 100k=130MW → H200/B200 증설. Anthropic 전량</td><td>약 300MW</td><td class="txt">S-1 / 2차</td></tr>
+    <tr><td>콜로서스2(멤피스 5420 Tulane Rd + 사우스헤이븐 전력)</td><td class="txt">GB200 110k=210MW(91일), GB300 110k=220MW(64일). 9월말 GB300 440k, 연말 660k 추가 예정(2차)</td><td>946MW → 1,531MW(완공)</td><td class="txt">S-1 / Epoch(2차)</td></tr>
+    <tr><td>미니하드(5414 Tulane) = DCD "네 번째 멤피스 DC"</td><td class="txt">220k GB300·800G NIC, 4층 312,000ft²·$659M. 400MW+ 전력 확보 불명확. S-1 "다음 단계 220k/400MW+"와 동일 건물</td><td>약 0.44GW(1,531에 포함 추정)</td><td class="txt">2차: DCD·Daily Memphian(7/30)</td></tr>
+    <tr><td>매크로하드rr / 콜로서스3(2400 Stateline Rd W, 사우스헤이븐)</td><td class="txt">2025-12 취득, 전환 중</td><td>약 0.44~0.5GW(2차 추정)</td><td class="txt">2차</td></tr>
+    <tr><td>텍사스 대형 DC(검토)</td><td class="txt">복수 후보지, 결정·착공 아님</td><td>미정</td><td class="txt">2차: DCD(The Information 인용)</td></tr>
+    <tr><td>사우스헤이븐 가스발전소(구 Duke 부지, MZX Tech)</td><td class="txt">임시 69기(2027-07까지 철거) → 영구 1.2GW(41기) 2026-03 허가. 솔라리스/Stateline Power JV 900MW(500→900), 2027초 "1GW 초"</td><td>1.2GW(전력)</td><td class="txt">2차: DCD·MDEQ·솔라리스 공시</td></tr>
+    <tr><td>테라팹(Gibbons Creek, TX)</td><td class="txt">칩 공장(테슬라·인텔 협력) + 슈퍼컴퓨트 클러스터 병설(머스크 "주 4일"). 테스트 칩 2027-05/06, 양산 2028 3Q 목표</td><td>미공시</td><td class="txt">콜 3Q</td></tr>
+    <tr><td>궤도 컴퓨트(AI 위성)</td><td class="txt">2027 첫 발사, 2028 대량 배치. V3 버스·대형 태양전지·Vera Rubin NVL72 최적화</td><td>—</td><td class="txt">GS 컨퍼런스 · 콜 2Q</td></tr>
+    <tr><td colspan="4" class="note">전력 전략(콜 3Q): 터빈 블레이드·베인 자체 주조(납기 12~18개월 단축 주장), 태양광·풍력, 모듈 추론 클러스터, 테슬라 메가팩(9M26 $480M, 관계사). 소송: Darana Hybrid(건설 리엔 약 $569M vs 회사 청구 $500M+), NAACP 클린에어법(임시 터빈 철거 합의). 외부(2차): Epoch — 최대 AI DC는 Anthropic-Amazon New Carlisle 1,037MW, 콜로서스2 946MW 2위; Tom's HW 1월 위성사진 냉각 350MW.</td></tr>
+  </table></div>
+  <div class="src">출처: S-1/A, 콜 2Q·3Q, GS 컨퍼런스, 10-Q 3Q26(소송), 2차: DCD(복수 기사)·Daily Memphian·Epoch·Tom's HW·MDEQ·Mississippi Free Press·NextBigFuture·Engadget.</div>
+</section>
+
+<section id="d-model" class="panel">
+  <h2>시나리오 종합표(2027 · $B)</h2>
+  <div class="fn">GW당 $35B · 외부 50% · $50/W · 마진 65.5% · 내부 4Q26 $3.0B(+20~30%) · $40B 반영. 13GW는 검증 C 수정값, 10GW·20GW는 B 원표(내부 수정 전)에 근사 조정. 전부 추정.</div>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>항목</th><th>하단 10GW</th><th>기본 13GW</th><th>상단 20GW</th></tr>
+    <tr><td>2027말 네임플레이트</td><td>10.0</td><td><b>13.0</b></td><td>20.0</td></tr>
+    <tr><td>2027 월 평균 설치(Rubin 2.5kW)</td><td>0.60GW / 242k</td><td><b>0.85GW / 342k</b></td><td>1.44GW / 575k</td></tr>
+    <tr><td>2027 연결 capex(GW당 30/35/40)</td><td>230 / 267 / 303</td><td><b>320 / 372 / 423</b></td><td>530 / 617 / 703</td></tr>
+    <tr><td>2027 외부 임대 매출</td><td>122</td><td><b>142</b></td><td>183</td></tr>
+    <tr><td>2027 내부 제품 매출</td><td>19~24</td><td><b>19~24</b></td><td>19~24</td></tr>
+    <tr><td>2027 SI 매출 / 연결(비SI 약 30)</td><td>≈143 / 173</td><td><b>162~166 / 192~196</b></td><td>≈204 / 234</td></tr>
+    <tr><td>2027 연결 조정 EBITDA</td><td>≈115</td><td><b>122~125</b></td><td>≈155</td></tr>
+    <tr><td>2027 영업CF</td><td>≈108</td><td><b>114~117</b></td><td>≈143</td></tr>
+    <tr><td>2027 FCF</td><td>≈−160</td><td><b>−255~258</b></td><td>≈−475</td></tr>
+    <tr><td>2027 추가 필요 차입($40B 반영 후)</td><td>≈70~80</td><td><b>172~175</b></td><td>≈387~395</td></tr>
+    <tr><td>2027말 총부채 / 순부채</td><td>≈148 / 128</td><td><b>250~253 / 230~233</b></td><td>≈465 / 445</td></tr>
+    <tr><td>허용 순부채(3.75× 2027 EBITDA)</td><td>≈430</td><td><b>458~469</b></td><td>≈580</td></tr>
+    <tr><td>연 이자 / 이자보상</td><td>≈11 / ≈10×</td><td><b>≈19 / 6~7×</b></td><td>≈37 / 4.4×</td></tr>
+    <tr><td>2027말 외부 ARR / 연결 ARR</td><td>250 / ≈310</td><td><b>325 / ≈385~395</b></td><td>500 / ≈560</td></tr>
+    <tr><td>분기 자가 조달 첫 분기</td><td>3Q28</td><td><b>+30% 4Q28 / +20% 2028 내 없음</b></td><td>2028 내 없음</td></tr>
+    <tr><td>2028 FCF</td><td>≈−20</td><td><b>−68~78</b></td><td>≈−157</td></tr>
+    <tr><td>자금 판단</td><td class="txt">가능(현 $40B + 연 $70~80B)</td><td class="txt"><b>가능하되 2027에 $170~175B 추가, 담보·벤더·선수금 병행 필수</b></td><td class="txt">지분 조달 없이는 불성립</td></tr>
+  </table></div>
+  <h3>가격 경로 3종(13GW 기본)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>경로</th><th>2027 외부 매출</th><th>2027 차입</th><th>2027말 총부채</th><th>외부 ARR</th><th>2028 FCF</th></tr>
+    <tr><td>$50 유지</td><td>142</td><td>175</td><td>253</td><td>325</td><td>−78</td></tr>
+    <tr><td>$50 → 하반기 $35</td><td>113</td><td>195</td><td>273</td><td>228</td><td>−165</td></tr>
+    <tr><td>MS $31 → $17(2차)</td><td>62</td><td>229</td><td>307</td><td>111</td><td>−269</td></tr>
+  </table></div>
+  <h3>핵심 수식</h3>
+  <div class="fn">외부매출(t) = 단가 × 비중 × GW(t−1) ÷ 4 · capex(t) = ΔGW(t) × GW당비용 + 3.2 · 영업CF(t) = EBITDA − 이자 + 이자수익 − 0.5 · 필요차입(t) = max(0, 20 − [유동성(t−1) + 영업CF − capex]) · D&amp;A = 누적 SI capex ÷ 5년. 재현 스크립트: 에이전트 B spcx_model.py(검증 C 실행 일치).</div>
+  <div class="src">출처: 에이전트B_얼마나.md 3절·종합표, 에이전트C_검증.md 5-1·5-2(수정값). 입력은 10-Q 3Q26·콜 3Q, 2차 JPM·MS.</div>
+</section>
+
+<section id="d-mkt" class="panel">
+  <h2>시장 GPU 가격(2차 · 원문 미확인)</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>GPU</th><th>시장 가격(2026-10)</th><th>kW 가정</th><th>W당 연환산</th><th>스페이스X 비교</th></tr>
+    <tr><td>H100 SXM</td><td>$3.35/h 게시가 지수 / $3.02 실거래 지수</td><td>1.3</td><td>$20~23</td><td class="txt">Anthropic 혼합 $5.27/h</td></tr>
+    <tr><td>H200</td><td>$6.2/h 실거래</td><td>1.3</td><td>$42</td><td class="txt">—</td></tr>
+    <tr><td>B200</td><td>$6.96 게시가 / $9.57 실거래(4월 $4.85)</td><td>1.2~1.4</td><td>$44~70</td><td class="txt">—</td></tr>
+    <tr><td>GB200 NVL72</td><td>중앙값 $16, 7개사 평균 $21.5·최저 $10.5</td><td>1.9</td><td>$48~99</td><td class="txt">—</td></tr>
+    <tr class="hl"><td>GB300 NVL72</td><td>중앙값 <b>$18.0</b>(7월 $15.36), 최저 $11.06, 60개월 예약 $3.13</td><td>2.0</td><td>중앙값 <b>$79</b> · 최저 $48 · 예약 <b>$14</b></td><td class="txt">구글·4번째 $11.4~12.6/h = $50~55/W</td></tr>
+  </table></div>
+  <h3>H100 임대료 추이($/h)</h3>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>시점</th><th>게시가 지수</th><th>실거래 지수</th><th>비고</th></tr>
+    <tr><td>2023-10</td><td>8.73</td><td>—</td><td class="txt">출시 직후 "신품"</td></tr>
+    <tr><td>2024-01</td><td>5.74</td><td>—</td><td class="txt"></td></tr>
+    <tr><td>2024-07~09</td><td>4.35~4.51</td><td>—</td><td class="txt">콜로서스1 건설 시점</td></tr>
+    <tr><td>2025-06</td><td><b>2.77</b></td><td>—</td><td class="txt">저점</td></tr>
+    <tr><td>2026-04</td><td>2.88</td><td>1.85</td><td class="txt">실거래 저점</td></tr>
+    <tr><td>2026-10</td><td><b>3.35</b></td><td><b>3.02</b></td><td class="txt">저점 대비 +21% / +63%</td></tr>
+    <tr><td colspan="4" class="note">보조: 1년 약정 H100 2025-10 $1.70 → 2026-03 $2.35(Akash·SemiAnalysis 인용); Nebius 온디맨드 $3.85→$4.50(10/1); AWS 용량 블록 $5.19→$5.97; RunPod $3.29→$3.99(IntuitionLabs 10/10). 판정: "신품 때보다 높다" 거짓(2024-01 대비 −42%), "저점 반등" 사실.</td></tr>
+  </table></div>
+  <div class="src">출처(전부 2차): GetDeploying(GB300·GB200), IntuitionLabs(H100 비교 2026-10-10), Spheron, CloudZero, Akash, GMI Cloud(리드타임). 내부 지수 2종은 외부 인용 금지.</div>
+</section>
+
+<section id="d-px" class="panel">
+  <h2>주가 · 컨센서스</h2>
+  <div class="chart"><div class="cap">SPCX 일봉 종가 — IPO $160.95 → 고점 $211.39 → 저점 $108.27 → $147.49</div><div class="lg"><span><i style="background:var(--blue)"></i>종가($)</span><span><i style="background:var(--amber)"></i>10/20 3Q 실적</span><span><i style="background:var(--rose)"></i>10/22 $40B 차입 보도</span></div><div class="box"><canvas id="d_px" role="img" aria-label="SPCX 종가 2026-06-12 160.95에서 2026-10-23 147.49. 고점 6월 16일 211.39, 저점 8월 5일 108.27. 10월 20일 실적 발표 후 21일 159.31 플러스 7.8%, 22일 144.75 마이너스 9.1%"></canvas></div><div class="fn">IPO 2026-06-12(첫날 종가 $160.95). 고점 대비 −30.2%, 저점 대비 +36.2%. 세로선: 10/20 실적 콜, 10/22 $40B 보도.</div></div>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>항목</th><th>값</th></tr>
+    <tr><td>주가 2026-10-23</td><td>$147.49</td></tr>
+    <tr><td>IPO 첫날 종가(6/12) / 고점(6/16) / 저점(8/5)</td><td>$160.95 / $211.39 / $108.27</td></tr>
+    <tr><td>10/21(실적 다음날) / 10/22($40B 보도)</td><td>$159.31(+7.8%) / $144.75(−9.1%)</td></tr>
+    <tr><td>시총 / 발행주식</td><td>$2.003조 / 13,579M주(A 8,240 + B 5,339)</td></tr>
+    <tr><td>FY26 컨센 매출 / EPS</td><td>$48.6B / $0.23</td></tr>
+    <tr class="hl"><td>FY27 컨센 매출 / EPS</td><td><b>$177.3B</b>(최저 71.7 ~ 최고 290.1) / $4.05(30일 전 1.86)</td></tr>
+    <tr><td>4Q26 / 1Q27 매출 컨센</td><td>$22.7B / $33.0B</td></tr>
+    <tr><td>목표가 평균 / 중간 / 최고 / 최저(n=35)</td><td>$257 / $245 / $800 / $70</td></tr>
+    <tr><td>선행 PER</td><td>59배</td></tr>
+    <tr><td>JPM(10/21, 2차)</td><td>목표 $500(2028 GAAP EPS $24.41 × 20배), 2027 매출 $254B, ARR 약 $400B, 2027말 10GW, capex $300B</td></tr>
+    <tr><td>MS(10/13, 2차)</td><td>목표 $300(우주 8·통신 118·X/Grok 8·엔터프라이즈 AI 165), 2027 4.9GW, +1GW당 $27, $31→$17/W</td></tr>
+    <tr><td>GS(2차)</td><td>목표 $230, FCF+ 4Q30, 2026~30 부채 $270B</td></tr>
+  </table></div>
+  <div class="src">출처: 야후 파이낸스(종가·컨센서스·목표가, 2026-10-24), 10-Q 3Q26(발행주식), 2차: JPM(TechFlow·Investing.com), MS(itiger·TechFlow·XTB·Benzinga), GS(Axios). 주가 시계열은 spcx_price.json(수정 종가).</div>
+</section>
+
+<section id="d-src" class="panel">
+  <h2>출처 전부</h2>
+  <h3>1차</h3>
+  <ul style="font-size:12.5px;padding-left:18px;margin:0 0 10px">
+    <li>SpaceX 10-Q 2026년 3분기 — 연결 손익·B/S·현금흐름, Note 3(백로그·고객 집중·매출채권), Note 16(약정), Note 18(세그먼트), MD&amp;A(수익인식·비용·부채·KPI 정의)</li>
+    <li>SpaceX 10-Q 2026년 2분기 — 6M 수치, 1.4GW, PP&amp;E 구성, 건설중자산, 6/30 백로그</li>
+    <li>SpaceX S-1/A — Anthropic 계약 조건, 콜로서스 클러스터 GPU·MW, 네임플레이트 이력, EchoStar, 터빈 약정, 연간 AI 세그먼트</li>
+    <li>3Q26 실적 콜(2026-10-20) — 13GW·20GW, 설치속도, $30~50/W 상단, 회수기간, ARR, 4Q capex, 1Q27 가이던스, 50:50, 조달 우선순위</li>
+    <li>2Q26 실적 콜(2026-08-04) — $6.7B·6개월·10월 램프, 연말 2GW 초, 2027 "5보다 10에 가까움"</li>
+    <li>골드만삭스 컨퍼런스 CFO 발언(2026-09-10) — 90일+90일 구조, 4번째 계약 $1.11B/월, 궤도 일정</li>
+  </ul>
+  <h3>2차(원문 미확인 또는 보도 인용)</h3>
+  <ul style="font-size:12.5px;padding-left:18px;margin:0 0 10px">
+    <li>SpaceX 2Q26 실적 릴리스(PDF, "$14.1B contracted sales", "$1.6B") — s21.q4cdn.com/184289198/files/doc_financials/2026/q2/SpaceX-Reports-Second-Quarter-2026-Results.pdf ; Motley Fool(2026-08-07, 비해지 기간 정의) — fool.com/investing/2026/08/07/spacex-signed-141-billion-of-cloud-contracts-in-a/</li>
+    <li>Semafor(2026-10-22, $40B 예상 금리) — semafor.com/article/10/22/2026/spacex-40b-debt-deal-will-cost-it-as-ai-fears-spread ; Semafor(10/07) — semafor.com/article/10/07/2026/spacex-looks-to-40-billion-debt-raise-to-buy-chips ; CNBC(10/07) — cnbc.com/2026/10/07/spacex-nvidia-chips-apollo-financing.html ; Benzinga — benzinga.com/markets/tech/26/10/62208031/… ; FT/Reuters 경유 — thestar.com.my/tech/tech-news/2026/10/07/spacex-seeks-40-billion-to-buy-nvidia-chips-ft-reports</li>
+    <li>Octus(브리지론 $20B, X·xAI $17.5B 리파이낸싱) — octus.com/resources/articles/spacex-lines-up-20b-goldman-sachs-led-bridge-loan-…</li>
+    <li>구글 계약: Interesting Engineering(2026-06-05) — interestingengineering.com/ai-robotics/google-spacex-920-million-computing-deal ; TechCrunch(8-K 인용) ; Tom's Hardware(Reuters)</li>
+    <li>Reflection: DCD — datacenterdynamics.com/en/news/spacex-secures-63bn-compute-capacity-deal-from-ai-startup-reflection/ ; Axios(2026-06-22) ; CNBC</li>
+    <li>4번째 계약: DCD — datacenterdynamics.com/en/news/spacex-signs-compute-contract-valued-at-133bn-annually ; Pulse2</li>
+    <li>사이트: DCD(미니하드·"네 번째"·터빈 69기) — datacenterdynamics.com/en/news/musk-confirms-fourth-spacexai-data-center-in-memphis-… ; Daily Memphian(2026-07-30) — dailymemphian.com/article/65179 ; DCD(솔라리스 900MW JV) ; DCD(텍사스, The Information 인용) ; Epoch AI(946MW→1,531MW, New Carlisle 1,037MW) ; Tom's Hardware(냉각 350MW) ; MDEQ·Mississippi Free Press(1.2GW 41기) ; NextBigFuture(매크로하드rr) ; Engadget·Pulse2(APR Energy) ; remio.ai(머스크 9/25 X 게시물 재인용)</li>
+    <li>애널리스트: JPM — techflowpost.com/en-US/article/34779 , investing.com/news/analyst-ratings/jpmorgan-raises-spacex-stock-price-target-to-500-… ; MS — itiger.com/news/1140596566 , techflowpost.com/en-US/article/33595 , itiger.com/news/1107135604 , benzinga.com/node/62166196 ; GS·MS 자금 — axios.com/2026/07/08/spacex-musk-stock-wall-street</li>
+    <li>GPU 가격: GetDeploying — getdeploying.com/gpus/nvidia-gb300 , getdeploying.com/gpus/nvidia-gb200-vs-nvidia-gb300 ; IntuitionLabs — intuitionlabs.ai/articles/h100-rental-prices-cloud-comparison ; Spheron — spheron.network/blog/h100-price-per-hour-2026/ ; CloudZero — cloudzero.com/blog/h100-gpu-cost/ ; Akash — akash.network/the-bid/h100-rental-price-2026-cost-per-hour/ ; GMI Cloud(리드타임)</li>
+    <li>CoreWeave 금융: DCD($8.5B) ; The Energy Mag(2026-08-11, SOFR+5.5%) ; Bloomberg Law ; CoreWeave 10-Q 2Q26</li>
+    <li>동종업체: Oracle 10-K·10-Q·TIKR ; Meta·Alphabet·Amazon 10-Q ; TechCrunch(Alphabet $80B 증자) ; Fortune(2025 AI 매출 $3.2B) ; WSJ(2026-07, 국방부 협상)</li>
+    <li>컨센서스·주가: 야후 파이낸스(2026-10-24) ; 주가 일봉은 IH stock_price 경유 수정 종가</li>
+  </ul>
+  <h3>내부 산출물</h3>
+  <div class="fn">원자료_도시에.md(1차 숫자 기준, 검증 C 반영 수정본) · 에이전트A_왜.md · 에이전트B_얼마나.md(+ spcx_model.py) · 에이전트C_검증.md(판정표·수정 지시·토론 로그·불확실성) · 아티팩트_구성안.md. 내부 GPU 렌탈 지수 2종(실거래·게시가)은 내부 리서치용으로 외부 인용 금지.</div>
+</section>
+
+  </aside>
+</div>
+<footer class="foot">
+  <p>이 문서는 SpaceX 10-Q(2026년 2·3분기)·S-1/A·실적 콜·컨퍼런스 발언을 1차 자료로, 보도·애널리스트·GPU 가격 비교 사이트를 2차 자료로 삼아 작성했습니다. "추정"으로 표시한 숫자는 공개 수치를 조합한 계산이며 회사 공표치가 아닙니다. "2차"로 표시한 수치는 원문을 직접 확인하지 못했습니다. 우주(발사·스타십) 사업은 분석 범위에서 제외했습니다. 투자 판단의 기준은 독자 본인이 정합니다.</p>
+</footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function(){
+  const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const C={blue:css('--blue'),teal:css('--teal'),amber:css('--amber'),rose:css('--rose'),violet:css('--violet'),muted:css('--muted'),grid:css('--grid'),tick:css('--tick'),sub:css('--sub'),
+           blueS:css('--blue-soft'),tealS:css('--teal-soft'),amberS:css('--amber-soft'),roseS:css('--rose-soft'),violetS:css('--violet-soft')};
+  window.__C=C;
+  if(window.Chart){
+    Chart.defaults.font.family='"Noto Sans KR",sans-serif';
+    Chart.defaults.font.size=12;
+    Chart.defaults.color=C.tick;
+  }
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fmt=(v,u)=>{if(v==null)return '';const a=Math.abs(v);const s=a>=1000?v.toLocaleString('ko-KR'):(Number.isInteger(v)?v:v.toFixed(1));return s+(u||'')};
+  function mk(id,type,labels,datasets,opt){
+    const el=document.getElementById(id); if(!el||!window.Chart) return;
+    opt=opt||{};
+    const ds=datasets.map(d=>{const o=Object.assign({},d);
+      if(type==='bar'&&o.type!=='line'){o.borderRadius=o.borderRadius??4;o.maxBarThickness=o.maxBarThickness??26;o.borderWidth=o.borderWidth??0;}
+      if(type==='line'||o.type==='line'){o.tension=o.tension??0.3;o.borderWidth=o.borderWidth??2.5;o.pointRadius=o.pointRadius??3;o.pointHoverRadius=5;o.pointBackgroundColor=o.pointBackgroundColor??o.borderColor;}
+      return o;});
+    const unit=opt.unit||'';
+    const cfg={type:type,data:{labels,datasets:ds},options:{
+      responsive:true,maintainAspectRatio:false,animation:reduced?false:{duration:1100,easing:'easeOutQuart'},
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>' '+c.dataset.label+': '+fmt(c.raw,c.dataset.unit??unit)}}},
+      scales:Object.assign({x:{grid:{display:false},ticks:{color:C.tick,maxRotation:0,autoSkip:opt.autoSkip??true}},
+        y:{grid:{color:C.grid},border:{display:false},beginAtZero:opt.zero??true,min:opt.min,max:opt.max,ticks:{color:C.tick,callback:v=>fmt(v,unit)}}},opt.scales||{})}};
+    if(opt.stacked){cfg.options.scales.x.stacked=true;cfg.options.scales.y.stacked=true;}
+    if(opt.horizontal){cfg.options.indexAxis='y';cfg.options.scales.x.grid={color:C.grid};cfg.options.scales.y.grid={display:false};cfg.options.scales.x.beginAtZero=true;}
+    if(opt.spanGaps){cfg.options.spanGaps=true;}
+    if(opt.plugins) cfg.plugins=opt.plugins;
+    new Chart(el,cfg);
+  }
+  window.mk=mk;
+  function animate(){
+    if(!('IntersectionObserver' in window)||reduced){document.querySelectorAll('.reveal').forEach(e=>e.classList.add('in'));document.querySelectorAll('.bar .fil').forEach(f=>f.style.width=f.dataset.w+'%');return;}
+    const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target;el.classList.add('in');el.querySelectorAll('.bar .fil').forEach(f=>f.style.width=f.dataset.w+'%');if(el.matches('.bar .fil'))el.style.width=el.dataset.w+'%';io.unobserve(el);}})},{threshold:0.15});
+    document.querySelectorAll('.reveal,.bars').forEach(e=>io.observe(e));
+    document.querySelectorAll('.counter[data-to]').forEach(el=>{const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;io2.unobserve(el);const to=parseFloat(el.dataset.to),dec=parseInt(el.dataset.dec||'0'),suf=el.dataset.suf||'',pre=el.dataset.pre||'';const t0=performance.now(),dur=1300;const step=t=>{const p=Math.min(1,(t-t0)/dur),v=to*(1-Math.pow(1-p,3));el.textContent=pre+(dec?v.toFixed(dec):Math.round(v).toLocaleString('ko-KR'))+suf;if(p<1)requestAnimationFrame(step);};requestAnimationFrame(step);})},{threshold:0.4});io2.observe(el);});
+  }
+  document.addEventListener('DOMContentLoaded',()=>{animate();if(window.__charts)window.__charts(mk,C);});
+  if(document.readyState!=='loading'){animate();if(window.__charts)window.__charts(mk,C);}
+})();
+</script>
+<script>
+/* ===== 데이터 상수(전부 인라인) ===== */
+const SPCX_PX=[["06-12",160.95],["06-15",192.5],["06-16",211.39],["06-17",191.82],["06-18",185.0],["06-22",154.6],["06-23",156.11],["06-24",154.54],["06-25",153.0],["06-26",153.23],["06-29",164.19],["06-30",170.86],["07-01",157.54],["07-02",162.0],["07-06",160.42],["07-07",149.47],["07-08",148.3],["07-09",152.16],["07-10",145.3],["07-13",139.14],["07-14",136.08],["07-15",135.27],["07-16",131.11],["07-17",123.99],["07-20",119.85],["07-21",123.54],["07-22",115.26],["07-23",118.24],["07-24",115.07],["07-27",113.5],["07-28",116.41],["07-29",112.55],["07-30",112.2],["07-31",108.37],["08-03",114.53],["08-04",125.33],["08-05",108.27],["08-06",114.92],["08-07",133.11],["08-10",138.74],["08-11",133.29],["08-12",146.15],["08-13",141.29],["08-14",140.0],["08-17",146.23],["08-18",143.34],["08-19",139.65],["08-20",134.0],["08-21",136.97],["08-24",135.0],["08-25",137.95],["08-26",139.63],["08-27",140.87],["08-28",141.5],["08-31",143.69],["09-01",142.23],["09-02",140.71],["09-03",149.74],["09-04",147.95],["09-08",153.47],["09-09",147.55],["09-10",148.18],["09-11",151.21],["09-14",148.15],["09-15",143.49],["09-16",150.88],["09-17",154.81],["09-18",152.71],["09-21",151.85],["09-22",154.72],["09-23",148.36],["09-24",148.03],["09-25",148.68],["09-28",145.47],["09-29",149.24],["09-30",150.86],["10-01",148.07],["10-02",158.96],["10-05",171.09],["10-06",171.92],["10-07",167.6],["10-08",160.57],["10-09",162.57],["10-12",163.42],["10-13",156.54],["10-14",152.16],["10-15",148.62],["10-16",146.03],["10-19",147.96],["10-20",147.79],["10-21",159.31],["10-22",144.75],["10-23",147.49]];
+const SI_Q={labels:['3Q25','4Q25[파생]','1Q26','2Q26','3Q26'],rev:[813,922,825,2575,7560],ebitda:[-428,-424,-609,1100,4953]};
+const GW={labels:['24-12','25-03','25-06','25-09','25-12','26-03','26-06','26-09','26-10','26-12','27-12'],
+  actual:[0.3,0.3,0.4,0.6,0.8,1.0,1.4,1.7,null,null,null],
+  guide:[null,null,null,null,null,null,null,1.7,2.0,2.75,13],
+  jpm:[null,null,null,null,null,null,null,null,2.2,2.8,10],
+  ms:[null,null,null,null,null,null,null,null,null,null,4.9]};
+const PRICE_W={labels:['GB300 온디맨드 중앙값','GB300 온디맨드 최저','스페이스X·구글(GB300)','스페이스X·Anthropic(혼합)','GB300 60개월 예약 최저','MS 4Q27 가정'],v:[79,48,50.2,36,14,17]};
+const BACKLOG={labels:['2026-06-30','2026-09-30'],cloud:[12.5,16.4],noncloud:[14.1,25.8],mid:[16.1,17.0],long:[4.7,3.8]};
+const H100={labels:['23-10','24-01','24-07','24-09','25-06','26-04','26-10'],list:[8.73,5.74,4.51,4.35,2.77,2.88,3.35],deal:[null,null,null,null,null,1.85,3.02],anth:[5.27,5.27,5.27,5.27,5.27,5.27,5.27]};
+const RAMP={labels:['26-05','26-06','26-07','26-08','26-09','26-10','26-11','26-12','27-01','27-02','27-03'],
+  anth:[625,938,1250,1250,1250,1250,1250,1250,1250,1250,1250],refl:[0,0,150,150,150,150,150,150,150,150,150],goog:[0,0,0,276,552,920,920,920,920,920,920],fourth:[0,0,0,0,0,0,0,1110,1110,1110,1110]};
+const PEER={labels:['SpaceX(26-09)','SpaceX 프로포마(+$40B)','CoreWeave(26-06)','Oracle(26-08·2차)','Meta(26-09)','Alphabet(26-06)','Amazon(26-06)'],cash:[89.9,89.9,5.5,38.9,11.2,55.9,78.2],debt:[38.0,78,35.6,169,80.9,98.2,133.0]};
+const SITES={labels:['2026말 가이던스 2.75','MS 4.9GW','JPM 10GW','회사 13GW'],strict:[2.5,2.5,2.5,2.5],loose:[0.25,1.3,1.3,1.3],gap:[0,1.1,6.2,9.2]};
+const MODEL={labels:['1Q27','2Q27','3Q27','4Q27','1Q28','2Q28','3Q28','4Q28'],capex:[47.0,90.7,108.2,125.7,92.9,92.9,92.9,92.9],ocf:[16.6,21.9,32.0,43.5,57,68,79,91],borrow:[0,16.7,76.2,82.2,36,25,14,2]};
+const DEBT_PATH={labels:['현재(26-09)','프로포마(+$40B)','하단 10GW','13GW · $50 유지','13GW · $50→35','13GW · MS $31→17','상단 20GW'],v:[38,78,148,253,273,307,465]};
+const FCF={labels:['2026','2027','2028'],p1:[-63,-258,-78],p2:[null,-278,-165],p3:[null,-312,-269],stop:[null,null,220]};
+const ARR={labels:['컨센 FY27 매출(야후)','MS 경로 외부 ARR($17/W)','모델 외부 ARR(13GW·50%·$50)','모델 연결 ARR','JPM ARR(2차)','머스크 하단','머스크 상단'],v:[177,111,325,390,400,500,1000]};
+
+window.__charts=function(mk,C){
+  const vline={id:'vline',afterDraw(ch,args,o){const idx=o.idx||[];const x=ch.scales.x,top=ch.chartArea.top,bot=ch.chartArea.bottom;const ctx=ch.ctx;ctx.save();idx.forEach(it=>{const i=ch.data.labels.indexOf(it.l);if(i<0)return;const px=x.getPixelForValue(i);ctx.strokeStyle=it.c;ctx.lineWidth=1.5;ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo(px,top);ctx.lineTo(px,bot);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle=it.c;ctx.font='11px "Noto Sans KR"';ctx.textAlign=it.a||'left';ctx.fillText(it.t,px+(it.a==='right'?-4:4),top+12+(it.dy||0));});ctx.restore();}};
+
+  /* 01 SI 분기 */
+  mk('c_si_q','bar',SI_Q.labels,[
+    {label:'SI 매출',data:SI_Q.rev,backgroundColor:C.blue},
+    {label:'SI 조정 EBITDA',data:SI_Q.ebitda,backgroundColor:C.amber}],{unit:''});
+
+  /* 02 GW */
+  mk('c_gw','line',GW.labels,[
+    {label:'공시 실적',data:GW.actual,borderColor:C.blue,backgroundColor:C.blueS,fill:false,pointRadius:4},
+    {label:'가이던스·발언',data:GW.guide,borderColor:C.muted,backgroundColor:C.grid,borderDash:[6,4],fill:false,pointRadius:4},
+    {label:'JPM(2차)',data:GW.jpm,borderColor:C.amber,backgroundColor:C.amberS,borderDash:[3,3],fill:false,pointRadius:4},
+    {label:'MS(2차)',data:GW.ms,borderColor:C.rose,backgroundColor:C.roseS,fill:false,pointRadius:5}],{unit:'GW',spanGaps:true,autoSkip:false});
+
+  /* 03 단가 */
+  mk('c_price','bar',PRICE_W.labels,[{label:'W당 연 $',data:PRICE_W.v,backgroundColor:[C.muted,C.muted,C.blue,C.blue,C.muted,C.rose]}],{unit:'',horizontal:true});
+
+  /* 04 백로그 */
+  mk('c_backlog','bar',BACKLOG.labels,[
+    {label:'1년 내 클라우드(추정)',data:BACKLOG.cloud,backgroundColor:C.blue,maxBarThickness:90},
+    {label:'1년 내 비클라우드(추정)',data:BACKLOG.noncloud,backgroundColor:C.teal,maxBarThickness:90},
+    {label:'1~3년',data:BACKLOG.mid,backgroundColor:C.amber,maxBarThickness:90},
+    {label:'3년 초과',data:BACKLOG.long,backgroundColor:C.muted,maxBarThickness:90}],{stacked:true,unit:'B'});
+
+  /* 05 H100 */
+  mk('c_h100','line',H100.labels,[
+    {label:'H100 게시가 지수',data:H100.list,borderColor:C.blue,backgroundColor:C.blueS,fill:true,pointRadius:4},
+    {label:'H100 실거래 지수',data:H100.deal,borderColor:C.amber,backgroundColor:C.amberS,fill:false,pointRadius:4},
+    {label:'Anthropic 혼합 유효 단가',data:H100.anth,borderColor:C.muted,borderDash:[4,4],fill:false,pointRadius:0,borderWidth:1.5}],{unit:'',spanGaps:true,autoSkip:false});
+
+  /* 07 램프 */
+  mk('c_ramp','bar',RAMP.labels,[
+    {label:'Anthropic',data:RAMP.anth,backgroundColor:C.blue},
+    {label:'Reflection',data:RAMP.refl,backgroundColor:C.teal},
+    {label:'Google',data:RAMP.goog,backgroundColor:C.amber},
+    {label:'4번째',data:RAMP.fourth,backgroundColor:C.violet}],{stacked:true,unit:'',autoSkip:false});
+
+  /* 09 동종업체 */
+  mk('c_peer','bar',PEER.labels,[
+    {label:'현금(+단기증권)',data:PEER.cash,backgroundColor:C.blue},
+    {label:'총차입',data:PEER.debt,backgroundColor:C.rose}],{unit:'B'});
+
+  /* 10 사이트 */
+  mk('c_sites','bar',SITES.labels,[
+    {label:'엄격 식별',data:SITES.strict,backgroundColor:C.blue},
+    {label:'느슨 가정',data:SITES.loose,backgroundColor:C.teal},
+    {label:'미식별 증분',data:SITES.gap,backgroundColor:C.rose}],{stacked:true,unit:'GW'});
+
+  /* 11 모델 */
+  mk('c_model','bar',MODEL.labels,[
+    {label:'연결 capex',data:MODEL.capex,backgroundColor:C.blue},
+    {label:'영업CF',data:MODEL.ocf,backgroundColor:C.teal},
+    {type:'line',label:'필요 차입',data:MODEL.borrow,borderColor:C.rose,backgroundColor:C.roseS,borderWidth:2.5,pointRadius:4,fill:false}],{unit:'B'});
+
+  /* 11 경로별 부채 */
+  mk('c_debt_path','bar',DEBT_PATH.labels,[{label:'2027말 총부채',data:DEBT_PATH.v,backgroundColor:[C.muted,C.muted,C.teal,C.blue,C.amber,C.rose,C.violet]}],{unit:'B'});
+
+  /* 12 FCF */
+  mk('c_fcf','bar',FCF.labels,[
+    {label:'① $50 유지',data:FCF.p1,backgroundColor:C.blue},
+    {label:'② $50→35',data:FCF.p2,backgroundColor:C.amber},
+    {label:'③ MS $31→17',data:FCF.p3,backgroundColor:C.rose},
+    {label:'13GW 증설 중단',data:FCF.stop,backgroundColor:C.teal}],{unit:'B'});
+
+  /* 13 ARR */
+  mk('c_arr','bar',ARR.labels,[{label:'$B',data:ARR.v,backgroundColor:[C.muted,C.muted,C.blue,C.blue,C.muted,C.rose,C.rose]}],{unit:'B',horizontal:true});
+
+  /* 데이터 칸 주가 */
+  mk('d_px','line',SPCX_PX.map(r=>r[0]),[{label:'종가',data:SPCX_PX.map(r=>r[1]),borderColor:C.blue,backgroundColor:C.blueS,fill:true,pointRadius:0,borderWidth:2}],
+    {unit:'',zero:false,min:90,max:230,plugins:[vline],scales:{},
+     });
+  /* 주가 차트 주석: vline 플러그인 옵션은 chart 인스턴스에 직접 주입 */
+  const pxChart=Chart.getChart('d_px');
+  if(pxChart){pxChart.options.plugins.vline={idx:[{l:'10-20',c:C.amber,t:'10/20 3Q 실적',a:'right'},{l:'10-22',c:C.rose,t:'10/22 $40B 보도',dy:14}]};pxChart.update();}
+};
+</script>
+<a href="../indepth-archive.html" style="position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;padding:7px 12px;border-radius:999px;background:#10151f;color:#e9eef8;border:1px solid #3a4560;font:600 12px/1.2 system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">← 인뎁스 아카이브</a>
+</body>
+</html>
