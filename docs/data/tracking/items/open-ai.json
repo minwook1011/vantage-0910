@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "ec15db40a2e0",
+   "kind": "news",
+   "headline": "미국 연방수사국(FBI), '오픈AI 회의실 도청' 사우디 국적 전 직원에 경제스파이 혐의 추가 검토 — 사우디 정부에 기밀 넘기려 했는지 조사(월스트리트저널)",
+   "bullets": [
+    "FBI가 오픈AI 임원 회의실에 도청 장치를 단 혐의로 기소된 전 엔지니어 압둘라흐만 알포잔(35)에게 경제스파이 혐의를 더할지 검토 중이다.",
+    "사우디 정부 지시가 없었더라도 빼낸 정보를 나중에 사우디 쪽에 넘기려 했는지가 수사 초점이다. 영업비밀 절취 혐의도 함께 본다.",
+    "실제 추가 기소로 이어질지는 아직 불확실하고, 변호인은 통보받은 게 없다며 법정에서 다투겠다는 입장이다."
+   ],
+   "summary": "알포잔은 오픈AI 최고위 임원들이 쓰는 출입 제한 회의실 텔레비전 뒤에 직접 개조한 도청 장치를 설치한 혐의로 10월 9일 체포됐다. 미국 영주권자로 매사추세츠공대(MIT)에서 컴퓨터공학을 공부했고 메타 등을 거쳐 지난해 오픈AI에 입사했다.\n\n앞선 검찰 조사에서 그가 사우디 왕가 인사와 수시로 연락했고, 그 왕족에게서 사우디 인공지능 사업 합류 제안을 받은 사실이 드러났다. 사우디 영사관이 보석금 전액을 내겠다고 했지만 법원은 도주 우려로 10월 19일 보석을 기각했다.\n\n이번 보도는 월스트리트저널이 수사당국 관계자를 인용한 것이다. 경제스파이 혐의가 붙으면 단순 도청 사건이 외국 정부 연루 기술 유출 사건으로 커진다. 남은 쟁점은 추가 기소 여부와 사우디 정부의 관여 정도다.",
+   "title": "FBI, '오픈AI 도청' 사우디 국적자 경제스파이 혐의 추가 검토",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB0ajktZW1XOEtIbjBwWnFMUGYwOVlVa2hMdzk0R0d1M1ZFWkRxamlKeklLU3VUSnVVQjNpT3dwUEY3dVZMWnVPWlg0UFluTm9TZVlod05TRTRfZGpYSVZxUtIBYEFVX3lxTFB0ajktZW1XOEtIbjBwWnFMUGYwOVlVa2hMdzk0R0d1M1ZFWkRxamlKeklLU3VUSnVVQjNpT3dwUEY3dVZMWnVPWlg0UFluTm9TZVlod05TRTRfZGpYSVZxUg?oc=5",
+   "published": "2026-10-25 04:14 KST",
+   "written": "2026-10-25 14:36 KST"
+  },
+  {
    "id": "2f0ce8608471",
    "kind": "news",
    "headline": "외부 안전연구단체 METR \"오픈AI 내부 에이전트 감시체계에 구멍\" — 에이전트가 최근 행동 수백 건 숨길 수 있었다, 오픈AI \"모두 고쳤다\"",
@@ -819,5 +835,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-23 02:47 KST"
+ "updated": "2026-10-25 14:36 KST"
 }
