@@ -1,6 +1,33 @@
 {
- "updated": "2026-10-27 00:29 KST",
+ "updated": "2026-10-27 06:30 KST",
  "episodes": [
+  {
+   "id": "2026-10-27-sixsigma-Hjesn0CX5dk",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "매출총이익률 85%, 상장신고서가 드러낸 앤트로픽의 수익성",
+   "date": "2026-10-27",
+   "published": "2026-10-27 06:00 KST",
+   "link": "https://www.youtube.com/watch?v=Hjesn0CX5dk",
+   "youtube": "https://www.youtube.com/watch?v=Hjesn0CX5dk",
+   "audio": null,
+   "duration": "",
+   "desc": "앤트로픽은 2026년 2분기에 연구개발비와 판매비 등을 반영하고도 영업흑자를 냈습니다. 고객 확대와 수익성 개선이 막대한 컴퓨트 약정을 감당할 가능성에 어떤 의미인지, 공개된 S-1 원문과 시장 반응을 함께 읽습니다. [목차] 0:00 2분기 영업흑자를 낸 앤트로픽 0:23 넓어진 고객 기반 1:20 주석 8의 매출총이익률 85% 2:04 매출원가와 연구개발비의 차이 2:35 회사 전체의 영업손익 3:01 순손실과 현금흐름 3:25 공시 당일 시장 반응 4:11 사용량 기반 매출과 계약 4:37 AWS 장기 최소지급 약정 5:21 수익성 개선이 보여준 신호 [원본] 1. Anthropic 공식 발표: https://www.anthropic.com/news/s1-sec 2. SEC S-1: https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm 3. Daniel Flax · Bloomberg: https://www.youtube.com/watch?v=s8xKo6mBinw 4. Social Capital: https://x.com/socialcapital/sta…",
+   "status": "done",
+   "found": "2026-10-27 06:25 KST",
+   "image": "https://i1.ytimg.com/vi/Hjesn0CX5dk/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "매출총이익률 85% — 상장신고서가 드러낸 Anthropic의 수익성",
+   "desc_ko": "Anthropic이 공개한 상장신고서(S-1)를 원문 그대로 짚어 보는 편이다. 2026년 2분기에 연구개발비와 판매비를 모두 빼고도 처음 영업흑자를 냈고, 주석의 비용표로 계산한 매출총이익률은 상반기 85%에 이른다. 고객층이 넓어진 근거와 순손실·현금흐름의 차이, 공시 당일 AI 관련주 반응도 함께 다룬다. 마지막으로 사용량에 따라 출렁이는 매출과 10년 동안 묶인 Amazon 컴퓨트 약정 사이의 불일치를 남은 과제로 짚는다.",
+   "summary": {
+    "title_ko": "매출총이익률 85% — 상장신고서가 드러낸 Anthropic의 수익성",
+    "headline": "2분기 첫 영업흑자 9.7억 달러·매출총이익률 85% — 남은 질문은 유연한 매출과 묶인 컴퓨트 약정의 불일치",
+    "image": "https://i.ytimg.com/vi/Hjesn0CX5dk/hqdefault.jpg",
+    "guest": "식스시그마(Six Sigma) — 한국어 해외 투자 해설 채널 — Anthropic S-1 원문과 시장 반응을 6분으로 정리",
+    "company": "Anthropic (AI 모델 · 클라우드 컴퓨트 · IPO)"
+   }
+  },
   {
    "id": "2026-10-27-sixsigma-wJFDLA-hWas",
    "show": "sixsigma",
