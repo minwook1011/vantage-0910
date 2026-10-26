@@ -33,6 +33,7 @@
   "digest:2026-10-22:asia",
   "digest:2026-10-25:us",
   "digest:2026-10-26:asia",
+  "digest:2026-10-27:us",
   "gpu:2026-10-06",
   "gpu:2026-10-07",
   "gpu:2026-10-08",
@@ -991,9 +992,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:msft:73e4765ccd15": [
-   487
-  ],
   "trk:blog-ssh-fedinsight:d14ccba0dba1": [
    488
   ],
@@ -2527,6 +2525,10 @@
   ],
   "pod:2026-10-27-sixsigma-Hjesn0CX5dk": [
    952
+  ],
+  "digest:2026-10-27:us": [
+   953,
+   954
   ]
  },
  "topics": {},
