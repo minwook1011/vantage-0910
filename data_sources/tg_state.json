@@ -232,6 +232,9 @@
   "trk:aws:132be39d0d0f",
   "trk:aws:42cd05bc8595",
   "trk:aws:be35ae71db44",
+  "trk:ax:7916c8205ccb",
+  "trk:ax:d599095d52ed",
+  "trk:ax:db869a3b7283",
   "trk:bill-ackman:8b5c4c18c150",
   "trk:bill-ackman:a1b8ad155758",
   "trk:blog-egzion:1a92542fb28d",
@@ -476,6 +479,7 @@
   "trk:msft:06b844a7706d",
   "trk:msft:12613c76496a",
   "trk:msft:1ab2dde144f1",
+  "trk:msft:333d16822fd4",
   "trk:msft:4fc72832a301",
   "trk:msft:5bba3a188602",
   "trk:msft:63f2e4fcda5c",
@@ -624,6 +628,7 @@
   "trk:t-31ce370d:3b3466bc5700",
   "trk:t-31ce370d:3cb3798ba07c",
   "trk:t-31ce370d:770912f93dbc",
+  "trk:t-31ce370d:d579be2ba652",
   "trk:t-31ce370d:d968293030c7",
   "trk:t-3f524a5b:348b0c7490ee",
   "trk:t-3f524a5b:390ae7817e3e",
@@ -665,6 +670,11 @@
   "trk:t-62bbe9b6:f8cd87d0c92b",
   "trk:t-62bbe9b6:fa7c03914619",
   "trk:t-62bbe9b6:fa86fef8ce8c",
+  "trk:t-678e8450:37c427c4dcfa",
+  "trk:t-678e8450:4f82b6f2d483",
+  "trk:t-678e8450:9db66e50501e",
+  "trk:t-678e8450:c67629b37a78",
+  "trk:t-678e8450:ef6652efed03",
   "trk:t-759fd052:015ffb348fa0",
   "trk:t-759fd052:03fe1408f933",
   "trk:t-759fd052:057ee3053233",
@@ -730,6 +740,7 @@
   "trk:t-dbe684bf:63a173bf189c",
   "trk:t-dbe684bf:c1be5e05fc6e",
   "trk:t-dbe684bf:e5cbac0a0716",
+  "trk:t-f05c5b60:9f967296b1fb",
   "trk:ymtc:2f1a15426f78",
   "trk:ymtc:3b0057f63d8e",
   "trk:ymtc:ce9d61456941",
@@ -778,6 +789,7 @@
   "trk:yt--jklonfa:3c9c516cda1a",
   "trk:yt--jklonfa:3cccd49b1ff7",
   "trk:yt--jklonfa:3ce46a108f7d",
+  "trk:yt--jklonfa:3d731144a6dd",
   "trk:yt--jklonfa:3fe62d0f6fbf",
   "trk:yt--jklonfa:4121c58ebc71",
   "trk:yt--jklonfa:4152ef911934",
@@ -965,42 +977,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:t-759fd052:94f86d595f54": [
-   463
-  ],
-  "trk:yt--jklonfa:dff8916ae295": [
-   464
-  ],
-  "trk:cxmt:6e14f32073c5": [
-   465
-  ],
-  "pod:2026-10-15-cheeky-the-company-building-underwater-drones-for-50-00": [
-   466
-  ],
-  "pod:2026-10-15-mad-95-einstein-5-mr-bean-jev-s-creator-on-why-ai-ca": [
-   467
-  ],
-  "pod:2026-10-15-nopriors-revolutionizing-cybersecurity-and-ai-driven-scie": [
-   468
-  ],
-  "pod:2026-10-16-understanding-ZP-48IeHXNo": [
-   469
-  ],
-  "pod:2026-10-16-oddlots-the-french-political-crisis-that-s-turning-into": [
-   470
-  ],
-  "pod:2026-10-16-understanding-W7yms_5Spic": [
-   471
-  ],
-  "trk:yt--jklonfa:18b398ad7f18": [
-   472
-  ],
-  "trk:yt-wy-8burq:a6beffa92ee6": [
-   473
-  ],
-  "trk:blog-ssh-fedinsight:029cab3ca8e2": [
-   474
-  ],
   "trk:blog-ranto28:473ca54043b0": [
    475
   ],
@@ -2499,6 +2475,42 @@
   ],
   "trk:yt--jklonfa:5ebe687afe70": [
    930
+  ],
+  "trk:msft:333d16822fd4": [
+   931
+  ],
+  "trk:t-31ce370d:d579be2ba652": [
+   932
+  ],
+  "trk:yt--jklonfa:3d731144a6dd": [
+   933
+  ],
+  "trk:t-f05c5b60:9f967296b1fb": [
+   934
+  ],
+  "trk:t-678e8450:4f82b6f2d483": [
+   935
+  ],
+  "trk:t-678e8450:37c427c4dcfa": [
+   936
+  ],
+  "trk:t-678e8450:ef6652efed03": [
+   937
+  ],
+  "trk:t-678e8450:c67629b37a78": [
+   938
+  ],
+  "trk:t-678e8450:9db66e50501e": [
+   939
+  ],
+  "trk:ax:db869a3b7283": [
+   940
+  ],
+  "trk:ax:7916c8205ccb": [
+   941
+  ],
+  "trk:ax:d599095d52ed": [
+   942
   ]
  },
  "topics": {},
