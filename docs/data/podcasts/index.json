@@ -1,6 +1,60 @@
 {
- "updated": "2026-10-26 08:30 KST",
+ "updated": "2026-10-26 16:25 KST",
  "episodes": [
+  {
+   "id": "2026-10-26-sixsigma--Zg85GsZoL4",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "옵티머스 양산 발표 다음 날, \"로봇 수천 대 자랑은 약점\"이라는 피규어 CEO",
+   "date": "2026-10-26",
+   "published": "2026-10-26 14:00 KST",
+   "link": "https://www.youtube.com/watch?v=-Zg85GsZoL4",
+   "youtube": "https://www.youtube.com/watch?v=-Zg85GsZoL4",
+   "audio": null,
+   "duration": "",
+   "desc": "테슬라가 옵티머스 생산 시작을 발표한 다음 날, 피규어 브렛 애드콕 CEO가 사내 전체회의에서 '로봇을 먼저 수천 대 만드는 회사는 못 달리는 시체를 만든다'며 데이터와 GPU에 먼저 돈을 넣는 이유를 밝혔습니다. 네 개의 장으로 나눈 그의 순서와 데이터 비용·컴퓨트 계약·집 30곳 시험 숫자를 짚었습니다. [원본] 1. Figure, Figure All Hands 2026 (2026.10.22) https://www.youtube.com/watch?v=AoFwpf43wK0 2. Tesla, Q3 2026 Update (2026.10.21) · Q3 2026 실적 발표 3. Nscale 보도자료 「Nscale and Figure」 (2026.09.03) 4. Figure 블로그 「Helix 2.5: Zero-Shot 30-Home Generalization」 (2026.09.17) · 「Introducing Index」 (2026.08.25) 5. NVIDIA Vera Rubin 플랫폼 소개 이 영상은 투자 권유가 아니며, 특정 종목의 매수·매도를 추천하지 않습니다. 영상 속 판단은 공개된 자료를 바탕으로 한 해석이며, 투자 결정과 그 결과의 책임은 투자자 …",
+   "status": "done",
+   "found": "2026-10-26 16:17 KST",
+   "image": "https://i2.ytimg.com/vi/-Zg85GsZoL4/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "옵티머스 양산 발표 다음 날, \"로봇 수천 대 자랑은 약점\"이라는 Figure CEO",
+   "desc_ko": "Tesla가 옵티머스 생산 시작을 알린 다음 날, Figure의 Brett Adcock CEO가 사내 전체회의에서 로봇을 먼저 대량으로 찍어내는 전략을 비판했습니다. 그는 하드웨어보다 데이터와 GPU 계산 능력에 먼저 돈을 쓰는 이유를 네 단계로 설명했습니다. 영상은 데이터 수집 비용, Nscale과의 컴퓨트 계약, 가정집 30곳 시험 결과 같은 숫자를 짚으며 두 회사의 접근 차이를 비교합니다.",
+   "summary": {
+    "title_ko": "옵티머스 양산 발표 다음 날, \"로봇 수천 대 자랑은 약점\"이라는 Figure CEO",
+    "headline": "몸·뇌 다음은 지능 확장과 양산 — Figure는 주 810만 달러 데이터와 35억 달러 GPU 계약으로 '지능 먼저'에 걸었다",
+    "image": "https://i.ytimg.com/vi/-Zg85GsZoL4/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Brett Adcock 클립 — Figure 전체회의(2026-10-22) 영상을 식스시그마가 한국어 해설과 공개 자료 숫자로 정리한 편",
+    "company": "Figure AI(비상장) · Tesla 옵티머스 (휴머노이드 로봇 · 로봇 AI 모델 · AI 컴퓨트)"
+   }
+  },
+  {
+   "id": "2026-10-26-sixsigma-UjNRDiKcl9U",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "GPT-5가 실험을 짜고 로봇이 24시간 돌린다, AI가 신약 개발을 당기는 속도",
+   "date": "2026-10-26",
+   "published": "2026-10-26 12:00 KST",
+   "link": "https://www.youtube.com/watch?v=UjNRDiKcl9U",
+   "youtube": "https://www.youtube.com/watch?v=UjNRDiKcl9U",
+   "audio": null,
+   "duration": "",
+   "desc": "AI가 신약 개발 속도를 어디서 얼마나 당기고 있는지 짚었습니다. 리커전·인실리코·릴리의 숫자로 본 분자 설계와, GPT-5가 실험을 짜고 로봇이 24시간 돌리는 깅코 바이오웍스 자율 실험실로 본 실험 단계는 몇 년이 몇 달로 줄었습니다. 남은 관문은 사람 몸에 넣어 보는 임상이고, AI로 찾은 약도 효과를 보는 2상에서 가장 많이 떨어집니다. 그 마지막 관문마저 법으로 당기려는 미국 몬태나주의 SB 535(1상을 마친 치료를 FDA 승인 없이 허가 센터에서 판매)와 이를 심사하는 민간 위원회, 9월 1일 기준 허가 센터 0곳이라는 현황까지 정리했습니다. [원본] 1. Discovery Engines, Ginkgo Bioworks 자율 실험실 투어·제이슨 켈리 대담 (2026.03.30) https://www.youtube.com/watch?v=Lh-tAxZizEM 2. Global Money Talk, Ginkgo Bioworks CEO Jason Kelly (2026.08.20) https://www.youtube.com/watch?v=iIB1n0Gn5cs 3. Ginkgo Bioworks, Ginkgo and OpenAI Achieve 40% Impro…",
+   "status": "done",
+   "found": "2026-10-26 16:17 KST",
+   "image": "https://i2.ytimg.com/vi/UjNRDiKcl9U/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "GPT-5가 실험을 짜고 로봇이 24시간 돌린다, AI가 신약 개발을 당기는 속도",
+   "desc_ko": "AI가 신약 개발의 어느 단계를 얼마나 빠르게 만드는지 정리한 편입니다. Recursion·Insilico Medicine·Eli Lilly의 숫자로 분자 설계 단계를, OpenAI 모델이 실험을 설계하고 로봇이 돌리는 Ginkgo Bioworks 자율 실험실로 실험 단계를 살펴봅니다. 남은 병목은 사람 대상 임상이며, AI로 찾은 약도 2상에서 가장 많이 실패한다고 짚습니다. 끝으로 1상을 마친 치료를 FDA 승인 없이 팔 수 있게 한 미국 몬태나주 SB 535와 그 현황을 소개합니다.",
+   "summary": {
+    "title_ko": "GPT-5가 실험을 짜고 로봇이 24시간 돌린다, AI가 신약 개발을 당기는 속도",
+    "headline": "설계와 실험은 몇 년이 몇 달로 — 하지만 AI가 찾은 약도 2상에서 19.5%로 떨어진다. 첫 답은 2029년 rentosertib 3상",
+    "image": "https://i.ytimg.com/vi/UjNRDiKcl9U/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Jason Kelly 클립 — AI 신약 개발의 설계·실험·임상 단계별 속도를 식스시그마가 회사 자료·보도 숫자로 정리한 편",
+    "company": "Ginkgo Bioworks(DNA) · Recursion(RXRX) · Insilico Medicine · Eli Lilly(LLY) (AI 신약 개발 · 실험 자동화 · 위탁연구)"
+   }
+  },
   {
    "id": "2026-10-26-sixsigma-I92Iy2hs7kw",
    "show": "sixsigma",
