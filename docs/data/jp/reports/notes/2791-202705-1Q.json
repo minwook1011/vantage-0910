@@ -29,11 +29,41 @@
   "line": "6~11월 계획 대비 경상이익 진척률이 20.7%로 5년 평균(50.6%)보다 29.9%p 낮아 '쇼크' — 영업이익 −65.2%, 계획은 유지했지만 9~11월에 87% 증익이 필요하다",
   "basis": "회사 계획 진척률(애널리스트 분기 예상 없음)",
   "checks": [
-   {"item": "경상이익 진척률(6~11월 계획 대비)", "actual": "20.7%", "base": "5년 평균 진척률 50.6%", "diff": "−29.9%p", "tone": "dn"},
-   {"item": "6~8월 영업이익", "actual": "5.8억엔", "base": "전년 같은 분기 16.7억엔", "diff": "−65.2%", "tone": "dn"},
-   {"item": "영업이익률", "actual": "0.7%", "base": "전년 같은 분기 2.1%", "diff": "−1.4%p", "tone": "dn"},
-   {"item": "6~8월 매출", "actual": "833억엔", "base": "전년 같은 분기 789억엔", "diff": "+5.5%", "tone": "up"},
-   {"item": "9~11월 필요 영업이익", "actual": "23.2억엔", "base": "전년 같은 분기 12.4억엔", "diff": "+87%", "tone": "dn"}
+   {
+    "item": "경상이익 진척률(6~11월 계획 대비)",
+    "actual": "20.7%",
+    "base": "5년 평균 진척률 50.6%",
+    "diff": "−29.9%p",
+    "tone": "dn"
+   },
+   {
+    "item": "6~8월 영업이익",
+    "actual": "5.8억엔",
+    "base": "전년 같은 분기 16.7억엔",
+    "diff": "−65.2%",
+    "tone": "dn"
+   },
+   {
+    "item": "영업이익률",
+    "actual": "0.7%",
+    "base": "전년 같은 분기 2.1%",
+    "diff": "−1.4%p",
+    "tone": "dn"
+   },
+   {
+    "item": "6~8월 매출",
+    "actual": "833억엔",
+    "base": "전년 같은 분기 789억엔",
+    "diff": "+5.5%",
+    "tone": "up"
+   },
+   {
+    "item": "9~11월 필요 영업이익",
+    "actual": "23.2억엔",
+    "base": "전년 같은 분기 12.4억엔",
+    "diff": "+87%",
+    "tone": "dn"
+   }
   ],
   "guide": "유지",
   "market": "발표 당일 종가 4,205엔(+0.2%), 발표 뒤 반응은 아직 확인 못 함 — 실적 전 한 달 새 10.5% 하락"
@@ -42,18 +72,51 @@
   "items": [],
   "note": "이번 분기는 결산 설명회를 열지 않았다(단신 표지 '설명회 없음'). 회사가 공개한 질의응답 없음(2026-10-13 확인)."
  },
- "ir_pending": "2026-10-19 확인(적시공시 목록 재확인) — 설명자료 아직 없음",
+ "ir_pending": "2026-10-26 확인 — 설명자료 아직 없음(적시공시 기준)",
  "sources": [
-  {"label": "결산단신(2027년 5월기 1분기)", "url": "https://tdnet-pdf.kabutan.jp/20261013/140120261013549213.pdf"},
-  {"label": "결산단신(2026년 5월기 연간, 올해 계획 전제)", "url": "https://www2.jpx.co.jp/disc/27910/140120260709590335.pdf"},
-  {"label": "회사 공시 1/14 상반기 실적 차이·연간 계획 하향", "url": "https://www2.jpx.co.jp/disc/27910/140120260113532967.pdf"},
-  {"label": "카부탄 결산 속보 10/13", "url": "https://kabutan.jp/stock/news?code=2791&b=k202610130029"},
-  {"label": "카부탄 7/9 서프라이즈 결산 속보", "url": "https://kabutan.jp/stock/news?code=2791&b=n202607091039"},
-  {"label": "카부탄 7/14 레이팅 일보(이와이코스모 목표가)", "url": "https://kabutan.jp/stock/news?code=2791&b=n202607141014"},
-  {"label": "회사 월별 자료(손님 수·객단가)", "url": "https://www.e-dkt.co.jp/ir/"},
-  {"label": "하로즈 월별 매출", "url": "https://www.halows.com/ir/finance_monthly/"},
-  {"label": "이즈미 월별 매출", "url": "https://www.izumi.co.jp/ir/finance/monthly/"},
-  {"label": "고베 물산 8월 월별 실적(거래소 공시)", "url": "https://www.release.tdnet.info/inbs/140120260917537924.pdf"},
-  {"label": "야후 파이낸스 애널리스트 예상", "url": "https://finance.yahoo.com/quote/2791.T/analysis/"}
+  {
+   "label": "결산단신(2027년 5월기 1분기)",
+   "url": "https://tdnet-pdf.kabutan.jp/20261013/140120261013549213.pdf"
+  },
+  {
+   "label": "결산단신(2026년 5월기 연간, 올해 계획 전제)",
+   "url": "https://www2.jpx.co.jp/disc/27910/140120260709590335.pdf"
+  },
+  {
+   "label": "회사 공시 1/14 상반기 실적 차이·연간 계획 하향",
+   "url": "https://www2.jpx.co.jp/disc/27910/140120260113532967.pdf"
+  },
+  {
+   "label": "카부탄 결산 속보 10/13",
+   "url": "https://kabutan.jp/stock/news?code=2791&b=k202610130029"
+  },
+  {
+   "label": "카부탄 7/9 서프라이즈 결산 속보",
+   "url": "https://kabutan.jp/stock/news?code=2791&b=n202607091039"
+  },
+  {
+   "label": "카부탄 7/14 레이팅 일보(이와이코스모 목표가)",
+   "url": "https://kabutan.jp/stock/news?code=2791&b=n202607141014"
+  },
+  {
+   "label": "회사 월별 자료(손님 수·객단가)",
+   "url": "https://www.e-dkt.co.jp/ir/"
+  },
+  {
+   "label": "하로즈 월별 매출",
+   "url": "https://www.halows.com/ir/finance_monthly/"
+  },
+  {
+   "label": "이즈미 월별 매출",
+   "url": "https://www.izumi.co.jp/ir/finance/monthly/"
+  },
+  {
+   "label": "고베 물산 8월 월별 실적(거래소 공시)",
+   "url": "https://www.release.tdnet.info/inbs/140120260917537924.pdf"
+  },
+  {
+   "label": "야후 파이낸스 애널리스트 예상",
+   "url": "https://finance.yahoo.com/quote/2791.T/analysis/"
+  }
  ]
 }
