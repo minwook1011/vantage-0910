@@ -630,6 +630,7 @@
   "trk:t-62bbe9b6:2fe9fa83fffd",
   "trk:t-62bbe9b6:32ae2825eef8",
   "trk:t-62bbe9b6:330d323d1668",
+  "trk:t-62bbe9b6:4ac397b22a04",
   "trk:t-62bbe9b6:5b1fc1b7c1a6",
   "trk:t-62bbe9b6:5cecf1e0217d",
   "trk:t-62bbe9b6:733eab30bb56",
@@ -710,6 +711,7 @@
   "trk:t-dbe684bf:4a74927085d7",
   "trk:t-dbe684bf:4bc20c6f97f4",
   "trk:t-dbe684bf:4c709989a407",
+  "trk:t-dbe684bf:5345a3302da6",
   "trk:t-dbe684bf:63a173bf189c",
   "trk:t-dbe684bf:c1be5e05fc6e",
   "trk:t-dbe684bf:e5cbac0a0716",
@@ -869,6 +871,7 @@
   "trk:yt--jklonfa:d5d4de6e1d3f",
   "trk:yt--jklonfa:d6dd521d2844",
   "trk:yt--jklonfa:d89bccce8087",
+  "trk:yt--jklonfa:da60dcca1391",
   "trk:yt--jklonfa:dafebdca7f95",
   "trk:yt--jklonfa:dcab74887522",
   "trk:yt--jklonfa:dce4340d5d32",
@@ -886,6 +889,7 @@
   "trk:yt--jklonfa:e53941c08ae0",
   "trk:yt--jklonfa:e6b87283a1ee",
   "trk:yt--jklonfa:e7a75be8eb79",
+  "trk:yt--jklonfa:ecffc0776b8e",
   "trk:yt--jklonfa:f0b8539198ae",
   "trk:yt--jklonfa:f0f79f307602",
   "trk:yt--jklonfa:f3c98d92df63",
@@ -942,18 +946,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:t-62bbe9b6:fa86fef8ce8c": [
-   444
-  ],
-  "trk:cxmt:b81080a369e0": [
-   445
-  ],
-  "trk:gartner:3dfbaffaf156": [
-   446
-  ],
-  "trk:cathie-wood:c4dae11c1b2d": [
-   447
-  ],
   "trk:open-ai:52ebe84c5c4d": [
    448
   ],
@@ -2480,8 +2472,20 @@
   ],
   "trk:yt--jklonfa:ddfcde23bb46": [
    907
+  ],
+  "trk:yt--jklonfa:ecffc0776b8e": [
+   908
+  ],
+  "trk:yt--jklonfa:da60dcca1391": [
+   909
+  ],
+  "trk:t-62bbe9b6:4ac397b22a04": [
+   910
+  ],
+  "trk:t-dbe684bf:5345a3302da6": [
+   911
   ]
  },
  "topics": {},
- "topic_fail_at": 1792993636.164753
+ "topic_fail_at": 1792997481.520714
 }
