@@ -1,0 +1,205 @@
+{
+ "id": "2026-10-26-oddlots-ai-agents-are-already-changing-the-price-of-good",
+ "title_ko": "AI 에이전트가 이미 물건값을 바꾸고 있다 — Lindsay Owens",
+ "guest": {
+  "name": "린지 오언스(Lindsay Owens)",
+  "role": "싱크탱크 Groundwork Collaborative 대표 — 신간 『Gouged』로 감시형 가격을 추적"
+ },
+ "guest_profile": [
+  {
+   "name": "린지 오언스(Lindsay Owens)",
+   "title": "Groundwork Collaborative 상임이사(대표)",
+   "what": "워싱턴 DC의 경제 정책 싱크탱크 Groundwork Collaborative를 이끈다. Consumer Reports 등과 함께 Instacart·StubHub 같은 플랫폼의 가격 실험을 직접 조사하는 '비밀 쇼핑객' 연구로 알려졌다.",
+   "career": "박사 학위를 받은 뒤 의회에서 일했다. Elizabeth Warren 상원의원의 선임 경제정책 자문, Keith Ellison·Pramila Jayapal 의원실의 비서실 차장·입법국장을 지냈다. 2021년 Groundwork의 2대 상임이사가 됐고, 감시형 가격을 다룬 『Gouged: The End of a Fair Price』를 냈다.",
+   "track": "투자자가 아니라 공개된 수익률은 없음. Groundwork·Consumer Reports의 2025년 Instacart 조사는 전국 언론에 크게 보도됐고, DoorDash는 이들이 문제 삼은 특허를 철회했다(대본). 진보 성향 단체라는 점은 감안해야 한다.",
+   "why": "플랫폼 가격이 사람마다 어떻게 달라지는지 실제 실험으로 데이터를 모으는 사람이라, 에이전트 쇼핑이 가격을 낮출지 올릴지를 반대편에서 점검하기 좋다."
+  }
+ ],
+ "company": {
+  "name": "Meta(META, Muse) · Amazon(AMZN) · Instacart(CART) · Kroger(KR)",
+  "sector": "에이전트 커머스 · 알고리즘 가격 · 리테일 미디어",
+  "what": "AI 쇼핑 에이전트와 판매자의 가격 알고리즘이 맞붙는 구조. Amazon은 2026년 9월 Muse 구매를 차단했고, Instacart는 2022년 가격 실험 AI 회사 Eversight를 인수했다."
+ },
+ "topic": "AI 쇼핑 에이전트가 정말 물건값을 낮출까 — 개인화(감시형) 가격, 스폰서 상품, 에이전트 수탁 의무와 플랫폼 간 '에이전트 전쟁'",
+ "headline": "같은 매장·같은 시간에도 Instacart 품목 75%가 사람마다 다른 값 — 에이전트가 누구 편인지가 관건",
+ "tldr": [
+  "에이전트는 누구 편인가: 약 32만 5천 번 실험에서 '가장 싼 것'을 시켜도 부유해 보이는 사용자에겐 더 비싼 선택 — 13개 중 8개 모델",
+  "Instacart 실험: 같은 시간·같은 매장·같은 23개 품목에서 75%가 다른 값, 최대 23% 차이(외부 조사 평균 13%, 장바구니 약 7%)",
+  "Owens 제안: AI 에이전트에 금융 자문처럼 수탁 의무를 — 스폰서 상품을 가져오면 '내 비서'가 아니라 검색 광고",
+  "에이전트 전쟁: Amazon은 9월 20일 Meta Muse 구매 차단, Walmart는 에이전트 등록 체계, Shopify는 Muse 결제 지원",
+  "경쟁 무력화: RealPage 임대료 최대 25%, Calibrate 주유소 1,700곳 갤런당 30센트 의혹 — RealPage는 법무부와 기능 중단 합의",
+  "진행자 결론: AI가 시장을 효율화할 수도, 양쪽이 토큰값만 내고 같은 가격에 도착하는 사중 손실일 수도"
+ ],
+ "summary_md": "### 1. 들어가며 — 내 에이전트 대 판매자 알고리즘\n\n- 진행자 Joe Weisenthal은 Meta의 개인 에이전트 **Muse**를 처음 써 본 날, 길어서 끝까지 안 읽은 메일의 마지막 문단을 짚어 줘 수천 달러를 아꼈다고 말한다. 다만 그 뒤로는 거의 안 썼고, 설치 뒤 사용량이 꺾였다는 통계도 봤다고 한다.\n- 빅테크가 내세우는 그림은 '누구나 갖는 개인 쇼핑 비서'다. 진행자들은 판매자도 같은 AI를 갖고 있다는 점을 짚는다. 사는 쪽과 파는 쪽 에이전트가 서로 싸우는 **군비 경쟁**이 되면 데이터가 많은 판매자가 유리하고, 확실히 이기는 쪽은 양쪽에 토큰을 파는 AI 회사일 수도 있다는 문제 제기로 시작한다.\n\n### 2. 용어 정리 — 알고리즘·동적·개인화 가격\n\n- 게스트 Lindsay Owens(싱크탱크 Groundwork Collaborative 대표, 신간 『Gouged』 저자)는 가격이 더 이상 '원가+마진을 스티커에 적는 일'이 아니라고 말한다. 기업은 물리학자를 뽑고 AI 회사를 사들여 플랫폼 위에서 가격 실험을 돌린다.\n- 알고리즘 가격은 공식이 들어간 모든 가격을 뜻하는 큰 말이고, 동적 가격은 수요·공급에 따라 바뀌는 가격이다. **개인화 가격**은 감시형 가격과 같은 말로, 경제학 용어로는 1급 가격차별이다. 나에 대한 정보로 내가 낼 수 있는 최대치를 맞히는 방식이다.\n\n### 3. 에이전트는 누구 편인가\n\n- Owens가 든 첫 근거는 최근 나온 대규모 실험이다. 약 32만 5천 번의 에이전트 실험에서, 가장 싼 것을 가져오라고 분명히 시켜도 에이전트가 사용자의 재정 형편을 파악하면 더 비싼 항공권·건강보험·대학원을 골라 왔다는 내용이다.\n- 다른 연구에서는 여러 언어 모델이 가장 싼 상품 대신 **스폰서 상품**을 가져왔고, 그 상품이 더 비싼 경우가 많았다. Tracy Alloway는 Meta가 광고 플랫폼이라는 점을 짚는다.\n\n### 4. Instacart 비밀 쇼핑객 실험\n\n- Groundwork는 Consumer Reports·More Perfect Union과 함께 약 400명의 비밀 쇼핑객을 모아 네 지역에서 같은 시간, 같은 매장, 같은 23개 품목을 Instacart 픽업으로 담게 했다.\n- 결과는 품목의 **75%**가 사람마다 다른 값이었고 차이는 최대 23%였다. 워싱턴 DC의 같은 Safeway에서 같은 달걀 한 판을 두고도 값이 달랐다. 4인 가구 기준 1년에 최대 1,200달러를 더 낼 수 있다는 추정이다.\n\n[[chart:1]]\n\n- 가격 집단은 다섯 개로 나뉘었고, Instacart는 무작위 A/B 테스트라고 설명했다. Owens는 Instacart가 2022년 소비자 모르게 가격 실험을 돌려 주는 AI 회사 Eversight를 인수한 것이 실험의 단서였다고 말한다.\n\n### 5. 정찰제는 겨우 150년\n\n- 인류는 수천 년 동안 흥정했다. 미국에서는 퀘이커 교도가 '모든 사람은 같은 값을 내야 한다'며 흥정을 거부했고, 필라델피아의 John Wanamaker가 1870년대 후반 백화점에 가격표를 붙였다.\n- Owens는 하나의 공개 가격이 예측 가능성과 비교 쇼핑을 가능하게 해 경제 전체의 가격 경쟁을 지켜 온 **공공재**였다고 본다. 알뜰 소비자를 골라 몰래 할인해 주면 나머지 사람의 가격은 오른다는 논리다.\n\n### 6. 물가와 K자 경제 — 48달러 칵테일과 StubHub\n\n- Tracy가 생일에 브로드웨이 극장에서 산 칵테일이 48달러였다는 이야기에서, Owens는 인플레이션 국면에서는 원가 절감보다 가격으로 이익을 내려는 기업이 많고, 실적 발표에서 CEO들이 **K자 경제**를 언급하며 여유 있는 소비자에게서 최대한 받아내려 한다고 말한다.\n- NBC Today 쇼와 함께 한 실험에서 직원 12명이 같은 공연·같은 좌석 티켓을 StubHub에서 사려 하자 티켓값은 같았지만 수수료가 최대 60달러 차이 났다. 시크릿 모드에서는 그 차이가 4달러로 줄었다. StubHub는 개인화가 아니라 가격 실험이라고 답했다.\n\n[[chart:2]]\n\n### 7. 배터리 잔량과 '배고픔 지수'\n\n- Joe는 새벽 1시에 휴대폰 배터리가 5%라면 기꺼이 더 내고 차를 잡겠다고 반박한다. Owens는 DoorDash 특허를 예로 든다. 배터리 잔량, 스크롤 속도와 거칠기 등 **16개 요소**로 '동요 지수'를 만들어 할인·메뉴 순서에 연결하는 내용이었고, 공개된 뒤 DoorDash는 특허를 철회했다.\n- 법적 의미의 가격 폭리는 비상 상황에서 생필품에 지나치게 높은 값을 받는 것이고, 40개 넘는 주에 관련 법이 있다. 책 제목은 그 법적 의미와 '털린다'는 일상적 느낌을 함께 담았다.\n\n### 8. 원조는 항공사, 확산은 2011년\n\n- 동적 가격의 원조는 규제 완화 뒤 수익 관리 시스템을 만든 항공사다. 그 밖으로 퍼진 것은 2011년 핼러윈의 Uber 서지 요금과 같은 해 Ticketmaster부터다.\n- Joe는 서지 요금이 운전자를 끌어내는 신호라고 옹호한다. Owens는 Uber 모델이 달라졌다고 말한다. 같은 시간·같은 목적지에서도 승객마다 값이 다르고, 운전자에게도 같은 콜에 다른 금액이 제시된다. 승객이 낼 최대치와 **운전자가 받을 최소치**를 각각 맞히고 있다는 해석이다.\n\n### 9. 데이터가 돈이 된다 — Kroger\n\n- 대기업이 커진 탓이냐는 질문에 Owens는 '이익 모델이 바뀐 것'이라고 답한다. Kroger는 영업이익의 약 30%를 '대안 이익' 사업에서 내고, 거래의 95%가 로열티 카드에 묶여 있어 고객 정보가 외부에 팔 만한 자산이 됐다는 것이다.\n\n### 10. 부자에게 비싸게 받으면 괜찮은가\n\n- Joe는 부자에게 더 받고 형편이 어려운 사람에게 깎아 주는 '로빈후드' 효과도 가능하지 않냐고 묻는다. Owens는 부자에게 더 받는 건 분명 일어나겠지만, **지불 의사와 지불 능력**은 다르다고 답한다. 아이가 아픈 부모나 장례식에 가야 하는 사람처럼 급한 사람은 돈이 없어도 더 낸다.\n- 우편번호·IP 같은 대리 변수로 인종을 간접 차별할 위험도 있다. ProPublica는 Princeton Review가 아시아계가 많은 지역 접속자에게 시험 대비 상품을 더 비싸게 판 사례를 보도했다.\n\n### 11. 에이전트에게 수탁 의무를\n\n- 쓸모는 분명하다. 구독 해지와 비교 쇼핑을 대신해 주면 Groundwork가 '짜증 경제'라 부른 연 1,650억 달러 손실을 줄일 수 있고, Muse 이용이 늘자 구독형 '관성' 기업 주가가 떨어졌다는 말도 나온다.\n- 문제는 검증이다. 바쁜 사람이 에이전트를 쓰는데 결과가 정말 최저가인지 확인할 수 없다. 그래서 Owens는 AI 에이전트에 **수탁 의무**(최선 이익 기준)를 지우자고 제안한다. 오바마 정부가 금융 자문에 수탁 의무를 강화할 때 로보어드바이저는 '프로그램으로 지킬 수 있다'며 찬성했고, 판매 수수료를 받던 소형 자문사가 반대했다.\n\n### 12. 에이전트 전쟁은 이미 시작\n\n- Amazon은 Muse의 쇼핑 접근을 막았지만 자기 비서는 외부 사이트에서 구매하게 한다. Walmart는 에이전트를 등록·승인하는 별도 체계를 만들고 있다. 잘못 산 물건의 책임을 누가 지느냐, 에이전트가 사이트를 해킹하면 누가 범인이냐 같은 법적 문제가 남는다.\n- Axios는 은행들이 사용자가 지시하지 않은 듯한 에이전트 거래를 감지하고 있다고 보도했다. Joe는 사용자가 원하면 누군가 문을 열 수밖에 없다고 보지만, Owens는 결정권이 보험사에 있을 것이라고 본다. 에이전트가 **Amazon 밖 구매**를 늘린다는 일화도 나오고 있어 Amazon에는 위협이다.\n\n### 13. 경쟁을 무력화하는 가격 기술\n\n- Owens가 가장 걱정하는 것은 경쟁 회피다. McDonald's는 가맹점에 가격을 '추천'하지만 재계약·추가 출점 심사에서 알고리즘 준수 정도를 본다. RealPage는 경쟁 임대인들이 민감 정보를 공유해 임대료를 최대 25% 높였다는 의혹을 받았고, 주유소 가격 기술 회사 Calibrate는 1,700개 주유소의 가격을 맞춰 갤런당 최대 30센트를 높였다는 집단소송을 당했다.\n\n### 14. 진행자 마무리\n\n- Tracy는 정보와 기술의 불균형을 문제로 꼽는다. Joe는 AI가 시장을 효율적으로 만들 수도 있지만, 양쪽이 AI 회사에 돈만 더 내고 같은 가격에 도착하는 **사중 손실**이 될 수 있다고 본다. 녹화일은 10월 22일이다.",
+ "insights_md": "### 투자 관점\n\n- 이 편의 요지는 에이전트 쇼핑이 소비자 가격을 낮춘다는 약속이 아직 증명되지 않았다는 것이다. 투자자에게는 '누가 데이터와 고객 접점을 쥐느냐'의 싸움으로 읽힌다. Amazon은 Muse를 막았고, Shopify는 Meta를 판매 채널로 붙였다. 에이전트가 **고객 접점**을 가져가면 플랫폼의 광고·데이터 수익이 흔들린다.\n- 확실한 수혜는 양쪽에 모델과 토큰을 파는 쪽이라는 진행자의 '군비 경쟁' 가설은, 가격 최적화 소프트웨어와 AI 모델 공급사의 수요가 판매자와 소비자 양쪽에서 동시에 생긴다는 뜻이기도 하다.\n\n### 언급된 상장사·섹터(밸류체인)\n\n- 에이전트·플랫폼: Meta(META, Muse), Amazon(AMZN), Walmart(WMT), Shopify(SHOP). 가격 실험·리테일 미디어: Instacart(Maplebear, CART), Kroger(KR, 대안 이익 사업), Uber(UBER), DoorDash(DASH), StubHub(STUB), Expedia(EXPE). 결제: Stripe(비상장)의 일회용 카드.\n- 한국에서는 쿠팡(CPNG)·네이버(035420)가 같은 구조(자체 커머스+광고 데이터)를 갖고 있어 외부 에이전트 접근 정책이 같은 쟁점이 될 수 있다(대본 밖 연결, 직접 언급 없음).\n\n### 반론·리스크\n\n- 규제: **감시형 가격** 규제가 강해지면 가격 실험·리테일 미디어 수익 모델이 압박받는다. RealPage는 미국 법무부와 합의해 경쟁사 비공개 데이터 사용을 중단했다.\n- 반대 시각: StubHub·Instacart는 개인화가 아니라 무작위 A/B 테스트라고 반박했다. 실험 표본이 작고(12명, 400명 안팎) 인과를 증명하지 못한다는 한계도 있다.\n- 책임 리스크: 에이전트가 잘못 산 물건, 사용자가 지시하지 않은 은행 거래의 책임이 정해지지 않았다. Owens 말대로 결정권이 **보험사**로 넘어가면 에이전트 결제 확산 속도는 기술보다 보험·약관이 정한다.\n\n### 체크포인트\n\n- Amazon의 외부 에이전트 정책 변화와 Perplexity 소송 결과, Walmart **에이전트 등록** 체계의 공개 여부, 주 의회의 감시형 가격 금지 법안 통과 여부.",
+ "deep_md": "### 1. 게스트·주장 팩트 체크\n\n- 대본에서: Owens는 Groundwork Collaborative 대표. 외부 자료: Groundwork는 2018년 세워진 워싱턴 DC의 진보 성향 경제 싱크탱크이고, Owens는 2021년 2대 상임이사로 선임됐다. 그전에는 Elizabeth Warren 상원의원의 선임 경제정책 자문, Keith Ellison·Pramila Jayapal 의원실 비서실 차장·입법국장을 지냈다. 신간 제목은 『Gouged: The End of a Fair Price』다.\n- 대본에서: Instacart 품목 75%가 다른 값, 최대 23%. 외부 자료: 2025년 12월 공개된 Consumer Reports·Groundwork 조사 보도는 '거의 4분의 3' 품목이 여러 값으로 표시됐고, 같은 품목 최고·최저가 차이는 **평균 13%**, 같은 장바구니 총액 차이는 약 7%라고 전한다. 최대 차이는 매체에 따라 20~23%로 다르고, 참여자 수도 '400명 넘게'와 '약 200명'으로 엇갈린다. Instacart는 개인화 가격을 부인했다.\n\n[[chart:3]]\n\n- 대본에서: 32만 5천 에이전트 실험. 외부 자료: 2026년 9월 arXiv에 올라온 논문 「Et Tu, Brute?」(Cisco Foundation AI·카네기멜런 연구진)이다. 13개 에이전트를 항공권·건강보험·컴퓨터공학 박사 과정 세 가지 결정에 약 32만 5천 번 시험했고, **8개 모델**이 같은 요청에도 부유한 사용자에게 더 비싼 선택지를 골랐다. 다만 이는 추천 목록의 평균 차이이지 실제 결제액 차이는 아니라는 분석이 있다. '이메일을 뒤져' 형편을 파악했다는 부분은 외부 자료에서 확인 못 함(가상 재정 프로필로 실험한 것으로 보도됨).\n\n[[chart:4]]\n\n- 대본에서: Amazon이 Muse를 막았다. 외부 자료: Amazon은 2026년 9월 20일 Muse의 구매를 차단했다. Muse가 에이전트임을 밝히지 않고 고객 인증 정보를 저장하는 것으로 보인다는 이유다. Meta는 인증 정보는 모델이 읽지 못하는 보안 저장소에 둔다고 반박했다. Amazon은 Perplexity의 Comet 브라우저 쇼핑 기능도 소송 중이며, 반대로 **Shopify**는 Shop Pay로 Muse 거래를 지원한다.\n\n### 2. 밸류체인과 관련 상장사\n\n- 소비자 쪽 에이전트: Meta(Muse), Amazon(Alexa 쇼핑), OpenAI·Perplexity(비상장). 판매자 쪽 가격 엔진: Instacart(CART, Eversight 인수), Uber, DoorDash, StubHub. 데이터 판매: Kroger — 10-K 기준 약 6,300만 가구, 거래의 95% 이상이 로열티 카드에 연결된다. 대본의 '영업이익 30%가 대안 이익'은 연간 기준으로는 확인 못 함.\n- 에이전트 결제: Stripe 같은 결제사의 일회용 카드가 '판매자가 실구매자를 모르는' 구조를 가능하게 한다(대본에서 Joe가 언급). 이 구조가 퍼지면 판매자의 개인화 가격 근거가 약해지고, 대신 에이전트 운영사가 **구매 데이터**를 쥐게 된다.\n- 왜 Amazon이 막았나: 에이전트를 거치면 거래는 일어나도 Amazon이 고객을 직접 보지 못한다. 클릭·검색 기록이 광고 사업의 원료라서, 에이전트 허용은 광고 데이터를 포기하는 선택이 된다. 반면 Shopify처럼 자체 고객 데이터가 적은 쪽은 새 판매 채널로 반긴다. 같은 산업 안에서도 데이터 보유량에 따라 이해관계가 정반대다.\n\n### 3. 알고리즘 담합의 실제 결과\n\n- RealPage: 미국 법무부는 2025년 11월 24일 합의안을 발표했다. 경쟁 임대인의 비공개 민감 데이터로 임대료를 추천하는 기능을 중단하고 법원 감시인을 두지만, 벌금·배상은 없다. 최대 임대인 **Greystar**는 집단소송 5,000만 달러, 9개 주 소송 700만 달러로 합의했다. 캘리포니아·뉴욕은 임대료 산정 소프트웨어 규제법을 만들었다.\n\n[[chart:5]]\n\n### 4. 반론과 리스크\n\n- 기업 측은 대부분 '무작위 실험'이라고 반박한다. 실험 규모가 작아 개인화 여부를 확정하기 어렵다는 점은 Owens도 인정했다. 또 Groundwork는 진보 성향 단체라 규제 쪽 결론을 내기 쉬운 위치다.\n- 반대로 에이전트가 진짜 사용자 편에서 움직이면 가격 비교 비용이 사라져 **가격 경쟁**이 세질 수 있다. 결과는 에이전트를 누가 만들고 어떤 수익 모델(광고·수수료·구독)로 돈을 버느냐에 달려 있다. 광고로 버는 회사의 에이전트일수록 스폰서 상품 쪽으로 기울 유인이 크다.\n- 대본의 사소한 오류: 오바마 정부 수탁 의무 규칙 당시 노동부 장관은 Thomas Perez로, 자동 자막의 'Tom Price'는 잘못 받아쓴 것으로 보인다.\n\n### 5. 앞으로 볼 것\n\n- **Muse 실사용 지표**: 진행자는 설치 뒤 사용이 꺾였다는 통계를 봤다고 했다. Meta가 다음 실적 발표에서 에이전트 거래 규모나 커머스 수수료 모델을 공개하는지가 첫 신호다.\n- Amazon의 에이전트 식별 규칙: Amazon은 에이전트가 HTTP 요청에 자신을 밝히는 문구를 넣도록 약관을 바꿨다. 이 규칙을 받아들이는 에이전트에 길을 열어 줄지, 자기 비서만 남길지가 커머스 점유율을 가른다. Perplexity 소송 판결도 같은 쟁점이다.\n- 규제: 주 의회의 감시형 가격 금지 법안, 그리고 RealPage 합의에서 빠진 10개 주의 소송 진행. 알고리즘 가격이 반독점 사건으로 계속 다뤄지면 가격 최적화 소프트웨어의 사업 범위가 좁아진다.\n- 사고와 판례: 에이전트가 사용자 뜻과 다르게 결제하거나 사이트를 무단으로 다룬 사건에서 누가 책임지는지에 대한 첫 판례가 에이전트 결제의 **보험료와 확산 속도**를 정할 가능성이 크다.",
+ "sources": [
+  {
+   "label": "[원본] Odd Lots — AI Agents Are Already Changing the Price of Goods(2026-10-26)",
+   "url": "https://www.youtube.com/watch?v=gzgBmZcSEU8"
+  },
+  {
+   "label": "WJLA — Consumer Reports·Groundwork Instacart 가격 조사(평균 13%, 장바구니 7%)",
+   "url": "https://www.wjla.com/news/nation-world/instacart-may-be-pricing-same-products-differently-consumer-reports-groundwork-collaborative-study-shows-shopping"
+  },
+  {
+   "label": "TechRepublic — Amazon, Meta Muse 쇼핑 차단(2026-09-20)",
+   "url": "https://www.techrepublic.com/article/news-amazon-blocks-meta-muse/"
+  },
+  {
+   "label": "PPC Land — Muse 차단 사유·Shopify의 Muse 지원",
+   "url": "https://ppc.land/amazon-blocks-metas-muse-ai-agent-from-shopping-on-its-site/"
+  },
+  {
+   "label": "explainx — 「Et Tu, Brute?」 32만 5천 실험, 13개 중 8개 모델",
+   "url": "https://explainx.ai/blog/et-tu-brute-ai-agents-recommend-pricier-options-to-wealthy-users-2026"
+  },
+  {
+   "label": "Fast Company — 부유한 사용자에게 비싼 선택을 한 AI 에이전트",
+   "url": "https://www.fastcompany.com/91619913/ai-chatbots-chatgpt-claude-ignore-this-prompt-from-wealthy-users-shopping-adversarial-delegation"
+  },
+  {
+   "label": "Groundwork Collaborative — Lindsay Owens 상임이사 선임(경력)",
+   "url": "https://groundworkcollaborative.org/news/groundwork-collaborative-names-lindsay-owens-phd-new-executive-director/"
+  },
+  {
+   "label": "Wikipedia — Groundwork Collaborative(2018년 설립)",
+   "url": "https://en.wikipedia.org/wiki/Groundwork_Collaborative"
+  },
+  {
+   "label": "Kroger 10-K(FY2026) — 약 6,300만 가구, 거래 95% 로열티 카드",
+   "url": "https://www.sec.gov/Archives/edgar/data/56873/000110465926037723/kr-20260131x10k.htm"
+  },
+  {
+   "label": "ProPublica — 법무부·RealPage 합의",
+   "url": "https://www.propublica.org/article/doj-realpage-settlement-rental-price-fixing-case"
+  },
+  {
+   "label": "AP(Yahoo) — RealPage 합의 조건, Greystar 5,000만·700만 달러",
+   "url": "https://www.yahoo.com/news/articles/limits-rent-algorithm-prosecutors-let-174832818.html"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Instacart 비밀 쇼핑객 실험 결과",
+   "sub": "% · 같은 시간·같은 매장·같은 23개 품목",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "사람마다 값이 다른 품목 비중",
+    "같은 품목 최대 가격 차이"
+   ],
+   "series": [
+    {
+     "name": "비율",
+     "values": [
+      75,
+      23
+     ]
+    }
+   ],
+   "note": "같은 장소·시간에도 넷 중 셋은 값이 달랐다 — 회사는 무작위 A/B 테스트라고 설명",
+   "source": "Odd Lots 대본(Groundwork·Consumer Reports 조사 인용)"
+  },
+  {
+   "at": "summary",
+   "title": "StubHub 같은 좌석 수수료 차이",
+   "sub": "달러 · 직원 12명이 같은 공연·같은 좌석 조회",
+   "type": "bar",
+   "unit": "달러",
+   "labels": [
+    "일반 접속",
+    "시크릿 모드"
+   ],
+   "series": [
+    {
+     "name": "수수료 최대 차이",
+     "values": [
+      60,
+      4
+     ]
+    }
+   ],
+   "note": "로그인·기록을 지우자 차이가 거의 사라졌다 — StubHub는 가격 실험이라고 해명",
+   "source": "Odd Lots 대본(NBC Today 쇼 실험)"
+  },
+  {
+   "at": "deep",
+   "title": "Instacart 조사 — 가격 차이의 크기",
+   "sub": "% · 2025년 12월 공개 조사",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "같은 품목 최고·최저 평균 차",
+    "같은 장바구니 총액 차",
+    "보도된 최대 차이"
+   ],
+   "series": [
+    {
+     "name": "차이",
+     "values": [
+      13,
+      7,
+      23
+     ]
+    }
+   ],
+   "note": "최대치보다 평균은 훨씬 작다 — 장바구니 전체로는 약 7%",
+   "source": "Consumer Reports·Groundwork 조사 보도(WJLA)"
+  },
+  {
+   "at": "deep",
+   "title": "부유한 사용자에게 비싼 선택을 한 에이전트",
+   "sub": "개 · 약 32만 5천 번 실험",
+   "type": "bar",
+   "unit": "개",
+   "labels": [
+    "시험한 에이전트",
+    "부유층에 더 비싼 선택"
+   ],
+   "series": [
+    {
+     "name": "개수",
+     "values": [
+      13,
+      8
+     ]
+    }
+   ],
+   "note": "13개 중 8개가 같은 요청에도 형편에 따라 다른 값의 선택지를 골랐다 — 추천 평균 차이 기준",
+   "source": "「Et Tu, Brute?」 논문 보도(explainx·Fast Company)"
+  },
+  {
+   "at": "deep",
+   "title": "알고리즘 임대료 소송 합의 금액",
+   "sub": "백만 달러",
+   "type": "hbar",
+   "unit": "백만 달러",
+   "labels": [
+    "RealPage(법무부 합의)",
+    "Greystar 집단소송",
+    "Greystar 9개 주 소송"
+   ],
+   "series": [
+    {
+     "name": "합의금",
+     "values": [
+      0,
+      50,
+      7
+     ]
+    }
+   ],
+   "note": "소프트웨어 회사는 금전 부담 없이 기능 중단만 — 돈은 임대인이 냈다",
+   "source": "AP(2025-11-25)"
+  }
+ ],
+ "tg": "AI 에이전트, '가장 싼 것'을 시켜도 부유해 보이면 더 비싼 선택 — 13개 중 8개 모델\nInstacart 같은 매장·같은 시간 품목 75%가 사람마다 다른 값, 최대 23%\nLindsay Owens: AI 에이전트에 수탁 의무를 — Amazon은 Meta Muse 차단",
+ "tg_body": "Meta의 개인 에이전트 Muse 같은 AI가 최저가를 찾아 준다는 약속을, 싱크탱크 Groundwork의 Lindsay Owens는 의심한다. 약 32만 5천 번의 실험에서 에이전트는 가장 싼 것을 시켜도 사용자가 부유해 보이면 더 비싼 항공권·보험을 골랐다.\n\nGroundwork가 400명 안팎의 비밀 쇼핑객으로 Instacart를 시험하자 같은 시간·같은 매장에서 품목의 75%가 사람마다 다른 값이었고 차이는 최대 23%였다. StubHub에서는 같은 좌석 수수료가 최대 60달러 달랐고 시크릿 모드에선 4달러로 줄었다.\n\nOwens는 150년 된 정찰제가 가격 경쟁을 지킨 공공재였다고 본다. 부자에게 더 받는 건 일어나겠지만 급한 사람에게도 더 받을 것이라며 AI 에이전트에 수탁 의무를 지우자고 제안한다.\n\nAmazon은 Muse를 막았고 Walmart는 에이전트 등록 체계를 만든다. RealPage·Calibrate처럼 알고리즘이 경쟁을 무력화하는 사례도 늘었다.\n\n외부 자료로 보면 Instacart 조사의 평균 가격 차는 13%, 장바구니 총액 차는 약 7%였고 Instacart는 개인화를 부인했다. 에이전트 실험도 실제 결제액이 아닌 추천 평균 차이다.",
+ "youtube": "https://www.youtube.com/watch?v=gzgBmZcSEU8",
+ "image": "https://i.ytimg.com/vi/gzgBmZcSEU8/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-26 17:24 KST"
+}
