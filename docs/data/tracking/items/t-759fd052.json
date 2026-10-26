@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "05e50319e05b",
+   "kind": "news",
+   "headline": "월가 은행·블랙스톤, 앤트로픽이 쓸 브로드컴 칩 사는 데 630억 달러 금융 마련(로이터)",
+   "bullets": [
+    "로이터에 따르면 월가 은행들과 블랙스톤이 앤트로픽용 브로드컴 칩 구매 자금으로 630억 달러를 모으고 있다.",
+    "앤트로픽은 상장 신고서에서 브로드컴과 약 1,612억 달러 규모 임대(리스) 계약을 공개했다 — 5년간 구글·브로드컴 공동 개발 TPU 컴퓨팅을 공급받는 내용.",
+    "앤트로픽의 컴퓨팅 장기 계약·투자 약정은 총 8,000억 달러를 넘고 일부는 2045년까지 이어진다."
+   ],
+   "summary": "로이터 원문은 유료·구글 뉴스 경유라 본문을 확인하지 못했고, 제목에 나온 '은행들과 블랙스톤이 630억 달러를 마련한다'는 사실만 확실하다. 세부 구조(대출인지 리스인지, 금리·만기)는 확인되지 않았다.\n\n배경은 26일 공개된 상장 신고서다. 국내 보도(한국경제·한국경제TV)에 따르면 앤트로픽은 브로드컴과 약 1,612억 달러 임대 계약, 스페이스X AI·엔비디아 관련 최대 1,205억 달러, 아마존 1,100억 달러 등 약 8,070억 달러를 수년간 컴퓨팅에 쓰기로 했다. 브로드컴 계약은 구글과 함께 만든 TPU 자원을 5년간 받는 것이고, 2028년부터 TPU에 최대 1,500억 달러를 추가로 쓸 계획도 있다.\n\n이번 630억 달러는 그 칩 대금 일부를 외부 금융으로 메우는 구조로, 같은 날 스페이스X가 아폴로와 맺은 400억 달러 GPU 리스와 같은 흐름이다. 남은 쟁점은 금융 조건과 앤트로픽 상장 공모액이 칩 대금 부담을 얼마나 덜어 줄지다.",
+   "title": "Wall Street banks, Blackstone line up $63 billion to finance Broadcom chips for Anthropic",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQZU9zQUUycTh6SXBkQ25GQUJKTWJabmR3Q1gtYXlZWDJSUWk2cmxGWWRsUlZlSTdVNEtsdDY5d0hVakZ1ZkVDMDFiV2NrdjFaQnNVZUxRMjNESzluZFVBc0s3YU9pZjNZMVR1WEdIOVFrc2phbnRZYWpuYnRXY29Rd0FiVnItWTR1akVvNXhfWDAyNHJId040M2R0Q29HZTAwVzYxUl9OVy0wNWFrV2M3ME1Td25NUGI5cnhOY2JyQUVFS3ZOUGdEZVh1X2pQZWp4NGc?oc=5",
+   "published": "2026-10-27 05:32 KST",
+   "written": "2026-10-27 06:50 KST"
+  },
+  {
    "id": "957f23748de1",
    "kind": "news",
    "headline": "[후속] 앤트로픽, 상장 신청서 공식 공개 — 나스닥 티커 'ANT', 골드만삭스·모건스탠리 주관, 공모 주식 수·가격은 미정",
@@ -897,5 +913,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-26 22:18 KST"
+ "updated": "2026-10-27 06:50 KST"
 }
