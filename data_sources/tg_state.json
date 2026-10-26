@@ -324,6 +324,7 @@
   "trk:blog-ssh-fedinsight:bc0f9450c017",
   "trk:blog-ssh-fedinsight:bcc2cc5a8ec7",
   "trk:blog-ssh-fedinsight:d14ccba0dba1",
+  "trk:blog-ssh-fedinsight:f55e65ecb48f",
   "trk:blog-ssh-fedinsight:f97e5baed7d2",
   "trk:blog-techcrunch:00c760d9a9f9",
   "trk:blog-techcrunch:00fe9b4be002",
@@ -784,6 +785,7 @@
   "trk:yt--jklonfa:0d9777bdf6d9",
   "trk:yt--jklonfa:0e5afb32d5a5",
   "trk:yt--jklonfa:1132906d09b8",
+  "trk:yt--jklonfa:1582d218f9fe",
   "trk:yt--jklonfa:17030502403d",
   "trk:yt--jklonfa:1723dbb8c2c6",
   "trk:yt--jklonfa:17373e3a6206",
@@ -1009,12 +1011,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:yt--jklonfa:9dc33fb3b07a": [
-   505
-  ],
-  "usdkrw:2026-10-19": [
-   226
-  ],
   "or:2026-10-18|weekly:2026-10-12": [
    227,
    228,
@@ -2545,6 +2541,12 @@
   ],
   "trk:blog-techcrunch:a65d2b4a8049": [
    971
+  ],
+  "trk:blog-ssh-fedinsight:f55e65ecb48f": [
+   972
+  ],
+  "trk:yt--jklonfa:1582d218f9fe": [
+   973
   ]
  },
  "topics": {},
