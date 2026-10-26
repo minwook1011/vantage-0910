@@ -122,6 +122,7 @@
   "or:2026-10-22",
   "or:2026-10-23",
   "or:2026-10-24",
+  "or:2026-10-25",
   "pod:2026-10-05-ca-building-the-total-portfolio-at-ontario-teachers",
   "pod:2026-10-06-ilb-andrew-huberman-the-frontier-of-neurotechnology",
   "pod:2026-10-08-ca-real-estate-credit-over-yield-at-invesco-charlie",
@@ -921,12 +922,10 @@
   "usdkrw:2026-10-26",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
-  "weekly:2026-10-12"
+  "weekly:2026-10-12",
+  "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:cathie-wood:a5e8d81e64b8": [
-   427
-  ],
   "trk:msft:991db743ddfa": [
    428
   ],
@@ -2460,6 +2459,11 @@
   ],
   "ins:ins-20261026-burry-y2k-breadth-busted-stocks-rotation": [
    891
+  ],
+  "or:2026-10-25|weekly:2026-10-19": [
+   304,
+   305,
+   306
   ]
  },
  "topics": {},
