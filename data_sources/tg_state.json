@@ -97,6 +97,7 @@
   "macro:2026-10-21",
   "macro:2026-10-22",
   "macro:2026-10-23",
+  "macro:2026-10-26",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -987,9 +988,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ssh-fedinsight:b2927e36f691": [
-   481
-  ],
   "pod:2026-10-16-riskrev-david-rosenberg-the-ai-mania-is-more-extreme-tha": [
    482
   ],
@@ -2519,6 +2517,11 @@
   ],
   "usdkrw:2026-10-27": [
    308
+  ],
+  "macro:2026-10-26": [
+   309,
+   310,
+   311
   ]
  },
  "topics": {},
