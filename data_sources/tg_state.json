@@ -506,6 +506,7 @@
   "trk:nvda:72090d9cfbe9",
   "trk:nvda:8ca37388610d",
   "trk:nvda:944c53d6b0eb",
+  "trk:nvda:97c6f3e03e01",
   "trk:nvda:98db37b15af7",
   "trk:nvda:9951fa564f7f",
   "trk:nvda:a1828143d241",
@@ -532,6 +533,7 @@
   "trk:open-ai:180776a97670",
   "trk:open-ai:1f713b361cf7",
   "trk:open-ai:1fa5cc2ee7db",
+  "trk:open-ai:244dcb335cc7",
   "trk:open-ai:258ac49c822b",
   "trk:open-ai:2710184608eb",
   "trk:open-ai:29c8973038a2",
@@ -680,6 +682,7 @@
   "trk:t-759fd052:94f86d595f54",
   "trk:t-759fd052:98c661336610",
   "trk:t-759fd052:9b8e348531aa",
+  "trk:t-759fd052:a59d16002c48",
   "trk:t-759fd052:abe58b0d3e5d",
   "trk:t-759fd052:ac982908a542",
   "trk:t-759fd052:b7fbb6879f66",
@@ -926,15 +929,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:msft:991db743ddfa": [
-   428
-  ],
-  "trk:meta:9a9028f6cf8c": [
-   429
-  ],
-  "trk:googl:287d82e4cee5": [
-   430
-  ],
   "trk:cxmt:33e0a3d72ae5": [
    431
   ],
@@ -2464,6 +2458,15 @@
    304,
    305,
    306
+  ],
+  "trk:open-ai:244dcb335cc7": [
+   892
+  ],
+  "trk:t-759fd052:a59d16002c48": [
+   893
+  ],
+  "trk:nvda:97c6f3e03e01": [
+   894
   ]
  },
  "topics": {},
