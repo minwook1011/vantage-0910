@@ -294,6 +294,7 @@
   "trk:blog-ranto28:e28ef17622e9",
   "trk:blog-ranto28:e44af80ee32f",
   "trk:blog-ranto28:ec5870e4dcd4",
+  "trk:blog-ranto28:efc4f17723c2",
   "trk:blog-ranto28:f3ab7e879ed0",
   "trk:blog-ranto28:fe500feb8f2a",
   "trk:blog-semianalysis:0fcfcbc692f8",
@@ -326,6 +327,8 @@
   "trk:blog-techcrunch:00c760d9a9f9",
   "trk:blog-techcrunch:00fe9b4be002",
   "trk:blog-techcrunch:03b0a2d9058c",
+  "trk:blog-techcrunch:0771f9b957a6",
+  "trk:blog-techcrunch:07f6917d1b13",
   "trk:blog-techcrunch:125851f53afb",
   "trk:blog-techcrunch:18d250356a9d",
   "trk:blog-techcrunch:1f6f524e1cdc",
@@ -352,30 +355,38 @@
   "trk:blog-techcrunch:7571015a89bd",
   "trk:blog-techcrunch:77792c4e3686",
   "trk:blog-techcrunch:779f6b04dd41",
+  "trk:blog-techcrunch:783e0bd86bc1",
   "trk:blog-techcrunch:7b22c0286f5f",
   "trk:blog-techcrunch:8025937a0b02",
   "trk:blog-techcrunch:81820bea9903",
   "trk:blog-techcrunch:8216b1f735fe",
   "trk:blog-techcrunch:85549ee847dd",
+  "trk:blog-techcrunch:86842473a028",
   "trk:blog-techcrunch:881d220f6023",
   "trk:blog-techcrunch:8a5da784385a",
   "trk:blog-techcrunch:907cd5eeef9b",
   "trk:blog-techcrunch:91c52da1f105",
+  "trk:blog-techcrunch:948a01805f93",
   "trk:blog-techcrunch:98df72e2f673",
   "trk:blog-techcrunch:98ff1ee76c7b",
   "trk:blog-techcrunch:996aae51c765",
+  "trk:blog-techcrunch:9c434ecf2f5a",
   "trk:blog-techcrunch:9cb90d5f017f",
   "trk:blog-techcrunch:a6e9e3330ba6",
   "trk:blog-techcrunch:a8b86062b1eb",
   "trk:blog-techcrunch:aabe400f6606",
+  "trk:blog-techcrunch:aee37b22d73d",
   "trk:blog-techcrunch:b0cc00e8971c",
   "trk:blog-techcrunch:b226aec7f34b",
   "trk:blog-techcrunch:b29af8c65741",
+  "trk:blog-techcrunch:b41998a8287c",
+  "trk:blog-techcrunch:bc380d0b6a73",
   "trk:blog-techcrunch:c6cf8c65ac85",
   "trk:blog-techcrunch:ca13c1c565cb",
   "trk:blog-techcrunch:ca4e5964a553",
   "trk:blog-techcrunch:cc663e2995a4",
   "trk:blog-techcrunch:d58e9a52e8d2",
+  "trk:blog-techcrunch:d9e173490cb6",
   "trk:blog-techcrunch:daec0d20e7db",
   "trk:blog-techcrunch:e6a7e453a215",
   "trk:blog-techcrunch:ec4b5b074c1b",
@@ -690,6 +701,7 @@
   "trk:t-759fd052:03fe1408f933",
   "trk:t-759fd052:057ee3053233",
   "trk:t-759fd052:05bcc7f6a103",
+  "trk:t-759fd052:05e50319e05b",
   "trk:t-759fd052:093ef517a4de",
   "trk:t-759fd052:0b58a51e6efb",
   "trk:t-759fd052:0bde20c42958",
@@ -953,6 +965,7 @@
   "trk:yt-kyrxne0q:c252050ee7ad",
   "trk:yt-kyrxne0q:d62f7f0a4222",
   "trk:yt-kyrxne0q:e8ffbacacd1b",
+  "trk:yt-wy-8burq:077ae918c850",
   "trk:yt-wy-8burq:1c17319dfd84",
   "trk:yt-wy-8burq:26ce90cced2e",
   "trk:yt-wy-8burq:29f62a72bcd5",
@@ -992,46 +1005,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ssh-fedinsight:d14ccba0dba1": [
-   488
-  ],
-  "trk:blog-pillion21:7c05d4b9b9f9": [
-   489
-  ],
-  "trk:michael-burry:c7b74a05c780": [
-   490
-  ],
-  "trk:nvda:a1828143d241": [
-   491
-  ],
-  "trk:nvda:ef2624c0c655": [
-   492
-  ],
-  "trk:t-3f524a5b:348b0c7490ee": [
-   493
-  ],
-  "digest:2026-10-18": [
-   494,
-   495
-  ],
-  "trk:blog-ranto28:3cdffccd5e4d": [
-   496
-  ],
-  "trk:t-759fd052:1da9742bfe9e": [
-   497
-  ],
-  "trk:t-62bbe9b6:23064e4f9600": [
-   498
-  ],
-  "gpu:2026-10-18": [
-   221
-  ],
-  "trk:blog-ranto28:19b80743b18d": [
-   499
-  ],
-  "trk:yt--jklonfa:c78616760641": [
-   500
-  ],
   "trk:yt--jklonfa:0d9777bdf6d9": [
    501
   ],
@@ -2529,6 +2502,45 @@
   "digest:2026-10-27:us": [
    953,
    954
+  ],
+  "trk:t-759fd052:05e50319e05b": [
+   955
+  ],
+  "trk:blog-ranto28:efc4f17723c2": [
+   956
+  ],
+  "trk:yt-wy-8burq:077ae918c850": [
+   957
+  ],
+  "trk:blog-techcrunch:07f6917d1b13": [
+   958
+  ],
+  "trk:blog-techcrunch:783e0bd86bc1": [
+   959
+  ],
+  "trk:blog-techcrunch:9c434ecf2f5a": [
+   960
+  ],
+  "trk:blog-techcrunch:d9e173490cb6": [
+   961
+  ],
+  "trk:blog-techcrunch:b41998a8287c": [
+   962
+  ],
+  "trk:blog-techcrunch:948a01805f93": [
+   963
+  ],
+  "trk:blog-techcrunch:bc380d0b6a73": [
+   964
+  ],
+  "trk:blog-techcrunch:86842473a028": [
+   965
+  ],
+  "trk:blog-techcrunch:0771f9b957a6": [
+   966
+  ],
+  "trk:blog-techcrunch:aee37b22d73d": [
+   967
   ]
  },
  "topics": {},
