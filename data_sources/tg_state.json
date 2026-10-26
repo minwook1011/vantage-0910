@@ -189,8 +189,10 @@
   "pod:2026-10-25-sixsigma-SjxqlvBFyLg",
   "pod:2026-10-25-sixsigma-ZCTN0urfack",
   "pod:2026-10-25-sixsigma-iYb64j5dG1c",
+  "pod:2026-10-26-sixsigma--Zg85GsZoL4",
   "pod:2026-10-26-sixsigma-I92Iy2hs7kw",
   "pod:2026-10-26-sixsigma-K2sQaF5D9RU",
+  "pod:2026-10-26-sixsigma-UjNRDiKcl9U",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
@@ -946,12 +948,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:open-ai:52ebe84c5c4d": [
-   448
-  ],
-  "trk:open-ai:7521108539a7": [
-   449
-  ],
   "trk:nvda:a47eae9a49db": [
    450
   ],
@@ -2484,6 +2480,12 @@
   ],
   "trk:t-dbe684bf:5345a3302da6": [
    911
+  ],
+  "pod:2026-10-26-sixsigma--Zg85GsZoL4": [
+   912
+  ],
+  "pod:2026-10-26-sixsigma-UjNRDiKcl9U": [
+   913
   ]
  },
  "topics": {},
