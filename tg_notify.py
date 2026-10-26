@@ -456,7 +456,7 @@ def sync_topics():
     if STATE.get("topic_fail_at") and NOW.timestamp() - STATE["topic_fail_at"] < 3600:   # 실패하면 1시간 쉬었다 다시
         return False
     for t in (load("docs/data/tracking/watchlist.json") or {}).get("terms") or []:
-        if t.get("market") in ("blog", "youtube") or not t.get("resolved") or t["slug"] in before:
+        if t.get("market") in ("blog", "youtube") or t.get("dest") or not t.get("resolved") or t["slug"] in before:
             continue
         try:
             company_topic(t)
@@ -505,7 +505,7 @@ def tracking():
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
                 dest = route(t.get("dest") or ("blog" if t.get("market") in ("blog", "youtube") else "news"))   # 유튜브도 블로그·인터뷰 쪽, dest 로 바꿀 수 있음(테크크런치 → 뉴스방)
-                comp = route("company") if t.get("market") not in ("blog", "youtube") else {}
+                comp = route("company") if t.get("market") not in ("blog", "youtube") and not t.get("dest") else {}   # dest 를 정한 주제(일본 방위·사이버보안·AX 등)는 기업 토픽 대신 그 방으로만
                 if comp:   # 기업별 토픽 그룹이 연결돼 있으면: 그 기업 토픽 + 📋 종합(General) 두 곳으로(2026-10-19 사용자)
                     try:
                         dest = {"chat": comp["chat"], "thread": company_topic(t), "also": [{"chat": comp["chat"], "thread": None}], "term": t}
@@ -757,7 +757,7 @@ def main():
     todo = [(key, build) for name, key, gate, build in collect()
             if ((force == "all" or name == force) if force else (key not in sent and NOW >= gate))]
     if due_only:   # 기업별 토픽 그룹에 아직 토픽이 없는 기업이 있어도 돌린다
-        need = route("company") and any(t.get("market") not in ("blog", "youtube") and t.get("resolved") and t["slug"] not in (state.get("topics") or {})
+        need = route("company") and any(t.get("market") not in ("blog", "youtube") and not t.get("dest") and t.get("resolved") and t["slug"] not in (state.get("topics") or {})
                                         for t in (load("docs/data/tracking/watchlist.json") or {}).get("terms") or [])
         print("yes" if todo or need else "no")
         return

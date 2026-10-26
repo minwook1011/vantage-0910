@@ -558,7 +558,8 @@ def main():
                 continue
             # 구글 뉴스는 제목에 있어야(설명문엔 "Google" 이 늘 들어감). 한경·연합·시킹알파 등 요약문이 정확한 출처는 요약문까지 본다
             where = it["title"].lower() if "news.google.com" in it["url"] else text
-            if not blog and not any(has_key(k, where) for k in keys_l):
+            # loose: 구글 뉴스가 검색어로 이미 고른 기사는 제목에 단어가 없어도 후보로(예: '日, 방위산업전략…') — 거르기는 요약 단계 focus 가 함
+            if not blog and not any(has_key(k, where) for k in keys_l) and not (t.get("loose") and "news.google.com" in it["url"]):
                 continue
             if any(norm_title(c["title"]) == nt for c in cands):
                 continue
