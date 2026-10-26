@@ -52,6 +52,7 @@
   "gpu:2026-10-23",
   "gpu:2026-10-24",
   "gpu:2026-10-25",
+  "gpu:2026-10-26",
   "hc:6532:2026-10-02",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
   "ins:ins-20261026-agent-bank-access-war",
@@ -988,9 +989,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "pod:2026-10-16-riskrev-david-rosenberg-the-ai-mania-is-more-extreme-tha": [
-   482
-  ],
   "trk:t-759fd052:03fe1408f933": [
    485
   ],
@@ -2522,6 +2520,9 @@
    309,
    310,
    311
+  ],
+  "gpu:2026-10-26": [
+   312
   ]
  },
  "topics": {},
