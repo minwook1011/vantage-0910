@@ -1,6 +1,25 @@
 {
-  "updated": "2026-10-25T15:21:05Z",
+  "updated": "2026-10-26T23:27:11Z",
   "items": [
+    {
+      "id": "2026-10-27-비자스크-기업분석",
+      "date": "2026-10-27",
+      "category": "기업 인뎁스",
+      "title": "비자스크 기업분석",
+      "summary": "전문가 1시간 인터뷰 중개 — 국내 고마진 사업이 고정비 위에 쌓여 이익이 매출보다 4배 빨리 늘지만, 보통주 앞엔 우선주 청구 약 102억 엔이 있다. 2Q 결산설명회 한국어 번역 PDF 첨부.",
+      "tags": [
+        "비자스크",
+        "4490",
+        "전문가 네트워크",
+        "Coleman",
+        "우선주",
+        "2단계"
+      ],
+      "file": "indepth-archive/2026-10-27-비자스크-기업분석.html",
+      "updatedAt": "2026-10-26T23:27:11Z",
+      "verdict": "Base 적정가 약 860~890엔 (26.10.23 766엔 기준)",
+      "artifact": "https://claude.ai/artifact/Ci1LUeHEZReEL5WiJiwv9a"
+    },
     {
       "id": "2026-10-25-스페이스X-연산-인뎁스",
       "date": "2026-10-25",
@@ -19,25 +38,6 @@
       "updatedAt": "2026-10-25T15:21:05Z",
       "verdict": "13GW는 자금보다 발행 소화·전력이 제약, 20GW는 지분 조달 없이 불성립 (확신도 중)",
       "artifact": "https://claude.ai/artifact/DNzFqXfazdWiQQcx8kdubh"
-    },
-    {
-      "id": "2026-10-25-비자스크와-지식-플랫폼의-흐름",
-      "date": "2026-10-25",
-      "category": "산업 흐름",
-      "title": "비자스크와 지식 플랫폼의 흐름",
-      "summary": "글로벌 전문가 네트워크는 성숙 산업의 AI 재편기, 비자스크 일본 국내 사업만 초기 확산. 국내는 컨설팅 호황·해외 전문가 인터뷰·크로스셀로 강하고, 해외(Coleman)는 마진은 고쳐도 점유율 회복은 어렵다.",
-      "tags": [
-        "비자스크",
-        "4490",
-        "전문가 네트워크",
-        "Coleman",
-        "컨설팅",
-        "우선주"
-      ],
-      "file": "indepth-archive/2026-10-25-비자스크와-지식-플랫폼의-흐름.html",
-      "updatedAt": "2026-10-25T04:14:57Z",
-      "verdict": "초기 확산 (확신도 하~중)",
-      "artifact": "https://claude.ai/artifact/UEWZ6KxYcjggXyRLZiWT3X"
     }
   ]
 }
