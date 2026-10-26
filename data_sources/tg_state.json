@@ -52,18 +52,26 @@
   "gpu:2026-10-24",
   "gpu:2026-10-25",
   "hc:6532:2026-10-02",
+  "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
+  "ins:ins-20261026-agent-bank-access-war",
+  "ins:ins-20261026-burry-y2k-breadth-busted-stocks-rotation",
   "ins:ins-20261026-chamath-stranded-compute-2027-grid-queue",
   "ins:ins-20261026-hassett-canada-deal-section338-layers",
   "ins:ins-20261026-huang-memory-glut-2029-cxmt-lpddr",
   "ins:ins-20261026-jassy-aws-sold-out-backlog-duration-payback",
+  "ins:ins-20261026-jon-gray-dc-rent-gpu-residual-value",
   "ins:ins-20261026-lee-hyungil-production-tax-credit-ev",
   "ins:ins-20261026-musk-spacex-40b-gpu-debt-credit-bifurcation",
   "ins:ins-20261026-musk-starlink-ukraine-throttle-sovereign-satcom",
   "ins:ins-20261026-nasser-east-west-pipeline-port-bottleneck",
+  "ins:ins-20261026-prince-ai-vuln-flood-patch-gap",
   "ins:ins-20261026-shin-hyunsong-hold-3pct-tightening-bias-november",
+  "ins:ins-20261026-shin-hyunsong-won-room-to-strengthen-reer",
   "ins:ins-20261026-tom-lee-consensus-short-ai-selloff-endgame",
+  "ins:ins-20261026-trump-alaska-lng-russia-novatek-postwar-trade",
   "ins:ins-20261026-trump-auto-tariff-50pct-audi-georgia",
   "ins:ins-20261026-trump-epic-fury-again-brent-116-hormuz",
+  "ins:ins-20261026-volvo-samuelsson-china-foreign-car-exit",
   "jpm:2026-10-13 19:53 KST",
   "jpm:2026-10-14 19:53 KST",
   "jpm:2026-10-16 19:53 KST",
@@ -94,6 +102,7 @@
   "nebius:2026-10-23",
   "nebius:2026-10-24",
   "nebius:2026-10-25",
+  "nebius:2026-10-26",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -915,33 +924,6 @@
   "weekly:2026-10-12"
  ],
  "msg": {
-  "trk:yt--jklonfa:2112b07c2395": [
-   418
-  ],
-  "trk:yt--jklonfa:84b2030415d5": [
-   419
-  ],
-  "trk:yt--jklonfa:4ac80504c943": [
-   420
-  ],
-  "trk:yt--jklonfa:9f169cdee120": [
-   421
-  ],
-  "trk:yt--jklonfa:6cf3c302706f": [
-   422
-  ],
-  "trk:yt--jklonfa:35035e4a0617": [
-   423
-  ],
-  "trk:yt--jklonfa:078f624a48e0": [
-   424
-  ],
-  "trk:t-62bbe9b6:f0c052723207": [
-   425
-  ],
-  "trk:nvda:aca50a466dfb": [
-   426
-  ],
   "trk:cathie-wood:a5e8d81e64b8": [
    427
   ],
@@ -2451,8 +2433,35 @@
   ],
   "trk:t-4123f0f6:8f2721c74884": [
    883
+  ],
+  "nebius:2026-10-26": [
+   303
+  ],
+  "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry": [
+   884
+  ],
+  "ins:ins-20261026-agent-bank-access-war": [
+   885
+  ],
+  "ins:ins-20261026-jon-gray-dc-rent-gpu-residual-value": [
+   886
+  ],
+  "ins:ins-20261026-shin-hyunsong-won-room-to-strengthen-reer": [
+   887
+  ],
+  "ins:ins-20261026-volvo-samuelsson-china-foreign-car-exit": [
+   888
+  ],
+  "ins:ins-20261026-trump-alaska-lng-russia-novatek-postwar-trade": [
+   889
+  ],
+  "ins:ins-20261026-prince-ai-vuln-flood-patch-gap": [
+   890
+  ],
+  "ins:ins-20261026-burry-y2k-breadth-busted-stocks-rotation": [
+   891
   ]
  },
  "topics": {},
- "topic_fail_at": 1792969145.475447
+ "topic_fail_at": 1792972919.5794
 }
