@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26 18:23 KST",
+ "updated": "2026-10-26 19:54 KST",
  "episodes": [
   {
    "id": "2026-10-26-riskrev-ai-s-credit-problem-is-here-meta-coreweave-space",
@@ -12,10 +12,19 @@
    "audio": "https://traffic.megaphone.fm/RRM5123363698.mp3",
    "duration": "36:51",
    "desc": "Dan Nathan and Guy Adami “bookmark” a pivotal week heading into major tech earnings, a Fed meeting, and the midterms, noting the S&P’s resilience near highs despite sharp damage in former leaders like semis and select tech. They argue money isn’t leaving equities but rotating into defensives such as staples, utilities, healthcare, defense, software, and especially cybersecurity (Palo Alto, CrowdStrike, Zscaler), while discussing how 10-year yields around 5% and shifting bond-market dynamics affect rate-sensitive stocks and tech financing. They focus on AI-driven CapEx, negative free cash flow …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-26 18:23 KST",
    "image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
-   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress"
+   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "AI의 신용 문제가 시작됐다: Meta·CoreWeave·SpaceX CDS 급등",
+   "desc_ko": "Dan Nathan과 Guy Adami가 빅테크 실적 발표·FOMC·중간선거를 앞둔 중요한 한 주를 짚는다. S&P500은 고점 근처에서 버티지만 반도체 등 기존 주도주는 크게 꺾였고, 돈은 주식을 떠나기보다 필수소비재·유틸리티·헬스케어·방산·소프트웨어, 특히 사이버보안(Palo Alto, CrowdStrike, Zscaler)으로 옮겨 가고 있다고 본다. 10년물 금리 5% 안팎과 채권시장 변화가 금리 민감주와 기술 기업 자금 조달에 주는 영향을 다룬다. AI 설비투자와 마이너스 잉여현금흐름, Meta·CoreWeave·SpaceX의 신용부도스와프(CDS) 급등이 무엇을 뜻하는지 이야기한다.",
+   "summary": {
+    "title_ko": "AI의 신용 문제가 시작됐다: Meta·CoreWeave·SpaceX CDS 급등",
+    "headline": "CoreWeave CDS 1,162bp·Meta 사상 최고 — '신용은 문제가 되기 전까진 문제가 아니다'",
+    "image": null,
+    "guest": "댄 네이선(Dan Nathan) · 가이 아다미(Guy Adami) — CNBC 'Fast Money' 출연자 둘이 진행하는 주간 시장 정리",
+    "company": "CoreWeave(CRWV) · Meta(META) · Oracle(ORCL) · SpaceX (AI 인프라 · 신용시장 · 반도체)"
+   }
   },
   {
    "id": "2026-10-26-sixsigma-Dxaz5q5UEZ8",
@@ -29,11 +38,20 @@
    "audio": null,
    "duration": "",
    "desc": "반도체 공장은 돈과 장비만으로 돌아가지 않습니다. 먼지 한 톨, 0.1도, 발걸음 진동, 정전기까지 원자 단위로 통제해야 하고, 그 통제는 공장을 돌리며 쌓은 경험이라 테라팹도 중국도 쉽게 따라오지 못한다는 점을 짚었습니다. 머스크가 '반도체 공장에서 시가를 피워도 된다'고 한 근거(웨이퍼 밀폐 운반)를 원음으로 듣고, 실제 FOUP 자료로 맞는 부분과 상자로 막을 수 없는 것(장비 안의 0.1도·진동·정전기)을 나눠 봤습니다. 일본 기술사 모리우치 마코토의 연재, ISO 클린룸 기준·VC 진동 기준·ESD 자료, TSMC·인텔·마이크론·ASML 공식 영상으로 하나씩 확인했고, 중국 우한 훙신반도체(차이신·NPR), TSMC 애리조나 공장(TSMC 발표·주총 의사록), 스페이스X 3분기 실적 발표에서 머스크가 밝힌 테라팹 일정으로 '돈과 장비만으로는 안 된다'를 사례로 봤습니다. [원본] 1. Peter H. Diamandis (Moonshots) 「Elon Musk on AGI Timeline, US vs China, Job Markets, Clean Energy & Humanoid Robots | 220」 (2026.01.06) https://www.yo…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-26 18:23 KST",
    "image": "https://i1.ytimg.com/vi/Dxaz5q5UEZ8/hqdefault.jpg",
    "show_image": null,
-   "lang": "ko"
+   "lang": "ko",
+   "title_ko": "반도체 공장에서 시가를 피우겠다는 머스크 — Terafab도 중국도 쉽게 못 따라오는 이유",
+   "desc_ko": "반도체 공장은 돈과 장비만 있다고 돌아가지 않는다는 점을 짚는 편이다. 먼지·온도 0.1도·진동·정전기까지 원자 단위로 통제하는 노하우는 공장을 직접 돌리며 쌓이는 경험이라는 설명이다. 머스크가 웨이퍼 밀폐 운반(FOUP)을 근거로 '공장에서 시가를 피워도 된다'고 한 말을 실제 자료로 검증해, 맞는 부분과 상자로는 막을 수 없는 부분을 나눠 본다. 중국 우한 훙신반도체 실패, TSMC 애리조나 공장, 스페이스X 실적 발표에서 나온 Terafab 일정을 사례로 든다.",
+   "summary": {
+    "title_ko": "반도체 공장에서 시가를 피우겠다는 머스크 — Terafab도 중국도 쉽게 못 따라오는 이유",
+    "headline": "FOUP로 먼지는 막아도 0.1도·발걸음·정전기는 못 막는다 — TSMC도 새 공장 양산에 4년 반, Terafab은 2028년 목표",
+    "image": "https://i.ytimg.com/vi/Dxaz5q5UEZ8/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Elon Musk 클립 — 머스크의 '클린룸 무용론'을 먼지·온도·진동·정전기 기준 자료와 공장 사례로 검증한 편",
+    "company": "Terafab(SpaceX·Tesla 합작) · TSMC(TSM) · 훙신반도체(HSMC) · ASML (반도체 제조 · 클린룸·공장 인프라)"
+   }
   },
   {
    "id": "2026-10-26-understanding-nkkPAjj6KYA",
@@ -47,11 +65,35 @@
    "audio": null,
    "duration": "",
    "desc": "📢 겨울 시작 전 마지막 기회! 옷, 싸게 사세요 🔗 https://www.musinsa.com/curator/shop/GyVEuRcF ※본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공받습니다 👉언더스탠딩 문의: understanding.officialmail@gmail.com 👉글로 읽는 \"언더스탠딩 텍스트\". https://contents.premium.naver.com/backbriefing/news 👉언더스탠딩 멤버십 가입 https://www.youtube.com/channel/UCIUni4ScRp4mqPXsxy62L5w/join",
-   "status": "new",
+   "status": "skip",
    "found": "2026-10-26 18:23 KST",
    "image": "https://i3.ytimg.com/vi/nkkPAjj6KYA/hqdefault.jpg",
    "show_image": null,
-   "lang": "ko"
+   "lang": "ko",
+   "title_ko": "[언더상회] 무신사 플리스·오리털 패딩 앵콜 할인 (~11/1)",
+   "desc_ko": "언더스탠딩 채널의 무신사 큐레이터 의류 할인 홍보 영상이다.",
+   "reason": "주제 무관 — 의류 할인 쇼핑 홍보 영상"
+  },
+  {
+   "id": "2026-10-26-understanding-q2AEjh4bnek",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "Live on 10/26(월) 눈치작전 입시 \"노벨상이 답 찾았다\" (한순구 교수 / 연세대 경제학과)",
+   "date": "2026-10-26",
+   "published": "2026-10-26 17:10 KST",
+   "link": "https://www.youtube.com/watch?v=q2AEjh4bnek",
+   "youtube": "https://www.youtube.com/watch?v=q2AEjh4bnek",
+   "audio": null,
+   "duration": "",
+   "desc": "제작 지원 (주) 고래사 / 듀오 주식회사 / 어슈런스(주) / 한화자산운용(주) ▶ https://www.musinsa.com/curator/shop/GyVEuRcF *본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공 받습니다",
+   "status": "skip",
+   "found": "2026-10-26 19:18 KST",
+   "image": "https://i2.ytimg.com/vi/q2AEjh4bnek/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "눈치작전 입시, 노벨상 게임이론이 답을 찾았다 (한순구 교수 / 연세대 경제학과)",
+   "desc_ko": "연세대 경제학과 한순구 교수가 대학 입시의 눈치작전을 게임이론으로 풀어 보는 라이브 방송이다. 노벨경제학상을 받은 매칭 이론이 지원 전략에 어떤 답을 주는지 설명한다.",
+   "reason": "주제 무관 — 대학 입시 지원 전략과 게임이론 일반 이야기"
   },
   {
    "id": "2026-10-26-ca-continuation-vehicles-from-the-lp-seat-scott-ram",
@@ -64,12 +106,19 @@
    "audio": "https://traffic.libsyn.com/secure/tedseides/CA_-_EP.523_Scott_Ramsower_-_AUDIO_V1..mp3?dest-id=482814",
    "duration": "48:08",
    "desc": "My guest on today 's show is Scott Ramsower, Head of Private Equity Funds at the Teacher Retirement System of Texas, where a 27-person team manages $33 billion in private equity for the $250 billion pension plan. Scott started his LP career at AlpInvest and joined Texas Teachers sixteen years ago, when the private equity program was six people and $7 billion. He also chairs the board of ILPA. Our conversation covers Scott's path from equity research to the LP seat and the growth of the Texas Teachers program. We then turn to continuation vehicles and the reasons LPs have grown wary of them, fr…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-26 17:18 KST",
    "image": "https://static.libsyn.com/p/assets/a/3/a/b/a3ab95e1a5b8caeb5f2e77a3093c12a1/Scott_Ramsower_Apple_Cover_Art_.jpg",
    "show_image": "https://static.libsyn.com/p/assets/f/b/7/6/fb76e1c8bfb69e8dd959afa2a1bf1c87/CA_Square_logo_light_background_6.26.24.jpg",
    "title_ko": "Scott Ramsower — LP 자리에서 본 컨티뉴에이션 펀드 (523회)",
-   "desc_ko": "텍사스 교원연금(Texas Teachers)에서 사모펀드 투자를 이끄는 Scott Ramsower가 출연했다. 27명이 2,500억 달러 연금의 사모펀드 330억 달러를 운용하며, 그는 16년 전 6명·70억 달러였던 조직을 키워 왔고 ILPA 이사회 의장도 맡고 있다. 주식 리서치에서 LP로 옮긴 과정과 프로그램 성장, 그리고 LP들이 GP 주도 컨티뉴에이션 펀드(CV)를 경계하게 된 이유를 다룬다. 이해 상충과 가격 결정, LP가 받는 선택지가 핵심이다."
+   "desc_ko": "텍사스 교원연금(Texas Teachers)에서 사모펀드 투자를 이끄는 Scott Ramsower가 출연했다. 27명이 2,500억 달러 연금의 사모펀드 330억 달러를 운용하며, 그는 16년 전 6명·70억 달러였던 조직을 키워 왔고 ILPA 이사회 의장도 맡고 있다. 주식 리서치에서 LP로 옮긴 과정과 프로그램 성장, 그리고 LP들이 GP 주도 컨티뉴에이션 펀드(CV)를 경계하게 된 이유를 다룬다. 이해 상충과 가격 결정, LP가 받는 선택지가 핵심이다.",
+   "summary": {
+    "title_ko": "Scott Ramsower — LP 자리에서 본 컨티뉴에이션 펀드 (523회)",
+    "headline": "CV 는 '이해상충 펀드'? — ILPA 의장이 꼽은 LP 의 걱정 10가지",
+    "image": null,
+    "guest": "스콧 램사워(Scott Ramsower) — 텍사스 교원연금 사모펀드 펀드투자 총괄, ILPA 이사회 의장",
+    "company": "Teacher Retirement System of Texas · ILPA (사모펀드 · 세컨더리 · 연기금)"
+   }
   },
   {
    "id": "2026-10-26-oddlots-ai-agents-are-already-changing-the-price-of-good",
