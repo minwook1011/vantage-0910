@@ -199,8 +199,10 @@
   "pod:2026-10-26-sixsigma-Dxaz5q5UEZ8",
   "pod:2026-10-26-sixsigma-I92Iy2hs7kw",
   "pod:2026-10-26-sixsigma-K2sQaF5D9RU",
+  "pod:2026-10-26-sixsigma-NXv0qvam9yg",
   "pod:2026-10-26-sixsigma-UjNRDiKcl9U",
   "pod:2026-10-26-sixsigma-vt0r4i1EGPU",
+  "pod:2026-10-26-understanding-Ka0Sjrg9eHg",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
@@ -983,12 +985,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ranto28:fe500feb8f2a": [
-   478
-  ],
-  "trk:yt--jklonfa:17373e3a6206": [
-   479
-  ],
   "or:2026-10-17": [
    220
   ],
@@ -2515,6 +2511,12 @@
   ],
   "trk:blog-techcrunch:907cd5eeef9b": [
    948
+  ],
+  "pod:2026-10-26-sixsigma-NXv0qvam9yg": [
+   949
+  ],
+  "pod:2026-10-26-understanding-Ka0Sjrg9eHg": [
+   950
   ]
  },
  "topics": {},
