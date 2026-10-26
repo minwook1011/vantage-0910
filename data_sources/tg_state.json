@@ -200,6 +200,7 @@
   "pod:2026-10-26-sixsigma-I92Iy2hs7kw",
   "pod:2026-10-26-sixsigma-K2sQaF5D9RU",
   "pod:2026-10-26-sixsigma-UjNRDiKcl9U",
+  "pod:2026-10-26-sixsigma-vt0r4i1EGPU",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
@@ -229,6 +230,7 @@
   "trk:amzn:f091ef1b9757",
   "trk:amzn:f728a1519228",
   "trk:aws:132be39d0d0f",
+  "trk:aws:42cd05bc8595",
   "trk:aws:be35ae71db44",
   "trk:bill-ackman:8b5c4c18c150",
   "trk:bill-ackman:a1b8ad155758",
@@ -449,6 +451,7 @@
   "trk:meta:00c18b7ec6a6",
   "trk:meta:0231f8cdde23",
   "trk:meta:06b5b0b5a7a1",
+  "trk:meta:1efac10938d6",
   "trk:meta:2361b03f8f5e",
   "trk:meta:27881b98bd4b",
   "trk:meta:2dd6fc72bd1c",
@@ -803,6 +806,7 @@
   "trk:yt--jklonfa:5b967680cb58",
   "trk:yt--jklonfa:5da5608fabc7",
   "trk:yt--jklonfa:5dc04253f2db",
+  "trk:yt--jklonfa:5ebe687afe70",
   "trk:yt--jklonfa:5f16f74eb166",
   "trk:yt--jklonfa:5f294b920aff",
   "trk:yt--jklonfa:5f55ea845a46",
@@ -961,20 +965,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "macro:2026-10-17": [
-   210,
-   211,
-   212
-  ],
-  "usdkrw:2026-10-17": [
-   213
-  ],
-  "trk:yt--jklonfa:1dea17155b99": [
-   462
-  ],
-  "or:2026-10-16": [
-   214
-  ],
   "trk:t-759fd052:94f86d595f54": [
    463
   ],
@@ -2497,8 +2487,20 @@
   ],
   "pod:2026-10-26-ca-continuation-vehicles-from-the-lp-seat-scott-ram": [
    926
+  ],
+  "pod:2026-10-26-sixsigma-vt0r4i1EGPU": [
+   927
+  ],
+  "trk:meta:1efac10938d6": [
+   928
+  ],
+  "trk:aws:42cd05bc8595": [
+   929
+  ],
+  "trk:yt--jklonfa:5ebe687afe70": [
+   930
   ]
  },
  "topics": {},
- "topic_fail_at": 1793010153.618739
+ "topic_fail_at": 1793013934.581903
 }
