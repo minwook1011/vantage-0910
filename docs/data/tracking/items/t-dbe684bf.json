@@ -3,6 +3,22 @@
  "slug": "t-dbe684bf",
  "items": [
   {
+   "id": "5345a3302da6",
+   "kind": "news",
+   "headline": "딥시크 'V4.1-플래시-1017', 오픈라우터 주간 사용량 1위 — 33조6천억 토큰, 전주보다 801% 급증(10월 19~25일)",
+   "bullets": [
+    "인공지능 모델 중개 플랫폼 오픈라우터 집계에서 딥시크 V4.1-플래시-1017이 지난주 33조6천억 토큰으로 1위, 2위도 딥시크 V4.1 플래시(18조 토큰)였다.",
+    "3~5위는 미니맥스 M3.1 플래시 무료판(13조7천억), 즈푸 GLM 5.3 플래시(13조2천억), 텐센트 Hy4 프리뷰(8조9,700억)로 상위 5개가 모두 중국 모델이다.",
+    "중국 모델 사용량은 93조5,400억 토큰(+18.1%)으로 미국 모델(22조4,700억, +29.4%)의 약 4.2배, 26주 연속 미국을 앞섰다."
+   ],
+   "summary": "중국 매체 차이롄서가 26일 오픈라우터 주간 통계를 인용해 보도했다. 같은 주 전 세계 대형언어모델 총사용량은 188조 토큰으로 전주보다 14.63% 늘었고, 이 가운데 중국 모델 비중이 49.8%, 미국 모델 비중이 11.9%였다.\n\n1위 모델은 딥시크가 10월 17일 내놓은 플래시 계열 새 버전으로, 한 주 만에 사용량이 9배 가까이 뛰었다. 기사는 가격 경쟁력, 특정 작업 성능, 개발자 생태계 활용 확대를 배경으로 꼽았다.\n\n다만 오픈라우터를 거쳐 응용프로그램 인터페이스(API)로 쓴 입력·출력 토큰만 센 숫자다. 오픈AI·앤트로픽 등을 직접 이용한 물량은 빠져 있어 전 세계 인공지능 사용 전체를 보여 주는 지표는 아니다.",
+   "title": "딥시크, 글로벌 AI 사용량 1위…801% 급증",
+   "source": "아주경제",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9rRnBPdndBUXBRcTB3UFZRazNBOTZDTThlR3J0eG44Snd2MzVqNTZCMVdUVXZ3VUF6NWV4cWY3dFhCd3RQeEktMGhUamZHWFVMNjdZeDNycW5vZ9IBWEFVX3lxTFBLQi1tZE16NE5QandUWGFwbml2VGxlZE5KcDF4SHhNRHlyUXRmUTE0S1Z1NlVaZmU1TXhyMk9MVFZMQUJkRGFoVUFXYmxlcnNIUlBBZlBtc2g?oc=5",
+   "published": "2026-10-26 15:22 KST",
+   "written": "2026-10-26 15:50 KST"
+  },
+  {
    "id": "4c709989a407",
    "kind": "news",
    "headline": "딥시크·미니맥스, 중국 새 AI 기술 수출 규정에 맞춘 '해외 출시 등록' 첫 완료 — 오픈소스 공개·해외 사용 허가까지 마쳐(중국 관영매체)",
@@ -99,5 +115,5 @@
    "written": "2026-10-20 09:18 KST"
   }
  ],
- "updated": "2026-10-25 15:49 KST"
+ "updated": "2026-10-26 15:50 KST"
 }
