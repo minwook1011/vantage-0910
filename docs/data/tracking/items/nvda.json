@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "09ceb6f822a6",
+   "kind": "news",
+   "headline": "케이던스, 엔비디아와 만든 반도체 설계 전용 인공지능 모델 '마에스트로' 공개 — 범용 모델보다 품질 최대 30%↑, 고객사 자체 서버에서도 돌린다",
+   "bullets": [
+    "반도체 설계 소프트웨어 업체 케이던스가 설계 특화 인공지능 모델 묶음 '마에스트로'를 내놨다. 일부는 엔비디아의 오픈 모델 '네모트론'을 바탕으로 했다.",
+    "회사 초기 측정으로는 범용 모델보다 설계 결과 품질이 최대 30% 좋고, 토큰 효율은 최대 5배 높다.",
+    "클라우드뿐 아니라 칩 회사가 자기 데이터센터에서 직접 돌릴 수 있고, 4분기에 일부 고객에게 먼저 공개한다."
+   ],
+   "summary": "마에스트로는 케이던스의 인공지능 설계 에이전트(오라스택·칩스택·이노스택·비라스택)를 움직이는 두뇌 역할이다. 케이던스 설계·검증 도구가 결과를 채점하고, 그 피드백으로 강화학습을 돌려 모델이 스스로 나아지는 구조다. 엔비디아는 네모트론과 보안 실행 환경 '오픈셸', 엔지니어링 기술을 보탰다.\n\n고객 사례로 일본 소시오넥스트는 이노스택 에이전트를 실제 설계 환경에 넣어 최대 5배 생산성 향상을 기대한다고 했고, 실리콘랩스도 칩스택으로 저전력 검증 디버깅을 앞당겼다고 밝혔다.\n\n칩 회사들은 설계 데이터 유출을 꺼려 외부 범용 모델 사용을 망설여 왔는데, 자체 서버 배치를 허용한 게 이번 발표의 핵심이다. 성능 숫자는 회사 자체 초기 추정이다(로이터·비즈니스와이어).",
+   "title": "Cadence unveils Nvidia-backed AI models that chipmakers can run in-house",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNSXZrWlJVYTllelhNczNoX2dHZ2pQYk1FTUZtLVNPYUdZUEdEVElSZGpLR0QzWTJZS25DOUNHdXdvakRCcHBLVmxKbFBwVmNXWUhtZllwZ2p5ZzdjdnBUb3ZkOWRmT3VzbUNLQ09YRVVJQk5WSWtncHVkRjZUWlJYbDJ2TzRFM0hEM1YtOHd0c05XaW1GRFJhMU1aZEpzOVJZaU5UQTZCMi1EMExhNnRKRmRmR2gyaGZq?oc=5",
+   "published": "2026-10-26 22:03 KST",
+   "written": "2026-10-26 22:18 KST"
+  },
+  {
    "id": "42afee98e3a2",
    "kind": "news",
    "headline": "유럽 SWI그룹, 엔비디아 시스템 약 10억 달러어치 주문하고 'AI 팩토리' 자회사 SWI 컴퓨트 출범 — 2029년까지 2.3기가와트 목표",
@@ -675,5 +691,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-26 17:19 KST"
+ "updated": "2026-10-26 22:18 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "907cd5eeef9b",
+   "kind": "blog",
+   "headline": "테슬라, 차량 공유 플랫폼 투로와 손잡고 'FSD(감독형)' 렌털 시작 — 투로 호스트에 FSD 한 달 무료",
+   "bullets": [
+    "투로가 자사 마켓에서 테슬라 완전자율주행(감독형, FSD)이 켜진 차를 따로 표시해 광고한다. 테슬라 API로 FSD 탑재 여부를 직접 확인한다.",
+    "조건을 갖춘 투로 호스트(차 주인)는 FSD를 한 달 무료로 써볼 수 있다.",
+    "테슬라는 지난주 FSD 유료 고객이 전 세계 약 170만 명(누적 판매 1천만 대 이상 중)이고, 3분기 북미 인도 고객의 75% 이상이 FSD 구독을 샀다고 밝혔다."
+   ],
+   "summary": "투로에서 테슬라 모델3·모델Y는 올해 대여 순위 3·4위로 이미 인기 차종이다. FSD 차량은 '자율주행'으로 표시되고, 빌리는 사람은 항상 주시하고 언제든 운전을 넘겨받아야 한다는 안내와 테슬라 튜토리얼을 보게 된다.\n\n테슬라는 매장을 FSD 체험 중심으로 바꾸는 중이고, 3분기 북미 FSD 구독 비율은 2분기보다 약 20% 올랐다. 다만 미국 판매 대수 자체는 줄고 있다. 투로는 미국인 55%(Z세대 71%)가 자율주행 이동에 관심이 있다는 자체 조사를 근거로 들었다(테크크런치).",
+   "title": "Tesla turns to Turo to boost adoption of Full Self-Driving (Supervised)",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/26/tesla-turns-to-turo-to-boost-adoption-of-full-self-driving-supervised/",
+   "published": "2026-10-26 21:58 KST",
+   "written": "2026-10-26 22:18 KST"
+  },
+  {
    "id": "e6a7e453a215",
    "kind": "blog",
    "headline": "테크크런치, 굿리즈 대신 쓸 만한 독서 기록·책 추천 앱 5개 소개 — 페이블·북셸프·페이지바운드·스토리그래프·마진스",
@@ -1011,5 +1027,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-10-26 10:19 KST"
+ "updated": "2026-10-26 22:18 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "543be7fd58cd",
+   "kind": "news",
+   "headline": "팬애틱스, 오픈AI 코덱스로 만든 코디 추천 기능 'Shop the Look' 도입 — 추천 상품 조회 10% 늘어",
+   "bullets": [
+    "미국 스포츠용품 업체 팬애틱스가 오픈AI의 코딩 인공지능 '코덱스'로 상품 페이지마다 어울리는 옷·모자·양말을 묶어 보여주는 기능을 만들었다.",
+    "기능 도입 뒤 추천 상품 조회가 10% 늘었다고 회사는 밝혔다.",
+    "팬애틱스는 상품 150만 종 이상을 팔고 매주 신제품이 최대 1천 개씩 나와, 고객 쇼핑 시간이 평균 30분을 넘던 문제를 줄이려는 것이다."
+   ],
+   "summary": "추천은 같은 팀·선수, 비슷한 스타일의 재고 상품끼리만 묶는다. 다저스 팬에게 자이언츠 상품을 붙이는 식의 엉뚱한 추천을 막는 게 핵심이다. 코덱스로 상품·카탈로그 데이터를 읽어 어울리는 품목을 찾고 추천을 다시 평가하는 도구를 만들었다.\n\n팬애틱스 커머스 부문은 매년 4,500만 개 넘는 상품을 만들어 180여 개국에 판다. 마이클 루빈 최고경영자는 올해 커머스 매출이 70억 달러를 넘을 것이라고 했다.\n\n오픈AI는 챗GPT 안 바로결제(인스턴트 체크아웃)를 접고 소매업체와 직접 손잡는 쪽으로 쇼핑 전략을 바꾸고 있으며, 이번 건도 그 흐름이다(CNBC).",
+   "title": "Fanatics teams up with OpenAI for new AI-powered shopping suggestion feature",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPNHJaQ1NDV05GMUZYdFVWdUhBTlZEN0l1Q3l5VWVMRVNzVWUtZEd4M0VXYlV3dnkwOWtEQ1hkS1M3QWQzMUZpemZ6RFVZbEtBcmE2QXBueHJlZ05mNmVXMGZYVVU0SGdWZ2dlUF80c2FkQ3dkaTF3cnpETUM3ZGk2eHVUanJfYjMwQ1UxUWgza9IBlAFBVV95cUxPbEZHSVc4Z2QwOG15V2F6MFAzcU9udXNWSUhqWTZxaG15TjVvRzlmdkphRnJyS2JJd3JjcmRIR3YzQjlZN3p2djhLeDlkZzhLNWp0RmlBOUtKeUVtX3pVZGg5Zk8yLXpaV05MVUc0UDg0Y3ZHbEtveHFlQXhwZTh0Qmg2MlZtYWN1VHEzVGJhendLMDRT?oc=5",
+   "published": "2026-10-26 22:02 KST",
+   "written": "2026-10-26 22:18 KST"
+  },
+  {
    "id": "05d434b12b33",
    "kind": "news",
    "headline": "챗GPT·네이버 함께 쓰는 사람 9월 1,646만명, 1년 새 41.9% 늘어 — 챗GPT 이용자 91%는 네이버·구글도 같이 써(모바일인덱스)",
@@ -915,5 +931,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-26 17:19 KST"
+ "updated": "2026-10-26 22:18 KST"
 }
