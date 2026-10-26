@@ -611,6 +611,7 @@
   "trk:open-ai:8afd3fd83cfc",
   "trk:open-ai:8b9d4942d829",
   "trk:open-ai:9332895df833",
+  "trk:open-ai:93e20e0b9ef9",
   "trk:open-ai:978220cdb36e",
   "trk:open-ai:9be7aab1adfc",
   "trk:open-ai:a23ec47e45ed",
@@ -671,6 +672,7 @@
   "trk:t-3f524a5b:920ed87a79f7",
   "trk:t-3f524a5b:bf20868c4bf9",
   "trk:t-3f524a5b:ebd1b918ed4a",
+  "trk:t-4123f0f6:1467a91e2e3c",
   "trk:t-4123f0f6:854639557768",
   "trk:t-4123f0f6:8f2721c74884",
   "trk:t-4123f0f6:9ddb16413b32",
@@ -754,6 +756,7 @@
   "trk:t-759fd052:a59d16002c48",
   "trk:t-759fd052:abe58b0d3e5d",
   "trk:t-759fd052:ac982908a542",
+  "trk:t-759fd052:b0276fbb7bcc",
   "trk:t-759fd052:b7fbb6879f66",
   "trk:t-759fd052:c513d321dc0c",
   "trk:t-759fd052:c53199818f7d",
@@ -1021,15 +1024,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:yt--jklonfa:c9e3876e87a0": [
-   518
-  ],
-  "trk:yt--jklonfa:1ed94e9c1e57": [
-   519
-  ],
-  "trk:t-0a23e71f:249f1f776e34": [
-   520
-  ],
   "trk:t-759fd052:35e7600f6e97": [
    521
   ],
@@ -2555,8 +2549,17 @@
   ],
   "ins:ins-20261027-xi-fifth-plenum-purge-policy-continuity": [
    983
+  ],
+  "trk:open-ai:93e20e0b9ef9": [
+   984
+  ],
+  "trk:t-759fd052:b0276fbb7bcc": [
+   985
+  ],
+  "trk:t-4123f0f6:1467a91e2e3c": [
+   986
   ]
  },
  "topics": {},
- "topic_fail_at": 1793054305.031584
+ "topic_fail_at": 1793058528.330428
 }
