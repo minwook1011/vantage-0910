@@ -3,6 +3,22 @@
  "slug": "aws",
  "items": [
   {
+   "id": "42cd05bc8595",
+   "kind": "news",
+   "headline": "버라이즌, 아마존웹서비스와 20억 달러 넘는 인공지능 인프라 계약 — 3분기 실적 맞춰 올해 전망 세 분기 연속 상향",
+   "bullets": [
+    "버라이즌이 아마존웹서비스(AWS)와 20억 달러가 넘는 인공지능 인프라 계약을 맺었다. 스스로 일하는 인공지능(에이전트)·생성형 인공지능 작업을 위한 분산 컴퓨팅을 키우는 상업 계약 틀이다.",
+    "3분기 매출은 343억1,300만 달러(+1.5%), 조정 주당순이익 1.31달러(+8.3%), 잉여현금흐름 78억100만 달러(+12.1%), 후불 휴대폰 순증 40만6천 명.",
+    "올해 조정 주당순이익 전망을 5.04~5.06달러(7.0~7.5% 증가)로, 후불 휴대폰 순증 전망을 110만~120만 명으로 올렸다."
+   ],
+   "summary": "버라이즌은 지난해 11월에도 아마존웹서비스 데이터센터를 잇는 장거리 광케이블을 깔기로 했지만 금액은 밝히지 않았다. 이번 실적 자료에서 처음으로 '20억 달러 이상' 규모가 나왔다. 계약 기간은 공개되지 않았다.\n\n전망은 세 분기 연속 올렸다. 잉여현금흐름 증가율 전망은 9~10%에서 11.5~12%로(224억4천만~225억4천만 달러), 영업현금흐름 증가율은 2~4%에서 3.5~5%로 높였다. 설비투자는 160억~165억 달러로 그대로다. 4분기 이동통신·유선 서비스 매출은 약 4% 늘 것으로 봤다.\n\n아마존웹서비스 입장에선 통신망 사업자와 손잡고 인공지능 처리 용량을 데이터센터 밖으로 넓히는 계약이다. 앤디 재시가 밝힌 '용량 매진' 상황에서 외부 인프라 확보 경로가 하나 더 생긴 셈이다.",
+   "title": "Verizon lifts annual forecasts, signs more than $2 billion AI infrastructure deal with AWS",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNUXJNWmV4Ny1ON2FmYXdrclBkWWdrZXdfX2JHLUdoZ3ZLamJNdHl1NHc3RDk4TWUxZVRZMUN2QTVvMk01Ujk4Wmk2ejZOT3h3UmlWUmp6S0lLVHBSZmVvQ0c0Sm1xYVVMNXN4M2JkNWtKVUpoWEd4YloyWVJBME8tb0htQnhzNzA5V1ZWWlE5cE10a25nNWtxQmc5dDlGdF9MZzRYMllaMHI5eXlINXpCeVJKZmVFRmttRmFQZUtFOTNDNEx2OUlGemNBV1FuLUNDdWdFZQ?oc=5",
+   "published": "2026-10-26 20:07 KST",
+   "written": "2026-10-26 20:19 KST"
+  },
+  {
    "id": "be35ae71db44",
    "kind": "news",
    "headline": "메가존클라우드, 아마존웹서비스 '공인 정부 리셀러' 자격 획득 — 미국 정부·국방 전용 클라우드 '거브클라우드' 판매 가능",
@@ -35,5 +51,5 @@
    "written": "2026-10-21 04:48 KST"
   }
  ],
- "updated": "2026-10-22 13:46 KST"
+ "updated": "2026-10-26 20:19 KST"
 }
