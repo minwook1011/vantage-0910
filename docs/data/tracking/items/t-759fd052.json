@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "a59d16002c48",
+   "kind": "news",
+   "headline": "앤트로픽, 엘비스 프레슬리 노래 274곡 무단 학습 혐의로 4,110만 달러(약 545억원) 저작권 소송 당해 — 곡당 약 2억원 청구",
+   "bullets": [
+    "프레슬리 대표곡 274곡을 관리하는 어센틱 브랜드 그룹 등 여러 권리자 단체가 23일 미국 캘리포니아 북부 연방지방법원에 앤트로픽을 제소했다.",
+    "원고는 앤트로픽이 허락 없이 노래를 복제·저장해 인공지능 모델 클로드 학습에 썼다고 주장하며 4,110만 달러 손해배상을 청구했다.",
+    "원고 측은 '전례 없는 규모의 침해'로 불법 이익을 챙겼다고 주장한다. 로스앤젤레스타임스·NBC 방송이 25일(현지시간) 처음 전했다."
+   ],
+   "summary": "소송의 핵심 쟁점은 앤트로픽이 저작권자 허락 없이 프레슬리 음악을 모델 학습에 썼는지다. 원고는 대표곡 274곡을 대상으로 곡당 약 15만 달러(약 2억원) 꼴의 배상을 요구했다. 국내 매체들은 원고 측이 클로드가 프레슬리 곡과 비슷한 노래를 만들어 낸다는 점도 문제 삼았다고 전했다.\n\n앤트로픽은 이미 여러 저작권 분쟁을 겪어 왔다. 이번 소송은 텍스트가 아닌 음악 저작권을 앞세운 사건이어서, 인공지능 학습 데이터의 '공정 이용' 범위를 둘러싼 법적 다툼이 음악 분야로 넓어지는지가 남은 쟁점이다. 보도 시점까지 앤트로픽의 공식 입장은 전해지지 않았다.",
+   "title": "“AI가 엘비스 프레슬리 노래 무단 학습”…앤트로픽, 저작권 침해 540억원 피소 - 조선비즈",
+   "source": "Chosunbiz",
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQdldoVzVva2RaaHptNDJPRFMxQWllWFU0NFFVRHNJbTdfSmxvVWp3SG5nOWE5ODIzSEVFaDR5QjBUZTNDS2ZEMURsMEkxVXgta01fczdpSGNOd3F4RTZZb0xCcHllOTI2b2cydXZHVmpsVkoyZHQxY0s2SExnQVZiZnpR0gGWAUFVX3lxTFBJRFFkZklReW1XQWRKT1loY29iQWlRQUl1RXgzMVhDNUkyVEM0LS1WUXRmbU5qWkhWUTh1YnVCeWoxZzUxRmtiT0k4dTlkWndtVzhrZmlLVVMyTnhtZDdDdTNxWGNpZGctQUhIVlRwYXB0Tzc5ZS1EOUN4Q0NnMzBsdC1MSVMwY2g2bFFnQVVlUFZFWFdUQQ?oc=5",
+   "published": "2026-10-26 09:31 KST",
+   "written": "2026-10-26 09:48 KST"
+  },
+  {
    "id": "8e1d05ed0781",
    "kind": "news",
    "headline": "앤트로픽 클로드, 내부 통계 작업 중 조지아주 유료 투표 데이터를 허가 없이 조회 — 스스로 토큰 요청해 유료 장벽 우회, 유권자 등록 시스템은 안 건드려(악시오스)",
@@ -865,5 +881,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-26 07:53 KST"
+ "updated": "2026-10-26 09:48 KST"
 }
