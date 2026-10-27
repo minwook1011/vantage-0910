@@ -255,6 +255,7 @@
   "trk:amzn:b4bbc44cab36",
   "trk:amzn:e0a5e8769f47",
   "trk:amzn:e12bd02ce29b",
+  "trk:amzn:ee4cb48ba1d5",
   "trk:amzn:f085d3f75f79",
   "trk:amzn:f091ef1b9757",
   "trk:amzn:f728a1519228",
@@ -345,6 +346,7 @@
   "trk:blog-ssh-fedinsight:abc2ed4e84cf",
   "trk:blog-ssh-fedinsight:af39742b1c5c",
   "trk:blog-ssh-fedinsight:b2927e36f691",
+  "trk:blog-ssh-fedinsight:b66c7225a27d",
   "trk:blog-ssh-fedinsight:bc0f9450c017",
   "trk:blog-ssh-fedinsight:bcc2cc5a8ec7",
   "trk:blog-ssh-fedinsight:c9070c513743",
@@ -386,6 +388,7 @@
   "trk:blog-techcrunch:6a7e731924fd",
   "trk:blog-techcrunch:6c5eb92e7eaf",
   "trk:blog-techcrunch:6cac479102f4",
+  "trk:blog-techcrunch:6e72e7a62178",
   "trk:blog-techcrunch:703d5e21df4a",
   "trk:blog-techcrunch:7571015a89bd",
   "trk:blog-techcrunch:7775b659c6f5",
@@ -447,6 +450,7 @@
   "trk:blog-techcrunch:f5f85f1296e7",
   "trk:blog-techcrunch:f8f5109f865a",
   "trk:blog-techcrunch:fd5edf2507af",
+  "trk:blog-techcrunch:fd63179e93a2",
   "trk:blog-techcrunch:ffca221d42a2",
   "trk:blog-tosoha1:3babcaf32d0f",
   "trk:blog-tosoha1:4eaebe4e5c42",
@@ -673,6 +677,7 @@
   "trk:open-ai:be25f8bae946",
   "trk:open-ai:cc2da5ba597a",
   "trk:open-ai:d6b19e07901b",
+  "trk:open-ai:d6f153e296eb",
   "trk:open-ai:d924e9bdae60",
   "trk:open-ai:db1647bf15ba",
   "trk:open-ai:dc01c4a11cec",
@@ -741,6 +746,7 @@
   "trk:t-62bbe9b6:5cecf1e0217d",
   "trk:t-62bbe9b6:733eab30bb56",
   "trk:t-62bbe9b6:792916c5d3dd",
+  "trk:t-62bbe9b6:7a72f5be908f",
   "trk:t-62bbe9b6:7ce485c6013d",
   "trk:t-62bbe9b6:8076ffd00b2a",
   "trk:t-62bbe9b6:864453a9e256",
@@ -855,6 +861,7 @@
   "trk:yt--jklonfa:063c8d663495",
   "trk:yt--jklonfa:06611246c724",
   "trk:yt--jklonfa:078f624a48e0",
+  "trk:yt--jklonfa:08225ecb1ba1",
   "trk:yt--jklonfa:08d98e48a325",
   "trk:yt--jklonfa:0a1ebb632526",
   "trk:yt--jklonfa:0d9777bdf6d9",
@@ -1104,27 +1111,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "pod:2026-10-20-oddlots-cme-s-terry-duffy-on-the-disconcerting-state-of": [
-   600
-  ],
-  "trk:yt--jklonfa:17c9213be61e": [
-   601
-  ],
-  "trk:nvda:8ca37388610d": [
-   602
-  ],
-  "pod:2026-10-20-understanding-OVE4-l7sByM": [
-   603
-  ],
-  "trk:googl:9b271069ca77": [
-   604
-  ],
-  "trk:yt--jklonfa:2a6b10306fbb": [
-   605
-  ],
-  "trk:amzn:792da524fecc": [
-   606
-  ],
   "pod:2026-10-20-ilb-christina-cacioppo-building-an-enduring-software": [
    607
   ],
@@ -2636,8 +2622,29 @@
   ],
   "trk:blog-techcrunch:d662875b7cc0": [
    1061
+  ],
+  "trk:amzn:ee4cb48ba1d5": [
+   1062
+  ],
+  "trk:open-ai:d6f153e296eb": [
+   1063
+  ],
+  "trk:blog-ssh-fedinsight:b66c7225a27d": [
+   1064
+  ],
+  "trk:yt--jklonfa:08225ecb1ba1": [
+   1065
+  ],
+  "trk:t-62bbe9b6:7a72f5be908f": [
+   1066
+  ],
+  "trk:blog-techcrunch:6e72e7a62178": [
+   1067
+  ],
+  "trk:blog-techcrunch:fd63179e93a2": [
+   1068
   ]
  },
  "topics": {},
- "topic_fail_at": 1793137943.079945
+ "topic_fail_at": 1793141564.825452
 }
