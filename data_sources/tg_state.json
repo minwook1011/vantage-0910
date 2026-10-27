@@ -557,6 +557,7 @@
   "trk:nvda:42e0183b803d",
   "trk:nvda:4523c59ca9b9",
   "trk:nvda:4dda0bba522d",
+  "trk:nvda:5061d7fd7be6",
   "trk:nvda:528f67e065b6",
   "trk:nvda:53129499a9df",
   "trk:nvda:597d45f0793c",
@@ -914,6 +915,7 @@
   "trk:yt--jklonfa:89ad2bbbc25c",
   "trk:yt--jklonfa:8d4b8801cdeb",
   "trk:yt--jklonfa:8f257d625ae9",
+  "trk:yt--jklonfa:911cd33a4e44",
   "trk:yt--jklonfa:9197ae29d827",
   "trk:yt--jklonfa:93cfcf5746bf",
   "trk:yt--jklonfa:94142abd3697",
@@ -1057,12 +1059,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:gartner:0cd126e4da80": [
-   556
-  ],
-  "trk:yt-wy-8burq:726543ddfa3d": [
-   557
-  ],
   "trk:nvda:9951fa564f7f": [
    558
   ],
@@ -2591,6 +2587,12 @@
   ],
   "trk:t-678e8450:f7b05899c293": [
    1018
+  ],
+  "trk:yt--jklonfa:911cd33a4e44": [
+   1019
+  ],
+  "trk:nvda:5061d7fd7be6": [
+   1020
   ]
  },
  "topics": {},
