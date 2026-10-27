@@ -564,8 +564,7 @@ def digest():
             head = f"📰 <b>시황 요약 · {SESSION_NAME[ses]}</b>" if ses in SESSION_NAME else "📰 <b>오늘 시황 요약</b>"
             txt = (f"{head} · {stamp(g.get('generated')) or NOW.strftime('%m/%d')} 작성\n<b>{esc(g.get('title'))}</b>\n\n"
                    + md_to_html(md))
-            dest = route("news")   # 2026-10-17 사용자: 시황 요약은 뉴스방으로(뉴스방 연결 전이면 예전처럼 채널)
-            return (None, txt, dest) if dest else (None, txt)
+            return (None, txt)   # 2026-10-28 사용자: 시황 요약은 뉴스방 말고 돈벌레 채널로(10-17 뉴스방 라우팅 되돌림)
         out.append((f"digest:{g['date']}:{ses}" if ses else f"digest:{g['date']}", NOW, build))
     return out
 
