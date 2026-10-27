@@ -442,6 +442,7 @@
   "trk:blog-techcrunch:ca13c1c565cb",
   "trk:blog-techcrunch:ca4e5964a553",
   "trk:blog-techcrunch:cc663e2995a4",
+  "trk:blog-techcrunch:cc69fa1b4120",
   "trk:blog-techcrunch:d47cd538eaca",
   "trk:blog-techcrunch:d58e9a52e8d2",
   "trk:blog-techcrunch:d662875b7cc0",
@@ -527,6 +528,7 @@
   "trk:googl:75b3a22c576c",
   "trk:googl:832ad1f152d2",
   "trk:googl:854326a52590",
+  "trk:googl:8852af2bc7fd",
   "trk:googl:8a09d6248fe9",
   "trk:googl:9b271069ca77",
   "trk:googl:ae0947c1b47d",
@@ -709,6 +711,7 @@
   "trk:t-0a23e71f:26fe38c33e53",
   "trk:t-0a23e71f:292fb934ae62",
   "trk:t-0a23e71f:3c5950ed62a4",
+  "trk:t-0a23e71f:43f8fe4d335a",
   "trk:t-0a23e71f:5311031fdb15",
   "trk:t-0a23e71f:69d546ffa025",
   "trk:t-0a23e71f:6bcfaa3a6a2c",
@@ -781,8 +784,11 @@
   "trk:t-678e8450:84e84e23752d",
   "trk:t-678e8450:89d27cd3ea00",
   "trk:t-678e8450:9db66e50501e",
+  "trk:t-678e8450:a319ea2c7df1",
   "trk:t-678e8450:c67629b37a78",
+  "trk:t-678e8450:d77f201b9ebe",
   "trk:t-678e8450:da0abf6b019a",
+  "trk:t-678e8450:e7394e1794bd",
   "trk:t-678e8450:eb81e5538ed6",
   "trk:t-678e8450:ef6652efed03",
   "trk:t-678e8450:f7b05899c293",
@@ -1123,24 +1129,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:t-dbe684bf:63a173bf189c": [
-   618
-  ],
-  "pod:2026-10-20-cheeky-how-toto-wolff-built-the-most-valuable-team-in-f": [
-   619
-  ],
-  "pod:2026-10-20-understanding-VBJl4botEvw": [
-   620
-  ],
-  "trk:open-ai:628bd45d43ab": [
-   621
-  ],
-  "trk:blog-ssh-fedinsight:a20593e75b92": [
-   622
-  ],
-  "trk:msft:9b58029d2107": [
-   623
-  ],
   "trk:blog-ranto28:d53b4d40c8e5": [
    624
   ],
@@ -2655,6 +2643,24 @@
   ],
   "ins:ins-20261027-trump-honest-midterm-veto-venezuela-crude-5000-dividend": [
    1080
+  ],
+  "trk:t-0a23e71f:43f8fe4d335a": [
+   1081
+  ],
+  "trk:googl:8852af2bc7fd": [
+   1082
+  ],
+  "trk:blog-techcrunch:cc69fa1b4120": [
+   1083
+  ],
+  "trk:t-678e8450:e7394e1794bd": [
+   1084
+  ],
+  "trk:t-678e8450:a319ea2c7df1": [
+   1085
+  ],
+  "trk:t-678e8450:d77f201b9ebe": [
+   1086
   ]
  },
  "topics": {},
