@@ -943,10 +943,21 @@ def _ust_at(curve, day, years):
 
 @collector("bond_neocloud", "bond_bigtech", "bond_table")
 def c_bonds(ctx):
-    # 30분마다 도는 작업이라 하루 한 번만 받는다(채권 14개 × 약 13초). 이미 오늘 받았으면 기존 값 유지.
-    if ctx.state.get("bond_day") == TODAY and all(sid in ctx.prev for sid in ("bond_neocloud", "bond_bigtech", "bond_table")):
-        print("  채권: 오늘 이미 받음 — 건너뜀")
-        return
+    # 30분마다 도는 작업이라 매번 받진 않는다(채권 14개 × 약 13초). 한국 날짜로 하루 한 번 받으면 새벽엔 미국 전날 장 마감 값이
+    # 아직 없어 하루 이상 밀리므로(2026-10-28 사용자), '받아 둔 최신 거래일'이 미국 직전 장 마감일보다 앞설 때만 2시간 간격으로 다시 받는다.
+    want = (NOW.astimezone(timezone(timedelta(hours=-5))) - timedelta(hours=20)).date()   # 미 동부 저녁 8시쯤 FINRA 장 마감 값이 올라옴
+    while want.weekday() >= 5:
+        want -= timedelta(days=1)
+    have = ctx.state.get("bond_last") or ""
+    tried = ctx.state.get("bond_try") or ""
+    if all(sid in ctx.prev for sid in ("bond_neocloud", "bond_bigtech", "bond_table")):
+        if have >= want.isoformat():
+            print(f"  채권: {have} 값까지 받음 — 건너뜀")
+            return
+        if tried and NOW - datetime.fromisoformat(tried) < timedelta(hours=2):
+            print(f"  채권: {want} 값 기다리는 중(마지막 시도 {tried[11:16]}) — 건너뜀")
+            return
+    ctx.state["bond_try"] = NOW.isoformat(timespec="minutes")
     eod = _finra_session()
     curve = _ust_curve()
     if not curve:
@@ -999,7 +1010,7 @@ def c_bonds(ctx):
                          {"key": "spread", "label": "국채 대비(%p)"}, {"key": "chg", "label": "1주 변화(bp)"}, {"key": "date", "label": "기준일"}],
              "rows": sorted(rows, key=lambda r: -(r["ytm"] or 0)),
              "caveat": "가격은 액면 100 기준(80 아래면 보통 부실 채권으로 봄). 수익률은 그날 마지막 체결 기준이라 거래가 적은 날은 튈 수 있습니다. 1bp = 0.01%포인트."})
-    ctx.state["bond_day"] = TODAY
+    ctx.state["bond_last"] = max(p["pts"][-1]["date"] for p in data.values())
 
 
 GD_GPUS = [("Nvidia H100", "H100"), ("Nvidia H200", "H200"), ("Nvidia B200", "B200"), ("Nvidia B300", "B300"),
