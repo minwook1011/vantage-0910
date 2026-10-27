@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "97f3b79d69d7",
+   "kind": "blog",
+   "headline": "X, 글 쓰는 화면에 '홍보' 버튼 가리키는 큰 손 띄워 사용자들 당황 — 새 제품 총괄 피터 셀리스 취임 직후",
+   "bullets": [
+    "지난 24시간 동안 X 사용자들이 글을 쓰는 중 갑자기 큰 손이 나타나 유료 '홍보(promote)' 버튼을 가리킨다는 글을 잇따라 올렸다.",
+    "X는 의도를 밝히지 않았고, 핼러윈 장난일 수도 있지만 홍보에 돈 쓰려던 사람도 질려 할 만큼 거슬린다는 반응이 많다.",
+    "전 제품 총괄 니키타 비어는 8월에 떠났고, 스냅·디스코드 제품 총괄 출신 피터 셀리스가 월요일 X 제품 총괄을 맡았다고 밝혔다."
+   ],
+   "summary": "사용자들은 공포영화 같다는 반응을 쏟아냈다. 테크 팟캐스트 TBPN 쪽에서는 이게 비어 시절의 공격적인 성장 전술과 닮았다며, 거슬리지만 효과는 있을 것이라고 평했다. 셀리스는 비어의 예전 상사다. 이 손이 셀리스 작품인지는 확인되지 않았고, 테크크런치는 X에 해명을 요청했다. 유료 게시물 홍보는 X 광고 매출의 한 축이라, 셀리스 체제에서 수익화 쪽 장치가 늘어날지 볼 만하다.",
+   "title": "X is nudging users to promote their posts with a pointing hand, and people are confused",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/26/x-is-nudging-users-to-promote-their-posts-with-a-pointing-hand-and-people-are-confused/",
+   "published": "2026-10-27 15:34 KST",
+   "written": "2026-10-27 17:14 KST"
+  },
+  {
    "id": "c4e99740dbde",
    "kind": "blog",
    "headline": "오픈AI 기업제품 책임자 \"상시 비서 '닷츠'는 코덱스 기능을 쉽게 다시 포장한 것\" — 월 100달러 프로 이상 가입자용, 알아서 사용자 정보 조사해 도울 일 제안",
@@ -1235,5 +1251,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-10-27 12:53 KST"
+ "updated": "2026-10-27 17:14 KST"
 }

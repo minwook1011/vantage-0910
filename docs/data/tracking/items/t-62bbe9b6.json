@@ -3,6 +3,22 @@
  "slug": "t-62bbe9b6",
  "items": [
   {
+   "id": "25a765eb0d0b",
+   "kind": "news",
+   "headline": "아이폰 듀오, KB스타뱅킹 얼굴인증 먹통 — 인증서 발급 막혀 영업점 방문 안내, 국민은행 \"이번 주 안 해결 목표\"(서울경제 단독)",
+   "bullets": [
+    "아이폰 듀오에서 KB국민인증서를 발급받으려 하면 '마스크를 벗고 다시 촬영해 달라'는 문구가 반복돼 다음 단계로 못 넘어간다.",
+    "23일 출시 뒤 \"30번 시도해도 안 된다\"는 불만이 이어졌고, 국민은행은 신분증 들고 영업점에서 일회용 신청번호를 받는 대체 방법을 안내 중이다.",
+    "국민은행은 기기를 확보해 테스트 중이며 원인은 아직 모르지만, 이번 주 안 해결을 목표로 한다고 밝혔다."
+   ],
+   "summary": "은행은 새 기기의 카메라 사양이나 이미지 처리 방식이 기존 모델과 달라 호환성 문제가 생겼을 가능성을 보고 있다. 휴대전화를 거꾸로 들고 찍으면 인증된다는 이용자 후기도 있다. 출시 당일에는 KB스타뱅킹 등 일부 금융 앱이 폴더블 화면을 다 쓰지 못하고 양옆에 검은 여백이 생기는 문제도 있었다.\n\n애플이 안쪽 화면 결함을 인정한 데 이어 금융 앱 호환 문제까지 겹친 셈이다. 지난달 아이폰18 프로·프로맥스에서도 페이스ID 실패 뒤 기기가 멈추거나 재부팅되는 오류가 있었고, 애플이 운영체제 업데이트로 고쳤다. 본인 확인이 필수인 금융 서비스 특성상 새 폼팩터마다 은행 앱 최적화 비용이 따로 든다.",
+   "title": "[단독] 아이폰 듀오, 은행 얼굴인증 먹통…“30번 시도해도 안 돼”",
+   "source": "서울경제",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE95WUw4ZmczdDg5TlRuU1pyUUc4U2xvY0I4VFRZV1JIQmlMR2JmMXZLcE9wZlN1bDFkWHUzWmRYTlRrcHdLMjktLV9DM2lXVjhBUGfSAVNBVV95cUxNNGZadTJnY1NEcUw5bkhCTnNFMnk0RlRMWkV2TGUwSnZBaVY3b2drUUsxYS1HMk8yOGFfbmZ5YWxxMTNXMlFfQ1BITHhiY1VuQ09wcw?oc=5",
+   "published": "2026-10-27 15:46 KST",
+   "written": "2026-10-27 17:14 KST"
+  },
+  {
    "id": "1bf380ed328f",
    "kind": "news",
    "headline": "[후속] 애플, 아이폰 듀오 안쪽 화면 문제 공식 인정 — \"일부 소수 기기 문제, 애플케어로 교체\"",
@@ -483,5 +499,5 @@
    "written": "2026-10-12 19:14 KST"
   }
  ],
- "updated": "2026-10-27 07:18 KST"
+ "updated": "2026-10-27 17:14 KST"
 }
