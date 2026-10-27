@@ -3,6 +3,38 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "146cbde721f5",
+   "kind": "news",
+   "headline": "챗GPT, 아이클라우드 메일·캘린더 연결 기능 추가 — 일정 확인·변경까지, 무료 요금제 포함 전 세계 순차 제공",
+   "bullets": [
+    "오픈AI가 27일(현지시간) 챗GPT에 애플 아이클라우드 메일·캘린더를 잇는 플러그인을 추가했다. 메일 검색, 일정 확인과 시간 변경을 맡길 수 있다.",
+    "무료 계정을 포함한 모든 요금제가 대상이고, 웹·데스크톱 앱·아이폰 앱에서 쓸 수 있다.",
+    "메일은 icloud.com·me.com·mac.com 주소만 되고, 연락처는 읽기 전용, 미리 알림 연결은 이번에 빠졌다."
+   ],
+   "summary": "연결은 챗GPT 설정의 ‘플러그인’ 메뉴에서 한다. 애플 계정 비밀번호 대신 따로 만든 ‘앱 암호’를 연결 화면에 넣어야 하고, 메일과 캘린더는 각각 따로 연결해야 한다. 아이폰 메일 앱에 등록된 다른 계정(지메일 등)까지 읽지는 않는다.\n\n기업·교육기관 관리 계정은 조직 정책에 따라 막힐 수 있다. 오픈AI는 개인 계정에서 ‘모두를 위한 모델 개선’ 설정이 켜져 있으면 연동 앱에서 가져온 정보가 모델 학습에 쓰일 수 있다고 안내했다.",
+   "title": "아이폰에 저장한 일정, 이제 챗GPT가 챙긴다[모닝폰]",
+   "source": "www.edaily.co.kr",
+   "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1vSmM1SXZYLXkwWmxjVW56ZUVDV2pkOGc4a1U2VENyT3RPWDRBVnZyUFJRRzBXZkg1Y2NIUUd3RVkzVWRESVhvY1VfNi04M01WeE45d0JBRHhycTNqSWlaZG5aaEV2b0I0LXNPQ1RpM3EyVlV6?oc=5",
+   "published": "2026-10-28 08:02 KST",
+   "written": "2026-10-28 08:19 KST"
+  },
+  {
+   "id": "a5b75d7e7c47",
+   "kind": "news",
+   "headline": "오픈AI·브로드컴이 만든 추론 칩 ‘할라페뇨’, 오라클 클라우드에 들어간다 — 세레브라스는 2027년, 삼바노바 ‘SN50’도 합류",
+   "bullets": [
+    "오라클이 27일(현지시간) ‘오라클 AI 월드 2026’에서 오픈AI가 브로드컴과 함께 설계한 추론 가속기 ‘할라페뇨’를 오라클 클라우드 인프라(OCI)에 배치한다고 밝혔다. 오픈AI의 추론 용량을 늘리는 목적이다.",
+    "세레브라스의 웨이퍼 크기 추론 서비스는 2027년 OCI에서 출시하고, 이미 배치한 포지트론 칩에 이어 삼바노바 ‘SN50’ 시스템도 들인다.",
+    "자체 AI 네트워크 ‘액셀러론’을 클라우드 전체로 넓혀, 그래픽처리장치(GPU) 사이에서만 쓰던 고속 직접 메모리 접근(RDMA)을 일반 서버·가상머신에서도 쓸 수 있게 했다."
+   ],
+   "summary": "오라클은 이번 발표로 고객이 엔비디아 GPU, 구글 텐서처리장치(TPU), 추론 특화 칩 가운데 골라 쓸 수 있게 한다는 전략을 내세웠다. 샘 올트먼 오픈AI 최고경영자는 같은 행사에서 OCI에 배치하는 자사 칩을 추론용으로 세계 최고라고 소개하며, AI를 써서 매우 빠르게 설계했다고 말했다.\n\n액셀러론 확대로 오라클은 서버에서 저장장치까지 지연시간이 10배 줄고, NVMe 블록 스토리지를 붙이면 AI·데이터베이스 작업 성능이 최대 3배 오른다고 주장했다(회사 설명, 외부 검증 전). 장애가 난 링크·포트를 피해 트래픽을 다른 경로로 돌리는 기능도 넣었고, 기가와트급 클러스터를 여러 데이터센터 캠퍼스 사이로 묶고 있다.\n\n할라페뇨와 삼바노바 SN50의 배치 시점·규모는 공개되지 않았다.",
+   "title": "[오라클AI월드] 오라클, `액셀러론` 클라우드 전체 확대…세레브라스·오픈AI 칩도 OCI에",
+   "source": "디지털데일리",
+   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBpTkVhck9lWEp5cm5uczhDN0RRWFpEU2JvdzJQaWFmUXNLZVVpdUdnaDAtb3d0VzFMbmZJeTlLaEVtVXFUdHpKbmlkdUcxTTk1cnRNVGRtZ0tqT2NGVVc3d1ZDTFg?oc=5",
+   "published": "2026-10-28 07:44 KST",
+   "written": "2026-10-28 08:19 KST"
+  },
+  {
    "id": "d6f153e296eb",
    "kind": "news",
    "headline": "오라클, 오픈AI와 기업용 제품 4종으로 협력 확대 — 챗GPT·코덱스 넣고, 오픈AI 보안 모델로 취약점 찾아 고치는 'AI 시큐리티 메시' 공개",
@@ -995,5 +1027,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-28 07:52 KST"
+ "updated": "2026-10-28 08:19 KST"
 }
