@@ -33,6 +33,7 @@
   "digest:2026-10-22:asia",
   "digest:2026-10-25:us",
   "digest:2026-10-26:asia",
+  "digest:2026-10-27:asia",
   "digest:2026-10-27:us",
   "gpu:2026-10-06",
   "gpu:2026-10-07",
@@ -1041,9 +1042,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-tosoha1:7e6436dbed89": [
-   540
-  ],
   "trk:yt--jklonfa:238dda873511": [
    541
   ],
@@ -2574,6 +2572,10 @@
   ],
   "pod:2026-10-27-sixsigma-rWgcZ0FOHug": [
    1001
+  ],
+  "digest:2026-10-27:asia": [
+   1002,
+   1003
   ]
  },
  "topics": {},
