@@ -727,9 +727,11 @@
   "trk:t-678e8450:26e3591eebde",
   "trk:t-678e8450:37c427c4dcfa",
   "trk:t-678e8450:4f82b6f2d483",
+  "trk:t-678e8450:805d5a97b06f",
   "trk:t-678e8450:84e84e23752d",
   "trk:t-678e8450:9db66e50501e",
   "trk:t-678e8450:c67629b37a78",
+  "trk:t-678e8450:da0abf6b019a",
   "trk:t-678e8450:ef6652efed03",
   "trk:t-678e8450:f7b05899c293",
   "trk:t-759fd052:015ffb348fa0",
@@ -1060,12 +1062,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:open-ai:bdbc67fd9f01": [
-   559
-  ],
-  "usdkrw:2026-10-20": [
-   230
-  ],
   "trk:nvda:72090d9cfbe9": [
    560
   ],
@@ -2594,6 +2590,12 @@
   ],
   "pod:2026-10-27-ilb-cliff-sosin-owning-the-complements-to-intelligen": [
    1021
+  ],
+  "trk:t-678e8450:805d5a97b06f": [
+   1022
+  ],
+  "trk:t-678e8450:da0abf6b019a": [
+   1023
   ]
  },
  "topics": {},
