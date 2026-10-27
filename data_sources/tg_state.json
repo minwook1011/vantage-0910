@@ -1010,6 +1010,7 @@
   "trk:yt--jklonfa:ecffc0776b8e",
   "trk:yt--jklonfa:f0b8539198ae",
   "trk:yt--jklonfa:f0f79f307602",
+  "trk:yt--jklonfa:f12118186f41",
   "trk:yt--jklonfa:f3c98d92df63",
   "trk:yt--jklonfa:f5c2d84bdedf",
   "trk:yt--jklonfa:f768d0d4fe77",
@@ -1068,11 +1069,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "cds:2026-10-19": [
-   235,
-   236,
-   237
-  ],
   "digest:2026-10-20:us": [
    564,
    565
@@ -2600,8 +2596,11 @@
   ],
   "trk:blog-techcrunch:2ebc5ca64846": [
    1028
+  ],
+  "trk:yt--jklonfa:f12118186f41": [
+   1029
   ]
  },
  "topics": {},
- "topic_fail_at": 1793097776.356137
+ "topic_fail_at": 1793102014.019512
 }
