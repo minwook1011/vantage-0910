@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "e1b7d633abdb",
+   "kind": "news",
+   "headline": "오라클, 구글 인공지능 칩(TPU)을 자사 클라우드에 들인다 — 구글 클라우드 밖 대형 클라우드 업체로는 처음, 2027년 출시",
+   "bullets": [
+    "오라클이 27일 '오라클 AI 월드 2026'에서 구글 텐서처리장치(TPU)를 오라클 클라우드 인프라(OCI)에서 서비스한다고 발표했다.",
+    "그동안 TPU는 구글 클라우드에서만 쓸 수 있었고, 다른 대형 클라우드 업체가 TPU를 제공하는 건 이번이 첫 사례다.",
+    "OCI용 TPU는 2027년 출시 예정이며 고객 수요에 맞춰 수년에 걸쳐 단계적으로 늘린다."
+   ],
+   "summary": "구글은 올해 처음으로 TPU를 외부 기업 고객에게 공급하겠다고 밝혔고, 내년부터 본격 출하할 계획이었다. 오라클이 그 첫 외부 대형 클라우드 고객이 된 셈이다. 오라클은 TPU를 자사 인공지능 컴퓨팅 상품군에 통합하고, 대규모 배치에 필요한 전력·냉각·데이터센터 네트워크를 맡는다.\n\n구글의 8세대 TPU는 학습용 'TPU 8t'와 추론용 'TPU 8i' 두 종류다. 8t는 이전 세대보다 포드당 연산 성능이 약 3배 높다. 오라클은 같은 행사에서 세레브라스·삼바노바·포지트론의 추론용 칩과 오픈AI 자체 칩 '할라페뇨'도 OCI에 들인다고 밝혀, 엔비디아 외 칩 선택지를 넓히고 있다.\n\n남은 쟁점은 공급 규모와 가격이다. 오라클은 출시 시점만 2027년으로 밝혔고 도입 물량·계약 조건은 공개하지 않았다.",
+   "title": "Oracle Expands Cloud Infrastructure Arsenal With Google, OpenAI, And Cerebras Partnerships",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPdDU3bGNqR3dyemtNTG5ucDNRUGo0UlFPNS13QV9ScUk5RFE0TW1PckFYVjVoMUFBMjV3RnRwd1NQX21FNURXN1Bkcm83WnpxT2RrN0xZN0U3aFRoUHhjeExZdVk5YlF4dEFiMjZqQnItNGVQZW1BWDZSTHl3UW1Hb3dwUWdUWnFrSUlHOUpfN3VocmNSbThGV1N0V2E1a05yb1djSXVONi0wVHM?oc=5",
+   "published": "2026-10-28 04:01 KST",
+   "written": "2026-10-28 07:17 KST"
+  },
+  {
    "id": "8a09d6248fe9",
    "kind": "news",
    "headline": "구글, 볼터스와 미국 동부 전력망(PJM)에 1기가와트 가상발전소 — 6월 첫 계약 100메가와트의 10배",
@@ -417,5 +433,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-22 20:53 KST"
+ "updated": "2026-10-28 07:17 KST"
 }
