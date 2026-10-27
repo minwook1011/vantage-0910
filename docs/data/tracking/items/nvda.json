@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "02389ee491be",
+   "kind": "news",
+   "headline": "슈나이더일렉트릭·네스케일·스타트캠퍼스, 엔비디아 '옴니버스 DSX' 디지털 트윈을 실제 가동 중인 AI 데이터센터에 첫 적용 — 포르투갈 1.2기가와트 시네스 캠퍼스",
+   "bullets": [
+    "슈나이더일렉트릭·아베바·네스케일·스타트캠퍼스가 엔비디아 옴니버스 DSX 블루프린트로 만든 데이터센터 전체 디지털 트윈을 시범 운영한다.",
+    "대상은 스타트캠퍼스가 포르투갈에 짓는 1.2기가와트 규모 시네스 데이터 캠퍼스 안 SIN01 건물에서 돌아가는 네스케일 설비다.",
+    "설비를 바꾸기 전에 전력·냉각 등 '만약에' 상황을 가상으로 먼저 돌려 보고 구축 속도를 높이고 위험을 줄이는 게 목표다."
+   ],
+   "summary": "엔비디아는 올해 3월 차세대 '베라 루빈' AI 데이터센터 표준 설계와 함께, 데이터센터를 통째로 가상 공간에 복제해 설계·운영을 시험하는 옴니버스 DSX 블루프린트를 정식 공개했다. 이번 발표는 이 설계도를 종이 위가 아니라 이미 가동 중인 실제 AI 데이터센터에 붙인 사례라는 점이 다르다.\n\n슈나이더일렉트릭은 전력·냉각 장비를 그대로 가상화한 모델을, 자회사 아베바는 설계·운영 소프트웨어를 맡는다. 네스케일은 엔비디아 칩을 빌려주는 유럽 클라우드 회사로, 이 트윈으로 랙 증설이나 냉각 변경 같은 작업을 미리 시뮬레이션하게 된다. 계약 금액이나 확대 일정은 공개되지 않았다.",
+   "title": "Schneider Electric, Nscale and Start Campus Bring the NVIDIA Omniverse DSX Blueprint into a Live AI Factory Environment",
+   "source": "Yahoo Finance Singapore",
+   "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPMDZwcmpYT0s0VzlXMHVmSzktNFJEM0NFN3lfQ1ptZzE0NlVjZk1FaV9IRTVLYklFNkoya0cyUm9sTjhmTmo3ajFVOWczck9CVmY1bEpJRDFST2NmVHpHOVZ5TG9fM3BVaGRsQW5LckpWQVZSbHFpQWcxWFFWTzM4Y3RaYkhtZ1VySnVEVHA1Mmo?oc=5",
+   "published": "2026-10-27 21:00 KST",
+   "written": "2026-10-27 21:20 KST"
+  },
+  {
    "id": "5061d7fd7be6",
    "kind": "news",
    "headline": "TSMC, 인공지능 칩용 첨단 패키징(CoWoS) 가격 최대 20% 인상 계획 — 엔비디아 등 칩 회사 원가 부담 커질 듯(공상시보·인베스팅닷컴)",
@@ -707,5 +723,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-27 18:48 KST"
+ "updated": "2026-10-27 21:20 KST"
 }
