@@ -1,6 +1,33 @@
 {
- "updated": "2026-10-28 00:17 KST",
+ "updated": "2026-10-28 04:28 KST",
  "episodes": [
+  {
+   "id": "2026-10-28-sixsigma-sJa9mxMKZIc",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "AI가 반도체를 설계하면 왜 설계 프로그램이 더 팔리나 | 케이던스 3분기 실적",
+   "date": "2026-10-28",
+   "published": "2026-10-28 04:00 KST",
+   "link": "https://www.youtube.com/watch?v=sJa9mxMKZIc",
+   "youtube": "https://www.youtube.com/watch?v=sJa9mxMKZIc",
+   "audio": null,
+   "duration": "",
+   "desc": "AI가 칩 설계를 맡으면 설계 소프트웨어(EDA)는 필요 없어질까요. 문샷 발표 뒤 주가가 9.5% 빠졌던 케이던스가 3분기 실적발표에서 내놓은 답을, 미디어텍·삼성 파운드리 도입 사례와 반복 매출 성장률(11%→18%)로 짚었습니다. [목차] 00:00 인트로 00:43 1장 AI가 맡은 설계 일 01:51 2장 설계가 쉬워지면 설계가 늘어난다 03:33 3장 AI는 설계 엔진을 더 많이 돌린다 04:33 4장 숫자로 확인 05:24 이번 주 실적발표 일정 [원본] 1. 케이던스 2026년 3분기 실적발표 컨퍼런스콜 (2026.10.26) https://investor.cadence.com/news/news-details/2026/Cadence-Reports-Third-Quarter-2026-Financial-Results/default.aspx 2. 케이던스 칩스택(ChipStack)·이노스택(InnoStack) 공식 시연 영상 https://www.cadence.com/en_US/home/tools/system-design-and-verification/chipstack-ai-superagent.html 3. 케이던스 마에스트로 발표 보도자료 (2026…",
+   "status": "done",
+   "found": "2026-10-28 04:24 KST",
+   "image": "https://i4.ytimg.com/vi/sJa9mxMKZIc/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "AI가 반도체를 설계하면 왜 설계 프로그램이 더 팔리나 — Cadence 3분기 실적",
+   "desc_ko": "AI가 칩 설계를 대신하면 설계 소프트웨어(EDA) 수요가 줄어들지 않느냐는 걱정을 Cadence 3분기 실적으로 점검한다. AI 설계 도구 발표 뒤 주가가 9.5% 빠졌던 배경을 짚고, 설계가 쉬워질수록 설계 건수와 시뮬레이션 사용량이 오히려 늘어난다는 회사 논리를 정리한다. MediaTek·Samsung 파운드리 도입 사례와 반복 매출 성장률 가속을 숫자로 확인하고, 이번 주 실적 발표 일정도 덧붙인다.",
+   "summary": {
+    "title_ko": "AI가 반도체를 설계하면 왜 설계 프로그램이 더 팔리나 — Cadence 3분기 실적",
+    "headline": "Cadence \"AI는 설계 소프트웨어를 없애지 않고 가장 큰 사용자가 된다\" — 반복 매출 성장 11%→18%",
+    "image": "https://i.ytimg.com/vi/sJa9mxMKZIc/hqdefault.jpg",
+    "guest": "식스시그마(진행) · 아니루드 데브간(Anirudh Devgan) 발언 — Cadence CEO의 3분기 실적 발표 콜 발언을 한국어로 정리한 해설 영상",
+    "company": "Cadence Design Systems (반도체 설계 소프트웨어(EDA) · 반도체 IP · AI 에이전트)"
+   }
+  },
   {
    "id": "2026-10-27-understanding-9XTlG2KHJnc",
    "show": "understanding",
