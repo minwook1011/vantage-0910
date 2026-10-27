@@ -1,0 +1,254 @@
+{
+ "id": "2026-10-27-sixsigma-rWgcZ0FOHug",
+ "title_ko": "“막힌 건 인재가 아니라 컴퓨트” — Nathan Lambert가 본 중국 오픈 모델의 추격",
+ "guest": {
+  "name": "네이선 램버트(Nathan Lambert)",
+  "role": "오픈 모델 연구자·Interconnects 필자(전 Ai2 사후학습 리드) — 중국 오픈 모델이 바로 아래 칸을 지키는 이유"
+ },
+ "guest_profile": [
+  {
+   "name": "네이선 램버트(Nathan Lambert)",
+   "title": "AI 연구자, 뉴스레터 Interconnects 운영자(전 Ai2 사후학습 리드)",
+   "what": "언어 모델의 사후학습(강화학습·지시 튜닝)과 오픈 모델 생태계를 연구하고 글로 정리한다. 2026년 6월 Ai2(Allen Institute for AI)를 떠나 새 프로젝트를 준비 중이라고 알려져 있다.",
+   "career": "UC 버클리에서 박사 학위를 받은 뒤 Hugging Face를 거쳐 Ai2에서 약 3년간 사후학습을 이끌며 완전 공개형 모델 OLMo와 사후학습 레시피 Tülu 작업을 주도했다. 뉴스레터 Interconnects로 오픈 모델·중국 AI 연구소 동향을 꾸준히 분석해 왔고, Lex Fridman 팟캐스트 등에 자주 출연한다.",
+   "track": "투자자가 아니라 연구자라 공개된 수익률은 없다. Interconnects는 2026년 6월 기준 구독자 7만 명 이상(유료 약 900명)으로 알려져 있다.",
+   "why": "미국에서 오픈 모델을 실제로 학습시켜 본 사람이라 '증류가 얼마나 통하나', '컴퓨트가 얼마나 모자라나'를 경험으로 말할 수 있다."
+  },
+  {
+   "name": "미샤 라스킨(Misha Laskin)",
+   "title": "Reflection AI 공동 창업자·CEO",
+   "what": "미국 오픈웨이트 모델 회사 Reflection AI를 이끈다. 2026년 10월 첫 오픈웨이트 모델 Beam(총 5,010억 파라미터, 활성 230억)을 공개했다.",
+   "career": "Google DeepMind 연구원 출신으로, 같은 DeepMind 출신 Ioannis Antonoglou와 2024년 Reflection AI를 세웠다.",
+   "track": "보도 기준 누적 투자 유치 46억 달러, 마지막 기업가치 250억 달러이며 NVIDIA·Sequoia·Lightspeed가 투자했다(2차 보도, 회사 공식 수치는 확인 못 함).",
+   "why": "중국 오픈 모델과 정면으로 경쟁하는 미국 회사의 대표라, 중국 모델을 '기준점'으로 삼는다는 말 자체가 시장 위치를 보여 준다."
+  }
+ ],
+ "company": {
+  "name": "Moonshot AI · Zhipu AI(Z.ai) · Reflection AI",
+  "sector": "AI 모델 · 오픈웨이트 LLM · AI 반도체·HBM",
+  "what": "중국 오픈웨이트 모델(Kimi·GLM)과 이를 쫓는 미국 오픈 모델 회사, 그리고 그 뒤의 칩·메모리 공급망"
+ },
+ "topic": "중국 오픈 모델이 프런티어 바로 아래 칸을 차지한 이유 — 인재·컴퓨트·증류·보안·HBM",
+ "headline": "Lambert “중국은 인재가 아니라 칩이 부족” — 공짜 오픈 모델로 한 칸 아래를 점령, 싸질수록 토큰·HBM 수요는 늘어난다",
+ "tldr": [
+  "Lambert: 중국 연구소는 인재가 아니라 컴퓨트가 부족 — 미국 연구원 1명당 H100급 약 5,000장이라는 말에 중국 연구자들이 놀랐다",
+  "AI 모델은 '최고 폐쇄 모델 / 한 칸 아래 오픈 모델'로 층이 갈리고, 그 아래 칸을 중국 오픈 모델이 차지했다",
+  "값싸진 모델이 칩 수요를 줄이지는 않는다 — 토큰이 늘수록 긴 대화를 붙잡는 HBM 수요가 커진다는 결론",
+  "중국 회사가 모델을 공짜로 푸는 이유: 미국 개발자에게 이름을 알리는 광고·유통 수단",
+  "증류 논쟁: 공개 진영조차 좋은 교사 모델로 쉽게 못 따라온다 — 증류만으로는 설명 안 된다는 게 Lambert 판단",
+  "보안은 갈린다: OpenAI CFO는 서방 모델 권고, Palo Alto 쪽은 직접 돌리는 오픈웨이트를 선호"
+ ],
+ "summary_md": "### 1. 질문 — 중국 AI는 실력인가, 베낀 것인가\n\n- 영상은 미국에서 오픈 모델을 직접 만들어 온 Nathan Lambert의 말로 시작한다. 중국은 인재 면에서 뒤지지 않으며, 부족한 것은 **컴퓨트**라는 주장이다.\n- 그는 평균적인 OpenAI 연구원이 H100급 칩 약 5,000장을 쓸 수 있다는 이야기를 중국 연구자에게 했을 때 상상도 못 하더라는 일화를 든다(본인도 전해 들은 숫자라고 밝힘).\n- 반대편에는 '중국 모델은 미국 모델의 답을 받아 배운 **증류** 덕분'이라는 설명이 있다. 증류는 앞선 모델의 출력으로 내 모델을 가르치는 방법이다.\n\n### 2. 미국 회사가 중국 모델을 쫓는 장면\n\n- 이번 달 첫 오픈웨이트 모델을 낸 미국 스타트업 **Reflection AI**의 CEO는 자사 첫 모델이 중국 오픈 모델 선두권의 사정거리 안에 들어왔다고 말한다. AI 전체로는 중국이 미국을 쫓지만, 오픈 모델에서는 거꾸로 미국이 중국을 기준점으로 삼는다는 게 영상의 지적이다.\n- 그가 그린 구도는 층 구조다. 가장 좋은 폐쇄 모델은 높은 마진을 받고, 한 단계 아래 **니어 프런티어** 모델은 오픈으로 풀린다. 영상은 이 칸을 중국 오픈 모델이 점령했다고 정리한다.\n\n### 3. 그 칸의 모델은 얼마나 쓸 만한가\n\n- IBM의 Arvind Krishna는 All-In 대담에서 Moonshot의 Kimi 같은 중국 오픈웨이트 모델을 자체 GPU에 올리고 약 일주일 최적화하면 토큰 비용을 크게 낮출 수 있다고 계산했다. 영상 자막 기준으로는 프런티어 모델 대비 최대 **40분의 1 가격**에 95% 수준의 일을 한다는 설명이다.\n- 보안처럼 까다로운 일에서도 사례가 나온다. 한 보안 실무자는 미국 모델의 안전장치에 막히자 Zhipu의 **GLM 5.3**을 꺼내 쓴다고 말했다. 영상은 GLM이 판을 새로 짜지 않고 버전을 여러 번 갈아치우며 1등 바로 아래까지 왔다고 짚는다.\n\n### 4. 왜 공짜로 푸나\n\n- Lambert는 이를 정부 압력보다 스타트업의 실용적 계산으로 본다. 중국에서 API만 팔면 Moonshot AI나 Zhipu를 아무도 모르겠지만, 가중치를 풀면 미국 개발자가 써 보고 이름이 알려진다.\n- 영상의 표현대로 공짜 모델은 이 회사들에게 **광고이자 유통망**이다.\n\n### 5. 추격 속도를 가르는 건 칩\n\n- 실력이 같아도 실험을 돌릴 칩이 모자라면 같은 시간에 시도할 수 있는 횟수가 줄어든다. 미국 **수출 통제**로 최신 NVIDIA 칩을 들여오기 어려운 중국에는 이것이 핵심 제약이다.\n- 대신 남이 뚫어 놓은 길을 따라가는 것은 싸고 빠르다. 선두 연구소가 비싸게 만든 데이터셋도 1년쯤 뒤에는 데이터 시장을 통해 흘러나온다는 게 Lambert의 설명이다.\n- 모자란 칩은 효율로 메운다. 중국 연구소들이 희소 어텐션 같은 기법에 매달려 100만 토큰당 서빙 비용을 크게 낮췄고, Zhipu는 GLM-5를 처음부터 **Huawei Ascend** 등 중국산 칩 7종에서 돌아가게 맞췄다고 밝혔다. 영상은 '컴퓨트가 막힌 쪽이 효율에서 앞서 나간다'고 요약한다.\n\n### 6. 증류 논쟁 다시 보기\n\n- 증류를 거론한 사람들은 모두 중국 모델과 경쟁하는 회사 쪽이라는 점을 영상은 짚는다. 그 Reflection AI CEO조차 증류만으로 중국의 실력을 설명할 수 없다고 말한다.\n- Lambert의 근거는 이렇다. 증류가 결정적이라면 공개 진영도 좋은 교사 모델로 쉽게 따라왔을 텐데, 실제로는 낡은 교사 모델에 묶여 고전한다. 영상은 증류를 '모자란 컴퓨트를 돈으로 사는 방법'으로 정리한다.\n\n### 7. 싸고 쓸 만하면 안전한가\n\n- OpenAI CFO Sarah Friar는 중국 모델이 사이버 분야에서 강해지고 있다며 보안 측면에서는 **서방 모델**을 쓰라고 권했다. 영상은 그가 값싼 중국 모델과 가격으로 경쟁하는 회사의 재무 책임자라는 점을 함께 적는다.\n- 반대로 Palo Alto Networks의 Nikesh Arora는 모델을 내려받아 자기 샌드박스에서 돌리면 위험이 작다고 본다. 서방 오픈 모델과의 격차는 길어야 6~12개월이고, 방어용 모델도 오픈웨이트에 자체 데이터를 학습시켜 가중치를 직접 관리하겠다는 입장이다. 위험은 **모델의 국적보다 어디서 돌리느냐**에서 갈린다는 정리다.\n\n### 8. 격차는 벌어질까, 좁혀질까\n\n- Lambert는 비밀이 오래가지 않는다고 본다. 실리콘밸리에서는 아이디어가 맥주 한 잔이면 퍼진다. 폐쇄 연구소의 진짜 무기는 아이디어보다 **같은 지능을 더 싸게** 내놓는 추론 인프라라는 것이다.\n- 성능 한 칸을 올리는 데 컴퓨트가 몇 배씩 든다면 맨 앞자리는 갈수록 비싸지고, 오픈 모델은 크게 뒤처지지 않은 채 한 칸 아래를 지킨다는 게 그의 결론이다.\n\n### 9. 모델이 싸지면 칩은 덜 필요할까\n\n- 2025년 1월 DeepSeek 충격 때 NVIDIA 주가가 하루 17% 빠진 것도 이 걱정 때문이었다. 영상은 반대로 본다. 값이 80% 내려가면 사용량은 그보다 훨씬 더 늘어나는 **제번스 역설**이다.\n- 토큰이 늘면 모델이 붙잡아야 하는 앞 대화(문맥)도 길어진다. 연산을 아껴도 이 기억은 줄지 않고, 그것을 담는 곳이 **HBM**이다. HBM은 SK하이닉스·삼성전자·Micron 세 회사가 만든다는 말로 영상은 끝난다.",
+ "insights_md": "### 투자 관점 — 무엇을 가져갈까\n\n- 이 편의 핵심은 '모델 값 하락 = 칩 수요 감소'라는 등식을 뒤집는 데 있다. 오픈 모델이 한 칸 아래 시장을 싸게 채울수록 기업의 **토큰 사용량**이 늘고, 그만큼 추론 인프라와 메모리 수요가 커진다는 논리다.\n- 수혜 쪽으로 영상이 직접 짚은 것은 HBM 3사(SK하이닉스·삼성전자·Micron)다. 긴 문맥을 처리하는 KV 캐시가 메모리를 많이 먹는다는 점이 연결 고리다.\n\n[[chart:1]]\n\n### 압박을 받는 쪽\n\n- 프런티어 모델 회사는 '바로 아래 칸'에서 가격 경쟁을 피하기 어렵다. Krishna가 말한 대로 기업이 모든 일에 비싼 모델을 쓸 이유가 줄면, 폐쇄 연구소의 마진은 **최상위 성능**과 서빙 효율에서만 지켜진다.\n- 중국 쪽에서는 Huawei Ascend·Cambricon 같은 국산 칩 생태계가 오픈 모델과 함께 커진다. 미국 수출 통제가 오히려 중국의 **효율 경쟁**을 자극했다는 해석이 가능하다.\n\n### 반론·리스크\n\n- 영상에 나온 '40분의 1 가격·95% 성능'은 한 경영자의 대담 발언이다. 같은 Krishna가 IBM 3분기 실적 발표에서 밝힌 수치는 비용 10~25%, 성능 약 90%로 더 보수적이다.\n- 보안·규제 리스크는 남는다. 서방 금융사·정부는 중국 모델 도입을 꺼리고, 이것이 Reflection AI 같은 **미국 오픈 모델**의 기회가 된다.\n\n### 체크포인트\n\n- 기업 AI 토큰 중 오픈웨이트 비중(ETR 조사 34%)이 계속 오르는지, Reflection Beam의 독립 평가 결과, HBM 3사의 분기 점유율과 HBM4 출하가 다음 확인 지점이다.",
+ "deep_md": "### 1. 팩트 체크 — 누가, 어디서 한 말인가\n\n- 대본에서: 영상은 여러 원본을 엮었다. Lambert 발언은 a16z 인터뷰(2026-10-14), GLM 5.3 이야기는 SemiAnalysis 방송(2026-10-14), Krishna·Arora 발언은 All-In 대담(2026-10-21)이다(영상 설명란 기준).\n- 외부 자료로 확인: Lambert의 'OpenAI 연구원 1인당 H100급 5,000장'은 본인도 전해 들은 숫자라고 밝힌 것으로, 1차 자료는 확인 못 함. 그는 2026년 6월 **Ai2를 떠났고** 그 전 약 3년간 OLMo 사후학습을 이끌었다.\n- Reflection AI는 2026년 10월 첫 오픈웨이트 모델 **Beam**을 내놨다. 총 5,010억 파라미터·활성 230억의 MoE 구조이며, Artificial Analysis는 같은 지능 수준에서 토큰 효율이 매우 높은 편이라고 평가했다. 다만 자체 코딩 벤치마크로는 오픈 모델 중간권이다.\n- 대본에서 Kimi를 '약 8,000억 파라미터'로 말한 대목은 자막 오류일 가능성이 크다. 외부 자료상 **Kimi K3**는 총 2.8조 파라미터(활성 1,040억)다.\n\n[[chart:5]]\n\n### 2. 숫자의 맥락 — 오픈 모델은 얼마나 싸고, 얼마나 쓰이나\n\n- Krishna는 IBM 3분기 실적 발표에서 오픈 모델이 프런티어 대비 토큰 비용 **10~25%**로 약 90%의 효과를 낸다고 말했다. 넓은 벤치마크에서 '프런티어 70 대 오픈 20~30'이던 격차가 2025년 말 '70 대 50'으로 좁혀졌다는 설명이다. 영상의 40배·95%는 그보다 공격적인 대담 발언이며, 원문 정확성은 확인 못 함.\n\n[[chart:2]]\n\n- Enterprise Technology Research(ETR) 조사로는 기업 AI 토큰 사용 중 오픈웨이트 비중이 1년 새 23%에서 34%로 올랐고, 같은 기업의 93%는 프런티어 사용도 늘고 있다고 답했다(2차 보도 인용). 오픈이 폐쇄를 대체하기보다 **전체 파이가 커지는** 그림에 가깝다.\n\n[[chart:3]]\n\n### 3. 밸류체인과 관련 상장사\n\n- 메모리: SK하이닉스(000660)·삼성전자(005930)·Micron(MU). Counterpoint 기준 2026년 2분기 HBM 매출 점유율은 SK하이닉스 50%, 삼성 33%, Micron 18%로, 1분기(58/21/21)보다 **삼성의 추격**이 뚜렷하다. HBM4 출하가 늘수록 삼성 점유율이 더 오를 것이라는 전망이다.\n\n[[chart:4]]\n\n- GPU·가속기: NVIDIA(NVDA)·AMD(AMD). SemiAnalysis 방송 제목처럼 GLM 5.3은 출시 첫날부터 AMD·NVIDIA·중국 칩에서 동시에 돌아가게 맞춰졌다.\n- 중국 칩: Cambricon(688256.SS), Moore Threads 등. Reuters는 GLM-5 추론 지원 칩으로 Huawei Ascend·Moore Threads·Cambricon·Kunlunxin을 확인했고, '7종 전체' 목록은 약한 출처에만 나온다.\n- 중국 모델 회사: Zhipu(Z.ai)·Moonshot AI의 상장 여부와 기업가치는 이번 리서치에서 확인 못 함.\n\n### 4. 반론과 리스크\n\n- **이해관계**: 증류를 문제 삼는 쪽도, 서방 모델을 권하는 OpenAI CFO도 모두 중국 모델과 경쟁한다. 반대로 Lambert·Reflection AI 역시 오픈 모델 진영이다. 어느 쪽 말이든 자기 사업과 맞닿아 있다.\n- **보안**: Friar는 2026-10-14 더블린 행사에서 중국 모델이 사이버 분야에서 강해지고 있다고 경고했다. 독립적인 국가별 보안 순위가 있는 것은 아니다.\n- **효율의 역효과**: DeepSeek 충격일(2025-01-27) NVIDIA는 17% 떨어져 시가총액 약 5,890억 달러가 사라졌지만 다음 날 8% 넘게 반등했다. 효율 개선 뉴스가 단기 매도를 부를 수는 있어도 수요 감소로 이어졌다는 근거는 아직 없다.\n- Kimi K3는 토큰을 많이 쓰는 구조라 단가가 싸도 실사용 비용 차이가 줄 수 있다는 지적(GlobalData)도 있다.\n\n### 5. 앞으로 볼 것\n\n- 미국 오픈 모델(Reflection Beam 등)이 중국 모델의 기업 수요를 얼마나 가져오는지 — 독립 벤치마크와 은행·정부 도입 사례.\n- 기업 토큰 사용량 중 **오픈웨이트 비중** 추이(ETR·OpenRouter 등).\n- HBM 분기 점유율과 HBM4 램프, 메모리 3사의 다음 실적 발표.\n- 중국의 다음 오픈 모델(GLM·Kimi·DeepSeek 신작)이 국산 칩에서 어느 정도 처리량을 내는지.",
+ "sources": [
+  {
+   "label": "[원본] 식스시그마 — 빛의 속도로 추격중인 중국 AI, 미국 연구자가 설명한 오픈모델 전략(2026-10-27)",
+   "url": "https://www.youtube.com/watch?v=rWgcZ0FOHug"
+  },
+  {
+   "label": "[원본 인터뷰] a16z — Can Open Models Keep Up With OpenAI and Anthropic? | Nathan Lambert(2026-10-14)",
+   "url": "https://www.youtube.com/watch?v=BKuK0M6oDTI"
+  },
+  {
+   "label": "[원본] SemiAnalysis — Ep. 038 GLM 5.3 on AMD, NVIDIA, and Chinese Chips From Day One(2026-10-14)",
+   "url": "https://www.youtube.com/watch?v=5OwUwMSkO4Y"
+  },
+  {
+   "label": "Built In — Reflection AI 회사 개요·오픈웨이트 전략(창업자·투자 유치)",
+   "url": "https://builtin.com/articles/reflection-ai"
+  },
+  {
+   "label": "VKTR — Reflection AI, 5,010억 파라미터 오픈웨이트 모델 Beam 공개",
+   "url": "https://www.vktr.com/ai-platforms/reflection-ai-unveils-beam-a-501b-open-weight-model/"
+  },
+  {
+   "label": "The Register — IBM Arvind Krishna, 오픈 모델 비용 10~25%·효과 90% 발언(3분기 실적 발표)",
+   "url": "https://www.theregister.com/a/5304640"
+  },
+  {
+   "label": "The Outpost — IBM CEO: 오픈 모델이 프런티어 비용 10%로 90% 효과",
+   "url": "https://theoutpost.ai/news-story/ibm-ceo-arvind-krishna-open-ai-models-hit-90-effectiveness-at-just-10-of-frontier-model-costs-32507/"
+  },
+  {
+   "label": "Compare the Cloud — Kimi K3와 기업 경제성(ETR 오픈웨이트 토큰 비중 인용)",
+   "url": "https://www.comparethecloud.net/news/kimi-k3s-open-weight-frontier-bid-shifts-the-ai-competitive-debate-from-benchmarks-to-enterprise-eco"
+  },
+  {
+   "label": "Enterprise DNA — Kimi K3, 최대 규모 오픈웨이트 모델(파라미터 규모)",
+   "url": "https://enterprisedna.co/resources/ai-pulse/ai-pulse-2026-07-28-kimi-k3-moonshot-ai-shipped-as-the-largest-open-weights-mode"
+  },
+  {
+   "label": "Noqta — Zhipu GLM-5, 7,440억 파라미터 오픈 모델",
+   "url": "https://noqta.tn/en/news/zhipu-glm-5-open-source-model-rivals-western-ai-2026"
+  },
+  {
+   "label": "Caixin Global — Zhipu, GLM-5 공개(2026-02-12)",
+   "url": "https://www.caixinglobal.com/2026-02-12/zhipu-ai-launches-new-model-better-at-coding-learning-102413996.html"
+  },
+  {
+   "label": "The Next Web — OpenAI CFO, 중국 모델 쓰는 기업은 보안 위험(2026-10-14 더블린)",
+   "url": "https://thenextweb.com/news/openai-friar-chinese-models-cyber-risk"
+  },
+  {
+   "label": "Counterpoint Research — 분기별 DRAM·HBM 점유율",
+   "url": "https://counterpointresearch.com/insights/global-dram-and-hbm-market-share"
+  },
+  {
+   "label": "Bloomberg — NVIDIA 5,890억 달러 DeepSeek 급락, 시장 사상 최대(2025-01-27)",
+   "url": "https://www.bloomberg.com/news/articles/2025-01-27/asml-sinks-as-china-ai-startup-triggers-panic-in-tech-stocks"
+  },
+  {
+   "label": "AI Engineer — Ai2·Interconnects(Lambert 2026년 6월 Ai2 퇴사)",
+   "url": "https://www.ai.engineer/orgs/allen-institute-for-ai-ai2-interconnects-ai"
+  }
+ ],
+ "charts": [
+  {
+   "at": "insights",
+   "title": "HBM 매출 점유율 — 2026년 2분기",
+   "sub": "% · 매출 기준",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "SK하이닉스",
+    "삼성전자",
+    "Micron"
+   ],
+   "series": [
+    {
+     "name": "점유율",
+     "values": [
+      50,
+      33,
+      18
+     ]
+    }
+   ],
+   "note": "토큰이 늘수록 커지는 문맥 메모리 수요는 이 세 회사로 간다",
+   "source": "Counterpoint Research"
+  },
+  {
+   "at": "deep",
+   "title": "넓은 벤치마크 점수 — 프런티어 vs 오픈 모델",
+   "sub": "점 · IBM Arvind Krishna가 든 예시(3분기 실적 발표)",
+   "type": "bar",
+   "unit": "점",
+   "labels": [
+    "이전",
+    "2025년 말"
+   ],
+   "series": [
+    {
+     "name": "프런티어 모델",
+     "values": [
+      70,
+      70
+     ]
+    },
+    {
+     "name": "오픈 모델",
+     "values": [
+      25,
+      50
+     ]
+    }
+   ],
+   "note": "'이전' 오픈 모델 점수는 Krishna가 말한 20~30의 가운데값(25)",
+   "source": "The Register — IBM 3분기 실적 발표 발언"
+  },
+  {
+   "at": "deep",
+   "title": "기업 AI 토큰 사용 중 오픈웨이트 비중",
+   "sub": "% · 전 세계 기업 조사, 1년 전 대비",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "1년 전",
+    "2026년 9월"
+   ],
+   "series": [
+    {
+     "name": "오픈웨이트 비중",
+     "values": [
+      23,
+      34
+     ]
+    }
+   ],
+   "note": "같은 기업의 93%는 프런티어 사용도 늘고 있다고 답했다 — 대체보다 확장",
+   "source": "Enterprise Technology Research(Compare the Cloud 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "HBM 매출 점유율 변화",
+   "sub": "% · 분기별",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "2025년 2분기",
+    "2026년 1분기",
+    "2026년 2분기"
+   ],
+   "series": [
+    {
+     "name": "SK하이닉스",
+     "values": [
+      62,
+      58,
+      50
+     ]
+    },
+    {
+     "name": "삼성전자",
+     "values": [
+      17,
+      21,
+      33
+     ]
+    },
+    {
+     "name": "Micron",
+     "values": [
+      21,
+      21,
+      18
+     ]
+    }
+   ],
+   "note": "SK하이닉스 1위는 유지, 삼성이 1년 새 두 배 가까이 따라붙었다",
+   "source": "Counterpoint Research"
+  },
+  {
+   "at": "deep",
+   "title": "오픈웨이트 모델 총 파라미터 규모",
+   "sub": "억 개 · 혼합전문가(MoE) 모델 전체 파라미터",
+   "type": "hbar",
+   "unit": "억 개",
+   "labels": [
+    "Kimi K3 (Moonshot)",
+    "GLM-5 (Zhipu)",
+    "Beam (Reflection AI)"
+   ],
+   "series": [
+    {
+     "name": "총 파라미터",
+     "values": [
+      28000,
+      7440,
+      5010
+     ]
+    }
+   ],
+   "note": "미국 첫 오픈 모델 Beam은 중국 선두 모델보다 작지만 토큰 효율을 앞세운다",
+   "source": "Enterprise DNA · Noqta · VKTR"
+  }
+ ],
+ "tg": "Lambert: 중국 연구소는 인재가 아니라 컴퓨트가 부족 — 미국 연구원 1명당 H100급 약 5,000장\nAI 모델은 '최고 폐쇄 / 한 칸 아래 오픈'으로 갈리고, 그 아래 칸을 중국 오픈 모델이 차지\n값싼 모델이 토큰을 늘리고, 긴 문맥을 담는 HBM 수요를 키운다",
+ "tg_body": "미국 오픈 모델 연구자 Nathan Lambert는 중국 AI 연구소가 인재는 충분하고 컴퓨트가 부족하다고 본다. 평균적인 OpenAI 연구원이 H100급 약 5,000장을 쓴다는 말에 중국 연구자들이 놀랐다는 일화도 전했다.\n\nAI 모델은 비싼 최고 폐쇄 모델과 한 칸 아래 오픈 모델로 층이 갈리고, 그 아래 칸을 Kimi·GLM 같은 중국 오픈 모델이 차지했다. 미국 Reflection AI조차 첫 오픈 모델로 중국 선두권을 쫓는다. 중국 회사가 모델을 공짜로 푸는 이유는 미국 개발자에게 이름을 알리는 광고·유통 수단이라서라는 설명이다.\n\n칩이 막힌 중국은 효율로 버틴다. 희소 어텐션으로 서빙 비용을 낮추고 GLM-5는 처음부터 Huawei Ascend 등 국산 칩에 맞췄다. Lambert는 증류만으로 중국의 실력을 설명하기 어렵다고 본다.\n\n보안은 의견이 갈린다. OpenAI CFO는 서방 모델을 권했고, Palo Alto CEO는 직접 내려받아 돌리면 위험이 작다고 봤다. 결론은 모델이 싸질수록 토큰이 늘고 긴 문맥을 담는 HBM 수요가 커진다는 것이다.\n\n외부 자료로 보면 IBM이 실적 발표에서 밝힌 오픈 모델 비용은 프런티어의 10~25%로 영상 속 40배보다 보수적이다. 기업 토큰 중 오픈웨이트 비중은 1년 새 23%에서 34%로 올랐고, 2분기 HBM 점유율은 SK하이닉스 50%·삼성 33%·Micron 18%다.",
+ "youtube": "https://www.youtube.com/watch?v=rWgcZ0FOHug",
+ "image": "https://i.ytimg.com/vi/rWgcZ0FOHug/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-27 16:40 KST"
+}

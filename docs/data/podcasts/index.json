@@ -1,6 +1,33 @@
 {
- "updated": "2026-10-27 16:05 KST",
+ "updated": "2026-10-27 16:36 KST",
  "episodes": [
+  {
+   "id": "2026-10-27-sixsigma-rWgcZ0FOHug",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "빛의 속도로 추격중인 중국 AI, 미국 연구자가 설명한 오픈모델 전략",
+   "date": "2026-10-27",
+   "published": "2026-10-27 16:00 KST",
+   "link": "https://www.youtube.com/watch?v=rWgcZ0FOHug",
+   "youtube": "https://www.youtube.com/watch?v=rWgcZ0FOHug",
+   "audio": null,
+   "duration": "",
+   "desc": "중국 오픈모델이 2티어 니어 프론티어까지 올라온 이유를, 미국 오픈모델 연구자와 경쟁사·IBM·팔로알토·오픈AI의 말을 맞대어 짚었습니다. 인재와 컴퓨트의 격차, 증류 논쟁의 근거와 이해관계, 모델이 싸질수록 토큰과 HBM 수요가 왜 늘어나는지도 함께 정리했습니다. [원본] 1. a16z, Can Open Models Keep Up With OpenAI and Anthropic? | Nathan Lambert (2026.10.14) https://www.youtube.com/watch?v=BKuK0M6oDTI 2. SemiAnalysis, Ep. 038 - GLM 5.3 on AMD, NVIDIA, and Chinese Chips From Day One (InferenceX) (2026.10.14) https://www.youtube.com/watch?v=5OwUwMSkO4Y 3. All-In Podcast, Arvind Krishna & Nikesh Arora: Quantum Threat, Open vs Frontier AI, AI Cyber Warfare & SaaS Collapse (2026.10.21) https://www.youtube.com/wat…",
+   "status": "done",
+   "found": "2026-10-27 16:22 KST",
+   "image": "https://i3.ytimg.com/vi/rWgcZ0FOHug/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "“막힌 건 인재가 아니라 컴퓨트” — Nathan Lambert가 본 중국 오픈 모델의 추격",
+   "desc_ko": "미국에서 오픈 모델을 직접 만들어 온 연구자 Nathan Lambert의 시각을 중심으로 중국 AI 오픈 모델이 왜 빠르게 따라붙는지 짚는다. 중국 연구소는 인재는 충분하지만 칩이 모자라 효율과 빠른 추격으로 그 차이를 메우고, 모델을 공짜로 풀어 미국 개발자에게 이름을 알린다는 설명이다. Reflection AI·OpenAI·보안 업계의 엇갈린 반응과 증류 논쟁을 함께 다루고, 값싼 모델이 오히려 토큰 사용량과 HBM 수요를 키운다는 결론으로 마무리한다.",
+   "summary": {
+    "title_ko": "“막힌 건 인재가 아니라 컴퓨트” — Nathan Lambert가 본 중국 오픈 모델의 추격",
+    "headline": "Lambert “중국은 인재가 아니라 칩이 부족” — 공짜 오픈 모델로 한 칸 아래를 점령, 싸질수록 토큰·HBM 수요는 늘어난다",
+    "image": "https://i.ytimg.com/vi/rWgcZ0FOHug/hqdefault.jpg",
+    "guest": "네이선 램버트(Nathan Lambert) — 오픈 모델 연구자·Interconnects 필자(전 Ai2 사후학습 리드) — 중국 오픈 모델이 바로 아래 칸을 지키는 이유",
+    "company": "Moonshot AI · Zhipu AI(Z.ai) · Reflection AI (AI 모델 · 오픈웨이트 LLM · AI 반도체·HBM)"
+   }
+  },
   {
    "id": "2026-10-27-sixsigma-Sy3xEAv7KDY",
    "show": "sixsigma",
