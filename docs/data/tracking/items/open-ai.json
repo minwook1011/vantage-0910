@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "d6f153e296eb",
+   "kind": "news",
+   "headline": "오라클, 오픈AI와 기업용 제품 4종으로 협력 확대 — 챗GPT·코덱스 넣고, 오픈AI 보안 모델로 취약점 찾아 고치는 'AI 시큐리티 메시' 공개",
+   "bullets": [
+    "오라클이 27일(현지시간) '오라클 AI 월드 2026'에서 오픈AI의 챗GPT와 코딩 도구 코덱스를 업무 처리·보안·앱 개발·중소기업 운영 등 4가지 기업용 제품에 넣는다고 발표했다.",
+    "'오라클 AI 시큐리티 메시'는 오픈AI 사이버보안 모델로 기업 시스템 취약점을 찾고, 실제 악용 가능성을 검증한 뒤 고칠 방법을 내놓는 관리형 서비스다. 오라클 클라우드 밖 다른 클라우드·자체 서버에서도 쓴다.",
+    "코덱스를 쓴 앱 개발 도구 '오라클 앱 컴포저'도 공개했다. 코딩 지식 없이 기업용 앱을 만들게 한다는 것이다."
+   ],
+   "summary": "오라클은 같은 행사에서 엔비디아 베라 CPU·구글 TPU 도입도 발표했는데, 이번 건은 그와 별개로 오픈AI 모델을 오라클 소프트웨어 제품 안에 넣는 협력이다. 그동안 두 회사 관계는 오라클이 오픈AI에 데이터센터를 빌려주는 쪽이 중심이었다.\n\n보안 서비스는 고객 승인을 거쳐서만 수정 사항을 적용하고, 인공지능 에이전트마다 작업별 신원과 최소 권한을 줘 허용 범위 밖 행동을 감시·중단하게 했다. 샘 올트먼 오픈AI 최고경영자는 행사에서 지금 기업이 인공지능으로 가장 먼저 할 일은 인공지능발 보안 위협 대비라고 말했다.\n\n오라클 주가는 이날 4% 가까이 올랐다. 출시 일정·가격 같은 구체 조건은 아직 나오지 않았다.",
+   "title": "Oracle announces new agreement to embed ChatGPT in more of its products",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQMV9BdUFjd3dmcW11cU1hZWR0TkUtcFlXMldabE5WV1NVc3VaRFY0WGdjWmw4QVZQWWcwNDBJRm5xYU1BTW5qdXVUcHdneG5lQXZEaGhjVGw4a1o0V2w4dmJDeDgySXNBWlplRW1KZDRoQktNUE1vVVFRMWdTXzFxUFlLUXNLVUVsbmhZZzB1c3podDhMSnlheElkZUlic2VwQ3Y5R3lJYU9oaFRJUW1iYWR5SVE?oc=5",
+   "published": "2026-10-28 02:55 KST",
+   "written": "2026-10-28 07:52 KST"
+  },
+  {
    "id": "be25f8bae946",
    "kind": "news",
    "headline": "오라클·엔비디아·오픈AI, 'GPT-6 아스트라' 학습시킨 애빌린 클러스터 공개 — 다음은 에이전트용 CPU, 엔비디아 '베라' 오라클 클라우드에 정식 출시",
@@ -979,5 +995,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-28 06:51 KST"
+ "updated": "2026-10-28 07:52 KST"
 }

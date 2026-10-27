@@ -3,6 +3,22 @@
  "slug": "amzn",
  "items": [
   {
+   "id": "ee4cb48ba1d5",
+   "kind": "news",
+   "headline": "미국 연방통신위원회, 아마존 레오의 글로벌스타 인수(약 115억 달러) 승인 — 위성으로 휴대폰에 직접 연결하는 서비스 진출 길 열려",
+   "bullets": [
+    "미국 연방통신위원회(FCC) 우주국이 27일(현지시간) 아마존 위성 인터넷 사업 '아마존 레오'의 글로벌스타 인수를 승인했다. 거래 규모는 약 115억 달러다.",
+    "핵심은 글로벌스타가 가진 이동위성 주파수 약 25MHz를 아마존이 넘겨받는 것으로, 이번 승인으로 위원회 심사가 끝났다.",
+    "인수는 2027년 마무리 예정이고, 아마존은 2028년부터 자체 휴대폰 직접 연결(D2D) 위성을 띄울 계획이다."
+   ],
+   "summary": "아마존은 지난 4월 글로벌스타를 주당 90달러, 약 115억 달러에 사겠다고 발표했다. 글로벌스타는 애플 아이폰의 위성 긴급 문자 서비스를 맡아 온 회사로, 이번 인수로 아마존 레오는 광대역 위성 인터넷에 더해 일반 휴대폰에 위성 신호를 바로 보내는 시장에 들어간다. 스타링크가 이미 통신사와 손잡고 앞서 있는 분야다.\n\n위원회는 이번 거래가 경쟁을 해치지 않는다고 판단했고, 아마존의 위성망 투자와 별도로 낸 휴대폰 직접 연결 위성 허가 신청을 근거로 주파수를 적극 쓸 가능성이 높다고 봤다. 매체마다 거래 금액을 108억~116억 달러로 다르게 적고 있다.\n\n남은 쟁점은 아마존이 신청한 5,105기 규모 휴대폰 직접 연결 위성 시스템 허가다. 이번 승인은 그 시스템 자체를 허가한 것이 아니고, 인수 완료에도 글로벌스타 교체 위성 발사 일정 등 조건이 남아 있다.",
+   "title": "US agency approves Amazon Leo’s $11.5 billion acquisition of Globalstar",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNU2pZY3J4T2Fvd0hub09FM2RkaHJQc21pOWRWal80cHpZMXN2RS1La2M2WmpVY1hnbzlnUHNBZG5rQ3hWTFZPdmh0cmFPMHVHV0ttRlhzXzZ2SVdFOTd5ZU42YWFTblZtQnRPQUZNcENPSWJUeEF2TE5JRFFXaUdCRlZmLUFCT1JhT0wxWGpKNlZXYnowUG52dlBqc1JYS2EwcE1PS3gwVzhhYWZ4RkJURTh0LWl6SWxEOVIzT3RXbG1EZw?oc=5",
+   "published": "2026-10-28 03:30 KST",
+   "written": "2026-10-28 07:52 KST"
+  },
+  {
    "id": "388c374bd63c",
    "kind": "news",
    "headline": "UBS, 아마존 목표가 318→348달러 — 29일 실적 앞두고 \"2027년 아마존웹서비스 영업이익률 46%, 시장 예상 38%보다 높다\"",
@@ -290,5 +306,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-27 08:20 KST"
+ "updated": "2026-10-28 07:52 KST"
 }
