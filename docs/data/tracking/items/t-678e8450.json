@@ -3,6 +3,38 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "805d5a97b06f",
+   "kind": "news",
+   "headline": "과기정통부 '침해사고 조사심의위원회' 14인 체제로 29일 공식 출범 — 기업이 신고 안 해도 정부 직권조사 여부 심의",
+   "bullets": [
+    "과기정통부가 유지연 상명대 교수와 이현정 코스콤 정보보호운영팀장을 새 위원으로 선임해 심의위가 13인에서 14인으로 늘었다.",
+    "29일 배경훈 부총리 겸 과기정통부 장관 주재로 위촉식을 열고 본격 활동에 들어간다. 위원장은 김승주 고려대 정보보호대학원 교수.",
+    "10월 1일 시행된 개정 정보통신망법에 근거한 법정 위원회로, 중대 해킹 정황이 있으면 기업 자진 신고 없이도 정부 직권조사를 열 수 있다."
+   ],
+   "summary": "예전에는 피해 기업이 해킹 사실을 줄여 말하거나 신고를 미루면 정부가 바로 들어가기 어려웠다. 심의위는 중대한 침해사고 정황이 뚜렷하거나 국민 피해가 우려되면 직권조사 필요성을 심의해 정부가 먼저 조사에 착수하도록 하는 기구다. 정부·학계·보안기업·공공기관 전문가로 구성됐다.\n\n법 시행 전에도 비공식 자문 형태로 약 4,000만 계정이 유출된 티빙 해킹 조사 결정을 뒷받침했고, 법 시행 뒤인 25일에는 긴급회의를 열어 두 차례 해킹을 당한 더존비즈온 사태를 '중대 사고'로 규정해 민관합동조사단 구성을 이끌었다.\n\n남은 쟁점은 위원 구성이다. 일부 위원이 외국 국적자로 알려지면서 국가 핵심 인프라의 보안 취약점을 들여다보는 기구에 적절하냐는 우려가 보안 업계 일각에서 나온다. 과기정통부는 고도의 기술 판단이 필요해 최고 전문가로 꾸렸다고 설명했다.",
+   "title": "[단독] 정부 ‘해킹조사 심의위원’ 유지연 상명대 교수 선임...29일 킥오프",
+   "source": "매일경제 마켓",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE42OXBDMGdwTWFoa3cxZ1J6U1VVNTR0dTBjdEJINnp5UzJ3Nk5QdGFMQXZFY0RTY3BtZTFmSXMxOGNCbnFPUlp5LWloTXZ4YmVvZmc?oc=5",
+   "published": "2026-10-27 13:29 KST",
+   "written": "2026-10-27 19:18 KST"
+  },
+  {
+   "id": "da0abf6b019a",
+   "kind": "news",
+   "headline": "미국 뉴멕시코대 병원(UNM 헬스), 사이버 공격으로 구급차 우회·클리닉 30여곳 진료 취소 — 주 유일 최고등급 외상센터 마비",
+   "bullets": [
+    "뉴멕시코대 보건시스템이 26일(현지시간) 정오쯤 사이버보안 사고로 구급차를 다른 병원으로 돌리고 30곳 넘는 클리닉 예약을 취소했다.",
+    "앨버커키 본원 이용 자제를 안내하면서 뉴멕시코주에서 가장 심각한 외상 환자를 받을 병원이 한때 사라졌다.",
+    "직원들 컴퓨터에 학생·직원·환자 데이터를 가져갔다는 메시지가 떴고, 연방수사국(FBI)이 수사를 지원 중이다."
+   ],
+   "summary": "사고는 26일 낮 시작됐고 병원과 클리닉은 같은 날 늦게부터 단계적으로 운영을 재개했다. 병원 측은 법 집행기관 수사가 진행 중이라며 원인과 피해 범위를 밝히지 않았다. 연방수사국도 협력 기관을 돕고 있다고만 했다.\n\n직원 화면에 데이터 탈취를 주장하는 메시지가 뜬 점을 보면 랜섬웨어형 공격 가능성이 거론되지만, 공격 주체·몸값 요구 여부는 공식 확인되지 않았다. 남은 쟁점은 실제 유출된 환자·학생 정보 규모와 시스템 완전 복구 시점이다.",
+   "title": "A cybersecurity issue forces a major New Mexico hospital to divert patients and close clinics",
+   "source": "AP News",
+   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNZFhjem5hOW1XbXZZTnJESmMxeWlFdG1YTGtvelljekZnNXktbkZRdlJCT1hZZkpqaG8zdUoxZTVWckQ1MHhiYVNfc2VhckpsaF8xd0ozWm5zbWpGUjhidklQcTZQejdUM0lSR3BNSmdxZG5xb0sxdVhUaWd0Ukplb1lfemozX3A5Q1UwcDFTTWFZS0hYano2WmJWNjA?oc=5",
+   "published": "2026-10-27 11:37 KST",
+   "written": "2026-10-27 19:18 KST"
+  },
+  {
    "id": "f7b05899c293",
    "kind": "news",
    "headline": "일본 GMO인터넷그룹 해킹범, 몸값 거절당하자 27일 고객정보 공개 시작 — 처음엔 5천만 달러 요구, 서버 2만6천여대 피해·FX 계좌 무단 거래까지",
@@ -131,5 +163,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-10-27 18:21 KST"
+ "updated": "2026-10-27 19:18 KST"
 }
