@@ -729,6 +729,7 @@
   "trk:t-678e8450:9db66e50501e",
   "trk:t-678e8450:c67629b37a78",
   "trk:t-678e8450:ef6652efed03",
+  "trk:t-678e8450:f7b05899c293",
   "trk:t-759fd052:015ffb348fa0",
   "trk:t-759fd052:03fe1408f933",
   "trk:t-759fd052:057ee3053233",
@@ -932,6 +933,7 @@
   "trk:yt--jklonfa:a053ea6bf745",
   "trk:yt--jklonfa:a21577282993",
   "trk:yt--jklonfa:a57c8374b08d",
+  "trk:yt--jklonfa:a5cedadaf46b",
   "trk:yt--jklonfa:a71065c46fb7",
   "trk:yt--jklonfa:a73156b5999f",
   "trk:yt--jklonfa:a979f564e8d4",
@@ -1005,6 +1007,7 @@
   "trk:yt--jklonfa:fa5723060bfb",
   "trk:yt--jklonfa:fc9ed95ad405",
   "trk:yt-kyrxne0q:4fdaea80a66e",
+  "trk:yt-kyrxne0q:560419f88e15",
   "trk:yt-kyrxne0q:67892a4c10ad",
   "trk:yt-kyrxne0q:76a8b7e27ad7",
   "trk:yt-kyrxne0q:8ee5771c1c02",
@@ -1054,15 +1057,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ranto28:a10d9d307a18": [
-   553
-  ],
-  "trk:googl:ee227fa8270b": [
-   554
-  ],
-  "trk:nvda:3d3c76ccd67d": [
-   555
-  ],
   "trk:gartner:0cd126e4da80": [
    556
   ],
@@ -2588,6 +2582,15 @@
   ],
   "trk:ax:dae1466c4c99": [
    1015
+  ],
+  "trk:yt-kyrxne0q:560419f88e15": [
+   1016
+  ],
+  "trk:yt--jklonfa:a5cedadaf46b": [
+   1017
+  ],
+  "trk:t-678e8450:f7b05899c293": [
+   1018
   ]
  },
  "topics": {},
