@@ -113,7 +113,44 @@ def parse_youtube(show, root, since):
     return out
 
 
+def parse_apple_search(show, raw, since):
+    """애플 팟캐스트 에피소드 검색(JSON) — 크리스 카밀로처럼 '사람'을 따라가며 여러 방송 출연분을 모은다(2026-10-27 추가).
+    제목·소개에 match 단어가 있어야 하고, exclude 방송(본인 채널처럼 따로 받는 곳)은 건너뛴다.
+    show_name 에는 실제 출연한 방송 이름을 넣는다 — podcast_transcript.py 가 유튜브를 찾을 때 쓴다."""
+    match = (show.get("match") or "").lower()
+    exclude = [x.lower() for x in show.get("exclude", [])]
+    out = []
+    for r in json.loads(raw.decode("utf-8")).get("results", []):
+        title, desc, prog = clean(r.get("trackName")), clean(r.get("description")), clean(r.get("collectionName"))
+        if match and match not in (title + " " + desc).lower():
+            continue
+        if any(x in prog.lower() for x in exclude):
+            continue
+        try:
+            dt = datetime.fromisoformat(r["releaseDate"].replace("Z", "+00:00")).astimezone(KST)
+        except Exception:
+            continue
+        date = dt.strftime("%Y-%m-%d")
+        if date < since:
+            continue
+        sec = (r.get("trackTimeMillis") or 0) // 1000
+        dur = (f"{sec // 3600}:{sec % 3600 // 60:02d}:{sec % 60:02d}" if sec >= 3600 else f"{sec // 60}:{sec % 60:02d}") if sec else ""
+        row = {"id": ep_id(show["id"], date, title), "show": show["id"], "show_name": prog or show["name"],
+               "title": title, "date": date, "published": dt.strftime("%Y-%m-%d %H:%M KST"),
+               "link": r.get("trackViewUrl") or "", "audio": r.get("episodeUrl"), "duration": dur,
+               "desc": clean(desc, 600), "status": "new", "found": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
+               "image": r.get("artworkUrl600") or r.get("artworkUrl160"), "show_image": None}
+        if re.search(r"replay|rerun|encore|best of", title, re.I):
+            row.update(status="skip", reason="재방송(REPLAY)")
+        elif sec and sec < 600:   # 요약 채널·짧은 클립은 출연분이 아니다
+            row.update(status="skip", reason="10분 미만 클립·요약")
+        out.append(row)
+    return out
+
+
 def parse_feed(show, xml_bytes, since):
+    if show.get("type") == "apple_search":
+        return parse_apple_search(show, xml_bytes, since)
     root = ET.fromstring(xml_bytes)
     if root.tag.endswith("}feed"):
         return parse_youtube(show, root, since)

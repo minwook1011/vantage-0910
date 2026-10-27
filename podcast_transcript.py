@@ -35,7 +35,7 @@ TMP = os.path.join(BASE, "data_sources", "_podcast_tmp")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) vantage-podcasts/1.0"
 SHOW_YT = {"ilb": "Invest Like the Best", "bb": "Business Breakdowns Colossus", "ca": "Capital Allocators Ted Seides",
            "dwarkesh": "Dwarkesh Patel", "mad": "MAD Podcast Matt Turck", "synopsis": "Drew Cohen The Synopsis",
-           "oddlots": "Odd Lots Bloomberg", "acquired": "Acquired podcast", "bg2": "BG2 Pod", "nopriors": "No Priors podcast", "cheeky": "Cheeky Pint John Collison", "riskrev": "RiskReversal Pod", "ontape": "On The Tape Danny Moses"}
+           "oddlots": "Odd Lots Bloomberg", "acquired": "Acquired podcast", "bg2": "BG2 Pod", "nopriors": "No Priors podcast", "cheeky": "Cheeky Pint John Collison", "riskrev": "RiskReversal Pod", "ontape": "On The Tape Danny Moses", "dumbmoney": "Dumb Money Live"}
 
 
 def page_text(url):

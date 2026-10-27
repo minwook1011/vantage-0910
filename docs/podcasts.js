@@ -21,7 +21,9 @@
     cheeky: ["치키 파인트", "#6b7a1e", "대기업 최고경영자·창업자 대담"],
     understanding: ["언더스탠딩", "#d0461c", "산업 전문가 장시간 인터뷰(한국어)"],
     riskrev: ["리스크리버설 팟", "#0f766e", "월가 트레이더·헤지펀드 출신 시장 대담"],
-    ontape: ["온 더 테이프", "#7c2d12", "대니 모지스의 투자자 인터뷰"]
+    ontape: ["온 더 테이프", "#7c2d12", "대니 모지스의 투자자 인터뷰"],
+    dumbmoney: ["덤 머니 라이브", "#15803d", "크리스 카밀로 본인 유튜브 — 소셜 아비트리지"],
+    camillo: ["크리스 카밀로 출연", "#a16207", "크리스 카밀로의 다른 방송 게스트 출연분"]
   };
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function getJSON(p) { return fetch(p, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(p + " " + r.status); return r.json(); }); }
