@@ -432,6 +432,7 @@
   "trk:blog-techcrunch:cc663e2995a4",
   "trk:blog-techcrunch:d47cd538eaca",
   "trk:blog-techcrunch:d58e9a52e8d2",
+  "trk:blog-techcrunch:d662875b7cc0",
   "trk:blog-techcrunch:d9e173490cb6",
   "trk:blog-techcrunch:daec0d20e7db",
   "trk:blog-techcrunch:dd07d41afdc5",
@@ -520,6 +521,7 @@
   "trk:googl:cb1aa23ede5b",
   "trk:googl:d6179f5d78ec",
   "trk:googl:e0909f2ba801",
+  "trk:googl:e1b7d633abdb",
   "trk:googl:e68b30408349",
   "trk:googl:ee227fa8270b",
   "trk:meta:00c18b7ec6a6",
@@ -801,6 +803,7 @@
   "trk:t-759fd052:78da4388074b",
   "trk:t-759fd052:7b51880f81a5",
   "trk:t-759fd052:7d78b722dcc2",
+  "trk:t-759fd052:8418c26de56b",
   "trk:t-759fd052:868b4de728f2",
   "trk:t-759fd052:8d1e405a626f",
   "trk:t-759fd052:8d6d18863984",
@@ -1101,16 +1104,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "digest:2026-10-20:asia": [
-   596,
-   597
-  ],
-  "trk:t-0a23e71f:5311031fdb15": [
-   598
-  ],
-  "trk:t-62bbe9b6:a5f24c56fab4": [
-   599
-  ],
   "pod:2026-10-20-oddlots-cme-s-terry-duffy-on-the-disconcerting-state-of": [
    600
   ],
@@ -2634,6 +2627,15 @@
   ],
   "trk:blog-techcrunch:6971dc5962bd": [
    1058
+  ],
+  "trk:googl:e1b7d633abdb": [
+   1059
+  ],
+  "trk:t-759fd052:8418c26de56b": [
+   1060
+  ],
+  "trk:blog-techcrunch:d662875b7cc0": [
+   1061
   ]
  },
  "topics": {},
