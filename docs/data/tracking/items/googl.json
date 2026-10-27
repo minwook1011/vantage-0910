@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "8852af2bc7fd",
+   "kind": "news",
+   "headline": "구글 딥마인드, 월드 모델 '지니 4' 공개 — 말로 실시간 세계 수정·소리와 대사까지 생성, 일부 파트너에 먼저 제공",
+   "bullets": [
+    "구글 딥마인드가 27일(현지시간) 이용자 명령에 따라 가상 세계를 실시간으로 바꾸는 차세대 월드 모델 '지니 4'를 발표했다.",
+    "구글 실시간 월드 모델 중 처음으로 영상과 함께 환경음·배경음악·등장인물 대사를 후처리 없이 직접 만든다.",
+    "제미나이 옴니·제미나이 3.8 플래시와 결합해 물리 현상과 사람 행동을 더 사실적으로, 여러 단계 사건까지 시뮬레이션한다."
+   ],
+   "summary": "월드 모델은 현실의 환경과 물리 변화를 학습해 이용자 행동에 따라 다음 장면을 예측·생성하는 AI다. 미리 만든 게임 공간을 보여주는 게 아니라 이용자가 움직이거나 환경을 바꿀 때마다 새 장면을 계속 만든다.\n\n지니 4에서는 키보드로 이동하고 카메라 시점을 조작하면서 자연어 명령으로 날씨를 바꾸거나 새 사물·인물을 등장시킬 수 있다. 제미나이가 명령을 기존 장면 맥락에 맞게 해석해 세계가 자연스럽게 이어지도록 관리한다. 물체 충돌이나 바람에 따른 움직임, 사람이 걷고 주변에 반응하는 모습도 이전 모델보다 정교해졌다. 다만 기억 시간이 짧다는 한계가 지적된다.\n\n쓰임새는 게임·영상 제작과 로봇·AI 에이전트의 가상 훈련이다. 이전 버전 공개 때 게임 업체 주가가 흔들렸던 만큼 시장 반응도 관심사다. 27일 뉴욕 증시에서는 지니 4 공개가 AI 기대를 키운 재료로 꼽혔다.",
+   "title": "Google Upgrades AI World Model That Rattled Video Game Stocks",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQbUx6Z0xYcXpVWEdaSGswN0tVc3hOdmFXZmNpLWxreG5sallSc0RnbHlQcVpXWGZwRzZfZW5JM19nTkYzRVlyLWVGRktZbG4waVlPajJnVEp1aXJ2TEVMM29sbEJYTFlvY2Q4M2Nna3VLeHNTOEhiN1ZYalplUWRWN0xfbE16RlpfMjdSaFd4Ym1qU1kxWmFKNWl0djluT3VOM3JMN1lycDhPQ1N3UHFaRnln?oc=5",
+   "published": "2026-10-28 01:00 KST",
+   "written": "2026-10-28 08:49 KST"
+  },
+  {
    "id": "e1b7d633abdb",
    "kind": "news",
    "headline": "오라클, 구글 인공지능 칩(TPU)을 자사 클라우드에 들인다 — 구글 클라우드 밖 대형 클라우드 업체로는 처음, 2027년 출시",
@@ -433,5 +449,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-28 07:17 KST"
+ "updated": "2026-10-28 08:49 KST"
 }
