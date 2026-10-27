@@ -262,6 +262,7 @@
   "trk:aws:132be39d0d0f",
   "trk:aws:42cd05bc8595",
   "trk:aws:be35ae71db44",
+  "trk:ax:18bd9137f3ad",
   "trk:ax:7916c8205ccb",
   "trk:ax:d599095d52ed",
   "trk:ax:dae1466c4c99",
@@ -414,6 +415,7 @@
   "trk:blog-techcrunch:996aae51c765",
   "trk:blog-techcrunch:9c434ecf2f5a",
   "trk:blog-techcrunch:9cb90d5f017f",
+  "trk:blog-techcrunch:a5e63c073be0",
   "trk:blog-techcrunch:a65d2b4a8049",
   "trk:blog-techcrunch:a6e9e3330ba6",
   "trk:blog-techcrunch:a8b86062b1eb",
@@ -631,6 +633,7 @@
   "trk:open-ai:00fc72a34dc1",
   "trk:open-ai:05d434b12b33",
   "trk:open-ai:1104ef13905d",
+  "trk:open-ai:146cbde721f5",
   "trk:open-ai:14ffe347a100",
   "trk:open-ai:180776a97670",
   "trk:open-ai:1f713b361cf7",
@@ -666,6 +669,7 @@
   "trk:open-ai:978220cdb36e",
   "trk:open-ai:9be7aab1adfc",
   "trk:open-ai:a23ec47e45ed",
+  "trk:open-ai:a5b75d7e7c47",
   "trk:open-ai:aa781aa0a3b3",
   "trk:open-ai:ad32d6d068b1",
   "trk:open-ai:aec099fc5779",
@@ -973,6 +977,7 @@
   "trk:yt--jklonfa:96bc1908858a",
   "trk:yt--jklonfa:9840fd66ce24",
   "trk:yt--jklonfa:98a011359a50",
+  "trk:yt--jklonfa:995473cb641f",
   "trk:yt--jklonfa:9a2e77ccfba8",
   "trk:yt--jklonfa:9b2fdf3bd209",
   "trk:yt--jklonfa:9b3cda677d89",
@@ -1111,21 +1116,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "pod:2026-10-20-ilb-christina-cacioppo-building-an-enduring-software": [
-   607
-  ],
-  "trk:t-dbe684bf:4bc20c6f97f4": [
-   608
-  ],
-  "jpm:2026-10-20 19:54 KST": [
-   245
-  ],
-  "trk:yt--jklonfa:0e5afb32d5a5": [
-   609
-  ],
-  "trk:yt--jklonfa:9b2fdf3bd209": [
-   610
-  ],
   "trk:t-62bbe9b6:cc78ca886c14": [
    611
   ],
@@ -2643,6 +2633,21 @@
   ],
   "trk:blog-techcrunch:fd63179e93a2": [
    1068
+  ],
+  "trk:open-ai:146cbde721f5": [
+   1069
+  ],
+  "trk:open-ai:a5b75d7e7c47": [
+   1070
+  ],
+  "trk:yt--jklonfa:995473cb641f": [
+   1071
+  ],
+  "trk:blog-techcrunch:a5e63c073be0": [
+   1072
+  ],
+  "trk:ax:18bd9137f3ad": [
+   1073
   ]
  },
  "topics": {},
