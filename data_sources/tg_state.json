@@ -550,6 +550,7 @@
   "trk:nbis:b80e18503959",
   "trk:nbis:f434348f97c9",
   "trk:nvda:00e209bf3cf0",
+  "trk:nvda:02389ee491be",
   "trk:nvda:07e335172c47",
   "trk:nvda:09ceb6f822a6",
   "trk:nvda:2a6cd519197e",
@@ -735,6 +736,7 @@
   "trk:t-678e8450:9db66e50501e",
   "trk:t-678e8450:c67629b37a78",
   "trk:t-678e8450:da0abf6b019a",
+  "trk:t-678e8450:eb81e5538ed6",
   "trk:t-678e8450:ef6652efed03",
   "trk:t-678e8450:f7b05899c293",
   "trk:t-759fd052:015ffb348fa0",
@@ -953,6 +955,7 @@
   "trk:yt--jklonfa:add528585df4",
   "trk:yt--jklonfa:add9cfb57b3f",
   "trk:yt--jklonfa:afb34a82df06",
+  "trk:yt--jklonfa:b255d1492266",
   "trk:yt--jklonfa:b3e92f98d940",
   "trk:yt--jklonfa:b47ede697ab4",
   "trk:yt--jklonfa:b4e9c0b9a637",
@@ -1069,16 +1072,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "digest:2026-10-20:us": [
-   564,
-   565
-  ],
-  "trk:amzn:e12bd02ce29b": [
-   566
-  ],
-  "pod:2026-10-19-riskrev-nothing-matters-in-the-market-until-it-does-with": [
-   567
-  ],
   "pod:2026-10-19-ca-building-a-berkshire-for-the-middle-market-tracy": [
    568
   ],
@@ -2599,6 +2592,15 @@
   ],
   "trk:yt--jklonfa:f12118186f41": [
    1029
+  ],
+  "trk:yt--jklonfa:b255d1492266": [
+   1030
+  ],
+  "trk:nvda:02389ee491be": [
+   1031
+  ],
+  "trk:t-678e8450:eb81e5538ed6": [
+   1032
   ]
  },
  "topics": {},
