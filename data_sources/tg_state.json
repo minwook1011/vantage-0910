@@ -224,6 +224,7 @@
   "pod:2026-10-27-sixsigma-rWgcZ0FOHug",
   "pod:2026-10-27-sixsigma-ul6ZAexHZGM",
   "pod:2026-10-27-sixsigma-wJFDLA-hWas",
+  "pod:2026-10-28-sixsigma-sJa9mxMKZIc",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:3b959b70cbc3",
@@ -1076,9 +1077,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:yt--jklonfa:f5c2d84bdedf": [
-   572
-  ],
   "nebius:2026-10-19": [
    242
   ],
@@ -2605,8 +2603,11 @@
   ],
   "trk:t-f05c5b60:e5f22b90119f": [
    1036
+  ],
+  "pod:2026-10-28-sixsigma-sJa9mxMKZIc": [
+   1037
   ]
  },
  "topics": {},
- "topic_fail_at": 1793125804.251534
+ "topic_fail_at": 1793129458.952692
 }
