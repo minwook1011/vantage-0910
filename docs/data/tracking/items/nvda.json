@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "5061d7fd7be6",
+   "kind": "news",
+   "headline": "TSMC, 인공지능 칩용 첨단 패키징(CoWoS) 가격 최대 20% 인상 계획 — 엔비디아 등 칩 회사 원가 부담 커질 듯(공상시보·인베스팅닷컴)",
+   "bullets": [
+    "대만 TSMC가 인공지능 반도체 수요 급증에 맞춰 칩온웨이퍼온서브스트레이트(CoWoS) 등 첨단 패키징 가격을 최대 20% 올릴 계획이라고 대만 공상시보가 소식통을 인용해 보도했다.",
+    "첨단 패키징 공급이 수요를 못 따라가는 상황이고, 반도체 장비 납기도 길어져 TSMC는 장비 주문 때도 가격을 깎지 않고 있는 것으로 전해졌다.",
+    "엔비디아처럼 CoWoS에 기대는 인공지능 칩 회사들은 원가가 오를 수 있다. TSMC 공식 발표는 아직 없다."
+   ],
+   "summary": "대만 공상시보와 인베스팅닷컴이 26~27일 소식통을 인용해 전한 내용이다. TSMC가 인공지능 반도체에 주로 쓰이는 첨단 패키징 공정, 특히 칩온웨이퍼온서브스트레이트(CoWoS) 가격을 최대 20% 인상하는 방안을 추진한다는 것이다. 배경은 공급 부족이다. 인공지능 가속기 수요가 폭증하면서 첨단 패키징 생산능력이 수요를 따라가지 못하고 있다.\n\n앞서 시장조사업체 트렌드포스 등은 TSMC가 내년 첨단 공정 가격을 5~10%, 첨단 패키징 가격을 10~15% 올릴 것으로 내다봤는데, 이번 보도는 그보다 인상 폭이 클 수 있다는 얘기다. 장비 납기가 길어지면서 TSMC가 장비 업체에도 통상적인 가격 인하를 요구하지 않는다는 보도도 함께 나왔다.\n\n남은 쟁점은 TSMC의 공식 확인 여부와 실제 적용 시점, 그리고 엔비디아 등 고객사가 늘어난 원가를 제품 가격에 얼마나 넘길 수 있느냐다.",
+   "title": "Nvidia, Chipmakers Face Higher Costs? TSMC Reportedly Plans Up To 20% Price Hike For Advanced Chip Packaging",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPekpKYkZzMEpfQmFkR2wtNmttWjJJOWQ2SWFzdS1oa0dhbU5nU1NnVHhqaHhXX243RmZDUHBNX0Q5a3pUWlg5SnVNSFNVVVRHVWxiOHJrSmZEdmpnSVpmZjlCMlZrR25BOWhVTHBSYmxOY3ZSajRTb2xVWkpSRF9LS2lqOEp3UzBfNDRLdzE1b211R2Nqc3lnQ0tHS2c?oc=5",
+   "published": "2026-10-27 14:00 KST",
+   "written": "2026-10-27 18:48 KST"
+  },
+  {
    "id": "09ceb6f822a6",
    "kind": "news",
    "headline": "케이던스, 엔비디아와 만든 반도체 설계 전용 인공지능 모델 '마에스트로' 공개 — 범용 모델보다 품질 최대 30%↑, 고객사 자체 서버에서도 돌린다",
@@ -691,5 +707,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-26 22:18 KST"
+ "updated": "2026-10-27 18:48 KST"
 }
