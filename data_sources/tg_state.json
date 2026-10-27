@@ -254,6 +254,7 @@
   "trk:aws:be35ae71db44",
   "trk:ax:7916c8205ccb",
   "trk:ax:d599095d52ed",
+  "trk:ax:dae1466c4c99",
   "trk:ax:db869a3b7283",
   "trk:bill-ackman:8b5c4c18c150",
   "trk:bill-ackman:a1b8ad155758",
@@ -421,6 +422,7 @@
   "trk:blog-tosoha1:7e6436dbed89",
   "trk:blog-tosoha1:a959256e6c94",
   "trk:blog-tosoha1:e7417374557c",
+  "trk:blog-tosoha1:f1fe639ca89e",
   "trk:blog-travelingcompanion:11d0b3822643",
   "trk:blog-travelingcompanion:22e63b909540",
   "trk:blog-travelingcompanion:3c8370accb38",
@@ -723,6 +725,7 @@
   "trk:t-678e8450:26e3591eebde",
   "trk:t-678e8450:37c427c4dcfa",
   "trk:t-678e8450:4f82b6f2d483",
+  "trk:t-678e8450:84e84e23752d",
   "trk:t-678e8450:9db66e50501e",
   "trk:t-678e8450:c67629b37a78",
   "trk:t-678e8450:ef6652efed03",
@@ -1051,15 +1054,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:open-ai:81608e2d4900": [
-   550
-  ],
-  "trk:blog-ssh-fedinsight:9c35d6818a0c": [
-   551
-  ],
-  "trk:nvda:69b4a57785de": [
-   552
-  ],
   "trk:blog-ranto28:a10d9d307a18": [
    553
   ],
@@ -2585,6 +2579,15 @@
   ],
   "trk:t-0a23e71f:9bb8fc203c2f": [
    1012
+  ],
+  "trk:blog-tosoha1:f1fe639ca89e": [
+   1013
+  ],
+  "trk:t-678e8450:84e84e23752d": [
+   1014
+  ],
+  "trk:ax:dae1466c4c99": [
+   1015
   ]
  },
  "topics": {},
