@@ -1,6 +1,33 @@
 {
- "updated": "2026-10-27 06:30 KST",
+ "updated": "2026-10-27 10:20 KST",
  "episodes": [
+  {
+   "id": "2026-10-27-sixsigma-ul6ZAexHZGM",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "\"지능은 이미 충분하다\" 데이터브릭스 AI 수장이 짚은 기업 AI의 진짜 병목",
+   "date": "2026-10-27",
+   "published": "2026-10-27 09:00 KST",
+   "link": "https://www.youtube.com/watch?v=ul6ZAexHZGM",
+   "youtube": "https://www.youtube.com/watch?v=ul6ZAexHZGM",
+   "audio": null,
+   "duration": "",
+   "desc": "데이터브릭스 최고 AI 과학자 조너선 프랭클은 기업 AI의 병목이 모델 성능이 아니라 평가, 곧 무엇을 시킬지 적고 해냈는지 재는 일이라고 봅니다. 클로드 소네트 3.5부터 지능은 충분했다는 그의 기준, 감에 기대 모델을 바꾸는 회사들의 실제 모습, 파일럿 단계의 '버뮤다 삼각지대'와 '반드시 해야 할 것·하면 안 되는 것' 목록, 기업 업무 자동화가 아직 낮은 한 자릿수 퍼센트라는 진단까지 짚었습니다. 데이터브릭스가 평가 도구를 직접 판매하는 회사라는 점도 함께 적었습니다. [원본] 1. Mercor, The Frontier 「Jonathan Frankle - Chief AI Scientist at Databricks」 (2026.10.20) https://www.youtube.com/watch?v=AGSQySkk3ts 2. Databricks Events, 「Data+AI World Tour for Government 2025 - Measuring Mission Impact」 (2026.02.18) https://www.youtube.com/watch?v=ZeytWbO2TZA 이 영상은 정보 제공 목적이며 특정 종목의 매수·매도를 권유하지 않습니다. 투자…",
+   "status": "done",
+   "found": "2026-10-27 10:17 KST",
+   "image": "https://i2.ytimg.com/vi/ul6ZAexHZGM/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "“지능은 이미 충분하다” — Databricks AI 수장 Jonathan Frankle이 짚은 기업 AI의 진짜 병목",
+   "desc_ko": "Databricks 최고 AI 과학자 Jonathan Frankle의 인터뷰를 정리한 편이다. 기업 AI가 막히는 곳은 모델 성능이 아니라 평가, 즉 무엇을 시킬지 적고 제대로 해냈는지 재는 일이라는 진단이다. Claude Sonnet 3.5 이후로 지능은 충분했다는 그의 기준, 감에 기대 모델을 갈아 끼우는 회사들, 파일럿 단계의 '버뮤다 삼각지대'와 '해야 할 것·하면 안 되는 것' 목록을 차례로 다룬다. 기업 업무 자동화는 아직 낮은 한 자릿수 퍼센트라는 진단과 함께, Databricks가 평가 도구를 직접 파는 회사라는 이해관계도 짚는다.",
+   "summary": {
+    "title_ko": "“지능은 이미 충분하다” — Databricks AI 수장 Jonathan Frankle이 짚은 기업 AI의 진짜 병목",
+    "headline": "Databricks Frankle \"Sonnet 3.5부터 지능은 충분\" — 병목은 평가, 기업 업무 자동화는 아직 낮은 한 자릿수",
+    "image": "https://i.ytimg.com/vi/ul6ZAexHZGM/hqdefault.jpg",
+    "guest": "조너선 프랭클(Jonathan Frankle) — Databricks 최고 AI 과학자 — 기업 AI 병목은 모델이 아니라 평가라는 진단",
+    "company": "Databricks (데이터·AI 플랫폼 · 기업 AI 평가)"
+   }
+  },
   {
    "id": "2026-10-27-sixsigma-Hjesn0CX5dk",
    "show": "sixsigma",
