@@ -11,6 +11,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
      · GPU별 렌탈 지수(H100·H200·B200·A100) — 새 정산일이 들어오면(Ornn 미 동부 16:00 정산 → 보통 한국 05~07시)
      · 네비우스 GPU 스팟 가격 카드 — 하루 한 번, 09:00(세계 표준시 하루 마감) 이후 첫 확인 때
      · 빅테크·AI CDS — 새 결제일이 들어오면
+     · 네오클라우드·빅테크 회사채 수익률(코어위브 등) — FINRA 장 마감 값의 새 거래일이 들어오면
      · OpenRouter 지표 — 새 날짜(세계 표준시 하루 = 09:00 KST 마감)가 들어오면, 월요일엔 주간 토큰 총량·주간 지출 그래프를 함께(앨범)
   ·) 일본 소비재 월차 — 새 달 월차가 들어오면 확인 회차마다 한 통(데이터 허브 일본 소비재 월차)
   2) 팟캐스트 — 새 편 요약이 올라오면: 제목 · 핵심 3줄 · 내용 정리(tg_body, 1,000자 이내 단락)
@@ -21,7 +22,7 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
   python tg_notify.py --due      # 지금 보낼 게 있으면 "yes" — 워크플로가 그래프 도구 설치 여부를 정할 때
-  python tg_notify.py --force all|gpu|cds|openrouter|macro|digest|podcast|insight   # 기록 무시하고 그 항목을 지금 보냄(시험용)
+  python tg_notify.py --force all|gpu|cds|bond|openrouter|macro|digest|podcast|insight   # 기록 무시하고 그 항목을 지금 보냄(시험용)
 """
 import json
 import os
@@ -237,6 +238,43 @@ def cds():
                + "\n".join(rows) + "\n<i>bp · 괄호는 전일 대비 · 오르면 시장이 그 회사 빚을 더 위험하게 본다는 뜻</i>")
         return imgs, cap
     return (f"cds:{asof}", gate, build)
+
+
+def bonds():
+    """네오클라우드·빅테크 회사채 수익률(2026-10-29 사용자: 코어위브 채권 금리도 종가로) — FINRA 장 마감 값의 새 거래일이 들어오면
+    그래프 2장(네오클라우드+국채 5년 · 빅테크+국채 30년) + 채권별 종가 수익률·전 거래일 대비. 자료: fetch_ai_indicators.c_bonds"""
+    S = ai_series()
+    tab = S.get("bond_table") or {}
+    asof = tab.get("as_of")
+    if not asof or not tab.get("rows"):
+        return None
+    price = {r["name"]: r.get("price") for r in tab["rows"]}
+
+    def build():
+        from tg_charts import line
+        imgs, parts = [], []
+        for sid, title, sub in (("bond_neocloud", "네오클라우드 채권 수익률", "만기수익률 · % · 미국 국채 5년과 비교"),
+                                ("bond_bigtech", "빅테크·오라클 장기채 수익률", "만기수익률 · % · 미국 국채 30년과 비교")):
+            ls_ = [l for l in (S.get(sid) or {}).get("lines") or [] if len(l.get("points") or []) > 1]
+            if not ls_:
+                continue
+            imgs.append(line(sid, title, f"{sub} · 최근 1년 · FINRA 장 마감 · {asof} 기준",
+                             [(l["label"], [(p["date"], p["value"]) for p in l["points"]]) for l in ls_], digits=2, unit="%", since_days=365))
+            rows = []
+            for l in ls_:
+                p = l["points"]
+                d = (p[-1]["value"] - p[-2]["value"]) * 100
+                mark = "▫️" if abs(d) < 0.5 else ("🔺" if d > 0 else "🔻")
+                px = price.get(l["label"])
+                rows.append(f"{mark} {esc(l['label'])} <b>{p[-1]['value']:.2f}%</b> ({d:+.0f}bp)"
+                            + (f" · 가격 {px:.2f}" if px is not None else "") + (f" · {p[-1]['date'][5:].replace('-', '/')}" if p[-1]["date"] != asof else ""))
+            parts.append(f"<b>{'🏗 네오클라우드' if sid == 'bond_neocloud' else '🏢 빅테크·오라클'}</b>\n" + "\n".join(rows))
+        if not parts:
+            return None, None
+        cap = (f"💵 <b>회사채 수익률 (종가)</b> · {asof[5:].replace('-', '/')} 장 마감 · {stamp(tab.get('updated_at'))} 갱신\n\n"
+               + "\n\n".join(parts) + "\n<i>그날 마지막 체결 수익률 · 괄호는 전 거래일 대비 · 날짜가 붙은 건 그날 거래가 없어 마지막 체결일 값 · 오르면 시장이 그 빚을 더 위험하게 본다는 뜻</i>")
+        return imgs, cap
+    return (f"bond:{asof}", READY, build)
 
 
 CO_REF = {"6532": "docs/data/baycurrent.json"}  # 회사 공시 분기 인원·전망이 있는 기업 (데이터 허브 워크벤치 파일)
@@ -717,7 +755,7 @@ def jp_monthly():
     return out
 
 
-ITEMS = {"gpu": gpu, "nebius": nebius, "cds": cds, "headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "insight": insights, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
+ITEMS = {"gpu": gpu, "nebius": nebius, "cds": cds, "bond": bonds,"headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "insight": insights, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
 
 
 def collect():
