@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "a03a31ed7ad1",
+   "kind": "news",
+   "headline": "앤트로픽, 뉴섬 캘리포니아 주지사에 \"위험한 AI 모델은 정부가 법원 통해 출시 막을 수 있어야\" — 모델 전체 끄는 '킬 스위치' 의무화엔 반대(로이터)",
+   "bullets": [
+    "앤트로픽이 10월 15일 뉴섬 주지사에게 보낸 서한에서, 심사 결과 '심각한 위험'이 확인된 AI 모델은 정부가 법원 명령으로 출시를 막을 수 있어야 한다고 제안했다. 앤트로픽 대변인이 서한이 진짜라고 확인했다.",
+    "회사가 통제를 잃었을 때 모델 전체를 끄는 '킬 스위치'를 의무화하는 데는 반대했다. 대신 문제 된 AI 에이전트만 끄거나 특정 고객 접근만 막는 좁은 조치가 더 효과적이라고 했다.",
+    "주지사가 9월 꾸린 AI 안전 전문가 패널에 낸 의견이다. 오픈AI도 10월 20일 별도 권고안을 냈다."
+   ],
+   "summary": "로이터가 28일(현지시간) 보도한 서한 내용이다. 처음 보도는 폴리티코가 했다. 뉴섬 주지사는 9월 AI 안전 요건을 만들 전문가 패널을 꾸렸고, 앤트로픽은 그 요청에 맞춰 권고안을 냈다. 내용은 회사가 그동안 내놓은 정책 제안과 같은 방향이다.\n\n앤트로픽 자신도 정부 제한을 받은 적이 있다. 트럼프 행정부는 6월 국가안보를 이유로 사이버 능력이 있는 '미토스 5'·'페이블 5' 모델의 해외 접근을 즉시 제한하라고 명령했고, 상무부가 나중에 이를 풀었다.\n\n연방 차원에서도 비슷한 논의가 있다. 9월 초당파 상원의원들이 안전하지 않은 모델의 출시를 정부가 막고 기업은 연방법원에서 다툴 수 있게 하는 법안을 논의했지만, 선거 전 휴회로 진전이 없다. 하원에는 7월 'AI 킬 스위치법'이 발의돼 있다. 주지사실은 아직 답하지 않았다. 앤트로픽은 미국 상장을 준비 중이다.",
+   "title": "Anthropic tells California governor courts should be able to block risky AI models",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQb3lwQkM2YlRwQ3lBT0UxOUtJTks3bkNxb0Rfbm90ZFAxdGZyT05KMXY2ZEVEYTJZeHFqd0YyMTFVQXBfOEtWeHFUdGt3cWRTNXhqTjloNGVEdkoyU0RxUHowMUw4UXNwVWUzdjQzMmZpTmRCakZjdzJLcE10dGcyUm15TGY5Y0I0Q0VhM3ZtUUlsTUFHWlAtT01XRkZYZXY5cjdzMmYwTnlfSkZkaWxtaTI5dmphVHhkQVhRUko1b1ctTldPaGlFamVONlE?oc=5",
+   "published": "2026-10-29 04:04 KST",
+   "written": "2026-10-29 06:17 KST"
+  },
+  {
    "id": "2010c6097924",
    "kind": "news",
    "headline": "앤트로픽 상장에 호주 개인투자자 청약 열기 — 지분 20억 달러어치 가진 호주 최대 은행 CBA, 자회사 콤섹 통해 개인 청약 준비",
@@ -1073,5 +1089,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-10-28 19:49 KST"
+ "updated": "2026-10-29 06:17 KST"
 }

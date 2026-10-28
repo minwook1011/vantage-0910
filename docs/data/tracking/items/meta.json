@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "2415cb0214d1",
+   "kind": "news",
+   "headline": "메타, 언론사 반발에 새 상업 약관 시행 30일→11월 20일로 미뤄 — 'AI에 콘텐츠 무제한 사용' 우려, 유럽연합·영국 경쟁당국까지 민원",
+   "bullets": [
+    "메타가 '상업 약관'과 '셀프서비스 광고 약관' 시행일을 10월 30일에서 11월 20일로 3주 늦췄다(로이터).",
+    "언론사·광고주들은 새 약관이 메타에 자기 콘텐츠를 AI 서비스에 무제한으로 쓸 권리를 준다며 유럽연합·영국 경쟁당국에 민원을 냈다. 메타는 이 주장을 부인한다.",
+    "문구는 그대로다. 지난주 '학습(train)'이라는 단어를 뺐지만, 언론사들은 여전히 AI 학습 여지가 남아 있다고 본다."
+   ],
+   "summary": "메타는 바뀐 약관이 광고·비즈니스 상품에 관한 것이고 웹사이트를 긁어 갈 새 권리를 만드는 게 아니라는 입장이다. 그러나 약관을 철회하거나 논란 문구를 고치지는 않고 시행일만 미뤘다.\n\n세계신문협회(WAN-IFRA)는 연기를 반기면서도 우려는 해소되지 않았다며 요구한 보호 장치를 시행 전에 약관에 넣으라고 했다. 유럽연합 집행위원회 경쟁당국도 연기를 환영하며 메타와 약관 내용을 논의 중이라고 밝혔다.\n\n남은 쟁점은 11월 20일 전에 문구가 실제로 바뀌는지, 유럽 당국이 공식 조사로 넘어가는지다.",
+   "title": "Meta delays indefinitely its rollout of new commercial terms after publishers' concerns",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOYmxxX0JFWUowUGY3OXdUSDhwZkkyampiYmZUbnNVOF8tVXNMdExmTWp1TVBFTmQxQkluZUp5UHg2QTZTS1JkSlMxV0VWRURtSlZZai1COUFOYUF6RHo3aDZfMUJ1Y2NWSFI1QXQ5cExYUlgyQ1VUWkFYSkZmNlJjWFZYR01sYjVhOFFUb1RMc0hVUXBDSDh3QkN2OUk2U2FoUnFLVjhxOGFzaWNWZHYzZVFKR2Z3eC1xMWRSX1QxTzZoR2NGaWNJR1laMHBuZw?oc=5",
+   "published": "2026-10-29 03:39 KST",
+   "written": "2026-10-29 06:17 KST"
+  },
+  {
    "id": "5836f98abbc0",
    "kind": "news",
    "headline": "엔비디아, 메타 주식 발행에 30억 달러 투자 — 뮤즈 AI 협력 확대, 메타는 보통주 발행을 225억→250억 달러로 늘리고 주당 625달러로 확정",
@@ -401,5 +417,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-27 17:14 KST"
+ "updated": "2026-10-29 06:17 KST"
 }
