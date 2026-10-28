@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "0f1ffa8b837a",
+   "kind": "news",
+   "headline": "오픈AI, 구글 인공지능 칩(TPU) 구매 계획 — 오랜 엔비디아 고객이 구글 칩 직접 산다(디인포메이션)",
+   "bullets": [
+    "디인포메이션은 오픈AI가 구글의 텐서처리장치(TPU)를 사들일 계획이라고 28일 보도했다.",
+    "오픈AI는 그동안 엔비디아 그래픽처리장치(GPU)의 핵심 고객이었고, 브로드컴과 자체 추론 칩 '할라페뇨'도 만들고 있다.",
+    "같은 날 오라클은 구글 클라우드 밖 대형 클라우드 업체로는 처음 TPU를 들인다고 발표했다. 구글 칩의 외부 판매가 빠르게 넓어지는 흐름이다."
+   ],
+   "summary": "보도는 유료 기사라 본문 세부(구매 규모·시기·사용처)는 확인되지 않았다. 제목 기준으로는 클라우드에서 빌려 쓰는 수준을 넘어 오픈AI가 TPU를 직접 구매하는 방향이다. 구글은 최근 메타 데이터센터에 TPU를 넣었고, 앤트로픽은 브로드컴·구글이 설계한 TPU를 쓰기 위해 630억 달러 금융을 마련하는 등 외부 고객을 늘리고 있다.\n\n오픈AI가 TPU까지 사면 엔비디아 의존도를 더 낮추는 셈이다. 오픈AI는 이미 브로드컴과 만든 추론 칩 '할라페뇨'를 오라클 클라우드에 넣기로 했다. 회사 공식 확인과 구매 규모가 나오는지가 다음 확인 포인트다.",
+   "title": "OpenAI, a Longtime Nvidia Customer, Plans to Buy Google’s AI Chips",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQMHVUUUdOMmpGd3dxdWhJS0t6c3FlVmh1eXg1ckptWEFhX2JGbVByMGozdHZRQks4YUV0dzM2dWI0Tm05cmlXcG53Q09IYXNJYlFab3BjV0NSVnNoR05TQXFLQ2thQlV0OVFWdDJyM2wzOFVCdG13X0hsSHVQNFRTQ2hGNThFeFJjeWhqMlZLTW1RQ1RUNVU4UnBtMU93eEk?oc=5",
+   "published": "2026-10-28 08:59 KST",
+   "written": "2026-10-28 09:20 KST"
+  },
+  {
    "id": "146cbde721f5",
    "kind": "news",
    "headline": "챗GPT, 아이클라우드 메일·캘린더 연결 기능 추가 — 일정 확인·변경까지, 무료 요금제 포함 전 세계 순차 제공",
@@ -1027,5 +1043,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-28 08:19 KST"
+ "updated": "2026-10-28 09:20 KST"
 }
