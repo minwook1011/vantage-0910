@@ -1,0 +1,235 @@
+{
+ "id": "2026-10-28-riskrev-why-the-ai-bubble-isn-t-dot-com-2-0-with-david-s",
+ "title_ko": "David Steinberg(Zeta Global) — AI 거품이 닷컴 2.0이 아닌 이유",
+ "guest": {
+  "name": "데이비드 스타인버그(David Steinberg)",
+  "role": "Zeta Global 공동창업자·회장·CEO — AI 마케팅·데이터 클라우드 기업(NYSE: ZETA)"
+ },
+ "guest_profile": [
+  {
+   "name": "데이비드 스타인버그(David A. Steinberg)",
+   "title": "Zeta Global 공동창업자·회장·CEO",
+   "what": "소비자 데이터 클라우드와 AI로 기업의 고객 확보·유지·마케팅을 돕는 Zeta Global을 이끈다. 회사의 2026년 매출 가이던스는 18억 1,100만~18억 2,400만 달러다.",
+   "career": "1993년 휴대폰 판매업체 Sterling Cellular를 세운 것으로 시작해, 온라인 통신 상품 판매업체 InPhonic을 창업해 CEO를 지냈다. 2007년 Apple 전 CEO John Sculley와 Zeta(옛 XL Marketing, Zeta Interactive)를 공동 창업했고, 2021년 6월 기업가치 약 17억 달러로 뉴욕증권거래소에 상장시켰다.",
+   "track": "펀드 운용자가 아니어서 투자 수익률은 없다. 경영 성과로는 상장 이후 20개 분기 연속 가이던스 상회·상향(회사 발표 기준), 2025년 매출 13억 500만 달러(+30%)가 확인된다. 2024년 11월에는 공매도 업체 Culper Research가 데이터 수집 방식을 문제 삼은 보고서를 내 주가가 일주일 새 약 35% 빠졌고, 회사는 사실과 다르다고 반박했다.",
+   "why": "AI 투자 거품 논쟁에서 '앱 레이어'의 입장을 대변하는 상장사 CEO다. 2017년 AI 중심으로 플랫폼을 다시 짠 결정이 지금 실적으로 이어졌다는 본인 설명을 숫자로 대조해 볼 수 있다."
+  },
+  {
+   "name": "댄 네이선(Dan Nathan)",
+   "title": "RiskReversal Media 공동창업자 · CNBC Fast Money 패널(진행)",
+   "what": "RiskReversal Media 팟캐스트(On The Tape, OK Computer 등)를 진행하고 RiskReversal Advisors에서 자문 업무를 한다.",
+   "career": "약 25년 동안 주식·옵션 트레이더로 일했다. SAC·Cheyne·Exis Capital 같은 헤지펀드와 Merrill Lynch 주식파생 부서를 거쳤고, 2011년 RiskReversal.com을, 2016년 RiskReversal Advisors를 세웠다. CNBC Options Action(2009~2019)과 Fast Money에 고정 출연해 왔다.",
+   "track": "개인 운용 수익률은 공개되지 않아 확인 못 함.",
+   "why": "Palantir 같은 AI 수혜주의 밸류에이션에 회의적인 질문을 던지는 진행자라, 게스트의 낙관론과 대비가 된다. 게스트와 오랜 친구라고 스스로 밝혀 날카로운 반박은 적었다는 점은 감안할 필요가 있다."
+  }
+ ],
+ "company": {
+  "name": "Zeta Global",
+  "sector": "AI 마케팅 · 데이터 클라우드 · 앱 소프트웨어",
+  "what": "5억 5천만 명 규모 옵트인 소비자 데이터와 AI 에이전트 Athena로 기업 마케팅·의사결정을 돕는 플랫폼(NYSE: ZETA)"
+ },
+ "topic": "Zeta Global CEO가 말하는 AI 앱 레이어 — 2017년 재설계, Athena OS·Palantir 협업, 그리고 지금이 닷컴 거품과 다른 이유",
+ "headline": "상장 때 연 2.8억 달러 → 올해 18억 달러, 그래도 '동종 대비 70% 할인' — AI 투자는 돈 버는 회사가 하고 있어 닷컴과 다르다",
+ "tldr": [
+  "AI 인프라 투자는 현금이 넘치는 흑자 대기업이 주도해 닷컴 때와 다르다 — 위험한 쪽은 고평가로 큰돈을 모으는 비상장 'AI 제품' 회사들",
+  "Zeta 매출은 2021년 상장 당시 직전 12개월 2.83억 달러에서 올해 약 18억 달러로 — 2017년 엔지니어 400명을 투입해 AI 중심으로 플랫폼을 다시 짠 결정 덕이라는 설명",
+  "Steinberg는 Zeta가 순매출유지율 120% 이상·Rule of 67인데도 동종 대비 멀티플이 70% 낮다고 주장 — '마케팅은 경기에 약하다'는 편견 탓",
+  "Zeta Live 2026에서 Athena OS(마케팅 너머 재고·공급망·재무까지), Athena의 MCP 개방(ChatGPT·Claude·Gemini 연동), 전용 칩(협력사 부담) 발표",
+  "Palantir Foundry 위에 데이터 클라우드를 재구축해 속도를 높였고 FedRAMP 등재로 정부 사업도 시작",
+  "AI 경제성의 큰 몫은 앱 레이어로 간다는 시각 — 개인 에이전트(Meta Muse 등) 경쟁은 승자독식이 아닐 것"
+ ],
+ "summary_md": "### 1. 만남의 배경 — 실적 침묵 기간의 '큰 그림' 대화\n\n- 진행자 Dan Nathan은 게스트와 오랜 친구라고 먼저 밝히고, 실적 발표 전 침묵 기간이라 분기 숫자는 다루지 않는다고 선을 긋는다. 대화는 2주 전 뉴욕에서 열린 **Zeta Live** 행사와 최근 인수, 그리고 AI 투자 거품 논쟁으로 이어진다.\n- 진행자는 개인 AI 에이전트가 화제가 되면서 Zeta 주가가 크게 올랐다고 짚는다. 시장이 최근 한 달 'AI 투자 수익(ROI)'을 다시 따지는 국면이라는 점도 깔고 간다.\n\n### 2. AI 시대에 살아남는 두 종류의 회사\n\n- Steinberg는 AI 물결에서 두 유형이 갈린다고 본다. 하나는 AI를 앱의 핵심에 넣기 위해 **플랫폼 자체를 재설계**하고 자체 데이터로 '기업 지능'을 만드는 회사, 다른 하나는 인력을 줄여 주는 워크플로 관리 도구다. 후자는 비용 절감은 주지만 수익을 만들지 못해, 고객이 결국 지능형 인프라로 옮겨 간다는 주장이다.\n- Zeta는 2017년 이사회에서 사모펀드 주주들을 설득해, 그해 5천만 달러 넘는 EBITDA를 포기하고 엔지니어 400명을 투입해 데이터·AI 중심으로 플랫폼을 다시 짰다고 한다. 2020년에 출시했지만 당시엔 아무도 관심이 없었다고 회고한다.\n- 전환점은 ChatGPT 출시였다. 이사회가 CEO에게, CEO가 임원들에게 AI 전략을 묻기 시작하면서 2년간 팔아 온 AI 전략이 먹히기 시작했다는 것이다(Steinberg는 출시 시점을 2021년 추수감사절 다음 날로 말했지만 실제 공개일은 2022년 11월 30일이다).\n- 대본에서: 2021년 6월 상장 당시 직전 12개월 매출 2억 8,300만 달러, 올해 가이던스 중간값 기준 **약 18억 달러**. 4년간 매출 연 30% 이상, EBITDA 연 50%, 잉여현금흐름 연 75% 복리 성장이라고 했다.\n\n[[chart:1]]\n\n### 3. 마케팅에서 Athena OS로 — 수요 예측이 재고·재무로 번지다\n\n- 외부 조사(Forrester)를 인용해, 고객이 Zeta 플랫폼에 쓴 마케팅비 1달러당 **600~700% 수익**을 낸다고 했다. 경쟁사 평균은 200% 수준이라고 비교했다.\n\n[[chart:2]]\n\n- 마케팅이 너무 잘 돼 소매 고객의 재고가 바닥나자, 고객들이 수요 정보를 재고 관리에 써 달라고 요청했다. 이것이 제조·총계정원장까지 이어지는 운영체제 **Athena OS**로 발전했다는 설명이다. 음성 기반 에이전트 Athena는 올해 3월 출시됐고, Zeta Live에서 물류·공급망·재무·마케팅을 아우르는 OS로 확장을 발표했다. 신용카드 고객사의 사기 탐지 같은 사례도 진행 중이라고 했다.\n\n### 4. 데이터 클라우드 — '의도(intent)'를 읽는다\n\n- 핵심은 소비자가 무엇을 사려 하는지, 즉 구매 의도를 아는 것이다. 대본에서: 전 세계 5억 5천만 명(미국 2억 4천만 명 이상)의 옵트인 개인, 1인당 5천~7천 개 데이터 항목, 520만 개 퍼블리셔에서 들어오는 수조 개의 신호, 그리고 미국인 대부분의 월간 카드 거래 데이터를 쓴다.\n- 데이터는 제3자에게 팔지 않고, 고객사에도 실명 대신 Zeta ID로만 보여 준다고 강조했다. 쓰임새는 고객 확보·이탈 방지·수익화, 그리고 호텔 출점지나 재고 배치를 정하는 '동적 기업 인텔리전스'다.\n\n### 5. Zeta Live — 행사 1달러가 사업 10달러로\n\n- 올해 행사는 Lincoln Center와 자연사박물관을 통째로 빌렸고 3,700명이 왔다고 한다. Palantir의 Alex Karp가 첫 기조연설을 했다.\n- 대본에서: 작년 행사비 1달러당 10달러의 사업이 생겼고, 올해는 **12~14배**를 기대한다. 셀럽을 부르는 이유도 고객이 좋아하기 때문이라고 했다.\n- 발표 네 가지: Athena OS, Athena를 외부에 여는 MCP 지원(ChatGPT·Claude·Gemini 연동), 자체 추론 모델을 올릴 전용 칩(제조 협력사가 비용을 대고 호스팅 협력사가 사들인 뒤 Zeta가 독점적으로 필요할 때 쓰는 구조라 자본 부담이 적다는 설명), 새 추론 모델.\n\n### 6. Palantir와의 협업, 그리고 '70% 할인'\n\n- 데이터 클라우드를 Palantir **Foundry** 위에 다시 지어 판단 속도가 더 빨라졌다고 했다. 장기 목표는 마케팅 수익률 1,000%다. Foundry의 데이터 관리 체계와 '기업은 자기 데이터를 지켜야 한다'는 데이터 주권 철학도 이유로 들었다. Palantir 관계를 통해 정부 클라우드 인증(FedRAMP)에 등재돼 'Zeta Gov' 사업도 시작했다.\n- 진행자가 Palantir는 시가총액 5천억 달러에 내년 매출이 넉넉히 잡아도 200억 달러라며 멀티플이 전례 없다고 하자, Steinberg는 이익·현금흐름 성장이 엄청나다고 맞섰다.\n- 자기 회사에 대해선 지난 분기 매출 44%, EBITDA 53%, 잉여현금흐름 73% 성장에 **순매출유지율 120% 이상**, Rule of 67인데도 동종 그룹(Palantir·Snowflake·CrowdStrike·MongoDB 등) 대비 멀티플이 70% 낮다고 했다. 주가가 지금의 절반일 때 오히려 멀티플이 더 높았다는 주장이다. 원인은 '불황이면 마케팅부터 끊는다'는 편견이며, 실제로는 코로나 때도 두 자릿수 성장했다고 반박했다.\n\n### 7. 에이전트 전쟁 — 승자독식은 아니다\n\n- 학습 → 추론 → 에이전트로 이어지는 흐름에서, 마케팅 판단엔 인터넷 전체가 필요 없으니 작은 데이터와 자체 AI(오픈소스 도구 활용)로 충분하다고 했다. 데이터 클라우드를 외부 파운데이션 모델에 노출한 적은 없다고 강조했다.\n- 개인 에이전트로는 OpenAI 쪽 제품을 가장 많이 쓴다고 했고, Meta의 Muse는 출시 1주일에 1천만 다운로드라며 높이 평가했다. 인터넷은 **'에이전트 인터넷'과 기존 웹**으로 나뉠 것이며, 생성형 검색 최적화(GEO) 회사를 인수한 이유도 여기에 있다고 했다.\n- 모델 경쟁은 OpenAI(소비자·광고), Anthropic(코딩·기업), Google(배포력), xAI(데이터)가 각자 이길 것이라는 시각이다. 오픈 모델은 쓰려면 사람 손이 많이 든다는 점도 짚었다.\n\n### 8. 닷컴 거품과 무엇이 다른가\n\n- 닷컴 때는 쓸 곳 없는 광섬유를 땅에 깔았고, 결국 압축 기술이 판을 바꿨다. 데이터센터도 장기적으로 비슷한 효율 혁신이 올 수 있다고 했다.\n- 결정적 차이는 돈을 쓰는 주체다. 지금은 **엄청난 흑자 기업**들이 쌓아 둔 현금과 빚으로 투자하고, 투자를 멈추면 일부는 1년 안에 빚을 갚을 수 있다. 닷컴 때는 사업 없이 현금을 태우는 상장사가 많았다.\n- 위험한 쪽은 OpenAI·Anthropic을 뺀 비상장 AI 회사들이다. 사업이라기보다 제품에 가까운 곳이 너무 높은 가치로 큰돈을 모은다는 것이다. 마지막으로 Jensen Huang의 말을 빌려 AI 경제성의 75%가 앱 레이어로 갈 것이고, Zeta가 바로 그 자리라고 맺었다. 진행자는 Anthropic 상장 결과가 앞으로 6개월 분위기를 좌우할 것이라고 덧붙였다.",
+ "insights_md": "### 투자 관점 — 무엇을 가져갈까\n\n- 이 편의 핵심 논리는 **'돈 버는 회사가 투자한다'**는 닷컴과의 차이다. 하이퍼스케일러의 이익·현금 여력이 설비투자를 감당한다는 시각으로, 거품 위험을 비상장 AI 회사 쪽으로 좁혀 본다.\n- 두 번째는 앱 레이어 낙관론이다. 독자 데이터를 가진 앱 회사가 AI의 과실을 가져간다는 주장인데, Zeta 스스로가 그 사례라고 내세운다. 다만 CEO 본인의 자사 홍보 성격이 강해 숫자는 외부 자료로 대조해야 한다.\n\n### 밸류체인 — 언급된 회사\n\n- 협력: **Palantir**(Foundry 재구축·정부 사업), OpenAI(Athena 대화 엔진·광고), Snowflake, Meta(광고·Muse).\n- 비교 그룹(게스트 주장): Palantir·Snowflake·CrowdStrike·MongoDB.\n- 경쟁(마케팅 클라우드): Salesforce·Adobe의 마케팅 제품군, Braze 등 고객 참여 플랫폼.\n- 한국·일본: 직접 연결된 상장사는 확인 못 함. 앱 레이어 대 인프라 논쟁은 메모리·데이터센터 공급망(SK하이닉스 등) 투자 심리와 맞물려 있다.\n\n### 반론·리스크\n\n- '동종 대비 70% 할인'은 회사가 고른 비교 그룹 기준이라 검증이 어렵다. 외부 매체는 무기적 성장(인수·정치 광고 제외)이 23~25%라고 밝힌 회사 자료를 함께 본다.\n- 2024년 공매도 보고서가 제기한 **데이터 수집 관행** 문제는 규제 결론이 나지 않은 상태로 남아 있다.\n\n### 체크포인트\n\n- 11월 3분기 실적에서 가이던스(매출 4.69억~4.72억 달러) 달성 여부, Athena OS 매출화 지표, Palantir 협업의 연 1억 달러 매출 기여 목표 진척, Anthropic·OpenAI 상장 일정.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크 — 대본에서 말한 것과 외부 자료\n\n- 매출 규모: 대본에서 '올해 약 18억 달러'라고 한 것은 외부 자료로 맞다. 회사는 8월 2분기 실적에서 2026년 매출 가이던스를 18억 1,100만~18억 2,400만 달러(중간값 18억 1,800만 달러, +39%)로 올렸다. 연초 2월 가이던스(17억 4,900만~17억 6,200만 달러)에서 두 번 상향된 것이다.\n\n[[chart:3]]\n\n- 2분기 실적(외부 자료): 매출 4억 4,300만 달러(+44%), 조정 EBITDA 9,200만 달러(마진 20.7%), 잉여현금흐름 5,800만 달러(+73%), GAAP 순이익 800만 달러로 흑자 전환했다. 대본의 '지난 분기 44%·73%'는 공시와 일치하지만, 'EBITDA 53%'는 공시 문서에서 확인 못 함. 회사는 이 분기를 'Rule of 64'로 표현했는데, 대본에서는 67이라고 했다.\n\n[[chart:4]]\n\n- 다만 **무기적 성장률**은 따로 봐야 한다. 회사 스스로 3분기·연간 성장률이 인수와 정치 후보 광고를 빼면 23~25%라고 밝혔다. 대본의 고성장 숫자 일부는 인수 효과다.\n- Athena·협업(외부 자료): Athena는 2026년 3월 정식 출시됐고, 1월 CES에서 OpenAI와 협업을 발표했다. Palantir와는 6월 Cannes Lions에서 데이터 클라우드를 Foundry 위에 재구축하는 협업을 발표했고, CEO는 연 1억 달러 넘는 매출 기회를 언급했다. 대본에서 들린 GEO 회사 인수는 10월 5일 발표한 토론토의 AI 엔지니어링 회사 **Senso** 인수로 보인다(인수가 비공개). 전용 칩 발표는 외부 보도로 확인 못 함.\n- 대본 오류: ChatGPT 공개는 2022년 11월 30일이다(게스트는 2021년이라고 말함). 게스트가 Meta의 Scale AI 지분 49% 인수가를 약 490억 달러처럼 말했지만, 보도된 금액은 **143억 달러**다.\n\n### 2. 밸류체인과 관련 상장사\n\n- 미국: Zeta(ZETA), Palantir(PLTR), Snowflake(SNOW), Meta(META) — 모두 협력 관계로 언급됐다. 마케팅 클라우드 경쟁사로는 Salesforce(CRM)·Adobe(ADBE)·Braze(BRZE)가 있다.\n- AI 인프라 쪽 논쟁(닷컴 비교)은 하이퍼스케일러 설비투자에 기대는 Nvidia와 한국 메모리(SK하이닉스·삼성전자), 일본 반도체 장비주 심리와도 연결된다. 다만 Zeta 자체와의 직접 공급 관계는 확인 못 함.\n\n### 3. 숫자의 맥락\n\n- 주가: ZETA는 10월 27일 33.35달러로 1년 수익률 +83.7%, 연초 대비 +63.9%다. 게스트가 말한 '주가가 지금의 절반일 때'는 대략 6개월 전 수준과 맞는다(6개월 +87.7%).\n\n[[chart:5]]\n\n- '마케팅비 대비 600~700% 수익'은 회사가 의뢰한 Forrester 조사를 인용한 것으로, 독립 검증 자료는 확인 못 함.\n- '동종 대비 멀티플 70% 할인'과 '시가총액 대비 잉여현금흐름 5%'도 회사가 고른 비교 그룹 기준이라 확인 못 함.\n\n### 4. 반론과 리스크\n\n- **공매도 보고서**: Culper Research는 2024년 11월 Zeta가 허위 미끼로 개인정보를 모으는 '동의 수집 사이트(consent farm)'를 운영하거나 거래한다고 주장했다. 회사는 해당 인수 사업 매출 비중이 3%에 불과하고 보고서가 사실을 왜곡했다며 1억 달러 자사주 매입으로 대응했다. 보고서 뒤 증권 집단소송이 제기됐는데, 규제 당국의 결론은 확인 못 함. 대화에서 강조한 '옵트인 데이터·제3자 판매 없음'은 이 논쟁을 의식한 대목으로 읽힌다.\n- 진행자 쪽 반론: Palantir 같은 AI 수혜주의 멀티플이 전례 없다는 지적은 게스트 낙관론과 대비된다. 앱 소프트웨어 다수가 'SaaS 붕괴' 우려로 아직 회복하지 못했다는 점도 진행자가 짚었다.\n- 경기 민감도: 게스트는 코로나 때도 성장했다고 했지만, 마케팅 예산은 경기 둔화 때 먼저 깎이는 항목이라는 시장의 의심이 멀티플 할인의 배경이다. 정치 광고 매출은 선거 주기에 따라 출렁인다.\n\n### 5. 앞으로 볼 것\n\n- 11월 초 3분기 실적: 매출 가이던스 4억 6,900만~4억 7,200만 달러 상회 여부와 21번째 상향 여부.\n- 회사가 2분기에 처음 내놓은 AI 도입·매출화 지표가 Athena OS 출시 뒤 어떻게 움직이는지.\n- Palantir 협업의 실제 매출 기여, Senso 인수 마무리.\n- Anthropic·OpenAI 상장 흥행 여부 — 진행자 말대로 AI 앱 레이어 밸류에이션의 분위기를 정할 변수다.",
+ "sources": [
+  {
+   "label": "Zeta Global 8-K(2026-08-04) — 2분기 매출 4.43억 달러·연간 가이던스 18.18억 달러·무기적 성장 23~25%",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001851003/000119312526332770/zeta-ex99_1.htm"
+  },
+  {
+   "label": "Business Wire — Zeta 2025년 매출 13.05억 달러(+30%)·2026년 첫 가이던스 17.49억~17.62억 달러",
+   "url": "https://www.businesswire.com/news/home/20260224490666/en/Zeta-Global-Reports-18th-Straight-Beat-and-Raise-Quarter-and-Record-Full-Year-2025-Results"
+  },
+  {
+   "label": "Zeta Global — Palantir와 전략적 협업 발표(Foundry 위 데이터 클라우드 재구축)",
+   "url": "https://marketing.zetaglobal.com/news/palantir-and-zeta-global-announce-strategic-partnership/"
+  },
+  {
+   "label": "TIKR — Palantir 협업 발표일 주가 6% 상승·연 1억 달러 매출 기회 언급",
+   "url": "https://www.tikr.com/blog/zeta-global-nyse-stock-advances-6-on-partnership-with-palantir-to-rebuild-data-infrastructure"
+  },
+  {
+   "label": "PPC Land — Zeta, GEO 기술 공급사 Senso 인수(2026-10)",
+   "url": "https://ppc.land/zeta-global-to-buy-senso-the-startup-behind-its-ai-search-product/"
+  },
+  {
+   "label": "Shopifreaks — Zeta, OpenAI와 Athena 협업",
+   "url": "https://www.shopifreaks.com/zeta-global-partners-with-openai-to-power-athena/"
+  },
+  {
+   "label": "Wikipedia — David A. Steinberg(InPhonic·Zeta 창업)",
+   "url": "https://en.wikipedia.org/wiki/David_A._Steinberg"
+  },
+  {
+   "label": "Milken Institute — Steinberg 약력(John Sculley와 공동 창업)",
+   "url": "https://milkeninstitute.org/speakers/david-steinberg-8"
+  },
+  {
+   "label": "Nasdaq — Culper Research의 Zeta 공매도 보고서",
+   "url": "https://www.nasdaq.com/articles/culper-short-zeta-sees-potentially-devastating-regulatory-action"
+  },
+  {
+   "label": "Zeta IR — 공매도 보고서에 대한 회사 반박(2024)",
+   "url": "https://investors.zetaglobal.com/news/news-details/2024/Zeta-Global-Responds-to-Short-Seller-Report/default.aspx"
+  },
+  {
+   "label": "MarTech — 보고서 뒤 주가 34% 급락",
+   "url": "https://martech.org/zeta-to-address-financial-accusations-after-stock-price-drops-34"
+  },
+  {
+   "label": "Nasdaq — Meta, Scale AI 지분 49%에 143억 달러 투자",
+   "url": "https://www.nasdaq.com/articles/meta-invests-143-bln-scale-ai-taps-ceo-alexandr-wang-lead-superintelligence-push"
+  },
+  {
+   "label": "OpenAI — ChatGPT 공개(2022-11-30)",
+   "url": "https://openai.com/index/chatgpt/"
+  },
+  {
+   "label": "iConnections — Dan Nathan 약력",
+   "url": "https://iconnections.io/?p=3195"
+  },
+  {
+   "label": "Yahoo Finance(시세) — ZETA 10월 27일 종가·기간 수익률",
+   "url": "https://finance.yahoo.com/quote/ZETA/"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Zeta Global 매출 규모 — 상장 때 vs 올해",
+   "sub": "억 달러 · 상장 당시 직전 12개월 vs 2026년 가이던스 중간값",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2021 상장 당시(직전 12개월)",
+    "2026 가이던스"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      2.83,
+      18.0
+     ]
+    }
+   ],
+   "note": "5년 새 6배 이상 — 일부는 인수 효과(무기적 성장은 23~25%)",
+   "source": "대본(David Steinberg 발언)"
+  },
+  {
+   "at": "summary",
+   "title": "마케팅비 대비 수익률 — Zeta vs 경쟁사 평균",
+   "sub": "% · 게스트가 인용한 Forrester 조사",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Zeta(600~700% 중간값)",
+    "경쟁사 평균"
+   ],
+   "series": [
+    {
+     "name": "마케팅 수익률",
+     "values": [
+      650,
+      200
+     ]
+    }
+   ],
+   "note": "회사가 의뢰한 조사 인용 — 독립 검증 자료는 확인 못 함",
+   "source": "대본(David Steinberg 발언)"
+  },
+  {
+   "at": "deep",
+   "title": "Zeta 2026년 매출 가이던스 중간값 변화",
+   "sub": "백만 달러 · 발표 시점별",
+   "type": "line",
+   "unit": "백만 달러",
+   "labels": [
+    "2026-02",
+    "2026-05",
+    "2026-08"
+   ],
+   "series": [
+    {
+     "name": "연간 매출 가이던스 중간값",
+     "values": [
+      1755.5,
+      1785,
+      1817.5
+     ]
+    }
+   ],
+   "note": "연초 이후 두 번 올려 약 6,200만 달러 상향",
+   "source": "Zeta Global 실적 발표(2026-02-24, 2026-08-04 8-K)"
+  },
+  {
+   "at": "deep",
+   "title": "Zeta 2026년 2분기 핵심 지표",
+   "sub": "% · 전년 대비 성장률과 마진",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "매출 성장률",
+    "잉여현금흐름 성장률",
+    "영업현금흐름 성장률",
+    "조정 EBITDA 마진"
+   ],
+   "series": [
+    {
+     "name": "2분기",
+     "values": [
+      44,
+      73,
+      65,
+      20.7
+     ]
+    }
+   ],
+   "note": "현금흐름이 매출보다 빨리 늘며 GAAP 흑자 전환",
+   "source": "Zeta Global 8-K(2026-08-04)"
+  },
+  {
+   "at": "deep",
+   "title": "ZETA 주가 기간 수익률",
+   "sub": "% · 2026-10-27 종가 33.35달러 기준",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "1개월",
+    "3개월",
+    "6개월",
+    "연초 대비",
+    "1년"
+   ],
+   "series": [
+    {
+     "name": "수익률",
+     "values": [
+      13.2,
+      52.4,
+      87.7,
+      63.9,
+      83.7
+     ]
+    }
+   ],
+   "note": "6개월 새 두 배 가까이 — 게스트의 '주가가 절반일 때'와 맞는 시점",
+   "source": "Yahoo Finance 시세"
+  }
+ ],
+ "tg": "AI 투자는 현금 넘치는 흑자 기업이 주도해 닷컴과 다르다 — 위험은 고평가 비상장 AI 회사\nZeta 매출 상장 때 2.8억→올해 18억 달러, 2017년 AI 중심 재설계 덕이라는 설명\nCEO '순매출유지율 120%·Rule of 67인데 동종 대비 멀티플 70% 할인'",
+ "tg_body": "Zeta Global CEO David Steinberg는 2017년 사모펀드 주주들을 설득해 이익을 포기하고 엔지니어 400명으로 플랫폼을 AI 중심으로 다시 짰다고 했다. ChatGPT 이후 모든 이사회가 AI 전략을 묻자 사업이 뜨기 시작해, 매출은 2021년 상장 당시 연 2.8억 달러에서 올해 약 18억 달러로 늘었다는 설명이다.\n\n핵심은 5억 5천만 명 옵트인 소비자의 구매 의도 데이터다. 마케팅이 잘 돼 고객 재고가 바닥나자 수요 정보를 재고·공급망·재무까지 쓰는 Athena OS로 넓혔고, Zeta Live에서 Athena의 MCP 개방과 전용 칩도 발표했다. Palantir Foundry 위에 데이터 클라우드를 다시 지어 정부 사업도 시작했다.\n\n그는 순매출유지율 120% 이상·Rule of 67인데도 동종 대비 멀티플이 70% 낮다며, 불황 때 마케팅부터 끊긴다는 편견 탓이라고 했다. AI 거품론엔 지금은 흑자 대기업이 쌓아 둔 현금으로 투자해 닷컴과 다르고, 위험한 건 고평가로 큰돈을 모으는 비상장 AI 회사라고 답했다.\n\n외부 자료로 보면 2026년 가이던스는 두 번 올라 18.2억 달러지만, 인수·정치 광고를 빼면 성장률은 23~25%다. 2024년 공매도 보고서가 제기한 데이터 수집 관행 논란도 규제 결론 없이 남아 있다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-10-28 19:20 KST"
+}
