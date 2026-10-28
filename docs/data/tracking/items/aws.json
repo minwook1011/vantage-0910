@@ -3,6 +3,22 @@
  "slug": "aws",
  "items": [
   {
+   "id": "1da0791ea3f9",
+   "kind": "news",
+   "headline": "아마존웹서비스, 'SAP 시스템 전환' 자동화 AI 에이전트 공개 — 코드 분석·변환·검증 작업량 최대 87% 감소, 도요타 칠레·어도비 활용",
+   "bullets": [
+    "아마존웹서비스가 AI 개발 도구 '키로' 기반으로 오래된 SAP 업무 프로그램을 새 시스템에 맞게 바꾸는 샘플 에이전트를 공개했다.",
+    "SAP 전용 언어(ABAP) 코드 수천 줄을 일괄 수정하고, 변환 전후 자동 테스트와 보안·코딩 규칙 80개 이상을 적용한다. 자체 평가에서 작업량이 최대 87% 줄었다.",
+    "도요타 칠레가 수백 개 SAP 프로그램 분석에 썼고, 어도비가 평가 중이며, 액센츄어·캡제미니·딜로이트·NTT데이터도 자사 전환 도구에 넣고 있다."
+   ],
+   "summary": "SAP는 회계·재무·주문·재고를 관리하는 기업용 소프트웨어로, 최신 버전으로 옮길 때 기존 맞춤 프로그램을 고치거나 새로 만들어야 하는 부담이 크다. 이번 에이전트는 개발자가 일상 언어로 지시하면 코드를 분석·변환하고, 시스템 간 연결 프로그램 이전과 기존 코드 설명 문서 작성도 지원한다.\n\n도요타 칠레는 더 이상 쓰지 않는 코드를 찾아내 이전 작업 범위를 줄였다. NTT데이터 글로벌 솔루션즈는 SAP 코드 변환 작업량을 최대 95% 줄였다고 밝혔고, 캡제미니는 시스템 연결 작업 시간을 40~60% 단축할 수 있다고 했다.",
+   "title": "AWS, 기업용 코드 수정 AI 공개…작업량 최대 87% 절감",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9MVk1RZVlBLWE3a2N1bkF5ZXRlTHRURWpHNXpOU01SdlJ1cWpJbzlYOTFmTUIyZS1Edk5WS1Fvdll1M0NqVTNSWWNzSThFeEZVdS1RRklqa0N1UXBhWkdKQ1Jhd2VQUTdUMkg0V01UQ285dmR6aG5EeNIBeEFVX3lxTE9MVk1RZVlBLWE3a2N1bkF5ZXRlTHRURWpHNXpOU01SdlJ1cWpJbzlYOTFmTUIyZS1Edk5WS1Fvdll1M0NqVTNSWWNzSThFeEZVdS1RRklqa0N1UXBhWkdKQ1Jhd2VQUTdUMkg0V01UQ285dmR6aG5EeA?oc=5",
+   "published": "2026-10-28 14:48 KST",
+   "written": "2026-10-28 17:20 KST"
+  },
+  {
    "id": "42cd05bc8595",
    "kind": "news",
    "headline": "버라이즌, 아마존웹서비스와 20억 달러 넘는 인공지능 인프라 계약 — 3분기 실적 맞춰 올해 전망 세 분기 연속 상향",
@@ -51,5 +67,5 @@
    "written": "2026-10-21 04:48 KST"
   }
  ],
- "updated": "2026-10-26 20:19 KST"
+ "updated": "2026-10-28 17:20 KST"
 }

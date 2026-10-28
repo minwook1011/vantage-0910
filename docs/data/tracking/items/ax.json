@@ -3,6 +3,38 @@
  "slug": "ax",
  "items": [
   {
+   "id": "1781bfe21d50",
+   "kind": "news",
+   "headline": "경기도, '피지컬 AI 대전환' 선포 — 두산로보틱스·레인보우로보틱스 등 66개 기관 협의체 출범, 내년부터 소방·재난 실증",
+   "bullets": [
+    "경기도가 28일 서울대 시흥캠퍼스에서 제조 혁신·재난 안전·일상 돌봄 3개 축의 '피지컬 AI 대전환'을 선포했다.",
+    "두산로보틱스·레인보우로보틱스·로보티즈 등 로봇 기업과 서울대·한국전자기술연구원 등 산학연관 66개 기관이 '경기도 피지컬 AI 협의체'로 묶였다.",
+    "내년부터 소방·재난 위험 분야 실증과 돌봄로봇 시험에 들어가고, 2029년부터 어르신·장애인 낙상 예방 같은 일상 돌봄으로 넓힌다."
+   ],
+   "summary": "피지컬 AI는 인공지능이 로봇·기계와 결합해 현실에서 직접 작업하는 기술이다. 경기도는 비전을 '피지컬 AI로 만드는 안전한 경기도'로 잡고, 추미애 지사는 사람을 지키는 기술이 출발점이라고 했다.\n\n협의체는 절단·성형·정밀가공·조립검사·물류자재 등 제조공정별 분과로 운영돼, 기술이 필요한 기업과 공급 기업, 대학·연구기관을 연결해 현장 과제를 함께 푼다. 산업부의 산단 제조 AI 전환 얼라이언스, 부산시 비전에 이어 지자체 단위 AI 전환 계획이 잇따르는 흐름이다. 다만 예산 규모와 개별 기업 과제는 아직 나오지 않았다.",
+   "title": "경기도 '피지컬 AI 대전환' 선포…제조 혁신·안전·돌봄 확대",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE82ME9hcUpzNUk4aXJTR2RpX3pXUVpuLVhQV0xGbHdieHg5NXRWOHhMZlhvb3k4Q1BNMFREX0o2VFlxLW5jZFduenUzTzJLOHpqS0ppQ2NIdE5oenPSAWBBVV95cUxPdnM2S2JiRl9qd2dnbU1HbXZUTGJsVU9qZkZrbExCTDkyRGRFc3dJd25sUXFibU1UUFp0WVE1VnJxNzBoa0JpelNQVE95Y3pIdDV3c1JheEhzREZOb0dlQ24?oc=5",
+   "published": "2026-10-28 17:02 KST",
+   "written": "2026-10-28 17:20 KST"
+  },
+  {
+   "id": "4bdb163b2b91",
+   "kind": "news",
+   "headline": "정부, 공공기관 AI 혁신과제 30건 시상 — 코트라 수출시장 보고서 27일→5분, 인천공항 관제 접현 인식 지연 91% 줄여",
+   "bullets": [
+    "재정경제부·과학기술정보통신부가 28일 첫 '공공기관 AI 혁신 성과대회'를 열어 105개 기관 316개 과제 중 27개 기관 30개 과제를 뽑았다.",
+    "대상은 AI 영상·음성인식과 레이더로 관제 안전관리를 고도화한 인천국제공항공사, AI·로봇 자율운영 발전소로 연 21억2천만원 절감 가능성을 보인 한국서부발전이다.",
+    "선정 과제는 공공기관 기술마켓 AI 전용관에 공유되고, 2026년 공공기관 경영평가 AI 혁신 가점에 반영된다."
+   ],
+   "summary": "주요 사례로 코트라는 'AI 수출 비서'로 수출시장 분석 보고서 작성 기간을 27일에서 5분으로 줄였다. 인천공항은 비행기 접현 인식 지연이 23건에서 2건으로 줄었다. 한국도로공사는 도로·교량·터널 손상 자동 탐지로 점검 효율을 약 80% 높였고, 한국수자원공사는 AI와 디지털트윈으로 국가 댐 37곳 점검 시간·비용을 최대 95% 줄였다. 한국전력은 전력 사용 이상 징후로 고독사 위험을 찾아 누적 15명을 긴급 구조했다.\n\n행사에선 LG CNS·업스테이지의 민간 사례도 공유됐다. 이형일 부총리는 공공기관 기능을 국민 중심으로 재설계하고 성과를 낸 기관·임직원 인센티브를 강화하겠다고 밝혔다. 경영평가 가점이 붙으면서 공공기관 AI 도입 발주가 늘어날지가 볼 대목이다.",
+   "title": "공공기관 AI 대전환…수출 보고서 5분 만에 작성",
+   "source": "아주경제",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5IY19BOHZPd1g3WWJPYXh6clJBN25lNEFQdEI1MjNTS000MWMxUWo0bTJMcmRZb09uaUU3eHRBVTJyY09CbzVINjJ1a2tUby1ENFpaS3FmMG0xZ9IBWEFVX3lxTE9vSS1NQ05DRTh0UE1rMTZUUnpfbFg5b1ctakRSam1yTkk4OXpWZGEyQnQyMkNjRC04amFpQnU2UVJSUnhIWW0tbDhRRkpTZWszRk96YXlpYTY?oc=5",
+   "published": "2026-10-28 15:19 KST",
+   "written": "2026-10-28 17:20 KST"
+  },
+  {
    "id": "5f6c6697d6c1",
    "kind": "news",
    "headline": "산업부, 구미·청주·포항 산단 제조 AI 전환 '미니 얼라이언스' 출범 — 13개로 늘려 2030년 25개 목표, '산단 실증확산 트랙' 신설",
@@ -115,5 +147,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-10-28 17:08 KST"
+ "updated": "2026-10-28 17:20 KST"
 }

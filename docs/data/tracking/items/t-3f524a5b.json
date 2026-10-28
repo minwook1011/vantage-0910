@@ -3,6 +3,22 @@
  "slug": "t-3f524a5b",
  "items": [
   {
+   "id": "57f88511ea4d",
+   "kind": "news",
+   "headline": "AMD, 메타 주식 공모에 10억 달러 투자 — 에픽 CPU가 메타 AI 에이전트 '뮤즈' 구동, '헬리오스' 랙은 기가와트 규모로 확대",
+   "bullets": [
+    "AMD가 메타 유상증자에 10억 달러를 넣고 메타와 CPU·GPU·소프트웨어 전반의 전략적 협력을 넓혔다. 엔비디아(30억 달러)에 이은 칩 공급사의 두 번째 투자다.",
+    "AMD 서버 CPU '에픽'이 메타의 개인용 AI 에이전트 '뮤즈' 전용 컴퓨팅 환경을 맡고, '뮤즈 스파크 오픈'·'뮤즈 글리머' 모델은 출시 첫날부터 AMD 칩에서 돌도록 지원한다.",
+    "AMD 랙 단위 시스템 '헬리오스' 초기 제품이 메타에서 시험 중이며, 양사는 기가와트 규모 인프라로 키울 계획이다."
+   ],
+   "summary": "메타는 지금까지 여러 세대에 걸쳐 에픽 프로세서 수백만 개를 들였고 AMD 차세대 CPU 개발에도 참여하고 있다. GPU는 인스팅트 제품군이 메타의 모델 학습·콘텐츠 추천에 쓰이며, 메타는 차세대 MI450 설계 초기부터 참여했고 자사 작업에 맞춘 맞춤형 GPU도 들일 예정이다.\n\n소프트웨어 쪽은 파이토치에서 AMD GPU를 더 쉽게 쓰도록 개선해 왔고, AMD는 GPU용 플랫폼 ROCm을 복잡한 설정 없이 모델을 돌릴 수 있게 다듬을 계획이다. 메타는 AI 투자 자금 조달을 975억 달러로 늘렸고 보통주 공모에는 5배 청약이 몰렸다.",
+   "title": "AMD, 메타 AI 에이전트 '뮤즈' 지원…10억달러 투자도 - 머니투데이",
+   "source": "머니투데이",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5vNURKb1NlZk80Q0poWmFSVDNQazZYX0xiaVFPMkJDN2hRYVlHVXFMaFlyQS1PSkVLNk1HRzU3c014aEdmaER5VUk4ZnFYZ0hlbzdkTm9pMmxJeG1ZRWdqUnV4QXN4NWfSAWxBVV95cUxNWkNwZVJSazhZbjNnWW5idW1fQ3BiUFZxTXl4R1FNV190WHJCSXhkbllFcC15MXRNNjA1cWNyX3dhY0t5R3pTMVNkdW1xaGplcEhhNE45SFd4WkppSlBRZDN6RWstUkd5TURpdms?oc=5",
+   "published": "2026-10-28 14:42 KST",
+   "written": "2026-10-28 17:20 KST"
+  },
+  {
    "id": "ebd1b918ed4a",
    "kind": "news",
    "headline": "저커버그 \"'뮤즈' 6주 만에 미국·캐나다 1,000만 명 설정\" — 가장 많이 쓰는 기능은 쇼핑, 거래 수수료로 돈 번다",
@@ -131,5 +147,5 @@
    "written": "2026-10-13 04:16 KST"
   }
  ],
- "updated": "2026-10-22 11:18 KST"
+ "updated": "2026-10-28 17:20 KST"
 }
