@@ -3,6 +3,22 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "e6cf0710c151",
+   "kind": "news",
+   "headline": "대부업체·제약사·병원 연쇄 해킹범 '하이즈해커', 빼낸 데이터 다크웹서 판매 — 한국어 쓰고 밤 10시 활동 몰려 국내 거점 가능성(S2W)",
+   "bullets": [
+    "보안업체 에스투더블유(S2W) 보고서: '하이즈해커'가 국내 기업·기관 서버에 직접 침투해 빼낸 기밀 데이터를 다크웹 포럼과 자체 유출 사이트 '유루즈'·텔레그램에서 팔아 왔다.",
+    "올해 3월 대부업체 두 곳, 4월 제약회사 내부 데이터가 털렸고, 지난해 7월부터 병원·교육기관·항공기 부품 업체·법무법인도 표적이 됐다.",
+    "한국어·영어를 섞어 쓰고 한국 시간 오후 6시~자정(정점 오후 10시)에 활동해 국내에 거점을 둔 공격자일 가능성이 제기됐다."
+   ],
+   "summary": "공격자는 피해 기업의 데이터베이스와 제품 데이터 관리(PDM) 서버에 직접 접근해 자료를 빼냈다. 샘플 데이터를 먼저 올려 사는 사람을 모으는 전형적인 '데이터 갈취형' 방식이다. 과거 유출 샘플과 게시 시점이 비슷해 랜섬웨어 그룹 '건라(Gunra)'와 손잡았을 가능성도 거론된다.\n\n보안 전문가는 자체 유출 사이트까지 돌리는 만큼 서비스형 랜섬웨어나 조직적 공격으로 커질 위험이 있다고 봤다. 서버 접근 권한을 최소화하고 비인가 접근을 실시간으로 감시하라는 권고다. 최근 은행·증권·보험·가상자산까지 번진 금융권 연쇄 해킹과 같은 범인인지는 보고서에 나오지 않는다.",
+   "title": "대부업체·제약사·병원 줄줄이 해킹…해커 국내 활동 가능성",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE80cFdvT1Z1dUZfZHYxdUVQQVI5ajJxSkVXUTV5YzBOdTJ6eGVkbVhyRjQ2QWs0ckctM3AwTVJFbmxhdVM3SHVyZlVkX2V5ZFpweHpIbE5veTRrSWfSAWBBVV95cUxNSFQ4dG5jb3QtNTZKTXkwZ0tUaU83QzRfQW91ZkNLUnVKdnhHOGdfZmRwZ3JPbGtfRFlmcVZMRkp3QjZKOHlpTUJleUFtSzJiUHVFLXU2cURJc1AxWE5MZW4?oc=5",
+   "published": "2026-10-29 06:13 KST",
+   "written": "2026-10-29 06:49 KST"
+  },
+  {
    "id": "6adb1a23e531",
    "kind": "news",
    "headline": "청와대 국가안보실, 금융권 연쇄 해킹 긴급점검회의 — 빗썸·대신증권·미래에셋운용 사고 대응 점검, \"2차 피해 차단\"",
@@ -371,5 +387,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-10-28 20:19 KST"
+ "updated": "2026-10-29 06:49 KST"
 }

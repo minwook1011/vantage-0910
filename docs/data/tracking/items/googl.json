@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "fb79f95874bc",
+   "kind": "news",
+   "headline": "구글, 최상위 AI 모델 '제미나이 4 카본' 공개 — 독립 평가 지수 1위(59점), 클로드 오퍼스 5.5(58)·GPT-6 아스트라(57) 앞서, 사이버 방어 쪽부터 제한 공개",
+   "bullets": [
+    "구글이 28일 새 최상위 모델 '제미나이 4 카본'을 공개했다. 약 2주 전 '제미나이 4 아르곤'에 이어 한 달 새 두 번째 대형 모델.",
+    "아티피셜 애널리시스 지능 지수(v5.0) 59점으로 1위. 취약점 찾기(SEC-bench Pro) 88.2%, 공격 재현(ExploitGym) 54.8%, 패치(CWE-bench) 71.0%로 보안 평가에서 앞섰다.",
+    "이번 주 일부 사이버 방어 기관부터 '페어윈드 프로그램'으로 제공하고 신뢰 파트너로 넓힌다. 개발자·기업·일반 출시 일정은 미정, 초기 가격은 입력 100만 토큰당 2달러·출력 10달러(이후 4달러·20달러)."
+   ],
+   "summary": "디인포메이션에 따르면 구글은 1년 가까이 새 최상위 모델을 내지 않다가 아르곤과 카본을 연달아 내놨다. 카본은 구글 서버에서만 돌아가고, 모델 가중치 공개나 자체 설치는 안 된다. 매개변수 수와 한 번에 읽는 분량(컨텍스트 창)도 밝히지 않았다.\n\n약점도 있다. 벤처비트에 따르면 소프트웨어 개발 평가 하나는 오픈AI가, 컴퓨터 조작 평가 하나는 앤트로픽이 앞선다. 전문 업무 과제에서는 여러 경쟁 모델에 밀리고, 사실 지식 시험에서 아르곤보다 틀린 답을 지어내는 비율이 높았다. 보안 능력이 강한 만큼 처음엔 방어 쪽 기관에만 풀고 안전장치를 다듬으며 단계적으로 넓히는 방식이다.",
+   "title": "Google launches Gemini 4 Carbon AI model with cybersecurity focus",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNLXQyWUp5N0QwdVRZWXFkd1M5b2RrcExtNVBJS0JKaDdhaG1DQThXeEVlUWVWQUNPTjNOak9ZSnZlQjhDUkNIT2oxSlJrSjlJSkVSMVZFMW5acXV1N0l5bWxKTU1CNmtzZVM3U2dZVE5RbHlrZ2k5LTljM2FnNDVLM3NFbGI4N1hSMVIyQ2FNZXZYY0ZuNV9KR0lQYzdxT2RGdzkxamkzLXloVUVmLUhmdUZ3?oc=5",
+   "published": "2026-10-29 03:12 KST",
+   "written": "2026-10-29 06:49 KST"
+  },
+  {
    "id": "0e0211a4a7ed",
    "kind": "news",
    "headline": "알파벳, 3분기 매출 1,275억 달러(+25%)에도 검색 매출 예상 밑돌아 시간외 7~9% 하락 — 구글 클라우드는 307억 달러(+103%)",
@@ -481,5 +497,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-29 05:52 KST"
+ "updated": "2026-10-29 06:49 KST"
 }
