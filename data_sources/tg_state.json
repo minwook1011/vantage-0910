@@ -292,6 +292,7 @@
   "trk:ax:d599095d52ed",
   "trk:ax:dae1466c4c99",
   "trk:ax:db869a3b7283",
+  "trk:ax:e4f716d082fe",
   "trk:bill-ackman:8b5c4c18c150",
   "trk:bill-ackman:a1b8ad155758",
   "trk:blog-egzion:1a92542fb28d",
@@ -512,6 +513,7 @@
   "trk:cathie-wood:c4dae11c1b2d",
   "trk:cathie-wood:feb3c1feeb91",
   "trk:cxmt-yxmt:2307204886d8",
+  "trk:cxmt:05ff0ea36062",
   "trk:cxmt:10e13beccc2c",
   "trk:cxmt:2ac492ce9881",
   "trk:cxmt:2d3a0c6d94d8",
@@ -519,6 +521,7 @@
   "trk:cxmt:33e0a3d72ae5",
   "trk:cxmt:4bcf54de2403",
   "trk:cxmt:6e14f32073c5",
+  "trk:cxmt:973959d59830",
   "trk:cxmt:b81080a369e0",
   "trk:cxmt:c786be2462dc",
   "trk:cxmt:d2808aa74046",
@@ -714,6 +717,7 @@
   "trk:open-ai:bdbc67fd9f01",
   "trk:open-ai:be25f8bae946",
   "trk:open-ai:cc2da5ba597a",
+  "trk:open-ai:d294d2a35472",
   "trk:open-ai:d29f77bf9e1b",
   "trk:open-ai:d6b19e07901b",
   "trk:open-ai:d6f153e296eb",
@@ -838,6 +842,7 @@
   "trk:t-759fd052:1c5f648fb540",
   "trk:t-759fd052:1da9742bfe9e",
   "trk:t-759fd052:1dc261f489f1",
+  "trk:t-759fd052:2010c6097924",
   "trk:t-759fd052:35e7600f6e97",
   "trk:t-759fd052:363c48178dad",
   "trk:t-759fd052:3dbe20494b1d",
@@ -1181,21 +1186,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:yt--jklonfa:add528585df4": [
-   666
-  ],
-  "trk:yt--jklonfa:64db94e18e5b": [
-   667
-  ],
-  "trk:blog-semianalysis:0fcfcbc692f8": [
-   668
-  ],
-  "trk:blog-techcrunch:ec4b5b074c1b": [
-   669
-  ],
-  "trk:blog-techcrunch:8a5da784385a": [
-   670
-  ],
   "trk:blog-techcrunch:f8f5109f865a": [
    671
   ],
@@ -2704,6 +2694,21 @@
   ],
   "trk:t-678e8450:8c1744b2e8b9": [
    1134
+  ],
+  "trk:open-ai:d294d2a35472": [
+   1135
+  ],
+  "trk:t-759fd052:2010c6097924": [
+   1136
+  ],
+  "trk:cxmt:05ff0ea36062": [
+   1137
+  ],
+  "trk:cxmt:973959d59830": [
+   1138
+  ],
+  "trk:ax:e4f716d082fe": [
+   1139
   ]
  },
  "topics": {},
