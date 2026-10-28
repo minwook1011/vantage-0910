@@ -3,6 +3,22 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "2c0b0a8104cc",
+   "kind": "news",
+   "headline": "경찰, 대신증권·미래에셋자산운용·빗썸 해킹 내사 착수 — 기존 금융권 연쇄 해킹 수사팀이 맡아 연관성 확인",
+   "bullets": [
+    "경찰청 국가수사본부가 28일 오전 대신증권·미래에셋자산운용·빗썸 해킹 사건에 대해 입건 전 조사(내사)를 시작했다.",
+    "지난달부터 은행·보험사 연쇄 해킹을 수사해 온 팀이 맡아, 이번 사건들과 같은 조직의 소행인지 들여다본다.",
+    "대신증권은 비대면 계좌 개설 연계 서버, 미래에셋자산운용은 일부 웹 시스템, 빗썸은 사내 모바일 업무 시스템이 뚫렸다."
+   ],
+   "summary": "은행·보험에서 시작된 금융권 해킹이 증권사·자산운용사·가상자산 거래소까지 번지자 수사기관이 움직였다. 국가수사본부는 세 회사의 해킹 관련 자료를 확보해 피해 규모와 침입 경로를 확인하고 있다.\n\n대신증권은 지난 17일 비대면 계좌 개설 서버에서 비정상 접근 징후를 포착했고, 고객 3만8천여 명의 이름·주소 등 8개 항목이 새어 나갔다고 이날 밝혔다. 금융감독원은 대신증권과 빗썸에 현장 검사를 나갔다.\n\n남은 쟁점은 연쇄 해킹의 배후다. 금융권 대상 북한 인터넷 주소(IP) 대역 접속이 440만 건 넘게 잡혔지만, 당국은 IP만으로 국적을 특정하기는 어렵다는 입장이다. 경찰이 정식 수사로 전환하는지가 다음 확인 지점이다.",
+   "title": "경찰, 증권사·가상자산거래소 등 해킹사건 내사 착수",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB2X2hQeUNsb09YQU0xelJsQjFFT1lnbFMxcFRjNEJSVG9zQkE4R2R0NkpoU1NoRklubzNzQ0tVU0RsMVdZOUtYZXFvWDdENFVlanFscXpqRy1lc2FrMWl0edIBYEFVX3lxTFB2X2hQeUNsb09YQU0xelJsQjFFT1lnbFMxcFRjNEJSVG9zQkE4R2R0NkpoU1NoRklubzNzQ0tVU0RsMVdZOUtYZXFvWDdENFVlanFscXpqRy1lc2FrMWl0eQ?oc=5",
+   "published": "2026-10-28 14:09 KST",
+   "written": "2026-10-28 17:48 KST"
+  },
+  {
    "id": "71632655013c",
    "kind": "news",
    "headline": "북한 IP 대역에서 국내 금융권 '스캔성' 접속 440만건 탐지 — 실제 피해는 아직 없어, 청와대 긴급회의",
@@ -323,5 +339,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-10-28 17:08 KST"
+ "updated": "2026-10-28 17:48 KST"
 }
