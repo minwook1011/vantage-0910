@@ -242,6 +242,7 @@
   "pod:2026-10-28-sixsigma-Yw28kkHRo2Y",
   "pod:2026-10-28-sixsigma-sJa9mxMKZIc",
   "pod:2026-10-28-sixsigma-xsa0a1xjPRg",
+  "pod:2026-10-28-understanding-b6-kyiV1QwE",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:035d98272c4d",
@@ -1168,9 +1169,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ssh-fedinsight:04c7d22f1700": [
-   653
-  ],
   "trk:blog-ssh-fedinsight:f97e5baed7d2": [
    654
   ],
@@ -2691,6 +2689,9 @@
   ],
   "trk:ax:4bdb163b2b91": [
    1121
+  ],
+  "pod:2026-10-28-understanding-b6-kyiV1QwE": [
+   1122
   ]
  },
  "topics": {},
