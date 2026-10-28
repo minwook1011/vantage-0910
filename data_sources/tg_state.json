@@ -149,6 +149,7 @@
   "or:2026-10-24",
   "or:2026-10-25",
   "or:2026-10-26",
+  "or:2026-10-27",
   "pod:2026-10-05-ca-building-the-total-portfolio-at-ontario-teachers",
   "pod:2026-10-06-ilb-andrew-huberman-the-frontier-of-neurotechnology",
   "pod:2026-10-08-ca-real-estate-credit-over-yield-at-invesco-charlie",
@@ -1134,9 +1135,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "usdkrw:2026-10-21": [
-   246
-  ],
   "trk:open-ai:48891f42538a": [
    629
   ],
@@ -2666,6 +2664,9 @@
   ],
   "trk:t-678e8450:fbbff9fb35db": [
    1090
+  ],
+  "or:2026-10-27": [
+   331
   ]
  },
  "topics": {},
