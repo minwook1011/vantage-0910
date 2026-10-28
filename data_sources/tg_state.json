@@ -119,6 +119,7 @@
   "macro:2026-10-23",
   "macro:2026-10-26",
   "macro:2026-10-27",
+  "macro:2026-10-28",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -1199,9 +1200,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:98ff1ee76c7b": [
-   684
-  ],
   "trk:blog-techcrunch:a6e9e3330ba6": [
    685
   ],
@@ -2722,6 +2720,11 @@
   ],
   "pod:2026-10-28-sixsigma-Tzf1l2eAWH0": [
    1152
+  ],
+  "macro:2026-10-28": [
+   335,
+   336,
+   337
   ]
  },
  "topics": {},
