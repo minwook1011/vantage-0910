@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "0e9665e6feb9",
+   "kind": "news",
+   "headline": "미국 법무부, 엔비디아의 허깅페이스 인수(129억 달러)에 반독점 질의 — 경쟁사에 미칠 영향 자료 요구(로이터 단독)",
+   "bullets": [
+    "로이터가 관계자 2명을 인용해, 법무부 반독점국이 엔비디아에 허깅페이스 인수가 인공지능 업계 경쟁에 미칠 영향을 묻고 있다고 보도했다.",
+    "이번 질의는 법무부가 이미 하고 있던 엔비디아 반도체 판매 관행·시장 지배력 조사와 함께 다뤄지는 것으로 전해졌다. 엔비디아는 논평을 거부했다.",
+    "엔비디아는 9월 허깅페이스를 129억 달러에 사기로 합의했고, 규제 심사를 통과하면 2027년 상반기 마무리할 계획이다."
+   ],
+   "summary": "공시에 따르면 엔비디아는 허깅페이스 기존 주주에게 현금 약 119억 달러를 주고, 남는 핵심 엔지니어에게 최대 10억 달러어치 주식 보상을 준다. 허깅페이스는 오픈소스 인공지능 모델·데이터셋이 모이는 최대 플랫폼으로, 인수 발표 당시 활성 이용자 1,800만 명, 가입 기업 20만 곳, 공유 모델 300만 개 규모였다.\n\n당국이 보는 쟁점은 수직 결합이다. 인공지능 가속기 시장을 장악한 엔비디아가 모델 유통 길목까지 가지면, 자사 그래픽처리장치(GPU)·쿠다 소프트웨어에 유리하게 배포 환경을 짜고 AMD·인텔·구글·아마존 자체 칩용 모델을 차별할 수 있다는 우려다. 엔비디아는 플랫폼의 독립성과 다른 회사 칩 지원을 유지하겠다고 밝혀 왔다.\n\n법무부는 엔비디아가 지난해 말 200억 달러를 들인 인공지능 칩 스타트업 그록(Groq) 자산 인수도 조사 중이다. 정식 심층 조사로 넘어갈지가 다음 확인 지점이다.",
+   "title": "EXCLUSIVE: US DOJ is inquiring about Nvidia's purchase of Hugging Face, sources say",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNQi1pQlpXMFg0djlmZFhkcGFlc3hJWmxKNXIzeFlTOWRxSXd5YWtCX1FRdUdlWWM1NEZxQVpOWktKbVkyWWR1aFRhbFd3SnRRcW5SZTJ0YXRvQTZ6MjlmVmFMVThhSldFTUpseWRtblVrel8tM0VISmVOVmdVend5UTFOTHhKazBXalpIOHVUdkVmcm5YdTI4UWk3MUJObk9GMzRYOEpkeEFXVnhwZXc?oc=5",
+   "published": "2026-10-29 04:57 KST",
+   "written": "2026-10-29 05:52 KST"
+  },
+  {
    "id": "02389ee491be",
    "kind": "news",
    "headline": "슈나이더일렉트릭·네스케일·스타트캠퍼스, 엔비디아 '옴니버스 DSX' 디지털 트윈을 실제 가동 중인 AI 데이터센터에 첫 적용 — 포르투갈 1.2기가와트 시네스 캠퍼스",
@@ -723,5 +739,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-10-27 21:20 KST"
+ "updated": "2026-10-29 05:52 KST"
 }

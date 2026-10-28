@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "42a73aa26d7e",
+   "kind": "news",
+   "headline": "마이크로소프트, 7~9월 매출 922억8천만 달러(+19%)로 예상 상회 — 애저 매출 처음 금액 공개, 331억7천만 달러(+48%)",
+   "bullets": [
+    "2027 회계연도 1분기(7~9월) 조정 주당순이익 4.89달러로 시장 예상(4.73달러)을 넘었고, 매출 922억8천만 달러도 예상(906억9천만 달러)보다 많았다.",
+    "클라우드 서비스 애저 매출은 331억7천만 달러로 48% 늘어 예상(+44%)과 직전 분기(+42%)를 모두 웃돌았다. 애저 매출을 달러로 따로 공개한 건 처음이다.",
+    "설비투자·금융리스는 452억 달러(+약 30%)로 예상(506억7천만 달러)보다 적었고, 주가는 시간외에서 4% 넘게 올랐다."
+   ],
+   "summary": "마이크로소프트는 이번 분기부터 실적 보고 체계를 바꿔, 지난 11년간 써 온 3개 부문 대신 2개 사업부문으로 실적을 발표했다. 그러면서 그동안 성장률로만 알리던 애저 매출을 처음으로 금액으로 공개했다.\n\n인공지능 수요에 맞춰 데이터센터를 빠르게 늘리면서 잉여현금흐름은 186억3천만 달러로 27% 줄었다. 다만 설비투자 규모가 시장 예상보다 50억 달러 넘게 적어, 같은 날 실적을 낸 알파벳(잉여현금흐름 적자 전환)과 대비됐다.\n\n정규장에서 0.06% 내렸던 주가는 실적 발표 뒤 시간외 거래에서 4%대 올라 553달러 안팎에 거래됐다. 남은 쟁점은 투자 속도와 애저 성장률이 다음 분기에도 이어지느냐다.",
+   "title": "Microsoft beats Wall Street estimates as Azure growth hits 48%",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNdVB5bDVYUlFTeFRnZmI3aV9yWE43X3E3ZlhhbjZTc0JsY1RWeVpwMjZGLW1DTGsxbC1IckFUZ3FJNWVjN2tMYXhMZ295MklkdS1Zcng0cFNIbmI4X2k2Z09PRjBZNmRDV0JqcXRQNW1nUjZob0J1M1hZaUxEX0VyeERHQzZtUjVvLVowdVV5QU5BNkwxMUIzeEg5X0ZIZDA?oc=5",
+   "published": "2026-10-29 05:22 KST",
+   "written": "2026-10-29 05:52 KST"
+  },
+  {
    "id": "ffe78311896b",
    "kind": "news",
    "headline": "마이크로소프트, 직원 약 6만명에 자발적 퇴직(바이아웃) 제안 — 전 세계 정규직 22만3천명의 4분의 1 이상",
@@ -385,5 +401,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-27 07:18 KST"
+ "updated": "2026-10-29 05:52 KST"
 }
