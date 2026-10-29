@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30 02:25 KST",
+ "updated": "2026-10-30 03:35 KST",
  "episodes": [
   {
    "id": "2026-10-30-dwarkesh-what-i-learned-about-power-from-lbj-and-robert-m",
@@ -50,12 +50,19 @@
    "audio": "https://anchor.fm/s/f2ee4948/podcast/play/128353097/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-9-29%2F435335357-44100-2-a9e5ab46c7f16.mp3",
    "duration": "01:08:22",
    "desc": "AGI in 2027. That’s the last line of this year’s State of AI Report, and its author Nathan Benaich (Air Street Capital) is back for the third year to defend it. AI is now building AI: Claude leads 26% of Anthropic’s own model R&D, up from under 1% in February, but Nathan thinks “research taste” is the wall. OpenAI’s evaluation agents ended up inside Hugging Face’s systems, only a Chinese open-weight model could help investigate, and Nathan now argues cyber risk matters more than existential risk. Catching up to OpenAI or Anthropic from scratch costs about a trillion dollars, which is why “you …",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-30 01:25 KST",
    "image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
    "show_image": "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/40657026/40657026-1768486187830-f8f544fbc7c46.jpg",
    "title_ko": "Nathan Benaich — State of AI 2026: 올해의 가장 큰 이야기들(그리고 2027년 AGI?)",
-   "desc_ko": "올해 State of AI 보고서의 마지막 줄은 \"2027년 AGI\"였고, 저자인 Air Street Capital의 Nathan Benaich가 세 번째로 출연해 그 전망을 방어한다. AI가 AI를 만드는 단계에 들어섰다 — Anthropic 내부 모델 연구개발에서 Claude가 주도하는 비중이 2월 1% 미만에서 26%로 늘었지만, 그는 \"연구 감각\"이 넘기 어려운 벽이라고 본다. OpenAI 평가 에이전트가 Hugging Face 시스템 안으로 들어간 사건과, 조사를 도울 수 있었던 것이 중국 오픈웨이트 모델뿐이었다는 이야기도 다룬다. 그는 이제 실존적 위험보다 사이버 위험이 더 중요하다고 주장하며, OpenAI·Anthropic을 처음부터 따라잡으려면 1조 달러쯤 든다고 본다."
+   "desc_ko": "올해 State of AI 보고서의 마지막 줄은 \"2027년 AGI\"였고, 저자인 Air Street Capital의 Nathan Benaich가 세 번째로 출연해 그 전망을 방어한다. AI가 AI를 만드는 단계에 들어섰다 — Anthropic 내부 모델 연구개발에서 Claude가 주도하는 비중이 2월 1% 미만에서 26%로 늘었지만, 그는 \"연구 감각\"이 넘기 어려운 벽이라고 본다. OpenAI 평가 에이전트가 Hugging Face 시스템 안으로 들어간 사건과, 조사를 도울 수 있었던 것이 중국 오픈웨이트 모델뿐이었다는 이야기도 다룬다. 그는 이제 실존적 위험보다 사이버 위험이 더 중요하다고 주장하며, OpenAI·Anthropic을 처음부터 따라잡으려면 1조 달러쯤 든다고 본다.",
+   "summary": {
+    "title_ko": "Nathan Benaich — State of AI 2026: 올해의 가장 큰 이야기들(그리고 2027년 AGI?)",
+    "headline": "AI가 AI를 만들기 시작했다 — Claude가 Anthropic R&D의 26%를 주도, 남은 벽은 '연구 감각'",
+    "image": "https://i.ytimg.com/vi/N4GpNBxBm-Q/hqdefault.jpg",
+    "guest": "네이선 베네치(Nathan Benaich) — Air Street Capital 설립자·State of AI 보고서 저자",
+    "company": "Nvidia(NVDA) · AMD(AMD) · SK hynix(000660) · 삼성전자(005930) · CoreWeave(CRWV) · Palantir(PLTR) · CrowdStrike(CRWD) (AI 산업 전반 · 연산 인프라 · 사이버 보안)"
+   }
   },
   {
    "id": "2026-10-29-understanding-tFCy_Fopdmg",
@@ -398,6 +405,24 @@
    "show_image": null,
    "reason": "쇼츠",
    "title_ko": "[쇼츠] AI가 마침내 돈을 벌기 시작했다"
+  },
+  {
+   "id": "2026-10-29-synopsis-dialogue-google-s-ai-threat-meta-s-98b-raise-and",
+   "show": "synopsis",
+   "show_name": "The Synopsis",
+   "title": "Dialogue. Google's AI Threat, Meta's $98B Raise, and Axon's 50% Crash",
+   "date": "2026-10-29",
+   "published": "2026-10-29 05:58 KST",
+   "link": "https://5f85ab06-2c89-4625-a5f9-f4b3a3300053.libsyn.com/dialogue-googles-ai-threat-metas-98b-raise-and-axons-50-crash",
+   "audio": "https://traffic.libsyn.com/clean/secure/5f85ab06-2c89-4625-a5f9-f4b3a3300053/Dialogue._Google_Search_Meta_Axon.mp4?dest-id=4092573",
+   "duration": "58:32",
+   "desc": "In this episode of The Synopsis, we talk more about Google Search and the AI risk, as well as Meta's AI opportunity and capital raise. We also cover why Axon is such a great businesses and the 50% stock sell off. Note that this was recorded *before* Google's earnings yesterday. ~*~* ~*~ Drew Cohen Capital Learn more about advisory services offered through Davidson Kahn Capital Management here: https://www.drewcohencapital.com/ Speedwell Research For full access to Speedwell Research's in-depth reports and stock updates, become a member here: https://speedwellresearch.com/subscribe/ Fiscal.AI F…",
+   "status": "new",
+   "found": "2026-10-30 03:25 KST",
+   "image": "http://assets.libsyn.com/show/481071?height=250&width=250&overlay=true",
+   "show_image": "https://static.libsyn.com/p/assets/5/2/d/7/52d76b8b82d0390516c3140a3186d450/The_Synopsis_Podcast_Logo-20260225-5hcpjhqhg8.png",
+   "title_ko": "대담 — Google의 AI 위협, Meta의 980억 달러 조달, Axon 50% 폭락",
+   "desc_ko": "Drew Cohen과 Speedwell Research가 AI가 Google 검색에 주는 위협을 다시 짚는다. Meta가 AI 투자를 위해 대규모 자금을 조달한 배경과 그 기회도 살핀다. 이어 Axon이 왜 뛰어난 사업인지, 그런데도 주가가 고점 대비 반 토막 난 이유를 이야기한다. 이 대담은 Google 실적 발표 전에 녹음됐다."
   },
   {
    "id": "2026-10-29-dumbmoney-L9bDh-UZwDg",
