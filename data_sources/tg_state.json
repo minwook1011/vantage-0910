@@ -668,6 +668,7 @@
   "trk:msft:4fc72832a301",
   "trk:msft:5bba3a188602",
   "trk:msft:63f2e4fcda5c",
+  "trk:msft:669b89551e21",
   "trk:msft:728ccc2dfc27",
   "trk:msft:73e4765ccd15",
   "trk:msft:7721f3c64c6b",
@@ -1044,6 +1045,7 @@
   "trk:yt--jklonfa:228a7cda9737",
   "trk:yt--jklonfa:238dda873511",
   "trk:yt--jklonfa:23a94ca3c8a3",
+  "trk:yt--jklonfa:23f9ee1d2038",
   "trk:yt--jklonfa:257298bb5634",
   "trk:yt--jklonfa:27414a9557f2",
   "trk:yt--jklonfa:282108f4c833",
@@ -1305,14 +1307,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "macro:2026-10-23": [
-   285,
-   286,
-   287
-  ],
-  "gpu:2026-10-23": [
-   288
-  ],
   "nebius:2026-10-24": [
    289
   ],
@@ -2831,6 +2825,12 @@
   ],
   "trk:yt--jklonfa:3d6520531452": [
    1247
+  ],
+  "trk:msft:669b89551e21": [
+   1248
+  ],
+  "trk:yt--jklonfa:23f9ee1d2038": [
+   1249
   ]
  },
  "topics": {},
