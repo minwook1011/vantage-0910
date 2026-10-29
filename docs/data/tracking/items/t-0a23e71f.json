@@ -3,6 +3,22 @@
  "slug": "t-0a23e71f",
  "items": [
   {
+   "id": "972aa63b4ebc",
+   "kind": "news",
+   "headline": "한국세라믹기술원, 유리기판용 '감광성 결정화 유리' 개발 — 강도 기존 유리의 약 2배(440MPa), 1.5㎜ 두께 관통 구멍 성공·2028년 300㎜급 목표",
+   "bullets": [
+    "한국세라믹기술원이 하스·한국항공대·엘엑스글라스와 함께 반도체 유리기판에 미세 관통 구멍(TGV)을 뚫을 수 있는 감광성 결정화 유리 소재와 가공 기술을 개발했다.",
+    "굴곡강도가 440MPa로 기존 붕규산염 유리보다 약 2배 높고, 지름 60~200㎛ 구멍을 만들며 1.5㎜ 두께 기판을 완전히 관통하는 데 성공했다(앞뒤 지름 차 3㎛).",
+    "지름 200㎜급 시편까지 만들었고, 산업통상부 과제로 2028년까지 300㎜급 대면적 기판과 미세 가공 기술을 고도화한다."
+   ],
+   "summary": "유리기판은 기존 플라스틱 계열 기판보다 표면이 매끄럽고 열에 덜 휘어 회로를 촘촘하게 그리고 신호 손실을 줄이기 좋아 인공지능 반도체·고성능 컴퓨팅 패키징의 차세대 소재로 꼽힌다. 걸림돌은 잘 깨지는 성질과, 위아래를 잇는 미세 구멍을 고르게 뚫기 어렵다는 점이었다.\n\n감광성 결정화 유리는 자외선을 쬐고 열을 가하면 빛 받은 부분에만 결정이 생기고, 그 부분을 화학용액으로 녹여 내 구멍을 정밀하게 만드는 방식이다. 연구팀은 원료 배합부터 기판 제작·자외선 조사·열처리·화학 가공까지 공정 기술을 확보했다. 강도가 높아지면 기판을 더 얇게 만들고 제조 중 깨질 위험을 줄일 수 있다. 아직 연구 단계로, 실제 양산 적용은 300㎜급 대면적화가 관건이다.",
+   "title": "세라믹기술원, 반도체 기판 소재 '감광성 결정화 유리' 개발",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5qUHJCcVFuZXRlcllhUml2VzRJUnZVVWlYVElkXzBKWWQ4NVFKX29kNnh2S09mc3k0SHZNNFhQa0lxUllPZ2kxM0dyT0dVNm5fS1dSakdOMGJDYktsZVZodElZTVdBUkZsZmc1dDY5LWNFQm83a3lXR9IBeEFVX3lxTE5qUHJCcVFuZXRlcllhUml2VzRJUnZVVWlYVElkXzBKWWQ4NVFKX29kNnh2S09mc3k0SHZNNFhQa0lxUllPZ2kxM0dyT0dVNm5fS1dSakdOMGJDYktsZVZodElZTVdBUkZsZmc1dDY5LWNFQm83a3lXRw?oc=5",
+   "published": "2026-10-29 10:26 KST",
+   "written": "2026-10-29 17:17 KST"
+  },
+  {
    "id": "1e2d9bdc06f8",
    "kind": "news",
    "headline": "태성, 일본 첨단기판 제조사 'F사'에 유리기판 제조용 습식공정 장비 공급 — 일본 유리기판 시장 첫 수주",
@@ -419,5 +435,5 @@
    "written": "2026-10-12 19:12 KST"
   }
  ],
- "updated": "2026-10-28 18:49 KST"
+ "updated": "2026-10-29 17:17 KST"
 }
