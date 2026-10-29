@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "fcfebc245188",
+   "kind": "news",
+   "headline": "오픈AI, 11월 3일 미국 중간선거 앞두고 수백명 규모 '선거 대응센터' 가동 — 챗GPT 악용·허위정보 실시간 감시(폴리티코)",
+   "bullets": [
+    "오픈AI가 이번 주부터 개표가 끝날 때까지 여러 부서 인력 수백명이 참여하는 선거 대응센터(Election Operations Center)를 운영한다.",
+    "악용 의심 사례, 모델의 예상 밖 행동, 이용약관 위반 신고를 실시간으로 검토해 대응한다.",
+    "선거 방해·투표 포기를 부추기는 이미지 요청엔 사실적 사진 대신 만화 형태 삽화를 내놓도록 안전장치를 걸었다."
+   ],
+   "summary": "센터는 조시 로슨 오픈AI 시민·전략 위험 담당 책임자가 이끈다. 이번 중간선거는 AI로 만든 사진·음성·영상이 실제 기록처럼 돌며 허위정보에 쓰일 수 있다는 우려 속에 치러진다. 예를 들어 실제로 없는 투표소의 긴 대기 줄을 만들어 달라는 요청에도 사진과 구별되는 삽화를 만들어 주는 식이다.\n\n미국 브레넌센터가 22일 낸 보고서에서 주요 AI 이미지 도구 6개에 올봄과 같은 선거 허위정보 명령을 다시 넣어 비교한 결과, 챗GPT만 뚜렷하게 개선돼 오도 가능성이 있는 요청 대부분을 삽화로 바꿨다. 다만 일부 다른 도구는 이전보다 더 사실적인 가짜 이미지를 만들었다고 지적해, 한 회사의 안전장치만으론 다른 도구나 우회 경로를 막기 어렵다는 한계도 함께 나왔다.",
+   "title": "오픈AI, 美중간선거 '워룸' 가동…수백명 참여해 챗GPT 악용 감시",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5IZnVzQ3gxWjJISV9aODJGUXl1UEdzNEVhSlZ4TnR6ZVViTHpueVh5MmRvYnJQR05JaDJwRWhsM2RfNHI4cDlRMmZNUzZfN0pLLUllcFY5dHRKajlaMWRmWVp6Y3Y4YklvR3NwWDZyY2FUMWVYbW94MNIBeEFVX3lxTE5IZnVzQ3gxWjJISV9aODJGUXl1UEdzNEVhSlZ4TnR6ZVViTHpueVh5MmRvYnJQR05JaDJwRWhsM2RfNHI4cDlRMmZNUzZfN0pLLUllcFY5dHRKajlaMWRmWVp6Y3Y4YklvR3NwWDZyY2FUMWVYbW94MA?oc=5",
+   "published": "2026-10-29 11:46 KST",
+   "written": "2026-10-29 16:50 KST"
+  },
+  {
    "id": "d294d2a35472",
    "kind": "news",
    "headline": "오픈AI, 서울서 국내 기업 대상 '빌더 부트캠프' — 제조·통신·IT 기술 리더 40여명과 AI 에이전트 개발·보안 실습",
@@ -1075,5 +1091,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-28 19:49 KST"
+ "updated": "2026-10-29 16:50 KST"
 }
