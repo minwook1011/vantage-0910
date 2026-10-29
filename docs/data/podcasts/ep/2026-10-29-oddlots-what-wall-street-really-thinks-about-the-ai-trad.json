@@ -1,0 +1,253 @@
+{
+ "id": "2026-10-29-oddlots-what-wall-street-really-thinks-about-the-ai-trad",
+ "title_ko": "Alexander Altmann — 지금 월가는 AI 트레이드를 어떻게 보나",
+ "guest": {
+  "name": "알렉산더 알트만(Alexander 'Alty' Altmann)",
+  "role": "Barclays 주식 전술 전략 글로벌 총괄(MD) — 기관 투자자 대상 테마·전술 아이디어 담당"
+ },
+ "guest_profile": [
+  {
+   "name": "알렉산더 알트만(Alexander Altmann)",
+   "title": "Barclays 주식 전술 전략 글로벌 총괄(Managing Director)",
+   "what": "2024년 6월 Barclays가 새로 만든 자리로, 뉴욕에서 주식·글로벌 마켓 고객에게 테마형·전술형 투자 아이디어를 낸다. 주식 세일즈 총괄 Ronnie Wexler에게 보고한다. 세계 투자자를 만나 듣는 포지션·심리를 시장 해석에 녹이는 역할이다.",
+   "career": "Royal Bank of Scotland 주식팀에서 포트폴리오 매니저로 일했다. 이후 Citi에서 약 10년간 주식 트레이딩 전략 총괄을 지냈고, 멀티매니저 헤지펀드 Millennium에서 주식 매크로 포트폴리오 매니저를 거쳐 Barclays로 옮겼다.",
+   "track": "공개된 개인 운용 수익률은 없다. 시장 타이밍 지표 BETI를 운영하며, 2026년 3월 이 지표가 -8.3으로 2025년 4월 관세 충격 이후 최저가 되자 1년 만의 가장 강한 매수 신호라고 했다(Bloomberg). 6월에는 사상 최고치 랠리 뒤 단기 전술적 신중으로 돌아섰다.",
+   "why": "헤지펀드 매니저 출신으로 롱숏 펀드의 포지션·쏠림 구조를 안쪽에서 아는 사람이다. AI 트레이드를 실제로 사고파는 투자자들의 심리를 전달한다는 점에서 이번 주제와 맞닿는다. 다만 Barclays가 Anthropic 상장에 관여하고 있다는 점은 감안해야 한다."
+  }
+ ],
+ "company": {
+  "name": "Barclays",
+  "sector": "글로벌 투자은행 · 주식 전략",
+  "what": "영국계 투자은행(LSE: BARC, NYSE: BCS). 이번 편은 특정 회사가 아니라 AI 트레이드 전반을 다룬다"
+ },
+ "topic": "Anthropic S-1·하이퍼스케일러 실적 주간에 본 월가의 AI 심리 — 네오클라우드 자금 조달 균열, 매출의 벽, 낮은 변동성의 구조, S&P의 'KOSPI화'",
+ "headline": "월가는 아직 AI 강세지만 '부정' 단계 — 균열은 네오클라우드 자금 조달에서 먼저, S&P 내년 이익 증가의 3분의 2는 반도체",
+ "tldr": [
+  "컨센서스는 여전히 AI 강세 — 다만 거품 곡선의 '부정' 단계에 가깝다는 진단",
+  "균열은 현금흐름 약한 네오클라우드에서 먼저 — Cipher 전환사채가 CoreWeave 매도로 번졌다는 설명, 서브프라임에 비유",
+  "S&P 500 내년 이익 증가의 약 3분의 2가 반도체, AI 전체로는 약 75% — 'S&P의 KOSPI화'",
+  "AI는 금리에 둔감하다는 믿음은 틀렸다 — 2026년 회사채 순발행이 금리와의 과거 관계를 깨뜨렸다",
+  "설비투자를 정당화하려면 기업용보다 소비자 킬러 앱이 필요 — 경고 신호는 하이퍼스케일러의 설비투자 축소",
+  "지수 변동성이 낮은 건 1조 달러가 넘는 멀티매니저 자금의 쏠림 탓 — 변동성은 팩터 급회전으로 나타난다"
+ ],
+ "summary_md": "### 1. 녹음 배경 — FOMC·Anthropic S-1·Oracle이 한꺼번에\n\n- 녹음일은 10월 28일이다. 같은 주에 FOMC 결정, Anthropic의 상장 신청서(S-1) 공개, Oracle 투자자의 날이 겹쳤다. Joe Weisenthal은 Oracle 주가가 12% 오른 것이 금리 결정보다 더 큰 뉴스였다고 본다. 하이퍼스케일러가 설비투자와 빚을 얼마나 늘릴지가 시장의 핵심 질문이 됐다는 것이다.\n- 게스트 Alex Altmann은 예전에 레버리지 ETF 편으로 나온 적이 있고, 이번에는 시장 전반을 점검한다.\n\n### 2. 컨센서스는 여전히 'AI 강세' — 그래서 지금은 '부정' 단계\n\n- Altmann은 미국·유럽·아시아 어느 투자자 집단에 물어도 AI에 대해 압도적으로 강세라는 답이 나온다고 말한다. 다만 거품 곡선 그림에 빗대면, 정점을 지나 처음 꺾이는 구간인 **'부정(denial)' 단계**에 가깝다고 본다. 거품이 터졌다고 단정하지는 않는다.\n- 예로 든 것이 한국 메모리주다. SK하이닉스 같은 종목이 이익 대비 약 3배 PER에 거래된다는 것인데, 시장이 이익을 **사이클 정점**으로 보기 때문이라는 설명이다. 경기순환 업종은 이익이 최고일 때 비싸게 사지 않는다는 오래된 원칙이 작동한다는 것이다.\n\n### 3. 네오클라우드는 '창끝' — 금융 위기의 서브프라임 비유\n\n- 네오클라우드는 컴퓨팅을 지어 정해진(혹은 투기적인) 고객에게 파는 회사들이다. 영업현금흐름이 없거나 적어 AI 금융 구조에서 가장 위험한 쪽이라는 게 Altmann의 시각이다. 현금이 넘치는 Google·Amazon 같은 하이퍼스케일러가 '핵심'이라면 네오클라우드는 '주변부'다.\n- 그는 선정적으로 들리지 않게 조심하면서도 2008년 금융 위기와 나란히 놓는다. 위기는 대형 은행이 아니라 12~24개월 전 **서브프라임 상품**에서 시작됐다는 점이다.\n- 최근 사례로 Cipher(비트코인 채굴에서 AI로 옮긴 회사)가 전환사채를 내다 자기 주가를 크게 떨어뜨렸고, 이를 본 투자자들이 CoreWeave까지 팔았다고 설명한다. Meta 관련 데이터센터 채권 스프레드는 그보다 몇 달 전부터 벌어지고 있었다고 덧붙인다.\n- Barclays 설문에서 '자금 조달이 앞으로 문제가 될 것'이라고 답한 투자자는 약 60%에 그쳤다. 이미 문제가 드러났는데도 이 정도라는 점을 그는 현실 부정의 증거로 읽는다. Tracy Alloway는 CoreWeave 공동창업자 Brannin McBee가 FT 인터뷰에서 거의 무제한 차입을 말한 것도 매도 원인이었다고 짚는다.\n\n### 4. 'AI는 금리에 둔감하다'는 믿음이 깨지다\n\n- 투자자들 사이에는 AI가 고금리와 무관하다는 견해가 거의 보편적이었지만 사실이 아니라는 것이 드러났다고 본다. Meta 실적도 자금 조달에 한계가 있음을 보여 줬다는 평가다.\n- Barclays는 여름에 1995년 이후 투자등급·하이일드 회사채, 국채, 주식의 연간 순발행을 시가총액 대비로 정리했다. 원래는 금리가 내리면 발행이 늘고 오르면 줄었는데, 2025~2026년에는 이 관계가 무너졌다. 2년물 금리 대비 순발행이 **데이터상 전례 없는 수준**이라는 것이다.\n- 닷컴 때는 주식 발행이 많았지만 정부가 흑자였다. 지금은 AI가 다른 업종과 한정된 자본을 두고 경쟁한다. Barclays는 올해 투자등급·하이일드 순발행을 1조 1천억 달러로 본다.\n\n### 5. 돈은 어디서 오나 — 매출이라는 벽\n\n- 8월 보고서 'AI 칩을 더 신중하게 놓아라'의 요지는 결국 매출이다. 당시 SpaceX가 내세운 약 30조 달러 시장 규모를 예로 든다. 반면 1990년 이후 Microsoft와 Apple의 누적 매출은 물가를 반영해도 10조 달러가 안 된다는 통계(Bloomberg의 Cameron Crise 집계라고 출처를 밝힘)를 댄다.\n- S&P 500 전체 매출은 약 17조 달러, 비용은 11~12조 달러로 순이익은 5~5.5조 달러 정도다. 여기서 AI에 쓸 돈이 얼마나 나오겠느냐는 질문이다. Ramp·OpenRouter 데이터상 토큰 지출도 단기적으로 주춤한다고 덧붙인다.\n\n### 6. Anthropic S-1 — 말은 아끼되 '매출은 매우 좋다'\n\n- Barclays가 Anthropic 상장에 관여하고 있어 자세한 질문은 받지 않았다. 다만 **Anthropic 매출**은 아주 좋아 보인다고 했다. OpenRouter는 값싼 중국 모델을 찾는 이용자 위주라 전체를 대표하지 못한다는 지적이다. Tracy는 이익은 수십억 달러인데 가치는 수조 달러라는 간극을 짚었다.\n\n### 7. 오픈웨이트·로컬 실행 — '인간 창의성에 롱이냐 숏이냐'\n\n- 오픈웨이트 모델 점유율은 약 20%에서 최대 80% 수준까지 올랐고, 토큰 비용은 100분의 1 수준으로 떨어졌다고 한다. 역사상 가장 빨리 값이 떨어지는 자산일 수 있다는 것이다. 그런데 GPU 임대료는 오르고 있어, 이 논쟁은 한 방향이 아니라고 본다.\n- 더 앞선 질문은 **로컬 실행**이다. 2007년 아이폰에 지금 수준의 연산을 넣는다고 하면 아무도 믿지 않았을 것처럼, 메일 정리 같은 일은 휴대폰 칩으로 충분해질 수 있다는 것이다. Nvidia의 Nemotron, Meta의 노트북용 모델을 예로 든다.\n\n### 8. 프런티어 모델이 꼭 필요한 곳, 그리고 소비자 레이어\n\n- Joe는 샌프란시스코에서 들은 '프런티어 싱크' 개념을 소개한다. 박사급 이상 지능이 끝없이 필요한 업종은 바이오, 반도체 설계, 퀀트 정도이고, 나머지는 일정 수준이면 충분할 수 있다는 것이다.\n- Altmann은 결국 **소비자 킬러 앱**이 나와야 강세로 돌아설 수 있다고 말한다. 기업 매출로는 시장이 원하는 기간 안에 투자 수익을 메울 수 없다는 판단이다. 큰 변화는 새 기술보다 기존 기술의 새 쓰임에서 오며, 평범한 수준의 에이전트가 12~18개월 안에 보편화될 수 있다고 본다.\n- Joe가 혼자 아이를 볼 때 ChatGPT로 일정을 챙긴 경험을 말하자, Altmann은 그 편의에 한 달 얼마를 내겠느냐가 매출 구조를 가르는 질문이라고 되묻는다.\n\n### 9. 무엇이 투자자를 겁먹게 할까\n\n- 그는 하이퍼스케일러 한 곳이 **설비투자를 줄이는 것**을 꼽는다. 다만 이번 실적은 아닐 것이고 내년 초까지 기다려야 할 수 있다고 본다. AI 중심지인 서부 해안일수록 기업과 투자자 모두 같은 이야기에 묶여 있다는 지적도 한다.\n- 지난번 Google이 설비투자를 크게 늘리겠다고 하면서 열기가 다시 붙었다. Oracle은 추가 자금 조달을 200억 달러로 묶겠다고 했는데, 시장은 적정한 조달이면 투자가 계속될 수 있다는 신호로 받아들였다.\n\n### 10. 지수는 조용한데 속은 '칼싸움'\n\n- 하이퍼스케일러에 좋은 소식이 메모리에는 나쁜 식으로 순환이 계속돼 S&P 지수는 제자리라고 한다. 그는 이를 \"knife fight in a phone booth\"라고 표현했다.\n- 변동성이 낮게 보이는 구조적 이유는 **멀티매니저 펀드**다. 운용 자산은 2020년 약 3천억 달러에서 지금 1조 달러를 넘었는데, 거래할 수 있는 종목 수는 그대로거나 줄었다. 모두 같은 방식으로 팩터를 중립화하니 쏠림이 다른 형태로 쌓이고, 변동성은 지수가 아니라 **팩터 급회전**으로 나타난다는 설명이다.\n\n[[chart:2]]\n\n- 기술적 이유는 아무도 'AI 팩터'를 제대로 정의하지 못했다는 점이다. 연초엔 소프트웨어 공매도가 AI 베팅의 일부였지만 지금 소프트웨어는 12개월 고점 근처라, 베타가 계속 바뀐다.\n\n### 11. 녹음 중 나온 실적, 그리고 'S&P의 KOSPI화'\n\n- 녹음 도중 실적이 나왔다. 대본에서: Alphabet은 매출이 예상에 못 미쳐 7.9% 하락, Microsoft는 6.4% 상승. Azure 성장률은 48%로 Bloomberg 집계 예상 44.8%를 넘었고(Altmann은 47%를 짐작), Google Cloud 매출 성장률은 103%였다.\n- Altmann은 탄탄한 기존 사업을 가진 **현금 화산** 같은 회사만 이 정도 투자를 감당할 수 있다고 본다. 컨센서스 설비투자 전망을 그대로 믿으면 GDP의 약 12%로, 철도나 루이지애나 매입보다 크다고 했다.\n- 끝으로 S&P 500 내년 이익 증가의 약 3분의 2가 반도체에서, AI 생태계 전체로는 약 75%가 나온다고 말한다. 진행자들은 이를 S&P의 **'KOSPI화'**라고 불렀다.\n\n[[chart:1]]\n\n### 12. 진행자 후기\n\n- 두 진행자는 자본이 넘치던 시기에서 선별의 시기로 옮겨 가는 '차별화'를 핵심으로 꼽았다. 금리가 상관없다는 말은 적어도 레버리지를 쓴 네오클라우드에는 맞지 않는다는 데 동의했다. 다른 기업의 생산성 이익이 실적에서 아직 보이지 않는데 지수만 AI 쪽으로 쏠리고 있다는 점도 짚었다.",
+ "insights_md": "### 투자 관점 — 무엇을 가져갈까\n\n- 이 편의 핵심 틀은 **'핵심 대 주변부'**다. 현금흐름이 탄탄한 하이퍼스케일러와, 빚과 전환사채로 짓는 네오클라우드를 같은 'AI 트레이드'로 묶지 말라는 것이다. 금융 위기가 서브프라임에서 시작됐듯 균열은 주변부 자금 조달에서 먼저 보인다는 시각이다.\n- 두 번째는 **매출의 벽**이다. 설비투자 규모가 기업 전체 이익과 소비자 지갑으로 정당화될 수 있느냐는 질문으로, Altmann은 기업용보다 소비자 킬러 앱이 관건이라고 본다.\n- 세 번째는 시장 구조다. 지수 변동성이 낮아도 팩터 급회전으로 롱숏 펀드는 힘든 장이고, S&P 이익 증가가 반도체에 쏠리는 'KOSPI화'가 진행 중이라는 진단이다.\n\n### 밸류체인 — 언급된 회사\n\n- 하이퍼스케일러: Microsoft, Alphabet, Amazon, Meta, Oracle.\n- 네오클라우드·데이터센터: CoreWeave, Cipher Digital(옛 Cipher Mining), IREN. 같은 날 Applied Digital도 함께 약세였다는 보도가 있다.\n- 모델·칩: Anthropic(상장 준비), OpenAI, Nvidia(Nemotron), Meta(로컬 모델).\n- 한국·일본: **SK하이닉스·삼성전자**가 '3배 PER 메모리주'로 직접 언급됐다. 일본은 대화에서 직접 언급된 회사가 없어 확인 못 함.\n\n### 수치로 본 이 편\n\n- 설문에서 자금 조달 우려 60%, 올해 회사채 순발행 전망 1조 1천억 달러, 멀티매니저 자산 3천억→1조 달러 이상, S&P 내년 이익 증가 중 반도체 약 3분의 2(모두 대본 기준).\n\n### 반론·리스크\n\n- 같은 날 Microsoft는 Azure 가속과 다음 분기 49~50% 가이던스를 냈다. 수요 쪽 숫자는 오히려 강하다는 반론이 가능하다.\n- 반대로 Alphabet은 Cloud 매출이 두 배가 됐는데도 **잉여현금흐름 적자**가 2분기째 이어졌다. Altmann이 말한 '현금 화산'도 설비투자 앞에서는 현금이 마를 수 있다는 점을 보여 준다.\n- Barclays가 Anthropic 상장에 관여하고 있어 해당 발언에는 이해관계가 있다.\n\n### 체크포인트\n\n- 하이퍼스케일러의 설비투자 가이던스 하향 여부, 네오클라우드 신규 채권·전환사채 조건, Anthropic 상장 일정과 공모가, 메모리주 PER 변화.",
+ "deep_md": "### 1. 게스트·사실 확인 — 대본에서 말한 것과 외부 자료\n\n- 게스트: Alexander Altmann은 2024년 6월 Barclays에 새로 만든 주식 전술 전략 글로벌 총괄 자리로 왔다(뉴욕). 이전엔 Millennium에서 주식 매크로 포트폴리오 매니저, Citi에서 약 10년간 주식 트레이딩 전략 총괄을 지냈다(Barclays 보도자료).\n- Anthropic S-1(외부 자료, 2차 보도 기준): 10월 26일 공개됐고 나스닥 종목코드는 'ANT'다. 2026년 상반기 매출은 약 163억 달러로 전년 같은 기간 약 12억 달러의 **14배**다. 상반기 순손실 807억 달러는 대부분 비현금 항목이고, 두 고객이 매출의 20~25%를 차지한다. 대본의 '매출은 매우 좋다'와 Tracy의 '이익과 가치의 간극'이 둘 다 숫자로 확인된다. SEC 원문은 직접 확인 못 함.\n- Oracle(외부 자료): 10월 28일 투자자의 날 이후 주가는 약 11% 올라 145.29달러에 마감했다. 2030 회계연도 매출 목표는 2,250억 달러 이상이다. 신규 외부 자본은 2030 회계연도까지 **200억 달러 상한**(주식·채무 절반씩)을 두되, 앞서 마친 별도 200억 달러 주식 매각과 기존 차입 차환은 제외된다. 대본의 '12%'는 장중 수치로 보이고, 자막의 '3주'는 외부 자료의 기간과 맞지 않아 확인 못 함.\n- Microsoft(외부 자료): 회계 1분기 매출 923억 달러(+19%), Azure 매출은 처음 금액으로 공개된 약 332억 달러로 48% 넘게 늘었다. 회사 가이던스 44~45%를 웃돌았고, 다음 분기 Azure 성장률을 49~50%로 제시했다. 다만 잉여현금흐름은 27% 줄어든 약 186억 달러다. 시간외 주가는 약 4% 상승으로 보도돼, 대본의 6.4%와는 시점 차가 있다.\n\n[[chart:3]]\n\n- Alphabet(외부 자료): 매출 1,276억 달러(+25%)는 예상과 거의 같았다. Google Cloud 매출은 307억 달러로 **두 배 넘게** 늘어 대본의 103%와 맞는다. 3분기 설비투자는 514억 달러로 1년 전 240억 달러의 두 배를 넘었고, 연간 설비투자는 올해 2,000억 달러, 내년 3,000억 달러로 제시됐다. 잉여현금흐름은 -91억 달러로 2분기째 적자였고, 시간외 주가는 8~11% 하락으로 보도됐다.\n\n[[chart:4]]\n\n- Cipher(외부 자료): 지금 사명은 **Cipher Digital**이다. 10월 13일 8억 5천만 달러 무이자 전환사채(2032년 만기) 계획 발표 당일 약 12% 하락했고, 그 주에만 약 26% 내렸다. CoreWeave 매도와 직접 연결한 보도는 확인 못 함 — 이는 Altmann의 해석이다.\n- 이름 확인: 자막의 'Brandon McBee'는 CoreWeave 공동창업자 Brannin McBee, 'Cameron Crease'는 Bloomberg의 Cameron Crise, 'Nema Tron'은 Nvidia Nemotron이다. McBee는 보험사 자금 등 더 싼 조달을 찾고 있다고 했고, 6월 말 부채·리스 의무는 약 520억 달러라는 2차 요약이 있다. FT 원문은 확인 못 함.\n\n### 2. 밸류체인과 관련 상장사\n\n- 미국 하이퍼스케일러: MSFT·GOOGL·AMZN·META·ORCL. 네오클라우드·데이터센터: CRWV·CIFR·IREN·APLD. Meta의 Louisiana 데이터센터(Hyperion) 채권은 Blue Owl이 지분 80%를 가진 구조로, 액면 대비 94.4센트까지 내려간 적이 있다.\n- 한국: **SK하이닉스·삼성전자** — 메모리 공급사이자 KOSPI 쏠림의 주인공이다. 일본: 메모리·장비 쪽(Kioxia, Advantest, Tokyo Electron)이 같은 설비투자 사이클에 묶여 있지만, 대화에서 직접 다룬 회사는 아니다.\n\n### 3. 숫자의 맥락\n\n- **KOSPI 쏠림**: 삼성전자와 SK하이닉스의 KOSPI 시가총액 비중은 2025년 말 34.04%에서 2026년 4월 15일 40.90%로 올랐다(파이낸셜뉴스). 6월에는 50%대라는 보도도 있으나 기준이 달라 그래프에는 넣지 않았다.\n\n[[chart:5]]\n\n- S&P 이익 쏠림: 대본의 '내년 이익 증가 중 반도체 약 3분의 2'는 Barclays 원 자료를 확인 못 함. 외부에서는 UBS가 올해 반도체 몫을 40% 이상, Goldman이 AI 투자 몫을 올해 이익 증가의 약 절반으로 본다. 집계 범위와 연도에 따라 차이가 크다.\n- 메모리 PER: 대본의 '약 3배'와 달리 6~8월 외부 자료는 SK하이닉스 선행 PER을 4~7배로 적었다. 시점·이익 추정 기준에 따라 달라진다.\n- 멀티매니저: 대본의 '3천억→1조 달러 이상'과 달리, 외부 보도는 2019년 말 1,850억 달러에서 2023년 말 3,500억 달러로 적는다. 1조 달러는 레버리지 포함 등 정의 차이일 수 있으나 확인 못 함.\n- SpaceX의 시장 규모 주장은 S-1 기준 **28조 5천억 달러**이고, 그중 26조 5천억 달러가 AI다. 대본의 '약 30조'와 대체로 맞는다. 'GDP의 12%' 설비투자는 기간 기준이 대본에서 분명치 않아 확인 못 함.\n\n### 4. 반론과 리스크\n\n- 강세 쪽 근거: Azure 가속, Google Cloud 두 배, Anthropic 매출 14배는 수요가 실제로 있다는 증거다. Oracle도 조달 상한을 밝히자 오히려 주가가 올랐다.\n- 약세 쪽 근거: Alphabet과 Microsoft 모두 **잉여현금흐름**이 줄거나 적자다. Oracle 신용부도스와프 스프레드는 투자자의 날 이후에도 높다는 지적이 있다. 네오클라우드는 **전환사채 희석**으로 주가가 크게 밀렸다.\n- 게스트 자체: Altmann은 3월에 자체 지표(BETI)가 1년 만에 가장 강한 매수 신호라고 했고, 6월에는 단기 신중으로 돌아섰다. 전술 전략가의 시각은 몇 달 단위로 바뀐다는 점을 감안해야 한다.\n\n### 5. 앞으로 볼 것\n\n- Amazon·Meta 등 남은 하이퍼스케일러 실적에서 설비투자 하향 여부 — Altmann이 꼽은 첫 경고 신호다.\n- Anthropic 상장 일정과 공모가, 상장 후 고객 집중도 공시.\n- 네오클라우드의 다음 채권·전환사채 금리와 Hyperion 등 데이터센터 채권 가격.\n- Microsoft 다음 분기 Azure 49~50% 달성, Alphabet 내년 설비투자 3,000억 달러 유지 여부, 메모리 가격과 SK하이닉스 PER.",
+ "sources": [
+  {
+   "label": "Barclays 보도자료(Business Wire) — Altmann 주식 전술 전략 글로벌 총괄 선임(2024-06)·Millennium·Citi 경력",
+   "url": "https://www.businesswire.com/news/home/20240604017582/en/Barclays-appoints-Alexander-Altmann-as-Global-Head-of-Equities-Tactical-Strategies"
+  },
+  {
+   "label": "Bloomberg — Altmann, Barclays 주식 타이밍 지표(BETI) 1년 만의 강한 매수 신호(2026-03)",
+   "url": "https://www.bloomberg.com/news/articles/2026-03-17/barclays-altmann-sees-strongest-buy-signal-for-stocks-in-a-year"
+  },
+  {
+   "label": "Barclays Brief 팟캐스트 — Altmann 단기 전술적 신중론(2026-06)",
+   "url": "https://metacast.app/podcast/barclays-brief/NUQg2nHH/us-equities-short-term-pain-long-term-gain/p5eu1aio"
+  },
+  {
+   "label": "AI Weekly — Anthropic S-1: 상반기 매출 163억 달러·두 고객 비중·807억 달러 비현금 손실·11월 상장",
+   "url": "https://aiweekly.co/alerts/anthropic-s-1-shows-163b-h1-revenue-25-from-two-customers-and-807b-non-cash"
+  },
+  {
+   "label": "HackerNoon — Anthropic S-1 순매출유지율 약 900%·손실 구성",
+   "url": "https://hackernoon.com/anthropics-s-1-shows-$163b-in-half-year-revenue-a-900percent-nrr-and-an-$807b-loss-that-mostly-isnt"
+  },
+  {
+   "label": "CNBC — Microsoft 회계 1분기 실적·시간외 약 4% 상승",
+   "url": "https://www.cnbc.com/2026/10/28/microsoft-msft-q1-earnings-report-2027.html"
+  },
+  {
+   "label": "SiliconANGLE — Azure 48% 성장·가이던스 44~45%·다음 분기 49~50%",
+   "url": "https://siliconangle.com/2026/10/28/microsofts-stock-rises-on-solid-earnings-and-revenue-beat-with-azure-growing-48/"
+  },
+  {
+   "label": "Fortune — Alphabet 3분기: Google Cloud 307억 달러·설비투자 514억 달러·연간 2,000억→3,000억 달러·잉여현금흐름 적자",
+   "url": "https://fortune.com/2026/10/28/alphabet-google-stock-drops-cloud-revenue-doubles-free-cash-flow-negative/"
+  },
+  {
+   "label": "TradingKey — Alphabet 시간외 8% 하락·잉여현금흐름 -90.65억 달러",
+   "url": "https://www.tradingkey.com/analysis/stocks/us-stocks/262248965-google-earnings-report-q3-services-cloud-search-capital-expenditures-cash-tradingkey"
+  },
+  {
+   "label": "TipRanks — Oracle 투자자의 날 이후 11% 상승·2030 회계연도 전망",
+   "url": "https://www.tipranks.com/news/oracle-stock-orcl-surged-11-as-investor-day-eased-spending-fears-and-set-solid-fy30-outlook"
+  },
+  {
+   "label": "Stock Titan — Oracle 신규 자본 200억 달러 상한·별도 200억 달러 주식 매각",
+   "url": "https://www.stocktitan.net/articles/oracle-stock-investor-day-2026-20-billion-funding-cap"
+  },
+  {
+   "label": "Yahoo Finance — Cipher Digital, 8.5억 달러 전환사채 발표 후 12% 하락",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/cipher-digital-shares-fall-12-132518222.html"
+  },
+  {
+   "label": "Motley Fool — Cipher Digital 주간 26% 하락(2026-10-16)",
+   "url": "https://www.fool.com/coverage/market-movers/2026/10/16/why-cipher-digital-stock-plunged-26-this-week/"
+  },
+  {
+   "label": "24/7 Wall St. — Cipher Digital 전환사채 가격 결정·Applied Digital·IREN 동반 약세",
+   "url": "https://247wallst.com/investing/2026/10/14/cipher-digital-falls-5-as-850m-zero-coupon-note-pricing-extends-slide-applied-digital-declines-6-iren-drops-4/"
+  },
+  {
+   "label": "KuCoin 뉴스 요약 — Brannin McBee의 CoreWeave 차입 방어·부채·리스 약 520억 달러(2차 요약)",
+   "url": "https://www.kucoin.com/news/flash/coreweave-stock-falls-amid-debt-fueled-ai-expansion-concerns"
+  },
+  {
+   "label": "Protos — Meta Hyperion 데이터센터 채권 94.4센트 최저·Blue Owl 지분 구조",
+   "url": "https://protos.com/metas-ai-bond-just-hit-a-record-low-as-its-stock-soared/"
+  },
+  {
+   "label": "파이낸셜뉴스 — 삼성전자·SK하이닉스 KOSPI 비중 2025년 말 34.04%→40.90%(2026-04-15)",
+   "url": "https://en.fnnews.com/news/202604151825494221"
+  },
+  {
+   "label": "UBS CIO — 반도체가 S&P 500 이익 증가의 40% 이상",
+   "url": "https://www.ubs.com/global/en/wealthmanagement/insights/chief-investment-office/house-view/daily/2026/latest-17072026.html"
+  },
+  {
+   "label": "Crypto Briefing — Goldman: AI 투자가 2026년 S&P 이익 증가의 약 절반",
+   "url": "https://cryptobriefing.com/goldman-sachs-us-earnings-bubble-misplaced/"
+  },
+  {
+   "label": "Motley Fool — SK하이닉스 선행 PER 약 5~6배·메모리 하강 우려(2026-08)",
+   "url": "https://www.fool.com/investing/2026/08/16/sk-hynixs-stock-trades-at-around-5-times-next-year/"
+  },
+  {
+   "label": "Business Insider — 멀티매니저 자산 2019년 말 1,850억→3,500억 달러·쏠림 우려",
+   "url": "https://businessinsider.nl/allocators-that-crowded-into-the-biggest-hedge-funds-are-worried-about-these-managers-crowding-into-the-same-trades"
+  },
+  {
+   "label": "Fortune — SpaceX S-1 시장 규모 주장 28.5조 달러",
+   "url": "https://fortune.com/2026/05/20/spacex-ipo-filing-s1-total-addressable-market-make-life-multiplanetary/"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "S&P 500 내년 이익 증가는 어디서 오나",
+   "sub": "% · 게스트가 말한 이익 증가 기여 비중(근사치)",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "반도체",
+    "그 밖의 AI 생태계",
+    "AI 외 나머지"
+   ],
+   "series": [
+    {
+     "name": "이익 증가 기여",
+     "values": [
+      67,
+      8,
+      25
+     ]
+    }
+   ],
+   "note": "반도체 약 3분의 2, AI 전체 약 75% — 'S&P의 KOSPI화'라는 표현의 근거(Barclays 원 자료는 확인 못 함)",
+   "source": "대본(Alexander Altmann 발언)"
+  },
+  {
+   "at": "summary",
+   "title": "멀티매니저 펀드 운용 자산",
+   "sub": "억 달러 · 게스트가 말한 2020년 vs 현재",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2020년",
+    "현재(2026)"
+   ],
+   "series": [
+    {
+     "name": "운용 자산",
+     "values": [
+      3000,
+      10000
+     ]
+    }
+   ],
+   "note": "자금은 3배 넘게 늘었는데 거래할 종목 수는 그대로 — 쏠림이 지수 아닌 팩터 급회전으로 나타난다는 설명. 현재 값은 '1조 달러 이상'",
+   "source": "대본(Alexander Altmann 발언)"
+  },
+  {
+   "at": "deep",
+   "title": "Microsoft Azure 성장률 — 가이던스 vs 실제",
+   "sub": "% · 전년 대비, 회계 2027년 1분기와 2분기 가이던스",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "1분기 가이던스(중간값)",
+    "1분기 실제",
+    "2분기 가이던스(중간값)"
+   ],
+   "series": [
+    {
+     "name": "Azure 성장률",
+     "values": [
+      44.5,
+      48,
+      49.5
+     ]
+    }
+   ],
+   "note": "가이던스를 넘었고 다음 분기엔 더 빨라질 것으로 제시 — 수요 둔화 신호는 아직 없다",
+   "source": "SiliconANGLE·CNBC(2026-10-28)"
+  },
+  {
+   "at": "deep",
+   "title": "Alphabet 설비투자",
+   "sub": "억 달러 · 분기 실적과 연간 계획",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "2025년 3분기",
+    "2026년 3분기",
+    "2026년 연간 계획",
+    "2027년 연간 계획"
+   ],
+   "series": [
+    {
+     "name": "설비투자",
+     "values": [
+      240,
+      514,
+      2000,
+      3000
+     ]
+    }
+   ],
+   "note": "분기 설비투자가 1년 새 두 배 — 같은 분기 잉여현금흐름은 -91억 달러",
+   "source": "Fortune(2026-10-28)"
+  },
+  {
+   "at": "deep",
+   "title": "삼성전자+SK하이닉스의 KOSPI 시가총액 비중",
+   "sub": "% · 두 회사 합계",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "2025년 말",
+    "2026-04-15"
+   ],
+   "series": [
+    {
+     "name": "합계 비중",
+     "values": [
+      34.04,
+      40.9
+     ]
+    }
+   ],
+   "note": "넉 달 반 만에 7%포인트 상승 — 지수가 메모리 두 종목에 묶이는 'KOSPI화'의 원형",
+   "source": "파이낸셜뉴스(2026-04-15)"
+  }
+ ],
+ "tg": "월가 AI 컨센서스는 여전히 강세지만 '부정' 단계 — Barclays Altmann\n균열은 네오클라우드 자금 조달에서 먼저(Cipher 전환사채→CoreWeave 매도)\nS&P 내년 이익 증가 약 3분의 2가 반도체 — 'S&P의 KOSPI화'\n외부 자료: Azure 48%·Google Cloud 2배, 그러나 Alphabet 잉여현금흐름 적자",
+ "tg_body": "Barclays 주식 전술 전략 총괄 Alex Altmann은 월가 컨센서스가 여전히 AI 강세라고 본다. 다만 거품 곡선으로 치면 정점 뒤 첫 하락 구간인 '부정' 단계에 가깝고, 균열은 현금흐름이 약한 네오클라우드의 자금 조달에서 먼저 보인다고 했다.\n\n그는 금융 위기가 대형 은행이 아니라 서브프라임에서 시작됐다는 점에 빗댔다. Cipher의 전환사채 발행이 주가를 끌어내리고 CoreWeave 매도로 번졌다는 설명이다. AI가 금리에 둔감하다는 믿음도 깨졌다고 봤다.\n\n관건은 매출이다. S&P 500 순이익이 5조 달러대인데 설비투자를 정당화하려면 소비자 킬러 앱이 필요하다고 했다. 경고 신호로는 하이퍼스케일러의 설비투자 축소를 꼽았다.\n\n지수 변동성이 낮은 이유로는 멀티매니저 자금이 1조 달러를 넘어 쏠림이 팩터 급회전으로 나타난다는 점을 들었다. 또 S&P 내년 이익 증가의 약 3분의 2가 반도체에서 나와 'KOSPI화'가 진행 중이라고 진단했다.\n\n외부 자료로 보면 같은 날 Azure는 48% 성장해 가이던스를 넘었고 Google Cloud 매출은 두 배가 됐다. 수요는 강하다는 반론이 가능하다. 반면 Alphabet 잉여현금흐름은 2분기째 적자였고, Cipher Digital은 전환사채 발표 주에 약 26% 내렸다.",
+ "youtube": "https://www.youtube.com/watch?v=y0YkGWKT0gI",
+ "image": "https://i.ytimg.com/vi/y0YkGWKT0gI/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-29 17:35 KST"
+}
