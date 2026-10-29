@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "40c5201082ff",
+   "kind": "news",
+   "headline": "메타, 프랑스 규제당국 임시 조치에 낸 항소에서 패소(로이터)",
+   "bullets": [
+    "메타가 프랑스 규제당국이 내린 임시 조치들에 불복해 낸 항소에서 졌다고 로이터가 29일 보도했다.",
+    "프랑스 경쟁당국은 지난 7월 메타에 언론사와 저작인접권(뉴스 사용료) 협상을 재개하라는 임시 명령을 냈고, 메타는 8월 파리 항소법원에 임시 명령 두 건의 취소를 청구한 바 있다.",
+    "로이터 본문은 확인하지 못해 판결 세부(어느 조치인지, 이행 기한 등)는 아직 확인되지 않았다."
+   ],
+   "summary": "로이터는 29일 메타가 프랑스 규제당국이 부과한 임시 조치에 대한 항소에서 패소했다고 전했다. 임시 조치는 최종 결정 전에 당국이 먼저 내리는 명령으로, 항소가 기각되면 메타는 최종 판단이 나오기 전이라도 명령을 그대로 따라야 한다.\n\n배경으로, 프랑스 경쟁당국은 2026년 7월 8일 메타의 언론사 저작권 계약이 만료되자 언론사와 사용료 협상을 다시 시작하고 사용료 산정에 필요한 정보를 15일 안에 내라고 명령했다(유로뉴스). 메타는 8월 파리 항소법원에 저작인접권 관련 임시 명령 두 건을 뒤집어 달라고 청구했다(엠렉스). 이번 패소가 이 두 건에 대한 판단인지는 로이터 본문을 읽지 못해 확인하지 못했다.\n\n메타는 유럽에서 언론사 콘텐츠의 인공지능 활용을 둘러싸고 새 상업 약관 시행을 11월 20일로 미루는 등 언론사·경쟁당국과 마찰이 커지고 있다. 남은 쟁점은 최종 사용료 규모와 상고 여부다.",
+   "title": "Meta loses appeals against interim measures imposed by French regulators",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxONnJENHVhbWVmOEVkWndYd3l2Y2haUjlPZllvWU5UOWUyd0ljZTZjTzVXN056MG9idWNxZU5sMUZfSF9qZTNXdGM1aHJGQTU0cVpPQmY2c0lYU3YxR0hWR3AxYXltWXdXUWE4d3RVWVRNVEFLZ0xFbDB2ZlZFSzN3Wm5hZlhnZ19WUkxvdEF3UU5IME55dS1tcnBPOVRJOUtJbGlYeG1qODFoTnhLOG53eXR6ZTk?oc=5",
+   "published": "2026-10-29 19:00 KST",
+   "written": "2026-10-29 19:17 KST"
+  },
+  {
    "id": "2415cb0214d1",
    "kind": "news",
    "headline": "메타, 언론사 반발에 새 상업 약관 시행 30일→11월 20일로 미뤄 — 'AI에 콘텐츠 무제한 사용' 우려, 유럽연합·영국 경쟁당국까지 민원",
@@ -417,5 +433,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-10-29 06:17 KST"
+ "updated": "2026-10-29 19:17 KST"
 }
