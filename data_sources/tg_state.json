@@ -261,6 +261,11 @@
   "pod:2026-10-28-sixsigma-sJa9mxMKZIc",
   "pod:2026-10-28-sixsigma-xsa0a1xjPRg",
   "pod:2026-10-28-understanding-b6-kyiV1QwE",
+  "pod:2026-10-29-oddlots-what-wall-street-really-thinks-about-the-ai-trad",
+  "pod:2026-10-29-sixsigma-NoJ3zkV3KXY",
+  "pod:2026-10-29-sixsigma-k90HlzwOKFU",
+  "pod:2026-10-29-sixsigma-q5tV65J7qcQ",
+  "pod:2026-10-29-sixsigma-uyB8WoX-sWs",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:035d98272c4d",
@@ -1283,21 +1288,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:f33e8822d1e0": [
-   767
-  ],
-  "trk:bill-ackman:8b5c4c18c150": [
-   768
-  ],
-  "trk:bill-ackman:a1b8ad155758": [
-   769
-  ],
-  "trk:blog-techcrunch:b226aec7f34b": [
-   770
-  ],
-  "usdkrw:2026-10-23": [
-   274
-  ],
   "trk:meta:60cefc033103": [
    771
   ],
@@ -2812,8 +2802,23 @@
   ],
   "trk:t-678e8450:cdb8c8dfa733": [
    1226
+  ],
+  "pod:2026-10-29-oddlots-what-wall-street-really-thinks-about-the-ai-trad": [
+   1227
+  ],
+  "pod:2026-10-29-sixsigma-uyB8WoX-sWs": [
+   1228
+  ],
+  "pod:2026-10-29-sixsigma-k90HlzwOKFU": [
+   1229
+  ],
+  "pod:2026-10-29-sixsigma-NoJ3zkV3KXY": [
+   1230
+  ],
+  "pod:2026-10-29-sixsigma-q5tV65J7qcQ": [
+   1231
   ]
  },
  "topics": {},
- "topic_fail_at": 1793258824.788571
+ "topic_fail_at": 1793262825.914744
 }
