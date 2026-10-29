@@ -945,7 +945,9 @@ def _ust_at(curve, day, years):
 def c_bonds(ctx):
     # 30분마다 도는 작업이라 매번 받진 않는다(채권 14개 × 약 13초). 한국 날짜로 하루 한 번 받으면 새벽엔 미국 전날 장 마감 값이
     # 아직 없어 하루 이상 밀리므로(2026-10-28 사용자), '받아 둔 최신 거래일'이 미국 직전 장 마감일보다 앞설 때만 2시간 간격으로 다시 받는다.
-    want = (NOW.astimezone(timezone(timedelta(hours=-5))) - timedelta(hours=20)).date()   # 미 동부 저녁 8시쯤 FINRA 장 마감 값이 올라옴
+    # FINRA 공개 장 마감 값은 다음 날 미 동부 새벽~아침(한국 저녁 6~8시쯤)에야 올라온다(2026-10-28 실측: 10/27 값이 18:08엔 없고 20:09엔 있음).
+    # 그래서 한국 17시쯤부터 직전 거래일 값을 찾고, 그 시간대엔 작업 주기(30분)마다 다시 받는다(2026-10-29 사용자: 왜 새벽이 아니냐)
+    want = (NOW.astimezone(timezone(timedelta(hours=-5))) - timedelta(hours=27)).date()
     while want.weekday() >= 5:
         want -= timedelta(days=1)
     have = ctx.state.get("bond_last") or ""
@@ -954,7 +956,7 @@ def c_bonds(ctx):
         if have >= want.isoformat():
             print(f"  채권: {have} 값까지 받음 — 건너뜀")
             return
-        if tried and NOW - datetime.fromisoformat(tried) < timedelta(hours=2):
+        if tried and NOW - datetime.fromisoformat(tried) < timedelta(minutes=25):
             print(f"  채권: {want} 값 기다리는 중(마지막 시도 {tried[11:16]}) — 건너뜀")
             return
     ctx.state["bond_try"] = NOW.isoformat(timespec="minutes")

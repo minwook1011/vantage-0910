@@ -100,8 +100,8 @@ def stamp(t):
 
 
 def upd_mark(basis, upd):
-    """그래프 점선 옆 글귀 — '10/27 장 마감' + '10/29(목) 08:51 갱신' 두 줄 (2026-10-29 사용자)"""
-    return "\n".join(x for x in (basis, f"{upd} 갱신" if upd else "") if x)
+    """그래프 점선 옆 글귀 — '미국 10/27 종가' + '한국 기준 10/28(수) 20:09' 두 줄 (2026-10-29 사용자 지정 문구)"""
+    return "\n".join(x for x in (basis, f"한국 기준 {upd}" if upd else "") if x)
 
 
 def md(d):
@@ -155,7 +155,7 @@ def gpu():
         ls_ = sorted(lines, key=lambda l: order.get(l["label"], 9))
         img = line("gpu", "GPU별 렌탈 지수", f"Ornn 컴퓨트 가격 지수(OCPI · 실제 체결 기준) · $/GPU·시간 · {last} 정산",
                    [(l["label"], [(p["date"], p["value"]) for p in l["points"]]) for l in ls_], digits=2,
-                   mark=upd_mark(f"{md(last)} 정산", stamp(s.get("updated_at"))))
+                   mark=upd_mark(f"미국 {md(last)} 종가", stamp(s.get("updated_at"))))
         rows = []
         for l in ls_:
             p = l["points"]
@@ -239,7 +239,7 @@ def cds():
             if ls_:
                 imgs.append(line(sid, title, f"5년물 · bp · ICE 결제가격 · {asof} 기준" + (" · 로그 눈금" if log else ""),
                                  [(l["label"], [(p["date"], p["value"]) for p in l["points"]]) for l in ls_], digits=0, log=log,
-                                 mark=upd_mark(f"{md(asof)} 결제", stamp((S.get(sid) or {}).get("updated_at") or tab.get("updated_at")))))
+                                 mark=upd_mark(f"미국 {md(asof)} 종가", stamp((S.get(sid) or {}).get("updated_at") or tab.get("updated_at")))))
         rows = []
         for r in tab["rows"]:
             c = r.get("chg")
@@ -271,7 +271,7 @@ def bonds():
                 continue
             imgs.append(line(sid, title, f"{sub} · 최근 1년 · FINRA 장 마감 · {asof} 기준",
                              [(l["label"], [(p["date"], p["value"]) for p in l["points"]]) for l in ls_], digits=2, unit="%", since_days=365,
-                             mark=upd_mark(f"{md(asof)} 장 마감", stamp((S.get(sid) or {}).get("updated_at") or tab.get("updated_at")))))
+                             mark=upd_mark(f"미국 {md(asof)} 종가", stamp((S.get(sid) or {}).get("updated_at") or tab.get("updated_at")))))
             rows = []
             for l in ls_:
                 p = l["points"]
@@ -389,7 +389,7 @@ def openrouter():
         from tg_charts import bars, line
         imgs = [line("price", "OpenRouter 평균 실효 단가", f"토큰 100만 개당 실제 지불액(지출 ÷ 토큰) · $/M · 최근 7일 기준 · {last}",
                      [("단가", [(x["date"], x["value"]) for x in p])], digits=3, fill=True,
-                     mark=upd_mark(f"{md(last)} 마감", stamp((S.get('or_avg_price') or {}).get('updated_at'))))]
+                     mark=upd_mark(f"세계 표준시 {md(last)} 마감", stamp((S.get('or_avg_price') or {}).get('updated_at'))))]
         d1 = chg(p[-2]["value"], p[-1]["value"])
         wk = (date.fromisoformat(last) - timedelta(days=7)).isoformat()
         w = next((x for x in reversed(p) if x["date"] <= wk), None)
@@ -678,6 +678,10 @@ def macro():
         """'10/07 종가' 대신 '10/08(목) 08:46 실시간' 처럼 시세 시각까지"""
         return f"{stamp(live[k][1].astimezone(KST).isoformat())} 실시간" if k in live else ""
 
+    def live_mark(k, basis, upd):
+        """점선 글귀 — 실시간 시세면 '한국 기준 10/29(목) 09:10 실시간', 아니면 '미국 10/27 종가' + '한국 기준 …'"""
+        return f"한국 기준 {stamp(live[k][1].astimezone(KST).isoformat())} 실시간" if k in live else upd_mark(basis, upd)
+
     def build():
         from tg_charts import line
         fg = load("docs/data/fear_greed.json") or {}
@@ -696,14 +700,14 @@ def macro():
         if all(p for _, p in ys):
             t_y = when("y10") or f"{ys[1][1][-1][0]} 종가 · {upd} 갱신"
             imgs.append(line("yields", "미국 국채금리", ("2년 · 10년 · 30년물 · % · 최근 1년 ·", f"{t_y} 기준"), ys, digits=2, unit="%",
-                             mark=t_y.replace(" · ", "\n")))
+                             mark=live_mark("y10", f"미국 {md(ys[1][1][-1][0])} 종가", upd)))
             parts = [f"{lab} <b>{p[-1][1]:.2f}%</b>({(p[-1][1] - p[-2][1]) * 100:+.0f}bp)" for lab, p in ys if len(p) > 1]
             rows.append("🏦 국채 " + " · ".join(parts) + f"\n      <i>{t_y}</i>")
         w = pts("wti")
         if w:
             t_w = when("wti") or f"{w[-1][0]} 종가 · {upd} 갱신"
             imgs.append(line("wti", "WTI 원유 선물", ("달러/배럴 · 최근 1년 ·", f"{t_w} 기준"), [("WTI", w)], digits=2, fill=True,
-                             mark=t_w.replace(" · ", "\n")))
+                             mark=live_mark("wti", f"미국 {md(w[-1][0])} 종가", upd)))
             rows.append(f"🛢 WTI <b>${w[-1][1]:.2f}</b>" + (f" ({chg(w[-2][1], w[-1][1]):+.1f}%)" if len(w) > 1 else "")
                         + f"\n      <i>{t_w}</i>")
         cap = f"📊 <b>매크로 요약</b> · {stamp(NOW.isoformat())} 발송\n" + "\n".join(rows)
@@ -719,7 +723,7 @@ def macro():
         upd = stamp((load("docs/macro_dash.json") or {}).get("updated"))
         t_k = when("usdkrw") or f"{p[-1][0]} 기준 · {upd} 갱신"
         img = line("usdkrw", "원/달러 환율", ("원 · 최근 1년 ·", f"{t_k} 기준"), [("원/달러", p)], digits=1, fill=True,
-                   mark=t_k.replace(" · ", "\n"))
+                   mark=live_mark("usdkrw", f"{md(p[-1][0])} 종가", upd))
         c = chg(p[-2][1], p[-1][1]) if len(p) > 1 else 0
         return [img], f"💱 <b>원/달러 환율</b> {p[-1][1]:,.1f}원 ({c:+.2f}%)\n<i>{t_k}</i>"
 
