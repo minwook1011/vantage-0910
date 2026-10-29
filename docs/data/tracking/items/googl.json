@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "bb1448148388",
+   "kind": "news",
+   "headline": "핀란드, 구글 데이터센터 부지 환경 훼손 혐의로 형사 수사 착수(로이터)",
+   "bullets": [
+    "핀란드가 구글 데이터센터 예정 부지의 대규모 벌목을 두고 환경 훼손 혐의 형사 수사를 시작했다.",
+    "문제 부지는 무호스·카야니 두 곳. 무호스 330헥타르, 카야니 200헥타르 가까운 숲이 베어졌다.",
+    "핀란드 감독당국은 이달 초 두 곳의 준비 공사 중단을 명령했고, 구글은 산림법을 지켰다며 불법 벌목은 부인해 왔다."
+   ],
+   "summary": "10월 초 핀란드 감독청은 공사가 환경을 크게 바꿀 수 있다며 무호스·카야니 데이터센터 준비 작업을 멈추게 했다. 이후 개인 고발로 경찰이 예비 조사를 해 왔는데, 이번에 형사 수사 단계로 넘어갔다.\n\n구글 핀란드 대표는 대규모 벌목에 대해 사과하면서 자사 환경 기준을 못 지켰다고 인정했지만 법 위반은 부인하고 있다. 환경영향평가는 연내 마무리 예정이다. 수사 결과에 따라 구글의 북유럽 데이터센터 확장 일정이 늦어질 수 있다. 로이터 본문은 확인하지 못해 제목과 이달 보도를 바탕으로 정리했다.",
+   "title": "Finland launches criminal probe of suspected environmental damage at Google data centre site",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQZk1Mbjlqa3B2RFBxMXpXbTcwVjdMYVpwYkhDVmcyWkpKSEpDTDFzZG9QeHVWOERzNDRJYmNwRHFYWUY0dHV6RDRvaEl4QUYxVVZtOTFZNUNqa18zR2ZiVlJ5eTYtQ0hOcEswMGt3TzdCV0tJazJnMzlBZmZuWXdLZUhQRURmbEZfVTJFbUJKdUJGekNIY28zT182eFBlM2FnaWRJN0dRa3JhX0Exbm9xRTV5T1ptMl8tLUVYUFNmWUthLVQ0YVhMaFU1cw?oc=5",
+   "published": "2026-10-29 22:22 KST",
+   "written": "2026-10-29 22:47 KST"
+  },
+  {
    "id": "eda4495a612a",
    "kind": "news",
    "headline": "시티즌스, 알파벳 투자의견 하향 — 3분기 검색 매출 성장 둔화가 이유(CNBC·인베스팅닷컴)",
@@ -529,5 +545,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-29 20:51 KST"
+ "updated": "2026-10-29 22:47 KST"
 }
