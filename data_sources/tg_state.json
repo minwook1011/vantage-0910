@@ -133,6 +133,7 @@
   "macro:2026-10-26",
   "macro:2026-10-27",
   "macro:2026-10-28",
+  "macro:2026-10-29",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -1320,9 +1321,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ranto28:47685b3a93d3": [
-   790
-  ],
   "trk:blog-ranto28:1f1b856206c9": [
    791
   ],
@@ -2841,6 +2839,11 @@
   ],
   "pod:2026-10-29-synopsis-dialogue-google-s-ai-threat-meta-s-98b-raise-and": [
    1262
+  ],
+  "macro:2026-10-29": [
+   356,
+   357,
+   358
   ]
  },
  "topics": {},
