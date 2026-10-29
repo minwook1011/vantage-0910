@@ -3,6 +3,54 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "fadbe7da0506",
+   "kind": "blog",
+   "headline": "음성 AI 업체 딥그램, 오픈소스 음성 에이전트 프레임워크 '파이프캣' 만든 데일리 인수 — 금액 비공개, 파이프캣은 계속 오픈소스로",
+   "bullets": [
+    "딥그램이 실시간 음성·영상 통화 인프라 회사 데일리를 인수한다. 데일리는 음성 AI 오픈소스 프레임워크 중 가장 많이 쓰이는 축인 파이프캣을 만들고 관리해 왔다.",
+    "인수 금액은 공개하지 않았고, 파이프캣은 특정 회사 모델에 묶이지 않는 오픈소스로 계속 두기로 했다.",
+    "딥그램은 파이프캣 팀과 함께 만든 음성 에이전트용 공개 규약 '실시간 맥락 표준(RCS)'도 내놨다."
+   ],
+   "summary": "파이프캣은 음성·영상 스트림과 음성 인식, 대형 언어 모델, 음성 합성 모델을 한 흐름으로 묶고 지연을 줄여 주는 프레임워크다. 데일리는 피치북 기준 타이거글로벌·냇 프리드먼 등에게서 6,200만 달러 넘게 투자받았고, 딥그램은 올해 1억3천만 달러 시리즈C로 기업가치 10억 달러를 넘겼다. 두 회사는 2016년 와이콤비네이터 같은 기수 출신이다.\n\n데일리 공동창업자 크윈들라 크레이머는 인수 제안이 여럿 있었지만 딥그램 최고경영자 스콧 스티븐슨이 파이프캣을 영구히 오픈소스·중립으로 두겠다고 약속한 점을 보고 골랐다고 했다. 스티븐슨은 개발자가 딥그램 모델만이 아니라 용도에 맞는 최고 모델을 끼워 쓰게 하겠다는 입장이다. 음성 AI 시장이 커지면서 업체들이 제휴·인수로 자리를 굳히는 흐름의 하나다.",
+   "title": "Deepgram acquires Pipecat-maker Daily to bolster its voice AI infrastructure",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/29/deepgram-acquires-pipecat-maker-daily-to-bolster-its-voice-ai-infrastructure/",
+   "published": "2026-10-29 22:00 KST",
+   "written": "2026-10-29 22:17 KST"
+  },
+  {
+   "id": "736ec0329745",
+   "kind": "blog",
+   "headline": "아마존, 알렉사에 쇼핑 기능 100여 개 추가 — 목록·정기배송·배송지 변경·결제 문제까지 말로 처리, 에이전트 기능 사용자 연초 대비 8배",
+   "bullets": [
+    "연말 쇼핑철을 앞두고 아마존이 알렉사에 쇼핑 관련 기능을 100개 넘게 더했다.",
+    "쇼핑 목록 만들기·수정, 정기배송 주기 변경(예: 매달→3개월마다), 배송지·배송 요청 변경, 결제 문제 해결, 프라임·오더블 구독 문의를 알렉사로 할 수 있다.",
+    "아마존은 올해 들어 알렉사 에이전트 기능 사용자가 8배로 늘었고, 지난 12개월 동안 4억 명 넘는 소비자가 알렉사로 쇼핑했다고 밝혔다."
+   ],
+   "summary": "아마존은 올해 인공지능 쇼핑 비서, 신제품·할인 알림 같은 AI 쇼핑 기능을 잇달아 내놨다. 이번 업데이트는 주문 이후 단계(구독 관리, 배송 지시, 결제 오류 처리)까지 알렉사가 대신 처리하게 해 고객센터·앱에서 하던 일을 음성 에이전트로 옮기는 성격이다.\n\n숫자는 아마존 자체 발표다. 에이전트 기능 사용자 증가율(8배)의 기준 규모는 공개하지 않았다. 최근 아마존이 경쟁 쇼핑몰 상품을 자기 사이트에 올리는 등 외부 AI 쇼핑 에이전트에 손님을 뺏기지 않으려는 움직임과 같은 흐름에서 볼 만하다.",
+   "title": "Amazon updates Alexa to help you manage shopping lists, subscriptions, and update delivery instructions",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/29/amazon-updates-alexa-to-help-you-manage-shopping-lists-subscriptions-and-update-delivery-instructions/",
+   "published": "2026-10-29 22:00 KST",
+   "written": "2026-10-29 22:17 KST"
+  },
+  {
+   "id": "19f5c58b4c65",
+   "kind": "blog",
+   "headline": "테크크런치 '파운더 서밋' 11월 4일 보스턴 개최 — 토스트 공동창업자·베세머·글래스윙 등 연사 공개(행사 홍보 글)",
+   "bullets": [
+    "테크크런치가 11월 4일 보스턴에서 여는 창업자 행사 '파운더 서밋' 연사를 공개했다. 후원은 피델리티 프라이빗 셰어스.",
+    "토스트 공동창업자 스티브 프레데트가 첫 아이디어가 성공한 뒤에도 회사를 계속 바꾸는 법을 말한다.",
+    "베세머벤처파트너스 켄트 베넷(제품-시장 적합성 판단), 글래스윙벤처스 루디나 세세리(성장 가속·감속 시점), TDK벤처스 등이 나온다."
+   ],
+   "summary": "새 사실이 담긴 기사가 아니라 테크크런치 자체 행사 홍보 글이다. 세션은 자금 조달보다 팀 구성, 피칭, 성장 시점 판단, 보스턴에서 회사 키우기 같은 운영 주제 위주다. 코전트 시큐리티의 비닛 에두푸간티(팀 구축), 트루벤처스 데이브 발터(피칭), HqO 체이스 가바리노(보스턴 창업)도 연사로 나온다. 글 대부분은 할인·티켓 안내라 투자 관련 정보는 거의 없다.",
+   "title": "Who will you learn from in 6 days at TechCrunch Founder Summit? Meet the founders and investors taking the stages",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/10/29/who-will-you-learn-from-in-6-days-at-techcrunch-founder-summit-meet-the-founders-and-investors-taking-the-stage/",
+   "published": "2026-10-29 22:00 KST",
+   "written": "2026-10-29 22:17 KST"
+  },
+  {
    "id": "68451a536197",
    "kind": "blog",
    "headline": "클라우드 보안 스타트업 업윈드, 데이터독 인수 제안 거절하고 4억 달러 유치 — 기업가치 38억 달러",
@@ -1971,5 +2019,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-10-29 08:19 KST"
+ "updated": "2026-10-29 22:17 KST"
 }
