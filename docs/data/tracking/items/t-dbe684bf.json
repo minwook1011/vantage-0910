@@ -3,6 +3,22 @@
  "slug": "t-dbe684bf",
  "items": [
   {
+   "id": "df6d60e68cea",
+   "kind": "news",
+   "headline": "딥시크·문샷, 오픈AI 'GPT-6 아스트라'를 주된 '증류' 표적으로 삼아 새 모델 개발 — 앤트로픽이 막자 대상 바꿔(디인포메이션)",
+   "bullets": [
+    "문샷AI는 지난주 낸 '키미 K3.1 프로', 딥시크는 17일 낸 'V4.1-Flash 1017'을 만들면서 아스트라 출력을 활용했다고 소식통들이 전했다.",
+    "증류는 가짜 계정 수만 개와 우회 서비스로 특정 모델에 반복 질문을 던져 추론 방식을 베끼는 행위로, 오픈AI·앤트로픽 모두 금지한다.",
+    "중국 업체들은 원래 앤트로픽 클로드를 주로 베꼈지만, 앤트로픽이 강하게 막자 상대적으로 뚫기 쉬운 오픈AI로 옮겨갔다."
+   ],
+   "summary": "아스트라는 오픈AI가 9월 내놓은 최상위 모델이다. 미국 IT 매체 디인포메이션이 28일(현지시간) 보도했고, 오픈AI 대변인은 이 문제를 매우 심각하게 보고 해결하려 계속 노력 중이라고만 밝혔다.\n\n앤트로픽은 이달 초 클로드의 추론 과정 접근을 제한하는 보안 조치를 넣은 뒤 증류 시도로 빠져나가는 추론 데이터가 이전의 10분의 1에서 100분의 1 수준으로 줄었다고 발표했고, 관련 악성 계정 수만 개를 영구 차단했다. 이번 보도는 그 방어가 공격 대상을 오픈AI로 밀어낸 결과라는 뜻이다.\n\n증류 자체는 업계가 작은·싼 모델을 만들 때 흔히 쓰는 기술이지만 남의 모델을 대상으로 하는 건 논란이다. 오픈AI가 앤트로픽 수준의 차단책을 내놓을지, 중국 신모델 성능 경쟁에 어떤 영향이 갈지가 남은 쟁점이다.",
+   "title": "\"딥시크·문샷, '아스트라'를 주된 증류 표적 삼아\"",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9XOXdTMld0N2RBWHFpQ0huYzBXRkw2Qi14cVVEcW9weGM2RTI0Tjkta25QenFfUlVoN1B3bG5pcWJ4cmMwNklqMmpQRndnVjEta3NrQjh4U1dUeUNKcHpaZdIBYEFVX3lxTE9XOXdTMld0N2RBWHFpQ0huYzBXRkw2Qi14cVVEcW9weGM2RTI0Tjkta25QenFfUlVoN1B3bG5pcWJ4cmMwNklqMmpQRndnVjEta3NrQjh4U1dUeUNKcHpaZQ?oc=5",
+   "published": "2026-10-29 15:08 KST",
+   "written": "2026-10-29 16:35 KST"
+  },
+  {
    "id": "5345a3302da6",
    "kind": "news",
    "headline": "딥시크 'V4.1-플래시-1017', 오픈라우터 주간 사용량 1위 — 33조6천억 토큰, 전주보다 801% 급증(10월 19~25일)",
@@ -115,5 +131,5 @@
    "written": "2026-10-20 09:18 KST"
   }
  ],
- "updated": "2026-10-26 15:50 KST"
+ "updated": "2026-10-29 16:35 KST"
 }
