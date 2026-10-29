@@ -551,6 +551,7 @@
   "trk:blog-travelingcompanion:947a91b5014a",
   "trk:blog-travelingcompanion:a81606da2908",
   "trk:blog-travelingcompanion:b64dbe9cbbb6",
+  "trk:blog-travelingcompanion:b68a9cc0d870",
   "trk:blog-travelingcompanion:ca310e442659",
   "trk:blog-travelingcompanion:d39f083ba032",
   "trk:blog-travelingcompanion:d636765a82cc",
@@ -805,6 +806,7 @@
   "trk:t-0a23e71f:69d546ffa025",
   "trk:t-0a23e71f:6bcfaa3a6a2c",
   "trk:t-0a23e71f:70937aa15a5c",
+  "trk:t-0a23e71f:972aa63b4ebc",
   "trk:t-0a23e71f:9b92298ccce9",
   "trk:t-0a23e71f:9bb8fc203c2f",
   "trk:t-0a23e71f:9e42519ee344",
@@ -870,11 +872,13 @@
   "trk:t-678e8450:041b4199fa8e",
   "trk:t-678e8450:055e8cc7dc45",
   "trk:t-678e8450:26e3591eebde",
+  "trk:t-678e8450:2b37a7b5cb9f",
   "trk:t-678e8450:2c0b0a8104cc",
   "trk:t-678e8450:304c7a769ca5",
   "trk:t-678e8450:37c427c4dcfa",
   "trk:t-678e8450:4f82b6f2d483",
   "trk:t-678e8450:548158c48d72",
+  "trk:t-678e8450:5716d2802232",
   "trk:t-678e8450:6adb1a23e531",
   "trk:t-678e8450:71632655013c",
   "trk:t-678e8450:7255341c134e",
@@ -889,6 +893,7 @@
   "trk:t-678e8450:b97d0add14bd",
   "trk:t-678e8450:c65eb92e3a11",
   "trk:t-678e8450:c67629b37a78",
+  "trk:t-678e8450:cdb8c8dfa733",
   "trk:t-678e8450:d77f201b9ebe",
   "trk:t-678e8450:da0abf6b019a",
   "trk:t-678e8450:e6cf0710c151",
@@ -1278,21 +1283,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:9cb90d5f017f": [
-   762
-  ],
-  "trk:blog-techcrunch:aabe400f6606": [
-   763
-  ],
-  "trk:amzn:4af9b25c9b60": [
-   764
-  ],
-  "trk:open-ai:dc01c4a11cec": [
-   765
-  ],
-  "trk:blog-techcrunch:ca13c1c565cb": [
-   766
-  ],
   "trk:blog-techcrunch:f33e8822d1e0": [
    767
   ],
@@ -2807,6 +2797,21 @@
   ],
   "trk:ax:a040e9d6084b": [
    1221
+  ],
+  "trk:t-0a23e71f:972aa63b4ebc": [
+   1222
+  ],
+  "trk:blog-travelingcompanion:b68a9cc0d870": [
+   1223
+  ],
+  "trk:t-678e8450:5716d2802232": [
+   1224
+  ],
+  "trk:t-678e8450:2b37a7b5cb9f": [
+   1225
+  ],
+  "trk:t-678e8450:cdb8c8dfa733": [
+   1226
   ]
  },
  "topics": {},
