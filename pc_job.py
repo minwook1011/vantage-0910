@@ -11,6 +11,7 @@
   --add 경로만 커밋해 origin main 으로 푸시한다. 푸시가 밀리면 fetch → rebase → 재시도(최대 4번).
   같은 데이터 파일이 원격에서 먼저 바뀌어 충돌하면, 원격 것을 받고 명령을 한 번 더 돌린다.
 - 명령이 실패하면(종료 코드 ≠ 0) 커밋하지 않는다. 결과는 마지막 줄 JSON 으로 출력.
+- 같은 이름 작업이 아직 돌고 있으면(잠금 파일 C:\\dev\\vantage-jobs\\<name>.lock, 40분 안) 바로 끝낸다 — 5분마다 도는 작업이 겹치지 않게.
 """
 import argparse
 import json
@@ -77,8 +78,25 @@ def main():
     if cmd[0] in ("python", "python3"):
         cmd[0] = sys.executable
 
-    path = ensure_worktree(a.name)
     out = {"job": a.name, "ok": False, "committed": False, "pushed": False}
+    os.makedirs(JOBS, exist_ok=True)
+    lock = os.path.join(JOBS, a.name + ".lock")
+    if os.path.exists(lock) and time.time() - os.path.getmtime(lock) < 40 * 60:
+        out.update(ok=True, note="앞 실행이 아직 도는 중 — 건너뜀")
+        print(json.dumps(out, ensure_ascii=False))
+        return 0
+    open(lock, "w").write(str(os.getpid()))
+    try:
+        return run(a, cmd, out)
+    finally:
+        try:
+            os.remove(lock)
+        except OSError:
+            pass
+
+
+def run(a, cmd, out):
+    path = ensure_worktree(a.name)
     for attempt in range(2):  # 원격과 같은 데이터 파일이 충돌하면 원격 기준으로 한 번 더 돌린다
         sync(path)
         rc = run_cmd(cmd, path)

@@ -10,6 +10,8 @@ fetch_jp_earnings_results.py — 일본 소비재 스크리너: 실적 발표가
   python fetch_jp_earnings_results.py          # 증분: 최근 발표 예정이던 종목 + 주가 반응이 덜 채워진 종목만
   python fetch_jp_earnings_results.py --full   # 전체 종목 카부탄 스캔(주간 1회) — 가이던스 스냅샷도 전 종목 갱신
   python fetch_jp_earnings_results.py --codes 7532,9983
+  python fetch_jp_earnings_results.py --live   # 실적 시즌 장중~저녁 5분마다: TDnet 에 오늘 새로 올라온 결산단신만 바로 반영
+                                               # (--max N, 기본 40 — 한 번에 너무 오래 걸리지 않게, 남은 건 다음 실행이 잇는다)
 
 데이터 출처
 - 카부탄 결산 페이지(kabutan.jp/stock/finance): 3개월 실적·통기 실적/회사 예상(予)·예상 수정 이력·누계 진척률, 각 행의 발표일.
@@ -534,9 +536,10 @@ def kabu_disclosures(code, date):
 
 
 def tdnet_releasers(date):
-    """도쿄증권거래소 TDnet 공식 공시 목록(release.tdnet.info)에서 그날 결산단신을 낸 종목 코드 — 카부탄 목록과 교차 확인용(2026-10-02)"""
+    """도쿄증권거래소 TDnet 공식 공시 목록(release.tdnet.info)에서 그날 결산단신을 낸 종목 → 처음 공시 시각 'HH:MM'
+    (카부탄 목록과 교차 확인용 2026-10-02, 시각은 발표 시점 판정용 2026-10-30)"""
     ymd_ = date.replace("-", "")
-    codes = []
+    codes = {}
     for page in range(1, 40):
         try:
             h = urllib.request.urlopen(urllib.request.Request(
@@ -548,11 +551,18 @@ def tdnet_releasers(date):
         for r in rows:
             m = re.search(r">\s*(\w{4})0\s*<", r)
             if m and "決算短信" in r:
-                codes.append(m.group(1))
+                t = re.search(r">\s*(\d{2}:\d{2})\s*<", r)
+                t = t.group(1) if t else ""
+                c = m.group(1)
+                if c not in codes or (t and t < codes[c]):
+                    codes[c] = t
             got += bool(m)
         if not got or f"I_list_{page + 1:03d}_{ymd_}" not in h:
             break
-    return list(dict.fromkeys(codes))
+    return codes
+
+
+TD_TIMES = {}   # 오늘 TDnet 결산단신 시각(main 이 채운다) — 카부탄 기사가 아직 없어도 장중/장후 판정
 
 
 def releasers(date):
@@ -660,7 +670,7 @@ def build(code, fin, today, guide_snap, old_rec, now):
 
     # 기사(시각·진척률·백필 가이던스). 같은 날짜 레코드가 있으면 재사용
     art = {}
-    if old_rec and old_rec.get("date") == D and old_rec.get("_art") is not None:
+    if old_rec and old_rec.get("date") == D and old_rec.get("_art"):
         art = old_rec["_art"]
     else:
         arts = kabu_articles(code)
@@ -692,7 +702,7 @@ def build(code, fin, today, guide_snap, old_rec, now):
     sup = yahoo_surprise(code, D)
     if sup:
         rec["cons"] = {k: sup[k] for k in ("eps", "est", "pct")}
-    tm = art.get("time") or (sup or {}).get("time")
+    tm = art.get("time") or (TD_TIMES.get(code) if D == today else None) or (sup or {}).get("time")
     rec["time"] = tm
 
     new_guide = next((y for y in fin["year"] if y["est"]), None)
@@ -814,6 +824,7 @@ def main():
             sched = {}
 
     t0 = datetime.strptime(today, "%Y-%m-%d")
+    live_mode = "--live" in args
     if "--px-only" in args:
         # 장중 30분마다: 카부탄은 건너뛰고 최근 발표 종목의 주가 반응만 다시 계산(발표 다음 날 장이 열리면 바로 뜨게)
         targets = []
@@ -821,18 +832,36 @@ def main():
         targets = only
     elif full:
         targets = codes
+    elif live_mode:
+        # 실시간(2026-10-30 사용자: 결산단신이 올라오자마자 반영): TDnet 공식 목록만 보고(가볍고 바로 뜬다) 오늘 낸 종목 중
+        # 아직 오늘 발표를 못 잡은 것 → 먼저 올라온 순. 잡았지만 카부탄 결산 기사가 아직 없던 것은 뒤에 붙여 다시 본다.
+        TD_TIMES.update(tdnet_releasers(today))
+        cs = set(codes)
+        live = sorted((c for c in TD_TIMES if c in cs), key=lambda c: TD_TIMES[c] or "99:99")
+        # 카부탄에 오늘 분기가 끝내 안 뜨는 종목(정정 공시 등)·기사가 안 붙는 종목은 6번(약 30분)까지만 다시 본다
+        tried = lambda c: (old.get(c, {}).get("_live") or {}).get("d") == today and old[c]["_live"]["n"] >= 6
+        new = [c for c in live if not (c in old and old[c].get("date", "") >= today) and not tried(c)]
+        redo = [c for c in live if c in old and c not in new and not tried(c) and not (old[c].get("_art") or {}).get("title")]
+        cap = int(args[args.index("--max") + 1]) if "--max" in args else 40
+        targets = (new + redo)[:cap]
+        print(f"  TDnet 오늘 결산단신(유니버스 안) {len(live)} · 새로 {len(new)} · 기사 다시 {len(redo)} · 이번 {len(targets)}")
     else:
         # 증분(실적 시즌 발표 시간대마다): 오늘 결산단신을 실제로 낸 종목 + 이번 주 발표 예정이던 종목 중
         # 아직 그 발표를 못 잡은 것만. 이미 잡은 발표(레코드 날짜 ≥ 예정일)는 다시 받지 않는다.
         # 오늘 결산단신을 낸 종목 — 카부탄 개시 목록 + TDnet 공식 목록 교차(어느 한쪽에만 있어도 잡는다)
-        kb, td = releasers(today), tdnet_releasers(today)
+        kb = releasers(today)
+        TD_TIMES.update(tdnet_releasers(today))
+        td = list(TD_TIMES)
         live = [c for c in dict.fromkeys(kb + td) if c in set(codes)]
         print(f"  오늘 결산단신 낸 종목(유니버스 안): {len(live)} · 카부탄 {len(kb)} · TDnet {len(td)} · TDnet에만 {len(set(td) - set(kb))} · 카부탄에만 {len(set(kb) - set(td))}")
         due = [c for c in codes if c in sched and
                0 <= (t0 - datetime.strptime(sched[c]["date"], "%Y-%m-%d")).days <= 7]
         targets = [c for c in live + due if not (c in old and old[c].get("date", "") >= (today if c in live else sched.get(c, {}).get("date", "9999")))]
     targets = list(dict.fromkeys(targets))
-    print(f"대상 {len(targets)}종목 ({'full' if full else 'codes' if only else 'incremental'})")
+    print(f"대상 {len(targets)}종목 ({'full' if full else 'codes' if only else 'live' if live_mode else 'incremental'})")
+    if live_mode and not targets:
+        print("새 결산단신 없음")
+        return 0
 
     results = {c: r for c, r in old.items()
                if (t0 - datetime.strptime(r["date"], "%Y-%m-%d")).days <= LOOKBACK_DAYS}
@@ -856,6 +885,9 @@ def main():
         # 스냅샷은 레코드 계산 뒤에 갱신(발표 전 값으로 비교하기 위해)
         snapshot_update(snaps, code, fin, today)
         if rec:
+            if live_mode and (rec["date"] < today or not (rec.get("_art") or {}).get("title")):
+                lv = (rec_old or {}).get("_live") or {}
+                rec["_live"] = {"d": today, "n": (lv.get("n", 0) if lv.get("d") == today else 0) + 1}
             refresh_px(code, rec, now)
             try:
                 rec["rid"] = write_report(code, rec, fin, uni.get(code))
@@ -871,7 +903,7 @@ def main():
 
     # 반응 5D가 아직 비어 있는 최근 레코드는 주가만 다시
     for code, rec in results.items():
-        if code in targets:
+        if code in targets or live_mode:  # 실시간 모드는 새 발표만 — 나머지 다시 보기는 정기 실행이 한다
             continue
         # 컨센서스 대비(서프·쇼크)가 비어 있는 최근 7일 발표는 야후를 다시 본다 — 야후가 발표 몇 시간~하루 뒤에 채우는 일이 많다
         # (2026-10-07: 팔그룹 +9.2% 가 야후엔 있는데 발표 직후 한 번만 봐서 빈칸이었다)
@@ -890,7 +922,7 @@ def main():
     for code, rec in results.items():
         rid = rec.get("rid")
         path = os.path.join(REPORTS, (rid or "_") + ".json")
-        if rid and code not in targets and os.path.exists(path):
+        if rid and code not in targets and not live_mode and os.path.exists(path):
             try:
                 r = json.load(open(path, encoding="utf-8"))
                 r["rec"] = {k: v for k, v in rec.items() if not k.startswith("_") and k != "rid"}

@@ -464,7 +464,7 @@ def candidates(days=FRESH_DAYS, since=None):
     since = since or (NOW - timedelta(days=days)).strftime("%Y-%m-%d")
     fj, fu = fav_sets(favorites())
     rows = []
-    # 일본: 발표 결과(주가 반응·컨센) + 10분 후 주가 + 리포트 목록(이름·유니버스)
+    # 일본: 발표 결과(주가 반응·컨센) + 발표 후 주가(카부탄 16시·19시, 10/29 까지는 10분 후) + 리포트 목록(이름·유니버스)
     res = (load("docs/data/jp/earnings_results.json") or {}).get("results") or {}
     pts = (load("docs/data/jp/earnings_pts.json") or {}).get("items") or {}
     ixj = {r["c"]: r for r in (load("docs/data/jp/reports/index.json") or {}).get("reports") or []}
@@ -481,12 +481,14 @@ def candidates(days=FRESH_DAYS, since=None):
         ix = ixj.get(code) or {}
         px = x.get("px") or {}
         p10 = pts.get(code) if (pts.get(code) or {}).get("date") == d else None
-        moves = [v for v in ((p10 or {}).get("pct10"), px.get("d1")) if v is not None]
+        p10v = (p10 or {}).get("pct") if (p10 or {}).get("pct") is not None else (p10 or {}).get("pct10")
+        p10l = f"카부탄 {p10['slot']}시" if (p10 or {}).get("pct") is not None else "10분 후"
+        moves = [v for v in (p10v, px.get("d1")) if v is not None]
         cons = (x.get("cons") or {}).get("pct")
         hit = (code in fj) or (moves and max(moves) >= UP) or (cons is not None and cons >= BEAT)
         if not hit:
             continue
-        mv = ([("10분 후", p10["pct10"])] if p10 and p10.get("pct10") is not None else []) + \
+        mv = ([(p10l, p10v)] if p10v is not None else []) + \
              ([("다음 거래일" if px.get("timing") == "after" else "그날 종가", px["d1"])] if px.get("d1") is not None else [])
         why = [px_line(mv, cons, code in fj)]
         if not mv:

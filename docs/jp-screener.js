@@ -183,10 +183,15 @@ const BASIS_KO = {op:"영업이익", ord:"경상이익", ni:"순이익", rev:"�
 const sgn = v => (v>0?"+":v<0?"−":"") + Math.abs(v).toFixed(1);
 const okuYen = v => v==null ? "—" : (Math.abs(v)>=10000 ? Math.round(v/100).toLocaleString() : (v/100).toLocaleString(undefined,{maximumFractionDigits:1})) + "억엔";
 const tone = v => v==null ? "" : v>0 ? " up" : v<0 ? " dn" : "";
-/* 발표 10분 후 주가(data/jp/earnings_pts.json, jp_pts_watch.py — 장후 발표는 PTS, 장중은 1분봉). 2026-10-06 사용자: 다음 거래일 말고 10분 뒤 주가로 */
+/* 발표 후 주가(data/jp/earnings_pts.json, jp_pts_watch.py). 2026-10-30 사용자: 카부탄 16시 가격을 올리고 19시에 다시 확인해 덮어쓴다
+   (장후 발표 = PTS, 장 마감 전 발표 = 종가·19시엔 PTS 있으면 PTS). 10/29 까지의 기록은 '발표 10분 후'(pct10) 그대로 */
 let PTS = {};
-function ptsOf(code, date){ const p=PTS[code]; return p && p.pct10!=null && (!date || p.date===date) ? p : null; }
+function ptsOf(code, date){ const p=PTS[code]; return p && (p.pct!=null || p.pct10!=null) && (!date || p.date===date) ? p : null; }
 function ptsChip(p){
+  if(p.pct!=null){
+    const prev = p.slot==="19" && p.s16 && p.s16.pct!=null ? ` <small>16시 ${sgn(p.s16.pct)}%</small>` : "";
+    return `<em class="rb px big${tone(p.pct)}" title="발표 ${p.t} → 카부탄 ${p.slot}시 확인 · ${p.src==="PTS"?"장외거래(PTS) "+p.at+" 체결가":"그날 종가"} · 기준 ${p.base_src||""} ${p.base}">카부탄 ${p.slot}시 ${sgn(p.pct)}% <small>${p.src}${p.src==="PTS"?" "+p.at:""}</small>${prev}</em>`;
+  }
   const now = p.now_pct!=null && p.now_at && p.now_at!==p.at10 ? ` <small>지금 ${sgn(p.now_pct)}% ${p.now_at}</small>` : "";
   return `<em class="rb px big${tone(p.pct10)}" title="발표 ${p.t} → ${p.at10} ${p.src==="PTS"?"장외거래(PTS) 가격":"장중 가격"} · 기준 ${p.base_src||""} ${p.base}">발표 10분 후 ${sgn(p.pct10)}% <small>${p.src} ${p.at10}</small>${now}</em>`;
 }
@@ -204,7 +209,7 @@ function resBadges(x, code){
   const p = x.px||{};
   const live = p.d1_live ? ` <small>장중 ${p.d1_at||""}</small>` : "";
   if(pq) b.push(ptsChip(pq));
-  if(p.d1==null){ if(!pq) b.push(`<em class="rb px">주가 반응 ${p.base?"10분 후 가격 수집 중":"—"}</em>`); }
+  if(p.d1==null){ if(!pq) b.push(`<em class="rb px">주가 반응 ${p.base?"16시 카부탄 확인 전":"—"}</em>`); }
   else b.push(`<em class="rb px${pq?"":" big"}${tone(p.d1)}">${pq?(p.timing==="after"?"다음 거래일":"그날 종가"):"발표 후"} ${sgn(p.d1)}%${live}</em>`);
   if(p.d1!=null && !p.d1_live) b.push(`<em class="rb px${tone(p.d5)}">5D ${p.d5==null?"—":sgn(p.d5)+"%"}</em>`);
   if(x.beat && x.beat.pct!=null) b.push(`<em class="rb${tone(x.beat.pct)}">가이던스 ${sgn(x.beat.pct)}%</em>`);
