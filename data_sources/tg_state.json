@@ -312,7 +312,9 @@
   "trk:ax:7916c8205ccb",
   "trk:ax:8fe2417a1a7c",
   "trk:ax:9794676d25c2",
+  "trk:ax:a040e9d6084b",
   "trk:ax:ae4fc2b9144c",
+  "trk:ax:baddae0404f3",
   "trk:ax:d599095d52ed",
   "trk:ax:dae1466c4c99",
   "trk:ax:db869a3b7283",
@@ -787,6 +789,7 @@
   "trk:open-ai:f787bce1124a",
   "trk:open-ai:fa41575f564d",
   "trk:open-ai:fb26970d5fb5",
+  "trk:open-ai:fcfebc245188",
   "trk:open-ai:fea4ee1d4e06",
   "trk:t-0a23e71f:145d21e1e8e1",
   "trk:t-0a23e71f:1c65f205d90d",
@@ -874,6 +877,7 @@
   "trk:t-678e8450:548158c48d72",
   "trk:t-678e8450:6adb1a23e531",
   "trk:t-678e8450:71632655013c",
+  "trk:t-678e8450:7255341c134e",
   "trk:t-678e8450:7ea210b3f392",
   "trk:t-678e8450:805d5a97b06f",
   "trk:t-678e8450:84e84e23752d",
@@ -882,6 +886,8 @@
   "trk:t-678e8450:9db66e50501e",
   "trk:t-678e8450:a319ea2c7df1",
   "trk:t-678e8450:abce50538b5f",
+  "trk:t-678e8450:b97d0add14bd",
+  "trk:t-678e8450:c65eb92e3a11",
   "trk:t-678e8450:c67629b37a78",
   "trk:t-678e8450:d77f201b9ebe",
   "trk:t-678e8450:da0abf6b019a",
@@ -967,6 +973,7 @@
   "trk:t-c3c842c3:4e876d2614e6",
   "trk:t-c3c842c3:868ad36f8bea",
   "trk:t-c3c842c3:b4247b8fc218",
+  "trk:t-c44f9b86:82a8de3af5a1",
   "trk:t-dbe684bf:4a74927085d7",
   "trk:t-dbe684bf:4bc20c6f97f4",
   "trk:t-dbe684bf:4c709989a407",
@@ -1271,27 +1278,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:c6cf8c65ac85": [
-   755
-  ],
-  "trk:blog-techcrunch:daec0d20e7db": [
-   756
-  ],
-  "trk:blog-ranto28:d1bde61905a3": [
-   757
-  ],
-  "trk:blog-techcrunch:387d4012e6b7": [
-   758
-  ],
-  "trk:blog-techcrunch:125851f53afb": [
-   759
-  ],
-  "trk:blog-techcrunch:f5f85f1296e7": [
-   760
-  ],
-  "trk:open-ai:e7e02b8dc0c3": [
-   761
-  ],
   "trk:blog-techcrunch:9cb90d5f017f": [
    762
   ],
@@ -2800,6 +2786,27 @@
   ],
   "trk:ax:ae4fc2b9144c": [
    1214
+  ],
+  "trk:open-ai:fcfebc245188": [
+   1215
+  ],
+  "trk:t-c44f9b86:82a8de3af5a1": [
+   1216
+  ],
+  "trk:t-678e8450:b97d0add14bd": [
+   1217
+  ],
+  "trk:t-678e8450:7255341c134e": [
+   1218
+  ],
+  "trk:t-678e8450:c65eb92e3a11": [
+   1219
+  ],
+  "trk:ax:baddae0404f3": [
+   1220
+  ],
+  "trk:ax:a040e9d6084b": [
+   1221
   ]
  },
  "topics": {},
