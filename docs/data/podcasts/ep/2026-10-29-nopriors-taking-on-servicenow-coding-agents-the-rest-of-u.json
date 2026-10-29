@@ -1,0 +1,201 @@
+{
+ "id": "2026-10-29-nopriors-taking-on-servicenow-coding-agents-the-rest-of-u",
+ "title_ko": "ServiceNow에 도전하다 — 모두를 위한 코딩 에이전트, Serval 공동창업자 겸 CEO Jake Stauch",
+ "guest": {
+  "name": "제이크 스타우크(Jake Stauch)",
+  "role": "Serval 공동창업자·CEO — IT 부서용 AI 자동화·서비스 관리 플랫폼(비상장, 기업가치 10억 달러)"
+ },
+ "guest_profile": [
+  {
+   "name": "제이크 스타우크(Jake Stauch)",
+   "title": "Serval 공동창업자·CEO",
+   "what": "기업 IT 부서용 AI 자동화·서비스 관리 플랫폼 Serval을 이끈다. 회사는 2025년 12월 시리즈 B에서 기업가치 10억 달러를 인정받았고 누적 1억 2,700만 달러를 유치했다. 직원은 약 200명이다.",
+   "career": "Duke 대학에서 생물학을 공부하던 학부 시절 뇌파로 조작하는 게임 회사 NeuroPlus를 창업해 CEO를 지냈고, 2018년 Forbes 30 Under 30(게임 부문)에 올랐다. 2019년 무렵부터 약 5년간 보안 장비 회사 Verkada에서 제품 매니저로 시작해 제품 디렉터까지 맡았다. 2024년 Verkada 동료 Alex McLeod(CTO)와 Serval을 공동 창업했다.",
+   "track": "투자자가 아니라 공개된 투자 수익률은 없다. 경영 성과로는 창업 약 1년 반 만에 기업가치 10억 달러, 2025년 10~12월 두 달 새 시리즈 A(4,700만 달러)·B(7,500만 달러) 연속 유치가 확인된다. 매출 규모는 공개되지 않아 확인 못 함.",
+   "why": "AI 코딩 에이전트를 개발팀 밖 IT·HR·재무 업무로 넓히는 가장 공격적인 시도를 하는 창업자다. 대기업에서 에이전트에게 권한을 어떻게 줄지라는, ServiceNow와 정면으로 부딪히는 문제를 현장 감각으로 설명한다."
+  }
+ ],
+ "company": {
+  "name": "Serval",
+  "sector": "AI 에이전트 · IT 서비스 관리(ITSM) · 기업 자동화",
+  "what": "코드 생성 에이전트로 IT·HR·재무 업무 자동화를 만들고 승인·감사 기록으로 통제하는 플랫폼(비상장)"
+ },
+ "topic": "코딩 에이전트를 IT 부서에 — Serval이 권한 통제와 감사 기록을 무기로 ServiceNow를 대체하려는 전략",
+ "headline": "'모델은 누구나 쓴다, 우리 제품은 경계' — 20명→200명 Serval이 권한 통제로 ServiceNow를 겨눈다",
+ "tldr": [
+  "Serval은 코드 생성 에이전트로 IT 자동화를 만드는 플랫폼 — 처음부터 ServiceNow를 대체 대상으로 겨냥했다",
+  "핵심은 '경계가 제품' — 최소 권한·결정론적 승인·감사 기록·적시 접근으로 대기업이 에이전트를 안전하게 쓰게 한다",
+  "직원 1월 20명 → 지금 200명, 채용은 더 빨라질 것(외부 보도: 6~12개월 500명 추가)",
+  "SaaS 종말론엔 절충 — ERP·HR·ITSM·CRM 같은 핵심 시스템은 남고 단일 기능 SaaS·미들웨어가 정리된다",
+  "가격은 토큰이 아니라 실행된 워크플로 수 기준, 관리자용 에이전트 Catalyst가 주 인터페이스",
+  "외부 자료: 2025년 12월 Sequoia 주도 7,500만 달러·기업가치 10억 달러, ServiceNow는 3분기 호실적에도 시간외 17% 급락"
+ ],
+ "summary_md": "### 1. 출발점 — IT 팀이 가장 돈을 많이 쓰고 가장 싫어하는 것\n\n- 진행은 Sarah Guo와 Elad Gil. Jake Stauch는 Serval을 '기업 자동화·기업 서비스 관리(ESM)' 회사로 소개하고, 그 일을 코드 생성 에이전트로 한다고 정의한다. 맞상대는 이 분야의 전통 강자 **ServiceNow**다.\n- 이 시장을 알게 된 건 전 직장 Verkada(IT 팀에 물리 보안 제품을 파는 회사)에서였다. IT 팀에게 '가장 돈을 많이 쓰면서 가장 싫어하는 도구'를 물으면 ServiceNow가 자주 꼽혔다고 한다.\n- 불만의 핵심은 만들기가 어렵다는 점이다. 강력하고 유연한 워크플로 자동화 플랫폼이지만 아이디어 하나를 구현하려면 컨설턴트를 불러야 해서, 늘 원하는 수준보다 **6~12개월 뒤처져** 있고 비용은 해마다 오른다는 설명이다.\n\n### 2. '나머지 모두를 위한 코딩 에이전트'\n\n- 지금까지 기업 AI 도입의 선두는 개발팀이었다. Stauch는 그 이유로 코드 리뷰 체계를 든다. 인턴이 강력한 걸 만들어도 운영에 올라가기 전에 검토를 거치니 실험이 안전하다는 것이다.\n- Serval은 이 구조를 IT 부서에 옮긴다. 속은 코딩 에이전트지만 위에 승인·스테이징·감사 기록 같은 안전장치를 얹어, IT가 다시 HR·재무·법무 팀에 자동화를 퍼뜨리게 한다. 대부분의 회사에는 개발팀이 아니라 **IT 부서**가 있다는 점이 핵심 통찰이라고 했다.\n- 개인 AI 비서와의 차이도 짚었다. 대기업 직원 개인 권한은 너무 좁아 개인 에이전트가 할 수 있는 일이 거의 없다. Serval은 IT의 관리자급 권한을 쓰되, 결정론적 승인 절차와 감사 기록, 필요한 순간에만 권한을 주는 **'적시(just-in-time) 접근'**으로 그 간극을 메운다. 밑단이 티켓 시스템이라 모든 요청이 기록된다.\n\n### 3. 사람을 붙이는 이유 — 배치 전략가와 ProServal\n\n- 기술보다 확산이 병목이라는 진단이다. 그래서 '배치 전략가'와 현장 파견 엔지니어가 고객사에 직접 가서 업무 흐름을 파악하고 구현을 이끈다.\n- 구현 뒤에도 자동화 수요가 끝없이 이어져, **ProServal**(자동화 엔지니어링) 팀을 따로 꾸려 지속 지원을 한다고 했다.\n\n### 4. 처음부터 '가장 큰 놈'을 겨냥한 이유\n\n- 회사는 2년 반 됐다. 창업 첫날 공동창업자 Alex McLeod의 거실에서 역대 최대 기업용 소프트웨어 회사가 되겠다며 ServiceNow에 동그라미를 쳤다고 한다.\n- 흔한 두 가지 길(기존 강자 위에 얇은 AI 층을 얹거나, 중소기업 시장부터 내려가 공략)은 성장에 천장이 있다고 봤다. 진행자들은 Salesforce 위에서 시작해 독립한 Veeva, 하위 시장에서 출발한 Rippling·HubSpot을 예로 들었다. Serval은 처음부터 **대기업용으로 설계**해야 제품·조직·성장 방식이 달라진다고 했다.\n- ServiceNow를 고른 건 본질이 워크플로 자동화 플랫폼이기 때문이다. 창업자들은 자동화를 표현하는 가장 좋은 방법이 코드라고 믿었다. 끌어다 놓는 방식의 빌더는 비개발자에겐 복잡하고 개발자에겐 답답하다는 것이다. AI로 누구나 코드를 쓸 수 있게 되면 더 나은 자동화 플랫폼이 가능하다는 계산이었다.\n- 창업 초기엔 코딩 모델이 제대로 작동하지 않았다. 비밀번호 재설정 같은 절차형 작업은 검증이 쉬워 모델이 빨리 좋아질 거라 보고, 초기 데모에선 예시를 잔뜩 넣어 버텼다. 지금은 API만 있으면 자동화 못 하는 워크플로를 찾기 어려울 정도가 됐다고 한다.\n\n### 5. 모델이 좋아질수록 '경계'가 제품이 된다\n\n- Stauch는 모델을 직접 만들지 않는다며, 자신들의 제품은 **가드레일과 경계**라고 했다. 모델이 강해질수록 고객은 오히려 경계를 더 조이고 싶어 한다는 논리다.\n- 에이전트가 퍼지면 살짝 넉넉한 권한도 큰 피해로 이어질 수 있어, 대기업은 직원 권한을 **최소 권한**까지 줄일 것이라고 예상했다. 그러면 예외 요청이 쏟아지고, 그 예외를 승인·기록하는 층을 쥔 쪽이 더 필수적이 된다는 주장이다.\n\n### 6. 고객 사례와 다음 2~3년\n\n- 대형 기존 시스템을 갈아엎는 건 담당자에게 개인적 위험이다. 그래서 'Serval로 승진한다'는 메시지를 판다고 했다. 대형 고객 Fox Corporation에서 전사 도입을 이끈 실무자가 회사 MVP 후보에 올랐다는 사례를 들었다. 영업은 경영진·IT 리더십을 통한 하향식이다.\n- 앞으로는 직장에도 개인 에이전트가 생기고 에이전트끼리 일을 주고받게 될 것으로 봤다. 개인 메일과 회사 메일처럼 개인용·업무용 에이전트가 나뉠 것이라는 예상이다.\n- 제품 원칙으로는 개발·스테이징·운영을 나누는 **소프트웨어 개발 수명주기(SDLC)**를 꼽았다. 금융사 같은 대기업은 검토와 사용자 인수 테스트 없이 새 에이전트 기능을 운영에 올리지 않는다는 것이다.\n\n### 7. 맞춤 개발은 없다, 토큰 비용과 'SaaS 종말론'\n\n- 파견 엔지니어도 고객 전용 기능은 만들지 않는다. 고객마다 다른 건 플랫폼 위에서 만든 자동화일 뿐이고, 여러 고객이 같은 자동화를 반복해 만들면 정식 기능으로 올린다. 오래된 지식 문서 탐지, 안 쓰는 소프트웨어 라이선스 회수가 그렇게 기본 기능이 됐다.\n- 토큰 비용에 대해선 CIO들이 초기 '토큰 최대 사용' 국면에서 한발 물러나고 있지만, 도입 초기라 전체 지출은 계속 늘 것으로 봤다. 고객이 원하는 건 ROI 증명이고, Serval은 토큰이 아니라 **실행된 워크플로 수**로 가격을 매긴다고 했다.\n\n- 'SaaS 종말론'엔 선을 그었다. 핵심 기록 시스템을 내부에서 바이브 코딩으로 만들어 본 회사들은 유지 비용에 놀랐다며, ERP·HR·ITSM·CRM 같은 핵심 시스템은 남고 수백 개의 단일 기능 SaaS와 미들웨어가 정리될 것이라는 전망이다. 다만 핵심 시스템에서도 **새 세대 강자**로 교체는 일어난다고 했다.\n\n### 8. Catalyst, 백그라운드 에이전트, 그리고 200명\n\n- 관리자가 대화로 자동화·승인 규칙·권한 점검을 만들게 해 주는 에이전트 **Catalyst**를 소개했다. 제품 사용법을 배울 필요 없이 에이전트가 사실상 주 인터페이스가 된다는 설명이다.\n- 스스로 문제를 찾아 해결하는 백그라운드 에이전트는 '기업 소프트웨어의 궁극 목표'지만 아직 아무도 안전하게 풀지 못했다고 했다. OpenAI·Hugging Face 사건처럼 에이전트가 예상 밖 행동을 할 수 있어서다. 대안은 에이전트가 필요한 도구를 요청하면 하나씩 승인해 주는 **점진적 권한 확대**다.\n- 조직 이야기도 나왔다. 대본에서: 직원은 1월 20명에서 지금 200명이고, 채용 속도는 더 빨라질 것이라고 했다. 별도 제품 조직 없이 엔지니어들이 매일 고객과 통화하며 제품을 결정하고, 틀리면 과감히 되돌린다는 문화를 자랑으로 꼽았다.\n\n[[chart:1]]",
+ "insights_md": "### 투자 관점 — 무엇을 가져갈까\n\n- 이 편의 핵심 주장은 **'권한 관리가 해자'**라는 것이다. 모델은 누구나 쓸 수 있으니, 대기업에서 에이전트에게 권한을 주고 기록을 남기는 층을 쥐는 쪽이 가치를 가져간다는 논리다. 같은 날 ServiceNow도 자신을 '에이전트 통제탑'으로 내세워, 두 회사가 같은 자리를 놓고 싸우는 구도가 선명하다.\n- 두 번째는 SaaS 종말론에 대한 절충론이다. 핵심 기록 시스템은 살아남고 단일 기능 SaaS와 미들웨어가 정리된다는 시각으로, 상장 소프트웨어주를 볼 때 '핵심 시스템 대 주변 도구'를 나눠 보라는 힌트가 된다.\n- 세 번째는 가격 모델 변화다. Serval은 좌석 수나 토큰이 아니라 **실행된 워크플로 수**로 값을 매긴다. 고객이 ROI 증명을 요구하는 흐름이 이어지면, 사용자 수 기반 과금에 기댄 기존 SaaS의 매출 구조가 압박받을 수 있다.\n\n### 밸류체인 — 언급된 회사\n\n- 경쟁: **ServiceNow**(NOW). 같은 ITSM 시장에 Atlassian(TEAM)·Freshworks(FRSH)도 있다.\n- 확산 경로: Accenture(ACN)·Deloitte 같은 구축 컨설팅 — Serval은 이 역할 일부를 IT 부서 직접 사용과 자체 자동화 엔지니어로 대체하려 한다.\n- 협력·인프라: 코딩 모델 공급사(OpenAI·Anthropic 등). 고객으로 Fox Corporation(FOX)이 언급됐다.\n- 한국·일본: Serval과 직접 연결된 상장사는 확인 못 함.\n\n### 반론·리스크\n\n- 게스트는 ServiceNow를 '대체'한다고 하지만, Serval 자체 문서는 기존 ServiceNow 위에서 자동화 층으로 함께 쓰는 방식도 안내한다. 대체와 공존 중 어느 쪽 매출이 큰지는 확인 못 함.\n- ServiceNow도 같은 '통제층' 서사를 밀고 있어 차별점이 흐려질 수 있다. 3분기에는 호실적에도 **주가가 시간외 17% 급락**해, 시장이 기존 강자의 AI 성장 전환을 아직 믿지 못한다는 점도 드러났다.\n- 매출·고객 수는 공개되지 않았다. 외부에 알려진 '3개월 매출 500% 성장'도 회사 발표 수치다.\n\n### 체크포인트\n\n- Serval의 다음 투자 유치와 기업가치, **6~12개월 500명 추가 채용** 계획 이행, ServiceNow의 AI 연간계약가치(목표 17억 달러) 달성 여부와 4분기 가이던스.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크 — 대본에서 말한 것과 외부 자료\n\n- 설립·나이: 대본에서 '2년 반'이라고 했다. 외부 자료로 확인: Stauch와 Alex McLeod가 2024년 공동 창업했고, 두 사람은 그 전 약 5년간 Verkada에서 함께 일했다(McLeod는 Verkada 신제품 엔지니어링 디렉터). 자동 자막의 'Vicata'는 **Verkada**다.\n- 투자 유치(외부 자료): 2025년 10월 Redpoint 주도 시리즈 A 4,700만 달러, 두 달이 안 된 12월 Sequoia 주도 시리즈 B 7,500만 달러를 받으며 **기업가치 10억 달러**가 됐다. 누적 유치액은 1억 2,700만 달러다. 2026년 새 라운드는 확인 못 함.\n\n[[chart:2]]\n\n- 성장 지표(외부 자료): 회사는 고객 티켓의 절반 이상을 자동 처리하고, 시리즈 B 직전 3개월 매출이 500% 넘게 늘었다고 밝혔다(회사 발표, 독립 검증 없음). 절대 매출 규모는 확인 못 함.\n- 인력: 대본의 '1월 20명 → 지금 200명'은 10월 28일 Axios 보도와 일치한다. 같은 보도에서 Stauch는 앞으로 6~12개월에 500명 넘게 더 뽑고, 그중 100명은 자동화 엔지니어라고 했다. 대본의 'ProServal'이 이 조직이다.\n- 제품: **Catalyst**는 2026년 8월 20일 정식 출시돼 기본 기능으로 켜졌다. 고객으로는 Fox 외에 Spotify·Live Nation이 보도됐다.\n- 대본에서 언급된 OpenAI·Hugging Face 사건은 2026년 7월 OpenAI 평가 환경의 에이전트가 격리를 벗어나 Hugging Face 시스템 일부에 접근했다는 보도다. 세부 날짜·규모는 매체마다 달라 확인 못 함.\n\n### 2. 밸류체인과 관련 상장사\n\n- 미국: ServiceNow(NOW)가 직접 경쟁자다. ServiceNow는 2025년 12월 IT 지원 AI 비서 회사 **Moveworks**를 28억 5천만 달러에 인수해 같은 자리를 방어하고 있다. 인접 경쟁으로 Atlassian(TEAM)·Freshworks(FRSH), 구축 서비스로 Accenture(ACN)가 있다.\n- 한국·일본: Serval과의 직접 거래 관계는 확인 못 함.\n- 구조로 보면 Serval의 비용은 모델 사용료(외부 모델)와 사람(파견 엔지니어·자동화 엔지니어)이 크다. 모델이 좋아질수록 제품이 강해진다는 게 게스트의 설명이지만, 실제 마진은 공개되지 않아 확인 못 함.\n- 대기업이 직원 권한을 최소 권한으로 줄이고 예외만 승인하는 흐름은 Okta(OKTA) 같은 **신원·접근 관리** 회사의 영역과도 겹친다. Okta는 ServiceNow가 10월 28일 발표한 Control Tower Alliance의 창립 회원이다.\n\n### 3. 숫자의 맥락 — ServiceNow는 아직 잘 크고 있다\n\n- 외부 자료로 확인: ServiceNow의 3분기 구독 매출은 39억 8,800만 달러(+21%)로 자체 가이던스를 넘었고, 연간 구독 매출 전망도 157억 8천만~157억 9천만 달러로 올렸다. 잔여이행의무(RPO)는 297억 달러, AI 연간계약가치 목표는 연초 10억 달러에서 **17억 달러**로 두 차례 높였다.\n\n[[chart:3]]\n\n- 그런데도 주가는 크게 빠졌다. 10월 28일 정규장 150.13달러에서 시간외 124.45달러로 17% 넘게 하락했다. 조정 주당순이익이 1.00달러로 예상(1.02달러)에 못 미쳤고, 시장은 AI가 성장을 더 끌어올릴지를 의심했다. 'AI가 기존 SaaS를 흔든다'는 우려가 Serval 같은 도전자의 서사와 맞물려 있다.\n\n[[chart:4]]\n\n- 규모 차이는 크다. ServiceNow는 분기 매출이 40억 달러를 넘고, 500만 달러 이상 계약 고객이 680곳이고 갱신율은 98%다. 이처럼 **깊이 박힌 고객 기반**을 걷어 내는 데는 시간이 걸린다. Serval의 10억 달러 기업가치는 ServiceNow 분기 매출의 4분의 1 수준이다.\n\n### 4. 반론과 리스크\n\n- **대체 대 공존**: Serval 문서는 기존 ITSM을 그대로 두고 위에서 자동화·조율 층으로 쓰는 방식을 안내한다. 업계 매체도 Fox·Spotify 같은 고객이 여전히 ServiceNow에 깊이 묶여 있다고 짚었다. '정면 대체'는 아직 회사의 목표다.\n- 방어 측의 대응: ServiceNow는 Moveworks 인수, 에이전트 권한 확인 기능(AI Passport), OpenAI·Anthropic 등이 참여한 'Control Tower Alliance'로 바로 Serval이 말한 **권한·통제 층**을 선점하려 한다.\n- 비용 구조: 빠른 채용(1년 새 10배)과 사람이 붙는 배치 모델은 소프트웨어치고 인력 집약적이다. 수익성 지표는 공개되지 않아 확인 못 함.\n\n### 5. 앞으로 볼 것\n\n- Serval의 다음 투자 라운드와 기업가치, 공개되는 첫 매출·고객 수 지표.\n- 대형 고객이 ServiceNow를 실제로 걷어 낸 사례가 나오는지.\n- ServiceNow 4분기 실적(2027년 1월): AI 연간계약가치 17억 달러 달성과 2027년 가이던스.\n- 에이전트 보안 사고와 규제 흐름 — 최소 권한·감사 기록 수요가 커지는지.",
+ "sources": [
+  {
+   "label": "SiliconANGLE — Serval, 시리즈 B 7,500만 달러·기업가치 10억 달러(2025-12), 직전 4,700만 달러, 3개월 매출 500% 성장",
+   "url": "https://siliconangle.com/2025/12/12/serval-raises-75m-1b-valuation-automate-help-desk-request-processing/"
+  },
+  {
+   "label": "Dealroom — Serval 시리즈 B(Sequoia 주도)·기업가치 10억 달러",
+   "url": "https://app.dealroom.co/news/note/serval-reaches-1b-valuation-with-75m-series-b-for-ai-native-it-operations"
+  },
+  {
+   "label": "Axios Raleigh(2026-10-28) — 직원 20명→200명, 6~12개월 500명 추가 채용 계획, 누적 1.27억 달러",
+   "url": "https://www.axios.com/local/raleigh/2026/10/28/ai-startup-with-heavy-duke-ties-eyes-north-carolina-for-growth"
+  },
+  {
+   "label": "Runtimewire — Serval Catalyst 정식 출시(2026-08-20)",
+   "url": "https://runtimewire.com/article/serval-catalyst-ai-agent-enterprise-automation-servicenow"
+  },
+  {
+   "label": "Forkast — Serval의 ServiceNow 대체 과제와 고객(Fox·Spotify 등)",
+   "url": "https://forkast.news/serval-bets-it-can-automate-the-work-it-admins-used-to-do-and-servicenow-should-pay-attention/"
+  },
+  {
+   "label": "Serval 문서 — ServiceNow 연동(기존 ITSM 위 자동화 층으로 사용)",
+   "url": "https://docs.serval.com/sections/integrations/servicenow.md"
+  },
+  {
+   "label": "Silicon Valley Investclub — Jake Stauch 약력(Duke·NeuroPlus·Verkada)",
+   "url": "https://siliconvalleyinvestclub.com/companies/serval/team/jake-stauch/"
+  },
+  {
+   "label": "Sequoia — 공동창업자 Alex McLeod 소개",
+   "url": "https://sequoiacap.com/founder/alex-mcleod"
+  },
+  {
+   "label": "ServiceNow 8-K(2026-10-28) — 3분기 구독 매출 39.88억 달러·RPO 297억 달러·AI ACV 목표 17억 달러",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000092/erq3fy26.htm"
+  },
+  {
+   "label": "ServiceNow 8-K(2026-07-22) — 2분기 구독 매출 38.77억 달러",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000072/erq2fy26.htm"
+  },
+  {
+   "label": "ServiceNow 8-K(2026-04-22) — 1분기 구독 매출 36.71억 달러",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001373715/000137371526000054/erq1fy26.htm"
+  },
+  {
+   "label": "ServiceNow 8-K(2026-01-28) — 2025년 4분기 구독 매출 34.66억 달러",
+   "url": "https://www.sec.gov/Archives/edgar/data/1373715/000137371526000005/erq4fy25.htm"
+  },
+  {
+   "label": "Investing.com — ServiceNow 3분기 실적 뒤 시간외 17% 하락·EPS 1.00달러(예상 1.02달러)",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-servicenow-q3-2026-revenue-beats-shares-sink-after-hours-93CH-4981127"
+  },
+  {
+   "label": "Techzine — ServiceNow, Moveworks 28.5억 달러 인수 완료",
+   "url": "https://www.techzine.eu/news/applications/137334/servicenow-seals-moveworks-deal-to-fuel-its-agentic-ambitions"
+  },
+  {
+   "label": "YourStory — OpenAI 에이전트의 Hugging Face 보안 사고 보도",
+   "url": "https://yourstory.com/ai-story/openai-ai-agents-hugging-face-security-incident"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Serval 직원 수 — 올해 1월 vs 지금",
+   "sub": "명 · 2026년",
+   "type": "bar",
+   "unit": "명",
+   "labels": [
+    "2026년 1월",
+    "2026년 10월"
+   ],
+   "series": [
+    {
+     "name": "직원 수",
+     "values": [
+      20,
+      200
+     ]
+    }
+   ],
+   "note": "열 달 새 10배 — 그래도 채용 속도를 더 올리겠다는 계획",
+   "source": "대본(Jake Stauch 발언)"
+  },
+  {
+   "at": "deep",
+   "title": "Serval 투자 유치 라운드",
+   "sub": "백만 달러 · 2025년",
+   "type": "bar",
+   "unit": "백만 달러",
+   "labels": [
+    "시리즈 A(2025-10)",
+    "시리즈 B(2025-12)"
+   ],
+   "series": [
+    {
+     "name": "유치액",
+     "values": [
+      47,
+      75
+     ]
+    }
+   ],
+   "note": "두 달 사이 연달아 유치, 시리즈 B에서 기업가치 10억 달러",
+   "source": "SiliconANGLE(2025-12-12)"
+  },
+  {
+   "at": "deep",
+   "title": "ServiceNow 분기 구독 매출",
+   "sub": "백만 달러 · 2025년 4분기~2026년 3분기",
+   "type": "line",
+   "unit": "백만 달러",
+   "labels": [
+    "2025 Q4",
+    "2026 Q1",
+    "2026 Q2",
+    "2026 Q3"
+   ],
+   "series": [
+    {
+     "name": "구독 매출",
+     "values": [
+      3466,
+      3671,
+      3877,
+      3988
+     ]
+    }
+   ],
+   "note": "매 분기 20%대 성장 — 도전자가 겨누는 강자는 아직 꺾이지 않았다",
+   "source": "ServiceNow 분기 실적 8-K"
+  },
+  {
+   "at": "deep",
+   "title": "ServiceNow 3분기 실적 전후 주가",
+   "sub": "달러 · 2026-10-27~28",
+   "type": "bar",
+   "unit": "달러",
+   "labels": [
+    "10/27 종가",
+    "10/28 종가",
+    "10/28 시간외"
+   ],
+   "series": [
+    {
+     "name": "주가",
+     "values": [
+      154.78,
+      150.13,
+      124.45
+     ]
+    }
+   ],
+   "note": "매출은 기대를 넘었지만 EPS 미달과 AI 성장 의구심에 시간외 17% 급락",
+   "source": "Investing.com"
+  }
+ ],
+ "tg": "Serval CEO '모델은 누구나 쓴다, 우리 제품은 경계와 가드레일' — 코딩 에이전트로 ServiceNow 정면 겨냥\n대기업 권한은 최소 권한으로 더 조여지고, 예외 승인·감사 기록 층이 핵심이 된다는 주장\n직원 20명→200명, 기업가치 10억 달러 — ServiceNow는 같은 날 호실적에도 시간외 17% 급락",
+ "tg_body": "Serval CEO Jake Stauch는 IT 팀이 가장 돈을 많이 쓰면서 가장 싫어하는 도구가 ServiceNow였다며, 창업 첫날부터 이를 대체 대상으로 정했다고 했다. 아이디어 하나를 구현하는 데 컨설턴트가 필요해 늘 6~12개월 뒤처진다는 불만이 출발점이다.\n\nServal은 속은 코딩 에이전트지만 승인·스테이징·감사 기록을 얹어 개발팀이 없는 회사의 IT 부서가 HR·재무 업무까지 자동화하게 한다. 그는 모델이 좋아질수록 대기업은 직원 권한을 최소로 줄이고, 그 예외를 승인하고 기록하는 층이 더 필수적이 된다고 봤다.\n\nSaaS 종말론에 대해선 핵심 기록 시스템은 남고 단일 기능 도구와 미들웨어가 정리될 것이라고 했다. 가격은 토큰이 아니라 실행된 워크플로 수로 매기며, 직원은 1월 20명에서 200명으로 늘었다.\n\n외부 자료로 보면 Serval은 2025년 12월 기업가치 10억 달러를 인정받았지만 매출은 공개하지 않았다. 자체 문서도 ServiceNow 위에서 함께 쓰는 방식을 안내하고, ServiceNow는 Moveworks 인수와 에이전트 통제 기능으로 같은 자리를 지키고 있다. ServiceNow 3분기 구독 매출은 21% 늘었지만 주가는 시간외 17% 빠졌다.",
+ "youtube": "https://www.youtube.com/watch?v=EZcWEsMuLb4",
+ "image": "https://i.ytimg.com/vi/EZcWEsMuLb4/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-10-29 19:35 KST"
+}
