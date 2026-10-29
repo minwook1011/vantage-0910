@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "669b89551e21",
+   "kind": "news",
+   "headline": "마이크로소프트, 2017년 이후 처음으로 미국 투자등급 회사채 발행 착수(블룸버그)",
+   "bullets": [
+    "마이크로소프트가 미국에서 투자등급 회사채 발행에 나섰다 — 2017년 이후 약 9년 만이다.",
+    "직전 분기 설비투자가 452억 달러로 역대 최대를 찍은 직후라, 인공지능 데이터센터 투자 자금을 채권으로도 조달하기 시작했다는 뜻이다.",
+    "발행 규모·만기·금리 조건은 블룸버그 유료 기사라 확인하지 못했다."
+   ],
+   "summary": "마이크로소프트는 최고 신용등급 회사로, 그동안 현금이 넉넉해 2017년 이후 미국 달러 회사채 시장에 나오지 않았다. 블룸버그는 이번이 그 뒤 첫 미국 투자등급 회사채 발행이라고 전했다.\n\n시점이 눈에 띈다. 회사는 7~9월 설비투자로 452억 달러를 써 분기 기준 역대 최대를 기록했고, 메타·알파벳·오라클 등 다른 빅테크도 인공지능 데이터센터 비용을 채권으로 메우는 흐름이 이어지고 있다. 현금 여력이 가장 큰 마이크로소프트까지 채권 시장을 찾았다는 점에서 인공지능 투자 자금 조달이 빚으로 넘어가는 흐름이 더 넓어졌다.\n\n발행 규모·만기 구성·가산금리 등 세부 조건은 기사 본문을 확인하지 못해 싣지 않았다. 가격이 정해지면 수요(주문 규모)와 금리 수준이 다음 확인 포인트다.",
+   "title": "Microsoft Kicks Off First US High-Grade Bond Sale Since 2017",
+   "source": "Bloomberg",
+   "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNVW1FNlVmV2VIM1BicUxLa0t2X2xDaDF5X0dScC0tVmlnX1Z3OGJYVWRVcGtJaGx4R3cwR3E3cFA0enExcXhNUE01bWdyYXl5Z1paeVYyV284SDFkVTFFeWdPYTVLODVMZ29UbzVkSzA0Vlhxc1JlNEhwMnVhMVMzQzU4cmVqdGJEY1I5X0tkaGdkZ1VTQm1JREFoYUV4Q183cFVKT1hQS3JhTkdYbHVwbw?oc=5",
+   "published": "2026-10-29 20:47 KST",
+   "written": "2026-10-29 21:19 KST"
+  },
+  {
    "id": "e4f28aec3675",
    "kind": "news",
    "headline": "마이크로소프트 \"오픈AI·앤트로픽·메타 뮤즈가 우리 AI 에이전트 통제 도구(MXC) 쓴다\" — 나델라, 실적 발표에서 'PC는 안전한 에이전트 상자'",
@@ -417,5 +433,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-29 17:51 KST"
+ "updated": "2026-10-29 21:19 KST"
 }
