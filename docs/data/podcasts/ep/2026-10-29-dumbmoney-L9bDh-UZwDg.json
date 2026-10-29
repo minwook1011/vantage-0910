@@ -1,0 +1,207 @@
+{
+ "id": "2026-10-29-dumbmoney-L9bDh-UZwDg",
+ "title_ko": "AI 전력 거품 — 최대의 기회인가, 최대의 함정인가",
+ "guest": {
+  "name": "크리스 카밀로(Chris Camillo)",
+  "role": "Dumb Money 공동 진행자 · 소셜 아비트리지 투자자"
+ },
+ "guest_profile": [
+  {
+   "name": "크리스 카밀로(Chris Camillo)",
+   "title": "Dumb Money 공동 진행자, TickerTags 창업자",
+   "what": "개인 자금을 굴리는 전업 투자자로, SNS·검색·생활 속 유행 변화를 월가보다 먼저 읽어 투자하는 '소셜 아비트리지'로 알려졌다. Dave·Jordan과 함께 유튜브 방송 Dumb Money를 진행한다.",
+   "career": "소셜 데이터로 종목 언급량을 추적하는 회사 TickerTags를 세웠다. 책 The Invisible Hand of Wall Street를 썼고, Jack Schwager의 Unknown Market Wizards에 소개되면서 널리 알려졌다. 텍사스 Dallas에 기반을 둔다.",
+   "track": "Jack Schwager가 2006~2020년 연평균 약 77% 복리 수익을 검증했다고 보도됐다(Benzinga). 누적 수익 금액은 매체마다 달라 확인된 숫자로 쓰지 않는다. 대본 기준 현재 Amazon(레버리지 포함)·Bloom Energy·Reddit을 보유, Take-Two는 75% 축소.",
+   "why": "숫자보다 소비자·여론 변화를 먼저 보는 투자자라, AI가 검색·쇼핑·게임 같은 기존 사업을 어떻게 잠식하는지에 대한 현장 감각이 강하다. 본인 보유 종목을 공개하고 이야기한다."
+  },
+  {
+   "name": "Dave·Jordan",
+   "title": "Dumb Money 공동 진행자",
+   "what": "Dave는 진행을 맡고, Jordan은 전력·에너지주(Constellation·Vistra·Bloom)를 주로 다룬다.",
+   "career": "두 사람의 경력은 이번 조사에서 확인 못 함.",
+   "track": "공개된 투자 성과 없음.",
+   "why": "Camillo의 주장에 반론을 던지며 다른 시각(원전 PPA 중심의 '지루한' 전력주)을 보탠다."
+  }
+ ],
+ "company": {
+  "name": "Bloom Energy(BE) · GE Vernova(GEV) · Vertiv(VRT) · Constellation(CEG) · Vistra(VST) · Alphabet(GOOGL) · Amazon(AMZN) · Reddit(RDDT) · Take-Two(TTWO)",
+  "sector": "AI 전력 인프라 · 빅테크 · 인터넷 플랫폼",
+  "what": "AI 전력 부족 수혜주와, AI가 기존 사업을 잠식하는 기업들"
+ },
+ "topic": "AI 전력 부족 수혜주 바구니와, AI 성공이 Google·Reddit·게임사에 주는 역풍",
+ "headline": "전력주는 바구니로 — Camillo는 Bloom, Jordan은 원전 PPA. AI가 너무 잘돼 Google 검색이 흔들린다",
+ "tldr": [
+  "Morgan Stanley 추정 2028년까지 미국 데이터센터 전력 38GW 부족 — 진행자들은 Bloom·Constellation·Vistra·GE Vernova를 '에너지 바구니'로 담는다",
+  "Camillo: AI는 거품이 아니라 너무 잘돼서 문제 — Google 검색이 AI 모드에 잠식당하고 있다",
+  "Reddit의 Google·OpenAI 데이터 계약(연 6,000만~7,000만 달러)은 너무 싸다 — 재계약이 주가 열쇠",
+  "Vertiv 매출 61%↑, GE Vernova 수주잔고 1,970억 달러 — 숫자는 좋아도 주가 반응은 엇갈렸다",
+  "Amazon 실적 앞두고 '레버리지 줄여라' — 시장이 실적을 합리적으로 읽지 않는다",
+  "Take-Two 비중 75% 축소: GTA 6보다 'AI가 게임 제작을 대중화한다'는 우려로 관심 이동"
+ ],
+ "summary_md": "### 1. 같은 질문, 다른 답 — 전력주 실적 주간\n진행자 Dave는 AI 전력 문제의 값어치를 두고 시장이 엇갈린 답을 냈다며 문을 연다. 대본에서 소개한 숫자로는 Vertiv가 매출 61% 성장·수주 두 배 이상으로 주가가 16% 뛰었고, GE Vernova는 수주 290억 달러·**수주잔고 1,970억 달러**에 가이던스를 올렸는데도 주가가 내렸다. Bloom Energy는 지난주 이틀 새 20% 빠졌다가 사흘 만에 18% 회복했다. 배경에는 Morgan Stanley가 추정한 2028년까지 **38GW 전력 부족**이 있다. 대형 원전 38기 분량이 없다는 뜻이다.\n\n[[chart:4]]\n\n### 2. \"AI는 가짜\"라는 주장에 대한 반박\n본론 전에 Chris Camillo는 AI가 서로 돈을 돌리는 순환 거래일 뿐이라는 회의론이 인기를 끄는 현상을 강하게 비판한다. 그의 논리는 이렇다. 경제 전체가 원래 순환하는 돈이고, 물어야 할 질문은 최종 사용자가 쓴 돈보다 큰 가치를 얻느냐다. 새 기술은 투자가 먼저고 성과는 몇 년 뒤에 나온다. 기업이 Salesforce 같은 CRM 하나를 도입해 효과를 보는 데도 2~3년이 걸렸는데, AI가 1~2년 안에 수익으로 증명되기를 바라는 건 무리라는 것이다. Jordan은 기업들이 데이터센터·전력 장기 계약에 실제로 서명하고 있다는 점을, Dave는 부정적 영상의 반응이 긍정적 영상의 10배라는 SNS 구조를 짚는다. Camillo는 Anthropic의 거액 손실 보도처럼 **잘못된 정보가 바로잡혀도** 정정은 퍼지지 않는다고 덧붙인다.\n\n### 3. Google — AI가 너무 잘돼서 생기는 문제\nCamillo는 AI가 실패하는 게 아니라 너무 성공해서 거대 기업을 흔드는 것이 진짜 이야기라고 본다. 대본 기준으로 Google 실적 발표에서 **AI 모드** 사용이 늘면서 기존 검색보다 돈을 덜 버는 탓에 검색 매출 성장이 눌렸다는 것이다. 그는 1년 전부터 이 위험을 말했고 공매도도 했지만 시기가 너무 일러 접었다고 털어놓는다. 지금 Google을 갖고 있지 않은 이유는 TPU·클라우드 같은 AI 인프라 수혜는 다른 종목으로도 얻을 수 있는데, Google은 분기마다 검색 역풍을 감수해야 하기 때문이다. 광고주들 사이에서 Google이 검색 광고 단가를 최대한 짜내고 있다는 이야기도 소개한다.\n\n### 4. Amazon — 에이전트 쇼핑은 과장된 걱정\nAmazon에는 검색 문제가 없지만 광고 사업이 위험할 수 있다. 사람들이 AI 에이전트로 쇼핑하면 Amazon 안의 광고 효과가 떨어지기 때문이다. Camillo는 그래도 걱정하지 않는다. 변화에 여러 해가 걸리고, Amazon도 자체 쇼핑 봇을 낼 것이며, 결국 외부 봇과 연결할 것으로 본다. Amazon이 봇을 막는 이유는 광고 보호만이 아니라 허락받지 않은 구매로 인한 **환불·차지백·사기** 문제를 먼저 풀어야 하기 때문이라는 설명이다.\n\n실적 발표 당일 그는 Amazon을 **레버리지**까지 써서 들고 있지만, 시장이 실적을 합리적으로 해석한다고 믿기 어려워 단기 옵션 베팅은 줄였다고 말한다. 내년 설비투자를 3,000억~3,500억 달러로 올리면 시장이 싫어할 수 있다는 걱정이다(대본에서 진행자는 올해 Amazon 설비투자 가이던스를 2,200억 달러로 언급). 방송 중에 실제로 일부 옵션을 팔며 \"지금은 레버리지를 줄일 때\"라고 거듭 강조한다.\n\n### 5. 본론 — 전력주 바구니: Bloom, Vistra, Constellation, GE Vernova\nCamillo가 가장 크게 보는 종목은 **Bloom Energy**다. 연료전지를 데이터센터에 바로 세우면 가스관만 있으면 되고, 전력망에서 전기를 끌어오지 않으니 전기료 인상을 걱정하는 지역 주민 반대를 피할 수 있다. 터빈보다 소음도 적다. 약점은 전기 단가가 조금 비싸다는 점이지만, 기술 회사처럼 해마다 원가가 내려가고 있다고 본다. 높은 주가수익비율과 마이너스 현금흐름은 10년 연구개발을 이제 막 돈으로 바꾸는 단계라 그렇다는 반론이다. 스칸듐 부족을 내세운 공매도 보고서는 효율 개선을 무시했다며 일축한다. 그가 포지션을 다시 볼 조건은 하나, 대형 고객에게 **대규모 배치**하는 과정에서 문제가 생기는 경우다.\n\nJordan은 천연가스에 기대는 Bloom보다 Constellation·Vistra를 선호한다. 빅테크와 20년짜리 **전력구매계약(PPA)**을 맺고 원전 재가동에 나서는 회사들이다. 대본 기준 Vistra의 2027년 이익 성장 기대는 20~30%로 '지루하지만 좋은' 에너지주라는 평가다. GE Vernova는 2032년까지 주문이 차 있다고 덧붙인다. 결론은 셋 다 비슷하게 섞은 **에너지 바구니**다. 빅테크가 수십 년짜리 전력 계약을 맺는데 AI가 일시적 거품이라면 둘 중 하나는 크게 틀린 것이고, 그들은 계약이 실제로 이행된다는 쪽에 건다.\n\n### 6. Reddit — 2027년 데이터 계약 재협상\nCamillo가 가장 흥미롭다는 종목은 Reddit이다. Google AI 모드와 챗봇이 답을 바로 주면서 Reddit 방문이 줄고 주가는 올해 내내 맞았다. 그러나 대본에서 Dave가 소개한 기존 계약은 Google 연 6,000만 달러, OpenAI 연 7,000만 달러 수준이고, Camillo는 이것이 터무니없이 싸게 맺어졌다고 본다. 재계약에서 사용량에 비례하는 조건을 얻으면 AI가 커질수록 Reddit도 돈을 번다는 논리다. 수억~수십억 달러가 맞다는 주장이지만, 언제 발표될지 몰라 레버리지 없이 들고 있다고 한다.\n\n[[chart:2]]\n\n### 7. Take-Two, 그리고 Tesla 자율주행\nTake-Two는 비중을 **약 75%** 줄였다. GTA 6 흥행 여부보다, AI로 누구나 게임을 만들게 되면 대형 게임사의 장기 가치가 흔들린다는 쪽으로 **시장의 관심이 바뀌었기** 때문이다. SaaS 회사들의 배수가 깎인 것과 같은 구조라는 것이다. 새 정보가 나오면 자기 논리를 고집하지 말라는 것이 그의 교훈이다. 끝으로 Jordan은 Tesla 자율주행(FSD) 시승 후 바로 두 대를 샀다는 경험담을 전한다.",
+ "insights_md": "### 투자 관점\n- **전력 병목 수혜 바구니**: 진행자들이 든 종목은 Bloom Energy(BE)·Vistra(VST)·Constellation(CEG)·GE Vernova(GEV)·Vertiv(VRT)다. 연료전지·원전 PPA·가스터빈·냉각 설비로 해법이 갈린다. 한국에서는 두산에너빌리티·효성중공업·HD현대일렉트릭·LS ELECTRIC처럼 터빈·변압기·전력기기를 공급하는 회사가 같은 흐름에 있다.\n- **AI가 기존 사업을 잠식**: Google 검색, Reddit 방문, Amazon 광고, 게임 퍼블리셔가 모두 'AI가 잘될수록 손해 보는 쪽'으로 거론됐다. 반대로 Reddit처럼 **데이터를 파는 쪽**은 재계약에서 가격을 올릴 여지가 있다.\n- **변동성 경고**: 진행자들은 실적 하나에 주가가 하루 ±20% 움직이는 시장이라며 레버리지를 줄이라고 반복한다. Bloom이 닷새 사이 20% 빠졌다가 18% 오른 것이 그 예다.\n- **해법별 차이**: 연료전지(Bloom)는 빨리 세울 수 있지만 단가가 높고, 원전 PPA(Constellation·Vistra)는 안정적이지만 재가동에 시간이 걸리며, 가스터빈(GE Vernova)은 주문이 2030년대 초까지 밀려 있다. 진행자들이 한 종목에 몰지 않고 바구니를 택한 이유다.\n\n### 반론·리스크\n- Google 경영진은 1분기 콜에서 AI 모드·AI 개요가 기존 검색과 **비슷한 수준으로 수익화**된다고 밝혔다. 진행자의 '검색 잠식' 주장과 다르다.\n- Bloom은 천연가스를 쓰고, 연료전지 단가가 계통 전기보다 높다. 공매도 보고서가 반복해서 나오는 종목이다.\n- Reddit 재계약 조건은 공식 확인된 것이 없고, 갱신 시기도 보도마다 다르다.\n- 진행자 본인이 보유한 종목(Amazon·Bloom·Reddit) 이야기라 **이해관계**를 감안해야 한다.\n\n### 체크포인트\n- Bloom의 대형 하이퍼스케일러 배치 진행과 4분기 실적\n- Reddit의 Google·OpenAI 데이터 계약 갱신 발표\n- 빅테크 2027년 설비투자 첫 가이던스(4분기 실적)",
+ "deep_md": "### 1. 진행자 팩트 체크\n- **Chris Camillo**: 숫자·차트 대신 SNS와 생활 속 유행 변화를 먼저 읽는 '소셜 아비트리지' 투자자다. Jack Schwager의 책 *Unknown Market Wizards*가 2006~2020년 연평균 약 **77% 복리 수익**을 검증했다고 소개됐다(Benzinga). 소셜 데이터 회사 TickerTags를 세웠고 Dumb Money를 공동 진행한다. 대본에서 Amazon·Bloom Energy·Reddit 보유를 밝혔다.\n- 함께 나온 Dave(Hanson)와 Jordan의 경력·성과는 이번 조사에서 확인 못 함.\n- 이 편의 대본은 유튜브 자막이 꺼져 있어 오디오를 받아 직접 받아쓰기(음성 인식)로 만들었다. 사람·회사 이름은 검색으로 확인했지만, 일부 숫자는 받아쓰기 오류 가능성이 있어 회사 발표와 대조한 것만 확정 수치로 썼다.\n\n### 2. 대본 숫자 vs 회사 발표\n- **Vertiv(VRT)**: 3분기 매출 43억 1,300만 달러로 전년 대비 61% 증가, 유기적 수주는 100% 넘게 늘었다(회사 8-K). 대본의 '매출 61%, 수주 두 배'와 일치한다.\n- **GE Vernova(GEV)**: 3분기 수주 290억 달러(유기적 96% 증가), 수주잔고 1,970억 달러로 직전 분기보다 200억 달러 늘었고 4분기 2,000억 달러 돌파를 예상했다(회사 8-K). 가스터빈 중심의 Power 부문 수주가 218억 달러로 178% 늘어난 반면, 전력망 장비(Electrification)는 54억 달러로 9% 줄었다. **수주는 사상 최대**인데 주가가 밀린 이유가 이 부문 차이일 수 있지만, 주가 반응 원인은 확인 못 함.\n\n[[chart:3]]\n\n- **Bloom Energy(BE)**: 3분기 매출 12억 3,580만 달러로 138% 늘었고, 2026년 매출 전망을 44억~46억 달러로 올렸다(7월 39억~42억 달러). 대본의 '급락 뒤 반등'은 이 실적 전후 흐름이다.\n\n[[chart:5]]\n\n- **Morgan Stanley 38GW**: 2026~2028년 미국 데이터센터 신규 수요 약 68GW 중 공사 중인 설비(약 15GW)와 계약된 전력망 용량(약 15GW)으로 채우고 남는 부족분이 약 **38GW**라는 계산이다. 진행자는 '전 세계'라고 했지만 대부분 보도는 **미국 기준**으로 전한다. 가스터빈 등 새 공급원으로 일부를 메워도 순부족 1~11GW가 남는다는 추정도 함께 나왔다.\n- **Reddit 계약**: Google 연 약 6,000만 달러, OpenAI 연 약 7,000만 달러라는 보도는 대본과 같다. 7월 WSJ 보도로 Reddit이 Google의 AI 접근 차단까지 검토한다는 소식이 나왔고, 사용량 기반 요금을 원한다는 보도도 있다. 갱신 시점은 2026년 중반(보도)과 2027년 초(RBC)로 엇갈린다.\n- **Amazon 설비투자**: 진행자는 올해 가이던스를 2,200억 달러로 말했지만, 1분기 실적 기준 보도는 약 2,000억 달러였다. 이후 변경됐는지는 확인 못 함.\n\n### 3. 밸류체인과 관련 상장사\n- 현장 발전: Bloom Energy(BE), 가스터빈 GE Vernova(GEV)·Siemens Energy(ENR)·Mitsubishi Heavy(7011)·두산에너빌리티(034020).\n- 원전·PPA: Constellation(CEG), Vistra(VST).\n- 냉각·전력 설비: Vertiv(VRT), 변압기 HD현대일렉트릭(267260)·효성중공업(298040)·LS ELECTRIC(010120).\n- AI 잠식 논쟁: Alphabet(GOOGL), Amazon(AMZN), Reddit(RDDT), Take-Two(TTWO).\n\n### 4. 반론과 리스크\n- **순환 거래 논쟁**: Camillo는 회의론을 일축하지만, 빅테크·AI 연구소·클라우드 회사가 서로 투자하고 서로에게서 사는 구조는 실제로 커지고 있다. 최종 사용자 매출이 설비투자 속도를 따라오는지가 핵심 검증 지표이고, 이 점은 진행자도 인정한 기준이다.\n- Google은 AI 모드 월간 사용자가 10억 명을 넘었고, 경영진은 기존 검색과 비슷하게 수익화된다고 말한다. 2분기 검색 매출은 17% 늘었다. '잠식' 주장은 3분기 숫자로 다시 확인해야 한다.\n- 전력 부족 추정은 가정에 크게 좌우된다. Morgan Stanley도 지난해엔 44GW로 봤다가 38GW로 낮췄다.\n- Bloom의 데이터센터 매출은 소수 대형 고객에 집중돼 있어, 배치 지연 하나가 실적을 흔들 수 있다.\n\n### 5. 앞으로 볼 것\n- GE Vernova 4분기 수주잔고 2,000억 달러 돌파 여부, Electrification 수주 회복\n- Bloom 2026년 매출 44억~46억 달러 달성과 대형 고객 추가\n- Reddit 재계약 금액과 구조(정액 vs 사용량 비례)\n- Alphabet 검색 매출 성장률과 AI 모드 광고 단가 공개 여부\n- Amazon 실적에서 나올 2027년 설비투자 규모와 시장 반응. 진행자들은 금액이 3,000억 달러를 넘으면 단기 하락을 예상했지만, 전력·설비 공급사에는 수요 확인 신호가 된다.",
+ "sources": [
+  {
+   "label": "Vertiv 3분기 실적 발표(SEC 8-K) — 매출 61% 증가, 유기적 수주 100%+",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001674101/000162828026067707/q32026exhibit991vrt10282026.htm"
+  },
+  {
+   "label": "GE Vernova 3분기 실적 발표(SEC 8-K) — 수주 290억, 잔고 1,970억 달러",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001996810/000199681026000162/gevpressrelease3q26.htm"
+  },
+  {
+   "label": "Bloom Energy 3분기 실적 발표(SEC 8-K) — 매출 138% 증가, 연간 전망 상향",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026066890/ex991_q326financialresults.htm"
+  },
+  {
+   "label": "CryptoBriefing — Morgan Stanley, 2028년까지 38GW 전력 부족",
+   "url": "https://cryptobriefing.com/morgan-stanley-ai-data-centers-38-gigawatt-power-gap/"
+  },
+  {
+   "label": "AI Weekly — Reddit, Google AI 접근 차단 검토(연 6,000만 달러 계약)",
+   "url": "https://aiweekly.co/alerts/reddit-weighs-cutting-google-ai-access-as-60m-deal-expires"
+  },
+  {
+   "label": "Shopifreaks — Reddit·Google 재계약 협상과 검색 트래픽",
+   "url": "https://www.shopifreaks.com/reddit-weighs-cutting-off-googles-ai-access-as-its-60m-a-year-licensing-deal-nears-renewal-and-search-traffic-collapses"
+  },
+  {
+   "label": "Benzinga — Chris Camillo의 투자 성과(Schwager 검증 77%)",
+   "url": "https://drupal-cloudfront.benzinga.com/news/25/02/43903377/chris-camillo-made-42-million-trading-stocks-over-15-years-heres-his-success-strategy"
+  },
+  {
+   "label": "MarketPulse — Alphabet 3분기 프리뷰(2분기 검색 17%↑, AI 모드 수익화)",
+   "url": "https://www.marketpulse.com/markets/alphabet-googl-q3-earnings-preview-us200-billion-ai-capex-test-puts-major-uptrend-at-risk/"
+  },
+  {
+   "label": "Yahoo Finance — 빅테크 2026년 설비투자(Amazon 약 2,000억 달러)",
+   "url": "https://finance.yahoo.com/sectors/technology/articles/hyperscalers-hit-700-billion-2026-111243744.html"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "AI 전력·설비 3사의 3분기 성장률",
+   "sub": "% · 전년 대비 · 2026년 3분기 · 지표가 회사마다 다름",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Vertiv 매출",
+    "GE Vernova 수주(유기적)",
+    "Bloom Energy 매출"
+   ],
+   "series": [
+    {
+     "name": "전년 대비 증가율",
+     "values": [
+      61,
+      96,
+      138
+     ]
+    }
+   ],
+   "note": "세 회사 모두 크게 성장했지만 주가 반응은 엇갈렸다",
+   "source": "각사 3분기 실적 발표(SEC 8-K)"
+  },
+  {
+   "at": "summary",
+   "title": "Reddit의 AI 데이터 계약 규모(2024년 체결)",
+   "sub": "백만 달러/년 · 보도 기준",
+   "type": "bar",
+   "unit": "백만 달러",
+   "labels": [
+    "Google",
+    "OpenAI"
+   ],
+   "series": [
+    {
+     "name": "연간 계약액",
+     "values": [
+      60,
+      70
+     ]
+    }
+   ],
+   "note": "진행자는 이 금액이 수억~수십억 달러여야 한다고 주장 — 재계약이 관건",
+   "source": "대본 · AI Weekly/Shopifreaks 보도"
+  },
+  {
+   "at": "deep",
+   "title": "GE Vernova 3분기 부문별 수주",
+   "sub": "억 달러 · 2026년 3분기",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Power(가스터빈 등)",
+    "Electrification(전력망 장비)"
+   ],
+   "series": [
+    {
+     "name": "수주",
+     "values": [
+      218,
+      54
+     ]
+    }
+   ],
+   "note": "Power 수주는 178% 늘었지만 전력망 장비는 9% 줄었다",
+   "source": "GE Vernova 3분기 실적 발표(SEC 8-K)"
+  },
+  {
+   "at": "summary",
+   "title": "미국 데이터센터 전력 수급(2026~2028년)",
+   "sub": "GW · Morgan Stanley 추정",
+   "type": "bar",
+   "unit": "GW",
+   "labels": [
+    "신규 수요",
+    "공사 중 설비",
+    "계약된 전력망",
+    "부족분"
+   ],
+   "series": [
+    {
+     "name": "전력",
+     "values": [
+      68,
+      15,
+      15,
+      38
+     ]
+    }
+   ],
+   "note": "새로 짓는 설비와 계약된 망으로 30GW를 채워도 38GW가 모자란다",
+   "source": "Morgan Stanley(2026년 8월) — CryptoBriefing·KuCoin 보도"
+  },
+  {
+   "at": "deep",
+   "title": "Bloom Energy 2026년 매출 전망(중간값)",
+   "sub": "억 달러",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "7월 전망",
+    "10월 전망"
+   ],
+   "series": [
+    {
+     "name": "2026년 매출 전망",
+     "values": [
+      40.5,
+      45
+     ]
+    }
+   ],
+   "note": "석 달 만에 전망을 약 11% 올렸다",
+   "source": "Bloom Energy 3분기 실적 발표(SEC 8-K)"
+  }
+ ],
+ "tg": "Dumb Money: 미국 데이터센터 전력 38GW 부족 → Bloom·Constellation·Vistra·GE Vernova '에너지 바구니'. Camillo는 AI가 너무 잘돼 Google 검색이 흔들린다고 보고, Reddit 데이터 재계약에 주목.",
+ "tg_body": "AI 전력주 실적 주간에 시장 반응이 엇갈렸다. Vertiv는 매출 61% 성장으로 급등했지만, GE Vernova는 수주 290억 달러·수주잔고 1,970억 달러에도 주가가 밀렸다. Morgan Stanley는 2028년까지 미국 데이터센터 전력이 약 38GW 모자란다고 본다.\n\nChris Camillo는 'AI는 순환 거래일 뿐'이라는 회의론을 반박한다. 진짜 이야기는 AI가 너무 잘돼 Google 검색 같은 기존 사업을 갉아먹는 것이라고 본다. Amazon의 에이전트 쇼핑 우려는 과장됐다며 보유를 유지하지만, 실적 시즌 레버리지는 줄이라고 강조한다.\n\n전력주는 바구니로 담는다. Camillo는 전력망 없이 현장에서 전기를 만드는 Bloom Energy를, Jordan은 빅테크와 20년 전력 계약을 맺은 Constellation·Vistra를 선호한다. Reddit은 Google·OpenAI와 연 6,000만~7,000만 달러에 맺은 데이터 계약이 너무 싸다며 재계약을 기대하고, Take-Two는 AI 게임 제작 위협에 비중을 75% 줄였다.\n\n회사 발표로 보면 Vertiv·GE Vernova 숫자는 대본과 같다. 반면 Google 경영진은 AI 모드가 기존 검색과 비슷하게 수익화된다고 밝혀 진행자 주장과 엇갈린다. 진행자들이 직접 보유한 종목 이야기라는 점도 감안해야 한다.",
+ "youtube": "https://www.youtube.com/watch?v=L9bDh-UZwDg",
+ "image": "https://i.ytimg.com/vi/L9bDh-UZwDg/hqdefault.jpg",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-10-30 05:10 KST"
+}

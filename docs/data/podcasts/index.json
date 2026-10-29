@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30 03:35 KST",
+ "updated": "2026-10-30 03:58 KST",
  "episodes": [
   {
    "id": "2026-10-30-dwarkesh-what-i-learned-about-power-from-lbj-and-robert-m",
@@ -436,12 +436,19 @@
    "audio": null,
    "duration": "",
    "desc": "AI is running into a problem even the most powerful chips can't solve: not enough electricity. The power shortage is real. Today on Dumb Money: Are AI energy stocks the biggest investment opportunity of the decade… or has Wall Street already priced in the future?",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-29 03:24 KST",
    "image": "https://i1.ytimg.com/vi/L9bDh-UZwDg/hqdefault.jpg",
    "show_image": null,
    "title_ko": "AI 전력 거품 — 최대의 기회인가, 최대의 함정인가",
-   "desc_ko": "AI가 아무리 강력한 칩으로도 풀 수 없는 문제, 바로 전기 부족에 부딪히고 있다. 데이터센터 전력난은 실제로 벌어지고 있는 일이다. 이번 편은 AI 전력·에너지 관련 주식이 앞으로 10년의 가장 큰 투자 기회인지, 아니면 월가가 이미 미래를 주가에 다 반영해 버렸는지를 따진다."
+   "desc_ko": "AI가 아무리 강력한 칩으로도 풀 수 없는 문제, 바로 전기 부족에 부딪히고 있다. 데이터센터 전력난은 실제로 벌어지고 있는 일이다. 이번 편은 AI 전력·에너지 관련 주식이 앞으로 10년의 가장 큰 투자 기회인지, 아니면 월가가 이미 미래를 주가에 다 반영해 버렸는지를 따진다.",
+   "summary": {
+    "title_ko": "AI 전력 거품 — 최대의 기회인가, 최대의 함정인가",
+    "headline": "전력주는 바구니로 — Camillo는 Bloom, Jordan은 원전 PPA. AI가 너무 잘돼 Google 검색이 흔들린다",
+    "image": "https://i.ytimg.com/vi/L9bDh-UZwDg/hqdefault.jpg",
+    "guest": "크리스 카밀로(Chris Camillo) — Dumb Money 공동 진행자 · 소셜 아비트리지 투자자",
+    "company": "Bloom Energy(BE) · GE Vernova(GEV) · Vertiv(VRT) · Constellation(CEG) · Vistra(VST) · Alphabet(GOOGL) · Amazon(AMZN) · Reddit(RDDT) · Take-Two(TTWO) (AI 전력 인프라 · 빅테크 · 인터넷 플랫폼)"
+   }
   },
   {
    "id": "2026-10-28-understanding-8RuyKIL9srI",
