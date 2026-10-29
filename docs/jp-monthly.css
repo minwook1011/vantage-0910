@@ -56,3 +56,5 @@
 .px6 b { font-size:11px; font-variant-numeric:tabular-nums; }
 #jpm-workspace .na { color:var(--faint); }
 @media (max-width:720px) { .jpm-row { grid-template-columns:minmax(0,1fr); } .m12 i { min-width:0; font-size:9.5px; } }
+.jpm-t.tr th.mh { font-family:var(--mono); }
+.jpm-t.tr td.m { font-family:inherit; font-weight:600; color:var(--muted); white-space:nowrap; }

@@ -94,12 +94,13 @@
       var src = lt.pdf ? '<a href="' + esc(lt.pdf) + '" target="_blank" rel="noopener">원문(TDnet 공시) ›</a>' : lt.url ? '<a href="' + esc(lt.url) + '" target="_blank" rel="noopener">원문(회사 IR) ›</a>' : "";
       var t = '<div class="jpm-dh"><span>' + esc(d.name || "") + (d.name_en ? " · " + esc(d.name_en) : "") + (d.fy_end_month ? " · " + d.fy_end_month + "월 결산" : "") + "</span>" + src +
         ' <a href="jp-screener.html?u=consumer&code=' + encodeURIComponent(c) + '" target="_blank" rel="noopener">스크리너에서 재무제표·차트 ›</a></div>' +
-        '<div class="jpm-scroll"><table class="jpm-t"><thead><tr><th>달</th>' + cols.map(function (k) { return '<th title="' + esc(k) + '">' + esc(ko(k)) + "</th>"; }).join("") + "</tr></thead><tbody>" +
-        months.map(function (m) {
-          var r = d.data[m] || {};
-          return "<tr><td class=\"m\">" + mLabel(m) + "</td>" + cols.map(function (k) { var v = r[k]; return '<td title="' + (v == null ? "" : esc(v)) + '">' + (isYoy(k) ? yoyTxt(v) : num(v)) + "</td>"; }).join("") + "</tr>";
+        // 달은 가로(왼쪽 → 오른쪽 최신), 지표는 세로(2026-10-30 사용자)
+        '<div class="jpm-scroll"><table class="jpm-t tr"><thead><tr><th></th>' + months.slice().reverse().map(function (m) { return '<th class="mh">' + mLabel(m) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+        cols.map(function (k) {
+          return '<tr><td class="m" title="' + esc(k) + '">' + esc(ko(k)) + "</td>" + months.slice().reverse().map(function (m) { var v = (d.data[m] || {})[k]; return '<td title="' + (v == null ? "" : esc(v)) + '">' + (isYoy(k) ? yoyTxt(v) : num(v)) + "</td>"; }).join("") + "</tr>";
         }).join("") + "</tbody></table></div>";
       box.innerHTML = t;
+      var sc = box.querySelector(".jpm-scroll"); if (sc) sc.scrollLeft = sc.scrollWidth;   // 최신 달이 보이게
     }).catch(function () { box.innerHTML = "표를 불러오지 못했습니다."; });
   }
   document.addEventListener("vantage-view", function (e) { if (e.detail && e.detail.view === "jpm") load(); });
