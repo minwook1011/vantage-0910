@@ -140,6 +140,7 @@
   "nebius:2026-10-26",
   "nebius:2026-10-27",
   "nebius:2026-10-28",
+  "nebius:2026-10-29",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -1088,6 +1089,7 @@
   "trk:yt--jklonfa:80e3e60d58c3",
   "trk:yt--jklonfa:81c8b8336882",
   "trk:yt--jklonfa:84b2030415d5",
+  "trk:yt--jklonfa:881e4fbf80d8",
   "trk:yt--jklonfa:89ad2bbbc25c",
   "trk:yt--jklonfa:8d4b8801cdeb",
   "trk:yt--jklonfa:8f257d625ae9",
@@ -1248,12 +1250,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:open-ai:ad32d6d068b1": [
-   733
-  ],
-  "trk:open-ai:9be7aab1adfc": [
-   734
-  ],
   "trk:yt--jklonfa:731d49da6e54": [
    735
   ],
@@ -2776,8 +2772,14 @@
   ],
   "trk:cathie-wood:3a60f3503102": [
    1196
+  ],
+  "nebius:2026-10-29": [
+   348
+  ],
+  "trk:yt--jklonfa:881e4fbf80d8": [
+   1197
   ]
  },
  "topics": {},
- "topic_fail_at": 1793228178.598788
+ "topic_fail_at": 1793233128.294647
 }
