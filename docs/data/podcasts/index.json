@@ -1,6 +1,32 @@
 {
- "updated": "2026-10-29 19:52 KST",
+ "updated": "2026-10-29 21:26 KST",
  "episodes": [
+  {
+   "id": "2026-10-29-cheeky-why-sam-altman-is-against-a-single-superintellig",
+   "show": "cheeky",
+   "show_name": "Cheeky Pint",
+   "title": "Why Sam Altman is against a single superintelligence",
+   "date": "2026-10-29",
+   "published": "2026-10-29 20:45 KST",
+   "link": "https://share.transistor.fm/s/92f18066",
+   "audio": "https://media.transistor.fm/92f18066/699c0738.mp3",
+   "duration": "52:45",
+   "desc": "Sam Altman, CEO of OpenAI, joins John to break down how models uncovered critical PHP vulnerabilities, why test-time compute unlocks massive agent swarms, and OpenAI's internal experiments proving complex math problems like Navier-Stokes. He also shares why sandboxing superhuman models is an unsolved safety dilemma, how robotics will scale future gigawatt data centers, and why businesses must adapt as personal agents replace traditional web forms and mobile apps. Timestamps (00:00:00) Introduction (00:00:12) PHP week (00:02:37) Internet early days (00:07:33) Cyber Blue (00:08:54) Sandboxing (0…",
+   "status": "done",
+   "found": "2026-10-29 21:20 KST",
+   "image": "https://img.transistorcdn.com/68K2l-cApWtAxw2IfSdfYSNDtxaF_W01I6JqkuNZ7ec/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS81MTJj/ODVjY2ExYjgxOTdj/ZGIyMThlNzBlNGZh/NmY5ZC5wbmc.jpg",
+   "show_image": "https://img.transistorcdn.com/PVZFPauNUFMQ37nXgHHcOEYiAymRHQ7vaa9pV-D2Txg/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS82ZGFk/ODk1OGE5Y2ExZjc5/MGMxNjYwOWQxYjdi/YTlkYy5wbmc.jpg",
+   "title_ko": "Sam Altman — 왜 단 하나의 초지능에 반대하나",
+   "desc_ko": "OpenAI CEO Sam Altman이 Stripe의 John Collison과 마주 앉았다. AI 모델이 PHP의 심각한 보안 취약점을 찾아낸 일, 추론 단계 연산(test-time compute)이 대규모 에이전트 무리를 가능하게 하는 이유, 나비에-스토크스 같은 수학 난제를 다룬 OpenAI 내부 실험을 이야기한다. 초인적 모델을 격리(샌드박스)하는 문제가 아직 풀리지 않은 안전 과제라는 점, 로봇이 기가와트급 데이터센터 건설을 키울 것이라는 전망도 나온다. 개인 에이전트가 웹 양식과 모바일 앱을 대체하면서 기업이 어떻게 바뀌어야 하는지도 짚는다.",
+   "youtube": "https://www.youtube.com/watch?v=iMsUcCYNKqY",
+   "summary": {
+    "title_ko": "Sam Altman — 왜 단 하나의 초지능에 반대하나",
+    "headline": "Altman \"메모리 업체들은 과거 기억 때문에 증설 안 해 — 기가와트당 700억 달러를 200억으로 낮춰야\"",
+    "image": "https://i.ytimg.com/vi/iMsUcCYNKqY/hqdefault.jpg",
+    "guest": "샘 올트먼(Sam Altman) — OpenAI CEO — ChatGPT·Codex·Dots를 내놓은 AI 연구소 수장",
+    "company": "OpenAI (AI 모델 · 에이전트 · AI 인프라)"
+   }
+  },
   {
    "id": "2026-10-29-nopriors-taking-on-servicenow-coding-agents-the-rest-of-u",
    "show": "nopriors",
