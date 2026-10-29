@@ -66,6 +66,7 @@
   "gpu:2026-10-26",
   "gpu:2026-10-27",
   "gpu:2026-10-28",
+  "gpu:2026-10-29",
   "hc:6532:2026-10-02",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
   "ins:ins-20261026-agent-bank-access-war",
@@ -1321,9 +1322,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-ranto28:1f1b856206c9": [
-   791
-  ],
   "trk:blog-ranto28:259a5674320a": [
    792
   ],
@@ -2844,6 +2842,9 @@
    356,
    357,
    358
+  ],
+  "gpu:2026-10-29": [
+   359
   ]
  },
  "topics": {},
