@@ -79,8 +79,19 @@ def _xaxis(ax, span_days):
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
 
 
-def line(name, title, sub, series, digits=2, unit="", since_days=None, fill=False, bands=None, log=False):
-    """series = [(이름, [(날짜문자열, 값), ...]), ...] — 끝 점에 최신값 표시. log=True 면 세로축 로그 눈금"""
+def _mark(ax, x, text):
+    """최신 갱신 시점 — 마지막 값 위치에 세로 점선 + 그 왼쪽 아래에 기준·갱신 일시 (2026-10-29 사용자)"""
+    if not text:
+        return
+    ax.axvline(x, color=MUTED, lw=1, ls=(0, (4, 3)), alpha=0.9, zorder=1)
+    ax.text(x, 0.03, text + " ", transform=ax.get_xaxis_transform(), ha="right", va="bottom", fontsize=8.5,
+            color=INK, fontweight="bold", linespacing=1.3, zorder=6,
+            bbox=dict(boxstyle="round,pad=0.25", fc=BG, ec="none", alpha=0.85))
+
+
+def line(name, title, sub, series, digits=2, unit="", since_days=None, fill=False, bands=None, log=False, mark=None):
+    """series = [(이름, [(날짜문자열, 값), ...]), ...] — 끝 점에 최신값 표시. log=True 면 세로축 로그 눈금.
+    mark = 최신 갱신 일시 글귀(예: "10/27 장 마감\\n10/29(목) 08:51 갱신") — 마지막 날짜에 세로 점선과 함께 적는다"""
     fig, ax = _fig(title, sub)
     if log:
         from matplotlib.ticker import FuncFormatter, LogLocator
@@ -120,10 +131,11 @@ def line(name, title, sub, series, digits=2, unit="", since_days=None, fill=Fals
         ax.legend(loc="upper left", frameon=False, fontsize=9.5, ncol=min(len(series), 4), bbox_to_anchor=(0, 1.02))
     if x0:
         _xaxis(ax, (x1 - x0).days)
+        _mark(ax, x1, mark)
     return _save(fig, name)
 
 
-def bars(name, title, sub, pts, digits=1, unit=""):
+def bars(name, title, sub, pts, digits=1, unit="", mark=None):
     fig, ax = _fig(title, sub)
     xs = [_d(d) for d, _ in pts]
     ys = [v for _, v in pts]
@@ -137,6 +149,7 @@ def bars(name, title, sub, pts, digits=1, unit=""):
                     ha="center", fontsize=8.5, color=MUTED)
     ax.grid(axis="x", visible=False)
     _xaxis(ax, (xs[-1] - xs[0]).days if len(xs) > 1 else 0)
+    _mark(ax, xs[-1], mark)
     return _save(fig, name)
 
 
