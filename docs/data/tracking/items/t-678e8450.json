@@ -3,6 +3,22 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "6dd38a208edf",
+   "kind": "news",
+   "headline": "대만 전자상거래 솔루션 업체 91APP, 해킹 피해 이용자 약 500만 명으로 공개 — 손실 규모는 아직 조사 중, 회장 공개 사과",
+   "bullets": [
+    "대만 쇼핑몰·앱 구축 업체 91APP가 해킹 사고 영향을 받은 이용자가 500만 명 가까이 된다고 29일 밝혔다. 피해 규모를 처음 숫자로 내놨다.",
+    "손실은 아직 조사 중이며, 허잉치 회장이 고개 숙여 사과했다(경제일보).",
+    "이번 사고는 10월 3일 'AI 자동화 침투 도구' 공격으로 커머스 클라우드의 주문 데이터베이스가 뚫린 건으로, 이후 브랜드를 사칭한 사기 메시지가 잇따랐다."
+   ],
+   "summary": "91APP는 여러 브랜드의 온라인몰과 앱을 대신 만들어 운영해 주는 회사다. 그래서 한 곳이 뚫리면 여러 브랜드의 고객 주문 정보가 한꺼번에 샌다. 회사는 앞서 패치하지 않은 앱스미스(Appsmith) 취약점을 통해 공격자가 내부 시스템에 들어왔고, 'ARTEX'라는 AI 자동화 공격 도구의 흔적이 나왔다고 밝혔다. 신용카드 등 결제 정보는 유출되지 않았다는 입장이다.\n\n10월 8일 긴급대응팀을 꾸리고도 브랜드 고객사에 바로 알리지 않은 점은 회사 스스로 '잘못'이라고 인정했다. 사기 피해로 재산 손실을 본 소비자에게는 전액 보상하겠다고 했다. 대만 디지털발전부 산하 디지털산업서는 유출 항목과 피해 업체·소비자를 파악해 통지하라고 요구했다.\n\n남은 쟁점은 실제 금전 손실 규모와 당국 행정 조사 결과, 브랜드 고객사 이탈 여부다.",
+   "title": "91APP 公布資安事件影響近500萬用戶、損失仍在調查 董座鞠躬道歉",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPTDZiYjQxblhnX1QzRlRsbkhDSHZqX1luenNILUgtT3ZQLXNhb2RYdnFrNWdoMUg1T1l4b09YUjVCMUVwdHZtcjg1NFIyNGhQVE1mYTlhdlJMa2FuVEdQenFteEFQa25SSi14Tzc0eDBfVXBLbWNTbkpPTGVZdnVZUNIBX0FVX3lxTE91cnVpUl9jY0VremhaaGFtb3VwMkJqMDF2T2FoR0JKUTB5VW92d1JsXzFzQjJIN2J0bEJIcUNjT3JNWFYzR2tJUlR1SkE2MWo2OUI3NnZTNnlad2JVZTZB?oc=5",
+   "published": "2026-10-29 17:22 KST",
+   "written": "2026-10-29 17:51 KST"
+  },
+  {
    "id": "5716d2802232",
    "kind": "news",
    "headline": "[후속] 일본 GMO인터넷 \"해커 신원 특정할 정보 확보, 경시청에 넘긴다\" — 몸값 대신 100만 달러 현상금, FX 피해 투자손실 전액 보상·고객 1인당 5,000엔 위로금",
@@ -531,5 +547,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-10-29 17:17 KST"
+ "updated": "2026-10-29 17:51 KST"
 }
