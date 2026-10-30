@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24",
+ "updated": "2026-10-31",
  "count": 503,
  "map": {
   "MMM": {
@@ -1502,13 +1502,13 @@
    "name": "Prudential Financial",
    "sector": "Financials"
   },
-  "PEG": {
-   "name": "Public Service Enterprise Group",
-   "sector": "Utilities"
-  },
   "PTC": {
    "name": "PTC Inc.",
    "sector": "Information Technology"
+  },
+  "PEG": {
+   "name": "Public Service Enterprise Group",
+   "sector": "Utilities"
   },
   "PSA": {
    "name": "Public Storage",
@@ -1518,21 +1518,21 @@
    "name": "PulteGroup",
    "sector": "Consumer Discretionary"
   },
-  "PWR": {
-   "name": "Quanta Services",
-   "sector": "Industrials"
+  "Q": {
+   "name": "Qnity Electronics",
+   "sector": "Information Technology"
   },
   "QCOM": {
    "name": "Qualcomm",
    "sector": "Information Technology"
   },
+  "PWR": {
+   "name": "Quanta Services",
+   "sector": "Industrials"
+  },
   "DGX": {
    "name": "Quest Diagnostics",
    "sector": "Health Care"
-  },
-  "Q": {
-   "name": "Qnity Electronics",
-   "sector": "Information Technology"
   },
   "RL": {
    "name": "Ralph Lauren Corporation",
@@ -1545,10 +1545,6 @@
   "RDDT": {
    "name": "Reddit",
    "sector": "Communication Services"
-  },
-  "RTX": {
-   "name": "RTX Corporation",
-   "sector": "Industrials"
   },
   "O": {
    "name": "Realty Income",
@@ -1602,6 +1598,10 @@
    "name": "Royal Caribbean Group",
    "sector": "Consumer Discretionary"
   },
+  "RTX": {
+   "name": "RTX Corporation",
+   "sector": "Industrials"
+  },
   "SPGI": {
    "name": "S&P Global",
    "sector": "Financials"
@@ -1643,7 +1643,7 @@
    "sector": "Real Estate"
   },
   "SKYD": {
-   "name": "Skydance Corporation",
+   "name": "Skydance",
    "sector": "Communication Services"
   },
   "SWKS": {
