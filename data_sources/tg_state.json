@@ -146,6 +146,7 @@
   "macro:2026-10-27",
   "macro:2026-10-28",
   "macro:2026-10-29",
+  "macro:2026-10-30",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -1342,9 +1343,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:03b0a2d9058c": [
-   812
-  ],
   "trk:blog-techcrunch:996aae51c765": [
    813
   ],
@@ -2870,6 +2868,11 @@
   ],
   "pod:2026-10-30-understanding-BylETcYBDWU": [
    1274
+  ],
+  "macro:2026-10-30": [
+   375,
+   376,
+   377
   ]
  },
  "topics": {},
