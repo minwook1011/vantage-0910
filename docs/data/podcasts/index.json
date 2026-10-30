@@ -13,11 +13,20 @@
    "audio": null,
    "duration": "",
    "desc": "인텔 3분기 실적 발표 7분 뒤 시간외 주가가 21.8% 빠진 이유를 사업부별로 짚었습니다. 서버 CPU는 수요가 넘치는데 인텔 3 공정·패키징 기판·이스라엘 공장 사고로 못 만들고, PC는 메모리값이 올라 덜 팔립니다. 인텔은 PC 칩을 만들던 오리건 공장 웨이퍼 자리를 서버로 돌려 2027년 하반기까지 버팁니다. 4분기 사업부별 증감은 인텔 가이던스로 계산한 추정입니다. [목차] 00:00 인텔 시간외 -21.8%, 4분기 전망 18억 달러 미달 00:49 인텔 매출의 세 사업부 02:36 서버 CPU: 수요는 넘치는데 못 만든다 04:14 PC: 메모리값에 덜 팔린다 06:07 4분기 전망 165억 → 155억 달러 08:53 PC 공장을 서버로 돌린다 10:54 내년 서버 점유율은 공급이 정한다 [원본] 1. 인텔 2026년 3분기 실적 컨퍼런스콜 공식 웹캐스트(2026.10.29): https://edge.media-server.com/mmc/p/wmusrcit/ 2. 인텔 IR 행사 페이지: https://www.intc.com/news-events/ir-calendar/detail/20261029-q3-2026-intel-corporation-e…",
-   "status": "new",
+   "status": "done",
    "found": "2026-10-30 19:29 KST",
    "image": "https://i1.ytimg.com/vi/t0chs0gT3t4/hqdefault.jpg",
    "show_image": null,
-   "lang": "ko"
+   "lang": "ko",
+   "title_ko": "서버는 못 만들고 PC는 못 파는 인텔 — 인텔 3분기 실적 발표",
+   "desc_ko": "인텔 3분기 실적 발표 직후 시간외 주가가 21.8% 빠진 이유를 사업부별로 짚는다. 서버 CPU는 수요가 넘치지만 인텔 3 공정, 패키징 기판, 이스라엘 공장 사고로 생산이 막혔다. PC는 메모리값 상승으로 판매가 줄었다. 인텔은 오리건 공장의 PC용 웨이퍼 자리를 서버로 돌려 2027년 하반기까지 버틴다. 4분기 사업부별 증감은 가이던스로 계산한 추정이다.",
+   "summary": {
+    "title_ko": "서버는 못 만들고 PC는 못 파는 인텔 — 인텔 3분기 실적 발표",
+    "headline": "서버는 수요가 넘치는데 못 만들고, PC는 메모리값에 덜 팔린다",
+    "image": "https://i.ytimg.com/vi/t0chs0gT3t4/hqdefault.jpg",
+    "guest": "식스시그마(진행) · 립부 탄(Lip-Bu Tan) — 인텔 3분기 콘퍼런스콜 발언을 사업부별로 나눠 시간외 21.8% 급락의 이유를 짚은 해설 영상",
+    "company": "Intel (반도체 · 서버 CPU · PC CPU · 파운드리)"
+   }
   },
   {
    "id": "2026-10-30-oddlots-php2shell-won-t-be-the-last-big-ai-cybersecurity",
