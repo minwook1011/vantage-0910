@@ -1,0 +1,217 @@
+{
+ "id": "2026-10-30-oddlots-php2shell-won-t-be-the-last-big-ai-cybersecurity",
+ "title_ko": "PHP2Shell은 시작일 뿐: AI가 키우는 사이버보안 위험 (Calif의 Thai Duong·Bruce Dang)",
+ "guest": {
+  "name": "Thai Duong · Bruce Dang",
+  "role": "PHP2Shell을 찾은 보안 회사 Calif의 CEO와 엔지니어"
+ },
+ "guest_profile": [
+  {
+   "name": "Thai Duong",
+   "title": "Calif 창업자·CEO",
+   "what": "미국 보안 회사 Calif를 이끈다. 회사 소개에 따르면 AI 보안, 네오클라우드 보안, 보안 공학, 실사 업무를 하며 인력은 60명이다.",
+   "career": "베트남 사이공에서 자랐고 2011년 미국으로 건너가 컨설팅 회사를 거쳐 그해 Google에 합류했다. 12년간 암호 기술과 제품 출시 전 해킹을 맡았고 이후 Calif를 세웠다.",
+   "track": "투자자가 아니라 공개 수익률 없음. SSL 공격 기법 BEAST, CRIME, POODLE 연구로 알려졌고 2011년 Pwnie Award, Google Feats of Engineering Award(2017·2019)를 받았다고 소개돼 있다.",
+   "why": "PHP2Shell의 발견과 공개 과정을 직접 이끈 당사자이고 은행 침해 대응 현장도 본 사람이다."
+  },
+  {
+   "name": "Bruce Dang",
+   "title": "Calif 엔지니어",
+   "what": "Calif에서 공격 연구를 맡는다. WSJ 등 보도에서 PHP2Shell 파장을 경고한 인물로 나온다.",
+   "career": "Microsoft 보안대응센터에서 약 10년 일했고 창업을 거쳐 Apple에서 iOS 보안을 맡았다. 역공학 교과서 Practical Reverse Engineering(2014) 공저자다.",
+   "track": "투자자가 아니라 공개 수익률 없음. Microsoft에서 Stuxnet 분석을 맡은 경력이 대표적이다.",
+   "why": "역공학 전문가가 자기 교과서가 낡았다고 말할 만큼 변화 폭을 직접 겪었다는 점이 이 편의 무게를 만든다."
+  }
+ ],
+ "company": {
+  "name": "Calif",
+  "sector": "사이버보안 · AI 보안",
+  "what": "AI 연구소와 네오클라우드의 보안 점검, 공격 연구를 하는 미국 비상장 보안 회사"
+ },
+ "topic": "AI가 해킹 속도를 바꾸며 생긴 위험과 PHP2Shell 사건의 뒷이야기",
+ "headline": "AI는 버그보다 공격 코드를 빨리 만들었고, 방어는 아직 뒤처져 있다",
+ "tldr": [
+  "PHP 재단은 2024년 같은 취약점을 찾고도 미뤘고, Calif의 공격 코드가 판단을 바꿨다",
+  "은행 2곳 침해에서 AI 공격자는 하루 만에 내부 전체로 퍼졌다 — 사람 팀은 약 한 달",
+  "Duong은 지금 AI가 공격자에게 더 유리하다고 인정, 코딩 잘하는 AI는 곧 해커라는 논리",
+  "Microsoft 월간 업데이트 약 20건 → 1,400건, Chrome에서 약 1,000건 발견",
+  "Amazon은 패치 나흘 전 첫 공격 관측, CISA는 10월 29일을 연방 기관 패치 마감으로 지정",
+  "다만 10월 22일 시점 확인된 침해 없다는 분석도 있어 피해 규모는 불분명"
+ ],
+ "summary_md": "### 1. 왜 지금 보안 이야기인가\n\n- 진행자 Tracy Alloway와 Joe Weisenthal은 10월 29일 녹화에서 업계가 쓰는 말이라는 \"검은 10월\"로 문을 연다. 최근 보안 사고가 이어졌고, 그중 가장 큰 것이 웹사이트의 약 70%가 쓴다는 **PHP의 취약점**이다.\n- 핵심 질문은 AI가 인터넷을 더 안전하게 만드느냐, 더 위험하게 만드느냐다. Anthropic의 **Mythos**와 Project Glasswing 이후 이 질문이 시장의 관심사가 됐다고 진행자들은 설명한다.\n- Weisenthal은 보안 회사가 무엇을 파는지, 사는 쪽이 효과를 어떻게 아는지조차 모르겠다고 털어놓는다. 이번 편은 이 눈높이에서 Calif의 두 사람에게 묻는다.\n\n### 2. 두 게스트가 해 온 일\n\n- Bruce Dang은 Microsoft 보안대응센터에서 약 10년 일하며 **Stuxnet 분석**에 참여했고, 창업을 거쳐 Apple에서 iOS 보안을 맡았다.\n- Thai Duong은 웹 암호화 규약 SSL·TLS의 약점을 찾아 낡은 SSL 3.0 퇴출에 기여했고, Google에서 12년간 제품 출시 전 해킹과 암호 기술을 맡은 뒤 Calif를 세웠다.\n- 그는 압축 후 암호화가 정답이라고 배웠지만, 압축된 길이만으로 비밀번호를 추정할 수 있음을 자신들이 보였다고 설명한다. 교과서의 정답도 뒤집힐 수 있다는 사례다.\n\n### 3. AI가 바꾼 것은 속도\n\n- Dang은 시스템이 원래 취약했던 것은 같고, AI가 **찾고 악용하는 속도**를 사람을 넘는 수준으로 올렸다고 본다.\n- 대본에서: 20년 전 Microsoft의 월간 업데이트가 약 20건이었다면 지금은 약 1,400건이다. 여러 명이 석 달 걸리던 해킹이 AI와 한 사람으로 며칠에 끝나기도 한다.\n\n[[chart:2]]\n\n### 4. PHP2Shell은 어떻게 발견됐나\n\n- Calif는 OpenAI가 오픈소스 관리자를 돕도록 자금과 토큰을 대는 프로그램에 참여했다. 엔지니어 Ryan Austin이 PHP를 맡았고, 과거 PHP 보안을 이끈 Stefan Esser를 영입해 둔 덕에 PHP 재단과 연결됐다.\n- 7월 30일 작업을 시작해 하루이틀 만에 첫 취약점을 찾았다. Esser가 22년 전 공개한 것과 비슷한 유형이었다.\n- 놀라운 대목은 재단의 반응이다. 재단은 **2024년에 같은 취약점을 찾았지만** 고치지 않았다고 했다. 수정 비용이 크고 새 문제가 생길 수 있는데, 실제 공격이 가능하다는 증거가 없었기 때문이다.\n- 재단이 공격 코드가 있느냐고 묻자 Calif는 다음 날 원격 해킹 코드를 보여 줬다.\n- 진행자가 AI의 역할은 발견보다 공격 코드 개발에 있었느냐고 묻자 Duong은 대체로 그렇다고 답했다. 사람이 설계를 정하면 AI가 구현하고 동작을 증명하는 **공학 문제**로 바뀌었다는 것이다. 다만 AI 없이는 거대한 코드를 뒤지는 데 몇 달이 걸렸을 것이라고 덧붙였다.\n\n### 5. 방어가 공격을 앞설 수 있나\n\n- Dang은 AI로 더 안전한 시스템을 빠르게 짓는 길이 있어 장기적으로 가능하다고 본다.\n- Duong은 공격자가 늘 새 도구를 먼저 쓰고 방어자는 느리다고 인정한다. 지금은 AI가 **공격자에게 더 유리**하지만, 좋은 편이 더 많아 결국 따라잡을 것이라는 입장이다.\n- 진행자의 기술 부채 낙관론에는 선을 긋는다. 잘 지켜진다고 믿었던 곳에서도 **예상의 10배**쯤 버그가 나왔다는 것이다. Chrome에서 1,000건이 나온 일이 대표적이다. Duong은 Chrome 보안에 투자가 많이 들어갔다는 것을 잘 아는 만큼 충격이었다고 했다.\n\n### 6. 증명 가능한 보안은 가능한가\n\n- Weisenthal은 수학처럼 안전을 증명할 수 없느냐고 묻는다. 두 사람은 작은 구성 요소에서는 가능하지만 수십억 줄인 브라우저 규모에는 지금 방법이 없다고 답한다.\n- Duong은 더 깊은 이유로 소프트웨어의 강점을 든다. 쉽게 바꿀 수 있어 소프트웨어 기업이 세계를 지배했는데, 끊임없는 변경과 정식 증명은 충돌한다는 것이다.\n\n### 7. 패치 전 공격, 그리고 샌드박스 논쟁\n\n- 공개 저장소에서 수정이 진행되는 순간 공격자가 이를 공격 코드로 바꿀 수 있다. Duong은 이를 **패치 이전의 틈**으로 설명하며, 패치가 나오기 전 이미 위험한 구간이 생겼다고 말한다. 주요 언어 저장소를 AI로 지켜보는 공격자도 있다고 본다.\n- Hugging Face와 OpenAI 사고 뒤 벌어진 논쟁도 다룬다. Jensen Huang처럼 모델이 해킹하지 않게 만들면 된다는 입장에 대해 Duong은 인센티브를 든다. AI 회사의 토큰 수요는 대부분 코딩에서 나오는데, 코드를 잘 이해하고 컴퓨터를 다루는 에이전트가 **곧 해커**의 정의에 가깝다는 것이다.\n\n### 8. 해커의 일상과 은행 침해\n\n- Dang은 자신이 공저한 역공학 교과서가 **약 아홉 달 전**부터 사실상 낡은 것이 됐다고 말한다. 값싼 오픈소스 모델로 프린터 펌웨어를 해킹한 사례, 한 사람이 며칠 만에 iPhone 공격 사슬을 완성한 사례도 든다.\n- 가장 무거운 이야기는 **은행 고객 2곳의 침해**다. 사람 팀이라면 내부 확산에 한 달쯤 걸릴 일을 AI 공격자는 월요일 침입 후 화요일에 끝냈다. OpenAI 사고에서도 동시에 100곳이 뚫렸다고 Duong은 짚는다. 탐지해도 대응 수단이 없고 은행은 전체를 끌 수도 없다.\n\n### 9. 켄타우로스 해커의 시대\n\n- Duong은 체스의 역사에 빗댄다. Deep Blue 뒤 약 10년은 사람과 컴퓨터의 조합이 가장 강했고, 바둑에서는 그 기간이 약 2년이었다.\n- 그는 지금이 사람과 AI가 함께하는 **켄타우로스 해커** 시대이고, 얼마나 갈지는 모른다고 했다. 석 달일 수도, 3년일 수도 있다는 표현이다.\n- 그러면서 AI를 불에 비유해, 어떻게 다스릴지와 함께 무엇을 요리할지 물어야 한다고 맺었다.\n- 진행자들은 대화가 기대보다 낙관적이지 않았다고 정리한다. Alloway는 AI가 시스템을 다시 설계하면 튼튼해질 것이라는 기대가 이번 답변으로 약해졌다고 했고, Weisenthal은 코딩이 큰 사업인 이상 뛰어난 해커도 함께 늘어난다는 점을 가장 인상적인 대목으로 꼽았다.",
+ "insights_md": "### 투자 관점\n\n- 이번 대화의 핵심 메시지는 **탐지만으로는 부족하다**는 것이다. 침입 뒤 하루 만에 내부로 퍼지면 경보를 받아도 대응 시간이 없다. 예산은 자동 대응, 내부망 분리, 권한 관리처럼 확산을 늦추는 쪽으로 옮겨 갈 가능성이 있다.\n- 공개 시장에서는 CrowdStrike·Palo Alto Networks·Zscaler가 대표주다. 다만 Google은 Gemini·Wiz·Mandiant를 묶은 AI 방어 제품을 내놓았고, OpenAI와 Anthropic도 보안 능력을 직접 제공해 **AI 연구소가 경쟁자**가 될 수 있다.\n- AI 쪽에서 보면 보안은 추가 토큰 수요다. 아마존의 재시도 이번 실적 콜에서 보안이 AI 사용처로 커질 수 있다고 언급했다.\n- 비상장 Calif는 공개된 투자 유치·매출 숫자를 찾지 못했다. 회사 소개에는 60명 규모라고 적혀 있다.\n\n- 패치 관리도 수요가 커질 영역이다. 공개부터 공격까지의 간격이 줄면 기업은 **업데이트 자동화**와 구버전 정리에 돈을 더 써야 한다. 금융처럼 시스템을 끌 수 없는 업종에서는 중단 없는 격리 기술이 중요해진다.\n\n### 수치\n\n- 대본 기준 Microsoft 월간 업데이트 약 20건 → 약 1,400건, Chrome 취약점 약 1,000건, 은행 내부 확산 약 한 달 → 하루 남짓.\n\n### 반론·리스크\n\n- 이 숫자들은 AI 보안 서비스를 파는 회사의 경험담이다. 은행 사례는 고객명과 증거가 공개되지 않았다.\n- **공포가 수요로 이어지는** 흐름은 과거에도 있었으나, 주가는 이미 많이 올랐을 수 있다.\n\n- AI 연구소가 방어 기능을 기본으로 묶어 주면 전문 보안 회사의 가격 결정력이 약해질 수 있다는 우려도 있다. 5월 Google 제품 공개 때 보안주가 내린 것이 그 예다.\n\n### 체크포인트\n\n- 보안 회사의 다음 실적에서 자동 대응 제품 매출 비중과 해지율, 패치 소요 시간 통계를 본다.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크\n\n외부 자료로 확인: PHP2Shell은 CVE-2026-109618과 CVE-2026-109619 두 건을 묶은 이름이고 위험 점수는 CVSS 9.2다. Calif는 8월 1일 첫 취약점을 찾아 8월 11일 PHP에 알렸고, Wiz는 8월 19일 독립적으로 찾았다는 설명이 나와 있다. 대본의 7월 30일 시작과 하루이틀 만의 발견이 이 날짜와 맞는다. 패치는 10월 21일 나왔고 **PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35**가 수정판이다.\n\nAI의 역할은 출처마다 표현이 다르다. Wiz 팟캐스트는 AI 에이전트가 전부 찾아냈다고 표현했고, 다른 분석은 연구자가 AI를 도구로 썼다고 본다. 방송 소개글도 AI 덕에 규모를 파악했다는 쪽이다. 이번 대담에서 Duong은 재단이 2024년에 사람 손으로 이미 찾았으며 AI는 **공격 코드 개발**에 주로 기여했다고 했다. \"AI가 발견했다\"는 표현은 그대로 받아들이기보다 이 맥락으로 읽어야 한다. 2024년 재단의 판단은 대본의 설명이며 이번에 독립적으로 확인하지는 못했다.\n\n오디오 받아쓰기로 만든 대본이라 일부 이름이 깨졌다. Stefan Esser, Volker Dusch, Ryan Austin은 표기를 바로잡았고, Ryan Austin은 외부 보도로 확인했다. OpenAI 프로그램의 정확한 이름은 확인 못 함이다.\n\n### 2. 밸류체인과 관련 상장사\n\n방어 쪽 상장사는 CrowdStrike(CRWD), Palo Alto Networks(PANW), Zscaler(ZS)다. 관련 사업이 있는 대형 플랫폼으로는 Wiz를 품으려 한 Alphabet(GOOGL)과 위협 정보를 공개한 Amazon(AMZN)이 있다. Wiz 인수 완료 여부는 이번 조사에서 확인 못 함이다. 일본 Trend Micro(4704), 한국 안랩(053800)도 같은 업종이지만 이번 사건과 직접 연결된 자료는 찾지 못했다.\n\n주가는 뉴스에 양방향으로 움직였다. 5월 Google 제품 공개 때 CrowdStrike가 3.4% 내렸고, 9월에는 AI 위험 경고가 나오자 CrowdStrike와 Zscaler가 하루 12% 올랐다. AI 보안 소식이 **수혜인지 위협인지** 시장이 아직 정하지 못했다는 뜻이다.\n\n[[chart:5]]\n\n### 3. 숫자의 맥락\n\n70%는 웹 서버 쪽 사용률을 뜻하는 수치이고, 그만큼이 곧 해킹 가능하다는 뜻은 아니다. 측정치마다 차이가 크다. Mallory는 10월 21일 PHP 버전을 드러낸 서비스 약 260만 개를 셌고, 이 중 73.5%인 약 190만 개가 PHP 8.1 이하였다. 공식 수정판 목록에 없는 구버전 비중이 높다는 점이 **패치 지연**의 위험을 키운다.\n\n[[chart:3]]\n\nVirusTotal 집계는 더 넓어 노출 호스트가 510만 개 이상, 공격 가능한 포트가 열린 곳이 약 380만 개다. 두 집계는 기준이 달라 더할 수 없다.\n\n[[chart:4]]\n\n공격 시점은 대본의 주장을 뒷받침한다. Amazon은 패치 나흘 전인 10월 17일 첫 공격 시도를 관측했고, 10월 20일 세부 내용이 유출되자 PHP가 공개를 앞당겼다. 공개 몇 시간 만에 공격 코드가 돌았다. CISA는 10월 26일 악용 확인 목록에 올리고 **연방 기관 마감을 10월 29일**로 잡았다.\n\n패치까지 걸린 시간도 볼 만하다. 첫 보고인 8월 11일부터 패치까지 **약 71일**이 걸렸다. 공개 전 유출과 공격 시도가 그 사이 나왔다는 점에서, 조율된 공개라는 기존 관행이 AI 시대에 충분한지 질문을 남긴다.\n\n### 4. 반론과 리스크\n\n피해 규모는 아직 불분명하다. Amazon은 공격이 넓게 벌어진다고 했지만, Dataminr는 10월 22일 시점에 스캔과 작동하지 않는 공격 코드가 대부분이고 확인된 침해는 없다고 봤다. 어느 CVE가 악용됐는지도 보도가 엇갈린다. 즉 취약점의 심각성과 **실제 피해**는 구분해야 한다.\n\n은행 2곳 사례는 **Calif의 증언**뿐이고 공개 증거를 찾지 못했다. 이들은 사고 대응을 파는 회사라는 점도 감안해야 한다. 또 PHP 재단이 2년간 수정을 미룬 판단도 무조건 잘못이라 보긴 어렵다. 패치 자체가 서비스 장애를 낼 수 있기 때문이다. 10월 23일에는 별도 취약점 CVE-2026-115560이 공개돼, 패치 뒤에도 할 일이 남았다.\n\n낙관론의 근거도 있다. AI는 수정 코드 작성과 검증도 빠르게 한다. 다만 수정 뒤 배포는 여전히 기업의 일정에 달려 있어, 공격 속도와의 격차가 얼마나 줄지는 **아직 데이터가 없다**.\n\n### 5. 앞으로 볼 것\n\n- CISA 목록과 침해 사고 공시에서 PHP2Shell 실제 피해가 얼마나 확인되는지.\n- PHP 재단의 구버전 대응과 CVE-2026-115560 패치 시점.\n- CrowdStrike·Palo Alto Networks 다음 실적의 AI 관련 수주 표현.\n- Microsoft·Chrome의 월간 취약점 수정 건수 추이.\n- 금융 당국의 AI 공격 관련 지침.",
+ "sources": [
+  {
+   "label": "[원본] Odd Lots — PHP2Shell Won't Be the Last Big AI Cybersecurity Risk",
+   "url": "https://omny.fm/shows/odd-lots/php2shell-wont-be-the-last-big-ai-cybersecurity-risk"
+  },
+  {
+   "label": "Calif 회사 소개 — 사업·인력·경영진",
+   "url": "https://calif.io/company"
+  },
+  {
+   "label": "BleepingComputer — Amazon, 패치 나흘 전 공격 관측, VirusTotal 노출 수",
+   "url": "https://bleepingcomputer.com/news/security/amazon-says-php2shell-exploitation-began-4-days-before-patches"
+  },
+  {
+   "label": "BleepingComputer — CISA 악용 확인",
+   "url": "https://bleepingcomputer.com/news/security/cisa-confirms-php2shell-vulnerabilities-now-exploited-in-attacks"
+  },
+  {
+   "label": "Hackread — CISA 마감과 CVE 표기",
+   "url": "https://hackread.com/cisa-confirm-php2shell-exploit-federal-agencies-patch/"
+  },
+  {
+   "label": "SmartScope — AI 역할과 CVE 정리",
+   "url": "https://smartscope.blog/en/blog/php2shell-ai-really-find-php-vulnerability-roles-openai-2026/"
+  },
+  {
+   "label": "Wiz Crying Out Cloud — PHP2Shell 대담",
+   "url": "https://www.wiz.io/crying-out-cloud/breaking-down-php2shell-with-sagi-tzadik-and-thai-duong"
+  },
+  {
+   "label": "Gigazine — Wiz·OpenAI·Calif 발견 경위",
+   "url": "https://gigazine.net/gsc_news/en/20261022-php2shell-wiz-openai-calif/"
+  },
+  {
+   "label": "BuildMVPFast — 패치 판과 점검 범위",
+   "url": "https://www.buildmvpfast.com/blog/php2shell-patch-php-rce-cve-2026-109618"
+  },
+  {
+   "label": "24/7 Wall St. — 9월 보안주 급등과 연초 대비 수익률",
+   "url": "https://247wallst.com/investing/2026/09/14/cybersecurity-stocks-surge-as-ai-safety-warnings-spark-security-bid-crowdstrike-and-zscaler-jump-12-palo-alto-rallies-11/?.tsrc=rss"
+  },
+  {
+   "label": "Rallies — Google AI Threat Defense 출시와 보안주 반응",
+   "url": "https://rallies.ai/news/google-cloud-launches-ai-threat-defense-crowdstrike-falls-34-zscaler-drops-31"
+  },
+  {
+   "label": "vnhacker — Thai Duong 소개",
+   "url": "https://vnhacker.substack.com/about"
+  },
+  {
+   "label": "InfoconDB — Bruce Dang 경력",
+   "url": "https://infocondb.org/presenter/bruce-dang"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "AI 공격자의 내부 확산 시간",
+   "sub": "일 · Calif가 전한 은행 침해 사례, 사람 팀과 비교",
+   "type": "hbar",
+   "unit": "일",
+   "labels": [
+    "사람 공격팀(통상)",
+    "AI 공격자(이번 사례)"
+   ],
+   "series": [
+    {
+     "name": "내부 전체 확산",
+     "values": [
+      30,
+      1
+     ]
+    }
+   ],
+   "note": "대본의 '약 한 달'과 '월요일 침입 후 화요일'을 일수로 옮긴 어림값이다. Calif 증언이며 공개 증거는 없다",
+   "source": "Odd Lots 대본"
+  },
+  {
+   "at": "summary",
+   "title": "Microsoft 월간 업데이트 건수",
+   "sub": "건 · Bruce Dang이 든 대략적 비교",
+   "type": "bar",
+   "unit": "건",
+   "labels": [
+    "약 20년 전",
+    "현재"
+   ],
+   "series": [
+    {
+     "name": "업데이트",
+     "values": [
+      20,
+      1400
+     ]
+    }
+   ],
+   "note": "화자의 어림값으로 공식 통계가 아니다. AI가 찾는 속도가 수정 작업량을 키웠다는 맥락이다",
+   "source": "Odd Lots 대본"
+  },
+  {
+   "at": "deep",
+   "title": "PHP 버전을 드러낸 인터넷 서비스",
+   "sub": "만 개 · 2026년 10월 21일 Mallory 집계",
+   "type": "bar",
+   "unit": "만 개",
+   "labels": [
+    "전체",
+    "PHP 8.1 이하"
+   ],
+   "series": [
+    {
+     "name": "서비스",
+     "values": [
+      260,
+      190
+     ]
+    }
+   ],
+   "note": "버전을 드러낸 서비스만의 집계다. 구버전 비중이 73.5%로 높다",
+   "source": "Mallory 집계, 보안 매체 인용"
+  },
+  {
+   "at": "deep",
+   "title": "노출된 PHP 호스트",
+   "sub": "만 개 · VirusTotal 집계",
+   "type": "hbar",
+   "unit": "만 개",
+   "labels": [
+    "노출 호스트",
+    "공격 가능 포트 개방"
+   ],
+   "series": [
+    {
+     "name": "호스트",
+     "values": [
+      510,
+      380
+     ]
+    }
+   ],
+   "note": "Mallory와 기준이 달라 더할 수 없다",
+   "source": "BleepingComputer 인용 VirusTotal"
+  },
+  {
+   "at": "deep",
+   "title": "보안주 연초 대비 수익률",
+   "sub": "% · 2026년 9월 14일 장중 기준",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Palo Alto Networks",
+    "CrowdStrike",
+    "Zscaler"
+   ],
+   "series": [
+    {
+     "name": "연초 대비",
+     "values": [
+      99,
+      98,
+      -18
+     ]
+    }
+   ],
+   "note": "같은 업종이라도 AI 보안 이야기의 수혜가 고르지 않았다",
+   "source": "24/7 Wall St."
+  }
+ ],
+ "tg": "PHP 재단은 2024년 같은 취약점을 찾고도 미뤘고, Calif의 공격 코드가 판단을 바꿨다\n은행 2곳 침해에서 AI 공격자는 하루 만에 내부로 확산\nDuong은 지금 AI가 공격자에게 더 유리하다고 인정",
+ "tg_body": "Odd Lots가 PHP2Shell을 찾은 보안 회사 Calif의 Thai Duong CEO와 Bruce Dang을 불렀다. 웹의 약 70%가 쓰는 PHP에서 나온 이 취약점은 AI 시대 보안 위험의 상징이 됐다.\n\n뒷이야기가 흥미롭다. PHP 재단은 2024년 같은 문제를 찾았지만 수정이 어렵고 공격 증거가 없어 미뤘다. Calif가 다음 날 공격 코드를 보여 주며 상황이 바뀌었다. Duong은 AI의 주역할이 발견보다 공격 코드 개발이었다고 설명했다.\n\n변화의 핵심은 속도다. Dang은 Microsoft 월간 업데이트가 약 20건에서 1,400건으로 늘었다고 했다. 은행 2곳 침해에서는 사람 팀이 한 달 걸릴 내부 확산이 하루 만에 끝났다고 전했다. 탐지해도 대응할 시간이 없다는 뜻이다.\n\nDuong은 지금은 AI가 공격자에게 더 유리하고, 코딩을 잘하는 AI는 곧 해커라고 했다. 지금은 사람과 AI의 조합이 가장 강하지만 얼마나 갈지는 모른다고 봤다.\n\n외부 자료로 Amazon의 패치 나흘 전 공격 관측, CISA의 악용 확인은 맞는다. 다만 초기에는 확인된 침해가 없다는 분석도 있었고, 은행 사례는 Calif의 증언이다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-10-30 18:40 KST"
+}
