@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-10-30",
  "events": [
   {
    "id": "ces-2026",
@@ -2467,12 +2467,12 @@
    "date_start": "2026-10-26",
    "date_end": "2026-10-29",
    "month": "2026-10",
-   "status": "previewed",
+   "status": "done",
    "preview": "IBM의 연례 기술 컨퍼런스로 watsonx 기반 엔터프라이즈 AI 에이전트, 하이브리드 클라우드, 양자컴퓨팅 로드맵이 관전 포인트다. IBM은 양자 컴퓨터를 전면에 내세우고 있어 양자 관련 테마주 센티먼트에 영향을 줄 수 있다. 엔터프라이즈 AI 도입 속도는 소프트웨어·컨설팅 수요, Red Hat 등 인프라 SW 매출과 연결된다. 10월 말 IBM 3분기 실적 시기와 맞물려 제품 서사를 확인하는 자리다.",
    "summary": "IBM이 매년 여는 개발자·고객 대상 컨퍼런스로 AI, 자동화, 하이브리드 클라우드, 보안, 양자 기술 세션이 열린다. watsonx와 AI 에이전트 신제품 발표가 핵심이다.",
    "full": "",
    "added": "2026-09-20",
-   "updated": "2026-09-20"
+   "updated": "2026-10-30"
   },
   {
    "id": "risc-v-summit-china-2026",
@@ -2719,11 +2719,11 @@
    "date_start": "2026-10-28",
    "date_end": "2026-10-29",
    "month": "2026-10",
-   "status": "upcoming",
+   "status": "done",
    "summary": "유럽중앙은행 정책위원회의 통화정책회의로 10월 28~29일 열리며, 29일 결정 발표 뒤 기자회견이 이어진다. 신규 경제전망은 나오지 않는 회의다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-04",
+   "updated": "2026-10-30",
    "sources": [
     {
      "label": "ECB — Meetings of the Governing Council",
@@ -2911,11 +2911,11 @@
    "date_start": "2026-10-26",
    "date_end": "2026-10-29",
    "month": "2026-10",
-   "status": "upcoming",
+   "status": "done",
    "summary": "사우디 국부펀드가 여는 연례 투자 회의로 올해 10회째다. 주제는 '유산의 힘'이며 발표자 550명 이상, 세션 250개 이상이 예정돼 있다. 중동 자본의 AI 데이터센터·에너지 투자 약속이 나오는 자리다.",
    "full": "",
    "added": "2026-10-11",
-   "updated": "2026-10-11",
+   "updated": "2026-10-30",
    "sources": [
     {
      "label": "Sharikat Mubasher — FII 10회 리야드 개최",
@@ -2951,11 +2951,11 @@
    "date_start": "2026-10-28",
    "date_end": "2026-10-29",
    "month": "2026-10",
-   "status": "upcoming",
+   "status": "done",
    "summary": "깃허브의 연례 개발자 행사로 샌프란시스코 포트메이슨 센터에서 열린다. 코파일럿 등 AI 코딩 에이전트 기능 발표가 중심이다.",
    "full": "",
    "added": "2026-10-11",
-   "updated": "2026-10-11",
+   "updated": "2026-10-30",
    "sources": [
     {
      "label": "GitHub 블로그 — GitHub Universe is back",
