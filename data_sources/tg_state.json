@@ -73,6 +73,7 @@
   "gpu:2026-10-27",
   "gpu:2026-10-28",
   "gpu:2026-10-29",
+  "gpu:2026-10-30",
   "hc:6532:2026-10-02",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
   "ins:ins-20261026-agent-bank-access-war",
@@ -1347,9 +1348,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:f52391f9e243": [
-   817
-  ],
   "trk:blog-techcrunch:3abf48378b69": [
    818
   ],
@@ -2880,8 +2878,11 @@
   ],
   "or:2026-10-30": [
    384
+  ],
+  "gpu:2026-10-30": [
+   385
   ]
  },
  "topics": {},
- "topic_fail_at": 1793426654.822609
+ "topic_fail_at": 1793436963.930424
 }
