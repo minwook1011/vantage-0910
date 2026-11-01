@@ -74,6 +74,7 @@
   "gpu:2026-10-28",
   "gpu:2026-10-29",
   "gpu:2026-10-30",
+  "gpu:2026-10-31",
   "hc:6532:2026-10-02",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
   "ins:ins-20261026-agent-bank-access-war",
@@ -1351,9 +1352,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:yt--jklonfa:8d4b8801cdeb": [
-   821
-  ],
   "trk:yt-wy-8burq:29f62a72bcd5": [
    822
   ],
@@ -2884,6 +2882,9 @@
   ],
   "or:2026-10-31": [
    388
+  ],
+  "gpu:2026-10-31": [
+   389
   ]
  },
  "topics": {},
