@@ -1343,15 +1343,13 @@
   "usdkrw:2026-10-28",
   "usdkrw:2026-10-29",
   "usdkrw:2026-10-30",
+  "usdkrw:2026-10-31",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
   "weekly:2026-10-12",
   "weekly:2026-10-19"
  ],
  "msg": {
-  "trk:blog-techcrunch:b0cc00e8971c": [
-   819
-  ],
   "trk:blog-techcrunch:6a7e731924fd": [
    820
   ],
@@ -2882,6 +2880,9 @@
   ],
   "nebius:2026-11-01": [
    386
+  ],
+  "usdkrw:2026-10-31": [
+   387
   ]
  },
  "topics": {},
