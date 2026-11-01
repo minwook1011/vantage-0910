@@ -1,0 +1,284 @@
+{
+ "id": "2026-11-01-sixsigma-3W2ezZJQ7R8",
+ "title_ko": "두 번의 매각 뒤 칩으로 돌아온 Naveen Rao — Unconventional AI 4.75억 달러의 계산",
+ "guest": {
+  "name": "식스시그마(진행) · Naveen Rao",
+  "role": "Unconventional AI 창업자의 20VC 인터뷰를 IEA·구글·딥시크 숫자와 맞춰 짚은 해설 영상"
+ },
+ "guest_profile": [
+  {
+   "name": "식스시그마(Six Sigma)",
+   "title": "한국어 유튜브 채널 — 기업·시장 해설",
+   "what": "공식 자료와 해외 인터뷰 원음을 근거로 기업·산업 이슈를 10분 안팎으로 정리하는 채널이다. 이번 편은 20VC 인터뷰에 IEA 전력 전망, 구글 토큰 숫자, 딥시크 충격 당시 주가를 붙였다.",
+   "career": "영상 설명란에 원본 출처를 단다. 진행자 개인 경력은 공개되지 않아 확인 못 함.",
+   "track": "투자 운용 주체가 아니어서 공개된 수익률 없음.",
+   "why": "1시간이 넘는 인터뷰를 하나의 인과 사슬로 줄여 준다. 다만 그만큼 생략이 크므로 원본과 외부 자료를 함께 보는 편이 낫다."
+  },
+  {
+   "name": "나빈 라오(Naveen Rao)",
+   "title": "Unconventional AI 창업자 겸 CEO",
+   "what": "저전력 AI 컴퓨터를 만드는 비상장사 Unconventional AI를 이끈다. 2025년 12월 시드 라운드에서 기업가치 45억 달러에 4억 7,500만 달러를 받았다. 2026년 6월 기준 직원은 50명 미만으로 보도됐다.",
+   "career": "브라운대에서 신경과학 연구원으로 일했다. 2014년 AI 칩 회사 Nervana를 창업해 2016년 Intel에 팔고 Intel의 AI 제품 조직을 맡았다. 2021년 MosaicML을 창업해 2023년 Databricks에 넘긴 뒤 Databricks의 AI 책임자를 지냈고, 2025년 Unconventional AI를 세웠다. 박사 학위 기관은 이번 조사에서 확인 못 함.",
+   "track": "창업가로 공개 투자 수익률 없음. 매각 실적은 MosaicML 13억 달러(Databricks), Nervana 약 4억 800만 달러(Intel 미공시, Recode 보도)다. 본인도 새 회사에 1,000만 달러를 넣었다.",
+   "why": "칩과 모델 양쪽 회사를 모두 키워 본 드문 경력이라 전력당 성능을 스택 전체로 설명할 수 있다. 다만 지금은 자기 회사의 투자 논리를 말하는 당사자다."
+  }
+ ],
+ "company": {
+  "name": "Unconventional AI",
+  "sector": "AI 반도체 · 저전력 컴퓨팅",
+  "what": "진동자 기반 아날로그 방식으로 AI 전력 효율을 높이려는 비상장 칩 회사"
+ },
+ "topic": "전기가 병목일 때 AI 이익이 어디에 남는가 — Naveen Rao의 하드웨어 논리 검증",
+ "headline": "전기가 막히면 돈은 전력당 성능에 남는다 — 단 1,000배는 아직 측정치가 아니다",
+ "tldr": [
+  "Rao의 논리: AI가 싸질수록 쓰임이 늘고, 쓰임은 전기에 막혀 전력당 성능에 이익이 남는다",
+  "미국 건설 속도는 잘해야 연 10GW라는 주장 — 2026년 외부 추정 12~14GW와 비슷한 수준",
+  "1,000배 효율은 이론적 전망 — 공개된 Un-0는 칩이 아닌 소프트웨어 시뮬레이션",
+  "시드 4.75억 달러, 기업가치 45억 달러, Rao 본인 1,000만 달러 — 외부 보도로 확인",
+  "구글 월간 토큰 9.7조→480조→3,200조 개, IEA는 2030년 데이터센터 전력 950TWh 전망"
+ ],
+ "summary_md": "### 1. 인트로 — 소프트웨어 투자자에게 던진 말\n\n- 영상은 20VC 진행자의 고백 같은 질문으로 시작한다. SaaS에 10년을 투자해 온 자신이 투자자로서 달라져야 하느냐는 물음이다. Naveen Rao는 순수 소프트웨어 투자자라면 곤란해질 것이라고 거칠게 답하면서, 앞으로 10년은 **하드웨어가 있어야 할 자리**라고 말한다.\n- 식스시그마는 Rao를 AI 칩 회사와 AI 모델 회사를 한 번씩 키워 판 사람으로 소개한다. 지금 이끄는 Unconventional AI는 같은 전기로 AI 계산을 1,000배 더 하는 칩을 목표로 지난해 12월 **4억 7,500만 달러**를 받았고, Rao 본인 돈도 들어갔다.\n- 영상이 붙잡는 질문은 전기가 모자란데 왜 하필 칩 회사가 돈을 버느냐다. 뒤쪽 근거로 쓰이는 구글 토큰 숫자를 먼저 보면, 사용량이 어떤 속도로 커졌는지 드러난다.\n\n[[chart:1]]\n\n### 2. 소프트웨어에는 왜 이익이 안 남나\n\n- Rao는 2010년대 초부터 이어진 SaaS 호황을 일시적인 흥분에 빗댄다. 클라우드 덕분에 누구나 프로그램을 빨리 만들어 시장을 시험할 수 있었고, 배포 비용이 낮아지자 시장이 잘게 쪼개졌다는 설명이다.\n- 영상의 정리는 이렇다. 작은 시장마다 소프트웨어 회사가 하나씩 생겼는데, 이제는 프로그램이 하던 일을 **AI 모델이 직접** 한다. 그렇다면 다음 질문은 돈이 모델 회사로 가느냐다.\n\n### 3. 모델 회사도 이익을 쥐지 못한다\n\n- Rao의 답은 부정적이다. 나온 지 6개월 된 모델, 예컨대 중국 공개 모델도 충분히 쓸 만하다는 사실이 범용화의 징표라고 본다. 최전선 성능이 중요한 문제는 남지만, 그 최전선도 6개월 뒤에는 공개 모델에 들어온다는 것이다.\n- 다만 그는 범용화를 나쁜 일로 보지 않는다. 토마토가 흔해졌어도 사람들이 계속 먹듯, **시장은 커지고 마진은 줄어드는** 구조라는 비유다.\n- 그래서 전체 스택의 이익을 모델 회사가 가져가지 않을 것이라고 본다. 지금도 그렇지 않다는 근거로 이익 대부분을 엔비디아가 가져간다는 점을 든다.\n- 영상은 여기서 선을 긋는다. Rao가 말하는 하드웨어는 지금 칩을 더 많이 파는 쪽이 아니라 **같은 전기로 더 많이 계산하는 쪽**이다.\n\n### 4. 모델이 싸지면 칩도 싸지지 않나\n\n- 모델이 흔해져 값이 떨어지면 그 모델을 돌리는 칩도 흔해질 수 있다. Rao는 이 질문에 진화에 빗댄 세계관으로 답한다. 지능에 대한 수요에는 한계가 없고, 지능을 만들려면 에너지가 필요하며, 에너지를 지능으로 바꾸는 장치가 하드웨어라는 것이다.\n- 그가 말하는 하드웨어는 칩만이 아니다. 시스템, 클라우드, 네트워크까지 **스택 전체**를 뜻한다. 결국 파는 것은 에너지를 지능으로 바꾸는 능력이고, 그 변환을 더 잘할수록 가치가 쌓인다는 논리다.\n- 영상은 이를 한 줄로 푼다. 같은 전기로 답을 더 많이 뽑는 칩이 있으면 전기에 묶인 데이터센터는 그 칩을 산다. 따라서 이 주장이 맞으려면 **전기가 정말 모자라야** 한다.\n\n### 5. 전기는 정말 모자라나\n\n- 진행자는 데이터센터 투자가 흔들리는 지금이 거품이 꺼지는 시작이냐고 묻는다. 대본에 담긴 Rao의 답은 기가와트를 쉽게 말하지 말라는 것이다. 반도체 공장 하나가 200억~300억 달러 수준인데 1GW를 짓는 일은 그보다 크다고 했다.\n- 그는 남아 있던 여유 전력이 빠르게 귀해질 것으로 본다. 보수적인 AI 성장률을 넣어도 몇 년 안에 전기가 바닥나고, 그 뒤로는 **짓는 속도**에 수렴한다는 계산이다.\n- 1년에 40GW를 짓겠다는 말에는 해 본 적이 없는 일이라며 선을 긋는다. 지금 기준으로는 잘해야 **연 10GW**라는 것이 그의 판단이고, 새 발명이 나오면 몇 년 뒤 달라질 수는 있다고 단서를 단다.\n- 영상은 국제에너지기구 전망을 붙인다. 2030년까지 데이터센터 전력이 두 배, AI용은 세 배가 되는데 발전소와 송전망은 그 속도로 늘지 못한다는 내용이다.\n\n### 6. 그 효율은 누구나 얻을 수 있나\n\n- 전기를 더 끌어오기 어려우면 남는 길은 같은 전기로 더 계산하는 것이다. 영상은 그래서 Rao가 **전력당 성능**을 곧 데이터센터 매출로 본다고 정리한다.\n- Rao는 물리적인 효율 개선이 사실상 멈췄다고 말한다. 최근 몇 세대 GPU의 효율 향상은 트랜지스터가 아니라 데이터 형식을 32비트에서 16비트, 8비트, 4비트로 줄인 데서 왔다는 설명이다.\n- 대신 모델과 구조 층에는 여지가 많이 남았다고 본다. 영상의 해석은 트랜지스터를 줄여 저절로 얻던 효율은 끝났고, 남은 효율은 **모델과 칩을 함께 설계**하는 회사만 얻는다는 것이다. 그래서 칩은 누가 만들어도 같은 물건이 되지 않는다는 결론으로 이어진다.\n\n### 7. 칩이 효율적이면 덜 팔리지 않나\n\n- 영상은 반대 사례로 딥시크를 꺼낸다. 지난해 1월 딥시크가 적은 칩으로 쓸 만한 모델을 내놓자 엔비디아 주가는 **하루에 17%** 빠졌다. 효율이 좋아지면 칩이 덜 필요해진다는 걱정이었다.\n- Rao는 정반대로 본다. 토큰 하나를 내놓는 효율이 10배 좋아지면 쓸 수 있는 곳이 넓어져 시장이 사실상 10배가 된다는 논리다.\n- 영상은 실제 사용량이 그렇게 움직였다며 구글 숫자를 든다. 월간 처리 토큰이 2년 만에 9조 7,000억 개에서 **3,200조 개**를 넘었고, 최근 1년에만 일곱 배가 됐다.\n\n### 8. 수요는 화면 밖으로, 돈은 칩으로\n\n- 다음 수요는 화면 밖이다. 로봇이 공장에 들어오면 AI가 할 일은 지금과 비교가 안 되게 늘고, 그 일도 결국 같은 전기 안에서 돌아야 한다.\n- 영상의 마무리는 한 줄의 인과다. AI가 싸질수록 쓰는 곳이 늘고, 늘어난 쓰임은 전기에 막힌다. 그래서 Rao는 AI의 돈이 소프트웨어가 아니라 **전기당 계산량이 높은 칩**에 남는다고 보고 자기 회사를 걸었다는 것이다.\n\n### 9. 원본 인터뷰에서 더 볼 대목\n\n영상이 잘라 낸 부분이다. 대본이 아니라 20VC 원본 인터뷰에서 옮겨 정리했다.\n\n- Rao는 업계 숫자로 1GW 건설에 약 500억 달러를 들었다. 10GW면 약 5,000억 달러라는 계산도 덧붙였다.\n- 미국 전력망 평균 출력은 약 900GW, 최대 1.2~1.3TW라며 그동안 데이터센터는 이 여유분을 끌어다 썼다고 설명했다.\n- 데이터센터 전기는 일반 전기보다 비싸게 팔리는 **2단계 가격**이 이미 나타났다고 했다. 다만 근거는 개별 계약 일화라고 스스로 밝혔고, 전기 값의 5배에 연산을 판다는 비유도 임의로 든 숫자라고 했다.\n- 데이터센터 투자 조정은 일시적 현상이며, 추론 시장이 10년 안에 **10조 달러**가 된다고 전망했다. 3년 뒤 토큰의 80%가 공개 모델을 지나가고, 지출은 공개 모델과 최전선 모델이 절반씩 될 것으로 봤다.\n- 회사의 첫 칩은 서로 영향을 주는 진동자 묶음으로 만들었다고 언급했다. 설계 방침은 속도보다 에너지를 앞세우는 것이라고 설명했다.",
+ "insights_md": "### 투자 관점\n\n- 이 편의 뼈대는 **전기가 병목이면 전력당 성능이 가격 결정력**이 된다는 명제다. 수혜를 칩 회사 전체로 넓혀 읽기보다, 어느 회사가 전력당 성능을 올리는지와 전력 설비 공급이 언제 풀리는지를 나눠 봐야 한다.\n- 칩 쪽 상장사는 Nvidia(NVDA), Broadcom(AVGO), AMD(AMD), 자체 TPU를 쓰는 Alphabet(GOOGL)이다. Unconventional AI는 비상장이라 직접 연결되는 상장 종목이 없다.\n- 전력 설비 쪽은 HD현대일렉트릭(267260), 효성중공업(298040), LS ELECTRIC(010120), 일본 Hitachi(6501), Fuji Electric(6504)이다. Rao가 맞다면 **공급 제약이 길어지는** 구간이 이들에게 이어진다는 뜻이고, 틀리면 칩 효율 경쟁의 긴박성도 약해진다.\n\n### 수치\n\n- 2026 회계연도 Nvidia 영업이익률 60.4%, Broadcom 39.9%, AMD 10.7%. Rao의 이익 쏠림 주장은 숫자로 맞는다.\n- 2026년 미국 데이터센터 가동 예상은 약 12GW(Sightline 집계, Bloomberg 인용). Rao의 연 10GW와 큰 차이가 없다.\n- 구글 월간 토큰 3,200조 개는 2026년 5월 숫자다.\n\n### 반론·리스크\n\n- 1,000배는 측정치가 아니라 **이론적 전망**이다. 공개된 Un-0는 칩이 아닌 소프트웨어 시뮬레이션이다.\n- 게스트는 자기 회사의 투자 논리를 말하고 있다. 소프트웨어 비관론과 하드웨어 낙관론은 그의 사업과 이해관계가 겹친다.\n- 효율 경쟁의 선두도 스타트업이 아니라 기존 강자다. Nvidia는 Rubin이 전 세대보다 토큰당 비용을 90% 낮춘다고 주장한다. 다만 회사 수치이고 **최선의 경우**라는 평가가 붙는다.\n- 전기 부족은 영구적이지 않다. Rao 자신도 몇 년 뒤 새 발명으로 풀릴 수 있다고 했다.\n\n### 체크포인트\n\n- 미국의 연간 데이터센터 가동 용량이 15GW를 넘는지, Unconventional AI가 회로도와 실측 전력 수치를 공개하는지, 추가 자금 유치가 어느 기업가치에서 이뤄지는지.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크\n\n이 장은 대본 밖 자료로 확인한 내용이다. 시드 라운드 4억 7,500만 달러와 기업가치 45억 달러는 Bloomberg, TechCrunch 보도로 확인된다. 영상은 기업가치를 말하지 않았다. a16z와 Lightspeed가 주도했고 Rao는 1,000만 달러를 넣었다. 10억 달러까지 받겠다는 **첫 회차**라는 설명이 있었지만 이후 추가 납입 여부는 확인 못 함이다.\n\n경력의 두 매각은 성격이 다르다. MosaicML은 2023년 Databricks가 13억 달러에 샀다. Nervana는 2016년 Intel에 팔렸지만 금액은 **공식 발표된 적이 없고**, 약 4억 800만 달러는 Recode가 소식통을 인용한 숫자다.\n\n기술 쪽은 영상이 축약한 대목이 크다. 2026년 6월 공개한 Un-0는 결합 진동자를 **소프트웨어로 흉내 낸** 이미지 생성 모델이다. 1,000배 전력 절감은 물리 칩에서 측정된 값이 아니며 The Next Web은 이를 이론적 전망으로 규정했다. Rao는 원본 인터뷰에서 첫 칩을 언급했지만, 실물 칩의 성능과 전력 측정치는 확인 못 함이다. 2026년 6월 1일 시제품 설계를 넘겼다는 내용은 위키성 페이지에서만 보여 쓰지 않는다.\n\n영상의 다른 숫자는 맞는다. 딥시크 충격일인 2025년 1월 27일 Nvidia는 17% 내렸고, 시가총액 감소는 Bloomberg 기준 5,890억 달러, 다른 보도 기준 5,930억 달러로 계산법에 따라 다르다. 구글 토큰은 2024년 5월 9조 7,000억 개, 2025년 약 480조 개, 2026년 5월 3,200조 개 이상이다. 자막의 '구조 7천억'은 9조 7,000억의 오기다. 일곱 배는 구글 표현이고 나눗셈으로는 약 6.7배다.\n\n### 2. 전력 숫자의 맥락\n\n영상의 두 배, 세 배는 IEA의 2026년 보고서 내용과 맞는다. 2025년 485TWh가 2030년 950TWh로 늘고 AI 중심 시설은 세 배가 된다. 앞선 2025년 보고서는 AI 최적화 시설을 **네 배 이상**으로 봤으니, 어느 보고서를 인용하는지에 따라 배수가 달라진다.\n\n[[chart:2]]\n\nRao의 연 10GW도 외부 숫자와 비슷하다. BloombergNEF는 미국 전력망이 한 해에 연결한 데이터센터 수요의 최대치를 10GW로 봤고, 2026년 가동 예상은 Sightline 약 12GW, Goldman Sachs 추정 합산 약 13.7GW다. 40GW는 전례가 없다는 말은 맞지만, **10GW가 상한**이라고 단정하기는 어렵다. 집계 기준은 서로 다르다.\n\n병목의 시간 차도 뚜렷하다. IEA에 따르면 전력망 건설은 5~15년, 데이터센터는 1~3년이 걸리고 세계 접속 대기 물량은 2,500GW를 넘는다. 1GW 비용은 Rao가 든 500억 달러 외에 Nvidia 500억~600억 달러, Bernstein 약 350억 달러로 갈린다. Bernstein은 연 전기료를 약 13억 달러로 계산했다. 비용에서 전기료 비중은 작지만 전기가 없으면 설비 전체가 놀게 되므로, 전력당 성능의 값어치가 높아지는 구조다.\n\n### 3. 밸류체인과 관련 상장사\n\n이익 쏠림은 사실이다. Nvidia의 영업이익률은 60%를 넘고 2026 회계 4분기 총이익률은 75.2%였다.\n\n[[chart:3]]\n\nRao의 공동 설계론은 스타트업보다 **기존 대형사**에서 먼저 현실이 됐다. Broadcom은 구글 TPU의 여러 세대 공급 계약을 맺었고 Anthropic에 2026년 1GW 이상, 2027년부터 5GW의 TPU 연산 접근을 제공한다고 밝혔다. OpenAI 자체 칩 Jalapeño도 회계 3분기에 출하했다. AMD는 OpenAI와 6GW 계약을 맺었고 첫 1GW는 2026년 하반기 시작 예정이다. 실제 가동 여부는 확인 못 함이다.\n\n전력 설비는 실적으로 먼저 움직였다. 한국 3사의 2025년 영업이익은 2023년보다 늘었고, 증가 폭은 HD현대일렉트릭과 효성중공업이 컸다.\n\n[[chart:4]]\n\n일본에서는 Fuji Electric이 2027년 3월기 데이터센터 관련 매출 1,000억 엔을 제시했고 2028년 3월기 생산능력 부족 가능성을 언급했다. Hitachi는 2027년까지 변압기·송배전 설비에 60억 달러 투자 계획이 보도됐다.\n\n### 4. 반론과 리스크\n\n가장 큰 반론은 뉴로모픽과 아날로그의 이력이다. The Register는 수십 년 연구에도 작동한 시제품이 드물고 IBM, Intel도 오래전부터 시도해 왔다고 짚었다. Rao도 진전이 느리다고 인정했고 2년 안에 제품이 없다고 했다. 경쟁도 있다. EnCharge AI는 디지털 칩보다 최대 20배 효율을 주장하며 누적 1억 4,400만 달러를 받았고, Positron은 기업가치 10억 달러로 2억 3,000만 달러를 조달했다. 모두 회사 주장이다.\n\n**물리적 효율이 끝났다**는 말도 절반만 맞다. Rao가 말한 것은 트랜지스터 층이고, Nvidia는 Rubin에서 전력당 성능 10배를 주장한다. 다만 이 역시 회사 수치다.\n\n딥시크 논리는 지금까지 Rao 편이다. Nvidia 매출은 충격 후 첫 회계연도에 1,305억 달러에서 2,159억 달러로 65% 늘었다. 그러나 토큰 증가에는 추론형 모델처럼 **토큰을 많이 쓰는 구조** 변화도 섞여 있어, 효율 때문에 수요가 늘었다고 분리해 입증하기는 어렵다. 그 비중은 확인 못 함이다. 미국 전력 여유분 900GW와 1.3TW, 10조 달러 시장 전망은 Rao의 발언이며 외부 대조를 하지 못했다.\n\n### 5. 앞으로 볼 것\n\n- Unconventional AI의 칩 회로도 공개와 실측 전력 수치.\n- 2026년 미국 데이터센터 가동 용량 확정치와 2027년 전망.\n- Rubin 양산 후 독립 측정 전력당 처리량.\n- IEA 다음 전망이 AI 시설 배수를 다시 올리거나 낮추는지.\n- 전력 설비사 수주잔고와 납기, 증설 뒤 공급이 풀리는 시점.",
+ "sources": [
+  {
+   "label": "[원본] 식스시그마 — AI 회사 두 번 매각한 나빈 라오는 왜 칩에 4.75억 달러를 걸었을까(2026-11-01)",
+   "url": "https://www.youtube.com/watch?v=3W2ezZJQ7R8"
+  },
+  {
+   "label": "[원본] 20VC — Naveen Rao 인터뷰(2026-10-24), 1GW 비용·미국 전력망·10조 달러 전망",
+   "url": "https://www.youtube.com/watch?v=4UmFfI8CWuA"
+  },
+  {
+   "label": "TechCrunch — Unconventional AI 시드 4.75억 달러, 기업가치 45억 달러",
+   "url": "https://techcrunch.com/2025/12/09/unconventional-ai-confirms-its-massive-475m-seed-round"
+  },
+  {
+   "label": "Bloomberg — 시드 라운드 기업가치와 공동 주도 투자사",
+   "url": "https://www.bloomberg.com/news/articles/2025-12-08/ai-computer-startup-hits-4-5-billion-valuation-in-seed-round"
+  },
+  {
+   "label": "The Next Web — Un-0는 소프트웨어 시뮬레이션, 1,000배는 이론적 전망, 직원 수",
+   "url": "https://thenextweb.com/news/unconventional-ai-un0-oscillator-chip-image-generation-naveen-rao"
+  },
+  {
+   "label": "SiliconANGLE — 진동자 기반 Un-0 모델 공개",
+   "url": "https://siliconangle.com/2026/06/26/unconventional-ai-debuts-oscillator-based-un-0-model-series/"
+  },
+  {
+   "label": "The Register — 뉴로모픽 연구의 한계, 2년 내 제품 없음 발언",
+   "url": "https://www.theregister.com/2025/12/08/unconventional_ai/"
+  },
+  {
+   "label": "Global Venturing — Nervana 인수 금액 4.08억 달러(Recode 보도, Intel 미공시)",
+   "url": "https://globalventuring.com/intel-finds-nervana-in-408m-deal/"
+  },
+  {
+   "label": "Eco-Business — IEA Key Questions on Energy and AI, 485TWh→950TWh, AI 시설 세 배",
+   "url": "https://www.eco-business.com/news/ais-energy-appetite-is-outpacing-deployment-of-ai-based-climate-solutions-iea/"
+  },
+  {
+   "label": "IEA — Energy and AI(2025) 보도자료, 945TWh·AI 최적화 시설 네 배 이상",
+   "url": "https://www.iea.org/news/ai-is-set-to-drive-surging-electricity-demand-from-data-centres-while-offering-the-potential-to-transform-how-the-energy-sector-works"
+  },
+  {
+   "label": "MEED — IEA 인용, 접속 대기 2,500GW·전력망 5~15년 대 데이터센터 1~3년",
+   "url": "https://www.meed.com/ai-is-creating-a-grid-capacity-problem"
+  },
+  {
+   "label": "Google — I/O 2026 Pichai 기조연설, 월간 토큰 9.7조·480조·3,200조",
+   "url": "https://blog.google/innovation-and-ai/sundar-pichai-io-2026/"
+  },
+  {
+   "label": "Bloomberg — 2025년 1월 27일 Nvidia 17% 하락, 시가총액 5,890억 달러 감소",
+   "url": "https://www.bloomberg.com/news/articles/2025-01-27/asml-sinks-as-china-ai-startup-triggers-panic-in-tech-stocks"
+  },
+  {
+   "label": "Korea JoongAng Daily — Nvidia 시가총액 감소 5,930억 달러 보도",
+   "url": "https://www.koreajoongangdaily.com/business/investors-dump-tech-stocks-after-record-593-billion-nvidia-loss/12473281"
+  },
+  {
+   "label": "Tom's Hardware — 2026년 미국 데이터센터 계획 절반가량 지연·취소, Sightline 약 12GW",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/half-of-planned-us-data-center-builds-have-been-delayed-or-canceled-growth-limited-by-shortages-of-power-infrastructure-and-parts-from-china-the-ai-build-out-flips-the-breakers"
+  },
+  {
+   "label": "Goldman Sachs — 미국 데이터센터 전력 수요·2026년 용량 추정",
+   "url": "https://www.marcus.com/us/en/resources/heard-at-gs/what-is-the-forecast-for-us-data-center-power-demand-"
+  },
+  {
+   "label": "BloombergNEF — 미국 전력망 연간 최대 연결 10GW, 2030년 118GW 전망",
+   "url": "https://about.bnef.com/?p=26523"
+  },
+  {
+   "label": "Investing.com — Bernstein 1GW 약 350억 달러, Nvidia 500억~600억 달러, 연 전기료",
+   "url": "https://www.investing.com/news/stock-market-news/how-much-does-a-gw-of-data-center-capacity-actually-cost-4314046"
+  },
+  {
+   "label": "SEC EDGAR XBRL — Nvidia·Broadcom·AMD 매출·영업이익(10-K)",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001045810&type=10-K"
+  },
+  {
+   "label": "S&P Global — Nvidia 회계 4분기 총이익률 75.2%",
+   "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/03/nvidia-post-earnings-review-q4-2026-and-outlook"
+  },
+  {
+   "label": "Broadcom 2026 회계 2·3분기 실적 콜 — TPU·Anthropic·OpenAI 물량(StockNow 전문 검색)",
+   "url": "https://investors.broadcom.com/"
+  },
+  {
+   "label": "AMD 보도자료 — OpenAI 6GW 계약, 첫 1GW 2026년 하반기",
+   "url": "https://ir.amd.com/news-events/press-releases/detail/1260/amd-and-openai-announce-strategic-partnership-to-deploy-6-gigawatts-of-amd-gpus"
+  },
+  {
+   "label": "Motley Fool — Rubin 토큰당 비용 90% 절감 주장과 최선의 경우 평가",
+   "url": "https://www.fool.com/investing/2026/01/14/nvidias-next-chip-ai-ten-times-cheaper"
+  },
+  {
+   "label": "NVIDIA Developer Blog — Rubin 전력당 성능 주장",
+   "url": "https://developer.nvidia.com/blog/scaling-token-factory-revenue-and-ai-efficiency-by-maximizing-performance-per-watt/"
+  },
+  {
+   "label": "SiliconANGLE — EnCharge AI 시리즈 B, 최대 20배 효율 주장",
+   "url": "https://siliconangle.com/?p=686255"
+  },
+  {
+   "label": "Entrepreneur Loop — Positron AI 2.3억 달러 조달, 기업가치 10억 달러",
+   "url": "https://entrepreneurloop.com/positron-ai-series-b-funding-efficient-inference-hardware/"
+  },
+  {
+   "label": "DART 사업보고서 — HD현대일렉트릭·효성중공업·LS ELECTRIC 연결 영업이익",
+   "url": "https://dart.fss.or.kr/"
+  },
+  {
+   "label": "Fuji Electric 2026년 7월 설명 자료 — 데이터센터 관련 매출 1,000억 엔 전망",
+   "url": "https://www.fujielectric.com/common-resource-gl/ir/data/20260730_2.pdf"
+  },
+  {
+   "label": "Fuji Electric 2026년 4월 설명 자료 — 수주 증가와 생산능력 부족 가능성",
+   "url": "https://www.fujielectric.com/common-resource-gl/ir/data/20260428_4.pdf"
+  },
+  {
+   "label": "블록미디어 — Hitachi 변압기·송배전 설비 60억 달러 투자 계획",
+   "url": "https://www.blockmedia.co.kr/archives/605814"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "구글 월간 처리 토큰",
+   "sub": "조 개 · 각 해 5월 I/O 발표 기준",
+   "type": "bar",
+   "unit": "조 개",
+   "labels": [
+    "2024년",
+    "2025년",
+    "2026년"
+   ],
+   "series": [
+    {
+     "name": "월간 토큰",
+     "values": [
+      9.7,
+      480,
+      3200
+     ]
+    }
+   ],
+   "note": "2년 사이 300배 넘게 늘었다. 토큰 수는 매출이 아니라 사용량이다",
+   "source": "Google I/O 2026 기조연설"
+  },
+  {
+   "at": "deep",
+   "title": "세계 데이터센터 전력 수요 전망",
+   "sub": "TWh · 2025년 실적 추정과 2030년 전망",
+   "type": "bar",
+   "unit": "TWh",
+   "labels": [
+    "2025년",
+    "2030년 전망"
+   ],
+   "series": [
+    {
+     "name": "전력 수요",
+     "values": [
+      485,
+      950
+     ]
+    }
+   ],
+   "note": "5년 사이 약 두 배다. 같은 기간 AI 중심 시설은 세 배로 본다",
+   "source": "IEA Key Questions on Energy and AI(Eco-Business 보도)"
+  },
+  {
+   "at": "deep",
+   "title": "AI 칩 3사 영업이익률",
+   "sub": "% · 각사 최근 완료 회계연도, 영업이익÷매출로 계산",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Nvidia",
+    "Broadcom",
+    "AMD"
+   ],
+   "series": [
+    {
+     "name": "영업이익률",
+     "values": [
+      60.4,
+      39.9,
+      10.7
+     ]
+    }
+   ],
+   "note": "회계연도 종료일은 2026년 1월, 2025년 11월, 2025년 12월로 다르다",
+   "source": "SEC EDGAR XBRL(10-K)"
+  },
+  {
+   "at": "deep",
+   "title": "한국 전력기기 3사 영업이익",
+   "sub": "억 원 · 연결 기준",
+   "type": "bar",
+   "unit": "억 원",
+   "labels": [
+    "HD현대일렉트릭",
+    "효성중공업",
+    "LS ELECTRIC"
+   ],
+   "series": [
+    {
+     "name": "2023",
+     "values": [
+      3152,
+      2578,
+      3249
+     ]
+    },
+    {
+     "name": "2024",
+     "values": [
+      6690,
+      3625,
+      3897
+     ]
+    },
+    {
+     "name": "2025",
+     "values": [
+      9953,
+      7470,
+      4264
+     ]
+    }
+   ],
+   "note": "각 보고서 최초 공시값이다. LS ELECTRIC은 중단영업 재분류로 연도 간 비교에 주의한다",
+   "source": "DART 사업보고서"
+  }
+ ],
+ "tg": "Naveen Rao: AI가 싸질수록 쓰임이 늘고, 쓰임은 전기에 막혀 전력당 성능에 이익이 남는다\n미국 건설 속도는 잘해야 연 10GW — 2026년 외부 추정 12~14GW\nUnconventional AI 시드 4.75억 달러, 기업가치 45억 달러, 다만 1,000배 효율은 아직 이론적 전망",
+ "tg_body": "식스시그마가 20VC의 Naveen Rao 인터뷰를 정리했다. Nervana와 MosaicML을 판 Rao는 지금 Unconventional AI를 이끌며, 같은 전기로 AI 계산을 1,000배 더 하는 칩을 목표로 4억 7,500만 달러를 받았다.\n\n그의 논리는 단순하다. 모델은 6개월이면 공개 모델이 따라와 흔해지고, SaaS에도 이익이 남기 어렵다. 지금 이익은 Nvidia가 가져가며, 앞으로는 에너지를 지능으로 바꾸는 효율이 높은 하드웨어에 가치가 쌓인다는 것이다.\n\n전제는 전기 부족이다. Rao는 1GW를 짓는 일이 반도체 공장보다 크고, 미국이 1년에 40GW를 짓기는 어려우며 10GW도 잘한 수준이라고 봤다. 트랜지스터로 얻던 효율은 거의 끝나 모델과 칩을 함께 설계해야 한다는 주장도 폈다.\n\n효율이 좋아지면 칩이 덜 팔린다는 걱정에는 반대로 답했다. 토큰 효율이 10배 좋아지면 시장도 넓어진다는 것이다. 구글 월간 토큰은 2년 만에 9조 7,000억 개에서 3,200조 개를 넘었다.\n\n외부 자료로 보면 시드 기업가치는 45억 달러이고, IEA는 데이터센터 전력이 2030년 950TWh가 된다고 본다. 2026년 미국 가동 예상은 12~14GW로 그의 숫자와 비슷하다. 다만 1,000배는 측정치가 아니라 이론적 전망이고, 공개된 Un-0는 칩이 아닌 소프트웨어 시뮬레이션이다.",
+ "youtube": "https://www.youtube.com/watch?v=3W2ezZJQ7R8",
+ "image": "https://i.ytimg.com/vi/3W2ezZJQ7R8/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-02 09:30 KST"
+}

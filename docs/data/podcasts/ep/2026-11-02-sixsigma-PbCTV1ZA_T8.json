@@ -1,0 +1,362 @@
+{
+ "id": "2026-11-02-sixsigma-PbCTV1ZA_T8",
+ "title_ko": "미군이 4성 사령부를 새로 만든 이유 — 자율전 사령부",
+ "guest": {
+  "name": "식스시그마(진행)",
+  "role": "미군 자율전 사령부 신설을 조직 재설계 관점에서 정리한 해설 영상"
+ },
+ "guest_profile": [
+  {
+   "name": "식스시그마(Six Sigma)",
+   "title": "한국어 유튜브 채널 — 기업·시장 해설",
+   "what": "공식 영상과 문서를 근거로 기업·산업 이슈를 10분 안팎으로 정리하는 채널이다. 이번 편은 전쟁부 공식 영상을 원본으로 달고 미국·우크라이나·영국·한국 사례를 엮었다.",
+   "career": "영상 설명란에 원본 출처를 단다. 진행자 개인 경력은 공개되지 않아 확인 못 함.",
+   "track": "투자 운용 주체가 아니어서 공개된 수익률 없음.",
+   "why": "흩어진 발표를 무기 구매가 아니라 조직 변화라는 한 줄기로 묶어 보여 준다."
+  },
+  {
+   "name": "피트 헤그세스(Pete Hegseth)",
+   "title": "미국 전쟁부 장관",
+   "what": "9월 30일 Quantico 연설에서 자율전 사령부와 Project Meridian을 포함한 여섯 가지 계획을 발표했다.",
+   "career": "이번 조사에서는 경력을 따로 확인하지 않았다. 관련 메모 두 건은 원문으로 확인했다.",
+   "track": "공직자로 공개 투자 수익률 없음.",
+   "why": "두 사업을 지시한 당사자이며, 사령부의 시작 자금을 별도 법안에 의존하는 구조도 그의 부처가 택했다."
+  },
+  {
+   "name": "오언 웨스트(Owen West)",
+   "title": "무인체계 전담 조직(DRPM-UxS) CEO",
+   "what": "Project Agincourt를 이끌며 사령부 설립 준비와 새 조달 방식 시범을 맡는다. 보도 기준 Defense Innovation Unit 책임자이기도 하다.",
+   "career": "WSJ 인용 보도는 전 Goldman Sachs 트레이더로 소개한다. 그 밖의 경력은 이번 조사에서 확인 못 함.",
+   "track": "공개 투자 수익률 없음.",
+   "why": "1928년 사례를 담은 10월 문서의 서명자로, 무엇을 성공으로 볼지 정하는 위치에 있다."
+  },
+  {
+   "name": "팔머 러키(Palmer Luckey)",
+   "title": "Anduril 공동창업자, Project Meridian 공동 책임자",
+   "what": "자율 드론과 잠수정, 미사일을 만드는 비상장 방산 기업 Anduril을 이끈다. 2025년 매출은 22억 달러다.",
+   "career": "Oculus VR을 창업해 2014년 Facebook에 매각한 뒤 Anduril을 공동 창업했다.",
+   "track": "Anduril 기업가치는 2025년 6월 305억 달러, 2026년 5월 610억 달러다. 약 1,000억 달러 협의는 보도 단계다.",
+   "why": "자동차 공장에서 만들 수 있는 미사일을 말하는 사람이자 미군 조달에 직접 이해가 걸린 사업자다."
+  },
+  {
+   "name": "하브 스미스(Harv Smyth)",
+   "title": "영국 공군참모총장, 공군 대장",
+   "what": "10월 26일 RUSI에서 열린 Lord Trenchard 추모 강연에서 영국 공군의 자율 전환 구상을 밝혔다.",
+   "career": "이전 경력은 이번 조사에서 확인 못 함.",
+   "track": "공직자로 공개 투자 수익률 없음.",
+   "why": "미국 밖 동맹국 공군 수장이 같은 방향을 공식화했다는 점에서 수요가 미국에 한정되지 않음을 보여 준다."
+  }
+ ],
+ "company": {
+  "name": "Autonomous Warfare Command",
+  "sector": "국방 · 드론 · 자율 무기",
+  "what": "미 전쟁부가 2027년 10월 1일 설립을 목표로 하는 4성급 기능 전투사령부(정부 조직)"
+ },
+ "topic": "미군이 자율 무기를 다루려고 사령부를 새로 만드는 이유와 한국의 병력 감소",
+ "headline": "새 무기를 옛 조직에 덧붙이지 않겠다는 미군, 돈과 인준은 아직 남았다",
+ "tldr": [
+  "미군 4성급 자율전 사령부, 2027년 10월 1일 설립 목표",
+  "이유는 무기가 아닌 조직 — 1928년 기계화 부대 해체를 반복하지 않겠다는 것",
+  "시작 자금 546억 달러 중 536억 달러가 통과 불확실한 별도 법안 몫",
+  "Project Meridian은 Musk·Luckey·Gingrich가 맡아 2027년 1월 28일 보고, 이해충돌 지적",
+  "우크라이나 AI 유도 시험 7곳 중 6곳 통과, 러시아 FPV 계획 730만 대",
+  "한국 20세 남성 37만→22만 4천 명, 현역 13만 명 감축안"
+ ],
+ "summary_md": "### 1. 인트로 — 무기를 더 사면 될 일에 왜 사령부인가\n\n- 2026년 9월 30일 Pete Hegseth 전쟁부 장관이 버지니아주 Quantico 해병대 기지 연설에서 여섯 가지 계획을 냈고, 그 첫 번째가 **자율전 사령부(Autonomous Warfare Command)**다. 전쟁부는 국방부가 바꾼 이름이다.\n- 영상이 던지는 질문은 하나다. 드론이 필요하면 드론을 사서 기존 부대에 나눠 주면 되는데, 왜 별 넷짜리 자리까지 새로 만드는가.\n- 대본에서: 발표문 기준으로 이 사령부는 4성급 기능 전투사령부이고 2027년 10월 1일까지 세운다. 특수작전사령부처럼 지역이 아니라 임무를 맡는다. 준비는 Project Agincourt가 담당한다.\n- 영상의 답은 첫머리에 이미 나온다. __무기가 아니라 조직__이 문제라는 것이다.\n\n외부 확인: 시작 자금으로 거론되는 돈은 자율전 담당 조직 DAWG의 2027 회계연도 요청액이다. 아래 그래프처럼 대부분이 일반 예산 밖의 별도 법안에 실려 있다. 이 대목은 영상에 없다.\n\n[[chart:1]]\n\n### 2. 왜 사령부까지 만드나\n\n- 미군의 읽기는 통념과 반대다. 비싸고 좋은 무기를 적게 갖던 방식에서 싸고 많은 무기를 함께 갖는 방식으로 가면, 물량이 달라지는 만큼 그 무기를 다루는 조직도 달라져야 한다는 논리다.\n- 영상에 삽입된 연설 장면에서 Hegseth는 사령부를 만드는 이유로 장비만이 아니라 교리와 조직, 오랜 전제를 든다. 민간 지도부가 방향을 줄 수는 있어도 오래 가는 변화는 **군 지휘 구조**에 뿌리내려야 한다는 취지다.\n\n### 3. 1928년의 실패를 꺼낸 메모\n\n- Project Agincourt는 10월 21일 공개한 문서의 첫 문단을 드론이 아니라 1928년 이야기로 연다.\n- 당시 전쟁부 장관 Dwight Davis가 탱크와 장갑 트럭, 차량화 보병을 한 부대로 묶는 실험을 지시했다. 부대는 곧 해체됐고 기계화 전력은 쪼개져 기존 병과의 **부속품**이 됐다. 육군 기갑군은 1940년 독일 전격전을 보고 나서야 생겼다.\n- 영상은 이를 새 무기를 옛 조직에 덧붙였다가 **12년 뒤에야** 제대로 된 부대를 만든 일로 정리한다.\n- 문서는 값싼 드론이 전쟁의 성격과 속도, 경제학을 바꿨다고 쓰고, 이 사령부 설립을 전간기 이후 가장 큰 제도 변화로 부른다. 목표도 특정 드론이 아니라 대규모로 적응하는 체계라고 적었다.\n\n### 4. 우크라이나는 이미 이 싸움을 한다\n\n- 9월 8일 우크라이나 국방부와 Brave1이 AI 유도 드론 시험 결과를 공개했다. 표적은 사람이 타지 않은 시험용 차량이다.\n- 조건은 2km를 날아가 500m 넘게 떨어진 움직이는 경장갑 차량을 찾아 고정한 뒤, 조종사가 손을 떼고 드론이 혼자 맞히는 것이다. **일곱 곳 가운데 여섯 곳**이 통과해 구매 추천을 받았다.\n- 우크라이나 국방부는 올해 들어 AI 유도로 성공한 타격이 **열 배**로 늘었다고 밝히면서, 타격 결정은 아직 사람이 한다고 함께 적었다.\n- 상대편도 물량으로 간다. Oleksandr Syrskyi 총사령관은 러시아가 올해 FPV 드론 **730만 대**와 여러 무인기에 쓸 탄두 780만 개를 만들 계획이라고 말했다. FPV는 조종사가 드론 카메라 화면을 보며 모는 1인칭 드론이다.\n- 영상은 한 번 쓰고 버리는 공격 무기를 수십만 개에서 수백만 개 규모로 다루는 일을 한곳에서 맡는 조직이 자율전 사령부라고 연결한다.\n\n### 5. 만드는 방식이 바뀐다 — Project Meridian\n\n- Hegseth는 같은 연설에서 Project Meridian도 발표했다. 미래 전장을 연구해 필요한 무기와 기술을 찾는 일로 기한은 **120일**이다.\n- 공동 책임자는 Elon Musk, 무기 회사 Anduril을 세운 Palmer Luckey, 전 하원의장 Newt Gingrich다. 영상은 셋 중 두 명이 로켓·자동차·무기를 대량으로 만드는 회사를 이끈다는 점을 짚는다.\n- 장관 메모의 보고 마감은 **2027년 1월 28일**이다. 미래 전쟁의 방향을 정리하고 바로 개발·시험·배치에 들어갈 방안을 내라는 지시다.\n- 영상은 Luckey의 발언을 이어 붙인다. 2차 대전 때 미국은 자동차·트랙터·재봉틀 공장에서 무기를 찍어냈고, 앞으로는 무기를 처음부터 **그런 공장에서 만들 수 있게** 설계해야 한다는 주장이다. 싸게 많이 쓰려면 사는 방식뿐 아니라 만드는 방식도 달라져야 한다는 결론이다.\n\n### 6. 영국 — 사람 몸이 아니라 자율로\n\n- 10월 26일 영국 공군참모총장 Harv Smyth 대장이 영국왕립합동군사연구소(RUSI) 강연에서 \"살이 아니라 자율\"을 현대의 원칙으로 제시했다.\n- 2차 대전 때 서방의 원칙은 살이 아니라 강철이었다. 사람 몸 대신 당시의 새 기술인 전차와 항공기를 앞세운다는 뜻이고, Smyth는 그 자리에 자율을 넣었다.\n- 영국 공군은 **Typhoon 전투기 1대에 AI 드론 4대**가 함께 나는 구상을 내놨다. 사람의 역할은 직접 싸우는 쪽에서 드론을 지휘하고 넘지 말아야 할 선을 정하는 쪽으로 옮겨 간다는 설명이다.\n\n### 7. 한국은 고를 수 없다\n\n- 한국 육군은 10월 14일 경기도 양평에서 유무인 복합 전투 훈련을 했다. 무인 차량과 드론, 로봇이 보병·전차와 함께 움직였고, 육군은 2040년까지 모든 부대를 이렇게 바꾸는 **Army TIGER+**를 추진한다.\n- 서두르는 이유는 사람이다. 대본은 2015년 37만 명에서 2025년 22만 4천 명으로 줄었고, 정부가 2043년 12만 명까지 줄 것으로 본다고 전한다. 자막에는 20대 남성으로 나오지만 다른 자료로 보면 20세 남성 수치다.\n\n[[chart:2]]\n\n- 그래서 국방부는 약 48만 명인 현역을 2040년까지 **13만 명 줄이는** 국방개혁 기본계획안을 만들었다. 2030·2035·2040년 세 단계로 줄이고 간부 비중은 40%에서 63%로 올린다. 줄어든 병력은 AI 기반 유무인 복합 전투체계로 채운다.\n- 영상의 마지막 대비는 이렇다. 미국은 이 변화를 골라서 맞고, 한국은 **인구에 떠밀려** 맞는다.\n\n### 8. 결론\n\n- 싸게 많이 찍어내는 자율 무기가 전쟁의 기본 단위가 되자 미군은 그 무기를 중심으로 군대를 다시 짜기로 했다. 1928년처럼 새 무기를 옛 조직에 덧붙이지 않겠다는 것이 영상의 요약이다.",
+ "insights_md": "### 투자 관점\n\n- 영상은 종목을 다루지 않았다. 아래는 외부 자료로 연결한 내용이다. 이번 발표의 핵심은 구매처가 바뀔 수 있다는 점이다. Hegseth는 이 사령부가 자율 기술의 공식 구매자가 된다고 말했고, 경쟁과 전투 성과로 키울 체계를 고른다는 원칙도 문서에 적혔다. 이미 납품 중인 회사도 **시험에서 탈락할 수 있는** 구조다.\n- 관련 상장사는 미국의 AeroVironment(AVAV)·Kratos(KTOS)·Palantir(PLTR)·Red Cat(RCAT), 한국의 한화에어로스페이스(012450)·LIG D&A(079550, 옛 LIG넥스원)·현대로템(064350)·한화시스템(272210)이다. 일본은 Terra Drone(278A)의 Terra B1 해상자위대 도입이 보도됐으나, 2027 예산 요격 드론 항목과의 연결은 보도의 추정이다.\n- 비상장인 Anduril과 6월 상장한 SpaceX는 연구의 공동 책임자가 이끄는 회사라서, 이해충돌 논란과 수주 기대가 함께 따라붙는다.\n\n### 수치\n\n- 2027 회계연도 DAWG 요청액 546억 달러 중 536억 달러가 별도 법안 몫이다. 2026 회계연도 약 2억 2,500만 달러와 비교된다.\n- 드론 관련주는 **발표 이후에도 약세**였다. 9월 30일 이후 AVAV -11.3%, KTOS -3.7%, 한화에어로스페이스 -30.9%다.\n- 한화에어로스페이스 3분기 영업이익 4,520억 원은 시장 기대를 61% 밑돌았다. 증권사는 저마진 유무인 체계 초도 물량 집중을 원인 중 하나로 꼽았다. 무인화가 곧 이익은 아니라는 **첫 사례**다.\n\n### 반론·리스크\n\n- 돈이 확정되지 않았다. 재원을 담은 법안은 통과가 불확실하고, 퇴역 소장 John Ferrari는 연말을 넘기면 어렵다고 봤다.\n- CSIS의 Mark Cancian은 구매가 주 임무인 4성 사령부는 맞지 않다며 3성급 미사일방어청 모델을 대안으로 들었다.\n- 드론 단가가 낮고 공급사가 많으면 물량이 늘어도 **이익률**은 별개다. Kratos와 AeroVironment는 최근 분기에 영업손실을 냈다.\n\n### 체크포인트\n\n- 11월 3일 미국 중간선거와 연말 전 별도 법안 처리.\n- 2027년 1월 28일 Project Meridian 보고서와 MITRE의 이해충돌 관리.\n- 사령관 지명과 상원 인준, 2027년 10월 1일 설립 여부.\n- 한국 국방개혁 기본계획 연내 확정과 **유무인 체계 예산** 규모.",
+ "deep_md": "### 1. 영상 내용 팩트 체크\n\n외부 자료로 확인: 이 절은 대본 밖의 원문 문서와 보도로 썼다. 공식 문서 기준으로 Hegseth 메모는 9월 30일자이고, 설립일은 확정이 아니라 **목표일(2027년 10월 1일)**이다. 메모 자체가 필요한 입법을 의회와 협의하라고 적었다. Greenberg Traurig 분석에 따르면 대통령이 현행법으로 사령부를 세울 수는 있지만 사령관은 상원 인준이 필요하고, 특수작전사령부식 예산·획득 권한은 입법이 필요할 수 있다. 사령관은 아직 지명되지 않았고, 준비 조직은 Owen West(CEO)와 Max Strasiser(COO)가 맡는다.\n\n영상이 메모라고 부른 10월 21일 문서는 Hegseth 메모가 아니라 West 명의의 별도 문서 「Building the Autonomous Warfare Command」다. 1928년 이야기와 12년 공백은 원문과 맞다. 다만 원문은 Dwight Davis의 실험 부대가 곧 해체됐다고만 적었고, 역사 자료는 1928년 7월 설치, 9월 해체로 전한다.\n\nProject Meridian 마감 2027년 1월 28일은 장관 메모로 확인했다. 영상이 빠뜨린 점은 분석 주체다. 국방부 대변인은 NPR에 **MITRE가 분석과 권고를 책임**지고 이해충돌 보호 장치를 둔다고 밝혔다. Musk와 Luckey의 고용 형태는 공개되지 않아 확인 못 함이다.\n\nBrave1 시험은 국방부 발표로 일치한다. 통과 기준은 세 번 중 두 번 명중이었고 열 배 증가의 기준 수치는 공개되지 않았다. 시험 업체 이름도 확인 못 함이다. Syrskyi 수치는 5월 8일 발언이고 780만은 매체마다 탄두, 부품, 전투 단위로 표현이 갈린다. 독립 검증은 확인 못 함이다.\n\n영상의 수십만·수백만 규모는 외부 자료와 차이가 있다. 2025년 12월 Hegseth 발표는 2026년 수만 대, 2027년까지 수십만 대였다. 올해 수십만 대라는 표현의 근거는 확인 못 함이다.\n\nSmyth 강연 이름과 날짜는 확인했다. 한국 수치에서 자막의 20대 남성은 **20세 남성**으로 봐야 한다. 언론 보도 기준 2015년 37만 2천 명이다. 2025년은 병무청 추산 22만 4천여 명, 다른 칼럼은 22만 5천 명으로 적었다. 2043년 12만 명은 국방부 전망으로 보도됐다. 2040년 전망은 13만 5천~16만 명으로 자료마다 다르다. 병력 감축안은 아직 확정 전이고, 상비예비군과 민간 인력을 늘려 총인력 약 50만 명을 유지한다는 구상이 함께 있다.\n\n### 2. 밸류체인과 관련 상장사\n\n중심에 있는 비상장사는 Anduril이다. 5월 시리즈 H에서 **기업가치 610억 달러**로 확인됐고, 7월 Reuters는 약 1,000억 달러 협의를 보도했다. 회사는 결정된 것이 없다고 했다. 10월 직원 주식 매각에서 900억 달러가 매겨졌다는 글은 있으나 교차 확인은 못 했다. 2025년 매출은 22억 달러다.\n\n[[chart:3]]\n\n공개 기업 가운데 소프트웨어를 가진 쪽과 기체를 만드는 쪽의 수익 차이가 크다. Palantir는 Maven이 정식 프로그램으로 편입되는 과정에 있고, AeroVironment와 Kratos는 매출이 커지는 중에도 최근 분기 영업손익이 적자다.\n\n[[chart:4]]\n\n한국 쪽 연결은 구체적이다. 현대로템은 HR-셰르파와 다족보행로봇에 Anduril의 Lattice를 적용하기로 했고, HD현대는 Anduril과 무인수상함 자율운항을 시연했다. LIG D&A는 2024년 Ghost Robotics 지분 60%를 샀고, 한화에어로스페이스는 아리온스멧의 미군 시험을 거쳤다. 다만 시험과 시연은 수주가 아니다. 현지 생산, 보안 심사, 소프트웨어 권리가 **미군 시장 진입의 조건**이다.\n\n### 3. 숫자의 맥락\n\n드론과 대드론 요청을 합친 740억 달러대 수치가 자주 인용되지만 546억 달러와 206억 달러는 일부가 겹쳐 그대로 더하면 안 된다. 모두 요청액이고 **의결된 예산이 아니다.**\n\n주가는 다른 이야기를 한다. 사령부 발표 후 한 달간 관련주 대부분이 내렸다. 한국 방산은 3분기 실적 부진, 올해 신규 수주 감소, LIG D&A의 2년 입찰 제한 처분이 겹쳤다. 해당 처분은 임시 집행정지 결정이 나온 상태다.\n\n[[chart:5]]\n\n### 4. 반론과 리스크\n\n첫째, 구조 논쟁이다. Cancian은 드론 운용까지 중앙에 넘기면 부대와의 통합이 어렵다고 봤고, David Deptula도 기술별 전투사령부가 현장 지휘관의 대응력을 떨어뜨릴 수 있다고 썼다. 전투사령부 축소를 논의하는 시점에 새 사령부가 중복을 낳는다는 비판도 있다.\n\n둘째, 조직 간 경계다. 상원 국방수권법안 917조는 RASCOM이라는 **다른 이름의 사령부**를 담고 있고, 육군은 자체 미래·자율 사령부로 개편했다. 최종 법안에 어떻게 반영될지는 확인 못 함이다.\n\n셋째, 이해충돌이다. NPR에 따르면 SpaceX는 올해 80억 달러 넘는 국방 계약을 땄고, 전 백악관 윤리 변호사 Richard Painter는 이들의 조언이 중립적일 수 없다고 지적했다. 반면 다른 전직 관료는 연구 패널 참여와 요구 조건 작성은 구분해야 한다고 봤다.\n\n넷째, 1928년 비유의 한계다. 당시 문제는 조직이 기술을 쪼갠 것이었지만, 이번 지적은 기술이 빠르게 바뀌는 만큼 **중앙 조직이 병목**이 될 수 있다는 쪽으로 향한다.\n\n### 5. 앞으로 볼 것\n\n- 전쟁부 실행 계획(10월 말 제출 예정)의 공개 여부와 초기 운용 능력 정의. 공개 여부는 확인 못 함이다.\n- 해군·공군의 구성군 사령부 지정. 해군은 별도 전담 조직을 뒀고 공군은 조직안을 검토 중이라고 전쟁부 관계자가 밝혔다.\n- 2027년 영국의 Typhoon 동반 드론 첫 시험.\n- 한국 방위사업청의 유무인 체계 사업과 LIG D&A 제재의 법적 결론.",
+ "sources": [
+  {
+   "label": "[원본] 식스시그마 — 미군이 4성 사령부를 새로 만든 이유(2026-11-02)",
+   "url": "https://www.youtube.com/watch?v=PbCTV1ZA_T8"
+  },
+  {
+   "label": "미 전쟁부 메모 — Project Agincourt, 사령부 권한·목표일·입법 협의",
+   "url": "https://media.defense.gov/2026/Sep/30/2004009304/-1/-1/1/PROJECT-AGINCOURT-PATHWAY-TO-THE-AUTONOMOUS-WARFARE-COMMAND.PDF"
+  },
+  {
+   "label": "Project Agincourt 문서 — Building the Autonomous Warfare Command, 1928년 사례(10월 21일 게시)",
+   "url": "https://media.defense.gov/2026/Oct/21/2004017243/-1/-1/1/PROJECT-AGINCOURT.PDF"
+  },
+  {
+   "label": "미 전쟁부 메모 — Project Meridian, 2027년 1월 28일 마감",
+   "url": "https://media.defense.gov/2026/Sep/30/2004009287/-1/-1/1/COMMISSIONING-OF-PROJECT-MERIDIAN.PDF"
+  },
+  {
+   "label": "Defense One — 재원·병력 구조 문제, Cancian·Ferrari 반론",
+   "url": "https://www.defenseone.com/threats/2026/10/funding-hegseth-autonomous-command/416800/"
+  },
+  {
+   "label": "Defense One — Quantico 연설과 여섯 계획",
+   "url": "https://www.defenseone.com/policy/2026/09/hegseth-plans-autonomous-warfare-command/416358/"
+  },
+  {
+   "label": "Greenberg Traurig — Project Agincourt 법적 절차, 상원 917조",
+   "url": "https://www.gtlaw.com/en/insights/2026/10/pentagon-seeks-to-advance-autonomous-warfare-through-project-agincourt"
+  },
+  {
+   "label": "Inside Defense — DAWG 2027 회계연도 546억 달러, 2026 회계연도 2억 2,500만 달러",
+   "url": "https://insidedefense.com/daily-news/funding-new-autonomous-drone-warfare-group-slated-skyrocket-546b-fy-27"
+  },
+  {
+   "label": "Spartan Corp — DAWG 재량 10억·의무 536억 달러 구성, 중복 합산 주의",
+   "url": "https://www.spartancorp.us/signal/defense-autonomous-warfare-group-fy2027-buildout"
+  },
+  {
+   "label": "IDGA — 드론·대드론 예산 740억 달러대와 206억 달러 구성",
+   "url": "https://www.idga.org/command-and-control/articles/drpm-uxs-explained-how-the-pentagons-new-drone-office-could-reshape-us-unmanned-systems"
+  },
+  {
+   "label": "NPR — Musk·Luckey 이해충돌, MITRE 역할, SpaceX 계약 규모",
+   "url": "https://www.npr.org/2026/10/06/nx-s1-5991899/elon-musk-palmer-luckey-pentagon-drones-ai"
+  },
+  {
+   "label": "Military Times — Luckey의 자동차 공장 미사일 발언",
+   "url": "https://www.militarytimes.com/industry/techwatch/2026/10/13/andurils-palmer-luckey-envisions-missiles-made-in-car-factories-underground-battles/"
+  },
+  {
+   "label": "우크라이나 국방부 발표 — Brave1 AI 유도 시험(GlobalSecurity 전재)",
+   "url": "https://www.globalsecurity.org/wmd/library/news/ukraine/2026/09/ukraine-260908-ukraine-mod03.htm"
+  },
+  {
+   "label": "Ukrainska Pravda — Syrskyi의 러시아 FPV 730만 대 발언(5월 8일)",
+   "url": "https://www.pravda.com.ua/eng/news/2026/05/08/8033756/"
+  },
+  {
+   "label": "Defense News — 2026년 수만·2027년 수십만 대 드론 목표",
+   "url": "https://www.defensenews.com/unmanned/2025/12/03/pentagon-seeks-to-acquire-rapidly-field-over-300000-small-drones/"
+  },
+  {
+   "label": "Forces News — Harv Smyth 영국 공군참모총장 RUSI 강연",
+   "url": "https://www.forcesnews.com/services/raf/are-rafs-top-guns-heading-extinction-no-says-cas-he-quotes-maverick"
+  },
+  {
+   "label": "Guardian 전재(inkl) — Typhoon 1대당 AI 드론 4대 구상",
+   "url": "https://www.inkl.com/news/autonomy-not-flesh-raf-official-outlines-ai-drone-powered-future"
+  },
+  {
+   "label": "서울경제 — 현역 13만 명 감축, 간부 63%, 국방개혁 기본계획안",
+   "url": "https://www.sedaily.com/article/20097648"
+  },
+  {
+   "label": "연합뉴스 — Army TIGER+ 양평 훈련",
+   "url": "https://www.yna.co.kr/view/AKR20261015066200504?input=1195m"
+  },
+  {
+   "label": "TV조선 — 20세 남성 병역자원 2043년 12만 명 전망",
+   "url": "https://news.tvchosun.com/site/data/html_dir/2026/10/29/2026102990173.html"
+  },
+  {
+   "label": "중앙일보 — 병무청 추산 20세 남성 2025년 22만 4천여 명",
+   "url": "https://www.joongang.co.kr/article/25474610"
+  },
+  {
+   "label": "경인일보 — 20세 남성 2015년 37만 2천 명",
+   "url": "https://www.kyeongin.com/article/1773368"
+  },
+  {
+   "label": "Defense News(Reuters) — Anduril 약 1,000억 달러 협의, 610억 달러 라운드",
+   "url": "https://www.defensenews.com/industry/techwatch/2026/07/24/anduril-in-talks-to-raise-funding-at-about-100-billion-valuation/"
+  },
+  {
+   "label": "TechCrunch — Anduril 2025년 6월 305억 달러, 2025년 매출 22억 달러",
+   "url": "https://techcrunch.com/2026/07/24/anduril-reportedly-in-talks-to-raise-funding-at-100b-valuation-more-than-3x-last-years-mark/"
+  },
+  {
+   "label": "Tom's Hardware — Palantir Maven 정식 프로그램 전환",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/pentagon-formalizes-palantirs-maven-ai-as-a-core-military-system-with-multi-year-funding-platforms-investment-grows-to-usd13-billion-from-usd480-million-in-2024"
+  },
+  {
+   "label": "뉴스로드 — LIG D&A·한화·HD현대의 미군 시장 경로",
+   "url": "http://www.newsroad.co.kr/news/articleView.html?idxno=66842"
+  },
+  {
+   "label": "EBN — 현대로템·Anduril 유무인 지휘통제 협력",
+   "url": "https://www.ebn.co.kr/news/articleView.html?idxno=1726761"
+  },
+  {
+   "label": "비즈니스포스트 — 한화에어로스페이스 3분기 실적과 유무인 초도 물량",
+   "url": "https://www.businesspost.co.kr/BP?command=article_view&num=450753"
+  },
+  {
+   "label": "서울경제 — K방산 수주 감소, LIG D&A 입찰 제한",
+   "url": "https://www.sedaily.com/article/20108814"
+  },
+  {
+   "label": "Australian Defence — 일본 2027 예산 요청, Terra Drone 요격 드론 추정",
+   "url": "https://www.australiandefence.com.au/news/news/japan-lodges-2027-draft-budget-request"
+  },
+  {
+   "label": "Wikipedia — 1928년 실험 부대 설치·해체 시기",
+   "url": "https://en.wikipedia.org/wiki/Experimental_Motorized_Force"
+  },
+  {
+   "label": "Forbes(David Deptula) — 기술별 전투사령부 비판",
+   "url": "https://www.forbes.com/sites/davedeptula/2026/06/15/military-ai-command-could-backfire/"
+  },
+  {
+   "label": "Responsible Statecraft — 사령부 중복 비판",
+   "url": "https://responsiblestatecraft.org/ai-command/"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "미군 자율전 담당 조직(DAWG) 예산",
+   "sub": "억 달러 · 2027 회계연도는 요청액",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2026 회계연도",
+    "2027 재량 요청",
+    "2027 의무 요청(별도 법안)"
+   ],
+   "series": [
+    {
+     "name": "금액",
+     "values": [
+      2.25,
+      10,
+      536
+     ]
+    }
+   ],
+   "note": "규모는 급증했지만 대부분이 아직 통과되지 않은 별도 법안 몫이다",
+   "source": "Inside Defense · Spartan Corp(미 전쟁부 예산 자료 인용)"
+  },
+  {
+   "at": "summary",
+   "title": "한국 남성 병역자원",
+   "sub": "만 명 · 2043년은 정부 전망",
+   "type": "bar",
+   "unit": "만 명",
+   "labels": [
+    "2015",
+    "2025",
+    "2043 전망"
+   ],
+   "series": [
+    {
+     "name": "인원",
+     "values": [
+      37,
+      22.4,
+      12
+     ]
+    }
+   ],
+   "note": "자막의 20대 남성은 20세 남성 수치로 보인다. 2043년은 전망이다",
+   "source": "식스시그마 영상(행정안전부·정부 자료 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "Anduril 기업가치",
+   "sub": "억 달러 · 마지막은 협의 단계 보도",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2025년 6월",
+    "2026년 5월",
+    "2026년 7월 협의 보도"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      305,
+      610,
+      1000
+     ]
+    }
+   ],
+   "note": "1,000억 달러는 성사된 거래가 아니라 협의 보도다",
+   "source": "TechCrunch(Reuters 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "미국 관련 상장사 최근 분기 실적",
+   "sub": "억 달러 · 공시된 최신 분기, 회사별 결산 기간이 다름",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "Palantir(4~6월)",
+    "AeroVironment(5~7월)",
+    "Kratos(4~6월)"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      19.35,
+      4.8,
+      4.59
+     ]
+    },
+    {
+     "name": "영업이익",
+     "values": [
+      9.12,
+      -0.11,
+      -0.02
+     ]
+    }
+   ],
+   "note": "기체 제조사는 매출에 비해 이익이 작다. 조회 시점 기준 최신 공시다",
+   "source": "SEC EDGAR 재무 데이터"
+  },
+  {
+   "at": "deep",
+   "title": "관련 상장사 주가 변화",
+   "sub": "% · 2026년 10월 30일 종가 기준, 1개월은 발표일 9월 30일 대비",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "AeroVironment",
+    "Kratos",
+    "Palantir",
+    "Red Cat",
+    "한화에어로스페이스",
+    "LIG D&A",
+    "현대로템",
+    "한화시스템"
+   ],
+   "series": [
+    {
+     "name": "발표 후 1개월",
+     "values": [
+      -11.3,
+      -3.7,
+      -1.6,
+      -28.3,
+      -30.9,
+      -39.0,
+      -31.5,
+      -19.3
+     ]
+    },
+    {
+     "name": "1년",
+     "values": [
+      -65.9,
+      -54.6,
+      -8.2,
+      -58.8,
+      -30.0,
+      -18.9,
+      -67.0,
+      -4.0
+     ]
+    }
+   ],
+   "note": "사령부 발표가 주가를 끌어올리지는 않았다. 한국 종목은 실적·제재 영향이 겹쳤다",
+   "source": "Yahoo Finance 시세"
+  }
+ ],
+ "tg": "미군 4성급 자율전 사령부, 2027년 10월 1일 설립 목표 — 이유는 무기가 아닌 조직\n1928년 기계화 부대 해체를 되풀이하지 않겠다는 Project Agincourt\n시작 자금 546억 달러 대부분은 통과 불확실한 별도 법안 몫\n한국은 20세 남성 감소로 현역 13만 명 감축안",
+ "tg_body": "미군이 드론과 자율 무기를 맡는 4성급 사령부를 새로 만든다. Hegseth 장관이 9월 30일 발표했고 목표 시점은 2027년 10월 1일이다. 영상은 이유를 무기 부족이 아니라 조직에서 찾는다.\n\nProject Agincourt 문서는 1928년 실험을 꺼낸다. 미군은 기계화 부대를 만들었다가 곧 해체했고, 1940년 독일 전격전을 본 뒤에야 기갑군을 세웠다. 새 무기를 옛 조직에 덧붙이는 일을 되풀이하지 않겠다는 뜻이다.\n\n전장의 숫자도 커졌다. 우크라이나 AI 유도 드론 시험에서는 일곱 곳 중 여섯 곳이 통과했고, Syrskyi는 러시아의 올해 FPV 계획을 730만 대로 전했다. Elon Musk, Palmer Luckey, Newt Gingrich가 이끄는 Project Meridian 보고는 내년 1월 28일이 마감이다.\n\n한국은 사정이 다르다. 20세 남성은 2015년 37만 명에서 2025년 22만 4천 명으로 줄었고, 국방부는 현역을 48만 명에서 13만 명 줄이는 안을 만들었다. 미국은 변화를 고르지만 한국은 인구에 밀려 맞는다는 것이 영상의 결론이다.\n\n외부 자료로 보면 설립일은 목표일이고 사령관은 미정이다. 시작 자금 546억 달러 대부분은 통과가 불확실한 별도 법안에 있다. 이해충돌 지적과 구매 사령부가 맞지 않는다는 반론도 있다. Anduril 기업가치는 610억 달러로 확인됐다.",
+ "youtube": "https://www.youtube.com/watch?v=PbCTV1ZA_T8",
+ "image": "https://i.ytimg.com/vi/PbCTV1ZA_T8/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-02 09:30 KST"
+}
