@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30",
+ "updated": "2026-11-02",
  "events": [
   {
    "id": "ces-2026",
@@ -801,10 +801,16 @@
    "month": "2026-09",
    "status": "done",
    "preview": "첨단 패키징은 미세공정 미세화가 한계에 부딪힌 이후 성능 향상의 주된 축이 됐고, IMAPS는 그 기술 흐름을 가장 먼저 공개하는 학회다. 하이브리드 본딩(Cu-Cu) 양산 수율, 패널 레벨 패키징(PLP), 유리기판(glass substrate) 신뢰성 데이터가 핵심 발표 주제이며, 이는 HBM4 이후 적층 구조와 직결된다. 하이브리드 본딩이 앞당겨지면 한미반도체의 TC본더 수요 곡선이 바뀌고 어플라이드머티어리얼즈·BESI의 장비 점유율 구도가 재편된다. 유리기판 세션은 SKC(앱솔릭스)·삼성전기·코닝의 상용화 시점 추정에 쓰이는 1차 데이터다. 실리콘 포토닉스 패키징 서밋이 동시 개최돼 광·전 통합 패키징 로드맵도 함께 확인할 수 있다.",
-   "summary": "IMAPS 국제 마이크로일렉트로닉스 심포지엄은 반도체 조립·패키징 분야의 대표 학회로, 제59회는 2026년 9월 28일부터 10월 1일까지 미국 보스턴에서 열린다. 전문교육 과정으로 시작해 3일간 기술 세션이 이어지며, 소자·소재·장비 업체와 대학 연구진이 논문을 발표한다. 2026년에는 IMAPS 실리콘 포토닉스 패키징 서밋이 함께 열린다.",
+   "summary": "제59회 IMAPS가 9월 28일~10월 1일 보스턴에서 'AI 시대의 지능형 패키징'을 주제로 열렸다. 기조연사는 퀄컴·세레브라스·마벨·엔비디아 관계자 등이었고, 유리기판 금속화 세션과 실리콘 포토닉스 패키징 서밋이 함께 편성됐다. 개별 발표 결과를 정리한 사후 자료는 확인되지 않았다.",
    "full": "",
    "added": "2026-08-30",
-   "updated": "2026-10-02"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "IMAPS — Symposium 2026",
+     "url": "https://imaps.org/page/IMAPS-Symposium"
+    }
+   ]
   },
   {
    "id": "openai-devday-2026",
@@ -1050,10 +1056,10 @@
    "month": "2026-10",
    "status": "done",
    "preview": "북미 통신 3사(버라이즌·AT&T·T모바일)의 캐팩스 방향과 AI-RAN 상용화 속도를 확인하는 자리다. 통신 인프라 투자가 5G 성숙 국면에서 AI 기반 네트워크 운영과 엣지 데이터센터로 이동하는지가 관전 포인트이며, 이는 삼성전자 네트워크사업부와 에릭슨·노키아의 수주 구도에 영향을 준다. 엔비디아가 밀고 있는 AI-RAN 진영에 어떤 통신사가 합류하는지가 GPU 수요의 새 축이 될 수 있다. 국내 통신장비주(RFHIC·이노와이어리스·쏠리드)와 광케이블 업체는 북미 캐팩스 코멘트에 직접 연동된다. 위성-지상 직접통신(D2D) 진척도 발표는 관련 부품주 재료로 이어진다.",
-   "summary": "MWC 라스베이거스는 GSMA가 북미 지역에서 여는 이동통신 산업 전시회로, 2026년은 10월 14~16일 라스베이거스 컨벤션센터에서 열린다. 바르셀로나 MWC의 미주 버전으로 통신사업자, 네트워크 장비사, 단말·칩셋 업체가 참가한다. 5G 어드밴스드, AI-RAN, 엣지 컴퓨팅, 위성 직접통신이 최근 주요 주제다.",
+   "summary": "GSMA가 10월 14~16일 라스베이거스 컨벤션센터에서 열 예정이던 북미 이동통신 행사다. 이번 조사에서는 행사 사후 보도나 발표 내용을 찾지 못해 결과는 미확인 상태다.",
    "full": "",
    "added": "2026-08-30",
-   "updated": "2026-10-17"
+   "updated": "2026-11-02"
   },
   {
    "id": "money2020-usa-2026",
@@ -1065,10 +1071,24 @@
    "month": "2026-10",
    "status": "done",
    "preview": "은행·카드사·빅테크·핀테크·크립토가 총집결하는 글로벌 최대 '돈의 생태계' 행사로, 2026년의 화두는 스테이블코인 결제 제도화와 AI 에이전트 기반 금융(에이전틱 페이먼트)이 될 전망이다. 미국 스테이블코인 규제(GENIUS법 등) 정착 이후 비자·마스터카드·페이팔·블록 등 결제 대기업과 스테이블코인 발행사·온체인 결제 인프라 업체의 전략 발표가 관전 포인트다. AI가 결제·심사·사기탐지에 접목되는 흐름은 결제 밸류체인과 핀테크·크립토 관련주 전반의 테마를 좌우한다. 국내에서도 결제·스테이블코인·디지털자산 관련주가 이 행사의 발표에 민감하게 반응하는 경향이 있다. 대형 금융사 CEO 키노트에서 나오는 매크로·규제 코멘트도 주목된다.",
-   "summary": "Money20/20 USA는 매년 10월 라스베이거스에서 열리는 세계 최대 규모의 핀테크·결제·금융 산업 컨퍼런스로, 2026년은 10월 18~21일 베네시안 엑스포에서 개최된다. 은행·결제·핀테크·크립토·규제 등 여러 무대에서 업계 CEO와 기업들이 스테이블코인·AI 금융·디지털결제의 최신 흐름을 발표한다.",
+   "summary": "10월 18~21일 베네시안 엑스포에서 열렸고, 주최 측 결산 기준 85개국 이상에서 약 1만 1천 명이 참가했다. AI 에이전트와 스테이블코인 결제, 자산 토큰화가 주요 의제였다. 코인베이스는 튠스의 현지 지급망을 연결해 스테이블코인 국제 결제 범위를 넓힌다고 발표했다. 페이오니어는 스테이블코인을 의미 있는 규모로 쓰는 미국 기업의 90%가 도입 가치가 있었다고 답한 설문을 공개했다.",
    "full": "",
    "added": "2026-08-10",
-   "updated": "2026-10-22"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Korea IT Times — 머니20/20 결산",
+     "url": "https://www.koreaittimes.com/news/articleView.html?idxno=158569"
+    },
+    {
+     "label": "토큰포스트 — 코인베이스·튠스 협력",
+     "url": "https://www.tokenpost.kr/news/cryptocurrency/425154"
+    },
+    {
+     "label": "토큰포스트 — 페이오니어 설문",
+     "url": "https://www.tokenpost.kr/news/cryptocurrency/424443"
+    }
+   ]
   },
   {
    "id": "nvidia-gtc-berlin-2026",
@@ -1109,10 +1129,24 @@
    "month": "2026-10",
    "status": "done",
    "preview": "라스베이거스 베네시안에서 10월 25~28일 열리는 오라클 최대 연례 행사로, 2025년부터 'CloudWorld'에서 'Oracle AI World'로 개편돼 2만 5천 명 이상이 참가한다. OCI(오라클 클라우드 인프라)의 AI 캐파 확장, 데이터베이스·엔터프라이즈 애플리케이션의 AI 통합이 핵심 의제다. 오라클은 대형 AI 학습·추론 클러스터 수주(엔비디아 GPU 대량 도입, 스타게이트 등 초대형 데이터센터 참여)로 주목받아 왔어, 캐파·캐펙스 관련 코멘트가 AI 인프라·HBM 수요 심리에 파급을 준다. 클라우드 3~4위권 사업자의 AI 인프라 전략을 확인하는 자리이자, 오라클 주가의 주요 이벤트다. RPO(수주잔고) 관련 언급이 특히 관전 포인트다.",
-   "summary": "오라클의 연례 최대 행사(옛 CloudWorld)로, OCI 클라우드 인프라·자율운영 DB·엔터프라이즈 AI가 발표된다. 급증하는 AI 캐펙스와 클라우드 수주(백로그) 흐름을 확인하는 자리다.",
+   "summary": "오라클은 10월 25~28일 라스베이거스 행사에서 AI 에이전트 전환을 전면에 내세웠다. 27일에는 오픈AI와 협력해 자사 애플리케이션을 에이전트용으로 바꾸고 챗GPT 안에서 통합 제공하겠다고 발표했다. 퓨전 앱에서 에이전트가 설정을 계획·실행·검증하는 기능과 구글 제미나이용 오라클 AI 데이터베이스 에이전트도 소개됐다. 클레이 마구어크 CEO는 에이전트 보안 통제를 기조연설 주제로 삼았다.",
    "full": "",
    "added": "2026-08-10",
-   "updated": "2026-10-29"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Oracle — 오픈AI 협력 발표",
+     "url": "https://www.oracle.com/news/announcement/ai-world-oracle-reinvents-enterprise-computing-for-the-ai-era-with-openai-2026-10-27/"
+    },
+    {
+     "label": "Computer Weekly — 퓨전 앱 에이전트",
+     "url": "https://www.computerweekly.com/news/366652561/AI-World-Oracle-sets-agents-loose-on-Fusion-Cloud-apps"
+    },
+    {
+     "label": "Google Cloud — Oracle AI Database@Google Cloud 신규 사항",
+     "url": "https://cloud.google.com/blog/products/databases/oracle-ai-databasegoogle-cloud-whats-new-at-oracle-ai-world"
+    }
+   ]
   },
   {
    "id": "fomc-2026-10",
@@ -1124,10 +1158,16 @@
    "month": "2026-10",
    "status": "done",
    "preview": "SEP가 없는 회차라 성명문의 문구 한두 개와 기자회견 뉘앙스가 시장 방향을 가른다. 9월 SEP에서 제시된 점도표 경로를 워시 의장이 그대로 유지하는지, 물가·고용 지표 흐름을 근거로 조정 신호를 주는지가 핵심이다. 금리 인하 기대가 강화되면 성장주·반도체 등 듀레이션이 긴 자산에 유리하고, 반대로 인플레이션 재점화 경계 문구가 들어가면 밸류에이션 부담이 큰 AI 관련주부터 조정받는 패턴이 반복된다. 대차대조표 축소(QT) 종료 시점 언급 여부도 유동성 관점에서 확인해야 할 대목이다. 국내 증시는 원/달러 환율 경로를 통해 간접적으로 영향을 받는다.",
-   "summary": "미국 연방공개시장위원회(FOMC)의 2026년 10월 정례회의로 10월 27~28일 열린다. 경제전망요약(SEP)과 점도표가 없는 이른바 '비(非)SEP 회차'로, 성명문 문구 변화와 의장 기자회견 톤이 유일한 신호가 된다. 9월 회의에서 제시된 금리 경로를 재확인하거나 수정하는 자리다.",
+   "summary": "연준은 10월 28일 기준금리를 3.75~4.00%로 동결했다. 표결은 10대 2였고 리사 쿡·베스 해맥 위원이 0.25%p 인상을 주장했다. 9월 회의에서 인상한 뒤 처음 맞은 동결로, 성명은 인플레이션이 여전히 높고 경제활동은 강한 속도로 확장 중이라고 평가했다. 다음 결정은 새 경제전망이 함께 나오는 12월 9일이다.",
    "full": "",
    "added": "2026-07-04",
-   "updated": "2026-10-29"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "연준 — FOMC 성명 (2026년 10월 28일)",
+     "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261028a.htm"
+    }
+   ]
   },
   {
    "id": "samsung-foundry-forum-2026-regional",
@@ -2274,10 +2314,16 @@
    "month": "2026-10",
    "status": "done",
    "preview": "imec이 매년 세계 주요 거점을 순회하며 여는 기술 로드쇼의 미국 편으로, SEMICON West 개막 하루 전 샌프란시스코에서 열린다. 관전 포인트는 imec의 차세대 트랜지스터(CFET), 백사이드 파워딜리버리, EUV 하이-NA 리소그래피 로드맵과 이를 실제로 채택하는 파운드리·팹리스 파트너의 발표다. imec의 로드맵은 ASML·AMAT·램리서치 등 장비사와 국내 소부장(한미반도체·원익IPS·피에스케이 등)의 중장기 수주 방향을 가늠하는 선행 지표 역할을 한다. AI 반도체용 첨단 패키징(3D 적층)과 새로운 메모리 소자 연구 성과가 공개되면 관련 소재·장비 밸류체인 재평가로 이어질 수 있다. 미국 팹리스·빅테크의 참여도는 imec 컨소시엄의 영향력 확대 여부를 보여주는 척도다.",
-   "summary": "imec ITF(Imec Technology Forum)는 벨기에 나노일렉트로닉스 연구소 imec이 매년 세계 각지에서 여는 기술 로드쇼로, 반도체 소자·공정의 최신 연구 성과와 로드맵을 공개한다. 미국 편은 통상 SEMICON West 직전 샌프란시스코에서 열리며, 파운드리·장비·팹리스 관계자가 참석한다.",
+   "summary": "imec이 SEMICON West 개막 전날인 10월 12일 샌프란시스코에서 열 예정이던 기술 로드쇼다. 올해 CEO는 4월 취임한 파트리크 판데나메일러로 바뀌었다. 이번 행사에서 무엇이 발표됐는지는 공개 자료에서 확인되지 않았다.",
    "full": "",
    "added": "2026-09-19",
-   "updated": "2026-10-13"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Reinraum — imec 경영진 교체",
+     "url": "https://www.reinraum.de/en/news/leadership-transition-at-imec-luc-van-den-hove-becomes-chairman-patrick-vandenameele-appointed-as-next-ceo-of-imec.html"
+    }
+   ]
   },
   {
    "id": "imec-itf-spain-2026",
@@ -2469,10 +2515,16 @@
    "month": "2026-10",
    "status": "done",
    "preview": "IBM의 연례 기술 컨퍼런스로 watsonx 기반 엔터프라이즈 AI 에이전트, 하이브리드 클라우드, 양자컴퓨팅 로드맵이 관전 포인트다. IBM은 양자 컴퓨터를 전면에 내세우고 있어 양자 관련 테마주 센티먼트에 영향을 줄 수 있다. 엔터프라이즈 AI 도입 속도는 소프트웨어·컨설팅 수요, Red Hat 등 인프라 SW 매출과 연결된다. 10월 말 IBM 3분기 실적 시기와 맞물려 제품 서사를 확인하는 자리다.",
-   "summary": "IBM이 매년 여는 개발자·고객 대상 컨퍼런스로 AI, 자동화, 하이브리드 클라우드, 보안, 양자 기술 세션이 열린다. watsonx와 AI 에이전트 신제품 발표가 핵심이다.",
+   "summary": "IBM은 이번 행사에서 watsonx 오케스트레이트의 AI 에이전트 관리 기능을 강화했다. 여러 플랫폼의 에이전트를 찾아 관리하고 보안·통제를 더하는 내용이다. 메인프레임용 IBM Z 아틀라스, 아파치 플링크용 watsonx.data 연동, IBM 콘서트 개선도 소개됐다. 기조연설 내용은 확인하지 못했다.",
    "full": "",
    "added": "2026-09-20",
-   "updated": "2026-10-30"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "IBM — What's New",
+     "url": "https://www.ibm.com/new"
+    }
+   ]
   },
   {
    "id": "risc-v-summit-china-2026",
@@ -2484,10 +2536,20 @@
    "month": "2026-10",
    "status": "done",
    "preview": "중국 RISC-V 진영의 연례 행사로 미국 수출규제 속 Arm·x86 대체 아키텍처로서의 RISC-V 도입 현황을 보여준다. 중국 AI·서버·자동차 칩 업체의 RISC-V 채택 사례가 늘면 Arm 라이선스 의존 구조와 지정학 리스크 논의에 영향을 준다. 국내에서는 RISC-V 기반 NPU·IP를 다루는 팹리스와 설계자산(IP) 업체가 참고할 만하다. 오픈소스 ISA가 데이터센터 CPU까지 확장되는지가 중장기 관전 포인트다.",
-   "summary": "RISC-V 생태계 기업들이 모여 칩·IP·소프트웨어 성과와 로드맵을 발표하는 중국 서밋이다. 중국 반도체 설계사와 학계, 글로벌 RISC-V 회원사가 참가한다.",
+   "summary": "제6회 RISC-V 중국 서밋이 10월 18~20일 선전에서 열렸다. 진시공간(스페이스밋)과 샹산 팀은 RISC-V 서버 규격을 완전히 충족한 첫 칩이라는 V100을 내놓았다. 46코어, 최고 2.4GHz다. 알리바바 다모원은 차량용 프로세서 쉬안톄 E908A를 공개했다.",
    "full": "",
    "added": "2026-09-20",
-   "updated": "2026-10-21"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "21세기경제 — V100 발표",
+     "url": "https://m.21jingji.com/article/20261019/herald/8a096234317078000df2e7a7b4eb0515.html"
+    },
+    {
+     "label": "과기일보 — 제6회 서밋",
+     "url": "https://www.stdaily.com/web/gdxw/2026-10/20/content_599294.html"
+    }
+   ]
   },
   {
    "id": "hpe-discover-barcelona-2026",
@@ -2672,14 +2734,22 @@
    "date_end": "2026-10-16",
    "month": "2026-10",
    "status": "done",
-   "summary": "옛 도쿄 모터쇼를 잇는 재팬 모빌리티쇼의 비즈니스 중심 행사로, 2026년은 10월 13~16일 마쿠하리 메세에서 CEATEC 2026과 함께 열린다. 완성차·스타트업·대학·연구기관이 참가해 산업 간 협업을 모색하는 자리다.",
+   "summary": "10월 13~16일 마쿠하리 메세에서 CEATEC과 함께 열렸다. 사전 발표 기준 217개사가 참가했다. 두 행사를 합친 등록 관람객은 11만 2,373명으로, 함께 열린 2024년 11만 2,014명과 비슷했다. 비즈위크 단독 관람객 수는 공개 자료에서 확인되지 않았다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-17",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "Japan Mobility Show 공식",
      "url": "https://www.japan-mobility-show.com/en/"
+    },
+    {
+     "label": "MONOist — CEATEC·비즈위크 관람객",
+     "url": "https://monoist.itmedia.co.jp/mn/spv/2610/21/news046.html"
+    },
+    {
+     "label": "MONOist — 비즈위크 217개사 참가",
+     "url": "https://monoist.itmedia.co.jp/mn/articles/2609/24/news044.html"
     }
    ]
   },
@@ -2720,14 +2790,22 @@
    "date_end": "2026-10-29",
    "month": "2026-10",
    "status": "done",
-   "summary": "유럽중앙은행 정책위원회의 통화정책회의로 10월 28~29일 열리며, 29일 결정 발표 뒤 기자회견이 이어진다. 신규 경제전망은 나오지 않는 회의다.",
+   "summary": "ECB는 10월 29일 예금금리 2.50%, 주요 재조달금리 2.65%, 한계대출금리 2.90%를 모두 동결했다. 9월 유로존 물가는 3.8%로 8월 3.2%에서 높아졌고 에너지가 가장 큰 요인이었다. 라가르드 총재는 임기 만료(2027년 10월)보다 이른 2027년 2월 7일 퇴임하겠다고 밝혔다. 시장 분석가들은 12월 추가 인상 가능성을 거론했다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-30",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "ECB — Meetings of the Governing Council",
      "url": "https://www.ecb.europa.eu/press/calendars/mgcgc/html/index.en.html"
+    },
+    {
+     "label": "XTB — ECB 금리 동결",
+     "url": "https://www.xtb.com/en/market-analysis/ecb-holds-rates-unchanged-eurusd-down"
+    },
+    {
+     "label": "CryptoTicker — ECB 동결과 라가르드 퇴임",
+     "url": "https://cryptoticker.io/en/ecb-rate-decision-october-2026-lagarde-exit/"
     }
    ]
   },
@@ -2739,15 +2817,27 @@
    "date_start": "2026-10-29",
    "date_end": "2026-10-30",
    "month": "2026-10",
-   "status": "upcoming",
-   "summary": "일본은행 정책위원회의 금융정책결정회의로 10월 29~30일 열리고 둘째 날 결정이 발표된다. 분기 '경제·물가 정세 전망(전망 보고서)'이 함께 나오는 회의다.",
+   "status": "done",
+   "summary": "일본은행은 10월 30일 정책금리를 1.25%로 동결했다. 찬성 8, 반대 1로 다카타 하지메 위원이 1.50%로의 0.25%p 인상을 주장했다. 전망 보고서는 기조 물가가 2% 목표에 대체로 부합한다고 평가했다. 우에다 총재 회견 뒤 블룸버그는 12월 인상 가능성을 강하게 시사했다고 보도했다. 보유 ETF 매각 속도는 2027년 1월부터 장부가 기준 연 약 3,300억 엔에서 약 8,600억 엔으로 높이기로 했다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-04",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "Bank of Japan — Release Schedule",
      "url": "https://www.boj.or.jp/en/about/calendar/index.htm"
+    },
+    {
+     "label": "일본은행 — 2026년 금융정책 결정 목록",
+     "url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/index.htm"
+    },
+    {
+     "label": "일본은행 — ETF 매각 속도 변경(2026년 10월)",
+     "url": "https://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k261030c.pdf"
+    },
+    {
+     "label": "Bloomberg — BOJ 금리 동결",
+     "url": "https://www.bloomberg.com/news/articles/2026-10-30/boj-holds-benchmark-rate-steady-as-expected-after-september-hike"
     }
    ]
   },
@@ -2905,21 +2995,29 @@
   },
   {
    "id": "fii10-2026",
-   "name": "미래투자이니셔티브(FII10) 2026",
+   "name": "미래투자이니셔티브(FII10) 2026 (2027년으로 연기, 10월 미개최)",
    "org": "사우디 공공투자펀드(PIF) 산하 FII 연구소",
-   "desc": "사우디 리야드 투자 회의 10회째, 킹압둘아지즈 국제회의장",
+   "desc": "사우디 리야드 투자 회의 10회째 — 후티 공격으로 2027년으로 연기",
    "date_start": "2026-10-26",
    "date_end": "2026-10-29",
    "month": "2026-10",
    "status": "done",
-   "summary": "사우디 국부펀드가 여는 연례 투자 회의로 올해 10회째다. 주제는 '유산의 힘'이며 발표자 550명 이상, 세션 250개 이상이 예정돼 있다. 중동 자본의 AI 데이터센터·에너지 투자 약속이 나오는 자리다.",
+   "summary": "10월 26~29일 예정이던 FII 10회 행사는 열리지 않았다. 사우디는 후티 반군 공격 증가를 이유로 10월 19일 행사를 2027년으로 연기했고, 구체적 새 일정은 확인되지 않았다.",
    "full": "",
    "added": "2026-10-11",
-   "updated": "2026-10-30",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "Sharikat Mubasher — FII 10회 리야드 개최",
      "url": "https://sharikatmubasher.com/news/article/21562118/riyadh-to-host-10th-edition-of-future-investment-initiative-next-october?lang=en"
+    },
+    {
+     "label": "The National — 사우디, 후티 공격 뒤 FII 연기",
+     "url": "https://www.thenationalnews.com/business/economy/2026/10/19/saudi-arabia-postpones-fii-investment-in-riyadh-after-houthi-attacks/"
+    },
+    {
+     "label": "한경비즈니스 — FII 대면 개최 취소·내년 연기",
+     "url": "https://magazine.hankyung.com/business/article/202610289744b"
     }
    ]
   },
@@ -2931,15 +3029,23 @@
    "date_start": "2026-10-26",
    "date_end": "2026-10-31",
    "month": "2026-10",
-   "status": "upcoming",
-   "summary": "일본공작기계공업회가 2년마다 여는 공작기계 전시회다. 올해는 처음으로 월~토 6일 일정으로 바뀌었다. 화낙·DMG모리·오쿠마 등 일본 공작기계 업체의 신제품과 수주 분위기를 볼 수 있다.",
+   "status": "done",
+   "summary": "제33회 JIMTOF가 10월 26~31일 도쿄 빅사이트에서 처음 6일 일정으로 열렸다. 도쿄 빅사이트 동관 일부 공사로 면적이 줄어든 가운데 사전 발표 기준 944개사, 4,423부스 규모였고 주최 측 관람객 목표는 13만 명이었다. 한국 업체로는 레인보우로보틱스의 양팔 로봇 RB-Y1 전시가 예고됐다. 최종 관람객 수는 아직 확인되지 않았다.",
    "full": "",
    "added": "2026-10-11",
-   "updated": "2026-10-11",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "도쿄 빅사이트 — JIMTOF 2026 보도자료",
      "url": "https://www.bigsight.jp/english/visitor/company/newsrelease/d386pl00000000ht-att/JIMTOF2026_News_Release250729_En.pdf"
+    },
+    {
+     "label": "MONOist — JIMTOF 2026 목표 13만 명",
+     "url": "https://monoist.itmedia.co.jp/mn/articles/2508/05/news029.html"
+    },
+    {
+     "label": "더구루 — RB-Y1 도쿄 전시",
+     "url": "https://www.theguru.co.kr/news/article.html?no=108596"
     }
    ]
   },
@@ -2952,14 +3058,22 @@
    "date_end": "2026-10-29",
    "month": "2026-10",
    "status": "done",
-   "summary": "깃허브의 연례 개발자 행사로 샌프란시스코 포트메이슨 센터에서 열린다. 코파일럿 등 AI 코딩 에이전트 기능 발표가 중심이다.",
+   "summary": "깃허브는 10월 28일 코파일럿 앱을 공개했다. 이슈부터 코드 병합까지 에이전트와 도구를 한 화면에서 잇는 제품이다. 작업에 맞춰 AI 모델을 고르는 코파일럿 퓨전, 여러 저장소 작업을 병렬로 돌리는 코파일럿 프로젝트, 기기 간 세션 이어가기도 나왔다. 기업 고객용으로는 AI 크레딧 사용량 기반 요금제가 추가됐다. 다만 세부 내용은 2차 매체 보도 기준이다.",
    "full": "",
    "added": "2026-10-11",
-   "updated": "2026-10-30",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "GitHub 블로그 — GitHub Universe is back",
      "url": "https://github.blog/author/arielkanter/"
+    },
+    {
+     "label": "ToolNavs — 깃허브 코파일럿 앱 출시",
+     "url": "https://toolnavs.com/article/2946-github-launches-the-copilot-app-at-universe-changing-how-developers-work-with-ag"
+    },
+    {
+     "label": "Analytics Insight — 코파일럿 에이전트 기능",
+     "url": "https://www.analyticsinsight.net/artificial-intelligence/github-copilot-adds-new-ai-agent-features-to-vs-code-in-2026"
     }
    ]
   },
@@ -3116,30 +3230,34 @@
    "date_end": "2026-10-27",
    "month": "2026-10",
    "status": "done",
-   "summary": "유럽종양학회 연례 학술대회로 10월 23~27일 마드리드 IFEMA에서 열린다. 항암 신약의 후기 임상 결과가 대거 공개돼 글로벌 제약·바이오 종목의 주가 재료가 되며, 한국 바이오 기업의 항체약물접합체(ADC)·면역항암제 데이터 발표도 주목 대상이다.",
+   "summary": "10월 23~27일 마드리드에서 열린 ESMO의 대통령 심포지엄에서 후기 임상 12건이 공개됐다. 인터패스-001(개인 맞춤 암백신+펨브롤리주맙)은 흑색종 2년 무재발생존율 82.2% 대 70.0%를 보였다. 소세포폐암 DeLLphi-305(타를라타맙+더발루맙)는 전체생존기간 21.1개월 대 12.7개월이었다. 하모니-GI1(이보네시맙)은 담도암에서 전체생존기간 14.9개월 대 12.1개월을 기록했다. 항체약물접합체는 위암 CLARITY-Gastric 01, 자궁내막암 TroFuse-005 등에서 생존 개선을 보였다.",
    "full": "",
    "added": "2026-10-18",
-   "updated": "2026-10-28",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "ESMO — ESMO Congress 2026",
      "url": "https://esmo.org/meeting-calendar/esmo-congress-2026"
+    },
+    {
+     "label": "OncoDaily — ESMO 2026 대통령 심포지엄 정리",
+     "url": "https://oncodaily.com/oncolibrary/esmo-2026-presidential"
     }
    ]
   },
   {
    "id": "apple-mac-event-2026-10",
-   "name": "애플 맥 신제품 행사 2026 (10월 28일, 언론 보도 기준)",
+   "name": "애플 'Pro and Tell' 신제품 행사 2026",
    "org": "애플",
    "desc": "로스앤젤레스에서 열리는 맥·아이패드 신제품 공개 행사 (블룸버그 보도, 애플 공식 확정 전)",
    "date_start": "2026-10-28",
    "date_end": "2026-10-28",
    "month": "2026-10",
    "status": "done",
-   "summary": "블룸버그의 마크 거먼은 애플이 10월 28일 로스앤젤레스에서 일부 언론을 초청해 신제품 행사를 연다고 보도했다. 첫 터치스크린 맥북과 M6 칩 탑재 맥, 신형 아이패드 미니가 거론된다. 애플이 날짜를 공식 발표한 것은 아니므로 확정 전 보도 기준이다. OLED 패널·칩 공급망(삼성디스플레이·LG디스플레이·TSMC) 관점에서 관찰 대상이다.",
+   "summary": "애플은 10월 28일 첫 터치스크린 OLED 맥북 프로를 공개했다. 시작 가격은 14인치 2,899달러, 16인치 3,399달러이고 11월 6일 출시된다. OLED 아이패드 미니도 699달러부터로 나왔다. 사전 보도에 있던 M6 14인치 맥북 프로·아이맥의 발표 여부는 이번 조사에서 확인하지 못했다.",
    "full": "",
    "added": "2026-10-18",
-   "updated": "2026-10-29",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "Macworld — touchscreen MacBook launch is set for October 27",
@@ -3148,6 +3266,14 @@
     {
      "label": "Tech-ish — Apple sends out invites for touchscreen MacBook unveil",
      "url": "https://tech-ish.com/2026/10/15/apple-sends-out-invites-for-touchscreen-macbook-unveil/"
+    },
+    {
+     "label": "TechRepublic — 터치스크린 OLED 맥북 프로 공개",
+     "url": "https://www.techrepublic.com/article/news-apple-touchscreen-oled-macbook-pro/"
+    },
+    {
+     "label": "The Mac Observer — 가격·출시일",
+     "url": "https://www.macobserver.com/news/touchscreen-macbook-pro-oled-price-release-date/"
     }
    ]
   },
@@ -3159,15 +3285,23 @@
    "date_start": "2026-11-01",
    "date_end": "2026-11-01",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "OPEC+ 자발적 감산 참여 7개국은 10월 4일 화상회의에서 11월 생산량을 9월 수준으로 유지하기로 하고, 다음 회의를 11월 1일에 열기로 했다. 이 회의에서 12월 생산량 방향이 정해지며 유가와 정유·화학·조선 업종에 영향을 준다.",
+   "status": "done",
+   "summary": "OPEC+ 7개국은 11월 1일 화상회의에서 12월 생산 목표를 9월 수준으로 유지하기로 했다. 3개월 연속 동결이다. 호르무즈 해협 차질로 걸프 산유국 대부분이 할당량에 못 미치게 생산 중이다. 다음 회의는 2027년 생산 체계를 다룰 11월 29일 전체 장관회의다.",
    "full": "",
    "added": "2026-10-18",
-   "updated": "2026-10-18",
+   "updated": "2026-11-02",
    "sources": [
     {
      "label": "OPEC — 7개국 공동성명 (2026년 10월 4일)",
      "url": "https://opec.org/pr-detail/1891616-4-october-2026.html"
+    },
+    {
+     "label": "CNBC — OPEC+ 12월 목표 유지",
+     "url": "https://www.cnbc.com/2026/10/31/opec-oil-output-targets-december.html"
+    },
+    {
+     "label": "investingLive — 3개월 연속 동결",
+     "url": "https://investinglive.com/commodities/opec-holds-december-targets-steady-for-third-month-as-hormuz-disruption-persists"
     }
    ]
   },
@@ -3971,16 +4105,26 @@
    "id": "barclays-global-tech-2026",
    "name": "바클레이즈 글로벌 테크놀로지 컨퍼런스 2026",
    "org": "Barclays",
-   "desc": "반도체·소프트웨어 기업 경영진 참석 연말 IR 컨퍼런스 (샌프란시스코 예상) — 일정 미정",
-   "date_start": "",
-   "date_end": "",
+   "desc": "반도체·소프트웨어 기업 경영진 참석 연말 IR 컨퍼런스, 샌프란시스코",
+   "date_start": "2026-12-09",
+   "date_end": "2026-12-09",
    "month": "2026-12",
    "status": "upcoming",
-   "preview": "일정 미정. 매년 12월 둘째 주 샌프란시스코에서 열리는 테크 투자자 컨퍼런스로, 반도체·네트워킹·소프트웨어 기업 경영진이 다음 해 수요 전망을 언급하는 자리다. 크레도·마벨·마이크론 등 AI 인프라 관련 기업의 연말 코멘트가 주목받는다. 2024·2025년 모두 12월 10~11일경 열려 2026년도 비슷한 시기가 유력하나 공식 일정은 미확인이다.",
-   "summary": "일정 미정. 바클레이즈가 매년 연말 샌프란시스코에서 여는 글로벌 기술 산업 투자자 컨퍼런스다. 반도체·하드웨어·소프트웨어·인터넷 상장사가 참가해 파이어사이드챗과 투자자 미팅을 진행한다.",
+   "preview": "12월 9일은 AMD 참여일과 기업 일정표 기준이며 전체 기간은 미확인이다. 반도체·네트워킹·소프트웨어 경영진이 다음 해 수요 전망을 언급하는 자리다.",
+   "summary": "바클레이즈가 매년 연말 샌프란시스코에서 여는 글로벌 기술 산업 투자자 컨퍼런스다. AMD는 12월 9일 참여를 예고했다.",
    "full": "",
    "added": "2026-10-25",
-   "updated": "2026-10-25"
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "AMD — 3분기 실적·투자자 컨퍼런스 일정",
+     "url": "https://briefglance.com/companies/advanced-micro-devices-inc/pulses/85252"
+    },
+    {
+     "label": "Naspers — 재무 일정",
+     "url": "https://www.naspers.com/investors/results-reports-events/financial-calender"
+    }
+   ]
   },
   {
    "id": "wells-fargo-tmt-2026",
@@ -4056,6 +4200,194 @@
    "full": "",
    "added": "2026-10-25",
    "updated": "2026-10-25"
+  },
+  {
+   "id": "entegris-investor-day-2026",
+   "name": "엔테그리스 인베스터 데이 2026",
+   "org": "Entegris",
+   "desc": "반도체 소재 업체 투자자 행사, 뉴욕",
+   "date_start": "2026-11-09",
+   "date_end": "2026-11-09",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "반도체 소재·공정 부품 업체 엔테그리스가 11월 9일 오후 1시(ET) 뉴욕에서 투자자 행사를 열고 웹캐스트로 공개한다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Finviz — Entegris Investor Day",
+     "url": "https://finviz.com/news/385609/entegris-to-host-investor-day-on-november-9-2026"
+    }
+   ]
+  },
+  {
+   "id": "cohu-investor-day-2026",
+   "name": "코후 인베스터 데이 2026",
+   "org": "Cohu",
+   "desc": "반도체 테스트 장비 업체 투자자 행사, 뉴욕",
+   "date_start": "2026-11-10",
+   "date_end": "2026-11-10",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "반도체 테스트·핸들러 장비 업체 코후가 11월 10일 뉴욕에서 투자자 행사를 연다. 주요 고객사 AMD가 기조연설을 맡고 웹캐스트로 공개된다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Finviz — Cohu Investor Day",
+     "url": "https://finviz.com/news/400326/cohu-to-host-investor-day-on-november-10-2026"
+    }
+   ]
+  },
+  {
+   "id": "ic-china-2026",
+   "name": "IC China 2026 (제23회 중국 국제 반도체 박람회)",
+   "org": "중국반도체산업협회·중국전자정보산업발전연구원",
+   "desc": "중국 반도체 산업 전시회, 베이징 국가회의센터",
+   "date_start": "2026-11-12",
+   "date_end": "2026-11-14",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "중국반도체산업협회 등이 주최하는 중국 반도체 전시회다. 11월 12~14일 베이징 국가회의센터에서 약 5만㎡ 규모로 열리며 700여 개사 참가가 예상된다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "10jqka — IC China 2026",
+     "url": "https://news.10jqka.com.cn/20261006/c680443020.shtml"
+    }
+   ]
+  },
+  {
+   "id": "ans-winter-2026",
+   "name": "ANS 윈터 콘퍼런스 2026 (ICAPP 2026 동시 개최)",
+   "org": "미국원자력학회(ANS)",
+   "desc": "미국 원자력 산업·학술 행사, 피닉스",
+   "date_start": "2026-11-15",
+   "date_end": "2026-11-18",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "미국원자력학회의 연례 행사로 11월 15~18일 피닉스에서 열린다. 주제는 원자력 부흥의 지속이며 원전 기술 학회 ICAPP 2026이 함께 열린다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "ANS — 2026 Winter Conference",
+     "url": "https://www.ans.org/meetings/wc2026/timeline/"
+    }
+   ]
+  },
+  {
+   "id": "bengaluru-tech-summit-2026",
+   "name": "벵갈루루 테크 서밋 2026 (제29회)",
+   "org": "인도 카르나타카주 정부",
+   "desc": "인도 기술 산업 행사, 벵갈루루 BIEC",
+   "date_start": "2026-11-17",
+   "date_end": "2026-11-19",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "인도 카르나타카주가 주최하는 기술 행사로 11월 17~19일 벵갈루루 BIEC에서 열린다. 올해 주제는 'AI & Beyond'다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "BioSpectrum India — 벵갈루루 테크 서밋 일정",
+     "url": "https://biospectrumindia.com/news/102/28219/karnataka-to-host-29th-edition-of-bengaluru-tech-summit-2026-on-nov-17-19-at-biec.html"
+    }
+   ]
+  },
+  {
+   "id": "iccad-expo-2026",
+   "name": "ICCAD-Expo 2026 (중국 집적회로 설계 산업 전시회)",
+   "org": "중국반도체산업협회 집적회로설계분회",
+   "desc": "중국 반도체 설계 업계 전시회, 베이징",
+   "date_start": "2026-11-19",
+   "date_end": "2026-11-20",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "집적회로 설계와 IP·EDA·제조·패키징 기업이 참가하는 중국 반도체 설계 업계 전시회다. 11월 19~20일 베이징에서 열린다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Amkor — ICCAD-Expo 2026",
+     "url": "https://amkor.com/events/amkor-iccad-expo-2026/"
+    },
+    {
+     "label": "SemiWiki — ICCAD-Expo 2026",
+     "url": "https://semiwiki.com/event/iccad-expo-2026/"
+    }
+   ]
+  },
+  {
+   "id": "world-smart-manufacturing-2026",
+   "name": "세계 스마트제조 대회 2026",
+   "org": "장쑤성 정부·국제스마트제조연맹",
+   "desc": "중국 스마트제조 산업 행사, 난징",
+   "date_start": "2026-11-19",
+   "date_end": "2026-11-21",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "장쑤성 정부와 국제스마트제조연맹이 11월 19~21일 난징 국제박람회의센터에서 공동 개최하는 스마트제조 산업 행사다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "과기일보 — 세계 스마트제조 대회",
+     "url": "https://www.stdaily.com/web/gdxw/2026-10/27/content_603630.html"
+    }
+   ]
+  },
+  {
+   "id": "opec-ministerial-42-2026",
+   "name": "제42차 OPEC·비OPEC 장관회의",
+   "org": "OPEC+",
+   "desc": "21개 참여국이 2027년 생산 체계를 논의하는 전체 장관회의",
+   "date_start": "2026-11-29",
+   "date_end": "2026-11-29",
+   "month": "2026-11",
+   "status": "upcoming",
+   "summary": "OPEC+ 전체 참여국 장관회의로 11월 29일 열린다. 현행 생산 수준 합의가 2026년 말까지여서 2027년 생산 체계가 안건이다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "OPEC — 제41차 장관회의 성명",
+     "url": "https://opec.org/pr-detail/605-7-june-2026.html"
+    },
+    {
+     "label": "investingLive — 다음 회의 11월 29일",
+     "url": "https://investinglive.com/commodities/opec-holds-december-targets-steady-for-third-month-as-hormuz-disruption-persists"
+    }
+   ]
+  },
+  {
+   "id": "ai-summit-new-york-2026",
+   "name": "AI Summit New York 2026",
+   "org": "Informa Tech",
+   "desc": "기업용 AI 콘퍼런스·전시회, 뉴욕 재비츠센터",
+   "date_start": "2026-12-09",
+   "date_end": "2026-12-10",
+   "month": "2026-12",
+   "status": "upcoming",
+   "summary": "인포마 테크가 주최하는 AI 서밋 시리즈의 미국 대표 행사로 12월 9~10일 뉴욕 재비츠센터에서 열린다.",
+   "full": "",
+   "added": "2026-11-02",
+   "updated": "2026-11-02",
+   "sources": [
+    {
+     "label": "Showsbee — AI Summit New York 2026",
+     "url": "https://www.showsbee.com/fairs/100131-The-AI-Summit-New-York-2026.html"
+    }
+   ]
   }
  ]
 }
