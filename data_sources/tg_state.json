@@ -172,6 +172,7 @@
   "nebius:2026-10-30",
   "nebius:2026-10-31",
   "nebius:2026-11-01",
+  "nebius:2026-11-02",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -1366,9 +1367,6 @@
   "weekly:2026-10-19"
  ],
  "msg": {
-  "pod:2026-10-24-riskrev-cameron-dawson-americans-have-never-been-this-al": [
-   836
-  ],
   "pod:2026-10-23-nopriors-democratizing-security-for-the-agentic-web-with": [
    837
   ],
@@ -2899,6 +2897,9 @@
   ],
   "ins:ins-20261101-trump-mr-veto-divided-government-executive-keystone": [
    1287
+  ],
+  "nebius:2026-11-02": [
+   393
   ]
  },
  "topics": {},
