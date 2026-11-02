@@ -16,6 +16,7 @@
 import glob
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -153,7 +154,11 @@ def main():
     for r in rows:
         r["hub"] = r["tk"] in hub
         if labels.get(r["kw"]):
-            r["label"] = labels[r["kw"]]   # 화면 이름 한국어(영어) — 일본어 키워드를 그대로 보이지 않게
+            r["label"] = labels[r["kw"]]   # 화면 이름 — 일본 키워드는 한글, 미국 기업은 영어 (한국어)
+    # 2026-11-02 사용자: 일본어를 못 읽는다 — 리포트 키워드가 새로 늘면 이름을 달도록 알린다
+    nolabel = [r["kw"] for r in rows if re.search(r"[\u3040-\u30ff\u4e00-\u9fff]", r["kw"]) and not r.get("label")]
+    if nolabel:
+        print(f"이름 없는 일본어 키워드 {len(nolabel)}개: {', '.join(nolabel)}")
     doc = {"updated": datetime.now(KST).strftime("%Y-%m-%d %H:%M KST"),
            "src": "구글 트렌드 · 최근 5년 주간 · 키워드마다 그 기간 최댓값 = 100",
            "geo_ko": GEO_KO, "count": len(rows), "items": rows}

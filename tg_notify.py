@@ -18,11 +18,12 @@ GitHub Actions(.github/workflows/tg-notify.yml)가 PC 푸시·데이터 수집 �
   3) 오늘 시황 요약 — 매일 06:30 예약 작업이 쓰고 올리면 바로(본문 그대로)
   ·) 세상 흐름 딥 인사이트 — 인물 발언 1건당 1편이 insights.json 에 새로 들어오면: 인물 · 발단 · 제목 · 요약 · 출처(뉴스방, 2026-10-26 사용자)
   4) 매크로 요약 — 미국 국채 새 종가가 들어오면: 공포·탐욕 · 미 국채 2·10·30년 · WTI 그래프 묶음 / 원/달러 환율 그래프는 새 환율 날짜가 들어오면
+  ·) 이번 주 매크로 일정 — 매주 일요일 09:00 이후 첫 확인 때 한 번: 매크로 경제 캘린더의 다음 월~일 일정(2026-11-02 사용자)
 
   python tg_notify.py            # 때가 된 것 중 아직 안 보낸 것만 보냄
   python tg_notify.py --dry      # 보내지 않고 내용만 출력(그래프는 임시 폴더에 그림)
   python tg_notify.py --due      # 지금 보낼 게 있으면 "yes" — 워크플로가 그래프 도구 설치 여부를 정할 때
-  python tg_notify.py --force all|gpu|cds|bond|openrouter|macro|digest|podcast|insight   # 기록 무시하고 그 항목을 지금 보냄(시험용)
+  python tg_notify.py --force all|gpu|cds|bond|openrouter|macro|macro_week|digest|podcast|insight   # 기록 무시하고 그 항목을 지금 보냄(시험용)
 """
 import json
 import os
@@ -748,6 +749,33 @@ SENT = set()   # 이미 보낸 키(항목 함수가 '주간 값을 붙일지' �
 NL = chr(10)
 
 
+def macro_week():
+    """2026-11-02 사용자: 일요일 오전에 이번 주 매크로 일정을 한 통으로 — 사이트 경제 캘린더(docs/macro_dash.json)와 같은 자료"""
+    today = NOW.date()
+    if today.weekday() != 6 and "--force" not in sys.argv:
+        return None
+    mon = today + timedelta(days=7 - today.weekday())
+    sun = mon + timedelta(days=6)
+    label = lambda d: f"{d.month}/{d.day}({DOW[d.weekday()]})"
+
+    def build():
+        evs = [e for e in (load("docs/macro_dash.json") or {}).get("calendar") or []
+               if mon.isoformat() <= e["kst"][:10] <= sun.isoformat()]
+        L = [f"🗓 <b>이번 주 매크로 일정</b> · {label(mon)}~{label(sun)}"]
+        day = None
+        for e in sorted(evs, key=lambda x: x["kst"]):
+            if e["kst"][:10] != day:
+                day = e["kst"][:10]
+                L += ["", f"<b>{label(date.fromisoformat(day))}</b>"]
+            name = esc(e["title"]) + (f" ({esc(e['ref'])})" if e.get("ref") else "")
+            L.append(f"• {e['kst'][11:]} " + (f"<b>{name}</b>" if e.get("importance", 0) >= 3 else name))
+        if not evs:
+            L += ["", "등록된 일정 없음"]
+        L += ["", "시각은 한국 시간 · 굵은 글씨는 시장 영향이 큰 일정"]
+        return (None, "\n".join(L))
+    return (f"macro_week:{today}", at(today, 9, 0), build)
+
+
 def jp_monthly():
     """일본 소비재 월차 새로 나옴(2026-10-12~) — build_jp_monthly_hub.py 가 index.json events 에 남긴 것을
     확인한 회차(found)마다 한 통으로 묶어 보낸다. 형식: 회사(코드) 달 · 대표 지표 ±% (전년 같은 달 대비)"""
@@ -778,7 +806,7 @@ def jp_monthly():
     return out
 
 
-ITEMS = {"gpu": gpu, "nebius": nebius, "cds": cds, "bond": bonds,"headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "insight": insights, "macro": macro, "tracking": tracking, "jp_monthly": jp_monthly}
+ITEMS = {"gpu": gpu, "nebius": nebius, "cds": cds, "bond": bonds,"headcount": headcount, "openrouter": openrouter, "podcast": podcasts, "digest": digest, "insight": insights, "macro": macro, "macro_week": macro_week, "tracking": tracking, "jp_monthly": jp_monthly}
 
 
 def collect():

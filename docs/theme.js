@@ -28,8 +28,6 @@ window.vantageJSON = function (path, fresh) {
     ["macro.html", "매크로 및 투자전략"],
     ["datahub.html", "데이터 허브"],
     ["archive.html", "리서치 아카이브"],
-    ["indepth-archive.html", "인뎁스 아카이브"],
-    ["coverage.html", "Coverage"],
     ["research-summary.html", "리서치 요약"],
     ["jp-screener.html", "일본 기업"],
     ["kr-screener.html", "한국 기업"],

@@ -50,7 +50,7 @@
 > | **CNN 공포·탐욕 지수**(`fetch_fear_greed.py`, CNN 값이 그대로면 커밋 안 함) | 매일 22:00·03:00·06:00 |
 > | 일일 점검·복구 | 매일 22:30 |
 > | 산업 행사 일정 | 일 22:00 |
-> | 주간 브리핑 | 금 17:00 |
+> | 주간 브리핑 | 2026-11-02부터 중단 (금 17:00 작업 꺼 둠) |
 
 ## 2. 회사 PC Claude 예약 작업 (B) — 등록할 것 8개
 
@@ -71,7 +71,7 @@ vantage-0910 저장소에서 오늘자 시황 요약을 docs/news_digest.json의
 재료: docs/data.json(섹터 ETF), docs/macro.json, docs/valuation.json, docs/telegram_news.json, docs/people.json + 웹 검색(오늘 한국장·간밤 미국장).
 형식은 기존 항목과 똑같이: date, title(한 줄 헤드라인), generated("YYYY-MM-DD HH:MM KST"), images([]),
 stats[{label,value,note,tone(up|dn|flat)}] (코스피·코스닥·나스닥·S&P500·환율·유가·10년물 등),
-markdown("## 금일 시황 요약 (날짜)"로 시작하는 5섹션), sectors 8~10개[{sector, tone, stat, analysis, keywords[]}].
+markdown("## 금일 시황 요약 (날짜)"로 시작하는 5섹션).
 digests는 최근 30개만 남기고, updated를 오늘로. 커밋 메시지: "digest: YYYY-MM-DD 종합+섹터 요약"
 ```
 
@@ -164,7 +164,7 @@ vantage-0910 저장소의 data_sources/podcast_pipeline.md 절차대로 팟캐�
 
 **메뉴·화면**
 - 메뉴: 「미국 주요 실적 정리」 삭제 · 「Bottom-up 발굴」→**기술적 분석** · 「기술점수 연구소」→기술적 분석 안의 **백테스트** 탭 · 「일본 소비재」→**일본 기업**
-- 섹터 대시보드: 5개 섹션을 탭으로 넘겨보기(처음 여는 탭만 그림), 1년 흐름 차트 범례(파랑 = ETF 누적수익률, 노랑 = 50일 이동평균)
+- 섹터 대시보드: 5개 섹션을 탭으로 넘겨보기(처음 여는 탭만 그림)
 - 데이터 허브: 정렬(시총·거래대금·1W·1M·1Y) + **조건 검색**("시총 1조 이상, 매출 성장 10% 이상, 1년 주가 50% 이상")
 - 기술적 분석: 발굴 지도·섹터 온도·차트 패턴·순위·백테스트를 탭으로, 상단에 오늘 시장 국면 배너
 

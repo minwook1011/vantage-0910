@@ -222,47 +222,10 @@
   </div>
   <p class="note">
     혁신과 변화, 기회의 포착은 언제나 주요 행사와 핵심 인물의 발언에서부터 시작됩니다.
-    시장을 움직이는 신호를 가장 먼저 읽어내기 위해 일정과 인물을 한곳에서 추적합니다.
-    <b>행사 카드 클릭 = 요약·전문 상세, 발언 클릭 = 상세 분석 펼치기.</b>
+    시장을 움직이는 신호를 가장 먼저 읽어내기 위해 인물의 발언을 한곳에서 추적합니다.
+    <b>발언 클릭 = 상세 분석 펼치기.</b>
   </p>
-  <div class="subtabs">
-    <button id="tab-pp" class="on">핵심 인물</button>
-    <button id="tab-ev">주요 일정</button>
-  </div>
-
-  <!-- ===== 서브탭 1: 주요 일정 ===== -->
-  <div id="pane-ev" style="display:none">
-    <div class="section" id="upcoming-sec">
-      <h2>다가오는 행사</h2>
-      <div class="up-strip" id="upcoming"></div>
-    </div>
-    <div class="section" id="recent-past-sec" style="display:none">
-      <h2>최근 종료된 행사<span class="sub">클릭 = 요약·전문 보기</span></h2>
-      <div class="grid" id="recent-past" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div>
-    </div>
-    <div class="section">
-      <div class="wk-section" id="cal-sec">
-        <div class="wk-head" onclick="document.getElementById('cal-sec').classList.toggle('open')">
-          <div><span class="wk-title">월별 캘린더</span>
-            <div class="wk-meta" id="cal-meta"></div></div>
-          <span class="wk-chevron">▸</span>
-        </div>
-        <div class="wk-body" id="calendar"><div class="spin">로딩 중…</div></div>
-      </div>
-      <div class="wk-section" id="past-sec">
-        <div class="wk-head" onclick="document.getElementById('past-sec').classList.toggle('open')">
-          <div><span class="wk-title">종료된 행사 전체</span>
-            <div class="wk-meta" id="past-meta"></div></div>
-          <span class="wk-chevron">▸</span>
-        </div>
-        <div class="wk-body">
-          <div id="past" class="grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== 서브탭 2: 핵심 인물 ===== -->
+  <!-- ===== 핵심 인물 ===== -->
   <div id="pane-pp">
     <div class="ppsub" id="pp-subtabs">
       <button data-sub="brief" class="on">주간 브리핑</button>
@@ -319,11 +282,11 @@
   </div>
 </div>
 
-<script src="theme.js?v=20261025A"></script>
+<script src="theme.js?v=20261102A"></script>
 <script src="stocks-common.js?v=20261016Q"></script>
 <script src="investor-theses.js?v=20261003L"></script>
 <script>
-var EV = null, PP = null, INSIGHTS = [], PORTFOLIOS = null;
+var PP = null, INSIGHTS = [], PORTFOLIOS = null;
 var TYPE_LABEL = { tech: "테크·AI", investor: "투자자", policy: "정책", corp: "기업 공식" };
 var TYPE_ORDER = ["tech", "investor", "policy", "corp"];
 var selPerson = null;   // 인물 칩 필터
@@ -337,20 +300,7 @@ function todayStr() {
 var TODAY = todayStr();
 function isNew(dateStr) { var d = daysAgo(dateStr); return d >= 0 && d <= 4; }
 
-/* ============ 서브탭 전환 ============ */
-$q("#tab-ev").onclick = function () { switchTab("ev"); };
-$q("#tab-pp").onclick = function () { switchTab("pp"); };
-function switchTab(t) {
-  $q("#tab-ev").classList.toggle("on", t === "ev");
-  $q("#tab-pp").classList.toggle("on", t === "pp");
-  $q("#pane-ev").style.display = t === "ev" ? "" : "none";
-  $q("#pane-pp").style.display = t === "pp" ? "" : "none";
-}
-
 /* ============ 인사이트 리서치 ============ */
-function insightsForEvent(eventId) {
-  return INSIGHTS.filter(function (x) { return (x.linked_event_ids || []).indexOf(eventId) >= 0; });
-}
 function insightsForStatement(personId, date) {
   var key = personId + "::" + date;
   return INSIGHTS.filter(function (x) { return (x.linked_statement_keys || []).indexOf(key) >= 0; });
@@ -434,98 +384,6 @@ function renderInsightList() {
   }).join("") : '<div class="empty">검색 결과 없음</div>';
   $qa("#insight-list .ins-card").forEach(function (c) {
     c.onclick = function () { openInsightModal(c.dataset.insight); };
-  });
-}
-
-/* ============ 주요 일정 ============ */
-function evDateLabel(e) {
-  if (!e.date_start) return (e.month || "") + " (일정 미정)";
-  if (e.date_end && e.date_end !== e.date_start) return e.date_start + " ~ " + e.date_end.slice(5);
-  return e.date_start;
-}
-function evStatus(e) {
-  var map = { upcoming: ["st-upcoming", "예정"], previewed: ["st-previewed", "내용공개"], done: ["st-done", "종료"] };
-  var m = map[e.status] || map.upcoming;
-  return '<span class="badge ' + m[0] + '">' + m[1] + "</span>";
-}
-function evBadges(e) {
-  var b = "";
-  if (isNew(e.added)) b += ' <span class="badge new">NEW</span>';
-  else if (isNew(e.updated) && e.updated !== e.added) b += ' <span class="badge updated">UPDATED</span>';
-  return b;
-}
-function isPast(e) {
-  if (e.status === "done") return true;
-  var end = e.date_end || e.date_start;
-  return !!end && end < TODAY;
-}
-function evCard(e) {
-  return '<div class="ev-card" data-id="' + escapeHtml(e.id) + '">' +
-    '<div style="display:flex;justify-content:space-between;gap:6px;align-items:baseline">' +
-    '<span class="ev-name">' + escapeHtml(e.name) + evBadges(e) + "</span>" + evStatus(e) + "</div>" +
-    '<div class="muted small">' + escapeHtml(e.org) + " · " + evDateLabel(e) + "</div>" +
-    '<div class="small" style="margin-top:4px">' + escapeHtml(e.desc) + "</div>" +
-    (e.preview ? '<div class="prev">' + escapeHtml(e.preview) + "</div>" : "") +
-    insightBoxHTML(insightsForEvent(e.id)) +
-    "</div>";
-}
-function openEvModal(e) {
-  var body = "";
-  body += '<div class="muted small" style="margin-bottom:8px">' + escapeHtml(e.org) + " · " + evDateLabel(e) + " " + evStatus(e) + "</div>";
-  body += '<p>' + escapeHtml(e.desc) + "</p>";
-  if (e.preview) body += '<div class="prev" style="margin:10px 0;border-left:2px solid var(--gold);padding:7px 9px;color:var(--gold);background:rgba(240,180,41,0.07);border-radius:0 6px 6px 0">' + escapeHtml(e.preview) + "</div>";
-  if (e.summary) body += "<h4 style='margin:12px 0 6px'>주요 내용 요약</h4>" + mdRender(e.summary);
-  else body += '<p class="muted small">아직 정리된 요약이 없습니다.</p>';
-  if (e.full) body += '<details class="fold"><summary>전문 보기</summary>' + mdRender(e.full) + "</details>";
-  openModal(escapeHtml(e.name), body);
-}
-function renderEvents() {
-  var evs = (EV.events || []).slice();
-  var future = evs.filter(function (e) { return !isPast(e); });
-  var past = evs.filter(isPast).sort(function (a, b) {
-    return String(b.date_start || b.month).localeCompare(String(a.date_start || a.month));
-  });
-
-  // 다가오는 행사: 날짜 확정된 미래 행사 중 가장 가까운 3개
-  var dated = future.filter(function (e) { return e.date_start; })
-    .sort(function (a, b) { return a.date_start.localeCompare(b.date_start); });
-  var up = dated.slice(0, 3);
-  $q("#upcoming").innerHTML = up.length ? up.map(evCard).join("") : '<div class="empty">예정 행사 없음</div>';
-
-  // 최근 종료된 행사: 종료 행사 중 최신 3개 (있을 때만 섹션 표시)
-  var recent = past.slice(0, 3);
-  $q("#recent-past-sec").style.display = recent.length ? "" : "none";
-  $q("#recent-past").innerHTML = recent.map(evCard).join("");
-
-  // 월별 캘린더 (접힘 — 헤더에 요약 표시)
-  var byMonth = {};
-  future.forEach(function (e) {
-    var m = e.month || (e.date_start ? e.date_start.slice(0, 7) : "미정");
-    (byMonth[m] = byMonth[m] || []).push(e);
-  });
-  var months = Object.keys(byMonth).sort();
-  $q("#cal-meta").textContent = months.length
-    ? months[0] + " ~ " + months[months.length - 1] + " · 예정 행사 " + future.length + "건"
-    : "등록된 행사 없음";
-  $q("#calendar").innerHTML = months.length ? months.map(function (m) {
-    var list = byMonth[m].sort(function (a, b) {
-      return String(a.date_start || "9999").localeCompare(String(b.date_start || "9999"));
-    });
-    return '<div class="month-box"><div class="mh">' + m + ' <span class="muted small">' + list.length + "건</span></div>" +
-      '<div class="mbody">' + list.map(evCard).join("") + "</div></div>";
-  }).join("") : '<div class="empty">등록된 행사 없음 — docs/events.json에 추가하세요</div>';
-
-  // 종료된 행사 전체 (접힘)
-  $q("#past-meta").textContent = past.length ? "총 " + past.length + "건 · 최신순" : "아직 없음";
-  $q("#past").innerHTML = past.length ? past.map(evCard).join("") : '<div class="empty">종료된 행사 없음</div>';
-
-  $qa(".ev-card").forEach(function (c) {
-    c.onclick = function (ev) {
-      var box = ev.target.closest(".insight-box");
-      if (box) { ev.stopPropagation(); openInsightModal(box.dataset.insight); return; }
-      var e = evs.filter(function (x) { return x.id === c.dataset.id; })[0];
-      if (e) openEvModal(e);
-    };
   });
 }
 
@@ -919,18 +777,16 @@ function renderBrief() {
 
 /* ============ 로드 ============ */
 Promise.all([
-  fetchJSON("events.json").catch(function () { return { updated: "", events: [] }; }),
   fetchJSON("people.json").catch(function () { return { updated: "", people: [], weeks: [] }; }),
   fetchJSON("insights.json").catch(function () { return { insights: [] }; }),
   fetchJSON("weekly_brief.json").catch(function () { return { updated: "", briefs: [] }; }),
   fetchJSON("investor_portfolios.json").catch(function () { return { updated: "", investors: [] }; })
 ]).then(function (rs) {
-  EV = rs[0]; PP = rs[1];
-  INSIGHTS = rs[2].insights || [];
-  BRIEF = rs[3] || { briefs: [] };
-  PORTFOLIOS = rs[4] || { investors: [] };
+  PP = rs[0];
+  INSIGHTS = rs[1].insights || [];
+  BRIEF = rs[2] || { briefs: [] };
+  PORTFOLIOS = rs[3] || { investors: [] };
   $q("#updated").textContent = "인물/발언 갱신: " + (PP.updated || "-") + " · 브리핑: " + (BRIEF.updated || "-") + " · 포트폴리오: " + (PORTFOLIOS.updated || "-");
-  renderEvents();
   renderDirectory();
   renderBrief();
   renderPortfolios();

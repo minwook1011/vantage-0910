@@ -21,8 +21,8 @@ model: opus
 | 섹터 대시보드 | `data.json` | 최근 영업일+1 이내 | `etfs` 25개 이상 |
 | 글로벌 메가캡 | `megacap.json`, `financials.json` | 최근 영업일+1 | `stocks` 250개 이상, 각 종목 candles 존재 |
 | 기술적 분석 · 백테스트 | `ta_model.json`, `ta_scores.json`, `ta_backtest.json` | 영업일+1 | `ta_model.regime.today` 존재, `ta_scores.stocks` 250개 이상 (복구: `pip install numpy pandas` 후 `python backtest_ta.py`) |
-| 세상 흐름 | `people.json`, `insights.json`, `events.json` | people/insights 3일, events 14일 | ★아래 인사이트 1:1 규칙 |
-| 실시간 뉴스 | `telegram_news.json`, `news_digest.json` | telegram 영업일+1, digest 2일 | 최신 digest에 `sectors` 존재 |
+| 세상 흐름 | `people.json`, `insights.json` | people/insights 3일 | ★아래 인사이트 1:1 규칙 |
+| 실시간 뉴스 | `telegram_news.json`, `news_digest.json` | telegram 영업일+1, digest 2일 | - |
 | 일본 실적 리포트 | `data/jp/reports/index.json`, `data/jp/earnings_dates.json` | 실적 시즌 영업일+1, 비시즌 7일 | 최근 10일 발표분 중 `note:false`가 30건 넘게 밀려 있으면 `data_sources/jp_earnings_notes.md` 절차로 최대 10건 요약 작성 |
 | 포트폴리오 지수 비교 | `data/bench_hist.json` | 영업일+1 | `series`에 ^KS11·^KQ11·^GSPC·^IXIC·KRW=X (복구: `python fetch_bench_hist.py`) |
 | 매크로 및 투자전략 | `macro_dash.json` | 영업일+1 | `indicators`에 **cpi·y10** 존재, `status`에 ✗ 없음 (`fetch_macro_dash.py`로 복구) |
@@ -45,9 +45,8 @@ model: opus
 각 스크립트는 실패해도 기존 데이터를 보존한다. 실행 후 값이 실제로 갱신됐는지 재확인하라.
 
 **리서치가 필요한 복구(WebSearch 사용):**
-- `news_digest.json` 오늘자 없음 → data/macro/valuation/telegram/people을 종합해 **오늘자 digest**를 만든다(마크다운 5섹션 + `stats` + `sectors` 8~10개, 섹터별 `keywords` 포함).
+- `news_digest.json` 오늘자 없음 → data/macro/valuation/telegram/people을 종합해 **오늘자 digest**를 만든다(마크다운 5섹션 + `stats`).
 - ~~`earnings.json` 미국 실적 요약~~ → **중단(2026-09-29)**: 미국 주요 실적 페이지를 메뉴에서 뺐으므로 더는 리서치하지 않는다.
-- `events.json` → **산업 행사 신규 발굴은 매주 일요일 밤 `weekly-industry-events` 예약작업이 전담**하므로 여기서 매일 새로 찾을 필요 없다. 다만 **지난 행사의 status를 done으로 갱신**하고, 임박한 거시 일정(FOMC·CPI·고용)이 비어 있으면 그것만 보충한다. 이미 지난 행사가 여전히 upcoming/previewed로 남아 있으면 done으로 정리.
 - `megacap_periods.json` → 아직 분석 안 된 종목 중 **시총 상위 20개**를 골라 20% 지그재그 구간을 계산하고 각 구간의 상승/하락 이유를 작성해 채운다(하루 20종목 페이스).
 
 **모든 리서치는 출처 URL이 확인된 사실만.** 창작 금지.

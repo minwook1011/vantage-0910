@@ -71,7 +71,7 @@
 .digest-body .md ul { margin: 6px 0 10px; padding-left: 18px; }
 .digest-body .md li { font-size: 14px; line-height: 1.7; margin: 4px 0; }
 /* 중요 강조: 볼드만 */
-.digest-body .md strong, .sector-analysis .md strong { font-weight: 800; color: var(--text); }
+.digest-body .md strong { font-weight: 800; color: var(--text); }
 
 /* 주차별 요약 아카이브 */
 .wk-group { border: 1px solid var(--border); border-radius: 10px; margin-top: 10px; overflow: hidden; }
@@ -87,28 +87,6 @@
 .wk-item .wd { font-family: var(--mono); font-size: 11.5px; color: var(--accent); flex: 0 0 auto; }
 .wk-item .wt { font-size: 13px; }
 
-/* 섹터별 요약 — 카드 자체 클릭 시 관련 뉴스 펼침 */
-.sector-list { display: flex; flex-direction: column; gap: 12px; }
-.sector-card { border: 1px solid var(--border); border-left: 3px solid var(--border-strong); border-radius: 11px;
-  background: var(--card); padding: 14px 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.06); transition: border-color .12s; }
-.sector-card:hover { border-color: var(--accent); }
-.sc-click { cursor: pointer; }
-.sc-more { margin-top: 11px; font-size: 12px; font-weight: 700; color: var(--accent); }
-.sc-caret { display: inline-block; transition: transform .15s; }
-.sector-card.open .sc-caret { transform: rotate(180deg); }
-.sc-news { margin-top: 6px; }
-.sector-card.up { border-left-color: var(--up); } .sector-card.dn { border-left-color: var(--dn); }
-.sc-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
-/* 제목만 색(빨강=강세/파랑=약세), 나머지 텍스트는 흰색 */
-.sc-name { font-size: 15.5px; font-weight: 800; color: var(--text); }
-.sector-card.up .sc-name { color: var(--up); }
-.sector-card.dn .sc-name { color: var(--dn); }
-.sc-stat { font-family: var(--mono); font-size: 11.5px; font-weight: 700; color: var(--muted); }
-.sector-analysis .md p { font-size: 13.5px; line-height: 1.75; margin: 5px 0; color: var(--text); }
-.sector-card.big { padding: 18px 20px; }
-.sec-news-title { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase;
-  letter-spacing: .04em; margin: 16px 0 10px; padding-top: 12px; border-top: 1px solid var(--border); }
-.sec-news-empty { font-size: 12.5px; color: var(--faint); margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -124,7 +102,6 @@
     <button data-pane="digest" class="on">오늘 시황 요약</button>
     <button data-pane="feed">실시간 피드</button>
     <button data-pane="favs">즐겨찾기</button>
-    <button data-pane="sectors">금일 섹터별 요약</button>
   </div>
 
   <!-- 1. 오늘 시황 요약 -->
@@ -152,14 +129,9 @@
     <div id="favs-list"></div>
   </div>
 
-  <!-- 4. 금일 섹터별 요약 -->
-  <div id="pane-sectors" style="display:none">
-    <p class="note">시황 요약이 시장 <b>전체</b>를 봤다면, 여기서는 <b>섹터별</b>로 이슈를 모아 자세히 분석합니다. <span id="sectors-date" class="muted"></span></p>
-    <div id="sectors-list"><div class="spin">로딩 중…</div></div>
-  </div>
 </div>
 
-<script src="theme.js?v=20261025A"></script>
+<script src="theme.js?v=20261102A"></script>
 <script src="stocks-common.js?v=20261016Q"></script>
 <script>
 var NEWS = [], CHANNELS = [], curCh = "all", kw = "";
@@ -323,74 +295,13 @@ function renderArchive() {
 }
 
 /* ---------- 섹터별 요약 ---------- */
-var curSector = "all";
-var SECTOR_KW = {
-  "AI·빅테크": ["ai", "인공지능", "meta", "메타", "openai", "오픈ai", "zuckerberg", "저커버그", "altman", "올트먼", "nvidia", "엔비디아", "gpt", "capex", "캡엑스", "microsoft", "msft", "구글", "google", "alphabet", "anthropic", "앤스로픽"],
-  "반도체·메모리": ["반도체", "semiconductor", "chip", "hbm", "메모리", "memory", "hynix", "하이닉스", "삼성", "samsung", "micron", "마이크론", "tsmc", "dram", "nand", "엔비디아", "nvidia", "amd", "broadcom", "브로드컴", "avgo"],
-  "미국 금융": ["은행", "bank", "jpmorgan", "jp모간", "금리", "국채", "yield", "fed", "연준", "금융", "goldman", "골드만", "dimon", "다이먼", "blackrock", "블랙록"],
-  "에너지": ["에너지", "oil", "유가", "crude", "energy", "opec", "천연가스", "gas", "정유", "원유", "brent", "wti", "exxon", "chevron"],
-  "자동차·전기차": ["테슬라", "tesla", "tsla", "ev", "전기차", "자동차", "auto", "현대", "rivian", "gm", "ford", "포드", "옵티머스", "optimus", "배터리", "battery", "byd"],
-  "소비·항공": ["항공", "airline", "delta", "델타", "소비", "retail", "소매", "여행", "travel", "소비재", "레저", "boeing", "보잉", "호텔"],
-  "신재생·태양광": ["태양광", "solar", "풍력", "wind", "재생", "renewable", "수소", "hydrogen", "esg", "clean"],
-  "한국": ["코스피", "코스닥", "kospi", "kosdaq", "삼성전자", "sk", "한국", "korea", "k방산", "방산", "현대차", "posco", "포스코"],
-  "중국·아시아": ["중국", "china", "대만", "taiwan", "일본", "japan", "홍콩", "아시아", "nikkei", "닛케이", "항셍", "alibaba", "알리바바"],
-  "소비·유통": ["소비", "유통", "소매", "retail", "consumer", "소비재", "walmart", "월마트", "costco", "코스트코", "home depot", "홈디포", "lowe's", "로우스", "tjx", "e-commerce"],
-  "신재생·원자력·전력": ["태양광", "solar", "풍력", "wind power", "재생", "renewable", "수소", "hydrogen", "원자력", "nuclear power", "nuclear plant", "우라늄", "uranium", "전력", "power grid", "electricity", "utilit", "송전", "변압기"],
-  "금·안전자산·크립토": ["금값", "gold ", "gold price", "골드", "은값", "silver", "비트코인", "bitcoin", "btc", "이더리움", "ethereum", "크립토", "crypto", "암호화폐", "stablecoin", "안전자산", "safe haven", "золот", "крипт"]
-};
-function sectorMatchNews(kws) {
-  if (!kws || !kws.length) return [];
-  var low = kws.map(function (k) { return String(k).toLowerCase(); });
-  return NEWS.filter(function (it) {
-    var t = (it.text || "").toLowerCase();
-    return low.some(function (k) { return t.indexOf(k) >= 0; });
-  }).slice(0, 30);
-}
-function renderSectors() {
-  var d = DIGESTS[0];
-  var host = $q("#sectors-list");
-  var secs = d && d.sectors;
-  if (!secs || !secs.length) {
-    host.innerHTML = '<div class="news-empty">아직 섹터별 요약이 없습니다. 매일 밤 9시 시황 요약과 함께 생성됩니다.</div>';
-    return;
-  }
-  $q("#sectors-date").textContent = "(" + (d.date || "") + ")";
-  host.innerHTML = '<div class="sector-list">' + secs.map(function (s) {
-    var tone = s.tone || "flat";
-    var rel = sectorMatchNews(s.keywords && s.keywords.length ? s.keywords : SECTOR_KW[s.sector]);
-    var news = rel.length
-      ? '<div class="sec-news-title">관련 실시간 뉴스 · ' + rel.length + "건</div><div class=\"news-grid\">" + rel.map(newsCardHTML).join("") + "</div>"
-      : '<div class="sec-news-empty">이 섹터에 매칭된 실시간 뉴스가 아직 없습니다. (텔레그램 방 연동 시 크게 늘어납니다)</div>';
-    return '<div class="sector-card ' + tone + '">' +
-      '<div class="sc-click">' +
-        '<div class="sc-h"><span class="sc-name">' + escapeHtml(s.sector) + "</span>" +
-        '<span class="sc-stat">' + escapeHtml(s.stat || "") + "</span></div>" +
-        '<div class="sector-analysis">' + mdRender(s.analysis || "") + "</div>" +
-        '<div class="sc-more">관련 실시간 뉴스 ' + rel.length + "건 펼치기 <span class=\"sc-caret\">▾</span></div>" +
-      "</div>" +
-      '<div class="sc-news" style="display:none">' + news + "</div>" +
-      "</div>";
-  }).join("") + "</div>";
-  $qa("#sectors-list .sc-click").forEach(function (btn) {
-    btn.onclick = function (e) {
-      if (e.target.closest("a")) return;
-      var card = btn.closest(".sector-card"), nx = card.querySelector(".sc-news");
-      var open = nx.style.display === "none";
-      nx.style.display = open ? "" : "none";
-      card.classList.toggle("open", open);
-    };
-  });
-  wireFavButtons(host, function () { renderFavs(); });
-}
-
 /* ---------- 탭 ---------- */
 function showPane(name) {
-  ["digest", "feed", "favs", "sectors"].forEach(function (p) {
+  ["digest", "feed", "favs"].forEach(function (p) {
     $q("#pane-" + p).style.display = p === name ? "" : "none";
   });
   $qa("#news-tabs button").forEach(function (b) { b.classList.toggle("on", b.dataset.pane === name); });
   if (name === "favs") renderFavs();
-  if (name === "sectors") renderSectors();
 }
 $qa("#news-tabs button").forEach(function (b) { b.onclick = function () { showPane(b.dataset.pane); }; });
 $q("#news-search").addEventListener("input", function () { kw = this.value.trim().toLowerCase(); renderFeed(); });
@@ -404,7 +315,6 @@ fetchJSON("news_digest.json").then(function (d) {
   curDigest = 0;
   renderDigest();
   renderArchive();
-  renderSectors();
 }).catch(function () { renderDigest(); });
 
 fetchJSON("telegram_news.json").then(function (d) {
@@ -417,7 +327,6 @@ fetchJSON("telegram_news.json").then(function (d) {
   }
   renderChips();
   renderFeed();
-  renderSectors();  // NEWS 로드 완료 후 섹터 관련뉴스 매칭 재계산
 }).catch(function () {
   $q("#news-list").innerHTML = '<div class="news-empty">아직 뉴스 데이터가 없습니다.</div>';
 });
