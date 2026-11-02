@@ -1,0 +1,231 @@
+{
+ "id": "2026-11-02-riskrev-if-big-tech-is-selling-stock-and-debt-why-are-yo",
+ "title_ko": "빅테크가 주식과 채권을 팔고 있다면, 왜 당신은 사고 있나?",
+ "guest": {
+  "name": "Dan Nathan",
+  "role": "RiskReversal Media 창업자 · CNBC Fast Money 패널(단독 진행)"
+ },
+ "guest_profile": [
+  {
+   "name": "댄 네이선(Dan Nathan)",
+   "title": "RiskReversal Media·RiskReversal Advisors 창업자, CNBC Fast Money 고정 패널",
+   "what": "옵션 교육 사이트 RiskReversal.com(2011년 공동 창업)과 투자은행·자문사·비상장사를 상대로 한 자문사 RiskReversal Advisors(2016년)를 운영한다. 미디어 회사 RiskReversal Media에서 이 방송과 On The Tape 등을 진행한다.",
+   "career": "약 25년 동안 주식·옵션 트레이더로 일했다. SAC Capital·Cheyne·Exis Capital 같은 헤지펀드와 Merrill Lynch 주식파생 부서를 거쳤고 개인 트레이더로도 활동했다. CNBC Options Action에 2009~2019년 고정 출연했고 2011년부터 Fast Money 패널이다.",
+   "track": "공개된 펀드 수익률은 없음. 헤지펀드·월가 파생 부서 경력과 CNBC 장기 출연이 확인되는 이력이다.",
+   "why": "옵션 트레이더 출신이라 내재변동성·수급을 기준으로 시장을 읽고, 몇 년째 AI 투자 사이클의 현금흐름과 자금 조달 위험을 꾸준히 지적해 왔다. 빅테크 실적 주간을 회의론자 시각에서 정리한 편이다."
+  }
+ ],
+ "company": {
+  "name": "Alphabet · Meta · Microsoft · Intel",
+  "sector": "빅테크 · AI 인프라 · 반도체",
+  "what": "AI 설비투자를 위해 주식·채권을 대거 발행 중인 미국 빅테크와 가이던스 쇼크를 낸 Intel"
+ },
+ "topic": "빅테크 실적 주간 정리 — Intel 폭락, 빅테크·AI 기업의 대규모 주식·채권 발행이 주는 신호",
+ "headline": "Alphabet 410억·Meta 375억·MS 250억 — 회사들이 파는데 투자자는 왜 사나",
+ "tldr": [
+  "이번 주 Alphabet 410억·Meta 375억·Microsoft 250억 달러 조달 — 진행자는 주주 희석이자 경고 신호로 봤다",
+  "Intel 가이던스 쇼크로 하루 30% 가까이 급락, 고점 141달러에서 65달러 안팎으로 반 토막",
+  "Microsoft 빼고 빅테크 대부분이 마이너스 현금흐름 — 2022년 같은 70% 하락이 다시 없으리란 법 없다",
+  "Nasdaq 100은 10월 초 고점 대비 약 9% 하락, 올해 수익률이 S&P 500보다 낮다",
+  "Anthropic S-1: 상반기 매출 163억 달러, 수주잔고는 OpenAI·Anthropic이라는 단일 실패 지점에 기댄다",
+  "외부 확인: Alphabet 410억은 채권 287억+주식 124억, Microsoft는 2017년 이후 첫 회사채"
+ ],
+ "summary_md": "### 1. 혼자 진행한 월요일 편, 녹음은 금요일 정오\n\n- 공동 진행자 Guy Adami가 빠져 Dan Nathan이 혼자 지난주를 정리했다. 녹음은 10월 30일(금) 정오라 그날 종가는 반영되지 않았다.\n- 지난주는 빅테크 실적, 연준 회의, 금리 인상 논쟁이 한꺼번에 몰린 주였다. 그는 경기가 **AI 설비투자와 소비**라는 두 기둥에 기대고 있고, 연준은 물가를 잡으려는 쪽과 경기 강세 사이에서 줄다리기를 하고 있다고 봤다. 소비자신뢰지수와 GDP는 예상보다 조금 나았다.\n- 화요일 중간선거, 금요일 10월 고용 지표가 남아 있다. 10년물 국채 금리는 4.95% 안팎으로 몇 주 전 고점(약 5.35%)보다는 내려왔고, 서부텍사스유(WTI)는 배럴당 105달러 근처, VIX는 20 부근이다. 그는 선거 뒤 이란 전쟁이 다시 격해질 수 있다는 관측이 유가 위험이라고 짚었다.\n\n### 2. 지수는 조용한데 속은 흔들린다\n\n- 금요일 정오 기준 S&P 500은 하루 1.5% 안팎 내려 이달 들어 보합, 사상 최고치보다 약 3% 낮다. 봄부터 좁은 범위에서 **횡보**만 하고 있다는 게 그의 진단이다.\n- Nasdaq 100은 그날 3% 가까이 빠져 10월 초 고점 대비 약 9.25% 낮다. 올해 수익률도 Nasdaq 100(약 10%)이 S&P 500(약 11%)에 뒤처져, 4년 AI 랠리 동안 드물던 모습이라고 했다.\n- 지수가 덜 빠지는 건 하이퍼스케일러·반도체에서 나온 돈이 에너지·헬스케어로 옮겨 가기 때문이다. 동일가중 S&P(RSP)가 시가총액 가중 지수를 앞선 것도 같은 흐름이다.\n\n[[chart:2]]\n\n- 메가캡 중 올해 S&P를 이긴 건 **Apple(약 28%)**뿐이다. Nvidia는 약 10%로 지수와 비슷하고, Meta·Tesla는 약 10% 하락이다. 6월 135달러에 상장한 SpaceX는 137.5달러로 제자리라고 했다.\n\n### 3. 실적 성적표 — Microsoft만 버텼다\n\n- **Alphabet**은 검색 매출이 두 분기 연속 예상에 못 미치고 잉여현금흐름이 마이너스로 돌아서 크게 맞았다. Google Cloud가 100% 가까이 성장했지만 AWS·Azure보다 작은 기반에서 나온 숫자라고 선을 그었다.\n- Amazon은 발표 직후 시간외에서 6% 가까이 빠졌다가 AWS 성장과 설비투자 가이던스가 소화되며 일부 회복했다. 그래도 여러 지표를 놓쳤다.\n- **Microsoft**는 설비투자를 늘리지 않은 점을 시장이 오히려 높이 샀다. 다만 금요일엔 그마저 상승분을 상당 부분 반납해, 지난주 실적을 낸 기술주 중 의미 있게 오른 곳이 없다고 정리했다.\n\n### 4. Intel 30% 폭락이 던지는 경고\n\n- 그가 가장 길게 다룬 건 **Intel**이다. 약한 가이던스에 주가가 하루 30% 가까이 빠져 고점 141달러에서 65달러 안팎이 됐다. GPU가 모자라 CPU 클러스터가 AI 작업 일부를 맡을 거라는 기대로 뒤늦게 올랐던 종목이다.\n- 미국 정부와 Nvidia가 낮은 가격(Nvidia는 약 25달러)에 지분을 샀으니 그들에겐 아직 이익이지만, 고점 대비 반 토막은 AI 서사에 기대 오른 종목이 얼마나 빨리 되돌릴 수 있는지 보여 준다고 봤다.\n- 그는 2021년 고점에서 2022년 바닥까지 Nvidia·Tesla·Meta·Netflix가 70%씩 빠졌던 일을 다시 꺼냈다. 해자와 독점력은 그대로여도, 이번엔 Microsoft를 빼고 대부분이 **마이너스 현금흐름**으로 돌아섰다는 점이 다르다고 했다.\n- 지금 Nasdaq을 사도 되냐는 지인의 질문엔 아직 아니라고 답했고, 굳이 들어가려면 한 번에 사지 말고 나눠서 넣는 방법을 예로 들었다(그의 개인 견해).\n\n### 5. 모두가 돈을 조달할 때 왜 사는가\n\n- 이번 편 제목의 핵심이다. 그는 Anthropic의 상장 신고서(S-1)가 이번 주 나왔다며 상반기 매출 163억 달러, 대규모 순손실(비현금 회계 조정 포함), 길게 쓴 위험 요인을 짚었다. 1.5조~2조 달러 규모로 거론되는 상장을 이런 장에서 할 수 있을지 의문이라고 했다.\n- 6월 상장한 SpaceX는 곧바로 채권을 팔았고, 이번엔 GPU 구매용 대형 금융을 끌어왔다. 이번 주에만 **Alphabet 410억 달러, Meta 375억 달러, Microsoft 250억 달러**를 조달했다는 게 그의 집계다.\n\n[[chart:1]]\n\n- 회사들이 주식·채권·전환증권을 가리지 않고 파는 건 주주 입장에선 희석이고, 그 돈으로 짓는 컴퓨팅은 오래 지나야 돈이 된다고 봤다. 90년대 말 광케이블 과잉 투자와는 다르다는 반론에도, 지금의 수요가 몇 년 뒤 수요와 맞아떨어진다는 보장은 없다고 했다.\n- 하이퍼스케일러가 자랑하는 수주잔고는 결국 Sam Altman과 Dario Amodei, 즉 OpenAI와 Anthropic이라는 **단일 실패 지점**에 기대고 있다는 지적도 다시 했다.\n\n### 6. 네오클라우드·Oracle·소프트웨어\n\n- 네오클라우드 주가는 계속 밀리고 신용부도스와프(CDS) 프리미엄은 오르고 있다. Oracle은 수요일 투자자 행사에서 컴퓨팅 규모와 잉여현금흐름 흑자 전환 시점을 제시해 10% 올랐다가 대부분 반납했다.\n- **ServiceNow**는 실적·가이던스가 실망스러워 일주일 새 25~30% 빠졌다. 그는 소프트웨어 전반이 흔들리는 가운데서도 해킹이 이어지는 만큼 보안 종목은 계속 볼 만하다고 했다.\n\n### 7. 이번 주 볼 것 — Apple, 연준, 고용, 실적\n\n- **Apple**은 사상 최고치 근처에서 방어주처럼 움직였지만, 그는 실적 후 급락 위험을 경고했다. 새 접이식 모델 Duo는 수율이 낮고 화면 균열 사례가 나와 공급이 부족하며, 본격 매출은 내년 1~2분기에나 날 것이라는 시각이다. 매출·이익 성장 10~11% 기대에 **주가수익비율 36배**는 비싸다고 봤다. 옵션 시장이 반영한 실적 변동폭은 위아래 3.5%다.\n- 연준은 Kevin Warsh 의장 체제에서 금리 인상을 쉬었고 반대표가 2개 나왔다. CME 금리 선물은 12월 9일 회의 0.25%p 인상 확률을 약 75%, 내년 상반기 두 차례 인상을 반영한다.\n- 10월 고용은 5만5천 명 증가 예상(9월 약 2만9천 명). 그는 시장이 고용보다 물가·유가·금리를 더 본다고 했다.\n- **Palantir**는 실적 뒤 120달러에서 210달러까지 올랐다가 186달러 안팎이다. 올해 매출이 45억 달러에서 82억 달러(약 83%)로, 내년엔 51% 늘 것으로 예상되고 매출총이익률은 86%(2023년 약 81%)다. 비싸지만 성장으로 밸류에이션을 따라잡을 수 있다고 봤다. AMD(화요일)와 Qualcomm(수요일)은 Intel 여파로 금요일 각각 10%, 11% 넘게 빠진 상태에서 실적을 낸다.\n",
+ "insights_md": "### 투자 관점\n\n- 이번 편의 핵심 질문은 **자금 조달의 방향**이다. 빅테크가 자사주 매입 대신 주식·채권·리스로 돈을 끌어오면, 지수를 그대로 들고 있는 투자자는 현금을 돌려받는 대신 새 주식을 떠안는다. 3분기 Alphabet은 자사주를 한 주도 사지 않고 주식을 팔았다(외부 자료).\n- 관련 상장사: 조달 주체(Alphabet·Meta·Microsoft·Amazon), 돈을 받아 가는 쪽(Nvidia·Broadcom·AMD·TSMC, SK하이닉스·삼성전자 같은 메모리), 신용 위험이 먼저 드러나는 쪽(CoreWeave 같은 **네오클라우드**, Oracle). Intel 급락은 CPU·파운드리 기대로 오른 종목의 되돌림 사례다.\n- 수치: 진행자 집계로 이번 주 조달은 Alphabet 410억·Meta 375억·Microsoft 250억 달러. 외부 자료로 보면 Alphabet 410억은 채권 287억과 주식 124억을 더한 값이고, Meta 375억은 보통주 선도매도 250억과 의무전환우선주 125억이다.\n- 반론: 수요는 계약으로 뒷받침된다. Microsoft 상업용 **잔여이행의무 6,770억 달러**(73% 증가), AWS 매출은 39% 늘었다. 다만 그 계약이 소수 AI 연구소에 몰려 있다는 점은 진행자와 외부 자료가 같이 짚는다.\n- 리스크 신호: 진행자는 네오클라우드 CDS 상승, Oracle 반등 실패, ServiceNow 급락을 같은 흐름으로 묶었다. 실적이 좋아도 주가가 오르지 못하는 장에선 현금흐름과 조달 의존도가 큰 종목부터 밀린다는 시각이다. Intel 여파로 AMD·Qualcomm이 하루 10% 넘게 빠진 것도 AI 수혜 기대가 얇게 붙은 종목이 먼저 흔들린다는 사례로 읽힌다.\n- 반대편: Apple은 데이터센터 투자·자금 조달과 거리가 멀어 방어주처럼 움직였다. 진행자는 접이식 모델 수율과 36배 밸류에이션을 들어 이 역시 안전지대가 아니라고 봤지만, 이는 일본 언론 보도에 기댄 그의 전망이라 실적에서 확인할 부분이다.\n- 체크포인트: 11월 2일 **Apple 실적**(접이식 모델 수율), 11월 3일 중간선거, 11월 6일 고용, Anthropic 상장 가격과 수요, 12월 9일 연준 회의, 하이퍼스케일러 4분기 설비투자와 추가 발행 여부. 투자 권유가 아닌 정리다.\n",
+ "deep_md": "### 1. 진행자 수치 팩트 체크\n\n외부 자료로 확인: 진행자가 든 조달 숫자는 대체로 맞지만 성격이 섞여 있다. Alphabet은 3분기에 선순위 무담보채 **287억 달러**를 발행하고 시장 매각 방식(ATM)으로 Class A 43억·Class C 81억 달러어치 주식을 팔았다. 합치면 약 411억 달러로, 진행자가 '부채 410억'이라 한 숫자는 사실 채권과 주식을 더한 값이다. 1년 전과 달리 자사주 매입은 없었다.\n\n[[chart:3]]\n\nMeta는 10월 26일 보통주 선도매도 250억 달러(주당 625달러, 원래 225억에서 증액)와 연 6.5% 의무전환우선주 약 125억 달러를 내놨다. 375억 달러라는 진행자 숫자와 맞는다. 선도매도라 실제 주식 인도는 2027년 11월까지 미뤄지지만 **희석이 사라지는 건 아니다**. 내년 Class C 주식이 생기면 약 600억 달러 규모 추가 매각 프로그램도 검토 중이다. Microsoft는 2017년 이후 첫 회사채로 최소 250억 달러를 추진했고 주문이 1,150억 달러를 넘었다(최종 규모는 확인 못 함).\n\nSpaceX 쪽은 다르다. 10월 26일 발표된 건 Apollo가 운용하는 법인이 장비를 사서 빌려주는 약 **400억 달러 GPU 금융리스**이고, Broadcom이 이를 보증했다는 자료는 찾지 못했다(확인 못 함). 외부 보도에서 Broadcom이 돈을 대는 건 Anthropic(최대 420억 달러 대출) 쪽이다. 진행자가 두 건을 섞었을 가능성이 있다.\n\nAnthropic S-1(10월 26일 공개): 상반기 매출 약 163억 달러는 맞다. 다만 1년 전 같은 기간은 약 12억 달러로 보도돼 진행자가 말한 16억과 다르다. 순손실 약 807억 달러 중 약 724억 달러가 전환사채·SAFE의 공정가치 변동에서 나온 **비현금 손실**이고, 영업손실은 약 6.9억 달러다. 위험 요인은 약 94쪽으로 진행자 말과 비슷하다.\n\nIntel: 3분기 매출 165억 달러(21% 증가), 데이터센터·AI 73억 달러(78% 증가)로 숫자 자체는 나쁘지 않았다. 문제는 4분기 매출 가이던스 150억~160억 달러가 시장 예상(약 170억 달러)보다 낮고, 비GAAP **매출총이익률이 44.1%에서 38.0%로** 꺾인다는 점이다. 장중 30% 안팎 하락은 1974년 이후 최악의 하루 수준으로 보도됐다.\n\n[[chart:5]]\n\n### 2. 밸류체인과 관련 상장사\n\n- 조달한 돈은 결국 GPU·맞춤형 칩(Nvidia·Broadcom·AMD), 메모리(SK하이닉스·삼성전자·Micron), 파운드리(TSMC), 전력·냉각 설비로 흘러간다. 조달이 이어지는 한 이쪽 매출은 버티지만, **발행 시장이 닫히면** 가장 먼저 흔들리는 고리이기도 하다.\n- 일본에선 반도체 장비(Tokyo Electron·Advantest), 한국에선 HBM 공급사가 하이퍼스케일러 설비투자에 가장 직접 연결된다.\n- 신용 쪽: 국제결제은행(BIS)은 2026년 10년 이상 장기 회사채 발행의 약 24%가 하이퍼스케일러 채권이라고 봤다. 주식·회사채·데이터센터 부동산을 함께 들고 있는 연기금에겐 같은 회사 위험이 여러 겹으로 쌓인다.\n\n### 3. 숫자의 맥락\n\n외부 자료로 확인: 3분기 설비투자는 Amazon 773억, Alphabet 514억, Microsoft 452억 달러(금융리스 포함)다. Amazon은 올해 약 2,200억 달러, Alphabet은 1,950억~2,050억 달러, Meta는 1,350억~1,450억 달러를 예상한다. Alphabet은 3분기 잉여현금흐름이 -91억 달러, Amazon은 최근 12개월 **-424억 달러**다.\n\n[[chart:4]]\n\nMicrosoft는 잉여현금흐름이 186억 달러로 여전히 플러스지만, 아직 시작 안 한 데이터센터 리스가 **3,646억 달러**다. 설비투자를 '안 늘렸다'는 평가 뒤에 리스로 옮겨 간 부분이 있어, 실제 약정 규모는 보고된 설비투자보다 크다.\n\n### 4. 반론과 리스크\n\n- 수요 쪽 근거는 탄탄하다. Microsoft 상업용 잔여이행의무 6,770억 달러, AWS 39% 성장(5년 만의 최고)과 2027·2028년 40% 이상 성장 전망은 '광케이블 과잉'과 다르다는 주장의 근거다.\n- 다만 그 계약이 소수 AI 연구소에 집중돼 있다는 점은 Anthropic S-1에서도 드러난다. 9개월간 **상위 5개 고객이 매출의 약 25%**를 차지하고, 해지 불가능한 대규모 컴퓨팅 약정이 위험 요인으로 적혀 있다.\n- 진행자의 Apple 비관론(접이식 수율·화면 문제)은 일본 언론 보도를 인용한 것이라 이번 실적에서 직접 확인이 필요하다.\n\n### 5. 앞으로 볼 것\n\n- 11월 2일 Apple, 11월 3일 Palantir·AMD 실적과 중간선거, 11월 6일 10월 고용.\n- Anthropic 상장 가격과 공모 규모 — 대형 AI 공모가 시장 수요를 얼마나 빨아들이는지.\n- 하이퍼스케일러 4분기: Microsoft 설비투자 500억 달러 이상 가이던스 이행, Alphabet의 추가 발행 여부, Amazon 2,200억 달러 달성.\n- 12월 9일 연준 회의(인상 확률 약 75%)와 10년물 5% 재돌파 여부.\n",
+ "sources": [
+  {
+   "label": "[원본] RiskReversal Pod — If Big Tech Is Selling Stock and Debt, Why Are You Buying?",
+   "url": "https://traffic.megaphone.fm/RRM5309440143.mp3"
+  },
+  {
+   "label": "Universal Asset Owners — 하이퍼스케일러 3분기 설비투자·채권·주식 발행·리스 정리",
+   "url": "https://www.universalassetowners.com/newsroom/hyperscaler-q3-capex-debt-equity-leases/"
+  },
+  {
+   "label": "Meta IR — 의무전환우선주·선도매도 보통주 공모 가격 결정",
+   "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Announces-Pricing-of-Offering-of-Depositary-Shares-Representing-Series-A-Mandatory-Convertible-Preferred-Stock-and-Offering-of-Class-A-Common-Stock-in-Connection-with-Forward-Sale-Agreements/default.aspx"
+  },
+  {
+   "label": "Intel — 2026년 3분기 실적 발표(매출·마진·4분기 가이던스)",
+   "url": "https://www.intc.com/news-events/press-releases/detail/1786/intel-reports-third-quarter-2026-financial-results"
+  },
+  {
+   "label": "ynetnews — Intel 장중 30% 급락, 1974년 이후 최악 수준",
+   "url": "https://www.ynetnews.com/business/article/ryivnsmazl"
+  },
+  {
+   "label": "The Star(Reuters) — Microsoft 250억 달러 회사채 추진",
+   "url": "https://www.thestar.com.my/tech/tech-news/2026/10/30/microsoft-expects-to-raise-25-billion-in-us-bond-sale-source-says"
+  },
+  {
+   "label": "TechCrunch — SpaceX, Apollo와 400억 달러 GPU 금융 계약",
+   "url": "https://techcrunch.com/2026/10/26/spacex-locks-in-40b-gpu-financing-deal-with-apollo/"
+  },
+  {
+   "label": "Leverage Shares — Anthropic S-1 매출·손실 정리",
+   "url": "https://leverageshares.com/us/insights/anthropic-s-1-filing/"
+  },
+  {
+   "label": "Pebblous — Anthropic S-1 영업손실과 순손실(비현금 공정가치 손실) 구분",
+   "url": "https://blog.pebblous.ai/blog/anthropic-s1-operating-loss-vs-net-loss/en/"
+  },
+  {
+   "label": "Khaleej Times — Anthropic 상위 5개 고객 비중·위험 요인",
+   "url": "https://www.khaleejtimes.com/business/seven-numbers-that-explain-anthropics-business-after-ipo-announcement"
+  },
+  {
+   "label": "CNBC — Alphabet 3분기 실적, 2026 설비투자 유지·2027 대폭 증가",
+   "url": "https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html"
+  },
+  {
+   "label": "CNBC — Amazon 최근 12개월 잉여현금흐름 -424억 달러",
+   "url": "https://www.cnbc.com/2026/10/29/amazon-amzn-q3-earnings-report-2026.html"
+  },
+  {
+   "label": "Metro Connections — Dan Nathan 약력",
+   "url": "https://metroconnections.swoogo.com/focus2024/speaker/1141231/dan-nathan"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "진행자가 든 이번 주 AI 진영 자금 조달",
+   "sub": "억 달러 · 주식·채권·리스 포함",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Alphabet",
+    "SpaceX(GPU 금융)",
+    "Meta",
+    "Microsoft"
+   ],
+   "series": [
+    {
+     "name": "조달 규모",
+     "values": [
+      410,
+      400,
+      375,
+      250
+     ]
+    }
+   ],
+   "note": "진행자의 어림 집계다. 외부 자료로 보면 Alphabet은 채권+주식, SpaceX는 GPU 금융리스로 성격이 서로 다르다",
+   "source": "RiskReversal Pod 대본"
+  },
+  {
+   "at": "summary",
+   "title": "올해 수익률 — 메가캡과 지수",
+   "sub": "% · 10월 30일 정오 기준",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Apple",
+    "S&P 500",
+    "Nasdaq 100",
+    "Nvidia",
+    "Microsoft",
+    "Amazon",
+    "Broadcom",
+    "Meta",
+    "Tesla"
+   ],
+   "series": [
+    {
+     "name": "연초 대비",
+     "values": [
+      28,
+      11,
+      10,
+      10,
+      8.5,
+      4,
+      -5,
+      -10,
+      -10
+     ]
+    }
+   ],
+   "note": "Apple만 지수를 앞서고, Nasdaq 100이 S&P 500보다 뒤처졌다",
+   "source": "RiskReversal Pod 대본"
+  },
+  {
+   "at": "deep",
+   "title": "Alphabet 3분기 외부 자금 조달 구성",
+   "sub": "억 달러 · 2026년 3분기",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "선순위 무담보채",
+    "Class C 주식 매각",
+    "Class A 주식 매각"
+   ],
+   "series": [
+    {
+     "name": "조달액",
+     "values": [
+      287,
+      81,
+      43
+     ]
+    }
+   ],
+   "note": "합계 약 411억 달러 — 진행자의 '부채 410억'은 채권과 주식을 더한 값이다",
+   "source": "Universal Asset Owners(Alphabet 3분기 공시 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "하이퍼스케일러 3분기 설비투자",
+   "sub": "억 달러 · 2026년 7~9월",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "Amazon",
+    "Alphabet",
+    "Microsoft"
+   ],
+   "series": [
+    {
+     "name": "설비투자",
+     "values": [
+      773,
+      514,
+      452
+     ]
+    }
+   ],
+   "note": "Microsoft는 금융리스 포함 기준이다. 시작 전 리스 3,646억 달러는 빠져 있다",
+   "source": "Universal Asset Owners(각사 3분기 공시 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "Intel 매출 — 3분기 실적과 4분기 가이던스",
+   "sub": "억 달러",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "3분기 실적",
+    "4분기 가이던스 하단",
+    "4분기 가이던스 상단"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      165,
+      150,
+      160
+     ]
+    }
+   ],
+   "note": "가이던스 상단도 3분기보다 낮다. 비GAAP 매출총이익률은 44.1%에서 38.0%로 꺾인다",
+   "source": "Intel 3분기 실적 발표"
+  }
+ ],
+ "tg": "이번 주 Alphabet 410억·Meta 375억·Microsoft 250억 달러 조달 — 진행자는 주주 희석이자 경고 신호로 봤다\nIntel 가이던스 쇼크로 하루 30% 가까이 급락, 고점 대비 반 토막\nMicrosoft 빼고 빅테크 대부분이 마이너스 현금흐름",
+ "tg_body": "Dan Nathan이 혼자 빅테크 실적 주간을 정리했다. S&P 500은 봄부터 좁은 범위에서 횡보하지만 Nasdaq 100은 10월 초 고점보다 약 9% 낮고, 올해 수익률도 S&P 500에 뒤처졌다. 메가캡 중 지수를 이긴 건 Apple뿐이다.\n\n실적은 Alphabet이 검색 부진과 마이너스 잉여현금흐름으로 크게 맞았고, 설비투자를 늘리지 않은 Microsoft만 버텼다. Intel은 약한 가이던스에 하루 30% 가까이 빠져 고점 141달러에서 65달러 안팎이 됐다.\n\n그는 Microsoft를 뺀 빅테크 대부분이 마이너스 현금흐름이라며 2022년 같은 70% 하락도 배제할 수 없다고 봤다. 이번 주에만 Alphabet 410억, Meta 375억, Microsoft 250억 달러를 조달했고 Anthropic도 S-1을 냈다. 회사들이 파는데 왜 사느냐는 게 제목의 질문이다.\n\n이번 주엔 Apple 실적(접이식 모델 수율), 중간선거, 고용 지표, 12월 연준 인상 확률 약 75%를 본다.\n\n외부 자료로 보면 Alphabet 410억은 채권 287억과 주식 124억을 더한 값이고 자사주 매입은 없었다. 반면 Microsoft 잔여이행의무 6,770억 달러, AWS 39% 성장처럼 계약 수요는 탄탄하다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-11-02 19:39 KST"
+}
