@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-02 19:39 KST",
+ "updated": "2026-11-02 20:33 KST",
  "episodes": [
+  {
+   "id": "2026-11-02-sixsigma-K4dOfmVbgHU",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "AI는 노는 칩을 남기지 않는다｜샘 올트먼·닐 모바",
+   "date": "2026-11-02",
+   "published": "2026-11-02 20:00 KST",
+   "link": "https://www.youtube.com/watch?v=K4dOfmVbgHU",
+   "youtube": "https://www.youtube.com/watch?v=K4dOfmVbgHU",
+   "audio": null,
+   "duration": "",
+   "desc": "PC에 들어가는 D램 칩 값이 2년이 안 돼 20배가 되고, 같은 D램인데 서버용 모듈이 PC용보다 두 배 넘게 빨리 오른 이유를 짚었습니다. 오픈AI 샘 올트먼과 세일 리서치 닐 모바의 발언을 트렌드포스 시세, 엔비디아 GPU 대여료, 한국 수출, 메모리 회사 주가와 맞춰 보면 메모리 판의 문제는 이제 가격이 아니라 물량입니다. 낸드가 D램보다 먼저 멈춘 이유와, 이 판정이 틀렸을 때 먼저 꺾일 숫자까지 정리했습니다. [목차] 00:00 칩의 재분배 00:56 1. 돈이 있어도 못 구한다 04:59 2. PC 속 램을 데이터센터로 06:21 3. 그래서 버리는 칩이 없다 11:21 4. 판정: 가격이 아니라 물량 [원본] 1. Cheeky Pint 공식 유튜브, 샘 올트먼 × 존 콜리슨 대담 (2026.10.29): https://www.youtube.com/watch?v=iMsUcCYNKqY 2. Invest Like The Best 공식 유튜브, 488화 닐 모바(세일 리서치) (2026.08.25): https://www.youtube.com/watch?v=uyzqxIoiobU [숫자 출처] - D램 고정거래가격 DDR4 8Gb 월별(D램익스체인지, …",
+   "status": "done",
+   "found": "2026-11-02 20:25 KST",
+   "image": "https://i4.ytimg.com/vi/K4dOfmVbgHU/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "AI는 노는 칩을 남기지 않는다 — Sam Altman·Neil Movva로 본 메모리 물량전",
+   "desc_ko": "식스시그마가 Sam Altman(Cheeky Pint)과 Sail Research의 Neil Movva(Invest Like the Best 488회) 발언을 엮어 메모리 시장을 정리한 영상입니다. PC용 D램 값이 2년이 채 안 돼 20배가 된 배경, 서버용 모듈이 PC용보다 더 가파르게 오른 이유를 짚습니다. 남는 칩과 전력을 끌어모아 쓰는 '스캐빈저' 전략과 PC 속 D램을 데이터센터로 옮겨야 한다는 주장을 소개하고, 메모리 판의 문제는 이제 가격보다 물량이라는 판정과 그 판정이 틀렸을 때 먼저 꺾일 지표를 정리합니다.",
+   "summary": {
+    "title_ko": "AI는 노는 칩을 남기지 않는다 — Sam Altman·Neil Movva로 본 메모리 물량전",
+    "headline": "메모리 판의 쟁점은 이제 가격이 아니라 물량 — 노는 칩은 하나도 남지 않는다",
+    "image": "https://i.ytimg.com/vi/K4dOfmVbgHU/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Neil Movva · Sam Altman — 두 영어 대담을 엮어 메모리·연산 공급 부족을 해설한 영상",
+    "company": "메모리 반도체 · AI 연산 (D램 · 낸드 · GPU 임대)"
+   }
+  },
   {
    "id": "2026-11-02-ca-dynamic-allocation-and-concentrated-conviction-z",
    "show": "ca",
