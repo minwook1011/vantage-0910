@@ -343,6 +343,7 @@
   "pod:2026-11-02-sixsigma-K4dOfmVbgHU",
   "pod:2026-11-02-sixsigma-PbCTV1ZA_T8",
   "pod:2026-11-03-sixsigma-3Q4yrtsWZ9o",
+  "pod:2026-11-03-understanding-d-ZA6Btv4Pw",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:035d98272c4d",
@@ -1393,9 +1394,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "gpu:2026-10-25": [
-   299
-  ],
   "trk:blog-techcrunch:d58e9a52e8d2": [
    862
   ],
@@ -2936,6 +2934,9 @@
   "digest:2026-11-03:asia": [
    418,
    419
+  ],
+  "pod:2026-11-03-understanding-d-ZA6Btv4Pw": [
+   1299
   ]
  },
  "topics": {},
