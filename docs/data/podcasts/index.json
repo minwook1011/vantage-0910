@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-03 18:26 KST",
+ "updated": "2026-11-03 19:50 KST",
  "episodes": [
   {
    "id": "2026-11-03-understanding-R-Hvbz09_2c",
@@ -67,6 +67,27 @@
    }
   },
   {
+   "id": "2026-11-03-understanding-1rXobtrkJxQ",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "Live on 11/3(화) 이란 전쟁 '가스 청구서'가 드디어 날아옵니다 (김상훈 기자 / 언더스탠딩)",
+   "date": "2026-11-03",
+   "published": "2026-11-03 16:25 KST",
+   "link": "https://www.youtube.com/watch?v=1rXobtrkJxQ",
+   "youtube": "https://www.youtube.com/watch?v=1rXobtrkJxQ",
+   "audio": null,
+   "duration": "",
+   "desc": "제작 지원 (주) 고래사 / 듀오 주식회사 / 어슈런스(주) / 한화자산운용(주) ▶ https://www.musinsa.com/curator/shop/GyVEuRcF *본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공 받습니다",
+   "status": "skip",
+   "found": "2026-11-03 19:25 KST",
+   "image": "https://i2.ytimg.com/vi/1rXobtrkJxQ/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "[라이브] 이란 전쟁의 '가스 청구서'가 드디어 날아온다 (김상훈 기자)",
+   "desc_ko": "김상훈 기자가 출연하는 언더스탠딩 화요일 라이브 방송이다. 이란 전쟁 이후 오른 가스 가격이 국내 요금 청구서로 이어지는 흐름을 시사 중심으로 다룬다. 소개글에는 제작 지원·협찬 안내만 있어 세부 내용은 확인하지 못했다.",
+   "reason": "주제 무관 — 이란 전쟁 관련 국제정세 시사 라이브(멤버십 라이브라 자막도 없음)"
+  },
+  {
    "id": "2026-11-03-dumbmoney-SxABUmi9UlE",
    "show": "dumbmoney",
    "show_name": "Dumb Money Live",
@@ -103,6 +124,31 @@
    "show_image": null,
    "reason": "쇼츠",
    "title_ko": "AI를 부정하는 사람들"
+  },
+  {
+   "id": "2026-11-03-riskrev-dan-ives-how-to-survive-ai-s-volatile-air-pocket",
+   "show": "riskrev",
+   "show_name": "RiskReversal Pod",
+   "title": "Dan Ives: How to Survive AI’s Volatile \"Air Pockets\"",
+   "date": "2026-11-03",
+   "published": "2026-11-03 10:00 KST",
+   "link": "",
+   "audio": "https://traffic.megaphone.fm/RRM7589149270.mp3",
+   "duration": "53:09",
+   "desc": "Dan Nathan hosts Dan Ives to discuss a sharp Nasdaq and semiconductor selloff, shifting AI leadership, and how investors should navigate violent drawdowns. Ives explains his move from Wedbush to the new Yorkville Ives “modern merchant bank,” continued involvement with the Ives ETF, and the launch of a $200 million IPO vehicle investing in private AI companies. They debate AI as an 8–12 year buildout versus dot-com, emphasizing the gap between massive CapEx and monetization, energy constraints, and leverage risks at firms like Oracle and neo-clouds. The conversation contrasts Microsoft’s enterp…",
+   "status": "done",
+   "found": "2026-11-03 19:25 KST",
+   "image": "https://megaphone.imgix.net/podcasts/646fffac-d71e-11f1-9fe0-1ffa514f7e73/image/2373212d5e66ed3cad21fcff932f07cb.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "Dan Ives — AI 장세의 급락 구간(에어 포켓)을 버티는 법",
+   "desc_ko": "Dan Nathan이 Dan Ives와 함께 나스닥·반도체 급락, 바뀌는 AI 주도주, 거친 하락장을 견디는 법을 이야기한다. Ives는 Wedbush를 떠나 새로 세운 Yorkville Ives \"모던 머천트 뱅크\"로 옮긴 배경, 계속 관여하는 Ives ETF, 비상장 AI 기업에 투자하는 2억 달러 규모 IPO 비히클 출범을 설명한다. 두 사람은 AI가 닷컴과 다른 8~12년짜리 인프라 구축기인지를 두고 대규모 설비투자와 수익화 사이의 간극, 전력 제약, Oracle·네오클라우드의 부채 위험을 토론한다. Microsoft의 기업용 AI 전략과 다른 빅테크의 차이도 짚는다.",
+   "summary": {
+    "title_ko": "Dan Ives — AI 장세의 급락 구간(에어 포켓)을 버티는 법",
+    "headline": "Ives \"8~12년 구축기의 3년 차, 2027년이 바닥\" vs Nathan \"8,000억 달러 조달 물량, 왜 지금 사나\"",
+    "image": null,
+    "guest": "Dan Ives — Yorkville Ives & Co. 파트너 · 전 Wedbush 글로벌 기술 리서치 총괄",
+    "company": "Microsoft · Alphabet · Oracle · CoreWeave · ServiceNow (AI 인프라 · 하이퍼스케일러 · 소프트웨어 · 보안)"
+   }
   },
   {
    "id": "2026-11-03-sixsigma-3Q4yrtsWZ9o",

@@ -1,0 +1,249 @@
+{
+ "id": "2026-11-03-riskrev-dan-ives-how-to-survive-ai-s-volatile-air-pocket",
+ "title_ko": "Dan Ives — AI 장세의 급락 구간(에어 포켓)을 버티는 법",
+ "guest": {
+  "name": "Dan Ives",
+  "role": "Yorkville Ives & Co. 파트너 · 전 Wedbush 글로벌 기술 리서치 총괄"
+ },
+ "guest_profile": [
+  {
+   "name": "댄 아이브스(Dan Ives)",
+   "title": "Yorkville Ives & Co. 공동 창업자·파트너, 전 Wedbush Securities 글로벌 기술 리서치 총괄",
+   "what": "2026년 7월 Yorkville Securities와 함께 세운 '모던 머천트 뱅크' Yorkville Ives에서 기술주 리서치를 이끈다. 리서치·자본 조달·자기자본 투자를 묶은 구조이며, 대본 기준 직원은 약 25명이다. 비상장 AI 기업에 투자하는 폐쇄형 펀드 IVAI(2억 달러)와 Ives ETF(IVES, 2026년 7월 말 운용자산 약 9.9억 달러)에도 관여한다.",
+   "career": "HBO에서 재무 분석가로 일한 뒤 경영학 석사(MBA)를 마쳤다. FBR Capital Markets에서 약 16년간 기업용 소프트웨어·하드웨어를 담당했고, 2018년 Wedbush로 옮겨 글로벌 기술 리서치 총괄을 맡았다. 2026년 7월 1일 8년 만에 Wedbush를 떠나 7월 15일 Yorkville Ives를 출범했다.",
+   "track": "Apple·Tesla·Nvidia·Microsoft에 대한 꾸준한 강세 의견과 CNBC 등 잦은 방송 출연으로 알려진 대표적 기술주 강세론자다. 그가 만든 IVES ETF는 출시 4개월 만인 2025년 10월 운용자산 10억 달러를 넘겼다. 애널리스트 순위나 의견별 수익률 같은 공개 성과 지표는 확인하지 못했다.",
+   "why": "30년 가까이 기술주를 다뤄 기업 CIO·영업 현장 조사 기반의 수요 판단을 내놓는다. 동시에 AI 펀드를 운용하는 이해관계자라, 강세 논리와 그 전제(2027년 수익화 전환)를 함께 따져 볼 만하다."
+  }
+ ],
+ "company": {
+  "name": "Microsoft · Alphabet · Oracle · CoreWeave · ServiceNow",
+  "sector": "AI 인프라 · 하이퍼스케일러 · 소프트웨어 · 보안",
+  "what": "AI 설비투자와 수익화 시차 속에 급락한 하이퍼스케일러·네오클라우드·SaaS 종목"
+ },
+ "topic": "나스닥·반도체 급락 속 AI 강세론 점검 — 닷컴과의 차이, 하이퍼스케일러별 처지, 부채 위험, Anthropic IPO",
+ "headline": "Ives \"8~12년 구축기의 3년 차, 2027년이 바닥\" vs Nathan \"8,000억 달러 조달 물량, 왜 지금 사나\"",
+ "tldr": [
+  "Ives: AI는 8~12년 구축기의 3년 차, 2027년에 설비투자와 수익화가 뒤집힌다 — 급락은 논리가 살아 있는 종목을 살 기회",
+  "Nathan: 올해 AI 진영 주식·채권 조달 8,000억 달러 이상 — 마이너스 현금흐름 종목을 지금 쫓을 이유가 없다",
+  "Oracle·CoreWeave가 신용 위험의 '카나리아' — 10월 고점 대비 CoreWeave -45%, SOX -22%(야후 종가)",
+  "Microsoft는 순수 기업용이라 Azure 추정치가 15~20% 낮다, Alphabet엔 광고 30~40% 할인이 반영됐다는 Ives 판단",
+  "Wedbush를 떠나 Yorkville Ives(약 25명) 설립, 비상장 AI에 투자하는 2억 달러 IVAI 펀드 상장",
+  "Anthropic IPO 목표 가치 약 1.5조 달러(Ives) — 확인된 마지막 비상장 가치는 9,650억 달러"
+ ],
+ "summary_md": "### 1. 녹음 시점 — 금요일 급락의 여진 속 월요일 아침\n\n- 이 편은 Dan Nathan이 진행하는 OK Computer 코너로, 11월 2일(월) 장 시작 직후 녹음했다. 진행자는 직전 금요일 Nasdaq이 3.5% 안팎, 반도체 지수(SOX)가 6.5% 안팎 빠졌고 Meta·Alphabet 실적 뒤 **메가캡 약세**가 이어지고 있다고 짚었다(실제 종가 기준 수치는 딥 리서치 참고).\n- Dan Ives는 이번이 이 방송 열 번째 출연이다. 진행자는 Ives가 늘 \"아직 1회 초\"라는 강세론을 펴 왔다며, 지금의 급락과 2~5년 시계를 나눠 이야기해 보자고 판을 깔았다.\n\n### 2. Wedbush를 떠나 Yorkville Ives로\n\n- Ives는 Wedbush를 나와 **Yorkville Ives**를 세웠다. 그는 이 회사를 \"모던 머천트 뱅크\"라고 부르며, 오래된 헤지펀드 Yorkville을 등에 업은 신생 투자은행이라고 설명했다. 지금까지 약 25명을 뽑았고 기술·에너지·인프라에 집중한다.\n- Wedbush 시절 만든 Ives ETF는 그대로 관여하며, 리서치를 Yorkville Ives가 맡는 것만 달라졌다고 했다.\n- 3~4주 전에는 비상장 AI 기업에 투자하는 상장 비히클 **IVAI(Ives Ultra 펀드)**를 2억 달러 규모로 상장시켰다. 그는 이를 개인·기관이 비상장 AI 기업에 접근할 수 있게 하는 '민주화'로 표현했다.\n\n### 3. 닷컴과 무엇이 다른가 — 8~12년짜리 구축기의 3년 차\n\n- 진행자는 1995~1999년 S&P 500이 해마다 20% 넘게 올랐던 닷컴 시기와 2023년 이후 장세가 닮았다고 운을 뗐다. 다만 지금은 기업들이 훨씬 오래 비상장으로 머문다는 차이가 있다고 했다.\n- Ives는 닷컴은 30~40년 사이클의 출발점이었고, 이번은 실제 쓰임새가 있는 데다 **빅테크 현금흐름**(대차대조표 1조 달러, 연 3,000억~4,000억 달러 잉여현금흐름)이 돈을 대고 있다고 반박했다. 2000년 3월엔 매출의 32배에 거래됐지만 지금은 이익의 20배 수준이라는 비교도 들었다.\n- 그는 지금을 8~10년, 길게는 12년짜리 AI 구축기의 3년 차로 본다. 최근 한국을 방문해 메모리·반도체 수요를 확인했고, 지난주 포천 500 고객 80곳을 만났는데 기업들의 **AI 도입률은 아직 3.5%** 수준이라고 했다.\n- 다만 설비투자와 수익화 사이의 **에어 포켓** 구간은 거칠 수밖에 없고, 특히 헤지펀드는 이 구간에서 포지션이 틀리면 자리를 잃는다고 인정했다.\n\n### 4. Microsoft·Alphabet — 같은 하이퍼스케일러, 다른 처지\n\n- 진행자는 Microsoft가 52주 고점 대비 35% 빠졌다가 40~50% 반등했고, Meta도 30%대 하락 뒤 Muse 공개로 반등했다가 설비투자 발표로 다시 반납했다며 종목 선택이 어렵다고 했다.\n- Ives는 Microsoft를 \"AI가 다른 사업을 잠식하지 않는 순수 기업용 회사\"로 본다. Azure 성장(진행자 표현으로 약 50%)이 시장 추정보다 향후 18~24개월 15~20% 더 높을 수 있고, 부분 합산으로 주당 650~700달러를 정당화할 수 있다고 했다. Azure와 365 Copilot은 서로 맞물려 있고, 기존 고객에겐 Microsoft가 가장 저항이 적은 선택지라는 논리다.\n\n[[chart:2]]\n\n- 진행자는 Google Cloud가 지난 분기 전년 대비 100% 성장했고 AWS도 저점(10%대 초반)에서 39%로 가속했다고 전했다. Ives는 세 하이퍼스케일러 모두 2년간 고성장할 수 있다고 봤고, Oracle은 OpenAI 한 고객에 계약 6,000억 달러 중 3,000억 달러를 기대는 '한 고객용 하이퍼스케일러', SpaceX는 스스로 하이퍼스케일러가 되려는 회사로 구분했다.\n- Alphabet은 광고가 변수다. 진행자는 AI 챗봇이 디지털 광고 경제를 흔들 수 있다는 지인의 신간을 소개했다. Ives는 주가에 **광고 사업 30~40% 할인**이 반영돼 있다고 보고, 최악보다 조금만 나아도 상승 여지가 크다고 했다. 이번 부진은 구조적 추세보다 일시적 에어 포켓에 가깝다는 판단이다.\n\n### 5. 급락을 버티는 법 — 20~30종목, 논리가 깨졌는지만 본다\n\n- 진행자는 이번 분기 Intel(-30%)·ServiceNow 같은 급락을 예로 들며, 위험 관리 수단이 없는 개인 투자자는 25~30% 낙폭을 견디기 어렵다고 물었다.\n- Ives의 답은 **20~30종목**(그의 ETF 구성 방식)을 들고, 논리가 깨진 종목만 정리하고 깨지지 않은 종목은 급락 때 사는 것이다. 60~90일짜리 논리로 이 시장에 들어가는 건 위험하다고 했다. ServiceNow는 고객 기반·경영진·밸류에이션을 이유로 여전히 보유할 종목으로 꼽았다.\n- 진행자는 SaaS 기업들이 투자를 늦게 시작했고, 프런티어 랩이 직접 경쟁 제품을 내놓는 상황이라며 Salesforce·Anthropic 제휴 같은 발표에 기대는 흐름을 꼬집었다.\n\n### 6. 보안주와 'IT 예산 재배치'\n\n- Ives는 보안 예산이 2~3년 안에 두 배가 될 수 있다고 봤다. 해킹 사고가 잦아질수록 CrowdStrike·Palo Alto·Zscaler 수요가 늘어난다는 논리다. 지난주 25% 안팎 빠진 Fortinet은 방화벽 중심이라 같은 범주로 보지 않는다고 했다.\n- 그는 30년 가까이 소프트웨어를 다뤘지만 지금 같은 혼란은 처음이라며, AI 프로젝트로 돈이 몰리면서 소프트웨어 회사 **파이프라인에서 계약이 빠지는** 현상을 설명했다. 경영진조차 상황을 늦게 알아챈다는 지적도 덧붙였다.\n\n### 7. 감가상각·부채 — Oracle과 CoreWeave가 '탄광의 카나리아'\n\n- 진행자는 **GPU 감가상각** 문제를 꺼냈다. Nvidia는 이익을 바로 잡고 Microsoft는 비용을 5~6년에 나눠 반영해 S&P 500 이익이 이중으로 부풀 수 있고, 전력·메모리 병목으로 설치 못 한 칩도 많다는 지적이다. Ives는 앞으로 6~9개월 안에 실적으로 확인해야 할 시점이 온다고 인정했다.\n- Ives가 꼽은 AI 강세론의 3대 위험은 중간선거(민주당 압승 시 데이터센터 규제), **전력 부족**, 설비투자와 수익화 사이의 시차다. 시차가 줄지 않으면 신용 스프레드가 벌어진다고 했다.\n- 진행자는 시장이 가장 주시하는 신용 지표가 Oracle과 CoreWeave라고 했고, Ives도 Oracle은 부채 규모 때문에 드물게 신중·부정적으로 본다며 약세장이 오면 Oracle이 가장 먼저 신호를 줄 것이라고 했다. 네오클라우드(CoreWeave·Nebius 등)는 대거 통합될 것으로 봤다.\n\n### 8. 자금 조달 러시와 Anthropic IPO\n\n- 진행자는 올해 조달 숫자를 직접 읽었다. 주식으로 OpenAI 1,220억·Anthropic 950억·Alphabet 850억·SpaceX 상장 750억·Oracle 250억·xAI 200억 달러, 채권으로 Amazon 540억 달러 등 약 4,000억 달러, 합쳐 8,000억 달러를 넘는다는 계산이다. 모두가 파는데 마이너스 현금흐름 종목을 왜 사야 하느냐는 질문이다.\n\n[[chart:1]]\n\n- 진행자는 OpenAI가 1.4조 달러 가치에 300억 달러를 모으려다 1.2조 달러에 200억 달러로 줄였다는 주말 보도를 들며, 이 환경에서 Anthropic IPO가 되면 놀랍겠다고 했다. Ives는 반대로 비상장 시장의 가격 발견이 충분해 **Anthropic IPO**가 무산되면 놀랄 것이라며 목표 가치를 1.5조 달러 안팎으로 봤다.\n- Ives는 이 종목들을 사려면 세 가지를 믿어야 한다고 정리했다. 2028~2030년엔 잉여현금흐름이 나온다는 것, 돈을 끌어올 능력이 곧 'A급 선수' 자격이라는 것, 그리고 그 돈이 성장으로 이어진다는 것이다.\n\n### 9. 모델 범용화와 중국, 그리고 마무리\n\n- 진행자는 골드만삭스 보고서를 인용해 전 세계 토큰 사용량의 77%가 중국에서 나오지만 지출은 22%뿐이라며, 중국 오픈소스 모델이 미국 투자 논리를 흔들 수 있다고 했다. Ives는 Nvidia 칩과 미국 프런티어 모델이 몇 년 앞서 있고, 30년 만에 처음으로 미국이 기술에서 확실히 앞섰다고 봤다. Nvidia는 내년 이익의 11~12배 수준이라고 했다.\n- 단기 약세장 위험을 묻자 Ives는 정치화, 특히 데이터센터 규제를 가장 걱정했다. 그는 **2027년**을 설비투자와 수익화가 뒤집히는 바닥으로 보고, 관리만 잘 되면 앞으로 3년 기술주 강세장이 이어진다고 마무리했다.",
+ "insights_md": "### 투자 관점\n\n- 이번 편의 쟁점은 **설비투자와 수익화 사이의 시차**다. Ives는 2027년을 전환점으로 보고 급락을 매수 기회로 쓰자는 쪽이고, 진행자는 8,000억 달러 넘는 조달 물량과 마이너스 현금흐름을 들어 지금 가격을 쫓을 이유가 없다는 쪽이다. 결론보다 두 사람이 무엇을 확인 지표로 삼는지가 유용하다.\n- 관련 상장사(미국): 하이퍼스케일러 Microsoft·Alphabet·Amazon, 부채 의존도가 높은 Oracle·CoreWeave·Nebius, 반도체 Nvidia·AMD·Broadcom, 소프트웨어 ServiceNow·Salesforce·Palantir, 보안 CrowdStrike·Palo Alto·Zscaler·Fortinet, 그 밖에 Intel·Reddit.\n- 한국·일본: Ives가 메모리 수요를 보러 한국을 다녀왔다고 한 만큼 **HBM 공급망**(SK하이닉스·삼성전자)이 하이퍼스케일러 설비투자의 직접 수혜·피해 고리다. 일본은 OpenAI 대주주인 소프트뱅크그룹이 OpenAI 조달 가치 하향 보도에 민감하다.\n- 수치: 10월 6일 고점 대비 11월 2일 SOX -21.9%, CoreWeave -45.3%, Nasdaq -8.8%(야후 종가). 낙폭 차이가 '부채로 짓는 쪽'과 '현금으로 짓는 쪽'의 구분을 보여 준다.\n\n[[chart:3]]\n\n- 소프트웨어: Ives가 말한 '파이프라인에서 계약이 빠지는' 현상은 SaaS 실적에서 신규 계약·잔여 계약가치(RPO) 둔화로 먼저 드러난다. ServiceNow는 실적 뒤 하루 27% 넘게 빠졌고(10/28→10/29 종가), 이 구간에서 **논리 훼손 여부**를 가르는 것이 그의 방법론의 핵심이다.\n- 반론·리스크: Ives의 Microsoft 650~700달러는 부분 합산 논리일 뿐 근거 수치를 방송에서 밝히지 않았다(11월 2일 종가 507달러). 또 그는 IVAI·Ives ETF를 운용하는 **이해관계자**다. 반대로 진행자의 조달 합계는 주식·채권·상장을 섞은 개략 수치다.\n- 체크포인트: 11월 3일 **미국 중간선거** 결과(데이터센터 규제), 11월 12일 CoreWeave 3분기 실적의 이자비용, Anthropic의 S-1 3분기 수치와 상장 일정, OpenAI 조달 가치.",
+ "deep_md": "### 1. 게스트·회사 팩트 체크\n\n외부 자료로 확인: Ives는 2026년 7월 1일 8년 만에 Wedbush를 떠났고, 7월 15일 Yorkville Securities와 함께 **Yorkville Ives & Co.**를 출범했다. 리서치·자본 조달·자기자본 투자를 묶은 구조이며, 회사 돈을 고객과 함께 넣는 것이 일반 투자은행과의 차이라고 설명해 왔다. 출범 당시 보도는 초기 인원을 10~20명으로 봤는데, 대본에선 25명까지 늘었다고 했다.\n\nIVAI(Ives Ultra AI Opportunities)는 SPAC이 아니라 **폐쇄형 펀드**다. 주당 10달러에 2,000만 주, 2억 달러를 NYSE 상장으로 모았고, 자산의 80% 이상을 후기 단계 비상장 AI 기업에 넣는다. 총비용이 총자산의 연 3.1%로 높고, 초기 포트폴리오를 채우는 데 최대 12개월이 걸릴 수 있다. Ives ETF(IVES)는 2025년 6월 출시 뒤 그해 10월 운용자산 10억 달러를 넘겼고, 2026년 7월 말엔 약 9.9억 달러였다.\n\n### 2. 진행자가 말한 금요일 급락, 실제 숫자\n\n야후 종가로 확인한 10월 30일(금) 하루 등락은 Nasdaq 종합 -2.9%, SOX -7.2%였다. 진행자의 \"Nasdaq 3.5%\"는 다소 컸고, SOX는 오히려 더 많이 빠졌다. 같은 날 CoreWeave -9.7%, Oracle -6.4%로 부채 의존도가 높은 종목이 가장 크게 흔들렸다.\n\n[[chart:4]]\n\n### 3. 숫자의 맥락 — 설비투자와 클라우드 성장\n\n외부 자료로 확인: Microsoft 2027 회계연도 1분기 Azure 성장은 **48%**(진행자 \"약 50%\"와 비슷), Alphabet 3분기 Google Cloud 매출은 307억 달러로 103% 성장(진행자 \"100%\"와 일치)했다. AWS 39%는 이번 검색으로 확인하지 못했다.\n\n설비투자는 2026년 여름 기준 가이던스로 Amazon 약 2,200억, Microsoft(역년) 약 1,750억, Alphabet 1,950억~2,050억, Meta 1,300억~1,450억 달러였다. 3분기 실적 뒤 Microsoft는 역년 1,700억 달러로 낮췄고(제3자 데이터센터 지연), 하이퍼스케일러 5곳(SpaceX 포함)의 올해 합계는 8,030억~8,280억 달러로 추정된다.\n\n[[chart:5]]\n\nOracle은 5월 말 총부채 약 1,300억 달러, 2026년 부채·주식 최대 500억 달러 조달 계획을 밝혔다. CoreWeave는 3분기 이자비용 가이던스(8.6억~9.4억 달러)가 조정 영업이익 가이던스(2억~2.6억 달러)를 크게 웃돈다. Ives가 Oracle을 **카나리아**로 꼽은 근거가 숫자로 뒷받침된다. 영업으로 번 돈보다 이자로 나가는 돈이 많은 구조라, 금리나 신용 스프레드가 조금만 올라도 추가 조달 비용이 바로 커진다.\n\n### 4. 밸류체인과 관련 상장사\n\n- **돈을 쓰는 쪽**: Microsoft·Alphabet·Amazon·Meta는 현금흐름으로, Oracle·CoreWeave·Nebius는 부채와 주식 발행으로 데이터센터를 짓는다. 이번 하락에서 후자의 낙폭이 훨씬 컸다.\n- **돈을 받는 쪽**: Nvidia·AMD·Broadcom(가속기·맞춤형 칩), 한국 SK하이닉스·삼성전자(HBM 메모리), 대만 TSMC(파운드리)가 하이퍼스케일러 설비투자의 직접 수혜 고리다. 설비투자 가이던스가 꺾이면 가장 먼저 영향을 받는다.\n- **AI에 밀리는 쪽**: 대본에서 언급된 ServiceNow·Salesforce·Adobe 등 SaaS와 Reddit·여행 플랫폼처럼 데이터·트래픽을 AI 모델에 빼앗기는 인터넷 기업이다. 반대로 보안(CrowdStrike·Palo Alto·Zscaler)은 공격 면적이 커질수록 수요가 는다는 게 Ives 시각이다.\n\n### 5. 반론과 리스크\n\n- Anthropic: 확인된 마지막 비상장 가치는 Series H의 약 **9,650억 달러**다. WSJ를 인용한 보도는 11월 16일 주간 상장, 1.5조~2조 달러 가치를 거론하지만 공개 S-1은 이번에 직접 확인하지 못했다. Ives의 \"1.5조\"는 이 범위의 하단이다.\n- OpenAI 조달 가치 하향(1.4조→1.2조), 텍사스 데이터센터 유예, 골드만 '중국 토큰 77%' 통계는 대본에서 나온 말로, 외부 자료로는 확인하지 못했다.\n- 이해관계: Ives는 IVAI·IVES를 통해 AI 종목과 비상장 AI 기업에 돈이 걸린 당사자다. 그의 강세론은 예측이자 영업 메시지일 수 있다.\n- 감가상각: GPU 내용연수 5~6년 가정이 실제 교체 주기보다 길면 하이퍼스케일러 이익이 부풀려진다는 지적은 업계에서 계속 제기되는 쟁점이며, 대본에서도 Ives가 6~9개월 안에 확인될 문제라고 인정했다.\n\n### 6. 앞으로 볼 것\n\n- 11월 3일 중간선거 결과와 주 단위 **데이터센터 규제** 움직임\n- 11월 12일 CoreWeave 3분기 실적: 이자비용·백로그·설비투자\n- Anthropic S-1의 3분기 매출(분기 성장 둔화 여부)과 실제 상장 가격\n- Microsoft의 2026년 하반기 Azure 성장과 GPU 감가상각 정책 변화\n- Oracle 신용부도스와프(CDS)·회사채 스프레드, 추가 조달 여부",
+ "sources": [
+  {
+   "label": "[원본] RiskReversal Pod — Dan Ives: How to Survive AI's Volatile \"Air Pockets\"",
+   "url": "https://traffic.megaphone.fm/RRM7589149270.mp3"
+  },
+  {
+   "label": "Fortune — Ives가 월가를 떠나 Yorkville와 '모던 머천트 뱅크'를 세운 이유(2026-07-18)",
+   "url": "https://fortune.com/2026/07/18/dan-ives-modern-merchant-bank-yorkville-why-left-wall-street/"
+  },
+  {
+   "label": "Crypto Briefing — Ives의 Wedbush 퇴사(7/1)와 Yorkville Ives 출범(7/15), 초기 인원",
+   "url": "https://cryptobriefing.com/dan-ives-yorkville-ives-merchant-bank-ai/"
+  },
+  {
+   "label": "Stocktwits — IVAI 2억 달러 IPO(주당 10달러·2,000만 주·NYSE), 비상장 80% 이상·총비용 3.1%",
+   "url": "https://stocktwits.com/news-articles/markets/equity/ives-ultra-ai-opportunities-ivai-ipo-private-ai-fund/cZMFEaMRBhK"
+  },
+  {
+   "label": "Crypto Briefing — Ives Ultra AI Opportunities 폐쇄형 펀드 개요",
+   "url": "https://cryptobriefing.com/dan-ives-closed-end-fund-private-ai/"
+  },
+  {
+   "label": "StockAnalysis — IVES ETF 운용자산 약 9.9억 달러(2026-07-31)·보수 0.75%",
+   "url": "https://stockanalysis.com/stocks/ives/"
+  },
+  {
+   "label": "Rallies — IVES ETF 2025년 10월 운용자산 10억 달러 돌파",
+   "url": "https://rallies.ai/news/dan-ives-ai-revolution-etf-tops-1b-aum-in-october-after-june-2025-launch"
+  },
+  {
+   "label": "Hargreaves Lansdown — 하이퍼스케일러 2026년 설비투자 8,030억~8,280억 달러, Microsoft 역년 1,700억 하향",
+   "url": "https://www.hl.co.uk/news/ai-hyperscalers-are-expected-to-finish-the-year-spending-a-whopping-828-billion-on-capex"
+  },
+  {
+   "label": "The Motley Fool — 2026년 여름 하이퍼스케일러별 설비투자 가이던스(2026-08-03)",
+   "url": "https://www.fool.com/investing/2026/08/03/microsoft-and-amazon-won-the-ai-spending-week/"
+  },
+  {
+   "label": "Redmond Magazine — Microsoft FY27 1분기 매출 923억 달러·Azure 48% 성장",
+   "url": "https://redmondmag.com/articles/2026/10/30/microsoft-revenue-jumps-as-azure-and-ai-demand--fuel-growth.aspx"
+  },
+  {
+   "label": "AI Weekly — Alphabet 3분기 Google Cloud 307억 달러(+103%)",
+   "url": "https://aiweekly.co/alerts/alphabet-posts-1276b-q3-with-google-cloud-up-103-to-307b-as-2027-capex-set-to"
+  },
+  {
+   "label": "DatacenterDynamics — Oracle 2026년 부채·주식 최대 500억 달러 조달 계획",
+   "url": "https://www.datacenterdynamics.com/en/news/oracle-to-raise-up-to-50bn-in-debt-and-equity-in-2026"
+  },
+  {
+   "label": "TIKR — CoreWeave 2분기 이자비용 6.4억 달러, 3분기 가이던스",
+   "url": "https://www.tikr.com/blog/coreweave-slides-11-toward-a-52-week-low-as-a-640-million-interest-bill-rattles-investors"
+  },
+  {
+   "label": "The Next Web — Anthropic 비공개 S-1 제출, Series H 가치 약 9,650억 달러",
+   "url": "https://thenextweb.com/news/anthropic-ipo-confidential-filing-openai-race-965-billion"
+  },
+  {
+   "label": "Yahoo Finance(IH 시세 도구) — Nasdaq·SOX·MSFT·GOOGL·ORCL·CRWV·NOW·FTNT 일별 종가(2026-10-05~11-02)",
+   "url": "https://finance.yahoo.com/quote/%5ESOX/history/"
+  }
+ ],
+ "charts": [
+  {
+   "at": "summary",
+   "title": "진행자가 읽은 올해 AI 진영 주식 조달",
+   "sub": "억 달러 · 2026년 1~10월 · 대본 기준",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "OpenAI",
+    "Anthropic",
+    "Alphabet",
+    "SpaceX(상장)",
+    "Oracle",
+    "xAI"
+   ],
+   "series": [
+    {
+     "name": "주식 조달",
+     "values": [
+      1220,
+      950,
+      850,
+      750,
+      250,
+      200
+     ]
+    }
+   ],
+   "note": "채권(약 4,000억 달러)까지 더하면 8,000억 달러 이상이라는 게 진행자 계산 — 개략치",
+   "source": "RiskReversal Pod 대본(Dan Nathan 발언)"
+  },
+  {
+   "at": "summary",
+   "title": "진행자가 든 클라우드 3사 전년 대비 성장률",
+   "sub": "% · 직전 분기 · 대본 기준",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "Google Cloud",
+    "Azure",
+    "AWS"
+   ],
+   "series": [
+    {
+     "name": "성장률",
+     "values": [
+      100,
+      50,
+      39
+     ]
+    }
+   ],
+   "note": "Azure는 진행자의 '약 50%' 표현. 외부 자료로는 Google Cloud 103%, Azure 48%",
+   "source": "RiskReversal Pod 대본(Dan Nathan 발언)"
+  },
+  {
+   "at": "tldr",
+   "title": "10월 고점 대비 낙폭 — 부채로 짓는 쪽이 더 깊다",
+   "sub": "% · 10월 중 최고 종가 대비 11월 2일 종가",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "CoreWeave",
+    "Fortinet",
+    "ServiceNow",
+    "SOX 지수",
+    "Alphabet",
+    "Oracle",
+    "Nasdaq 종합",
+    "Microsoft"
+   ],
+   "series": [
+    {
+     "name": "고점 대비",
+     "values": [
+      -45.3,
+      -35.2,
+      -33.3,
+      -21.9,
+      -21.1,
+      -17.5,
+      -8.8,
+      -6.7
+     ]
+    }
+   ],
+   "note": "Microsoft가 가장 덜 빠졌다 — Ives가 말한 '순수 기업용' 차별화가 주가에도 보인다",
+   "source": "Yahoo Finance 일별 종가(IH 시세 도구)"
+  },
+  {
+   "at": "deep",
+   "title": "10월 30일(금) 하루 등락",
+   "sub": "% · 전일 종가 대비",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "CoreWeave",
+    "SOX 지수",
+    "Oracle",
+    "Nasdaq 종합",
+    "Microsoft",
+    "Alphabet"
+   ],
+   "series": [
+    {
+     "name": "하루 등락",
+     "values": [
+      -9.7,
+      -7.2,
+      -6.4,
+      -2.9,
+      -1.6,
+      -1.4
+     ]
+    }
+   ],
+   "note": "진행자의 'Nasdaq 3.5%·SOX 6.5%'와 달리 실제론 Nasdaq -2.9%, SOX -7.2%",
+   "source": "Yahoo Finance 일별 종가(IH 시세 도구)"
+  },
+  {
+   "at": "deep",
+   "title": "하이퍼스케일러 2026년 설비투자 가이던스",
+   "sub": "억 달러 · 2026년 여름 기준 · 범위는 중간값",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Amazon",
+    "Alphabet",
+    "Microsoft(역년)",
+    "Meta"
+   ],
+   "series": [
+    {
+     "name": "2026년 설비투자",
+     "values": [
+      2200,
+      2000,
+      1750,
+      1375
+     ]
+    }
+   ],
+   "note": "3분기 실적 뒤 Microsoft는 1,700억으로 낮췄다. Meta는 금융리스 원금 포함이라 단순 비교 주의",
+   "source": "The Motley Fool(2026-08-03) 정리"
+  }
+ ],
+ "tg": "Ives: AI는 8~12년 구축기의 3년 차, 2027년에 설비투자와 수익화가 뒤집힌다\nNathan: 올해 AI 진영 조달 8,000억 달러 이상 — 지금 쫓을 이유 없다\nOracle·CoreWeave가 신용 위험의 카나리아 — CoreWeave 10월 고점 대비 -45%",
+ "tg_body": "Dan Ives가 Wedbush를 떠나 세운 Yorkville Ives(직원 약 25명)와 비상장 AI 기업에 투자하는 2억 달러 규모 IVAI 펀드를 소개했다. 그는 지금을 8~12년짜리 AI 구축기의 3년 차로 보고, 기업 AI 도입률은 아직 3.5% 수준이라고 했다.\n\nMicrosoft는 AI가 다른 사업을 잠식하지 않는 순수 기업용 회사라 Azure 성장이 시장 추정보다 15~20% 높을 수 있다고 봤다. Alphabet 주가엔 광고 사업 30~40% 할인이 반영돼 있어, 최악만 피해도 상승 여지가 크다는 판단이다.\n\n급락 대응은 20~30종목을 들고 논리가 깨진 종목만 정리하는 것이다. ServiceNow는 보유, Fortinet은 CrowdStrike·Palo Alto와 다르게 봤다. Oracle은 부채 때문에 드물게 신중하며, 약세장이 오면 가장 먼저 신호를 줄 종목으로 꼽았다.\n\n진행자 Dan Nathan은 올해 AI 진영 주식·채권 조달이 8,000억 달러를 넘는다며 마이너스 현금흐름 종목을 지금 살 이유가 없다고 맞섰다. Ives는 2027년을 설비투자와 수익화가 뒤집히는 바닥으로 보고 Anthropic IPO도 성사될 것으로 봤다.\n\n외부 자료로 보면 10월 30일 Nasdaq은 2.9%, SOX는 7.2% 빠졌고, 10월 고점 대비 CoreWeave는 45% 하락했다. Anthropic의 마지막 확인 가치는 9,650억 달러다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-11-03 21:30 KST"
+}
