@@ -1,0 +1,244 @@
+{
+ "id": "2026-11-04-sixsigma-DWj0MSdSktE",
+ "title_ko": "시장이 신용등급을 안 믿기 시작했다 — Jeffrey Gundlach·Jason Thomas가 본 빅테크 회사채",
+ "guest": {
+  "name": "식스시그마(진행) · Jeffrey Gundlach · Jason Thomas",
+  "role": "DoubleLine Gundlach와 Carlyle Thomas의 경고를 따라 AI 빚 걱정이 우량 빅테크 채권까지 번진 과정을 짚은 영상"
+ },
+ "guest_profile": [
+  {
+   "name": "식스시그마(Six Sigma)",
+   "title": "한국어 유튜브 채널 — 기업·시장 해설",
+   "what": "해외 인터뷰·발표 영상과 공개 숫자를 엮어 10분 안팎으로 시장 이슈를 정리한다. 이번 편은 DoubleLine 공식 유튜브의 Gundlach 인터뷰와 CNBC 영상을 원본으로 밝혔다.",
+   "career": "진행자 개인 경력은 공개되지 않아 확인 못 함.",
+   "track": "투자 운용 주체가 아니어서 공개된 수익률 없음.",
+   "why": "등급·CDS·잉여현금흐름이라는 세 잣대로 'AI 빚 걱정이 어디까지 번졌나'를 한 장면으로 묶어 준다."
+  },
+  {
+   "name": "제프리 건들락(Jeffrey Gundlach)",
+   "title": "DoubleLine Capital 창업자·CEO·CIO",
+   "what": "채권 전문 운용사 DoubleLine을 이끈다. SEC 제출 서류 기준 운용자산 약 937억 달러(2026년 6월 말), 2025년 말 약 956억 달러. 회사의 무한책임 파트너 법인을 과반 소유한다.",
+   "career": "TCW에서 모기지 채권 운용으로 이름을 알렸고, 2009년 TCW를 떠나 DoubleLine을 세웠다. 이후 금리·신용시장 전망을 정기 웹캐스트와 방송으로 내 왔다.",
+   "track": "이번에 확인한 자료에서 펀드 수익률 숫자는 찾지 못해 적지 않는다. 운용 규모는 SEC 서류로 확인.",
+   "why": "약 900억 달러대 채권을 굴리는 사람이 '등급과 시장 금리가 따로 논다'고 말할 때는 실제 매매 판단이 걸린 이야기다."
+  },
+  {
+   "name": "제이슨 토머스(Jason Thomas)",
+   "title": "The Carlyle Group 글로벌 리서치·투자전략 총괄",
+   "what": "Carlyle 포트폴리오 데이터와 자산 가격·세계 경제를 분석하고, 회사 전체 투자 전략 수립과 투자위원회 자문을 맡는다. 위탁계정 CIO도 겸한다(Carlyle 프로필).",
+   "career": "Carlyle 이전에 Private Equity Council 리서치 부사장, 백악관 국가경제위원회(NEC) 정책개발 국장 겸 대통령 특별보좌관으로 재정 분야를 맡았다. Claremont McKenna 학사, George Washington University 금융 석·박사, CFA·FRM.",
+   "track": "리서치 책임자라 개인 수익률은 공개된 것 없음.",
+   "why": "AI 인프라에 직접 돈을 빌려주는 대형 사모운용사의 리서치 수장이 잔존가치 보증을 2005년 모기지에 빗댔다는 점 — 다만 이해관계자라는 점도 함께 봐야 한다."
+  }
+ ],
+ "company": {
+  "name": "빅테크 회사채 · AI 인프라 금융",
+  "sector": "신용시장 · 하이퍼스케일러 · 사모대출",
+  "what": "Oracle·Meta·Alphabet·Amazon·SpaceX의 회사채 가산금리·CDS와 잉여현금흐름, 데이터센터 잔존가치 보증"
+ },
+ "topic": "투자등급 빅테크도 현금이 모자라면 채권시장이 정크처럼 값 매기기 시작했다",
+ "headline": "빅테크 회사채 가산금리 1.19%p로 시장 평균 추월 — 현금 남는 Microsoft와 모자란 Meta·Oracle이 갈렸다",
+ "tldr": [
+  "빅테크 5곳 회사채 가산금리 1.19%p로 회사채 평균 0.86%p 추월 — 작년 12월 이후 빅테크만 0.31%p 상승",
+  "부도 보험료: Microsoft 54bp vs Meta 116bp·Oracle 275bp·SpaceX 266.5bp(사상 최고)",
+  "3분기 잉여현금흐름 Microsoft +186억 달러, Meta -21억·Alphabet -91억 달러 — 채권시장이 현금으로 가른다",
+  "Meta Hyperion 270억 달러 회사채, Meta 보증에도 가격 하락 — S&P는 Meta 전망 부정적으로",
+  "Carlyle Jason Thomas: 빅테크 잔존가치 보증 논리는 2005년 모기지와 닮았다",
+  "반증 조건: Meta·Oracle·Amazon·Alphabet 다음 회사채가 Microsoft 수준 금리로 나오면 걱정은 틀린 것"
+ ],
+ "summary_md": "### 0. 들어가며 — \"BBB인데 정크 금리\"\n\n- 영상은 DoubleLine의 **Jeffrey Gundlach**가 CNBC에서 한 경고로 시작한다. SpaceX 회사채가 BBB 등급으로 나왔는데 곧바로 투기등급(정크) 수준의 가산금리로 벌어졌고, Oracle도 투자등급 맨 아래 칸이라는 지적이다.\n- 진행자는 이것이 두 회사만의 일이 아니라고 말한다. 대본에서: 빅테크 다섯 곳 회사채의 가산금리가 10월 **1.19%포인트**로, 회사채 전체 평균 0.86%포인트보다 높아졌다. 작년 12월 이후 빅테크는 0.31%포인트 올랐는데 회사채 전체는 0.01%포인트 오르는 데 그쳤다.\n- 가산금리는 같은 만기 국채보다 더 얹어 주는 이자다. 영상의 요지는 AI 투자에 대한 걱정이 이제 **우량 기업 채권**까지 옮겨붙었다는 것이다.\n\n[[chart:2]]\n\n### 1. 지금까지는 네오클라우드 이야기였다\n\n- 그동안 AI 빚 걱정은 CoreWeave 같은 **네오클라우드**에 쏠려 있었다. GPU를 사서 빌려주는 신생 클라우드 회사다.\n- 이들은 GPU를 담보로 돈을 빌렸는데, 빚을 다 갚기 전에 GPU 값이 떨어지면 담보가 모자라게 된다는 걱정이었다.\n- 영상은 재무장관의 CNBC 발언을 붙인다. 네오클라우드는 전체 생태계에서 작은 부분이고 자금 조달도 여전히 이뤄지고 있다는 취지다. 즉 정부는 문제를 네오클라우드 안으로 한정했다.\n- 반면 Gundlach와 Carlyle은 **투자등급 우량 기업** 쪽을 문제 삼는다. Gundlach는 신용등급을, Carlyle은 빅테크의 보증을 짚는다는 것이 영상의 구성이다.\n\n### 2. 시장이 신용등급을 안 믿는다\n\n- 신용등급은 \"돈 떼일 일 없다\"는 도장이다. 보험사는 등급이 낮은 채권을 사면 쌓아야 할 자본이 늘어나므로 주로 투자등급 채권을 산다. 그래서 투자등급 안에 머무는 것 자체가 싼 자금 조달의 열쇠다.\n- Oracle은 투자등급 가운데 가장 낮은 **BBB-**다. 그런데 시장은 그 도장과 상관없이 이자를 더 달라고 한다.\n- 이것은 부도 보험료, 곧 **CDS**에서 드러난다. 대본에서: BBB 등급 회사의 CDS는 보통 150~200bp인데, Oracle은 연초 수준에서 10월 21일 308bp까지 올랐다(1bp는 0.01%포인트). 연초 숫자는 자막이 깨져 정확히 읽지 못했다.\n- SpaceX는 10월 21일 3분기 실적이 예상을 크게 넘었는데도 투자를 더 늘리겠다는 말에 채권이 약해졌다. 대본에서: 부도 보험료가 10월 29일 **266.5bp**로 사상 최고였다.\n\n[[chart:1]]\n\n### 3. \"빅테크가 보증하니 괜찮다\"는 말\n\n- 흔한 반론은 이렇다. AI 데이터센터에 돈을 빌려줘도 뒤에 빅테크가 있으니 안전하다. 빅테크가 **잔존가치 보증**을 서 주기 때문이다. 몇 년 뒤 데이터센터 가치가 약속한 금액보다 낮아지면 그 차이를 빅테크가 메워 준다는 약속이다.\n- Carlyle의 **Jason Thomas**는 이 말을 2005년, 곧 금융위기 직전의 말투로 읽는다. 하이퍼스케일러나 제조사가 보증을 서 주니 걱정 없다는 논리가 당시와 닮았다는 것이다.\n- 실제 사례로 영상은 Meta의 루이지애나 **Hyperion** 데이터센터를 든다. 대본에서: Blue Owl이 80%, Meta가 20%를 가진 합작사가 짓고, 공사비 270억 달러를 회사채로 마련했으며 Meta가 잔존가치를 보증했다.\n- Thomas는 거래마다 계약서가 다르고, GPU·건물·전력 설비에 대한 청구권이 따로 얽혀 있어 구조조정 상황은 한 번도 시험된 적이 없다고 지적한다. 부채가 빠르게 불어나는 가운데 담보 가치가 불확실해질 수 있다는 것이다.\n- 대본에서: 최근 이 Hyperion 회사채 가격이 내려갔다. 보증이 붙어 있는데도 그렇다. 보증을 선 Meta의 신용도 흔들려, S&P가 10월 30일 Meta 등급은 유지하고 **전망만 부정적**으로 바꿨다.\n- 진행자는 균형을 위해 한마디를 붙인다. Carlyle 역시 AI에 돈을 빌려주는 사모대출 운용사라, 위험을 크게 말할수록 더 높은 이자를 받을 수 있는 입장이라는 점을 감안해야 한다.\n\n### 4. 갈린 곳은 현금이다\n\n- 같은 우량 기업이라도 채권시장은 다르게 본다. 대본에서: **Microsoft**는 10월 29일 2017년 이후 처음으로 250억 달러어치 회사채를 냈는데 주문이 약 4.6배 몰렸다.\n- 대본에서: 부도 보험료는 Microsoft 54bp, Meta 116bp, Oracle 275bp다. 올해 들어 Meta는 177%, Amazon은 129% 올랐다.\n- 또 다른 잣대는 **잉여현금흐름**이다. 영업으로 번 현금에서 설비투자를 빼고 남은 돈이다. 대본에서: 3분기 Microsoft는 186억 달러 플러스, Meta는 처음으로 21.2억 달러 마이너스, Alphabet은 90.7억 달러 마이너스로 두 분기 연속, Amazon은 최근 12개월 424억 달러 마이너스다.\n- 영상은 채권시장이 **현금이 남는 우량 기업**과 모자란 우량 기업을 가르기 시작했다고 정리한다.\n- 이 대목의 논리를 풀면 이렇다. 잉여현금흐름이 플러스인 회사는 설비투자를 스스로 감당하고 남는 돈으로 빚을 갚을 수 있다. 마이너스인 회사는 투자를 이어 가려면 새로 빌려야 하고, 빌릴수록 부채비율이 올라 등급 전망이 나빠진다. 채권 투자자가 같은 AA·A 등급이라도 다른 금리를 요구하는 이유다.\n\n[[chart:3]]\n\n### 5. 연준은 막지 않는다, 다음 회사채가 채점한다\n\n- 회사채 가산금리가 오르면 기업의 자금 조달 비용이 오른다. 영상은 Warsh 연준 의장이 말하는 '금융 여건'에 이것도 들어간다고 짚으면서, 연준이 이 흐름을 막으러 나서지는 않는다고 본다.\n- 마무리는 반증 조건이다. 재무장관 말대로 문제가 네오클라우드에 그친다면, Meta·Oracle·Amazon·Alphabet의 다음 회사채가 Microsoft처럼 낮은 가산금리로 나올 것이다. 그렇게 되면 이 걱정은 틀린 것이라는 게 영상의 결론이다.",
+ "insights_md": "### 투자 관점\n\n- 이 편의 틀은 단순하다. 같은 투자등급 안에서도 **설비투자를 현금으로 감당하는 회사**(Microsoft)와 빚으로 메우는 회사(Meta·Oracle·Alphabet·Amazon)를 채권시장이 다르게 값 매기기 시작했다는 것이다. 주식시장보다 먼저 움직이는 신용 지표를 보자는 제안이다.\n- 판정 기준도 분명하다. 다음 회사채 발행의 가산금리와 주문 배수가 Microsoft 수준이면 걱정은 과했던 것이고, 더 벌어지면 AI 설비투자의 자금 조달 비용이 오른다는 뜻이다.\n\n### 언급·연관 종목과 밸류체인\n\n- 돈을 빌리는 쪽: Oracle(ORCL)·Meta(META)·Alphabet(GOOGL)·Amazon(AMZN)·Microsoft(MSFT), SpaceX(xAI 합병 후 회사채 발행), 네오클라우드 CoreWeave(CRWV)·Nebius(NBIS).\n- 돈을 빌려주는 쪽: Blue Owl(OWL)·Carlyle(CG)·Apollo(APO)·BlackRock(BLK) 같은 **사모대출·자산운용사**, 보험사.\n- 그 돈이 흘러가는 쪽: Nvidia·Broadcom·AMD, TSMC, SK하이닉스·삼성전자(HBM), Tokyo Electron·Advantest. 자금 조달 비용이 오르면 설비투자 속도 조절 압력이 이 공급망으로 번질 수 있다.\n\n### 반론·리스크\n\n- 잔존가치 보증은 자산 가치가 약속보다 떨어질 때만 실제 부담이 되는 **조건부 부채**다. 호황이 이어지면 비용이 거의 없다(외부 자료).\n- Microsoft 사례처럼 우량 빅테크의 채권 수요는 여전히 크다. 가산금리 상승이 곧 자금 경색이라는 뜻은 아니다.\n- 경고를 낸 Carlyle 자신이 더 높은 금리로 돈을 빌려주는 이해관계자라는 점은 영상도 짚었다.\n- 영상의 Meta 등급(A-)은 외부 자료(AA-)와 다르다. 숫자를 인용할 때는 외부 자료 쪽을 기준으로 본다.\n\n### 체크포인트\n\n- Meta·Oracle·Amazon·Alphabet의 다음 회사채 가산금리와 주문 배수, **S&P·Moody's 전망 변경**, 4분기 잉여현금흐름 부호.",
+ "deep_md": "### 1. 사실 확인 — 영상 수치와 외부 자료\n\n- **Microsoft 회사채**: 로이터·블룸버그 보도는 10월 29일 최소 250억 달러, 최대 10개 만기(2~40년)로 나눈 발행이며 2017년 1월(170억 달러) 이후 첫 미국 투자등급 발행이라고 전했다. 주문은 1,000억 달러 이상으로 **4배 넘게** 몰렸다고 보도됐다(최종 규모 확정 전 수치). 영상의 4.6배와는 집계 시점 차이가 있을 수 있다. 같은 보도에서 Microsoft의 3분기 설비투자(리스 포함)는 452억 달러, 잉여현금흐름은 27% 줄어든 186억 달러로 영상 숫자와 맞는다.\n- **Meta 신용 전망**: 외부 보도는 S&P가 10월 30일 Meta 등급을 **AA-로 유지**하고 전망만 부정적으로 바꿨다고 전한다. 영상은 등급을 A-로 말했는데, 확인된 자료 기준으로는 AA-가 맞다. S&P는 AI 투자의 수익화 능력과 현금흐름을 이유로 들었고, 3분기 설비투자 349억 달러가 영업현금흐름 328억 달러를 넘어 잉여현금흐름이 약 -21억 달러였다. Meta는 S&P 판단에 동의하지 않는다고 밝혔다.\n\n[[chart:4]]\n\n- **Oracle 등급**: S&P는 7월 9일 Oracle을 BBB에서 **BBB-**로 내렸다. 외부 보도는 5년 CDS가 7월 약 200bp대로 18년 만의 최고였고, 가을에는 약 295bp(장중 300bp)까지 올랐다고 전한다. 영상의 10월 21일 308bp와 같은 흐름이다. S&P는 레버리지가 4.5배를 넘거나 2029 회계연도까지 잉여현금흐름이 플러스로 돌아설 경로가 안 보이면 추가 하향할 수 있다고 했다.\n- **SpaceX 회사채**: 6월 첫 발행 때 S&P BBB·Moody's Baa1·Fitch BBB+였다. 7월 초 평균 가산금리 1.62%포인트로 BBB 평균(0.92)은 물론 BB 평균(1.55)보다도 넓었다는 분석이 있다. Gundlach의 \"BBB인데 정크 금리\"가 가리키는 숫자다.\n\n[[chart:5]]\n\n- **Hyperion**: FT 기반 보도에 따르면 이 사업은 특수목적법인을 통해 Blue Owl 80%·Meta 20% 구조이고, 약 270억 달러 빚을 약 280억 달러 규모 잔존가치 보증이 받친다. FT는 최근 12개월 빅테크의 이런 보증이 최대 **3,000억 달러**에 이른다고 추산했다.\n\n### 2. 게스트의 주장과 맥락\n\n- Jason Thomas는 Carlyle 보고서에서 AI 인프라로 들어가는 자금의 속도가 신용시장을 왜곡해 금리를 끌어올리고 있다고 썼고, GPU 감가상각 가정을 금융위기 전 구조에 비유했다. CreditSights는 잔존가치 보증을 **풋옵션 매도**에 견줬다. 평소엔 공짜처럼 보이지만 깊은 불황에서 가장 아프다는 뜻이다.\n- Gundlach의 CNBC 발언 원문 기사는 찾지 못했다. 영상이 단 DoubleLine 공식 유튜브 원본(10월 28일)을 근거로 둔다.\n\n### 3. 숫자의 맥락\n\n- 영상의 가산금리·CDS 숫자는 방향이 외부 보도와 같다. 다만 빅테크 다섯 곳 평균 가산금리 1.19%포인트, 작년 12월 이후 변화폭의 집계 기준(어느 지수인지)은 확인 못 함.\n- 영상이 비교한 잉여현금흐름은 기간이 섞여 있다(3사는 3분기, Amazon은 최근 12개월).\n- 등급과 시장 가격의 괴리를 읽는 법: SpaceX는 7월 초 이미 BB 평균보다 넓은 가산금리로 거래됐고, Oracle CDS는 BBB 통상 범위(150~200bp)의 위쪽 끝을 넘어섰다. 신용평가사는 보통 분기 실적과 재무 정책을 보고 천천히 움직이지만, 채권과 CDS 가격은 매일 움직인다. 그래서 등급보다 가격이 먼저 '다음 조치'를 예고하는 경우가 많다. Meta의 전망 하향과 Oracle의 7월 하향은 모두 시장 가격이 먼저 벌어진 뒤에 나왔다.\n- Microsoft와 나머지의 차이는 설비투자 규모보다 **현금 창출력 대비 설비투자 비율**이다. Microsoft는 452억 달러를 쓰고도 186억 달러가 남았지만, Meta는 349억 달러를 쓰고 21억 달러가 모자랐다. 비슷한 투자 규모라도 본업이 버는 현금의 크기가 채권시장의 평가를 가른다.\n\n### 4. 반론과 리스크\n\n- 잔존가치 보증은 자산 가치가 떨어질 때만 현실화되는 **조건부 부채**라 머리기사 금액이 곧 손실은 아니다.\n- 빅테크의 본업 현금 창출력은 여전히 크고, Microsoft 발행에서 보듯 수요도 넘친다. 가산금리 확대가 바로 조달 경색으로 이어진다고 볼 근거는 아직 부족하다.\n- 반대로, 등급 전망 하향이 실제 하향으로 이어지면 보험사 같은 등급 제약 투자자의 수요가 줄어 **조달 비용 상승**이 빨라질 수 있다.\n\n### 5. 앞으로 볼 것\n\n- Meta·Oracle·Amazon·Alphabet의 다음 회사채 가산금리와 주문 배수(영상이 제시한 반증 조건).\n- S&P·Moody's의 후속 조치(Meta 부정적 전망, Oracle BBB- 유지 여부), 4분기 잉여현금흐름.\n- Hyperion 회사채 가격, 사모대출의 AI 익스포저 공시.",
+ "sources": [
+  {
+   "label": "[원본] 식스시그마 — 시장이 회사의 신용등급을 안 믿기 시작한 순간(2026-11-04)",
+   "url": "https://www.youtube.com/watch?v=DWj0MSdSktE"
+  },
+  {
+   "label": "[원본 인터뷰] DoubleLine Capital 공식 유튜브 — Jeffrey Gundlach CNBC(2026-10-28)",
+   "url": "https://www.youtube.com/watch?v=RuCjUIjM8mo"
+  },
+  {
+   "label": "The Star(로이터) — Microsoft 250억 달러 회사채, 1,000억 달러 이상 주문",
+   "url": "https://www.thestar.com.my/tech/tech-news/2026/10/30/microsoft-expects-to-raise-25-billion-in-us-bond-sale-source-says"
+  },
+  {
+   "label": "The Next Web — Microsoft 2017년 이후 첫 미국 회사채, 3분기 설비투자 452억·FCF 186억 달러",
+   "url": "https://thenextweb.com/news/microsoft-25-billion-bond-sale-first-since-2017"
+  },
+  {
+   "label": "FourWeekMBA — S&P, Meta 전망 부정적(AA- 유지), 설비투자가 영업현금 초과",
+   "url": "https://fourweekmba.com/ai-sp-turns-metas-outlook-negative-as-capex-tops-its-cash/"
+  },
+  {
+   "label": "TIKR — S&P Meta 전망 하향과 3분기 현금흐름",
+   "url": "https://www.tikr.com/blog/zuckerberg-says-metas-core-business-is-strong-sp-still-cut-its-outlook-to-negative"
+  },
+  {
+   "label": "Wealth Professional — Oracle CDS 고점, S&P BBB- 하향 조건",
+   "url": "https://www.wealthprofessional.ca/investments/equity-markets/oracles-default-insurance-hits-high-yield-levels-as-ai-debt-mounts/393817"
+  },
+  {
+   "label": "Motley Fool — SpaceX 회사채가 정크처럼 거래(가산금리 BBB·BB 평균 비교)",
+   "url": "https://www.fool.com/investing/2026/07/08/spacex-bonds-are-trading-like-junk-bonds-what-does/"
+  },
+  {
+   "label": "24/7 Wall St — SpaceX 회사채 가산금리 1.62%p vs BBB 0.92·BB 1.55",
+   "url": "https://247wallst.com/investing/2026/07/15/wall-street-is-ignoring-the-bond-markets-warning-spacex-is-junk/"
+  },
+  {
+   "label": "Dealroom(FT 인용) — 빅테크 잔존가치 보증 3,000억 달러, Hyperion 구조",
+   "url": "https://dealroom.co/news/155123-big-techs-300bn-residual-value-guarantees-keep-ai-infra-debt-off-the-bal/"
+  },
+  {
+   "label": "Crypto Briefing — Carlyle Jason Thomas, AI 금융을 금융위기 전 모기지에 비유",
+   "url": "https://cryptobriefing.com/carlyle-ai-financing-mirrors-pre-crisis-mortgages/"
+  },
+  {
+   "label": "Carlyle — Jason Thomas 프로필",
+   "url": "https://carlyle.com/node/11336"
+  },
+  {
+   "label": "SEC(DoubleLine Opportunistic Credit Fund 424B5) — DoubleLine 운용자산 약 937억 달러(2026-06-30)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001525201/000119312526412348/d28231d424b5.htm"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "같은 투자등급, 다른 부도 보험료",
+   "sub": "5년 CDS, bp (10월 하순)",
+   "type": "hbar",
+   "unit": "bp",
+   "labels": [
+    "Microsoft",
+    "Meta",
+    "SpaceX(10/29 최고)",
+    "Oracle"
+   ],
+   "series": [
+    {
+     "name": "부도 보험료",
+     "values": [
+      54,
+      116,
+      266.5,
+      275
+     ]
+    }
+   ],
+   "note": "BBB 회사 보통 150~200bp — Oracle·SpaceX는 그 위, Microsoft는 한참 아래",
+   "source": "식스시그마 영상(대본)"
+  },
+  {
+   "at": "summary",
+   "title": "빅테크 회사채 가산금리가 시장 평균을 넘었다",
+   "sub": "국채 대비 가산금리, %포인트",
+   "type": "bar",
+   "unit": "%p",
+   "labels": [
+    "10월 수준",
+    "작년 12월 이후 변화"
+   ],
+   "series": [
+    {
+     "name": "빅테크 5곳",
+     "values": [
+      1.19,
+      0.31
+     ]
+    },
+    {
+     "name": "회사채 전체",
+     "values": [
+      0.86,
+      0.01
+     ]
+    }
+   ],
+   "note": "시장 전체는 거의 그대로인데 빅테크만 벌어졌다",
+   "source": "식스시그마 영상(대본)"
+  },
+  {
+   "at": "summary",
+   "title": "현금이 남는 회사, 모자란 회사",
+   "sub": "잉여현금흐름, 억 달러",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "Microsoft(3분기)",
+    "Meta(3분기)",
+    "Alphabet(3분기)",
+    "Amazon(최근 12개월)"
+   ],
+   "series": [
+    {
+     "name": "잉여현금흐름",
+     "values": [
+      186,
+      -21.2,
+      -90.7,
+      -424
+     ]
+    }
+   ],
+   "note": "Amazon만 12개월 합계라 기간이 다르다 — 부호를 보라",
+   "source": "식스시그마 영상(대본)"
+  },
+  {
+   "at": "deep",
+   "title": "Meta 3분기: 설비투자가 영업현금을 넘었다",
+   "sub": "억 달러, 2026년 3분기",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "영업현금흐름",
+    "설비투자",
+    "잉여현금흐름"
+   ],
+   "series": [
+    {
+     "name": "Meta",
+     "values": [
+      328,
+      349,
+      -21.2
+     ]
+    }
+   ],
+   "note": "S&P가 전망을 부정적으로 바꾼 직접 이유",
+   "source": "FourWeekMBA·TIKR(S&P 조치 보도)"
+  },
+  {
+   "at": "deep",
+   "title": "SpaceX 회사채, BBB인데 BB보다 넓었다",
+   "sub": "국채 대비 평균 가산금리, %포인트 (2026년 7월 초)",
+   "type": "hbar",
+   "unit": "%p",
+   "labels": [
+    "BBB 회사채 평균",
+    "BB(정크) 회사채 평균",
+    "SpaceX 회사채"
+   ],
+   "series": [
+    {
+     "name": "가산금리",
+     "values": [
+      0.92,
+      1.55,
+      1.62
+     ]
+    }
+   ],
+   "note": "등급은 투자등급, 시장 값은 투기등급 — Gundlach 경고의 근거",
+   "source": "Motley Fool·24/7 Wall St"
+  }
+ ],
+ "tg": "빅테크 회사채 가산금리 1.19%p로 시장 평균(0.86%p) 추월\n부도 보험료 Microsoft 54bp vs Meta 116·Oracle 275bp\n잉여현금흐름 Microsoft +186억, Meta·Alphabet 마이너스 — 현금이 갈랐다\n볼 것: 다음 회사채 가산금리",
+ "tg_body": "Gundlach는 SpaceX 회사채가 BBB로 나왔는데 곧바로 정크 수준 금리로 벌어졌다고 경고했다. 빅테크 다섯 곳 회사채 가산금리는 10월 1.19%포인트로 회사채 평균 0.86%포인트를 넘었고, 작년 12월 이후 빅테크만 0.31%포인트 올랐다.\n\n그동안 AI 빚 걱정은 GPU를 담보로 빌린 CoreWeave 같은 네오클라우드에 쏠렸고, 재무장관도 문제를 거기로 한정했다. 영상은 이제 투자등급 우량 기업까지 번졌다고 본다. Oracle 부도 보험료는 10월 21일 308bp, SpaceX는 29일 266.5bp로 BBB 통상 수준(150~200bp)을 넘었다.\n\nCarlyle의 Jason Thomas는 빅테크의 잔존가치 보증을 2005년식 논리로 본다. Meta Hyperion은 270억 달러 회사채에 Meta 보증이 붙었는데도 값이 내려갔고, S&P는 Meta 전망을 부정적으로 바꿨다.\n\n갈린 곳은 현금이다. 3분기 잉여현금흐름은 Microsoft 186억 달러 플러스, Meta 21억·Alphabet 91억 달러 마이너스였고, Microsoft는 250억 달러 회사채에 주문이 몰렸다. 다음 회사채가 Microsoft처럼 낮은 금리로 나오면 걱정은 틀린 것이다.\n\n외부 자료로 보면 S&P는 Meta 등급을 AA-로 유지했고(영상은 A-), Microsoft 주문은 1,000억 달러 이상이었다. 잔존가치 보증은 자산 가치가 떨어질 때만 부담이 되는 조건부 부채다.",
+ "youtube": "https://www.youtube.com/watch?v=DWj0MSdSktE",
+ "image": "https://i.ytimg.com/vi/DWj0MSdSktE/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-04 07:27 KST"
+}
