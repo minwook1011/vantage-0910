@@ -353,6 +353,7 @@
   "pod:2026-11-03-sixsigma-46IjZIsF-IY",
   "pod:2026-11-03-understanding-Gomylx1buYY",
   "pod:2026-11-03-understanding-d-ZA6Btv4Pw",
+  "pod:2026-11-04-sixsigma-DWj0MSdSktE",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:035d98272c4d",
@@ -1403,9 +1404,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "ins:ins-20261026-huang-memory-glut-2029-cxmt-lpddr": [
-   870
-  ],
   "ins:ins-20261026-jassy-aws-sold-out-backlog-duration-payback": [
    871
   ],
@@ -2952,6 +2950,9 @@
    428,
    429,
    430
+  ],
+  "pod:2026-11-04-sixsigma-DWj0MSdSktE": [
+   1304
   ]
  },
  "topics": {},
