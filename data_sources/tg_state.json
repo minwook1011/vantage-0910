@@ -186,6 +186,7 @@
   "nebius:2026-10-31",
   "nebius:2026-11-01",
   "nebius:2026-11-02",
+  "nebius:2026-11-03",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -1389,9 +1390,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "pod:2026-10-25-sixsigma-LiOL_50TBcc": [
-   858
-  ],
   "pod:2026-10-25-sixsigma-ZCTN0urfack": [
    859
   ],
@@ -2931,6 +2929,9 @@
   ],
   "ins:ins-20261102-trump-iran-deal-pivot-oil-fed-sectors": [
    1298
+  ],
+  "nebius:2026-11-03": [
+   415
   ]
  },
  "topics": {},
