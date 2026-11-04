@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "273a3a60418b",
+   "kind": "news",
+   "headline": "오픈AI, 회의실 도청·메신저 해킹 잇따르자 보안 체계 재편 — 제품 엔지니어 4분의 1을 보안에 재배치",
+   "bullets": [
+    "로이터는 오픈AI가 티보 소티오 제품·플랫폼 총괄 주도로 내부 보안 강화 프로젝트를 시작했다고 3일 보도했다.",
+    "소티오 총괄은 8월 제품 담당 엔지니어의 4분의 1을 보안 인프라 개선에 재배치했고, 최고정보보호책임자는 내부 도구 정기 점검과 민감 연구 접근 제한을 도입하고 있다.",
+    "계기는 사우디 국적 엔지니어의 회의실 도청 장치 설치와 메신저 해킹 등 잇단 보안 사고다."
+   ],
+   "summary": "소식통들은 직원들이 그동안 회사가 개발 속도전에 치중해 보안을 소홀히 한다고 회사와 이사회에 여러 차례 경고했다고 전했다. 내부 코드 대부분이 '모노레포'라는 단일 저장소에 있어 접근 권한만 있으면 대부분 프로젝트 세부 내용을 볼 수 있었고, 핵심 연구 문서가 깃허브·슬랙 같은 외부 플랫폼에 넓게 공유됐으며, 신규 모델 검증용 격리 환경(샌드박스)도 정기 보안 점검을 받지 않았다는 것이다.\n\n일부 직원은 외부 해커나 외국 정부가 핵심 기밀을 쉽게 빼낼 수 있을 정도였다고 주장했다. 오픈AI 대변인은 회사가 세계에서 가장 집중적으로 표적이 되는 기관 중 하나이며 보안에 막대한 투자를 하고 있다고 해명했다. 프런티어 AI 기업의 모델 가중치·연구 보안이 규제 논의로 이어질지가 남은 쟁점이다.",
+   "title": "“직원 경고 외면”…도청·해킹 잇따르자 뒤늦게 보안 강화 나선 오픈AI",
+   "source": "Chosunbiz",
+   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQRlF2a3ZYUWhPMjFnRm9nV2FrQVdadm54WndCampTOW5US1B0X09LWXVTS0xKZWliWmJpSG8zTzJIQTV3VTNLTFpBRWk1VWFwY2ZxbmFMYkc1MjJhYUhNcGl4VXlicFI0UG10THFMR1VFLXJoU0ZZdzVfRGdhRDFfOFhfeFZNRWc2UWdHTkY4TDFKNXlIT0HSAZYBQVVfeXFMUEZRdmt2WFFoTzIxZ0ZvZ1dha0FXWnZueFp3QmpqUzluVEtQdF9PS1l1U0tMSmVpYlpiaUhvM08ySEE1d1UzS0xaQUVpNVVhcGNmcW5hTGJHNTIyYWFITXBpeFV5YnBSNFBtdExxTEdVRS1yaFNGWXc1X0RnYUQxXzhYX3hWTUVnNlFnR05GOEwxSjV5SE9B?oc=5",
+   "published": "2026-11-04 15:12 KST",
+   "written": "2026-11-04 17:27 KST"
+  },
+  {
    "id": "1d67db178539",
    "kind": "news",
    "headline": "\"챗GPT가 뇌전증 약 끊게 해 딸 숨졌다\" — 미국 31세 아마존 엔지니어 유족, 오픈AI·올트먼에 소송",
@@ -1107,5 +1123,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-10-29 17:51 KST"
+ "updated": "2026-11-04 17:27 KST"
 }

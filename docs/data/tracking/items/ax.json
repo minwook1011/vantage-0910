@@ -3,6 +3,22 @@
  "slug": "ax",
  "items": [
   {
+   "id": "69eff68418a4",
+   "kind": "news",
+   "headline": "현대제철, 현대오토에버와 만든 생성형 AI 통합 플랫폼 '스틸-X' 가동 — 전사 AI 전환 본격화",
+   "bullets": [
+    "현대제철이 사내 문서와 데이터를 통합 검색·분석하는 생성형 AI 플랫폼 '스틸-X(Steel-X)'를 열었다고 4일 밝혔다.",
+    "현대오토에버와 기획 단계부터 함께 개발했고, 부서·시스템별로 흩어진 사내 지식을 자동 변환해 자산화한다.",
+    "임직원이 코딩 없이 업무용 AI 에이전트를 만들 수 있게 하고, 앞으로 업무 시스템 연계를 넓혀 전사 AI 전환을 가속할 계획이다."
+   ],
+   "summary": "스틸-X는 반복적인 정보 탐색과 문서 작성 업무를 줄이기 위해 구축됐다. 통합 검색과 문서 작성, 데이터 분석을 한 시스템으로 묶었고, 서비스 범위를 단순 질의응답에서 실제 업무 데이터 조회·분석까지 넓혔다. 임직원이 업무에 맞는 AI 모델을 골라 쓰고 직접 에이전트를 개발할 수 있는 구조다.\n\n현대제철은 현업 부서의 요구를 순차 반영하고 AI 에이전트와 업무 시스템 연계 기능을 고도화해 적용 범위를 전사로 넓힐 방침이다. 철강 같은 전통 제조업에서도 그룹 IT 계열사(현대오토에버)를 통한 AI 전환 수요가 실제 사업으로 이어지고 있다는 사례다. 투자 규모나 생산성 개선 수치는 공개되지 않았다.",
+   "title": "현대제철, 스틸-X 가동…AI 전환 박차",
+   "source": "연합인포맥스",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBLQmtkOUxHQ3NlYkdoR0hlekgxVEdNdS1tbDcwbUdRTmFnZzE2RkwwTlBkOXh6VGVXdjB2N3RwR2swdmFYWkZYQV9semNCVHRVVGpTTUc0dW9JcVlwSTc0aTk5UXdLWmFSbFROSURtWHg?oc=5",
+   "published": "2026-11-04 15:08 KST",
+   "written": "2026-11-04 17:27 KST"
+  },
+  {
    "id": "baddae0404f3",
    "kind": "news",
    "headline": "한국 AI·소프트웨어 기업 37곳, 도쿄 '한일 디지털 비즈니스 파트너십'서 수출 상담 458억원 — 미러로이드 수출 계약, 5개사 업무협약",
@@ -243,5 +259,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-10-29 16:50 KST"
+ "updated": "2026-11-04 17:27 KST"
 }
