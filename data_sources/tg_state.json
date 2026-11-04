@@ -88,6 +88,7 @@
   "gpu:2026-11-02",
   "gpu:2026-11-03",
   "hc:6532:2026-10-02",
+  "hc:6532:2026-11-04",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
   "ins:ins-20261026-agent-bank-access-war",
   "ins:ins-20261026-burry-y2k-breadth-busted-stocks-rotation",
@@ -1416,9 +1417,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:t-4123f0f6:8f2721c74884": [
-   883
-  ],
   "nebius:2026-10-26": [
    303
   ],
@@ -2966,6 +2964,9 @@
   "digest:2026-11-04:asia": [
    437,
    438
+  ],
+  "hc:6532:2026-11-04": [
+   1312
   ]
  },
  "topics": {},
