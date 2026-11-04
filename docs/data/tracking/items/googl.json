@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "ef700bd34dcd",
+   "kind": "news",
+   "headline": "구글, 말레이시아에 150억달러(약 61조링깃) 추가 투자 — 2027~2028년 데이터센터 캠퍼스 확장",
+   "bullets": [
+    "구글이 2027~2028년 2년 동안 말레이시아 디지털 인프라에 150억달러를 투자한다고 밝혔다(블룸버그 등).",
+    "셀랑고르주 엘미나 비즈니스파크의 기존 캠퍼스에 더해 셀랑고르·네게리슴빌란에 데이터센터 캠퍼스를 새로 짓는다.",
+    "1기가와트 넘는 청정에너지를 전력망에 보태고, 캠퍼스가 쓰는 전기요금은 전부 구글이 낸다는 조건을 붙였다."
+   ],
+   "summary": "구글은 2024년 5월 말레이시아 첫 데이터센터와 구글 클라우드 리전에 20억달러를 넣겠다고 발표했는데, 이번 계획은 그 7배가 넘는 규모다. 현지 보도에 따르면 셀랑고르에 캠퍼스 두 곳을 더 짓는 방안이 포함됐고, 건설 기간 국내총생산 기여는 연평균 11억달러, 가동 뒤 일자리는 해마다 9,000개 이상으로 제시됐다.\n\n전력·물 부담을 먼저 떠안는 구조가 눈에 띈다. 구글은 1기가와트 이상 청정에너지 공급을 늘리고 자사 캠퍼스 전력비를 전액 부담하며, 네게리슴빌란에 1억6,000만달러를 들여 저수지·정수장을 지어 지방정부에 넘긴다(시공 가무다). 데이터센터가 주민 전기·물을 빼앗는다는 반발을 미리 막으려는 조치다. 5년간 말레이시아인 80만명 디지털 교육도 약속했다.\n\n남은 쟁점은 구글 자체 보도자료의 세부 일정과 캠퍼스별 용량이다. 블룸버그 본문은 유료라 확인하지 못했고, 수치는 현지·업계 매체 보도 기준이다.",
+   "title": "Google to Spend $15 Billion in Malaysia Data Center Expansion",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQLWNFLU1nM3JRUnMybXZiVHN3cFdQaUdudjMwblpma0JkM3czRUVFQWRtMDktdEhfQXk2SVFUVno2MkVYNVpEb3Q5bXRISkxsTzNWLVlKNkpDU2gzdEpDNUxXUFRraVZfMzFMb3hOeUNmbFg3MmY2Yl9hQ2l0VzJRY3M5RV9NQmFyYlNmazN4elg3NVYtdjBBZEt6ZERnRTFtVTh4QThodGo0TTJGbE91RkZ3R3p1OXhsMVdnWWVIRnYxdnBtRDlrejZLMA?oc=5",
+   "published": "2026-11-04 18:00 KST",
+   "written": "2026-11-04 18:21 KST"
+  },
+  {
    "id": "f0f8072a33a3",
    "kind": "news",
    "headline": "구글, 자발적 퇴직(바이아웃) 제안을 여러 나라 직원으로 확대(로이터 단독)",
@@ -561,5 +577,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-04 17:49 KST"
+ "updated": "2026-11-04 18:21 KST"
 }

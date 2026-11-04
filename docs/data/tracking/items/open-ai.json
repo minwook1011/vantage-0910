@@ -3,6 +3,70 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "f27d429ee25e",
+   "kind": "news",
+   "headline": "할리우드·음악계, 뉴욕타임스-오픈AI 저작권 소송에서 NYT 지지 — 앤 해서웨이·마돈나 등 참여",
+   "bullets": [
+    "영화·음악·방송·공연·문학 등 미국 창작업계 단체들이 NYT가 오픈AI·마이크로소프트를 상대로 낸 저작권 소송에서 NYT 편에 섰다(악시오스, 3일).",
+    "배우 앤 해서웨이, 가수 마돈나 등 유명 인사가 속한 단체들이 지지 의사를 밝혔다.",
+    "핵심 주장은 AI 학습에 쓰는 저작물도 허락을 받고 사용료를 내야 한다는 것이다."
+   ],
+   "summary": "개별 언론사 소송으로 시작한 NYT 대 오픈AI 사건이 창작산업 전체와 AI 업계의 대결로 커지는 모양새다. 창작업계는 AI 기업이 허락 없이 콘텐츠를 대규모 언어모델 학습에 쓰는 관행을 막아야 한다고 주장한다. 오픈AI는 학습이 '공정이용'에 해당한다는 입장을 유지해 왔다.\n\n같은 날 NYT는 브레이브 브라우저도 AI 검색·유료벽 우회 혐의로 따로 제소했다. 언론사의 AI 상대 소송 전선이 넓어지고 있는 셈이다.\n\n남은 쟁점은 법원이 학습 단계의 공정이용을 어디까지 인정하느냐다. 창작업계 지지가 판결에 직접 영향을 주지는 않지만, 패소 시 업계 전반의 학습 데이터 사용료 협상으로 번질 수 있다.",
+   "title": "할리우드·음악계, NYT 편에 섰다...오픈AI 저작권 소송 확산",
+   "source": "매일경제",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBZOTJPWXZ3c1daVjB6SEx6UEpVRXFyUlVhMHhYY2xaT0RvZ2tVMG96UVo2c3RkdVlodmNWTTZHNWdYRTFvM29VU0YzRlVlWk5jVXc?oc=5",
+   "published": "2026-11-04 11:08 KST",
+   "written": "2026-11-04 18:21 KST"
+  },
+  {
+   "id": "ccba6ff6fb59",
+   "kind": "news",
+   "headline": "국내 업무용 AI 앱 월 이용자, 챗GPT 2,470만명 1위 — 클로드는 404만명으로 1년 새 853% 증가",
+   "bullets": [
+    "스마트폰 업무용 AI 앱 월간 사용자 수(MAU)는 챗GPT가 2,470만명으로 1위였다.",
+    "2위 에이닷 전화 1,147만명, 3위 구글 제미나이 987만명, 4위 클로드 404만명 순이다.",
+    "클로드는 1년 동안 이용자가 853% 늘어 상위권 중 가장 빠르게 컸다."
+   ],
+   "summary": "국내 모바일 이용자 통계(조선비즈 보도) 기준으로 챗GPT가 2위의 두 배 넘는 이용자를 확보해 선두를 굳혔다. 2위가 통신사 SK텔레콤의 통화 비서 앱 에이닷 전화라는 점은 국내 시장 특성이다. 통화 녹음·요약 같은 생활 기능이 업무용 AI 이용자 수를 끌어올린 셈이다.\n\n클로드는 아직 챗GPT의 6분의 1 수준이지만 증가 속도가 가장 빠르다. 코딩·문서 작업 쪽 수요가 커진 영향으로 풀이된다. 제미나이는 안드로이드 기본 탑재 효과로 1,000만명 가까이 올라왔다.\n\n앞으로 볼 것은 유료 전환율과 기업 계약이다. 이용자 수 순위가 매출 순위와 같지는 않다.",
+   "title": "챗GPT, 국내 모바일 이용자 2470만명으로 1위…클로드는 1년 새 853% 성장",
+   "source": "Chosunbiz",
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNbklybS1oXzlRTEUyTTI1LXFyZDlMNV9iYmpZSmJEVW9WRDZIMnJrS2tabWhOX0tQczVDUWlJdzNjVlNNTzR5X3N4d2liTHc5R0FCU29BcElmQWNQbGhnaklwaFVjRktfUzVsQlJOdkRHcGdNel9ldjhIQVRrdE83MjF30gGWAUFVX3lxTFBkb0xoT1NVVlNEbmcwdFBJY3FLemM1dFJkT3h3bFhUR2psZ0h3RG1qZ3NjNVl2Q3RHeFMtVS1kWTdUQ0RaTHNvWXhNUmVKNjBwY1BoTElmdklHbUZFOFA0NUJfMnl1bENUTW1OTkgxem9QMC0tcnlqSjkxOFk2RkdqRFNJV2JuLXEtRlpEZDhfazgwR0dYdw?oc=5",
+   "published": "2026-11-04 10:53 KST",
+   "written": "2026-11-04 18:21 KST"
+  },
+  {
+   "id": "39f293c55e0d",
+   "kind": "news",
+   "headline": "앤트로픽, AI 답변을 실제로 어느 모델이 만들었는지 수학적으로 증명하는 오픈소스 '플래시프루프' 공개",
+   "bullets": [
+    "앤트로픽이 AI 결과물의 모델 출처를 암호학적으로 검증하는 오픈소스 시스템 '플래시프루프(FlashProof)'를 공개했다.",
+    "비싼 모델 요금을 받고 몰래 싼 모델로 답하는 '모델 바꿔치기'를 막는 게 목적이다.",
+    "모델 가중치를 공개하지 않고도 영지식증명으로 출처를 확인하는 연구 시제품이며, 실행 코드·기술 보고서·Lean 증명을 함께 냈다."
+   ],
+   "summary": "API나 중개 서비스로 AI를 쓰는 사용자는 실제로 어떤 모델이 답했는지 확인할 방법이 없었다. 플래시프루프는 특정 답변을 특정 모델이 생성했다는 사실을 수학적으로 증명해, 이메일 암호 서명처럼 받은 쪽이 검증할 수 있게 한다는 구상이다.\n\n핵심 기술은 영지식증명이다. 증명하는 쪽이 비밀(모델 가중치)을 드러내지 않고도 계산이 맞게 됐음을 보여주는 방식이다. 앤트로픽은 보안 명제를 정리 증명기 Lean으로 검증한 증명도 같이 공개했다.\n\n아직 연구용 시제품이라 실제 서비스에 붙일 때 추론 속도·비용 부담이 얼마나 되는지는 공개 자료에서 확인되지 않는다. 클라우드·중개업체가 이 방식을 채택할지가 다음 관전 포인트다.",
+   "title": "\"이 답변, 챗GPT가 쓴 거 맞아?\"… 앤트로픽, AI 모델 출처 증명 기술 공개",
+   "source": "IT조선",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBUc0JYc0FjYkwtdUNmeTZfVkF2RjgyWHMwQ3JLLW45Nmt2MGJCNnBhR08zd0h6NDJDX1h3Wkp1a2lzMnBJVm0zQkxSRnAyc2R0Um5zbEt4OEZ6N1c3YzFUVFJNRldtbVd5bFFEOE1UeWbSAXRBVV95cUxNTF95clpKLWZYTk5Rcml4WHkxSnFsbFBrRVdrSW5XN2NuOVdoUDhHTXpSRDYwQVpkelAxWDdtUVNWWDh1U21fbk1TUm9IRWVndHZWbXpYUHE2MGFLU25RRDJqUTVYektkSjFfRGticUEtQy1hNQ?oc=5",
+   "published": "2026-11-04 10:46 KST",
+   "written": "2026-11-04 18:21 KST"
+  },
+  {
+   "id": "dc0425335d45",
+   "kind": "news",
+   "headline": "오픈AI \"챗GPT 검색량, 구글 전체 검색량의 약 20%\" — 주간 이용자 12억명 돌파",
+   "bullets": [
+    "오픈AI 자체 분석에서 챗GPT의 검색형 질의량이 구글 검색량의 약 20% 수준까지 올라왔다.",
+    "챗GPT 주간 활성 이용자는 12억명, 음성 기능 주간 이용자는 2억5,000만명이다.",
+    "오픈AI는 간단한 대화용 '챗'과 복잡한 업무용 '워크'를 하나로 합칠 계획이다."
+   ],
+   "summary": "글쓰기·코딩 보조로 출발한 챗GPT가 최신 정보 검색 같은 일상 검색으로 쓰임새를 넓히고 있다는 근거로 오픈AI가 내놓은 수치다. 다만 20%는 챗GPT 검색형 질의량을 구글 검색 질의량과 단순 비교한 비율이라 검색시장 점유율과는 다르다. 오픈AI는 비교에 쓴 구글 검색량 수치의 출처를 밝히지 않았다.\n\n외부 추정은 더 낮다. 검색 분석업체 시오클래리티는 하루 메시지 45억건을 가정하고 계산해 챗GPT의 검색 유사 활동이 구글의 약 7.5%라고 봤다.\n\n구글은 최근 분기 검색 매출이 두 자릿수 성장했지만 AI 검색 전환으로 광고 수익성 우려가 커진 상태다. 오픈AI 수치가 외부 측정으로 확인되는지가 다음 체크포인트다.",
+   "title": "챗GPT 검색량, 구글 20%까지 따라붙었다",
+   "source": "조선일보",
+   "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPb0xPZGN2QTV5NFpKMUFCeFFlUURSQkQwUUZrUTg2endUekZNWHlHRjAzQS1JVEZPYlE2bmFTSnBWeDV1cGhaYUtYYnBmNmZ1akNhMTZjNUNUY2gwREsxaHR3clcxSDhnRm02LUR2Z051UFhKbjhVS1R6NEt4M242RVJ0TQ?oc=5",
+   "published": "2026-11-04 10:32 KST",
+   "written": "2026-11-04 18:21 KST"
+  },
+  {
    "id": "273a3a60418b",
    "kind": "news",
    "headline": "오픈AI, 회의실 도청·메신저 해킹 잇따르자 보안 체계 재편 — 제품 엔지니어 4분의 1을 보안에 재배치",
@@ -1123,5 +1187,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-04 17:27 KST"
+ "updated": "2026-11-04 18:21 KST"
 }
