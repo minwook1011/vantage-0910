@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "f0f8072a33a3",
+   "kind": "news",
+   "headline": "구글, 자발적 퇴직(바이아웃) 제안을 여러 나라 직원으로 확대(로이터 단독)",
+   "bullets": [
+    "로이터가 단독으로 구글이 여러 국가 직원들에게 자발적 퇴직 보상안을 내밀었다고 보도했다.",
+    "구글의 바이아웃은 그동안 주로 미국 직원 대상이었는데, 이번엔 해외 조직으로 범위가 넓어졌다.",
+    "마이크로소프트도 4개국 직원 6만명 대상 희망퇴직을 받는 등 빅테크가 인공지능 투자 부담 속에 인력 비용을 줄이는 흐름이다."
+   ],
+   "summary": "로이터 단독 보도의 제목 기준 내용이다. 구글이 자발적 퇴직 제안 대상을 미국 밖 여러 나라 직원으로 넓혔다는 것이 핵심이다. 본문은 열리지 않아 대상 국가·부서·인원·보상 조건은 확인하지 못했다.\n\n구글은 2025년 2월 플랫폼·기기 부문 미국 직원, 같은 해 6월 검색·광고 등 지식·정보 부문 미국 직원에게 자발적 퇴직을 제안한 적이 있다. 이번엔 이 방식을 해외로 넓힌 셈이다.\n\n같은 시기 마이크로소프트도 4개국 직원 6만명을 대상으로 희망퇴직을 받고 있다. 알파벳은 3분기 구글 클라우드 매출이 307억달러로 103% 늘었지만 인공지능 설비투자 부담이 커지는 상황이라, 인건비 조정이 어디까지 갈지가 남은 쟁점이다.",
+   "title": "EXCLUSIVE: Google extends voluntary buyout offers to employees in several countries",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNN3N5M3JKaG93ZWY0OHkzNkZuaXNvcllrWV9EZTJocmdSZ19NTWU5Nzg4aVV3VTF1dUIxdHZoczZkZU1MYjVpaEJRQ0txUG44c214NjFDeFNvN21nbnltZFBUZ0F4YkVobEI2R3F2ZXJqUW56N3psczhCSWM2RXBMMEd2VXJjV1VqeFFsWnA5R1A0dnpOUTZGc2ZEVXNCTWNHME4tSU9yaTdSRzhWbzlaRF9QRXM3OVJSS3N5Q2diU2JKT00?oc=5",
+   "published": "2026-11-04 17:34 KST",
+   "written": "2026-11-04 17:49 KST"
+  },
+  {
    "id": "bb1448148388",
    "kind": "news",
    "headline": "핀란드, 구글 데이터센터 부지 환경 훼손 혐의로 형사 수사 착수(로이터)",
@@ -545,5 +561,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-29 22:47 KST"
+ "updated": "2026-11-04 17:49 KST"
 }
