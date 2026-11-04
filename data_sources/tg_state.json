@@ -717,6 +717,7 @@
   "trk:cxmt:4bcf54de2403",
   "trk:cxmt:6e14f32073c5",
   "trk:cxmt:973959d59830",
+  "trk:cxmt:b77ae9c44ff7",
   "trk:cxmt:b81080a369e0",
   "trk:cxmt:c786be2462dc",
   "trk:cxmt:d2808aa74046",
@@ -1480,9 +1481,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:open-ai:543be7fd58cd": [
-   945
-  ],
   "trk:t-759fd052:957f23748de1": [
    946
   ],
@@ -3027,6 +3025,9 @@
   ],
   "pod:2026-11-04-ilb-martin-casado-on-frontier-model-economics-ai-s-s": [
    1376
+  ],
+  "trk:cxmt:b77ae9c44ff7": [
+   1377
   ]
  },
  "topics": {},
