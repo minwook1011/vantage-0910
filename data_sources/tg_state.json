@@ -85,6 +85,7 @@
   "gpu:2026-10-31",
   "gpu:2026-11-01",
   "gpu:2026-11-02",
+  "gpu:2026-11-03",
   "hc:6532:2026-10-02",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
   "ins:ins-20261026-agent-bank-access-war",
@@ -1414,9 +1415,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:t-0a23e71f:c27726f08f25": [
-   881
-  ],
   "trk:yt--jklonfa:4f0c3cd657eb": [
    882
   ],
@@ -2963,8 +2961,11 @@
   ],
   "pod:2026-11-04-sixsigma-z1qegH12thE": [
    1311
+  ],
+  "gpu:2026-11-03": [
+   436
   ]
  },
  "topics": {},
- "topic_fail_at": 1793767350.591625
+ "topic_fail_at": 1793770989.290424
 }
