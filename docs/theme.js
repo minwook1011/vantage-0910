@@ -32,6 +32,7 @@ window.vantageJSON = function (path, fresh) {
     ["jp-screener.html", "일본 기업"],
     ["kr-screener.html", "한국 기업"],
     ["us-report.html", "미국 실적"],
+    ["us-re.html", "미국 부동산"],
   ];
   var here = location.pathname.split("/").pop() || "index.html";
   if (here === "ta-lab.html" || here === "backtest.html" || here === "bottomup.html") here = "ta.html";   // 2026-10-16 기술적 분석 개편 — 옛 화면(bottomup)은 주소로만 남김
