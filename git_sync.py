@@ -42,6 +42,14 @@ def tidy():
             os.remove(lock)
         except OSError:
             pass
+    # autostash 되돌리기가 충돌(UU)로 끝나면 이후 모든 pull 이 막힌다(2026-10-31~11-04 C:\dev 클론 멈춤).
+    # 진행 중인 병합·리베이스가 없는데 충돌 파일이 남아 있으면 HEAD(받아 온 쪽) 판으로 되돌린다 — 로컬 판은 stash 목록에 그대로 남는다.
+    if not stuck() and not os.path.exists(os.path.join(GITDIR, "MERGE_HEAD")):
+        c, out = git("diff", "--name-only", "--diff-filter=U")
+        paths = [p for p in out.splitlines() if p.strip()] if c == 0 else []
+        if paths:
+            git("checkout", "HEAD", "--", *paths)
+            git("reset", "-q", "--", *paths)
 
 
 def stuck():
