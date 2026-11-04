@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "18fc0c1cb767",
+   "kind": "news",
+   "headline": "링크드인, 일부 기능의 오픈AI 모델을 자체 모델로 바꿔 서버 비용 동결(디인포메이션) — 자체 모델은 GPU 2개, 기존은 152개",
+   "bullets": [
+    "디인포메이션에 따르면 마이크로소프트 자회사 링크드인이 일부 기능에 쓰던 오픈AI 모델을 다른 모델로 교체해 서버 비용을 늘리지 않았다.",
+    "후속 보도에선 같은 작업에 링크드인 자체 모델은 그래픽처리장치(GPU) 2개로 돌았고, 기존 방식은 152개가 필요했다고 전했다.",
+    "링크드인은 앞서 회계연도 2027년 GPU·컴퓨팅·저장 용량을 늘리지 않고 동결하겠다고 밝힌 바 있다."
+   ],
+   "summary": "링크드인은 지난 6개월간 활용률 개선, 모델 증류(큰 모델을 작은 모델로 압축), 작업 배분 조정으로 기존 GPU 효율을 약 두 배로 올렸다고 설명해 왔다. 이번 보도는 그 효율화의 구체적 수단으로 대형 오픈AI 모델 대신 작은 자체 모델을 쓰는 사례가 확인된 셈이다. 원문은 유료라 교체 범위·기능 목록은 확인하지 못했다.\n\n체크포인트는 마이크로소프트 계열사조차 비용 때문에 오픈AI 대형 모델 사용을 줄이는 흐름이 다른 기업 고객으로 번지는지, 그리고 이런 '작은 모델 전환'이 추론용 GPU 수요 증가 속도를 얼마나 늦추는지다.",
+   "title": "LinkedIn Swapped Out Some OpenAI Models to Keep Its Server Costs Flat",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcEhYam1GYTRNVlg0SVdKb3pQdHI0TTBha0QzWUlXY0k3RldKdUtObFJINHYxdURaRTdlRjBwUzFvdDZuamxUd2NpcWJmaVV3Wlo5TnU0N1dLZGk2bENNY0l0NjFTQ3MtTDlqRWZHMEF0aXpMQkp1TkEwRjd6ODFrb2x1NVN5RW5aUmxQaGI2eHNZZG0ta3lsTWtaNnNhRDhlTXlXMEVMdHU4ems?oc=5",
+   "published": "2026-11-04 03:31 KST",
+   "written": "2026-11-04 19:50 KST"
+  },
+  {
    "id": "9d3dffd4f307",
    "kind": "news",
    "headline": "오픈AI, 우버 사장 질 헤이즐베이커를 신설 '최고기업대외협력책임자'로 영입 — 10개월 공석 끝, 12월 초 합류",
@@ -1203,5 +1219,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-04 18:50 KST"
+ "updated": "2026-11-04 19:50 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "83008d18b4bd",
+   "kind": "news",
+   "headline": "삼성전자, 텍사스 테일러 2공장 물량을 AMD·엔비디아용 HBM 베이스다이로 확보(매일경제·로이터) — 삼성은 '확정 수주' 아니라는 입장",
+   "bullets": [
+    "매일경제 단독을 로이터가 인용해, 삼성전자가 테일러 두 번째 파운드리 공장에서 AMD·엔비디아에 공급할 고대역폭메모리(HBM)용 베이스다이를 생산한다고 보도했다.",
+    "2공장은 연내 착공해 2030년 양산 목표로, 물량 상당수는 AMD 차세대 HBM용이다. 한국에서 만든 D램 코어다이와 결합해 미국에서 HBM을 완성하는 구조다.",
+    "삼성은 이 보도를 확정된 추가 수주로 보지 않는다는 입장이고, 엔비디아는 베이스다이를 TSMC로 일원화하고 있어 엔비디아 물량은 불확실하다는 지적도 나온다."
+   ],
+   "summary": "베이스다이는 HBM 맨 아래에서 메모리와 그래픽처리장치(GPU) 사이 데이터 통로 역할을 하는 로직 칩으로, 설계·제조 기술이 HBM 속도와 전력 효율을 좌우한다. 삼성은 3분기 실적 발표에서도 파운드리 사업이 HBM 베이스다이 쪽에서 기회를 보고 있다고 밝힌 바 있다.\n\n테일러 1공장은 테슬라 차세대 AI6 칩 물량을 이미 확보했고, 이번 보도대로라면 2공장은 AMD 물량만으로도 초기 가동 여력이 빠듯하다는 업계 얘기가 나온다. 남은 쟁점은 엔비디아가 검증 부담 때문에 TSMC 일원화를 유지할지, 그리고 삼성이 브로드컴 등 추가 고객을 잡을지다.",
+   "title": "Samsung Secures AMD, Nvidia Orders for New Texas Chip Plant",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOektvVmU2ZGFhVHMzTkZETVdaWGpDNXpzajJUaXpYSldyRWVtWHVtZEVMQTJ5RzBwaUw2SWVqNXZRWmRhenp6RkVSVkRZYzRGRHRtY3c3ZmRpV3AwbkZuU0lkT1pad0xIVlJqTkdtTW5wdEliMXE5d0pLRE1GQjN3UDIxcTZqX1VnODdpUTNDN0Vmc3BqVzdkOFNJckpCQQ?oc=5",
+   "published": "2026-11-04 03:21 KST",
+   "written": "2026-11-04 19:50 KST"
+  },
+  {
    "id": "185ec668e6ca",
    "kind": "news",
    "headline": "블룸버그 \"중국 빅테크, 엔비디아 RTX 프로 5500 600만개(700억달러) 주문했지만 4개월 내 1%만 받을 듯\"",
@@ -755,5 +771,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-04 17:27 KST"
+ "updated": "2026-11-04 19:50 KST"
 }
