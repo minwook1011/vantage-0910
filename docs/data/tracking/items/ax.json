@@ -3,6 +3,38 @@
  "slug": "ax",
  "items": [
   {
+   "id": "89046658c057",
+   "kind": "news",
+   "headline": "동의대 등 6개 기관·기업, '부산 신발 제조 AX 협의체' 출범 — AI·3D 설계로 신발 공정 전환",
+   "bullets": [
+    "동의대 앵커사업단이 부산테크노파크·한국소재융합연구원·부산디자인진흥원·부산기술창업투자원·크리스틴컴퍼니와 협약을 맺고 '부산 신발 제조 AX(인공지능 전환) 지산학연 협의체'를 발족했다.",
+    "AI와 3D 설계(CAD)를 활용한 디자인·제조 연계 교육, 소재·품질 검증, 실제 공정에 디지털 시스템을 얹는 실증을 함께 추진한다.",
+    "시제품 제작부터 투자 유치·창업·지자체 연구개발 연계까지 한 묶음으로 지원한다."
+   ],
+   "summary": "협약은 지난달 29일 벡스코 '2026 패패부산' 현장에서 체결됐다. 숙련공 손기술에 기대던 부산 신발 공장의 고질적 한계를 디지털로 풀겠다는 구상으로, 현장 애로 기술을 발굴해 연구기관과 협업해 바로 상용화로 잇는 동의대 산학협력 체계 '디노웨이브(D-InnoWave)'를 가동한다. 지역 전통 제조업의 AI 전환 사례지만 투자 규모나 구체 일정은 아직 나오지 않았다.",
+   "title": "낡은 공장 벗고 AI 얹는다… 동의대, ‘부산 신발 제조 AX 지산학연 협의체’ 출범",
+   "source": "아시아경제",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFB2QXhEdHhQUXBqRjk0MFNKcjRsbjEwS1hkbnNVdTVNRG5MeDhWdFJPUWV6bHR5ZjFpclpncmNEcFQ3S1VNcGtad3FpSGd6ck9xSE5DSWFUUzBoTWpycXFmNA?oc=5",
+   "published": "2026-11-03 15:47 KST",
+   "written": "2026-11-04 22:50 KST"
+  },
+  {
+   "id": "a3419a9654fe",
+   "kind": "news",
+   "headline": "건강보험공단, AI 상담·직원 업무비서 고도화에 107억원 투입 — 다음 달 2일까지 참여 기업 모집",
+   "bullets": [
+    "국민건강보험공단이 '2026년 지능형 AX(인공지능 전환) 고도화 사업' 참여 기업을 12월 2일까지 모집한다. 사업 규모는 약 106억9,000만원이다.",
+    "올해 4월부터 운영 중인 AI 음성상담·챗봇과 직원용 AI 업무비서를 개선하는 사업이다.",
+    "9일 원주 본부에서 제안요청 설명회를 연다."
+   ],
+   "summary": "AI 음성상담에는 고객 질문 의도를 더 정확히 파악하는 모델을 넣고, 정해진 질문·답변대로 안내하던 기존 상담 기능은 AI 챗봇으로 통합한다. 직원용으로는 전용 서버와 네트워크 장비를 늘려 AI 업무비서 기반을 안정화하고, 공단 업무기준을 활용한 문서 작성과 부서별 맞춤 업무지원 기능을 만든다. 공공기관 AI 전환 사업이 시범 운영 단계를 지나 100억원대 고도화 발주로 넘어가는 사례로, 어느 기업이 수주하는지가 관전 포인트다.",
+   "title": "건강보험공단, 지능형 AI 전환 고도화 추진…107억원 투입",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1DVDc1YnNIYTN5OGZIVGhYaEhJcS1KMEJtYUNuR2pRalNmUmlQTlUzdThROWt6clRubmFaUnp2MUluMHdpcFFYeFVzT0VYa1BvSDZhRTRRcTV3ZEXSAWBBVV95cUxQNnpnTkpzaW1zTUhkQzhjLVpFT2ZzOWdRV1lBMEVxb1dTTm9DVVlfY3R1Q3BFY1hhQjJLTmhvalpxM3M5MzJuS0ZROTF5b1VwWlVWVnNISkJpeENjZVpCeXI?oc=5",
+   "published": "2026-11-03 14:42 KST",
+   "written": "2026-11-04 22:50 KST"
+  },
+  {
    "id": "809cff583eff",
    "kind": "news",
    "headline": "AI·소프트웨어산업협회(KOSA)·디스플레이산업협회(KDIA), 디스플레이 제조 AI 전환 업무협약 — 기업 간 기술 매칭·인력 양성",
@@ -275,5 +307,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-04 22:19 KST"
+ "updated": "2026-11-04 22:50 KST"
 }
