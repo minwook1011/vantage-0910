@@ -424,15 +424,18 @@
   "trk:ax:69eff68418a4",
   "trk:ax:7916c8205ccb",
   "trk:ax:809cff583eff",
+  "trk:ax:89046658c057",
   "trk:ax:8fe2417a1a7c",
   "trk:ax:9794676d25c2",
   "trk:ax:a040e9d6084b",
+  "trk:ax:a3419a9654fe",
   "trk:ax:ae4fc2b9144c",
   "trk:ax:baddae0404f3",
   "trk:ax:d599095d52ed",
   "trk:ax:dae1466c4c99",
   "trk:ax:db869a3b7283",
   "trk:ax:e4f716d082fe",
+  "trk:bill-ackman:35cbcc93bb36",
   "trk:bill-ackman:8b5c4c18c150",
   "trk:bill-ackman:a1b8ad155758",
   "trk:bill-ackman:f0f8a4d5a779",
@@ -930,6 +933,7 @@
   "trk:open-ai:6b76263b9736",
   "trk:open-ai:70231e74ee43",
   "trk:open-ai:7521108539a7",
+  "trk:open-ai:75de85fe9a47",
   "trk:open-ai:7cf8d0e1eebc",
   "trk:open-ai:81608e2d4900",
   "trk:open-ai:844a0168e5fd",
@@ -987,6 +991,7 @@
   "trk:t-0a23e71f:5d30f0c1b0ee",
   "trk:t-0a23e71f:69d546ffa025",
   "trk:t-0a23e71f:6bcfaa3a6a2c",
+  "trk:t-0a23e71f:6de769b27b1e",
   "trk:t-0a23e71f:70937aa15a5c",
   "trk:t-0a23e71f:972aa63b4ebc",
   "trk:t-0a23e71f:9b92298ccce9",
@@ -1005,6 +1010,7 @@
   "trk:t-31ce370d:3b3466bc5700",
   "trk:t-31ce370d:3cb3798ba07c",
   "trk:t-31ce370d:770912f93dbc",
+  "trk:t-31ce370d:a96ec9bfd3fd",
   "trk:t-31ce370d:d579be2ba652",
   "trk:t-31ce370d:d968293030c7",
   "trk:t-3f524a5b:348b0c7490ee",
@@ -1081,6 +1087,7 @@
   "trk:t-678e8450:abce50538b5f",
   "trk:t-678e8450:b054cbf3c3a2",
   "trk:t-678e8450:b97d0add14bd",
+  "trk:t-678e8450:c2372f647938",
   "trk:t-678e8450:c65eb92e3a11",
   "trk:t-678e8450:c67629b37a78",
   "trk:t-678e8450:cdb8c8dfa733",
@@ -1173,6 +1180,7 @@
   "trk:t-c3c842c3:868ad36f8bea",
   "trk:t-c3c842c3:b4247b8fc218",
   "trk:t-c44f9b86:82a8de3af5a1",
+  "trk:t-dbe684bf:3569f34683a6",
   "trk:t-dbe684bf:4a74927085d7",
   "trk:t-dbe684bf:4bc20c6f97f4",
   "trk:t-dbe684bf:4c709989a407",
@@ -1508,30 +1516,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:t-62bbe9b6:1bf380ed328f": [
-   970
-  ],
-  "trk:blog-techcrunch:a65d2b4a8049": [
-   971
-  ],
-  "trk:blog-ssh-fedinsight:f55e65ecb48f": [
-   972
-  ],
-  "trk:yt--jklonfa:1582d218f9fe": [
-   973
-  ],
-  "trk:amzn:388c374bd63c": [
-   974
-  ],
-  "trk:open-ai:7cf8d0e1eebc": [
-   975
-  ],
-  "trk:t-759fd052:9b515219a8b3": [
-   976
-  ],
-  "trk:t-759fd052:fa55f3ef21a0": [
-   977
-  ],
   "trk:yt--jklonfa:ca0d1d79801e": [
    978
   ],
@@ -3051,6 +3035,30 @@
   ],
   "pod:2026-11-04-understanding--Zx0MNc3-BI": [
    1402
+  ],
+  "trk:t-0a23e71f:6de769b27b1e": [
+   1403
+  ],
+  "trk:open-ai:75de85fe9a47": [
+   1404
+  ],
+  "trk:t-31ce370d:a96ec9bfd3fd": [
+   1405
+  ],
+  "trk:bill-ackman:35cbcc93bb36": [
+   1406
+  ],
+  "trk:t-dbe684bf:3569f34683a6": [
+   1407
+  ],
+  "trk:t-678e8450:c2372f647938": [
+   1408
+  ],
+  "trk:ax:89046658c057": [
+   1409
+  ],
+  "trk:ax:a3419a9654fe": [
+   1410
   ]
  },
  "topics": {},
