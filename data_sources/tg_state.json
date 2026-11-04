@@ -200,6 +200,7 @@
   "nebius:2026-11-01",
   "nebius:2026-11-02",
   "nebius:2026-11-03",
+  "nebius:2026-11-04",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -1403,6 +1404,7 @@
   "usdkrw:2026-10-31",
   "usdkrw:2026-11-02",
   "usdkrw:2026-11-03",
+  "usdkrw:2026-11-04",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
   "weekly:2026-10-12",
@@ -1410,12 +1412,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "ins:ins-20261026-musk-starlink-ukraine-throttle-sovereign-satcom": [
-   877
-  ],
-  "ins:ins-20261026-shin-hyunsong-hold-3pct-tightening-bias-november": [
-   878
-  ],
   "ins:ins-20261026-tom-lee-consensus-short-ai-selloff-endgame": [
    879
   ],
@@ -2959,6 +2955,12 @@
   ],
   "ins:ins-20261103-trump-qeshm-strike-israel-aid-cut-inflation-claim": [
    1310
+  ],
+  "nebius:2026-11-04": [
+   433
+  ],
+  "usdkrw:2026-11-04": [
+   434
   ]
  },
  "topics": {},
