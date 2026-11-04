@@ -478,6 +478,7 @@
   "trk:blog-ranto28:543ba76c6b6f",
   "trk:blog-ranto28:57d78d08e7cf",
   "trk:blog-ranto28:599eae228172",
+  "trk:blog-ranto28:5ded2e1e85ea",
   "trk:blog-ranto28:60658e4a2f51",
   "trk:blog-ranto28:615114b3709f",
   "trk:blog-ranto28:66d275f30282",
@@ -619,6 +620,7 @@
   "trk:blog-techcrunch:886a93cad641",
   "trk:blog-techcrunch:8a34dbad266e",
   "trk:blog-techcrunch:8a5da784385a",
+  "trk:blog-techcrunch:8c0d2bc4c1fd",
   "trk:blog-techcrunch:8e30d4ab2d46",
   "trk:blog-techcrunch:9006aff37e24",
   "trk:blog-techcrunch:907cd5eeef9b",
@@ -1518,12 +1520,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "ins:ins-20261027-wdc-nearline-hyperscaler-moat": [
-   980
-  ],
-  "ins:ins-20261027-musk-latvia-tad-eu-vote-arithmetic": [
-   981
-  ],
   "ins:ins-20261027-trump-brazil-rigged-claim-ibovespa-fiscal-shock": [
    982
   ],
@@ -3061,8 +3057,14 @@
   ],
   "trk:googl:2f8a7afdb341": [
    1412
+  ],
+  "trk:blog-ranto28:5ded2e1e85ea": [
+   1413
+  ],
+  "trk:blog-techcrunch:8c0d2bc4c1fd": [
+   1414
   ]
  },
  "topics": {},
- "topic_fail_at": 1793801872.839418
+ "topic_fail_at": 1793805532.71046
 }
