@@ -551,6 +551,7 @@
   "trk:blog-techcrunch:0d1cb7ac1a23",
   "trk:blog-techcrunch:11169497f65e",
   "trk:blog-techcrunch:125851f53afb",
+  "trk:blog-techcrunch:18bff07b1fc3",
   "trk:blog-techcrunch:18d250356a9d",
   "trk:blog-techcrunch:19f5c58b4c65",
   "trk:blog-techcrunch:1b29f7c798de",
@@ -862,6 +863,7 @@
   "trk:msft:ddfdfdd3d528",
   "trk:msft:e21c413f532d",
   "trk:msft:e4f28aec3675",
+  "trk:msft:ed88a906edc4",
   "trk:msft:f0a24c692c9a",
   "trk:msft:f728a1519228",
   "trk:msft:ffe78311896b",
@@ -1121,6 +1123,7 @@
   "trk:t-678e8450:e7394e1794bd",
   "trk:t-678e8450:eb6518f9e806",
   "trk:t-678e8450:eb81e5538ed6",
+  "trk:t-678e8450:ecefef63f8f2",
   "trk:t-678e8450:ef6652efed03",
   "trk:t-678e8450:f7b05899c293",
   "trk:t-678e8450:fbbff9fb35db",
@@ -1541,16 +1544,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "pod:2026-10-27-sixsigma-rWgcZ0FOHug": [
-   1001
-  ],
-  "digest:2026-10-27:asia": [
-   1002,
-   1003
-  ],
-  "trk:t-0a23e71f:1fcb3b27bf73": [
-   1004
-  ],
   "trk:meta:5836f98abbc0": [
    1005
   ],
@@ -3087,6 +3080,15 @@
   "digest:2026-11-05:us": [
    445,
    446
+  ],
+  "trk:msft:ed88a906edc4": [
+   1434
+  ],
+  "trk:blog-techcrunch:18bff07b1fc3": [
+   1435
+  ],
+  "trk:t-678e8450:ecefef63f8f2": [
+   1436
   ]
  },
  "topics": {},
