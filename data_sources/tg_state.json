@@ -555,6 +555,7 @@
   "trk:blog-techcrunch:1f6f524e1cdc",
   "trk:blog-techcrunch:225d1691a317",
   "trk:blog-techcrunch:233647f1db0e",
+  "trk:blog-techcrunch:256017fe99cd",
   "trk:blog-techcrunch:25d88cbce2d2",
   "trk:blog-techcrunch:26bb5195df50",
   "trk:blog-techcrunch:2940e35ec368",
@@ -631,6 +632,7 @@
   "trk:blog-techcrunch:98df72e2f673",
   "trk:blog-techcrunch:98ff1ee76c7b",
   "trk:blog-techcrunch:996aae51c765",
+  "trk:blog-techcrunch:9988e9882b5e",
   "trk:blog-techcrunch:9c434ecf2f5a",
   "trk:blog-techcrunch:9cb90d5f017f",
   "trk:blog-techcrunch:9e5df1d377b9",
@@ -1525,12 +1527,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "nebius:2026-10-27": [
-   318
-  ],
-  "trk:yt--jklonfa:b6408c8e2fa1": [
-   987
-  ],
   "or:2026-10-26": [
    319
   ],
@@ -3068,8 +3064,14 @@
   ],
   "trk:t-678e8450:880e1c57f561": [
    1419
+  ],
+  "trk:blog-techcrunch:9988e9882b5e": [
+   1420
+  ],
+  "trk:blog-techcrunch:256017fe99cd": [
+   1421
   ]
  },
  "topics": {},
- "topic_fail_at": 1793812932.571689
+ "topic_fail_at": 1793816536.278921
 }
