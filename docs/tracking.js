@@ -30,8 +30,8 @@
 
   // ── 보기 ──
   var TAB_KEY = "vantage-tracking-tab";
-  var tab = ["blog", "yt"].indexOf(getLS(TAB_KEY)) >= 0 ? getLS(TAB_KEY) : "news", q = "", editing = false;
-  var TAB_NAME = { news: "종목·섹터", blog: "블로그", yt: "유튜브" };
+  var tab = ["blog", "yt", "x"].indexOf(getLS(TAB_KEY)) >= 0 ? getLS(TAB_KEY) : "news", q = "", editing = false;
+  var TAB_NAME = { news: "종목·섹터", blog: "블로그", yt: "유튜브", x: "X 계정" };
   var GROUPS = [
     { key: "us", label: "해외 종목", test: function (t) { return t.market === "us"; } },
     { key: "kr", label: "한국 종목", test: function (t) { return t.market === "kr"; } },
@@ -40,7 +40,8 @@
   ];
   function isBlog(t) { return t.market === "blog"; }
   function isYT(t) { return t.market === "youtube"; }
-  function tabOf(t) { return isBlog(t) ? "blog" : isYT(t) ? "yt" : "news"; }
+  function isX(t) { return t.market === "x"; }
+  function tabOf(t) { return isBlog(t) ? "blog" : isYT(t) ? "yt" : isX(t) ? "x" : "news"; }
   function inTab(t) { return tabOf(t) === tab; }
   function norm(s) { return String(s || "").toLowerCase().replace(/\s+/g, ""); }
   function termHit(t) {
@@ -69,13 +70,13 @@
   }
   function renderTiles() {
     var all = W.terms.filter(inTab), shown = all.filter(termHit), html = "";
-    ["news", "blog", "yt"].forEach(function (k) { $("#cnt-" + k).textContent = count(W.terms.filter(function (t) { return tabOf(t) === k; })); });
+    ["news", "blog", "yt", "x"].forEach(function (k) { $("#cnt-" + k).textContent = count(W.terms.filter(function (t) { return tabOf(t) === k; })); });
     each("#tabs button", function (b) {
       var on = b.getAttribute("data-tab") === tab;
       b.classList.toggle("on", on); b.setAttribute("aria-selected", on ? "true" : "false");
     });
     if (tab !== "news") {
-      if (shown.length) html = '<div class="grp"><div class="gl">' + (tab === "yt" ? "구독 유튜브 채널" : "구독 블로그") + ' <em>' + shown.length + '</em></div><div class="grid">' + shown.map(tile).join("") + "</div></div>";
+      if (shown.length) html = '<div class="grp"><div class="gl">' + (tab === "yt" ? "구독 유튜브 채널" : tab === "x" ? "구독 X 계정" : "구독 블로그") + ' <em>' + shown.length + '</em></div><div class="grid">' + shown.map(tile).join("") + "</div></div>";
     } else {
       GROUPS.forEach(function (g) {
         var ts = shown.filter(g.test);
@@ -107,8 +108,8 @@
   function card(it, t) {
     var paras = String(it.summary || "").split(/\n{2,}/).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
     var detail = it.detail ? '<details class="sum full"><summary>▶ 영상 전체 정리 (' + Math.round(it.detail.length / 100) / 10 + "천 자)</summary>" + mdLite(it.detail) + "</details>" : "";
-    return '<article class="item' + (isBlog(t) ? " blog" : isYT(t) ? " yt" : "") + '">' +
-      '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + (isBlog(t) ? "📝 " : isYT(t) ? "▶️ " : "") + esc(tag(t.term)) + "</button>" +
+    return '<article class="item' + (isBlog(t) ? " blog" : isYT(t) ? " yt" : isX(t) ? " xp" : "") + '">' +
+      '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + (isBlog(t) ? "📝 " : isYT(t) ? "▶️ " : isX(t) ? "𝕏 " : "") + esc(tag(t.term)) + "</button>" +
       '<span class="itime">' + esc(when2(it.published)) + " · " + esc(it.source || "") + (it.sym != null ? " · 공감 " + Number(it.sym).toLocaleString() + (it.cmt != null ? " · 댓글 " + Number(it.cmt).toLocaleString() : "") : "") + "</span></div>" +
       (it.pick ? '<b class="pick">공감 상위 ' + it.pick + "위 · 최근 3년</b>" : "") +
       "<h3>" + esc(it.headline) + "</h3>" +
@@ -119,7 +120,7 @@
   }
   var ROWS = [];
   function mini(it, t, i) {
-    var kind = isBlog(t) ? " blog" : isYT(t) ? " yt" : "";
+    var kind = isBlog(t) ? " blog" : isYT(t) ? " yt" : isX(t) ? " xp" : "";
     return '<div class="mini' + kind + '" tabindex="0" role="button" data-i="' + i + '">' +
       '<div class="itop"><button type="button" class="itag" data-s="' + esc(t.slug) + '">' + esc(tag(t.term)) + "</button>" +
       '<span class="itime">' + esc(it.pick ? "공감 " + it.pick + "위" : when(it.published).replace(/^\d\d\/\d\d /, "")) + "</span></div>" +
@@ -279,7 +280,7 @@
   }
 
   function request(kind, raw) {
-    var label = kind === "add" ? (tab === "blog" ? "[트래킹·블로그] 추가: " : tab === "yt" ? "[트래킹·유튜브] 추가: " : "[트래킹] 추가: ") : "[트래킹] 삭제: ";
+    var label = kind === "add" ? (tab === "blog" ? "[트래킹·블로그] 추가: " : tab === "yt" ? "[트래킹·유튜브] 추가: " : tab === "x" ? "[트래킹·X] 추가: " : "[트래킹] 추가: ") : "[트래킹] 삭제: ";
     var body = "트래킹 화면에서 보낸 요청입니다. 30분마다 도는 수집 작업이 확인해 반영합니다.\n\n" + raw;
     window.open("https://github.com/" + REPO + "/issues/new?title=" + encodeURIComponent(label + String(raw).trim()) + "&body=" + encodeURIComponent(body), "_blank", "noopener");
     status("깃허브 창에서 'Submit new issue'(제출)를 누르면 요청이 남고, 30분 안에 반영됩니다.");

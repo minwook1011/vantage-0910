@@ -135,3 +135,6 @@ body.noscroll { overflow:hidden; }
 .trk .sum.full ul { margin:6px 0; padding-left:20px; }
 /* 블로그 공감 상위 글 표시(2026-10-13) */
 .item .pick { display:inline-block; margin:6px 0 0; padding:2px 9px; border-radius:999px; background:rgba(224,45,60,.1); color:#c0352b; font-size:11.5px; font-weight:700; }
+/* X 계정(2026-11-04) */
+.trk .mini.xp { border-top:3px solid #222; } .trk .mini.xp .itag { color:#111; background:#ececec; }
+.trk .item.xp { border-left:3px solid #222; } .trk .item.xp .itag { color:#111; background:#ececec; }

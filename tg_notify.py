@@ -548,18 +548,18 @@ def tracking():
             done.add(k)
 
             def build(t=t, it=it):
-                label = (" · 📝 블로그" if t.get("market") == "blog" else " · ▶️ 유튜브" if t.get("market") == "youtube"
+                label = (" · 📝 블로그" if t.get("market") == "blog" else " · ▶️ 유튜브" if t.get("market") == "youtube" else " · 𝕏" if t.get("market") == "x"
                          else (f" · {esc(t.get('ticker'))}" if t.get("ticker") else ""))
                 # 출처(누르면 원문)·올라온 시각을 맨 위에(2026-10-11 사용자)
-                icon = "📝" if t.get("market") == "blog" else "▶️" if t.get("market") == "youtube" else "📰"
+                icon = "📝" if t.get("market") == "blog" else "▶️" if t.get("market") == "youtube" else "𝕏" if t.get("market") == "x" else "📰"
                 lines = [f"#{hashtag(t['term'])}" + label,
                          f'{icon} <a href="{esc(it["url"])}">{esc(it.get("source") or "원문")}</a> · {stamp(it.get("published"))}',
                          "", f"<b>{esc(it['headline'])}</b>", ""]
                 lines += [f"{i}. {esc(b)}" for i, b in enumerate(it.get("bullets") or [], 1)]
                 if it.get("summary"):
                     lines += ["", esc(it["summary"])]
-                dest = route(t.get("dest") or ("blog" if t.get("market") in ("blog", "youtube") else "news"))   # 유튜브도 블로그·인터뷰 쪽, dest 로 바꿀 수 있음(테크크런치 → 뉴스방)
-                comp = route("company") if t.get("market") not in ("blog", "youtube") and not t.get("dest") else {}   # dest 를 정한 주제(일본 방위·사이버보안·AX 등)는 기업 토픽 대신 그 방으로만
+                dest = route(t.get("dest") or ("blog" if t.get("market") in ("blog", "youtube", "x") else "news"))   # 유튜브도 블로그·인터뷰 쪽, dest 로 바꿀 수 있음(테크크런치 → 뉴스방)
+                comp = route("company") if t.get("market") not in ("blog", "youtube", "x") and not t.get("dest") else {}   # dest 를 정한 주제(일본 방위·사이버보안·AX 등)는 기업 토픽 대신 그 방으로만
                 if comp:   # 기업별 토픽 그룹이 연결돼 있으면: 그 기업 토픽 + 📋 종합(General) 두 곳으로(2026-10-19 사용자)
                     try:
                         dest = {"chat": comp["chat"], "thread": company_topic(t), "also": [{"chat": comp["chat"], "thread": None}], "term": t}

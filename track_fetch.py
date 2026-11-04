@@ -301,7 +301,34 @@ def parse_yt(xml, src):
     return out
 
 
+def parse_x(t):
+    """X(트위터) 계정 새 글 — 파이썬으로는 X를 못 읽어서(공개 피드 막힘) 예약 작업 Claude가 수집 직전에
+    InvestingWiki x_user_posts 결과를 data_sources/_x_inbox/<handle>.json 에 그대로 저장해 둔다. 그 파일을 읽는다."""
+    h = (t.get("handle") or "").lstrip("@")
+    data = load(os.path.join(BASE, "data_sources", "_x_inbox", h + ".json"), None)
+    if data is None:
+        raise RuntimeError(f"_x_inbox/{h}.json 없음 — x_user_posts 저장 단계 확인")
+    out = []
+    for p in data.get("posts") or []:
+        try:
+            pub = datetime.fromisoformat(p["created_at"]).astimezone(KST)
+        except Exception:
+            continue
+        text = re.sub(r"\s+", " ", p.get("text") or "").strip()
+        q = p.get("quoted") or {}
+        if q.get("text"):
+            text += " ‖ 인용 " + (q.get("author") or "") + ": " + re.sub(r"\s+", " ", q["text"]).strip()
+        out.append({"title": re.sub(r"https://t\.co/\S+", "", (p.get("text") or "")).strip().split(chr(10))[0][:120] or "(그림·링크만)",
+                    "url": p.get("url") or "", "source": t.get("name") or t["term"], "published": pub, "snippet": text[:1200]})
+    return out
+
+
 def fetch_term(t):
+    if t.get("market") == "x":                               # X 계정: 새 글 전부 후보(거르기는 요약 단계 4-X)
+        try:
+            return parse_x(t), [], []
+        except Exception as e:
+            return [], [f"x {t.get('handle')}: {str(e)[:80]}"], []
     if t.get("market") == "youtube":                         # 유튜브 채널: 새 영상(쇼츠 제외)
         cid = t.get("channel_id") or ""
         try:
@@ -536,7 +563,7 @@ def main():
         keys_l = [k.lower() for k in keys if k]
         kept = 0
         # 블로그 'backfill: N' — 최근 글 N개는 기간·기록과 상관없이 한 번 다시 올린다(이미 요약한 글은 제외)
-        back = int(t.pop("backfill", 0) or 0) if t.get("market") in ("blog", "youtube") else 0
+        back = int(t.pop("backfill", 0) or 0) if t.get("market") in ("blog", "youtube", "x") else 0
         if back:
             popped.append(t["term"])
             done_ids = {x["id"] for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", slug + ".json"), {}).get("items", [])}
@@ -552,7 +579,7 @@ def main():
             elif not nt or sid in seen or uid in seen or uk in have_urls or it["published"] < since:
                 continue
             seen[sid] = seen[uid] = NOW.strftime("%Y-%m-%d")       # 후보로 올린 건 다시 안 올림(채택·탈락 무관)
-            blog = t.get("market") in ("blog", "youtube")          # 블로그·유튜브는 거르기 없이 새 글·새 영상 전부
+            blog = t.get("market") in ("blog", "youtube", "x")     # 블로그·유튜브·X는 단어 거르기 없이 새 글 전부 후보
             text = (it["title"] + " " + it["snippet"]).lower()
             if not blog and (JUNK.search(it["title"]) or JUNK_SRC.search(it["source"] + " " + it["url"])):
                 continue
@@ -564,7 +591,7 @@ def main():
             if any(norm_title(c["title"]) == nt for c in cands):
                 continue
             cands.append({"id": sid, "term": t["term"], "slug": slug,
-                          "kind": "video" if t.get("market") == "youtube" else "blog" if blog else "news",
+                          "kind": "video" if t.get("market") == "youtube" else "x" if t.get("market") == "x" else "blog" if blog else "news",
                           "source": it["source"], "url": it["url"], "title": it["title"], "snippet": it["snippet"],
                           "published": it["published"].strftime("%Y-%m-%d %H:%M KST")}
                          | ({"focus": t["focus"]} if t.get("focus") else {}))      # 단어별 관심 범위(예: 가트너는 AI 관련만)
@@ -589,7 +616,7 @@ def main():
     # 지난 3일 우리가 이미 보낸 뉴스 제목(한국어) — 다른 매체·언어로 다시 나온 같은 사건을 걸러내는 기준(예약 작업 4-1)
     recent, cut3 = [], (NOW - timedelta(days=3)).strftime("%Y-%m-%d %H:%M")
     for t in watch.get("terms", []):
-        if t.get("market") in ("blog", "youtube"):
+        if t.get("market") in ("blog", "youtube", "x"):
             continue
         for x in load(os.path.join(BASE, "docs", "data", "tracking", "items", t["slug"] + ".json"), {}).get("items", []):
             if (x.get("written") or "") >= cut3:
