@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "ed88a906edc4",
+   "kind": "news",
+   "headline": "마이크로소프트, 아이렌(IREN)의 데이터센터 공급 지연 뒤 데이터센터 투자 줄여(디인포메이션 단독)",
+   "bullets": [
+    "디인포메이션은 마이크로소프트가 클라우드 업체 아이렌의 지연 이후 데이터센터 지출을 낮췄다고 단독 보도했다.",
+    "마이크로소프트는 아이렌과 엔비디아 칩 기반 97억달러 규모 클라우드 계약을 맺었고, 이 계약은 아이렌이 납기를 못 맞추면 해지될 수 있는 구조다.",
+    "마이크로소프트 직전 분기 설비투자가 시장 예상보다 적게 나왔던 이유 중 하나가 외부 클라우드 업체의 공급 지연이라는 뜻이다."
+   ],
+   "summary": "디인포메이션 기사는 유료라 본문을 확인하지 못했고, 제목에 나온 사실(아이렌 지연 → 마이크로소프트 데이터센터 지출 감소)만 확인된다. 아이렌은 텍사스 차일드리스 캠퍼스에 엔비디아 GB300을 단계적으로 들이는 방식으로 마이크로소프트 계약 물량을 공급하기로 했었다.\n\n마이크로소프트는 코어위브·네비우스·엔스케일 같은 네오클라우드(외부 AI 클라우드) 업체와 대형 계약을 늘려 왔기 때문에, 이들의 건설 지연은 곧 마이크로소프트 지출 시점이 뒤로 밀리는 것으로 이어진다. 같은 날 위성 사진 분석을 근거로 마이크로소프트 관련 대형 AI 부지 일부가 2027년으로 밀릴 수 있다는 보도도 나왔다(회사들은 지연을 부인).\n\n아이렌은 곧 1분기 실적 발표를 앞두고 있어, 회사가 공급 일정과 계약 조건을 어떻게 설명할지가 남은 쟁점이다.",
+   "title": "Exclusive: Microsoft Lowered Data Center Spending Following Delays By Cloud Firm Iren",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOYVJ5WmdRNU81TGVkcGpRby1jRGx5QnV6ZVFUUTgxc1U1Q2JxOUFCYXNrQVhnTlZMRlhGdW80RUZObUVudjl6QTlNVlM4X2t4ek9KNkw1N3dyVG1jUUVuZFlyb0drYm55Z29DNVctWjVYQVJIVDVaeHZXR1Q4SkVHaW9aS2hYWWNEbGhrc1JNcjBQbXVDUjl4MEZIUFFYS1RHOFp1R0FFdDV2NjZJb1lVb05PTDZOTF81RWJhUGFESQ?oc=5",
+   "published": "2026-11-05 06:05 KST",
+   "written": "2026-11-05 06:48 KST"
+  },
+  {
    "id": "e21c413f532d",
    "kind": "news",
    "headline": "오픈AI, 개발자 도구 스타트업 '피에르 컴퓨터' 인수 — 코덱스에 코드 저장소 붙여 깃허브에 도전(악시오스 단독)",
@@ -449,5 +465,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-04 20:44 KST"
+ "updated": "2026-11-05 06:48 KST"
 }
