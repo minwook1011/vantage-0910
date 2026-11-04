@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-04 07:27 KST",
+ "updated": "2026-11-04 12:29 KST",
  "episodes": [
+  {
+   "id": "2026-11-04-sixsigma-z1qegH12thE",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "재무장관이 AI 빚을 걱정하지 않는 이유 | 스콧 베선트",
+   "date": "2026-11-04",
+   "published": "2026-11-04 12:00 KST",
+   "link": "https://www.youtube.com/watch?v=z1qegH12thE",
+   "youtube": "https://www.youtube.com/watch?v=z1qegH12thE",
+   "audio": null,
+   "duration": "",
+   "desc": "AI 데이터센터를 빚으로 짓는 회사들의 금리가 두 자릿수가 된 지금, 미국 재무장관 스콧 베선트는 이 문제를 네오클라우드(GPU를 사서 빌려주는 신생 클라우드) 안에서 끝날 일로 봤습니다. 그 판단을 돈을 빌려주는 쪽 숫자로 짚었습니다. 800억 달러가 넘는 신용 자금을 굴리는 브루스 리처즈가 가른 담보·무담보와 등급별 금리(FRED: BB 6.69%, CCC 이하 17.83%), 메타의 950억 달러 주식 조달과 970억 달러 영업현금, 그리고 빚으로 짓는 회사를 걱정하는 스티브 아이스먼·길 루리아의 시각을 함께 봤습니다. 이 금리 상승이 투자등급 빅테크 회사채까지 번지면 재무장관의 판단은 틀린 것입니다. [목차] 0:00 재무장관의 답 0:49 1. 막힌 빚, 안 막힌 빚 4:25 2. 빅테크는 주식으로도 돈을 모은다 5:38 3. 반대편: 빚으로 짓는 회사 7:18 결말: 확인할 것 하나 [원본] 1. CNBC Television 공식 유튜브, Treasury Sec. Scott Bessent: I don't think credit in the AI space is problematic (2026.10.29): https://www.youtube.com…",
+   "status": "done",
+   "found": "2026-11-04 12:25 KST",
+   "image": "https://i3.ytimg.com/vi/z1qegH12thE/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "재무장관이 AI 빚을 걱정하지 않는 이유 — Scott Bessent",
+   "desc_ko": "AI 데이터센터를 빚으로 짓는 회사들의 금리가 두 자릿수로 오른 가운데, 미국 재무장관 Scott Bessent가 이를 네오클라우드 안의 문제로 본 판단을 채권시장 숫자로 따져 본 영상입니다. 신용 운용사 Bruce Richards가 나눈 담보·무담보 빚과 등급별 금리 격차를 FRED 자료로 확인합니다. Meta의 대규모 주식 조달과 영업현금, 빚으로 짓는 회사를 걱정하는 회의론도 함께 다룹니다. 금리 상승이 투자등급 빅테크 회사채로 번지는지가 마지막 체크포인트입니다.",
+   "summary": {
+    "title_ko": "재무장관이 AI 빚을 걱정하지 않는 이유 — Scott Bessent·Bruce Richards로 본 네오클라우드 신용",
+    "headline": "CCC 금리 17.83%·BB 6.69% — 막힌 건 맨 아래뿐, 재무장관이 그은 선은 네오클라우드",
+    "image": "https://i.ytimg.com/vi/z1qegH12thE/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Scott Bessent · Bruce Richards — 재무장관의 '네오클라우드만의 문제' 판단을 등급별 금리·Meta 현금흐름으로 확인한 영상",
+    "company": "네오클라우드 신용 · 하이퍼스케일러 조달 (신용시장 · AI 데이터센터 금융)"
+   }
+  },
   {
    "id": "2026-11-04-sixsigma-DWj0MSdSktE",
    "show": "sixsigma",
