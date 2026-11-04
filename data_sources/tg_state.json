@@ -189,6 +189,7 @@
   "macro:2026-10-30",
   "macro:2026-11-02",
   "macro:2026-11-03",
+  "macro:2026-11-04",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -1538,9 +1539,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:blog-techcrunch:c4e99740dbde": [
-   998
-  ],
   "trk:blog-techcrunch:513c1a2ba9a1": [
    999
   ],
@@ -3081,6 +3079,11 @@
   ],
   "trk:blog-techcrunch:8f5e85dadb08": [
    1432
+  ],
+  "macro:2026-11-04": [
+   442,
+   443,
+   444
   ]
  },
  "topics": {},
