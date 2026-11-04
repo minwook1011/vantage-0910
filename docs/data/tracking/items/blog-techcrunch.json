@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "8f5e85dadb08",
+   "kind": "blog",
+   "headline": "웹호스팅 드림호스트, 8월부터 몇 달간 해킹당해 고객 이메일·파일·로그인 정보 유출",
+   "bullets": [
+    "드림호스트가 캘리포니아 법무장관에 낸 유출 신고서에서 해킹이 8월에 시작됐다고 밝혔다.",
+    "해커는 파일 관리 기능의 취약점을 뚫어 로그인 유지용 세션 토큰을 빼냈고, 고객 이메일·파일에 접근했다.",
+    "피해 고객은 '10%를 한참 밑돈다'는 설명만 있다. 유료 고객은 약 40만 명이다."
+   ],
+   "summary": "드림호스트는 지난주 목요일 여러 날 이어진 서비스 장애 뒤에 해킹 사실을 처음 공개했고, 그 과정에서 일부 고객 비밀번호를 초기화했다. 이번 신고서로 공격이 8월부터 이어진 '의도적 공격'이었다는 점이 확인됐다.\n\n세션 토큰은 비밀번호 입력 뒤 로그인 상태를 유지해 주는 값이라, 빼앗기면 해커가 해당 사용자처럼 시스템에 들어갈 수 있다. 회사는 최근 PHP 웹 소프트웨어에서 발견된 취약점과는 관계없다고 했지만, 어떤 취약점인지는 밝히지 않았다.\n\n왜 몇 달 동안 공격을 알아채지 못했는지, 정확한 피해 고객 수는 조사 중이라는 이유로 답하지 않았다. 남은 쟁점은 취약점 공개와 피해 규모 확정이다.",
+   "title": "Hackers stole DreamHost customer files and inboxes during months-long attack",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/04/hackers-stole-dreamhost-customer-files-and-inboxes-during-months-long-attack/",
+   "published": "2026-11-05 05:36 KST",
+   "written": "2026-11-05 05:46 KST"
+  },
+  {
    "id": "c4b6ddb532a4",
    "kind": "blog",
    "headline": "웨이모, 2028년 1월부터 오스틴·애틀랜타에서 우버 독점 끝내고 자체 앱으로 직접 영업",
@@ -2579,5 +2595,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-11-05 05:17 KST"
+ "updated": "2026-11-05 05:46 KST"
 }
