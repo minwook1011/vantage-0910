@@ -375,6 +375,7 @@
   "pod:2026-11-04-sixsigma-z1qegH12thE",
   "pod:2026-11-04-sixsigma-z4_-12eJ2JY",
   "pod:2026-11-04-understanding--Zx0MNc3-BI",
+  "pod:2026-11-05-sixsigma-kT9lueHpruE",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:035d98272c4d",
@@ -1549,9 +1550,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:t-62bbe9b6:25a765eb0d0b": [
-   1010
-  ],
   "trk:blog-techcrunch:97f3b79d69d7": [
    1011
   ],
@@ -3096,8 +3094,11 @@
   ],
   "trk:blog-techcrunch:9fd2dc89b5a2": [
    1440
+  ],
+  "pod:2026-11-05-sixsigma-kT9lueHpruE": [
+   1441
   ]
  },
  "topics": {},
- "topic_fail_at": 1793827390.763367
+ "topic_fail_at": 1793831037.277807
 }
