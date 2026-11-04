@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "23f098c5a86c",
+   "kind": "news",
+   "headline": "메타, AI 코딩 스타트업 '컨덕터' 인수(악시오스 단독) — 코딩 에이전트 여러 개를 동시에 돌리는 도구",
+   "bullets": [
+    "메타가 2024년 설립된 AI 코딩 스타트업 컨덕터를 인수했다고 악시오스가 소식통을 인용해 단독 보도했다. 인수 금액은 공개되지 않았다.",
+    "컨덕터는 AI 코딩 에이전트 여러 개를 한꺼번에 병렬로 돌리는 제품을 만든다. 공동창업자 찰리 홀츠가 최고경영자, 잭슨 드 캄포스가 최고기술책임자다.",
+    "메타는 컨덕터의 빠른 제품 개발력과 개발자 경험에 대한 집중을 차세대 AI 코딩 제품에 쓸 계획이다."
+   ],
+   "summary": "악시오스는 이번 인수를 메타가 AI 코딩 시장 주도권 경쟁에 본격 뛰어든 신호로 해석했다. 메타는 앞서 자체 에이전트형 코딩 도구 '뮤즈 코드'를 내놨고, 지난해 말에는 AI 에이전트 스타트업 마누스를 20억달러 넘게 주고 사들였다.\n\n코딩 도구 시장에서는 앤트로픽의 클로드 코드, 오픈AI의 코덱스가 앞서 있고, 오픈AI도 하루 전 개발자 도구 스타트업 피에르 컴퓨터 인수를 발표했다. 메타·컨덕터 양측의 공식 발표는 아직 없어, 일부 매체는 확인되지 않은 보도라고 지적했다. 인수 조건과 컨덕터 인력이 어느 조직으로 가는지가 남은 확인 사항이다.",
+   "title": "Exclusive: Meta buys AI startup, joins race to own coding in show of outsized ambition",
+   "source": "Axios",
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5pYktNc1JSTUdXaEhqUkxvZ3o2REUyeHV1SGh0am95NTg0dVFsSHBfc1FDZDZocXhFd292a1padWFaTGJYSTd0WXh4RjhNTGw4ZXdXWjFUcURfTVRZaE5VU0lxUEl2a3A5cDBUdFo0NE4zTldsWmd6b1MxV0ZmYVE?oc=5",
+   "published": "2026-11-05 03:16 KST",
+   "written": "2026-11-05 03:47 KST"
+  },
+  {
    "id": "36cbc4912efe",
    "kind": "news",
    "headline": "AMD, 오픈AI·메타에 준 신주인수권 때문에 3분기 11억달러 비현금 손실 — 두 회사가 최대 AMD 지분 10% 확보 가능",
@@ -465,5 +481,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-11-04 21:48 KST"
+ "updated": "2026-11-05 03:47 KST"
 }
