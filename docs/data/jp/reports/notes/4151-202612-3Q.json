@@ -27,10 +27,34 @@
   "line": "분기 주당순이익 40.2엔이 컨센서스 39.5엔보다 +1.8%로 ±3% 안이고 매출은 −2.0%. 연간 계획은 유지했다",
   "basis": "컨센서스",
   "checks": [
-   {"item": "분기 주당순이익", "actual": "40.2엔", "base": "컨센서스 39.5엔", "diff": "+1.8%", "tone": "flat"},
-   {"item": "매출", "actual": "1,213억엔", "base": "컨센서스 1,238억엔", "diff": "−2.0%", "tone": "dn"},
-   {"item": "일회성 제외 영업이익률", "actual": "25.4%", "base": "전년 동기 24.6%", "diff": "+0.8%p", "tone": "up"},
-   {"item": "세전이익 진척률", "actual": "68.1%", "base": "5년 평균 72.5%", "diff": "−4.4%p", "tone": "dn"}
+   {
+    "item": "분기 주당순이익",
+    "actual": "40.2엔",
+    "base": "컨센서스 39.5엔",
+    "diff": "+1.8%",
+    "tone": "flat"
+   },
+   {
+    "item": "매출",
+    "actual": "1,213억엔",
+    "base": "컨센서스 1,238억엔",
+    "diff": "−2.0%",
+    "tone": "dn"
+   },
+   {
+    "item": "일회성 제외 영업이익률",
+    "actual": "25.4%",
+    "base": "전년 동기 24.6%",
+    "diff": "+0.8%p",
+    "tone": "up"
+   },
+   {
+    "item": "세전이익 진척률",
+    "actual": "68.1%",
+    "base": "5년 평균 72.5%",
+    "diff": "−4.4%p",
+    "tone": "dn"
+   }
   ],
   "guide": "유지",
   "market": "장 마감 뒤 발표 — 주가 반응 아직 없음"
@@ -40,15 +64,42 @@
   "note": "아직 회사가 공개한 질의응답 없음(2026-11-02 확인)"
  },
  "sources": [
-  {"label": "결산단신(2026년 12월기 3분기)", "url": "https://tdnet-pdf.kabutan.jp/20261102/140120261030560518.pdf"},
-  {"label": "결산단신 보충자료(분기 손익·제품별 매출)", "url": "https://tdnet-pdf.kabutan.jp/20261102/140120261030560544.pdf"},
-  {"label": "결산단신(2026년 12월기 2분기, 환율 효과 역산용)", "url": "https://www2.jpx.co.jp/disc/41510/140120260710591300.pdf"},
-  {"label": "카부탄 결산 속보 11/2", "url": "https://kabutan.jp/stock/news?code=4151&b=k202611020049"},
-  {"label": "회사 보도자료 9/8 눈 안약 후보 2상 결과", "url": "https://www.kyowakirin.co.jp/pressroom/news_releases/2026/pdf/20260908_01.pdf"},
-  {"label": "쿠라 온콜로지 2026년 2분기 10-Q", "url": "https://www.sec.gov/Archives/edgar/data/0001422143/000119312526346884/kura-20260630.htm"},
-  {"label": "울트라제닉스 2026년 2분기 10-Q", "url": "https://www.sec.gov/Archives/edgar/data/0001515673/000119312526333233/rare-20260630.htm"},
-  {"label": "주가이제약 결산단신", "url": "https://www.release.tdnet.info/inbs/140120261026556449.pdf"},
-  {"label": "다이이치산쿄 결산단신", "url": "https://www.release.tdnet.info/inbs/140120261028556619.pdf"}
+  {
+   "label": "결산단신(2026년 12월기 3분기)",
+   "url": "https://tdnet-pdf.kabutan.jp/20261102/140120261030560518.pdf"
+  },
+  {
+   "label": "결산단신 보충자료(분기 손익·제품별 매출)",
+   "url": "https://tdnet-pdf.kabutan.jp/20261102/140120261030560544.pdf"
+  },
+  {
+   "label": "결산단신(2026년 12월기 2분기, 환율 효과 역산용)",
+   "url": "https://www2.jpx.co.jp/disc/41510/140120260710591300.pdf"
+  },
+  {
+   "label": "카부탄 결산 속보 11/2",
+   "url": "https://kabutan.jp/stock/news?code=4151&b=k202611020049"
+  },
+  {
+   "label": "회사 보도자료 9/8 눈 안약 후보 2상 결과",
+   "url": "https://www.kyowakirin.co.jp/pressroom/news_releases/2026/pdf/20260908_01.pdf"
+  },
+  {
+   "label": "쿠라 온콜로지 2026년 2분기 10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001422143/000119312526346884/kura-20260630.htm"
+  },
+  {
+   "label": "울트라제닉스 2026년 2분기 10-Q",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001515673/000119312526333233/rare-20260630.htm"
+  },
+  {
+   "label": "주가이제약 결산단신",
+   "url": "https://www.release.tdnet.info/inbs/140120261026556449.pdf"
+  },
+  {
+   "label": "다이이치산쿄 결산단신",
+   "url": "https://www.release.tdnet.info/inbs/140120261028556619.pdf"
+  }
  ],
- "ir_pending": "2026-11-02 확인 — 설명회 자료 아직 없음(TDnet 미게재, 회사 IR 페이지 접속 실패). 결산단신 보충자료는 읽음"
+ "ir_pending": "2026-11-04 확인 — 설명회 자료 아직 없음(TDnet 미게재, 회사 IR 페이지 접속 실패). 결산단신 보충자료는 읽음"
 }
