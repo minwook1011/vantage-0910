@@ -662,6 +662,7 @@
   "trk:blog-techcrunch:cdc4cf814fde",
   "trk:blog-techcrunch:d2ddbfc8a377",
   "trk:blog-techcrunch:d47cd538eaca",
+  "trk:blog-techcrunch:d48a23d96b99",
   "trk:blog-techcrunch:d58e9a52e8d2",
   "trk:blog-techcrunch:d662875b7cc0",
   "trk:blog-techcrunch:d9e173490cb6",
@@ -1516,9 +1517,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:yt--jklonfa:ca0d1d79801e": [
-   978
-  ],
   "ins:ins-20261027-amodei-s1-compute-ledger-supply-chain-credit": [
    979
   ],
@@ -3059,8 +3057,11 @@
   ],
   "trk:ax:a3419a9654fe": [
    1410
+  ],
+  "trk:blog-techcrunch:d48a23d96b99": [
+   1411
   ]
  },
  "topics": {},
- "topic_fail_at": 1793797416.630382
+ "topic_fail_at": 1793801872.839418
 }
