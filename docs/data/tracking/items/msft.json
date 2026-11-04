@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "e21c413f532d",
+   "kind": "news",
+   "headline": "오픈AI, 개발자 도구 스타트업 '피에르 컴퓨터' 인수 — 코덱스에 코드 저장소 붙여 깃허브에 도전(악시오스 단독)",
+   "bullets": [
+    "악시오스에 따르면 오픈AI가 개발자 도구 스타트업 피에르 컴퓨터를 인수한다.",
+    "목적은 코드 저장(호스팅) 기능을 오픈AI의 코딩 에이전트 '코덱스'에 통합하는 것으로, 마이크로소프트의 깃허브와 정면으로 겹친다.",
+    "마이크로소프트는 오픈AI의 핵심 투자자이자 깃허브의 주인이라, 두 회사가 개발자 도구 시장에서 직접 경쟁하는 구도가 짙어진다."
+   ],
+   "summary": "오픈AI의 깃허브 대안 추진은 처음이 아니다. 디인포메이션은 3월, 오픈AI 엔지니어들이 깃허브 장애를 자주 겪자 회사가 자체 코드 호스팅 플랫폼을 개발 중이라고 보도했다. 당시엔 초기 단계로 출시가 임박한 건 아니라고 전해졌다. 이번 인수는 그 구상을 외부 인수로 앞당기는 움직임이다.\n\n인수 금액 등 세부 조건은 원문이 유료라 확인하지 못했다. 깃허브는 코파일럿을 앞세운 AI 코딩 시장의 주요 사업자이고, 오픈AI는 코덱스로 같은 시장을 노린다. 코드가 저장되는 자리까지 오픈AI가 가져가면 개발자 작업 흐름 전체를 놓고 마이크로소프트와 맞붙게 된다.",
+   "title": "Exclusive: OpenAI targets Microsoft's GitHub with deal for startup",
+   "source": "Axios",
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5OaUdITlV1WEtmam1aNDlWMG4yd1hMZXBSc19qTExTVkdOeTgtbkt0VGtzWklpUlg0VENqOXBmUjlZUjEtNmNPdDdBak01dmRZTlAtd0kyTlA4WFlQdFVVUHluVFpKNjZPQS1CRWRHcw?oc=5",
+   "published": "2026-11-04 20:31 KST",
+   "written": "2026-11-04 20:44 KST"
+  },
+  {
    "id": "669b89551e21",
    "kind": "news",
    "headline": "마이크로소프트, 2017년 이후 처음으로 미국 투자등급 회사채 발행 착수(블룸버그)",
@@ -433,5 +449,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-10-29 21:19 KST"
+ "updated": "2026-11-04 20:44 KST"
 }

@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "e0015b86474f",
+   "kind": "news",
+   "headline": "알파벳, 골드만 통해 15억달러 규모 '선불 에너지' 채권 거래 추진 — 올해 두 번째 지방채 활용(블룸버그)",
+   "bullets": [
+    "구글 모회사 알파벳이 캘리포니아 공공 전력조합 채권을 통해 약 15억달러를 먼저 받는 선불 에너지 거래를 준비 중이다. 골드만삭스가 주선한다.",
+    "채권은 캘리포니아 커뮤니티 초이스 금융청이 발행하고, 상대 전력조합은 산타크루즈~산타바버라 해안을 맡는 센트럴코스트 커뮤니티 에너지다.",
+    "6월 첫 거래(서류상 약 10억달러, 최종 약 12억달러)에 이은 두 번째다. 15억달러도 서류상 예비 수치라 최종 규모는 달라질 수 있다."
+   ],
+   "summary": "선불 에너지 거래는 지방채로 모은 돈을 기업이 먼저 받고, 이후 전력조합에 장기간 전력 공급 대금 형태로 나눠 갚는 구조다. 전력조합은 재생에너지를 미리 할인된 값에 사 두는 효과를 얻는다. 6월 알파벳의 첫 거래 때는 투자자 수요가 몰려 이후 유통시장에서 스프레드가 좁혀졌다.\n\n블룸버그 집계로 올해 선불 에너지 채권 발행은 약 365억달러로 이미 지난해 기록(310억달러)을 넘었다. 빅테크가 데이터센터 투자 자금을 회사채뿐 아니라 지방채 시장에서도 구하고 있다는 점이 눈에 띈다. 다만 채권 서류에는 알파벳이 이번 자금을 어디에 쓸지 적혀 있지 않다.",
+   "title": "Google Parent Plans $1.5 Billion Prepaid Energy Deal Via Goldman",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOTlZuNUttTjFrcW1yeF9oS04xTjExLTBnZlQ4YnVDVmdTcUlSX20zMlNqRHdEUlRoN3c5S0YwQ1dVMmRfUEpPd3JOaEZfaDJOMXh3TVRERHk5ekdJN0txdXd4RnZyR0otVmttWmN2cUVsbmo4bDVmX05YckRRYndpVGxsaHFodENWU3FNTUVGel9Kd2ZTUDBfVGNiMll4bVB4YUNwWGxzUHd6anlnWDc1SlU5OVY?oc=5",
+   "published": "2026-11-04 01:10 KST",
+   "written": "2026-11-04 20:44 KST"
+  },
+  {
    "id": "91f1db2d36b4",
    "kind": "news",
    "headline": "구글, 내년부터 초중고 학생 AI 도구 기본 '꺼짐' — 대신 AI를 전부 막는 학교는 구글 검색도 못 쓴다",
@@ -609,5 +625,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-04 20:23 KST"
+ "updated": "2026-11-04 20:44 KST"
 }

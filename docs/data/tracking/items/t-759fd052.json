@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "72efaf5f17bb",
+   "kind": "news",
+   "headline": "앤트로픽, 상장 앞두고 투자자들에 '클로드로 자체 AI 칩 설계 중' 내세워(디인포메이션)",
+   "bullets": [
+    "디인포메이션에 따르면 앤트로픽은 기업공개(IPO) 투자자 설명에서 사내 칩 설계팀이 클로드 모델을 활용해 맞춤형 AI 칩을 개발하고 있다고 강조했다. 관련자 4명이 전한 내용이다.",
+    "앤트로픽은 8월 클로드용 칩 설계팀 신설을 공식화했고, 설계·검증·물리설계·패키징 엔지니어를 연봉 32만~48만5천달러에 뽑고 있다.",
+    "회사는 자체 칩이 '여러 칩을 함께 쓰는 전략'의 한 단계일 뿐이며 AWS·구글·엔비디아·AMD 하드웨어는 계속 쓴다고 밝혀 왔다."
+   ],
+   "summary": "이번 보도의 요지는 칩 설계 자체보다 'AI가 칩 설계를 돕는다'는 점을 상장 투자자 설득 재료로 쓰고 있다는 데 있다. 앤트로픽은 계산 자원을 엔비디아 GPU와 AWS·구글 칩에 크게 의존하고 있고, 8월 칩 설계팀 신설 때도 첨단 AI 개발에 필요한 칩 부족이 배경으로 꼽혔다(로이터).\n\n칩을 언제 내놓을지, 생산을 직접 할지 맡길지는 공개된 바 없다. 디인포메이션은 7월 앤트로픽이 삼성전자를 위탁생산 후보로 살펴봤다고 보도한 바 있다. 이번 내용은 상장 직전 투자자 설명에서 나온 것으로, 회사 공식 발표는 아니다. 남은 쟁점은 설계 성과가 실제 시제품·양산 일정으로 이어지느냐다.",
+   "title": "Anthropic touts Claude’s chip design skills to investors ahead of IPO, report says",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNbGRldDd0Z05xZVFSNHMweWV3eXBubzRXRHB1dTNhSjVEUVJVS1UzQ1E1eklnZ1ZsY0poNlp1U291SmIyWGJHWjhqTzFkazd2cTJfeE1hYXRfLWlyYWZUNUE4V3gzMkszWHBab3Y1dUJPZ0x6NkE3YVBiRkNmN2twcE1NMDdsRGY1LXhxcHdTaWY5MGQ5U1FoZWtqYlZ0Smc?oc=5",
+   "published": "2026-11-04 00:35 KST",
+   "written": "2026-11-04 20:44 KST"
+  },
+  {
    "id": "6608f15d9d4b",
    "kind": "news",
    "headline": "SK텔레콤 \"앤트로픽 지분 매각 여부는 사업 연계·시장 여건 보고 판단\" — 매각 재원은 AI 데이터센터 투자 등에 활용",
@@ -1185,5 +1201,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-11-04 17:27 KST"
+ "updated": "2026-11-04 20:44 KST"
 }
