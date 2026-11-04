@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "91f1db2d36b4",
+   "kind": "news",
+   "headline": "구글, 내년부터 초중고 학생 AI 도구 기본 '꺼짐' — 대신 AI를 전부 막는 학교는 구글 검색도 못 쓴다",
+   "bullets": [
+    "구글이 내년부터 초중고(K-12) 학생 계정에서 제미나이·노트북LM·클래스룸 속 제미나이·검색 AI 기능을 기본으로 꺼 두고, 학교 관리자가 켜야만 쓰게 한다.",
+    "다만 AI를 완전히 막기로 한 학교는 구글 검색 자체도 끊긴다 — 검색과 AI가 한 몸이라는 이유다.",
+    "구체적인 일정·방식은 앞으로 몇 달 안에 학교에 안내할 예정이다."
+   ],
+   "summary": "뉴욕타임스가 11월 3일 처음 보도했고 구글이 같은 날 발표했다. 구글 교육 담당 부사장 크리스 필립스는 검색과 AI가 깊이 통합돼 있어 분리할 수 없다고 설명했다. AI를 막은 학교의 학생은 검색창 대신 '학교가 이 서비스를 막았다'는 안내 문구를 보게 된다.\n\n그동안 커먼센스미디어 등 시민단체는 검색 결과 위 AI 요약(AI 오버뷰)과 AI 모드를 학교가 끌 방법이 없다며 학생에게 위험하다고 비판해 왔다. 구글은 학교에 통제권을 준다는 입장이지만, 크롬북·구글 앱을 쓰는 학교 대부분은 검색이 필수라 사실상 AI를 함께 받아들여야 하는 구조다. 구글은 같은 날 답을 바로 주지 않고 단계별로 이끄는 AI 튜터 기능 '가이디드 러닝'도 학교에 내놨다. 교육 현장 반발과 규제 당국 반응이 남은 쟁점이다.",
+   "title": "Alphabet's Google Reportedly to Cut Search Access for Schools That Restrict AI",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPUlp0ZHNaTFJkNDh5bkl1NF82QkVXdC1qRWtRS3NfdFRkWG1TQnl4c29ybHVFZUs3bnFWTkduWWdYeU51SVNmNnhfWE1LdWdpeG5ZdFRDM0lDZW9IdGpuVk8xdTNHbFNxbkNRLWlvVFFITVY3aWRZMnpZX0NfUy1fUDBHVUo4UHdZUUdKdlVBRTZ1NnU5RktvVWtGa3lnMUVn?oc=5",
+   "published": "2026-11-04 02:34 KST",
+   "written": "2026-11-04 20:23 KST"
+  },
+  {
    "id": "0f848738fb84",
    "kind": "news",
    "headline": "EU 최고법원 법무관 \"구글 제미나이의 언론 기사 재사용, 저작권 침해일 수 있다\" — 학습은 허용, 답변 재현은 문제",
@@ -593,5 +609,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-04 19:50 KST"
+ "updated": "2026-11-04 20:23 KST"
 }
