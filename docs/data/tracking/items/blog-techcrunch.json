@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "532c630d1480",
+   "kind": "blog",
+   "headline": "애플, 엔지니어 하루 AI 사용 한도 300→200달러로 줄여(블룸버그) — 일부는 100달러까지 추가 삭감",
+   "bullets": [
+    "애플이 10월 엔지니어링 팀의 하루 AI 지출 한도를 300달러에서 200달러로 낮췄다고 블룸버그가 보도했다.",
+    "추가 삭감도 진행 중이라 일부 한도는 하루 100달러까지 내려가고, 엔지니어링 밖 부서는 하루 25달러 한도까지 검토하고 있다.",
+    "테크크런치는 애플에 입장을 요청했다."
+   ],
+   "summary": "애플은 엔지니어링 과정에 AI를 깊게 넣어 온 회사라 이번 조치가 더 눈에 띈다. 올해 초 기업들은 막연한 효율 향상을 내세워 직원들에게 AI를 최대한 쓰라고 독려했지만, 토큰 청구서가 쌓이자 사용량을 배급하는 쪽으로 돌아서고 있다. AI를 만들고 돌리는 비용과 아직 불분명한 생산성 효과 사이의 간극에 대한 우려가 계속되고 있다는 게 테크크런치의 평가다.",
+   "title": "Apple is reportedly cutting budgets for its internal AI usage",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/04/apple-is-reportedly-cutting-budgets-for-its-internal-ai-usage/",
+   "published": "2026-11-05 10:26 KST",
+   "written": "2026-11-05 16:28 KST"
+  },
+  {
    "id": "517cacbdc275",
    "kind": "blog",
    "headline": "중간선거 민주당 의회 장악 — 데이터센터 반대 여론이 정치 변수로, 건설 중단·전력비 부담 규제 가능성",
@@ -2707,5 +2723,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-11-05 10:19 KST"
+ "updated": "2026-11-05 16:28 KST"
 }

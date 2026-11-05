@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "1f10d06697ba",
+   "kind": "news",
+   "headline": "마이크로소프트, 엔스케일 텍사스 데이터센터 임대 확대 옵션 거절(파이낸셜타임스) — 수백억달러 규모, 엔스케일은 약 350억달러 상장 준비 중",
+   "bullets": [
+    "마이크로소프트가 엔스케일 텍사스 워드카운티 부지의 기존 연산 임대 계약을 두 배 넘게 키울 수 있던 옵션을 행사하지 않았다(소식통 3명 인용). 잠재 규모는 수백억달러다.",
+    "엔스케일은 이 부지의 새 고객을 찾지 못하면 수십억달러의 미래 매출을 잃는다. 올해 상반기 매출 1억4,100만달러에 순손실 10억달러를 냈다.",
+    "마이크로소프트는 올해 초 영국 에식스 데이터센터 30억달러 임대 계약에서도 빠진 바 있다."
+   ],
+   "summary": "2025년 10월 엔스케일은 아이오닉 디지털이 개발 중인 인근 부지 약 240MW를 마이크로소프트에 임대하고, 700MW 규모 2단계 옵션을 붙인 계약을 발표했다. 엔스케일은 이번 주 FT에 그 옵션이 실제로는 500MW에 가깝고 자사 부지 추가 용량에 관한 것이라고 설명했다. 아이오닉 부지의 나머지 용량은 아직 전력을 확보하지 못했고, 마이크로소프트가 우선협상권을 갖고 있다(아이오닉의 증권거래위원회 제출 서류).\n\n엔스케일은 9월 로봇 회사 피규어와 계약했고 이 부지를 두고 다른 잠재 고객들과도 협상 중이다. 앤트로픽과 맺은 450억달러 연산 계약의 핵심인 웨스트버지니아 부지는 공사 지연과 주민 반대를 겪고 있고, 두 번째 460MW 데이터센터 임대 확대를 앤트로픽과 논의하고 있다. FT는 이번 결정이 엔스케일 전체 수주잔고 1,030억달러에는 영향이 없다고 전했다. 새 계약은 네오클라우드가 계속 빚을 내 데이터센터를 짓는 데 핵심이라, 부채 많은 AI 인프라에 대한 경계가 커지는 흐름 속의 악재다.",
+   "title": "Microsoft rejects multibillion-dollar AI deal with UK’s Nscale",
+   "source": "Financial Times",
+   "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNdnNKc0t2WlRGTk9fTmRoLXFJUWkweF9tNXY1UG1FZjUxdkhGVGtUYmlvMmtvS2ZpX3VabTE1VW1jaUNGalhsbTRENTNTZXVwb1dfZ2FDaUJwUkxhYWc0cTA4Rm5wdENKclZPTVRaQV8zT1VpcHV3eVFIUmJUWUdiWlVRRkk?oc=5",
+   "published": "2026-11-05 14:01 KST",
+   "written": "2026-11-05 16:28 KST"
+  },
+  {
    "id": "ed88a906edc4",
    "kind": "news",
    "headline": "마이크로소프트, 아이렌(IREN)의 데이터센터 공급 지연 뒤 데이터센터 투자 줄여(디인포메이션 단독)",
@@ -465,5 +481,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-05 06:48 KST"
+ "updated": "2026-11-05 16:28 KST"
 }

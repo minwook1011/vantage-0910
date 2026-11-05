@@ -3,6 +3,54 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "0b0e54066438",
+   "kind": "news",
+   "headline": "AIG손해보험, 외부 해킹 시도 확인해 금융당국에 신고 — 한양증권처럼 외부 그룹웨어 통해 침입 추정",
+   "bullets": [
+    "AIG손보가 최근 외부에 의한 해킹 시도를 확인하고 금융감독원에 신고했다.",
+    "지난달 말 한양증권 해킹 사고처럼 외부 그룹웨어 솔루션을 통해 발생한 것으로 전해진다.",
+    "단순 침입 시도인지 정보 유출인지는 아직 파악 중이며, 유출 범위와 경위를 조사하고 있다."
+   ],
+   "summary": "보험업권에서는 미래에셋생명에 이어 두 번째 해킹 사례다. 금융권에서는 한 달 새 해킹이 잇따라 금융위원회가 580여 개 금융사 보안 전수점검에 들어간 상태이고, 금융당국은 앞서 빗썸·한양증권 해킹 통로로 지목된 그룹웨어를 쓰는 금융사에 긴급 패치와 보고를 지시했다.\n\nAIG손보 사례가 같은 그룹웨어를 통한 것인지, 실제 고객 정보 유출로 이어졌는지가 남은 쟁점이다. 그룹웨어처럼 여러 금융사가 함께 쓰는 외부 솔루션이 공통 침입 경로가 되고 있어 추가 피해 금융사가 나올 가능성도 있다.",
+   "title": "AIG손보, 해킹 시도 인지…금융당국에 신고",
+   "source": "연합인포맥스",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE8tZkZiQUJmSGItRHRzSVFENElqeEJwT2k3bFZUT1ZmS2psd0FWcFFRdHdGd19mNW40MV9PdkZxN2djSmd2M1FBa2xMT3ZmTV9MTWZjRUxrMUpCbmttWlJmOFR4bXBLckZLWjc5SWRNdTU?oc=5",
+   "published": "2026-11-05 16:03 KST",
+   "written": "2026-11-05 16:28 KST"
+  },
+  {
+   "id": "c7ee3c66936e",
+   "kind": "news",
+   "headline": "개인정보위, 공공시스템 연 1회 이상 취약점 점검·침투시험 의무 담은 안전조치 안내서 개정",
+   "bullets": [
+    "개인정보보호위원회가 '개인정보의 안전성 확보조치 기준' 안내서를 개정·발간했다.",
+    "7월 고시 개정으로 생긴 공공시스템별 연 1회 이상 취약점 점검·침투시험 의무에 대한 해설과 자주 묻는 질문을 추가했다.",
+    "소개하는 인증수단을 7종에서 패스키·QR코드·모바일 앱 등 12종으로 늘리고, 양자내성암호 도입 내용도 넣었다."
+   ],
+   "summary": "개인정보위는 공공부문 개인정보 유출 사고를 막기 위해 올해 7월 고시를 바꿔 공공시스템마다 연 1회 이상 취약점 점검과 침투테스트를 하고, 확인된 취약점은 지체 없이 고치도록 했다. 이번 안내서는 그 의무를 현장에서 어떻게 적용할지 풀어 쓴 것이다.\n\n암호키를 소스코드나 설정파일에 평문으로 저장하지 말라는 키 관리 주의, 시스템 간 연계에 쓰는 응용프로그램 인터페이스(API)의 안전 점검 항목, 시스템 업데이트가 늦어질 때의 안전조치 설명도 보탰다. 대구시 공공배달앱 '대구로' 해킹 등 공공 서비스 사고가 이어진 가운데 나온 조치다.",
+   "title": "공공시스템 연 1회 해킹 취약점 점검 의무…개보위 안내서 개정",
+   "source": "Chosunbiz",
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQVC1XVTdTTnFpbWk4bV9YUlg0VHNFam9pZENzMnNubEJ4elpVdnpvQUk2ajFiZWlOQy10WDQ2QlBWc2RVbGo4LS1XNnlCc2lZSEF0N1hvZmo3UmVGcVlRWTcxQzIwd2JrZzdNN1h2WWNPekZFUmMtY0xQSFRUdFdFQ1ZR0gGWAUFVX3lxTE5xVGFjZzZHQkU0cHF1Y29nNFdDQjhvLVRzcGg0b2ZhRW1mVWZ3eEMtRjNUaV9DU091b3R1NDAxZWF4b0UtTGNNbzM3Ri1IcW5JVFVGM0d6dlkzMGJxOGt4T0xEZVhBWDFQNVg5UG95U2JCZzU3TjdtVzRaUDVucl9idFF4SlRVR2dhV2NJeC1IeW9BZWdjQQ?oc=5",
+   "published": "2026-11-05 14:21 KST",
+   "written": "2026-11-05 16:28 KST"
+  },
+  {
+   "id": "a3a29fd261a2",
+   "kind": "news",
+   "headline": "[후속] '니케' 운영사 레벨인피니트 공식 사과·경위 공개 — 9월 27일 도메인 탈취·CDN 파일 4개 변조, 10월 30일부터 악성코드 배포",
+   "bullets": [
+    "텐센트 산하 레벨인피니트가 PC 런처 보안 사고 책임을 인정하고 사과하며 경위를 공개했다. 9월 27일 게임 서비스 도메인이 탈취됐고 같은 날 런처가 받는 공식 CDN 스크립트 파일 4개가 변조됐다.",
+    "악성 프로그램 배포는 10월 30일 오전 3시 52분 시작됐고, 11월 4일 자정께 이상을 확인해 같은 날 낮 12시 9분 조치를 마쳤다.",
+    "5일 오전 8시부터 PC 클라이언트에 악성 프로그램 자동 검사·제거 기능을 넣었고, 9월 27일 오후 3시 41분 이후 런처를 실행한 이용자가 대상이다."
+   ],
+   "summary": "운영진은 이용자 PC와 계정 정보가 노출됐을 가능성이 있다며 피해 규모를 조사 중이다. 점검 뒤 해당 PC에서 쓴 계정 비밀번호를 바꾸고, 저장했던 API 키와 액세스 토큰은 폐기 후 재발급하라고 권고했다. 계정 이상이나 금전 피해는 고객센터로 접수받는다.\n\n재발 방지책으로 보안 모니터링 강화, 외부 리소스 변조 여부를 확인하는 무결성 검증 체계, 런처 기능별 권한 최소화를 내놨고 게임 내 보상도 준비했다. 파일 변조 경로를 찾기 위한 네트워크 보안 점검도 진행 중이다. 다만 이상 확인 뒤 하루가 지나 사과문을 내 '늑장 공지' 비판이 나온다. 개발사 시프트업 김형태 대표는 4일 X로 먼저 사과했다.",
+   "title": "'니케' PC 런처 해킹 사고... 레벨 인피니트 사과·자동 탐지 기능 도입",
+   "source": "전자신문",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBJblRJSTdYdkJsdEVELURIeVdqcjNKVHpYTVVvQjYweTdLNExITGUxVFgydzhQRnBKcTh4d0NzSWl5OEJGSG53SDZmYUR5Zw?oc=5",
+   "published": "2026-11-05 13:40 KST",
+   "written": "2026-11-05 16:28 KST"
+  },
+  {
    "id": "3ed448167a4a",
    "kind": "news",
    "headline": "대구 공공배달앱 '대구로' 서버 해킹 — 점주 250여명 아이디·비밀번호, 계좌번호 2만5천여개 노출",
@@ -771,5 +819,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-05 10:19 KST"
+ "updated": "2026-11-05 16:28 KST"
 }
