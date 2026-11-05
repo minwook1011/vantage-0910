@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "4313d0fb7780",
+   "kind": "news",
+   "headline": "중국, 엔비디아 H200 대량 수입 승인 미뤄 — 약 60만 개가 홍콩에 쌓여 대기(로이터 단독)",
+   "bullets": [
+    "엔비디아 고급 인공지능 칩 약 60만 개가 중국 본토로 들어가지 못하고 홍콩에 보관돼 있다고 로이터가 소식통 2명을 인용해 보도했다.",
+    "알리바바·바이트댄스·텐센트 등 중국 대형 인터넷 기업들은 지난 몇 달 동안 각각 H200 약 1만 개씩만 받았고, 대량 수입 승인은 아직 나지 않았다.",
+    "로이터는 중국 정부가 미국 기술 의존을 늘리기 꺼리는 것이 지연 이유라고 전했다. 엔비디아와 중국 기업들은 답하지 않았다."
+   ],
+   "summary": "엔비디아의 중국 판매 길이 미국 수출 허가만으로 끝나지 않는다는 게 다시 드러났다. 로이터에 따르면 홍콩에 쌓인 엔비디아 칩은 약 60만 개로, 중국 당국의 대량 수입 승인을 기다리고 있다. 일부 물량은 최근 몇 달 사이 본토로 들어갔지만 대형 기업들이 받은 양은 회사당 1만 개 수준에 그친다.\n\n중국은 앞서 H200을 제한적으로만 들여오게 하고, 일부는 홍콩에서 쓰도록 해 왔다. 하지만 홍콩은 데이터센터 공간과 전력이 부족해 대량으로 돌리기 어렵다는 지적이 이어져 왔다. 공급이 막히면서 중국 본토에서 H200 8장짜리 서버 값은 10월 말 600만 위안(약 90만 달러)을 넘어 1년 전의 약 3배가 됐다고 로이터는 전했다.\n\n남은 쟁점은 중국이 언제, 얼마나 승인하느냐다. 승인이 늦어질수록 엔비디아의 중국 매출 인식도 늦어지고, 재고 부담도 커질 수 있다.",
+   "title": "EXCLUSIVE: Nvidia chips pile up in Hong Kong as China withholds import approval",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQZHNUQnlURFBWSTlTSE5wNWUzekR0cDZfcWQzQVRFLVNweXJiSGhtSFZ6cWdvMXF4SHpLRy1YT1Y2QjJZMGxRajNaRGQ1Y25SVGkycEphaU4zTTRJSzV0QjNPTFMxeEl0Mm9CdGFQc0JJTHBNemVoSXdkTnhsR1FNR0t1b2hoUHdfSW0yVnlGMl95Qkd4dDAtMGdhYTFhUzRhc0U1Mm9fdGxLRnhacUNr?oc=5",
+   "published": "2026-11-05 20:38 KST",
+   "written": "2026-11-05 20:49 KST"
+  },
+  {
    "id": "b9aafe599c33",
    "kind": "news",
    "headline": "엔비디아 협력사 폭스콘(훙하이), 10월 매출 1조3,053억 대만달러로 전년 대비 45.7% 증가 — 월간 최대",
@@ -819,5 +835,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-05 17:24 KST"
+ "updated": "2026-11-05 20:49 KST"
 }
