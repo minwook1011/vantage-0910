@@ -3,6 +3,22 @@
  "slug": "ax",
  "items": [
   {
+   "id": "f430c5044c98",
+   "kind": "news",
+   "headline": "포티투마루, GPU·NPU 장비에 자사 AI 에이전트 솔루션 얹은 일체형 '어플라이언스42' 출시 — 중소기업·지자체 겨냥",
+   "bullets": [
+    "에이전틱 AI 기업 포티투마루가 GPU·NPU·LPU 하드웨어와 자사 AI 솔루션을 묶은 일체형 AI 전환(AX) 제품 '어플라이언스42'를 내놨다.",
+    "별도 서버 구축 없이 사내망에서 바로 돌리는 온프레미스형이 기본이고, 장비가 없는 곳엔 클라우드 GPU를 쓰는 클라우드형도 제공한다.",
+    "대기업·중앙부처 중심이던 AX 시장을 중견·중소기업, 소상공인, 기초지자체로 넓히겠다는 전략이다."
+   ],
+   "summary": "AI를 쓰고 싶어도 고성능 연산 인프라나 전담 인력이 없어 도입을 망설이는 기관이 많다는 게 출시 배경이다. 하드웨어와 소프트웨어를 따로 사서 맞추는 대신 '올인원 패키지'로 공급해 진입 장벽을 낮춘다.\n\n모든 패키지에 검색증강생성(RAG42), AI 독해(MRC42), 도메인 특화 언어모델(LLM42), 에이전틱 AI 플랫폼(Agent42)이 기본으로 들어간다. 보안 수준·예산·IT 운영 환경에 따라 온프레미스와 클라우드형 중 고를 수 있다. 가격이나 첫 고객 같은 구체적 숫자는 공개되지 않았다.",
+   "title": "포티투마루, 서버 구축 부담 없는 AX 솔루션 출시",
+   "source": "디지털데일리",
+   "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1CQzQzT0NGbGdNSmI0a1FsQzljaU1oeTYtRURhVVJzd1BYUExTa1VnUndKaWxQTWMzeVRuSkJYRlg3em5XbXdBQVJKbnNBRnZRd0wycEwteFVHdTc3UUNEZ3BEeXU?oc=5",
+   "published": "2026-11-05 10:18 KST",
+   "written": "2026-11-05 16:49 KST"
+  },
+  {
    "id": "adc8d7d4ffb2",
    "kind": "news",
    "headline": "KT, 6개 문항 진단으로 맞춤 AI 전환 방안 추천하는 'AX 비즈 포털' 열어",
@@ -323,5 +339,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-05 09:19 KST"
+ "updated": "2026-11-05 16:49 KST"
 }

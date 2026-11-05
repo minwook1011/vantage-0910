@@ -3,6 +3,38 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "ea887721ae4c",
+   "kind": "news",
+   "headline": "티빙, 해킹 보상안 효과로 10월 활성기기 1,930만대 역대 최대 — 보상이 앱 신청 방식이라 설치 늘어",
+   "bullets": [
+    "티빙의 10월 활성기기는 약 1,930만대로 역대 최대다. 1년 전보다 22% 늘었고, 월간 이용자는 947만명으로 24% 증가했다(모바일인덱스).",
+    "6월 해킹으로 3,954만개 계정 정보가 유출된 뒤 내놓은 보상 패키지를 앱에서만 신청·사용할 수 있게 한 영향으로 풀이된다.",
+    "티빙 3분기 매출은 1,205억원(+22%), 영업손실 72억원이다. 보상 비용은 3분기에 일부, 4분기에 전부 반영된다."
+   ],
+   "summary": "보상 패키지는 해킹·피싱 안심보험 1년, 티빙 포인트 5천원, 화질 업그레이드에 웨이브 1개월권이나 CGV 할인쿠폰 중 하나를 고르는 구성이다. 원래 9월 한 달만 받으려다 신청이 적다는 지적에 10월까지 연장했다.\n\n합병을 앞둔 웨이브도 반사이익을 봤다. 10월 신규 설치가 약 29만건으로 2023년 집계 이후 최다다. 두 앱을 합친 월간 이용자는 약 1,117만명으로 1위 넷플릭스(1,576만명)와 격차가 400만명 수준으로 좁혀졌다. 다만 보상만 받고 빠져나가는 이용자를 붙잡을 콘텐츠가 관건이라는 지적이 나온다.",
+   "title": "\"해킹 보상안 덕분?' 티빙 깔아서 쓴 사용자, 역대 최대 - 머니투데이",
+   "source": "머니투데이",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBsQmRBWmJRMTl2UDd3ZlZVSGtMcUVtWnJ0a1ZHM0FUbVZ0ang3eHF4M05zNl9OTUZZb25qai0zeFlTTVZJSTFWVjAtZ21xSFZDVWxSblRLYVZLelk0cHJhZjV1QU5FUU3SAWxBVV95cUxQMGc5WXhaZ3VOaGRMdFh1UExEZ0RTc3BBeEVMSHBRNGpDUEdyUGFlMDR5bWxWV29QQUVJWWNSTEdnMElQOUhwUk9OMmd3QXJoWlNGOWlJU28yemJRLWFJUV93NWtsRXRzUElPUEM?oc=5",
+   "published": "2026-11-05 16:39 KST",
+   "written": "2026-11-05 16:49 KST"
+  },
+  {
+   "id": "4bcf886b41e2",
+   "kind": "news",
+   "headline": "금융보안원, 금융권 클라우드 사업자 보안평가 강화 — 외부 노출 운영·개발·테스트 시스템까지 점검, 2027년 평가부터 적용",
+   "bullets": [
+    "금융보안원이 금융사가 클라우드를 도입할 때 거치는 '클라우드 서비스 제공자(CSP) 안전성 대표평가'를 고도화한다.",
+    "점검 범위를 가상자원 관리시스템에서 외부에 노출된 운영·개발·테스트 시스템까지 넓히고, AI로 점검 대상 자산과 취약점을 자동으로 찾는다.",
+    "올해 일부 사업자 대상 시범 평가 후 내년(2027년) 평가부터 사전 협의된 사업자에 본격 적용한다."
+   ],
+   "summary": "CSP 안전성 대표평가는 금융사가 서비스형 인프라·데스크톱·소프트웨어 같은 클라우드를 쓰려면 반드시 거쳐야 하는 보안 검증이다. 금융보안원이 금융사를 대신해 수행하고 결과를 금융권 전체가 공유한다. 2023년부터는 서면 평가의 한계를 보완하려 가상자원 관리시스템 취약점 점검을 해 왔다.\n\n이번 강화는 외부 노출 자산을 노리는 공격이 지능화되고 금융사의 클라우드 의존도가 높아진 데 따른 것이다. 클라우드 사업자 한 곳의 취약점이 여러 금융사로 연쇄 피해를 낼 수 있다는 판단이다. 같은 날 금융당국은 한 달 새 37개 금융사 해킹을 계기로 580개사 전수점검과 클라우드·플랫폼 등 제3자 규율체계 마련 계획도 내놨다.",
+   "title": "해킹 사각지대 없도록…금융권 클라우드서비스 평가 고도화 - 머니투데이",
+   "source": "머니투데이",
+   "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBoVnRQZ3NGWFdOMW42RXZLSWdUVlRIbUd3T0c4eUdQZERNN21FbElFcjA3U19scnQyY1RTRFFYYTVJU2pFRVJpd0lrRDJHcHYteUhjMUhfSmpVNGtXMUx5ZjBrT3VFWVAwWUN30gFwQVVfeXFMUGNfaEJKVkY5aDNpX203bXRONUVwZXRjcTlxbVA3MG1GVWNWVG1vVmZpXzM1QnExd0tCbWdNS3VSOFg0cGxfVE42NFdwMWpKUENnekJHcTMxN1AwT2x0UmdxTHFJdmtob0djOXZnNmphRA?oc=5",
+   "published": "2026-11-05 10:14 KST",
+   "written": "2026-11-05 16:49 KST"
+  },
+  {
    "id": "0b0e54066438",
    "kind": "news",
    "headline": "AIG손해보험, 외부 해킹 시도 확인해 금융당국에 신고 — 한양증권처럼 외부 그룹웨어 통해 침입 추정",
@@ -819,5 +851,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-05 16:28 KST"
+ "updated": "2026-11-05 16:49 KST"
 }
