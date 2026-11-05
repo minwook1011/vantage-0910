@@ -3,6 +3,38 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "3ed448167a4a",
+   "kind": "news",
+   "headline": "대구 공공배달앱 '대구로' 서버 해킹 — 점주 250여명 아이디·비밀번호, 계좌번호 2만5천여개 노출",
+   "bullets": [
+    "대구시와 운영사 인성데이타에 따르면 10월 31일 대구로 서버에서 보안 사고가 났다.",
+    "가맹점주 250여명의 시스템 접속 아이디·비밀번호가 유출됐고, 폐업 점주를 포함한 계좌번호 2만5천여개가 노출됐다.",
+    "운영사는 AI를 써서 순식간에 정보를 빼간 것으로 추정하며, 아직 금전 피해는 확인되지 않았다."
+   ],
+   "summary": "인성데이타는 사고 정황을 안 직후인 11월 1일 긴급 시스템 점검을 하고 대구경찰청에 신고했으며, 2일 한국인터넷진흥원(KISA)에 침해사고를 알렸다. 가맹점주들에게는 4일 피해 사실을 공지했다.\n\n운영사는 해킹 경위를 조사 중이다. 대구시는 업체와 피해 상황을 파악하면서 계좌번호·접속 정보를 이용한 2차 피해를 막도록 대응을 요청하고 있다. 노출 범위가 현재까지 조사된 수치라 늘어날 수 있다는 점이 남은 쟁점이다.",
+   "title": "대구 공공배달앱 '대구로' 해킹…점주 계좌번호 2만5천개 노출",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFAza3I4NlFveFlmYS1jVkxqTUMxc1FlZ1RGcHA5Sk9ablBMaGdPTHllMWFpb0tPU0ZQQ0NDZG0zZlNYelVFVzFZSFpxajBURkMtdG81WEl4SE5HVG_SAWBBVV95cUxOQlFsWkl1R0hEYnM5STZHNmZzUEdObWxnN0hudE9RUzByVGdOc0pNdl9VNnNqSXVPaUNIM3FXN3B1SUlHQnFpVHdhbG93WHRkSVBZQVEtd0UzTk1hYXFiT0Y?oc=5",
+   "published": "2026-11-05 09:47 KST",
+   "written": "2026-11-05 10:19 KST"
+  },
+  {
+   "id": "75cfe7a01f7c",
+   "kind": "news",
+   "headline": "일본, 'AI 사이버보안 긴급대책' 마련 — 미국 AI 기업과 미공개 취약점 사전 공유, 국가사이버통괄실로 대응 일원화",
+   "bullets": [
+    "일본 정부가 사이버보안 관계각료회의에서 긴급 사이버보안 대책 패키지안을 내놨다. 핵심은 미국 주요 AI 기업에서 미공개 취약점 정보를 미리 받는 것이다.",
+    "계기는 최근 프로그래밍 언어 PHP 결함으로 일본 기업 웹사이트가 대거 마비된 사태다. 미국은 정부·빅테크 정보 공유로 대부분 막았지만 일본은 그러지 못했다.",
+    "정보 수집·대응은 국가사이버통괄실(NCO)로 모아, 피해 기업뿐 아니라 보안·클라우드 기업 데이터까지 넓게 받는다."
+   ],
+   "summary": "일본 정부와 주요 기업은 이미 앤트로픽의 최신 모델 '클로드 뮤토스' 등에 접근권을 확보했고, 공격자의 AI 악용이 늘면서 미국 AI 개발사에 취약점 공유와 이용 권한 확대를 거듭 요청하고 있다.\n\n개인정보 유출에 따른 2차 피해 대책도 들어갔다. 디지털청은 신분증 사진을 저장하지 않는 '마이넘버카드 전자증명서 본인확인' 사용을 넓히고, 개인정보보호위원회는 기업이 본인 확인용으로 받은 신분증 이미지 저장 수칙을 연내 업종별 가이드라인으로 내놓는다. 개인정보 안전관리 지침 개정은 내년 1월 시행이 목표다.",
+   "title": "日 'AI 사이버보안' 긴급대책 보니…\"美빅테크와 취약점 사전공유\"",
+   "source": "마켓인",
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE53bk1oeVIybUtFaDlHMWlxeks4LU5qejJuRTlvTHA1cFZpYWJxVXRtUDZieEtOZXptRHFJenJQbmdNWmJiX1JqRGtEZjFOSWVqQ1BPTkJHTXNBUXJJbmFvN0tDWTFmVGdBZmZvdU5tam9Bamc?oc=5",
+   "published": "2026-11-05 09:44 KST",
+   "written": "2026-11-05 10:19 KST"
+  },
+  {
    "id": "d80bf7c5941d",
    "kind": "news",
    "headline": "금융권 해킹, 한 달 새 37개사 40건·정보 47만 건 유출 — 금융위, 580개사 보안 전수점검 착수",
@@ -739,5 +771,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-05 09:19 KST"
+ "updated": "2026-11-05 10:19 KST"
 }
