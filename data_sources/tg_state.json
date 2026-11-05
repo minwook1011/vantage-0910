@@ -402,6 +402,7 @@
   "trk:009150:ed8e130a5098",
   "trk:222800:0d80e8fc103e",
   "trk:222800:aad17fcb6667",
+  "trk:356860:2bf3ca152f92",
   "trk:amzn:11e2f839692b",
   "trk:amzn:19e39e0079d4",
   "trk:amzn:1dd4d3b49ae5",
@@ -1611,9 +1612,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:blog-techcrunch:fd63179e93a2": [
-   1068
-  ],
   "trk:open-ai:146cbde721f5": [
    1069
   ],
@@ -3155,6 +3153,9 @@
   ],
   "pod:2026-11-05-ca-opportunistic-real-estate-and-hard-asset-credit": [
    1497
+  ],
+  "trk:356860:2bf3ca152f92": [
+   1498
   ]
  },
  "topics": {},
