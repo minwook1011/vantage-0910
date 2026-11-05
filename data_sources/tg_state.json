@@ -918,6 +918,7 @@
   "trk:nvda:3f97ba261391",
   "trk:nvda:42afee98e3a2",
   "trk:nvda:42e0183b803d",
+  "trk:nvda:4313d0fb7780",
   "trk:nvda:4523c59ca9b9",
   "trk:nvda:4dda0bba522d",
   "trk:nvda:5061d7fd7be6",
@@ -1516,6 +1517,7 @@
   "trk:yt--jklonfa:d4ee87a71a5b",
   "trk:yt--jklonfa:d5d4de6e1d3f",
   "trk:yt--jklonfa:d639f8f9f4c8",
+  "trk:yt--jklonfa:d680af894c5d",
   "trk:yt--jklonfa:d6dd521d2844",
   "trk:yt--jklonfa:d89bccce8087",
   "trk:yt--jklonfa:d8a7e4ef1275",
@@ -1558,6 +1560,7 @@
   "trk:yt--jklonfa:fa5723060bfb",
   "trk:yt--jklonfa:fc9ed95ad405",
   "trk:yt--jklonfa:fddd40813232",
+  "trk:yt--jklonfa:ff7c0faa3964",
   "trk:yt-kyrxne0q:4fdaea80a66e",
   "trk:yt-kyrxne0q:560419f88e15",
   "trk:yt-kyrxne0q:67892a4c10ad",
@@ -1619,15 +1622,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "ins:ins-20261027-jensen-huang-meta-3b-agent-cpu-vendor-financing": [
-   1076
-  ],
-  "ins:ins-20261027-lee-hyung-il-q3-gdp-gni-40k-consumption-gap": [
-   1077
-  ],
-  "ins:ins-20261027-lisa-su-meta-helios-rack-epyc-customer-equity": [
-   1078
-  ],
   "ins:ins-20261027-kelly-ortberg-737-rate52-delay-fcf-2029": [
    1079
   ],
@@ -3163,6 +3157,15 @@
   ],
   "pod:2026-11-05-nopriors-tokenization-agentic-trading-harmonic-robinhood": [
    1504
+  ],
+  "trk:yt--jklonfa:ff7c0faa3964": [
+   1505
+  ],
+  "trk:yt--jklonfa:d680af894c5d": [
+   1506
+  ],
+  "trk:nvda:4313d0fb7780": [
+   1507
   ]
  },
  "topics": {},
