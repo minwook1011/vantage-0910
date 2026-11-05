@@ -601,6 +601,7 @@
   "trk:blog-techcrunch:500d08455cef",
   "trk:blog-techcrunch:507a157e73f5",
   "trk:blog-techcrunch:513c1a2ba9a1",
+  "trk:blog-techcrunch:517cacbdc275",
   "trk:blog-techcrunch:59690c04785b",
   "trk:blog-techcrunch:5c2d9a1c217b",
   "trk:blog-techcrunch:5cddc82b70f9",
@@ -812,6 +813,7 @@
   "trk:googl:bb1448148388",
   "trk:googl:c1daec5c8a72",
   "trk:googl:cb1aa23ede5b",
+  "trk:googl:cc7cedb4bf4b",
   "trk:googl:d6179f5d78ec",
   "trk:googl:e0015b86474f",
   "trk:googl:e0909f2ba801",
@@ -1108,6 +1110,7 @@
   "trk:t-678e8450:2c42c90e4777",
   "trk:t-678e8450:304c7a769ca5",
   "trk:t-678e8450:37c427c4dcfa",
+  "trk:t-678e8450:3ed448167a4a",
   "trk:t-678e8450:4f82b6f2d483",
   "trk:t-678e8450:548158c48d72",
   "trk:t-678e8450:5716d2802232",
@@ -1115,6 +1118,7 @@
   "trk:t-678e8450:6dd38a208edf",
   "trk:t-678e8450:71632655013c",
   "trk:t-678e8450:7255341c134e",
+  "trk:t-678e8450:75cfe7a01f7c",
   "trk:t-678e8450:782af3346485",
   "trk:t-678e8450:7ea210b3f392",
   "trk:t-678e8450:805d5a97b06f",
@@ -1242,6 +1246,7 @@
   "trk:x-dylan522p:071cfc841ddb",
   "trk:x-rihardjarc:028eb1e58ace",
   "trk:x-rihardjarc:71ba74b0ba0b",
+  "trk:x-rihardjarc:820036a56f6e",
   "trk:x-rihardjarc:996bdc07e046",
   "trk:ymtc:2f1a15426f78",
   "trk:ymtc:3b0057f63d8e",
@@ -1570,21 +1575,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:yt--jklonfa:b255d1492266": [
-   1030
-  ],
-  "trk:nvda:02389ee491be": [
-   1031
-  ],
-  "trk:t-678e8450:eb81e5538ed6": [
-   1032
-  ],
-  "pod:2026-10-27-sixsigma-de-oeSZbw_U": [
-   1033
-  ],
-  "pod:2026-10-27-cheeky-the-airline-ceo-putting-starlink-on-every-plane": [
-   1034
-  ],
   "trk:blog-ssh-fedinsight:c9070c513743": [
    1035
   ],
@@ -3117,6 +3107,21 @@
   ],
   "trk:x-rihardjarc:996bdc07e046": [
    1458
+  ],
+  "trk:googl:cc7cedb4bf4b": [
+   1459
+  ],
+  "trk:blog-techcrunch:517cacbdc275": [
+   1460
+  ],
+  "trk:t-678e8450:3ed448167a4a": [
+   1461
+  ],
+  "trk:t-678e8450:75cfe7a01f7c": [
+   1462
+  ],
+  "trk:x-rihardjarc:820036a56f6e": [
+   1463
   ]
  },
  "topics": {},
