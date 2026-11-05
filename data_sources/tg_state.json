@@ -432,6 +432,7 @@
   "trk:amzn:ee4cb48ba1d5",
   "trk:amzn:f085d3f75f79",
   "trk:amzn:f091ef1b9757",
+  "trk:amzn:f599d38688e6",
   "trk:amzn:f728a1519228",
   "trk:aws:132be39d0d0f",
   "trk:aws:1da0791ea3f9",
@@ -598,6 +599,7 @@
   "trk:blog-techcrunch:374a462a3784",
   "trk:blog-techcrunch:37ff6c96db6b",
   "trk:blog-techcrunch:387d4012e6b7",
+  "trk:blog-techcrunch:397c66d452ad",
   "trk:blog-techcrunch:3ab8d8671f65",
   "trk:blog-techcrunch:3abf48378b69",
   "trk:blog-techcrunch:4353faf62b9a",
@@ -1616,12 +1618,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:ax:18bd9137f3ad": [
-   1073
-  ],
-  "pod:2026-10-28-sixsigma-7hkpPLq4i80": [
-   1074
-  ],
   "ins:ins-20261027-sam-altman-ai-vuln-flood-runtime-defense": [
    1075
   ],
@@ -3160,6 +3156,12 @@
   ],
   "trk:cathie-wood:7d042dea4512": [
    1501
+  ],
+  "trk:amzn:f599d38688e6": [
+   1502
+  ],
+  "trk:blog-techcrunch:397c66d452ad": [
+   1503
   ]
  },
  "topics": {},
