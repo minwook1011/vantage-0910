@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "a8697eac921c",
+   "kind": "news",
+   "headline": "중국 문샷 AI, 유럽 데이터센터의 엔비디아 블랙웰 GPU 임대 추진 — 8,000개 이상 클러스터 협의(CNBC)",
+   "bullets": [
+    "'키미' 모델을 만드는 중국 문샷 AI가 올해 유럽에서 엔비디아 GPU를 운영하는 신생 클라우드 업체(네오클라우드)들과 연산 능력 임대 계약을 논의했다고 소식통 4명이 CNBC에 밝혔다.",
+    "소식통 1명은 블랙웰 GPU 8,000개 이상 규모 클러스터 임대가 거론됐고, 문샷이 중국 외 고객보다 선불금을 30~50% 더 내는 조건이 제안됐다고 전했다.",
+    "블랙웰은 미국 수출 통제로 중국 반입이 사실상 막힌 칩이지만, 해외 데이터센터를 원격으로 빌려 쓰는 것은 현행법상 규제 공백이다."
+   ],
+   "summary": "CNBC에 따르면 문샷은 유럽 클러스터를 주로 모델 서비스(추론)용으로 원했고, 학습용 관심도 있었다. 한 소식통은 문샷이 연산 능력 확보에 '매우 공격적'이라고 했다. 유럽 협의는 지난 7월 백악관이 문샷이 태국 시설에서 블랙웰 칩을 썼다고 주장한 뒤 시작됐다고 한다. 기사에는 구체적인 나라나 업체 이름은 나오지 않는다.\n\n선불금 할증이 나오는 이유는 클라우드 업체와 금융사들이 앞으로 원격 접속이 금지될 위험에 대비하려 하기 때문이다. 문샷은 7월 '키미 K3'를 내놓은 뒤 수요가 몰려 신규 구독을 일시 중단한 적이 있다. 문샷·엔비디아·백악관·미국 상무부는 답하지 않았다.\n\n남은 쟁점은 원격 접속도 수출 통제로 묶는 '원격접속보안법'이다. 1월 하원을 통과했지만 상원은 아직이다. 파이낸셜타임스는 엔비디아가 클라우드 업체들에 서비스의 51% 이상을 중국 외 고객에게 팔라고 요구했다고 보도했다.",
+   "title": "China's Moonshot AI sought Nvidia chip access in Europe amid U.S. curbs",
+   "source": "CNBC",
+   "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBUc0JXdFFrNXJHSkxKclVRQkdfMXZNbmk5akFqZDA2dWFQbXV2MUd1d2V1TFhfVW9uT2F5WXJJVHZoNUZUUEtLVFF2aWotaHBVTk9kcFpvZkFucXppMlp3YzZvaWdXVmZ3ZUZJdzFsV3kzaXBMWnpiSjJ4aUhxcVE?oc=5",
+   "published": "2026-11-05 22:34 KST",
+   "written": "2026-11-05 22:48 KST"
+  },
+  {
    "id": "4313d0fb7780",
    "kind": "news",
    "headline": "중국, 엔비디아 H200 대량 수입 승인 미뤄 — 약 60만 개가 홍콩에 쌓여 대기(로이터 단독)",
@@ -835,5 +851,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-05 20:49 KST"
+ "updated": "2026-11-05 22:48 KST"
 }
