@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-05 11:26 KST",
+ "updated": "2026-11-05 12:29 KST",
  "episodes": [
+  {
+   "id": "2026-11-05-sixsigma-_Xpv8Li1pJA",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "과연 우주데이터센터는 블러핑일까",
+   "date": "2026-11-05",
+   "published": "2026-11-05 12:00 KST",
+   "link": "https://www.youtube.com/watch?v=_Xpv8Li1pJA",
+   "youtube": "https://www.youtube.com/watch?v=_Xpv8Li1pJA",
+   "audio": null,
+   "duration": "",
+   "desc": "구글 위성이 궤도에서 첫 AI 답을 보낸 지금, 우주 데이터센터가 지상보다 싸지는 시점을 가르는 숫자는 kg당 발사비 하나라는 점을 짚었습니다. 일론 머스크의 \"36개월\", 스타클라우드 필립 존스턴의 손익분기 kg당 500달러, 제프 베이조스의 \"발사비 10분의 1\" 원음에 세미애널리시스·우드맥킨지·BCG의 비용 비교와 구글 논문의 200달러 계산을 맞대 봤습니다. 발사비가 500달러 아래로 내려오면 강세론이, 2035년에도 200달러 위에 머물면 신중론이 맞습니다. [목차] 0:00 머스크의 36개월 1:03 1. 땅에서 막힌 전기 3:36 2. 지금은 지상보다 몇 배 비싼가 5:10 3. 변수 하나, kg당 발사비 5:56 4. 갈리는 건 시점 7:11 결말: 판정을 가를 숫자 [원본] 1. Dwarkesh Patel 공식 유튜브, Elon Musk – \"In 36 months, the cheapest place to put AI will be space\" (2026.02.05): https://www.youtube.com/watch?v=BYXbuik3dgA 2. Google 공식 유튜브, Our first response from the Project …",
+   "status": "done",
+   "found": "2026-11-05 12:26 KST",
+   "image": "https://i4.ytimg.com/vi/_Xpv8Li1pJA/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "우주 데이터센터는 허풍일까 — 판정은 kg당 발사비",
+   "desc_ko": "구글 시험 위성이 궤도에서 첫 AI 응답을 보낸 지금, 우주 데이터센터가 지상보다 싸지는 시점을 가르는 숫자가 kg당 발사비 하나라는 점을 짚는다. 일론 머스크의 '36개월' 예측, 스타클라우드 필립 존스턴의 손익분기 kg당 500달러, 제프 베이조스의 '발사비 10분의 1' 발언을 소개한다. 여기에 세미애널리시스·우드맥킨지·BCG의 비용 비교와 구글 논문의 200달러 계산을 맞대 본다. 발사비가 500달러 아래로 내려오면 강세론이, 2035년에도 200달러 위에 머물면 신중론이 맞다는 결론이다.",
+   "summary": {
+    "title_ko": "우주 데이터센터는 허풍일까 — 판정은 kg당 발사비",
+    "headline": "지금은 지상보다 3~4배 비싸다 — 스타십이 kg당 500달러 아래로 가면 강세론, 2035년에도 200달러 위면 신중론",
+    "image": "https://i.ytimg.com/vi/_Xpv8Li1pJA/hqdefault.jpg",
+    "guest": "식스시그마(진행) · 필립 존스턴(Philip Johnston) · 일론 머스크(Elon Musk) — 머스크의 '36개월 안에 우주가 가장 싸다'는 예측을 스타클라우드·구글 논문·세 리서치 기관의 비용 계산으로 검증한 영상",
+    "company": "스타클라우드(Starcloud) · 구글 Project Suncatcher · SpaceX 스타십 (우주 인프라 · AI 데이터센터 · 발사체)"
+   }
+  },
   {
    "id": "2026-11-05-sixsigma-kT9lueHpruE",
    "show": "sixsigma",
