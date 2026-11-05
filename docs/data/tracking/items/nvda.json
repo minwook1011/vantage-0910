@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "b9aafe599c33",
+   "kind": "news",
+   "headline": "엔비디아 협력사 폭스콘(훙하이), 10월 매출 1조3,053억 대만달러로 전년 대비 45.7% 증가 — 월간 최대",
+   "bullets": [
+    "폭스콘의 10월 매출은 1조3,053억 대만달러로 작년 같은 달보다 45.7%, 9월보다 12.7% 늘었다. 월 매출이 처음으로 1조 대만달러를 넘었던 9월(1조1,586억)을 다시 넘어선 사상 최대다.",
+    "블룸버그는 인공지능(AI) 서버 수요가 매출 증가를 이끌었다고 전했다.",
+    "1~10월 누적 매출은 8조9,751억 대만달러로 전년 대비 40.4% 늘었다."
+   ],
+   "summary": "폭스콘은 엔비디아 AI 서버 랙 조립의 핵심 협력사라, 월 매출이 엔비디아 데이터센터 출하의 실물 지표로 쓰인다. 올해 월 매출 전년 대비 증가율은 7월 54.2%, 8월 52.0%, 9월 38.4%, 10월 45.7%로 넉 달 연속 40% 안팎을 유지했고, 회사는 7~8월 공시에서 서버 제품 출하 증가를 주된 이유로 적었다.\n\n분기로 보면 3분기 매출이 3조269억 대만달러로 전년 대비 47.1% 늘었고, 4분기는 첫 달부터 1조3,053억 대만달러로 출발했다. 남은 관심사는 11월 공시(12월 10일 마감)에서 증가세가 이어지는지, 그리고 회사가 4분기 전망에서 AI 서버 성장률을 어떻게 제시하는지다.",
+   "title": "Nvidia Partner Hon Hai’s Sales Rise 46% Thanks to AI Demand",
+   "source": "Bloomberg.com",
+   "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPY21OQzRnWEJXbm9XazB3Z096RHpjOU53ajNLTG5sb3RGS3JYcDFqZUpwVXNwT3dYRHhZeV90d3hxSVdDNE9Qa21zamctWUtEeGVqVkVLTmhGSUgxQ3ZpUGR5bWg3Q1pOY19qNjBVWlhuMlVxZWo1TDJoSlJENS01a0RxcThfblM0dXhkTGlYM0ZHOUhYNjBwREZwTk1va1hvS0M1cWljY081Z0tCYmc?oc=5",
+   "published": "2026-11-05 16:42 KST",
+   "written": "2026-11-05 17:24 KST"
+  },
+  {
    "id": "5bf19c005275",
    "kind": "news",
    "headline": "오라클, 텐센트와 맺은 70억달러 AI 칩 임대 계약 취소 — 미국 정부 압박(파이낸셜타임스)",
@@ -803,5 +819,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-04 21:48 KST"
+ "updated": "2026-11-05 17:24 KST"
 }

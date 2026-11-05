@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "337e571a8fa0",
+   "kind": "news",
+   "headline": "오픈AI 대외협력 총괄 크리스 리헤인, 2028년 대선 겨냥 'AI 뉴딜' 5대 과제 제안 — \"데이터센터 건설 멈추면 중국에 밀린다\"",
+   "bullets": [
+    "오픈AI 글로벌 대외협력 최고책임자 크리스 리헤인이 개인 에세이 '2028년, AI 선거'에서 1930년대 뉴딜을 본뜬 AI 혜택 분배 구상을 내놨다.",
+    "대선 주자들에게 AI 안전·인간 통제, 세제를 통한 AI 이익 분배, 아동 보호·노동자 지원, 생활비 절감, 중국 대비 AI 주도권 유지 등 5개 과제를 제시했다.",
+    "전기요금 상승 우려는 인정하면서도 데이터센터 건설 중단은 2002년 이라크전 승인 표결에 견줄 정치적 오판이 될 수 있다고 경고했다."
+   ],
+   "summary": "이번 제안은 미국 중간선거 뒤 생활비 부담과 데이터센터 건설 반대가 초당적 쟁점으로 떠오른 시점에 나왔다. 리헤인은 기술 발전을 제한 없이 밀어붙이는 쪽과 소수 엘리트에게 통제를 맡기는 쪽 사이의 '제3의 길'을 내세웠고, 세부 방안으로 노동자 AI 교육 지원, 창업 자금 조달 완화, 직원 지분 보유·이익 공유를 거론했다. 구체적인 금액·수치 목표는 없다.\n\n안전 분야에서는 강제력 있는 안전 기준, 독립 평가, 공공 감독과 함께 필요하면 '킬스위치'로 가동을 멈출 수 있어야 한다고 했다. 미성년자 대상 AI 동반자 서비스에는 연령별 보호장치를 두되, 학교에서 AI를 배제하면 교육 격차가 커진다며 반대했다. 데이터센터는 일자리와 지방 세수를 늘린다는 논리를 폈다.\n\n테크크런치와 AI 나우 연구소는 노동자 보호나 기업 권력 제한보다 AI 도입·인프라 확장 촉진에 치우쳤다고 비판했다. 세제 방안도 기업에 일자리 대체 비용을 지우는 구속력 있는 의무가 아니라는 지적이다. 중간선거 뒤 데이터센터 인허가가 어려워질 것이란 업계 우려 속에서 오픈AI가 정치권 설득에 먼저 나선 셈이다.",
+   "title": "美선거 끝나자 'AI 뉴딜' 꺼낸 오픈AI…\"데이터센터 멈추면 中에 밀린다\"",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1UdTdsWFoyNlZuZlJpb3BVX0F5RXN3Q1ZaR1BFV0s3azhaamxfaU5BZk1Bem95bEFsNTBiMzF0emJGWEMtc1pUcDhodV8zOEFQeTJxRWZmOUJ0ZnlFMXNPadIBeEFVX3lxTFBPRlhDSzViSk5NVkFQdDB1eWp4VVB4LVRjQVNkWE1yNFJ2dTVTaFVTS3ZxaDAyWnFsb0dBUXlDTXEtMGZMYXpEMDVud29IU1kwb2FhTndlRFRnc2FNalVmU3BJYU54cS1ER0VTRG9Ya1VRWkFndUo4Vg?oc=5",
+   "published": "2026-11-05 16:47 KST",
+   "written": "2026-11-05 17:24 KST"
+  },
+  {
    "id": "51d1203fc203",
    "kind": "news",
    "headline": "메타 사장 \"중간선거 뒤 미국에 새 데이터센터 짓기 훨씬 어려워져\" — 해외 건설 검토, 오픈AI도 내년 확보 용량 전망 수정 논의",
@@ -1283,5 +1299,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-05 16:28 KST"
+ "updated": "2026-11-05 17:24 KST"
 }
