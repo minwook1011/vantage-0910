@@ -1,0 +1,241 @@
+{
+ "id": "2026-11-05-nopriors-tokenization-agentic-trading-harmonic-robinhood",
+ "title_ko": "Vlad Tenev — 토큰화·에이전트 트레이딩·Harmonic: Robinhood가 넓히려는 '소유'",
+ "guest": {
+  "name": "블라드 테네브(Vlad Tenev)",
+  "role": "Robinhood 공동창업자·CEO — AI 수학 스타트업 Harmonic 공동창업자"
+ },
+ "guest_profile": [
+  {
+   "name": "블라드 테네브(Vlad Tenev)",
+   "title": "Robinhood Markets 공동창업자·CEO, Harmonic 공동창업자",
+   "what": "나스닥 상장사 Robinhood(HOOD)를 이끈다. 2026년 9월 말 기준 펀디드 고객 2,870만 명, 플랫폼 자산 3,960억 달러, 3분기 매출 14.2억 달러다. AI 수학 스타트업 Harmonic(기업가치 14.5억 달러, 2025년 11월)도 공동 창업했다.",
+   "career": "불가리아에서 태어나 1990년대 미국으로 이주해 메릴랜드대 주변에서 자랐다(대본). 수학을 전공해 대학원에서 Terence Tao 밑에서 공부했고, 이후 공동창업자 Baiju Bhatt과 고빈도매매 관련 일을 했다(대본). 2013년 Robinhood를 공동 창업해 수수료 0원 주식 앱으로 시작했고, 2021년 상장 뒤 예측시장·암호화폐·자체 블록체인·트럼프 계좌 수탁까지 사업을 넓혔다.",
+   "track": "투자자가 아닌 경영자라 공개된 투자 수익률은 없음. 회사 성과로는 3분기 순이익 4.76억 달러, 에이전트 트레이딩 계좌 약 20만 개(회사 발표). Harmonic은 3차례에 걸쳐 누적 2.95억 달러를 유치했다(언론 보도).",
+   "why": "예측시장·주식 토큰화·AI 에이전트 거래를 실제로 운영하는 회사의 CEO라, 이 세 시장이 어디까지 왔고 회사가 어디에 돈을 거는지 직접 들을 수 있다."
+  }
+ ],
+ "company": {
+  "name": "Robinhood Markets (HOOD)",
+  "sector": "리테일 증권 · 예측시장 · 암호화폐·토큰화",
+  "what": "주식·옵션·암호화폐·이벤트 계약 거래 앱과 자체 블록체인을 운영하는 나스닥 상장 금융사"
+ },
+ "topic": "Robinhood CEO가 말하는 토큰화·예측시장·에이전트 트레이딩과 AI 시대 '개인의 소유' 넓히기",
+ "headline": "에이전트 트레이딩 15만 계좌·예측시장·주식 토큰 — Robinhood는 헤지펀드의 도구와 비상장 AI 기업 지분을 개인에게 주려 한다",
+ "tldr": [
+  "Vlad Tenev: Robinhood는 '소유의 회사' — 트럼프 계좌·Ventures 펀드·토큰화로 소유를 넓힌다",
+  "에이전트 트레이딩은 제품-시장 적합성 확인: 15만+ 계좌, 하루 툴 호출 약 3,000만 건(3분기 발표엔 약 20만 계좌)",
+  "예측시장은 '뉴스의 진화', 다음은 EPS·매출을 직접 거래하는 KPI 계약",
+  "Robinhood Chain 위 디파이용 주식 토큰으로 자본시장이 약한 나라에 미국 주식을 열겠다",
+  "AI 수학 Harmonic(Aristotle)을 공동 창업 — 거대 연구소 중심의 '중앙집중 발견'을 비판",
+  "외부 확인: 3분기 매출 14.2억 달러(+12%), 이벤트 계약 1.73억 달러가 암호화폐를 넘었지만 순이익은 −14%"
+ ],
+ "summary_md": "### 1. Robinhood를 한 단어로: '소유'\n- 진행자 Sarah Guo가 지금의 Robinhood를 어떻게 설명하느냐고 묻자, Vlad Tenev는 회사를 **'소유의 회사'**라고 정의했다. 120여 개 나라에서 어떤 형태로든 서비스하고 있고, **수수료 0원 주식 앱**에서 출발해 여러 자산을 다루는 세계적 금융 그룹으로 커졌다는 설명이다.\n- 그는 소유가 개인에게는 부를 쌓는 가장 검증된 길이고, 사회 전체로는 안정 장치라고 본다. 가진 것이 있는 사람이 많을수록 체제를 지키려 하고, 그렇지 않으면 사회가 취약해진다는 논리다. AI로 사회가 흔들리는 지금 더 중요해졌다고 강조했다.\n- 회사가 하는 일을 이 틀로 묶었다. 태어나자마자 갖는 소유(트럼프 계좌), 상장 전 비상장 기업 소유(Robinhood Ventures), 미국 밖으로 넓힌 소유(토큰화)다.\n\n### 2. 불가리아 초인플레이션과 구리 냄비\n- Tenev는 1980년대 말 불가리아에서 태어나 1990년대에 미국으로 왔다. 아버지가 델라웨어대 석사 과정으로 먼저 건너갔고, 어머니와 그가 차례로 합류했다. 그는 1년 반 동안 아버지를, 6개월 동안 어머니를 보지 못하고 조부모와 지냈다.\n- 그가 기억하는 1991년 불가리아의 물가 상승률은 연 170% 안팎, 1997년엔 **연 2,000%** 수준으로 세계 최고였다. 정전, 우유·달걀 줄서기, 1년에 한 번 들어오던 쿠바산 바나나가 어린 시절 기억이다.\n\n[[chart:2]]\n\n- 의사였던 할아버지는 월급을 받자마자 **구리 냄비**로 바꿔 벽장에 쌓았다. 현지 통화보다 가치를 잘 지켰기 때문이다. Tenev는 이것이 자신이 처음 본 '실물 자산 투자'였다고 말한다. 시장과 자본시장이 망가진 체제에서 무슨 일이 벌어지는지 몸으로 배웠다는 것이다.\n- 맞벌이·대학원생 부모 밑에서 다섯 살부터 혼자 하교했고, 장학금을 받아야 대학에 갈 수 있다는 압박 속에 수학에 몰두했다. 수학은 다음 단계가 늘 분명한 '좋은 비디오 게임' 같았고, 새 이론을 만들면 수백 년 뒤에도 기억된다는 점에 끌렸다고 한다. 대학원에선 Terence Tao 밑에서 공부했고, 이후 고빈도매매(HFT) 일을 했다.\n\n### 3. Harmonic과 AI 수학 혁명 — 너무 중앙집중적이다\n- Tenev가 공동 창업한 **Harmonic**은 '수학 초지능'을 목표로 한다. 작년 내놓은 모델 **Aristotle**은 국제수학올림피아드(IMO)에서 금메달 수준을 낸 세 모델 중 하나였고, 이후 일반에 공개돼 사람들이 미해결 문제(에르되시 문제 등)를 푸는 데 쓰고 있다고 했다.\n- 수학은 수천 년간 분필과 칠판의 학문이었는데, 이제 버전 관리와 검증 언어 Lean을 쓰며 코딩과 합쳐지고 있다. 그는 AI 모델과 '출력 검증'이 결합하면서 수학 파이프라인이 자동화되고 있다고 본다.\n- 다만 거대 AI 연구소가 자기 데이터센터와 비공개 모델로 발견을 독점하는 흐름은 **\"너무 중앙집중적\"**이라고 비판했다. 연구소가 신약·수학·물리 발견을 다 소유하면 '영업 허가'를 잃을 것이고, 같은 결과라도 일반인이 도구를 써서 증명하면 훨씬 환영받을 것이라는 주장이다. 연구소가 수학자들과 협업했어야 했다는 쓴소리도 덧붙였다.\n\n### 4. 토큰화 — 주식을 상자에 넣고 토큰을 찍는다\n- 토큰화는 스테이블코인과 같은 원리다. 실제 주식은 전통 기관에 보관하고, 그 '상자'를 담보로 토큰을 발행·소각한다. 토큰은 블록체인 위에서 소수점 단위로, 전 세계 어디서나 소프트웨어처럼 거래되고 대출 풀 등에 쓰일 수 있다. 비상장사 지분(SPV)·미술품·부동산에도 같은 방식을 쓸 수 있다.\n- 작년 유럽에서 미국 주식 토큰을 냈지만 디파이(DeFi)와는 연결되지 않았다. 올해는 실물자산용 자체 블록체인 **Robinhood Chain**과 함께 디파이로 완전히 열린 주식 토큰을 다시 냈고, Tenev는 이 체인이 여러 지표에서 역사상 가장 빨리 크는 블록체인이며 개발자 활동 1위라고 주장했다.\n- 개발자들은 주식 토큰을 레고처럼 써서 NFT, 밈코인과 주식 토큰을 묶은 상품 등을 만들고 있다. 그가 더 기대하는 건 자본시장이 약한 남미·아프리카 사람들이 스마트폰과 지갑만으로 미국 주식에 싸게 접근하는 길이다. 스테이블코인이 달러 접근의 기본값이 됐듯 주식 토큰이 미국 주식 접근의 기본값이 될 것이라는 전망이다.\n- '회사가 운영하는 체인(코포 체인)'이라는 비판에는, 분산의 순수성을 조금 내주는 대신 분명한 리더십과 Robinhood라는 믿을 만한 보증을 얻는다고 반박했다.\n\n### 5. 예측시장은 뉴스의 진화, 다음은 KPI 계약\n- 예측시장은 자기만 아는 지식을 직접 돈으로 바꾸는 수단이라고 설명했다. 예전엔 AI 모델 경쟁에 대한 판단을 Google·Nvidia 주식으로 간접 표현해야 했지만, 이제 '이번 달 최고 AI 모델' 같은 계약에 직접 걸 수 있다.\n- 그래서 **KPI 계약**을 준비 중이다. 실적 예상이 맞아도 가이던스 때문에 주가가 빠지는 일이 흔한데, EPS·매출 같은 지표 자체를 거래하게 하겠다는 것이다. 캘리포니아 억만장자세 통과 여부 같은 계약도 헤지 수단이 될 수 있다고 했다.\n- 그는 예측시장을 순수한 형태에선 '뉴스의 진화'로 본다. 1면·경제·스포츠 면처럼 확률로 앞일을 보는 매체가 되고, 거래하지 않고 확률만 보는 사람도 많다는 것이다.\n\n### 6. 에이전트 트레이딩 — 제품-시장 적합성 확인\n- 올해 Robinhood MCP 형태로 '에이전트 트레이딩'을 냈고 에이전트용 신용카드도 있다. 출시 몇 달 만에 **15만 명 이상**이 에이전트 트레이딩 계좌를 열었고, 툴 호출은 하루 약 3,000만 건으로 매끄러운 지수 곡선을 그린다고 했다.\n\n[[chart:1]]\n\n- 몇 주 전 HOOD Summit에선 한 단계 나아간 **Robinhood Agents**를 발표했다. 실행 환경과 화면이 통째로 Robinhood 계좌 안에 들어간, 트레이딩에 맞춘 Claude Code·Codex 같은 도구다. 매일 전략 실행·리밸런싱 루프, 스킬, 위성 데이터(주차장 차량 수 세기 등)를 붙이는 에이전트 앱 장터를 갖췄다.\n- 목표는 헤지펀드·퀀트 회사의 능력을 개인 주머니에 넣는 것이다. 코딩 에이전트가 누구나 개발자가 되게 했듯, 처음엔 소수의 숙련자 거래가 크게 늘고 점차 더 많은 사람으로 퍼질 것이라고 봤다.\n- 안전장치로 에이전트 계좌는 본계좌와 분리돼 따로 돈을 넣어야 하고, 기본값은 거래마다 승인이다. 시장 인프라는 20년 전 전자거래로 바뀌며 이미 알고리즘 거래에 맞춰졌고 Citadel·Jane Street·Jump 같은 시장조성자도 충분히 감당할 것이라 본다. 에이전트 거래 비중이 두 자릿수가 되기까진 시간이 있다는 판단이다.\n\n### 7. AI 시대의 소유 — Ventures 펀드와 공인투자자 규칙\n- 그는 AI 혁신 기업 대부분이 비상장이라 개인이 OpenAI·Anthropic에 투자할 길이 없다는 점을 문제로 꼽았다. 1980~90년대 Microsoft·Amazon은 수억 달러에 상장해 공모 참여자가 1,000배를 벌 수 있었지만, 1~2조 달러에 상장하는 AI 연구소에선 불가능하다는 것이다.\n- 그래서 개인이 데이터센터에 반감을 갖는다는 진단이다. 손실을 본 사람이 많은데도 2024년 선거에서 결집한 암호화폐와 대비하며, 처음부터 넓게 나눠 가진 것이 차이라고 짚었다.\n- 해법으로 **Robinhood Ventures Fund 1**(뉴욕증권거래소 상장, OpenAI·ElevenLabs·Crusoe 등 후기 비상장사)과 Y Combinator와 함께하는 시드·시리즈 A용 펀드 2, 미국 밖 비상장 토큰화를 들었다. 목표는 Anthropic 같은 회사를 24시간 소액으로 거래하게 하는 것이다.\n- SEC가 FINRA에 맡긴 **공인투자자 시험** 경로는 긍정적이지만, 시험장에 가서 두 시간 시험을 볼 사람은 적다며 더 낮은 문턱을 요구했다. 밈코인은 자유로운데 비상장 주식은 막는 건 위험 기준으로도 맞지 않는다고 했다.\n\n### 8. 트럼프 계좌와 침착함의 비결\n- Robinhood는 BNY와 함께 **트럼프 계좌**의 초기 단독 수탁·브로커로 뽑혔다. 2025년 1월부터 3년간 태어난 아이에게 재무부가 1,000달러를 넣고, Michael·Susan Dell 부부가 60억 달러 넘게 더했다. 그는 가계 주식 보유율을 65%에서 95%로 올리는 가장 좋은 방법이라고 본다.\n- 끝으로 침착함의 비결을 묻자, 추방 위협과 연 2,000% 인플레이션을 겪은 어린 시절과 비교하면 사업의 어려움은 견딜 만하다고 답했다. 지금의 고난이 미래의 나를 더 단단하게 만든다는 낙관이 조언이었다.",
+ "insights_md": "### 투자 관점\n- **매출 축이 바뀌는 중**: 대화 내내 Tenev가 힘준 건 예측시장·토큰화·에이전트였다. 실제로 3분기 이벤트 계약 매출(1.73억 달러)이 암호화폐(1.20억 달러)를 넘었다. 비트코인 고점 대비 하락을 직접 언급한 것도 암호화폐 의존을 줄이는 방향과 맞물린다.\n- **에이전트는 아직 '거래량 엔진' 단계**: 계좌 수와 툴 호출은 빠르게 늘지만 회사는 매출 기여를 따로 밝히지 않는다. 숙련자 거래가 먼저 늘어난다는 그의 말대로라면 옵션·주식 거래 매출의 증가 속도로 간접 확인할 수 있다.\n- **비상장 접근권이 경쟁 무기**: Ventures 펀드·토큰화·공인투자자 규칙 완화는 모두 'AI 기업을 개인도 갖게 하자'는 같은 이야기다. 규칙이 풀리면 IPO 배정 채널을 가진 Robinhood가 먼저 수혜를 받는 구조다.\n\n### 관련 상장사·밸류체인\n- 같은 시장의 경쟁사: Charles Schwab(SCHW)·Interactive Brokers(IBKR)·Coinbase(COIN), 이벤트 계약은 CME Group(CME)과 비상장 Kalshi·Polymarket, 스포츠 쪽은 DraftKings(DKNG)·Flutter(FLUT)와 겹친다.\n- 인프라: 시장조성 Virtu(VIRT)·비상장 Citadel Securities, 트럼프 계좌 파트너 BNY(BK), Robinhood Chain 기반인 Arbitrum.\n- 한국·일본 비교 대상: 키움증권(039490), 일본 SBI홀딩스(8473)·마넥스그룹(8698). 리테일 해외주식·암호화폐를 함께 다룬다는 점에서 비교할 만하다.\n\n### 반론·리스크\n- **스포츠 이벤트 계약 규제**: 위스콘신 소송, 오하이오·네바다 신규 판매 중단 등 주 정부와의 다툼이 진행 중이다.\n- 순이익은 3분기 14% 줄었다. 새 사업 비용이 매출 증가보다 빨랐다.\n\n### 체크포인트\n- 4분기 실적의 에이전트 계좌·거래대금, KPI 계약 출시 여부, SEC 공인투자자 시험 최종 규칙, 주식 토큰 거래대금.",
+ "deep_md": "### 1. 회사·게스트 팩트 체크 (외부 자료)\n- **Robinhood 3분기(2026년 9월 말)**: 순매출 14.2억 달러(+12%)로 분기 최대, 순이익 4.76억 달러(−14%), 희석 EPS 0.51달러. 펀디드 고객 2,870만 명, 플랫폼 자산 3,960억 달러(+19%), Gold 구독자 520만 명(+34%)이다(회사 실적 발표).\n- **에이전트 트레이딩**: 대본의 '15만 계좌·하루 3,000만 툴 호출'은 HOOD Summit 보도와 같다. 2분기 실적 땐 약 10만 계좌·자산 1억 달러였고, 10월 말 3분기 발표에선 누적 약 20만 계좌, 명목 거래대금 16억 달러 이상으로 늘었다. 녹화가 3분기 발표 전이었던 것으로 보인다.\n- Robinhood Ventures Fund I(RVI): 2026년 3월 6일 뉴욕증권거래소에 상장했고, 4월 OpenAI 보통주 약 7,500만 달러를 샀다. 보유 종목엔 Databricks·ElevenLabs·Stripe·Revolut 등도 있다. 3분기 회사 손익엔 RVI 관련 평가손 6,700만 달러가 잡혔다.\n- **Harmonic**: 2023년 설립, 2025년 7월 시리즈 B 1억 달러(기업가치 약 8.75억 달러), 11월 시리즈 C 1.2억 달러(14.5억 달러)로 누적 2.95억 달러를 모았다. 시리즈 C 당시 매출 전 단계로 보도됐다. Aristotle의 IMO 성과는 2025년 7월이다.\n\n[[chart:5]]\n\n- 트럼프 계좌: 재무부가 BNY와 Robinhood를 선정했고, 2025~2028년 출생 아동에게 1,000달러를 넣는다. Dell 부부 기부는 보도마다 62.5억 달러로 나온다(대본 '60억 달러 이상'과 맞음). 회사는 10월에 Dell 가족 기부금 60억 달러가 들어왔다고 밝혔다.\n- **공인투자자 시험**: 대본의 '지난주 발표'는 2026년 9월 30일 SEC 제안이다. FINRA 시험은 아직 개발 중이고 의견 수렴 단계라 **확정된 제도가 아니다**.\n- 대본의 '120개국 이상 서비스', 'Robinhood Chain 개발자 활동 1위'는 독립 자료로 확인 못 함.\n\n### 2. 밸류체인과 관련 상장사\n- 예측시장: CFTC 규제 거래소를 거치는 구조로 Kalshi(비상장)와 경쟁·협력하고, CME Group(CME)도 이벤트 계약을 낸다. 스포츠 계약은 DraftKings(DKNG)·Flutter(FLUT)와 고객이 겹친다.\n- 에이전트: Robinhood Agents는 OpenAI·Anthropic 모델을 쓴다는 보도가 있다. 에이전트가 늘면 시장조성자(Virtu·Citadel Securities)와 거래소의 처리량이 늘어나는 구조다.\n- 토큰화: Robinhood Chain은 **Arbitrum 기반 이더리움 L2**로 2026년 7월 1일 메인넷을 열었다. 같은 시장을 노리는 곳은 Coinbase(COIN)다.\n- 아시아 비교: 키움증권(039490), SBI홀딩스(8473)·마넥스그룹(8698)이 리테일 증권과 암호화폐를 함께 하는 모델로 비교 대상이다.\n\n### 3. 숫자의 맥락\n- 2026년 분기 매출은 1분기 10.7억 → 2분기 13.1억 → 3분기 14.2억 달러로 매 분기 전년보다 컸다. 다만 증가율은 2분기 32%에서 3분기 12%로 낮아졌다. 2025년 3분기가 12.7억 달러로 높았기 때문이다.\n\n[[chart:3]]\n\n- 3분기 매출 구성에선 순이자 수익(4.15억, −9%)과 옵션(3.99억, +31%)이 양대 축이다. **이벤트 계약은 1년 새 6배 넘게** 늘어 1.73억 달러가 됐고, 암호화폐는 −55%였다. Bernstein은 2026년 예측시장 매출을 5.86억 달러로 봤는데, 1~3분기 합이 약 4.8억 달러(1분기 수치는 자료마다 다름)라 비슷한 경로다.\n\n[[chart:4]]\n\n- Robinhood Chain은 첫 분기에 DEX 거래 800억 달러·체인 수수료 5,000만 달러 이상을 냈다(회사 발표). 반면 Galaxy 분석은 초기 활동이 **밈코인 중심**이고 주식 토큰 거래는 하루 최대 850만 달러 수준이었다고 봤다. Tenev가 말한 '주식 토큰이 레고'라는 그림은 아직 초기다.\n\n### 4. 반론과 리스크\n- **규제**: 위스콘신이 2026년 4월 스포츠 이벤트 계약을 불법 도박이라며 Robinhood 등을 제소했고, 오하이오에선 11월 2일부터 신규 스포츠 계약을 멈추기로 했다. CFTC는 연방법 우선을 주장하며 주 정부를 맞제소하고 있다. 예측시장이 '뉴스의 진화'라는 주장과 별개로 매출 성장의 핵심이 법정에 걸려 있다.\n- 비상장 접근권의 한계: OpenAI는 유럽 토큰화 주식에 대해 지분 이전엔 회사 승인이 필요하다고 밝혔다. RVI도 OpenAI 지분이 전체 기업가치의 1% 미만이고, 최근 기업가치 8,520억 달러 근처에서 산 것이라 싸게 산 것은 아니다.\n- 수익성: 3분기 영업비용이 16% 늘어 순이익이 줄었다. 순이자 수익은 금리 하락에 민감하다.\n- **에이전트 위험**: 분리 계좌·승인 기본값은 있지만, 승인을 끄면 손실 통제는 고객 몫이다. 회사는 에이전트 매출을 공개하지 않는다.\n\n### 5. 앞으로 볼 것\n- 4분기 실적(2027년 초): 에이전트 계좌 수·거래대금, 이벤트 계약 매출이 3분기 수준을 지키는지.\n- SEC 공인투자자 시험: 의견 마감(12월 4일 전후) 뒤 최종 규칙 여부.\n- KPI 계약 출시와 CFTC 대응, 주별 스포츠 계약 소송 결과.\n- Robinhood Chain 주식 토큰 거래대금·보유자 수, YC와 함께하는 Ventures 펀드 2 출시, Harmonic의 다음 투자 유치.",
+ "sources": [
+  {
+   "label": "Robinhood — 2026년 3분기 실적 발표",
+   "url": "https://investors.robinhood.com/news-releases/news-release-details/robinhood-reports-third-quarter-2026-results"
+  },
+  {
+   "label": "Liquidity Finder — 3분기 매출 구성·고객·자산·에이전트 계좌·Chain 수치 정리",
+   "url": "https://liquidityfinder.com/news/robinhood-reports-record-third-quarter-revenues-of-14-billion"
+  },
+  {
+   "label": "FourWeekMBA — 3분기 약 20만 에이전트 계좌",
+   "url": "https://fourweekmba.com/ai-robinhood-hits-record-1-42b-as-200k-open-agentic-accounts/"
+  },
+  {
+   "label": "CoinOtag — Robinhood Agents·15만 에이전트 계좌(HOOD Summit)",
+   "url": "https://en.coinotag.com/robinhood-in-app-ai-agents-150000-agentic-accounts"
+  },
+  {
+   "label": "Motley Fool — 2분기 실적 콜(에이전트 계좌 약 10만)",
+   "url": "https://fool.com/earnings/call-transcripts/2026/08/07/robinhood-hood-q2-2026-earnings-call-transcript"
+  },
+  {
+   "label": "The Outpost — Robinhood Agents에 OpenAI·Anthropic 모델 사용",
+   "url": "https://theoutpost.ai/news-story/robinhood-gives-29-million-users-access-to-ai-trading-agents-powered-by-openai-and-anthropic-31500/"
+  },
+  {
+   "label": "Robinhood Newsroom — RVI의 OpenAI 7,500만 달러 투자",
+   "url": "https://robinhood.com/us/en/newsroom/rvi-openai/"
+  },
+  {
+   "label": "Forbes Australia — RVI OpenAI 투자 규모·OpenAI 입장",
+   "url": "https://www.forbes.com.au/news/investing/robinhood-invests-75-million-in-openai-allowing-indirect-investments-into-ai-giant/"
+  },
+  {
+   "label": "SiliconANGLE — Harmonic 시리즈 B(약 8.75억 달러)",
+   "url": "https://siliconangle.com/2025/07/10/harmonic-raises-100m-nearly-900m-valuation-scale-ai-model-formal-mathematical-reasoning/"
+  },
+  {
+   "label": "TechRepublic — Harmonic 시리즈 C 14.5억 달러",
+   "url": "https://www.techrepublic.com/article/news-harmonic-valuation-robinhood-ceo/"
+  },
+  {
+   "label": "Accounting Today — 트럼프 계좌 BNY·Robinhood 선정",
+   "url": "https://www.accountingtoday.com/articles/robinhood-bny-mellon-tapped-to-run-trump-accounts-for-children"
+  },
+  {
+   "label": "Mayer Brown — SEC 공인투자자 정의 확대 제안(FINRA 시험)",
+   "url": "https://www.mayerbrown.com/en/insights/publications/2026/10/proposed-expansions-to-the-accredited-investor-definition-for-natural-persons"
+  },
+  {
+   "label": "Galaxy Research — Robinhood Chain 출범 분석(밈코인·주식 토큰 거래)",
+   "url": "https://www.galaxy.com/insights/research/robinhood-chain-launch-analysis-base-comparison-memecoins-distribution-thesis"
+  },
+  {
+   "label": "The Block — 2분기 예측시장 매출이 암호화폐·주식 추월",
+   "url": "https://www.theblock.co/post/410102/robinhood-prediction-markets-top-crypto-and-equities-revenue-in-q2"
+  },
+  {
+   "label": "Cointelegraph — 위스콘신의 스포츠 이벤트 계약 소송",
+   "url": "https://cointelegraph.com/news/wisconsin-targets-kalshi-robinhood-and-coinbase-in-new-front-of-sports-betting-war"
+  },
+  {
+   "label": "SEC — Robinhood 2026년 3분기 10-Q(오하이오·네바다 규제 내용)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001783879/000178387926000167/hood-20260930.htm"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "에이전트 트레이딩 계좌 누적 개설 수",
+   "sub": "단위: 천 계좌 · 2026년 회사 공개 시점별",
+   "type": "bar",
+   "unit": "천 계좌",
+   "labels": [
+    "2분기 실적(8월)",
+    "HOOD Summit·대본(9~10월)",
+    "3분기 실적(10월 말)"
+   ],
+   "series": [
+    {
+     "name": "누적 계좌",
+     "values": [
+      100,
+      150,
+      200
+     ]
+    }
+   ],
+   "note": "출시 몇 달 만에 두 배 — 모두 회사 발표 수치(근사치)이며 매출 기여는 미공개",
+   "source": "Robinhood 2·3분기 실적 발표, HOOD Summit 보도"
+  },
+  {
+   "at": "summary",
+   "title": "Tenev가 기억하는 불가리아 물가 상승률",
+   "sub": "단위: 연 % · 대본 발언 기준",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "1991년",
+    "1997년"
+   ],
+   "series": [
+    {
+     "name": "연 물가 상승률",
+     "values": [
+      170,
+      2000
+     ]
+    }
+   ],
+   "note": "월급을 구리 냄비로 바꾸던 시절 — 그가 '소유'를 강조하는 배경",
+   "source": "대본(Vlad Tenev 발언)"
+  },
+  {
+   "at": "deep",
+   "title": "Robinhood 분기 순매출: 2025 vs 2026",
+   "sub": "단위: 억 달러 · 1~3분기",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "1분기",
+    "2분기",
+    "3분기"
+   ],
+   "series": [
+    {
+     "name": "2025년",
+     "values": [
+      9.27,
+      9.89,
+      12.7
+     ]
+    },
+    {
+     "name": "2026년",
+     "values": [
+      10.7,
+      13.1,
+      14.2
+     ]
+    }
+   ],
+   "note": "매출은 계속 최대치를 쓰지만 전년 대비 증가율은 2분기 32% → 3분기 12%로 둔화",
+   "source": "Robinhood 분기 실적 발표"
+  },
+  {
+   "at": "deep",
+   "title": "2026년 3분기 매출 구성",
+   "sub": "단위: 백만 달러 · 괄호는 전년 대비",
+   "type": "hbar",
+   "unit": "백만 달러",
+   "labels": [
+    "순이자 수익(−9%)",
+    "옵션(+31%)",
+    "이벤트 계약(6배+)",
+    "기타 수익(+61%)",
+    "주식(+41%)",
+    "암호화폐(−55%)"
+   ],
+   "series": [
+    {
+     "name": "3분기 매출",
+     "values": [
+      415,
+      399,
+      173,
+      142,
+      121,
+      120
+     ]
+    }
+   ],
+   "note": "예측시장(이벤트 계약)이 암호화폐를 앞질렀다",
+   "source": "Robinhood 3분기 실적 발표"
+  },
+  {
+   "at": "deep",
+   "title": "Harmonic 기업가치",
+   "sub": "단위: 억 달러 · 투자 유치 시점",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "시리즈 B(2025.7)",
+    "시리즈 C(2025.11)"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      8.75,
+      14.5
+     ]
+    }
+   ],
+   "note": "4개월 만에 약 1.7배, 당시 매출 전 단계",
+   "source": "SiliconANGLE, TechRepublic"
+  }
+ ],
+ "tg": "Robinhood CEO Vlad Tenev는 회사를 '소유의 회사'로 정의하며 토큰화·예측시장·에이전트 트레이딩을 그 수단으로 꼽았다. 에이전트 트레이딩 계좌는 15만 개를 넘었고 KPI 계약도 준비 중이다. 3분기 매출은 14.2억 달러로 최대였지만 순이익은 줄었다.",
+ "tg_body": "Robinhood CEO Vlad Tenev는 회사를 '소유의 회사'라고 정의했다. 연 2,000% 인플레이션 속에 월급을 구리 냄비로 바꾸던 불가리아 시절이 그 출발점이다. 트럼프 계좌, 비상장사에 투자하는 Ventures 펀드, 토큰화가 모두 소유를 넓히는 수단이라는 설명이다.\n\n토큰화는 실제 주식을 보관하고 그 위에 토큰을 찍는 방식이다. 자체 블록체인 Robinhood Chain에서 디파이로 열린 주식 토큰을 내, 자본시장이 약한 나라 사람들도 스마트폰만으로 미국 주식을 갖게 하겠다고 했다.\n\n예측시장은 '뉴스의 진화'로 보고, EPS·매출을 직접 거래하는 KPI 계약을 준비 중이다. 에이전트 트레이딩은 15만 명 넘게 계좌를 열었고 하루 툴 호출이 약 3,000만 건이다. 계좌 안에서 전략을 돌리는 Robinhood Agents도 냈다.\n\nAI 기업 대부분이 비상장이라 개인이 AI 수익에서 소외된다는 점을 문제로 꼽았다. 공인투자자 규칙 완화를 요구했고, 자신이 세운 AI 수학 회사 Harmonic의 시각에서 거대 연구소가 발견을 독점하는 흐름을 비판했다.\n\n외부 확인: 3분기 매출 14.2억 달러(+12%), 이벤트 계약이 1.73억 달러로 암호화폐를 넘었지만 순이익은 14% 줄었다. 스포츠 계약은 위스콘신·오하이오 등과 규제 다툼 중이다.",
+ "youtube": "https://www.youtube.com/watch?v=yULk8eNa2mg",
+ "image": "https://i.ytimg.com/vi/yULk8eNa2mg/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-05 20:34 KST"
+}
