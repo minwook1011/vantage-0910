@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "27ecb1561f7e",
+   "kind": "news",
+   "headline": "맥그로힐, 초중고 교과 과정을 앤트로픽 '교사용 클로드(Claude for Teachers)'에 연동",
+   "bullets": [
+    "미국 대형 교육 출판사 맥그로힐이 초중고(K-12) 교과 과정 콘텐츠를 앤트로픽의 교사 전용 클로드에 붙였다.",
+    "교사가 클로드로 수업 자료를 만들 때 맥그로힐의 검증된 교재 내용을 바로 끌어다 쓸 수 있게 된다.",
+    "앤트로픽은 7월 미국 초중고 교사에게 교사용 클로드를 무료로 열었고, 교과 과정 협력사를 늘려 왔다."
+   ],
+   "summary": "맥그로힐이 자사 초중고 교과 과정을 앤트로픽 '교사용 클로드'에 통합한다고 11월 5일 발표했다. 원문 보도자료 본문은 읽지 못해 연동 범위·과목·계약 조건은 확인하지 못했다.\n\n교사용 클로드는 앤트로픽이 2026년 7월 14일 내놓은 서비스로, 인증된 미국 초중고 교사에게 1년간 무료로 제공된다. 지금까지 연결된 교과 자료는 오픈사이언스(OpenSciEd)와 일러스트레이티브 매스(IM v.360) 같은 공개 교재 중심이었고, 캔바 에듀케이션·매직스쿨 등 수업 도구와도 이어져 있다. 학생 정보는 모델 학습에 쓰지 않는다는 조건이다.\n\n대형 상업 출판사가 들어오면 교사들이 이미 쓰는 교재를 그대로 클로드 안에서 쓸 수 있어 학교 현장 확산에 힘이 실린다. 앤트로픽은 최근 학교·교육청용 무료 기업형 상품도 발표했다.",
+   "title": "McGraw Hill Integrates Trusted K-12 Curriculum into Anthropic’s Claude for Teachers",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOVjRaVG0tWlFNa3UzekNOMDBORVNtXzBCRGx4Rk1fSklSTGkzSm80TG9QSkhmeF9qeUNuTVplSTh2QWNTVEJxZzYyUkhGZlpNMlk5S09NdDIyYVJiZUpsMDNpQ1JTV3FLUUx0Q1BhREpvWTlkT25xOERUbEtfSDAyNXVqbXF3YklaTVdvYXdzMFNZQ3RaZUVSWDkxdGc?oc=5",
+   "published": "2026-11-05 21:19 KST",
+   "written": "2026-11-05 22:17 KST"
+  },
+  {
    "id": "25f779bfe028",
    "kind": "news",
    "headline": "다올투자증권, SK텔레콤 목표가 14만→11만5천원 하향 — AI 데이터센터 자회사·앤트로픽 지분 평가가치 낮춰",
@@ -1233,5 +1249,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-11-05 16:49 KST"
+ "updated": "2026-11-05 22:17 KST"
 }
