@@ -6,6 +6,7 @@
   "bond:2026-10-30",
   "bond:2026-11-02",
   "bond:2026-11-03",
+  "bond:2026-11-04",
   "cds:2026-10-14",
   "cds:2026-10-15",
   "cds:2026-10-16",
@@ -1622,9 +1623,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "ins:ins-20261027-kelly-ortberg-737-rate52-delay-fcf-2029": [
-   1079
-  ],
   "ins:ins-20261027-trump-honest-midterm-veto-venezuela-crude-5000-dividend": [
    1080
   ],
@@ -3166,6 +3164,10 @@
   ],
   "trk:nvda:4313d0fb7780": [
    1507
+  ],
+  "bond:2026-11-04": [
+   457,
+   458
   ]
  },
  "topics": {},
