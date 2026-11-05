@@ -1,0 +1,251 @@
+{
+ "id": "2026-11-06-synopsis-interview-how-to-continually-improve-your-invest",
+ "title_ko": "Aria Radnia와 맞대담 — Adobe를 판 이유, Uber와 자율주행, AppLovin 이익률 논쟁",
+ "guest": {
+  "name": "아리아 라드니아(Aria Radnia) · 드루 코헨(Drew Cohen)",
+  "role": "퀄리티 투자 콘텐츠 제작자 Aria와 진행자 Drew가 서로 묻고 답한 편"
+ },
+ "guest_profile": [
+  {
+   "name": "아리아 라드니아(Aria Radnia)",
+   "title": "개인 투자자 · 퀄리티 투자 콘텐츠 제작자(YouTube·X·Instagram)",
+   "what": "자기 포트폴리오를 공개하며 종목 분석 영상과 글을 올린다. 스스로를 퀄리티 성향의 GARP 투자자로 부른다. 운용하는 외부 자금은 없다(확인된 자료 없음).",
+   "career": "2021년 11월 투자를 시작했고, 처음 18개월은 실적 발표 베팅 같은 단기 매매로 손실을 봤다고 대본에서 밝혔다. 이후 Terry Smith의 퀄리티 투자를 공부하며 방식을 바꿨고, Adobe 분석으로 이름을 알렸다. The Dutch Investors 팟캐스트에도 출연했다.",
+   "track": "공개된 수익률 없음. 대본 기준 Adobe 평균 매수가 335달러, 매도가 약 280달러.",
+   "why": "개인 투자자가 손실을 겪으며 방식을 다듬어 온 과정을 숨기지 않고 말한다. Adobe·Uber·AppLovin에 대해 Drew와 반대편 논리를 맡는다."
+  },
+  {
+   "name": "드루 코헨(Drew Cohen)",
+   "title": "Davidson Kahn Capital Management 재무 설계사·포트폴리오 매니저 · Speedwell Research 공동 운영 · The Synopsis 진행자",
+   "what": "개인 고객의 종목 선택·자산 배분·은퇴 설계를 함께 맡는다. 회사 운용 자산은 5억 달러가 넘는다고 대본에서 말했다(외부 확인 못 함). 장기 투자자용 기업 심층 보고서를 내는 Speedwell Research를 Alex와 함께 운영한다.",
+   "career": "USC에서 회계·경영을 전공했다(공개 프로필). Goldman Sachs 글로벌 투자 리서치에서 금융회사 담당 애널리스트로 일했고(2019년 4월까지), 이어 Capital Group 바이사이드에서 상장·비상장 기업을 분석했다. 이후 Speedwell Research를 세우고 Davidson Kahn으로 옮겼다.",
+   "track": "공개된 수익률 없음. Constellation Software·Meta 등 장기 보고서가 대표작이라고 대본에서 소개됐다.",
+   "why": "셀사이드와 바이사이드를 모두 거친 사람이 경영진 신호와 경쟁 구도를 어떻게 읽는지, 왜 투자 방식을 고쳤는지 구체적으로 들려준다."
+  }
+ ],
+ "company": {
+  "name": "Adobe·Uber·AppLovin·FICO",
+  "sector": "소프트웨어 · 승차 공유·자율주행 · 앱 광고 · 신용평가",
+  "what": "경영진 신호, 자율주행 경쟁, 광고 수수료율, 규제 리스크로 본 종목 판단과 투자 방식의 변화"
+ },
+ "topic": "Adobe 매도·Uber 자율주행 위험·AppLovin 수수료율과 Drew Cohen의 투자 방식 변화",
+ "headline": "Adobe는 사업이 아니라 경영진 때문에 팔았다 — AppLovin은 '너무 많이 번다'는 걱정과 19배 배수의 싸움",
+ "tldr": [
+  "Aria는 Adobe를 약 280달러에 팔고 AppLovin으로 옮겼다 — 이유는 AI가 아니라 CEO 선임·핵심 임원 이탈",
+  "Drew: AppLovin 수수료율 35~40%(추정)는 경쟁이 약해 생긴 과잉 이익, Unity가 따라오면 줄 수 있다",
+  "Uber는 Waymo·Tesla와 보조금 전쟁이 걱정 — 두 회사가 Uber 앱에 차를 올려야 플랫폼이 산다",
+  "외부 자료: AppLovin 3분기 매출 +55%·마진 84%로 전망 상회, Unity Strategic Grow도 +90%",
+  "Drew는 10~20년만 보던 방식을 고쳐 '3년 단위 사업 개선'을 확인하고 작게 사서 늘린다",
+  "FICO는 같은 가격표에 VantageScore를 묶은 규제로 해자가 흔들렸다 — 올해 주가 약 58% 하락"
+ ],
+ "summary_md": "### 1. Aria는 어떤 투자자인가\n- 진행자 Drew Cohen은 이번 편을 평소와 다르게 꾸렸다. 손님 Aria Radnia가 종목 이야기를 한 뒤 거꾸로 Drew에게 질문을 던지는 맞대담 형식이다. Drew는 Aria를 소셜미디어에서 **확신이 강한 의견**을 자주 내는 투자자라고 소개했다.\n- Aria는 '가치·성장·퀄리티' 같은 꼬리표를 싫어하지만 굳이 고르자면 **퀄리티 성향의 GARP**(합리적 가격의 성장주)라고 했다. 해자가 넓으면서도 꾸준히 크는 Amazon이 대표 예이고, 성장이 한 자릿수인 S&P Global 같은 순수 퀄리티주와는 다르다는 설명이다.\n- 투자는 2021년 11월, S&P 500이 고점을 찍은 주에 시작했다. 처음 18개월은 계좌가 손실이었고, 실적 발표 하루 전에 Netflix에 베팅하거나 AMD를 샀다 일주일 만에 파는 식의 '도박'이었다고 털어놨다. 그 뒤 Terry Smith의 글을 읽으며 퀄리티 투자로 옮겨 왔다.\n\n### 2. Adobe를 판 이유 — 사업이 아니라 경영진\n- Aria는 Adobe를 평균 **335달러**에 사서 195달러까지 떨어지는 동안에도 버텼지만, 결국 280달러 근처에서 팔고 그 돈 대부분을 AppLovin으로 옮겼다. 하락 때문에 항복한 것은 아니라고 강조했다.\n- 이유는 경영진 교체가 겹친 데 있다. 크리에이티브 사업을 이끌던 David Wadhwani가 CEO로 뽑히지 않고 회사를 떠났고, CFO도 갑자기 물러났다. 새 CEO로 Anil을 고른 이유를 묻는 질문에 회사가 내놓은 답이 '기업 용어'뿐이었던 것이 마지막 결정타였다고 했다.\n- Drew는 AI가 Adobe를 무너뜨리기 어렵다는 데에는 동의했다. Adobe는 그림을 **새로 만드는 회사가 아니라 고치는 회사**이고, 지금 AI 도구는 대부분 생성 쪽이라 고급 전문가·기업 고객을 대체하기는 힘들다는 논리다.\n- 그래도 Drew가 이 주식을 한 번도 편하게 들지 못한 이유를 여러 가지 꼽았다. 후임자도 정하지 않고 CEO 퇴임부터 발표한 점, 핵심 전략을 짠 사람을 CEO로 고르지 않은 점, 처음으로 크리에이티브 제품 **가격 인상을 미룬** 점(이탈이나 경쟁을 걱정한다는 신호), ARR 성장률이 분기마다 꺾이는 점이다. Drew는 Adobe가 망하기보다 '천 번 베이는' 식으로 성장이 깎이고, 그러면 지금 낮아 보이는 배수도 싸지 않게 된다고 봤다.\n- Aria는 반대로 AI 에이전트가 크레딧 과금으로 오히려 시장을 넓힐 수 있다는 강세 논리도 소개했다. 2012~2013년 패키지 판매에서 구독으로 바꿀 때처럼 단기 매출을 희생하고 장기 성장을 얻는 그림이다.\n- Drew는 Booking.com의 CEO Glenn Fogel과 비교했다. 그 회사도 AI 위험은 크지만 경영진이 위험과 대응을 분명히 말한다는 것이다. 결론은 '모든 공에 방망이를 휘두를 필요는 없다'였다.\n\n### 3. Uber와 자율주행 — 플랫폼은 살아남을까\n- Aria는 Uber를 들고 있고 낙관한다. Uber 실적 발표 당일 녹음이었는데, Aria는 Uber가 자율주행차의 가동률이 경쟁 앱보다 높다고 말했다고 전했다(정확한 수치는 기억에 기댄 것이라고 본인이 단서를 달았다). 수요가 가장 많은 앱에 차를 올리면 노는 시간이 줄어든다는 것이 Uber의 논리다.\n- Drew의 걱정은 **보조금 전쟁**이다. Waymo와 Tesla라는 돈 많은 경쟁자 둘이 첫 화면을 차지하려고 싸우면, Uber 이익의 상당 부분을 내는 상위 몇 개 도시의 마진이 깎인다는 것이다. 두 회사가 남의 플랫폼에 차를 빌려주는 공급자로 만족할 리 없다고 봤다.\n- Uber가 살아남으려면 두 가지가 맞아야 한다고 정리했다. 자율주행 기술이 여러 회사로 흩어질 것, 그리고 그 기술을 가진 회사들이 Uber 앱에 차를 올리는 것을 막지 않을 것이다. Drew는 첫째는 맞을 것 같지만 Elon Musk가 Tesla를 Uber에 올려 줄 것 같지는 않다고 했다.\n- Aria가 차가 싸지면 시장 자체가 커진다는 반론을 내자, Drew는 그럴 수 있다고 인정하면서도 자기 차가 자율주행이 되면 오히려 승차 공유가 필요 없어진다는 시나리오를 들었다. Aria는 Uber가 Delivery Hero 인수 같은 M&A로 음식·장보기까지 묶는 '슈퍼앱'을 노린다고 했지만, Drew는 사람들이 여전히 여러 앱을 비교하기 때문에 메신저 기반의 WeChat 같은 지위와는 다르다고 반박했다. 다만 배달은 식당까지 붙는 **3면 네트워크**라 승차보다 나은 사업이라고 했다.\n\n### 4. AppLovin — 이익률이 너무 높다는 걱정\n- Drew는 AppLovin이 이익률 80% 안팎에 성장도 빠른 놀라운 회사라는 점은 인정했다. 광고주에게 '1달러를 주면 3달러를 돌려준다'는 광고 수익률(ROAS) 중심이라 고객이 잘 떠나지 않는다.\n- 핵심 걱정은 **수수료율**이다. 앱 개발사에서 광고 자리를 사서 광고주에게 되파는 구조인데, Drew는 그 차익이 매출의 35~40% 정도일 것이라고 추정했다(본인 추정). Google은 다른 일로 바쁘고 Meta는 외부 앱 광고에서 물러났으며 Unity는 ironSource 인수 뒤 흔들렸기 때문에, 경쟁이 약한 동안 '과하게 벌고' 있다는 것이다.\n- 경쟁자 하나만 경매에서 더 높은 값을 부르기 시작해도 광고 자리 값이 오르고, 시장 점유율은 그대로여도 수수료율은 반 토막 날 수 있다고 했다. Drew는 최근 **Unity가 광고 성과를 개선**하고 신규 예산이 Unity로 간다는 업계 이야기를 근거로 들었다. Aria는 Unity가 가져간 점유율은 AppLovin이 아니라 Google AdMob에서 나온 것이라고 맞섰다.\n- 그래도 Drew는 전자상거래 광고주가 붙으면 수수료율이 내려가도 이익이 늘 수 있다고 봤다. Aria는 직전 12개월 이익의 약 19배라면 이미 위험이 값에 들어 있다고 했고, Adyen이 한때 65%였던 EBITDA 마진이 50% 초반으로 내려와 안정된 사례를 들었다. Drew는 '성장 둔화와 마진 압박이 동시에 오는 주식'은 아직 편하지 않아 한두 분기 더 지켜보겠다고 했다. 녹음은 AppLovin 실적 발표 한 시간 전이었다.\n\n[[chart:1]]\n\n### 5. Drew의 경력과 지금 하는 일\n- Drew는 Davidson Kahn Capital Management에서 개인 고객 자산을 맡는 재무 설계사로, 회사가 운용하는 돈이 5억 달러가 넘는다고 했다(대본). 종목 선택뿐 아니라 은퇴 설계·계좌 구조까지 한 곳에서 맡아 중간 수수료를 없앤다는 것이 특징이고, 남의 상품에 돈을 넘기며 뒷돈을 받는 업계 관행을 비판했다.\n- Goldman Sachs에서는 금융회사를 담당하는 셀사이드 애널리스트였다. 실적 발표 날 새벽에 숫자를 엑셀에 옮기고 몇 시간 안에 보고서를 내야 했고, 매매를 일으키려는 **단기 중심 리서치**가 싫었다고 했다. Capital Group 바이사이드에서는 경영진에게 사업을 이해하려는 질문을 할 수 있어 더 보람 있었다고 했다. Speedwell Research를 차린 것도 3년이 지나도 유효한 장기 보고서를 쓰고 싶어서였다.\n\n### 6. 투자 방식은 계속 바뀐다\n- Drew는 한때 너무 '10~20년'만 보려 했다고 반성했다. 몇 년짜리 역풍을 맞은 회사는 사업이 잘못된 건지 경기 탓인지 확인할 길이 없어 버티기 어렵다는 것이다. 주택 경기에 묶인 Floor & Decor를 예로 들며, 금리가 이렇게 오래 높을 줄은 몰랐다고 했다. 그래서 **3년 단위로 사업이 나아지는지** 확인하는 것을 기준으로 삼고, 처음엔 작게 사서 확인되면 늘리는 방식을 쓴다.\n- Buffett도 말과 달리 보험·에너지처럼 사이클이 있는 사업은 시점을 골라 샀고, 퀄리티 주식이라도 대개 15배 이하에 샀다고 짚었다. 30배를 주고 퀄리티를 사는 요즘 방식은 Buffett의 실제 행동과 다르다는 것이다.\n- 두 사람은 Terry Smith가 성과 부진 끝에 모멘텀을 더 반영하겠다고 밝힌 일을 두고 이야기했다. Aria는 투기를 경계한다는 문장 바로 뒤에 그 방향으로 가겠다고 쓴 것이 실망스럽다고 했고, Drew는 '투자'와 '운용사 경영'의 유인이 다르다며 오히려 공감했다. 성과가 몇 년 나쁘면 자금이 빠지고 회사가 흔들리기 때문에, 그는 펀드를 차리지 않는다고 했다. 운용할 돈이 회사 안에 묶여 있던 Buffett은 1990년대 기술주 거품 때 비판을 받아도 방식을 바꿀 필요가 없었다는 대비다.\n- Aria는 S&P 500 종목의 약 60%가 고점 대비 20% 이상 빠져 있는데도 AI 종목 덕에 지수는 최고치라고 했다. 이런 **극단적 쏠림** 속에서 종목을 고르는 사람은 AI 비중이 크지 않으면 뒤처지기 쉽다는 것이다.\n\n### 7. FICO — 규제가 바꾼 해자\n- Drew는 FICO를 분석했을 때 주택담보대출 쪽은 생각보다 훨씬 강하고 나머지(카드·자동차 대출)는 생각보다 약한 사업이라고 판단했다. 카드사는 FICO 점수를 심사보다 마케팅 대상 추리기에 쓰는 경우가 많다는 것이다.\n- 주담대에서는 MBS를 사는 투자자들이 FICO 점수를 넣은 가격표로 채권 값을 매기기 때문에, 점수 한 번에 몇십 달러 아끼려다 대출 가격이 몇 bp만 떨어져도 손해가 더 크다. 그래서 VantageScore가 들어와도 FICO를 계속 쓸 것으로 봤다.\n- 예상하지 못한 것은 연방주택금융청장 Bill Pulte가 두 점수를 **같은 가격표**에 묶어 버린 일이다. 대출 기관이 두 점수 중 높은 쪽을 고르는 '게임'이 가능해진다. Drew는 규제 당국이 적대적인 데다 당시 직전 이익의 약 40배로 싸지도 않아 투자하지 않았다고 했다.",
+ "insights_md": "### 투자 관점\n- **경영진 신호를 숫자만큼 본다**: Adobe는 매출이 여전히 두 자릿수로 늘고 자사주도 많이 사지만, 두 사람은 CEO 선임 과정·가격 인상 연기 같은 행동을 더 중요한 신호로 읽었다. Adobe는 2026년 9월 Anil Chakravarthy를 12월 1일자 CEO로 정했고 David Wadhwani는 떠난다(외부 자료).\n- **AppLovin 논쟁의 핵심은 수수료율**: 매출 대비 남기는 몫이 경쟁 때문에 줄어드느냐다. 경쟁자 Unity의 Vector 기반 광고 사업이 3분기 1년 전보다 90% 늘어(Unity 공시) Drew의 걱정에 근거가 있지만, 같은 분기 AppLovin도 매출 55%·조정 EBITDA 마진 84%로 회사 전망을 넘었다(AppLovin 공시). 아직은 둘 다 크는 시장이다.\n- **Uber는 '공급자의 선택'에 달려 있다**: 자율주행 기술이 여러 회사로 흩어지고, 그 회사들이 Uber 앱에 차를 올려야 플랫폼 가치가 지켜진다. Waymo는 2026년 2월 기업가치 1,260억 달러로 160억 달러를 모았다(외부 자료) — 남의 플랫폼에 머물 필요가 없는 자금력이다.\n- **규제는 해자를 하루에 바꾼다**: FICO는 9월 말 Fannie·Freddie 가격표 통합 발표 뒤 크게 떨어져 올해 들어 약 58% 하락했다(야후 시세).\n\n[[chart:5]]\n\n### 관련 상장사(한국·미국·일본)\n- 미국: Adobe(ADBE)·Figma·Canva(비상장) 경쟁, AppLovin(APP)·Unity(U)·Alphabet(AdMob), Uber(UBER)·Lyft(LYFT)·Tesla(TSLA)·Alphabet(Waymo), FICO·Equifax·Experian·TransUnion.\n- 한국·일본: 모바일 게임사(넷마블·크래프톤, 일본 반다이남코·스퀘어에닉스 등)는 AppLovin·Unity의 광고주이자 광고 자리를 파는 쪽이라 수수료율 변화가 마케팅 효율에 바로 닿는다. 구체적 계약 규모는 확인 못 함.\n\n### 체크포인트\n- AppLovin 다음 분기 마진이 80%대를 지키는지, 전자상거래 광고주 매출 비중이 공개되는지.\n- Unity Strategic Grow 4분기 가이던스(5.15억~5.2억 달러) 달성 여부.\n- Uber 앱의 무인차 대수(연말 약 700대 → 2027년 2,000대 넘게 목표).\n- Adobe 새 CEO의 첫 실적 발표(2026년 12월)에서 ARR 성장 전망과 가격 정책.",
+ "deep_md": "### 1. 게스트·회사 팩트 체크 (외부 자료)\n- **Adobe CEO 교체**: 2026년 9월 3일 Adobe는 Anil Chakravarthy를 12월 1일자 사장 겸 CEO로 지명했다. Shantanu Narayen은 이사회 의장(executive chair)으로 물러나고, CEO 후보로 꼽히던 David Wadhwani는 5년 만에 회사를 떠난다고 밝혔다. Narayen의 퇴임 의사는 3월에 먼저 나왔다 — 대본에서 Drew가 문제 삼은 '후임 없이 퇴임부터 발표' 순서와 맞다. 발표 당일 주가는 285.75달러였고, 11월 5일 종가는 246.44달러로 올해 들어 약 30% 하락했다.\n- **Adobe 매출은 아직 꺾이지 않았다**: 공시 기준 분기 매출 증가율은 2025 회계연도 3분기 10.7%에서 2026 회계연도 3분기 12.9%로 오히려 높아졌다. 대본의 'ARR 성장 둔화'는 확인하지 못한 지표이고, 보고 매출과는 방향이 다르다. 비관론은 '지금 숫자'보다 '앞으로의 경쟁'에 대한 것이라는 뜻이다.\n\n[[chart:2]]\n\n- **AppLovin 3분기(11월 4일 발표)**: 매출 21.85억 달러(+55%), 조정 EBITDA 18.42억 달러, 마진 84%로 회사 전망 상단(매출 20.85억, 마진 약 83%)을 넘었다. 녹음 직후 나온 실적이라 대본의 '마진 압박' 걱정은 적어도 이번 분기엔 숫자로 나타나지 않았다. 주가는 발표 뒤 일주일 사이 약 40% 올랐지만 올해 전체로는 여전히 약 47% 아래다.\n- **Unity**: 3분기 Strategic Grow 매출은 4.32억 달러로 1년 전(2.27억)보다 90% 늘었고, CEO Matt Bromberg는 Vector가 1년 전보다 약 126% 성장했다고 밝혔다. 4분기 전망은 5.15억~5.2억 달러다. Drew가 말한 Unity의 추격은 공시 숫자로 확인된다. 다만 Aria 주장처럼 이 성장이 AppLovin이 아닌 Google AdMob 몫에서 나왔는지는 공개 자료로 확인 못 함.\n\n[[chart:3]]\n\n- **게스트**: Aria Radnia는 유튜브·X에서 퀄리티 투자 콘텐츠를 만드는 개인 투자자로, The Dutch Investors 팟캐스트에도 출연했다. 운용 성과는 공개된 것이 없다. Drew Cohen은 Goldman Sachs 글로벌 투자 리서치, Capital Group을 거쳐 Davidson Kahn Capital Management에서 고객 자산을 운용하며 Speedwell Research를 함께 운영한다(공개 프로필).\n\n### 2. 밸류체인과 관련 상장사\n- **앱 광고 경매**: 광고주(게임·전자상거래) → 광고 플랫폼(AppLovin·Unity·Google AdMob·Meta Audience Network) → 광고 자리를 파는 앱 개발사. 수수료율은 가운데 플랫폼이 양쪽 사이에서 얼마를 남기느냐다. 한국·일본 게임사는 양쪽 모두에 서 있다.\n- **승차 공유와 자율주행**: Uber·Lyft(플랫폼), Waymo(Alphabet)·Tesla(차와 소프트웨어), 차량 공급사와 센서·반도체(엔비디아 등). Uber는 3분기 총거래액 598억 달러(고정환율 +20%)를 냈고, 연말 무인차 약 700대, 2027년 2,000대 넘게 자기 앱에 올린다는 계획이다. Delivery Hero를 주당 41.5유로, 약 148억 달러에 사들이기로 해 배달 쪽 비중을 키운다.\n- **신용평가 점수**: FICO, VantageScore를 함께 소유한 Equifax·Experian·TransUnion, 그리고 주담대를 사는 Fannie Mae·Freddie Mac.\n\n### 3. 숫자의 맥락\n- **Waymo 자금력**: 2026년 2월 160억 달러를 기업가치 1,260억 달러에 모았다. 2024년 10월 450억 달러의 약 2.8배다. 주당 유료 운행은 40만 건 남짓이고 연말 100만 건이 목표다. Drew가 말한 '보조금을 쏟을 수 있는 경쟁자'는 숫자로 뒷받침된다.\n\n[[chart:4]]\n\n- **FICO**: 2026년 4월 FHFA·HUD가 VantageScore 4.0과 FICO 10T를 함께 받기로 했고, 9월 28일 Bill Pulte가 두 점수를 하나의 가격표로 합친다고 발표했다. Rocket Mortgage는 4분기부터 Fannie·Freddie·VA 대출에 VantageScore 4.0을 기본으로 쓴다고 했다. 시작일과 새 가격표는 아직 정해지지 않았다.\n- **Terry Smith**: Fundsmith Equity는 2026년 상반기 -2.9%로 MSCI World(+11.2%, 파운드 기준)에 크게 뒤졌다. Smith는 '아무것도 하지 않는다'는 세 번째 원칙을 고치겠다고 했고, 회전율은 51.8%로 사상 최고였다. 펀드 규모는 약 120억 파운드로 줄었다 — 대본에서 Drew가 말한 **자금 유출 압력**이 실제로 있었다.\n\n### 4. 반론과 리스크\n- AppLovin 비관론(수수료율 하락)은 이번 분기 숫자와 어긋났다. 반대로 낙관론도 Unity의 90% 성장이라는 반대 증거를 안고 있다. 시장이 커지는 동안엔 둘 다 클 수 있어, 성장이 꺾일 때 진짜 경쟁 강도가 드러난다.\n- Uber 낙관론의 '가동률 우위'는 대본에서 Aria가 기억으로 전한 수치이고, 공식 자료로는 확인 못 함.\n- Adobe에 대한 두 사람의 비관은 경영진 신호에 기댄 정성 판단이다. 보고 매출 성장률은 오히려 올라가고 있어, 새 CEO가 방향을 분명히 하면 해석이 바뀔 수 있다.\n\n### 5. 앞으로 볼 것\n- 2026년 12월 Adobe 4분기 실적과 새 CEO의 첫 전망.\n- 2027년 2월 전후 AppLovin·Unity 4분기 실적: 마진과 Strategic Grow 가이던스 달성.\n- Fannie·Freddie 통합 가격표 시행일과 대형 대출 기관의 VantageScore 전환 속도.\n- Waymo 주당 100만 건 목표와 Uber 앱의 무인차 대수.",
+ "sources": [
+  {
+   "label": "The Synopsis 에피소드 페이지(Libsyn) — 출연자·녹음 주제",
+   "url": "https://5f85ab06-2c89-4625-a5f9-f4b3a3300053.libsyn.com/interview-how-to-continually-improve-your-investing"
+  },
+  {
+   "label": "YouTube — 이 편 영상(길이·업로드일 확인)",
+   "url": "https://www.youtube.com/watch?v=G1cB2hYGvbE"
+  },
+  {
+   "label": "TIKR — Adobe, Anil Chakravarthy CEO 지명(12월 1일)",
+   "url": "https://www.tikr.com/blog/adobe-adbe-stock-names-anil-chakravarthy-new-ceo"
+  },
+  {
+   "label": "SentiSense — Narayen 의장 이동·Wadhwani 퇴사·당일 주가",
+   "url": "https://app.sentisense.ai/stories/adobe-appoints-anil-chakravarthy-as-ceo-as-shantanu-narayen-shifts-to-executive-09032026"
+  },
+  {
+   "label": "SEC EDGAR — Adobe 분기 매출(XBRL)",
+   "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000796343&type=10-Q"
+  },
+  {
+   "label": "SEC 8-K — AppLovin 2026년 3분기 실적(매출·EBITDA·전망)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000068/exhibit991-3q26earningspre.htm"
+  },
+  {
+   "label": "SEC 10-Q — AppLovin 2026년 3분기",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001751008/000175100826000069/app-20260930.htm"
+  },
+  {
+   "label": "SEC 8-K — Unity 2026년 3분기 실적(Strategic Grow·4분기 전망)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001810806/000181080626000053/a2026q3ex-991.htm"
+  },
+  {
+   "label": "SEC 8-K — Uber 2026년 3분기 실적(총거래액·무인차 계획)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001543151/000154315126000039/uberq326earningspressrelea.htm"
+  },
+  {
+   "label": "Pulse 2.0 — Waymo 160억 달러, 기업가치 1,260억 달러",
+   "url": "https://pulse2.com/waymo-confirms-16-billion-round"
+  },
+  {
+   "label": "TIKR — FICO 급락, 주담대 점수 독점 종료 계획",
+   "url": "https://www.tikr.com/blog/fico-sinks-27-as-trump-admin-announces-plans-to-end-its-mortgage-scoring-monopoly"
+  },
+  {
+   "label": "Motley Fool — FICO 9월 29일 급락",
+   "url": "https://www.fool.com/investing/2026/09/29/why-fair-isaac-corporation-plunged-today/"
+  },
+  {
+   "label": "interactive investor — Fundsmith 전략 수정·펀드 규모",
+   "url": "https://www.ii.co.uk/analysis-commentary/terry-smiths-massive-overhaul-underperformance-gap-widens-ii539599"
+  },
+  {
+   "label": "Morningstar — Terry Smith 반기 서한 해설",
+   "url": "https://global.morningstar.com/en-gb/funds/what-terry-smiths-latest-fundsmith-letter-means-investors"
+  },
+  {
+   "label": "The Dutch Investors — Aria Radnia 인터뷰",
+   "url": "https://thedutchinvestors.buzzsprout.com/2424967/episodes/18951971-87-misunderstood-quality-first-principles-interview-w-aria-radnia"
+  },
+  {
+   "label": "Warmer — Drew Cohen 프로필(Davidson Kahn, 이전 경력)",
+   "url": "https://www.getwarmer.com/firms/davidson-kahn-capital-management-llc/offices/sherman-oaks-ca"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "AppLovin 분기 매출 추이",
+   "sub": "억 달러 · 2025년 1분기~2026년 3분기(2025년 4분기는 재작성으로 제외)",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "25년 1Q",
+    "25년 2Q",
+    "25년 3Q",
+    "26년 1Q",
+    "26년 2Q",
+    "26년 3Q"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      11.6,
+      12.6,
+      14.1,
+      18.4,
+      19.2,
+      21.8
+     ]
+    }
+   ],
+   "note": "녹음 한 시간 뒤 나온 3분기도 1년 전보다 55% 늘었다 — '마진·성장 둔화' 걱정은 아직 숫자로 안 보인다",
+   "source": "AppLovin 10-Q·8-K(SEC EDGAR XBRL)"
+  },
+  {
+   "at": "deep",
+   "title": "Adobe 분기 매출 증가율(전년 대비)",
+   "sub": "% · 회계연도 기준, 공시 매출",
+   "type": "line",
+   "unit": "%",
+   "labels": [
+    "FY25 3Q",
+    "FY25 4Q",
+    "FY26 1Q",
+    "FY26 2Q",
+    "FY26 3Q"
+   ],
+   "series": [
+    {
+     "name": "매출 증가율",
+     "values": [
+      10.7,
+      10.5,
+      12.0,
+      12.7,
+      12.9
+     ]
+    }
+   ],
+   "note": "대본의 ARR 둔화와 달리 보고 매출 증가율은 올라갔다 — 비관론은 현재 숫자보다 앞으로의 경쟁에 대한 것",
+   "source": "Adobe 10-Q·10-K(SEC EDGAR XBRL)"
+  },
+  {
+   "at": "deep",
+   "title": "Unity Strategic Grow 매출",
+   "sub": "억 달러 · 4분기는 회사 가이던스 중간값",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "25년 3Q",
+    "26년 3Q",
+    "26년 4Q(전망)"
+   ],
+   "series": [
+    {
+     "name": "Strategic Grow 매출",
+     "values": [
+      22.7,
+      43.2,
+      51.8
+     ]
+    }
+   ],
+   "note": "Drew가 말한 Unity 추격은 공시로 확인된다 — 1년 새 90% 성장. 4분기 값은 가이던스(5.15억~5.2억 달러)",
+   "source": "Unity 2026년 3분기 실적 8-K"
+  },
+  {
+   "at": "deep",
+   "title": "Waymo 기업가치",
+   "sub": "억 달러 · 투자 유치 직후(post-money)",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2024년 10월",
+    "2026년 2월"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      450,
+      1260
+     ]
+    }
+   ],
+   "note": "16개월 새 약 2.8배 — Uber에 '보조금 전쟁'을 걸 수 있는 자금력",
+   "source": "Pulse 2.0 — Waymo 160억 달러 투자 유치 보도"
+  },
+  {
+   "at": "insights",
+   "title": "대담에 나온 종목의 올해 주가 등락",
+   "sub": "% · 2025년 말 대비 2026년 11월 5일 종가",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "FICO",
+    "AppLovin",
+    "Adobe",
+    "Uber",
+    "Unity"
+   ],
+   "series": [
+    {
+     "name": "연초 대비",
+     "values": [
+      -58.2,
+      -47.2,
+      -29.6,
+      -15.8,
+      10.5
+     ]
+    }
+   ],
+   "note": "AppLovin은 실적 뒤 일주일 약 40% 올랐어도 연초보다 크게 낮고, 경쟁자 Unity만 플러스",
+   "source": "Yahoo Finance 시세(배당 조정)"
+  }
+ ],
+ "tg": "Aria는 Adobe를 경영진 신호 때문에 팔고 AppLovin으로 옮겼다\nDrew: AppLovin 수수료율은 경쟁이 약해 생긴 과잉 이익, Unity 추격이 변수\nUber는 Waymo·Tesla와 보조금 전쟁이 걱정",
+ "tg_body": "Synopsis 진행자 Drew Cohen과 퀄리티 투자 콘텐츠를 만드는 Aria Radnia가 서로 묻고 답한 편이다. Aria는 Adobe를 280달러 근처에서 팔고 대부분 AppLovin으로 옮겼는데, 이유는 AI 위협이 아니라 CEO 선임 과정과 핵심 임원 이탈 같은 경영진 신호였다고 했다.\n\nDrew는 Adobe가 쉽게 무너지지는 않겠지만 가격 인상 연기와 ARR 성장 둔화로 조금씩 깎일 수 있다고 봤다. Uber에 대해서는 Waymo와 Tesla 같은 돈 많은 경쟁자가 보조금 전쟁을 벌이면 상위 도시 마진이 줄 수 있다고 걱정했다.\n\nAppLovin은 이익률 80% 안팎의 뛰어난 회사지만 경쟁이 약해 수수료율이 너무 높다는 것이 Drew의 걱정이다. Unity가 경매에서 값을 올리면 점유율이 그대로여도 이익이 줄 수 있다고 했다. Aria는 이익의 약 19배라면 이미 값에 반영됐다고 맞섰다.\n\nDrew는 너무 먼 미래만 보던 방식을 고쳐 3년 단위로 사업 개선을 확인한다고 했다. Terry Smith의 모멘텀 전환에는 운용사 경영의 압박을 이해한다고 했고, FICO는 규제 당국이 적대적이라 피했다고 했다.\n\n외부 자료로는 AppLovin 3분기 매출이 55% 늘고 마진 84%로 전망을 넘었지만, Unity의 같은 사업도 90% 늘어 경쟁 걱정에도 근거가 있다. Adobe 매출 증가율은 오히려 12.9%로 높아졌다.",
+ "youtube": "https://www.youtube.com/watch?v=G1cB2hYGvbE",
+ "image": "https://i.ytimg.com/vi/G1cB2hYGvbE/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-06 06:38 KST"
+}
