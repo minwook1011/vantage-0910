@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "9ea2c09d2dc8",
+   "kind": "news",
+   "headline": "오픈AI, 이미지 생성 50% 빨라진 '이미지 2.6' 출시 — GIF 애니메이션 제작 추가, 주당 이미지 생성 40억장",
+   "bullets": [
+    "오픈AI가 4일(현지시간) 새 이미지 모델 '이미지 2.6'을 챗GPT·코덱스 전 요금제와 API에 내놨다. 이전 모델보다 이미지를 50% 빠르게 만든다.",
+    "정지 이미지를 반복 재생되는 GIF 애니메이션으로 만들 수 있고, 여러 번 고쳐도 캐릭터·제품 모양이 그대로 유지되게 했다.",
+    "오픈AI는 챗GPT·코덱스·API에서 만들어지는 이미지가 주당 약 40억장이라고 공개했다."
+   ],
+   "summary": "개발자용은 두 가지다. 빠른 작업용 'GPT 이미지 2.6 플레어'는 품질을 낮음으로 두면 최소 6초 만에 결과를 낸다. 고품질용 '선버스트'는 세부 묘사와 정확도를 높이고 반복 편집에서도 외형을 안정적으로 유지하도록 설계됐다.\n\n편집 기능도 넓어졌다. 챗GPT에 있던 이미지 영역 지정 수정(이미지 마크업)을 API로 열었고, 웹·인쇄용 벡터 그래픽(SVG) 내보내기를 지원한다. 새 '복잡도' 설정으로 모델이 계획·추론하는 수준을 조절해 단순 수정은 빠르게, 조건 많은 장면은 정밀하게 고를 수 있다.\n\n초기 활용 사례로 AI 이미지·영상 플랫폼 오픈아트가 GIF 제작 기능을 붙였고, 스타트업 타운은 업무용 AI 캐릭터에 움직임을 넣는 시험을 했다. 주당 40억장은 하루 약 5억7천만장 수준으로, 이미지 경쟁의 축이 화질에서 속도·반복 편집·브랜드 일관성으로 옮겨 가고 있다.",
+   "title": "스케치가 움직이는 캐릭터로…오픈AI '이미지 2.6' 출시",
+   "source": "뉴시스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE10VlpVcFNGSk00VnY5MmFJQVg4cWZZeXlXYmFhdzJyZHZTekZaY2MxR291YWN1LWZaWjVSNVpGR3FTbExJeFQxVDFjRkJoSEUzUlFNSTZ6UFI3MDlpU0xqYtIBeEFVX3lxTE1ZYUh2a3MtWlYyeVVySkRUb3lXUzZ3LTF4aGYtUTBtb1JzaEw5NnNWc2NaVVNCckdpYjg0VTVaZGhLNmxQeWJvdXNOQzdaUTUwN1AxYlN6V19VZFI5TWJKbWRsWGdGY0hGSWxfVDQyRkpRWENaY1hBcA?oc=5",
+   "published": "2026-11-05 17:32 KST",
+   "written": "2026-11-05 17:50 KST"
+  },
+  {
    "id": "337e571a8fa0",
    "kind": "news",
    "headline": "오픈AI 대외협력 총괄 크리스 리헤인, 2028년 대선 겨냥 'AI 뉴딜' 5대 과제 제안 — \"데이터센터 건설 멈추면 중국에 밀린다\"",
@@ -1299,5 +1315,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-05 17:24 KST"
+ "updated": "2026-11-05 17:50 KST"
 }
