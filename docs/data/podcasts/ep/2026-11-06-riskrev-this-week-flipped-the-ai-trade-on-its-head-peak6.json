@@ -1,0 +1,250 @@
+{
+ "id": "2026-11-06-riskrev-this-week-flipped-the-ai-trade-on-its-head-peak6",
+ "title_ko": "선거 뒤 이틀 만에 뒤집힌 AI 트레이드 + PEAK6 Jenny Just·Matt Hulsizer",
+ "guest": {
+  "name": "Jenny Just · Matt Hulsizer",
+  "role": "PEAK6 공동 창업자·매니징 파트너(Apex Fintech Solutions 모회사)"
+ },
+ "guest_profile": [
+  {
+   "name": "제니 저스트(Jenny Just)",
+   "title": "PEAK6 공동 창업자·매니징 파트너",
+   "what": "Austin에 본사를 둔 PEAK6에서 자기자본 옵션 트레이딩, 청산·증권 인프라 Apex Fintech Solutions, 야간 거래소 Bruce Markets, 벤처 투자를 함께 이끈다. 여성에게 포커로 위험 감수와 협상을 가르치는 Poker Power를 만들어 운영한다.",
+   "career": "1990년 수학 실력으로 O'Connor & Associates에 들어가 Chicago·New York 옵션 거래소 현장에서 트레이더로 일했다. UBS가 O'Connor를 인수한 뒤 1997년 Matt Hulsizer와 함께 150만 달러로 PEAK6를 세웠다. 2012년 파산 위기의 Penson 청산 사업을 인수해 Apex로 키웠다.",
+   "track": "PEAK6는 28년 넘게 손실 연도가 없었다고 밝혀 왔다(회사 측 주장, 외부 감사 수치는 없음). 비즈니스 매체는 그를 자수성가한 억만장자로 소개한다. 개인 투자 수익률은 공개된 것이 없다.",
+   "why": "옵션 마켓메이킹에서 출발해 리테일 증권 인프라까지 만든 사람이라, 예측시장·24시간 거래 같은 시장 구조 변화를 인프라 쪽에서 본다."
+  },
+  {
+   "name": "매트 헐사이저(Matt Hulsizer)",
+   "title": "PEAK6 공동 창업자·매니징 파트너, OCC 이사",
+   "what": "PEAK6의 포트폴리오(Apex Fintech Solutions, PEAK6 Capital Management, Bruce Markets, e스포츠팀 Evil Geniuses 등)를 총괄한다. 미국 옵션 청산소 OCC 이사회 멤버다.",
+   "career": "O'Connor & Associates에서 옵션 트레이더로 일했고, 1997년 Jenny Just와 PEAK6를 공동 창업했다. 2006년 온라인 증권사 OptionsHouse와 헤지펀드를 세웠고, 2014년 OptionsHouse를 General Atlantic에 2억 달러에 팔았다. 같은 해 23억 달러 규모 헤지펀드를 Achievement Asset Management로 분리했다.",
+   "track": "2012년 6,000만 달러에 인수한 청산 사업(Apex)은 2021년 SPAC 합병 추진 당시 47억 달러로 평가됐다(합병은 철회). 개인 투자 수익률은 공개된 것이 없다.",
+   "why": "옵션 위험 관리와 증권 인프라를 모두 운영한 경험으로, 금융 규제가 기술을 못 따라가는 지점(비상장 투자 접근, 소수점 옵션)을 구체적으로 짚는다."
+  }
+ ],
+ "company": {
+  "name": "PEAK6 · Apex Fintech · Nvidia · Micron · CoreWeave",
+  "sector": "AI 반도체 · 네오클라우드 · 은행·사모신용 · 증권 인프라",
+  "what": "중간선거 뒤 폭락한 AI 인프라 종목과, 예측시장·24시간 거래를 준비하는 증권 인프라 회사"
+ },
+ "topic": "중간선거 직후 AI 종목 폭락의 의미, 고용·연준 변수, PEAK6가 보는 시장 구조 변화",
+ "headline": "선거 다음 날 소비·은행을 사고 이튿날 AI를 던졌다 — SOX 하루 -12%, 진행자들은 'AI 트레이드 구조가 풀리는 중'인지 묻는다",
+ "tldr": [
+  "선거 다음 날 소비·은행·주택주가 오르고, 목요일엔 AI 종목이 폭락 — S&P -4.4%, Nasdaq 100 -6.4%, SOX -12.2%(야후 종가)",
+  "Micron은 하루 -17.5%, 6월 고점 대비 -46%·SMH -33%·Caterpillar -48% — 진행자들은 '슬로모션 약세장이 폭락으로 터졌다'고 진단",
+  "CoreWeave 43.66달러로 공모가(40달러) 근처, 대본 기준 CDS 약 1,300bp — 은행·사모신용·메가 IPO까지 AI 노출이 번진다",
+  "10월 고용 16.5만 명(예상 6.5만) — 금리 인상을 원하는 Warsh 연준과 AI 붕괴 위험 사이에 시장이 끼었다",
+  "Anthropic 1,000억 달러 조달에 투자자 의문(대본·Bloomberg 인용), SpaceX는 공모가 135달러 아래",
+  "PEAK6 창업자: Apex 최종 고객 약 4,200만 명, 예측시장·24시간 거래·소수점 옵션·주식 리워드가 다음 물결"
+ ],
+ "summary_md": "### 1. 오프닝 — 선거, 고용, 그리고 Apex 서밋\n\n진행자 Dan Nathan과 Guy Adami는 Austin에서 열린 Apex 행사 일정을 마치고 10월 고용지표가 나온 금요일 개장 전에 녹음했다. 화요일 중간선거, 수요일 반등, 목요일 폭락까지 일주일 동안 쌓인 이야기를 먼저 정리하고, 뒤에서 Apex의 모회사 PEAK6 공동 창업자 두 사람과 나눈 대담을 이어 붙였다.\n\n### 2. 선거 결과가 시장에 준 신호\n\nAdami의 해석은 이렇다. 민주당 쪽 승리 폭이 워낙 커서 '선거 개입' 논란이 나올 여지가 없어졌고, 시장이 걱정하던 **헌정 위기 위험**이 가격에서 빠졌다. 새 의회가 전쟁을 더 빨리 끝낼 수 있다는 기대에 원유가 내렸고, 그 덕에 항공·소매주가 올랐다. 채권도 같은 방향으로 움직였다.\n\n문제는 AI 한복판에 있는 종목들이었다. 데이터센터 건설을 막는 지역 모라토리엄이 여야 공통 쟁점이었고, Texas처럼 예상 밖 결과가 나온 곳도 있어 데이터센터 관련주가 압박을 받았다. 흥미로운 건 수요일 상승장에서 최근 몇 분기 현금흐름이 마이너스로 돌아선 대형 기술주가 오히려 올랐다는 점이다. Adami는 이를 \"데이터센터에 돈을 덜 쓰면 상을 주겠다\"는 시장의 메시지로 읽었다. 그는 오래전부터 AI 트레이드의 **기초 구조가 불안하다**고 말해 왔고, 수요일에 이미 그 신호가 보였다고 했다.\n\n### 3. 수요일 순환매, 목요일 폭락\n\nNathan은 수요일 매수세가 경기소비재·필수소비재·소매·주택건설·은행·사모신용까지 고르게 퍼졌다고 짚었다. 그런데 목요일 아침이 되자 반도체가 개장부터 무너졌다. 진행자가 든 숫자는 Nvidia -9.5%, **SOX -12%**, S&P 500 -4.3%, Nasdaq 100 -6.3%다. Elon Musk가 선거에 약 5억 달러를 썼는데 Tesla와 SpaceX가 하루에 10%씩 빠져 시가총액 수천억 달러가 날아갔다는 계산도 곁들였다.\n\n[[chart:2]]\n\n네오클라우드는 더 심했다. CoreWeave는 43.66달러로 마감해 2025년 3월 공모가 40달러 근처까지 내려왔다(고점은 150달러대). 대본 기준으로 이 회사 채권 1,000만 달러를 5년간 보장받는 비용이 약 130만 달러까지 올랐다. Adami는 SMH ETF가 6월 중순 약 660달러에서 450달러까지 약 33% 빠졌다며, 여름부터 천천히 진행된 약세장이 목요일에 **사실상 폭락**으로 터졌다고 표현했다. 3배 레버리지 ETF와 멀티매니저 헤지펀드(일명 '포드')의 청산이 매도를 키웠다는 해석도 나왔다.\n\n### 4. 은행주 변동성과 메가 IPO\n\nNathan이 특히 놀란 건 은행주였다. JPMorgan은 수요일 4.25% 오르고 목요일엔 갭 상승 뒤 한 시간 만에 360달러에서 337달러까지 밀렸다. 상관관계가 순식간에 1에 가까워졌다는 뜻이다. Adami는 은행이 지금 사이클 중반이 아니라 **사이클 후반**에 있다고 보고, 은행의 AI 인프라 대출과 장부 밖 노출을 확인해야 한다고 했다. Bank of America 고점이 반도체 고점보다 한 달 늦게 왔다는 점도 우연이 아니라고 봤다.\n\n두 사람은 Apollo·Blackstone·KKR·Blue Owl 같은 **사모신용 운용사**가 1년 넘게 약했다는 점, Goldman Sachs가 7월 고점 대비 25% 빠진 점을 같이 엮었다. 그들의 진단은 시장이 '**메가 IPO가 틀어질 위험**'을 가격에 넣기 시작했다는 것이다. Nathan은 Bloomberg 보도를 인용해 Anthropic이 1,000억 달러를 모으려 했지만 대형 투자자들이 의문을 제기해 800억 달러 쪽으로 기울고 있다고 전했다. SpaceX는 123달러로 마감해 공모가 135달러를 밑돌았고, Caterpillar는 반 토막 났다.\n\n### 5. 메모리 광풍의 끝\n\nAdami는 Micron을 예로 들었다. 지난 12월 200달러대 중반이던 주가가 여름에 1,200달러를 넘겼고, 그때는 \"사이클은 끝났다, 새 패러다임\"이라는 말이 넘쳤다. 6월 고점 이후 반 토막이 났다. 그는 회사도 이 급등을 예상하지 못했다며, 알았다면 자사주를 대거 사고 공급 부족에 대비했을 것이라고 했다. 많은 사람이 올라탔지만 차익을 챙긴 사람은 훨씬 적어, 700달러 안팎에서 **어정쩡한 보유자**가 많아졌다는 진단이다.\n\n### 6. 고용 서프라이즈와 Warsh 연준\n\n10월 비농업 고용은 **16.5만 명**으로 예상치(약 7만 명)를 크게 웃돌았고, 10년물 금리는 5~6bp 움직였다. 개장 전 기준 10년물 4.86%, 달러지수 102, 원유 약 91달러, Nasdaq 선물 +1.3~1.5%였다. 쟁점은 물가와 싸우며 금리 인상을 원하는 **Warsh 의장**이다. 선거 결과가 그에게 버틸 명분을 줄 수 있지만, AI 트레이드가 무너지면 경제가 내년 초엔 전혀 다르게 보일 수 있다는 게 Adami의 반론이다. 그는 여름부터 연준이 인하도 인상도 할 이유가 없다고 봤고, 이제 연준이 애매한 위치에 갇혔다고 했다.\n\n[[chart:5]]\n\n### 7. 정리 국면인가, 구조가 무너지는가\n\nMorgan Stanley의 Mike Wilson은 중간선거가 불확실성을 털어 내는 '정리 이벤트'가 될 수 있다고 했다. Adami는 목요일의 거래량과 낙폭을 보면 기술적으로는 투매(capitulation)에 가깝다고 인정했다. 다만 더 중요한 질문은 차트가 아니라 **트레이드 구조 자체**가 풀리고 있느냐이고, 그렇다면 파급이 클 것이라고 했다. Nathan은 데이터센터 건설이 막혀 설비투자가 줄면 하이퍼스케일러는 오히려 현금을 쌓는 **방어주**가 되고, 부품·스토리지·서버·네오클라우드만 계속 맞을 수 있다는 시나리오를 내놨다. 소비가 받쳐 주면 지수는 버틸 수 있다는 것이다. Adami는 고용이 예상보다 좋았다는 점은 인정하면서도 AI 투자가 경제에 주는 무게가 소비 반등보다 훨씬 크다고 봤다.\n\n### 8. PEAK6 대담 — 새 상품, 예측시장, 24시간 거래\n\n후반부는 Austin의 Apex Innovation Summit 현장에서 녹음한 대담이다. Jenny Just는 Apex의 최종 고객이 약 4,200만 명이며, 대형 암호화폐 회사들이 주식 상품을 내려고 Apex로 들어오면서 여성 비중이 34~36%에서 30%대 초반으로 내려갔다고 말했다. 그는 **예측시장**이 여성이 투자를 일찍 접하는 디딤돌이 될 수 있다고 봤다. Matt Hulsizer는 PEAK6가 15년 전 사내에서 이미 예측시장을 돌렸다며 이 흐름은 되돌릴 수 없다고 했다. 그는 Anthropic 같은 IPO에 일반인이 투자하지 못하는 낡은 규칙을 '비잔틴식'이라 부르며, ETF나 토큰으로 우회로가 생기는 건 당연한 일이라고 했다.\n\n자회사 Bruce Markets(대표 Jason Wallach)의 24시간 주식 거래에 대해서는, 암호화폐와 외환은 이미 주 7일 돌아가므로 정규장 시간에 묶일 이유가 없다는 입장이다. 유동성은 초기 단계지만 PEAK6가 원래 '뭐든 거래하는' 유동성 공급자로 컸다는 점을 강조했다. Hulsizer는 78주처럼 100주 단위가 안 되는 보유자도 커버드콜을 쓸 수 있는 **소수점 옵션** 상품이 곧 나올 것으로 봤다.\n\n### 9. 포커, 인재, 투자 방식, 주식 리워드\n\nJust는 딸의 테니스 경기를 계기로 Poker Power를 만들었고, 지금까지 70개국 418개 회사에서 수업을 했다고 했다. Morgan Stanley 연구를 들어 투자금의 약 88%가 남성 팀에 간다며, 투자자들이 과장에 보상한다고 지적했다. Hulsizer는 전문 VC처럼 체계적인 절차 대신 인맥과 창업자의 끈기·노력을 보고 투자한다고 했다. 마지막으로 Apex의 **주식 리워드** 사업을 소개했다. 쿠폰 대신 소량의 주식을 주면 고객이 주인이 되고, 6개월 기준 재방문이 약 40% 늘었다는 데이터가 있다는 설명이다.",
+ "insights_md": "### 투자 관점\n\n- **시장이 상을 준 쪽과 벌을 준 쪽**: 수요일엔 설비투자를 줄일 여지가 있는 대형 플랫폼과 금리 민감 업종(은행·주택·소비재)이 오르고, 목요일엔 반도체·메모리·네오클라우드가 집중적으로 맞았다. 진행자들은 이를 'AI에 돈을 쓰는 쪽'과 'AI로 돈을 받는 쪽'의 운명이 갈리는 신호로 읽었다.\n- **밸류체인 위치별 차이**: Nathan의 시나리오대로라면 현금이 많은 하이퍼스케일러(Microsoft·Alphabet·Amazon)는 방어적으로 버티고, 장비·부품·메모리(Nvidia·Micron·SK하이닉스·삼성전자), 서버·스토리지, 부채로 짓는 네오클라우드(CoreWeave)가 약해진다. 한국 메모리, 일본 반도체 장비(Advantest·Tokyo Electron)도 같은 축에 있다.\n- **금융주는 AI의 2차 노출**: 은행·투자은행·사모신용 운용사는 데이터센터 대출, SPV 구조, 메가 IPO 수수료로 AI 사이클에 묶여 있다. Goldman Sachs가 7월 고점 대비 약 24% 빠진 것은 IPO 기대가 꺾인 영향으로 볼 수 있다.\n\n- **수치로 볼 것**: 대본의 '목요일 S&P -4.3%, Nasdaq 100 -6.3%, SOX -12%'는 야후 종가와 거의 일치한다. 1년 고점 대비로는 Micron -46%, Caterpillar -48%, SMH -33%다.\n\n### 반론·리스크\n\n- 진행자들은 오래전부터 AI 트레이드에 회의적이었다. 하루 폭락이 추세를 확정하지는 않으며, 본인들도 \"하루가 추세를 만들지 않는다\"고 단서를 달았다.\n- 고용이 강해 Warsh 연준이 금리를 올리면 AI 종목엔 이중 부담, 반대로 AI 붕괴가 경기를 꺾으면 연준이 방향을 틀 수 있다.\n- 3배 레버리지 ETF·멀티매니저 펀드 청산이 낙폭을 키웠다면, 펀더멘털보다 **수급 충격**이 컸다는 뜻이라 반등도 빠를 수 있다.\n\n### 체크포인트\n\n- Anthropic IPO 조달 규모(1,000억 달러 유지 여부), SpaceX 주가의 공모가 회복 여부\n- CoreWeave CDS, 은행의 AI 대출 노출 공시\n- 데이터센터 모라토리엄이 실제 법안·인허가로 이어지는지",
+ "deep_md": "### 1. 게스트·회사 팩트 체크\n\n외부 자료로 확인: **PEAK6**는 1997년 Chicago에서 Jenny Just와 Matt Hulsizer가 세웠다. 두 사람은 O'Connor & Associates의 옵션 트레이더였고, UBS가 O'Connor를 인수한 뒤 나와 친구·가족·O'Connor 파트너에게서 150만 달러를 모아 시작했다. 본사는 2024년 말 Austin으로 옮겼다.\n\nApex의 시작은 2012년이다. PEAK6의 온라인 증권사 OptionsHouse의 청산을 맡던 Penson Worldwide가 파산 위기에 몰리자, PEAK6가 6,000만 달러에 청산 사업을 인수해 **Apex Clearing**(현 Apex Fintech Solutions)이 됐다. 이후 Robinhood·Wealthfront·Betterment·Stash가 Apex를 썼다. 2014년엔 OptionsHouse를 General Atlantic에 2억 달러에 팔고, 23억 달러 규모 헤지펀드를 Achievement Asset Management로 분리했다. 2021년 Northern Star와의 SPAC 합병(기업가치 47억 달러)은 철회됐고, 2023년 12월 일반 IPO를 신청했다(상장 여부는 이번 검색으로 확인 못 함).\n\nApex 고객 수는 2026년 3월 인터뷰 정리 기준 약 4,000만 명, 대본에선 약 4,200만 명이다. 창업자들은 28년 넘게 손실 연도가 없었다고 말해 왔는데, 이는 **회사 측 주장**이고 외부 감사 수치는 확인하지 못했다. Bruce Markets는 PEAK6가 최대주주인 야간 거래 ATS로, PEAK6와 Robinhood가 주도한 투자를 받아 주말까지 포함한 24/7 미국 주식 거래를 준비 중이다(규제 검토 필요). 청산은 Apex, 매칭 기술은 Nasdaq이 맡는다.\n\n### 2. 진행자가 말한 목요일 폭락, 실제 숫자\n\n야후 종가로 확인한 11월 5일(목) 하루 등락은 S&P 500 -4.4%, Nasdaq 100 -6.4%, SOX -12.2%였다. 진행자 숫자와 거의 같다. Nvidia는 -9.3%(진행자 -9.5%), Tesla -10.8%, CoreWeave -9.8%(종가 43.66달러, 대본과 일치)였고 **Micron은 -17.5%**로 가장 컸다. JPMorgan은 수요일 +4.2%, 목요일 -4.2%로 하루 만에 상승분을 다 반납했다.\n\n[[chart:1]]\n\n### 3. 숫자의 맥락 — 고점 대비 낙폭\n\nSMH는 6월 22일 668.91달러가 1년 고점이고 11월 5일 447.73달러로 33.1% 빠졌다(진행자 '660달러에서 450달러, 약 33%'와 일치). Micron 1년 고점은 6월 25일 1,213달러로 -45.9%, Caterpillar는 6월 30일 고점 대비 -47.8%로 진행자의 '반 토막'에 가깝다. Goldman Sachs는 7월 15일 고점 대비 -24.2%다(진행자 25%).\n\n[[chart:3]]\n\n신용 쪽은 이미 10월에 경고가 나왔다. Reuters 인용 보도에 따르면 CoreWeave 5년 CDS는 10월 중순 1,000bp를 넘어 5년 내 부도 확률 약 64%를 시사했고, 10월 27일엔 1,041bp로 약간 좁혀졌다. 대본의 '1,000만 달러 보장에 약 130만 달러'는 1,300bp 안팎이라 10월 말보다 다시 **크게 벌어졌다**는 뜻이지만, 11월 수치는 외부 자료로 확인하지 못했다.\n\n### 4. 밸류체인과 관련 상장사\n\n- **AI 인프라(가장 큰 타격)**: Nvidia·AMD·Broadcom(설계), Micron·SK하이닉스·삼성전자(메모리), CoreWeave(네오클라우드), Caterpillar(데이터센터 발전기·장비). 이번 주(10/30→11/6 장중) Micron -21%, CoreWeave -17%, AMD -12%.\n- **현금 많은 플랫폼(상대 방어)**: 같은 기간 Amazon +9.7%, Microsoft·Alphabet +2.8%. Nathan의 '하이퍼스케일러 방어주화' 시나리오와 맞는 흐름이다.\n- **금융(2차 노출)**: Goldman Sachs·Morgan Stanley(IPO 인수), JPMorgan·Bank of America(대출), Apollo·Blackstone·KKR·Blue Owl(사모신용). 사모신용 4사는 올해 -19~-29%로 S&P 500(+8%)과 크게 벌어졌다.\n\n[[chart:4]]\n\n- **시장 구조 수혜 후보**: 예측시장·24시간 거래·소수점 옵션은 Robinhood(Bruce 투자자), Cboe·CME·Nasdaq(거래소) 쪽 이야기다. Apex는 비상장이라 직접 투자 대상은 아니다.\n\n### 5. 반론과 리스크\n\n- **IPO 일정**: Reuters는 9월에 Anthropic이 약 2조 달러 가치로 최대 1,000억 달러 조달을 추진하고, Nvidia가 최대 100억 달러 앵커 투자를 검토한다고 보도했다. 대본의 '800억 달러로 축소' 보도는 이번 검색으로 확인하지 못했다.\n- **고용 서프라이즈**: 10월 비농업 고용은 16.5만 명으로 예상 6.5만 명(진행자 약 7만), 전월 6만 명을 크게 웃돌았다. 실업률도 4.1%로 내렸다. 경기가 버티면 지수 전체가 무너지기보다 AI 쪽만 빠지는 **차별화 장세**가 될 수 있다.\n- 진행자들은 꾸준한 AI 회의론자이고, 반대편(Dan Ives 등 강세론)은 2027년을 수익화 전환점으로 본다.\n\n### 6. 앞으로 볼 것\n\n- Anthropic S-1과 조달 규모, SpaceX의 공모가(135달러, 대본) 회복 여부\n- CoreWeave·Oracle CDS 방향, 은행 4분기 실적의 AI 대출 노출\n- Warsh 연준의 12월 회의, 데이터센터 모라토리엄 입법 진행\n- Bruce Markets 주말 거래 승인 여부",
+ "sources": [
+  {
+   "label": "[원본] RiskReversal Pod — This Week Flipped The AI Trade On Its Head + PEAK6's Jenny Just & Matt Hulsizer",
+   "url": "https://traffic.megaphone.fm/RRM7676931184.mp3"
+  },
+  {
+   "label": "Wikipedia — PEAK6 연혁(1997 창업, 2012 Apex 인수 6,000만 달러, 2021 SPAC 47억 달러 철회)",
+   "url": "https://en.wikipedia.org/wiki/Peak6"
+  },
+  {
+   "label": "TBPN 정리(2026-03-25) — 28년 무손실 주장, Apex 고객 약 4,000만 명, PEAK6 Trials",
+   "url": "https://tbpn-digest.vercel.app/story/2026-03-25/peak6s-jenny-just-and-matt-hulsizer-on-28-years-without-a-losing-year-the-apex-fintech-turnaround-and-their-new-startup-incubator"
+  },
+  {
+   "label": "OCC 이사회 — Matt Hulsizer 약력",
+   "url": "https://www.theocc.com/company-information/board-of-directors/matthew-hulsizer"
+  },
+  {
+   "label": "BizTimes — Jenny Just 인터뷰(자수성가 억만장자 소개)",
+   "url": "https://biztimes.com/extended-qa-self-made-billionaire-jenny-just-on-growing-a-fintech-empire-getting-comfortable-with-failure-and-making-way-for-other-women/"
+  },
+  {
+   "label": "The TRADE — Bruce Markets 24/7 미국 주식 거래 계획(PEAK6·Robinhood 투자)",
+   "url": "https://www.thetradenews.com/bruce-markets-to-launch-industry-first-24-7-us-equity-trading-ecosystem/"
+  },
+  {
+   "label": "Reuters(2026-09-11, KFGO 전재) — Anthropic IPO 최대 1,000억 달러·Nvidia 앵커 투자 검토",
+   "url": "https://kfgo.com/2026/09/11/exclusive-nvidia-in-talks-to-invest-in-anthropics-mega-ipo-sources-say/"
+  },
+  {
+   "label": "ROIC.ai(2026-10-27) — CoreWeave 5년 CDS 1,041bp",
+   "url": "https://www.roic.ai/news/coreweave-cds-narrows-to-lowest-in-over-a-week-but-credit-stress-persists-10-27-2026"
+  },
+  {
+   "label": "ROIC.ai(2026-10-15) — AI 부채 우려로 기술주 CDS 사상 최고",
+   "url": "https://www.roic.ai/news/ai-debt-fears-surge-as-tech-default-insurance-hits-record-highs-10-15-2026"
+  },
+  {
+   "label": "Yahoo Finance 일별 종가(IH 시세 도구) — 11/4~11/5 등락, 1년 고점 대비 낙폭",
+   "url": "https://finance.yahoo.com/quote/%5ESOX/history"
+  },
+  {
+   "label": "미국 노동통계국(BLS) 고용 보고서 — 10월 비농업 고용 16.5만·실업률 4.1%(예상치는 StockNow 캘린더)",
+   "url": "https://www.bls.gov/news.release/empsit.nr0.htm"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "11월 5일(목) 하루 등락",
+   "sub": "% · 전일 종가 대비",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Micron",
+    "SOX 지수",
+    "Tesla",
+    "CoreWeave",
+    "Nvidia",
+    "Nasdaq 100",
+    "S&P 500",
+    "JPMorgan"
+   ],
+   "series": [
+    {
+     "name": "하루 등락",
+     "values": [
+      -17.5,
+      -12.2,
+      -10.8,
+      -9.8,
+      -9.3,
+      -6.4,
+      -4.4,
+      -4.2
+     ]
+    }
+   ],
+   "note": "진행자가 말한 S&P -4.3%, Nasdaq 100 -6.3%, SOX -12%와 거의 같다 — 메모리가 가장 크게 맞았다",
+   "source": "Yahoo Finance 일별 종가(IH 시세 도구)"
+  },
+  {
+   "at": "summary",
+   "title": "수요일 반등, 목요일 폭락",
+   "sub": "% · 11월 4일(수)·5일(목) 하루 등락",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "S&P 500",
+    "Nasdaq 100",
+    "SOX",
+    "Nvidia",
+    "Micron",
+    "JPMorgan"
+   ],
+   "series": [
+    {
+     "name": "11/4 수",
+     "values": [
+      1.6,
+      0.9,
+      -3.1,
+      -3.2,
+      -7.0,
+      4.2
+     ]
+    },
+    {
+     "name": "11/5 목",
+     "values": [
+      -4.4,
+      -6.4,
+      -12.2,
+      -9.3,
+      -17.5,
+      -4.2
+     ]
+    }
+   ],
+   "note": "수요일 지수가 오를 때도 반도체는 빠졌다 — 진행자가 말한 '수요일의 경고'",
+   "source": "Yahoo Finance 일별 종가(IH 시세 도구)"
+  },
+  {
+   "at": "deep",
+   "title": "1년 고점 대비 낙폭",
+   "sub": "% · 1년 최고 종가 대비 11월 5일 종가 · 배당 조정",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Caterpillar(6/30)",
+    "Micron(6/25)",
+    "SMH(6/22)",
+    "Goldman Sachs(7/15)"
+   ],
+   "series": [
+    {
+     "name": "고점 대비",
+     "values": [
+      -47.8,
+      -45.9,
+      -33.1,
+      -24.2
+     ]
+    }
+   ],
+   "note": "AI 장비·메모리·IPO 인수 은행의 고점이 6~7월에 몰려 있다",
+   "source": "Yahoo Finance 일별 종가(IH 시세 도구)"
+  },
+  {
+   "at": "deep",
+   "title": "사모신용 운용사 올해 수익률",
+   "sub": "% · 2025년 말 대비 11월 6일 장중 · 배당 포함",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Blue Owl",
+    "KKR",
+    "Blackstone",
+    "Apollo",
+    "S&P 500"
+   ],
+   "series": [
+    {
+     "name": "연초 대비",
+     "values": [
+      -29.4,
+      -23.2,
+      -18.7,
+      -18.7,
+      8.4
+     ]
+    }
+   ],
+   "note": "진행자들이 '1년 넘게 이상하리만큼 약했다'고 한 사모신용 4사 — 지수와 25~38%p 벌어졌다",
+   "source": "Yahoo Finance(IH 시세 도구)"
+  },
+  {
+   "at": "summary",
+   "title": "10월 비농업 고용",
+   "sub": "천 명 · 실제·예상·전월",
+   "type": "bar",
+   "unit": "천 명",
+   "labels": [
+    "10월 실제",
+    "시장 예상",
+    "9월(전월)"
+   ],
+   "series": [
+    {
+     "name": "비농업 고용",
+     "values": [
+      165,
+      65,
+      60
+     ]
+    }
+   ],
+   "note": "예상의 2.5배 — 진행자는 예상을 '약 7만 명'으로 말했다",
+   "source": "StockNow 경제 캘린더(IH 도구)"
+  }
+ ],
+ "tg": "선거 다음 날 소비·은행·주택주가 오르고, 목요일엔 AI 종목이 폭락 — S&P -4.4%, Nasdaq 100 -6.4%, SOX -12.2%(야후 종가)\nMicron은 하루 -17.5%, 6월 고점 대비 -46%·SMH -33%·Caterpillar -48% — 진행자들은 '슬로모션 약세장이 폭락으로 터졌다'고 진단\nCoreWeave 43.66달러로 공모가(40달러) 근처, 대본 기준 CDS 약 1,300bp — 은행·사모신용·메가 IPO까지 AI 노출이 번진다",
+ "tg_body": "선거 뒤 시장은 헌정 위기 위험을 걷어 내고 원유 하락에 소비·은행·주택주를 사들였다. 하지만 데이터센터 모라토리엄 우려 속에 AI 종목은 수요일에도 약했고, 진행자들은 현금흐름이 마이너스였던 대형 기술주가 오른 것을 '돈을 덜 쓰면 상을 준다'는 신호로 읽었다.\n\n목요일엔 반도체가 개장부터 무너졌다. S&P 500 -4.4%, Nasdaq 100 -6.4%, SOX -12.2%, Micron -17.5%였고 CoreWeave는 공모가 근처인 43.66달러로 마감했다. Adami는 여름부터 이어진 약세장이 사실상 폭락으로 터졌다고 했다.\n\n은행주 변동성도 컸다. JPMorgan은 수요일 4% 넘게 오른 뒤 목요일 다 반납했다. 진행자들은 사모신용 약세, Goldman Sachs 고점 대비 25% 하락, Anthropic 조달 규모 논란, 공모가를 밑돈 SpaceX를 묶어 메가 IPO 위험이 가격에 들어온다고 봤다.\n\n10월 고용은 16.5만 명으로 예상을 크게 웃돌아, 금리 인상을 원하는 Warsh 연준의 셈법이 복잡해졌다. 후반부엔 PEAK6 창업자들이 예측시장, 24시간 거래, 소수점 옵션, 주식 리워드를 다음 성장 축으로 꼽았다.\n\n야후 종가로 보면 진행자 수치는 거의 맞다. 다만 Anthropic 조달 축소 보도와 11월 CoreWeave CDS 수치는 외부 자료로 확인하지 못했다.",
+ "transcript_source": "audio",
+ "no_transcript": false,
+ "written": "2026-11-07 01:48 KST"
+}

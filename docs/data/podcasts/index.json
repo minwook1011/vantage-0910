@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06 23:25 KST",
+ "updated": "2026-11-07 01:48 KST",
  "episodes": [
   {
    "id": "2026-11-06-understanding--cqIVYkxhk0",
@@ -166,6 +166,31 @@
    "title_ko": "월급을 두 배로 올려줘도 직원이 게으름 피우는 이유 (한순구 교수 / 연세대 경제학과)",
    "desc_ko": "연세대 경제학과 한순구 교수가 출연한 언더스탠딩 금요일 라이브. 임금을 크게 올려도 노력이 따라오지 않는 이유를 게임이론·인센티브 관점에서 풀어 보는 경제학 교양 방송이다.",
    "reason": "주제 무관 — 특정 기업·산업·시장이 아닌 인센티브 경제학 교양 라이브"
+  },
+  {
+   "id": "2026-11-06-riskrev-this-week-flipped-the-ai-trade-on-its-head-peak6",
+   "show": "riskrev",
+   "show_name": "RiskReversal Pod",
+   "title": "This Week Flipped The AI Trade On Its Head + PEAK6's Jenny Just & Matt Hulsizer",
+   "date": "2026-11-06",
+   "published": "2026-11-06 16:16 KST",
+   "link": "",
+   "audio": "https://traffic.megaphone.fm/RRM7676931184.mp3",
+   "duration": "1:00:25",
+   "desc": "This episode is sponsored by Fidelity Investments and the all-new Fidelity Trader+ platform. Try Fidelity’s most powerful trading experience yet: Fidelity.com/TraderPlus⁠ Fidelity Investments and Risk Reversal are not affiliated. Views, opinions, products, services, and strategies discussed are not endorsed or promoted by Fidelity Investments. Fidelity Brokerage Services LLC, Member NYSE, SIPC. Apex Fintech Solutions provides the tools and services that enable hundreds of clients to launch, scale, and support digital investing for tens of millions of end investors. The company provides essenti…",
+   "status": "done",
+   "found": "2026-11-07 01:24 KST",
+   "image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "선거 뒤 이틀 만에 뒤집힌 AI 트레이드 + PEAK6 Jenny Just·Matt Hulsizer",
+   "desc_ko": "중간선거 다음 날 소비·은행·주택주가 오르고, 이튿날 반도체와 네오클라우드가 폭락한 한 주를 정리한다. Dan Nathan과 Guy Adami는 SOX 하루 -12%, CoreWeave 공모가 근처 추락, 은행주 급변동을 AI 트레이드 구조가 흔들리는 신호로 읽는다. 10월 고용 서프라이즈와 Warsh 연준, Anthropic 같은 메가 IPO 위험도 짚는다. 후반부에는 Apex Fintech Solutions의 모회사 PEAK6 공동 창업자 Jenny Just·Matt Hulsizer가 예측시장, 24시간 주식 거래, 소수점 옵션, 주식 리워드를 이야기한다.",
+   "summary": {
+    "title_ko": "선거 뒤 이틀 만에 뒤집힌 AI 트레이드 + PEAK6 Jenny Just·Matt Hulsizer",
+    "headline": "선거 다음 날 소비·은행을 사고 이튿날 AI를 던졌다 — SOX 하루 -12%, 진행자들은 'AI 트레이드 구조가 풀리는 중'인지 묻는다",
+    "image": null,
+    "guest": "Jenny Just · Matt Hulsizer — PEAK6 공동 창업자·매니징 파트너(Apex Fintech Solutions 모회사)",
+    "company": "PEAK6 · Apex Fintech · Nvidia · Micron · CoreWeave (AI 반도체 · 네오클라우드 · 은행·사모신용 · 증권 인프라)"
+   }
   },
   {
    "id": "2026-11-06-sixsigma-RUuvCRNH8f8",
