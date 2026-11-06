@@ -215,6 +215,7 @@
   "macro:2026-11-03",
   "macro:2026-11-04",
   "macro:2026-11-05",
+  "macro:2026-11-06",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -1661,9 +1662,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:ax:0ee7f0e6d228": [
-   1114
-  ],
   "trk:t-3f524a5b:57f88511ea4d": [
    1115
   ],
@@ -3212,6 +3210,11 @@
   ],
   "pod:2026-11-06-riskrev-this-week-flipped-the-ai-trade-on-its-head-peak6": [
    1535
+  ],
+  "macro:2026-11-06": [
+   478,
+   479,
+   480
   ]
  },
  "topics": {},
