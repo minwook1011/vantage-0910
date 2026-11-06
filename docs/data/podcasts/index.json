@@ -1,6 +1,31 @@
 {
- "updated": "2026-11-06 17:32 KST",
+ "updated": "2026-11-06 18:34 KST",
  "episodes": [
+  {
+   "id": "2026-11-06-oddlots-the-macro-implications-of-the-blue-tsunami",
+   "show": "oddlots",
+   "show_name": "Odd Lots",
+   "title": "The Macro Implications of the Blue Tsunami",
+   "date": "2026-11-06",
+   "published": "2026-11-06 18:00 KST",
+   "link": "https://omny.fm/shows/odd-lots/the-macro-implications-of-the-blue-tsunami",
+   "audio": "https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/c08d0fcd-1882-43f3-a1e0-b4f9015cfb5c/audio.mp3?utm_source=Podcast&in_playlist=982f5071-765c-403d-969d-ae27003a8d83",
+   "duration": "37:13",
+   "desc": "We don't need to tell you that the midterm elections were historic: The Democrats won bigger than even they imagined. But as the dust settles, an open question we are puzzling over is the market's ongoing reaction to this massive political sea change. Democratic control of Congress — and control over a number of formerly red statehouses, like Texas and Iowa — will influence everything from the composition of the FOMC to data center construction. And what we're seeing right now, with stocks like Tesla and SpaceX tumbling, is a direct response to these conditions. To get a better sense of this m…",
+   "status": "done",
+   "found": "2026-11-06 18:24 KST",
+   "image": "https://omny.fm/shows/odd-lots/the-macro-implications-of-the-blue-tsunami/image.jpg?t=1681324767&size=wideShare",
+   "show_image": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/982f5071-765c-403d-969d-ae27003a8d83/image.jpg?t=1681322812&size=Large",
+   "title_ko": "민주당 압승('블루 쓰나미')이 경제·시장에 주는 의미",
+   "desc_ko": "민주당이 상·하원을 예상보다 크게 가져간 중간선거 뒤, 시장이 이 정치 지형 변화를 어떻게 소화하고 있는지 다룬다. 의회와 텍사스·아이오와 같은 옛 공화당 주 장악은 연준 이사 구성부터 데이터센터 건설까지 영향을 준다. Tesla·SpaceX 급락도 이런 조건에 대한 반응으로 본다. Employ America의 Skanda Amarnath가 매크로·정치·시장을 함께 짚는다.",
+   "summary": {
+    "title_ko": "민주당 압승('블루 쓰나미')이 경제·시장에 주는 의미",
+    "headline": "텍사스가 하룻밤에 파랗게 — 데이터센터 건설주가 20% 급락한 이유와 3% 인플레이션 고착론",
+    "image": "https://i.ytimg.com/vi/r5HWoCEeemc/hqdefault.jpg",
+    "guest": "스칸다 아마르나스(Skanda Amarnath) — Employ America 공동 창업자·사무국장 — 노동시장·통화정책 싱크탱크",
+    "company": "Employ America (매크로 정책 · 미국 정치와 시장)"
+   }
+  },
   {
    "id": "2026-11-06-understanding-5dcGPUXVH8M",
    "show": "understanding",
@@ -73,6 +98,24 @@
    "show_image": null,
    "reason": "쇼츠",
    "title_ko": "AI는 시간이 걸린다 (쇼츠)"
+  },
+  {
+   "id": "2026-11-06-ilb-ramtin-naimi-on-the-state-of-venture-investing-i",
+   "show": "ilb",
+   "show_name": "Invest Like the Best",
+   "title": "Ramtin Naimi on the State of Venture Investing - [Invest Like the Best, EP.499]",
+   "date": "2026-11-06",
+   "published": "2026-11-06 09:00 KST",
+   "link": "https://colossus.com/episode/trillion-dollar-goalposts/",
+   "audio": "https://traffic.megaphone.fm/CLS7293803007.mp3",
+   "duration": "46:24",
+   "desc": "My guest today is Ramtin Naimi, the founder of Abstract Ventures, back for our second conversation. Few people see as many companies as Ramtin and his firm, so this time we zoom in on what they’re seeing right now. The question he keeps coming back to is whether this is 2019 or 2021: early in a run, or at the top of one. Hot rounds now come with a second, pricier tranche for the firms that lost the deal, and he’s seen more term sheets pulled or renegotiated in recent weeks than at any time since 2021. We also get into the neolabs, one of which plans to spend $1 billion on a single training run…",
+   "status": "new",
+   "found": "2026-11-06 18:24 KST",
+   "image": "https://megaphone.imgix.net/podcasts/3fb5f28e-d96c-11f1-b641-ef1269edfae6/image/7001c94535fffaeb7c0a56a8ee8db4b3.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "Ramtin Naimi — 지금 벤처 투자 시장은 2019년인가 2021년인가 (499회)",
+   "desc_ko": "Abstract Ventures 창업자 Ramtin Naimi의 두 번째 출연으로, 그가 지금 시장에서 보고 있는 것을 짚는다. 핵심 질문은 지금이 상승 초입(2019년)인지 꼭대기(2021년)인지다. 인기 라운드에 투자를 놓친 펀드를 위한 더 비싼 2차 트랜치가 붙고, 최근 몇 주 동안 텀시트 철회·재협상이 2021년 이후 가장 많았다고 말한다. 한 번의 학습에 10억 달러를 쓰려는 '네오랩'들도 다룬다."
   },
   {
    "id": "2026-11-06-sixsigma-gTmDHKP47_4",
