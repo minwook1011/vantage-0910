@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-07 17:25 KST",
+ "updated": "2026-11-07 19:28 KST",
  "episodes": [
+  {
+   "id": "2026-11-07-sixsigma-MXaJ4zwqgCY",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "'Model 4'가 증명한 재귀개선의 도래, 앤트로픽은 오히려 자기 속도를 줄여 말했다",
+   "date": "2026-11-07",
+   "published": "2026-11-07 19:00 KST",
+   "link": "https://www.youtube.com/watch?v=MXaJ4zwqgCY",
+   "youtube": "https://www.youtube.com/watch?v=MXaJ4zwqgCY",
+   "audio": null,
+   "duration": "",
+   "desc": "앤트로픽 공동창업자 잭 클라크는 IMF 강연에서 AI가 이미 자기 개발에 손을 보태고 있다고 말했고, 재귀개선(AI가 자기 다음 버전을 스스로 만드는 단계)이 가능해지는 해를 2028년에서 2027년으로 당겼습니다. 그 판단을 앤트로픽이 공개한 내부 측정(클로드가 이끄는 연구개발 비중 2월 1% 미만 → 8월 26%), 구글 알파이볼브의 학습·TPU 개선과 허사비스의 발언, 오픈AI의 연구 인턴 목표 달성과 2028년 3월 일정으로 짚었습니다. 연구 감각까지 따라잡히는 숫자와, 이 속도를 정하는 변수가 컴퓨트라는 점도 정리했습니다. [목차] 00:00 앤트로픽 공동창업자 \"그 순간이 왔다\" 01:07 앤트로픽: 클로드가 이끄는 연구 26% 02:31 구글: 알파이볼브가 학습과 TPU를 고쳤다 04:26 오픈AI: 2026년 9월 연구 인턴, 2028년 3월 연구자 05:47 왜 2027년인가: 연구 감각 06:50 바깥에서 잰 속도: 앤트로픽 내부를 열어 본 METR 08:15 속도를 정하는 건 컴퓨트 09:39 닫기: 2027년이 맞는지 드러나는 숫자 [원본] 1. IMF 공식 유튜브, Per Jacobsson Foundation Lecture: Insid…",
+   "status": "done",
+   "found": "2026-11-07 19:24 KST",
+   "image": "https://i2.ytimg.com/vi/MXaJ4zwqgCY/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "'Model 4'가 보여 준 재귀개선의 도래 — 앤트로픽은 자기 속도를 오히려 낮춰 말했다",
+   "desc_ko": "앤트로픽 공동창업자 Jack Clark은 10월 17일 IMF 강연에서 AI가 이미 자기 개발을 돕고 있다고 말했고, 재귀개선이 가능해지는 해를 2028년에서 2027년으로 당겼다. 영상은 그 근거를 앤트로픽 내부 측정(클로드가 이끄는 연구개발 비중 2월 1% 미만 → 8월 26%), 구글 AlphaEvolve의 학습·TPU 개선, OpenAI의 연구 인턴 목표 달성과 2028년 3월 일정으로 짚는다. 이어 외부 평가 기관 METR이 앤트로픽 내부 자료를 직접 보고 낸 11월 5일 보고서로 속도를 다시 잰다. 마지막으로 이 속도를 정하는 변수가 전력·데이터센터 같은 컴퓨트라는 점을 정리한다.",
+   "summary": {
+    "title_ko": "'Model 4'가 보여 준 재귀개선의 도래 — 앤트로픽은 자기 속도를 오히려 낮춰 말했다",
+    "headline": "METR이 열어 본 앤트로픽 — 개발 속도 약 2배, 공개본 '두 배 미만'은 재계산하니 1.97배",
+    "image": "https://i.ytimg.com/vi/MXaJ4zwqgCY/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Jack Clark · Demis Hassabis · Jakub Pachocki — 앤트로픽·구글·OpenAI 내부 증거와 METR 외부 평가로 'AI가 AI를 만드는 속도'를 짚은 영상",
+    "company": "Anthropic · Google DeepMind · OpenAI (AI 모델 · AI R&D 자동화 · 컴퓨트)"
+   }
+  },
   {
    "id": "2026-11-07-sixsigma-LrviTeq9Q70",
    "show": "sixsigma",
