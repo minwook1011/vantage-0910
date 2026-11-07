@@ -243,6 +243,7 @@
   "nebius:2026-11-04",
   "nebius:2026-11-05",
   "nebius:2026-11-06",
+  "nebius:2026-11-07",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -1670,9 +1671,6 @@
   "weekly:2026-10-26"
  ],
  "msg": {
-  "trk:yt--jklonfa:b7d02ee83e14": [
-   1123
-  ],
   "trk:t-678e8450:2c0b0a8104cc": [
    1124
   ],
@@ -3226,8 +3224,11 @@
   ],
   "ins:ins-20261106-tom-lee-macro-shock-recovery-paths-nasdaq-sox": [
    1541
+  ],
+  "nebius:2026-11-07": [
+   488
   ]
  },
  "topics": {},
- "topic_fail_at": 1794006579.876834
+ "topic_fail_at": 1794010468.049955
 }
