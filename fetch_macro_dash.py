@@ -58,16 +58,44 @@ def log(msg):
 
 
 # ─────────────────────────── 변환 ───────────────────────────
+def _shift_month(d, lag):
+    """'YYYY-MM' 문자열을 lag개월 앞으로. 형식이 다르면 None."""
+    try:
+        y, m = int(d[:4]), int(d[5:7])
+    except (TypeError, ValueError):
+        return None
+    if len(d) != 7 or d[4] != "-":
+        return None
+    t = y * 12 + (m - 1) - lag
+    return f"{t // 12:04d}-{t % 12 + 1:02d}"
+
+
 def yoy(dates, vals, lag):
+    """lag개월 전 대비 변화율. 월간 날짜('YYYY-MM')는 날짜로 짝을 맞춘다 —
+    결측 월(예: 2025-10 셧다운으로 미발표)이 있으면 인덱스 차로는 13개월 전과 비교돼 값이 틀어진다."""
     out_d, out_v = [], []
-    for i in range(lag, len(vals)):
-        if vals[i] is not None and vals[i - lag]:
-            out_d.append(dates[i]); out_v.append(round((vals[i] / vals[i - lag] - 1) * 100, 2))
+    by_date = dict(zip(dates, vals))
+    for i in range(len(vals)):
+        cur = vals[i]
+        if cur is None:
+            continue
+        pd = _shift_month(dates[i], lag)
+        if pd is not None:
+            base = by_date.get(pd)
+        else:
+            base = vals[i - lag] if i >= lag else None
+        if base:
+            out_d.append(dates[i]); out_v.append(round((cur / base - 1) * 100, 2))
     return out_d, out_v
 
 
 def diff(dates, vals):
-    return dates[1:], [None if (a is None or b is None) else round(b - a, 1) for a, b in zip(vals, vals[1:])]
+    out = []
+    for da, db, a, b in zip(dates, dates[1:], vals, vals[1:]):
+        pd = _shift_month(db, 1)
+        gap = pd is not None and _shift_month(da, 0) is not None and pd != da  # 결측 월 건너뜀 → 두 달치 합산 방지
+        out.append(None if (a is None or b is None or gap) else round(b - a, 1))
+    return dates[1:], out
 
 
 def latest_block(dates, vals):

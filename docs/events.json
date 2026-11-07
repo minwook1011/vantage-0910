@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06",
+ "updated": "2026-11-07",
  "events": [
   {
    "id": "ces-2026",
@@ -2869,15 +2869,19 @@
    "date_start": "2026-11-06",
    "date_end": "2026-11-06",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "미국 노동통계국이 발표하는 10월 고용보고서로, 비농업 고용·실업률·임금 상승률이 공개된다. 2026년 11월 6일 오전 8시 30분(ET, 한국시간 22시 30분) 발표 예정이다.",
+   "status": "done",
+   "summary": "10월 비농업 고용은 16만 5,000명 늘었고 실업률은 4.1%로 전월(4.2%)보다 0.1%p 낮아졌다. 시간당 평균임금은 전월비 0.4%(14센트) 오른 38.00달러, 전년비 3.1% 상승했으며 경제활동참가율은 61.9%였다. 8월은 +13만 3,000명에서 +18만 6,000명으로, 9월은 +2만 9,000명에서 +6만 명으로 상향 수정돼 두 달 합계 8만 4,000명이 늘었다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-04",
+   "updated": "2026-11-07",
    "sources": [
     {
      "label": "BLS — Schedule of Releases for the Employment Situation",
      "url": "https://www.bls.gov/schedule/news_release/empsit.htm"
+    },
+    {
+     "label": "BLS — The Employment Situation, October 2026",
+     "url": "https://www.bls.gov/news.release/empsit.nr0.htm"
     }
    ]
   },
@@ -3105,15 +3109,23 @@
    "date_start": "2026-11-04",
    "date_end": "2026-11-06",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "한국전력이 해마다 여는 전력 기술 박람회다. 송배전·전력망·원전·재생에너지 기술과 중소기업 신기술이 전시된다. 한국 측 공식 보도자료는 아직 확인하지 못했고 날짜는 캐나다 통상대표부 행사 안내 기준이다.",
+   "status": "done",
+   "summary": "한국전력이 주최한 제11회 빅스포가 11월 4~6일 광주 김대중컨벤션센터에서 열렸다. 국내외 198개사가 참가해 AI·디지털트윈 기반 가상 전력망, LS일렉트릭·효성중공업의 HVDC 기술, HD현대일렉트릭의 1MW급 빌딩용 직류배전 설비, 두산에너빌리티의 10MW 해상풍력과 380MW급 가스터빈 등을 선보였다. 스타트업 투자관(100개사)이 새로 생겼고 컨퍼런스는 46개 세션으로 진행됐다.",
    "full": "",
    "added": "2026-10-11",
-   "updated": "2026-10-11",
+   "updated": "2026-11-07",
    "sources": [
     {
      "label": "캐나다 통상대표부 — BIXPO 2026 행사 안내",
      "url": "https://www.tradecommissioner.gc.ca/en/trade-events-training/2026/11/bitgaram-international-exposition-electric-power-technology-bixpo.html"
+    },
+    {
+     "label": "전자신문 — 한전 '2026 BIXPO' 개막…AI 전력망·HVDC 기술 총출동",
+     "url": "https://etnews.com/20261104000137"
+    },
+    {
+     "label": "아이뉴스24 — BIXPO 2026 개막",
+     "url": "https://inews24.com/view/2022749"
     }
    ]
   },
@@ -3333,15 +3345,19 @@
    "date_start": "2026-11-02",
    "date_end": "2026-11-06",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "홍콩 핀테크 위크와 스타트미업HK가 합쳐진 행사로 11월 2~6일 열리며 본 컨퍼런스는 2~3일 홍콩컨벤션전시센터에서 진행된다. 120여 개 경제권에서 4만 5천 명 이상 참석이 예상되며, 홍콩의 스테이블코인·디지털자산 규제와 중국 본토 연계 결제가 주요 의제다.",
+   "status": "done",
+   "summary": "홍콩 핀테크 위크가 11월 2~6일 열렸다(본 컨퍼런스 2~3일). 홍콩금융관리국(HKMA)은 행사 기간 네 갈래 과제를 내놨다. 에이전트형 AI 금융 실험 프로젝트 SAGE와 전문가 그룹, 은행용 양자내성암호(PQC) 전환 툴킷, 토큰화 결제망 EnsembleTX의 24시간 실거래 지원 및 토큰화 외환기금증권 2차 거래 시험(스테이블코인 시험은 후속), 연말까지 홍콩 FPS와 유니온페이 인터내셔널 연결이다.",
    "full": "",
    "added": "2026-10-18",
-   "updated": "2026-10-18",
+   "updated": "2026-11-07",
    "sources": [
     {
      "label": "InvestHK — Hong Kong FinTech Week x StartmeupHK 2026",
      "url": "https://www.investhk.gov.hk/en/events/hong-kong-fintech-week-x-startmeuphk-2026/"
+    },
+    {
+     "label": "HKMA — Hong Kong FinTech Week 2026 (보도자료, 2026-11-02)",
+     "url": "https://www.hkma.gov.hk/eng/news-and-media/press-releases/2026/11/20261102-3/"
     }
    ]
   },
@@ -3629,11 +3645,11 @@
    "date_start": "2026-11-03",
    "date_end": "2026-11-06",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "함정·잠수함·해양 무인체계·해군 전자장비를 다루는 격년제 해군 방산 전시회로 11월 3~6일 파리에서 열린다. 유럽 재무장 국면에서 함정 발주와 해양 무인체계 흐름을 확인하는 자리로, 국내 조선·방산 업체의 유럽 해군 시장 진출과도 연결된다.",
+   "status": "done",
+   "summary": "제30회 유로나발이 11월 3~6일 파리 노르 빌팽트 6홀에서 열렸다. 사전 공개된 참가사 명단 기준 40개국 694개사(프랑스 309, 독일 50, 이탈리아 49, 영국 36)가 이름을 올렸다. 자율 수상·수중 무인체계 분야가 101개사로 가장 많았고, 항공 드론 36개사, 함정용 대드론 28개사가 참가해 해양 무인화 흐름이 두드러졌다. 폐막 후 최종 관람객 수는 아직 확인되지 않았다.",
    "full": "",
    "added": "2026-10-25",
-   "updated": "2026-10-25",
+   "updated": "2026-11-07",
    "sources": [
     {
      "label": "Flying Engineer — Euronaval 2026",
@@ -3642,6 +3658,10 @@
     {
      "label": "Neventum — Euronaval",
      "url": "https://www.neventum.com/tradeshows/euronaval"
+    },
+    {
+     "label": "The Flying Engineer — Euronaval 2026 exhibitors preview",
+     "url": "https://theflyingengineer.com/euronaval-2026-exhibitors-preview/"
     }
    ]
   },
