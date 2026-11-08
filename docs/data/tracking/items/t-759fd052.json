@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "d98f0a122c8e",
+   "kind": "news",
+   "headline": "앤트로픽, 데이터센터용 가스 발전기 34억 달러(약 4.6조 원)어치 직접 확보 — 1.7GW 규모",
+   "bullets": [
+    "앤트로픽이 데이터센터 전력용 가스 발전기 구매 약정을 34억 달러(약 4조 6천억 원)에 넘겨받은 것으로 파이낸셜타임스가 보도했다.",
+    "확보한 설비 규모는 약 1.7기가와트(GW)로 전해졌다.",
+    "발전기 주문 대기 줄을 건너뛰고 전력을 직접 조달하려는 움직임으로, AI 경쟁이 칩에서 전력 확보로 번지고 있다."
+   ],
+   "summary": "보도 원문은 파이낸셜타임스이고, 국내에서는 9일 아침 연합뉴스·매일경제·전자신문 등이 전했다. 핵심은 앤트로픽이 다른 곳이 걸어 둔 가스 발전기 구매 약정을 통째로 인수해, 길게는 수년씩 걸리는 발전기 납기를 건너뛰었다는 점이다.\n\n데이터센터를 짓는 AI 기업들이 송전망 연결을 기다리지 않고 현장 자가 발전으로 전력을 해결하려는 흐름의 연장선이다. 공급사·설치 장소·가동 시점 같은 세부는 확인되지 않았다. 남은 쟁점은 어느 데이터센터에 쓰일지와 추가 전력 계약이 이어질지다.",
+   "title": "앤트로픽, 데이터센터용 가스 발전기 4.6조원 직접 확보",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFAzMVhpREllcEdkNGljb3VQVTBGUHhDcTJtMlRIdC1WbWE0MUQ3Ynd5WlYtQXFxRHZfRFRLaXFGS1prUHFYQ0M3dVQzUlhUQU5MMnF4c25XWV9LVGF6cWQ5NNIBYEFVX3lxTFAzMVhpREllcEdkNGljb3VQVTBGUHhDcTJtMlRIdC1WbWE0MUQ3Ynd5WlYtQXFxRHZfRFRLaXFGS1prUHFYQ0M3dVQzUlhUQU5MMnF4c25XWV9LVGF6cWQ5NA?oc=5",
+   "published": "2026-11-09 06:44 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
    "id": "27ecb1561f7e",
    "kind": "news",
    "headline": "맥그로힐, 초중고 교과 과정을 앤트로픽 '교사용 클로드(Claude for Teachers)'에 연동",
@@ -1249,5 +1265,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-11-05 22:17 KST"
+ "updated": "2026-11-09 08:22 KST"
 }

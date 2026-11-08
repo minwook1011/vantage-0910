@@ -3,6 +3,214 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "aa2c9ed6df42",
+   "kind": "blog",
+   "headline": "테크크런치, '둠스크롤링' 대신 쓸 만한 앱 모음 소개",
+   "bullets": [
+    "소셜미디어를 끝없이 넘기는 '둠스크롤링'을 끊는 데 도움 되는 앱을 추렸다.",
+    "지난해 조사에서 미국인 64%가 둠스크롤링을 한다고 답했다.",
+    "대표 예로 할 일을 하면 가상 반려동물이 자라는 자기관리 앱 '핀치'를 들었다."
+   ],
+   "summary": "둠스크롤링은 주의력·수면·정신건강에 나쁘다는 연구가 나와 있다. 기사는 휴대폰으로 몇 분 짬을 낼 때 끝없는 스크롤 대신 쓸 만한 생산적인 앱 목록을 제시한다. 핀치는 물 마시기·산책·명상 같은 작은 일일 목표를 채우면 가상 펫이 성장하는 방식으로, 일기 쓰기·호흡 연습·친구에게 응원 보내기 기능이 있다. 투자 관련 새 사실은 없는 생활 기사다.",
+   "title": "Apps to distract you from the endless cycle of doomscrolling",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/apps-to-distract-you-from-the-endless-cycle-of-doomscrolling/",
+   "published": "2026-11-09 07:00 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "cea68f84154b",
+   "kind": "blog",
+   "headline": "스냅 AR 안경 '스펙스', 무게 절반(132g)으로 줄었지만 2,200달러 가격·용도는 숙제",
+   "bullets": [
+    "스냅의 증강현실(AR) 안경 스펙스가 연초 시제품(약 8온스)보다 절반 가까이 가벼운 132g으로 나왔다.",
+    "두 가지 크기(47mm·52mm)와 스프링 힌지를 넣었고, 1시간가량 시연 동안 발열도 없었다.",
+    "다만 대당 2,200달러로 비싸고, 일상에서 꼭 써야 할 용도가 아직 분명하지 않다는 평가다."
+   ],
+   "summary": "테크크런치 기자는 올해 CES에서 시제품을 써 봤을 때 무겁고 뜨겁고 착용감이 불편했다고 했다. 10월 말 샌프란시스코에서 다시 써 본 정식 제품은 형태가 크게 개선됐다. 스냅은 에반 스피겔 CEO 행사에서 스펙스를 공개하고 사전 주문을 받고 있다. 하드웨어는 좋아졌지만 쓰임새는 여전히 진행 중이라는 게 기사 결론이다.",
+   "title": "If Snap’s Specs are still ridiculously expensive, they’re also a lot more comfortable than they used to be",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/if-snaps-specs-are-still-ridiculously-expensive-theyre-also-a-lot-more-comfortable-than-they-used-to-be/",
+   "published": "2026-11-09 06:00 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "49b24c906b1c",
+   "kind": "blog",
+   "headline": "전 세계 전력망에서 60초마다 동시에 주파수가 떨어지는 현상 — 독일 연구진이 원인 규명",
+   "bullets": [
+    "유럽·호주·미국·말레이시아 등 여러 대륙 전력망에서 60초마다 같은 시각에 주파수가 살짝 떨어지는 이상 현상이 수년간 관측됐다.",
+    "독일 최대 송전망 운영사 테넷 독일이 율리히 연구소 디르크 비트하우트 연구팀에 의뢰해 수년간 분석했다.",
+    "이런 주파수 진동은 커지면 정전이나 수력 터빈 같은 발전 설비 손상으로 이어질 수 있다."
+   ],
+   "summary": "전력망은 주파수를 일정 범위 안에 유지해야 안정적으로 돌아간다. 초저주파 진동은 전통적으로 수력발전소 터빈 공진이 주된 원인이어서 연구팀도 수력발전소 제어 모델부터 들여다봤다. 국가와 대륙을 넘어 같은 시각에 생기는 동기화된 패턴이라는 점이 핵심 단서였고, 수년간의 조사·모델링 끝에 원인을 찾았다. 데이터센터 등 대형 부하가 늘며 전력망 안정성이 중요해지는 상황과 맞닿은 이야기다.",
+   "title": "Coordinated disturbances haunt grids worldwide. Here’s how researchers solved the mystery.",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/coordinated-disturbances-haunt-grids-worldwide-heres-how-researchers-solved-the-mystery/",
+   "published": "2026-11-09 05:30 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "1022077bd8b1",
+   "kind": "blog",
+   "headline": "세쿼이아 파트너들, 로엘로프 보타의 스페이스X 이사회 합류에 '뒤통수' — FT 보도",
+   "bullets": [
+    "세쿼이아캐피털이 이번 주 런던 사무소 폐쇄, 초기·성장 투자팀 통합, 스카우트 프로그램 종료를 발표했다.",
+    "파이낸셜타임스는 이를 전 대표 로엘로프 보타의 유산을 지우려는 움직임으로 묘사했다.",
+    "보타가 여름 스페이스X 이사회에 합류하며 준법 승인·파트너 동의를 받지 않아, 세쿼이아의 200억 달러 스페이스X 지분 매매가 복잡해질 수 있다는 지적이 나왔다."
+   ],
+   "summary": "보타는 지난해 세쿼이아 수장에서 물러났다. 익명 소식통은 보타가 절차와 위계를 좋아했고 나머지 팀은 그렇지 않았다고 했지만, 다른 쪽은 오히려 세쿼이아 전통을 지우는 것이라고 반박했다. 보타와 일론 머스크는 페이팔 시절 함께 일했다. 세쿼이아 대변인은 보타와 계속 긴밀히 협력한다고 밝혔다.",
+   "title": "Sequoia partners reportedly blindsided when Roelof Botha joined SpaceX board",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/sequoia-partners-reportedly-blindsided-when-roelof-botha-joined-spacex-board/",
+   "published": "2026-11-09 04:51 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "d462df9c8ac3",
+   "kind": "blog",
+   "headline": "SNL, 새 일론 머스크 성대모사 — 중간선거 패배·사이버트럭 단종 주간 풍자",
+   "bullets": [
+    "SNL 출연자 제러미 컬핸이 머스크를 친해지려다 실수하는 어색한 인물로 그렸다.",
+    "머스크가 이번 주 중간선거에서 진 후보들에 5억 달러를 쓰고 사이버트럭 생산 중단을 발표한 것을 소재로 삼았다.",
+    "극 중 챗봇 그록이 머스크를 '남아공이 한 최악의 일'이라고 놀리는 장면이 나왔다."
+   ],
+   "summary": "위크엔드 업데이트 코너에서 진행자 콜린 조스트는 캘리포니아를 떠나 텍사스로 회사들을 옮겼는데 이제 텍사스도 민주당이 이겼다고 짚었다. 이번 회차에는 엘리자베스 홈스 다큐 패러디도 나왔다. 투자 관련 새 사실은 없는 엔터 기사다.",
+   "title": "SNL has a new impression of Elon Musk, ‘the worst thing South Africa has ever done’",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/snl-has-a-new-impression-of-elon-musk-the-worst-thing-south-africa-has-ever-done/",
+   "published": "2026-11-09 03:00 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "018364f873f1",
+   "kind": "blog",
+   "headline": "전 비밀경호국 요원 스티븐 워드, 사이버보안 펀드 브라이트마인드 2호 약 2.5억 달러 모집",
+   "bullets": [
+    "뉴욕의 2년 차 사이버보안 벤처펀드 브라이트마인드 파트너스가 1호와 비슷한 약 2억 5천만 달러 규모 2호 펀드를 모은다.",
+    "1호 포트폴리오 SGNL은 시리즈A 11개월 뒤 크라우드스트라이크에 7억 4천만 달러에 팔렸다.",
+    "공동창업자 구르 탈파즈가 4월 떠나 워드 혼자 운용역(GP)으로 남았다."
+   ],
+   "summary": "워드는 해안경비대, 비밀경호국 9년, TIAA·홈디포 정보보호최고책임자(CISO)를 거쳤다. 그는 '올라갈 때 팔아야 한다'며 모든 포트폴리오가 상장한다는 업계의 공식 입장과 다른 회수 철학을 내세운다. 초기 단계 사이버보안 스타트업이 10여 년 만에 처음으로 후기 단계보다 더 많은 자금을 모으는 시기라는 점이 배경이다.",
+   "title": "He arrested a hacker, then spent 18 months clearing his own name. Now he’s a cybersecurity VC.",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/the-ex-secret-service-agent-who-flipped-a-hacker-is-now-raising-a-second-250m-cybersecurity-fund/",
+   "published": "2026-11-09 02:30 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "d6f2ddaa90b5",
+   "kind": "blog",
+   "headline": "테슬라, 사이버트럭 내년 생산 중단 — 예약 100만 대에도 실판매 약 7.1만 대",
+   "bullets": [
+    "일론 머스크가 금요일 사이버트럭 생산을 내년에 멈춘다고 밝혔다.",
+    "2023년 3분기 실적 발표 때 예약이 100만 대라고 했지만, 2023년 11월 첫 인도 이후 판매는 약 7만 1천 대로 추정된다.",
+    "테크크런치 모빌리티 뉴스레터는 이를 '사이버트럭 실험은 끝났다'고 정리했다."
+   ],
+   "summary": "약 7년 전 공개 행사 때 유리창 시연에서 창문이 깨진 장면부터 팬들의 열광까지 돌아보며, 예약 열기가 실제 구매로 이어지지 못했다고 짚었다. 처음부터 틈새 시장일 수밖에 없었다는 시각이다. 뉴스레터에는 모빌리티 업계와 AI의 역할을 다룬 한 주 소식도 함께 담겼다.",
+   "title": "TechCrunch Mobility: The Cybertruck experiment is over",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/techcrunch-mobility-the-cybertruck-experiment-is-over/",
+   "published": "2026-11-09 02:02 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "b3694e57afc6",
+   "kind": "blog",
+   "headline": "샤크닌자 '오토바리스타' 리뷰 — 버튼 하나로 13가지 커피, 원두 자동 보정",
+   "bullets": [
+    "닌자 오토바리스타는 드립·에스프레소·우유 음료·콜드브루 등 13가지 음료를 버튼 하나로 만든다.",
+    "'그라인드 iQ'가 원두 크기·로스팅·신선도를 읽어 분쇄도·양을 자동으로 맞춘다.",
+    "리뷰어는 기능이 다양하다고 평가했지만, 한 가지 기능 때문에 구매를 망설였다고 했다."
+   ],
+   "summary": "커피 추출을 세밀하게 조절하고 싶은 애호가보다, 커피는 좋아하지만 에스프레소 추출을 공부하고 싶지 않은 사람을 위한 기계라는 평가다. 커피숍 경험을 집에서 재현하는 게 목표인 완전 자동 에스프레소 머신이다. 투자 관련 새 숫자는 없는 제품 리뷰다.",
+   "title": "Ninja’s AutoBarista is impressively versatile, but one feature was a dealbreaker for me",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/08/ninjas-autobarista-is-impressively-versatile-but-one-feature-was-a-dealbreaker-for-me/",
+   "published": "2026-11-09 00:00 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "ecef250dc8b9",
+   "kind": "blog",
+   "headline": "중간선거 뒤 데이터센터·머스크에 역풍 — 지역 투표서 데이터센터 잇따라 거부",
+   "bullets": [
+    "민주당 압승으로 끝난 중간선거에서 수십 건의 지역 주민투표가 데이터센터 건설을 거부했다.",
+    "텍사스 주지사 당선인 지나 히노호사처럼 데이터센터 규제를 공약한 정치인도 당선됐다.",
+    "머스크는 공화당에 5억 달러를 기부하고도 얻은 게 거의 없고, 회사 본사가 있는 텍사스는 민주당으로 돌아섰다."
+   ],
+   "summary": "테크크런치 팟캐스트 '에퀴티' 대화 요약이다. 데이터센터가 '블루 웨이브'의 주원인은 아니지만, 하이퍼스케일러들이 사업 허가를 받아 온 방식 때문에 풀뿌리 쟁점이 됐다는 진단이다. 벌써 오픈AI 같은 회사가 정책을 바꿀 수 있다며 태도를 바꾸고 있다는 언급도 나왔다. 데이터센터 인허가 정책이 앞으로의 체크포인트다.",
+   "title": "After the midterms, things are looking rocky for Elon Musk and data centers",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/",
+   "published": "2026-11-08 07:07 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "b79d5902bb75",
+   "kind": "blog",
+   "headline": "美 정보 메모 \"메가스피드 임원, 젠슨 황 감시 위해 중국 국가안전부에 포섭\"",
+   "bullets": [
+    "올해 돈 정보 메모에 싱가포르 회사 메가스피드 임원 앨리스 황이 중국 국가안전부에 포섭돼 젠슨 황을 노렸다는 내용이 담겼다고 여러 매체가 보도했다.",
+    "뉴욕타임스가 먼저 보도했고, 파이낸셜타임스는 메모에 두 사람이 연인 관계였다는 판단도 있다고 전했다.",
+    "엔비디아는 당시 둘의 교류가 '이례적이지 않았다'며 고객과 기밀을 공유하지 않는다고 했다."
+   ],
+   "summary": "별도 뉴욕타임스 기사는 미국 상무부 허가로 엔비디아 첨단 칩을 살 수 있는 중국 회사 뉴매트릭스의 등록 주소에 빈 공간만 있었다며, 블랙리스트 사모펀드의 위장 회사일 수 있다는 의혹을 제기했다. 엔비디아는 최고의 기술을 가장 먼저, 가장 많이 미국에 판다고 반박했다. 이후 황 CEO가 불륜을 인정하고 이사회가 독립 조사에 들어가면서 사건은 다음 국면으로 넘어갔다.",
+   "title": "Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/",
+   "published": "2026-11-08 06:17 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "7c6665b663b0",
+   "kind": "blog",
+   "headline": "아이 전용 '안전 폰' 시장 커진다 — 바크폰 등 주요 업체 정리",
+   "bullets": [
+    "스마트폰 무제한 사용을 걱정하는 부모가 늘면서 아이 전용 기기를 만드는 회사가 늘고 있다.",
+    "대부분 웹·소셜미디어·앱스토어를 막고, 부모가 앱으로 연락처 승인·위치 확인·사용시간 제한을 한다.",
+    "대표 제품 바크폰은 삼성 갤럭시 기반에 사이버불링·그루밍 등을 감지해 부모에게 알린다."
+   ],
+   "summary": "통화·문자만 되는 미니멀 기기, 틴캔·핀휠 홈 같은 아이용 집 전화도 나왔다. 바크폰은 아이가 크면서 웹·앱 기능을 단계적으로 열어 주고 위치 추적과 화면 시간 관리도 지원한다. 시장 지형을 정리한 기사로 투자 관련 새 숫자는 없다.",
+   "title": "Parents want safer phones for kids. These companies are answering the call.",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/07/parents-want-safer-phones-for-kids-these-companies-are-answering-the-call/",
+   "published": "2026-11-08 04:00 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "7efc70b5af98",
+   "kind": "blog",
+   "headline": "바이낸스 CFO 카이저 응 사임 — 63억 달러 해킹 열흘 만",
+   "bullets": [
+    "바이낸스 최고재무책임자(CFO) 카이저 응이 5년여 만에 회사를 떠나 새 사업을 한다고 블룸버그가 전했다.",
+    "해커가 바이낸스 이용자 암호화폐 63억 달러어치를 훔친 지 열흘 남짓 만이다.",
+    "후임 CFO는 저스틴 예크다."
+   ],
+   "summary": "이허 공동 CEO는 지난 반년간 승계 계획을 진행해 왔다고 밝혔다. 해킹 뒤 바이낸스는 며칠간 출금을 막았고, 재개 직후 몇 시간 만에 순 36억 달러가 빠져나갔다. 바이낸스와 미 연방수사국(FBI)은 북한 해커 조직 '트레이더트레이터'를 배후로 지목했고, 회사는 손실을 이용자에게 넘기지 않고 전액 부담하겠다고 했다.",
+   "title": "Binance CFO is leaving to ‘pursue a new venture’ after $6.3 billion hack",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/07/binance-cfo-is-leaving-to-pursue-a-new-venture-after-6-3-billion-hack/",
+   "published": "2026-11-08 02:24 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
+   "id": "33a664ce6154",
+   "kind": "blog",
+   "headline": "아마존 기본형 킨들 리뷰 — 메모리 대란에 전 라인업 40~50달러 인상, 기본형은 169.99달러",
+   "bullets": [
+    "아마존이 10월 테두리 없는 디자인으로 킨들 라인업을 몇 년 만에 크게 바꿨다.",
+    "AI 붐에 따른 메모리 칩 부족으로 신형 가격이 라인업 전체에서 40~50달러 올랐다.",
+    "6인치 기본형(광고 없는 버전 169.99달러)은 2024년형보다 11% 가볍고 14% 얇다(140g)."
+   ],
+   "summary": "기본형은 따뜻한 조명·컬러 화면·자동 밝기·방수가 없고 배터리는 6주로 페이퍼화이트(12주)·컬러소프트(8주)보다 짧다. 그래도 작고 가벼운 기기를 원하면 살 만하다는 평가다. 메모리 가격 상승이 소비자 기기 가격에 전가되는 사례라는 점이 눈여겨볼 부분이다.",
+   "title": "Amazon’s new basic Kindle proves you don’t need all the bells and whistles",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/07/amazons-new-basic-kindle-proves-you-dont-need-all-the-bells-and-whistles/",
+   "published": "2026-11-08 02:18 KST",
+   "written": "2026-11-09 08:22 KST"
+  },
+  {
    "id": "06fb82693330",
    "kind": "blog",
    "headline": "인스타그램, 영상 편집 앱 '에디츠' 맥 데스크톱판 출시 — 바이트댄스 캡컷과 정면 경쟁",
@@ -2851,5 +3059,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-11-06 00:17 KST"
+ "updated": "2026-11-09 08:22 KST"
 }
