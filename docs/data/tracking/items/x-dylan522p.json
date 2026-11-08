@@ -3,6 +3,22 @@
  "slug": "x-dylan522p",
  "items": [
   {
+   "id": "f2a8e65525dc",
+   "kind": "x",
+   "headline": "젠슨 황 스캔들, 당장은 잠잠해져도 진짜 위험은 의회의 '중국 GPU 판매' 조사",
+   "bullets": [
+    "앞으로 6개월 동안 젠슨 황 신상에는 별일 없고, 언론·금융권에서 이 이야기는 대부분 식을 거다.",
+    "대신 민주당이 젠슨 황을 의회로 불러 중국 기업에 판 GPU를 집요하게 파고들 거다.",
+    "문제가 터진다면 그 청문회 질문에서 터질 수 있다."
+   ],
+   "summary": "엔비디아 이사회가 젠슨 황의 중국 스파이 의혹 관련 독립 조사에 들어간 직후 쓴 글이다. 핵심은 개인 스캔들 자체보다 이게 엔비디아의 중국 판매 문제로 번지는 경로다.\n\n중간선거로 민주당이 힘을 얻은 상황이라, 의회가 이 사건을 고리로 그동안 중국 기업에 들어간 GPU 판매·우회 수출을 조사할 명분이 생겼다는 얘기다. 볼 건 의회 소환·청문회 일정이 실제로 잡히는지, 거기서 중국향 판매 관련 새 사실이 나오는지다.",
+   "title": "Nothing will happen to Jensen over the next 6 months, this story will largely die down in media / finance",
+   "source": "Dylan Patel (SemiAnalysis)",
+   "url": "https://x.com/dylan522p/status/2119573238456127692",
+   "published": "2026-11-09 08:30 KST",
+   "written": "2026-11-09 08:49 KST"
+  },
+  {
    "id": "071cfc841ddb",
    "kind": "x",
    "headline": "투게더AI '투게더 컴파일러' — 에이전트가 추론 최적화를 직접 돌려 실험 속도 252배, 일부 모델서 최고 처리량",
@@ -19,5 +35,5 @@
    "written": "2026-11-05 04:48 KST"
   }
  ],
- "updated": "2026-11-05 04:48 KST"
+ "updated": "2026-11-09 08:49 KST"
 }
