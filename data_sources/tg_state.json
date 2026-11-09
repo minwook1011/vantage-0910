@@ -1109,6 +1109,7 @@
   "trk:open-ai:a23ec47e45ed",
   "trk:open-ai:a5b75d7e7c47",
   "trk:open-ai:aa781aa0a3b3",
+  "trk:open-ai:ab79ca1d13e6",
   "trk:open-ai:ad32d6d068b1",
   "trk:open-ai:aec099fc5779",
   "trk:open-ai:b15be3a87789",
@@ -1239,6 +1240,7 @@
   "trk:t-678e8450:4f82b6f2d483",
   "trk:t-678e8450:548158c48d72",
   "trk:t-678e8450:5716d2802232",
+  "trk:t-678e8450:5754ef7c3bb4",
   "trk:t-678e8450:6a31cf43afff",
   "trk:t-678e8450:6adb1a23e531",
   "trk:t-678e8450:6dd38a208edf",
@@ -1733,12 +1735,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:t-759fd052:9815167e195d": [
-   1181
-  ],
-  "trk:t-759fd052:7ac5f95a1227": [
-   1182
-  ],
   "trk:blog-ranto28:474ec39db3a6": [
    1183
   ],
@@ -3287,8 +3283,14 @@
    501,
    502,
    503
+  ],
+  "trk:open-ai:ab79ca1d13e6": [
+   1593
+  ],
+  "trk:t-678e8450:5754ef7c3bb4": [
+   1594
   ]
  },
  "topics": {},
- "topic_fail_at": 1794181097.588807
+ "topic_fail_at": 1794185359.213304
 }
