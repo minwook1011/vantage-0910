@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "84061af62b60",
+   "kind": "news",
+   "headline": "메타, 인스타그램 '나이 추정 AI' 전 세계로 확대 — 성인 생일로 가입한 10대도 찾아내 '틴 계정' 보호 적용",
+   "bullets": [
+    "메타가 9일 인스타그램에서 10대로 의심되는 이용자를 AI로 찾아 '틴 계정' 보호(연락·콘텐츠·이용 시간 제한)를 자동 적용하는 기술을 전 세계로 넓혔다.",
+    "페이스북에도 계속 확대 중이고, 올해 안에 스레드에도 비슷한 기술을 전 세계에 도입한다.",
+    "호주에서는 애플이 기기에서 확인한 '나이 구간' 신호도 쓰기 시작했고, 미국 부모에게는 이달 인스타그램 피드 안내 영상을 띄운다."
+   ],
+   "summary": "메타는 성인 생일을 입력해 가입한 10대가 많다는 점을 들어, 프로필 정보와 이용 행태 등을 바탕으로 10대로 의심되는 계정을 찾아 보호 설정에 넣는 AI 기술을 그동안 미국·유럽연합·브라질 등에서 써 왔다. 이번 확대로 전 세계 수백만 명의 10대가 추가로 틴 계정 보호를 받게 된다고 회사는 밝혔다.\n\n이번 조치는 최근 미국 52개 주·지역 검찰총장과 맺은 합의에서 약속한 내용(13세 미만 아동과 10대 식별 강화)의 연장선이다. 메타는 앱마다 나이를 따로 확인하는 것보다 앱스토어에서 한 번 확인한 신호를 모든 앱에 공유하는 방식이 더 효과적이라며 관련 입법을 지지한다고 다시 강조했고, 틱톡·유튜브에도 같은 방식을 도입하라고 촉구했다. 아동 안전 관련 소송이 이어지는 가운데 나온 조치다.",
+   "title": "Meta expands AI age checks for Instagram teens as lawsuits mount",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPY1g0eDR0NWpEeEtsdXVMbjMxcFFsV1EwTFhJcllnd3NWOFIwN2l1S2RPZ0N2ZEVrM0xuYjhrY05Mck9xdWFqdzlvY2ZnODluallDTVF1UXJCbHV4OGhJbkFwT1pWV05jRHJENEppZGR0Rm4zTHFibkRiTi1jOGdvamJON3lQTWtFQzVkLUZxX3NxcElo?oc=5",
+   "published": "2026-11-09 22:14 KST",
+   "written": "2026-11-09 22:49 KST"
+  },
+  {
    "id": "6033a3003fc6",
    "kind": "news",
    "headline": "애플·메타도 OKX·ICE 토큰화 주식 거래소에 '우리 주식 빼라' — 매그니피센트7 전원 거부, 거부 기업 67곳",
@@ -497,5 +513,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-11-09 11:21 KST"
+ "updated": "2026-11-09 22:49 KST"
 }

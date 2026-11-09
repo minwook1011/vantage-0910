@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "d9007049d962",
+   "kind": "blog",
+   "headline": "머스크 \"사이버트럭 약 8개월 뒤 생산 중단, 예약금 상당수 돌려줄 것\" — 생산 라인은 로보택시 '사이버캡'으로",
+   "bullets": [
+    "일론 머스크가 9일 X에 테슬라가 약 8개월 뒤 사이버트럭 생산을 멈추고, 그전까지 최대한 만들되 많은 예약자에게 예약금을 돌려줘야 한다고 밝혔다.",
+    "머스크는 사이버트럭이 적자가 아니었고, 주문이 생산보다 많다고 주장하며 단종 이유를 '복잡한 사이버트럭보다 사이버캡을 더 만드는 쪽이 낫다'는 기회비용으로 설명했다.",
+    "업계 추정 판매량은 2023년 11월 첫 인도 이후 약 7만1천 대로, 한때 예약 100만 대·연 25만 대 판매 전망과 거리가 멀다."
+   ],
+   "summary": "테슬라는 사이버트럭 공장 공간을 2인승 로보택시 사이버캡 생산에 쓸 계획이라고 지난주 밝혔다. 테슬라는 사이버트럭 판매량을 따로 공개하지 않는다.\n\n판매 상당수는 머스크 계열사에서 나왔다. 스페이스X는 상장 서류에서 2025년 사이버트럭 1억3,100만 달러어치를 샀다고 밝혔고, 스페이스X와 합병한 xAI는 데이터센터용으로 테슬라 메가팩 4억3,000만 달러어치를 샀다. 단종 소식에 막판 수요가 다소 늘 수 있지만, 과거 전망치에 닿기는 어렵다는 평가다.",
+   "title": "Musk says Tesla will refund some Cybertruck deposits, defends decision to end production",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/09/musk-says-tesla-will-refund-some-cybertruck-deposits-defends-decision-to-end-production/",
+   "published": "2026-11-09 22:43 KST",
+   "written": "2026-11-09 22:49 KST"
+  },
+  {
    "id": "ba4025262cdd",
    "kind": "blog",
    "headline": "테슬라, 샌안토니오에서 로보택시 서비스 시작 — 텍사스 네 번째 도시",
@@ -3091,5 +3107,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-11-09 20:47 KST"
+ "updated": "2026-11-09 22:49 KST"
 }
