@@ -1189,6 +1189,7 @@
   "trk:t-3f524a5b:bf20868c4bf9",
   "trk:t-3f524a5b:ebd1b918ed4a",
   "trk:t-4123f0f6:1467a91e2e3c",
+  "trk:t-4123f0f6:83f981f16a5a",
   "trk:t-4123f0f6:854639557768",
   "trk:t-4123f0f6:8f2721c74884",
   "trk:t-4123f0f6:9ddb16413b32",
@@ -1268,6 +1269,7 @@
   "trk:t-678e8450:abce50538b5f",
   "trk:t-678e8450:b054cbf3c3a2",
   "trk:t-678e8450:b97d0add14bd",
+  "trk:t-678e8450:bec9211c3edb",
   "trk:t-678e8450:c08cb561aef8",
   "trk:t-678e8450:c2372f647938",
   "trk:t-678e8450:c65eb92e3a11",
@@ -1434,6 +1436,7 @@
   "trk:yt--jklonfa:1b4068e746ea",
   "trk:yt--jklonfa:1dea17155b99",
   "trk:yt--jklonfa:1ed94e9c1e57",
+  "trk:yt--jklonfa:1f3655bd9823",
   "trk:yt--jklonfa:202033da0841",
   "trk:yt--jklonfa:2112b07c2395",
   "trk:yt--jklonfa:228a7cda9737",
@@ -1668,6 +1671,7 @@
   "trk:yt--jklonfa:e4c4c9043dc9",
   "trk:yt--jklonfa:e53941c08ae0",
   "trk:yt--jklonfa:e6b87283a1ee",
+  "trk:yt--jklonfa:e74440614c71",
   "trk:yt--jklonfa:e7a75be8eb79",
   "trk:yt--jklonfa:e8b417e1a0c6",
   "trk:yt--jklonfa:ecffc0776b8e",
@@ -1753,18 +1757,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:yt--jklonfa:c5aeb99db089": [
-   1198
-  ],
-  "trk:t-678e8450:abce50538b5f": [
-   1199
-  ],
-  "usdkrw:2026-10-29": [
-   350
-  ],
-  "jpm:2026-10-29 15:33 KST": [
-   351
-  ],
   "digest:2026-10-29:asia": [
    352,
    353
@@ -3306,8 +3298,20 @@
   ],
   "trk:yt--jklonfa:f49b1c14e42a": [
    1611
+  ],
+  "trk:yt--jklonfa:1f3655bd9823": [
+   1612
+  ],
+  "trk:yt--jklonfa:e74440614c71": [
+   1613
+  ],
+  "trk:t-4123f0f6:83f981f16a5a": [
+   1614
+  ],
+  "trk:t-678e8450:bec9211c3edb": [
+   1615
   ]
  },
  "topics": {},
- "topic_fail_at": 1794192623.285785
+ "topic_fail_at": 1794198034.70009
 }
