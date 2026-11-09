@@ -520,6 +520,7 @@
   "trk:ax:dae1466c4c99",
   "trk:ax:db869a3b7283",
   "trk:ax:e4f716d082fe",
+  "trk:ax:f0bd02d39605",
   "trk:ax:f430c5044c98",
   "trk:bill-ackman:35cbcc93bb36",
   "trk:bill-ackman:8b5c4c18c150",
@@ -885,6 +886,7 @@
   "trk:cxmt:f14693d74aec",
   "trk:gartner:00d231f4d4a6",
   "trk:gartner:0cd126e4da80",
+  "trk:gartner:0d76154ec7b6",
   "trk:gartner:3dfbaffaf156",
   "trk:gartner:58a1b33cd911",
   "trk:gartner:8096a43c5395",
@@ -952,6 +954,7 @@
   "trk:meta:55a95c1592b9",
   "trk:meta:56c1402cf127",
   "trk:meta:5836f98abbc0",
+  "trk:meta:6033a3003fc6",
   "trk:meta:60cefc033103",
   "trk:meta:63b8985256e0",
   "trk:meta:7a67c0172163",
@@ -1373,6 +1376,7 @@
   "trk:t-dbe684bf:4bc20c6f97f4",
   "trk:t-dbe684bf:4c709989a407",
   "trk:t-dbe684bf:5345a3302da6",
+  "trk:t-dbe684bf:5953cda2c5f9",
   "trk:t-dbe684bf:63a173bf189c",
   "trk:t-dbe684bf:c1be5e05fc6e",
   "trk:t-dbe684bf:df6d60e68cea",
@@ -1383,6 +1387,7 @@
   "trk:t-f05c5b60:9f967296b1fb",
   "trk:t-f05c5b60:e5f22b90119f",
   "trk:warren-buffett:26b5a780f741",
+  "trk:warren-buffett:3b81d6cc2433",
   "trk:warren-buffett:7943ad329ffa",
   "trk:x-dylan522p:071cfc841ddb",
   "trk:x-dylan522p:f2a8e65525dc",
@@ -1495,6 +1500,7 @@
   "trk:yt--jklonfa:58fa95e1fb29",
   "trk:yt--jklonfa:5983737cd5c3",
   "trk:yt--jklonfa:5a7e2d4ad723",
+  "trk:yt--jklonfa:5ae1a223c00e",
   "trk:yt--jklonfa:5ae4d8e52e01",
   "trk:yt--jklonfa:5b967680cb58",
   "trk:yt--jklonfa:5da5608fabc7",
@@ -1522,6 +1528,7 @@
   "trk:yt--jklonfa:6d640ec926e0",
   "trk:yt--jklonfa:706321509a9a",
   "trk:yt--jklonfa:731d49da6e54",
+  "trk:yt--jklonfa:735010b517bd",
   "trk:yt--jklonfa:74b6d85847b0",
   "trk:yt--jklonfa:74e36a144fc6",
   "trk:yt--jklonfa:7579a322c170",
@@ -1743,27 +1750,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "ins:ins-20261028-kwak-noh-jung-q3-lta-2029-soldout-100tn-return": [
-   1190
-  ],
-  "ins:ins-20261028-satya-nadella-azure48-ai-in-practice-fcf-vs-alphabet": [
-   1191
-  ],
-  "ins:ins-20261028-sundar-pichai-500b-runrate-fcf-negative-search-gap-carbon": [
-   1192
-  ],
-  "ins:ins-20261028-trump-vance-iran-letter-medical-supplies-strike-option": [
-   1193
-  ],
-  "ins:ins-20261028-kevin-warsh-hold-dissent-fewer-meetings-curve-divergence": [
-   1194
-  ],
-  "trk:009150:65c979c47823": [
-   1195
-  ],
-  "trk:cathie-wood:3a60f3503102": [
-   1196
-  ],
   "nebius:2026-10-29": [
    348
   ],
@@ -3296,6 +3282,27 @@
   ],
   "trk:t-678e8450:55aa3df57a03": [
    1601
+  ],
+  "trk:meta:6033a3003fc6": [
+   1602
+  ],
+  "trk:yt--jklonfa:5ae1a223c00e": [
+   1603
+  ],
+  "trk:yt--jklonfa:735010b517bd": [
+   1604
+  ],
+  "trk:gartner:0d76154ec7b6": [
+   1605
+  ],
+  "trk:warren-buffett:3b81d6cc2433": [
+   1606
+  ],
+  "trk:t-dbe684bf:5953cda2c5f9": [
+   1607
+  ],
+  "trk:ax:f0bd02d39605": [
+   1608
   ]
  },
  "topics": {},
