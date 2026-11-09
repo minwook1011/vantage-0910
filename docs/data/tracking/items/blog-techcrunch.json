@@ -3,6 +3,22 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "07f8476d8d8c",
+   "kind": "blog",
+   "headline": "젠슨 황, 불륜 시인 1년 전부터 '성추문 전문' 위기관리 홍보사 헬러 고용 — 엔비디아 홍보팀엔 황 관련 문의 공유 지시(와이어드)",
+   "bullets": [
+    "와이어드에 따르면 젠슨 황은 중국 스파이 의혹 여성과의 불륜을 공개 시인하기 최소 1년 전, 성추문 대응으로 알려진 위기관리 홍보사 헬러를 고용했다.",
+    "2025년 10월 뉴욕타임스가 싱가포르 데이터센터 업체 메가스피드의 엔비디아 칩 약 20억달러어치 확보와 앨리스 황 대표를 보도한 직후였다.",
+    "엔비디아 내부 홍보팀은 그 뒤 황 관련 언론 문의를 헬러에 참조로 보내라는 지시를 받았다. 헬러와 엔비디아는 답하지 않았다."
+   ],
+   "summary": "헬러 창업자 리사 헬러는 앤서니 위너 전 하원의원, 요리사 마리오 바탈리 등 개인 추문에 휘말린 유명 인사들의 위기 대응을 맡아 온 인물이다. 고용 시점이 뉴욕타임스의 메가스피드 보도 직후라는 점에서, 황이 해당 관계가 문제로 번질 가능성을 일찍부터 알고 대비했다는 해석이 나온다.\n\n엔비디아는 일요일 황의 성명을 내고 메가스피드 전 임원과의 불륜을 인정했다(실명은 밝히지 않음). 이사회는 황이 외국 정보기관 공작의 표적이었다는 보도를 이유로 별도의 독립 조사를 시작했다. 남은 쟁점은 이사회 조사 결과와 메가스피드를 통한 칩 수출통제 우회 여부다.",
+   "title": "Jensen Huang reportedly engaged a PR firm with a history of handling high-profile sex scandals a year ago",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/09/jensen-huang-reportedly-engaged-a-pr-firm-with-a-history-of-handling-high-profile-sex-scandals-a-year-ago/",
+   "published": "2026-11-10 08:28 KST",
+   "written": "2026-11-10 08:49 KST"
+  },
+  {
    "id": "19357becbbc5",
    "kind": "blog",
    "headline": "윈덤호텔, 안드로이드 앱 코드에 비밀번호 박아둬 고객 정보 노출 — 회원 1억2,900만명 보유, 무단 접근 여부는 답 안 해",
@@ -3379,5 +3395,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-11-10 08:17 KST"
+ "updated": "2026-11-10 08:49 KST"
 }
