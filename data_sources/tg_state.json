@@ -619,6 +619,7 @@
   "trk:blog-ssh-fedinsight:5ef4729a4a58",
   "trk:blog-ssh-fedinsight:66b12c095fd0",
   "trk:blog-ssh-fedinsight:7c0cde6a5c87",
+  "trk:blog-ssh-fedinsight:8080e19d65b2",
   "trk:blog-ssh-fedinsight:814f48c410d2",
   "trk:blog-ssh-fedinsight:867393beab70",
   "trk:blog-ssh-fedinsight:986bbf0136b8",
@@ -1757,10 +1758,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "digest:2026-10-29:asia": [
-   352,
-   353
-  ],
   "trk:t-759fd052:b087505d753f": [
    1200
   ],
@@ -3310,6 +3307,9 @@
   ],
   "trk:t-678e8450:bec9211c3edb": [
    1615
+  ],
+  "trk:blog-ssh-fedinsight:8080e19d65b2": [
+   1616
   ]
  },
  "topics": {},
