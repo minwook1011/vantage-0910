@@ -3,6 +3,38 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "fecebde2f76f",
+   "kind": "news",
+   "headline": "정부, 유럽 마트 냉장고 해킹 사례 전파 — 국내 냉장·냉동설비 사업자에 보안 점검 권고",
+   "bullets": [
+    "과학기술정보통신부가 관계부처를 통해 민간 사업자와 협·단체에 해외 냉장·냉동설비 해킹 사례를 알리고 보안 점검을 권고했다.",
+    "매장·저온창고 밖에서 설비 온도와 가동 시간을 원격으로 관리하는 시스템이 공격 통로가 될 수 있다는 판단이다.",
+    "미국 사이버보안·인프라보안국(CISA)과 연방수사국(FBI) 등도 5일 산업용 냉장·냉동 설비를 노린 사이버 위협이 이어지고 있다고 공동 경고했다."
+   ],
+   "summary": "이달 초 프랑스를 시작으로 벨기에·스웨덴·아일랜드 등 유럽 여러 나라 슈퍼마켓의 냉장·냉동 설비가 원격 해킹을 당해 온도가 조작되고 식료품이 대량 폐기됐다. 프랑스에서는 병원 혈액 냉동고까지 공격 대상이 됐다.\n\n미국 기관들은 원격 제어 장치를 인터넷에서 분리하고, 기본 비밀번호를 바꾸고, 지원이 끝난 장비는 교체하라고 권고했다. 국내 정부 권고도 같은 방향으로 콜드체인(저온 유통) 설비의 원격 접속 관리 점검에 초점을 맞췄다.\n\n이런 설비는 그동안 우선 보안 점검 대상에서 빠져 있었다는 지적이 나온다. 국내 유통·물류·의료 현장으로 점검이 실제로 확대될지가 다음 확인 지점이다.",
+   "title": "정부, 냉장·냉동설비 해킹 경고…민간에 보안 점검 권고",
+   "source": "전자신문",
+   "url": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE8zbE5XZ0hQdjVNMFNiaDNnampKYWZKZVJLRTkxMWVpS0xUb0xXYml3QUN0TXUyQXE4NFJrcF9qemhWdE5qdnlaTkt1c1FoUQ?oc=5",
+   "published": "2026-11-08 09:00 KST",
+   "written": "2026-11-09 10:50 KST"
+  },
+  {
+   "id": "55aa3df57a03",
+   "kind": "news",
+   "headline": "가상자산 거래소 잇단 해킹에 금감원, 19일 전 사업자 정보보호최고책임자 소집",
+   "bullets": [
+    "금융감독원이 오는 19일 가상자산업권 해킹 사고 대응회의를 열고 거래소·수탁업체 등 모든 가상자산사업자의 정보보호최고책임자(CISO)를 부른다.",
+    "최근 빗썸 개인정보 유출, 고팍스 거래 중단 등 거래소 사고가 연달아 터지면서 피해가 정보 유출에서 자산 탈취·거래 중단으로 번진 데 따른 조치다.",
+    "회의에서는 사업자별 보안 관리·내부통제 실태를 점검하고 해킹 예방과 사고 발생 시 대응 방안을 논의한다."
+   ],
+   "summary": "국내 가상자산 거래소에서 개인정보 유출과 자산 탈취 사고가 잇따르자 금융당국이 업계 보안 책임자들을 한자리에 모으기로 했다. 빗썸은 사고 직후 긴급 보안 조치를 하고 한국인터넷진흥원(KISA)·금감원과 함께 사고 경위와 피해 범위를 분석하고 있다.\n\n금융위원회는 앞서 5일에도 금감원·금융보안원·전 금융권 협회를 불러 해킹 대응 대책회의를 열었고, 금융권 580여 곳 보안 전수점검에 들어간 상태다. 이번 회의로 점검 범위가 거래소뿐 아니라 수탁업체까지 넓어진다.\n\n남은 쟁점은 회의 뒤 나올 구체적 조치다. 콜드월렛(인터넷과 분리한 지갑) 보관 비중 상향 같은 보안 기준 강화나 사고 사업자 제재 여부가 다음 확인 지점이다.",
+   "title": "가상자산업계 잇단 해킹에…금융당국, 보안 책임자 소집",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9JTUo5RFBIeHpTbXdnelZtZkVWenFJWHEtZEtTQjNPUjVaUHJOY25mMEtaNThwRExqcDNyc2ZnYzZmZHVCNW14TFBNdUdQQXRVSkwtaTA2UVRBRWfSAWBBVV95cUxQemVhVUQ1UGRWSzg5WEJBbE1veG5kcXRZOGpkVWRIVmY4MXVmdzRPVDd3YkVyVUxNTkVxbTN2UEgwRzdGTER5ZnlMTElOUzFiS2FwNW5TQnBpYzFBYTBqTDU?oc=5",
+   "published": "2026-11-08 05:58 KST",
+   "written": "2026-11-09 10:50 KST"
+  },
+  {
    "id": "5754ef7c3bb4",
    "kind": "news",
    "headline": "SM엔터·디어유·드림메이커 해킹 — 임직원 주민번호·계좌번호·계약서 정보 유출, 공식 사과",
@@ -915,5 +947,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-09 09:48 KST"
+ "updated": "2026-11-09 10:50 KST"
 }
