@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "26cb168cd0cf",
+   "kind": "news",
+   "headline": "엔비디아·리벨리온·SK텔레콤, 'NVLink 퓨전'으로 한국형 AI 인프라 협력 — 리벨리온 R200 칩을 엔비디아 랙에 연결",
+   "bullets": [
+    "리벨리온이 차세대 신경망처리장치(NPU) '리벨 R200'을 엔비디아 고속 연결 기술 NVLink 퓨전으로 엔비디아 플랫폼에 붙이고, MGX 랙 설계로 랙 단위 추론 시스템을 만든다.",
+    "SK텔레콤은 이 시스템을 자사 AI 데이터센터에 깔고, 자체 모델 A.X K2와 'AI for All' 공공 서비스에 쓴다. 과학기술정보통신부가 지원한다.",
+    "계약 금액·도입 규모·일정은 공개되지 않았다."
+   ],
+   "summary": "엔비디아·리벨리온·SK텔레콤이 9일 서울에서 소버린 AI(나라별 자체 AI) 인프라 협력을 발표했다. NVLink 퓨전은 엔비디아가 다른 회사의 맞춤형 칩을 자사 고속 연결망·랙 생태계에 붙일 수 있게 연 기술로, 칩 회사 입장에선 성능을 높이고 출시 기간·도입 위험을 줄이는 길이다.\n\n리벨리온은 R200을 최신 대형 모델을 낮은 지연·적은 전력으로 돌리는 추론용 칩으로 개발 중이다. 젠슨 황 CEO는 한국 칩 회사들이 맞춤형 칩을 엔비디아 'AI 팩토리' 플랫폼에 연결할 수 있게 됐다고 했고, 박성현 리벨리온 CEO는 SK텔레콤의 모델·데이터센터 운영 역량과 묶어 대규모 추론을 하겠다고 했다. 정재헌 SK텔레콤 CEO는 풀스택 소버린 AI 경쟁력을 강조했다.\n\n유료 보도자료(글로브뉴스와이어) 형태라 투자 규모·일정·배치 물량 같은 숫자는 없다. 실제 R200 양산 시점과 SK텔레콤 데이터센터 도입 규모가 남은 확인 사항이다.",
+   "title": "NVIDIA, Rebellions and SK Telecom Announce Collaboration to Advance Sovereign AI Infrastructure With NVIDIA NVLink Fusion",
+   "source": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-rebellions-sk-telecom-announce-050000656.html?.tsrc=rss",
+   "published": "2026-11-09 14:00 KST",
+   "written": "2026-11-09 14:20 KST"
+  },
+  {
    "id": "3ea82ed6a827",
    "kind": "news",
    "headline": "[후속] 젠슨 황, 中 스파이 의혹 여성과 불륜 시인·사과 — 엔비디아 이사회 독립 조사 착수",
@@ -867,5 +883,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-09 08:22 KST"
+ "updated": "2026-11-09 14:20 KST"
 }
