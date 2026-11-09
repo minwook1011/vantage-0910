@@ -1241,6 +1241,7 @@
   "trk:t-678e8450:4bcf886b41e2",
   "trk:t-678e8450:4f82b6f2d483",
   "trk:t-678e8450:548158c48d72",
+  "trk:t-678e8450:55aa3df57a03",
   "trk:t-678e8450:5716d2802232",
   "trk:t-678e8450:5754ef7c3bb4",
   "trk:t-678e8450:6a31cf43afff",
@@ -1282,6 +1283,7 @@
   "trk:t-678e8450:ef6652efed03",
   "trk:t-678e8450:f7b05899c293",
   "trk:t-678e8450:fbbff9fb35db",
+  "trk:t-678e8450:fecebde2f76f",
   "trk:t-759fd052:015ffb348fa0",
   "trk:t-759fd052:03fe1408f933",
   "trk:t-759fd052:057ee3053233",
@@ -1318,6 +1320,7 @@
   "trk:t-759fd052:71accb65f098",
   "trk:t-759fd052:72efaf5f17bb",
   "trk:t-759fd052:74866cb6c129",
+  "trk:t-759fd052:7511c1acac2a",
   "trk:t-759fd052:7520e0267c50",
   "trk:t-759fd052:753fc794b538",
   "trk:t-759fd052:782b2444c387",
@@ -1740,15 +1743,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:blog-techcrunch:68451a536197": [
-   1187
-  ],
-  "trk:blog-techcrunch:7de337474fdd": [
-   1188
-  ],
-  "ins:ins-20261028-scott-bessent-hike-not-mistake-warsh-confidence": [
-   1189
-  ],
   "ins:ins-20261028-kwak-noh-jung-q3-lta-2029-soldout-100tn-return": [
    1190
   ],
@@ -3293,8 +3287,17 @@
   ],
   "pod:2026-11-09-dumbmoney-2wCgd-9busU": [
    1598
+  ],
+  "trk:t-759fd052:7511c1acac2a": [
+   1599
+  ],
+  "trk:t-678e8450:fecebde2f76f": [
+   1600
+  ],
+  "trk:t-678e8450:55aa3df57a03": [
+   1601
   ]
  },
  "topics": {},
- "topic_fail_at": 1794185359.213304
+ "topic_fail_at": 1794189021.29182
 }
