@@ -594,6 +594,7 @@
   "trk:blog-ranto28:84d6c39d5275",
   "trk:blog-ranto28:895142a31e4f",
   "trk:blog-ranto28:969d2a51c182",
+  "trk:blog-ranto28:9c0b2f76a071",
   "trk:blog-ranto28:a04480569140",
   "trk:blog-ranto28:a10d9d307a18",
   "trk:blog-ranto28:a53b42ec5972",
@@ -660,6 +661,7 @@
   "trk:blog-techcrunch:07f6917d1b13",
   "trk:blog-techcrunch:088d8b2dd5d8",
   "trk:blog-techcrunch:0d1cb7ac1a23",
+  "trk:blog-techcrunch:0f72f5729870",
   "trk:blog-techcrunch:0f9269aa1420",
   "trk:blog-techcrunch:1022077bd8b1",
   "trk:blog-techcrunch:11169497f65e",
@@ -1095,6 +1097,7 @@
   "trk:nvda:e67abae1c76a",
   "trk:nvda:e7dd7289e820",
   "trk:nvda:e9fde1a9cf27",
+  "trk:nvda:eb353bf2cf96",
   "trk:nvda:ef2624c0c655",
   "trk:nvda:efb4099d0a4f",
   "trk:nvda:f6cca660f4cc",
@@ -1548,6 +1551,7 @@
   "trk:yt--jklonfa:4f18419783b0",
   "trk:yt--jklonfa:509503c57e08",
   "trk:yt--jklonfa:50970c75a267",
+  "trk:yt--jklonfa:53af7bf8b475",
   "trk:yt--jklonfa:53dd57536d25",
   "trk:yt--jklonfa:53df0ec1d30b",
   "trk:yt--jklonfa:5454ec6de239",
@@ -1818,18 +1822,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:blog-techcrunch:a82d64633522": [
-   1259
-  ],
-  "pod:2026-10-29-mad-state-of-ai-2026-the-biggest-stories-of-the-year": [
-   1260
-  ],
-  "pod:2026-10-29-dumbmoney-L9bDh-UZwDg": [
-   1261
-  ],
-  "pod:2026-10-29-synopsis-dialogue-google-s-ai-threat-meta-s-98b-raise-and": [
-   1262
-  ],
   "macro:2026-10-29": [
    356,
    357,
@@ -3376,6 +3368,18 @@
    517,
    518,
    519
+  ],
+  "trk:blog-ranto28:9c0b2f76a071": [
+   1669
+  ],
+  "trk:yt--jklonfa:53af7bf8b475": [
+   1670
+  ],
+  "trk:nvda:eb353bf2cf96": [
+   1671
+  ],
+  "trk:blog-techcrunch:0f72f5729870": [
+   1672
   ]
  },
  "topics": {},
