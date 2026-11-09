@@ -3,6 +3,38 @@
  "slug": "googl",
  "items": [
   {
+   "id": "38e312e8be5c",
+   "kind": "news",
+   "headline": "구글 \"호주 '디지털 주의 의무' 법안 통과되면 18세 미만 지메일 차단해야 할 수도\" — 위반 시 최대 1억900만 호주달러 벌금",
+   "bullets": [
+    "구글 정책 책임자가 호주 상원 청문회에서 추진 중인 '디지털 주의 의무(Digital Duty of Care)' 법안이 이메일까지 적용되면 18세 미만의 지메일 사용을 막아야 할 수 있다고 경고했다.",
+    "쟁점은 아동이 음란물을 볼 위험이 있는 곳에 연령 확인을 요구하는 조항으로, 법안이 이메일·메신저를 명시적으로 빼지 않았다.",
+    "유해 콘텐츠 제거를 입증 못 하면 최대 1억900만 호주달러 벌금이 부과되며, 상원 위원회 결론은 11월 20일께 나올 예정이다."
+   ],
+   "summary": "호주는 2025년 12월부터 16세 미만 소셜미디어 사용을 금지했고, 유튜브도 대상에 들어갔다. 이번 법안은 여기서 더 나아가 플랫폼 전반에 유해 콘텐츠를 막을 '주의 의무'를 지우는 내용이다. 통과되면 법 제정 12개월 뒤 시행된다.\n\n구글은 연령 확인 조항이 이메일·메시지 서비스에도 걸릴 수 있다는 점을 문제 삼았다. 다만 법안 자체가 서비스 전체에서 18세 미만을 막으라고 명시하지는 않는다는 보도도 있어, 실제 적용 범위는 상원 심사와 하위 규정에서 정해진다. 호주의 청소년 규제가 다른 나라로 번질지가 빅테크에겐 남은 변수다.",
+   "title": "澳洲網路法案擴大監管 谷歌：恐迫使未滿18歲者停用Gmail",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1icFc5Qi1mWGRjcTREeWNRNGJ0Q2RULTJUSHpVQWpBSlQ2SUR5Mmpodi1CZXg3RXYyMldzeEhKZm8zcFQyYzlvSWFTWUVFYXZPZkJkX212akhaUdIBX0FVX3lxTFBCZ1dxTEg5MXdkUTdPUnhwdTk1OU5rejlMS1lvR0thZEh1ZHpvMDhWMHJRMnBjelMtbTUwNWNfY3ZlWmZjYkdpWVpYYWRmcGdDbmRQaER5Um9CUDBXNEQw?oc=5",
+   "published": "2026-11-09 22:02 KST",
+   "written": "2026-11-09 22:18 KST"
+  },
+  {
+   "id": "ed551a3df955",
+   "kind": "news",
+   "headline": "구글, 8세대 TPU 변형 2종 'TPU 8tx'·'TPU 8i 맥스' 공개 — 보안 특화·대용량 추론용, 내년 출시",
+   "bullets": [
+    "구글이 자체 인공지능 칩 TPU 8세대 라인업에 'TPU 8tx'와 'TPU 8i 맥스' 두 시스템을 추가했다(블룸버그 첫 보도, 구글 공식 블로그 확인).",
+    "8tx는 칩 단계에서 데이터를 암호화하는 기밀 연산용으로, 정부기관·금융 등 규제 산업 고객을 겨냥한다.",
+    "8i 맥스는 칩 두 개를 한 패키지에 묶어 연산력과 메모리를 늘린 제품으로, 긴 문맥을 다루는 추론에 쓰인다. 두 제품 모두 내년 출시 예정이다."
+   ],
+   "summary": "구글은 4월 클라우드 넥스트에서 학습용 TPU 8t와 추론용 TPU 8i를 처음으로 나눠 내놓았다. 이번 두 제품은 완전히 새로운 칩이 아니라 고객 요청에 맞춰 기존 8세대 칩을 재구성한 '시스템'이라고 구글 최고기술책임자급 엔지니어 아민 바다트가 설명했다. 이로써 구글은 1년 안에 8세대 TPU 변형을 네 가지로 늘렸다.\n\n보안 특화 8tx는 데이터 유출을 우려해 외부 클라우드 인공지능을 꺼리던 공공·규제 산업 수요를 노린다. 8i 맥스는 칩 두 개를 묶어 메모리를 키워, 에이전트형 인공지능처럼 긴 문맥을 계속 들고 있어야 하는 추론 작업을 겨냥했다. 블룸버그는 이를 엔비디아와의 경쟁 수위를 높이는 행보로 풀이했다. 남은 쟁점은 구체 성능 수치와 가격, 외부 고객 공급 규모로, 아직 공개되지 않았다.",
+   "title": "Google to introduce two variants of in-house chips, Bloomberg News reports",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOd1JDNDVNcnh0MU5wSzdrUVhVY3FpSklfazJZVWEtbGwyUkxydzhTcUVhV2F5aHdHV29OUE9Ea1JkZm93d2xVcU1VMEdEZE1xamt3RlktMVlqLUNGRVlIalpNd3ZRS2Z2LVN3b24yNUcyV1lkQm01MmJ3eHJLZVk3a3ZDSkhHcllvVHVxX1c1d3YtRHV3Q1g5d241UGNpLXJpSXRwTUYzcEdPcUhmN2FqdnBRNVZUYlM1WmJF?oc=5",
+   "published": "2026-11-09 21:56 KST",
+   "written": "2026-11-09 22:18 KST"
+  },
+  {
    "id": "8596f30e7e02",
    "kind": "news",
    "headline": "알파벳, 아시아 시장 회사채 발행 검토 — AI 거품 우려로 세계 증시 출렁이는 가운데(블룸버그)",
@@ -673,5 +705,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-09 16:49 KST"
+ "updated": "2026-11-09 22:18 KST"
 }
