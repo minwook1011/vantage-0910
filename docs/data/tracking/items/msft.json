@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "fe68fd111cf1",
+   "kind": "news",
+   "headline": "[후속] 앤트로픽 2차 수정 상장신고서 — 람다와 맺은 349억달러 연산 계약, 임대 기한 놓쳐 '양쪽 모두 해지 가능'… 마이크로소프트 약정은 472억달러로 늘어",
+   "bullets": [
+    "앤트로픽이 10일 낸 2차 수정 증권신고서에서, 8월 람다와 맺은 약 349억달러 계약이 람다가 기한 안에 데이터센터 임대를 못 잡아 어느 쪽이든 해지할 수 있게 됐다고 밝혔다. 아직 해지 통보는 없고, 앤트로픽은 해지할 생각이 없다고 했다.",
+    "마이크로소프트 클라우드 최소 약정은 2일 1차 수정본의 449억달러에서 472억달러(최대 492억달러, 2033년 6월까지)로 올라갔다. 디인포메이션은 지난 한 달 마이크로소프트·구글과 새로 맺은 약정이 약 100억달러라고 전했다.",
+    "전체 연산·인프라 약정은 8,954억달러에서 9,009억달러로 늘었고, 그중 해지권이나 미충족 조건이 걸린 금액은 2,138억달러에서 1,862억달러로 줄었다."
+   ],
+   "summary": "람다는 엔비디아 그래픽처리장치(GPU) 연산을 빌려주는 회사로, 앤트로픽과 5·6·8월 세 차례 계약해 2034년까지 총 약 413억달러 약정이 있다. 요금은 실제로 넘겨받아 검수한 용량만큼만 낸다. 신고서는 문제의 부지를 밝히지 않았지만, 월스트리트저널은 9월 약 350억달러 계약을 텍사스 누에시스 카운티 허트8 데이터센터 약 350메가와트와 연결해 보도했다.\n\n구글의 클라우드 호스팅 약정은 2033년 7월까지 약 1,213억달러로 그대로다. 구글은 공모와 함께 사모로 100억달러어치 주식을 사, 보유 주식이 약 16억5,000만주에서 17억9,000만주로 늘어난다.\n\n남은 쟁점은 람다가 왜 임대를 못 잡았는지다 — 두 회사 모두 설명하지 않았다. 신고서는 마이크로소프트·구글 새 약정 약 100억달러의 나눔도 따로 밝히지 않았다.",
+   "title": "Anthropic Discloses Over $10 Billion in New Deals with Microsoft, Google; Says Lambda Deal May Be Cancelled",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNY29jNmZNZkNLNElZV21RQXVOY3VCWGwzOFljUXBNRkNieEVLUmFqSG1YazBuanR1dVd1U0drbV90U2xmWEJBcXdhOW14Wk43UWIxMTlTcHZHQUo3bkJUNjdfeWYwdUhGcVI4OFNBYnpnbk5CUGVmdXE2WW1iU2ZlYVBnTm9uNkxiOThacTJ1b2g1bUgyWVl5Z2RkR3dUY1M1c1pVdjRZWUduNUFtOW1LMmR4NzlSWG5CYUw5d05lN2xkVU9BQlJuNA?oc=5",
+   "published": "2026-11-11 02:39 KST",
+   "written": "2026-11-11 08:19 KST"
+  },
+  {
    "id": "71454855cbe6",
    "kind": "news",
    "headline": "IBM·마이크로소프트, 업종별 AI 에이전트 플랫폼 '이매진 엔터프라이즈' 공동 출시 — IBM 컨설팅의 기성 에이전트·자산 6,000개 이상 탑재",
@@ -513,5 +529,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-10 22:18 KST"
+ "updated": "2026-11-11 08:19 KST"
 }
