@@ -518,6 +518,7 @@
   "trk:amzn:f728a1519228",
   "trk:aws:132be39d0d0f",
   "trk:aws:1da0791ea3f9",
+  "trk:aws:2acefb044502",
   "trk:aws:42cd05bc8595",
   "trk:aws:be35ae71db44",
   "trk:ax:0ee7f0e6d228",
@@ -551,6 +552,7 @@
   "trk:bill-ackman:8b5c4c18c150",
   "trk:bill-ackman:a1b8ad155758",
   "trk:bill-ackman:f0f8a4d5a779",
+  "trk:blog-egzion:08950890e6d6",
   "trk:blog-egzion:1a92542fb28d",
   "trk:blog-egzion:36398881cd63",
   "trk:blog-egzion:4249c7e05721",
@@ -709,6 +711,7 @@
   "trk:blog-techcrunch:33e6efc37afb",
   "trk:blog-techcrunch:34227ecac3b3",
   "trk:blog-techcrunch:352c845d3c1a",
+  "trk:blog-techcrunch:3552f891d531",
   "trk:blog-techcrunch:361e6099babf",
   "trk:blog-techcrunch:374a462a3784",
   "trk:blog-techcrunch:37ff6c96db6b",
@@ -799,6 +802,7 @@
   "trk:blog-techcrunch:9e5df1d377b9",
   "trk:blog-techcrunch:9ee07ab5220d",
   "trk:blog-techcrunch:9fd2dc89b5a2",
+  "trk:blog-techcrunch:a3bbec3da470",
   "trk:blog-techcrunch:a4a5cb15bfe3",
   "trk:blog-techcrunch:a545b921f330",
   "trk:blog-techcrunch:a5e63c073be0",
@@ -813,6 +817,7 @@
   "trk:blog-techcrunch:af190a67bbb6",
   "trk:blog-techcrunch:af8a5f37fd6e",
   "trk:blog-techcrunch:b0cc00e8971c",
+  "trk:blog-techcrunch:b0d8dfc79c7f",
   "trk:blog-techcrunch:b0e30aed18f6",
   "trk:blog-techcrunch:b1b4bc980bec",
   "trk:blog-techcrunch:b226aec7f34b",
@@ -1072,6 +1077,7 @@
   "trk:nvda:185ec668e6ca",
   "trk:nvda:26cb168cd0cf",
   "trk:nvda:2a6cd519197e",
+  "trk:nvda:3004ce8dd320",
   "trk:nvda:39274e573872",
   "trk:nvda:3d3c76ccd67d",
   "trk:nvda:3e660553fa19",
@@ -1495,6 +1501,7 @@
   "trk:yt--jklonfa:078f624a48e0",
   "trk:yt--jklonfa:08225ecb1ba1",
   "trk:yt--jklonfa:08d98e48a325",
+  "trk:yt--jklonfa:09e9fac06c6e",
   "trk:yt--jklonfa:0a1ebb632526",
   "trk:yt--jklonfa:0a3564f3394f",
   "trk:yt--jklonfa:0d9777bdf6d9",
@@ -1620,6 +1627,7 @@
   "trk:yt--jklonfa:68fbf19dd90b",
   "trk:yt--jklonfa:696738acb13c",
   "trk:yt--jklonfa:696e0c533cb2",
+  "trk:yt--jklonfa:6cbbf0820816",
   "trk:yt--jklonfa:6cf3c302706f",
   "trk:yt--jklonfa:6cf8383cd4c0",
   "trk:yt--jklonfa:6d3f51514af5",
@@ -1743,6 +1751,7 @@
   "trk:yt--jklonfa:d639f8f9f4c8",
   "trk:yt--jklonfa:d680af894c5d",
   "trk:yt--jklonfa:d6dd521d2844",
+  "trk:yt--jklonfa:d7e5ba0129cb",
   "trk:yt--jklonfa:d89bccce8087",
   "trk:yt--jklonfa:d8a7e4ef1275",
   "trk:yt--jklonfa:d8edc40f251c",
@@ -1762,6 +1771,7 @@
   "trk:yt--jklonfa:e0a65f5b9b6a",
   "trk:yt--jklonfa:e0e8fc527c23",
   "trk:yt--jklonfa:e14b533336f9",
+  "trk:yt--jklonfa:e2b156f8851d",
   "trk:yt--jklonfa:e31c0d1c10af",
   "trk:yt--jklonfa:e462f3ec336f",
   "trk:yt--jklonfa:e46a9197bc9e",
@@ -1859,36 +1869,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "pod:2026-10-31-sixsigma-I6CW1tEBwmM": [
-   1279
-  ],
-  "pod:2026-10-31-sixsigma-TJS9Z0j44Gc": [
-   1280
-  ],
-  "pod:2026-10-31-sixsigma-FGQApSFoQAc": [
-   1281
-  ],
-  "ins:ins-20261031-altman-samsung-enterprise-ax-memory": [
-   1282
-  ],
-  "ins:ins-20261101-chamath-power-today-supply-chain": [
-   1283
-  ],
-  "ins:ins-20261101-lee-jaeyong-yokohama-apl-advanced-packaging": [
-   1284
-  ],
-  "ins:ins-20261101-musk-colossus-compute-reality-capital": [
-   1285
-  ],
-  "ins:ins-20261031-trump-iran-10min-hormuz-oil-scenarios": [
-   1286
-  ],
-  "ins:ins-20261101-trump-mr-veto-divided-government-executive-keystone": [
-   1287
-  ],
-  "nebius:2026-11-02": [
-   393
-  ],
   "or:2026-11-01|weekly:2026-10-26": [
    394,
    395,
@@ -3406,6 +3386,36 @@
   "digest:2026-11-10:asia": [
    525,
    526
+  ],
+  "trk:aws:2acefb044502": [
+   1706
+  ],
+  "trk:blog-egzion:08950890e6d6": [
+   1707
+  ],
+  "trk:yt--jklonfa:e2b156f8851d": [
+   1708
+  ],
+  "trk:yt--jklonfa:6cbbf0820816": [
+   1709
+  ],
+  "trk:yt--jklonfa:d7e5ba0129cb": [
+   1710
+  ],
+  "trk:yt--jklonfa:09e9fac06c6e": [
+   1711
+  ],
+  "trk:nvda:3004ce8dd320": [
+   1712
+  ],
+  "trk:blog-techcrunch:3552f891d531": [
+   1713
+  ],
+  "trk:blog-techcrunch:a3bbec3da470": [
+   1714
+  ],
+  "trk:blog-techcrunch:b0d8dfc79c7f": [
+   1715
   ]
  },
  "topics": {},
