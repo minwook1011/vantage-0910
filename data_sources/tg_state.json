@@ -472,6 +472,7 @@
   "pod:2026-11-09-sixsigma-cQQt_K9ixJY",
   "pod:2026-11-09-sixsigma-ql1__eqYIdM",
   "pod:2026-11-10-dumbmoney-H_5XP-RUPRI",
+  "pod:2026-11-10-sixsigma-J9wFHluBTXA",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
   "trk:009150:035d98272c4d",
@@ -1878,10 +1879,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "bond:2026-10-30": [
-   402,
-   403
-  ],
   "digest:2026-11-03:us": [
    404,
    405
@@ -3422,6 +3419,9 @@
   ],
   "trk:nvda:aa19da81fc59": [
    1724
+  ],
+  "pod:2026-11-10-sixsigma-J9wFHluBTXA": [
+   1725
   ]
  },
  "topics": {},
