@@ -1067,6 +1067,7 @@
   "trk:nvda:2a6cd519197e",
   "trk:nvda:39274e573872",
   "trk:nvda:3d3c76ccd67d",
+  "trk:nvda:3e660553fa19",
   "trk:nvda:3ea82ed6a827",
   "trk:nvda:3f97ba261391",
   "trk:nvda:42afee98e3a2",
@@ -1159,6 +1160,7 @@
   "trk:open-ai:8500e779ca3f",
   "trk:open-ai:8afd3fd83cfc",
   "trk:open-ai:8b9d4942d829",
+  "trk:open-ai:8d979a417fbb",
   "trk:open-ai:8e730ae8289f",
   "trk:open-ai:9332895df833",
   "trk:open-ai:93e20e0b9ef9",
@@ -1839,12 +1841,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "pod:2026-10-30-riskrev-finding-the-best-stocks-in-the-market-with-josh": [
-   1272
-  ],
-  "pod:2026-10-30-sixsigma-t0chs0gT3t4": [
-   1273
-  ],
   "jpm:2026-10-30 19:45 KST": [
    372
   ],
@@ -3391,6 +3387,12 @@
   ],
   "pod:2026-11-10-dumbmoney-H_5XP-RUPRI": [
    1687
+  ],
+  "trk:open-ai:8d979a417fbb": [
+   1688
+  ],
+  "trk:nvda:3e660553fa19": [
+   1689
   ]
  },
  "topics": {},
