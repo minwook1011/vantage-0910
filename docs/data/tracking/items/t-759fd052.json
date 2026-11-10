@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "db0c9e9491b7",
+   "kind": "news",
+   "headline": "[후속] 개인정보위, 앤트로픽 '클로드' 국내 기업용 계정 유출 정식 조사 착수 — 사전 검토 마치고 조사로 전환",
+   "bullets": [
+    "개인정보보호위원회가 10일 앤트로픽의 개인정보 유출 신고 건에 대해 사전 검토를 끝내고 정식 조사에 들어갔다.",
+    "앤트로픽은 지난달 31일 국내 기업용 클로드 계정 100여 개 정보가 외부로 새어 나갔다고 신고했다.",
+    "개인정보위는 유출 경위와 구체적인 피해 규모, 앤트로픽의 보호 조치가 적절했는지 확인할 방침이다."
+   ],
+   "summary": "전날까지는 신고 접수 뒤 사전 검토 단계였고, 정식 조사 착수 여부는 정해지지 않은 상태였다. 이번에 당국이 조사로 전환하면서 사건이 한 단계 진행됐다.\n\n사고는 미국 보안 스타트업 캐시드럴이 외부 업무용 소프트웨어 취약점을 이용해 앤트로픽 내부 시스템에 무단 접근하면서 생긴 것으로 알려졌다(워싱턴포스트 10월 26일 보도). 앤트로픽은 기업용 계정의 계정·조직 식별번호, 이름, 이메일 주소 같은 업무 연락처가 노출됐을 수 있다고 일부 고객사에 안내했다. 앤트로픽은 대화 내용(프롬프트)과 결제 정보는 안전하다고 해명한 바 있다.\n\n남은 쟁점은 실제로 열람된 정보 범위와 외부 업체 접근 경로, 그리고 조사 결과에 따른 과징금 등 처분 여부다.",
+   "title": "개보위, 앤트로픽 '클로드' 개인정보 유출 사고 정식 조사 착수",
+   "source": "연합뉴스",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBneEdVTDk2QkQxdDB0bXpsUkVfbGdPRFdPWWZfaGhUenBJRW1ySjBxdVNLZTk5dmdNTXRkWS1JXzhTWTFaTXRwVXFmbWd0cVZKblBjb0VLN241QnPSAWBBVV95cUxPVmZmOE5JTHp6ZWxGdmRUTTgzb2YydzZ3R2hCX0E0ME1jdUlidkx3MTBMamFfYjNZQWpMTkZaVXJFWDA4MFpFWHNfUEVkNWRfX1FtQkhMNkdzMEJIVzBjZzg?oc=5",
+   "published": "2026-11-10 16:22 KST",
+   "written": "2026-11-10 16:48 KST"
+  },
+  {
    "id": "941a4358a2d3",
    "kind": "news",
    "headline": "[후속] 앤트로픽, 은행들에 주당 70~80달러·최대 693억 달러 상장 조건 보냈다가 \"수치 부정확\"이라며 철회(로이터)",
@@ -1361,5 +1377,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-11-10 12:26 KST"
+ "updated": "2026-11-10 16:48 KST"
 }
