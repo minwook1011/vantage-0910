@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09",
+ "updated": "2026-11-10",
  "events": [
   {
    "id": "ces-2026",
@@ -3401,15 +3401,23 @@
    "date_start": "2026-11-06",
    "date_end": "2026-11-09",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "11월 6~9일 시카고 매코믹 플레이스에서 열린다. 비만·심혈관 치료제(GLP-1 계열 포함)와 지질 저하제의 후기 임상 결과가 공개돼 일라이릴리·노보노디스크·암젠 등 대형 제약주의 재료가 된다.",
+   "status": "done",
+   "summary": "11월 6~9일 시카고에서 예정대로 열렸다. 미국심장학회는 사전에 후기 임상(late-breaking) 23건을 발표 목록으로 공개했고, 마지막 날(9일) 심혈관·대사 세션에는 일라이릴리 경구 비만약 오포글리프론의 수면무호흡(ATTAIN-OSA) 시험과 서보듀타이드 심혈관 결과(SYNCHRONIZE-CVOT) 시험이 포함됐다. 개별 시험의 세부 결과는 이 정리 시점에 확인하지 못했다.",
    "full": "",
    "added": "2026-10-18",
-   "updated": "2026-10-18",
+   "updated": "2026-11-10",
    "sources": [
     {
      "label": "AHA — Scientific Sessions 2026",
      "url": "https://professional.heart.org/en/meetings/scientific-sessions"
+    },
+    {
+     "label": "Cardiovascular Business — AHA late-breaking research for Scientific Sessions 2026",
+     "url": "https://cardiovascularbusiness.com/topics/professional-associations/cardiology-associations/american-heart-association-aha/american-heart-association-announces-late-breaking-research-scientific-sessions-2026"
+    },
+    {
+     "label": "TCTMD — What's Going to Be Hot at AHA 2026",
+     "url": "https://www.tctmd.com/news/whats-going-be-hot-aha-2026"
     }
    ]
   },
@@ -4237,15 +4245,19 @@
    "date_start": "2026-11-09",
    "date_end": "2026-11-09",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "반도체 소재·공정 부품 업체 엔테그리스가 11월 9일 오후 1시(ET) 뉴욕에서 투자자 행사를 열고 웹캐스트로 공개한다.",
+   "status": "done",
+   "summary": "엔테그리스가 11월 9일 뉴욕에서 투자자 행사를 열었다. 회사가 SEC에 8-K로 제출한 발표 자료의 목차는 AI 시대 사업 위치, 소재 혁신, 고순도(advanced purity) 사업, 성장·수익성·주주가치 복리 구조 순이다. 장기 재무 목표 수치는 이 정리 시점에 확인하지 못했다.",
    "full": "",
    "added": "2026-11-02",
-   "updated": "2026-11-02",
+   "updated": "2026-11-10",
    "sources": [
     {
      "label": "Finviz — Entegris Investor Day",
      "url": "https://finviz.com/news/385609/entegris-to-host-investor-day-on-november-9-2026"
+    },
+    {
+     "label": "SEC — Entegris Form 8-K Ex.99.2 (Investor Day presentation)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001101302/000114036126042892/ef20085135_ex99-2.htm"
     }
    ]
   },
