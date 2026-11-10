@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10 18:29 KST",
+ "updated": "2026-11-10 19:35 KST",
  "episodes": [
   {
    "id": "2026-11-10-sixsigma-J9wFHluBTXA",
@@ -27,6 +27,26 @@
     "guest": "식스시그마(진행) · 톰 리·스테이시 라스곤·댄 나일스 외 — 젠슨 황 스캔들 다음 날 반도체 급반등을 월가 인사들의 발언으로 따진 해설 영상",
     "company": "NVIDIA · 필라델피아 반도체지수 (반도체 · AI 칩 · 시장 국면)"
    }
+  },
+  {
+   "id": "2026-11-10-understanding-uFkwxnukjck",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "11/10(화) 싸다고 샀다간 물린다, 올겨울 특히 위험한 이유 (윤지호 경제평론가)",
+   "date": "2026-11-10",
+   "published": "2026-11-10 17:29 KST",
+   "link": "https://www.youtube.com/watch?v=uFkwxnukjck",
+   "youtube": "https://www.youtube.com/watch?v=uFkwxnukjck",
+   "audio": null,
+   "duration": "",
+   "desc": "제작 지원 (주) 고래사 / 듀오 주식회사 / 어슈런스(주) / 한화자산운용(주) ▶ https://www.musinsa.com/curator/shop/GyVEuRcF *본 링크는 무신사 큐레이터 활동의 일환으로 링크를 통해 구매가 발생할 경우 일정 수수료를 제공 받습니다",
+   "status": "new",
+   "found": "2026-11-10 19:24 KST",
+   "image": "https://i2.ytimg.com/vi/uFkwxnukjck/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "싸다고 샀다간 물린다 — 올겨울 특히 위험한 이유 (윤지호 경제평론가)",
+   "desc_ko": "경제평론가 윤지호가 최근 급락한 증시에서 '싸 보인다'는 이유만으로 매수에 나서는 것이 왜 위험한지 짚는다. 올겨울 시장을 흔들 수 있는 금리·실적·수급 변수를 정리하고, 반등을 기대하기 전에 확인해야 할 조건을 이야기한다. 개인 투자자가 조정장에서 피해야 할 행동도 다룬다."
   },
   {
    "id": "2026-11-10-understanding-EcHgekbZ57Q",
@@ -85,6 +105,31 @@
    "show_image": null,
    "reason": "쇼츠",
    "title_ko": "[쇼츠] 아마존을 위협할 미래 변수"
+  },
+  {
+   "id": "2026-11-10-riskrev-pricing-nvidia-s-key-man-risk-with-gene-munster",
+   "show": "riskrev",
+   "show_name": "RiskReversal Pod",
+   "title": "Pricing Nvidia's \"Key Man Risk\" with Gene Munster",
+   "date": "2026-11-10",
+   "published": "2026-11-10 10:00 KST",
+   "link": "",
+   "audio": "https://traffic.megaphone.fm/RRM6915399933.mp3",
+   "duration": "29:51",
+   "desc": "Guy Adami fills in for Dan Nathan on Okay, Computer with Gene Munster of Deepwater Asset Management to discuss a volatile, post-election market backdrop and weekend Nvidia headlines involving Jensen Huang. Munster frames the stock’s drop as pricing a roughly 25% chance of Jensen leaving (versus his estimate of 10–15%) and says China’s targeting highlights AI’s geopolitical stakes and the need to build more U.S. data centers; he expects 2028 hyperscaler CapEx growth well above the Street’s ~15% estimate. They debate whether Nvidia news could provide hyperscalers an “out” on spending, assess why…",
+   "status": "done",
+   "found": "2026-11-10 19:24 KST",
+   "image": "https://megaphone.imgix.net/podcasts/12961ad6-dc73-11f1-8c30-077dfd9b3947/image/0e90777509b2f82cfe1d066957a8be38.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "show_image": "https://megaphone.imgix.net/podcasts/ca19feda-9d80-11eb-b14a-370397312000/image/d97c0647b679fdf2b4fe26069b6b2fc1.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "엔비디아의 '핵심 인물 리스크' 값 매기기 (Gene Munster)",
+   "desc_ko": "댄 네이선 대신 가이 아다미가 「Okay, Computer」를 진행하며 Deepwater Asset Management의 진 먼스터와 선거 뒤 흔들리는 시장과 주말 사이 젠슨 황 관련 엔비디아 뉴스를 다룬다. 먼스터는 주가 하락이 젠슨 황이 떠날 확률을 약 25%로 반영한 것이라고 보며, 자신의 추정은 10~15%라고 말한다. 중국의 표적화는 AI의 지정학적 무게와 미국 내 데이터센터 확충 필요성을 보여 준다고 하고, 2028년 하이퍼스케일러 설비투자 증가율이 시장 예상(약 15%)을 크게 웃돌 것으로 본다. 엔비디아 뉴스가 하이퍼스케일러에게 투자 축소의 핑계가 될 수 있는지도 논쟁한다.",
+   "summary": {
+    "title_ko": "엔비디아의 '핵심 인물 리스크' 값 매기기 (Gene Munster)",
+    "headline": "엔비디아 주가는 젠슨이 떠날 확률 25%를 반영 — 먼스터는 10~15%로 보고, 2028년 설비투자는 시장 예상 15%의 두 배 이상 본다",
+    "image": null,
+    "guest": "진 먼스터(Gene Munster) — Deepwater Asset Management 공동 창업자·매니징 파트너 — 전 Piper Jaffray 애플 담당 애널리스트",
+    "company": "NVIDIA · 하이퍼스케일러(알파벳·아마존·마이크로소프트·메타) · Apple · Anthropic (AI 반도체 · 데이터센터 설비투자 · 소비자 기기)"
+   }
   },
   {
    "id": "2026-11-10-dumbmoney-H_5XP-RUPRI",
