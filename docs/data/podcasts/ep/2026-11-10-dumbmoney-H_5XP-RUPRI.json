@@ -1,0 +1,228 @@
+{
+ "id": "2026-11-10-dumbmoney-H_5XP-RUPRI",
+ "title_ko": "빅테크가 전기를 잠그고 있다 — Bloom·Vistra·Constellation, 무엇을 담을까",
+ "guest": {
+  "name": "크리스 카밀로(Chris Camillo)·Dave·Jordan",
+  "role": "Dumb Money 진행자들 — AI 전력주 토론"
+ },
+ "guest_profile": [
+  {
+   "name": "크리스 카밀로(Chris Camillo)",
+   "title": "Dumb Money 공동 진행자, TickerTags 창업자",
+   "what": "개인 자금을 굴리는 전업 투자자로, SNS·검색·생활 속 유행 변화를 월가보다 먼저 읽는 '소셜 아비트리지' 방식으로 알려졌다. Dave·Jordan과 유튜브 방송 Dumb Money를 진행한다.",
+   "career": "소셜 데이터로 종목 언급량을 추적하는 회사 TickerTags를 세웠고, 책 The Invisible Hand of Wall Street를 썼다. Jack Schwager의 Unknown Market Wizards에 소개되며 널리 알려졌다. 이번 영상에는 화자 이름이 자막에 표시되지 않아, Bloom을 가장 강하게 지지한 화자가 누구인지는 확인 못 함.",
+   "track": "Jack Schwager가 2006~2020년 연평균 약 77% 복리 수익을 검증했다고 보도됐다(Benzinga). 누적 수익 금액은 매체마다 달라 쓰지 않는다.",
+   "why": "본인 보유 종목을 공개하고 이야기하는 투자자라, AI 인프라 수요를 소비자·여론 쪽에서 어떻게 읽는지 볼 수 있다."
+  },
+  {
+   "name": "Dave·Jordan",
+   "title": "Dumb Money 공동 진행자",
+   "what": "Dave는 진행과 반론을 맡고, Jordan은 에너지·기술 쪽 이야기를 주로 보탠다. 이번 편에서 Jordan은 Bloom·Vistra·Constellation을 비슷한 비중으로, Dave는 Bloom을 보유하고 있다고 밝혔다.",
+   "career": "두 사람의 경력은 이번 조사에서 확인 못 함.",
+   "track": "공개된 투자 성과 없음.",
+   "why": "Bloom 강세론에 가스 의존·밸류에이션 같은 반론을 던져, 한 종목 몰빵 대신 바구니 결론으로 이끈다."
+  }
+ ],
+ "company": {
+  "name": "Bloom Energy · Vistra · Constellation Energy · GE Vernova",
+  "sector": "전력 · 연료전지 · 원전 · 가스터빈",
+  "what": "AI 데이터센터에 전기를 대는 미국 상장사들"
+ },
+ "topic": "AI 데이터센터 전력 수요 — 연료전지(Bloom) 대 원전·장기계약 발전사(Vistra·Constellation), 그리고 에너지 바구니",
+ "headline": "빅테크가 20년 치 전기를 잠그는 중 — Bloom 한 종목보다 발전사까지 섞은 '에너지 바구니'",
+ "tldr": [
+  "Bloom 지지자: AI 증설이 이어지면 현장 연료전지 Bloom이 최대 수혜 — 가스관만 있으면 되고 망을 안 써 주민 반발도 적다",
+  "반론: Bloom도 가스에 의존하고 PER이 높으며 현금흐름이 마이너스 — Vistra·Constellation의 20년 원전 PPA가 덜 위험하다",
+  "결론은 에너지 바구니 — 빅테크가 20년 치 전기를 잠그는 만큼 계약이 실제 집행된다는 쪽에 건다",
+  "외부 확인: Bloom 3분기 매출 +138%, 연간 가이던스 44억~46억 달러로 세 번째 상향",
+  "Vistra 2027 EBITDA 가이던스 중간값은 약 +11%로 대본의 '20~30%'보다 낮다",
+  "GE Vernova 가스 잔고+예약 122GW, 2032년 인도분 예약 — 다만 발전사 주가는 1년 새 20~30% 하락"
+ ],
+ "summary_md": "### 1. 출발점 — \"전력 한 종목만 고르라면 Bloom\"\n- 한 진행자는 AI 투자 흐름이 앞으로 5년 이어지고 데이터센터 증설이 계속된다고 믿는다면, 빠진 퍼즐인 **전력**에서 가장 크게 이길 회사는 **Bloom Energy**라고 말을 꺼냈다. 데이터센터를 최대한 빨리 짓고 싶은데 전기가 병목이라는 전제다.\n- Jordan은 Bloom이 좋은 회사라는 데는 동의하면서도, 결국 천연가스를 연료로 쓴다는 점을 짚었다. 그래서 자신은 가스 밖으로 사업을 넓히는 회사에 더 관심이 간다며 두 이름을 꺼냈다.\n\n### 2. Jordan의 선택 — Constellation과 Vistra\n- Jordan이 꼽은 것은 **Constellation Energy**와 **Vistra**다. 둘 다 전통적인 발전 사업을 하면서, AI 기업과 장기 전력구매계약(PPA)을 맺는 쪽으로 움직이고 있다는 설명이다.\n- Meta·Amazon·Microsoft 같은 빅테크가 이들과 장기 계약을 맺는 배경으로, 진행자는 깨끗한 전력을 확보하려는 압력과 원전 가동을 밀어주는 정부 대출·지원을 들었다.\n- 특히 Vistra는 천연가스 기반 기존 발전소를 그대로 돌리면서 동시에 **원전**으로 다변화해 늘어나는 수요를 메우는 '양쪽 전략'을 쓴다고 정리했다.\n\n### 3. 이익 성장 — \"화끈하진 않지만 덜 위험한 거래\"\n- 앞으로 5년 이익 성장을 묻자 Jordan은 Vistra가 2027년 20~30% 안팎 이익 성장을 바라보고, 올해는 40% 정도였다고 읽은 내용을 전했다(대본에서: 출처를 밝히지 않은 진행자 기억).\n- 깜짝 놀랄 숫자는 아니지만, 위험이 크지 않은 '좋은 지루한 에너지 거래'로서 가치가 있다는 평가다.\n- 반대편 진행자는 Bloom이 전통 에너지 회사보다 **기술 회사**처럼 짜여 있어, 앞으로 몇 년의 이론적 이익 성장 폭이 훨씬 크다고 맞받았다.\n\n[[chart:2]]\n\n### 4. Bloom의 약점 논쟁 — 가스 의존·밸류에이션·현금흐름\n- Jordan은 Bloom을 직접 보유하고 있고 기술도 흥미롭다고 했지만, 더 깨끗하긴 해도 여전히 가스에 기대는 점을 단점으로 다시 꼽았다. 진행자들은 앞으로 5년간 가스가 사라지지 않을 것이라는 데 모두 동의했고, 원전 재가동은 시간이 걸리지만 할 만한 일이라고 봤다.\n- Dave도 Bloom을 보유 중이지만, 걱정거리는 수요가 아니라 **높은 밸류에이션**과 마이너스 현금흐름이라고 했다.\n- Bloom을 가장 강하게 지지하는 진행자는 그게 바로 기술 회사의 모습이라고 반박했다. 10년간의 연구개발을 이제 막 돈으로 바꾸는 초기 단계라 주가수익비율(PER)이 높은 건 당연하고, 시장이 이 회사를 오해하고 있다는 주장이다.\n\n### 5. Bloom이 데이터센터에 좋은 이유\n- 진행자들이 정리한 장점은 이렇다. 데이터센터 부지에 가스관만 끌어오면 연료전지를 세울 수 있고, 별도 가스 발전기나 터빈이 필요 없어 소음이 훨씬 작다.\n- 또 전력망에서 전기를 끌어오지 않으니, 전기요금 인상에 화난 주민들이 모인 공청회에서 \"우리는 망에서 아무것도 가져가지 않는다\"고 말할 수 있다. 지역사회 설득에 유리하다는 얘기다.\n- 약점은 **전기 단가**가 조금 비싸다는 점인데, 기술 회사답게 해마다 싸지고 있어 몇 년 안에 다른 전원과 비슷한 수준이 될 수 있다고 봤다. 그러면서 매출이 이미 늘고 있고 가이던스도 올렸다고 덧붙였다.\n\n### 6. 공매도 보고서와 스칸듐 논란\n- 한 진행자는 Bloom이 진짜 회사라는 걸 증명하기만 하면 된다며, 세상 절반은 아직 Bloom을 믿지 않는다고 했다. 중국에서 나오는 원소가 부족하다는 주장이 대표적이다.\n- 진행자들은 이를 **스칸듐** 공급 문제로 짚으며, 비슷한 공매도 보고서가 지난 3년간 아홉 달마다 반복돼 왔다고 비꼬았다. CEO가 반박했고, 기술 효율 향상을 반영하지 않았다는 독립 분석도 많다는 게 이들의 주장이다(Hunterbrook 보고서 내용은 딥 리서치 참고).\n\n### 7. Bloom을 팔게 만들 신호\n- Bloom 지지자는 포지션을 다시 생각하게 만들 계기로 **대규모 배치의 실패**를 꼽았다. 큰 고객 현장에서 확장이 예상보다 훨씬 오래 걸리거나 문제가 터지면 재평가하겠다는 것이다. 아직 그런 신호는 못 봤다고 했다.\n- 빅테크가 새 기술에 데이터센터 전체를 맡기려면 시간이 걸린다는 점도 설명했다. 전력이 끊기면 데이터센터 전체가 멈추기 때문에, 하이퍼스케일러 한 곳에서 대규모 배치를 증명해야 다른 계약이 따라온다는 논리다.\n\n### 8. 결론 — 한 종목보다 '에너지 바구니'\n- Jordan은 전력 공급이 한 가지로 정해지지 않고 섞일 것이라고 했다. **GE Vernova**는 터빈을 깔고, Vistra와 Constellation은 원전을 돌리는 식이다. 그래서 자신은 Bloom과 Vistra·Constellation을 비슷한 비중으로 들고 있다고 밝혔다.\n- 다른 진행자는 빅테크가 앞으로 20년 치 전기를 미리 잡으려 경쟁하고 있다는 점을 강조했다. 일부 투자자가 거품이라 보는 기술을 위해 수십 년짜리 약정을 맺고 있으니, 둘 중 한쪽은 크게 틀린다는 것이다. 계약이 1년 뒤 휴지가 되거나, 실제로 집행돼 매출이 되거나 둘 중 하나다.\n- 진행자는 50년 뒤를 생각하면 세상이 컴퓨팅과 에너지 위에 놓일 것이 분명하다며, 계약이 실제로 집행된다는 쪽에 섰다. 너무 고민하지 말고 지루한 종목까지 포함한 **에너지 바스켓**을 담는 게 낫다고 보고, 본인도 일부 사겠다고 했다.\n- 마지막으로 GE Vernova는 2032년까지 물량이 팔려 있다는 말이 나왔다. 50년이 아니라 10년 앞만 봐도 일부 회사는 이미 생산 능력이 꽉 찼다는 정리다.\n\n[[chart:4]]",
+ "insights_md": "### 투자 관점\n- **세 갈래 전력 해법**: 이번 편은 데이터센터 전력을 ① 현장 연료전지(Bloom), ② 원전·가스 발전 + 장기 PPA(Vistra·Constellation), ③ 가스 터빈(GE Vernova)으로 나눠 본다. 진행자들은 결국 셋이 섞인다고 보고 바구니 방식을 택했다.\n- **Bloom = 성장주, 발전사 = 계약 수익**: Bloom은 매출이 두 배 넘게 늘지만 PER이 높고 현금흐름이 들쭉날쭉하다. 발전사는 성장률이 낮은 대신 **20년 계약**과 높은 헤지 비율로 이익이 미리 보인다. 같은 'AI 전력' 테마라도 위험의 종류가 다르다.\n\n[[chart:1]]\n\n### 관련 상장사(밸류체인)\n- 미국: Bloom Energy(BE), Vistra(VST), Constellation(CEG), GE Vernova(GEV). 같은 주제로 Talen·NRG 같은 독립발전사, 원전 연료·정비 업체가 함께 묶인다.\n- 한국·일본: 가스터빈은 두산에너빌리티, 미쓰비시중공업(7011)이 GE Vernova의 경쟁사다. 변압기·전력기기 쪽은 HD현대일렉트릭·LS ELECTRIC 등이 같은 수요를 받는다. Bloom과 SK에코플랜트(비상장)는 국내 연료전지 협력 관계로 알려져 있다.\n\n### 리스크\n- Bloom: **스칸듐 공급** 논란(Hunterbrook 7월 보고서), 합작사 관련 매출 비중, 3분기 영업현금흐름 순유출. 회사는 모두 반박했다.\n- 발전사: 주가는 1년 새 Vistra 약 -29%, Constellation 약 -24%로, '계약은 늘었는데 주가는 빠진' 상태다. AI 투자 속도 둔화 우려가 그대로 반영된 셈이다.\n\n### 체크포인트\n- Bloom의 대형 하이퍼스케일러 배치가 제때 가동되는지, 4분기 가이던스 달성 여부.\n- Vistra·Meta 원전 PPA 공급 시작(2026년 말), Constellation Clinton–Meta 계약 개시(2027년 6월).\n- GE Vernova 슬롯 예약이 확정 주문으로 계속 넘어가는지(분기 증가 폭).",
+ "deep_md": "### 1. 회사 팩트 체크 — 대본과 외부 자료\n- **Bloom Energy**: 대본에서는 \"매출이 늘고 가이던스를 올렸다\"고만 했다. 외부 자료로 확인하면 2026년 3분기(10월 22일 발표) 매출은 12억 3,580만 달러로 1년 전보다 **138% 증가**했고, 연간 매출 가이던스를 44억~46억 달러로 올해 세 번째 상향했다. 비GAAP 주당순이익 가이던스도 3.10~3.40달러로 높였다. 다만 같은 분기 영업현금흐름은 2,710만 달러 순유출이었다 — Dave가 말한 '마이너스 현금흐름'은 외부 자료와 맞는다.\n- **Vistra**: 대본에서 Jordan은 \"2027년 이익 20~30% 성장\"이라고 기억했다. 11월 6일 발표된 회사 가이던스로는 2027년 조정 EBITDA 77억~85억 달러로, 중간값이 2026년 수정 가이던스 중간값보다 **약 11% 높다**. 주당 기준 성장률은 자사주 매입 효과가 더해져 달라질 수 있지만, 대본 숫자는 EBITDA 기준으로는 과하다. 3분기 조정 EBITDA는 23억 7,800만 달러로 1년 전보다 50% 넘게 늘었다.\n- **Constellation**: 11월 9일 발표한 3분기 조정 영업이익은 주당 5.06달러로 1년 전 3.04달러보다 크게 늘었고, 연간 가이던스 중간값을 올해 두 번째로 올렸다. 3분기에 1,000MW 넘는 신규 계약(15~20년, 2029~2032년 개시)을 더했다.\n- **GE Vernova**: 대본의 \"2032년까지 다 팔렸다\"는 말은 대체로 맞다. Utility Dive는 회사가 2032년 인도분 예약을 받고 있다고 전했다. 3분기 말 가스 장비 수주잔고와 슬롯 예약을 합치면 **122GW**다.\n\n[[chart:3]]\n\n### 2. \"20년 치 전기를 잠근다\" — PPA 실체\n- 진행자들이 말한 빅테크의 장기 계약은 실제로 확인된다. Vistra는 2026년 1월 Meta와 20년짜리 PPA 세 건, 합계 **2,609MW**를 맺었다. Perry·Davis-Besse 원전의 기존 출력 2,176MW에 출력 증강(업레이트) 433MW를 더한 것으로, 공급은 2026년 말 시작해 2034년에 전량이 붙는다.\n- Constellation은 2025년 6월 Meta와 Clinton 원전 20년 계약(약 1,121MW, 2027년 6월 개시)을, 그전에는 Microsoft와 옛 Three Mile Island 1호기(Crane) 재가동 20년 계약을 맺었다. Crane 재가동은 2025년 자료 기준 2028년 목표다.\n- 즉 \"둘 중 한쪽은 크게 틀린다\"는 진행자의 표현처럼, 계약 상대방은 신용도가 가장 높은 빅테크이고 기간은 20년이다. 다만 발전사 주가가 1년 새 20~30% 빠진 것은, 시장이 계약 가격과 추가 계약 속도를 낙관하지 않는다는 뜻으로 읽을 수 있다(해석).\n\n[[chart:5]]\n\n### 3. 숫자의 맥락 — Bloom 밸류에이션\n- 11월 9일 종가 193.88달러를 2026년 비GAAP EPS 가이던스 중간값(3.25달러)으로 나누면 PER은 약 **60배**다(직접 계산). 주가는 연초 대비 두 배 넘게 올랐지만 최근 한 달 사이 약 31% 떨어졌다. 3분기 실적이 좋았는데도 발표 당일 주가가 빠진 것은, 이미 높은 기대가 반영돼 있었다는 신호다.\n- Vistra·Constellation은 PER이 훨씬 낮고 헤지 비율이 높다. Vistra는 10월 말 기준 2027년 예상 발전량의 98%를 헤지해 뒀다고 전해진다. 진행자가 말한 '지루하지만 덜 위험한' 성격이 숫자로 확인된다.\n\n### 4. 반론과 리스크\n- **Hunterbrook 보고서(2026년 7월)**: Bloom이 중국산 스칸듐에 기대면서 이를 숨기고 있고, 5GW 생산 목표에는 세계 공급을 넘는 스칸듐이 필요하다고 주장했다. 4분기 2025년 매출의 74%가 Brookfield와의 합작사에서 나왔다는 관계사 매출 문제도 짚었다. 주가는 보고서 직후 약 12% 빠졌다가 회복했다.\n- 회사 반박: Bloom은 주장을 \"거짓이고 오해를 부른다\"고 했고, 연간 25GW를 뒷받침할 공급처를 확인했다고 밝혔다. UBS는 우려가 과장됐다며 매수 의견을 유지했다. 진행자들의 \"3년간 아홉 달마다 같은 보고서\"라는 표현은 과장이 섞인 듯하며, 이번 조사로는 보고서 횟수를 확인 못 함.\n- GE Vernova도 3분기 계약 증가 폭이 6GW로 줄어 속도 둔화 논란이 나왔다(William Blair는 정상화로 해석). '10년 앞까지 꽉 찼다'는 말은 맞지만, 슬롯 예약은 확정 주문이 아니다.\n\n### 5. 앞으로 볼 것\n- Bloom: 2027년 가이던스와 영업현금흐름 흑자 전환, 대형 고객 배치 소식, 스칸듐 조달처 공개 여부.\n- Vistra: Meta PPA 첫 공급(2026년 말)과 Cogentrix 인수(5,500MW 가스 발전) 통합, 추가 데이터센터 계약.\n- Constellation: Clinton 계약 개시(2027년 6월), Crane 재가동 인허가 일정.\n- GE Vernova: 연말 수주잔고+예약 130GW 이상 목표 달성 여부.",
+ "sources": [
+  {
+   "label": "Bloom Energy — 2026년 3분기 실적·가이던스 상향(SEC 8-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001664703/000162828026066890/ex991_q326financialresults.htm"
+  },
+  {
+   "label": "Mercom — Bloom 매출 138% 증가, 데이터센터 수요",
+   "url": "https://mercomindia.com/bloom-energy-revenue-surges-138-as-data-center-power-demand-grows"
+  },
+  {
+   "label": "Vistra — 2026년 3분기 실적, 2027년 가이던스(SEC 8-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001692819/000169281926000023/vistra-20260930xearningsre.htm"
+  },
+  {
+   "label": "XTB — Vistra 실적 후 주가 급등, 헤지 비율",
+   "url": "https://www.xtb.com/en/market-analysis/vistra-shares-surge-nearly-10-after-earnings-driven-by-strong-ai-power-demand"
+  },
+  {
+   "label": "Constellation — 2026년 3분기 실적(SEC 8-K)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001868275/000186827526000116/ceg-20261109991.htm"
+  },
+  {
+   "label": "GE Vernova — 2026년 3분기 실적 발표",
+   "url": "https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance"
+  },
+  {
+   "label": "Turbomachinery International — GE Vernova 가스 잔고 122GW",
+   "url": "https://www.turbomachinerymag.com/view/ge-vernova-q3-2026-gas-power-backlog-122-gw-trench-acquisition"
+  },
+  {
+   "label": "Utility Dive — GE Vernova 계약 증가 둔화, 2032년 인도 예약",
+   "url": "https://www.utilitydive.com/news/ge-vernova-in-9b-deal-to-buy-high-voltage-manufacturer-as-gas-turbine-orde/873223/"
+  },
+  {
+   "label": "The Energy Mag — Vistra·Meta 20년 원전 PPA 2,609MW",
+   "url": "https://www.theenergymag.com/news/2026-01-12/vistra-meta-nuclear-ai"
+  },
+  {
+   "label": "Constellation — Meta와 Clinton 원전 20년 계약",
+   "url": "https://www.constellationenergy.com/newsroom/2025/constellation-meta-sign-20-year-deal-for-clean-reliable-nuclear-energy-in-illinois.html"
+  },
+  {
+   "label": "Barchart — Hunterbrook의 Bloom 공급망(스칸듐) 공매도 보고서",
+   "url": "https://www.barchart.com/story/news/3274458/short-seller-hunterbrook-attacked-bloom-energys-supply-chain-claims-be-stock-is-bruised-but-not-broken"
+  },
+  {
+   "label": "Motley Fool — 7월 Bloom 주가 급락 경위",
+   "url": "https://www.fool.com/investing/2026/08/11/why-bloom-energy-stock-crashed-in-july"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Bloom Energy 연간 매출 추이",
+   "sub": "억 달러 · 2026년은 회사 가이던스 중간값",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2023",
+    "2024",
+    "2025",
+    "2026(가이던스)"
+   ],
+   "series": [
+    {
+     "name": "매출",
+     "values": [
+      13.3,
+      14.7,
+      20.3,
+      45.0
+     ]
+    }
+   ],
+   "note": "2025년 값은 2026 가이던스 중간값(45억 달러)이 122% 성장이라는 회사 설명에서 역산한 추정치",
+   "source": "Bloom Energy 실적 발표·SEC 8-K"
+  },
+  {
+   "at": "summary",
+   "title": "Vistra 조정 EBITDA 가이던스",
+   "sub": "억 달러 · 범위 중간값",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "2026(수정)",
+    "2027(신규)"
+   ],
+   "series": [
+    {
+     "name": "중간값",
+     "values": [
+      73,
+      81
+     ]
+    }
+   ],
+   "note": "중간값 기준 약 11% 증가 — 대본의 '20~30%'보다 낮다(주당 기준과는 다를 수 있음)",
+   "source": "Vistra 2026년 3분기 실적 발표(SEC 8-K)"
+  },
+  {
+   "at": "deep",
+   "title": "GE Vernova 가스 장비 잔고와 슬롯 예약",
+   "sub": "GW · 2026년 2분기 말 → 3분기 말",
+   "type": "bar",
+   "unit": "GW",
+   "labels": [
+    "2분기 말",
+    "3분기 말"
+   ],
+   "series": [
+    {
+     "name": "수주잔고",
+     "values": [
+      53,
+      64
+     ]
+    },
+    {
+     "name": "슬롯 예약",
+     "values": [
+      63,
+      58
+     ]
+    }
+   ],
+   "note": "예약이 주문으로 넘어가며 잔고는 늘고 예약은 줄었다 — 합계 116→122GW",
+   "source": "GE Vernova 3분기 실적 발표, Turbomachinery International"
+  },
+  {
+   "at": "summary",
+   "title": "전력 관련주 1년 주가 등락률",
+   "sub": "% · 2025-11-10 → 2026-11-09 종가",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "GE Vernova",
+    "Bloom Energy",
+    "Constellation",
+    "Vistra"
+   ],
+   "series": [
+    {
+     "name": "1년 등락률",
+     "values": [
+      43.0,
+      39.3,
+      -23.5,
+      -28.9
+     ]
+    }
+   ],
+   "note": "같은 'AI 전력' 테마라도 장비·연료전지는 오르고 발전사는 빠졌다",
+   "source": "미국 증권 시세 데이터(야후, 가격 기준)"
+  },
+  {
+   "at": "deep",
+   "title": "빅테크와 맺은 주요 원전 PPA 규모",
+   "sub": "MW · 20년 계약",
+   "type": "hbar",
+   "unit": "MW",
+   "labels": [
+    "Vistra–Meta(Perry·Davis-Besse 등)",
+    "Constellation–Meta(Clinton)"
+   ],
+   "series": [
+    {
+     "name": "계약 용량",
+     "values": [
+      2609,
+      1121
+     ]
+    }
+   ],
+   "note": "Vistra 계약은 2034년에 전량 공급, Clinton 계약은 2027년 6월 개시",
+   "source": "Vistra·Constellation 보도자료"
+  }
+ ],
+ "tg": "Dumb Money 진행자들이 AI 데이터센터 전력주를 두고 토론했다. Bloom Energy 강세론에 가스 의존·밸류에이션 반론이 붙었고, 결론은 Vistra·Constellation까지 섞은 에너지 바구니. 외부 자료로는 Bloom 3분기 매출 +138%, Vistra 2027 EBITDA 가이던스 +11%.",
+ "tg_body": "진행자 한 명은 AI 데이터센터 증설이 5년 이어진다면 전력에서 가장 크게 이길 회사가 Bloom Energy라고 했다. 가스관만 끌어오면 현장에서 전기를 만들고, 소음이 작고 전력망을 쓰지 않아 지역 주민 설득에도 유리하다는 이유다.\n\nJordan은 Bloom도 결국 천연가스에 기댄다며 Vistra와 Constellation을 꼽았다. 두 회사는 기존 발전을 유지하면서 Meta·Microsoft 같은 빅테크와 20년짜리 원전 전력계약을 맺고 있다. 덜 화끈하지만 덜 위험한 거래라는 평가다.\n\nBloom의 약점으로는 높은 밸류에이션, 마이너스 현금흐름, 스칸듐 공급을 문제 삼은 공매도 보고서가 거론됐다. 지지자는 대규모 고객 배치가 실패하는 신호가 나오면 포지션을 다시 보겠다고 했다.\n\n결론은 한 종목 대신 에너지 바구니다. 빅테크가 20년 치 전기를 미리 잡는 만큼 계약이 실제로 집행된다는 쪽에 걸고, GE Vernova는 2032년 물량까지 팔렸다는 말도 나왔다.\n\n외부 자료로 보면 Bloom 3분기 매출은 138% 늘었고 연간 가이던스를 44억~46억 달러로 올렸다. Vistra 2027년 EBITDA 가이던스는 중간값 기준 약 11% 증가로 대본의 20~30%보다 낮다. 발전사 주가는 1년 새 20~30% 빠졌다.",
+ "youtube": "https://www.youtube.com/watch?v=H_5XP-RUPRI",
+ "image": "https://i.ytimg.com/vi/H_5XP-RUPRI/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-10 09:31 KST"
+}
