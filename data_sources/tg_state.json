@@ -811,6 +811,7 @@
   "trk:blog-techcrunch:9ee07ab5220d",
   "trk:blog-techcrunch:9fd2dc89b5a2",
   "trk:blog-techcrunch:a3bbec3da470",
+  "trk:blog-techcrunch:a401f8fdb3ab",
   "trk:blog-techcrunch:a4a5cb15bfe3",
   "trk:blog-techcrunch:a545b921f330",
   "trk:blog-techcrunch:a5e63c073be0",
@@ -1128,6 +1129,7 @@
   "trk:nvda:a8697eac921c",
   "trk:nvda:aa19da81fc59",
   "trk:nvda:aca50a466dfb",
+  "trk:nvda:b627da8fa8c9",
   "trk:nvda:b9aafe599c33",
   "trk:nvda:bea09dde4603",
   "trk:nvda:c4c3397f4c0f",
@@ -1900,14 +1902,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "pod:2026-11-03-understanding-Gomylx1buYY": [
-   1303
-  ],
-  "macro:2026-11-03": [
-   423,
-   424,
-   425
-  ],
   "digest:2026-11-04:us": [
    426,
    427
@@ -3437,6 +3431,12 @@
   ],
   "pod:2026-11-10-understanding-hpZF_zMPXvk": [
    1744
+  ],
+  "trk:nvda:b627da8fa8c9": [
+   1745
+  ],
+  "trk:blog-techcrunch:a401f8fdb3ab": [
+   1746
   ]
  },
  "topics": {},
