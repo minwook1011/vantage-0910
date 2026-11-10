@@ -504,6 +504,7 @@
   "trk:amzn:342cd3cb5409",
   "trk:amzn:3718be1bee93",
   "trk:amzn:388c374bd63c",
+  "trk:amzn:390fc34be096",
   "trk:amzn:3ec40b4f1f8b",
   "trk:amzn:41d4f47c8644",
   "trk:amzn:42db05c16bf4",
@@ -1381,6 +1382,7 @@
   "trk:t-678e8450:abce50538b5f",
   "trk:t-678e8450:b054cbf3c3a2",
   "trk:t-678e8450:b97d0add14bd",
+  "trk:t-678e8450:b9ceef067cbd",
   "trk:t-678e8450:bec9211c3edb",
   "trk:t-678e8450:c08cb561aef8",
   "trk:t-678e8450:c2372f647938",
@@ -1405,6 +1407,7 @@
   "trk:t-678e8450:fbbff9fb35db",
   "trk:t-678e8450:fecebde2f76f",
   "trk:t-759fd052:015ffb348fa0",
+  "trk:t-759fd052:022b7766d529",
   "trk:t-759fd052:03fe1408f933",
   "trk:t-759fd052:057ee3053233",
   "trk:t-759fd052:05bcc7f6a103",
@@ -1520,6 +1523,7 @@
   "trk:x-dylan522p:f2a8e65525dc",
   "trk:x-rihardjarc:028eb1e58ace",
   "trk:x-rihardjarc:71ba74b0ba0b",
+  "trk:x-rihardjarc:74d00d8318a8",
   "trk:x-rihardjarc:820036a56f6e",
   "trk:x-rihardjarc:996bdc07e046",
   "trk:ymtc:2f1a15426f78",
@@ -1911,18 +1915,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "nebius:2026-11-04": [
-   433
-  ],
-  "usdkrw:2026-11-04": [
-   434
-  ],
-  "or:2026-11-03": [
-   435
-  ],
-  "pod:2026-11-04-sixsigma-z1qegH12thE": [
-   1311
-  ],
   "gpu:2026-11-03": [
    436
   ],
@@ -3443,6 +3435,18 @@
   ],
   "pod:2026-11-10-cheeky-nik-storonsky-the-most-uncompromising-banking-ce": [
    1755
+  ],
+  "trk:amzn:390fc34be096": [
+   1756
+  ],
+  "trk:t-759fd052:022b7766d529": [
+   1757
+  ],
+  "trk:t-678e8450:b9ceef067cbd": [
+   1758
+  ],
+  "trk:x-rihardjarc:74d00d8318a8": [
+   1759
   ]
  },
  "topics": {},
