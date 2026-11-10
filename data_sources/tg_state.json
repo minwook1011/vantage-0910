@@ -108,6 +108,7 @@
   "gpu:2026-11-06",
   "gpu:2026-11-07",
   "gpu:2026-11-08",
+  "gpu:2026-11-09",
   "hc:6532:2026-10-02",
   "hc:6532:2026-11-04",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
@@ -1857,9 +1858,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "pod:2026-11-01-sixsigma-3W2ezZJQ7R8": [
-   1277
-  ],
   "pod:2026-10-31-understanding-INzQJSrFGW4": [
    1278
   ],
@@ -3403,6 +3401,9 @@
   ],
   "trk:yt--jklonfa:452e3e9a8740": [
    1705
+  ],
+  "gpu:2026-11-09": [
+   524
   ]
  },
  "topics": {},
