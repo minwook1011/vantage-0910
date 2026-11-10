@@ -703,6 +703,7 @@
   "trk:blog-techcrunch:233647f1db0e",
   "trk:blog-techcrunch:256017fe99cd",
   "trk:blog-techcrunch:25d88cbce2d2",
+  "trk:blog-techcrunch:25d8d9b1a079",
   "trk:blog-techcrunch:26bb5195df50",
   "trk:blog-techcrunch:2940e35ec368",
   "trk:blog-techcrunch:29755f9d065b",
@@ -718,9 +719,11 @@
   "trk:blog-techcrunch:33a664ce6154",
   "trk:blog-techcrunch:33e6efc37afb",
   "trk:blog-techcrunch:34227ecac3b3",
+  "trk:blog-techcrunch:351f88e45621",
   "trk:blog-techcrunch:352c845d3c1a",
   "trk:blog-techcrunch:3552f891d531",
   "trk:blog-techcrunch:361e6099babf",
+  "trk:blog-techcrunch:36d73380097d",
   "trk:blog-techcrunch:374a462a3784",
   "trk:blog-techcrunch:37ff6c96db6b",
   "trk:blog-techcrunch:387d4012e6b7",
@@ -748,8 +751,10 @@
   "trk:blog-techcrunch:59690c04785b",
   "trk:blog-techcrunch:5c2d9a1c217b",
   "trk:blog-techcrunch:5cddc82b70f9",
+  "trk:blog-techcrunch:5dc77901c871",
   "trk:blog-techcrunch:5e40cf797fb7",
   "trk:blog-techcrunch:5e7679b00d16",
+  "trk:blog-techcrunch:64ad91b9e628",
   "trk:blog-techcrunch:68451a536197",
   "trk:blog-techcrunch:68eea636ab38",
   "trk:blog-techcrunch:6971dc5962bd",
@@ -983,6 +988,7 @@
   "trk:googl:702a49a3bf99",
   "trk:googl:73428e28701a",
   "trk:googl:75b3a22c576c",
+  "trk:googl:8015179676cc",
   "trk:googl:832ad1f152d2",
   "trk:googl:83c917c665b6",
   "trk:googl:854326a52590",
@@ -1192,6 +1198,7 @@
   "trk:open-ai:8500e779ca3f",
   "trk:open-ai:8afd3fd83cfc",
   "trk:open-ai:8b9d4942d829",
+  "trk:open-ai:8d0e4e911a71",
   "trk:open-ai:8d979a417fbb",
   "trk:open-ai:8e730ae8289f",
   "trk:open-ai:9332895df833",
@@ -1902,30 +1909,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "digest:2026-11-04:us": [
-   426,
-   427
-  ],
-  "cds:2026-11-03": [
-   428,
-   429,
-   430
-  ],
-  "pod:2026-11-04-sixsigma-DWj0MSdSktE": [
-   1304
-  ],
-  "ins:ins-20261103-arista-ullal-record-growth-ethernet-supply-concentration": [
-   1305
-  ],
-  "ins:ins-20261103-lisa-su-q3-beat-17b-guide-ai-bubble-test": [
-   1306
-  ],
-  "ins:ins-20261103-musk-post-power-bottlenecks-equipment-cooling-network-battery": [
-   1307
-  ],
-  "ins:ins-20261103-solomon-ai-funding-cost-of-capital-credit-ladder": [
-   1308
-  ],
   "ins:ins-20261103-ted-pick-hyperscaler-1tn-capex-financing-gdp": [
    1309
   ],
@@ -3437,6 +3420,27 @@
   ],
   "trk:blog-techcrunch:a401f8fdb3ab": [
    1746
+  ],
+  "trk:googl:8015179676cc": [
+   1747
+  ],
+  "trk:open-ai:8d0e4e911a71": [
+   1748
+  ],
+  "trk:blog-techcrunch:5dc77901c871": [
+   1749
+  ],
+  "trk:blog-techcrunch:25d8d9b1a079": [
+   1750
+  ],
+  "trk:blog-techcrunch:351f88e45621": [
+   1751
+  ],
+  "trk:blog-techcrunch:36d73380097d": [
+   1752
+  ],
+  "trk:blog-techcrunch:64ad91b9e628": [
+   1753
   ]
  },
  "topics": {},
