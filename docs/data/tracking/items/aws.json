@@ -3,6 +3,22 @@
  "slug": "aws",
  "items": [
   {
+   "id": "2acefb044502",
+   "kind": "news",
+   "headline": "AWS, 의료 소외 지역 돕는 기관에 5년간 1억달러어치 AI·클라우드 지원 — '헬스 임팩트 이니셔티브' 출범",
+   "bullets": [
+    "아마존웹서비스(AWS)가 의료 격차를 줄이는 솔루션을 만드는 기관에 향후 5년간 1억달러(약 1,400억원) 규모의 인공지능·클라우드 기술을 지원한다.",
+    "프로그램 이름은 'AWS 헬스 임팩트 이니셔티브'로, AI 에이전트 서비스와 클라우드 인프라를 묶어 제공한다.",
+    "진료 효율화, 여성·아동 건강 연구 등을 지원하며 국내에서는 고려대·쓰리알이노베이션이 지원 대상에 포함됐다."
+   ],
+   "summary": "AWS가 10일 전 세계 의료 소외 계층의 의료 접근성을 높이는 기관을 겨냥한 기술 지원 프로그램을 발표했다. 현금이 아니라 AWS의 생성형 AI·에이전트 서비스와 클라우드 인프라 사용권을 5년간 1억달러 규모로 제공하는 방식이다. 지원받은 기관은 AI 기반 진단·연구 서비스를 시제품 단계부터 실제 운영까지 개발하고 확장할 수 있다.\n\n지원 분야는 의료기관의 진료 효율화, 여성·아동 건강 연구, 의료 인력이 부족한 지역의 진료 접근성 개선 등이다. 국내 언론 보도에 따르면 고려대와 쓰리알이노베이션도 이 프로그램의 지원을 받았다. AWS 의료·생명과학 부문 최고 의료책임자 롤랜드 일링은 AI 에이전트가 의료 현장의 격차를 줄이는 데 쓰일 수 있다고 설명했다. 클라우드 업체들이 공공·의료 분야에서 자사 AI 서비스 사용처를 넓히려는 경쟁의 일환이다.",
+   "title": "AWS, 의료 격차 해소에 5년간 1억달러 규모 AI·클라우드 지원",
+   "source": "Chosunbiz",
+   "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPdVhGcXhwQTF1RjBCSFpUNVFLazVQSzJBSUh5TWI5NWRTYkNEdE43d1pURUo4TVh3NHlxUGpyVERyc1pUaGlmN0dnbE1Cbl9INnpMb2FDME5fOS1yUlpzenU0THBkWjluSHlDU1BBRE1xT1V0QTBwaGlXRkJRcTBBUG5PQXJuU1ZvckhhZHRPNTJja3UxcVHSAZYBQVVfeXFMT3VYRnF4cEExdUYwQkhaVDVRS2s1UEsyQUlIeU1iOTVkU2JDRHRON3daVEVKOE1YdzR5cVBqclREcnNaVGhpZjdHZ2xNQm5fSDZ6TG9hQzBOXzktclJac3p1NExwZFo5bkh5Q1NQQURNcU9VdEEwcGhpV0ZCUXEwQVBuT0FyblNWb3JIYWR0TzUyY2t1MXFR?oc=5",
+   "published": "2026-11-10 11:28 KST",
+   "written": "2026-11-10 16:27 KST"
+  },
+  {
    "id": "1da0791ea3f9",
    "kind": "news",
    "headline": "아마존웹서비스, 'SAP 시스템 전환' 자동화 AI 에이전트 공개 — 코드 분석·변환·검증 작업량 최대 87% 감소, 도요타 칠레·어도비 활용",
@@ -67,5 +83,5 @@
    "written": "2026-10-21 04:48 KST"
   }
  ],
- "updated": "2026-10-28 17:20 KST"
+ "updated": "2026-11-10 16:27 KST"
 }
