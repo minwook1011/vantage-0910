@@ -3,6 +3,22 @@
  "slug": "msft",
  "items": [
   {
+   "id": "4af0266581e3",
+   "kind": "news",
+   "headline": "마이크로소프트, 트럼프 정부에 '중국산 광트랜시버 수입 금지' 철회 압박 — \"데이터센터 구축 멈출 수 있다\"(로이터 단독)",
+   "bullets": [
+    "로이터에 따르면 마이크로소프트가 미국 연방통신위원회(FCC)가 준비 중인 중국산 신형 광트랜시버 수입 금지를 멈춰 달라고 트럼프 정부를 압박하고 있다.",
+    "마이크로소프트는 9월 백악관 과학기술정책실·국가안보회의 관계자를 만난 소수 기업 중 하나로, 금지 시 공급망 차질을 경고했다.",
+    "중국은 광트랜시버 세계 시장의 3분의 2를 차지하고, 이오프토링크·중지쉬촹(이노라이트)이 미국 빅테크에도 공급한다."
+   ],
+   "summary": "광트랜시버는 데이터센터 안에서 서버·스위치를 광케이블로 잇는 핵심 부품으로, 대형 데이터센터 하나에 수백만 개가 들어간다. 로이터는 8월 트럼프 정부가 데이터 탈취·악성코드 우려로 중국산 신형 모델 수입 금지를 추진한다고 처음 보도했다. 마이크로소프트는 미국에 데이터센터 35곳을 짓고 있고 134곳을 더 계획 중이다(클린뷰 집계).\n\n업계 로비단체 정보기술산업협의회(ITI)는 8월 13일 FCC에 금지 목록에 넣지 말라는 서한을 보냈다. 이미 산 AI 칩이 트랜시버 없이 놀게 된다는 논리다. 미국 코히어런트·루멘텀은 중국 업체를 대신할 규모가 안 된다는 분석도 있다.\n\n절충안도 거론된다. 모건스탠리는 10월 초당 3.2테라비트급 제품만 막는 방안이 검토 중이라고 했는데, 이 제품은 2028년 양산·2029년 본격 설치가 예상돼 당장 충격은 작다. 소식통 2명도 이 기준이 검토되고 있다고 했다. 마이크로소프트·백악관·FCC는 답하지 않았다.",
+   "title": "EXCLUSIVE: Microsoft presses Trump to scuttle expected ban on Chinese data center technology",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPYVBfNG04eWF0OFp6WHJFRFh3YjdHTHlhdU9xTkZiU3h1Qk9OdXpmM0FaZS1vcXJkdFdHRmE2a0ROLWRWYzNWUXhtcGpmVjREYjBJUC1nYzVSZkxPaHA5dVNNSlhpZzVlX2FOVElnZWNPZ0VuVS1sWEQ5cVNQYXYtT3MtUGppSTIzQ25YX0Q1UnFDbzZxc1RITGRRT1ZNeUFKQTZxWlJxc0E5Z0JjdVVEaXIxbmlqdGRZYzVsLWtRWTBuUlJsb3BTZVAwN1RYWlk?oc=5",
+   "published": "2026-11-10 20:03 KST",
+   "written": "2026-11-10 20:21 KST"
+  },
+  {
    "id": "1f10d06697ba",
    "kind": "news",
    "headline": "마이크로소프트, 엔스케일 텍사스 데이터센터 임대 확대 옵션 거절(파이낸셜타임스) — 수백억달러 규모, 엔스케일은 약 350억달러 상장 준비 중",
@@ -481,5 +497,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-05 16:28 KST"
+ "updated": "2026-11-10 20:21 KST"
 }
