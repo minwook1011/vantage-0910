@@ -1136,6 +1136,7 @@
   "trk:nvda:eb353bf2cf96",
   "trk:nvda:ef2624c0c655",
   "trk:nvda:efb4099d0a4f",
+  "trk:nvda:f171f2d9a0a5",
   "trk:nvda:f6cca660f4cc",
   "trk:nvda:fdead944cb2a",
   "trk:nvda:ffa52746106e",
@@ -1146,6 +1147,7 @@
   "trk:open-ai:1104ef13905d",
   "trk:open-ai:146cbde721f5",
   "trk:open-ai:14ffe347a100",
+  "trk:open-ai:176d53b79f83",
   "trk:open-ai:180776a97670",
   "trk:open-ai:18fc0c1cb767",
   "trk:open-ai:1d67db178539",
@@ -1614,6 +1616,7 @@
   "trk:yt--jklonfa:54a90b8dc7c5",
   "trk:yt--jklonfa:54dd4b04e3d3",
   "trk:yt--jklonfa:55059d934eec",
+  "trk:yt--jklonfa:55d5b7fb8039",
   "trk:yt--jklonfa:56a184156675",
   "trk:yt--jklonfa:583b0ea7d4a1",
   "trk:yt--jklonfa:58fa95e1fb29",
@@ -1890,15 +1893,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "nebius:2026-11-03": [
-   415
-  ],
-  "or:2026-11-02": [
-   416
-  ],
-  "gpu:2026-11-02": [
-   417
-  ],
   "digest:2026-11-03:asia": [
    418,
    419
@@ -3429,6 +3423,15 @@
   "bond:2026-11-09": [
    528,
    529
+  ],
+  "trk:open-ai:176d53b79f83": [
+   1735
+  ],
+  "trk:yt--jklonfa:55d5b7fb8039": [
+   1736
+  ],
+  "trk:nvda:f171f2d9a0a5": [
+   1737
   ]
  },
  "topics": {},
