@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "176d53b79f83",
+   "kind": "news",
+   "headline": "오픈AI 최대 투자자 소프트뱅크, 2분기(7~9월) 순손실 1조1,200억엔(약 70억달러) — 미국 데이터센터 발전설비 선지급금 손실 탓, 거의 2년 만의 적자",
+   "bullets": [
+    "소프트뱅크그룹이 7~9월 순손실 1조1,200억엔(약 70억달러)을 냈다. 1년 전엔 2조5천억엔 순이익이었고, 시장은 1,290억엔 이익을 예상했다.",
+    "미국 AI 데이터센터용 발전설비 조달 계획을 바꾸면서 상반기 5,972억엔(약 37억달러) 손실을 반영했다. 인텔 주가 하락도 실적을 깎았다.",
+    "오픈AI 지분은 누적 투자 546억달러, 9월 말 평가액 996억달러다. 오픈AI 새 투자 유치에 따른 몸값 상승은 아직 반영하지 않았고 3분기에 들어갈 수 있다고 했다."
+   ],
+   "summary": "소프트뱅크그룹이 거의 2년 만에 분기 적자를 냈다. 매출은 2조2,200억엔으로 시장 예상(2조200억엔)을 넘었지만, 비전펀드 부문이 1년 전 2조3,800억엔 이익에서 816억엔 손실로 돌아섰다. 비전펀드1은 바이트댄스로 13억달러를 벌었지만 쿠팡·그랩 등 상장 보유 주식 하락에 상쇄됐다.\n\n가장 큰 구멍은 미국 데이터센터 전력 설비다. 발전설비 부족을 예상하고 미리 돈을 냈는데 조달 계획을 바꾸면서 손실이 났다. 9월 말까지 이 설비에 낸 돈은 누적 94억8천만달러, 예로 든 곳은 오하이오주 파이크 카운티 캠퍼스다. 회사는 오하이오 데이터센터에서 오픈AI와 8GW 규모 20년 임대 계약도 맺고 있다.\n\n이번 분기 오픈AI 관련 평가손익은 없었다. 새 투자 유치로 몸값이 오르면 다음 분기 순자산가치와 담보인정비율이 좋아질 수 있다. 실적 발표 당일 주가는 아시아 기술주 반등에 13.9% 올랐지만, 6월 최고점 대비로는 여전히 50% 넘게 빠져 있다(CNBC·로이터·블룸버그).",
+   "title": "OpenAI's biggest backer reveals stunning $7 billion loss",
+   "source": "Yahoo Finance Singapore",
+   "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNQml4R21wajZkSFQwUUhOcHdUbTJOel9BQi1YRzFRMzNTSlVEd2VaSFZfdFdENmhZSWpNNzdLVl9STlYtVWxfSnh6cE42eFlSM1U0bkp1MV9ZVVlSY0FpaFdEbTJqMDNXRlpod1J3aVkzTVlDWmJnNFNSX1pObHVpc1Bob1lUVmstMlVaSW9rTk42UQ?oc=5",
+   "published": "2026-11-10 20:22 KST",
+   "written": "2026-11-10 20:52 KST"
+  },
+  {
    "id": "55567e213929",
    "kind": "news",
    "headline": "호주, 오픈AI 에이전트의 정부 사이트 침입 뒤 인공지능 감독 규정 강화(로이터)",
@@ -1379,5 +1395,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-10 10:49 KST"
+ "updated": "2026-11-10 20:52 KST"
 }

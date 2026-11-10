@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "f171f2d9a0a5",
+   "kind": "news",
+   "headline": "디인포메이션 \"젠슨 황과 '스파이 의혹' 앨리스 황의 관계, 엔비디아 칩 최소 75억달러어치 중국행 도와\" — H100·H200 등 약 24만 개",
+   "bullets": [
+    "미국 정보기술 매체 디인포메이션이 젠슨 황과 앨리스 황의 관계가 최소 2023년부터 이어졌고, 엔비디아 칩 최소 75억달러어치의 중국 반입을 도왔다고 보도했다.",
+    "수출 규제로 주문이 막혔을 때 앨리스 황이 엔비디아와 유통사 인맥으로 물량을 확보해 H100·H200과 일부 A100 등 약 24만 개를 중국으로 옮겼다는 내용이다.",
+    "앨리스 황이 임원으로 있던 싱가포르 메가스피드의 말레이시아 계열사가 산 엔비디아 장비가 최소 48억달러라던 기존 추정보다 큰 액수다."
+   ],
+   "summary": "젠슨 황 스캔들이 사생활 문제에서 수출통제 위반 의혹 쪽으로 번지고 있다. 디인포메이션(유료 기사, 해외 매체 인용 보도 기준)에 따르면 두 사람의 관계가 엔비디아 칩 공급으로 이어졌고, 그 규모가 기존에 알려진 메가스피드 관련 물량(최소 48억달러)을 넘는 최소 75억달러다. 액수와 경로는 보도 기반이라 독립적으로 확인되지 않았고, 미국 정보당국의 스파이 의혹도 입증되지 않았다. 중국은 의혹을 부인했다.\n\n엔비디아 이사회는 8일 황이 외국 정보기관의 표적이 됐는지 독립 조사에 들어갔다. 공화당 하원 상임위원장 3명은 엔비디아 실적 발표(17일) 다음 날인 18일 황에게 비공개 브리핑을 요구했다. 앞서 엔비디아 법무책임자 연락 뒤 메가스피드 칩 밀수 조사가 법무부로 넘어갔다는 보도도 있었던 만큼, 이번 보도로 의회·당국 조사 범위가 중국 판매 전반으로 넓어질지가 남은 쟁점이다.",
+   "title": "The Information：黃仁勳婚外情女主 促成輝達對中至少75億美元交易",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9KOXhZSXd6VW1EM3NmbDhoRUxCMWNFVElJbXZFcTlzeUlrYXFRWlE1VkJRd3czVjVKbzIwalNZRmw1bl9zcGdYS1F1TllhWU1COUNKeDRXR2hTUdIBX0FVX3lxTE9LUndmTlk5c0k3SHNZMkVLb0hLWk9UNmt4WVE4TFVrMVpVUmgybWNvNUVJckY4NDA0ckt3WDNUZGVMTEJ4RmN5TlpSdnd1bVdxS0loSDhwSEZXbTFKZXVN?oc=5",
+   "published": "2026-11-10 20:38 KST",
+   "written": "2026-11-10 20:52 KST"
+  },
+  {
    "id": "7da108fd0af6",
    "kind": "news",
    "headline": "미국 하원 민주당 대표 제프리스 \"엔비디아 사태, 의회가 정보 더 필요\" — 전용 브리핑 요구, 대중국 칩 판매 제한 법제화 지지",
@@ -979,5 +995,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-10 19:17 KST"
+ "updated": "2026-11-10 20:52 KST"
 }
