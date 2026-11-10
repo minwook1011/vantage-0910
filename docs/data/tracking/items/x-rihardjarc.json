@@ -3,6 +3,38 @@
  "slug": "x-rihardjarc",
  "items": [
   {
+   "id": "62997ecd0bf3",
+   "kind": "x",
+   "headline": "AI 모델 성능·가격 격차가 좁혀질수록 앤트로픽·오픈AI는 마진 큰 업종으로 직접 파고들 거다",
+   "bullets": [
+    "프런티어 모델 경쟁이 성능·가격 모두 빡빡해지고 있다.",
+    "그러면 모델만 팔아선 남는 게 줄어서, 두 회사가 마진 있는 개별 업종(버티컬)으로 깊이 들어갈 수밖에 없다.",
+    "무기는 브랜드다. 오픈AI는 소비자, 앤트로픽은 기업 쪽 인지도가 강하다."
+   ],
+   "summary": "짧은 글이지만 같은 날 흐름과 맞물린다. 앤트로픽은 화상회의·시트·화이트보드 같은 사무도구를 내며 마이크로소프트·구글 영역을 노렸고, 오픈AI는 챗GPT 기업 프로필로 구글식 기업 정보 창구를 열었다. 모델 단가가 계속 내려가는 상황에서 결국 응용·업종 서비스에서 돈을 벌겠다는 방향이다. 모델 회사가 직접 들어오면 그 업종의 기존 소프트웨어 회사엔 위협이 된다는 함의다.",
+   "title": "As the AI model race gets tighter in terms of capabilities and pricing, one should expect the frontier labs, especially ",
+   "source": "Rihard Jarc (UncoverAlpha)",
+   "url": "https://x.com/RihardJarc/status/2120216280808747465",
+   "published": "2026-11-11 03:05 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "dd6117548372",
+   "kind": "x",
+   "headline": "미국 데이터센터 채용, 10월 마지막 주 크게 늘어 — 특히 설계·시운전 직군(Q알파 데이터)",
+   "bullets": [
+    "Q알파의 데이터센터 모델에서 10월 마지막 주 데이터센터 관련 채용 공고가 눈에 띄게 늘었다.",
+    "특히 설계(디자인)와 시운전(커미셔닝) 직군 증가가 컸다.",
+    "아마존·마이크로소프트·구글·메타·오라클 데이터센터 구축 속도가 꺾이는지 보는 선행 신호로 쓴다."
+   ],
+   "summary": "리하르트 야르크가 리트윗한 Q알파AI 글이다. 설계 채용은 앞으로 지을 물량, 시운전 채용은 곧 완공돼 가동할 물량을 보여 주는 지표라 둘 다 늘었다는 건 구축이 아직 식지 않았다는 뜻으로 읽힌다. AI 거품 우려로 기술주가 흔들리는 시점이라, 빅테크 투자 둔화 여부를 실적 발표 전에 미리 가늠할 수 있는 데이터로 쓸 만하다. 다만 구체 증가율 숫자는 글에 없다.",
+   "title": "RT @QAlphaAI: Our data center model is a very important signal, especially going forward, to see if U.S. data center bui",
+   "source": "Rihard Jarc (UncoverAlpha)",
+   "url": "https://x.com/RihardJarc/status/2120198272946180516",
+   "published": "2026-11-11 01:53 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
    "id": "74d00d8318a8",
    "kind": "x",
    "headline": "메타 AI 모델이 구글 클라우드에 올라감 — 메타가 기업용 AI를 진지하게 밀겠다는 신호",
@@ -83,5 +115,5 @@
    "written": "2026-11-05 09:50 KST"
   }
  ],
- "updated": "2026-11-10 23:48 KST"
+ "updated": "2026-11-11 06:55 KST"
 }

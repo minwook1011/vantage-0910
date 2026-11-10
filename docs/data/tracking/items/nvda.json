@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "e5546ac9f17d",
+   "kind": "news",
+   "headline": "엔비디아가 투자한 영국 AI 클라우드 엔스케일, 350억달러 뉴욕 상장 연기 검토(텔레그래프)",
+   "bullets": [
+    "영국 텔레그래프는 엔스케일이 기업가치 최대 350억달러를 노리던 뉴욕증권거래소 상장을 미루는 방안을 검토 중이라고 보도했다(로이터 인용).",
+    "최근 마이크로소프트가 엔스케일의 영국 첫 데이터센터(에식스 러프턴) 핵심 고객 자리에서 빠졌고, 노르웨이 주력 데이터센터도 6개월가량 늦어진 상태다.",
+    "투자자들은 회사가 원한 300억달러대 기업가치에도 반발해 왔고, AI 기술주 매도세까지 겹쳤다."
+   ],
+   "summary": "엔스케일은 엔비디아가 투자한 영국 AI 인프라 업체로, 종목코드 'NSCL'로 뉴욕 상장해 최대 30억달러를 모으려 했다. 상장 서류엔 순손실 7억5,500만파운드(약 12억달러)가 적혀 있다.\n\n악재가 연달아 나왔다. 마이크로소프트가 러프턴 데이터센터 계약에서 빠졌는데, 이 부지는 전력망 연결이 2030년대 초중반에나 가능하다는 문제가 있다. 앞서 마이크로소프트는 엔스케일 텍사스 데이터센터 임대 확대 옵션도 거절했다. 블룸버그는 일부 투자자가 300억달러 안팎 기업가치에 난색을 보인다고 전했다.\n\n여기에 젠슨 황 스캔들로 엔비디아 주가가 이틀 새 크게 빠지며 AI 관련 투자 심리가 식은 상황이다. 회사가 상장 일정을 실제로 미루는지, 기업가치를 낮춰 강행하는지가 남은 쟁점이다.",
+   "title": "Nvidia-backed AI cloud firm Nscale considers delaying $35 billion listing, the Telegraph reports",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNM2JDSnc0eHpoTTFObmZLaDNpR0EzZU1LQ3N5blRUNW01bmZsZG5mT0NsWXRGeEdSMWd5WlNjNWhwcm9wdi1JWnVVUUhMelh1Y0V4ZU1kV0djVE1LVVlualNFa2tRYTVwWHJZdWQwSEhzSlRSOE1EaWM3NlR6WGVJT1JQOUd4UFMxNzl6eWZEZ2FqRmZhQnZjMzJwWm12QTRYZ1BCSWNNVjdVQTZ3RUlHSVNvRGlqTkFxRXFiNFBiVzkyRms?oc=5",
+   "published": "2026-11-11 05:18 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
    "id": "b627da8fa8c9",
    "kind": "news",
    "headline": "뱅크오브아메리카, 최우선 추천 목록 'US 1'에서 엔비디아 제외 — 마이크론도 함께 빠져",
@@ -1011,5 +1027,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-10 22:48 KST"
+ "updated": "2026-11-11 06:55 KST"
 }

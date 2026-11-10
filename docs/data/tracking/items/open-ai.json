@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "fedd0346a0f3",
+   "kind": "news",
+   "headline": "디인포메이션 \"오픈AI 3분기(7~9월) 매출 100억달러로 급증\" — 2분기 67억달러에서 약 50% 늘어",
+   "bullets": [
+    "디인포메이션이 오픈AI의 3분기 매출이 100억달러로 뛰었다고 보도했다.",
+    "2분기 매출은 67억달러(전 분기 대비 18% 증가)였는데, 한 분기 만에 증가 속도가 크게 붙은 셈이다.",
+    "같은 날 야후파이낸스는 오픈AI와 앤트로픽의 분기 매출 증가율이 거의 비슷해졌다고 짚었다."
+   ],
+   "summary": "오픈AI는 분기 실적을 공식 발표하지 않는다. 이번 숫자는 디인포메이션 보도(유료 기사라 본문 세부는 확인 못 함)로 처음 나왔다. 앞서 월스트리트저널은 오픈AI 2분기 매출이 67억달러로 1분기보다 18% 늘었다고 전했고, 투자자 자료에는 9월 말 연환산 매출이 약 500억달러로 나와 있었다.\n\n비교 대상인 앤트로픽은 3분기 매출 약 168억달러(2분기 대비 45% 증가)를 투자자에게 제시했다. 2분기엔 앤트로픽이 116억달러로 처음 오픈AI를 앞섰고 증가율 격차도 컸는데, 3분기엔 오픈AI 증가율(약 50%)이 앤트로픽과 비슷한 수준까지 올라왔다. 다만 앤트로픽은 클라우드 협력사를 통한 판매를 매출로 잡고 오픈AI는 그렇지 않아 두 회사 숫자를 그대로 비교하긴 어렵다. 앤트로픽 상장을 앞두고 두 회사 성장 속도 비교가 시장 관심사다.",
+   "title": "OpenAI Revenue Jumps to $10 Billion in Third Quarter",
+   "source": "The Information",
+   "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPNXF1NHRxWFpaTFdydVVTN1hDRHBqR0h1X0JfTnRWbVdhTFVJVV9lM0RLRl92ampud2d1SGtObFlhaC1Rd0JCYTkzRUtIOU5WTjJOYVd0WUx5czI5TllVRzFnMGtBYzVRdEpjalQ1R1N3SC05NEpNOS1YNHZtdFpQYmE1UXJ5ck9VU1B4MzdB?oc=5",
+   "published": "2026-11-11 06:07 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
    "id": "8d0e4e911a71",
    "kind": "news",
    "headline": "오픈AI, 내부 연구용 '컨트롤 룸' 공개 — 위험 행동 감지되면 35초 안에 해당 작업 AI 출력 차단",
@@ -1427,5 +1443,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-10 23:19 KST"
+ "updated": "2026-11-11 06:55 KST"
 }

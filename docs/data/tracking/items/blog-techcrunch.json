@@ -3,6 +3,262 @@
  "slug": "blog-techcrunch",
  "items": [
   {
+   "id": "4ac2a4b95dd7",
+   "kind": "blog",
+   "headline": "오픈AI, AI 여행비서 스타트업 '오데시아' 인수 — 숙박업체 손더 창업자 데이비슨 합류",
+   "bullets": [
+    "오데시아 창업자 프랜시스 데이비슨이 오픈AI에 인수됐다고 밝혔고, 본인은 오픈AI에서 여행 분야를 맡는다.",
+    "인수 조건은 공개되지 않았고 사람을 데려가는 인수에 가까워 보인다. 오데시아 서비스는 이미 종료됐다.",
+    "오픈AI는 인수를 공식 발표하거나 확인하지 않았다."
+   ],
+   "summary": "오데시아는 설립 1년 된 회사로 세쿼이아 주도로 600만달러 초기 투자를 받았고, 약 5개월 전 AI 여행비서를 내놨다. 데이비슨은 여러 AI 에이전트를 지휘해 서비스를 만들었다고 소개했고, 초기 사용자들이 수백만달러어치 여행을 계획했다고 한다.\n\n데이비슨은 2014년 대학생 때 고급 아파트 단기임대 업체 손더를 세워 매출 1억4,300만달러 유니콘으로 키웠다. 팬데믹 타격 뒤 스팩 상장했지만 자금이 모자랐고, 메리어트 제휴가 무산되며 파산했다.\n\n여행은 개인 AI 비서의 주요 용도다. 오픈AI는 부킹닷컴·익스피디아·카약을 고객·협력사로 두고 있지만 여행 전용 상품 계획은 아직 밝히지 않았다.",
+   "title": "OpenAI acquires Odessia, travel startup created by Sonder founder",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/openai-acquires-odessia-travel-startup-created-by-sonder-founder/",
+   "published": "2026-11-11 06:08 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "236952a3bae5",
+   "kind": "blog",
+   "headline": "뉴욕주 AI 안전법(RAISE) 시행 준비 — 오픈AI·앤트로픽 등 2027년 1월 1일까지 등록 의무",
+   "bullets": [
+    "뉴욕주가 대형 AI 개발사 등록 창구를 열었고, 연매출 5억달러 넘는 개발사는 2027년 1월 1일까지 등록해야 한다.",
+    "안전 체계 공개, 중대 안전사고 72시간 안 보고, 모델 투명성 보고서 발간이 의무다.",
+    "위반하면 첫 건 최대 100만달러, 이후 건당 최대 300만달러 벌금."
+   ],
+   "summary": "새로 만든 디지털혁신·거버넌스 담당 기관(DIGIT)이 법 집행과 대형 AI 연구소 감독을 맡는다. 등록하지 않은 회사도 제재할 수 있다고 했지만 구체 내용은 밝히지 않았다. 캐시 호컬 주지사는 기술 기업들이 'AI는 피할 수 없다'며 부작용을 감수하라고 한다고 비판했다.\n\n같은 날 뉴욕주립대 빙엄턴에 'AI 책임·연구센터'도 문을 열었다. 1월 발표 때 5,500만달러를 모았고, 첨단 AI 시스템을 독립 평가하고 기업 안전 체계를 검토한다.\n\n다른 주도 비슷하다. 캘리포니아 SB 53은 올해 1월 시행돼 사고를 15일 안에 보고하게 했고, 일리노이 SB 315는 2027년 초 시행되며 독립 감사까지 요구한다. 뉴욕은 미성년자 챗봇 안전법도 2027년 6월 시행 예정이다.",
+   "title": "OpenAI, Anthropic face new oversight as New York’s AI safety law takes effect",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/",
+   "published": "2026-11-11 05:52 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "27734165c161",
+   "kind": "blog",
+   "headline": "전 시그널파이어 투자자 라우프, 신약 개발 AI 스타트업 투자 펀드 '프록시멀' 2,750만달러로 첫 결성",
+   "bullets": [
+    "사히르 라우프가 첫 단독 벤처펀드 프록시멀벤처스를 2,750만달러로 모았다.",
+    "제약사가 외주 주던 화합물 합성·생산 공정·임상 데이터 분석을 AI로 싸고 빠르게 대신하는 회사에 투자한다.",
+    "초기 단계에 50만~150만달러씩 넣으며 이미 7곳에 투자했다."
+   ],
+   "summary": "신생 운용사 자금 모집이 몇 년 새 가장 어려운 시기인데도 펀드를 만들었다. 라우프는 제약사가 소프트웨어는 잘 안 사도 서비스는 잘 산다며, 법률·금융처럼 서비스 업종에서 AI 가치가 크게 나왔듯 제약 서비스에도 기회가 있다고 본다.\n\n투자처 중엔 오픈AI 임원 출신 피지 시모가 공동 창업한 크로니클바이오가 있다. 만성질환 데이터를 AI로 분석해 치료 후보를 찾는 회사다.\n\n출자자는 시그널파이어·클라이너퍼킨스·베텔스만 헬스케어 등이고, 미국 식품의약국 수석부국장 출신 에이미 애버네시도 참여했다. 라우프는 로슈가 19억달러에 산 플랫아이언헬스에서 제휴를 맡았었다.",
+   "title": "Proximal Ventures raises debut fund to back startups bringing AI to drug development",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/proximal-ventures-raises-debut-fund-to-back-startups-bringing-ai-to-drug-development/",
+   "published": "2026-11-11 05:47 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "94c5df39ed68",
+   "kind": "blog",
+   "headline": "X-에너지, 첫 소형모듈원전 4기 건설 허가 — 다우 텍사스 공장 부지, 미국 산업 현장 첫 사례",
+   "bullets": [
+    "미국 원자력규제위원회가 X-에너지의 Xe-100 원자로 4기 건설 허가를 승인했다.",
+    "1기당 전기 80메가와트·열 200메가와트를 내고, 가동은 2030년대 초 예정이다.",
+    "아마존이 시리즈 C-1(5억달러)을 주도했고 5기가와트 구매도 약속했지만, 주가는 공모가의 절반 아래다."
+   ],
+   "summary": "미국에 가동 중인 소형모듈원전은 아직 없다. 원자로를 작게 만들어 공사 기간과 비용을 줄인다는 게 업계 기대지만 아직 증명되진 않았다. X-에너지는 헬륨 가스를 우라늄 연료 알갱이 위로 흘리는 방식이라 더 안전하다고 하는데, 우려하는과학자연대는 핵심 안전 문제를 뒤로 미뤄서 빨리 허가가 났다고 반박했다.\n\n데이터센터 전력 수요로 원전 관심이 커지며 X-에너지는 4월 상장 때 10억달러를 모았다. 하지만 원전은 비싸고 오래 걸려 투자 열기가 식었고, 이번 허가로 주가가 올랐어도 지난주 하락분을 되찾은 정도다.",
+   "title": "X-energy gets green light to build its first small modular nuclear reactors",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/x-energy-gets-green-light-to-build-its-first-small-modular-nuclear-reactors/",
+   "published": "2026-11-11 05:43 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "debbd0345d3c",
+   "kind": "blog",
+   "headline": "앤트로픽 공동창업자 7명, 상장 때 1인당 약 2억5천만달러어치 주식 판다 — 의결권 51.1%는 유지",
+   "bullets": [
+    "새 증권신고서(S-1)에 따르면 창업자 7명이 각각 337만8,378주를 판다.",
+    "공모가 범위 70~78달러 중간값(74달러) 기준 1인당 약 2억5천만달러, 범위 안에서 2억3,600만~2억6,400만달러.",
+    "판 뒤에도 각자 A주의 약 3.2%(합계 약 22%)를 갖고, 초다수 의결권 F주로 전체 의결권 51.1%를 쥔다."
+   ],
+   "summary": "앤트로픽 기업가치는 최대 1조4천억달러까지 거론된다. 인기 공모라 공모가가 범위보다 높게 정해질 수도 있다. 신고서엔 이사회 멤버 리드 헤이스팅스가 기부자조언기금으로 3억달러어치, 크리스토퍼 리델 이사가 300만달러어치를 사겠다는 뜻도 담겼다.\n\n창업자 지분 22%는 A주 기준일 뿐이다. 아마존·구글 등은 의결권 없는 N주를 갖고 있어 전체 지분에서 창업자 몫은 훨씬 작다. 대신 창업자마다 F주 1주씩 받아 집단으로 경영권을 지키고, 특정 창업자가 혼자 크게 많이 갖지는 않는다.\n\n7명은 다리오·다니엘라 아모데이, 톰 브라운, 잭 클라크, 재러드 캐플런, 샘 매캔들리시, 크리스 올라다. 2021년 오픈AI 경영진과 AI 개발 방향을 두고 갈라서 나왔다.",
+   "title": "All 7 Anthropic founders will each cash out about $250M in IPO",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/all-7-anthropic-founders-will-each-cash-out-about-250m-in-ipo/",
+   "published": "2026-11-11 04:57 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "fbca91987978",
+   "kind": "blog",
+   "headline": "스마트링 오우라, AI 1차 진료 스타트업 카운슬헬스 6억2,500만달러에 인수 — 3분기 매출 153% 증가",
+   "bullets": [
+    "오우라가 AI 상담과 의사 연결을 묶은 카운슬헬스를 6억2,500만달러에 사기로 했다.",
+    "몇 주 전 최대 22억달러 규모 상장을 '시장 불확실성'을 이유로 무기한 미룬 직후다.",
+    "오우라 9월 분기 매출은 5억3,300만달러로 153% 늘었고, 2026회계연도 매출은 약 17억5천만달러(92% 증가)."
+   ],
+   "summary": "카운슬 서비스는 6월부터 오우라 앱에 들어가 있었다. 앞으로 예방·급성·전문·만성 진료까지 넓힌다. 카운슬 CEO 무투 알라가판은 직원 70명과 함께 오우라 최고임상AI책임자로 온다(블룸버그). 거래는 2027년 말 전 마무리 예정이다.\n\n카운슬은 1년 전 a16z·GV 주도로 시리즈A 2,500만달러를 받았고, 누적 투자는 약 3,600만달러(피치북). 오우라는 2025년 10월 9억달러를 조달하며 기업가치 110억달러를 받았다. 링콘·울트라휴먼 같은 경쟁사가 따라오는 상황에서 기기 판매를 넘어 의료 서비스로 사업을 넓히려는 수다.",
+   "title": "Oura to acquire AI-native primary care startup Counsel Health for $625M",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/oura-to-acquire-ai-native-primary-care-startup-counsel-health-for-625m/",
+   "published": "2026-11-11 04:23 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "3a67d6b61edf",
+   "kind": "blog",
+   "headline": "스타트업 PSI, 앤트로픽 '페이블 5.2'로 18년 묵은 양자컴퓨팅 난제 증명 — AI 과학 발견을 사업으로",
+   "bullets": [
+    "피지컬 수퍼인텔리전스(PSI) 연구원이 페이블 5.2 사전 접근권으로 '애런슨-앰바이니스 추측'을 풀었다.",
+    "문제를 낸 스콧 애런슨은 증명을 다 이해하진 못했지만, 수학 증명 언어 린(Lean)으로 자동 검증돼 맞다고 본다.",
+    "PSI 매출은 지금 데이터센터 열·전력·물·소음 시뮬레이션에서 나오고, 장기 목표는 이론물리 성과를 기술로 바꾸는 것이다."
+   ],
+   "summary": "이 증명은 양자컴퓨터가 특정 문제를 빨리 푸는 한 경로를 닫는 '부정적 결과'다. 더 이상 그쪽은 안 봐도 된다는 뜻이다. 애런슨은 양자 질의 복잡도에서 거의 마지막 남은 핵심 난제였다며, 오픈AI가 몇 주 전 대량 공개한 수학 풀이 목록에 없던 게 의외였다고 했다.\n\nPSI는 범용 모델에 전용 하네스·도구·메모리·시뮬레이션을 붙여 과학 문제를 넓고 깊게 판다. 맷 파인스 CEO는 6~9개월 전엔 '이론물리는 곧 기계 몫'이라는 말을 투자자에게 설득하기 버거웠는데 이제 그쪽으로 가고 있다고 했다.",
+   "title": "PSI is trying to make a business out of AI-driven scientific discovery",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/psi-is-trying-to-make-a-business-out-of-ai-driven-scientific-discovery/",
+   "published": "2026-11-11 04:03 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "5dcc285d510e",
+   "kind": "blog",
+   "headline": "오픈AI, 챗GPT에 기업 프로필 '비즈니스 허브' 베타 — 구글 검색처럼 기업 정보·전용 상담 에이전트·방문 통계",
+   "bullets": [
+    "기업이 챗GPT 안에 프로필을 만들어 제품·서비스 정보를 인증하고 고칠 수 있다.",
+    "자격 있는 기업은 자기 제품 질문에 답하는 전용 비즈니스 에이전트도 띄울 수 있다.",
+    "프로필 조회·언급·웹사이트 클릭 같은 간단한 통계도 준다. 구글 애널리틱스와 닮았다."
+   ],
+   "summary": "사람들이 AI로 상품을 찾고 비교하는 흐름에 맞춰 챗GPT를 상품 발견 창구로 키우려는 시도다. 오픈AI는 이번이 기업을 챗GPT에 더 깊이 들이는 첫 단계라고 했다. 인증 절차는 업종·시장별로 여러 방식을 쓴다고만 했다(베니 쇼마이어 수익화 부사장).\n\n앞서 오픈AI는 수수료를 받는 챗GPT 안 직접 구매(장바구니 포함)로 아마존과 맞서려 했지만 반응이 없어 3월 접었다. 이번엔 쇼핑 대신 구글처럼 기업 정보 창구 쪽으로 방향을 틀었는데, 성과가 날지는 지켜봐야 한다.",
+   "title": "OpenAI rolls out new business profiles, making ChatGPT just a little bit more like Google",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/openai-rolls-out-new-business-profiles-making-chatgpt-just-a-little-bit-more-like-google/",
+   "published": "2026-11-11 03:49 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "12fc00fe768d",
+   "kind": "blog",
+   "headline": "구글, 30달러 분실물 추적기 '픽셀 태그' 판매 시작 — 애플 에어태그 대항마",
+   "bullets": [
+    "8월 공개한 픽셀 태그(29.99달러)가 화요일부터 팔린다.",
+    "블루투스·초광대역으로 정밀 위치를 찾고, 멀면 전 세계 10억 대 넘는 안드로이드 기기 네트워크로 찾는다.",
+    "에어태그보다 얇고(0.2인치 vs 0.31인치) 길쭉하며 물리 버튼이 있다."
+   ],
+   "summary": "내장 스피커는 최대 약 80데시벨로 3단계 조절된다. 버튼을 두 번 누르면 거꾸로 잃어버린 휴대폰을 울린다. 무게는 배터리 포함 0.4온스.\n\n애플은 근거리무선통신(NFC) 태그로 습득자가 주인 연락처를 보게 하지만, 구글은 같은 동작을 설정 연결에 쓴다. 대신 '분실' 모드에선 주인 이메일·번호·메시지를 습득자에게 보여 준다. 위치는 파인드 허브 앱에서 최대 10명과 공유할 수 있어 가족 차 열쇠 같은 공용 물건에 쓸 만하다.",
+   "title": "Pixel Tag, Google’s $30 Android-ready answer to Apple’s AirTag, is now available",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/pixel-tag-googles-30-android-ready-answer-to-apples-airtag-is-now-available/",
+   "published": "2026-11-11 03:49 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "b33d7dcfc78b",
+   "kind": "blog",
+   "headline": "앤트로픽, 화상회의에 직접 들어가 일하는 '클로드 미팅스' 공개 — 시트·화이트보드·데이터까지 사무도구 확장",
+   "bullets": [
+    "클로드 미팅스는 클로드가 화상회의 참가자로 들어가 대화를 따라가며 계획 초안·일정표 작성, 채팅 답변, 연결된 업무 앱 자료 조회를 실시간으로 한다.",
+    "함께 공개한 클로드 시트는 말로 스프레드시트를, 화이트보드는 팀 공유 보드를 만들고, 대시보드는 '클로드 데이터'로 이름 바꿔 정식 출시했다.",
+    "미팅스는 팀·엔터프라이즈 요금제 베타로 우선 구글 미트만 지원한다."
+   ],
+   "summary": "회의가 끝나면 메모·할 일·작성물이 claude.ai에 남는다. 클로드는 참가자임을 밝히고 공지를 띄우며, 관리자가 허락하지 않으면 외부 손님 있는 회의엔 안 들어가고 외부인이 들어오면 자동으로 나간다.\n\n시트는 '채용 예산' 같은 짧은 요청으로 탭·수식·드롭다운을 갖춘 표를 만들고, 고급 기능은 엑셀 파일로 내보내거나 '클로드 포 엑셀'로 넘기면 된다. 클로드 데이터는 아마존 레드시프트·빅쿼리 등에 연결해 보고서를 만든다(디지털데일리).\n\n몇 주 전 오픈AI도 업무 도구를 냈고 메타도 뮤즈로 뛰어들어, AI 회사들이 마이크로소프트·구글 사무용 소프트웨어 영역을 정면으로 노리는 모양새다. 이날 마이크로소프트 주가가 이 소식에 내렸다.",
+   "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/",
+   "published": "2026-11-11 02:30 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "ee79b92dc296",
+   "kind": "blog",
+   "headline": "테크크런치, 젠슨 황 '中 스파이 의혹' 불륜 사건 시간순 정리 — 메가스피드 엔비디아 칩 48억달러 구매",
+   "bullets": [
+    "미국 당국은 젠슨 황의 상대로 지목된 메가스피드 임원 앨리스 황(중국 국적, 친척 아님)을 중국 스파이로 본다.",
+    "싱가포르 AI 인프라 업체 메가스피드는 지난 2년 엔비디아 칩 48억달러어치를 샀고, 미국·싱가포르가 중국 불법 반출 의혹을 조사한 적 있다.",
+    "젠슨 황은 일레븐랩스 서밋·앤트로픽 CEO 포럼 연설 일정을 취소했다."
+   ],
+   "summary": "새 사실보다는 정리 기사다. 앨리스 황 일가는 중국·싱가포르에 회사망을 세워 칩을 확보했고, 2023년 세운 상하이 센추리 리통은 엔비디아 우선 클라우드 협력사가 돼 금지 칩 포함 75억달러어치 구매를 도왔다(디인포메이션). 엔비디아 법무책임자 팀 테터는 2025년 메가스피드 밀수 조사 때 상무부 차관에게 연락해 앨리스 황 구금에 정부가 관여했는지 물었다(블룸버그).\n\n2025년 초엔 앨리스 황과 동업자가 칩 확보에 문제없다며 아시아 데이터센터 중국 투자자를 찾았다(FT). 트럼프는 황이 CEO를 계속 해야 한다고 했고, 황은 직원 편지로 외도를 인정했다.",
+   "title": "Nvidia CEO Jensen Huang’s affair with alleged Chinese spy: a timeline",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
+   "published": "2026-11-11 02:04 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "b0107263f40d",
+   "kind": "blog",
+   "headline": "읽기 앱 '매터' 팀, 아기 사진 정리 앱 '선드롭' 출시 — 생성형 AI 없이 기기 안에서만 처리, 연 39.99달러",
+   "bullets": [
+    "새 부모가 찍은 아기 사진으로 주간 요약·하이라이트·성장 타임랩스·잡지 표지 같은 장면을 만든다.",
+    "애플 비전 프레임워크와 기기 내 머신러닝으로 사진을 외부 서버에 안 올린다.",
+    "부모 두 명이 계정을 연결하면 아이클라우드로 사진을 공유한다."
+   ],
+   "summary": "구글·애플 사진 앱이 생성형 AI로 사진을 새로 만드는 쪽으로 가는 것과 반대로, 선드롭은 생성형 AI를 전혀 안 쓴다는 점을 내세운다. 첫아이를 둔 부모처럼 사진이 넘쳐나는 틈새를 노렸다.\n\n카메라 롤에서 스크린샷·중복은 빼고 '드롭'이라는 장면을 만든다. 매주 일요일 잠금화면 알림으로 한 주 요약이 오고, 형제 같은 나이 사진 나란히 보기, 성장 영상도 있다. 1주 무료 체험 뒤 연 39.99달러이고 가족 공유가 포함돼 한 명만 사면 된다.",
+   "title": "Sundrop turns your endless baby photos into recaps, time lapses, and more — without AI",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/sundrop-turns-your-endless-baby-photos-into-recaps-time-lapses-and-more-without-ai/",
+   "published": "2026-11-11 01:50 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "020a6ee5a4d3",
+   "kind": "blog",
+   "headline": "애플TV, 수어 통역을 자막처럼 켜고 끄는 기본 기능으로 — iOS 27.2부터, AI 통역사는 안 써",
+   "bullets": [
+    "작품을 따로 만드는 게 아니라 설정에서 켜면 화면 오른쪽 아래에 수어 통역사가 나온다.",
+    "금요일 '비잉 휴먼'부터 시작하고, 영화 'F1'은 미국·영국 수어를 지원한다.",
+    "청각장애인 공동체가 원하지 않는다며 AI 생성 통역사는 쓰지 않는다."
+   ],
+   "summary": "연말까지 '웨이 오브 더 워리어 키드', '그레이하운드' 등이 추가된다. 애플은 작품 분위기에 맞는 통역사를 고르려고 수어 연출 감독들과 협업했다. 지원 작품엔 자막·화면해설처럼 수어 아이콘이 붙고, 언어 항목에 지원 수어가 표시된다. '미국 수어 지원 영화·쇼' 모음도 만들고, 'with ASL'로 검색하면 찾을 수 있다. 다른 플랫폼은 청각장애인용 별도 영상을 만드는 방식이라 통합 설정은 차별점이다.",
+   "title": "Apple TV makes sign language interpretation a built-in accessibility feature",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/apple-tv-makes-sign-language-interpretation-a-built-in-accessibility-feature/",
+   "published": "2026-11-11 01:00 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "49640ea113d5",
+   "kind": "blog",
+   "headline": "구글, 8세대 TPU 변형 2종 공개 — AMD와 만든 보안 특화 'TPU 8tx', 추론 칩 2개 묶은 'TPU 8i 맥스'",
+   "bullets": [
+    "TPU 8tx는 TPU 8t 기반으로 AMD와 설계했고, 하드웨어 단에서 데이터·모델 가중치를 쓰는 중에도 격리 보호한다.",
+    "TPU 8tx엔 전용 추론 네트워크가 있어 학습하면서 추론도 돌려, 작은 모델을 바로 증류·학습할 수 있다.",
+    "TPU 8i 맥스는 4월 나온 추론용 TPU 8i 두 개를 한 패키지에 넣어 메모리·연산·대역폭을 두 배로 했다."
+   ],
+   "summary": "8세대 TPU는 4월 처음 나왔고 이번 두 종은 기밀 추론, 대용량 메모리라는 쓰임새로 포트폴리오를 넓힌 것이다. 기업이 자체 데이터를 기기 밖으로 옮기지 않고 모델을 학습시키고 싶을 때 쓸 수 있다는 게 구글 설명이다. 마이크로소프트·아마존은 물론 오픈AI·앤트로픽까지 엔비디아 의존을 줄이려 자체 칩을 만드는 흐름이고, 젠슨 황 스캔들로 엔비디아가 흔들리는 시점에 나왔다.",
+   "title": "Google broadens its AI hardware portfolio with two new specialized chips",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/google-broadens-its-ai-hardware-portfolio-with-two-new-specialized-chips/",
+   "published": "2026-11-11 00:54 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "ad8d72be38be",
+   "kind": "blog",
+   "headline": "원격관리 업체 N-에이블, 보안연구자가 제로데이 취약점 수십 개 공개하자 클라우드 서비스 'N-센트럴' 내려",
+   "bullets": [
+    "연구자 벤 베일스가 일요일 깃허브에 'Able2Shell' 취약점을 사전 통보 없이 공개했다.",
+    "인증정보 탈취·관리자 계정 생성·최고 권한 획득까지 가능한 조합이다.",
+    "N-에이블은 클라우드판을 내리고 고객에게 자체 설치판도 내리라고 권고했다. 실제 해킹 증거는 아직 없다고 했다."
+   ],
+   "summary": "N-센트럴은 기업이 같은 네트워크의 기기·시스템을 원격 접속·관리하는 서비스라, 뚫리면 회사 네트워크와 내부 데이터 전체가 위험해진다. 원격 접속 도구는 해커가 자주 노리는 표적이다. 서비스가 내려간 동안 고객은 쓸 수 없다.\n\n베일스는 블리핑컴퓨터에 회사가 다른 제품에서 보고된 결함을 고치지 않아 공개했다고 말했다. 회사는 해킹 흔적이 없다고 했지만 서버 기록으로 확인할 수 있는지는 답하지 않았다.",
+   "title": "N-able takes its remote access service offline after researcher publishes dozens of zero-day bugs",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/n-able-takes-its-remote-access-service-offline-after-researcher-publishes-dozens-of-zero-day-bugs/",
+   "published": "2026-11-11 00:45 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
+   "id": "5dc0733d130a",
+   "kind": "blog",
+   "headline": "메타 AI 에이전트 '뮤즈', 애플워치·안드로이드 웨어OS로 확장 — 손목에서 음성·문자로 사용",
+   "bullets": [
+    "뮤즈를 스마트워치에서 음성 통화·문자·받아쓰기로 쓸 수 있게 됐다.",
+    "한 달 전 아이패드 앱에 이어 애플 기기 전반으로 넓히는 중이다.",
+    "9월 출시 뒤 40일 안에 미국 다운로드 1천만 건을 넘겨, 그런 앱 12개 중 하나가 됐다."
+   ],
+   "summary": "뮤즈는 이메일·회의·청구서 관리, 예약·장보기·구매 같은 일을 대신하는 소비자용 에이전트다. 며칠 전엔 주제별로 즉석에서 만드는 미니 앱 '스페이스'를, 지난주엔 미국에서 아바타와 영상 통화하는 기능을 냈다(사용자를 보진 않고 듣기만 한다). 이 속도의 1천만 다운로드는 2023년 7월 스레드 이후 처음이다. 메타가 뮤즈를 자기 생태계 중심에 두려 한다는 신호다.",
+   "title": "Meta’s AI agent Muse lands on Apple Watch and Android Wear OS",
+   "source": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/10/metas-ai-agent-muse-lands-on-apple-watch-and-wear-os/",
+   "published": "2026-11-11 00:29 KST",
+   "written": "2026-11-11 06:55 KST"
+  },
+  {
    "id": "9ac1e2416e59",
    "kind": "blog",
    "headline": "레딧, 사용자 대화를 AI로 묶은 상품 리뷰 '레딧 리뷰' 미국 전체 출시 — 1만 개 상품부터",
@@ -3603,5 +3859,5 @@
    "written": "2026-10-22 09:00 KST"
   }
  ],
- "updated": "2026-11-11 00:18 KST"
+ "updated": "2026-11-11 06:55 KST"
 }
