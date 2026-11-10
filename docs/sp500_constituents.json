@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-31",
+ "updated": "2026-11-11",
  "count": 503,
  "map": {
   "MMM": {
@@ -1078,10 +1078,6 @@
    "name": "JPMorgan Chase",
    "sector": "Financials"
   },
-  "KVUE": {
-   "name": "Kenvue",
-   "sector": "Consumer Staples"
-  },
   "KDP": {
    "name": "Keurig Dr Pepper",
    "sector": "Consumer Staples"
@@ -1389,6 +1385,10 @@
   "OXY": {
    "name": "Occidental Petroleum",
    "sector": "Energy"
+  },
+  "OKTA": {
+   "name": "Okta, Inc.",
+   "sector": "Information Technology"
   },
   "ODFL": {
    "name": "Old Dominion",
