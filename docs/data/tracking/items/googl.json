@@ -3,6 +3,22 @@
  "slug": "googl",
  "items": [
   {
+   "id": "3ec641c7809a",
+   "kind": "news",
+   "headline": "구글, 파산한 스피릿항공 내부 데이터(1,000만달러) 인수에 개인정보 보호 조건 추가 — 승무원·조종사 관련 20개 항목 제외, 승무원 노조 반대 철회",
+   "bullets": [
+    "구글이 스피릿항공 내부 업무 데이터 인수 조건에 개인정보 보호 장치를 더 넣기로 했다(로이터).",
+    "승무원·조종사 관련 20개 항목, 승무원 음성·영상 기록·생체 정보·급여·은행 기록·연방항공청(FAA) 자격번호 등이 매각 대상에서 빠진다.",
+    "승무원 노조(AFA)는 이를 받아들여 파산법원 매각 반대를 철회했다."
+   ],
+   "summary": "구글은 지난 8월 파산한 스피릿항공의 내부 업무 데이터를 1,000만달러에 사들이기로 했다. 제품 개발과 AI 모델 학습에 쓰겠다는 목적이다. 고객 개인정보는 빼고 비식별 처리한다는 조건이었지만, 데이터 대부분이 이메일 약 1억 건·사내 메시지 약 5억 건 같은 직원 기록이라 승무원 노조와 미국 의원 100여 명이 직원 사생활 보호가 빠졌다고 반발해 왔다.\n\n이번에 구글이 추가 보호 조건을 제시하면서 노조는 반대를 거둬들였다. 노조 측은 노동자 사생활 보호의 역사적 승리라고 밝혔다. 비식별 처리만으로는 개별 승무원이 다시 식별될 수 있다는 게 노조의 핵심 우려였다.\n\n남은 쟁점은 파산법원의 최종 승인과, AI 학습용으로 기업 내부 데이터를 사들이는 거래에 대한 규제 논의가 이어질지다.",
+   "title": "Google agrees to additional privacy protections in Spirit Airlines data sale",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOYi1wN0xOZzZqVTBKMEprWkNaWDZuQTFQa3VxLUJHQ3pfYU0xS1R4b3FZdWJLTEpwLTc3WURJakpseUdqVVRvU3F2ZG9DVXBpS04yZVRiak1VQjk5Ullxd3lHU1VqRnRrWVlEQVdKTVN4WDNCbVg2cGgzTFBSTFJ5VVdPRWY5YVlqajZZNTdqVDc4VkdJXzZ3dTZ0NFJUX3BTdHMzYlUzcTNXR0xTUExtQklReEhCNWpHcUxhRnpxWVdXUkdZUU9fa0diRQ?oc=5",
+   "published": "2026-11-11 04:40 KST",
+   "written": "2026-11-11 07:18 KST"
+  },
+  {
    "id": "8015179676cc",
    "kind": "news",
    "headline": "구글·어도비 제휴 확대 — 아크로뱃이 지메일·구글 드라이브에 들어가고, 제미나이 모델이 어도비 앱에 탑재",
@@ -737,5 +753,5 @@
    "written": "2026-10-10 13:16 KST"
   }
  ],
- "updated": "2026-11-10 23:19 KST"
+ "updated": "2026-11-11 07:18 KST"
 }
