@@ -73,6 +73,7 @@
   "digest:2026-11-07:us",
   "digest:2026-11-08",
   "digest:2026-11-09:asia",
+  "digest:2026-11-10:asia",
   "digest:2026-11-10:us",
   "gpu:2026-10-06",
   "gpu:2026-10-07",
@@ -1858,9 +1859,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "pod:2026-10-31-understanding-INzQJSrFGW4": [
-   1278
-  ],
   "pod:2026-10-31-sixsigma-I6CW1tEBwmM": [
    1279
   ],
@@ -3404,8 +3402,12 @@
   ],
   "gpu:2026-11-09": [
    524
+  ],
+  "digest:2026-11-10:asia": [
+   525,
+   526
   ]
  },
  "topics": {},
- "topic_fail_at": 1794291760.026105
+ "topic_fail_at": 1794295566.444301
 }
