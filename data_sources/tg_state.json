@@ -827,6 +827,7 @@
   "trk:blog-techcrunch:c4e99740dbde",
   "trk:blog-techcrunch:c56bb4720509",
   "trk:blog-techcrunch:c5c9eaf962c8",
+  "trk:blog-techcrunch:c69b6cff009c",
   "trk:blog-techcrunch:c6cf8c65ac85",
   "trk:blog-techcrunch:ca13c1c565cb",
   "trk:blog-techcrunch:ca4e5964a553",
@@ -1147,6 +1148,7 @@
   "trk:open-ai:51d1203fc203",
   "trk:open-ai:52ebe84c5c4d",
   "trk:open-ai:543be7fd58cd",
+  "trk:open-ai:55567e213929",
   "trk:open-ai:58cd80f1e510",
   "trk:open-ai:59cad97649a8",
   "trk:open-ai:628bd45d43ab",
@@ -1246,6 +1248,7 @@
   "trk:t-3f524a5b:7b27e7e63245",
   "trk:t-3f524a5b:7c949b57af14",
   "trk:t-3f524a5b:920ed87a79f7",
+  "trk:t-3f524a5b:a4a044d1e339",
   "trk:t-3f524a5b:bf20868c4bf9",
   "trk:t-3f524a5b:ebd1b918ed4a",
   "trk:t-4123f0f6:1467a91e2e3c",
@@ -1842,18 +1845,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "bond:2026-10-29": [
-   373,
-   374
-  ],
-  "pod:2026-10-30-understanding-BylETcYBDWU": [
-   1274
-  ],
-  "macro:2026-10-30": [
-   375,
-   376,
-   377
-  ],
   "cds:2026-10-30": [
    378,
    379,
@@ -3394,6 +3385,15 @@
   ],
   "trk:ax:c603a2013298": [
    1690
+  ],
+  "trk:t-3f524a5b:a4a044d1e339": [
+   1691
+  ],
+  "trk:open-ai:55567e213929": [
+   1692
+  ],
+  "trk:blog-techcrunch:c69b6cff009c": [
+   1693
   ]
  },
  "topics": {},
