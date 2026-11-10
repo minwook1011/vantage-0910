@@ -836,6 +836,7 @@
   "trk:blog-techcrunch:ba4025262cdd",
   "trk:blog-techcrunch:bbaf24dc5813",
   "trk:blog-techcrunch:bc380d0b6a73",
+  "trk:blog-techcrunch:bed8474ee789",
   "trk:blog-techcrunch:bef5703f1e09",
   "trk:blog-techcrunch:c1b5d3738c50",
   "trk:blog-techcrunch:c1f0243a94de",
@@ -1021,6 +1022,7 @@
   "trk:meta:38edfbec1e45",
   "trk:meta:3cc83ed833c7",
   "trk:meta:40c5201082ff",
+  "trk:meta:54c839ebb799",
   "trk:meta:55a95c1592b9",
   "trk:meta:56c1402cf127",
   "trk:meta:5836f98abbc0",
@@ -1053,6 +1055,7 @@
   "trk:msft:5bba3a188602",
   "trk:msft:63f2e4fcda5c",
   "trk:msft:669b89551e21",
+  "trk:msft:71454855cbe6",
   "trk:msft:728ccc2dfc27",
   "trk:msft:73e4765ccd15",
   "trk:msft:7721f3c64c6b",
@@ -1398,6 +1401,7 @@
   "trk:t-759fd052:0a2f1d141c5d",
   "trk:t-759fd052:0b58a51e6efb",
   "trk:t-759fd052:0bde20c42958",
+  "trk:t-759fd052:118717a506a5",
   "trk:t-759fd052:1c5f648fb540",
   "trk:t-759fd052:1da9742bfe9e",
   "trk:t-759fd052:1dc261f489f1",
@@ -1895,19 +1899,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "pod:2026-11-03-riskrev-dan-ives-how-to-survive-ai-s-volatile-air-pocket": [
-   1300
-  ],
-  "jpm:2026-11-03 19:54 KST": [
-   420
-  ],
-  "pod:2026-11-03-sixsigma-46IjZIsF-IY": [
-   1301
-  ],
-  "bond:2026-11-02": [
-   421,
-   422
-  ],
   "pod:2026-11-03-cheeky-the-company-building-america-s-uranium-supply-fr": [
    1302
   ],
@@ -3433,6 +3424,18 @@
   ],
   "trk:open-ai:dba6ab351bbc": [
    1739
+  ],
+  "trk:msft:71454855cbe6": [
+   1740
+  ],
+  "trk:meta:54c839ebb799": [
+   1741
+  ],
+  "trk:t-759fd052:118717a506a5": [
+   1742
+  ],
+  "trk:blog-techcrunch:bed8474ee789": [
+   1743
   ]
  },
  "topics": {},
