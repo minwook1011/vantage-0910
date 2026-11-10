@@ -3,6 +3,22 @@
  "slug": "t-759fd052",
  "items": [
   {
+   "id": "263f859fd838",
+   "kind": "news",
+   "headline": "[후속] 앤트로픽, 11월 10일 수정 상장신고서에서 'AI가 AI 연구를 가속하는' 자체 안전 기준선에 도달했다고 밝혀",
+   "bullets": [
+    "앤트로픽이 11월 10일 낸 2차 수정 상장신고서(S-1/A)에서, 이전 신고서의 '기준선에 근접' 표현을 '기준선에 도달'로 바꿨다(코션스 옵티미즘 등 보도).",
+    "이 기준선은 앤트로픽 '책임 있는 확장 정책' 3.4판(7월 8일 시행)의 'AI 주도 연구 가속' 항목으로, AI 발전 속도가 두 배가 되는 경우가 판단 경로 중 하나다.",
+    "추수감사절 전 상장을 목표로 하는 가운데 투자자 위험 고지가 한 단계 더 강해졌다."
+   ],
+   "summary": "앤트로픽은 앞선 신고서에서 과거에 AI 연구 가속을 놓친 적이 있고 자체 기준선에 가까워지고 있다고 적었다. 이번 수정본은 여기서 한 발 더 나가 기준선을 이미 넘었다고 공시했다. 같은 신고서에는 람다와의 349억달러 연산 계약이 양쪽 모두 해지 가능해졌다는 내용도 담겼다.\n\n기준선 도달이 곧바로 모델 개발 중단을 뜻하는지는 공개 보도로 확인되지 않는다. 앤트로픽은 이미 '미토스' 모델을 일부 기관에만 제한 제공(프로젝트 글래스윙)했고, 차세대 모델 학습을 안전 문제로 한 달 넘게 멈춘 적이 있다고 신고서에 적었다. 정책상 기준선을 넘으면 더 강한 안전 조치가 붙는 만큼, 개발 속도·비용과 상장 일정에 어떤 영향을 주는지가 남은 쟁점이다.",
+   "title": "Anthropic says a key AI safety alarm has been triggered, days before its IPO",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQUTRqOU1uQ3V4RzE1YnpNX004b0JjUGlWUjgxbHd5MDAtaGpjREpoTE9DYUNUTVhqQnhDc0loMnRLY3NYRkJWVlZFNm1aU080UEtla1R1MmdoMGVSSEFJZmdFME1nTUx5akx0MW5vYUlaWTVpRTdLeW1iVmRCY3lrQU55SmluSWt2ZU1GNWVjaDR1UDZiUWk2NFF0WnhwWjhFS3pWbXd5TmdmSmlnSnM5cEU5SjNnQzN4ZWVYa2NmMklMYWpWVEV5NmttazQ?oc=5",
+   "published": "2026-11-11 02:15 KST",
+   "written": "2026-11-11 08:49 KST"
+  },
+  {
    "id": "0d8ff6bc5e58",
    "kind": "news",
    "headline": "앤트로픽, 상장 앞두고 업무용 앱 묶음 공개 — 엑셀 닮은 '클로드 시트'·회의 비서·데이터 대시보드, 마이크로소프트 주가 장중 3% 하락",
@@ -1473,5 +1489,5 @@
    "written": "2026-10-10 13:50 KST"
   }
  ],
- "updated": "2026-11-11 07:50 KST"
+ "updated": "2026-11-11 08:49 KST"
 }
