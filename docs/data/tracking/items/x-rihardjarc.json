@@ -3,6 +3,22 @@
  "slug": "x-rihardjarc",
  "items": [
   {
+   "id": "74d00d8318a8",
+   "kind": "x",
+   "headline": "메타 AI 모델이 구글 클라우드에 올라감 — 메타가 기업용 AI를 진지하게 밀겠다는 신호",
+   "bullets": [
+    "메타 모델을 이제 구글 클라우드(GCP)에서 쓸 수 있다. 메타가 기업 시장을 본격적으로 노린다는 뜻이다.",
+    "기업들 AI 모델 사용은 점점 아마존 베드록, 마이크로소프트 파운드리, 구글 버텍스 같은 클라우드 장터에서 일어난다.",
+    "메타가 다른 클라우드와도 비슷한 계약을 곧 발표할 거다."
+   ],
+   "summary": "메타는 그동안 모델을 공개하고 자기 앱에 넣는 데 집중해 왔다. 기업 고객은 대개 이미 쓰는 클라우드 안에서 모델을 골라 쓰기 때문에, 그 장터에 들어가야 기업 매출이 난다.\n\n구글 버텍스 입점이 첫 단추고, 다음 체크포인트는 아마존 베드록·마이크로소프트 파운드리 입점 발표가 나오느냐다.",
+   "title": "The fact that $META's models are now available via $GOOGL's GCP tells you that $META is serious about its enterprise off",
+   "source": "Rihard Jarc (UncoverAlpha)",
+   "url": "https://x.com/RihardJarc/status/2120160879031292352",
+   "published": "2026-11-10 23:25 KST",
+   "written": "2026-11-10 23:48 KST"
+  },
+  {
    "id": "820036a56f6e",
    "kind": "x",
    "headline": "AI 투자의 새 병목은 칩·전력이 아니라 '남의 돈' — 외부 자금이 마르면서 2027년 설비투자는 느려지고 빅테크로 쏠린다",
@@ -67,5 +83,5 @@
    "written": "2026-11-05 09:50 KST"
   }
  ],
- "updated": "2026-11-05 10:19 KST"
+ "updated": "2026-11-10 23:48 KST"
 }
