@@ -1,6 +1,33 @@
 {
- "updated": "2026-11-10 22:32 KST",
+ "updated": "2026-11-10 23:38 KST",
  "episodes": [
+  {
+   "id": "2026-11-10-sixsigma-VgMY44DUnOY",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "엔비디아 공매도 리포트 40쪽에는 무엇이 쓰여 있었나, 어디까지 사실이 됐나 | 컬퍼 리서치",
+   "date": "2026-11-10",
+   "published": "2026-11-10 23:00 KST",
+   "link": "https://www.youtube.com/watch?v=VgMY44DUnOY",
+   "youtube": "https://www.youtube.com/watch?v=VgMY44DUnOY",
+   "audio": null,
+   "duration": "",
+   "desc": "6개월 전 공매도 업체 컬퍼 리서치가 낸 40쪽짜리 엔비디아 리포트의 문장을 하나씩 꺼내, 그 옆에 그 뒤 벌어진 일(젠슨 황의 관계 인정, 법무부 수사, 칩 위치 관리 조치)과 아직 숫자로 나타나지 않은 주장(매출의 20%가 중국 수요, 올해 매출 부족)을 나란히 놓았습니다. 컬퍼가 2019년부터 공매도한 45곳의 그 뒤 주가와 지금 공매도 중인 세레브라스까지 짚고, 리포트의 매출 예고가 두 분기째 나타나지 않은 이유와, 엔비디아 주주에게 남은 변수(의회의 동남아 수출 규제)를 정리했습니다. [목차] 00:00 젠슨 황 \"빼돌린 칩은 없었다\" 00:52 1. 6개월 전, 40쪽에 쓰여 있던 것 04:57 2. 그 뒤 6개월, 어디까지 사실이 됐나 08:01 3. 아직 숫자로 나타나지 않은 것 10:48 4. 컬퍼가 공매도한 회사 45곳은 그 뒤 어떻게 됐나 12:23 5. 컬퍼가 지금 공매도한 회사, 세레브라스 13:43 정리: 사실이 된 것과 나타나지 않은 것 [원본] 1. Bloomberg Tech, Nvidia CEO Huang Says There's No Diversion of Chips Overseas (2025.11.20): https://www…",
+   "status": "done",
+   "found": "2026-11-10 23:24 KST",
+   "image": "https://i3.ytimg.com/vi/VgMY44DUnOY/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "title_ko": "엔비디아 공매도 리포트 40쪽은 무엇을 주장했고, 어디까지 사실이 됐나 — 컬퍼 리서치",
+   "desc_ko": "6개월 전 공매도 업체 Culper Research가 낸 40쪽짜리 엔비디아 리포트의 주장을 하나씩 짚고, 그 뒤 실제로 벌어진 일(Jensen Huang의 관련 언급, 미 법무부 수사, 칩 위치 확인 조치)과 나란히 놓는다. 매출의 20%가 중국 우회 수요라는 주장, 올해 매출이 기대에 못 미친다는 예고처럼 아직 숫자로 확인되지 않은 부분도 구분한다. Culper가 2019년부터 공매도한 45개 회사의 이후 주가와 현재 공매도 중인 Cerebras도 살핀다. 마지막으로 엔비디아 주주에게 남은 변수로 의회의 동남아 수출 규제를 정리한다.",
+   "summary": {
+    "title_ko": "엔비디아 공매도 리포트 40쪽은 무엇을 주장했고, 어디까지 사실이 됐나 — 컬퍼 리서치",
+    "headline": "사람·수사 대목은 사실이 됐고 '매출 부족' 예고는 두 분기째 빗나갔다 — 엔비디아 −19%의 이유는 매출이 아니라 젠슨 황과 규제",
+    "image": "https://i.ytimg.com/vi/VgMY44DUnOY/hqdefault.jpg",
+    "guest": "식스시그마(진행) · Culper Research 리포트 검증 — 공매도 리포트의 주장과 이후 6개월의 사실을 문장 단위로 대조한 해설 영상",
+    "company": "NVIDIA · Megaspeed · Cerebras (AI 반도체 · 수출 규제 · 공매도)"
+   }
+  },
   {
    "id": "2026-11-10-cheeky-nik-storonsky-the-most-uncompromising-banking-ce",
    "show": "cheeky",
@@ -12,12 +39,19 @@
    "audio": "https://media.transistor.fm/dd3ec675/0257a997.mp3",
    "duration": "51:37",
    "desc": "Nik Storonsky, Founder and CEO of Revolut, joins John to break down how Revolut scales across 50 million customers worldwide, their strategy to challenge Amex and Chase in the US, and why products live or die by strict retention curves in their \"new bets\" process. They also discuss building a profitable fintech around subscriptions rather than lending, how they are cutting 210-day compliance approval cycles with AI, and why CEOs should skip conferences in favor of product development. Timestamps (00:00:00) Introduction (00:00:21) Revolut growth (00:04:03) New bets framework (00:12:35) Why bank…",
-   "status": "new",
+   "status": "done",
    "found": "2026-11-10 22:31 KST",
    "image": "https://img.transistorcdn.com/9y2cIiPlTBzCnqBuVs4W_pHcc4fgqUpTeTtPLCnRSCE/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS84ODNh/Y2NmZTk1YzI4ODFi/NThmNTNhZWI1NmFk/NDIzYS5wbmc.jpg",
    "show_image": "https://img.transistorcdn.com/PVZFPauNUFMQ37nXgHHcOEYiAymRHQ7vaa9pV-D2Txg/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS82ZGFk/ODk1OGE5Y2ExZjc5/MGMxNjYwOWQxYjdi/YTlkYy5wbmc.jpg",
    "title_ko": "Nik Storonsky — 가장 타협하지 않는 은행 CEO, Revolut의 성장 전략",
-   "desc_ko": "Revolut 창업자이자 CEO인 Nik Storonsky가 진행자 John Collison과 함께 전 세계 고객 5,000만 명 규모로 회사를 키운 방법을 이야기한다. 미국에서 Amex·Chase에 도전하는 전략과, 새 사업을 엄격한 고객 유지율 곡선으로 살리거나 접는 '뉴 벳' 방식을 설명한다. 대출이 아니라 구독 중심으로 수익을 내는 핀테크 구조, AI로 210일 걸리던 규제 승인 절차를 줄이는 방법도 다룬다. CEO는 콘퍼런스 대신 제품 개발에 시간을 써야 한다는 소신도 밝힌다."
+   "desc_ko": "Revolut 창업자이자 CEO인 Nik Storonsky가 진행자 John Collison과 함께 전 세계 고객 5,000만 명 규모로 회사를 키운 방법을 이야기한다. 미국에서 Amex·Chase에 도전하는 전략과, 새 사업을 엄격한 고객 유지율 곡선으로 살리거나 접는 '뉴 벳' 방식을 설명한다. 대출이 아니라 구독 중심으로 수익을 내는 핀테크 구조, AI로 210일 걸리던 규제 승인 절차를 줄이는 방법도 다룬다. CEO는 콘퍼런스 대신 제품 개발에 시간을 써야 한다는 소신도 밝힌다.",
+   "summary": {
+    "title_ko": "Nik Storonsky — 가장 타협하지 않는 은행 CEO, Revolut의 성장 전략",
+    "headline": "대출은 대차대조표 10% 미만, 수익은 구독·거래 — Revolut은 신용카드로 Amex·Chase에 정면 승부하며 내년 미국에 본격 진출한다",
+    "image": null,
+    "guest": "닉 스토론스키(Nik Storonsky) — Revolut 공동 창업자·CEO — 대출 대신 구독·거래로 버는 글로벌 디지털 은행",
+    "company": "Revolut (핀테크 · 디지털 은행)"
+   }
   },
   {
    "id": "2026-11-10-understanding-hpZF_zMPXvk",
