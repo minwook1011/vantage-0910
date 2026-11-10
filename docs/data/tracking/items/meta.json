@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "54c839ebb799",
+   "kind": "news",
+   "headline": "픽셀웍스, 메타와 다년 VR 기기 인증 계약 — 곧 나올 '메타 VR 글래스'에서 '트루컷 모션' 영화 재생 지원",
+   "bullets": [
+    "영상 처리 기술 업체 픽셀웍스가 메타와 여러 해짜리 협력·기기 인증 계약을 맺었다고 발표했다.",
+    "메타의 VR 기기(곧 나올 메타 VR 글래스 포함)가 픽셀웍스의 '트루컷 모션'으로 보정된 영화·시리즈·3D 콘텐츠를 재생하도록 인증받는다.",
+    "발표 당일 픽셀웍스 주가는 21% 넘게 올랐다."
+   ],
+   "summary": "트루컷 모션은 영화 후반 작업에서 장면마다 화면 떨림(저더)·잔상·프레임률을 조정해 감독이 의도한 움직임을 그대로 살리는 기술이다. 지금까지는 대형 프리미엄 상영관 중심으로 쓰였는데, 이번 계약으로 가정용 VR 기기까지 넓어진다.\n\n메타 입장에선 VR 기기로 보는 영화의 화질을 끌어올리는 콘텐츠 생태계 협력이다. 계약 금액이나 기간 등 구체 조건은 공개되지 않았다.",
+   "title": "Pixelworks Partners with Meta to Bring TrueCut Motion Cinematic Content to Newly Launched Meta VR Glasses",
+   "source": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/technology/articles/pixelworks-partners-meta-bring-truecut-130000711.html?.tsrc=rss",
+   "published": "2026-11-10 22:00 KST",
+   "written": "2026-11-10 22:18 KST"
+  },
+  {
    "id": "e091c4768e5d",
    "kind": "news",
    "headline": "JP모건, 추천 목록서 알파벳 빼고 메타 넣어 — 메타 3분기 광고 매출 26% 증가, 4분기부터 구글 검색 광고 추월 전망",
@@ -529,5 +545,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-11-09 23:17 KST"
+ "updated": "2026-11-10 22:18 KST"
 }
