@@ -1,6 +1,51 @@
 {
- "updated": "2026-11-10 21:25 KST",
+ "updated": "2026-11-10 22:32 KST",
  "episodes": [
+  {
+   "id": "2026-11-10-cheeky-nik-storonsky-the-most-uncompromising-banking-ce",
+   "show": "cheeky",
+   "show_name": "Cheeky Pint",
+   "title": "Nik Storonsky: The most uncompromising banking CEO",
+   "date": "2026-11-10",
+   "published": "2026-11-10 21:45 KST",
+   "link": "https://share.transistor.fm/s/dd3ec675",
+   "audio": "https://media.transistor.fm/dd3ec675/0257a997.mp3",
+   "duration": "51:37",
+   "desc": "Nik Storonsky, Founder and CEO of Revolut, joins John to break down how Revolut scales across 50 million customers worldwide, their strategy to challenge Amex and Chase in the US, and why products live or die by strict retention curves in their \"new bets\" process. They also discuss building a profitable fintech around subscriptions rather than lending, how they are cutting 210-day compliance approval cycles with AI, and why CEOs should skip conferences in favor of product development. Timestamps (00:00:00) Introduction (00:00:21) Revolut growth (00:04:03) New bets framework (00:12:35) Why bank…",
+   "status": "new",
+   "found": "2026-11-10 22:31 KST",
+   "image": "https://img.transistorcdn.com/9y2cIiPlTBzCnqBuVs4W_pHcc4fgqUpTeTtPLCnRSCE/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS84ODNh/Y2NmZTk1YzI4ODFi/NThmNTNhZWI1NmFk/NDIzYS5wbmc.jpg",
+   "show_image": "https://img.transistorcdn.com/PVZFPauNUFMQ37nXgHHcOEYiAymRHQ7vaa9pV-D2Txg/rs:fill:0:0:1/w:1400/h:1400/q:60/mb:500000/aHR0cHM6Ly9pbWct/dXBsb2FkLXByb2R1/Y3Rpb24udHJhbnNp/c3Rvci5mbS82ZGFk/ODk1OGE5Y2ExZjc5/MGMxNjYwOWQxYjdi/YTlkYy5wbmc.jpg",
+   "title_ko": "Nik Storonsky — 가장 타협하지 않는 은행 CEO, Revolut의 성장 전략",
+   "desc_ko": "Revolut 창업자이자 CEO인 Nik Storonsky가 진행자 John Collison과 함께 전 세계 고객 5,000만 명 규모로 회사를 키운 방법을 이야기한다. 미국에서 Amex·Chase에 도전하는 전략과, 새 사업을 엄격한 고객 유지율 곡선으로 살리거나 접는 '뉴 벳' 방식을 설명한다. 대출이 아니라 구독 중심으로 수익을 내는 핀테크 구조, AI로 210일 걸리던 규제 승인 절차를 줄이는 방법도 다룬다. CEO는 콘퍼런스 대신 제품 개발에 시간을 써야 한다는 소신도 밝힌다."
+  },
+  {
+   "id": "2026-11-10-understanding-hpZF_zMPXvk",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "4배 부풀려진 데이터센터 허수 투자. 건물 다 지어도 전기 대기만 10년. 데이터센터 빚더미 쌓인다 (더큐리어스 김열매 대표) | 26년 11월 9일 방송",
+   "date": "2026-11-10",
+   "published": "2026-11-10 21:25 KST",
+   "link": "https://www.youtube.com/watch?v=hpZF_zMPXvk",
+   "youtube": "https://www.youtube.com/watch?v=hpZF_zMPXvk",
+   "audio": null,
+   "duration": "",
+   "desc": "💡내용 요약 미국 중간선거 이후 데이터센터 신규 인허가를 제한하자는 주장이 나오고 있지만, 더 큰 문제는 인허가 중단 자체가 아니라 금융 구조에 있다는 진단이다. 데이터센터 대부분이 프로젝트 파이낸싱으로 지어지기 때문에 공사나 전력 연결이 늦어지기만 해도 가동 전 이자 비용이 쌓인다. 송전망 연결에 5년에서 10년이 걸리면서 건물을 먼저 지어도 전기가 들어오지 않는 시차가 벌어지고 있다. 우드매킨지 분석에 따르면 미국 데이터센터의 전력 연결 요청은 1,000GW를 넘지만 중복 신청이 많아 실제 실행 가능성은 28% 안팎이다. 여기에 데이터센터 경험이 없는 개발사까지 임차 계약 없이 뛰어든 투기적 개발이 상당 비중을 차지한다. 블랙스톤이 올해 상장한 데이터센터 리츠의 주가 하락, 사모대출 펀드의 환매 요청 증가, 터빈 주문 취소 가능성은 시장의 불안 요인으로 거론된다. 반면 수요 자체가 사라진 것은 아니며, 전력 문제가 천천히 풀리면 사이클이 완만하게 이어지는 낙관적 시나리오도 가능하다. 블랙스톤 비상장 리츠가 오피스 침체기의 환매 요청을 1년 남짓 만에 해소한 전례도 언급된다. 결국 내년 의회가 원전과 천연가스 발전 확대, 규제 방향을 어떻게 정하느냐와 문제…",
+   "status": "done",
+   "found": "2026-11-10 22:31 KST",
+   "image": "https://i1.ytimg.com/vi/hpZF_zMPXvk/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "summary": {
+    "title_ko": "4배 부풀려진 데이터센터 허수 투자 — 건물 다 지어도 전기 대기 10년, 빚이 쌓인다 (김열매 대표)",
+    "headline": "칩은 있는데 전기가 없다 — 1,000GW 요청 중 실현은 28%, 위험은 수요가 아니라 빚과 시차",
+    "image": "https://i.ytimg.com/vi/hpZF_zMPXvk/hqdefault.jpg",
+    "guest": "김열매 — 더큐리어스 대표 — 부동산·건설·사모시장으로 AI 데이터센터 사이클을 보는 애널리스트",
+    "company": "Blackstone · BXDC · GE Vernova · 두산에너빌리티 (AI 데이터센터 · 전력 장비 · 사모대출)"
+   },
+   "title_ko": "4배 부풀려진 데이터센터 허수 투자 — 건물 다 지어도 전기 대기 10년, 빚이 쌓인다 (김열매 대표)",
+   "desc_ko": "미국 중간선거 뒤 데이터센터 인허가 제한론이 나오지만, 더 큰 문제는 프로젝트 파이낸싱으로 짓는 금융 구조라는 진단이다. 송전망 연결에 5~10년이 걸리면서 건물을 먼저 지어도 전기가 들어오지 않고, 그동안 이자 비용이 쌓인다. 우드매킨지는 1,000GW가 넘는 전력 연결 요청 가운데 실현 가능성을 28% 안팎으로 봤다. 블랙스톤 데이터센터 리츠의 주가 하락과 사모대출 매물, 터빈 주문 취소 가능성을 불안 요인으로, 블랙스톤 BREIT의 환매 위기 극복 사례를 낙관 근거로 함께 짚는다."
+  },
   {
    "id": "2026-11-10-sixsigma-J9wFHluBTXA",
    "show": "sixsigma",
