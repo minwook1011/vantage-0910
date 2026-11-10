@@ -510,6 +510,7 @@
   "trk:amzn:9750255b0d68",
   "trk:amzn:ab47943ddaeb",
   "trk:amzn:b4bbc44cab36",
+  "trk:amzn:bbaaad7e7083",
   "trk:amzn:d9727523023a",
   "trk:amzn:e0a5e8769f47",
   "trk:amzn:e12bd02ce29b",
@@ -1882,11 +1883,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "cds:2026-11-02": [
-   410,
-   411,
-   412
-  ],
   "pod:2026-11-03-sixsigma-3Q4yrtsWZ9o": [
    1292
   ],
@@ -3422,8 +3418,11 @@
   ],
   "pod:2026-11-10-riskrev-pricing-nvidia-s-key-man-risk-with-gene-munster": [
    1728
+  ],
+  "trk:amzn:bbaaad7e7083": [
+   1729
   ]
  },
  "topics": {},
- "topic_fail_at": 1794303969.111237
+ "topic_fail_at": 1794307804.679386
 }
