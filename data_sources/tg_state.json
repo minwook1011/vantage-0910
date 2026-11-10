@@ -490,6 +490,7 @@
   "trk:222800:0d80e8fc103e",
   "trk:222800:aad17fcb6667",
   "trk:356860:2bf3ca152f92",
+  "trk:amzn:03f32716a81b",
   "trk:amzn:11e2f839692b",
   "trk:amzn:19e39e0079d4",
   "trk:amzn:1dd4d3b49ae5",
@@ -1046,6 +1047,7 @@
   "trk:msft:1f10d06697ba",
   "trk:msft:333d16822fd4",
   "trk:msft:42a73aa26d7e",
+  "trk:msft:4af0266581e3",
   "trk:msft:4fc72832a301",
   "trk:msft:5bba3a188602",
   "trk:msft:63f2e4fcda5c",
@@ -1321,6 +1323,7 @@
   "trk:t-678e8450:13172f63321f",
   "trk:t-678e8450:1d826e68d651",
   "trk:t-678e8450:2178d2d65e64",
+  "trk:t-678e8450:23d5a0404aad",
   "trk:t-678e8450:24984a56b40f",
   "trk:t-678e8450:26e3591eebde",
   "trk:t-678e8450:2b37a7b5cb9f",
@@ -1456,6 +1459,7 @@
   "trk:t-759fd052:c53199818f7d",
   "trk:t-759fd052:c85371a3f6cb",
   "trk:t-759fd052:cb7b741ae096",
+  "trk:t-759fd052:d129b1a5cb6b",
   "trk:t-759fd052:d98f0a122c8e",
   "trk:t-759fd052:db0c9e9491b7",
   "trk:t-759fd052:e004ce282e0c",
@@ -1653,6 +1657,7 @@
   "trk:yt--jklonfa:7579a322c170",
   "trk:yt--jklonfa:758cc28c63c5",
   "trk:yt--jklonfa:76e7dc0164f6",
+  "trk:yt--jklonfa:7791fa5f6721",
   "trk:yt--jklonfa:7880fee98c74",
   "trk:yt--jklonfa:796a98d0a6d5",
   "trk:yt--jklonfa:7a93b2cfc8fd",
@@ -1884,21 +1889,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "ins:ins-20261102-chamath-token-zero-app-layer-ai-natives": [
-   1293
-  ],
-  "ins:ins-20261102-palantir-q3-us-commercial-overtakes-gov-rpo-gap": [
-   1294
-  ],
-  "ins:ins-20261102-lee-hyungil-ev-tax-credit-namyang-import-reversal": [
-   1295
-  ],
-  "ins:ins-20261102-marvell-lumentum-optical-shift-115b": [
-   1296
-  ],
-  "ins:ins-20261102-ternus-iphone-duo-memory-margin-pricing-power": [
-   1297
-  ],
   "ins:ins-20261102-trump-iran-deal-pivot-oil-fed-sectors": [
    1298
   ],
@@ -3422,6 +3412,21 @@
   ],
   "jpm:2026-11-10 19:56 KST": [
    527
+  ],
+  "trk:amzn:03f32716a81b": [
+   1730
+  ],
+  "trk:msft:4af0266581e3": [
+   1731
+  ],
+  "trk:t-759fd052:d129b1a5cb6b": [
+   1732
+  ],
+  "trk:yt--jklonfa:7791fa5f6721": [
+   1733
+  ],
+  "trk:t-678e8450:23d5a0404aad": [
+   1734
   ]
  },
  "topics": {},
