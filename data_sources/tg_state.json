@@ -556,6 +556,7 @@
   "trk:blog-egzion:8539dc479df5",
   "trk:blog-egzion:98ad14d48c43",
   "trk:blog-egzion:bbab8b7939f2",
+  "trk:blog-egzion:bd950faa1160",
   "trk:blog-egzion:c655645f1442",
   "trk:blog-egzion:d2fb145cffff",
   "trk:blog-egzion:ecfaad854cad",
@@ -914,6 +915,7 @@
   "trk:cathie-wood:94ca33bdda3d",
   "trk:cathie-wood:a5e8d81e64b8",
   "trk:cathie-wood:c4dae11c1b2d",
+  "trk:cathie-wood:d92d860667e8",
   "trk:cathie-wood:dd6d6bafe6a8",
   "trk:cathie-wood:fac623f48801",
   "trk:cathie-wood:feb3c1feeb91",
@@ -1294,6 +1296,7 @@
   "trk:t-62bbe9b6:f8cd87d0c92b",
   "trk:t-62bbe9b6:fa7c03914619",
   "trk:t-62bbe9b6:fa86fef8ce8c",
+  "trk:t-678e8450:0357676d5de8",
   "trk:t-678e8450:041b4199fa8e",
   "trk:t-678e8450:055e8cc7dc45",
   "trk:t-678e8450:0b0e54066438",
@@ -1845,18 +1848,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "cds:2026-10-30": [
-   378,
-   379,
-   380
-  ],
-  "digest:2026-10-31:us": [
-   381,
-   382
-  ],
-  "nebius:2026-10-31": [
-   383
-  ],
   "or:2026-10-30": [
    384
   ],
@@ -3394,6 +3385,15 @@
   ],
   "trk:blog-techcrunch:c69b6cff009c": [
    1693
+  ],
+  "trk:blog-egzion:bd950faa1160": [
+   1694
+  ],
+  "trk:cathie-wood:d92d860667e8": [
+   1695
+  ],
+  "trk:t-678e8450:0357676d5de8": [
+   1696
   ]
  },
  "topics": {},
