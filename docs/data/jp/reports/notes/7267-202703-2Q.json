@@ -27,28 +27,94 @@
     "line": "주당순이익은 시장 예상의 3분의 1이었지만 연간 계획에 넣어 둔 전기차 손실 탓 — 손실 제외 영업이익 +104%, 연간 영업이익 계획 20% 상향",
     "basis": "컨센서스",
     "checks": [
-      {"item": "주당순이익(7~9월)", "actual": "약 17엔", "base": "컨센서스 50.3엔", "diff": "−66%", "tone": "dn"},
-      {"item": "매출(7~9월)", "actual": "5조9,761억엔", "base": "컨센서스 5조8,160억엔", "diff": "+2.8%", "tone": "up"},
-      {"item": "손실 제외 영업이익", "actual": "6,028억엔", "base": "전년 같은 분기 2,957억엔", "diff": "+103.9%", "tone": "up"},
-      {"item": "연간 영업이익 계획", "actual": "7,800억엔", "base": "이전 계획 6,500억엔", "diff": "+20.0%", "tone": "up"},
-      {"item": "손실 제외 이익률", "actual": "10.1%", "base": "전년 같은 분기 5.6%", "diff": "+4.5%p", "tone": "up"}
+      {
+        "item": "주당순이익(7~9월)",
+        "actual": "약 17엔",
+        "base": "컨센서스 50.3엔",
+        "diff": "−66%",
+        "tone": "dn"
+      },
+      {
+        "item": "매출(7~9월)",
+        "actual": "5조9,761억엔",
+        "base": "컨센서스 5조8,160억엔",
+        "diff": "+2.8%",
+        "tone": "up"
+      },
+      {
+        "item": "손실 제외 영업이익",
+        "actual": "6,028억엔",
+        "base": "전년 같은 분기 2,957억엔",
+        "diff": "+103.9%",
+        "tone": "up"
+      },
+      {
+        "item": "연간 영업이익 계획",
+        "actual": "7,800억엔",
+        "base": "이전 계획 6,500억엔",
+        "diff": "+20.0%",
+        "tone": "up"
+      },
+      {
+        "item": "손실 제외 이익률",
+        "actual": "10.1%",
+        "base": "전년 같은 분기 5.6%",
+        "diff": "+4.5%p",
+        "tone": "up"
+      }
     ],
     "guide": "상향",
     "market": "장 마감 뒤 발표 — 주가 반응은 아직 없음(당일 종가 1,853엔)"
   },
-  "qa": {"items": [], "note": "아직 회사가 공개한 질의응답 없음(2026-11-10 확인). 혼다는 설명회 요지를 투자자 사이트에 나중에 올린다"},
+  "qa": {
+    "items": [],
+    "note": "아직 회사가 공개한 질의응답 없음(2026-11-10 확인). 회사 투자자 사이트에는 설명 자료·발표 원고·참고 자료만 있고, 스톡애널리시스에도 이번 분기 영문 원고가 아직 없다."
+  },
   "ir_read": "2026-11-10 설명자료·발표 원고·참고자료 반영",
   "sources": [
-    {"label": "결산단신(2027년 3월기 2분기)", "url": "https://tdnet-pdf.kabutan.jp/20261110/140120261109568828.pdf"},
-    {"label": "회사 결산 설명자료 11/10", "url": "https://global.honda/jp/investors/library/financialresult/main/00/teaserItems1/01119/linkList/0/link/FYE202703_2Q_financial_presentation_j.pdf"},
-    {"label": "회사 설명회 발표 원고 11/10", "url": "https://global.honda/jp/investors/library/financialresult/main/00/teaserItems1/01119/linkList/00/link/FYE202703_2Q_financial_presentation_script_j.pdf"},
-    {"label": "회사 결산 참고자료 11/10", "url": "https://global.honda/jp/investors/library/financialresult/main/00/teaserItems1/01119/linkList/01/link/FYE202703_2Q_financial_reference_j.pdf"},
-    {"label": "회사 공시 북미 새 공장 건설 11/10", "url": "https://www.release.tdnet.info/inbs/140120261109569771.pdf"},
-    {"label": "결산단신(2027년 3월기 1분기)", "url": "https://www2.jpx.co.jp/disc/72670/140120260804508592.pdf"},
-    {"label": "카부탄 결산 속보 11/10", "url": "https://kabutan.jp/stock/news?code=7267&b=k202611100129"},
-    {"label": "카부탄·민카부 11/6 자동차주 반락(도요타 계획 상향)", "url": "https://kabutan.jp/stock/news?code=7267&b=n202611060802"},
-    {"label": "카부탄·민카부 10/21 GM 실적 뒤 자동차주", "url": "https://kabutan.jp/stock/news?code=7267&b=n202610210362"},
-    {"label": "카부탄·민카부 10/9 트라이톤 공급 보도", "url": "https://kabutan.jp/stock/news?code=7267&b=n202610090416"},
-    {"label": "회사 공시 닛산과 공동 개발 계약 8/31", "url": "https://www2.jpx.co.jp/disc/72670/140120260831528834.pdf"}
+    {
+      "label": "결산단신(2027년 3월기 2분기)",
+      "url": "https://tdnet-pdf.kabutan.jp/20261110/140120261109568828.pdf"
+    },
+    {
+      "label": "회사 결산 설명자료 11/10",
+      "url": "https://global.honda/jp/investors/library/financialresult/main/00/teaserItems1/01119/linkList/0/link/FYE202703_2Q_financial_presentation_j.pdf"
+    },
+    {
+      "label": "회사 설명회 발표 원고 11/10",
+      "url": "https://global.honda/jp/investors/library/financialresult/main/00/teaserItems1/01119/linkList/00/link/FYE202703_2Q_financial_presentation_script_j.pdf"
+    },
+    {
+      "label": "회사 결산 참고자료 11/10",
+      "url": "https://global.honda/jp/investors/library/financialresult/main/00/teaserItems1/01119/linkList/01/link/FYE202703_2Q_financial_reference_j.pdf"
+    },
+    {
+      "label": "회사 공시 북미 새 공장 건설 11/10",
+      "url": "https://www.release.tdnet.info/inbs/140120261109569771.pdf"
+    },
+    {
+      "label": "결산단신(2027년 3월기 1분기)",
+      "url": "https://www2.jpx.co.jp/disc/72670/140120260804508592.pdf"
+    },
+    {
+      "label": "카부탄 결산 속보 11/10",
+      "url": "https://kabutan.jp/stock/news?code=7267&b=k202611100129"
+    },
+    {
+      "label": "카부탄·민카부 11/6 자동차주 반락(도요타 계획 상향)",
+      "url": "https://kabutan.jp/stock/news?code=7267&b=n202611060802"
+    },
+    {
+      "label": "카부탄·민카부 10/21 GM 실적 뒤 자동차주",
+      "url": "https://kabutan.jp/stock/news?code=7267&b=n202610210362"
+    },
+    {
+      "label": "카부탄·민카부 10/9 트라이톤 공급 보도",
+      "url": "https://kabutan.jp/stock/news?code=7267&b=n202610090416"
+    },
+    {
+      "label": "회사 공시 닛산과 공동 개발 계약 8/31",
+      "url": "https://www2.jpx.co.jp/disc/72670/140120260831528834.pdf"
+    }
   ]
 }
