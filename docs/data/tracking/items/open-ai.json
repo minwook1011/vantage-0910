@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "dba6ab351bbc",
+   "kind": "news",
+   "headline": "TSMC 이사회, 앤트로픽·오픈AI에 각각 최대 5억 달러(합계 10억 달러) 투자 승인 — 앤트로픽은 상장 공모가로 보통주 매입",
+   "bullets": [
+    "TSMC 이사회가 앤트로픽 보통주 최대 5억 달러, 오픈AI 우선주 최대 5억 달러 매입을 승인했다. 합치면 최대 10억 달러다.",
+    "앤트로픽 지분은 기업공개(IPO) 공모가에 사는 조건이다. 구글·엔비디아·AMD·마이크로소프트 등이 참여하는 260억 달러 규모 핵심 투자자 사모에 TSMC도 이름을 올린 셈이다.",
+    "오픈AI 우선주는 가격·기업가치·시점이 공개되지 않았다."
+   ],
+   "summary": "대만 TSMC가 고객사인 두 AI 회사의 지분을 직접 사기로 했다. 이사회 결의에 따르면 앤트로픽에는 상장 때 공모가 기준으로 보통주를 최대 5억 달러어치, 오픈AI에는 우선주를 최대 5억 달러어치 사들인다. 반도체를 만들어 파는 위탁생산 회사가 칩을 쓰는 AI 모델 회사 지분까지 갖는 건 이례적이다.\n\n앤트로픽 쪽은 상장과 함께 진행되는 핵심 투자자 사모(총 260억 달러)의 일부다. 이 사모에는 구글·엔비디아·AMD·마이크로소프트·브로드컴·마이크론 등도 들어간다. 오픈AI 투자는 가격, 기업가치, 일정, 어느 TSMC 법인이 사는지 모두 공개되지 않아 남은 쟁점이다.",
+   "title": "台積電出手！核准最高10億美元認購 Anthropic、OpenAI 股份",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIamVyZUdhcnZURlNidnktRVF6V21SXzdtYXlwQkplWTJBbG5UNWY2QnVfYldGN3M2VU9DenlobDJEQzNpcFI5cGxyWTJha01WUW1TRGZsLXN0QdIBX0FVX3lxTFBWb3UzQW1vMGJWRlRNalpqazBnSUQ2OGdheTNBNXFiNXVOWmRCNHZWYjVfVlppME9XU0JfU2NVbFpKdzJSbkNOLUVhOUpZcEl0NEdubUJTSm9QVWg1T180?oc=5",
+   "published": "2026-11-10 21:09 KST",
+   "written": "2026-11-10 21:48 KST"
+  },
+  {
    "id": "176d53b79f83",
    "kind": "news",
    "headline": "오픈AI 최대 투자자 소프트뱅크, 2분기(7~9월) 순손실 1조1,200억엔(약 70억달러) — 미국 데이터센터 발전설비 선지급금 손실 탓, 거의 2년 만의 적자",
@@ -1395,5 +1411,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-10 20:52 KST"
+ "updated": "2026-11-10 21:48 KST"
 }
