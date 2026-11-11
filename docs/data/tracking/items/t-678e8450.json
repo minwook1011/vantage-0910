@@ -3,6 +3,22 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "7bf5aabd01fb",
+   "kind": "news",
+   "headline": "과기정통부, GS건설 아파트 커뮤니티 예약·관리 시스템 해킹 직권조사 결정 — GS건설이 정부 조사 거부하고 자체 분석하겠다 하자 제동",
+   "bullets": [
+    "과학기술정보통신부가 11일 침해사고 조사 심의위원회를 열고 GS건설 아파트 커뮤니티 시설 예약·관리 시스템 해킹을 정부가 직접 조사하기로 했다.",
+    "GS건설은 10월 29일 사고를 신고했지만, 자체 분석하겠다며 과기정통부·한국인터넷진흥원 조사에는 동의하지 않았다. 입주민 개인정보 유출은 확인된 상태다.",
+    "정부는 피해 현황과 사고 원인을 확인하고, 중대한 사고로 판단되면 민관합동조사단 구성도 검토한다."
+   ],
+   "summary": "직권조사는 기업이 동의하지 않아도 정부가 조사에 나서는 절차다. 심의위원회는 정보 유출 규모와 유출된 정보의 민감성을 근거로 정부 차원의 조사가 필요하다고 봤고, 과기정통부는 추가 피해 가능성까지 따져 최종 결정했다. 침해사고 조사 심의위원회는 해킹 사고에 먼저 대응하려고 새로 만든 법정 위원회다.\n\n남은 쟁점은 유출된 입주민 정보의 범위와 침입 경로다. 조사 결과 중대 사고로 분류되면 민관합동조사단으로 확대돼, 최근 금융권·기업 연쇄 해킹처럼 조사 규모가 커질 수 있다.",
+   "title": "정부, GS건설 아파트 커뮤니티 시스템 해킹 직권조사 - 머니투데이",
+   "source": "머니투데이",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA0RThlVVdRaVNDN2FiaHdHLUhlU3IybzBDRktZb2pwbHJsaVJCS1I0Nzg3cGprM3k0R1J6dkR1aUh1X0lEUzdFNlNVQjJ1YjVwWUxMMmF5bUc2OUN3OUt6NkdFbUxOVDTSAWxBVV95cUxQLW9nU2JUT0FueWZtQWE2TlQ1VlhWTEp6aDlFVVhscTdXeFJfZmdhbWhnc2lPRzVucDB4bEhRNElJQXlXTWx6QzcyU0tXd2NrM3NfYl9PYWxwams1cDl1LVBCRzBDZVpua1VscHg?oc=5",
+   "published": "2026-11-11 17:39 KST",
+   "written": "2026-11-11 17:49 KST"
+  },
+  {
    "id": "f3a8b644d9bd",
    "kind": "news",
    "headline": "해킹 조직 'N0N', \"익스피디아 로열티 회원 데이터 8억3,000만 행 확보\" 주장 — 증거 미공개, 회사 확인 없어",
@@ -1219,5 +1235,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-11 16:48 KST"
+ "updated": "2026-11-11 17:49 KST"
 }
