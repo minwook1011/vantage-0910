@@ -491,6 +491,7 @@
   "pod:2026-11-10-sixsigma-VgMY44DUnOY",
   "pod:2026-11-10-understanding-hpZF_zMPXvk",
   "pod:2026-11-11-dumbmoney-w_okya-nJoA",
+  "pod:2026-11-11-sixsigma-M0YWF1PnOWU",
   "pod:2026-11-11-sixsigma-V3kZf4KbRnE",
   "price:2026-10-06",
   "trk:007810:bcca56c701f9",
@@ -1990,9 +1991,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:ymtc:7bf4397783b9": [
-   1385
-  ],
   "trk:msft:e21c413f532d": [
    1386
   ],
@@ -3526,6 +3524,9 @@
   ],
   "trk:t-678e8450:fcd755fd0212": [
    1828
+  ],
+  "pod:2026-11-11-sixsigma-M0YWF1PnOWU": [
+   1829
   ]
  },
  "topics": {},
