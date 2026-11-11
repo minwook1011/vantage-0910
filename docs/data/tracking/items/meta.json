@@ -3,6 +3,22 @@
  "slug": "meta",
  "items": [
   {
+   "id": "b0b76742c217",
+   "kind": "news",
+   "headline": "메타·틱톡도 구글 이어 인도네시아 'AI 저작권법' 개정안에 반대 — 뉴스 링크 대가 지급·AI 사용 표시 의무에 제동(로이터)",
+   "bullets": [
+    "인도네시아 의회 공청회에서 메타·틱톡이 구글과 함께 저작권법 개정안 일부 조항에 반대 의견을 냈다.",
+    "메타는 기사 링크로 독자를 보내는 것은 기사를 다시 싣는 것과 다르다며, 링크 대가를 물리면 언론사 유입·광고·구독 수익이 오히려 줄 수 있다고 주장했다.",
+    "틱톡은 AI를 보조로만 쓴 콘텐츠는 AI 사용 표시 의무에서 빼고, 플랫폼 면책(세이프 하버) 조항은 남겨 달라고 요청했다."
+   ],
+   "summary": "인도네시아 의회는 AI를 저작권법에 처음 담는 개정안을 심사 중이다. 통과되면 동남아에서 AI를 저작권법에 넣은 첫 나라가 된다. 앞서 알려진 초안은 사람이 기여한 AI 보조 창작물에 저작권을 인정하고, 특정 창작자의 고유한 화풍·문체를 AI가 흉내 내는 것을 막으며, 콘텐츠에 AI 사용 여부를 밝히도록 하는 내용이다.\n\n구글 인도네시아 정책 담당자는 플랫폼이 언론사 뉴스 링크를 보여 줄 때 보상하도록 하면 국민의 뉴스 접근이 줄어든다고 말했다. 틱톡은 플랫폼이 올라오는 모든 콘텐츠의 저작권·이용 허락을 확인할 수 없다는 점을 들어 면책 조항 유지를 요구했다.\n\n법안 통과 시점은 정해지지 않았다. 링크 대가 지급 조항이 그대로 남을지, 위반 시 영업 허가 취소 같은 제재가 붙을지가 남은 쟁점이다.",
+   "title": "Meta, TikTok join Google to push back on Indonesia's planned AI copyright law revisions",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOeDZLSGp0MHRPWUgzVTNmZEhMLWR6Z2lvdmZiQzRzblJobjdGdlRMUmhHV1dzM3lUUHdocXNoMnp4bFZHOEZtUU41T3BGT0d0blpyYnViSDZ3bklQNG50bnRyVmtYTE0xZTdWc0dDODhrd1hIRXVKTXVWMWVqWVY1aEFLN040QzJRMW40QzJzTHVYMjNEVTRuZ0NEdFI3eS1EV05WWDdjZ3g4TldaRnBrd01GY0lKckRvOTFCRUc5QVBXb0d2WHFaMXdPWno?oc=5",
+   "published": "2026-11-11 21:18 KST",
+   "written": "2026-11-11 22:48 KST"
+  },
+  {
    "id": "0b70d2d47b9d",
    "kind": "news",
    "headline": "브라질 선거법원, 메타에 750만헤알(약 130만달러) 벌금 — 대선 결선 때 법원 명령 일부 미이행, '고의적 선거 편향' 증거는 없다고 판단(로이터)",
@@ -577,5 +593,5 @@
    "written": "2026-10-10 13:48 KST"
   }
  ],
- "updated": "2026-11-11 21:52 KST"
+ "updated": "2026-11-11 22:48 KST"
 }
