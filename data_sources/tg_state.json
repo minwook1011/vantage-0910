@@ -77,6 +77,7 @@
   "digest:2026-11-09:asia",
   "digest:2026-11-10:asia",
   "digest:2026-11-10:us",
+  "digest:2026-11-11:asia",
   "digest:2026-11-11:us",
   "gpu:2026-10-06",
   "gpu:2026-10-07",
@@ -1997,9 +1998,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:michael-burry:c08bf2cc7bbc": [
-   1392
-  ],
   "trk:blog-techcrunch:2b3db7114d8b": [
    1393
   ],
@@ -3533,6 +3531,10 @@
   ],
   "trk:t-0a23e71f:927a3d1bf685": [
    1834
+  ],
+  "digest:2026-11-11:asia": [
+   544,
+   545
   ]
  },
  "topics": {},
