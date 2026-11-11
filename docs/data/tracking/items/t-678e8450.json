@@ -3,6 +3,22 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "eb0dd4d699b7",
+   "kind": "news",
+   "headline": "대만 디지털발전부 \"AI 해킹 피해 신고 기업 10여 곳, 그중 5~6곳은 대형사\" — 4대 AI 회사 모델로 정부 시스템 점검",
+   "bullets": [
+    "대만 디지털발전부(數發部) 린이징 부장은 AI를 쓴 공격으로 피해를 신고한 기업이 10여 곳이며, 그중 5~6곳은 규모가 큰 기업이라고 밝혔다.",
+    "공격자는 PHP·Node.js·깃랩 등 알려진 고위험 취약점으로 들어와, 권한 높은 API로 개인정보를 대량으로 빼냈다. 카드번호 탈취나 직접 협박 대신 개인정보를 암시장에서 사기 조직에 되파는 방식이다.",
+    "정부는 앤트로픽·오픈AI·구글·마이크로소프트 4곳의 AI 모델을 확보해 각 부처 시스템 취약점을 점검하고, 중대 경보는 72시간 안에 패치하도록 요구했다."
+   ],
+   "summary": "대만은 최근 전자상거래 업체 91APP 등 여러 회사가 연달아 뚫렸다. 정부는 중국에서 개발된 AI 에이전트형 자동 해킹 도구 '아르텍스(Artex)'와 연관이 있다고 보고 있으며, 일본·한국 피해가 더 크고 대만은 상대적으로 덜하다고 설명해 왔다. 대만 국가자통안전연구원은 이 도구의 침투 속도가 사람보다 최소 10배 빠르다고 실측했다.\n\n이번 발언은 피해 규모를 정부가 처음 숫자로 확인한 것이다. 직접 금전 피해는 작지만 빼낸 개인정보가 사기에 쓰여 간접 피해가 크다는 게 정부 판단이다. 민간 기업은 신고 의무가 없지만, 정부는 벌금 대신 지원 방식으로 개인정보 유출 72시간 내 신고를 유도하겠다고 했다.\n\n체크포인트는 AI 기반 공격이 랜섬웨어보다 '대량 개인정보 탈취'로 옮겨 가면서 고객 데이터를 많이 가진 중대형 기업의 보안 투자 수요가 커지는지다.",
+   "title": "AI資安攻擊升溫 數發部：已接獲10多家企業通報受害",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE42ZDI2RW1EMkg2TTF2cTlldDhLYW5DYzRmeFJKRnM1emIzanJKM2NaZE9adHpHTUlzUHNuaDlXUXhnOEZlLTFMYko0eVY3M3E0SWpVOG1aNkc5UdIBX0FVX3lxTFB0RVlhNTdmbUE0MzdxQlJEemVpLVA5d3RQLUp1amJkUGxrc0VwczJsRHVXdEJRSkVFdDEzYTgtNUhQaDh6Z3REeTkxcVBuWm9rVkN2bFEzYnIzTFVWbFlj?oc=5",
+   "published": "2026-11-11 18:55 KST",
+   "written": "2026-11-11 19:19 KST"
+  },
+  {
    "id": "7bf5aabd01fb",
    "kind": "news",
    "headline": "과기정통부, GS건설 아파트 커뮤니티 예약·관리 시스템 해킹 직권조사 결정 — GS건설이 정부 조사 거부하고 자체 분석하겠다 하자 제동",
@@ -1235,5 +1251,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-11 17:49 KST"
+ "updated": "2026-11-11 19:19 KST"
 }
