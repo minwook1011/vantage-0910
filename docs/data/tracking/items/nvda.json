@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "55df7744ba40",
+   "kind": "news",
+   "headline": "베어드, 엔비디아 '중립'으로 강등 — 목표가 500달러→200달러, 2027년 데이터센터 전망 가시성 떨어져",
+   "bullets": [
+    "베어드 트리스탄 게라 애널리스트가 엔비디아 투자의견을 '시장수익률 상회'에서 '중립'으로 내리고 목표가를 500달러에서 200달러로 낮췄다.",
+    "가장 큰 이유는 공급 제약으로 2027년 데이터센터 예측이 흔들릴 수 있다는 점이고, 수요 둔화 가능성도 함께 들었다.",
+    "대형 클라우드 회사 설비투자 증가율이 2027년 40% 이하로 둔화될 수 있고, 유통 파트너의 선제적 주문 축소 위험 노출도 10~30%로 추정했다."
+   ],
+   "summary": "월가에서 엔비디아 투자의견 하향은 드물다. 베어드는 공급 제약 때문에 2027년 데이터센터 매출 전망을 믿고 쓰기 어려워졌다고 봤다. 수요가 약해질 가능성도 배제하지 않았다.\n\n그 밖의 위험으로는 하이퍼스케일러(대형 클라우드 회사) 설비투자 증가율이 2027년 40% 안팎이나 그 아래로 둔화될 가능성, 유통 파트너가 미리 주문을 줄일 수 있는 노출도(10~30%), 젠슨 황 CEO의 2027년 재임 여부 불확실성을 꼽으며 당분간 주가가 박스권에 머물 것으로 예상했다.\n\n발표 전 엔비디아 주가는 168.89달러로 일주일 새 15.6% 빠져 52주 최저(164.27달러) 바로 위였다. 반면 뱅크오브아메리카는 '매수'와 목표가 350달러를 유지했다. 엔비디아는 다음 주 분기 실적을 발표한다.",
+   "title": "Nvidia stock gets a rare Wall Street downgrade on supply issues",
+   "source": "Yahoo Finance Singapore",
+   "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQaEE0eUhyalNzN3dXaUhqM3Qwak5tdERiSmx1bzNFTWJkY3F6QUFBdDdWdFNmZ2xBaHg5dUFoU2VJcDdiYWdQWHJoUmxBYnl2WWg1Y1VCeUE4RmRrbWFQYWZXNXBFd2E2QjZqLXZIVTJ2WXU4ZURIbWEtVjhtVVpYNzd3?oc=5",
+   "published": "2026-11-11 21:26 KST",
+   "written": "2026-11-11 21:52 KST"
+  },
+  {
    "id": "6045c5d4e5a1",
    "kind": "news",
    "headline": "로이터 단독 \"미 블랙리스트 오른 중국 군 연계 서북공업대, 엔비디아 H200 2개를 87만4,700위안(약 12만3,000달러)에 샀다\"",
@@ -1075,5 +1091,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-11 14:48 KST"
+ "updated": "2026-11-11 21:52 KST"
 }
