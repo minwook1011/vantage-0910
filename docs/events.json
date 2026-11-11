@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-10",
+ "updated": "2026-11-11",
  "events": [
   {
    "id": "ces-2026",
@@ -1217,12 +1217,22 @@
    "date_start": "2026-11-05",
    "date_end": "2026-11-10",
    "month": "2026-11",
-   "status": "previewed",
+   "status": "done",
    "preview": "미중 무역 갈등 국면에서 중국이 어떤 해외 산업을 '수입 환영' 대상으로 삼는지가 드러나는 정책 신호 이벤트다. 개막식 최고지도부 연설에서 나오는 개방 확대·관세 조정 언급이 소비재·화장품·의료기기·자동차 업종의 대중국 수출 기대에 반영된다. 국내에서는 화장품(아모레퍼시픽·LG생활건강)과 식품·소비재 업체의 중국 유통 계약 발표가 이 기간에 집중되는 경향이 있다. 반도체 장비·부품은 수출 통제 대상이라 참가가 제한적이지만, 자동차·배터리 소재의 중국 내 조달 정책 변화 언급은 국내 소재사에 양방향 리스크다. 소비 부양책이 함께 발표되면 중국 소비 관련주 전반의 단기 모멘텀이 형성된다.",
-   "summary": "중국 국제수입박람회(CIIE)는 2018년 시작된 중국 정부 주도의 수입 촉진 박람회로, 제9회는 2026년 11월 5~10일 상하이 국가회전중심에서 열린다. 전시 면적 20만㎡ 규모로 소비재, 기술장비, 자동차, 의료기기, 식품·농산물 등으로 전시관이 구성된다. 중국 상무부와 상하이시가 공동 주최하며 개막식에서 최고지도부의 대외개방 메시지가 나오는 것이 관례다.",
+   "summary": "11월 5~10일 상하이 국가회전중심에서 예정대로 열렸다. 행사 기간 중 보도(11월 8일 기준)에 따르면 중국석유(CNPC)의 조달 계약이 188억달러를 넘었고, 집중 계약홀에서 60여 차례 집중 계약 행사가 열려 100여 개 구매 기업이 참여해 400건 이상의 협력 의향이 맺어졌다. 참고로 전년(제8회)의 1년 기준 의향 거래액은 834억9천만달러였다. 제9회 폐막 기준 의향 거래 총액은 이 정리 시점에 확인하지 못했다.",
    "full": "",
    "added": "2026-08-30",
-   "updated": "2026-08-30"
+   "updated": "2026-11-11",
+   "sources": [
+    {
+     "label": "광명망 — 逛进博 看成果|记者观察:签约速度展现合作信心",
+     "url": "https://m.gmw.cn/2026-11/09/content_1304584015.htm"
+    },
+    {
+     "label": "WAM — CIIE concludes with record-high intended deals (제8회, 2025)",
+     "url": "https://www.wam.ae/en/article/bmnbc9k-ciie-concludes-with-record-high-intended-deals"
+    }
+   ]
   },
   {
    "id": "web-summit-2026",
@@ -2348,12 +2358,22 @@
    "date_start": "2026-11-10",
    "date_end": "2026-11-10",
    "month": "2026-11",
-   "status": "previewed",
+   "status": "done",
    "preview": "독일 반도체·자동차 산업과 imec의 협력을 조명하는 특별 포럼으로, 인피니언·보쉬 등 독일 반도체·전장 기업의 차세대 공정 채택 전략이 핵심 관전 포인트다. 유럽 최대 자동차 산업 기반인 독일에서 열리는 만큼 전력반도체(SiC)·차량용 마이크로컨트롤러·센서 로드맵 논의 비중이 크다. 유럽의 반도체 공급망 자립 정책(유럽반도체법)과 imec 연구 성과의 상업화 속도가 유럽 반도체 장비·소재 수주를 노리는 국내 기업들에 참고가 된다. 독일 완성차·전장업체의 SDV(소프트웨어 정의 차량) 전환 속도와 맞물린 반도체 수요 변화도 함께 짚어볼 대목이다.",
-   "summary": "imec이 독일 뮌헨에서 여는 특별 기술 포럼으로, 독일 반도체·자동차 산업 생태계와의 협력을 주제로 한다. 전력반도체와 차량용 반도체 로드맵이 주요 발표 내용이다.",
+   "summary": "11월 10일 SEMICON Europa(뮌헨) 기간 중 Hall C1 이그제큐티브 포럼에서 오후 1시 15분~5시 30분 열렸다. 사전 공개 프로그램 기준으로 경쟁력 강화·반도체 생태계 구축·AI 컴퓨팅 가속을 주제로 로직·메모리·칩렛·첨단 패키징·포토닉스·시스템 아키텍처를 다뤘고, imec CEO 파트릭 반데나멜레가 세션을 이끌었다. 발표 세부 내용은 이 정리 시점에 확인하지 못했다.",
    "full": "",
    "added": "2026-09-19",
-   "updated": "2026-09-19"
+   "updated": "2026-11-11",
+   "sources": [
+    {
+     "label": "imec — ITF Chip into the Future 2026",
+     "url": "https://www.imec-int.com/en/events/itf-chip-futurea-semiconr-europa-2026"
+    },
+    {
+     "label": "SEMI — Conversation with imec CEO ahead of SEMICON Europa 2026",
+     "url": "https://www.semi.org/en/blogs/from-better-chips-to-better-systems-a-conversation-with-imec-ceo-patrick-vandenameele-ahead-of-semicon-europa-2026"
+    }
+   ]
   },
   {
    "id": "imec-itf-japan-2026",
@@ -2917,15 +2937,23 @@
    "date_start": "2026-11-10",
    "date_end": "2026-11-10",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "미국 노동통계국이 발표하는 10월 소비자물가지수로, 2026년 11월 10일 오전 8시 30분(ET, 한국시간 22시 30분) 공개된다. 헤드라인·근원 CPI와 주거비·에너지 등 세부 항목이 나온다.",
+   "status": "done",
+   "summary": "BLS가 11월 10일 발표한 10월 CPI는 계절조정 전월 대비 0.4% 올랐고, 식품·에너지를 뺀 근원 CPI는 0.3% 올랐다. 에너지 0.7%, 식품 0.5%, 주거 0.3% 상승이다. 2025년 셧다운으로 2025년 10월 지수가 없어 일부 전년 대비 수치는 발표되지 않았다. 발표 전 MUFG 전망은 헤드라인 0.29%, 근원 0.23%였다.",
    "full": "",
    "added": "2026-10-04",
-   "updated": "2026-10-04",
+   "updated": "2026-11-11",
    "sources": [
     {
      "label": "BLS — Schedule of Releases for the Consumer Price Index",
      "url": "https://www.bls.gov/schedule/news_release/cpi.htm"
+    },
+    {
+     "label": "MUFG Research — US Inflation Update (11/10 프리뷰)",
+     "url": "https://www.mufgresearch.com/macro/us-inflation-update-november-10-2026/"
+    },
+    {
+     "label": "BLS — Consumer Price Index News Release (October 2026)",
+     "url": "https://www.bls.gov/news.release/cpi.htm"
     }
    ]
   },
@@ -4269,15 +4297,19 @@
    "date_start": "2026-11-10",
    "date_end": "2026-11-10",
    "month": "2026-11",
-   "status": "upcoming",
-   "summary": "반도체 테스트·핸들러 장비 업체 코후가 11월 10일 뉴욕에서 투자자 행사를 연다. 주요 고객사 AMD가 기조연설을 맡고 웹캐스트로 공개된다.",
+   "status": "done",
+   "summary": "코후가 11월 10일 뉴욕에서 투자자 행사(오전 9시~정오)를 열었다. 회사는 사전 공지에서 전략·성장 플랫폼·재무 목표·자본 배분 우선순위를 다룬다고 밝혔고, 주요 고객사 AMD가 기조연설을 맡았다. 직전 3분기 실적에서는 4분기 매출 가이던스 1억7,800만달러(±700만달러), 2026년 HPC 매출 약 1억2천만달러를 제시하며 2027년 재무 목표는 이 행사에서 공개한다고 했다. 행사에서 발표된 목표 수치는 이 정리 시점에 확인하지 못했다.",
    "full": "",
    "added": "2026-11-02",
-   "updated": "2026-11-02",
+   "updated": "2026-11-11",
    "sources": [
     {
      "label": "Finviz — Cohu Investor Day",
      "url": "https://finviz.com/news/400326/cohu-to-host-investor-day-on-november-10-2026"
+    },
+    {
+     "label": "FinSee — Cohu Q3 2026 earnings review",
+     "url": "https://finsee.ai/earnings/cohu/2026/q3/en/"
     }
    ]
   },
