@@ -1,0 +1,233 @@
+{
+ "id": "2026-11-12-ontape-guy-adami-the-market-is-pricing-in-great-expecta",
+ "title_ko": "Guy Adami — 시장은 '큰 기대'를 가격에 넣고 있다: Nvidia 스캔들·CoreWeave·Anthropic 상장",
+ "guest": {
+  "name": "가이 아다미(Guy Adami) · 대니 모지스(Danny Moses)",
+  "role": "CNBC Fast Money 원년 출연자와 'The Big Short'의 FrontPoint 트레이더 출신 진행자의 생방송 시장 대담"
+ },
+ "guest_profile": [
+  {
+   "name": "가이 아다미(Guy Adami)",
+   "title": "CNBC 'Fast Money' 원년 출연자 · RiskReversal Media 'MRKT Call' 진행",
+   "what": "Dan Nathan과 함께 RiskReversal Media의 방송을 진행하고, 이번 편처럼 생방송 'MRKT Call'에서 시장을 짚는다. Private Advisor Group에서 자문가 지원 업무를 맡았다(현재 재직 여부는 자료마다 다름).",
+   "career": "1986년 Drexel Burnham Lambert에서 시작해 금 트레이딩 책임자가 됐다. 1996년 Goldman Sachs(J. Aron 원자재 부문)로 옮겨 금 트레이딩을 맡았고, 2000년 미국 주식 부문에서 산업재·소재 그룹을 이끌었다. 2003년 CIBC World Markets 상무로 이동했고, 이후 CNBC 'Fast Money' 원년 고정 출연자가 됐다.",
+   "track": "공개된 운용 수익률 없음. 대형 증권사 원자재·주식 트레이딩 책임자를 지낸 경력이 확인된다.",
+   "why": "금·원자재 트레이더 출신이라 금리·금·유가를 주식과 엮어 읽는다. 이번 편에서는 Nvidia 마진과 채권 금리 반등을 회의적으로 본다."
+  },
+  {
+   "name": "대니 모지스(Danny Moses)",
+   "title": "On The Tape 진행자 · Seawolf Capital 공동창업자(전) · Moses Ventures",
+   "what": "외부 자금 없이 본인 자금을 굴리고, Moses Ventures로 비상장 투자·자문을 한다. Porter Collins·Vincent Daniel과 함께 뉴스레터 'What Are We Doing? Contrarians at the Gate'를 쓴다.",
+   "career": "Emory 대학을 졸업하고 채권 보증사 MBIA 애널리스트로 시작했다. Oppenheimer 기관 주식 영업에서 Steve Eisman·Vincent Daniel을 만났고, 2006년 Eisman의 FrontPoint Partners에 합류해 트레이딩을 맡았다. 2011년 동료들과 Seawolf Capital을 세웠다.",
+   "track": "FrontPoint 시절 서브프라임 모기지 붕괴에 건 베팅으로 Michael Lewis의 'The Big Short'(책·영화)에 등장했다. 개인 운용 수익률은 공개되지 않아 확인 못 함.",
+   "why": "금융위기 때 구제 프로그램을 직접 겪은 트레이더라, AI 거래가 흔들리면 정부가 같은 플레이북을 꺼낼 수 있다는 시각과 Anthropic 공모 구조 분석이 이 편의 중심이다."
+  }
+ ],
+ "company": {
+  "name": "Anthropic(상장 예정 ANT) · Nvidia · CoreWeave · Tidewater",
+  "sector": "AI 인프라 · 금리 · 에너지 · 금",
+  "what": "Anthropic 상장 구조와 Nvidia 스캔들, 네오클라우드 부채, 연준 인상으로 본 'AI 거래의 기대치'"
+ },
+ "topic": "Nvidia 스캔들·CoreWeave 감가상각·Anthropic 상장 구조로 본 AI 거래의 균열과, 연준 인상·부채가 시장에 주는 부담",
+ "headline": "지수는 선거 전과 같지만 AI 거래엔 균열 — Anthropic 공모 구조·Nvidia 스캔들·CoreWeave 부채, 그리고 오르는 금리",
+ "tldr": [
+  "Anthropic 수정 S-1: 10월 말 연환산 매출 810억 달러, 공모가 상단 기업가치 약 1.4조 달러 — Moses는 성장 둔화·토큰 가격 하락·순환 투자를 문제 삼음",
+  "Nvidia는 CEO 스캔들로 'Jensen 프리미엄'이 빠지는 중 — Adami는 76% 마진이 꺾이는 순간을 경계",
+  "선거 뒤 S&P 500은 제자리지만 2년물 금리는 올라 자본 비용 상승, 12월 인상은 기정사실·50bp 확률 13%",
+  "CoreWeave의 GPU 6년 감가상각과 기간 대출 의존을 '금융 곡예'로 봄 — Anthropic이 큰 고객이라 모두 연결",
+  "AI 거래가 무너지면 2008년식 정부 구제 플레이북이 다시 나올 수 있다는 경고 — 부채·적자는 아직 가격에 안 들어감",
+  "에너지주는 유가 하락 때 과하게 빠지면 매수, 금은 중앙은행 매입(분기 약 300톤)을 근거로 약세 때 매수"
+ ],
+ "summary_md": "### 1. 선거 전과 똑같은 지수, 속은 크게 바뀌었다\n- 진행자 Guy Adami는 선거 전날 잠들었다가 지금 깨어났다면 S&P 500이 **제자리**라 아무 일도 없었던 것처럼 보일 거라고 운을 뗐다. 그 사이 지수는 200일 이동평균선까지 내려갔다가 되돌아왔다.\n- Danny Moses는 중간선거 다음 해의 계절적 강세와, 정책 변화가 실제로 무엇을 뜻하는지(이건 2027년의 문제)가 서로 다투고 있다고 정리했다. 강세론도 약세론도 그릴 수 있지만 그는 밸류에이션 때문에 약세 쪽으로 기운다.\n- 그가 더 걱정하는 건 **주도주의 이탈**이다. 지난주 필수소비재가 반등을 이끌었는데, 주도주가 빠지는 이유가 경기 둔화와 맞물린다면 시장 전체의 적정 가치를 다시 따져야 한다. 인플레이션은 정점일 수 있지만, 내려간다면 수요 파괴 때문일 수 있다는 점도 짚었다.\n- Adami는 Doug Kass가 선거 결과·전쟁 종식 가능성·데이터센터 투자 등을 근거로 덜 비관적으로 돌아섰다는 메모를 소개하면서도, 자신이 걱정하던 문제는 그대로라고 했다. 반도체 ETF(SMH)는 6월 중순에 고점을 찍었고, 메모리 종목 일부는 반 토막 이상 났다.\n\n### 2. 하이퍼스케일러와 공급망의 '시소', 그리고 CoreWeave\n- Moses는 시장이 하이퍼스케일러(Amazon·Microsoft 등)와 그들이 돈을 쓰는 곳(칩·메모리)을 정반대로 평가한다고 설명했다. 설비투자를 많이 하면 하이퍼스케일러를 벌주고 칩을 사고, 투자가 줄면 반대로 움직인다.\n- CoreWeave는 실적 발표 뒤 2주 전 주가로 돌아갔다. 공매도 잔고가 큰 상태에서 '예상보다 좋은' 분기가 나와 숨 돌릴 틈을 줬지만, Moses는 이 모델이 돌아가려면 GPU 가격이 7년 넘게 높게 유지돼야 한다고 봤다.\n- Adami는 CoreWeave가 GPU를 **6년에 걸쳐 감가상각**하는 점을 문제 삼았다. 경쟁이 빠르게 붙는 걸 보면 훨씬 짧은 기간으로 잡아야 하고, 그러면 경제성이 바뀐다는 주장이다(그는 과장 섞어 '6개월'이라고까지 말했다).\n- Moses는 장기 회사채가 비싸져 기간 대출(term loan)로 갈아타는 것을 '금융 곡예'라고 불렀다. 월가가 신용한도를 열어 줘 버티겠지만, 장기 부채가 350억~360억 달러라 기업가치가 얼마인지 모르겠다고 했다. 그리고 **Anthropic이 큰 고객**이라 모든 게 이어져 있다고 덧붙였다.\n\n### 3. Anthropic 수정 S-1 읽기\n- Adami는 11월 5일 Wall Street Journal 기사를 인용해, Anthropic 기업가치 기대가 한때 2조 달러였지만 1조 달러 가까이 낮아질 수 있다는 시각도 있다고 전했다.\n- Moses는 Hyperliquid의 상장 전 선물이 1.4조~1.5조 달러 수준에서 거래된다고 소개했다. 수정 S-1에서는 9월 말 연환산 매출(run-rate) 710억 달러, 10월 말 **810억 달러**가 나왔다. 10월 컴퓨트 비용은 공개하지 않았다.\n- 그의 비판은 세 갈래다. 첫째, 시장은 여전히 매출 성장으로 값을 매기는데 그 성장률이 둔화되고 있다. 둘째, 매출이 토큰 가격에 달려 있는데 토큰 가격은 급락 중이고 OpenAI와 경쟁한다. 셋째, 마지막 사모 투자(5개월 전, 투자 전 9,000억 달러에 650억 달러 조달)보다 낮게 상장할 수 없으니 가격이 사실상 정해져 있다.\n- 구조도 짚었다. 하이퍼스케일러와 반도체 회사들이 약 **260억 달러**를 사모로 넣고(서로가 서로를 필요로 하는 **순환 투자**), 공모로 600억 달러대 중반을 새로 조달한다. 경영진 7명이 2억 5,000만 달러씩 총 17억 5,000만 달러를 판다. 그는 이것을 코끼리 등 위의 개미에 비유하며 큰 의미는 없다고 봤고, 차등 의결권으로 경영진이 과반 의결권을 유지한다는 점, 보호예수 구조가 전통적이지 않다는 점을 덧붙였다.\n\n[[chart:1]]\n\n- 결론적으로 그는 앞으로 필요한 자본이 수천억 달러라 주식을 자금 조달에 쓸 것이고, 주가가 크게 오르기는 어렵다고 봤다. 4분기~1분기 경제성을 보여 준 뒤 상장했다면 시장 심리에 더 좋았겠지만, 회사는 창이 열렸을 때 하려는 것이라는 해석이다. OpenAI의 상대 가치에도 좋은 소식은 아니라고 했다.\n\n### 4. Nvidia — 'Jensen 프리미엄'이 빠지는 중\n- Adami는 CoreWeave 상장 때 Nvidia가 사실상 최후의 매수자 역할을 했던 점을 상기시키며, 지금 상황에서도 그럴 수 있느냐고 물었다. Moses는 Nvidia가 이번 Anthropic 사모에도 참여하는 등 이미 돈을 넣었고, 현금이 많아 **순환 투자**를 당장 거두지는 않을 것이라고 봤다.\n- 다만 스캔들과 중국 판매 문제로 회사의 성격이 바뀔 수 있다는 신뢰 문제가 주가에 반영되고 있다고 했다. 그는 실적은 좋을 것이라 보지만, 주가가 반등해도 기대만큼은 아니라고 했다.\n- Adami는 Nvidia의 **76% 마진**이 영원할 수 없고, 역사적으로 마진이 꺾일 때 이런 종목에서 빠져나와야 했다고 주장했다. 워터게이트에 빗대, 문제는 사건 자체보다 은폐 여부이며 그게 드러나면 상황이 위험해진다고 했다.\n- Moses는 Nvidia 시가총액이 1조 5,000억 달러 넘게, Anthropic의 이론적 가치가 6,000억~7,000억 달러 빠졌는데도 지수가 거의 그대로라는 점에서 시장이 놀랄 만큼 버틴다고 했다. 돈이 미국 주식 안에서 자리만 옮기는 중이라는 진단이다. 반도체는 결국 상품이라 교체 주기가 짧아지면 총마진이 50% 아래로 간다는 게 그의 시각이고, 문제는 시점이다.\n\n### 5. 부채·적자, 그리고 정부의 '구제 플레이북'\n- Moses는 2008년 이후 연준·재무부가 만든 지원 프로그램(TARP·TALF·PPIP 등)을 정리한 자신들의 뉴스레터 글을 소개했다. 코로나 때 PPP, 실리콘밸리은행 사태 때 또 다른 장치가 붙었고, 결국 위험을 민간에서 공공 대차대조표로 옮겼을 뿐이라는 것이다. 미국 부채는 40조 달러를 넘었고 연준 보유 자산은 6조 6,000억~6조 7,000억 달러다.\n- 그는 AI 거래가 무너지면 이 **구제 플레이북**이 다시 나올 수 있다고 봤다. AI가 경제·월가·사모펀드·전력회사·지자체에 그만큼 중요하다는 뜻이다. Adami는 소비가 70%였던 미국 성장이 최근엔 AI 설비투자에 크게 기대고 있어, AI가 둔화되면 GDP와 연준 모두에 영향이 크다고 덧붙였다.\n\n### 6. 연준 인상, 2년물 금리, 그리고 '큰 기대'\n- Moses는 12월 연준 인상이 거의 확실해졌고 **50bp 인상** 확률이 13%라고 전했다. Bessent 재무장관이 장기 대신 단기 국채를 많이 찍는 상황에서 2년물 금리가 크게 뛰었다는 점, 선거 뒤 주가는 제자리지만 금리는 올랐다는 점을 강조했다. 자본 비용이 오른다는 뜻이다.\n- 헤지펀드 손실·멀티매니저 '포드' 정리, 레버리지 축소, VIX가 18에서 28로 갔다가 20 부근으로 돌아온 것도 언급했다. 그는 부채·적자 문제가 전혀 가격에 들어가 있지 않다고 봤다.\n- Adami는 한 달여 전 10년물 금리가 장중 고점에서 반락한 날 반등 신호를 짚었는데, 이번 채권 랠리는 과매도 반등일 뿐 금리는 다시 오를 것이라 봤다. Moses도 공매도 쪽으로 쏠린 포지션이 풀린 것이라고 동의했다. 실적·AI·인플레이션 기대가 모두 높다는 뜻에서 제목의 'Great Expectations'가 나왔다.\n\n### 7. 에너지와 금\n- Moses는 유가가 100달러에서 90달러로 내릴 때 에너지주가 20~25% 빠지는 걸 보면 **에너지 매수 기회**라고 봤다. 해양 시추 지원선 회사 Tidewater를 현금흐름이 좋고 싸다고 예로 들었고, 유가가 80달러 아래로 가도 급락 때 산다고 했다. Adami는 XLE가 고점 대비 10~11% 하락에 그쳐 원유 하락폭보다 작다는 점에서 에너지 거래가 살아 있다고 했다.\n- 금은 연준 긴축과 법정화폐 신뢰 사이에서 줄다리기 중이다. Moses는 결국 연준이 돈을 찍게 될 것이라며 약세 때 매수한다고 했고, Adami는 지난 분기 **중앙은행 금 매입**이 약 300톤이라 연간으로 1,200톤 수준이라고 짚었다.",
+ "insights_md": "### 투자 관점\n- **Anthropic 상장(ANT)이 AI 자금줄의 시험대**다. 공모가가 사모 가격(9,650억 달러, 투자 후 기준)보다 높게 잡혀 있어 기존 투자자는 손해가 없지만, 상장 뒤 주가가 사모 가격 근처로 밀리면 OpenAI 등 다른 비상장 AI 기업의 가치 평가에도 부담이 된다. 공모 물량의 20%가 개인 투자자 몫이라는 점도 변동성을 키울 수 있다.\n- **순환 구조**가 핵심 리스크다. Nvidia·AMD·Broadcom·Google·Microsoft·Micron·TSMC가 Anthropic 지분을 사고, Anthropic은 그 회사들의 칩·클라우드를 산다. CoreWeave는 Anthropic을 큰 고객으로 두고 있다. 한쪽이 흔들리면 연쇄로 영향을 받는 구조다.\n- 관련 상장사: 미국 Nvidia(NVDA)·AMD·Broadcom(AVGO)·Micron(MU)·CoreWeave(CRWV)·Amazon·Alphabet·Microsoft, 한국 SK하이닉스·삼성전자(5월 라운드 전략 파트너로 참여), 대만 TSMC. 에너지 쪽은 Tidewater(TDW)·XLE·OIH, 금은 GDX·GDXJ.\n- **GPU 감가상각 기간**은 네오클라우드 이익의 열쇠다. 6년이 맞으면 지금 이익이 유지되고, 짧아지면 손실이 커진다. 금리가 오르는 환경에서 부채가 많은 회사일수록 이 가정에 민감하다.\n- 금리: **12월 인상**이 기본 시나리오가 됐고 50bp 가능성도 열려 있다. 2년물 상승은 단기 차입에 기대는 기업의 자본 비용을 바로 올린다.\n\n### 반론·리스크\n- Moses의 '매출 성장 둔화' 주장은 외부 자료와 엇갈린다. 연환산 매출은 4월 300억 달러대 → 5월 470억 → 10월 말 810억 달러로 **한 달 100억 달러씩** 늘고 있다. 둔화는 '증가율'의 문제이지 절대 증가폭은 오히려 커지고 있다.\n- Nvidia 스캔들은 아직 **형사 기소**가 없고, 회사는 Huang이 CEO를 계속 맡는다고 밝혔다. 진행자들의 '은폐' 시나리오는 가능성 이야기일 뿐이다.\n\n### 체크포인트\n- 11월 18일 Anthropic 공모가 확정·19일 Nasdaq 거래 시작, Nvidia 실적과 이사회 조사 결과, 12월 9일 FOMC(25bp vs 50bp), CoreWeave 10-Q의 감가상각 가정.",
+ "deep_md": "### 1. 출연자·숫자 팩트 체크\n- 대본에서: Moses는 Anthropic의 연환산 매출이 9월 말 710억, 10월 말 810억 달러이고, 마지막 사모 투자는 투자 전 9,000억 달러에 650억 달러를 조달했다고 했다.\n- 외부 자료로 확인한 것: CNBC에 따르면 수정 S-1은 10월 말 연환산 매출을 약 **810억 달러**로 적었고 9월보다 100억 달러 많다. 5월 28일 시리즈 H는 650억 달러 조달, 투자 후 기업가치 9,650억 달러였다(투자 전 9,000억 달러와 일치). 이 금액엔 하이퍼스케일러가 이미 약속한 150억 달러가 들어 있다.\n- 공모 조건: 주당 70~78달러, 8억 2,500만 주, 상단 기준 순조달 최대 643억 5,000만 달러, 완전 희석 기업가치 최대 **1조 4,050억 달러**. 대본의 '600억 달러대 중반 공모'와 맞고, Hyperliquid 선물 가격(1.4조~1.5조 달러)과도 비슷하다. 11월 18일 가격 확정, 19일 Nasdaq(ANT) 거래 예정.\n- 순환 투자: AMD·Broadcom·Google·Micron·Microsoft·Nvidia·TSMC가 공모가로 260억 달러어치 Class N 주식을 사모로 사기로 했다. 대본의 '260억 달러'가 정확하다. 이 주식은 인수단 보호예수 대상이 아니다. 경영진 매도 17억 5,000만 달러는 외부 자료로 확인 못 함.\n\n[[chart:2]]\n\n- 손익: 1~9월 매출 332억 4,000만 달러(전년 대비 약 1,200% 증가), 순손실 **1,040억 달러**(대부분 전환사채·파생상품 공정가치 변동). 컴퓨트 구매 약정은 **8,954억 달러**다. 대본이 걱정한 '앞으로 필요한 자본'의 크기가 이 숫자로 드러난다.\n\n### 2. CoreWeave와 Nvidia\n- CoreWeave 3분기(11월 10일): 매출 36억 6,000만 달러(+168%), 순손실 7억 900만 달러, 수주잔고 **1,325억 달러**(6월 1,040억). 부채는 6월 말 351억 → 9월 말 469억 달러로 늘었다. 대본의 '350억~360억 달러'는 6월 말 수준이고, 최신 숫자는 더 크다. 일부 회사채 수익률이 **16%**를 넘었고, 회사는 2027년까지 모회사 차원의 무담보 채권을 새로 내지 않겠다고 했다. 대본의 '장기 채권 대신 대출' 설명과 같은 방향이다.\n\n[[chart:3]]\n\n- 감가상각: 6년 정액 상각은 2025년 상장 신고서에 나온 정책이다. 3분기 현재 기준은 10-Q로 다시 확인해야 한다(확인 못 함). 3분기 감가상각비는 약 18억 9,000만 달러였다. 경영진은 GPU 사용 연한보다 긴 계약을 맺고 있다며, 후반부엔 감가상각이 끝나 마진이 오른다고 반박한다.\n- Nvidia: 이사회가 Huang CEO와 중국 정보기관 연루 의혹 인물의 관계를 조사하려고 전직 연방검사를 고용했다. The Information은 이 인물이 연관된 네트워크가 **75억 달러** 넘는 칩의 중국 판매를 도왔다고 보도했다. 주가는 4% 넘게 빠졌다가 반등했고, 형사 기소는 없다. 대본의 '시가총액 1조 5,000억 달러 증발'과 '17일 실적 발표'는 이번 검색에서 확인 못 함.\n\n### 3. 숫자의 맥락 — 금리와 금\n- 연준: 10월 CPI가 높게 나온 뒤 CME FedWatch 기준 12월 25bp 인상 확률은 일주일 새 약 72%에서 **88.8%**로 뛰었다. 50bp 인상 확률은 자료에 따라 9~14%로, 대본의 13%와 맞다. Waller 이사가 '50bp도 검토해야 한다'고 말한 것이 계기였고 2년물 금리는 하루에 약 0.2%p 올랐다. 연준은 10월 28일 3.75~4.00%로 동결했다(10대 2, 반대 2명은 인상 주장).\n\n[[chart:4]]\n\n- 금: World Gold Council에 따르면 3분기 중앙은행 순매입은 약 **321톤**으로 1년 전보다 42% 많고 5년 분기 평균(227톤)을 크게 웃돈다. 대본의 '300톤'은 이보다 조금 적게 말한 것이다. 이 중 공식 보고된 것은 120톤뿐이고, 1~9월 누적은 675톤이다.\n\n[[chart:5]]\n\n### 4. 밸류체인과 반론\n- 밸류체인: Anthropic 사모 참여사(Nvidia·AMD·Broadcom·Micron·TSMC·Google·Microsoft)와 5월 전략 파트너(SK하이닉스·삼성전자·Micron)가 모두 Anthropic의 컴퓨트 구매 약정과 얽혀 있다. 이 고객이 흔들리면 메모리·GPU·클라우드가 함께 영향을 받는다.\n- 반론: 진행자들은 두 사람 다 오래 AI 거래에 회의적이었다. 매출이 한 달 100억 달러씩 늘고 공모 수요가 이미 공모가 범위에서 채워졌다는 점은 시장이 아직 성장을 믿는다는 증거다. CoreWeave도 수주잔고와 연간 가이던스를 올렸다. 반대로 WSJ 보도처럼 기관 투자자 일부가 1조 달러 근처를 적정가로 본다는 점은 진행자 시각과 맞는다.\n- Tidewater 3분기 숫자는 회사 자료로 확인하지 못해 싣지 않았다.\n\n### 5. 앞으로 볼 것\n- 11월 18~19일 Anthropic 공모가와 첫날 거래, Nvidia 실적 발표와 이사회 조사 결과, 12월 9일 FOMC 결정과 12월 10일 11월 CPI, 그리고 CoreWeave가 다음 분기에 감가상각 연한을 바꾸는지.",
+ "sources": [
+  {
+   "label": "CNBC — Anthropic 공모가 범위 70~78달러, 8억 2,500만 주, 기업가치 최대 1조 4,050억 달러, 연환산 매출 810억 달러, 260억 달러 Class N 사모(2026-11-10)",
+   "url": "https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html"
+  },
+  {
+   "label": "PYMNTS — Anthropic 시리즈 H 650억 달러, 투자 후 9,650억 달러(2026-05)",
+   "url": "https://www.pymnts.com/artificial-intelligence-2/2026/anthropic-becomes-worlds-most-valuable-ai-startup-at-965-billion/"
+  },
+  {
+   "label": "Yahoo Finance — 시리즈 H에 하이퍼스케일러 약정 150억 달러 포함, SK하이닉스·삼성·Micron 전략 파트너, 연환산 매출 470억 달러",
+   "url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-hits-965-billion-valuation-104626610.html"
+  },
+  {
+   "label": "Xenospectrum — WSJ: 일부 투자자, Anthropic 기업가치 1조 달러 근처로 낮춰야",
+   "url": "https://xenospectrum.com/en/anthropic-ipo-valuation-revenue-multiple/"
+  },
+  {
+   "label": "CNBC — CoreWeave 3분기 매출 36억 6,000만 달러, 수주잔고 1,325억 달러, 부채 약 470억 달러, 가이던스 상향(2026-11-10)",
+   "url": "https://www.cnbc.com/2026/11/10/coreweave-crwv-q3-earnings-report-2026.html"
+  },
+  {
+   "label": "StockTitan — CoreWeave 부채 6월 말 351억 → 9월 말 469억 달러, 평균 차입 금리 7.9%",
+   "url": "https://www.stocktitan.net/articles/coreweave-q3-2026-earnings-ai-data-center-spending"
+  },
+  {
+   "label": "Procure FYI — CoreWeave 상장 신고서의 GPU 6년 정액 감가상각 정책",
+   "url": "https://procurefyi.substack.com/p/coreweaves-s-1-is-finally-here-ais"
+  },
+  {
+   "label": "NBC News — Nvidia, 전직 연방검사 고용해 Jensen Huang 관련 의혹 조사",
+   "url": "https://www.nbcnews.com/business/corporations/ex-prosecutor-probe-jensen-huang-chinese-spy-affair-nvidia-rcna608628"
+  },
+  {
+   "label": "CNBC — Jensen Huang 스캔들과 Nvidia의 중국 문제",
+   "url": "https://www.cnbc.com/2026/11/10/jensen-huang-nvidia-china-ties.html"
+  },
+  {
+   "label": "Investing.com — 10월 CPI 뒤 12월 인상 확률 88% (CME FedWatch)",
+   "url": "https://www.investing.com/news/economy-news/fed-rate-hike-odds-in-december-at-88-after-hot-cpi-cme-fedwatch-5017585"
+  },
+  {
+   "label": "Axios — Waller 이사 '12월 50bp도 검토', 2년물 금리 약 0.2%p 상승",
+   "url": "https://www.axios.com/2026/11/10/federal-reserve-rate-hikes"
+  },
+  {
+   "label": "Kitco — WGC: 3분기 중앙은행 금 매입 321톤(+42%), 5년 분기 평균 227톤",
+   "url": "https://www.kitco.com/news/article/2026-11-03/gold-demand-remains-near-record-highs-central-bank-buying-surges-42-wgc"
+  },
+  {
+   "label": "World Gold Council — Gold Demand Trends 2026년 3분기: 중앙은행",
+   "url": "https://www.gold.org/goldhub/research/gold-demand-trends/gold-demand-trends-q3-2026/central-banks"
+  },
+  {
+   "label": "CNBC — Guy Adami 소개",
+   "url": "https://www.cnbc.com/guy-adami/"
+  },
+  {
+   "label": "Wikipedia — Guy Adami 경력(Drexel·Goldman Sachs·CIBC)",
+   "url": "https://en.wikipedia.org/wiki/Guy_Adami"
+  },
+  {
+   "label": "Hedge Fund Alpha — Danny Moses 약력(MBIA·Oppenheimer·FrontPoint)",
+   "url": "https://hedgefundalpha.com/profile/the-big-short-danny-moses/"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "Anthropic 상장 — 돈은 어디서 오고 어디로 가나",
+   "sub": "억 달러 · 대본에서 Danny Moses가 든 숫자",
+   "type": "hbar",
+   "unit": "억 달러",
+   "labels": [
+    "공모로 새로 조달(600억 달러대 중반)",
+    "하이퍼스케일러·반도체 회사 사모",
+    "경영진 7명 매도"
+   ],
+   "series": [
+    {
+     "name": "금액",
+     "values": [
+      650,
+      260,
+      17.5
+     ]
+    }
+   ],
+   "note": "공모 금액은 '600억 달러대 중반'을 650억으로 표시(근사) — 경영진 매도는 전체에 비해 아주 작다는 게 Moses의 요지",
+   "source": "On The Tape(Danny Moses 발언)"
+  },
+  {
+   "at": "deep",
+   "title": "Anthropic 기업가치 — 사모 라운드 vs 공모가 상단 vs 한때 기대",
+   "sub": "억 달러 · 2026년 5월 ~ 11월",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "5월 시리즈 H(투자 후)",
+    "공모가 상단(완전 희석)",
+    "한때 기대하던 수준"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      9650,
+      14050,
+      20000
+     ]
+    }
+   ],
+   "note": "공모가 상단은 5월보다 약 46% 높지만 한때 기대치 2조 달러에는 못 미친다",
+   "source": "CNBC(2026-11-10, Anthropic 공모가 범위 기사)"
+  },
+  {
+   "at": "deep",
+   "title": "CoreWeave 부채 — 한 분기 만에 118억 달러 증가",
+   "sub": "억 달러 · 2026년 6월 말 vs 9월 말",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "6월 말",
+    "9월 말"
+   ],
+   "series": [
+    {
+     "name": "부채",
+     "values": [
+      351,
+      469
+     ]
+    }
+   ],
+   "note": "한 분기에 부채가 약 118억 달러 늘었다 — 대본의 '350억~360억 달러'는 6월 말 수준",
+   "source": "StockTitan(CoreWeave 3분기 실적 정리)"
+  },
+  {
+   "at": "deep",
+   "title": "12월 FOMC 25bp 인상 확률",
+   "sub": "% · CME FedWatch, 10월 CPI 발표 전후",
+   "type": "bar",
+   "unit": "%",
+   "labels": [
+    "1주 전",
+    "11월 10일"
+   ],
+   "series": [
+    {
+     "name": "25bp 인상 확률",
+     "values": [
+      72,
+      88.8
+     ]
+    }
+   ],
+   "note": "높은 10월 CPI 뒤 인상이 기본 시나리오가 됐다 — 50bp 확률은 별도로 약 9~14%",
+   "source": "Investing.com(CME FedWatch 인용)"
+  },
+  {
+   "at": "deep",
+   "title": "중앙은행 금 순매입",
+   "sub": "톤 · 분기 기준",
+   "type": "bar",
+   "unit": "톤",
+   "labels": [
+    "5년 분기 평균",
+    "2026년 3분기"
+   ],
+   "series": [
+    {
+     "name": "순매입",
+     "values": [
+      227,
+      321
+     ]
+    }
+   ],
+   "note": "3분기 매입은 평균보다 40% 이상 많다 — 공식 보고분은 120톤뿐",
+   "source": "World Gold Council(Gold Demand Trends 2026년 3분기, Kitco 인용)"
+  }
+ ],
+ "tg": "Moses·Adami: Anthropic 연환산 매출 810억 달러지만 성장 둔화·순환 투자가 문제. Nvidia는 'Jensen 프리미엄' 소멸 중, CoreWeave 6년 감가상각은 위험. 선거 뒤 지수는 제자리, 2년물 금리 상승·12월 인상 기정사실. 에너지·금은 약세 때 매수.",
+ "tg_body": "Danny Moses와 Guy Adami는 선거 뒤 S&P 500이 제자리인데도 속은 크게 바뀌었다고 봤다. 반도체는 6월 고점 뒤 꺾였고 메모리 일부는 반 토막이 났으며, 주도주가 빠지는 이유가 경기 둔화와 맞물리는지가 관건이다.\n\nAnthropic 수정 S-1은 10월 말 연환산 매출 810억 달러를 보여 줬다. Moses는 성장률 둔화, 토큰 가격 하락, 하이퍼스케일러·반도체 회사가 260억 달러를 사모로 넣는 순환 투자를 문제 삼았고, 상장 뒤 큰 상승은 어렵다고 봤다.\n\nNvidia는 CEO 스캔들로 'Jensen 프리미엄'이 빠지는 중이다. Adami는 76% 마진이 꺾일 때를 경계했고, CoreWeave의 GPU 6년 감가상각과 대출 의존도 위험하다고 봤다.\n\n12월 인상은 기정사실이 됐고 50bp 확률은 13%다. 2년물 금리 상승으로 자본 비용이 오르고, 부채·적자는 가격에 반영되지 않았다는 진단이다. 에너지와 금은 약세 때 매수.\n\n외부 자료로 보면 공모가 상단 기업가치는 약 1조 4,050억 달러로 5월 사모(9,650억 달러)보다 높다. CoreWeave 부채는 9월 말 469억 달러로 대본보다 크고, 3분기 중앙은행 금 매입은 321톤이었다.",
+ "youtube": "https://www.youtube.com/watch?v=McTOlgX4OSA",
+ "image": "https://i.ytimg.com/vi/McTOlgX4OSA/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-12 02:30 KST"
+}
