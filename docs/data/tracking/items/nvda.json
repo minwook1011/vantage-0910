@@ -3,6 +3,22 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "85c8922e0712",
+   "kind": "news",
+   "headline": "[후속] 엑시오스 \"러트닉 상무장관, 젠슨 황-앨리스 황 관계 경고한 1급 기밀 메모 받았다\" — 대중국 칩 판매 승인 과정 논란",
+   "bullets": [
+    "엑시오스가 여러 소식통을 인용해, 하워드 러트닉 미국 상무장관에게 젠슨 황과 중국 스파이 의혹 인물 앨리스 황의 관계를 경고하는 1급 기밀 메모가 전달됐다고 11월 10일 단독 보도했다.",
+    "상무부가 이 경고를 받고도 중국 관련 기업들에 엔비디아 첨단 칩 판매를 허가한 만큼, 안보 위험을 어떻게 따졌는지 의문이 커졌다.",
+    "상무부와 엔비디아의 공식 입장은 아직 나오지 않았다."
+   ],
+   "summary": "앨리스 황은 싱가포르 업체 메가스피드를 이끌었고, 메가스피드는 지난 2년간 엔비디아 칩을 48억달러어치 산 것으로 알려졌다. 앞서 뉴욕타임스는 메가스피드 조사를 상무부가 주도하다가 엔비디아 쪽 연락 이후 법무부로 넘어갔다고 보도했다.\n\n젠슨 황은 11월 8일 직원들에게 불륜을 인정했지만 상대 이름은 밝히지 않았고, 엔비디아 이사회는 독립 조사에 들어갔다. 이사회는 앨리스 황이 영업비밀을 얻었다고 볼 근거는 없다는 입장이고, 중국 정부도 의혹을 부인한다. 트럼프 대통령은 연방수사국(FBI) 조사가 진행 중인데도 황을 지지하고 있다.\n\n이번 보도로 쟁점이 '개인 스캔들'에서 '정부가 위험을 알고도 칩 수출을 허가했나'로 옮겨 가고 있다. 하원 공화당 상임위원장 3명은 11월 18일 비공개 브리핑을 요청해 둔 상태다.",
+   "title": "Scoop: Commerce Department received national security warning on Nvidia CEO affair",
+   "source": "Axios",
+   "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5NTWlEVTREeTZ0V3J5d1VBblV3Q1JiV0tqTWJUSGVJQ2MxSElWWHpVVG9lTkxKR3ctY2RDVHJUaTdWak1oS2lGSGhPbUJ6MU9CZ2xJdGY1Ui0zQy1uaFliV3c1MXprY3RDejF2eXp2WWc2WWJRSTZiOEljZw?oc=5",
+   "published": "2026-11-11 08:48 KST",
+   "written": "2026-11-11 09:21 KST"
+  },
+  {
    "id": "e5546ac9f17d",
    "kind": "news",
    "headline": "엔비디아가 투자한 영국 AI 클라우드 엔스케일, 350억달러 뉴욕 상장 연기 검토(텔레그래프)",
@@ -1027,5 +1043,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-11 06:55 KST"
+ "updated": "2026-11-11 09:21 KST"
 }

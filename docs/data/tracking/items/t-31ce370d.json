@@ -3,6 +3,22 @@
  "slug": "t-31ce370d",
  "items": [
   {
+   "id": "eba3798b2474",
+   "kind": "news",
+   "headline": "코그니전트, 앤트로픽 '클로드' 전담 조직에 2만5,000명 넘게 배치 — 기업 안에서 클로드를 대신 돌려 주는 관리형 서비스도 출시",
+   "bullets": [
+    "미국 정보기술 서비스 기업 코그니전트가 11월 10일 '클로드 프론티어 역량 그룹'을 만들고 2만5,000명 넘는 인력을 클로드 전담 납품 조직으로 묶었다.",
+    "클로드 사용권, 전담 인력, 자체 'AI 납품 운영체계'를 묶어 고객사 업무에 클로드를 실제로 돌려 주는 관리형 서비스 모델도 내놨다.",
+    "10월 30일 만든 오픈AI 전담 그룹(역시 2만5,000명 이상)과는 별도 조직이다."
+   ],
+   "summary": "새 그룹은 처음에 네 가지에 집중한다. 업무 영역을 AI 중심으로 다시 설계하기, 이를 받칠 시스템 새로 짓거나 고치기, AI 에이전트를 대규모로 안전하게 운영하기, AI 기반 소프트웨어 개발을 기본 납품 역량으로 만들기다.\n\n코그니전트는 이미 사업부·본사 직원 4만4,000명 넘게 클로드 교육이나 인증을 마쳤고, 보유 클로드 인증은 2만6,000건이 넘는다고 밝혔다. 북미 한 보험사에서는 클로드 기반 자동화로 일부 운영 업무 속도가 40~60% 빨라졌다는 사례도 들었다. 계약 금액이나 앤트로픽과의 수익 배분은 공개하지 않았다.\n\n코그니전트는 7월 클로드 파트너 네트워크 최상위 등급(글로벌 프리미어 파트너)에 올랐고, 열흘 간격으로 오픈AI·앤트로픽 양쪽에 같은 규모 전담 조직을 세운 셈이다. 대형 정보기술 서비스 회사들이 특정 AI 모델을 고객 업무에 심는 '납품 대행' 경쟁이 커지는 흐름이다.",
+   "title": "Cognizant Establishes 25,000-Person Claude AI Group and Introduces Enterprise Managed Services",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPRm5VQkNTWGpKY3RraUtHNlFsTldNeEd6WjA2WlVDbUw4bl84OUwzS3BtSWNhcU5aX2RhYjVyWmFiM0J5SDZXUkpmaXBnMDBldXRnWVNMVFU5WFJST2FKd0dqVElGajhLQlg2b0tLY1FNWENZMldxRXE5ZDRHLV9YRnRNcC1TT0Z4QUVfb2V4dnRtQ0cwUE1wSjRZV1M2Q2lH?oc=5",
+   "published": "2026-11-11 00:12 KST",
+   "written": "2026-11-11 09:21 KST"
+  },
+  {
    "id": "a96ec9bfd3fd",
    "kind": "news",
    "headline": "센티넬원, 앤트로픽 '클로드 코워크'와 보안 플랫폼 연동 — AI 에이전트가 일하는 가상머신 내부까지 직접 감시",
@@ -99,5 +115,5 @@
    "written": "2026-10-12 19:12 KST"
   }
  ],
- "updated": "2026-11-04 22:50 KST"
+ "updated": "2026-11-11 09:21 KST"
 }
