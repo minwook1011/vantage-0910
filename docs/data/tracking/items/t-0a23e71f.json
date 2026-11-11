@@ -3,6 +3,22 @@
  "slug": "t-0a23e71f",
  "items": [
   {
+   "id": "077908a0702a",
+   "kind": "news",
+   "headline": "대만 국가과학위원회, '고성능 AI 칩 기판' 기술을 국가 핵심 기술로 지정 추진 — 목록 42개→46개로 늘리는 개정안 예고",
+   "bullets": [
+    "대만 국가과학위원회가 11일 국가 핵심 기술 목록 개정안을 예고했다. 4개를 새로 넣고 6개는 이름을 바꿔 42개에서 46개로 늘린다.",
+    "새로 들어가는 것은 경제부 관할 'IC 패키징·테스트 — 고성능 AI 칩 기판 기술', 저궤도 위성 통신 탑재체 기술, 무인기 비행 제어 기술, 장바이러스 71형 백신 제조 기술이다.",
+    "의견 수렴은 11월 11~25일, 연말 전 심의회를 거쳐 행정원이 공고해야 효력이 생긴다."
+   ],
+   "summary": "국가 핵심 기술로 지정되면 영업비밀 보호가 강해지고, 관련 기술의 해외 유출이 법으로 더 엄격하게 막힌다. 위원회는 고성능 AI 칩 기판이 반도체 제조·패키징의 중요한 고리이고, AI 인프라 수요가 커지면서 중요성이 높아졌다고 설명했다. 기업 영업비밀과 얽혀 있어 개정안은 세부 범위를 많이 밝히지 않았고, 앞으로 경제부 등 담당 기관이 해당 여부를 판단한다.\n\n이름이 바뀌는 6개에는 '위성 조종 기술'→'위성 임무 조종 기술', '양자비트 설계·공정 기술'→'양자비트 설계·제작·측정·조작 기술', '네트워크 능동 방어 기술'→'AI 네트워크 능동 방어 기술' 등이 있다. 지난해 11월 개정 때는 32개에서 42개로 늘리면서 주로 방산·우주 기술을 넣었다. 이번엔 AI 칩 기판이 처음 들어가, 대만 기판 업체들의 기술 인력·설비 해외 이전에 어떤 제약이 붙을지가 남은 쟁점이다.",
+   "title": "國家關鍵技術清單增修 涵括高階載板、低軌衛星通訊",
+   "source": "經濟日報",
+   "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1pR3JTblFjVVcwdnNHWmltWDY3OFhrTm5FVm9xMzdpRFhqN1RGemlBTXFKVkNIMTVDUktpcXB3RHNRTmVWaXlWbGVZQjRhSHBUYURfNE5QYUFDZ9IBX0FVX3lxTE9wWnl3MWw4UXJWQ0hFVjA4UFBId3F0NzVJVUtMRUZlb1ZudHByTHpGSnRUUVJDTnd4WEVtbEZVZG1RWWJYaE1LN2RVMUxMUDZDdkY3Ym5SZzAzRnlsY25N?oc=5",
+   "published": "2026-11-11 20:54 KST",
+   "written": "2026-11-11 21:20 KST"
+  },
+  {
    "id": "927a3d1bf685",
    "kind": "news",
    "headline": "독일 식각장비 업체 레나테크놀로지, 유리기판 구멍(유리관통전극) 뚫기에 '알칼리 식각' 제시 — 홀 경사각 최소 1도로 산성(3~5도)보다 수직",
@@ -547,5 +563,5 @@
    "written": "2026-10-12 19:12 KST"
   }
  ],
- "updated": "2026-11-11 15:48 KST"
+ "updated": "2026-11-11 21:20 KST"
 }
