@@ -1064,6 +1064,7 @@
   "trk:googl:f0f8072a33a3",
   "trk:googl:fb79f95874bc",
   "trk:howard-marks:1ee9b3a2267b",
+  "trk:howard-marks:783c303fb6bc",
   "trk:meta:00c18b7ec6a6",
   "trk:meta:0231f8cdde23",
   "trk:meta:06b5b0b5a7a1",
@@ -1241,6 +1242,7 @@
   "trk:open-ai:55567e213929",
   "trk:open-ai:58cd80f1e510",
   "trk:open-ai:59cad97649a8",
+  "trk:open-ai:5a68a3373e1e",
   "trk:open-ai:628bd45d43ab",
   "trk:open-ai:65ed9cfb14ae",
   "trk:open-ai:6b76263b9736",
@@ -1551,6 +1553,7 @@
   "trk:t-759fd052:b614d9a6c540",
   "trk:t-759fd052:b68df1160b21",
   "trk:t-759fd052:b7fbb6879f66",
+  "trk:t-759fd052:c1a32425199f",
   "trk:t-759fd052:c513d321dc0c",
   "trk:t-759fd052:c53199818f7d",
   "trk:t-759fd052:c85371a3f6cb",
@@ -2007,15 +2010,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:ax:809cff583eff": [
-   1401
-  ],
-  "pod:2026-11-04-understanding--Zx0MNc3-BI": [
-   1402
-  ],
-  "trk:t-0a23e71f:6de769b27b1e": [
-   1403
-  ],
   "trk:open-ai:75de85fe9a47": [
    1404
   ],
@@ -3543,6 +3537,15 @@
   ],
   "trk:t-678e8450:7bf5aabd01fb": [
    1843
+  ],
+  "trk:open-ai:5a68a3373e1e": [
+   1844
+  ],
+  "trk:t-759fd052:c1a32425199f": [
+   1845
+  ],
+  "trk:howard-marks:783c303fb6bc": [
+   1846
   ]
  },
  "topics": {},
