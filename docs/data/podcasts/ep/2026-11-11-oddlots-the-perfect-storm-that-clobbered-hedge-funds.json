@@ -1,0 +1,237 @@
+{
+ "id": "2026-11-11-oddlots-the-perfect-storm-that-clobbered-hedge-funds",
+ "title_ko": "헤지펀드를 강타한 퍼펙트 스톰 — 10월 AI 트레이드 붕괴와 중간선거 이후 시장",
+ "guest": {
+  "name": "니샨트 쿠마르(Nishant Kumar)·마이클 볼(Michael Ball)",
+  "role": "Bloomberg News 헤지펀드 수석 기자 · Bloomberg 매크로 전략가"
+ },
+ "guest_profile": [
+  {
+   "name": "니샨트 쿠마르(Nishant Kumar)",
+   "title": "Bloomberg News 헤지펀드 담당 Chief Correspondent(런던)",
+   "what": "Bloomberg에서 Millennium·Citadel·Balyasny 같은 대형 헤지펀드의 성과, 자금 모집, 인력 이동을 취재한다. 10월 성과 보도가 쏟아진 지난주 수십 건의 기사를 썼다.",
+   "career": "Muck Rack 프로필에 따르면 Bloomberg 이전 Reuters에서 9년 넘게 런던·홍콩·뭄바이를 오가며 헤지펀드와 자산운용업을 취재했다. Bloomberg에서는 Katherine Burton·Hema Parmar 등과 함께 업계 단독 기사를 써 왔다. 방송에서 헤지펀드 취재가 16년째라고 말했다.",
+   "track": "운용자가 아닌 기자라 투자 성과는 해당 없음. 평판은 대형 멀티스트랫 내부 소식과 월간 성과 단독 보도에서 쌓였다.",
+   "why": "대형 펀드들의 월간 수익률과 PM 해고·이동을 가장 먼저 듣는 위치라, 이번 손실이 어디서 왜 동시에 났는지 업계 안쪽 시각으로 설명한다."
+  },
+  {
+   "name": "마이클 볼(Michael Ball)",
+   "title": "Bloomberg News 매크로 전략가",
+   "what": "Bloomberg에서 주식·금리·원유·옵션 시장 흐름을 엮어 매크로 해설을 쓴다. 이번 방송이 Odd Lots 첫 출연이다.",
+   "career": "Bloomberg Surveillance에 'Bloomberg Markets' 소속으로 출연한 기록이 있다. 'Midday Macro' 뉴스레터를 쓴 CFA·FRM 보유 Michael Ball(뉴욕 연준 마켓그룹 출신)과 같은 사람으로 보이지만 공식적으로 확인하지는 못했다.",
+   "track": "공개된 운용 수익률 없음.",
+   "why": "옵션 감마·레버리지 ETF·CTA 같은 '시장의 기계 장치'가 선거 뒤 목요일 투매를 어떻게 키웠는지 구체적으로 풀어 준다."
+  }
+ ],
+ "company": {
+  "name": "Millennium · Citadel · Balyasny · CoreWeave · IREN · Anthropic",
+  "sector": "헤지펀드 · AI 인프라 · 매크로",
+  "what": "멀티스트랫 헤지펀드 손실과 AI 트레이드 재가격"
+ },
+ "topic": "10월 헤지펀드 동반 손실의 원인(붐빔·레버리지·AI 노출)과 선거 뒤 기계적 투매, Anthropic 상장·네오클라우드 전망",
+ "headline": "모두가 다른 거래를 한다고 믿었지만 실은 같은 AI 롱 — 10월, 피난처 없이 함께 무너진 헤지펀드",
+ "tldr": [
+  "10월 헤지펀드가 전략 가리지 않고 동반 손실 — Millennium -2.3%, Balyasny -3.4%, AI 집중 펀드 -33%",
+  "원인은 붐빔+레버리지: 상위 10개 멀티스트랫이 자기자본 약 3,600억 달러로 2조 2천억 달러 굴려",
+  "선거 뒤 목요일 투매는 옵션 감마·레버리지 ETF·CTA가 키운 기계적 매도 — 나스닥 100 하루 6.4%↓",
+  "문제는 2027년보다 2028년 — 신규 데이터센터 인허가가 막히면 네오클라우드 이익이 흔들린다",
+  "Anthropic 상장(ANT) 1조 4천억 달러 안팎 거론 — 외부 보도는 1조 5천억~2조 달러",
+  "예외도 있다: Citadel +1.7%, Quantedge +7.2% — 주식 붐빔이 적은 곳은 벌었다"
+ ],
+ "summary_md": "### 1. 들어가며 — '멀티스트랫은 분산된 모멘텀이었나'\n- 녹음일은 11월 10일. 진행자 Tracy Alloway·Joe Weisenthal은 여름부터 AI 관련주가 조금씩 약해지다가 10월에 손실이 쌓였고, 중간선거 직후 크게 씻겨 나갔다고 정리하며 시작한다.\n- 핵심 질문은 하나다. 지난 1~2년 동안 돈을 번 헤지펀드들이 겉으로는 반도체·금리·크레디트 등 서로 다른 거래를 했지만, 실제로는 모두 **암묵적으로 AI에 롱**이었던 것 아니냐는 것. 멀티스트래티지(멀티스트랫) 펀드가 '서로 독립적인 수백 개 팀'이라는 설명과 달리 같은 방향에 몰려 있었느냐가 쟁점이다.\n\n### 2. 10월 성적표 — 모두가 한꺼번에 졌다\n- Bloomberg 헤지펀드 담당 Nishant Kumar는 16년 취재 중 지난주 같은 날은 처음이었다고 말한다. 그가 강조하는 건 손실 크기보다 **여러 전략이 동시에** 무너졌다는 점이다. 평소엔 주식이 나빠도 매크로나 크레디트가 받쳐 주는데, 이번엔 그런 피난처가 없었다.\n- 대본에서: **Millennium은 10월에 2.3%** 잃었다. 연 14% 안팎을 꾸준히 버는 펀드라 한 달 2.3%는 크다는 설명이다. Balyasny·Point72도 같은 흐름이었다고 한다.\n- 왜 2.3%가 큰일인가에 대한 그의 답은 '역할'이다. 연기금·국부펀드가 헤지펀드에 기대하는 건 상승장에서 지수를 따라가는 것이 아니라 **하락장의 충격 완화**인데, 정작 필요할 때 그 역할을 못 했다는 것.\n- 예외도 있었다. 멀티스트랫 중 Citadel과 D.E. Shaw가 플러스였고 일부 퀀트 펀드도 벌었다. 다만 왜 벌었는지는 포트폴리오 공개가 없어 모른다고 했다.\n\n### 3. 무엇이 한꺼번에 터졌나\n- Nishant가 꼽은 악재는 AI 주식 급락, 브라질의 예상 밖 선거 결과, 하이일드 채권 급락, 프랑스 국채 약세다. 각각에 헤지펀드들이 붐비는 거래를 쌓아 두었고, 하나씩 차례로 무너졌다.\n- AI 집중 펀드는 피해가 극단적이었다. 대본에서: Situational Awareness와 보유 종목이 많이 겹친다는 VAR 펀드는 10월에 33% 잃었는데도 연초 대비로는 여전히 플러스라고 한다. 주식 펀드 Whale Rock은 12% 하락으로 언급됐다.\n- 매크로 펀드도 못 피했다. 대본에서: Kirkoswald는 6.4%로 설립 뒤 최악의 달, Chris Rokos도 5% 가까이 잃었다.\n- 진행자들은 Apollo의 Torsten Slok이 말한 'AI 요인 대 반(反)AI 요인' 구도를 꺼낸다. 국채 매도 같은 거래도 'AI 설비투자가 물가를 올린다'는 베팅이라면 결국 같은 **AI 요인**에 걸린 거래라는 지적이다.\n\n[[chart:1]]\n\n### 4. 붐빔(crowding)과 레버리지\n- PivotalPath 보고서를 두고 Nishant는 '모멘텀'과 '붐빔'을 구분한다. 똑똑한 펀드 열 곳이 각자 판단으로 유동성 좋고 이익이 강한 같은 종목을 고를 수는 있다. 문제는 그들이 **동시에 마음을 바꿀 때**다.\n- 대본에서: 상위 10개 멀티스트랫이 빌린 돈을 포함해 약 2조 2천억 달러를 굴리는데, 그 밑의 자기자본은 3,000억~3,500억 달러 수준이라 레버리지가 크다. Goldman 분석상 멀티스트랫 간 수익률 상관계수는 수년째 0.2~0.3에 머물러 수치상으론 과하지 않지만, 붐빔과 레버리지가 결합한 것이 문제라고 본다.\n\n### 5. 멀티스트랫의 위험 관리 기계\n- 그는 멀티스트랫을 '헤지펀드 슈퍼마켓'에 빗댄다. 수백 명의 포트폴리오 매니저(PM)가 각자 주식·매크로·크레디트·원자재를 맡고, 그 위에 강력한 중앙 위험 관리가 있다.\n- 대본에서 든 예: 100달러를 맡은 PM이 5% 잃으면 운용 자금이 절반으로 깎이고, 추가로 2.5% 더 잃어 누적 7.5%가 되면 청산·해고될 수 있다. 이 **무자비한 손절 규칙**이 펀드 전체를 지키는 장치다.\n- Joe는 반도체 롱, 메모리 롱, 국채 숏이 결국 같은 거래라면 위험관리자의 책임 아니냐고 묻는다. Nishant의 답은 상관관계가 평소엔 잘 안 보이다가 위기 때 치솟는다는 것, 그리고 기술주가 오를 때 미리 줄이자고 하기는 현실적으로 어렵다는 것이다.\n- Tracy는 멀티스트랫이 장기 수익이 아니라 단기 수익을 극대화하는 구조라 매일의 뉴스에 과하게 반응한다고 덧붙인다. 선거 직전 AI 비중을 줄였다가 수요일 반등에 다시 샀고, 목요일에 크게 맞았다는 흐름이다.\n\n### 6. 남은 두 달과 업계 포화\n- 이번 주엔 저가 매수로 일부 회복됐지만, 11월도 이미 열흘이 지났고 많은 포트폴리오가 손실 중이다. 수십 명의 주식·매크로·크레디트 PM이 해고되거나 경쟁사로 옮겨 **경업금지 기간**을 쉬고 있어, 연말까지 위험을 다시 질 사람이 적다는 진단이다.\n- 새 멀티스트랫 수요는 여전하다. 대본에서: Millennium은 올해 200억 달러를 모으려 했는데 300억 달러 넘는 수요가 몰려 220억 달러를 받았다. 반면 D.E. Shaw·Point72·Citadel은 합쳐 350억~400억 달러를 투자자에게 돌려줬다.\n- 다만 PM을 더 붙인다고 분산 효과가 계속 커지지는 않는다. 진행자들의 정리는 '팀과 돈이 늘어도 위험 대비 수익이 같이 늘진 않는다'는 것.\n\n[[chart:2]]\n\n### 7. 선거 뒤 목요일 — 시장의 기계적 투매\n- 2부 게스트 Michael Ball(Bloomberg 매크로 전략가)은 선거 이틀 뒤 목요일 개장 30분이 코로나 이후 최대 규모의 **개별 종목 매도**였다고 말한다. 주로 개인 투자자였고 헤지펀드의 포지션 축소도 겹쳤다.\n- 수요일엔 오히려 하이퍼스케일러가 올랐다. 민주당 압승으로 규제가 늘면 설비투자가 줄어 잉여현금흐름이 좋아질 거라는 해석이었다. 그런데 목요일엔 S&P 500이 수개월 박스권 하단을 깨면서 하락이 스스로를 키웠다.\n- 그가 설명한 연쇄 고리: 풋옵션을 판 딜러의 델타 헤지 매도(음의 감마), **레버리지 ETF**의 리밸런싱, 변동성 목표(vol control) 펀드의 비중 축소, 추세추종 CTA의 매도가 한꺼번에 나왔다.\n\n### 8. 10월에 바뀐 이야기 — 성장 엔진에서 자금 조달 문제로\n- 10월에 AI 설비투자 이야기가 '성장 엔진'에서 **자금 조달·잉여현금흐름·전력과 지역 반대(님비)** 문제로 바뀌었다고 본다. 내년 설비투자가 꺼지면 성장이 사라진다는 우려에 장기 금리와 커브가 눌렸다.\n- 그는 전환점으로 한 네오클라우드 고위 임원이 '세상의 모든 자본을 끌어모은다'는 취지로 말한 FT 인터뷰를 꼽았고, 수조 달러 규모의 자금 조달 얘기도 경고등이었다고 했다. 그 사이 돈은 헬스케어·우량주·필수소비재로 숨어 지수를 받쳤다.\n\n### 9. 네오클라우드·Nvidia·Anthropic 상장\n- 녹음 당일 CPI가 나왔고, 연준 Christopher Waller가 12월 0.5%p 인상 가능성까지 언급했다고 한다. 빚이 많은 네오클라우드엔 나쁜 소식이지만, IREN은 고객 선불이 좋아 잉여현금흐름이 나아졌다. 대본에서: IREN 주가는 2025년 11월 77달러에서 21달러, 네오클라우드 지수는 70% 하락.\n- Michael은 2027년보다 **2028년 이익**이 문제라고 본다. 이미 짓는 프로젝트는 텍사스에서도 취소 위험이 낮지만, 신규 프로젝트가 막히면 2028년 숫자가 흔들린다. 세입자(고객) 품질과 칩 세대 교체 속도도 운영 리스크로 꼽았다.\n- Nvidia CEO 관련 보도에도 다른 종목이 크게 흔들리지 않은 것은, AI 거래가 이미 한 회사보다 커졌기 때문이라고 해석했다. 최근 사흘의 반등은 숏 커버링과 풋 청산 같은 기계적 움직임이었다는 판단이다.\n- Anthropic 상장은 1조 4천억 달러 안팎 목표, 조달 약 800억 달러로 거론됐다. 주식 공급이 수년 만에 다시 늘고(자사주 매입 둔화), 공모 물량이 다른 AI 종목 수요를 일부 빨아들이겠지만 시장은 소화할 수 있다고 봤다.\n\n### 10. 하이퍼스케일러와 유가\n- Joe는 Alphabet을 '돈 버는 검색, 자본 집약적인 클라우드, Gemini라는 콜옵션' 세 덩어리로 나눈다. Michael은 TPU도 콜옵션이라 덧붙이며, 결국 핵심은 **클라우드 연산 수요**가 계속 크느냐이고 아직 꺾인 신호는 없다고 본다.\n- 유가는 이란 분쟁 종료 기대에 떨어졌고, 정제마진도 많이 내려왔다. 대본에서: JPMorgan이 올해 원유 공급 과잉 전망을 하루 150만 배럴로 올렸다. 에너지 물가가 근원 물가로 번지던 흐름이 꺾이면 연준 계산도 바뀔 수 있다.\n",
+ "insights_md": "### 투자 관점\n- **'분산'의 착시**: 이번 편의 가장 큰 교훈은 반도체 롱·메모리 롱·국채 숏·크레디트가 결국 같은 AI 요인에 묶여 있었다는 점이다. 상관관계는 평소엔 낮게 보이다가 위기 때 한꺼번에 오른다. AI 관련 자산을 여러 형태로 들고 있는 개인 포트폴리오에도 그대로 적용된다.\n- **기계적 매도의 연쇄**: 음의 감마, 레버리지 ETF, 변동성 목표 펀드, CTA, 멀티스트랫 손절 규칙이 같은 방향으로 움직였다. 외부 자료로도 11월 5일 나스닥 100은 약 6.4% 하락해 2020년 3월 이후 최악의 하루였고, 필라델피아 반도체지수는 약 12% 빠졌다.\n- **네오클라우드 차별화**: 같은 GPU 임대 업체라도 선불 비율이 갈랐다. IREN은 최근 계약 일부에서 선불이 GPU 설비투자의 최대 90%라고 밝혔고, CoreWeave는 회사채 대신 고객 선불과 계약 담보 대출로 방향을 틀었다. **금리 민감도와 고객 품질**이 종목 간 격차를 만들 변수다.\n- **한국·일본 연결**: 메모리(삼성전자·SK하이닉스), 전력기기(LS ELECTRIC·효성중공업·HD현대일렉트릭), 일본 반도체 장비(Advantest·Tokyo Electron)는 모두 같은 'AI 요인'에 노출돼 있어 헤지펀드의 일괄 축소 때 함께 흔들릴 수 있다.\n\n### 반론·리스크\n- Goldman 분석상 멀티스트랫 간 상관계수는 0.2~0.3에 머물렀다는 반론이 대본 안에서도 나온다. 한 달 손실로 사업 모델이 깨졌다고 보기는 이르다. 외부 자료로도 Citadel Wellington은 10월 +1.7%, 연초 대비 +15.3%였다.\n- Anthropic 공모가 수요를 빨아들이는 효과는 규모와 가격이 확정돼야 판단할 수 있다(확인 못 함).\n- 연말까지 위험을 다시 질 PM이 적다는 진단이 맞다면, 기계적 반등 뒤에도 거래량이 얇아 변동성이 큰 장이 이어질 수 있다. 반대로 숏과 풋이 쌓인 상태라 작은 호재에도 급반등이 나올 수 있어, 방향보다 **변동성 자체**가 리스크다.\n\n### 체크포인트\n- 11월 말 멀티스트랫 월간 성과와 PM 해고·이동 규모\n- **Anthropic(ANT) 공모** 가격·규모 확정과 상장 후 수급\n- 12월 FOMC 결과와 네오클라우드 채권 수익률\n",
+ "deep_md": "### 1. 게스트와 사실 확인\n- 대본에서: Nishant Kumar는 Bloomberg News 헤지펀드 수석 기자, Michael Ball은 Bloomberg News 매크로 전략가로 소개된다.\n- 외부 자료로 확인: Muck Rack 프로필상 Nishant Kumar는 런던 기반 Bloomberg 헤지펀드 담당 Chief Correspondent이고, 그 전 Reuters에서 9년 넘게 런던·홍콩·뭄바이를 오가며 헤지펀드·자산운용을 취재했다.\n- 10월 성적(외부 확인, Hedgeweek 11월 6일·Bloomberg 인용): Balyasny -3.4%(연초 대비 -2.7%), ExodusPoint -2.4%, Millennium -2.3%(연초 대비 +5.7%), D1 주식 포트폴리오 -4.4%, Whale Rock 약 -8%, Value Aligned Research Advisors(대본의 'VAR') -33%. 반대로 Citadel Wellington +1.7%, D.E. Shaw Composite +0.7%, **Quantedge +7.2%**였다.\n- 대본과 다른 점: Whale Rock 손실은 대본에선 12%, 외부 보도는 '약 8%'(주력 펀드)다. Point72의 10월 수익률은 확인 못 했다. 별도 보도로 Millennium은 손실을 낸 외부 운용사 Troluce·Axebrook에서 15억 달러 넘게 회수하는 중이다.\n\n[[chart:3]]\n\n### 2. 붐빔과 레버리지 — 대본 수치 검증\n- 외부 자료로 확인: PivotalPath 연구(Hedgeweek 11월 3일)에 따르면 상위 10개 멀티스트랫의 총익스포저는 2025년 말 약 **2조 2천억 달러**로 2018년의 세 배가 넘고, 순자산은 약 3,600억 달러다. 전체 약 6배, 멀티매니저 플랫폼 여섯 곳은 순자본의 **8~14배**를 굴린다.\n- 대본의 '3,000억~3,500억 달러'는 외부 수치 3,600억 달러보다 약간 낮다. 같은 연구는 이들 펀드의 미국 주식 보유가 다른 헤지펀드보다 서로 더 많이 겹치고, 2019년 이후 수익률 상관이 높아졌다고 밝혔다.\n\n[[chart:4]]\n\n### 3. 밸류체인과 관련 상장사\n- **네오클라우드**: CoreWeave(CRWV), IREN, Nebius(NBIS). 외부 확인: IREN은 11월 5일 발표한 분기(2027 회계연도 1분기)에 매출 2억 2,800만 달러(전 분기 대비 약 66%↑), 수주잔고 203억 달러를 냈고, 그중 약 3분의 2가 투자등급 고객이다. 다만 현금은 59억 달러에서 35억 달러로 줄고 순차입금은 44억 달러로 늘었다.\n- **반도체·장비**: Nvidia, 메모리(삼성전자·SK하이닉스·Micron), 일본 장비(Advantest·Tokyo Electron). 반도체지수가 하루 약 12% 빠진 날 이들이 함께 맞았다.\n- **AI 모델 상장**: Anthropic은 10월 26일 Nasdaq 상장 서류를 냈고 종목명은 ANT다. 외부 확인: 상반기 매출 약 163억 달러, 조정 영업이익 16억 달러, 순손실 약 810억 달러(OPB). 5월 비공개 투자 때 기업가치는 **9,650억 달러**였다.\n\n### 4. 숫자의 맥락\n- 대본의 Anthropic 목표 기업가치 '1조 4천억 달러'는 외부 보도 범위(1조 5천억~2조 달러)보다 낮다. 공모 규모·가격은 신고서에 아직 없어 '800억 달러'도 확인 못 함이다. 일부 보도는 최소 860억 달러, 최대 1,000억 달러를 거론한다.\n- Millennium 자금 모집은 외부 보도와 맞는다. 목표 200억 달러에 300억 달러 넘는 수요가 몰렸고, 10월 1일 220억 달러 약정을 받았다.\n\n[[chart:5]]\n\n### 5. 반론과 리스크\n- '모두 AI 롱이었다'는 해석에 대한 반론: 같은 달 Quantedge(연초 대비 +60%)와 D.E. Shaw처럼 원자재·채권·시장중립 전략으로 번 곳도 있다. 문제는 업계 전체라기보다 **주식 붐빔이 큰 펀드**에 집중됐을 수 있다.\n- 매도의 상당 부분이 기계적이었다면 반등도 빠를 수 있다는 것이 Michael의 시각이지만, 연말까지 위험을 질 PM이 줄었다는 Nishant의 지적과 부딪힌다.\n- 12월 **금리 인상 가능성**은 빚으로 데이터센터를 짓는 네오클라우드에 가장 불리하다. Waller 발언 원문은 확인 못 했다.\n\n### 6. 개인 투자자에게 주는 시사점(외부 자료 기반 정리)\n- 헤지펀드의 월간 성과는 대부분 비공개라 Bloomberg 같은 언론 보도로만 확인된다. 이번에 보도된 숫자도 펀드마다 기준(주력 펀드·특정 전략·중간 집계)이 달라, 같은 표에 놓고 볼 때 주의가 필요하다. 예컨대 Arini는 10월 23일까지 집계였고, Marshall Wace는 Eureka 전략 기준이었다.\n- PivotalPath 연구가 보여 주듯 멀티스트랫의 미국 주식 보유가 서로 겹친다는 것은, 이들이 축소에 나설 때 같은 대형 기술주가 함께 팔린다는 뜻이다. 한국 시장에서도 외국인 순매도가 반도체·전력기기에 몰리는 날은 이런 글로벌 디레버리징과 겹쳤는지 함께 볼 만하다.\n\n### 7. 앞으로 볼 것\n- 11월 말~12월 초 멀티스트랫 11월 성과 보도, 그리고 Millennium의 외부 운용사 회수 규모\n- Anthropic 공모가·규모 확정(11월 중 상장 가능 보도)\n- 2028년 신규 데이터센터 인허가(텍사스·오하이오·조지아)와 하이퍼스케일러 클라우드 매출 성장률\n",
+ "sources": [
+  {
+   "label": "Hedgeweek — 10월 펀드별 수익률·연초 대비(Balyasny·Millennium·VARA·Citadel·Quantedge 등)",
+   "url": "https://hedgeweek.com/news/crowded-trades-trigger-widespread-hedge-fund-losses-as-october-selloff-extends"
+  },
+  {
+   "label": "Hedgeweek — 10월 손실 펀드(ExodusPoint·Dymon·North Rock·Arini·Eureka)와 원인",
+   "url": "https://hedgeweek.com/news/major-hedge-funds-suffer-october-losses-as-market-volatility-hits-multiple-strategies"
+  },
+  {
+   "label": "Hedgeweek — PivotalPath: 상위 10개 멀티스트랫 총익스포저 2.2조·순자산 3,600억 달러",
+   "url": "https://hedgeweek.com/news/multistrategy-hedge-funds-face-rising-risks-from-leverage-and-crowded-trades"
+  },
+  {
+   "label": "Hedgeweek — Millennium 200억 달러 모집에 300억 달러 넘는 수요",
+   "url": "https://hedgeweek.com/news/millenniums-20bn-capital-raise-attracts-more-than-30bn-of-investor-demand"
+  },
+  {
+   "label": "OPB(AP) — Anthropic 상장 신고: 상반기 매출·손실·기업가치 범위·ANT",
+   "url": "https://www.opb.org/article/2026/10/26/ai-giant-anthropic-files-for-an-ipo-that-could-break-records/"
+  },
+  {
+   "label": "IREN — 2027 회계연도 1분기 실적(매출·수주잔고·선불)",
+   "url": "https://iren.gcs-web.com/news-releases/news-release-details/iren-reports-q1-fy27-results"
+  },
+  {
+   "label": "24/7 Wall St — IREN 신규 고객 선불 최대 90%",
+   "url": "https://247wallst.com/investing/2026/11/06/iren-says-new-ai-cloud-customers-are-prepaying-90-of-the-chips/"
+  },
+  {
+   "label": "investingLive — 나스닥 100, 2020년 이후 최악의 하루",
+   "url": "https://investinglive.com/stocks/nasdaq-100-suffers-worst-day-since-2020/"
+  },
+  {
+   "label": "iCapital — Market Pulse: 반도체지수 약 12% 하락",
+   "url": "https://icapital.com/insights/investment-market-strategy/market-pulse-stress-not-capitulation/"
+  },
+  {
+   "label": "Muck Rack — Nishant Kumar 프로필",
+   "url": "https://muckrack.com/nishant-kumar/bio"
+  },
+  {
+   "label": "CNBC — CoreWeave 3분기 실적(무담보 채권 발행 중단)",
+   "url": "https://www.cnbc.com/2026/11/10/coreweave-crwv-q3-earnings-report-2026.html"
+  }
+ ],
+ "charts": [
+  {
+   "at": "tldr",
+   "title": "10월 헤지펀드 수익률 — 소수만 벌고 대부분 손실",
+   "sub": "2026년 10월 한 달 수익률, %",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Quantedge",
+    "Citadel Wellington",
+    "D.E. Shaw Composite",
+    "Millennium",
+    "ExodusPoint",
+    "Balyasny",
+    "D1(주식)",
+    "Whale Rock(주력)",
+    "Arini(크레디트)",
+    "Value Aligned Research"
+   ],
+   "series": [
+    {
+     "name": "10월 수익률",
+     "values": [
+      7.2,
+      1.7,
+      0.7,
+      -2.3,
+      -2.4,
+      -3.4,
+      -4.4,
+      -8,
+      -12,
+      -33
+     ]
+    }
+   ],
+   "note": "Whale Rock은 '약 -8%', Arini는 '-12% 넘게'로 보도된 근사치",
+   "source": "Hedgeweek(Bloomberg 인용), 2026-11-06"
+  },
+  {
+   "at": "summary",
+   "title": "Millennium 신규 자금 — 목표·수요·실제 수용",
+   "sub": "2026년 자금 모집, 억 달러",
+   "type": "bar",
+   "unit": "억 달러",
+   "labels": [
+    "목표",
+    "투자자 수요",
+    "실제로 받은 금액"
+   ],
+   "series": [
+    {
+     "name": "금액",
+     "values": [
+      200,
+      300,
+      220
+     ]
+    }
+   ],
+   "note": "수요는 '300억 달러 이상' — 펀드 용량이 모자라 돈을 다 받지 못했다",
+   "source": "대본(Nishant Kumar)"
+  },
+  {
+   "at": "deep",
+   "title": "연초 대비 수익률 — 10월 뒤 갈린 성적",
+   "sub": "2026년 10월 말 기준 연초 대비 %",
+   "type": "hbar",
+   "unit": "%",
+   "labels": [
+    "Quantedge",
+    "D.E. Shaw Composite",
+    "Citadel Wellington",
+    "Millennium",
+    "ExodusPoint",
+    "Balyasny"
+   ],
+   "series": [
+    {
+     "name": "연초 대비",
+     "values": [
+      60,
+      16,
+      15.3,
+      5.7,
+      1.6,
+      -2.7
+     ]
+    }
+   ],
+   "note": "10월 손실로 Balyasny는 연간 마이너스로 돌아섰다",
+   "source": "Hedgeweek(Bloomberg 인용), 2026-11-06"
+  },
+  {
+   "at": "deep",
+   "title": "상위 10개 멀티스트랫 — 굴리는 돈 vs 자기자본",
+   "sub": "2025년 말, 조 달러",
+   "type": "bar",
+   "unit": "조 달러",
+   "labels": [
+    "총익스포저(빌린 돈 포함)",
+    "순자산"
+   ],
+   "series": [
+    {
+     "name": "금액",
+     "values": [
+      2.2,
+      0.36
+     ]
+    }
+   ],
+   "note": "자기자본 1달러로 약 6달러를 굴리는 구조 — 플랫폼형은 8~14배",
+   "source": "PivotalPath 연구(Hedgeweek, 2026-11-03)"
+  },
+  {
+   "at": "deep",
+   "title": "Anthropic 기업가치 — 5월 비공개 투자 vs 상장 거론 범위",
+   "sub": "조 달러",
+   "type": "bar",
+   "unit": "조 달러",
+   "labels": [
+    "5월 투자(사후)",
+    "상장 거론 하단",
+    "상장 거론 상단"
+   ],
+   "series": [
+    {
+     "name": "기업가치",
+     "values": [
+      0.965,
+      1.5,
+      2.0
+     ]
+    }
+   ],
+   "note": "대본의 '1조 4천억 달러'는 보도 범위 하단보다 낮다 — 공모가는 미확정",
+   "source": "OPB(AP) — Anthropic 상장 신고, 2026-10-26"
+  }
+ ],
+ "tg": "10월 헤지펀드가 전략 가리지 않고 동반 손실. 원인은 AI 붐빔과 레버리지. 선거 뒤 목요일 투매는 옵션·레버리지 ETF·CTA의 기계적 매도. Anthropic 상장과 2028년 데이터센터 인허가가 다음 변수.",
+ "tg_body": "10월 헤지펀드 업계는 주식·매크로·크레디트 가리지 않고 함께 손실을 냈다. Bloomberg Nishant Kumar는 Millennium의 2.3% 손실도 하락장 방어라는 역할을 못 했다는 점에서 크다고 본다. AI 집중 펀드 VAR은 한 달 33%를 잃었다.\n\n원인은 붐빔과 레버리지다. 서로 다른 거래처럼 보여도 반도체 롱·국채 숏이 모두 AI 베팅이었다는 지적이다. 상위 10개 멀티스트랫이 빌린 돈 포함 2조 2천억 달러를 굴리고, PM은 5~7.5% 잃으면 잘린다.\n\nMichael Ball은 선거 이틀 뒤 목요일 투매를 옵션 딜러 헤지·레버리지 ETF·CTA가 키운 기계적 매도로 본다. 10월에 AI 설비투자 이야기는 성장에서 자금 조달 문제로 바뀌었다.\n\n그는 2027년보다 신규 데이터센터가 막힐 2028년 이익을 더 걱정한다. Anthropic 상장은 1조 4천억 달러 안팎이 거론됐다.\n\n외부 확인: 11월 5일 나스닥 100 하루 약 6.4% 하락. Balyasny -3.4%(연간 마이너스 전환), Citadel +1.7%, Quantedge +7.2%. Anthropic 상장 거론 범위는 1조 5천억~2조 달러.",
+ "youtube": "https://www.youtube.com/watch?v=p8IhboBVlno",
+ "image": "https://i.ytimg.com/vi/p8IhboBVlno/hqdefault.jpg",
+ "transcript_source": "youtube",
+ "no_transcript": false,
+ "written": "2026-11-11 19:10 KST"
+}

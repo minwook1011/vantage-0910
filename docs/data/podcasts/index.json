@@ -1,6 +1,31 @@
 {
- "updated": "2026-11-11 17:29 KST",
+ "updated": "2026-11-11 19:05 KST",
  "episodes": [
+  {
+   "id": "2026-11-11-oddlots-the-perfect-storm-that-clobbered-hedge-funds",
+   "show": "oddlots",
+   "show_name": "Odd Lots",
+   "title": "The Perfect Storm That Clobbered Hedge Funds",
+   "date": "2026-11-11",
+   "published": "2026-11-11 18:00 KST",
+   "link": "https://omny.fm/shows/odd-lots/the-perfect-storm-that-clobbered-hedge-funds",
+   "audio": "https://podtrac.com/pts/redirect.mp3/tracking.swap.fm/track/UVBrz8bN8aM2Xe47PEPu/traffic.omny.fm/d/clips/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/d50c15fb-6c5a-4836-89a2-b4fe0174107c/audio.mp3?utm_source=Podcast&in_playlist=982f5071-765c-403d-969d-ae27003a8d83",
+   "duration": "51:58",
+   "desc": "Even before the US midterms, the AI trade was weakening. Just look at all the headlines from October in the hedge fund world — it was one of the bloodiest periods the industry has faced in recent memory. Now, after the blue wave, things continue to look uncertain. So what's going to happen with the AI buildout now? And what about the big Anthropic IPO? Today's episode is a two-parter, one that examines both the hedge fund carnage of the last few weeks and the broader macro conditions we find ourselves in after the midterm elections. We speak with two of our Bloomberg News colleagues — Nishant …",
+   "status": "done",
+   "found": "2026-11-11 18:24 KST",
+   "image": "https://omny.fm/shows/odd-lots/the-perfect-storm-that-clobbered-hedge-funds/image.jpg?t=1681324767&size=wideShare",
+   "show_image": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/8a94442e-5a74-4fa2-8b8d-ae27003a8d6b/982f5071-765c-403d-969d-ae27003a8d83/image.jpg?t=1681322812&size=Large",
+   "title_ko": "헤지펀드를 강타한 퍼펙트 스톰 — 10월 AI 트레이드 붕괴와 중간선거 이후 시장",
+   "desc_ko": "미국 중간선거 전부터 AI 관련 매매가 약해지면서 10월 헤지펀드 업계는 최근 몇 년 사이 가장 큰 손실 구간을 겪었다. 이번 편은 두 부분으로 나뉘어, 먼저 Bloomberg 기자들과 지난 몇 주간 헤지펀드 손실이 어떻게 번졌는지 짚는다. 이어 민주당이 크게 이긴 선거 뒤의 거시 환경과 AI 설비투자의 앞날, Anthropic 상장 같은 이슈를 다룬다. 불확실성이 커진 시장에서 무엇을 봐야 하는지가 핵심이다.",
+   "summary": {
+    "title_ko": "헤지펀드를 강타한 퍼펙트 스톰 — 10월 AI 트레이드 붕괴와 중간선거 이후 시장",
+    "headline": "모두가 다른 거래를 한다고 믿었지만 실은 같은 AI 롱 — 10월, 피난처 없이 함께 무너진 헤지펀드",
+    "image": "https://i.ytimg.com/vi/p8IhboBVlno/hqdefault.jpg",
+    "guest": "니샨트 쿠마르(Nishant Kumar)·마이클 볼(Michael Ball) — Bloomberg News 헤지펀드 수석 기자 · Bloomberg 매크로 전략가",
+    "company": "Millennium · Citadel · Balyasny · CoreWeave · IREN · Anthropic (헤지펀드 · AI 인프라 · 매크로)"
+   }
+  },
   {
    "id": "2026-11-11-understanding-t8OJHL6q3T4",
    "show": "understanding",
@@ -118,6 +143,31 @@
     "image": "https://i.ytimg.com/vi/V3kZf4KbRnE/hqdefault.jpg",
     "guest": "식스시그마(Six Sigma) 채널 — 한국어 투자·기술 해설 유튜브 — 로봇 AI와 '씁쓸한 교훈'",
     "company": "Anthropic · Boston Dynamics(현대차그룹) · Figure (AI 모델 · 휴머노이드 로봇)"
+   }
+  },
+  {
+   "id": "2026-11-11-ilb-zach-reitano-building-ro-and-why-healthcare-shou",
+   "show": "ilb",
+   "show_name": "Invest Like the Best",
+   "title": "Zach Reitano - Building Ro and Why Healthcare Should Be 50% of GDP - [Invest Like the Best, EP.500]",
+   "date": "2026-11-11",
+   "published": "2026-11-11 09:00 KST",
+   "link": "https://colossus.com/episode/the-patient-revolution/",
+   "audio": "https://traffic.megaphone.fm/CLS9826691790.mp3",
+   "duration": "1:16:07",
+   "desc": "My guest today is Zach Reitano, the co-founder and CEO of Ro, the country’s leading provider of GLP-1s. In four years, Ro has grown from a $250 million run rate to over $3 billion, with fewer people than it had in 2021. The heart of our conversation is what he sees as the central flaw in American healthcare, which is that the patient is not the customer. He points to GLP-1s and LASIK as examples of what’s possible when patients pay directly, and he thinks AI could bring healthcare down to the price of a Netflix subscription. But to capture that opportunity, Zach first had to rebuild Ro's cultu…",
+   "status": "done",
+   "found": "2026-11-11 18:24 KST",
+   "image": "https://megaphone.imgix.net/podcasts/f2c43732-dd18-11f1-bff2-0bf5984a7473/image/f171d63bd0076fb2ba6ebb8cdea17ba5.png?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "show_image": "https://megaphone.imgix.net/podcasts/ef669774-cccd-11ed-889b-c36caad6646f/image/158efdddfb983d2678b3530d484e8aa2.jpg?ixlib=rails-4.3.1&max-w=3000&max-h=3000&fit=crop&auto=format,compress",
+   "title_ko": "Zach Reitano — Ro를 만든 이야기, 그리고 의료가 GDP의 50%가 돼야 하는 이유 (500회)",
+   "desc_ko": "미국 최대 GLP-1 비만약 처방 플랫폼 Ro의 공동창업자이자 CEO Zach Reitano가 출연한다. Ro는 4년 만에 연 매출 환산 2억 5천만 달러에서 30억 달러 이상으로 컸는데, 직원 수는 2021년보다 적다. 대화의 중심은 미국 의료의 근본 문제가 '환자가 고객이 아니다'라는 점이며, GLP-1과 라식처럼 환자가 직접 돈을 내는 시장에서 무엇이 가능한지 사례로 든다. AI가 의료비를 넷플릭스 구독료 수준으로 낮출 수 있다는 주장과, 그 기회를 잡기 위해 회사 문화를 다시 세운 과정도 이야기한다.",
+   "summary": {
+    "title_ko": "Zach Reitano — Ro를 만든 이야기, 그리고 의료가 GDP의 50%가 돼야 하는 이유 (500회)",
+    "headline": "환자가 직접 돈을 내자 1,300달러짜리 약이 149달러로 — Ro, 직원은 줄이고 매출은 10배",
+    "image": null,
+    "guest": "자크 레이타노(Zach Reitano) — Ro 공동창업자·CEO — 미국 최대 GLP-1 원격 처방 플랫폼",
+    "company": "Ro (원격의료 · GLP-1 · 소비자 헬스케어)"
    }
   },
   {
