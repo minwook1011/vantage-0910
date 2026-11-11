@@ -3,6 +3,22 @@
  "slug": "open-ai",
  "items": [
   {
+   "id": "eeb81d625596",
+   "kind": "news",
+   "headline": "[후속] 오픈AI, 투자자들에게 3분기 매출 약 100억달러 공식 확인 — 영업손실도 109억달러로 늘어, 기업용 매출은 전분기의 2배",
+   "bullets": [
+    "오픈AI는 10일(현지시간) 투자자들에게 3분기(7~9월) 매출이 약 100억달러라고 밝혔다. 2분기 67억달러에서 약 50% 늘었고, 1년 전보다는 약 3배다.",
+    "사라 프라이어 최고재무책임자는 기업용 사업 매출이 전분기의 두 배가 됐다고 설명했다. 기업용과 소비자용 매출 비중은 각각 약 50%다.",
+    "월스트리트저널에 따르면 3분기 영업손실은 109억달러로 2분기(101억달러)보다 8억달러 늘었다. 조정 영업이익률은 -109%로 전분기보다는 나아졌다."
+   ],
+   "summary": "앞서 디인포메이션이 보도한 3분기 매출 100억달러를 오픈AI가 투자자 설명으로 직접 확인했고, 손실 숫자가 새로 나왔다. 매출 증가는 기업들이 오픈AI 모델을 자기 소프트웨어·업무 시스템에 붙이면서 응용프로그램 인터페이스(API) 사용량이 늘고, 코딩·업무 자동화 고객이 넓어진 덕분이다. 2분기 전분기 대비 성장률이 18%에 그쳤던 데서 다시 50%로 올라섰다.\n\n비용은 여전히 매출보다 크다. 모델 학습·추론용 연산 인프라와 연구개발에 큰돈이 들어가 매출이 늘어도 영업손실이 오히려 커졌다. 경쟁사 앤트로픽은 3분기 매출 약 170억달러(전분기 대비 +47%)로 규모는 앞서지만, 두 회사는 클라우드 파트너를 거친 매출을 잡는 방식이 달라 숫자를 그대로 비교하기는 어렵다.\n\n자금 조달 쪽에서는 블룸버그 보도로 오픈AI가 최근 신규 투자에서 약 110억달러를 확보했고, 당초 300억달러 이상이던 목표를 최대 200억달러 수준으로 낮춘 것으로 알려졌다. 이번 투자에서 매겨진 기업가치는 약 1조2,500억달러이고, 상장은 내년으로 미뤘다. 남은 쟁점은 기업용 매출 증가가 실제 손실 축소로 이어지느냐다.",
+   "title": "오픈AI CFO \"3분기 매출 100억 달러 돌파\"…B2B 매출 2배 증가",
+   "source": "연합인포맥스",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5nWXFQUWNaQ2xqZFF2NHlfYjZURE5lanQzUVpNOGRtT0pqQS1fcmFJNGxLejJld2djM1FGb1E2WUhZaGpmYVhSd01yQmFmSk1JT1ZTZEJhTG53VWxHNDlfVkhrcXBGNk4wNkJZa3hMUHDSAXRBVV95cUxONGVJVkZ2ajZXTElVOHNOb3VaM0NydFlWdHFOS0JnRHZ6WTFIZnMzX1dfRUFIdUtyOEpSNlB2eUxjSXMzZENBRkoxbXh5cFE3RWNTVkRMREtIUFA0VXB6OVZINFBGVnU4VW82Z2V4ekJ5M1lKZw?oc=5",
+   "published": "2026-11-11 11:08 KST",
+   "written": "2026-11-11 11:20 KST"
+  },
+  {
    "id": "c1e816a33966",
    "kind": "news",
    "headline": "오픈AI, 기업이 챗GPT 안에 직접 '입점'하는 '비즈니스 인 챗GPT' 베타 출시 — 회사·상품 가격·재고 올리고, 이용자는 그 회사 챗봇 불러 상담",
@@ -1507,5 +1523,5 @@
    "written": "2026-10-10 14:48 KST"
   }
  ],
- "updated": "2026-11-11 10:21 KST"
+ "updated": "2026-11-11 11:20 KST"
 }

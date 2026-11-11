@@ -3,6 +3,22 @@
  "slug": "t-0a23e71f",
  "items": [
   {
+   "id": "8ced1de6ed4f",
+   "kind": "news",
+   "headline": "비전 AI 기업 레졸루션, AI 전자부품 조립기판 검사장비 '렉스원' 국내 대기업 계열 자동차 부품사와 정식 공급 계약 — 미국 텍사스 검증 마치고 상용 계약 협의",
+   "bullets": [
+    "레졸루션은 자체 AI 모델을 넣은 검사장비 '렉스원(REX1)'을 국내 대기업 계열 자동차 부품 제조사에 공급하는 정식 계약을 맺었다.",
+    "미국 텍사스주 라운드록 제조현장에서 약 한 달간 개념검증을 마쳤고, 이를 바탕으로 상용 계약 전환을 협의 중이다. 현지 설치·운영 협력사 선정도 마무리 단계다.",
+    "최근 미국 실리콘밸리 투자사 허슬펀드(Hustle Fund)의 투자도 받았다."
+   ],
+   "summary": "렉스원은 인쇄회로기판(PCB)에 부품을 얹은 전자부품 조립기판(PCBA)에서 부품 누락, 삽입 오류, 파손, 납땜 불량을 자동으로 잡아내는 장비다. 조립기판은 자동차 전장품, 산업용 장비, 통신기기에 들어간다.\n\n핵심은 자체 AI 모델 '렉스브레인'이다. 실제 생산 데이터와 숙련 검사자의 판정 기준을 학습시켜 부품 모양·방향·극성·위치 관계로 불량을 판단한다. 생산 품목이 자주 바뀌는 다품종 소량생산 현장을 겨냥해, 기판이 바뀔 때마다 검사 조건을 다시 설정하는 작업을 줄인 것이 차별점이라고 회사는 설명했다. 회사는 국내 운영 경험을 바탕으로 해외 생산거점 확대를 검토하고, 국내외 현장 데이터로 검사 성능을 높일 계획이다. 계약 금액은 공개되지 않았다.",
+   "title": "레졸루션, AI 기판 검사장비 공급 확대…미국 진출도 추진",
+   "source": "IT조선",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBYYW90a3M2SVhsaUk2djlaME5nc01ZTGtNaGp0TUpyMVEtQjhweWZMUFd4N3ptdW1KVFZrNkJBaUtjYU9uQkZlSlE3akRtVlRveU84X2ZOMHNIX0JkVHRKTHdBSVIyTGNvamdMMHQ2ZlfSAXRBVV95cUxPN2t2MHZHZHdHOW1FOGV6NTRVcnV4SG00VXVxTW04djRYNUhKbzRucS1LeVlxTnNZQ3hwd3lLWUdjbW1lM3FudkxITERZVC11NHdZTkM0dzRkcmF4QjdGb1d6S2lKUTF3ZmR6bVhiTy02YWhYZw?oc=5",
+   "published": "2026-11-11 11:03 KST",
+   "written": "2026-11-11 11:20 KST"
+  },
+  {
    "id": "b95d4479e04f",
    "kind": "news",
    "headline": "대만 롄처(6658)·인넝(7734), 기판 휨 억제 설비 공동 개발 전략 제휴 — 고성능 AI 패키지용 ABF 기판 겨냥",
@@ -515,5 +531,5 @@
    "written": "2026-10-12 19:12 KST"
   }
  ],
- "updated": "2026-11-10 17:21 KST"
+ "updated": "2026-11-11 11:20 KST"
 }
