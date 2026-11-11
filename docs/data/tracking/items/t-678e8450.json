@@ -3,6 +3,22 @@
  "slug": "t-678e8450",
  "items": [
   {
+   "id": "6e1b5caa473e",
+   "kind": "news",
+   "headline": "브리치센스 \"올해 랜섬웨어 피해 기업, 10개월 만에 7,807곳 — 이미 작년 전체(7,307곳) 넘었다\"",
+   "bullets": [
+    "보안 정보업체 브리치센스 집계로 2026년 1~10월 랜섬웨어 조직 유출 사이트에 올라간 피해 기업이 7,807곳이다. 2025년 한 해 전체 7,307곳을 이미 넘었다.",
+    "지금 월평균이 이어지면 연말엔 약 9,400곳까지 갈 것으로 추산했다.",
+    "9월 기준으로는 가장 활발한 조직 '킬린'의 올해 피해 건수(968곳)가 이미 작년 전체(958곳)를 넘었다."
+   ],
+   "summary": "브리치센스는 2025년에 138개 조직이 7,307곳을 공격했다고 집계했는데, 이는 2024년보다 45% 늘어난 수치였다. 올해는 그보다 더 빠르다. 9개월 누적 6,854곳에서 10월 한 달 사이 작년 연간치를 넘어섰다.\n\n다만 이 숫자는 조직들이 다크웹 유출 사이트에 '공개 망신' 목적으로 올린 기업만 센 것이다. 공개 전에 몸값을 낸 피해자는 빠지고, 집계 기관마다 2025년 기준치도 조금씩 다르다(서치라이트 사이버는 7,458곳). 랜섬웨어 피해가 해마다 기록을 새로 쓰는 흐름은 사이버보안 업체들의 수요 근거로 계속 쓰인다.",
+   "title": "Breachsense Finds 2026 Ransomware Victims Already Outnumber 2025's Total",
+   "source": "Yahoo Finance",
+   "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNa2dSMUl6aVdJclROR2k5UEcxVXFDR0ZNNmlUOGtlX1ZydU5uUGlBNVVrQlBlLVV0NkR3NWZNNEdPcVNQbXZ1SjE2bmVmejM2OFhYWWhRQVFMY0s5ampmNHNTclFuWkFZYmhRRGFIeEtYamhUSXpBeEpIdk9SVFJwSldrWkhmQXJqX3RybE9ITldOUUZjV3R6WndibjBlUWU1X3p3ZXczTFo?oc=5",
+   "published": "2026-11-11 22:45 KST",
+   "written": "2026-11-11 23:50 KST"
+  },
+  {
    "id": "eb0dd4d699b7",
    "kind": "news",
    "headline": "대만 디지털발전부 \"AI 해킹 피해 신고 기업 10여 곳, 그중 5~6곳은 대형사\" — 4대 AI 회사 모델로 정부 시스템 점검",
@@ -1251,5 +1267,5 @@
    "written": "2026-10-26 20:55 KST"
   }
  ],
- "updated": "2026-11-11 19:19 KST"
+ "updated": "2026-11-11 23:50 KST"
 }
