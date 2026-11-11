@@ -1159,6 +1159,7 @@
   "trk:nvda:72090d9cfbe9",
   "trk:nvda:7da108fd0af6",
   "trk:nvda:83008d18b4bd",
+  "trk:nvda:85c8922e0712",
   "trk:nvda:8ca37388610d",
   "trk:nvda:944c53d6b0eb",
   "trk:nvda:97c6f3e03e01",
@@ -1319,6 +1320,7 @@
   "trk:t-31ce370d:a96ec9bfd3fd",
   "trk:t-31ce370d:d579be2ba652",
   "trk:t-31ce370d:d968293030c7",
+  "trk:t-31ce370d:eba3798b2474",
   "trk:t-3f524a5b:348b0c7490ee",
   "trk:t-3f524a5b:390ae7817e3e",
   "trk:t-3f524a5b:3d578f6594f1",
@@ -1757,6 +1759,7 @@
   "trk:yt--jklonfa:93cfcf5746bf",
   "trk:yt--jklonfa:94142abd3697",
   "trk:yt--jklonfa:9566b489a763",
+  "trk:yt--jklonfa:9566fe21c5d1",
   "trk:yt--jklonfa:9698b87788a4",
   "trk:yt--jklonfa:96bc1908858a",
   "trk:yt--jklonfa:96c5132ca2ab",
@@ -1962,15 +1965,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:blog-techcrunch:225d1691a317": [
-   1357
-  ],
-  "trk:t-678e8450:9a3b5d8d8435": [
-   1358
-  ],
-  "trk:t-678e8450:a5428e26fd43": [
-   1359
-  ],
   "trk:t-678e8450:eb6518f9e806": [
    1360
   ],
@@ -3498,6 +3492,15 @@
   ],
   "usdkrw:2026-11-11": [
    541
+  ],
+  "trk:t-31ce370d:eba3798b2474": [
+   1802
+  ],
+  "trk:yt--jklonfa:9566fe21c5d1": [
+   1803
+  ],
+  "trk:nvda:85c8922e0712": [
+   1804
   ]
  },
  "topics": {},
