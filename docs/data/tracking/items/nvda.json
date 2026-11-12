@@ -3,6 +3,38 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "8f485a5c6b45",
+   "kind": "news",
+   "headline": "엔비디아 이사회, 젠슨 황 해임 준비(월스트리트저널) — 직속 킴벌리 파월 부사장과의 두 번째 혼외 의혹 뒤, 파월은 행사 불참·주가 시간외 8.6% 하락",
+   "bullets": [
+    "뉴욕타임스는 전 직원 5명을 인용해 젠슨 황(63)이 직속 킴벌리 파월 헬스케어 부사장(48)과도 혼외 관계였다고 보도했다. 두 사람 모두 기혼이고 확인하지 않았다.",
+    "보도 직후 월스트리트저널은 엔비디아 이사회가 황의 해임을 준비 중이라고 전했다.",
+    "파월은 목요일 밀컨연구소 '미래 건강 서밋' 개막 패널 참석을 갑자기 취소했고, 엔비디아 주가는 시간외에서 8.61% 내린 158.78달러."
+   ],
+   "summary": "뉴욕타임스 소식통 중 두 명은 올해 3월 GTC 개발자 콘퍼런스 기간 산호세 호텔에서 두 사람이 다정한 모습이 영상에 찍혔다고 주장했다. 파월의 패널 취소는 진행자인 CNN 의학 기자가 X에 알렸다. 엔비디아는 앞서 앨리스 황 건에 대해 독립 이사와 외부 변호인이 조사 중이며 기밀이나 국가 안보가 침해됐다고 볼 이유는 없다고 밝힌 바 있다. 트럼프 대통령은 월요일 FBI가 의혹을 살펴보고 있다면서도 황을 믿는다고 했다.\n\n엔비디아에는 공식 후계 계획이 없어, 이사회가 실제로 어떤 결정을 내리고 언제 발표하는지가 핵심 쟁점이다.",
+   "title": "Nvidia Executive Kimberly Powell Suddenly Drops Out of Major Health Summit After Bombshell Jensen Huang Affair Report",
+   "source": "Yahoo Finance",
+   "url": "https://finance.yahoo.com/healthcare/articles/nvidia-executive-kimberly-powell-suddenly-053715185.html?.tsrc=rss",
+   "published": "2026-11-12 14:37 KST",
+   "written": "2026-11-12 16:16 KST"
+  },
+  {
+   "id": "66ce1d695765",
+   "kind": "news",
+   "headline": "로이터 단독 \"중국 AI 기업들, 젠슨 황 스캔들 뒤 해외 엔비디아 칩 연산 용량 확보 경쟁\" — 미국 원격 이용 규제 앞두고 선점",
+   "bullets": [
+    "로이터는 관계자 3명을 인용해 중국 AI 기업들이 해외 데이터센터에 깔린 엔비디아 GPU 연산 용량을 서둘러 잡고 있다고 보도했다.",
+    "중국 대형 클라우드 기업 한 곳은 해외 용량 사전 확보를 내부 논의했고, 일부는 데이터센터 운영사에 예약을 직접 타진했다. 중소 AI 연구소들도 동남아 클라우드 사업자와 접촉 중이다.",
+    "중국 비공식 유통시장에서도 엔비디아 AI 칩 수요가 늘었고 일부 중개상은 재고를 쌓기 시작했다."
+   ],
+   "summary": "배경은 미국이 해외 원격 이용 경로까지 막을 수 있다는 우려다. 미국은 최첨단 칩의 중국 직접 수출은 막고 있지만, 중국 기업이 해외 데이터센터 GPU를 원격으로 쓰는 것은 아직 허용된다. 상무부가 해외 기업의 원격 접근을 규제할 수 있게 하는 '원격접근보안법'은 올해 1월 하원을 찬성 369, 반대 22로 통과해 상원 심의를 기다리고 있다. 젠슨 황 스파이 의혹이 이 논의에 불을 붙였다는 해석이다. 로이터는 스파이 의혹 자체는 독립적으로 확인하지 못했고 중국 정부는 부인하고 있다. 법안 상원 처리 여부가 다음 체크포인트다.",
+   "title": "EXCLUSIVE: Chinese AI firms rush to secure Nvidia chip capacity as spy scandal stirs fear of US curbs",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc1EtU18tWjZNZTZtOFBZNzdqZkRFMk1nbm9MTm9VWUQwUHlLc1dTdDNLWmNCcllESHVVYjFnXzlKcFJrSWpHUkY2S1lhcTFtWWdPVG9WdkcyTkFSaEpLanVzeWctM1hCTkdxUEJ6VnBrLXFYVnBsalpKUkJVUGQyUE5DOEJtaTctZlFEaV9VR1loQ1JrVlhyRmRxR25UMkI2MVgtZnBFU1pVaXhBcmw0ZV9jb0RPYlduY1ppbnpCTlc?oc=5",
+   "published": "2026-11-12 14:31 KST",
+   "written": "2026-11-12 16:16 KST"
+  },
+  {
    "id": "f5169891fdeb",
    "kind": "news",
    "headline": "코어위브 최고경영자 \"엔비디아와 협력 바뀔 이유 없다\" — 젠슨 황 이사회 조사에도 관계 유지 강조",
@@ -1107,5 +1139,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-11 23:50 KST"
+ "updated": "2026-11-12 16:16 KST"
 }
