@@ -3,6 +3,38 @@
  "slug": "nvda",
  "items": [
   {
+   "id": "7614f4ab801d",
+   "kind": "news",
+   "headline": "워런·쿤스 상원의원, 트럼프 정부에 '엔비디아 대중국 수출 기록 전부 보존' 요구 — 의회 조사 예고",
+   "bullets": [
+    "민주당 엘리자베스 워런·크리스 쿤스 상원의원이 러트닉 상무장관, 루비오 국무장관, 스티븐 밀러 백악관 비서실장에게 엔비디아 칩 대중국 수출 관련 문서를 모두 보존하라는 서한을 보냈다(로이터·블룸버그).",
+    "보존 대상은 엔비디아 경영진과 정부 고위 인사의 연락, AI 칩 밀수 조사 기록, 수출통제 완화·중단 결정 관련 자료다.",
+    "두 의원은 앨리스 황 관련 의심 정보작전이 낳은 국가안보 위험에 대해 의회 브리핑도 요구했다."
+   ],
+   "summary": "서한은 엔비디아 이사회가 젠슨 황 해임 여부를 논의하는 회의를 앞둔 시점에 나왔다. 앞서 젠슨 황과 앨리스 황의 관계가 엔비디아 칩 최소 75억달러어치의 중국행을 도왔다는 보도가 나온 뒤 미 연방수사국(FBI) 조사, 독립이사 검토, 주주 집단소송이 이어졌다.\n\n문서 보존 요구는 나중에 의회 조사·소환에 대비한 사전 조치 성격이다. 워런 의원은 그동안 H200 등 엔비디아 칩의 대중국 수출 허가에 반대해 왔다. 남은 쟁점은 정부가 실제로 브리핑에 응할지, 공화당 쪽이 조사에 동참할지다.",
+   "title": "Senior US Democratic senators urge administration to preserve Nvidia export records amid China security concerns",
+   "source": "Reuters",
+   "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOU2otaHFORWxkN3E2TnF1cllybUxndHc4b3d1SlI3bExwOWNnV2F6VXRnU2h4eWFWMFBEUy1pcWxhaUNUTVNjZ0NZU21OMTFnRERCeGlMeW9UbkpNa3g2ZDZLNG9VanFCbzk3OGdXWWE4ZFM4MVozZzItTFVWVGdJdXNmTzlGM2U1QWtBYXp5SFhwUWlTQ0sxckxYdjlvZWJFSGFuVUVHSGZwTnJDaXlGRGlFSmllODd3WkpfeF9sOEVxeXdKU3JZ?oc=5",
+   "published": "2026-11-12 12:44 KST",
+   "written": "2026-11-12 16:50 KST"
+  },
+  {
+   "id": "176af04d0ff9",
+   "kind": "news",
+   "headline": "엑시오스 \"트럼프가 승인한 '엔비디아 칩 중국 우회' 단속, 러트닉 상무장관이 또 막았다\" — 올해 세 번째",
+   "bullets": [
+    "트럼프 대통령이 엔비디아 첨단 AI 칩을 중국으로 빼돌린 혐의 기업 단속을 승인했지만, 러트닉 상무장관이 거듭 제동을 걸었다고 엑시오스가 고위 소식통을 인용해 보도했다.",
+    "트럼프의 단속 승인은 올해 세 번째로, 이번엔 일론 머스크와 상의한 뒤 내린 결정이다. 집무실 회의에서 러트닉 혼자 반대했고, 회의가 끝나자 새 지연 방안을 내놨다.",
+    "상황실 회의에서는 베선트 재무장관이 상무부의 수출통제 집행 저항을 따졌고, 러트닉은 동의하는 듯하다가 '대통령에게 확인하겠다'고 했다."
+   ],
+   "summary": "칩 수출 허가와 우회 수출 단속은 상무부 산업안보국(BIS) 소관이라, 장관이 버티면 대통령 승인도 집행이 늦어진다. 트럼프 정부는 지난해 H200의 대중국 판매 규제를 풀었고, 엔비디아는 이를 위해 강하게 로비해 왔다.\n\n이번 보도는 젠슨 황-앨리스 황 스캔들로 엔비디아의 대중국 칩 유출 의혹에 대한 정치권 압박이 커지는 가운데 나왔다. 앞서 엑시오스는 러트닉이 두 사람 관계를 경고한 1급 기밀 메모를 받았다고도 보도했다. 러트닉이나 백악관의 공식 반응은 아직 확인되지 않았다.",
+   "title": "Scoop: Lutnick stalled curbing Nvidia chip sales to China — again — after Oval Office showdown",
+   "source": "Axios",
+   "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPa01VNnZpTE10OFNfTFRXZDZzeUJwSjFkNmlhVjFwUVExM3RmaUlNOG1jWm1aYXJMRHkyb2s1WGdMQU9IQUN6RE5kVi1ub3JkQ0wxVnc2YWFvY2VzTWRiX0FZeVlpdDNsMzBhcWpzOVhqNVh4UUFCa2cySy1ZSlkwTGRxbHVjcEU?oc=5",
+   "published": "2026-11-12 12:11 KST",
+   "written": "2026-11-12 16:50 KST"
+  },
+  {
    "id": "8f485a5c6b45",
    "kind": "news",
    "headline": "엔비디아 이사회, 젠슨 황 해임 준비(월스트리트저널) — 직속 킴벌리 파월 부사장과의 두 번째 혼외 의혹 뒤, 파월은 행사 불참·주가 시간외 8.6% 하락",
@@ -1139,5 +1171,5 @@
    "written": "2026-10-13 11:47 KST"
   }
  ],
- "updated": "2026-11-12 16:16 KST"
+ "updated": "2026-11-12 16:50 KST"
 }
