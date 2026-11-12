@@ -2040,6 +2040,7 @@
   "usdkrw:2026-11-09",
   "usdkrw:2026-11-10",
   "usdkrw:2026-11-11",
+  "usdkrw:2026-11-12",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
   "weekly:2026-10-12",
@@ -2048,9 +2049,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:blog-techcrunch:500d08455cef": [
-   1439
-  ],
   "trk:blog-techcrunch:9fd2dc89b5a2": [
    1440
   ],
@@ -3583,6 +3581,9 @@
   ],
   "pod:2026-11-12-dumbmoney-qdyD1nPwIWI": [
    1878
+  ],
+  "usdkrw:2026-11-12": [
+   558
   ]
  },
  "topics": {},
