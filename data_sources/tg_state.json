@@ -523,6 +523,7 @@
   "trk:009150:3b959b70cbc3",
   "trk:009150:46203cd66fbe",
   "trk:009150:65c979c47823",
+  "trk:009150:7966b6393cf2",
   "trk:009150:7aedc5d54677",
   "trk:009150:c82248f53471",
   "trk:009150:c960c7b4e0c2",
@@ -598,6 +599,7 @@
   "trk:ax:db869a3b7283",
   "trk:ax:e4f716d082fe",
   "trk:ax:f0bd02d39605",
+  "trk:ax:f4258536f2cb",
   "trk:ax:f430c5044c98",
   "trk:bill-ackman:35cbcc93bb36",
   "trk:bill-ackman:8b5c4c18c150",
@@ -1188,6 +1190,7 @@
   "trk:nvda:07e335172c47",
   "trk:nvda:09ceb6f822a6",
   "trk:nvda:0e9665e6feb9",
+  "trk:nvda:176af04d0ff9",
   "trk:nvda:185ec668e6ca",
   "trk:nvda:26cb168cd0cf",
   "trk:nvda:2a6cd519197e",
@@ -1219,6 +1222,7 @@
   "trk:nvda:694da163d8c5",
   "trk:nvda:69b4a57785de",
   "trk:nvda:72090d9cfbe9",
+  "trk:nvda:7614f4ab801d",
   "trk:nvda:7da108fd0af6",
   "trk:nvda:83008d18b4bd",
   "trk:nvda:85c8922e0712",
@@ -1451,6 +1455,7 @@
   "trk:t-678e8450:0357676d5de8",
   "trk:t-678e8450:041b4199fa8e",
   "trk:t-678e8450:055e8cc7dc45",
+  "trk:t-678e8450:0a1163169df2",
   "trk:t-678e8450:0b0e54066438",
   "trk:t-678e8450:13172f63321f",
   "trk:t-678e8450:1d826e68d651",
@@ -1479,6 +1484,7 @@
   "trk:t-678e8450:6e1b5caa473e",
   "trk:t-678e8450:71632655013c",
   "trk:t-678e8450:7255341c134e",
+  "trk:t-678e8450:754618ffc847",
   "trk:t-678e8450:75cfe7a01f7c",
   "trk:t-678e8450:782af3346485",
   "trk:t-678e8450:798a990a6cce",
@@ -2075,25 +2081,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:x-rihardjarc:820036a56f6e": [
-   1463
-  ],
-  "pod:2026-11-05-sixsigma-_Xpv8Li1pJA": [
-   1464
-  ],
-  "gpu:2026-11-04": [
-   453
-  ],
-  "digest:2026-11-05:asia": [
-   454,
-   455
-  ],
-  "trk:msft:1f10d06697ba": [
-   1465
-  ],
-  "trk:open-ai:51d1203fc203": [
-   1466
-  ],
   "trk:open-ai:8e730ae8289f": [
    1467
   ],
@@ -3611,6 +3598,24 @@
   "digest:2026-11-12:asia": [
    560,
    561
+  ],
+  "trk:009150:7966b6393cf2": [
+   1903
+  ],
+  "trk:nvda:7614f4ab801d": [
+   1904
+  ],
+  "trk:nvda:176af04d0ff9": [
+   1905
+  ],
+  "trk:t-678e8450:754618ffc847": [
+   1906
+  ],
+  "trk:t-678e8450:0a1163169df2": [
+   1907
+  ],
+  "trk:ax:f4258536f2cb": [
+   1908
   ]
  },
  "topics": {},
