@@ -291,6 +291,7 @@
   "macro:2026-11-12",
   "macro:2026-11-13",
   "macro_week:2026-11-08",
+  "macro_week:2026-11-15",
   "nebius:2026-10-19",
   "nebius:2026-10-20",
   "nebius:2026-10-21",
@@ -318,6 +319,7 @@
   "nebius:2026-11-12",
   "nebius:2026-11-13",
   "nebius:2026-11-14",
+  "nebius:2026-11-15",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -2118,12 +2120,6 @@
   "weekly:2026-11-02"
  ],
  "msg": {
-  "trk:blog-techcrunch:397c66d452ad": [
-   1503
-  ],
-  "pod:2026-11-05-nopriors-tokenization-agentic-trading-harmonic-robinhood": [
-   1504
-  ],
   "trk:yt--jklonfa:ff7c0faa3964": [
    1505
   ],
@@ -3663,8 +3659,14 @@
   ],
   "jpm:2026-11-14 19:55 KST": [
    587
+  ],
+  "nebius:2026-11-15": [
+   588
+  ],
+  "macro_week:2026-11-15": [
+   589
   ]
  },
  "topics": {},
- "topic_fail_at": 1794699470.512914
+ "topic_fail_at": 1794705702.899116
 }
