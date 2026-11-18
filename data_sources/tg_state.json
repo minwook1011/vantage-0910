@@ -303,6 +303,7 @@
   "macro:2026-11-13",
   "macro:2026-11-16",
   "macro:2026-11-17",
+  "macro:2026-11-18",
   "macro_week:2026-11-08",
   "macro_week:2026-11-15",
   "nebius:2026-10-19",
@@ -2145,9 +2146,6 @@
   "weekly:2026-11-09"
  ],
  "msg": {
-  "ins:ins-20261105-cloudflare-q3-best-quarter-39pct-growth-margin-tradeoff": [
-   1525
-  ],
   "ins:ins-20261105-tom-lee-blue-tsunami-forced-liquidation-texas-dc-permits": [
    1526
   ],
@@ -3697,8 +3695,13 @@
   "bond:2026-11-17": [
    625,
    626
+  ],
+  "macro:2026-11-18": [
+   627,
+   628,
+   629
   ]
  },
  "topics": {},
- "topic_fail_at": 1795026849.409737
+ "topic_fail_at": 1795035390.792613
 }
