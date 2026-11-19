@@ -337,6 +337,7 @@
   "nebius:2026-11-16",
   "nebius:2026-11-17",
   "nebius:2026-11-18",
+  "nebius:2026-11-19",
   "or:2026-10-06",
   "or:2026-10-07",
   "or:2026-10-08",
@@ -2146,9 +2147,6 @@
   "weekly:2026-11-09"
  ],
  "msg": {
-  "ins:ins-20261105-tom-lee-blue-tsunami-forced-liquidation-texas-dc-permits": [
-   1526
-  ],
   "ins:ins-20261105-trump-300pct-tariff-legal-tools-korea-investment-ukraine-deal": [
    1527
   ],
@@ -3700,8 +3698,11 @@
    627,
    628,
    629
+  ],
+  "nebius:2026-11-19": [
+   630
   ]
  },
  "topics": {},
- "topic_fail_at": 1795039186.047537
+ "topic_fail_at": 1795049252.407028
 }
