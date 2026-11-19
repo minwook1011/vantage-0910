@@ -1,6 +1,43 @@
 {
- "updated": "2026-11-19 04:05 KST",
+ "updated": "2026-11-19 11:50 KST",
  "episodes": [
+  {
+   "id": "2026-11-19-sixsigma-eTrQjaDiK18",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "버핏 포트폴리오 TOP10, 3분기 매수·매도 상위",
+   "date": "2026-11-19",
+   "published": "2026-11-19 09:00 KST",
+   "link": "https://www.youtube.com/shorts/eTrQjaDiK18",
+   "youtube": "https://www.youtube.com/shorts/eTrQjaDiK18",
+   "audio": null,
+   "duration": "",
+   "desc": "워런 버핏(버크셔 해서웨이)의 2026년 9월 30일 기준 미국 13F 보유 1~10위(총 3,042억 달러, 30종목)와 3분기 매수·매도 상위 종목을 한 장으로 정리했습니다. [원본] (1) SEC EDGAR 13F · 2026년 9월 30일 기준 보유 신고 (2) Dataroma 13F 집계 (3) 인물 사진: USA International Trade Administration · Wikimedia Commons · 퍼블릭 도메인 (4) 썸네일 사진: \"Becoming Warren Buffett\" 인터뷰 화면(Life Stories 채널 재업로드) ※ 특정 종목의 매수·매도를 권하는 영상이 아닙니다. 투자 판단과 책임은 본인에게 있습니다. #13F #미국주식 #워런버핏 #버크셔해서웨이 #포트폴리오",
+   "status": "skip",
+   "found": "2026-11-19 11:50 KST",
+   "image": "https://i2.ytimg.com/vi/eTrQjaDiK18/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "reason": "쇼츠"
+  },
+  {
+   "id": "2026-11-19-sixsigma-ej6CLCNjqzM",
+   "show": "sixsigma",
+   "show_name": "식스시그마 Six Sigma",
+   "title": "해킹 공격과 사이버 보안의 비대칭성, 미국 은행과 공항이 멈춘 이유 | 팔로알토 CEO 니케시 아로라",
+   "date": "2026-11-19",
+   "published": "2026-11-19 07:00 KST",
+   "link": "https://www.youtube.com/watch?v=ej6CLCNjqzM",
+   "youtube": "https://www.youtube.com/watch?v=ej6CLCNjqzM",
+   "audio": null,
+   "duration": "",
+   "desc": "11월 12일부터 엿새 동안 미국에서 회사 메일, 비행기, 은행 송금, NSA 내부망이 줄줄이 멈춘 이유가 해킹이 아니라, AI가 찾아낸 보안 구멍을 한꺼번에 막느라 오래된 시스템이 버티지 못한 데 있었다는 점을 짚었습니다. 회사와 정부가 밝힌 원인, 의회 비공개 보고를 전한 보도, AI로 한 시간 만에 찾은 자바 결함, 그리고 11월 16일 연준 회의에서 팔로알토 네트웍스 CEO 니케시 아로라가 한 말을 날짜 순서로 이었습니다. 3주 전 PHP 결함을 다룬 앞 편: https://www.youtube.com/watch?v=88Mj0GUcCFw [목차] 0:00 인트로 0:34 1장 11월 12~17일, 무엇이 멈췄나 2:07 2장 10월~11월 17일, PHP 다음은 자바 3:06 3장 11월 16일, 연준 회의에서 아로라의 답 4:37 4장 11월 17일, 막다가 멈췄다 6:25 5장 11월 18일, 한국도 자바 긴급 점검 7:13 마무리 [원본] 1. Federal Reserve Bank of San Francisco – Productivity and Jobs Task Force Conference (2026.11.16) https://www.youtu…",
+   "status": "new",
+   "found": "2026-11-19 11:50 KST",
+   "image": "https://i2.ytimg.com/vi/ej6CLCNjqzM/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko"
+  },
   {
    "id": "2026-11-18-understanding-K4-C1SP5-X8",
    "show": "understanding",
@@ -6478,6 +6515,22 @@
     "guest": "조지 커츠(George Kurtz) — CrowdStrike 공동 창업자 겸 대표·최고경영자",
     "company": "CrowdStrike · 사이버보안 (사이버보안 · 단말 탐지·대응 · AI 에이전트 보안)"
    }
+  },
+  {
+   "id": "2026-10-22-camillo-how-chris-camillo-finds-stock-trends-before-wall",
+   "show": "camillo",
+   "show_name": "Financial Wisdom",
+   "title": "How Chris Camillo Finds Stock Trends Before Wall Street | Social Arbitrage",
+   "date": "2026-10-22",
+   "published": "2026-10-22 17:48 KST",
+   "link": "https://podcasts.apple.com/us/podcast/how-chris-camillo-finds-stock-trends-before-wall-street/id6836581777?i=1000802827494&uo=4",
+   "audio": "https://traffic.megaphone.fm/HD4058834943.mp3",
+   "duration": "14:56",
+   "desc": "",
+   "status": "new",
+   "found": "2026-11-19 11:50 KST",
+   "image": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/bf/78/06/bf78069e-3723-c221-c956-e59552d56571/mza_7107394054906684309.jpg/600x600bb.jpg",
+   "show_image": null
   },
   {
    "id": "2026-10-22-ca-ai-in-the-investment-firm-ben-harrison-ep-522",
