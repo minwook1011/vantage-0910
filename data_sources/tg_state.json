@@ -2138,6 +2138,7 @@
   "usdkrw:2026-11-16",
   "usdkrw:2026-11-17",
   "usdkrw:2026-11-18",
+  "usdkrw:2026-11-19",
   "weekly:2026-09-28",
   "weekly:2026-10-05",
   "weekly:2026-10-12",
@@ -2147,9 +2148,6 @@
   "weekly:2026-11-09"
  ],
  "msg": {
-  "ins:ins-20261105-trump-300pct-tariff-legal-tools-korea-investment-ukraine-deal": [
-   1527
-  ],
   "nebius:2026-11-06": [
    469
   ],
@@ -3701,6 +3699,9 @@
   ],
   "nebius:2026-11-19": [
    630
+  ],
+  "usdkrw:2026-11-19": [
+   631
   ]
  },
  "topics": {},
