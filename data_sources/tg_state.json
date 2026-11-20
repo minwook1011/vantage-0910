@@ -139,6 +139,7 @@
   "gpu:2026-11-16",
   "gpu:2026-11-17",
   "gpu:2026-11-18",
+  "gpu:2026-11-19",
   "hc:6532:2026-10-02",
   "hc:6532:2026-11-04",
   "ins:ins-20261026-ackman-2027-oil-disinflation-gse-asymmetry",
@@ -2158,9 +2159,6 @@
   "weekly:2026-11-09"
  ],
  "msg": {
-  "pod:2026-11-06-ontape-ivy-zelman-the-queen-of-housing-still-reigns": [
-   1533
-  ],
   "pod:2026-11-06-sixsigma-jgRyFSgr0Os": [
    1534
   ],
@@ -3718,6 +3716,9 @@
   ],
   "usdkrw:2026-11-20": [
    648
+  ],
+  "gpu:2026-11-19": [
+   649
   ]
  },
  "topics": {},
