@@ -49,6 +49,7 @@
   "cds:2026-11-19",
   "cds:2026-11-20",
   "cds:2026-11-23",
+  "cds:2026-11-24",
   "digest:2026-10-07",
   "digest:2026-10-08",
   "digest:2026-10-09",
@@ -455,6 +456,7 @@
   "or:2026-11-21",
   "or:2026-11-22",
   "or:2026-11-23",
+  "or:2026-11-24",
   "pod:2026-10-05-ca-building-the-total-portfolio-at-ontario-teachers",
   "pod:2026-10-06-ilb-andrew-huberman-the-frontier-of-neurotechnology",
   "pod:2026-10-08-ca-real-estate-credit-over-yield-at-invesco-charlie",
@@ -2277,12 +2279,6 @@
   "weekly:2026-11-16"
  ],
  "msg": {
-  "trk:yt--jklonfa:45644ca9657e": [
-   1632
-  ],
-  "pod:2026-11-09-ca-chasing-demand-in-early-stage-venture-at-felicis": [
-   1633
-  ],
   "trk:yt-wy-8burq:69b92e80501e": [
    1634
   ],
@@ -3843,8 +3839,16 @@
   ],
   "usdkrw:2026-11-25": [
    691
+  ],
+  "cds:2026-11-24": [
+   692,
+   693,
+   694
+  ],
+  "or:2026-11-24": [
+   695
   ]
  },
  "topics": {},
- "topic_fail_at": 1795576068.956618
+ "topic_fail_at": 1795579808.958013
 }
