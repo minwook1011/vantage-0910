@@ -58,3 +58,11 @@
 @media (max-width:720px) { .jpm-row { grid-template-columns:minmax(0,1fr); } .m12 i { min-width:0; font-size:9.5px; } }
 .jpm-t.tr th.mh { font-family:var(--mono); }
 .jpm-t.tr td.m { font-family:inherit; font-weight:600; color:var(--muted); white-space:nowrap; }
+
+/* 지역별 묶음(2026-11-26 사용자) — 접고 펼치기, 펼치면 묶음 위에 연·월 줄 */
+.jpm-t tr.jpm-gh td { background:var(--card,#fff); border-top:1px solid var(--border-strong); padding-top:8px; }
+.jpm-t tr.jpm-gh button { all:unset; cursor:pointer; font-weight:700; color:var(--text,inherit); white-space:nowrap; }
+.jpm-t tr.jpm-gh button:hover { text-decoration:underline; }
+.jpm-t tr.jpm-gh small { font-weight:500; color:var(--muted); }
+.jpm-t tr.jpm-gm td.mh { font-family:var(--mono); font-size:11px; color:var(--muted); font-weight:600; background:var(--bg-soft, rgba(127,127,127,.06)); }
+.jpm-t tr.jpm-gr td.m { padding-left:20px; }
