@@ -1,6 +1,41 @@
 {
- "updated": "2026-11-27 22:10 KST",
+ "updated": "2026-11-28 04:39 KST",
  "episodes": [
+  {
+   "id": "2026-11-28-dwarkesh-ai-researchers-debate-what-we-should-do-next-dan",
+   "show": "dwarkesh",
+   "show_name": "Dwarkesh Podcast",
+   "title": "AI researchers debate what we should do next – Daniel Kokotajlo and Ege Erdil",
+   "date": "2026-11-28",
+   "published": "2026-11-28 03:01 KST",
+   "link": "https://www.dwarkesh.com/p/daniel-kokotajlo-ege-erdil",
+   "audio": "https://api.substack.com/feed/podcast/226789196/89485c0543b57f829184d38024dba666.mp3",
+   "duration": "1:36:02",
+   "desc": "New podcast episode between Ege Erdil and Daniel Kokotajlo. I thought this was going to be a debate, but they ended up agreeing on a lot more than I expected. Their main point of disagreement is how likely it is that we get some intelligence explosion that gives us AIs more competent than any human expert before 2029. Ege puts this possibility at around 20%, whereas Daniel thinks it’s higher than 50%. They agree that there is not a huge difference in probability, and that, in either case, the situation is crazy enough that our civilization really needs to grapple with how the world might be tr…",
+   "status": "new",
+   "found": "2026-11-28 04:39 KST",
+   "image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/c3Vic3RhY2s6cG9zdDoyMjY3ODkxOTY.jpg",
+   "show_image": "https://apple.dwarkesh-podcast.workers.dev/art/v1/show.jpg"
+  },
+  {
+   "id": "2026-11-27-understanding-EefUm1G9ZvM",
+   "show": "understanding",
+   "show_name": "언더스탠딩 : 세상의 모든 지식",
+   "title": "엔비디아 중국 커넥션, 직원의 익명 제보",
+   "date": "2026-11-27",
+   "published": "2026-11-27 23:15 KST",
+   "link": "https://www.youtube.com/shorts/EefUm1G9ZvM",
+   "youtube": "https://www.youtube.com/shorts/EefUm1G9ZvM",
+   "audio": null,
+   "duration": "",
+   "desc": "💡내용 요약 이번 영상에서는 엔비디아의 중국 AI 반도체 밀수 의혹과 젠슨 황 CEO의 연루 가능성을 살펴봅니다. 최근 젠슨 황과 싱가포르 데이터센터 기업 메가스피드의 실질적 지배자로 알려진 앨리스 황의 사생활 스캔들이 불거졌지만, 사건의 핵심은 불륜이 아니라 엔비디아가 미국의 대중국 반도체 수출 통제를 알고도 우회했는지에 있습니다. 공매도 전문기관 컬퍼 리서치는 엔비디아의 중국 관련 매출이 공식 통계보다 훨씬 클 수 있다고 주장합니다. 미국이 2022년부터 고성능 AI 반도체의 중국 수출을 제한하고 2025년 규제를 강화하자, 엔비디아의 공식 중국 매출 비중은 약 20%에서 9%로 감소했습니다. 반면 싱가포르 매출은 급증해 전체 매출의 21%에 달했습니다. 이후 엔비디아가 지역별 매출 집계 기준을 변경하면서 싱가포르 매출이 다른 국가로 재분류되자, 컬퍼 리서치는 중국으로 향하는 반도체의 우회 경로를 감추려는 조치가 아니었느냐는 의혹을 제기했습니다. 의혹의 중심에는 싱가포르 기업 메가스피드가 있습니다. 이 회사는 설립 초기 자산이 약 400억 원에 불과했지만, 엔비디아의 동남아 파트너로 선정된 이후 수조 원 규모의 GPU를 구매했습니다. 컬퍼 리서치는 중국 …",
+   "status": "skip",
+   "found": "2026-11-28 04:39 KST",
+   "image": "https://i2.ytimg.com/vi/EefUm1G9ZvM/hqdefault.jpg",
+   "show_image": null,
+   "lang": "ko",
+   "reason": "쇼츠"
+  },
   {
    "id": "2026-11-27-understanding-Sko-ayJMUrM",
    "show": "understanding",
